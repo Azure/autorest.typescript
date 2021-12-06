@@ -14,7 +14,7 @@ import {
   SyncFullSchemaProperties,
   SyncGroupsListHubSchemasOptionalParams,
   SyncGroupLogProperties,
-  Enum21,
+  Enum75,
   SyncGroupsListLogsOptionalParams,
   SyncGroup,
   SyncGroupsListByDatabaseOptionalParams,
@@ -77,7 +77,7 @@ export interface SyncGroups {
     syncGroupName: string,
     startTime: string,
     endTime: string,
-    typeParam: Enum21,
+    typeParam: Enum75,
     options?: SyncGroupsListLogsOptionalParams
   ): PagedAsyncIterableIterator<SyncGroupLogProperties>;
   /**

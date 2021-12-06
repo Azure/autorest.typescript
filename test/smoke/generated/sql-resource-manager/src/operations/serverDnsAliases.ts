@@ -26,6 +26,7 @@ import {
   ServerDnsAliasesListByServerResponse,
   ServerDnsAliasAcquisition,
   ServerDnsAliasesAcquireOptionalParams,
+  ServerDnsAliasesAcquireResponse,
   ServerDnsAliasesListByServerNextResponse
 } from "../models";
 
@@ -119,7 +120,7 @@ export class ServerDnsAliasesImpl implements ServerDnsAliases {
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server that the alias is pointing to.
-   * @param dnsAliasName The name of the server DNS alias.
+   * @param dnsAliasName The name of the server dns alias.
    * @param options The options parameters.
    */
   get(
@@ -135,11 +136,11 @@ export class ServerDnsAliasesImpl implements ServerDnsAliases {
   }
 
   /**
-   * Creates a server dns alias.
+   * Creates a server DNS alias.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server that the alias is pointing to.
-   * @param dnsAliasName The name of the server DNS alias.
+   * @param dnsAliasName The name of the server dns alias.
    * @param options The options parameters.
    */
   async beginCreateOrUpdate(
@@ -204,11 +205,11 @@ export class ServerDnsAliasesImpl implements ServerDnsAliases {
   }
 
   /**
-   * Creates a server dns alias.
+   * Creates a server DNS alias.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server that the alias is pointing to.
-   * @param dnsAliasName The name of the server DNS alias.
+   * @param dnsAliasName The name of the server dns alias.
    * @param options The options parameters.
    */
   async beginCreateOrUpdateAndWait(
@@ -231,7 +232,7 @@ export class ServerDnsAliasesImpl implements ServerDnsAliases {
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server that the alias is pointing to.
-   * @param dnsAliasName The name of the server DNS alias.
+   * @param dnsAliasName The name of the server dns alias.
    * @param options The options parameters.
    */
   async beginDelete(
@@ -295,7 +296,7 @@ export class ServerDnsAliasesImpl implements ServerDnsAliases {
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server that the alias is pointing to.
-   * @param dnsAliasName The name of the server DNS alias.
+   * @param dnsAliasName The name of the server dns alias.
    * @param options The options parameters.
    */
   async beginDeleteAndWait(
@@ -337,7 +338,7 @@ export class ServerDnsAliasesImpl implements ServerDnsAliases {
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server that the alias is pointing to.
    * @param dnsAliasName The name of the server dns alias.
-   * @param parameters A server DNS alias acquisition request.
+   * @param parameters A server dns alias acquisition request.
    * @param options The options parameters.
    */
   async beginAcquire(
@@ -346,11 +347,16 @@ export class ServerDnsAliasesImpl implements ServerDnsAliases {
     dnsAliasName: string,
     parameters: ServerDnsAliasAcquisition,
     options?: ServerDnsAliasesAcquireOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<
+    PollerLike<
+      PollOperationState<ServerDnsAliasesAcquireResponse>,
+      ServerDnsAliasesAcquireResponse
+    >
+  > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<void> => {
+    ): Promise<ServerDnsAliasesAcquireResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -403,7 +409,7 @@ export class ServerDnsAliasesImpl implements ServerDnsAliases {
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server that the alias is pointing to.
    * @param dnsAliasName The name of the server dns alias.
-   * @param parameters A server DNS alias acquisition request.
+   * @param parameters A server dns alias acquisition request.
    * @param options The options parameters.
    */
   async beginAcquireAndWait(
@@ -412,7 +418,7 @@ export class ServerDnsAliasesImpl implements ServerDnsAliases {
     dnsAliasName: string,
     parameters: ServerDnsAliasAcquisition,
     options?: ServerDnsAliasesAcquireOptionalParams
-  ): Promise<void> {
+  ): Promise<ServerDnsAliasesAcquireResponse> {
     const poller = await this.beginAcquire(
       resourceGroupName,
       serverName,
@@ -456,7 +462,7 @@ const getOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion4],
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -486,7 +492,7 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion4],
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -502,7 +508,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/dnsAliases/{dnsAliasName}",
   httpMethod: "DELETE",
   responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
-  queryParameters: [Parameters.apiVersion4],
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -522,7 +528,7 @@ const listByServerOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion4],
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -536,9 +542,23 @@ const acquireOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/dnsAliases/{dnsAliasName}/acquire",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
-  requestBody: Parameters.parameters42,
-  queryParameters: [Parameters.apiVersion4],
+  responses: {
+    200: {
+      bodyMapper: Mappers.ServerDnsAlias
+    },
+    201: {
+      bodyMapper: Mappers.ServerDnsAlias
+    },
+    202: {
+      bodyMapper: Mappers.ServerDnsAlias
+    },
+    204: {
+      bodyMapper: Mappers.ServerDnsAlias
+    },
+    default: {}
+  },
+  requestBody: Parameters.parameters67,
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -546,7 +566,7 @@ const acquireOperationSpec: coreClient.OperationSpec = {
     Parameters.serverName,
     Parameters.dnsAliasName
   ],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -559,7 +579,7 @@ const listByServerNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion4],
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,

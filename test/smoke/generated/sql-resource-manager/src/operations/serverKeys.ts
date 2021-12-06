@@ -157,8 +157,8 @@ export class ServerKeysImpl implements ServerKeys {
    * @param serverName The name of the server.
    * @param keyName The name of the server key to be operated on (updated or created). The key name is
    *                required to be in the format of 'vault_key_version'. For example, if the keyId is
-   *                https://YourVaultName.vault.azure.net/keys/YourKeyName/01234567890123456789012345678901, then the
-   *                server key name should be formatted as: YourVaultName_YourKeyName_01234567890123456789012345678901
+   *                https://YourVaultName.vault.azure.net/keys/YourKeyName/YourKeyVersion, then the server key name
+   *                should be formatted as: YourVaultName_YourKeyName_YourKeyVersion
    * @param parameters The requested server key resource state.
    * @param options The options parameters.
    */
@@ -231,8 +231,8 @@ export class ServerKeysImpl implements ServerKeys {
    * @param serverName The name of the server.
    * @param keyName The name of the server key to be operated on (updated or created). The key name is
    *                required to be in the format of 'vault_key_version'. For example, if the keyId is
-   *                https://YourVaultName.vault.azure.net/keys/YourKeyName/01234567890123456789012345678901, then the
-   *                server key name should be formatted as: YourVaultName_YourKeyName_01234567890123456789012345678901
+   *                https://YourVaultName.vault.azure.net/keys/YourKeyName/YourKeyVersion, then the server key name
+   *                should be formatted as: YourVaultName_YourKeyName_YourKeyVersion
    * @param parameters The requested server key resource state.
    * @param options The options parameters.
    */
@@ -373,7 +373,7 @@ const listByServerOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion3],
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -393,7 +393,7 @@ const getOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion3],
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -423,8 +423,8 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  requestBody: Parameters.parameters21,
-  queryParameters: [Parameters.apiVersion3],
+  requestBody: Parameters.parameters68,
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -441,7 +441,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/keys/{keyName}",
   httpMethod: "DELETE",
   responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
-  queryParameters: [Parameters.apiVersion3],
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -460,7 +460,7 @@ const listByServerNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion3],
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,

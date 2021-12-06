@@ -1085,7 +1085,7 @@ const listByDatabaseOperationSpec: coreClient.OperationSpec = {
   queryParameters: [
     Parameters.apiVersion2,
     Parameters.onlyLatestPerDatabase,
-    Parameters.databaseState1
+    Parameters.databaseState
   ],
   urlParameters: [
     Parameters.$host,
@@ -1110,7 +1110,7 @@ const listByInstanceOperationSpec: coreClient.OperationSpec = {
   queryParameters: [
     Parameters.apiVersion2,
     Parameters.onlyLatestPerDatabase,
-    Parameters.databaseState1
+    Parameters.databaseState
   ],
   urlParameters: [
     Parameters.$host,
@@ -1134,7 +1134,7 @@ const listByLocationOperationSpec: coreClient.OperationSpec = {
   queryParameters: [
     Parameters.apiVersion2,
     Parameters.onlyLatestPerDatabase,
-    Parameters.databaseState1
+    Parameters.databaseState
   ],
   urlParameters: [
     Parameters.$host,
@@ -1197,7 +1197,7 @@ const listByResourceGroupDatabaseOperationSpec: coreClient.OperationSpec = {
   queryParameters: [
     Parameters.apiVersion2,
     Parameters.onlyLatestPerDatabase,
-    Parameters.databaseState1
+    Parameters.databaseState
   ],
   urlParameters: [
     Parameters.$host,
@@ -1223,7 +1223,7 @@ const listByResourceGroupInstanceOperationSpec: coreClient.OperationSpec = {
   queryParameters: [
     Parameters.apiVersion2,
     Parameters.onlyLatestPerDatabase,
-    Parameters.databaseState1
+    Parameters.databaseState
   ],
   urlParameters: [
     Parameters.$host,
@@ -1248,7 +1248,7 @@ const listByResourceGroupLocationOperationSpec: coreClient.OperationSpec = {
   queryParameters: [
     Parameters.apiVersion2,
     Parameters.onlyLatestPerDatabase,
-    Parameters.databaseState1
+    Parameters.databaseState
   ],
   urlParameters: [
     Parameters.$host,
@@ -1271,7 +1271,7 @@ const listByDatabaseNextOperationSpec: coreClient.OperationSpec = {
   queryParameters: [
     Parameters.apiVersion2,
     Parameters.onlyLatestPerDatabase,
-    Parameters.databaseState1
+    Parameters.databaseState
   ],
   urlParameters: [
     Parameters.$host,
@@ -1296,7 +1296,7 @@ const listByInstanceNextOperationSpec: coreClient.OperationSpec = {
   queryParameters: [
     Parameters.apiVersion2,
     Parameters.onlyLatestPerDatabase,
-    Parameters.databaseState1
+    Parameters.databaseState
   ],
   urlParameters: [
     Parameters.$host,
@@ -1320,7 +1320,7 @@ const listByLocationNextOperationSpec: coreClient.OperationSpec = {
   queryParameters: [
     Parameters.apiVersion2,
     Parameters.onlyLatestPerDatabase,
-    Parameters.databaseState1
+    Parameters.databaseState
   ],
   urlParameters: [
     Parameters.$host,
@@ -1343,7 +1343,7 @@ const listByResourceGroupDatabaseNextOperationSpec: coreClient.OperationSpec = {
   queryParameters: [
     Parameters.apiVersion2,
     Parameters.onlyLatestPerDatabase,
-    Parameters.databaseState1
+    Parameters.databaseState
   ],
   urlParameters: [
     Parameters.$host,
@@ -1369,7 +1369,7 @@ const listByResourceGroupInstanceNextOperationSpec: coreClient.OperationSpec = {
   queryParameters: [
     Parameters.apiVersion2,
     Parameters.onlyLatestPerDatabase,
-    Parameters.databaseState1
+    Parameters.databaseState
   ],
   urlParameters: [
     Parameters.$host,
@@ -1394,7 +1394,7 @@ const listByResourceGroupLocationNextOperationSpec: coreClient.OperationSpec = {
   queryParameters: [
     Parameters.apiVersion2,
     Parameters.onlyLatestPerDatabase,
-    Parameters.databaseState1
+    Parameters.databaseState
   ],
   urlParameters: [
     Parameters.$host,

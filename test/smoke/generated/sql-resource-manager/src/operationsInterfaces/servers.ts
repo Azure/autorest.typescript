@@ -20,6 +20,9 @@ import {
   ServerUpdate,
   ServersUpdateOptionalParams,
   ServersUpdateResponse,
+  ImportNewDatabaseDefinition,
+  ServersImportDatabaseOptionalParams,
+  ServersImportDatabaseResponse,
   CheckNameAvailabilityRequest,
   ServersCheckNameAvailabilityOptionalParams,
   ServersCheckNameAvailabilityResponse
@@ -142,6 +145,39 @@ export interface Servers {
     parameters: ServerUpdate,
     options?: ServersUpdateOptionalParams
   ): Promise<ServersUpdateResponse>;
+  /**
+   * Imports a bacpac into a new database.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param parameters The database import request parameters.
+   * @param options The options parameters.
+   */
+  beginImportDatabase(
+    resourceGroupName: string,
+    serverName: string,
+    parameters: ImportNewDatabaseDefinition,
+    options?: ServersImportDatabaseOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<ServersImportDatabaseResponse>,
+      ServersImportDatabaseResponse
+    >
+  >;
+  /**
+   * Imports a bacpac into a new database.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param parameters The database import request parameters.
+   * @param options The options parameters.
+   */
+  beginImportDatabaseAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    parameters: ImportNewDatabaseDefinition,
+    options?: ServersImportDatabaseOptionalParams
+  ): Promise<ServersImportDatabaseResponse>;
   /**
    * Determines whether a resource can be created with the specified name.
    * @param parameters The name availability request parameters.

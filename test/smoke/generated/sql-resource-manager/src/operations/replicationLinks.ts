@@ -16,15 +16,21 @@ import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
   ReplicationLink,
+  ReplicationLinksListByDatabaseNextOptionalParams,
   ReplicationLinksListByDatabaseOptionalParams,
+  ReplicationLinksListByServerNextOptionalParams,
+  ReplicationLinksListByServerOptionalParams,
   ReplicationLinksDeleteOptionalParams,
-  ReplicationLinksGetOptionalParams,
-  ReplicationLinksGetResponse,
   ReplicationLinksFailoverOptionalParams,
   ReplicationLinksFailoverAllowDataLossOptionalParams,
   UnlinkParameters,
   ReplicationLinksUnlinkOptionalParams,
-  ReplicationLinksListByDatabaseResponse
+  ReplicationLinksListByDatabaseResponse,
+  ReplicationLinksGetOptionalParams,
+  ReplicationLinksGetResponse,
+  ReplicationLinksListByServerResponse,
+  ReplicationLinksListByDatabaseNextResponse,
+  ReplicationLinksListByServerNextResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -41,11 +47,11 @@ export class ReplicationLinksImpl implements ReplicationLinks {
   }
 
   /**
-   * Lists a database's replication links.
+   * Gets a list of replication links on database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
-   * @param databaseName The name of the database to retrieve links for.
+   * @param databaseName The name of the database.
    * @param options The options parameters.
    */
   public listByDatabase(
@@ -91,6 +97,18 @@ export class ReplicationLinksImpl implements ReplicationLinks {
       options
     );
     yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByDatabaseNext(
+        resourceGroupName,
+        serverName,
+        databaseName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
   }
 
   private async *listByDatabasePagingAll(
@@ -103,6 +121,78 @@ export class ReplicationLinksImpl implements ReplicationLinks {
       resourceGroupName,
       serverName,
       databaseName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets a list of replication links.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param options The options parameters.
+   */
+  public listByServer(
+    resourceGroupName: string,
+    serverName: string,
+    options?: ReplicationLinksListByServerOptionalParams
+  ): PagedAsyncIterableIterator<ReplicationLink> {
+    const iter = this.listByServerPagingAll(
+      resourceGroupName,
+      serverName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByServerPagingPage(
+          resourceGroupName,
+          serverName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByServerPagingPage(
+    resourceGroupName: string,
+    serverName: string,
+    options?: ReplicationLinksListByServerOptionalParams
+  ): AsyncIterableIterator<ReplicationLink[]> {
+    let result = await this._listByServer(
+      resourceGroupName,
+      serverName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByServerNext(
+        resourceGroupName,
+        serverName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByServerPagingAll(
+    resourceGroupName: string,
+    serverName: string,
+    options?: ReplicationLinksListByServerOptionalParams
+  ): AsyncIterableIterator<ReplicationLink> {
+    for await (const page of this.listByServerPagingPage(
+      resourceGroupName,
+      serverName,
       options
     )) {
       yield* page;
@@ -128,28 +218,6 @@ export class ReplicationLinksImpl implements ReplicationLinks {
     return this.client.sendOperationRequest(
       { resourceGroupName, serverName, databaseName, linkId, options },
       deleteOperationSpec
-    );
-  }
-
-  /**
-   * Gets a database replication link.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database to get the link for.
-   * @param linkId The replication link ID to be retrieved.
-   * @param options The options parameters.
-   */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    linkId: string,
-    options?: ReplicationLinksGetOptionalParams
-  ): Promise<ReplicationLinksGetResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, databaseName, linkId, options },
-      getOperationSpec
     );
   }
 
@@ -444,11 +512,11 @@ export class ReplicationLinksImpl implements ReplicationLinks {
   }
 
   /**
-   * Lists a database's replication links.
+   * Gets a list of replication links on database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
-   * @param databaseName The name of the database to retrieve links for.
+   * @param databaseName The name of the database.
    * @param options The options parameters.
    */
   private _listByDatabase(
@@ -460,6 +528,88 @@ export class ReplicationLinksImpl implements ReplicationLinks {
     return this.client.sendOperationRequest(
       { resourceGroupName, serverName, databaseName, options },
       listByDatabaseOperationSpec
+    );
+  }
+
+  /**
+   * Gets a replication link.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database.
+   * @param linkId The name of the replication link.
+   * @param options The options parameters.
+   */
+  get(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    linkId: string,
+    options?: ReplicationLinksGetOptionalParams
+  ): Promise<ReplicationLinksGetResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, serverName, databaseName, linkId, options },
+      getOperationSpec
+    );
+  }
+
+  /**
+   * Gets a list of replication links.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param options The options parameters.
+   */
+  private _listByServer(
+    resourceGroupName: string,
+    serverName: string,
+    options?: ReplicationLinksListByServerOptionalParams
+  ): Promise<ReplicationLinksListByServerResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, serverName, options },
+      listByServerOperationSpec
+    );
+  }
+
+  /**
+   * ListByDatabaseNext
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database.
+   * @param nextLink The nextLink from the previous successful call to the ListByDatabase method.
+   * @param options The options parameters.
+   */
+  private _listByDatabaseNext(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    nextLink: string,
+    options?: ReplicationLinksListByDatabaseNextOptionalParams
+  ): Promise<ReplicationLinksListByDatabaseNextResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, serverName, databaseName, nextLink, options },
+      listByDatabaseNextOperationSpec
+    );
+  }
+
+  /**
+   * ListByServerNext
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param nextLink The nextLink from the previous successful call to the ListByServer method.
+   * @param options The options parameters.
+   */
+  private _listByServerNext(
+    resourceGroupName: string,
+    serverName: string,
+    nextLink: string,
+    options?: ReplicationLinksListByServerNextOptionalParams
+  ): Promise<ReplicationLinksListByServerNextResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, serverName, nextLink, options },
+      listByServerNextOperationSpec
     );
   }
 }
@@ -480,27 +630,6 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     Parameters.databaseName,
     Parameters.linkId
   ],
-  serializer
-};
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/replicationLinks/{linkId}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ReplicationLink
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.databaseName,
-    Parameters.linkId
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };
 const failoverOperationSpec: coreClient.OperationSpec = {
@@ -540,7 +669,7 @@ const unlinkOperationSpec: coreClient.OperationSpec = {
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/replicationLinks/{linkId}/unlink",
   httpMethod: "POST",
   responses: { 200: {}, 201: {}, 202: {}, 204: {} },
-  requestBody: Parameters.parameters14,
+  requestBody: Parameters.parameters11,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -561,15 +690,99 @@ const listByDatabaseOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.ReplicationLinkListResult
-    }
+    },
+    default: {}
   },
-  queryParameters: [Parameters.apiVersion],
+  queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
     Parameters.databaseName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const getOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/replicationLinks/{linkId}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ReplicationLink
+    },
+    default: {}
+  },
+  queryParameters: [Parameters.apiVersion1],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.serverName,
+    Parameters.databaseName,
+    Parameters.linkId
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listByServerOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/replicationLinks",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ReplicationLinkListResult
+    },
+    default: {}
+  },
+  queryParameters: [Parameters.apiVersion1],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.serverName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listByDatabaseNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ReplicationLinkListResult
+    },
+    default: {}
+  },
+  queryParameters: [Parameters.apiVersion1],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.serverName,
+    Parameters.databaseName,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listByServerNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ReplicationLinkListResult
+    },
+    default: {}
+  },
+  queryParameters: [Parameters.apiVersion1],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.serverName,
+    Parameters.nextLink
   ],
   headerParameters: [Parameters.accept],
   serializer

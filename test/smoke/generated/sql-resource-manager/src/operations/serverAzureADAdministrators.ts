@@ -25,8 +25,6 @@ import {
   ServerAzureADAdministratorsCreateOrUpdateResponse,
   ServerAzureADAdministratorsDeleteOptionalParams,
   ServerAzureADAdministratorsListByServerResponse,
-  ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationOptionalParams,
-  ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationResponse,
   ServerAzureADAdministratorsListByServerNextResponse
 } from "../models";
 
@@ -141,9 +139,8 @@ export class ServerAzureADAdministratorsImpl
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
-   * @param administratorName
-   * @param parameters The required parameters for creating or updating an Active Directory
-   *                   Administrator.
+   * @param administratorName The name of server active directory administrator.
+   * @param parameters The requested Azure Active Directory administrator Resource state.
    * @param options The options parameters.
    */
   async beginCreateOrUpdate(
@@ -213,9 +210,8 @@ export class ServerAzureADAdministratorsImpl
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
-   * @param administratorName
-   * @param parameters The required parameters for creating or updating an Active Directory
-   *                   Administrator.
+   * @param administratorName The name of server active directory administrator.
+   * @param parameters The requested Azure Active Directory administrator Resource state.
    * @param options The options parameters.
    */
   async beginCreateOrUpdateAndWait(
@@ -341,97 +337,6 @@ export class ServerAzureADAdministratorsImpl
   }
 
   /**
-   * Disables Azure Active Directory only authentication on logical Server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
-   */
-  async beginDisableAzureADOnlyAuthentication(
-    resourceGroupName: string,
-    serverName: string,
-    options?: ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationOptionalParams
-  ): Promise<
-    PollerLike<
-      PollOperationState<
-        ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationResponse
-      >,
-      ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationResponse
-    >
-  > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationResponse> => {
-      return this.client.sendOperationRequest(args, spec);
-    };
-    const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return {
-        flatResponse,
-        rawResponse: {
-          statusCode: currentRawResponse!.status,
-          body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
-      };
-    };
-
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, serverName, options },
-      disableAzureADOnlyAuthenticationOperationSpec
-    );
-    return new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
-    });
-  }
-
-  /**
-   * Disables Azure Active Directory only authentication on logical Server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
-   */
-  async beginDisableAzureADOnlyAuthenticationAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    options?: ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationOptionalParams
-  ): Promise<
-    ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationResponse
-  > {
-    const poller = await this.beginDisableAzureADOnlyAuthentication(
-      resourceGroupName,
-      serverName,
-      options
-    );
-    return poller.pollUntilDone();
-  }
-
-  /**
    * ListByServerNext
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -464,13 +369,13 @@ const getOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion5],
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.administratorName1
+    Parameters.administratorName
   ],
   headerParameters: [Parameters.accept],
   serializer
@@ -494,14 +399,14 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  requestBody: Parameters.parameters70,
-  queryParameters: [Parameters.apiVersion5],
+  requestBody: Parameters.parameters64,
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.administratorName1
+    Parameters.administratorName
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
@@ -512,13 +417,13 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/administrators/{administratorName}",
   httpMethod: "DELETE",
   responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
-  queryParameters: [Parameters.apiVersion5],
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.administratorName1
+    Parameters.administratorName
   ],
   serializer
 };
@@ -532,36 +437,7 @@ const listByServerOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion5],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const disableAzureADOnlyAuthenticationOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/disableAzureADOnlyAuthentication",
-  httpMethod: "POST",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ServerAzureADAdministrator
-    },
-    201: {
-      bodyMapper: Mappers.ServerAzureADAdministrator
-    },
-    202: {
-      bodyMapper: Mappers.ServerAzureADAdministrator
-    },
-    204: {
-      bodyMapper: Mappers.ServerAzureADAdministrator
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion5],
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -580,7 +456,7 @@ const listByServerNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion5],
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,

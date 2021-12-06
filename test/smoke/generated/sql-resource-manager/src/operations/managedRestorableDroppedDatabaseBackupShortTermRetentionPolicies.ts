@@ -155,13 +155,13 @@ export class ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesImp
   }
 
   /**
-   * Sets a database's long term retention policy.
+   * Sets a database's short term retention policy.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param managedInstanceName The name of the managed instance.
    * @param restorableDroppedDatabaseId
    * @param policyName The policy name. Should always be "default".
-   * @param parameters The long term retention policy info.
+   * @param parameters The short term retention policy info.
    * @param options The options parameters.
    */
   async beginCreateOrUpdate(
@@ -237,13 +237,13 @@ export class ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesImp
   }
 
   /**
-   * Sets a database's long term retention policy.
+   * Sets a database's short term retention policy.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param managedInstanceName The name of the managed instance.
    * @param restorableDroppedDatabaseId
    * @param policyName The policy name. Should always be "default".
-   * @param parameters The long term retention policy info.
+   * @param parameters The short term retention policy info.
    * @param options The options parameters.
    */
   async beginCreateOrUpdateAndWait(
@@ -268,13 +268,13 @@ export class ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesImp
   }
 
   /**
-   * Sets a database's long term retention policy.
+   * Sets a database's short term retention policy.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param managedInstanceName The name of the managed instance.
    * @param restorableDroppedDatabaseId
    * @param policyName The policy name. Should always be "default".
-   * @param parameters The long term retention policy info.
+   * @param parameters The short term retention policy info.
    * @param options The options parameters.
    */
   async beginUpdate(
@@ -350,13 +350,13 @@ export class ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesImp
   }
 
   /**
-   * Sets a database's long term retention policy.
+   * Sets a database's short term retention policy.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param managedInstanceName The name of the managed instance.
    * @param restorableDroppedDatabaseId
    * @param policyName The policy name. Should always be "default".
-   * @param parameters The long term retention policy info.
+   * @param parameters The short term retention policy info.
    * @param options The options parameters.
    */
   async beginUpdateAndWait(
@@ -451,7 +451,7 @@ const getOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion4],
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -482,8 +482,8 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  requestBody: Parameters.parameters40,
-  queryParameters: [Parameters.apiVersion4],
+  requestBody: Parameters.parameters41,
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -515,8 +515,8 @@ const updateOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  requestBody: Parameters.parameters40,
-  queryParameters: [Parameters.apiVersion4],
+  requestBody: Parameters.parameters41,
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -539,7 +539,7 @@ const listByRestorableDroppedDatabaseOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion4],
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -559,7 +559,7 @@ const listByRestorableDroppedDatabaseNextOperationSpec: coreClient.OperationSpec
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion4],
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,

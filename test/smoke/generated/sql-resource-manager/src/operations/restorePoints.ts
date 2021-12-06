@@ -16,6 +16,7 @@ import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
   RestorePoint,
+  RestorePointsListByDatabaseNextOptionalParams,
   RestorePointsListByDatabaseOptionalParams,
   RestorePointsListByDatabaseResponse,
   CreateDatabaseRestorePointDefinition,
@@ -23,7 +24,8 @@ import {
   RestorePointsCreateResponse,
   RestorePointsGetOptionalParams,
   RestorePointsGetResponse,
-  RestorePointsDeleteOptionalParams
+  RestorePointsDeleteOptionalParams,
+  RestorePointsListByDatabaseNextResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -90,6 +92,18 @@ export class RestorePointsImpl implements RestorePoints {
       options
     );
     yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByDatabaseNext(
+        resourceGroupName,
+        serverName,
+        databaseName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
   }
 
   private async *listByDatabasePagingAll(
@@ -280,6 +294,28 @@ export class RestorePointsImpl implements RestorePoints {
       deleteOperationSpec
     );
   }
+
+  /**
+   * ListByDatabaseNext
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database.
+   * @param nextLink The nextLink from the previous successful call to the ListByDatabase method.
+   * @param options The options parameters.
+   */
+  private _listByDatabaseNext(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    nextLink: string,
+    options?: RestorePointsListByDatabaseNextOptionalParams
+  ): Promise<RestorePointsListByDatabaseNextResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, serverName, databaseName, nextLink, options },
+      listByDatabaseNextOperationSpec
+    );
+  }
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
@@ -294,7 +330,7 @@ const listByDatabaseOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion4],
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -324,8 +360,8 @@ const createOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  requestBody: Parameters.parameters44,
-  queryParameters: [Parameters.apiVersion4],
+  requestBody: Parameters.parameters62,
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -347,7 +383,7 @@ const getOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion4],
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -364,7 +400,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/restorePoints/{restorePointName}",
   httpMethod: "DELETE",
   responses: { 200: {}, default: {} },
-  queryParameters: [Parameters.apiVersion4],
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -373,5 +409,26 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     Parameters.databaseName,
     Parameters.restorePointName
   ],
+  serializer
+};
+const listByDatabaseNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.RestorePointListResult
+    },
+    default: {}
+  },
+  queryParameters: [Parameters.apiVersion2],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.serverName,
+    Parameters.databaseName,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
   serializer
 };

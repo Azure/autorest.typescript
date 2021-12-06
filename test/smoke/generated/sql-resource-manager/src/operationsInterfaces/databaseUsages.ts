@@ -16,7 +16,7 @@ import {
 /** Interface representing a DatabaseUsages. */
 export interface DatabaseUsages {
   /**
-   * Returns database usages.
+   * Gets database usages.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
