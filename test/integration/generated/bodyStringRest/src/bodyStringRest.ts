@@ -346,9 +346,73 @@ export default function BodyStringRest(
 ): BodyStringRestRestClient {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
 
-  return getClient(
+  const client = getClient(
     baseUrl,
 
     options
   ) as BodyStringRestRestClient;
+  return {
+    ...client,
+    string: {
+      getNull: (options) => {
+        return client.path("/string/null").get(options);
+      },
+      putNull: (options) => {
+        return client.path("/string/null").put(options);
+      },
+      getEmpty: (options) => {
+        return client.path("/string/empty").get(options);
+      },
+      putEmpty: (options) => {
+        return client.path("/string/empty").put(options);
+      },
+      getMbcs: (options) => {
+        return client.path("/string/mbcs").get(options);
+      },
+      putMbcs: (options) => {
+        return client.path("/string/mbcs").put(options);
+      },
+      getWhitespace: (options) => {
+        return client.path("/string/whitespace").get(options);
+      },
+      putWhitespace: (options) => {
+        return client.path("/string/whitespace").put(options);
+      },
+      getNotProvided: (options) => {
+        return client.path("/string/notProvided").get(options);
+      },
+      getBase64Encoded: (options) => {
+        return client.path("/string/base64Encoding").get(options);
+      },
+      getBase64UrlEncoded: (options) => {
+        return client.path("/string/base64UrlEncoding").get(options);
+      },
+      putBase64UrlEncoded: (options) => {
+        return client.path("/string/base64UrlEncoding").put(options);
+      },
+      getNullBase64UrlEncoded: (options) => {
+        return client.path("/string/nullBase64UrlEncoding").get(options);
+      }
+    },
+    enum: {
+      getNotExpandable: (options) => {
+        return client.path("/string/enum/notExpandable").get(options);
+      },
+      putNotExpandable: (options) => {
+        return client.path("/string/enum/notExpandable").put(options);
+      },
+      getReferenced: (options) => {
+        return client.path("/string/enum/Referenced").get(options);
+      },
+      putReferenced: (options) => {
+        return client.path("/string/enum/Referenced").put(options);
+      },
+      getReferencedConstant: (options) => {
+        return client.path("/string/enum/ReferencedConstant").get(options);
+      },
+      putReferencedConstant: (options) => {
+        return client.path("/string/enum/ReferencedConstant").put(options);
+      }
+    }
+  };
 }

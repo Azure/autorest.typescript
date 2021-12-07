@@ -27,10 +27,15 @@ import { isConstantSchema, getElementType } from "./schemaHelpers";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import {
   buildMethodDefinitions,
-  getOperationParameters
+  getOperationParameters,
+  getParhParamDefinitions
 } from "./helpers/operationHelpers";
-import { generateMethodShortcuts } from "./generateMethodShortcuts";
+import {
+  generateMethodShortcutImplementation,
+  generateMethodShortcuts
+} from "./generateMethodShortcuts";
 import { Methods, PathParameter, Paths } from "./interfaces";
+import { shouldImportParameters } from "../generators/utils/importUtils";
 
 export function generatePathFirstClient(model: CodeModel, project: Project) {
   const name = normalizeName(
@@ -170,7 +175,7 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
     ],
     returnType: clientIterfaceName,
     isDefaultExport: true,
-    statements: getClientFactoryBody(clientIterfaceName)
+    statements: getClientFactoryBody(clientIterfaceName, pathDictionary)
   });
 
   if (importedParameters.size) {
@@ -222,7 +227,8 @@ function getOperationOptionsType(
 }
 
 function getClientFactoryBody(
-  clientTypeName: string
+  clientTypeName: string,
+  paths: Paths
 ): string | WriterFunction | (string | WriterFunction | StatementStructures)[] {
   const { model } = getSession();
   const { endpoint, parameterName } = transformBaseUrl(model);
@@ -272,13 +278,30 @@ function getClientFactoryBody(
     }`
       : "";
 
-  const getClient = `return getClient(
+  const getClient = `const client = getClient(
       baseUrl,
       ${credentials ? "credentials," : ""}
       options
     ) as ${clientTypeName};`;
 
-  return [baseUrlStatement, apiVersionStatement, credentials, getClient];
+  const shortcutImplementations = generateMethodShortcutImplementation(
+    model,
+    paths
+  );
+
+  const shortcutBody = Object.keys(shortcutImplementations).map(key => {
+    return `"${key}": {${shortcutImplementations[key].join()}}`;
+  });
+
+  const returnStatement = `return { ...client, ${shortcutBody.join()} };`;
+
+  return [
+    baseUrlStatement,
+    apiVersionStatement,
+    credentials,
+    getClient,
+    returnStatement
+  ];
 }
 
 function getApiVersion(): string | undefined {
@@ -356,16 +379,7 @@ function getPathFirstRoutesInterfaceDefinition(
       ],
       parameters: [
         { name: "path", type: `"${key}"` },
-        ...pathParams.map(p => {
-          return {
-            name: p.name,
-            type: getElementType(p.schema, [
-              SchemaContext.Input,
-              SchemaContext.Exception
-            ]),
-            description: p.description
-          };
-        })
+        ...getParhParamDefinitions(pathParams)
       ],
       returnType: paths[key].name,
       kind: StructureKind.CallSignature

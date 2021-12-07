@@ -1,10 +1,17 @@
 import {
   ImplementationLocation,
   Operation,
-  Parameter
+  Parameter,
+  SchemaContext
 } from "@autorest/codemodel";
-import { OptionalKind, MethodSignatureStructure } from "ts-morph";
-import { Methods } from "../interfaces";
+import {
+  OptionalKind,
+  MethodSignatureStructure,
+  ParameterDeclarationStructure,
+  StructureKind
+} from "ts-morph";
+import { Methods, PathParameter } from "../interfaces";
+import { getElementType } from "../schemaHelpers";
 
 /**
  * Given an operation, extract all its parameters
@@ -39,7 +46,8 @@ function filterMethodNotSynthetic(parameter: Parameter) {
 }
 
 export function buildMethodDefinitions(
-  methods: Methods
+  methods: Methods,
+  pathParams: PathParameter[] = []
 ): OptionalKind<MethodSignatureStructure>[] {
   const methodDefinitions: OptionalKind<MethodSignatureStructure>[] = [];
   for (const key of Object.keys(methods)) {
@@ -52,6 +60,7 @@ export function buildMethodDefinitions(
       name: key,
       ...(description && { docs: [{ description }] }),
       parameters: [
+        ...getParhParamDefinitions(pathParams),
         {
           name: "options",
           hasQuestionToken: areAllOptional,
@@ -63,4 +72,19 @@ export function buildMethodDefinitions(
   }
 
   return methodDefinitions;
+}
+
+export function getParhParamDefinitions(
+  pathParams: PathParameter[]
+): OptionalKind<ParameterDeclarationStructure>[] {
+  return pathParams.map(p => {
+    return {
+      name: p.name,
+      type: getElementType(p.schema, [
+        SchemaContext.Input,
+        SchemaContext.Exception
+      ]),
+      description: p.description
+    };
+  });
 }
