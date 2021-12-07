@@ -100,9 +100,10 @@ export default function MultipleInheritanceRestClient(
 ): MultipleInheritanceRestClientRestClient {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
 
-  return getClient(
+  const client = getClient(
     baseUrl,
-
     options
   ) as MultipleInheritanceRestClientRestClient;
+
+  return client;
 }

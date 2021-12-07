@@ -65,115 +65,6 @@ import {
 import { getClient, ClientOptions, Client } from "@azure-rest/core-client";
 import "@azure/core-auth";
 
-export interface StringOperations {
-  /** Get null string value value */
-  getNull(
-    options?: StringGetNullParameters
-  ): Promise<StringGetNull200Response | StringGetNulldefaultResponse>;
-  /** Set string value null */
-  putNull(
-    options?: StringPutNullParameters
-  ): Promise<StringPutNull200Response | StringPutNulldefaultResponse>;
-  /** Get empty string value value '' */
-  getEmpty(
-    options?: StringGetEmptyParameters
-  ): Promise<StringGetEmpty200Response | StringGetEmptydefaultResponse>;
-  /** Set string value empty '' */
-  putEmpty(
-    options: StringPutEmptyParameters
-  ): Promise<StringPutEmpty200Response | StringPutEmptydefaultResponse>;
-  /** Get mbcs string value '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€' */
-  getMbcs(
-    options?: StringGetMbcsParameters
-  ): Promise<StringGetMbcs200Response | StringGetMbcsdefaultResponse>;
-  /** Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€' */
-  putMbcs(
-    options: StringPutMbcsParameters
-  ): Promise<StringPutMbcs200Response | StringPutMbcsdefaultResponse>;
-  /** Get string value with leading and trailing whitespace '<tab><space><space>Now is the time for all good men to come to the aid of their country<tab><space><space>' */
-  getWhitespace(
-    options?: StringGetWhitespaceParameters
-  ): Promise<
-    StringGetWhitespace200Response | StringGetWhitespacedefaultResponse
-  >;
-  /** Set String value with leading and trailing whitespace '<tab><space><space>Now is the time for all good men to come to the aid of their country<tab><space><space>' */
-  putWhitespace(
-    options: StringPutWhitespaceParameters
-  ): Promise<
-    StringPutWhitespace200Response | StringPutWhitespacedefaultResponse
-  >;
-  /** Get String value when no string value is sent in response payload */
-  getNotProvided(
-    options?: StringGetNotProvidedParameters
-  ): Promise<
-    StringGetNotProvided200Response | StringGetNotProvideddefaultResponse
-  >;
-  /** Get value that is base64 encoded */
-  getBase64Encoded(
-    options?: StringGetBase64EncodedParameters
-  ): Promise<
-    StringGetBase64Encoded200Response | StringGetBase64EncodeddefaultResponse
-  >;
-  /** Get value that is base64url encoded */
-  getBase64UrlEncoded(
-    options?: StringGetBase64UrlEncodedParameters
-  ): Promise<
-    | StringGetBase64UrlEncoded200Response
-    | StringGetBase64UrlEncodeddefaultResponse
-  >;
-  /** Put value that is base64url encoded */
-  putBase64UrlEncoded(
-    options: StringPutBase64UrlEncodedParameters
-  ): Promise<
-    | StringPutBase64UrlEncoded200Response
-    | StringPutBase64UrlEncodeddefaultResponse
-  >;
-  /** Get null value that is expected to be base64url encoded */
-  getNullBase64UrlEncoded(
-    options?: StringGetNullBase64UrlEncodedParameters
-  ): Promise<
-    | StringGetNullBase64UrlEncoded200Response
-    | StringGetNullBase64UrlEncodeddefaultResponse
-  >;
-}
-
-export interface EnumOperations {
-  /** Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'. */
-  getNotExpandable(
-    options?: EnumGetNotExpandableParameters
-  ): Promise<
-    EnumGetNotExpandable200Response | EnumGetNotExpandabledefaultResponse
-  >;
-  /** Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color' */
-  putNotExpandable(
-    options: EnumPutNotExpandableParameters
-  ): Promise<
-    EnumPutNotExpandable200Response | EnumPutNotExpandabledefaultResponse
-  >;
-  /** Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'. */
-  getReferenced(
-    options?: EnumGetReferencedParameters
-  ): Promise<EnumGetReferenced200Response | EnumGetReferenceddefaultResponse>;
-  /** Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color' */
-  putReferenced(
-    options: EnumPutReferencedParameters
-  ): Promise<EnumPutReferenced200Response | EnumPutReferenceddefaultResponse>;
-  /** Get value 'green-color' from the constant. */
-  getReferencedConstant(
-    options?: EnumGetReferencedConstantParameters
-  ): Promise<
-    | EnumGetReferencedConstant200Response
-    | EnumGetReferencedConstantdefaultResponse
-  >;
-  /** Sends value 'green-color' from a constant */
-  putReferencedConstant(
-    options: EnumPutReferencedConstantParameters
-  ): Promise<
-    | EnumPutReferencedConstant200Response
-    | EnumPutReferencedConstantdefaultResponse
-  >;
-}
-
 export interface StringGetNull {
   /** Get null string value value */
   get(
@@ -337,8 +228,6 @@ export interface Routes {
 
 export type BodyStringRestRestClient = Client & {
   path: Routes;
-  string: StringOperations;
-  enum: EnumOperations;
 };
 
 export default function BodyStringRest(
@@ -346,73 +235,7 @@ export default function BodyStringRest(
 ): BodyStringRestRestClient {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
 
-  const client = getClient(
-    baseUrl,
+  const client = getClient(baseUrl, options) as BodyStringRestRestClient;
 
-    options
-  ) as BodyStringRestRestClient;
-  return {
-    ...client,
-    string: {
-      getNull: (options) => {
-        return client.path("/string/null").get(options);
-      },
-      putNull: (options) => {
-        return client.path("/string/null").put(options);
-      },
-      getEmpty: (options) => {
-        return client.path("/string/empty").get(options);
-      },
-      putEmpty: (options) => {
-        return client.path("/string/empty").put(options);
-      },
-      getMbcs: (options) => {
-        return client.path("/string/mbcs").get(options);
-      },
-      putMbcs: (options) => {
-        return client.path("/string/mbcs").put(options);
-      },
-      getWhitespace: (options) => {
-        return client.path("/string/whitespace").get(options);
-      },
-      putWhitespace: (options) => {
-        return client.path("/string/whitespace").put(options);
-      },
-      getNotProvided: (options) => {
-        return client.path("/string/notProvided").get(options);
-      },
-      getBase64Encoded: (options) => {
-        return client.path("/string/base64Encoding").get(options);
-      },
-      getBase64UrlEncoded: (options) => {
-        return client.path("/string/base64UrlEncoding").get(options);
-      },
-      putBase64UrlEncoded: (options) => {
-        return client.path("/string/base64UrlEncoding").put(options);
-      },
-      getNullBase64UrlEncoded: (options) => {
-        return client.path("/string/nullBase64UrlEncoding").get(options);
-      }
-    },
-    enum: {
-      getNotExpandable: (options) => {
-        return client.path("/string/enum/notExpandable").get(options);
-      },
-      putNotExpandable: (options) => {
-        return client.path("/string/enum/notExpandable").put(options);
-      },
-      getReferenced: (options) => {
-        return client.path("/string/enum/Referenced").get(options);
-      },
-      putReferenced: (options) => {
-        return client.path("/string/enum/Referenced").put(options);
-      },
-      getReferencedConstant: (options) => {
-        return client.path("/string/enum/ReferencedConstant").get(options);
-      },
-      putReferencedConstant: (options) => {
-        return client.path("/string/enum/ReferencedConstant").put(options);
-      }
-    }
-  };
+  return client;
 }

@@ -56,9 +56,7 @@ export default function BodyFile(
 ): BodyFileRestClient {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
 
-  return getClient(
-    baseUrl,
+  const client = getClient(baseUrl, options) as BodyFileRestClient;
 
-    options
-  ) as BodyFileRestClient;
+  return client;
 }

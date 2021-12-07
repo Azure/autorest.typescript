@@ -35,7 +35,6 @@ import {
   generateMethodShortcuts
 } from "./generateMethodShortcuts";
 import { Methods, PathParameter, Paths } from "./interfaces";
-import { shouldImportParameters } from "../generators/utils/importUtils";
 
 export function generatePathFirstClient(model: CodeModel, project: Project) {
   const name = normalizeName(
@@ -105,19 +104,7 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
     }
   }
 
-  const shortcuts = generateMethodShortcuts(model, pathDictionary);
-
-  for (const group of Object.keys(shortcuts)) {
-    const groupName = normalizeName(group, NameType.Interface);
-    const groupOperations = shortcuts[group];
-
-    clientFile.addInterface({
-      name: `${groupName}Operations`,
-      isExported: true,
-      methods: groupOperations
-    });
-  }
-
+  writeShortcutInterface(model, pathDictionary, clientFile);
   clientFile.addInterface({
     name: "Routes",
     isExported: true,
@@ -145,15 +132,19 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
   ];
   const clientIterfaceName = `${clientName}RestClient`;
 
-  const shortcutElements = model.operationGroups.map(og => {
-    const groupName = og.language.default.name;
-    const name = normalizeName(groupName, NameType.Property);
-    const interfaceName = normalizeName(
-      `${name}Operations`,
-      NameType.Interface
-    );
-    return { name, type: interfaceName };
-  });
+  const { rlcShortcut } = getAutorestOptions();
+
+  let shortcutElements = !rlcShortcut
+    ? []
+    : model.operationGroups.map(og => {
+        const groupName = og.language.default.name;
+        const name = normalizeName(groupName, NameType.Property);
+        const interfaceName = normalizeName(
+          `${name}Operations`,
+          NameType.Interface
+        );
+        return { name, type: interfaceName };
+      });
 
   clientFile.addTypeAlias({
     isExported: true,
@@ -207,6 +198,30 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
   ]);
 }
 
+function writeShortcutInterface(
+  model: CodeModel,
+  pathDictionary: Paths,
+  clientFile: SourceFile
+) {
+  const { rlcShortcut } = getAutorestOptions();
+  if (!rlcShortcut) {
+    return;
+  }
+
+  const shortcuts = generateMethodShortcuts(model, pathDictionary);
+
+  for (const group of Object.keys(shortcuts)) {
+    const groupName = normalizeName(group, NameType.Interface);
+    const groupOperations = shortcuts[group];
+
+    clientFile.addInterface({
+      name: `${groupName}Operations`,
+      isExported: true,
+      methods: groupOperations
+    });
+  }
+}
+
 function hasRequiredOptions(operation: Operation) {
   return getOperationParameters(operation)
     .filter(p => p.implementation === ImplementationLocation.Method)
@@ -230,6 +245,7 @@ function getClientFactoryBody(
   clientTypeName: string,
   paths: Paths
 ): string | WriterFunction | (string | WriterFunction | StatementStructures)[] {
+  const { rlcShortcut } = getAutorestOptions();
   const { model } = getSession();
   const { endpoint, parameterName } = transformBaseUrl(model);
   let baseUrl: string;
@@ -279,21 +295,22 @@ function getClientFactoryBody(
       : "";
 
   const getClient = `const client = getClient(
-      baseUrl,
-      ${credentials ? "credentials," : ""}
-      options
-    ) as ${clientTypeName};`;
+      baseUrl, ${credentials ? "credentials," : ""} options
+    ) as ${clientTypeName};
+    `;
 
-  const shortcutImplementations = generateMethodShortcutImplementation(
-    model,
-    paths
-  );
+  let returnStatement = `return client;`;
 
-  const shortcutBody = Object.keys(shortcutImplementations).map(key => {
-    return `"${key}": {${shortcutImplementations[key].join()}}`;
-  });
-
-  const returnStatement = `return { ...client, ${shortcutBody.join()} };`;
+  if (rlcShortcut) {
+    const shortcutImplementations = generateMethodShortcutImplementation(
+      model,
+      paths
+    );
+    const shortcutBody = Object.keys(shortcutImplementations).map(key => {
+      return `"${key}": {${shortcutImplementations[key].join()}}`;
+    });
+    returnStatement = `return { ...client, ${shortcutBody.join()} };`;
+  }
 
   return [
     baseUrlStatement,

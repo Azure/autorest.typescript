@@ -25,6 +25,7 @@ export async function runAutorest(
     ignoreNullableOnOptional,
     title,
     restLevelClient,
+    rlcShortcut,
     headAsBoolean,
     isTestPackage,
     generateTest
@@ -52,6 +53,9 @@ export async function runAutorest(
   }
   if (restLevelClient === true) {
     commandArguments.push(`--rest-level-client=${restLevelClient}`);
+  }
+  if (rlcShortcut === true) {
+    commandArguments.push(`--rlc-shortcut=true`);
   }
   if (title !== undefined) {
     commandArguments.push(`--title=${title}`);

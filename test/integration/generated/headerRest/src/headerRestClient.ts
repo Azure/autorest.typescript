@@ -378,9 +378,7 @@ export default function HeaderRestClient(
 ): HeaderRestClientRestClient {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
 
-  return getClient(
-    baseUrl,
+  const client = getClient(baseUrl, options) as HeaderRestClientRestClient;
 
-    options
-  ) as HeaderRestClientRestClient;
+  return client;
 }
