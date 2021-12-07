@@ -20,5 +20,16 @@ describe("BodyFile Client", () => {
 
       assert.lengthOf(result.body, 8281);
     });
+    it("should getFile", async () => {
+      const result = await client.path("/files/stream/empty").get();
+
+      if (result.status !== "200") {
+        const error = `Unexpected response: ${result.status}`;
+        assert.fail(error);
+        throw error;
+      }
+
+      assert.isUndefined(result.body);
+    });
   });
 });
