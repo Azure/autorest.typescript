@@ -17,13 +17,13 @@ import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//maintenanceWindows.get
+//maintenanceWindowsOperations.get
 async function getsMaintenanceWindowSettingsForASelectedDatabase() {
   const resourceGroupName = "Default-SQL-SouthEastAsia";
   const serverName = "testsvr";
   const databaseName = "testdb";
   const maintenanceWindowName = "current";
-  await client.maintenanceWindows
+  await client.maintenanceWindowsOperations
     .get(resourceGroupName, serverName, databaseName, maintenanceWindowName)
     .then((res) => {
       console.log(res);

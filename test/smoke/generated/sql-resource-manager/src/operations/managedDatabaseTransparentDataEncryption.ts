@@ -271,7 +271,7 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  requestBody: Parameters.parameters49,
+  requestBody: Parameters.parameters50,
   queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,

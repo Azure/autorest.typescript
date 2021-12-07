@@ -21,6 +21,8 @@ import {
   ServiceObjectivesImpl,
   ElasticPoolActivitiesImpl,
   ElasticPoolDatabaseActivitiesImpl,
+  TransparentDataEncryptionsImpl,
+  TransparentDataEncryptionActivitiesImpl,
   ServerUsagesImpl,
   ExtendedDatabaseBlobAuditingPoliciesImpl,
   ExtendedServerBlobAuditingPoliciesImpl,
@@ -117,7 +119,6 @@ import {
   VirtualNetworkRulesImpl,
   WorkloadClassifiersImpl,
   WorkloadGroupsImpl,
-  TransparentDataEncryptionsImpl,
   BackupShortTermRetentionPoliciesImpl,
   DatabaseExtensionsOperationsImpl,
   DatabaseOperationsImpl,
@@ -142,6 +143,8 @@ import {
   ServiceObjectives,
   ElasticPoolActivities,
   ElasticPoolDatabaseActivities,
+  TransparentDataEncryptions,
+  TransparentDataEncryptionActivities,
   ServerUsages,
   ExtendedDatabaseBlobAuditingPolicies,
   ExtendedServerBlobAuditingPolicies,
@@ -238,7 +241,6 @@ import {
   VirtualNetworkRules,
   WorkloadClassifiers,
   WorkloadGroups,
-  TransparentDataEncryptions,
   BackupShortTermRetentionPolicies,
   DatabaseExtensionsOperations,
   DatabaseOperations,
@@ -315,6 +317,10 @@ export class SqlManagementClient extends coreClient.ServiceClient {
     this.serviceObjectives = new ServiceObjectivesImpl(this);
     this.elasticPoolActivities = new ElasticPoolActivitiesImpl(this);
     this.elasticPoolDatabaseActivities = new ElasticPoolDatabaseActivitiesImpl(
+      this
+    );
+    this.transparentDataEncryptions = new TransparentDataEncryptionsImpl(this);
+    this.transparentDataEncryptionActivities = new TransparentDataEncryptionActivitiesImpl(
       this
     );
     this.serverUsages = new ServerUsagesImpl(this);
@@ -491,7 +497,6 @@ export class SqlManagementClient extends coreClient.ServiceClient {
     this.virtualNetworkRules = new VirtualNetworkRulesImpl(this);
     this.workloadClassifiers = new WorkloadClassifiersImpl(this);
     this.workloadGroups = new WorkloadGroupsImpl(this);
-    this.transparentDataEncryptions = new TransparentDataEncryptionsImpl(this);
     this.backupShortTermRetentionPolicies = new BackupShortTermRetentionPoliciesImpl(
       this
     );
@@ -524,6 +529,8 @@ export class SqlManagementClient extends coreClient.ServiceClient {
   serviceObjectives: ServiceObjectives;
   elasticPoolActivities: ElasticPoolActivities;
   elasticPoolDatabaseActivities: ElasticPoolDatabaseActivities;
+  transparentDataEncryptions: TransparentDataEncryptions;
+  transparentDataEncryptionActivities: TransparentDataEncryptionActivities;
   serverUsages: ServerUsages;
   extendedDatabaseBlobAuditingPolicies: ExtendedDatabaseBlobAuditingPolicies;
   extendedServerBlobAuditingPolicies: ExtendedServerBlobAuditingPolicies;
@@ -620,7 +627,6 @@ export class SqlManagementClient extends coreClient.ServiceClient {
   virtualNetworkRules: VirtualNetworkRules;
   workloadClassifiers: WorkloadClassifiers;
   workloadGroups: WorkloadGroups;
-  transparentDataEncryptions: TransparentDataEncryptions;
   backupShortTermRetentionPolicies: BackupShortTermRetentionPolicies;
   databaseExtensionsOperations: DatabaseExtensionsOperations;
   databaseOperations: DatabaseOperations;

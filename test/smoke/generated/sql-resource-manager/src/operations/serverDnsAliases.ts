@@ -557,7 +557,7 @@ const acquireOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  requestBody: Parameters.parameters67,
+  requestBody: Parameters.parameters68,
   queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,

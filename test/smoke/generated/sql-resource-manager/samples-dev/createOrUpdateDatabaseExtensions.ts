@@ -20,7 +20,7 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//databaseExtensions.beginCreateOrUpdateAndWait
+//databaseExtensionsOperations.beginCreateOrUpdateAndWait
 async function createOrUpdateDatabaseExtensions() {
   const resourceGroupName = "rg_20cbe0f0-c2d9-4522-9177-5469aad53029";
   const serverName = "srv_1ffd1cf8-9951-47fb-807d-a9c384763849";
@@ -34,7 +34,7 @@ async function createOrUpdateDatabaseExtensions() {
     storageUri:
       "https://teststorage.blob.core.windows.net/testcontainer/Manifest.xml"
   };
-  await client.databaseExtensions
+  await client.databaseExtensionsOperations
     .beginCreateOrUpdateAndWait(
       resourceGroupName,
       serverName,

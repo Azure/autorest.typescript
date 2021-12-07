@@ -212,6 +212,12 @@ export interface ElasticPoolDatabaseActivityListResult {
   value: ElasticPoolDatabaseActivity[];
 }
 
+/** Represents the response to a list database transparent data encryption activity request. */
+export interface TransparentDataEncryptionActivityListResult {
+  /** The list of database transparent data encryption activities. */
+  value: TransparentDataEncryptionActivity[];
+}
+
 /** Represents the response to a list server metrics request. */
 export interface ServerUsageListResult {
   /** The list of server metrics for the server. */
@@ -3271,20 +3277,6 @@ export interface WorkloadGroupListResult {
   readonly nextLink?: string;
 }
 
-/** A list of transparent data encryptions */
-export interface LogicalDatabaseTransparentDataEncryptionListResult {
-  /**
-   * Array of results.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly value?: LogicalDatabaseTransparentDataEncryption[];
-  /**
-   * Link to retrieve next page of results.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly nextLink?: string;
-}
-
 /** A list of short term retention policies. */
 export interface BackupShortTermRetentionPolicyListResult {
   /**
@@ -4275,6 +4267,36 @@ export type ElasticPoolDatabaseActivity = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly state?: string;
+};
+
+/** Represents a database transparent data encryption configuration. */
+export type TransparentDataEncryption = ProxyResource & {
+  /**
+   * Resource location.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly location?: string;
+  /** The status of the database transparent data encryption. */
+  status?: TransparentDataEncryptionStatus;
+};
+
+/** Represents a database transparent data encryption Scan. */
+export type TransparentDataEncryptionActivity = ProxyResource & {
+  /**
+   * Resource location.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly location?: string;
+  /**
+   * The status of the database.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly status?: TransparentDataEncryptionActivityStatus;
+  /**
+   * The percent complete of the transparent data encryption scan for a database.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly percentComplete?: number;
 };
 
 /** An extended database blob auditing policy. */
@@ -6508,12 +6530,6 @@ export type WorkloadGroup = ProxyResource & {
   queryExecutionTimeout?: number;
 };
 
-/** A logical database transparent data encryption state. */
-export type LogicalDatabaseTransparentDataEncryption = ProxyResource & {
-  /** Specifies the state of the transparent data encryption. */
-  state?: TransparentDataEncryptionState;
-};
-
 /** A short term retention policy. */
 export type BackupShortTermRetentionPolicy = ProxyResource & {
   /** The backup retention period in days. This is how many days Point-in-Time Restore will be supported. */
@@ -7418,6 +7434,36 @@ export enum KnownUnitDefinitionType {
  */
 export type UnitDefinitionType = string;
 
+/** Known values of {@link TransparentDataEncryptionName} that the service accepts. */
+export enum KnownTransparentDataEncryptionName {
+  Current = "current"
+}
+
+/**
+ * Defines values for TransparentDataEncryptionName. \
+ * {@link KnownTransparentDataEncryptionName} can be used interchangeably with TransparentDataEncryptionName,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **current**
+ */
+export type TransparentDataEncryptionName = string;
+
+/** Known values of {@link TransparentDataEncryptionActivityStatus} that the service accepts. */
+export enum KnownTransparentDataEncryptionActivityStatus {
+  Encrypting = "Encrypting",
+  Decrypting = "Decrypting"
+}
+
+/**
+ * Defines values for TransparentDataEncryptionActivityStatus. \
+ * {@link KnownTransparentDataEncryptionActivityStatus} can be used interchangeably with TransparentDataEncryptionActivityStatus,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Encrypting** \
+ * **Decrypting**
+ */
+export type TransparentDataEncryptionActivityStatus = string;
+
 /** Known values of {@link RecommendedActionCurrentState} that the service accepts. */
 export enum KnownRecommendedActionCurrentState {
   Active = "Active",
@@ -8290,20 +8336,6 @@ export enum KnownManagedDatabaseCreateMode {
  */
 export type ManagedDatabaseCreateMode = string;
 
-/** Known values of {@link TransparentDataEncryptionName} that the service accepts. */
-export enum KnownTransparentDataEncryptionName {
-  Current = "current"
-}
-
-/**
- * Defines values for TransparentDataEncryptionName. \
- * {@link KnownTransparentDataEncryptionName} can be used interchangeably with TransparentDataEncryptionName,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **current**
- */
-export type TransparentDataEncryptionName = string;
-
 /** Known values of {@link ManagedInstanceAdministratorType} that the service accepts. */
 export enum KnownManagedInstanceAdministratorType {
   ActiveDirectory = "ActiveDirectory"
@@ -8750,8 +8782,8 @@ export enum KnownSyncMemberDbType {
  */
 export type SyncMemberDbType = string;
 
-/** Known values of {@link Enum75} that the service accepts. */
-export enum KnownEnum75 {
+/** Known values of {@link Enum76} that the service accepts. */
+export enum KnownEnum76 {
   All = "All",
   Error = "Error",
   Warning = "Warning",
@@ -8759,8 +8791,8 @@ export enum KnownEnum75 {
 }
 
 /**
- * Defines values for Enum75. \
- * {@link KnownEnum75} can be used interchangeably with Enum75,
+ * Defines values for Enum76. \
+ * {@link KnownEnum76} can be used interchangeably with Enum76,
  *  this enum contains the known values that the service supports.
  * ### Known values supported by the service
  * **All** \
@@ -8768,7 +8800,7 @@ export enum KnownEnum75 {
  * **Warning** \
  * **Success**
  */
-export type Enum75 = string;
+export type Enum76 = string;
 
 /** Known values of {@link SyncGroupLogType} that the service accepts. */
 export enum KnownSyncGroupLogType {
@@ -9421,6 +9453,8 @@ export type DataMaskingFunction =
   | "Text";
 /** Defines values for GeoBackupPolicyState. */
 export type GeoBackupPolicyState = "Disabled" | "Enabled";
+/** Defines values for TransparentDataEncryptionStatus. */
+export type TransparentDataEncryptionStatus = "Enabled" | "Disabled";
 /** Defines values for BlobAuditingPolicyState. */
 export type BlobAuditingPolicyState = "Enabled" | "Disabled";
 /** Defines values for AdvisorStatus. */
@@ -9967,6 +10001,27 @@ export interface ElasticPoolDatabaseActivitiesListByElasticPoolOptionalParams
 
 /** Contains response data for the listByElasticPool operation. */
 export type ElasticPoolDatabaseActivitiesListByElasticPoolResponse = ElasticPoolDatabaseActivityListResult;
+
+/** Optional parameters. */
+export interface TransparentDataEncryptionsCreateOrUpdateOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the createOrUpdate operation. */
+export type TransparentDataEncryptionsCreateOrUpdateResponse = TransparentDataEncryption;
+
+/** Optional parameters. */
+export interface TransparentDataEncryptionsGetOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the get operation. */
+export type TransparentDataEncryptionsGetResponse = TransparentDataEncryption;
+
+/** Optional parameters. */
+export interface TransparentDataEncryptionActivitiesListByConfigurationOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listByConfiguration operation. */
+export type TransparentDataEncryptionActivitiesListByConfigurationResponse = TransparentDataEncryptionActivityListResult;
 
 /** Optional parameters. */
 export interface ServerUsagesListByServerOptionalParams
@@ -13962,34 +14017,6 @@ export interface WorkloadGroupsListByDatabaseNextOptionalParams
 
 /** Contains response data for the listByDatabaseNext operation. */
 export type WorkloadGroupsListByDatabaseNextResponse = WorkloadGroupListResult;
-
-/** Optional parameters. */
-export interface TransparentDataEncryptionsGetOptionalParams
-  extends coreClient.OperationOptions {}
-
-/** Contains response data for the get operation. */
-export type TransparentDataEncryptionsGetResponse = LogicalDatabaseTransparentDataEncryption;
-
-/** Optional parameters. */
-export interface TransparentDataEncryptionsCreateOrUpdateOptionalParams
-  extends coreClient.OperationOptions {}
-
-/** Contains response data for the createOrUpdate operation. */
-export type TransparentDataEncryptionsCreateOrUpdateResponse = LogicalDatabaseTransparentDataEncryption;
-
-/** Optional parameters. */
-export interface TransparentDataEncryptionsListByDatabaseOptionalParams
-  extends coreClient.OperationOptions {}
-
-/** Contains response data for the listByDatabase operation. */
-export type TransparentDataEncryptionsListByDatabaseResponse = LogicalDatabaseTransparentDataEncryptionListResult;
-
-/** Optional parameters. */
-export interface TransparentDataEncryptionsListByDatabaseNextOptionalParams
-  extends coreClient.OperationOptions {}
-
-/** Contains response data for the listByDatabaseNext operation. */
-export type TransparentDataEncryptionsListByDatabaseNextResponse = LogicalDatabaseTransparentDataEncryptionListResult;
 
 /** Optional parameters. */
 export interface BackupShortTermRetentionPoliciesGetOptionalParams

@@ -452,6 +452,28 @@ export const ElasticPoolDatabaseActivityListResult: coreClient.CompositeMapper =
   }
 };
 
+export const TransparentDataEncryptionActivityListResult: coreClient.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "TransparentDataEncryptionActivityListResult",
+    modelProperties: {
+      value: {
+        serializedName: "value",
+        required: true,
+        type: {
+          name: "Sequence",
+          element: {
+            type: {
+              name: "Composite",
+              className: "TransparentDataEncryptionActivity"
+            }
+          }
+        }
+      }
+    }
+  }
+};
+
 export const ServerUsageListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
@@ -6793,35 +6815,6 @@ export const WorkloadGroupListResult: coreClient.CompositeMapper = {
   }
 };
 
-export const LogicalDatabaseTransparentDataEncryptionListResult: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "LogicalDatabaseTransparentDataEncryptionListResult",
-    modelProperties: {
-      value: {
-        serializedName: "value",
-        readOnly: true,
-        type: {
-          name: "Sequence",
-          element: {
-            type: {
-              name: "Composite",
-              className: "LogicalDatabaseTransparentDataEncryption"
-            }
-          }
-        }
-      },
-      nextLink: {
-        serializedName: "nextLink",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
 export const BackupShortTermRetentionPolicyListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
@@ -8761,6 +8754,61 @@ export const ElasticPoolDatabaseActivity: coreClient.CompositeMapper = {
         readOnly: true,
         type: {
           name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const TransparentDataEncryption: coreClient.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "TransparentDataEncryption",
+    modelProperties: {
+      ...ProxyResource.type.modelProperties,
+      location: {
+        serializedName: "location",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      status: {
+        serializedName: "properties.status",
+        type: {
+          name: "Enum",
+          allowedValues: ["Enabled", "Disabled"]
+        }
+      }
+    }
+  }
+};
+
+export const TransparentDataEncryptionActivity: coreClient.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "TransparentDataEncryptionActivity",
+    modelProperties: {
+      ...ProxyResource.type.modelProperties,
+      location: {
+        serializedName: "location",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      status: {
+        serializedName: "properties.status",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      percentComplete: {
+        serializedName: "properties.percentComplete",
+        readOnly: true,
+        type: {
+          name: "Number"
         }
       }
     }
@@ -12667,23 +12715,6 @@ export const WorkloadGroup: coreClient.CompositeMapper = {
         serializedName: "properties.queryExecutionTimeout",
         type: {
           name: "Number"
-        }
-      }
-    }
-  }
-};
-
-export const LogicalDatabaseTransparentDataEncryption: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "LogicalDatabaseTransparentDataEncryption",
-    modelProperties: {
-      ...ProxyResource.type.modelProperties,
-      state: {
-        serializedName: "properties.state",
-        type: {
-          name: "Enum",
-          allowedValues: ["Enabled", "Disabled"]
         }
       }
     }

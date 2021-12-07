@@ -10,6 +10,7 @@ import * as path from 'path';
 import * as hbs from "handlebars";
 import { getAutorestOptions, getSession } from "../../autorestSession";
 import { ClientDetails } from "../../models/clientDetails";
+import { SampleDetails } from "../../models/sampleDetails";
   
 /**
  * Function that writes the code for all the operations.
@@ -27,7 +28,10 @@ export function generateSamples(
   // Toplevel operations are inlined in the client
   const samples = clientDetails.samples;
   const session = getSession();
-  for(const sample of samples) {
+  if (!samples) {
+    session.error("No samples are found! ", []);
+  }
+  for(const sample of samples as SampleDetails[]) {
     try {
       const file = fs.readFileSync(path.join(__dirname, "../static/samples.ts.hbs"), {
         encoding: "utf-8"

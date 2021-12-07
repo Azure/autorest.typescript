@@ -17,13 +17,13 @@ import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//databaseExtensions.listByDatabase
+//databaseExtensionsOperations.listByDatabase
 async function listDatabaseExtensions() {
   const resourceGroupName = "rg_4007c5a9-b3b0-41e1-bd46-9eef38768a4a";
   const serverName = "srv_3b67ec2a-519b-43a7-8533-fb62dce3431e";
   const databaseName = "719d8fa4-bf0f-48fc-8cd3-ef40fe6ba1fe";
   const resArray = new Array();
-  for await (let item of client.databaseExtensions.listByDatabase(
+  for await (let item of client.databaseExtensionsOperations.listByDatabase(
     resourceGroupName,
     serverName,
     databaseName

@@ -17,13 +17,13 @@ import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//maintenanceWindowOptions.get
+//maintenanceWindowOptionsOperations.get
 async function getsAListOfAvailableMaintenanceWindowsForASelectedDatabase() {
   const resourceGroupName = "Default-SQL-SouthEastAsia";
   const serverName = "testsvr";
   const databaseName = "testdb";
   const maintenanceWindowOptionsName = "current";
-  await client.maintenanceWindowOptions
+  await client.maintenanceWindowOptionsOperations
     .get(
       resourceGroupName,
       serverName,

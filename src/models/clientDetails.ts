@@ -33,5 +33,5 @@ export interface ClientDetails {
   parameters: ParameterDetails[];
   options: ClientOptions;
   endpoint: EndpointDetails;
-  samples: SampleDetails[];
+  samples?: SampleDetails[];
 }

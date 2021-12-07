@@ -17,13 +17,13 @@ import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//ledgerDigestUploads.get
+//ledgerDigestUploadsOperations.get
 async function getsTheCurrentLedgerDigestUploadConfigurationForADatabase() {
   const resourceGroupName = "ledgertestrg";
   const serverName = "ledgertestserver";
   const databaseName = "testdb";
   const ledgerDigestUploads = "current";
-  await client.ledgerDigestUploads
+  await client.ledgerDigestUploadsOperations
     .get(resourceGroupName, serverName, databaseName, ledgerDigestUploads)
     .then((res) => {
       console.log(res);

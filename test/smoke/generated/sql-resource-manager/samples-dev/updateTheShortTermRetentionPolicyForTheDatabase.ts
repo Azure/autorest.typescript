@@ -27,7 +27,7 @@ async function updateTheShortTermRetentionPolicyForTheDatabase() {
   const databaseName = "testdb";
   const policyName = "default";
   const parameters: BackupShortTermRetentionPolicy = {
-    diffBackupIntervalInHours: "24",
+    diffBackupIntervalInHours: 24,
     retentionDays: 7
   };
   await client.backupShortTermRetentionPolicies

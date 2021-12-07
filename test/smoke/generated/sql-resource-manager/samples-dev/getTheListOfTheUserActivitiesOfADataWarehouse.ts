@@ -17,13 +17,13 @@ import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//dataWarehouseUserActivities.get
+//dataWarehouseUserActivitiesOperations.get
 async function getTheListOfTheUserActivitiesOfADataWarehouse() {
   const resourceGroupName = "Default-SQL-SouthEastAsia";
   const serverName = "testsvr";
   const databaseName = "testdb";
   const dataWarehouseUserActivityName = "current";
-  await client.dataWarehouseUserActivities
+  await client.dataWarehouseUserActivitiesOperations
     .get(
       resourceGroupName,
       serverName,

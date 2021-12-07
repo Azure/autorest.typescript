@@ -20,7 +20,7 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//ledgerDigestUploads.beginCreateOrUpdateAndWait
+//ledgerDigestUploadsOperations.beginCreateOrUpdateAndWait
 async function enablesLedgerDigestUploadConfigurationForADatabase() {
   const resourceGroupName = "ledgertestrg";
   const serverName = "ledgertestserver";
@@ -29,7 +29,7 @@ async function enablesLedgerDigestUploadConfigurationForADatabase() {
   const parameters: LedgerDigestUploads = {
     digestStorageEndpoint: "https://MyAccount.blob.core.windows.net"
   };
-  await client.ledgerDigestUploads
+  await client.ledgerDigestUploadsOperations
     .beginCreateOrUpdateAndWait(
       resourceGroupName,
       serverName,

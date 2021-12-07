@@ -20,7 +20,7 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//maintenanceWindows.createOrUpdate
+//maintenanceWindowsOperations.createOrUpdate
 async function setsMaintenanceWindowSettingsForASelectedDatabase() {
   const resourceGroupName = "Default-SQL-SouthEastAsia";
   const serverName = "testsvr";
@@ -31,7 +31,7 @@ async function setsMaintenanceWindowSettingsForASelectedDatabase() {
       { dayOfWeek: "Saturday", duration: "PT60M", startTime: "00:00:00" }
     ]
   };
-  await client.maintenanceWindows
+  await client.maintenanceWindowsOperations
     .createOrUpdate(
       resourceGroupName,
       serverName,

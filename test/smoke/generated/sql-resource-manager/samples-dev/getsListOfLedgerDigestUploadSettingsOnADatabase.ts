@@ -17,13 +17,13 @@ import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//ledgerDigestUploads.listByDatabase
+//ledgerDigestUploadsOperations.listByDatabase
 async function getsListOfLedgerDigestUploadSettingsOnADatabase() {
   const resourceGroupName = "ledgertestrg";
   const serverName = "ledgertestserver";
   const databaseName = "testdb";
   const resArray = new Array();
-  for await (let item of client.ledgerDigestUploads.listByDatabase(
+  for await (let item of client.ledgerDigestUploadsOperations.listByDatabase(
     resourceGroupName,
     serverName,
     databaseName

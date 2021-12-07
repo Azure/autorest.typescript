@@ -20,13 +20,13 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//databaseAutomaticTuning.update
+//databaseAutomaticTuningOperations.update
 async function updatesDatabaseAutomaticTuningSettingsWithMinimalProperties() {
   const resourceGroupName = "default-sql-onebox";
   const serverName = "testsvr11";
   const databaseName = "db1";
   const parameters: DatabaseAutomaticTuning = { desiredState: "Auto" };
-  await client.databaseAutomaticTuning
+  await client.databaseAutomaticTuningOperations
     .update(resourceGroupName, serverName, databaseName, parameters)
     .then((res) => {
       console.log(res);

@@ -8,6 +8,7 @@ import { CodeModel } from "@autorest/codemodel";
 import { Project, IndentationText } from "ts-morph";
 import { AutorestExtensionHost } from "@autorest/extension-base";
 import { transformCodeModel } from "./transforms/transforms";
+import { transformSamples } from './transforms/samplesTransforms';
 import { generateClient } from "./generators/clientFileGenerator";
 import { generateModels } from "./generators/modelsGenerator";
 import { generateMappers } from "./generators/mappersGenerator";
@@ -68,6 +69,7 @@ export async function generateTypeScriptLibrary(
 
   const clientDetails = await transformCodeModel(codeModel);
   conflictResolver(clientDetails);
+  clientDetails.samples = await transformSamples(codeModel, clientDetails.operationGroups, clientDetails.options);
 
   // Skip metadata generation if `generate-metadata` is explicitly false
   generatePackageJson(project, clientDetails);

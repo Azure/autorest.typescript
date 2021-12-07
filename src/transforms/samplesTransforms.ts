@@ -1,4 +1,5 @@
 import {
+  ChoiceSchema,
   CodeModel,
   ConstantSchema,
   Operation,
@@ -12,10 +13,6 @@ import { ExampleValue, TestCodeModel } from "@autorest/testmodeler";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { getAutorestOptions, getSession } from "../autorestSession";
 import { getOperationFullName, NameType, normalizeName } from "../utils/nameUtils";
-import {
-  transformOperation,
-  transformOperationGroup
-} from "./operationTransforms";
 import { calculateMethodName } from "../generators/utils/operationsUtils";
 import { camelCase } from "@azure-tools/codegen";
 import { OperationGroupDetails } from "../models/operationDetails";
@@ -29,7 +26,7 @@ export async function transformSamples(
 }
 
 function getTransformedOperationGroup(operationGroup: OperationGroup, operationGroupDetails: OperationGroupDetails[]) {
-  return operationGroupDetails.filter(operationGroupDetail => operationGroup.$key === operationGroupDetail.key)[0];
+  return operationGroupDetails.filter(operationGroupDetail => operationGroup.$key === operationGroupDetail.originalKey)[0];
 }
 
 function getTransformedOperation(operationGroup: OperationGroup, operation: Operation, operationGroupDetails: OperationGroupDetails, clientName: string) {
@@ -46,7 +43,12 @@ export async function getAllExamples(codeModel: TestCodeModel, operationGroupDet
         for (const example of exampleGroups.examples) {
           const clientName = getLanguageMetadata(codeModel.language).name;
           const ogDetails = getTransformedOperationGroup(example.operationGroup, operationGroupDetails);
-          
+          if (ogDetails === undefined) {
+            session.error("An error was encountered while transforming sample", [
+              exampleGroups.operationId
+            ]);
+            continue;
+          }
           const opDetails = getTransformedOperation(
             example.operationGroup,
             example.operation,
@@ -77,6 +79,7 @@ export async function getAllExamples(codeModel: TestCodeModel, operationGroupDet
             isTopLevel: ogDetails.isTopLevel,
             isPaging: opDetails.pagination !== undefined
           };
+    
           const clientParameterNames = ["credential"];
           for (const clientParameter of example.clientParameters) {
             if (
@@ -162,8 +165,14 @@ function getParameterAssignment(exampleValue: ExampleValue) {
     case SchemaType.Constant:
       const contentSchema = exampleValue.schema as ConstantSchema;
       schemaType = contentSchema.valueType.type;
+      break;
     case SchemaType.Choice:
     case SchemaType.SealedChoice:
+      const choiceSchema = exampleValue.schema as ChoiceSchema;
+      schemaType = choiceSchema.choiceType.type; 
+      break;    
+  }
+  switch (schemaType) { 
     case SchemaType.String:
     case SchemaType.Char:
     case SchemaType.Time:

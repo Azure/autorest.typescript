@@ -17,11 +17,13 @@ import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//operationsHealth.listByLocation
+//operationsHealthOperations.listByLocation
 async function getManagementOperationsHealthInTheGivenLocation() {
   const locationName = "WestUS";
   const resArray = new Array();
-  for await (let item of client.operationsHealth.listByLocation(locationName)) {
+  for await (let item of client.operationsHealthOperations.listByLocation(
+    locationName
+  )) {
     resArray.push(item);
   }
   console.log(resArray);

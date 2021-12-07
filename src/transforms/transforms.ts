@@ -107,7 +107,6 @@ export async function transformCodeModel(
     transformChoices(codeModel),
     transformParameters(codeModel, options),
   ]);
-  const samples = await transformSamples(codeModel, operationGroups, options);
 
   const baseUrl = transformBaseUrl(codeModel);
 
@@ -122,8 +121,7 @@ export async function transformCodeModel(
     operationGroups,
     parameters,
     options,
-    endpoint: baseUrl,
-    samples
+    endpoint: baseUrl
   };
 }
 

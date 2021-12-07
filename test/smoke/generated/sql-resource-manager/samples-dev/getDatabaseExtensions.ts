@@ -17,13 +17,13 @@ import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//databaseExtensions.get
+//databaseExtensionsOperations.get
 async function getDatabaseExtensions() {
   const resourceGroupName = "rg_a1f9d6f8-30d5-4228-9504-8a364361bca3";
   const serverName = "srv_65858e0f-b1d1-4bdc-8351-a7da86ca4939";
   const databaseName = "11aa6c5e-58ed-4693-b303-3b8e3131deaa";
   const extensionName = "polybaseimport";
-  await client.databaseExtensions
+  await client.databaseExtensionsOperations
     .get(resourceGroupName, serverName, databaseName, extensionName)
     .then((res) => {
       console.log(res);

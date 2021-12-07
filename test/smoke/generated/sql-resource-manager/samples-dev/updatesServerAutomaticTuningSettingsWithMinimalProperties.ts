@@ -20,12 +20,12 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//serverAutomaticTuning.update
+//serverAutomaticTuningOperations.update
 async function updatesServerAutomaticTuningSettingsWithMinimalProperties() {
   const resourceGroupName = "default-sql-onebox";
   const serverName = "testsvr11";
   const parameters: ServerAutomaticTuning = { desiredState: "Auto" };
-  await client.serverAutomaticTuning
+  await client.serverAutomaticTuningOperations
     .update(resourceGroupName, serverName, parameters)
     .then((res) => {
       console.log(res);

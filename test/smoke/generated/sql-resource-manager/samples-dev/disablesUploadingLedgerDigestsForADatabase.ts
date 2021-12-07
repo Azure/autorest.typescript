@@ -17,13 +17,13 @@ import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//ledgerDigestUploads.beginDisableAndWait
+//ledgerDigestUploadsOperations.beginDisableAndWait
 async function disablesUploadingLedgerDigestsForADatabase() {
   const resourceGroupName = "ledgertestrg";
   const serverName = "ledgertestserver";
   const databaseName = "testdb";
   const ledgerDigestUploads = "current";
-  await client.ledgerDigestUploads
+  await client.ledgerDigestUploadsOperations
     .beginDisableAndWait(
       resourceGroupName,
       serverName,

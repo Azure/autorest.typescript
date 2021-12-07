@@ -9,22 +9,22 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 /**
- * This sample demonstrates how to Gets a logical database's transparent data encryption.
+ * This sample demonstrates how to Gets a managed database's transparent data encryption.
  *
- * @summary Gets a logical database's transparent data encryption.
+ * @summary Gets a managed database's transparent data encryption.
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//transparentDataEncryptions.get
+//managedDatabaseTransparentDataEncryption.get
 async function getADatabaseSTransparentDataEncryption() {
   const resourceGroupName = "security-tde-resourcegroup";
-  const serverName = "securitytde";
+  const managedInstanceName = "securitytde";
   const databaseName = "testdb";
   const tdeName = "current";
-  await client.transparentDataEncryptions
-    .get(resourceGroupName, serverName, databaseName, tdeName)
+  await client.managedDatabaseTransparentDataEncryption
+    .get(resourceGroupName, managedInstanceName, databaseName, tdeName)
     .then((res) => {
       console.log(res);
     });
