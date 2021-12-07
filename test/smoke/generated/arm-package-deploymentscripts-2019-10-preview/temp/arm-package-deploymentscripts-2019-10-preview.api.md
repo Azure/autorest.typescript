@@ -118,7 +118,21 @@ export interface DeploymentScripts {
     getLogs(resourceGroupName: string, scriptName: string, options?: DeploymentScriptsGetLogsOptionalParams): Promise<DeploymentScriptsGetLogsResponse>;
     getLogsDefault(resourceGroupName: string, scriptName: string, options?: DeploymentScriptsGetLogsDefaultOptionalParams): Promise<DeploymentScriptsGetLogsDefaultResponse>;
     listByResourceGroup(resourceGroupName: string, options?: DeploymentScriptsListByResourceGroupOptionalParams): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+    listByResourceGroupNext(resourceGroupName: string, nextLink: string, options?: DeploymentScriptsListByResourceGroupNextOptionalParams): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+    listByResourceGroupNextNext(resourceGroupName: string, nextLink: string, options?: DeploymentScriptsListByResourceGroupNextNextOptionalParams): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+    listByResourceGroupNextNextNext(resourceGroupName: string, nextLink: string, options?: DeploymentScriptsListByResourceGroupNextNextNextOptionalParams): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+    listByResourceGroupNextNextNextNext(resourceGroupName: string, nextLink: string, options?: DeploymentScriptsListByResourceGroupNextNextNextNextOptionalParams): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+    listByResourceGroupNextNextNextNextNext(resourceGroupName: string, nextLink: string, options?: DeploymentScriptsListByResourceGroupNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+    listByResourceGroupNextNextNextNextNextNext(resourceGroupName: string, nextLink: string, options?: DeploymentScriptsListByResourceGroupNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+    listByResourceGroupNextNextNextNextNextNextNext(resourceGroupName: string, nextLink: string, options?: DeploymentScriptsListByResourceGroupNextNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<DeploymentScriptUnion>;
     listBySubscription(options?: DeploymentScriptsListBySubscriptionOptionalParams): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+    listBySubscriptionNext(nextLink: string, options?: DeploymentScriptsListBySubscriptionNextOptionalParams): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+    listBySubscriptionNextNext(nextLink: string, options?: DeploymentScriptsListBySubscriptionNextNextOptionalParams): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+    listBySubscriptionNextNextNext(nextLink: string, options?: DeploymentScriptsListBySubscriptionNextNextNextOptionalParams): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+    listBySubscriptionNextNextNextNext(nextLink: string, options?: DeploymentScriptsListBySubscriptionNextNextNextNextOptionalParams): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+    listBySubscriptionNextNextNextNextNext(nextLink: string, options?: DeploymentScriptsListBySubscriptionNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+    listBySubscriptionNextNextNextNextNextNext(nextLink: string, options?: DeploymentScriptsListBySubscriptionNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+    listBySubscriptionNextNextNextNextNextNextNext(nextLink: string, options?: DeploymentScriptsListBySubscriptionNextNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<DeploymentScriptUnion>;
     update(resourceGroupName: string, scriptName: string, options?: DeploymentScriptsUpdateOptionalParams): Promise<DeploymentScriptsUpdateResponse>;
 }
 
@@ -183,6 +197,55 @@ export interface DeploymentScriptsGetOptionalParams extends coreClient.Operation
 export type DeploymentScriptsGetResponse = DeploymentScriptUnion;
 
 // @public
+export interface DeploymentScriptsListByResourceGroupNextNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type DeploymentScriptsListByResourceGroupNextNextNextNextNextNextNextNextResponse = DeploymentScriptListResult;
+
+// @public
+export interface DeploymentScriptsListByResourceGroupNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type DeploymentScriptsListByResourceGroupNextNextNextNextNextNextNextResponse = DeploymentScriptListResult;
+
+// @public
+export interface DeploymentScriptsListByResourceGroupNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type DeploymentScriptsListByResourceGroupNextNextNextNextNextNextResponse = DeploymentScriptListResult;
+
+// @public
+export interface DeploymentScriptsListByResourceGroupNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type DeploymentScriptsListByResourceGroupNextNextNextNextNextResponse = DeploymentScriptListResult;
+
+// @public
+export interface DeploymentScriptsListByResourceGroupNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type DeploymentScriptsListByResourceGroupNextNextNextNextResponse = DeploymentScriptListResult;
+
+// @public
+export interface DeploymentScriptsListByResourceGroupNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type DeploymentScriptsListByResourceGroupNextNextNextResponse = DeploymentScriptListResult;
+
+// @public
+export interface DeploymentScriptsListByResourceGroupNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type DeploymentScriptsListByResourceGroupNextNextResponse = DeploymentScriptListResult;
+
+// @public
 export interface DeploymentScriptsListByResourceGroupNextOptionalParams extends coreClient.OperationOptions {
 }
 
@@ -195,6 +258,55 @@ export interface DeploymentScriptsListByResourceGroupOptionalParams extends core
 
 // @public
 export type DeploymentScriptsListByResourceGroupResponse = DeploymentScriptListResult;
+
+// @public
+export interface DeploymentScriptsListBySubscriptionNextNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type DeploymentScriptsListBySubscriptionNextNextNextNextNextNextNextNextResponse = DeploymentScriptListResult;
+
+// @public
+export interface DeploymentScriptsListBySubscriptionNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type DeploymentScriptsListBySubscriptionNextNextNextNextNextNextNextResponse = DeploymentScriptListResult;
+
+// @public
+export interface DeploymentScriptsListBySubscriptionNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type DeploymentScriptsListBySubscriptionNextNextNextNextNextNextResponse = DeploymentScriptListResult;
+
+// @public
+export interface DeploymentScriptsListBySubscriptionNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type DeploymentScriptsListBySubscriptionNextNextNextNextNextResponse = DeploymentScriptListResult;
+
+// @public
+export interface DeploymentScriptsListBySubscriptionNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type DeploymentScriptsListBySubscriptionNextNextNextNextResponse = DeploymentScriptListResult;
+
+// @public
+export interface DeploymentScriptsListBySubscriptionNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type DeploymentScriptsListBySubscriptionNextNextNextResponse = DeploymentScriptListResult;
+
+// @public
+export interface DeploymentScriptsListBySubscriptionNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type DeploymentScriptsListBySubscriptionNextNextResponse = DeploymentScriptListResult;
 
 // @public
 export interface DeploymentScriptsListBySubscriptionNextOptionalParams extends coreClient.OperationOptions {
@@ -304,6 +416,7 @@ export enum KnownScriptType {
 
 // @public
 export interface ManagedServiceIdentity {
+    readonly tenantId?: string;
     type?: ManagedServiceIdentityType;
     userAssignedIdentities?: {
         [propertyName: string]: UserAssignedIdentity;
@@ -369,8 +482,8 @@ export interface SystemData {
 
 // @public
 export interface UserAssignedIdentity {
-    clientId?: string;
-    principalId?: string;
+    readonly clientId?: string;
+    readonly principalId?: string;
 }
 
 // (No @packageDocumentation comment for this package)

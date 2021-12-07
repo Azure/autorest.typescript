@@ -20,6 +20,20 @@ import {
   DeploymentScriptsListBySubscriptionOptionalParams,
   DeploymentScriptsListByResourceGroupNextOptionalParams,
   DeploymentScriptsListByResourceGroupOptionalParams,
+  DeploymentScriptsListBySubscriptionNextNextOptionalParams,
+  DeploymentScriptsListByResourceGroupNextNextOptionalParams,
+  DeploymentScriptsListBySubscriptionNextNextNextOptionalParams,
+  DeploymentScriptsListByResourceGroupNextNextNextOptionalParams,
+  DeploymentScriptsListBySubscriptionNextNextNextNextOptionalParams,
+  DeploymentScriptsListByResourceGroupNextNextNextNextOptionalParams,
+  DeploymentScriptsListBySubscriptionNextNextNextNextNextOptionalParams,
+  DeploymentScriptsListByResourceGroupNextNextNextNextNextOptionalParams,
+  DeploymentScriptsListBySubscriptionNextNextNextNextNextNextOptionalParams,
+  DeploymentScriptsListByResourceGroupNextNextNextNextNextNextOptionalParams,
+  DeploymentScriptsListBySubscriptionNextNextNextNextNextNextNextOptionalParams,
+  DeploymentScriptsListByResourceGroupNextNextNextNextNextNextNextOptionalParams,
+  DeploymentScriptsListBySubscriptionNextNextNextNextNextNextNextNextOptionalParams,
+  DeploymentScriptsListByResourceGroupNextNextNextNextNextNextNextNextOptionalParams,
   DeploymentScriptsCreateOptionalParams,
   DeploymentScriptsCreateResponse,
   DeploymentScriptsUpdateOptionalParams,
@@ -34,7 +48,21 @@ import {
   DeploymentScriptsGetLogsDefaultResponse,
   DeploymentScriptsListByResourceGroupResponse,
   DeploymentScriptsListBySubscriptionNextResponse,
-  DeploymentScriptsListByResourceGroupNextResponse
+  DeploymentScriptsListByResourceGroupNextResponse,
+  DeploymentScriptsListBySubscriptionNextNextResponse,
+  DeploymentScriptsListByResourceGroupNextNextResponse,
+  DeploymentScriptsListBySubscriptionNextNextNextResponse,
+  DeploymentScriptsListByResourceGroupNextNextNextResponse,
+  DeploymentScriptsListBySubscriptionNextNextNextNextResponse,
+  DeploymentScriptsListByResourceGroupNextNextNextNextResponse,
+  DeploymentScriptsListBySubscriptionNextNextNextNextNextResponse,
+  DeploymentScriptsListByResourceGroupNextNextNextNextNextResponse,
+  DeploymentScriptsListBySubscriptionNextNextNextNextNextNextResponse,
+  DeploymentScriptsListByResourceGroupNextNextNextNextNextNextResponse,
+  DeploymentScriptsListBySubscriptionNextNextNextNextNextNextNextResponse,
+  DeploymentScriptsListByResourceGroupNextNextNextNextNextNextNextResponse,
+  DeploymentScriptsListBySubscriptionNextNextNextNextNextNextNextNextResponse,
+  DeploymentScriptsListByResourceGroupNextNextNextNextNextNextNextNextResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -139,6 +167,910 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
   ): AsyncIterableIterator<DeploymentScriptUnion> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListBySubscriptionNext
+   * @param nextLink The nextLink from the previous successful call to the ListBySubscription method.
+   * @param options The options parameters.
+   */
+  public listBySubscriptionNext(
+    nextLink: string,
+    options?: DeploymentScriptsListBySubscriptionNextOptionalParams
+  ): PagedAsyncIterableIterator<DeploymentScriptUnion> {
+    const iter = this.listBySubscriptionNextPagingAll(nextLink, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listBySubscriptionNextPagingPage(nextLink, options);
+      }
+    };
+  }
+
+  private async *listBySubscriptionNextPagingPage(
+    nextLink: string,
+    options?: DeploymentScriptsListBySubscriptionNextOptionalParams
+  ): AsyncIterableIterator<DeploymentScriptUnion[]> {
+    let result = await this._listBySubscriptionNext(nextLink, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listBySubscriptionNextNext(
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listBySubscriptionNextPagingAll(
+    nextLink: string,
+    options?: DeploymentScriptsListBySubscriptionNextOptionalParams
+  ): AsyncIterableIterator<DeploymentScriptUnion> {
+    for await (const page of this.listBySubscriptionNextPagingPage(
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListByResourceGroupNext
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
+   * @param options The options parameters.
+   */
+  public listByResourceGroupNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: DeploymentScriptsListByResourceGroupNextOptionalParams
+  ): PagedAsyncIterableIterator<DeploymentScriptUnion> {
+    const iter = this.listByResourceGroupNextPagingAll(
+      resourceGroupName,
+      nextLink,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByResourceGroupNextPagingPage(
+          resourceGroupName,
+          nextLink,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByResourceGroupNextPagingPage(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: DeploymentScriptsListByResourceGroupNextOptionalParams
+  ): AsyncIterableIterator<DeploymentScriptUnion[]> {
+    let result = await this._listByResourceGroupNext(
+      resourceGroupName,
+      nextLink,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByResourceGroupNextNext(
+        resourceGroupName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByResourceGroupNextPagingAll(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: DeploymentScriptsListByResourceGroupNextOptionalParams
+  ): AsyncIterableIterator<DeploymentScriptUnion> {
+    for await (const page of this.listByResourceGroupNextPagingPage(
+      resourceGroupName,
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListBySubscriptionNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListBySubscriptionNext method.
+   * @param options The options parameters.
+   */
+  public listBySubscriptionNextNext(
+    nextLink: string,
+    options?: DeploymentScriptsListBySubscriptionNextNextOptionalParams
+  ): PagedAsyncIterableIterator<DeploymentScriptUnion> {
+    const iter = this.listBySubscriptionNextNextPagingAll(nextLink, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listBySubscriptionNextNextPagingPage(nextLink, options);
+      }
+    };
+  }
+
+  private async *listBySubscriptionNextNextPagingPage(
+    nextLink: string,
+    options?: DeploymentScriptsListBySubscriptionNextNextOptionalParams
+  ): AsyncIterableIterator<DeploymentScriptUnion[]> {
+    let result = await this._listBySubscriptionNextNext(nextLink, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listBySubscriptionNextNextNext(
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listBySubscriptionNextNextPagingAll(
+    nextLink: string,
+    options?: DeploymentScriptsListBySubscriptionNextNextOptionalParams
+  ): AsyncIterableIterator<DeploymentScriptUnion> {
+    for await (const page of this.listBySubscriptionNextNextPagingPage(
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListByResourceGroupNextNext
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroupNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  public listByResourceGroupNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: DeploymentScriptsListByResourceGroupNextNextOptionalParams
+  ): PagedAsyncIterableIterator<DeploymentScriptUnion> {
+    const iter = this.listByResourceGroupNextNextPagingAll(
+      resourceGroupName,
+      nextLink,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByResourceGroupNextNextPagingPage(
+          resourceGroupName,
+          nextLink,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByResourceGroupNextNextPagingPage(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: DeploymentScriptsListByResourceGroupNextNextOptionalParams
+  ): AsyncIterableIterator<DeploymentScriptUnion[]> {
+    let result = await this._listByResourceGroupNextNext(
+      resourceGroupName,
+      nextLink,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByResourceGroupNextNextNext(
+        resourceGroupName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByResourceGroupNextNextPagingAll(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: DeploymentScriptsListByResourceGroupNextNextOptionalParams
+  ): AsyncIterableIterator<DeploymentScriptUnion> {
+    for await (const page of this.listByResourceGroupNextNextPagingPage(
+      resourceGroupName,
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListBySubscriptionNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListBySubscriptionNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  public listBySubscriptionNextNextNext(
+    nextLink: string,
+    options?: DeploymentScriptsListBySubscriptionNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<DeploymentScriptUnion> {
+    const iter = this.listBySubscriptionNextNextNextPagingAll(
+      nextLink,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listBySubscriptionNextNextNextPagingPage(nextLink, options);
+      }
+    };
+  }
+
+  private async *listBySubscriptionNextNextNextPagingPage(
+    nextLink: string,
+    options?: DeploymentScriptsListBySubscriptionNextNextNextOptionalParams
+  ): AsyncIterableIterator<DeploymentScriptUnion[]> {
+    let result = await this._listBySubscriptionNextNextNext(nextLink, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listBySubscriptionNextNextNextNext(
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listBySubscriptionNextNextNextPagingAll(
+    nextLink: string,
+    options?: DeploymentScriptsListBySubscriptionNextNextNextOptionalParams
+  ): AsyncIterableIterator<DeploymentScriptUnion> {
+    for await (const page of this.listBySubscriptionNextNextNextPagingPage(
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListByResourceGroupNextNextNext
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroupNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  public listByResourceGroupNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: DeploymentScriptsListByResourceGroupNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<DeploymentScriptUnion> {
+    const iter = this.listByResourceGroupNextNextNextPagingAll(
+      resourceGroupName,
+      nextLink,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByResourceGroupNextNextNextPagingPage(
+          resourceGroupName,
+          nextLink,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByResourceGroupNextNextNextPagingPage(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: DeploymentScriptsListByResourceGroupNextNextNextOptionalParams
+  ): AsyncIterableIterator<DeploymentScriptUnion[]> {
+    let result = await this._listByResourceGroupNextNextNext(
+      resourceGroupName,
+      nextLink,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByResourceGroupNextNextNextNext(
+        resourceGroupName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByResourceGroupNextNextNextPagingAll(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: DeploymentScriptsListByResourceGroupNextNextNextOptionalParams
+  ): AsyncIterableIterator<DeploymentScriptUnion> {
+    for await (const page of this.listByResourceGroupNextNextNextPagingPage(
+      resourceGroupName,
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListBySubscriptionNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListBySubscriptionNextNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  public listBySubscriptionNextNextNextNext(
+    nextLink: string,
+    options?: DeploymentScriptsListBySubscriptionNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<DeploymentScriptUnion> {
+    const iter = this.listBySubscriptionNextNextNextNextPagingAll(
+      nextLink,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listBySubscriptionNextNextNextNextPagingPage(
+          nextLink,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listBySubscriptionNextNextNextNextPagingPage(
+    nextLink: string,
+    options?: DeploymentScriptsListBySubscriptionNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<DeploymentScriptUnion[]> {
+    let result = await this._listBySubscriptionNextNextNextNext(
+      nextLink,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listBySubscriptionNextNextNextNextNext(
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listBySubscriptionNextNextNextNextPagingAll(
+    nextLink: string,
+    options?: DeploymentScriptsListBySubscriptionNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<DeploymentScriptUnion> {
+    for await (const page of this.listBySubscriptionNextNextNextNextPagingPage(
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListByResourceGroupNextNextNextNext
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListByResourceGroupNextNextNext method.
+   * @param options The options parameters.
+   */
+  public listByResourceGroupNextNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: DeploymentScriptsListByResourceGroupNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<DeploymentScriptUnion> {
+    const iter = this.listByResourceGroupNextNextNextNextPagingAll(
+      resourceGroupName,
+      nextLink,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByResourceGroupNextNextNextNextPagingPage(
+          resourceGroupName,
+          nextLink,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByResourceGroupNextNextNextNextPagingPage(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: DeploymentScriptsListByResourceGroupNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<DeploymentScriptUnion[]> {
+    let result = await this._listByResourceGroupNextNextNextNext(
+      resourceGroupName,
+      nextLink,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByResourceGroupNextNextNextNextNext(
+        resourceGroupName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByResourceGroupNextNextNextNextPagingAll(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: DeploymentScriptsListByResourceGroupNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<DeploymentScriptUnion> {
+    for await (const page of this.listByResourceGroupNextNextNextNextPagingPage(
+      resourceGroupName,
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListBySubscriptionNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListBySubscriptionNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  public listBySubscriptionNextNextNextNextNext(
+    nextLink: string,
+    options?: DeploymentScriptsListBySubscriptionNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<DeploymentScriptUnion> {
+    const iter = this.listBySubscriptionNextNextNextNextNextPagingAll(
+      nextLink,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listBySubscriptionNextNextNextNextNextPagingPage(
+          nextLink,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listBySubscriptionNextNextNextNextNextPagingPage(
+    nextLink: string,
+    options?: DeploymentScriptsListBySubscriptionNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<DeploymentScriptUnion[]> {
+    let result = await this._listBySubscriptionNextNextNextNextNext(
+      nextLink,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listBySubscriptionNextNextNextNextNextNext(
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listBySubscriptionNextNextNextNextNextPagingAll(
+    nextLink: string,
+    options?: DeploymentScriptsListBySubscriptionNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<DeploymentScriptUnion> {
+    for await (const page of this.listBySubscriptionNextNextNextNextNextPagingPage(
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListByResourceGroupNextNextNextNextNext
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListByResourceGroupNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  public listByResourceGroupNextNextNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: DeploymentScriptsListByResourceGroupNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<DeploymentScriptUnion> {
+    const iter = this.listByResourceGroupNextNextNextNextNextPagingAll(
+      resourceGroupName,
+      nextLink,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByResourceGroupNextNextNextNextNextPagingPage(
+          resourceGroupName,
+          nextLink,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByResourceGroupNextNextNextNextNextPagingPage(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: DeploymentScriptsListByResourceGroupNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<DeploymentScriptUnion[]> {
+    let result = await this._listByResourceGroupNextNextNextNextNext(
+      resourceGroupName,
+      nextLink,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByResourceGroupNextNextNextNextNextNext(
+        resourceGroupName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByResourceGroupNextNextNextNextNextPagingAll(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: DeploymentScriptsListByResourceGroupNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<DeploymentScriptUnion> {
+    for await (const page of this.listByResourceGroupNextNextNextNextNextPagingPage(
+      resourceGroupName,
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListBySubscriptionNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListBySubscriptionNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  public listBySubscriptionNextNextNextNextNextNext(
+    nextLink: string,
+    options?: DeploymentScriptsListBySubscriptionNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<DeploymentScriptUnion> {
+    const iter = this.listBySubscriptionNextNextNextNextNextNextPagingAll(
+      nextLink,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listBySubscriptionNextNextNextNextNextNextPagingPage(
+          nextLink,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listBySubscriptionNextNextNextNextNextNextPagingPage(
+    nextLink: string,
+    options?: DeploymentScriptsListBySubscriptionNextNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<DeploymentScriptUnion[]> {
+    let result = await this._listBySubscriptionNextNextNextNextNextNext(
+      nextLink,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listBySubscriptionNextNextNextNextNextNextNext(
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listBySubscriptionNextNextNextNextNextNextPagingAll(
+    nextLink: string,
+    options?: DeploymentScriptsListBySubscriptionNextNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<DeploymentScriptUnion> {
+    for await (const page of this.listBySubscriptionNextNextNextNextNextNextPagingPage(
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListByResourceGroupNextNextNextNextNextNext
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListByResourceGroupNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  public listByResourceGroupNextNextNextNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: DeploymentScriptsListByResourceGroupNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<DeploymentScriptUnion> {
+    const iter = this.listByResourceGroupNextNextNextNextNextNextPagingAll(
+      resourceGroupName,
+      nextLink,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByResourceGroupNextNextNextNextNextNextPagingPage(
+          resourceGroupName,
+          nextLink,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByResourceGroupNextNextNextNextNextNextPagingPage(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: DeploymentScriptsListByResourceGroupNextNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<DeploymentScriptUnion[]> {
+    let result = await this._listByResourceGroupNextNextNextNextNextNext(
+      resourceGroupName,
+      nextLink,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByResourceGroupNextNextNextNextNextNextNext(
+        resourceGroupName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByResourceGroupNextNextNextNextNextNextPagingAll(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: DeploymentScriptsListByResourceGroupNextNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<DeploymentScriptUnion> {
+    for await (const page of this.listByResourceGroupNextNextNextNextNextNextPagingPage(
+      resourceGroupName,
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListBySubscriptionNextNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListBySubscriptionNextNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  public listBySubscriptionNextNextNextNextNextNextNext(
+    nextLink: string,
+    options?: DeploymentScriptsListBySubscriptionNextNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<DeploymentScriptUnion> {
+    const iter = this.listBySubscriptionNextNextNextNextNextNextNextPagingAll(
+      nextLink,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listBySubscriptionNextNextNextNextNextNextNextPagingPage(
+          nextLink,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listBySubscriptionNextNextNextNextNextNextNextPagingPage(
+    nextLink: string,
+    options?: DeploymentScriptsListBySubscriptionNextNextNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<DeploymentScriptUnion[]> {
+    let result = await this._listBySubscriptionNextNextNextNextNextNextNext(
+      nextLink,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listBySubscriptionNextNextNextNextNextNextNextNext(
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listBySubscriptionNextNextNextNextNextNextNextPagingAll(
+    nextLink: string,
+    options?: DeploymentScriptsListBySubscriptionNextNextNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<DeploymentScriptUnion> {
+    for await (const page of this.listBySubscriptionNextNextNextNextNextNextNextPagingPage(
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListByResourceGroupNextNextNextNextNextNextNext
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListByResourceGroupNextNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  public listByResourceGroupNextNextNextNextNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: DeploymentScriptsListByResourceGroupNextNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<DeploymentScriptUnion> {
+    const iter = this.listByResourceGroupNextNextNextNextNextNextNextPagingAll(
+      resourceGroupName,
+      nextLink,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByResourceGroupNextNextNextNextNextNextNextPagingPage(
+          resourceGroupName,
+          nextLink,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listByResourceGroupNextNextNextNextNextNextNextPagingPage(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: DeploymentScriptsListByResourceGroupNextNextNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<DeploymentScriptUnion[]> {
+    let result = await this._listByResourceGroupNextNextNextNextNextNextNext(
+      resourceGroupName,
+      nextLink,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByResourceGroupNextNextNextNextNextNextNextNext(
+        resourceGroupName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByResourceGroupNextNextNextNextNextNextNextPagingAll(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: DeploymentScriptsListByResourceGroupNextNextNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<DeploymentScriptUnion> {
+    for await (const page of this.listByResourceGroupNextNextNextNextNextNextNextPagingPage(
+      resourceGroupName,
+      nextLink,
       options
     )) {
       yield* page;
@@ -379,6 +1311,255 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
       listByResourceGroupNextOperationSpec
     );
   }
+
+  /**
+   * ListBySubscriptionNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListBySubscriptionNext method.
+   * @param options The options parameters.
+   */
+  private _listBySubscriptionNextNext(
+    nextLink: string,
+    options?: DeploymentScriptsListBySubscriptionNextNextOptionalParams
+  ): Promise<DeploymentScriptsListBySubscriptionNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      listBySubscriptionNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListByResourceGroupNextNext
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroupNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  private _listByResourceGroupNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: DeploymentScriptsListByResourceGroupNextNextOptionalParams
+  ): Promise<DeploymentScriptsListByResourceGroupNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, nextLink, options },
+      listByResourceGroupNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListBySubscriptionNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListBySubscriptionNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  private _listBySubscriptionNextNextNext(
+    nextLink: string,
+    options?: DeploymentScriptsListBySubscriptionNextNextNextOptionalParams
+  ): Promise<DeploymentScriptsListBySubscriptionNextNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      listBySubscriptionNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListByResourceGroupNextNextNext
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroupNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  private _listByResourceGroupNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: DeploymentScriptsListByResourceGroupNextNextNextOptionalParams
+  ): Promise<DeploymentScriptsListByResourceGroupNextNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, nextLink, options },
+      listByResourceGroupNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListBySubscriptionNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListBySubscriptionNextNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  private _listBySubscriptionNextNextNextNext(
+    nextLink: string,
+    options?: DeploymentScriptsListBySubscriptionNextNextNextNextOptionalParams
+  ): Promise<DeploymentScriptsListBySubscriptionNextNextNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      listBySubscriptionNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListByResourceGroupNextNextNextNext
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListByResourceGroupNextNextNext method.
+   * @param options The options parameters.
+   */
+  private _listByResourceGroupNextNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: DeploymentScriptsListByResourceGroupNextNextNextNextOptionalParams
+  ): Promise<DeploymentScriptsListByResourceGroupNextNextNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, nextLink, options },
+      listByResourceGroupNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListBySubscriptionNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListBySubscriptionNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  private _listBySubscriptionNextNextNextNextNext(
+    nextLink: string,
+    options?: DeploymentScriptsListBySubscriptionNextNextNextNextNextOptionalParams
+  ): Promise<DeploymentScriptsListBySubscriptionNextNextNextNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      listBySubscriptionNextNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListByResourceGroupNextNextNextNextNext
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListByResourceGroupNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  private _listByResourceGroupNextNextNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: DeploymentScriptsListByResourceGroupNextNextNextNextNextOptionalParams
+  ): Promise<DeploymentScriptsListByResourceGroupNextNextNextNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, nextLink, options },
+      listByResourceGroupNextNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListBySubscriptionNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListBySubscriptionNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  private _listBySubscriptionNextNextNextNextNextNext(
+    nextLink: string,
+    options?: DeploymentScriptsListBySubscriptionNextNextNextNextNextNextOptionalParams
+  ): Promise<
+    DeploymentScriptsListBySubscriptionNextNextNextNextNextNextResponse
+  > {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      listBySubscriptionNextNextNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListByResourceGroupNextNextNextNextNextNext
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListByResourceGroupNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  private _listByResourceGroupNextNextNextNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: DeploymentScriptsListByResourceGroupNextNextNextNextNextNextOptionalParams
+  ): Promise<
+    DeploymentScriptsListByResourceGroupNextNextNextNextNextNextResponse
+  > {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, nextLink, options },
+      listByResourceGroupNextNextNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListBySubscriptionNextNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListBySubscriptionNextNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  private _listBySubscriptionNextNextNextNextNextNextNext(
+    nextLink: string,
+    options?: DeploymentScriptsListBySubscriptionNextNextNextNextNextNextNextOptionalParams
+  ): Promise<
+    DeploymentScriptsListBySubscriptionNextNextNextNextNextNextNextResponse
+  > {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      listBySubscriptionNextNextNextNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListByResourceGroupNextNextNextNextNextNextNext
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListByResourceGroupNextNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  private _listByResourceGroupNextNextNextNextNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: DeploymentScriptsListByResourceGroupNextNextNextNextNextNextNextOptionalParams
+  ): Promise<
+    DeploymentScriptsListByResourceGroupNextNextNextNextNextNextNextResponse
+  > {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, nextLink, options },
+      listByResourceGroupNextNextNextNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListBySubscriptionNextNextNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListBySubscriptionNextNextNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  private _listBySubscriptionNextNextNextNextNextNextNextNext(
+    nextLink: string,
+    options?: DeploymentScriptsListBySubscriptionNextNextNextNextNextNextNextNextOptionalParams
+  ): Promise<
+    DeploymentScriptsListBySubscriptionNextNextNextNextNextNextNextNextResponse
+  > {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      listBySubscriptionNextNextNextNextNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListByResourceGroupNextNextNextNextNextNextNextNext
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListByResourceGroupNextNextNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  private _listByResourceGroupNextNextNextNextNextNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: DeploymentScriptsListByResourceGroupNextNextNextNextNextNextNextNextOptionalParams
+  ): Promise<
+    DeploymentScriptsListByResourceGroupNextNextNextNextNextNextNextNextResponse
+  > {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, nextLink, options },
+      listByResourceGroupNextNextNextNextNextNextNextNextOperationSpec
+    );
+  }
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
@@ -586,6 +1767,293 @@ const listBySubscriptionNextOperationSpec: coreClient.OperationSpec = {
   serializer
 };
 const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.DeploymentScriptListResult
+    },
+    default: {
+      bodyMapper: Mappers.DeploymentScriptsError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listBySubscriptionNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.DeploymentScriptListResult
+    },
+    default: {
+      bodyMapper: Mappers.DeploymentScriptsError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listByResourceGroupNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.DeploymentScriptListResult
+    },
+    default: {
+      bodyMapper: Mappers.DeploymentScriptsError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listBySubscriptionNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.DeploymentScriptListResult
+    },
+    default: {
+      bodyMapper: Mappers.DeploymentScriptsError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listByResourceGroupNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.DeploymentScriptListResult
+    },
+    default: {
+      bodyMapper: Mappers.DeploymentScriptsError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listBySubscriptionNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.DeploymentScriptListResult
+    },
+    default: {
+      bodyMapper: Mappers.DeploymentScriptsError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listByResourceGroupNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.DeploymentScriptListResult
+    },
+    default: {
+      bodyMapper: Mappers.DeploymentScriptsError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listBySubscriptionNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.DeploymentScriptListResult
+    },
+    default: {
+      bodyMapper: Mappers.DeploymentScriptsError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listByResourceGroupNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.DeploymentScriptListResult
+    },
+    default: {
+      bodyMapper: Mappers.DeploymentScriptsError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listBySubscriptionNextNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.DeploymentScriptListResult
+    },
+    default: {
+      bodyMapper: Mappers.DeploymentScriptsError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listByResourceGroupNextNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.DeploymentScriptListResult
+    },
+    default: {
+      bodyMapper: Mappers.DeploymentScriptsError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listBySubscriptionNextNextNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.DeploymentScriptListResult
+    },
+    default: {
+      bodyMapper: Mappers.DeploymentScriptsError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listByResourceGroupNextNextNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.DeploymentScriptListResult
+    },
+    default: {
+      bodyMapper: Mappers.DeploymentScriptsError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listBySubscriptionNextNextNextNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.DeploymentScriptListResult
+    },
+    default: {
+      bodyMapper: Mappers.DeploymentScriptsError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listByResourceGroupNextNextNextNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

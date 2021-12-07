@@ -11,6 +11,7 @@ import {
   OperationURLParameter,
   OperationQueryParameter
 } from "@azure/core-client";
+import { ResourceName as ResourceNameMapper } from "../models/mappers";
 
 export const accept: OperationParameter = {
   parameterPath: "accept",
@@ -69,4 +70,21 @@ export const subscriptionId: OperationURLParameter = {
       name: "String"
     }
   }
+};
+
+export const contentType: OperationParameter = {
+  parameterPath: ["options", "contentType"],
+  mapper: {
+    defaultValue: "application/json",
+    isConstant: true,
+    serializedName: "Content-Type",
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const resourceNameDefinition: OperationParameter = {
+  parameterPath: ["options", "resourceNameDefinition"],
+  mapper: ResourceNameMapper
 };

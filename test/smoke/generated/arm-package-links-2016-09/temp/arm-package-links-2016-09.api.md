@@ -53,7 +53,63 @@ export interface OperationListResult {
 // @public
 export interface Operations {
     list(options?: OperationsListOptionalParams): PagedAsyncIterableIterator<Operation>;
+    listNext(nextLink: string, options?: OperationsListNextOptionalParams): PagedAsyncIterableIterator<Operation>;
+    listNextNext(nextLink: string, options?: OperationsListNextNextOptionalParams): PagedAsyncIterableIterator<Operation>;
+    listNextNextNext(nextLink: string, options?: OperationsListNextNextNextOptionalParams): PagedAsyncIterableIterator<Operation>;
+    listNextNextNextNext(nextLink: string, options?: OperationsListNextNextNextNextOptionalParams): PagedAsyncIterableIterator<Operation>;
+    listNextNextNextNextNext(nextLink: string, options?: OperationsListNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<Operation>;
+    listNextNextNextNextNextNext(nextLink: string, options?: OperationsListNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<Operation>;
+    listNextNextNextNextNextNextNext(nextLink: string, options?: OperationsListNextNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<Operation>;
 }
+
+// @public
+export interface OperationsListNextNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type OperationsListNextNextNextNextNextNextNextNextResponse = OperationListResult;
+
+// @public
+export interface OperationsListNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type OperationsListNextNextNextNextNextNextNextResponse = OperationListResult;
+
+// @public
+export interface OperationsListNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type OperationsListNextNextNextNextNextNextResponse = OperationListResult;
+
+// @public
+export interface OperationsListNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type OperationsListNextNextNextNextNextResponse = OperationListResult;
+
+// @public
+export interface OperationsListNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type OperationsListNextNextNextNextResponse = OperationListResult;
+
+// @public
+export interface OperationsListNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type OperationsListNextNextNextResponse = OperationListResult;
+
+// @public
+export interface OperationsListNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type OperationsListNextNextResponse = OperationListResult;
 
 // @public
 export interface OperationsListNextOptionalParams extends coreClient.OperationOptions {
@@ -101,7 +157,21 @@ export interface ResourceLinks {
     delete(linkId: string, options?: ResourceLinksDeleteOptionalParams): Promise<void>;
     get(linkId: string, options?: ResourceLinksGetOptionalParams): Promise<ResourceLinksGetResponse>;
     listAtSourceScope(scope: string, options?: ResourceLinksListAtSourceScopeOptionalParams): PagedAsyncIterableIterator<ResourceLink>;
+    listAtSourceScopeNext(scope: string, nextLink: string, options?: ResourceLinksListAtSourceScopeNextOptionalParams): PagedAsyncIterableIterator<ResourceLink>;
+    listAtSourceScopeNextNext(scope: string, nextLink: string, options?: ResourceLinksListAtSourceScopeNextNextOptionalParams): PagedAsyncIterableIterator<ResourceLink>;
+    listAtSourceScopeNextNextNext(scope: string, nextLink: string, options?: ResourceLinksListAtSourceScopeNextNextNextOptionalParams): PagedAsyncIterableIterator<ResourceLink>;
+    listAtSourceScopeNextNextNextNext(scope: string, nextLink: string, options?: ResourceLinksListAtSourceScopeNextNextNextNextOptionalParams): PagedAsyncIterableIterator<ResourceLink>;
+    listAtSourceScopeNextNextNextNextNext(scope: string, nextLink: string, options?: ResourceLinksListAtSourceScopeNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<ResourceLink>;
+    listAtSourceScopeNextNextNextNextNextNext(scope: string, nextLink: string, options?: ResourceLinksListAtSourceScopeNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<ResourceLink>;
+    listAtSourceScopeNextNextNextNextNextNextNext(scope: string, nextLink: string, options?: ResourceLinksListAtSourceScopeNextNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<ResourceLink>;
     listAtSubscription(options?: ResourceLinksListAtSubscriptionOptionalParams): PagedAsyncIterableIterator<ResourceLink>;
+    listAtSubscriptionNext(nextLink: string, options?: ResourceLinksListAtSubscriptionNextOptionalParams): PagedAsyncIterableIterator<ResourceLink>;
+    listAtSubscriptionNextNext(nextLink: string, options?: ResourceLinksListAtSubscriptionNextNextOptionalParams): PagedAsyncIterableIterator<ResourceLink>;
+    listAtSubscriptionNextNextNext(nextLink: string, options?: ResourceLinksListAtSubscriptionNextNextNextOptionalParams): PagedAsyncIterableIterator<ResourceLink>;
+    listAtSubscriptionNextNextNextNext(nextLink: string, options?: ResourceLinksListAtSubscriptionNextNextNextNextOptionalParams): PagedAsyncIterableIterator<ResourceLink>;
+    listAtSubscriptionNextNextNextNextNext(nextLink: string, options?: ResourceLinksListAtSubscriptionNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<ResourceLink>;
+    listAtSubscriptionNextNextNextNextNextNext(nextLink: string, options?: ResourceLinksListAtSubscriptionNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<ResourceLink>;
+    listAtSubscriptionNextNextNextNextNextNextNext(nextLink: string, options?: ResourceLinksListAtSubscriptionNextNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<ResourceLink>;
 }
 
 // @public
@@ -123,6 +193,55 @@ export interface ResourceLinksGetOptionalParams extends coreClient.OperationOpti
 export type ResourceLinksGetResponse = ResourceLink;
 
 // @public
+export interface ResourceLinksListAtSourceScopeNextNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ResourceLinksListAtSourceScopeNextNextNextNextNextNextNextNextResponse = ResourceLinkResult;
+
+// @public
+export interface ResourceLinksListAtSourceScopeNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ResourceLinksListAtSourceScopeNextNextNextNextNextNextNextResponse = ResourceLinkResult;
+
+// @public
+export interface ResourceLinksListAtSourceScopeNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ResourceLinksListAtSourceScopeNextNextNextNextNextNextResponse = ResourceLinkResult;
+
+// @public
+export interface ResourceLinksListAtSourceScopeNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ResourceLinksListAtSourceScopeNextNextNextNextNextResponse = ResourceLinkResult;
+
+// @public
+export interface ResourceLinksListAtSourceScopeNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ResourceLinksListAtSourceScopeNextNextNextNextResponse = ResourceLinkResult;
+
+// @public
+export interface ResourceLinksListAtSourceScopeNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ResourceLinksListAtSourceScopeNextNextNextResponse = ResourceLinkResult;
+
+// @public
+export interface ResourceLinksListAtSourceScopeNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ResourceLinksListAtSourceScopeNextNextResponse = ResourceLinkResult;
+
+// @public
 export interface ResourceLinksListAtSourceScopeNextOptionalParams extends coreClient.OperationOptions {
 }
 
@@ -135,6 +254,62 @@ export interface ResourceLinksListAtSourceScopeOptionalParams extends coreClient
 
 // @public
 export type ResourceLinksListAtSourceScopeResponse = ResourceLinkResult;
+
+// @public
+export interface ResourceLinksListAtSubscriptionNextNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type ResourceLinksListAtSubscriptionNextNextNextNextNextNextNextNextResponse = ResourceLinkResult;
+
+// @public
+export interface ResourceLinksListAtSubscriptionNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type ResourceLinksListAtSubscriptionNextNextNextNextNextNextNextResponse = ResourceLinkResult;
+
+// @public
+export interface ResourceLinksListAtSubscriptionNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type ResourceLinksListAtSubscriptionNextNextNextNextNextNextResponse = ResourceLinkResult;
+
+// @public
+export interface ResourceLinksListAtSubscriptionNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type ResourceLinksListAtSubscriptionNextNextNextNextNextResponse = ResourceLinkResult;
+
+// @public
+export interface ResourceLinksListAtSubscriptionNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type ResourceLinksListAtSubscriptionNextNextNextNextResponse = ResourceLinkResult;
+
+// @public
+export interface ResourceLinksListAtSubscriptionNextNextNextOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type ResourceLinksListAtSubscriptionNextNextNextResponse = ResourceLinkResult;
+
+// @public
+export interface ResourceLinksListAtSubscriptionNextNextOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type ResourceLinksListAtSubscriptionNextNextResponse = ResourceLinkResult;
 
 // @public
 export interface ResourceLinksListAtSubscriptionNextOptionalParams extends coreClient.OperationOptions {

@@ -18,6 +18,13 @@ import {
   ResourceGroup,
   ResourceGroupsListNextOptionalParams,
   ResourceGroupsListOptionalParams,
+  ResourceGroupsListNextNextOptionalParams,
+  ResourceGroupsListNextNextNextOptionalParams,
+  ResourceGroupsListNextNextNextNextOptionalParams,
+  ResourceGroupsListNextNextNextNextNextOptionalParams,
+  ResourceGroupsListNextNextNextNextNextNextOptionalParams,
+  ResourceGroupsListNextNextNextNextNextNextNextOptionalParams,
+  ResourceGroupsListNextNextNextNextNextNextNextNextOptionalParams,
   ResourceGroupsCheckExistenceOptionalParams,
   ResourceGroupsCreateOrUpdateOptionalParams,
   ResourceGroupsCreateOrUpdateResponse,
@@ -31,7 +38,14 @@ import {
   ResourceGroupsExportTemplateOptionalParams,
   ResourceGroupsExportTemplateResponse,
   ResourceGroupsListResponse,
-  ResourceGroupsListNextResponse
+  ResourceGroupsListNextResponse,
+  ResourceGroupsListNextNextResponse,
+  ResourceGroupsListNextNextNextResponse,
+  ResourceGroupsListNextNextNextNextResponse,
+  ResourceGroupsListNextNextNextNextNextResponse,
+  ResourceGroupsListNextNextNextNextNextNextResponse,
+  ResourceGroupsListNextNextNextNextNextNextNextResponse,
+  ResourceGroupsListNextNextNextNextNextNextNextNextResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -85,6 +99,363 @@ export class ResourceGroupsImpl implements ResourceGroups {
     options?: ResourceGroupsListOptionalParams
   ): AsyncIterableIterator<ResourceGroup> {
     for await (const page of this.listPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListNext
+   * @param nextLink The nextLink from the previous successful call to the List method.
+   * @param options The options parameters.
+   */
+  public listNext(
+    nextLink: string,
+    options?: ResourceGroupsListNextOptionalParams
+  ): PagedAsyncIterableIterator<ResourceGroup> {
+    const iter = this.listNextPagingAll(nextLink, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listNextPagingPage(nextLink, options);
+      }
+    };
+  }
+
+  private async *listNextPagingPage(
+    nextLink: string,
+    options?: ResourceGroupsListNextOptionalParams
+  ): AsyncIterableIterator<ResourceGroup[]> {
+    let result = await this._listNext(nextLink, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNextNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listNextPagingAll(
+    nextLink: string,
+    options?: ResourceGroupsListNextOptionalParams
+  ): AsyncIterableIterator<ResourceGroup> {
+    for await (const page of this.listNextPagingPage(nextLink, options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNext method.
+   * @param options The options parameters.
+   */
+  public listNextNext(
+    nextLink: string,
+    options?: ResourceGroupsListNextNextOptionalParams
+  ): PagedAsyncIterableIterator<ResourceGroup> {
+    const iter = this.listNextNextPagingAll(nextLink, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listNextNextPagingPage(nextLink, options);
+      }
+    };
+  }
+
+  private async *listNextNextPagingPage(
+    nextLink: string,
+    options?: ResourceGroupsListNextNextOptionalParams
+  ): AsyncIterableIterator<ResourceGroup[]> {
+    let result = await this._listNextNext(nextLink, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNextNextNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listNextNextPagingAll(
+    nextLink: string,
+    options?: ResourceGroupsListNextNextOptionalParams
+  ): AsyncIterableIterator<ResourceGroup> {
+    for await (const page of this.listNextNextPagingPage(nextLink, options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNext method.
+   * @param options The options parameters.
+   */
+  public listNextNextNext(
+    nextLink: string,
+    options?: ResourceGroupsListNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<ResourceGroup> {
+    const iter = this.listNextNextNextPagingAll(nextLink, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listNextNextNextPagingPage(nextLink, options);
+      }
+    };
+  }
+
+  private async *listNextNextNextPagingPage(
+    nextLink: string,
+    options?: ResourceGroupsListNextNextNextOptionalParams
+  ): AsyncIterableIterator<ResourceGroup[]> {
+    let result = await this._listNextNextNext(nextLink, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNextNextNextNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listNextNextNextPagingAll(
+    nextLink: string,
+    options?: ResourceGroupsListNextNextNextOptionalParams
+  ): AsyncIterableIterator<ResourceGroup> {
+    for await (const page of this.listNextNextNextPagingPage(
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNext method.
+   * @param options The options parameters.
+   */
+  public listNextNextNextNext(
+    nextLink: string,
+    options?: ResourceGroupsListNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<ResourceGroup> {
+    const iter = this.listNextNextNextNextPagingAll(nextLink, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listNextNextNextNextPagingPage(nextLink, options);
+      }
+    };
+  }
+
+  private async *listNextNextNextNextPagingPage(
+    nextLink: string,
+    options?: ResourceGroupsListNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<ResourceGroup[]> {
+    let result = await this._listNextNextNextNext(nextLink, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNextNextNextNextNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listNextNextNextNextPagingAll(
+    nextLink: string,
+    options?: ResourceGroupsListNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<ResourceGroup> {
+    for await (const page of this.listNextNextNextNextPagingPage(
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  public listNextNextNextNextNext(
+    nextLink: string,
+    options?: ResourceGroupsListNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<ResourceGroup> {
+    const iter = this.listNextNextNextNextNextPagingAll(nextLink, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listNextNextNextNextNextPagingPage(nextLink, options);
+      }
+    };
+  }
+
+  private async *listNextNextNextNextNextPagingPage(
+    nextLink: string,
+    options?: ResourceGroupsListNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<ResourceGroup[]> {
+    let result = await this._listNextNextNextNextNext(nextLink, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNextNextNextNextNextNext(
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listNextNextNextNextNextPagingAll(
+    nextLink: string,
+    options?: ResourceGroupsListNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<ResourceGroup> {
+    for await (const page of this.listNextNextNextNextNextPagingPage(
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  public listNextNextNextNextNextNext(
+    nextLink: string,
+    options?: ResourceGroupsListNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<ResourceGroup> {
+    const iter = this.listNextNextNextNextNextNextPagingAll(nextLink, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listNextNextNextNextNextNextPagingPage(nextLink, options);
+      }
+    };
+  }
+
+  private async *listNextNextNextNextNextNextPagingPage(
+    nextLink: string,
+    options?: ResourceGroupsListNextNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<ResourceGroup[]> {
+    let result = await this._listNextNextNextNextNextNext(nextLink, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNextNextNextNextNextNextNext(
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listNextNextNextNextNextNextPagingAll(
+    nextLink: string,
+    options?: ResourceGroupsListNextNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<ResourceGroup> {
+    for await (const page of this.listNextNextNextNextNextNextPagingPage(
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListNextNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNextNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  public listNextNextNextNextNextNextNext(
+    nextLink: string,
+    options?: ResourceGroupsListNextNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<ResourceGroup> {
+    const iter = this.listNextNextNextNextNextNextNextPagingAll(
+      nextLink,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listNextNextNextNextNextNextNextPagingPage(
+          nextLink,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listNextNextNextNextNextNextNextPagingPage(
+    nextLink: string,
+    options?: ResourceGroupsListNextNextNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<ResourceGroup[]> {
+    let result = await this._listNextNextNextNextNextNextNext(
+      nextLink,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNextNextNextNextNextNextNextNext(
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listNextNextNextNextNextNextNextPagingAll(
+    nextLink: string,
+    options?: ResourceGroupsListNextNextNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<ResourceGroup> {
+    for await (const page of this.listNextNextNextNextNextNextNextPagingPage(
+      nextLink,
+      options
+    )) {
       yield* page;
     }
   }
@@ -341,6 +712,114 @@ export class ResourceGroupsImpl implements ResourceGroups {
       listNextOperationSpec
     );
   }
+
+  /**
+   * ListNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNext method.
+   * @param options The options parameters.
+   */
+  private _listNextNext(
+    nextLink: string,
+    options?: ResourceGroupsListNextNextOptionalParams
+  ): Promise<ResourceGroupsListNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      listNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNext method.
+   * @param options The options parameters.
+   */
+  private _listNextNextNext(
+    nextLink: string,
+    options?: ResourceGroupsListNextNextNextOptionalParams
+  ): Promise<ResourceGroupsListNextNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      listNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNext method.
+   * @param options The options parameters.
+   */
+  private _listNextNextNextNext(
+    nextLink: string,
+    options?: ResourceGroupsListNextNextNextNextOptionalParams
+  ): Promise<ResourceGroupsListNextNextNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      listNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  private _listNextNextNextNextNext(
+    nextLink: string,
+    options?: ResourceGroupsListNextNextNextNextNextOptionalParams
+  ): Promise<ResourceGroupsListNextNextNextNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      listNextNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  private _listNextNextNextNextNextNext(
+    nextLink: string,
+    options?: ResourceGroupsListNextNextNextNextNextNextOptionalParams
+  ): Promise<ResourceGroupsListNextNextNextNextNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      listNextNextNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListNextNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNextNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  private _listNextNextNextNextNextNextNext(
+    nextLink: string,
+    options?: ResourceGroupsListNextNextNextNextNextNextNextOptionalParams
+  ): Promise<ResourceGroupsListNextNextNextNextNextNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      listNextNextNextNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListNextNextNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListNextNextNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  private _listNextNextNextNextNextNextNextNext(
+    nextLink: string,
+    options?: ResourceGroupsListNextNextNextNextNextNextNextNextOptionalParams
+  ): Promise<ResourceGroupsListNextNextNextNextNextNextNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      listNextNextNextNextNextNextNextNextOperationSpec
+    );
+  }
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
@@ -478,7 +957,7 @@ const exportTemplateOperationSpec: coreClient.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName
+    Parameters.resourceGroupName1
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
@@ -501,6 +980,146 @@ const listOperationSpec: coreClient.OperationSpec = {
   serializer
 };
 const listNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ResourceGroupListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.filter, Parameters.top],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.nextLink,
+    Parameters.subscriptionId
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ResourceGroupListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.filter, Parameters.top],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.nextLink,
+    Parameters.subscriptionId
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ResourceGroupListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.filter, Parameters.top],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.nextLink,
+    Parameters.subscriptionId
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ResourceGroupListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.filter, Parameters.top],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.nextLink,
+    Parameters.subscriptionId
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ResourceGroupListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.filter, Parameters.top],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.nextLink,
+    Parameters.subscriptionId
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listNextNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ResourceGroupListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.filter, Parameters.top],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.nextLink,
+    Parameters.subscriptionId
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listNextNextNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ResourceGroupListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.filter, Parameters.top],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.nextLink,
+    Parameters.subscriptionId
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listNextNextNextNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

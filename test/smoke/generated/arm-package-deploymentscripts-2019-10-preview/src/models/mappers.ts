@@ -19,6 +19,13 @@ export const ManagedServiceIdentity: coreClient.CompositeMapper = {
           name: "String"
         }
       },
+      tenantId: {
+        serializedName: "tenantId",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
       userAssignedIdentities: {
         serializedName: "userAssignedIdentities",
         type: {
@@ -39,12 +46,14 @@ export const UserAssignedIdentity: coreClient.CompositeMapper = {
     modelProperties: {
       principalId: {
         serializedName: "principalId",
+        readOnly: true,
         type: {
           name: "String"
         }
       },
       clientId: {
         serializedName: "clientId",
+        readOnly: true,
         type: {
           name: "String"
         }
@@ -293,6 +302,7 @@ export const DeploymentScriptPropertiesBase: coreClient.CompositeMapper = {
         }
       },
       cleanupPreference: {
+        defaultValue: "Always",
         serializedName: "cleanupPreference",
         type: {
           name: "String"
@@ -480,6 +490,7 @@ export const ScriptConfigurationBase: coreClient.CompositeMapper = {
         }
       },
       timeout: {
+        defaultValue: "P1D",
         serializedName: "timeout",
         type: {
           name: "TimeSpan"
@@ -662,6 +673,7 @@ export const AzurePowerShellScript: coreClient.CompositeMapper = {
         }
       },
       cleanupPreference: {
+        defaultValue: "Always",
         serializedName: "properties.cleanupPreference",
         type: {
           name: "String"
@@ -749,6 +761,7 @@ export const AzurePowerShellScript: coreClient.CompositeMapper = {
         }
       },
       timeout: {
+        defaultValue: "P1D",
         serializedName: "properties.timeout",
         type: {
           name: "TimeSpan"
@@ -789,6 +802,7 @@ export const AzureCliScript: coreClient.CompositeMapper = {
         }
       },
       cleanupPreference: {
+        defaultValue: "Always",
         serializedName: "properties.cleanupPreference",
         type: {
           name: "String"
@@ -876,6 +890,7 @@ export const AzureCliScript: coreClient.CompositeMapper = {
         }
       },
       timeout: {
+        defaultValue: "P1D",
         serializedName: "properties.timeout",
         type: {
           name: "TimeSpan"

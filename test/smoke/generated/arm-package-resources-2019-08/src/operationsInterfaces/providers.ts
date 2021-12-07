@@ -9,8 +9,22 @@
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import {
   Provider,
+  ProvidersListNextOptionalParams,
   ProvidersListOptionalParams,
+  ProvidersListAtTenantScopeNextOptionalParams,
   ProvidersListAtTenantScopeOptionalParams,
+  ProvidersListNextNextOptionalParams,
+  ProvidersListAtTenantScopeNextNextOptionalParams,
+  ProvidersListNextNextNextOptionalParams,
+  ProvidersListAtTenantScopeNextNextNextOptionalParams,
+  ProvidersListNextNextNextNextOptionalParams,
+  ProvidersListAtTenantScopeNextNextNextNextOptionalParams,
+  ProvidersListNextNextNextNextNextOptionalParams,
+  ProvidersListAtTenantScopeNextNextNextNextNextOptionalParams,
+  ProvidersListNextNextNextNextNextNextOptionalParams,
+  ProvidersListAtTenantScopeNextNextNextNextNextNextOptionalParams,
+  ProvidersListNextNextNextNextNextNextNextOptionalParams,
+  ProvidersListAtTenantScopeNextNextNextNextNextNextNextOptionalParams,
   ProvidersUnregisterOptionalParams,
   ProvidersUnregisterResponse,
   ProvidersRegisterOptionalParams,
@@ -37,6 +51,139 @@ export interface Providers {
    */
   listAtTenantScope(
     options?: ProvidersListAtTenantScopeOptionalParams
+  ): PagedAsyncIterableIterator<Provider>;
+  /**
+   * ListNext
+   * @param nextLink The nextLink from the previous successful call to the List method.
+   * @param options The options parameters.
+   */
+  listNext(
+    nextLink: string,
+    options?: ProvidersListNextOptionalParams
+  ): PagedAsyncIterableIterator<Provider>;
+  /**
+   * ListAtTenantScopeNext
+   * @param nextLink The nextLink from the previous successful call to the ListAtTenantScope method.
+   * @param options The options parameters.
+   */
+  listAtTenantScopeNext(
+    nextLink: string,
+    options?: ProvidersListAtTenantScopeNextOptionalParams
+  ): PagedAsyncIterableIterator<Provider>;
+  /**
+   * ListNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNext method.
+   * @param options The options parameters.
+   */
+  listNextNext(
+    nextLink: string,
+    options?: ProvidersListNextNextOptionalParams
+  ): PagedAsyncIterableIterator<Provider>;
+  /**
+   * ListAtTenantScopeNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListAtTenantScopeNext method.
+   * @param options The options parameters.
+   */
+  listAtTenantScopeNextNext(
+    nextLink: string,
+    options?: ProvidersListAtTenantScopeNextNextOptionalParams
+  ): PagedAsyncIterableIterator<Provider>;
+  /**
+   * ListNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNext method.
+   * @param options The options parameters.
+   */
+  listNextNextNext(
+    nextLink: string,
+    options?: ProvidersListNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<Provider>;
+  /**
+   * ListAtTenantScopeNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListAtTenantScopeNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  listAtTenantScopeNextNextNext(
+    nextLink: string,
+    options?: ProvidersListAtTenantScopeNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<Provider>;
+  /**
+   * ListNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNext method.
+   * @param options The options parameters.
+   */
+  listNextNextNextNext(
+    nextLink: string,
+    options?: ProvidersListNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<Provider>;
+  /**
+   * ListAtTenantScopeNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListAtTenantScopeNextNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  listAtTenantScopeNextNextNextNext(
+    nextLink: string,
+    options?: ProvidersListAtTenantScopeNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<Provider>;
+  /**
+   * ListNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listNextNextNextNextNext(
+    nextLink: string,
+    options?: ProvidersListNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<Provider>;
+  /**
+   * ListAtTenantScopeNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListAtTenantScopeNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listAtTenantScopeNextNextNextNextNext(
+    nextLink: string,
+    options?: ProvidersListAtTenantScopeNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<Provider>;
+  /**
+   * ListNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  listNextNextNextNextNextNext(
+    nextLink: string,
+    options?: ProvidersListNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<Provider>;
+  /**
+   * ListAtTenantScopeNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListAtTenantScopeNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listAtTenantScopeNextNextNextNextNextNext(
+    nextLink: string,
+    options?: ProvidersListAtTenantScopeNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<Provider>;
+  /**
+   * ListNextNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNextNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  listNextNextNextNextNextNextNext(
+    nextLink: string,
+    options?: ProvidersListNextNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<Provider>;
+  /**
+   * ListAtTenantScopeNextNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListAtTenantScopeNextNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listAtTenantScopeNextNextNextNextNextNextNext(
+    nextLink: string,
+    options?: ProvidersListAtTenantScopeNextNextNextNextNextNextNextOptionalParams
   ): PagedAsyncIterableIterator<Provider>;
   /**
    * Unregisters a subscription from a resource provider.

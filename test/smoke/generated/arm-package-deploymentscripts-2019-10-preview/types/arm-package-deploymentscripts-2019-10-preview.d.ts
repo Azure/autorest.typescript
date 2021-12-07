@@ -41,9 +41,9 @@ export declare type AzureCliScript = DeploymentScript & {
     environmentVariables?: EnvironmentVariable[];
     /** Gets or sets how the deployment script should be forced to execute even if the script resource has not changed. Can be current time stamp or a GUID. */
     forceUpdateTag?: string;
-    /** Interval for which the service retains the script resource after it reaches a terminal state. Resource will be deleted when this duration expires. Duration is based on ISO 8601 pattern (for example P7D means one week). */
+    /** Interval for which the service retains the script resource after it reaches a terminal state. Resource will be deleted when this duration expires. Duration is based on ISO 8601 pattern (for example P1D means one day). */
     retentionInterval: string;
-    /** Maximum allowed script execution time specified in ISO 8601 format. Default value is PT1H */
+    /** Maximum allowed script execution time specified in ISO 8601 format. Default value is P1D */
     timeout?: string;
     /** Azure CLI module version to be used. */
     azCliVersion: string;
@@ -92,9 +92,9 @@ export declare type AzurePowerShellScript = DeploymentScript & {
     environmentVariables?: EnvironmentVariable[];
     /** Gets or sets how the deployment script should be forced to execute even if the script resource has not changed. Can be current time stamp or a GUID. */
     forceUpdateTag?: string;
-    /** Interval for which the service retains the script resource after it reaches a terminal state. Resource will be deleted when this duration expires. Duration is based on ISO 8601 pattern (for example P7D means one week). */
+    /** Interval for which the service retains the script resource after it reaches a terminal state. Resource will be deleted when this duration expires. Duration is based on ISO 8601 pattern (for example P1D means one day). */
     retentionInterval: string;
-    /** Maximum allowed script execution time specified in ISO 8601 format. Default value is PT1H */
+    /** Maximum allowed script execution time specified in ISO 8601 format. Default value is P1D */
     timeout?: string;
     /** Azure PowerShell module version to be used. */
     azPowerShellVersion: string;
@@ -225,6 +225,108 @@ export declare interface DeploymentScripts {
      */
     listByResourceGroup(resourceGroupName: string, options?: DeploymentScriptsListByResourceGroupOptionalParams): PagedAsyncIterableIterator<DeploymentScriptUnion>;
     /**
+     * ListBySubscriptionNext
+     * @param nextLink The nextLink from the previous successful call to the ListBySubscription method.
+     * @param options The options parameters.
+     */
+    listBySubscriptionNext(nextLink: string, options?: DeploymentScriptsListBySubscriptionNextOptionalParams): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+    /**
+     * ListByResourceGroupNext
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
+     * @param options The options parameters.
+     */
+    listByResourceGroupNext(resourceGroupName: string, nextLink: string, options?: DeploymentScriptsListByResourceGroupNextOptionalParams): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+    /**
+     * ListBySubscriptionNextNext
+     * @param nextLink The nextLink from the previous successful call to the ListBySubscriptionNext method.
+     * @param options The options parameters.
+     */
+    listBySubscriptionNextNext(nextLink: string, options?: DeploymentScriptsListBySubscriptionNextNextOptionalParams): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+    /**
+     * ListByResourceGroupNextNext
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param nextLink The nextLink from the previous successful call to the ListByResourceGroupNext
+     *                 method.
+     * @param options The options parameters.
+     */
+    listByResourceGroupNextNext(resourceGroupName: string, nextLink: string, options?: DeploymentScriptsListByResourceGroupNextNextOptionalParams): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+    /**
+     * ListBySubscriptionNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the ListBySubscriptionNextNext
+     *                 method.
+     * @param options The options parameters.
+     */
+    listBySubscriptionNextNextNext(nextLink: string, options?: DeploymentScriptsListBySubscriptionNextNextNextOptionalParams): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+    /**
+     * ListByResourceGroupNextNextNext
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param nextLink The nextLink from the previous successful call to the ListByResourceGroupNextNext
+     *                 method.
+     * @param options The options parameters.
+     */
+    listByResourceGroupNextNextNext(resourceGroupName: string, nextLink: string, options?: DeploymentScriptsListByResourceGroupNextNextNextOptionalParams): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+    /**
+     * ListBySubscriptionNextNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the ListBySubscriptionNextNextNext
+     *                 method.
+     * @param options The options parameters.
+     */
+    listBySubscriptionNextNextNextNext(nextLink: string, options?: DeploymentScriptsListBySubscriptionNextNextNextNextOptionalParams): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+    /**
+     * ListByResourceGroupNextNextNextNext
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param nextLink The nextLink from the previous successful call to the
+     *                 ListByResourceGroupNextNextNext method.
+     * @param options The options parameters.
+     */
+    listByResourceGroupNextNextNextNext(resourceGroupName: string, nextLink: string, options?: DeploymentScriptsListByResourceGroupNextNextNextNextOptionalParams): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+    /**
+     * ListBySubscriptionNextNextNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the
+     *                 ListBySubscriptionNextNextNextNext method.
+     * @param options The options parameters.
+     */
+    listBySubscriptionNextNextNextNextNext(nextLink: string, options?: DeploymentScriptsListBySubscriptionNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+    /**
+     * ListByResourceGroupNextNextNextNextNext
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param nextLink The nextLink from the previous successful call to the
+     *                 ListByResourceGroupNextNextNextNext method.
+     * @param options The options parameters.
+     */
+    listByResourceGroupNextNextNextNextNext(resourceGroupName: string, nextLink: string, options?: DeploymentScriptsListByResourceGroupNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+    /**
+     * ListBySubscriptionNextNextNextNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the
+     *                 ListBySubscriptionNextNextNextNextNext method.
+     * @param options The options parameters.
+     */
+    listBySubscriptionNextNextNextNextNextNext(nextLink: string, options?: DeploymentScriptsListBySubscriptionNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+    /**
+     * ListByResourceGroupNextNextNextNextNextNext
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param nextLink The nextLink from the previous successful call to the
+     *                 ListByResourceGroupNextNextNextNextNext method.
+     * @param options The options parameters.
+     */
+    listByResourceGroupNextNextNextNextNextNext(resourceGroupName: string, nextLink: string, options?: DeploymentScriptsListByResourceGroupNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+    /**
+     * ListBySubscriptionNextNextNextNextNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the
+     *                 ListBySubscriptionNextNextNextNextNextNext method.
+     * @param options The options parameters.
+     */
+    listBySubscriptionNextNextNextNextNextNextNext(nextLink: string, options?: DeploymentScriptsListBySubscriptionNextNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+    /**
+     * ListByResourceGroupNextNextNextNextNextNextNext
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param nextLink The nextLink from the previous successful call to the
+     *                 ListByResourceGroupNextNextNextNextNextNext method.
+     * @param options The options parameters.
+     */
+    listByResourceGroupNextNextNextNextNextNextNext(resourceGroupName: string, nextLink: string, options?: DeploymentScriptsListByResourceGroupNextNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+    /**
      * Creates a deployment script.
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param scriptName Name of the deployment script.
@@ -318,7 +420,7 @@ export declare interface DeploymentScriptsDeleteOptionalParams extends coreClien
 
 /** Deployment scripts error response. */
 export declare interface DeploymentScriptsError {
-    /** The resource management error response. */
+    /** Common error response for all Azure Resource Manager APIs to return error details for failed operations. (This also follows the OData error response format.) */
     error?: ErrorResponse;
 }
 
@@ -346,6 +448,55 @@ export declare interface DeploymentScriptsGetOptionalParams extends coreClient.O
 export declare type DeploymentScriptsGetResponse = DeploymentScriptUnion;
 
 /** Optional parameters. */
+export declare interface DeploymentScriptsListByResourceGroupNextNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listByResourceGroupNextNextNextNextNextNextNextNext operation. */
+export declare type DeploymentScriptsListByResourceGroupNextNextNextNextNextNextNextNextResponse = DeploymentScriptListResult;
+
+/** Optional parameters. */
+export declare interface DeploymentScriptsListByResourceGroupNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listByResourceGroupNextNextNextNextNextNextNext operation. */
+export declare type DeploymentScriptsListByResourceGroupNextNextNextNextNextNextNextResponse = DeploymentScriptListResult;
+
+/** Optional parameters. */
+export declare interface DeploymentScriptsListByResourceGroupNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listByResourceGroupNextNextNextNextNextNext operation. */
+export declare type DeploymentScriptsListByResourceGroupNextNextNextNextNextNextResponse = DeploymentScriptListResult;
+
+/** Optional parameters. */
+export declare interface DeploymentScriptsListByResourceGroupNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listByResourceGroupNextNextNextNextNext operation. */
+export declare type DeploymentScriptsListByResourceGroupNextNextNextNextNextResponse = DeploymentScriptListResult;
+
+/** Optional parameters. */
+export declare interface DeploymentScriptsListByResourceGroupNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listByResourceGroupNextNextNextNext operation. */
+export declare type DeploymentScriptsListByResourceGroupNextNextNextNextResponse = DeploymentScriptListResult;
+
+/** Optional parameters. */
+export declare interface DeploymentScriptsListByResourceGroupNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listByResourceGroupNextNextNext operation. */
+export declare type DeploymentScriptsListByResourceGroupNextNextNextResponse = DeploymentScriptListResult;
+
+/** Optional parameters. */
+export declare interface DeploymentScriptsListByResourceGroupNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listByResourceGroupNextNext operation. */
+export declare type DeploymentScriptsListByResourceGroupNextNextResponse = DeploymentScriptListResult;
+
+/** Optional parameters. */
 export declare interface DeploymentScriptsListByResourceGroupNextOptionalParams extends coreClient.OperationOptions {
 }
 
@@ -358,6 +509,55 @@ export declare interface DeploymentScriptsListByResourceGroupOptionalParams exte
 
 /** Contains response data for the listByResourceGroup operation. */
 export declare type DeploymentScriptsListByResourceGroupResponse = DeploymentScriptListResult;
+
+/** Optional parameters. */
+export declare interface DeploymentScriptsListBySubscriptionNextNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listBySubscriptionNextNextNextNextNextNextNextNext operation. */
+export declare type DeploymentScriptsListBySubscriptionNextNextNextNextNextNextNextNextResponse = DeploymentScriptListResult;
+
+/** Optional parameters. */
+export declare interface DeploymentScriptsListBySubscriptionNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listBySubscriptionNextNextNextNextNextNextNext operation. */
+export declare type DeploymentScriptsListBySubscriptionNextNextNextNextNextNextNextResponse = DeploymentScriptListResult;
+
+/** Optional parameters. */
+export declare interface DeploymentScriptsListBySubscriptionNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listBySubscriptionNextNextNextNextNextNext operation. */
+export declare type DeploymentScriptsListBySubscriptionNextNextNextNextNextNextResponse = DeploymentScriptListResult;
+
+/** Optional parameters. */
+export declare interface DeploymentScriptsListBySubscriptionNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listBySubscriptionNextNextNextNextNext operation. */
+export declare type DeploymentScriptsListBySubscriptionNextNextNextNextNextResponse = DeploymentScriptListResult;
+
+/** Optional parameters. */
+export declare interface DeploymentScriptsListBySubscriptionNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listBySubscriptionNextNextNextNext operation. */
+export declare type DeploymentScriptsListBySubscriptionNextNextNextNextResponse = DeploymentScriptListResult;
+
+/** Optional parameters. */
+export declare interface DeploymentScriptsListBySubscriptionNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listBySubscriptionNextNextNext operation. */
+export declare type DeploymentScriptsListBySubscriptionNextNextNextResponse = DeploymentScriptListResult;
+
+/** Optional parameters. */
+export declare interface DeploymentScriptsListBySubscriptionNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listBySubscriptionNextNext operation. */
+export declare type DeploymentScriptsListBySubscriptionNextNextResponse = DeploymentScriptListResult;
 
 /** Optional parameters. */
 export declare interface DeploymentScriptsListBySubscriptionNextOptionalParams extends coreClient.OperationOptions {
@@ -416,7 +616,7 @@ export declare interface ErrorAdditionalInfo {
     readonly info?: Record<string, unknown>;
 }
 
-/** The resource management error response. */
+/** Common error response for all Azure Resource Manager APIs to return error details for failed operations. (This also follows the OData error response format.) */
 export declare interface ErrorResponse {
     /**
      * The error code.
@@ -485,6 +685,11 @@ export declare enum KnownScriptType {
 export declare interface ManagedServiceIdentity {
     /** Type of the managed identity. */
     type?: ManagedServiceIdentityType;
+    /**
+     * ID of the Azure Active Directory.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly tenantId?: string;
     /** The list of user-assigned managed identities associated with the resource. Key is the Azure resource Id of the managed identity. */
     userAssignedIdentities?: {
         [propertyName: string]: UserAssignedIdentity;
@@ -514,9 +719,9 @@ export declare interface ScriptConfigurationBase {
     environmentVariables?: EnvironmentVariable[];
     /** Gets or sets how the deployment script should be forced to execute even if the script resource has not changed. Can be current time stamp or a GUID. */
     forceUpdateTag?: string;
-    /** Interval for which the service retains the script resource after it reaches a terminal state. Resource will be deleted when this duration expires. Duration is based on ISO 8601 pattern (for example P7D means one week). */
+    /** Interval for which the service retains the script resource after it reaches a terminal state. Resource will be deleted when this duration expires. Duration is based on ISO 8601 pattern (for example P1D means one day). */
     retentionInterval: string;
-    /** Maximum allowed script execution time specified in ISO 8601 format. Default value is PT1H */
+    /** Maximum allowed script execution time specified in ISO 8601 format. Default value is P1D */
     timeout?: string;
 }
 
@@ -610,16 +815,22 @@ export declare interface SystemData {
     lastModifiedBy?: string;
     /** The type of identity that last modified the resource. */
     lastModifiedByType?: CreatedByType;
-    /** The type of identity that last modified the resource. */
+    /** The timestamp of resource last modification (UTC) */
     lastModifiedAt?: Date;
 }
 
 /** User-assigned managed identity. */
 export declare interface UserAssignedIdentity {
-    /** Azure Active Directory principal ID associated with this identity. */
-    principalId?: string;
-    /** Client App Id associated with this identity. */
-    clientId?: string;
+    /**
+     * Azure Active Directory principal ID associated with this identity.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly principalId?: string;
+    /**
+     * Client App Id associated with this identity.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly clientId?: string;
 }
 
 export { }

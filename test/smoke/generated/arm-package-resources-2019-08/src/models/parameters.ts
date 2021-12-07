@@ -318,6 +318,21 @@ export const parameters7: OperationParameter = {
   mapper: ExportTemplateRequestMapper
 };
 
+export const resourceGroupName1: OperationURLParameter = {
+  parameterPath: "resourceGroupName",
+  mapper: {
+    constraints: {
+      MaxLength: 90,
+      MinLength: 1
+    },
+    serializedName: "resourceGroupName",
+    required: true,
+    type: {
+      name: "String"
+    }
+  }
+};
+
 export const tagName: OperationURLParameter = {
   parameterPath: "tagName",
   mapper: {

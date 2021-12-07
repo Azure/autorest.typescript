@@ -10,8 +10,22 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   DeploymentScriptUnion,
+  DeploymentScriptsListBySubscriptionNextOptionalParams,
   DeploymentScriptsListBySubscriptionOptionalParams,
+  DeploymentScriptsListByResourceGroupNextOptionalParams,
   DeploymentScriptsListByResourceGroupOptionalParams,
+  DeploymentScriptsListBySubscriptionNextNextOptionalParams,
+  DeploymentScriptsListByResourceGroupNextNextOptionalParams,
+  DeploymentScriptsListBySubscriptionNextNextNextOptionalParams,
+  DeploymentScriptsListByResourceGroupNextNextNextOptionalParams,
+  DeploymentScriptsListBySubscriptionNextNextNextNextOptionalParams,
+  DeploymentScriptsListByResourceGroupNextNextNextNextOptionalParams,
+  DeploymentScriptsListBySubscriptionNextNextNextNextNextOptionalParams,
+  DeploymentScriptsListByResourceGroupNextNextNextNextNextOptionalParams,
+  DeploymentScriptsListBySubscriptionNextNextNextNextNextNextOptionalParams,
+  DeploymentScriptsListByResourceGroupNextNextNextNextNextNextOptionalParams,
+  DeploymentScriptsListBySubscriptionNextNextNextNextNextNextNextOptionalParams,
+  DeploymentScriptsListByResourceGroupNextNextNextNextNextNextNextOptionalParams,
   DeploymentScriptsCreateOptionalParams,
   DeploymentScriptsCreateResponse,
   DeploymentScriptsUpdateOptionalParams,
@@ -43,6 +57,157 @@ export interface DeploymentScripts {
   listByResourceGroup(
     resourceGroupName: string,
     options?: DeploymentScriptsListByResourceGroupOptionalParams
+  ): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+  /**
+   * ListBySubscriptionNext
+   * @param nextLink The nextLink from the previous successful call to the ListBySubscription method.
+   * @param options The options parameters.
+   */
+  listBySubscriptionNext(
+    nextLink: string,
+    options?: DeploymentScriptsListBySubscriptionNextOptionalParams
+  ): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+  /**
+   * ListByResourceGroupNext
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
+   * @param options The options parameters.
+   */
+  listByResourceGroupNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: DeploymentScriptsListByResourceGroupNextOptionalParams
+  ): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+  /**
+   * ListBySubscriptionNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListBySubscriptionNext method.
+   * @param options The options parameters.
+   */
+  listBySubscriptionNextNext(
+    nextLink: string,
+    options?: DeploymentScriptsListBySubscriptionNextNextOptionalParams
+  ): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+  /**
+   * ListByResourceGroupNextNext
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroupNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  listByResourceGroupNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: DeploymentScriptsListByResourceGroupNextNextOptionalParams
+  ): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+  /**
+   * ListBySubscriptionNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListBySubscriptionNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  listBySubscriptionNextNextNext(
+    nextLink: string,
+    options?: DeploymentScriptsListBySubscriptionNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+  /**
+   * ListByResourceGroupNextNextNext
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroupNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  listByResourceGroupNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: DeploymentScriptsListByResourceGroupNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+  /**
+   * ListBySubscriptionNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListBySubscriptionNextNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  listBySubscriptionNextNextNextNext(
+    nextLink: string,
+    options?: DeploymentScriptsListBySubscriptionNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+  /**
+   * ListByResourceGroupNextNextNextNext
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListByResourceGroupNextNextNext method.
+   * @param options The options parameters.
+   */
+  listByResourceGroupNextNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: DeploymentScriptsListByResourceGroupNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+  /**
+   * ListBySubscriptionNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListBySubscriptionNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listBySubscriptionNextNextNextNextNext(
+    nextLink: string,
+    options?: DeploymentScriptsListBySubscriptionNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+  /**
+   * ListByResourceGroupNextNextNextNextNext
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListByResourceGroupNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listByResourceGroupNextNextNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: DeploymentScriptsListByResourceGroupNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+  /**
+   * ListBySubscriptionNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListBySubscriptionNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listBySubscriptionNextNextNextNextNextNext(
+    nextLink: string,
+    options?: DeploymentScriptsListBySubscriptionNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+  /**
+   * ListByResourceGroupNextNextNextNextNextNext
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListByResourceGroupNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listByResourceGroupNextNextNextNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: DeploymentScriptsListByResourceGroupNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+  /**
+   * ListBySubscriptionNextNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListBySubscriptionNextNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listBySubscriptionNextNextNextNextNextNextNext(
+    nextLink: string,
+    options?: DeploymentScriptsListBySubscriptionNextNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+  /**
+   * ListByResourceGroupNextNextNextNextNextNextNext
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListByResourceGroupNextNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listByResourceGroupNextNextNextNextNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: DeploymentScriptsListByResourceGroupNextNextNextNextNextNextNextOptionalParams
   ): PagedAsyncIterableIterator<DeploymentScriptUnion>;
   /**
    * Creates a deployment script.

@@ -75,6 +75,55 @@ export interface ListOperationsNextOptionalParams
 export type ListOperationsNextResponse = OperationListResult;
 
 /** Optional parameters. */
+export interface ListOperationsNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listOperationsNextNext operation. */
+export type ListOperationsNextNextResponse = OperationListResult;
+
+/** Optional parameters. */
+export interface ListOperationsNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listOperationsNextNextNext operation. */
+export type ListOperationsNextNextNextResponse = OperationListResult;
+
+/** Optional parameters. */
+export interface ListOperationsNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listOperationsNextNextNextNext operation. */
+export type ListOperationsNextNextNextNextResponse = OperationListResult;
+
+/** Optional parameters. */
+export interface ListOperationsNextNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listOperationsNextNextNextNextNext operation. */
+export type ListOperationsNextNextNextNextNextResponse = OperationListResult;
+
+/** Optional parameters. */
+export interface ListOperationsNextNextNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listOperationsNextNextNextNextNextNext operation. */
+export type ListOperationsNextNextNextNextNextNextResponse = OperationListResult;
+
+/** Optional parameters. */
+export interface ListOperationsNextNextNextNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listOperationsNextNextNextNextNextNextNext operation. */
+export type ListOperationsNextNextNextNextNextNextNextResponse = OperationListResult;
+
+/** Optional parameters. */
+export interface ListOperationsNextNextNextNextNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listOperationsNextNextNextNextNextNextNextNext operation. */
+export type ListOperationsNextNextNextNextNextNextNextNextResponse = OperationListResult;
+
+/** Optional parameters. */
 export interface FeaturesListAllOptionalParams
   extends coreClient.OperationOptions {}
 
@@ -122,6 +171,104 @@ export interface FeaturesListNextOptionalParams
 
 /** Contains response data for the listNext operation. */
 export type FeaturesListNextResponse = FeatureOperationsListResult;
+
+/** Optional parameters. */
+export interface FeaturesListAllNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listAllNextNext operation. */
+export type FeaturesListAllNextNextResponse = FeatureOperationsListResult;
+
+/** Optional parameters. */
+export interface FeaturesListNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listNextNext operation. */
+export type FeaturesListNextNextResponse = FeatureOperationsListResult;
+
+/** Optional parameters. */
+export interface FeaturesListAllNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listAllNextNextNext operation. */
+export type FeaturesListAllNextNextNextResponse = FeatureOperationsListResult;
+
+/** Optional parameters. */
+export interface FeaturesListNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listNextNextNext operation. */
+export type FeaturesListNextNextNextResponse = FeatureOperationsListResult;
+
+/** Optional parameters. */
+export interface FeaturesListAllNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listAllNextNextNextNext operation. */
+export type FeaturesListAllNextNextNextNextResponse = FeatureOperationsListResult;
+
+/** Optional parameters. */
+export interface FeaturesListNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listNextNextNextNext operation. */
+export type FeaturesListNextNextNextNextResponse = FeatureOperationsListResult;
+
+/** Optional parameters. */
+export interface FeaturesListAllNextNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listAllNextNextNextNextNext operation. */
+export type FeaturesListAllNextNextNextNextNextResponse = FeatureOperationsListResult;
+
+/** Optional parameters. */
+export interface FeaturesListNextNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listNextNextNextNextNext operation. */
+export type FeaturesListNextNextNextNextNextResponse = FeatureOperationsListResult;
+
+/** Optional parameters. */
+export interface FeaturesListAllNextNextNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listAllNextNextNextNextNextNext operation. */
+export type FeaturesListAllNextNextNextNextNextNextResponse = FeatureOperationsListResult;
+
+/** Optional parameters. */
+export interface FeaturesListNextNextNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listNextNextNextNextNextNext operation. */
+export type FeaturesListNextNextNextNextNextNextResponse = FeatureOperationsListResult;
+
+/** Optional parameters. */
+export interface FeaturesListAllNextNextNextNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listAllNextNextNextNextNextNextNext operation. */
+export type FeaturesListAllNextNextNextNextNextNextNextResponse = FeatureOperationsListResult;
+
+/** Optional parameters. */
+export interface FeaturesListNextNextNextNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listNextNextNextNextNextNextNext operation. */
+export type FeaturesListNextNextNextNextNextNextNextResponse = FeatureOperationsListResult;
+
+/** Optional parameters. */
+export interface FeaturesListAllNextNextNextNextNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listAllNextNextNextNextNextNextNextNext operation. */
+export type FeaturesListAllNextNextNextNextNextNextNextNextResponse = FeatureOperationsListResult;
+
+/** Optional parameters. */
+export interface FeaturesListNextNextNextNextNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listNextNextNextNextNextNextNextNext operation. */
+export type FeaturesListNextNextNextNextNextNextNextNextResponse = FeatureOperationsListResult;
 
 /** Optional parameters. */
 export interface FeatureClientOptionalParams

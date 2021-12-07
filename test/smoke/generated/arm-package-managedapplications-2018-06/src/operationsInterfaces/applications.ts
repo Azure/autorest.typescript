@@ -10,8 +10,22 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Application,
+  ApplicationsListByResourceGroupNextOptionalParams,
   ApplicationsListByResourceGroupOptionalParams,
+  ApplicationsListBySubscriptionNextOptionalParams,
   ApplicationsListBySubscriptionOptionalParams,
+  ApplicationsListByResourceGroupNextNextOptionalParams,
+  ApplicationsListBySubscriptionNextNextOptionalParams,
+  ApplicationsListByResourceGroupNextNextNextOptionalParams,
+  ApplicationsListBySubscriptionNextNextNextOptionalParams,
+  ApplicationsListByResourceGroupNextNextNextNextOptionalParams,
+  ApplicationsListBySubscriptionNextNextNextNextOptionalParams,
+  ApplicationsListByResourceGroupNextNextNextNextNextOptionalParams,
+  ApplicationsListBySubscriptionNextNextNextNextNextOptionalParams,
+  ApplicationsListByResourceGroupNextNextNextNextNextNextOptionalParams,
+  ApplicationsListBySubscriptionNextNextNextNextNextNextOptionalParams,
+  ApplicationsListByResourceGroupNextNextNextNextNextNextNextOptionalParams,
+  ApplicationsListBySubscriptionNextNextNextNextNextNextNextOptionalParams,
   ApplicationsGetOptionalParams,
   ApplicationsGetResponse,
   ApplicationsDeleteOptionalParams,
@@ -46,6 +60,157 @@ export interface Applications {
    */
   listBySubscription(
     options?: ApplicationsListBySubscriptionOptionalParams
+  ): PagedAsyncIterableIterator<Application>;
+  /**
+   * ListByResourceGroupNext
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
+   * @param options The options parameters.
+   */
+  listByResourceGroupNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: ApplicationsListByResourceGroupNextOptionalParams
+  ): PagedAsyncIterableIterator<Application>;
+  /**
+   * ListBySubscriptionNext
+   * @param nextLink The nextLink from the previous successful call to the ListBySubscription method.
+   * @param options The options parameters.
+   */
+  listBySubscriptionNext(
+    nextLink: string,
+    options?: ApplicationsListBySubscriptionNextOptionalParams
+  ): PagedAsyncIterableIterator<Application>;
+  /**
+   * ListByResourceGroupNextNext
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroupNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  listByResourceGroupNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: ApplicationsListByResourceGroupNextNextOptionalParams
+  ): PagedAsyncIterableIterator<Application>;
+  /**
+   * ListBySubscriptionNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListBySubscriptionNext method.
+   * @param options The options parameters.
+   */
+  listBySubscriptionNextNext(
+    nextLink: string,
+    options?: ApplicationsListBySubscriptionNextNextOptionalParams
+  ): PagedAsyncIterableIterator<Application>;
+  /**
+   * ListByResourceGroupNextNextNext
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroupNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  listByResourceGroupNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: ApplicationsListByResourceGroupNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<Application>;
+  /**
+   * ListBySubscriptionNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListBySubscriptionNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  listBySubscriptionNextNextNext(
+    nextLink: string,
+    options?: ApplicationsListBySubscriptionNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<Application>;
+  /**
+   * ListByResourceGroupNextNextNextNext
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListByResourceGroupNextNextNext method.
+   * @param options The options parameters.
+   */
+  listByResourceGroupNextNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: ApplicationsListByResourceGroupNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<Application>;
+  /**
+   * ListBySubscriptionNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListBySubscriptionNextNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  listBySubscriptionNextNextNextNext(
+    nextLink: string,
+    options?: ApplicationsListBySubscriptionNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<Application>;
+  /**
+   * ListByResourceGroupNextNextNextNextNext
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListByResourceGroupNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listByResourceGroupNextNextNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: ApplicationsListByResourceGroupNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<Application>;
+  /**
+   * ListBySubscriptionNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListBySubscriptionNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listBySubscriptionNextNextNextNextNext(
+    nextLink: string,
+    options?: ApplicationsListBySubscriptionNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<Application>;
+  /**
+   * ListByResourceGroupNextNextNextNextNextNext
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListByResourceGroupNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listByResourceGroupNextNextNextNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: ApplicationsListByResourceGroupNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<Application>;
+  /**
+   * ListBySubscriptionNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListBySubscriptionNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listBySubscriptionNextNextNextNextNextNext(
+    nextLink: string,
+    options?: ApplicationsListBySubscriptionNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<Application>;
+  /**
+   * ListByResourceGroupNextNextNextNextNextNextNext
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListByResourceGroupNextNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listByResourceGroupNextNextNextNextNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: ApplicationsListByResourceGroupNextNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<Application>;
+  /**
+   * ListBySubscriptionNextNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListBySubscriptionNextNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listBySubscriptionNextNextNextNextNextNextNext(
+    nextLink: string,
+    options?: ApplicationsListBySubscriptionNextNextNextNextNextNextNextOptionalParams
   ): PagedAsyncIterableIterator<Application>;
   /**
    * Gets the managed application.

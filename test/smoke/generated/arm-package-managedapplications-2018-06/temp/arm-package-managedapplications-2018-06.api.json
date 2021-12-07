@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.18.19",
+    "toolVersion": "7.18.21",
     "schemaVersion": 1004,
     "oldestForwardsCompatibleVersion": 1001,
     "tsdocConfig": {
@@ -558,6 +558,591 @@
               "isStatic": false
             },
             {
+              "kind": "Method",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationClient#listOperations:member(1)",
+              "docComment": "/**\n * Lists all of the available Microsoft.Solutions REST API operations.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listOperations(options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ListOperationsOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ListOperationsOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Operation",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Operation:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 7
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                }
+              ],
+              "name": "listOperations"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationClient#listOperationsNext:member(1)",
+              "docComment": "/**\n * ListOperationsNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListOperations method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listOperationsNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ListOperationsNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ListOperationsNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Operation",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Operation:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listOperationsNext"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationClient#listOperationsNextNext:member(1)",
+              "docComment": "/**\n * ListOperationsNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListOperationsNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listOperationsNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ListOperationsNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ListOperationsNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Operation",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Operation:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listOperationsNextNext"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationClient#listOperationsNextNextNext:member(1)",
+              "docComment": "/**\n * ListOperationsNextNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListOperationsNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listOperationsNextNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ListOperationsNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ListOperationsNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Operation",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Operation:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listOperationsNextNextNext"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationClient#listOperationsNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListOperationsNextNextNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListOperationsNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listOperationsNextNextNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ListOperationsNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ListOperationsNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Operation",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Operation:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listOperationsNextNextNextNext"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationClient#listOperationsNextNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListOperationsNextNextNextNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListOperationsNextNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listOperationsNextNextNextNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ListOperationsNextNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ListOperationsNextNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Operation",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Operation:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listOperationsNextNextNextNextNext"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationClient#listOperationsNextNextNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListOperationsNextNextNextNextNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListOperationsNextNextNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listOperationsNextNextNextNextNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ListOperationsNextNextNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ListOperationsNextNextNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Operation",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Operation:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listOperationsNextNextNextNextNextNext"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationClient#listOperationsNextNextNextNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListOperationsNextNextNextNextNextNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListOperationsNextNextNextNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listOperationsNextNextNextNextNextNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ListOperationsNextNextNextNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ListOperationsNextNextNextNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Operation",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Operation:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listOperationsNextNextNextNextNextNextNext"
+            },
+            {
               "kind": "Property",
               "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationClient#subscriptionId:member",
               "docComment": "",
@@ -1104,11 +1689,19 @@
             {
               "kind": "MethodSignature",
               "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitions#beginCreateOrUpdateById:member(1)",
-              "docComment": "/**\n * Creates a new managed application definition.\n *\n * @param applicationDefinitionId - The fully qualified ID of the managed application definition, including the managed application name and the managed application definition resource type. Use the format, /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applicationDefinitions/{applicationDefinition-name}\n *\n * @param parameters - Parameters supplied to the create or update a managed application definition.\n *\n * @param options - The options parameters.\n */\n",
+              "docComment": "/**\n * Creates a new managed application definition.\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param applicationDefinitionName - The name of the managed application definition.\n *\n * @param parameters - Parameters supplied to the create or update a managed application definition.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "beginCreateOrUpdateById(applicationDefinitionId: "
+                  "text": "beginCreateOrUpdateById(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", applicationDefinitionName: "
                 },
                 {
                   "kind": "Content",
@@ -1188,31 +1781,38 @@
               ],
               "isOptional": false,
               "returnTypeTokenRange": {
-                "startIndex": 7,
-                "endIndex": 17
+                "startIndex": 9,
+                "endIndex": 19
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
               "parameters": [
                 {
-                  "parameterName": "applicationDefinitionId",
+                  "parameterName": "resourceGroupName",
                   "parameterTypeTokenRange": {
                     "startIndex": 1,
                     "endIndex": 2
                   }
                 },
                 {
-                  "parameterName": "parameters",
+                  "parameterName": "applicationDefinitionName",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
                     "endIndex": 4
                   }
                 },
                 {
-                  "parameterName": "options",
+                  "parameterName": "parameters",
                   "parameterTypeTokenRange": {
                     "startIndex": 5,
                     "endIndex": 6
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 7,
+                    "endIndex": 8
                   }
                 }
               ],
@@ -1221,11 +1821,19 @@
             {
               "kind": "MethodSignature",
               "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitions#beginCreateOrUpdateByIdAndWait:member(1)",
-              "docComment": "/**\n * Creates a new managed application definition.\n *\n * @param applicationDefinitionId - The fully qualified ID of the managed application definition, including the managed application name and the managed application definition resource type. Use the format, /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applicationDefinitions/{applicationDefinition-name}\n *\n * @param parameters - Parameters supplied to the create or update a managed application definition.\n *\n * @param options - The options parameters.\n */\n",
+              "docComment": "/**\n * Creates a new managed application definition.\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param applicationDefinitionName - The name of the managed application definition.\n *\n * @param parameters - Parameters supplied to the create or update a managed application definition.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "beginCreateOrUpdateByIdAndWait(applicationDefinitionId: "
+                  "text": "beginCreateOrUpdateByIdAndWait(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", applicationDefinitionName: "
                 },
                 {
                   "kind": "Content",
@@ -1278,31 +1886,38 @@
               ],
               "isOptional": false,
               "returnTypeTokenRange": {
-                "startIndex": 7,
-                "endIndex": 11
+                "startIndex": 9,
+                "endIndex": 13
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
               "parameters": [
                 {
-                  "parameterName": "applicationDefinitionId",
+                  "parameterName": "resourceGroupName",
                   "parameterTypeTokenRange": {
                     "startIndex": 1,
                     "endIndex": 2
                   }
                 },
                 {
-                  "parameterName": "parameters",
+                  "parameterName": "applicationDefinitionName",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
                     "endIndex": 4
                   }
                 },
                 {
-                  "parameterName": "options",
+                  "parameterName": "parameters",
                   "parameterTypeTokenRange": {
                     "startIndex": 5,
                     "endIndex": 6
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 7,
+                    "endIndex": 8
                   }
                 }
               ],
@@ -1489,11 +2104,19 @@
             {
               "kind": "MethodSignature",
               "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitions#beginDeleteById:member(1)",
-              "docComment": "/**\n * Deletes the managed application definition.\n *\n * @param applicationDefinitionId - The fully qualified ID of the managed application definition, including the managed application name and the managed application definition resource type. Use the format, /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applicationDefinitions/{applicationDefinition-name}\n *\n * @param options - The options parameters.\n */\n",
+              "docComment": "/**\n * Deletes the managed application definition.\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param applicationDefinitionName - The name of the managed application definition.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "beginDeleteById(applicationDefinitionId: "
+                  "text": "beginDeleteById(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", applicationDefinitionName: "
                 },
                 {
                   "kind": "Content",
@@ -1546,24 +2169,31 @@
               ],
               "isOptional": false,
               "returnTypeTokenRange": {
-                "startIndex": 5,
-                "endIndex": 11
+                "startIndex": 7,
+                "endIndex": 13
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
               "parameters": [
                 {
-                  "parameterName": "applicationDefinitionId",
+                  "parameterName": "resourceGroupName",
                   "parameterTypeTokenRange": {
                     "startIndex": 1,
                     "endIndex": 2
                   }
                 },
                 {
-                  "parameterName": "options",
+                  "parameterName": "applicationDefinitionName",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
                     "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
                   }
                 }
               ],
@@ -1572,11 +2202,19 @@
             {
               "kind": "MethodSignature",
               "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitions#beginDeleteByIdAndWait:member(1)",
-              "docComment": "/**\n * Deletes the managed application definition.\n *\n * @param applicationDefinitionId - The fully qualified ID of the managed application definition, including the managed application name and the managed application definition resource type. Use the format, /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applicationDefinitions/{applicationDefinition-name}\n *\n * @param options - The options parameters.\n */\n",
+              "docComment": "/**\n * Deletes the managed application definition.\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param applicationDefinitionName - The name of the managed application definition.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "beginDeleteByIdAndWait(applicationDefinitionId: "
+                  "text": "beginDeleteByIdAndWait(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", applicationDefinitionName: "
                 },
                 {
                   "kind": "Content",
@@ -1611,24 +2249,31 @@
               ],
               "isOptional": false,
               "returnTypeTokenRange": {
-                "startIndex": 5,
-                "endIndex": 7
+                "startIndex": 7,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
               "parameters": [
                 {
-                  "parameterName": "applicationDefinitionId",
+                  "parameterName": "resourceGroupName",
                   "parameterTypeTokenRange": {
                     "startIndex": 1,
                     "endIndex": 2
                   }
                 },
                 {
-                  "parameterName": "options",
+                  "parameterName": "applicationDefinitionName",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
                     "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
                   }
                 }
               ],
@@ -1726,11 +2371,19 @@
             {
               "kind": "MethodSignature",
               "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitions#getById:member(1)",
-              "docComment": "/**\n * Gets the managed application definition.\n *\n * @param applicationDefinitionId - The fully qualified ID of the managed application definition, including the managed application name and the managed application definition resource type. Use the format, /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applicationDefinitions/{applicationDefinition-name}\n *\n * @param options - The options parameters.\n */\n",
+              "docComment": "/**\n * Gets the managed application definition.\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param applicationDefinitionName - The name of the managed application definition.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "getById(applicationDefinitionId: "
+                  "text": "getById(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", applicationDefinitionName: "
                 },
                 {
                   "kind": "Content",
@@ -1774,24 +2427,31 @@
               ],
               "isOptional": false,
               "returnTypeTokenRange": {
-                "startIndex": 5,
-                "endIndex": 9
+                "startIndex": 7,
+                "endIndex": 11
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
               "parameters": [
                 {
-                  "parameterName": "applicationDefinitionId",
+                  "parameterName": "resourceGroupName",
                   "parameterTypeTokenRange": {
                     "startIndex": 1,
                     "endIndex": 2
                   }
                 },
                 {
-                  "parameterName": "options",
+                  "parameterName": "applicationDefinitionName",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
                     "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
                   }
                 }
               ],
@@ -1870,6 +2530,629 @@
                 }
               ],
               "name": "listByResourceGroup"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitions#listByResourceGroupNext:member(1)",
+              "docComment": "/**\n * ListByResourceGroupNext\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param nextLink - The nextLink from the previous successful call to the ListByResourceGroup method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listByResourceGroupNext(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApplicationDefinitionsListByResourceGroupNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsListByResourceGroupNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApplicationDefinition",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinition:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "listByResourceGroupNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitions#listByResourceGroupNextNext:member(1)",
+              "docComment": "/**\n * ListByResourceGroupNextNext\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param nextLink - The nextLink from the previous successful call to the ListByResourceGroupNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listByResourceGroupNextNext(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApplicationDefinitionsListByResourceGroupNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsListByResourceGroupNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApplicationDefinition",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinition:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "listByResourceGroupNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitions#listByResourceGroupNextNextNext:member(1)",
+              "docComment": "/**\n * ListByResourceGroupNextNextNext\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param nextLink - The nextLink from the previous successful call to the ListByResourceGroupNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listByResourceGroupNextNextNext(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApplicationDefinitionsListByResourceGroupNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsListByResourceGroupNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApplicationDefinition",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinition:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "listByResourceGroupNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitions#listByResourceGroupNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListByResourceGroupNextNextNextNext\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param nextLink - The nextLink from the previous successful call to the ListByResourceGroupNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listByResourceGroupNextNextNextNext(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApplicationDefinitionsListByResourceGroupNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsListByResourceGroupNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApplicationDefinition",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinition:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "listByResourceGroupNextNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitions#listByResourceGroupNextNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListByResourceGroupNextNextNextNextNext\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param nextLink - The nextLink from the previous successful call to the ListByResourceGroupNextNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listByResourceGroupNextNextNextNextNext(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApplicationDefinitionsListByResourceGroupNextNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsListByResourceGroupNextNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApplicationDefinition",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinition:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "listByResourceGroupNextNextNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitions#listByResourceGroupNextNextNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListByResourceGroupNextNextNextNextNextNext\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param nextLink - The nextLink from the previous successful call to the ListByResourceGroupNextNextNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listByResourceGroupNextNextNextNextNextNext(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApplicationDefinition",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinition:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "listByResourceGroupNextNextNextNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitions#listByResourceGroupNextNextNextNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListByResourceGroupNextNextNextNextNextNextNext\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param nextLink - The nextLink from the previous successful call to the ListByResourceGroupNextNextNextNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listByResourceGroupNextNextNextNextNextNextNext(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApplicationDefinition",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinition:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "listByResourceGroupNextNextNextNextNextNextNext"
             }
           ],
           "extendsTokenRanges": []
@@ -2383,6 +3666,419 @@
           ],
           "releaseTag": "Public",
           "name": "ApplicationDefinitionsGetResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listByResourceGroupNextNextNextNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ApplicationDefinitionListResult",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listByResourceGroupNextNextNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ApplicationDefinitionListResult",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listByResourceGroupNextNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ApplicationDefinitionListResult",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsListByResourceGroupNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationDefinitionsListByResourceGroupNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationDefinitionsListByResourceGroupNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsListByResourceGroupNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listByResourceGroupNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ApplicationDefinitionsListByResourceGroupNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ApplicationDefinitionListResult",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationDefinitionsListByResourceGroupNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsListByResourceGroupNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationDefinitionsListByResourceGroupNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationDefinitionsListByResourceGroupNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsListByResourceGroupNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listByResourceGroupNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ApplicationDefinitionsListByResourceGroupNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ApplicationDefinitionListResult",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationDefinitionsListByResourceGroupNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsListByResourceGroupNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationDefinitionsListByResourceGroupNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationDefinitionsListByResourceGroupNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsListByResourceGroupNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listByResourceGroupNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ApplicationDefinitionsListByResourceGroupNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ApplicationDefinitionListResult",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationDefinitionsListByResourceGroupNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsListByResourceGroupNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationDefinitionsListByResourceGroupNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationDefinitionsListByResourceGroupNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsListByResourceGroupNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listByResourceGroupNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ApplicationDefinitionsListByResourceGroupNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ApplicationDefinitionListResult",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationDefinitionsListByResourceGroupNextNextResponse",
           "typeTokenRange": {
             "startIndex": 1,
             "endIndex": 2
@@ -3760,6 +5456,629 @@
             },
             {
               "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Applications#listByResourceGroupNext:member(1)",
+              "docComment": "/**\n * ListByResourceGroupNext\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param nextLink - The nextLink from the previous successful call to the ListByResourceGroup method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listByResourceGroupNext(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApplicationsListByResourceGroupNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListByResourceGroupNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Application",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Application:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "listByResourceGroupNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Applications#listByResourceGroupNextNext:member(1)",
+              "docComment": "/**\n * ListByResourceGroupNextNext\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param nextLink - The nextLink from the previous successful call to the ListByResourceGroupNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listByResourceGroupNextNext(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApplicationsListByResourceGroupNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListByResourceGroupNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Application",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Application:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "listByResourceGroupNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Applications#listByResourceGroupNextNextNext:member(1)",
+              "docComment": "/**\n * ListByResourceGroupNextNextNext\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param nextLink - The nextLink from the previous successful call to the ListByResourceGroupNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listByResourceGroupNextNextNext(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApplicationsListByResourceGroupNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListByResourceGroupNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Application",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Application:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "listByResourceGroupNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Applications#listByResourceGroupNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListByResourceGroupNextNextNextNext\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param nextLink - The nextLink from the previous successful call to the ListByResourceGroupNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listByResourceGroupNextNextNextNext(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApplicationsListByResourceGroupNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListByResourceGroupNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Application",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Application:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "listByResourceGroupNextNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Applications#listByResourceGroupNextNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListByResourceGroupNextNextNextNextNext\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param nextLink - The nextLink from the previous successful call to the ListByResourceGroupNextNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listByResourceGroupNextNextNextNextNext(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApplicationsListByResourceGroupNextNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListByResourceGroupNextNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Application",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Application:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "listByResourceGroupNextNextNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Applications#listByResourceGroupNextNextNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListByResourceGroupNextNextNextNextNextNext\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param nextLink - The nextLink from the previous successful call to the ListByResourceGroupNextNextNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listByResourceGroupNextNextNextNextNextNext(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApplicationsListByResourceGroupNextNextNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListByResourceGroupNextNextNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Application",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Application:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "listByResourceGroupNextNextNextNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Applications#listByResourceGroupNextNextNextNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListByResourceGroupNextNextNextNextNextNextNext\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param nextLink - The nextLink from the previous successful call to the ListByResourceGroupNextNextNextNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listByResourceGroupNextNextNextNextNextNextNext(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApplicationsListByResourceGroupNextNextNextNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListByResourceGroupNextNextNextNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Application",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Application:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "listByResourceGroupNextNextNextNextNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
               "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Applications#listBySubscription:member(1)",
               "docComment": "/**\n * Gets all the applications within a subscription.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
@@ -3816,6 +6135,524 @@
                 }
               ],
               "name": "listBySubscription"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Applications#listBySubscriptionNext:member(1)",
+              "docComment": "/**\n * ListBySubscriptionNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListBySubscription method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listBySubscriptionNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApplicationsListBySubscriptionNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListBySubscriptionNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Application",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Application:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listBySubscriptionNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Applications#listBySubscriptionNextNext:member(1)",
+              "docComment": "/**\n * ListBySubscriptionNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListBySubscriptionNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listBySubscriptionNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApplicationsListBySubscriptionNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListBySubscriptionNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Application",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Application:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listBySubscriptionNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Applications#listBySubscriptionNextNextNext:member(1)",
+              "docComment": "/**\n * ListBySubscriptionNextNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListBySubscriptionNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listBySubscriptionNextNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApplicationsListBySubscriptionNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListBySubscriptionNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Application",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Application:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listBySubscriptionNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Applications#listBySubscriptionNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListBySubscriptionNextNextNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListBySubscriptionNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listBySubscriptionNextNextNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApplicationsListBySubscriptionNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListBySubscriptionNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Application",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Application:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listBySubscriptionNextNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Applications#listBySubscriptionNextNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListBySubscriptionNextNextNextNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListBySubscriptionNextNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listBySubscriptionNextNextNextNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApplicationsListBySubscriptionNextNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListBySubscriptionNextNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Application",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Application:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listBySubscriptionNextNextNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Applications#listBySubscriptionNextNextNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListBySubscriptionNextNextNextNextNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListBySubscriptionNextNextNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listBySubscriptionNextNextNextNextNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApplicationsListBySubscriptionNextNextNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListBySubscriptionNextNextNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Application",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Application:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listBySubscriptionNextNextNextNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Applications#listBySubscriptionNextNextNextNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListBySubscriptionNextNextNextNextNextNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListBySubscriptionNextNextNextNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listBySubscriptionNextNextNextNextNextNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApplicationsListBySubscriptionNextNextNextNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListBySubscriptionNextNextNextNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Application",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Application:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listBySubscriptionNextNextNextNextNextNextNext"
             },
             {
               "kind": "MethodSignature",
@@ -4499,6 +7336,419 @@
         },
         {
           "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListByResourceGroupNextNextNextNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationsListByResourceGroupNextNextNextNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsListByResourceGroupNextNextNextNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListByResourceGroupNextNextNextNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listByResourceGroupNextNextNextNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ApplicationsListByResourceGroupNextNextNextNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ApplicationListResult",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsListByResourceGroupNextNextNextNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListByResourceGroupNextNextNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationsListByResourceGroupNextNextNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsListByResourceGroupNextNextNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListByResourceGroupNextNextNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listByResourceGroupNextNextNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ApplicationsListByResourceGroupNextNextNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ApplicationListResult",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsListByResourceGroupNextNextNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListByResourceGroupNextNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationsListByResourceGroupNextNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsListByResourceGroupNextNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListByResourceGroupNextNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listByResourceGroupNextNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ApplicationsListByResourceGroupNextNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ApplicationListResult",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsListByResourceGroupNextNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListByResourceGroupNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationsListByResourceGroupNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsListByResourceGroupNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListByResourceGroupNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listByResourceGroupNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ApplicationsListByResourceGroupNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ApplicationListResult",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsListByResourceGroupNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListByResourceGroupNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationsListByResourceGroupNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsListByResourceGroupNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListByResourceGroupNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listByResourceGroupNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ApplicationsListByResourceGroupNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ApplicationListResult",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsListByResourceGroupNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListByResourceGroupNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationsListByResourceGroupNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsListByResourceGroupNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListByResourceGroupNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listByResourceGroupNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ApplicationsListByResourceGroupNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ApplicationListResult",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsListByResourceGroupNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListByResourceGroupNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationsListByResourceGroupNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsListByResourceGroupNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListByResourceGroupNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listByResourceGroupNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ApplicationsListByResourceGroupNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ApplicationListResult",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsListByResourceGroupNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
           "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListByResourceGroupNextOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
@@ -4610,6 +7860,419 @@
           ],
           "releaseTag": "Public",
           "name": "ApplicationsListByResourceGroupResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListBySubscriptionNextNextNextNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationsListBySubscriptionNextNextNextNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsListBySubscriptionNextNextNextNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListBySubscriptionNextNextNextNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listBySubscriptionNextNextNextNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ApplicationsListBySubscriptionNextNextNextNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ApplicationListResult",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsListBySubscriptionNextNextNextNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListBySubscriptionNextNextNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationsListBySubscriptionNextNextNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsListBySubscriptionNextNextNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListBySubscriptionNextNextNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listBySubscriptionNextNextNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ApplicationsListBySubscriptionNextNextNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ApplicationListResult",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsListBySubscriptionNextNextNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListBySubscriptionNextNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationsListBySubscriptionNextNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsListBySubscriptionNextNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListBySubscriptionNextNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listBySubscriptionNextNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ApplicationsListBySubscriptionNextNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ApplicationListResult",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsListBySubscriptionNextNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListBySubscriptionNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationsListBySubscriptionNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsListBySubscriptionNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListBySubscriptionNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listBySubscriptionNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ApplicationsListBySubscriptionNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ApplicationListResult",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsListBySubscriptionNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListBySubscriptionNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationsListBySubscriptionNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsListBySubscriptionNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListBySubscriptionNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listBySubscriptionNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ApplicationsListBySubscriptionNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ApplicationListResult",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsListBySubscriptionNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListBySubscriptionNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationsListBySubscriptionNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsListBySubscriptionNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListBySubscriptionNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listBySubscriptionNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ApplicationsListBySubscriptionNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ApplicationListResult",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsListBySubscriptionNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListBySubscriptionNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationsListBySubscriptionNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsListBySubscriptionNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListBySubscriptionNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listBySubscriptionNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ApplicationsListBySubscriptionNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ApplicationListResult",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsListBySubscriptionNextNextResponse",
           "typeTokenRange": {
             "startIndex": 1,
             "endIndex": 2
@@ -4857,8 +8520,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "Application",
-                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Application:type"
+                  "text": "ApplicationPatchable",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationPatchable:type"
                 },
                 {
                   "kind": "Content",
@@ -5388,6 +9051,773 @@
               }
             }
           ]
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ListOperationsNextNextNextNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ListOperationsNextNextNextNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ListOperationsNextNextNextNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ListOperationsNextNextNextNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listOperationsNextNextNextNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ListOperationsNextNextNextNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationListResult",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!OperationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ListOperationsNextNextNextNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ListOperationsNextNextNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ListOperationsNextNextNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ListOperationsNextNextNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ListOperationsNextNextNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listOperationsNextNextNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ListOperationsNextNextNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationListResult",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!OperationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ListOperationsNextNextNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ListOperationsNextNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ListOperationsNextNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ListOperationsNextNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ListOperationsNextNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listOperationsNextNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ListOperationsNextNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationListResult",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!OperationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ListOperationsNextNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ListOperationsNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ListOperationsNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ListOperationsNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ListOperationsNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listOperationsNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ListOperationsNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationListResult",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!OperationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ListOperationsNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ListOperationsNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ListOperationsNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ListOperationsNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ListOperationsNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listOperationsNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ListOperationsNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationListResult",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!OperationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ListOperationsNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ListOperationsNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ListOperationsNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ListOperationsNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ListOperationsNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listOperationsNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ListOperationsNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationListResult",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!OperationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ListOperationsNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ListOperationsNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ListOperationsNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ListOperationsNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ListOperationsNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listOperationsNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ListOperationsNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationListResult",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!OperationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ListOperationsNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ListOperationsNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ListOperationsNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ListOperationsNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ListOperationsNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listOperationsNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ListOperationsNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationListResult",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!OperationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ListOperationsNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ListOperationsOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ListOperationsOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ListOperationsOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ListOperationsResponse:type",
+          "docComment": "/**\n * Contains response data for the listOperations operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ListOperationsResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationListResult",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!OperationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ListOperationsResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Operation:interface",
+          "docComment": "/**\n * Microsoft.Solutions operation\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface Operation "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "Operation",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Operation#display:member",
+              "docComment": "/**\n * The object that represents the operation.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "display?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "OperationDisplay",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!OperationDisplay:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "display",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Operation#name:member",
+              "docComment": "/**\n * Operation name: {provider}/{resource}/{operation}\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "name?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "name",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!OperationDisplay:interface",
+          "docComment": "/**\n * The object that represents the operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface OperationDisplay "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "OperationDisplay",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!OperationDisplay#operation:member",
+              "docComment": "/**\n * Operation type: Read, write, delete, etc.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "operation?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "operation",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!OperationDisplay#provider:member",
+              "docComment": "/**\n * Service provider: Microsoft.Solutions\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "provider?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "provider",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!OperationDisplay#resource:member",
+              "docComment": "/**\n * Resource on which the operation is performed: Application, JitRequest, etc.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "resource?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "resource",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!OperationListResult:interface",
+          "docComment": "/**\n * Result of the request to list Microsoft.Solutions operations. It contains a list of operations and a URL link to get the next set of results.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface OperationListResult "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "OperationListResult",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!OperationListResult#nextLink:member",
+              "docComment": "/**\n * URL to get the next set of operation list results if there are any.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "nextLink?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "nextLink",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!OperationListResult#value:member",
+              "docComment": "/**\n * List of Microsoft.Solutions operations.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "value?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Operation",
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Operation:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "value",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
+            }
+          ],
+          "extendsTokenRanges": []
         },
         {
           "kind": "Interface",

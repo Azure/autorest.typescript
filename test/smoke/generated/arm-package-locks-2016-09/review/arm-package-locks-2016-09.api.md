@@ -11,7 +11,63 @@ import { PagedAsyncIterableIterator } from '@azure/core-paging';
 // @public
 export interface AuthorizationOperations {
     list(options?: AuthorizationOperationsListOptionalParams): PagedAsyncIterableIterator<Operation>;
+    listNext(nextLink: string, options?: AuthorizationOperationsListNextOptionalParams): PagedAsyncIterableIterator<Operation>;
+    listNextNext(nextLink: string, options?: AuthorizationOperationsListNextNextOptionalParams): PagedAsyncIterableIterator<Operation>;
+    listNextNextNext(nextLink: string, options?: AuthorizationOperationsListNextNextNextOptionalParams): PagedAsyncIterableIterator<Operation>;
+    listNextNextNextNext(nextLink: string, options?: AuthorizationOperationsListNextNextNextNextOptionalParams): PagedAsyncIterableIterator<Operation>;
+    listNextNextNextNextNext(nextLink: string, options?: AuthorizationOperationsListNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<Operation>;
+    listNextNextNextNextNextNext(nextLink: string, options?: AuthorizationOperationsListNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<Operation>;
+    listNextNextNextNextNextNextNext(nextLink: string, options?: AuthorizationOperationsListNextNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<Operation>;
 }
+
+// @public
+export interface AuthorizationOperationsListNextNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type AuthorizationOperationsListNextNextNextNextNextNextNextNextResponse = OperationListResult;
+
+// @public
+export interface AuthorizationOperationsListNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type AuthorizationOperationsListNextNextNextNextNextNextNextResponse = OperationListResult;
+
+// @public
+export interface AuthorizationOperationsListNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type AuthorizationOperationsListNextNextNextNextNextNextResponse = OperationListResult;
+
+// @public
+export interface AuthorizationOperationsListNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type AuthorizationOperationsListNextNextNextNextNextResponse = OperationListResult;
+
+// @public
+export interface AuthorizationOperationsListNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type AuthorizationOperationsListNextNextNextNextResponse = OperationListResult;
+
+// @public
+export interface AuthorizationOperationsListNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type AuthorizationOperationsListNextNextNextResponse = OperationListResult;
+
+// @public
+export interface AuthorizationOperationsListNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type AuthorizationOperationsListNextNextResponse = OperationListResult;
 
 // @public
 export interface AuthorizationOperationsListNextOptionalParams extends coreClient.OperationOptions {
@@ -98,9 +154,37 @@ export interface ManagementLocks {
     getAtSubscriptionLevel(lockName: string, options?: ManagementLocksGetAtSubscriptionLevelOptionalParams): Promise<ManagementLocksGetAtSubscriptionLevelResponse>;
     getByScope(scope: string, lockName: string, options?: ManagementLocksGetByScopeOptionalParams): Promise<ManagementLocksGetByScopeResponse>;
     listAtResourceGroupLevel(resourceGroupName: string, options?: ManagementLocksListAtResourceGroupLevelOptionalParams): PagedAsyncIterableIterator<ManagementLockObject>;
+    listAtResourceGroupLevelNext(resourceGroupName: string, nextLink: string, options?: ManagementLocksListAtResourceGroupLevelNextOptionalParams): PagedAsyncIterableIterator<ManagementLockObject>;
+    listAtResourceGroupLevelNextNext(resourceGroupName: string, nextLink: string, options?: ManagementLocksListAtResourceGroupLevelNextNextOptionalParams): PagedAsyncIterableIterator<ManagementLockObject>;
+    listAtResourceGroupLevelNextNextNext(resourceGroupName: string, nextLink: string, options?: ManagementLocksListAtResourceGroupLevelNextNextNextOptionalParams): PagedAsyncIterableIterator<ManagementLockObject>;
+    listAtResourceGroupLevelNextNextNextNext(resourceGroupName: string, nextLink: string, options?: ManagementLocksListAtResourceGroupLevelNextNextNextNextOptionalParams): PagedAsyncIterableIterator<ManagementLockObject>;
+    listAtResourceGroupLevelNextNextNextNextNext(resourceGroupName: string, nextLink: string, options?: ManagementLocksListAtResourceGroupLevelNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<ManagementLockObject>;
+    listAtResourceGroupLevelNextNextNextNextNextNext(resourceGroupName: string, nextLink: string, options?: ManagementLocksListAtResourceGroupLevelNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<ManagementLockObject>;
+    listAtResourceGroupLevelNextNextNextNextNextNextNext(resourceGroupName: string, nextLink: string, options?: ManagementLocksListAtResourceGroupLevelNextNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<ManagementLockObject>;
     listAtResourceLevel(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, options?: ManagementLocksListAtResourceLevelOptionalParams): PagedAsyncIterableIterator<ManagementLockObject>;
+    listAtResourceLevelNext(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, nextLink: string, options?: ManagementLocksListAtResourceLevelNextOptionalParams): PagedAsyncIterableIterator<ManagementLockObject>;
+    listAtResourceLevelNextNext(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, nextLink: string, options?: ManagementLocksListAtResourceLevelNextNextOptionalParams): PagedAsyncIterableIterator<ManagementLockObject>;
+    listAtResourceLevelNextNextNext(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, nextLink: string, options?: ManagementLocksListAtResourceLevelNextNextNextOptionalParams): PagedAsyncIterableIterator<ManagementLockObject>;
+    listAtResourceLevelNextNextNextNext(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, nextLink: string, options?: ManagementLocksListAtResourceLevelNextNextNextNextOptionalParams): PagedAsyncIterableIterator<ManagementLockObject>;
+    listAtResourceLevelNextNextNextNextNext(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, nextLink: string, options?: ManagementLocksListAtResourceLevelNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<ManagementLockObject>;
+    listAtResourceLevelNextNextNextNextNextNext(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, nextLink: string, options?: ManagementLocksListAtResourceLevelNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<ManagementLockObject>;
+    listAtResourceLevelNextNextNextNextNextNextNext(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, nextLink: string, options?: ManagementLocksListAtResourceLevelNextNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<ManagementLockObject>;
     listAtSubscriptionLevel(options?: ManagementLocksListAtSubscriptionLevelOptionalParams): PagedAsyncIterableIterator<ManagementLockObject>;
+    listAtSubscriptionLevelNext(nextLink: string, options?: ManagementLocksListAtSubscriptionLevelNextOptionalParams): PagedAsyncIterableIterator<ManagementLockObject>;
+    listAtSubscriptionLevelNextNext(nextLink: string, options?: ManagementLocksListAtSubscriptionLevelNextNextOptionalParams): PagedAsyncIterableIterator<ManagementLockObject>;
+    listAtSubscriptionLevelNextNextNext(nextLink: string, options?: ManagementLocksListAtSubscriptionLevelNextNextNextOptionalParams): PagedAsyncIterableIterator<ManagementLockObject>;
+    listAtSubscriptionLevelNextNextNextNext(nextLink: string, options?: ManagementLocksListAtSubscriptionLevelNextNextNextNextOptionalParams): PagedAsyncIterableIterator<ManagementLockObject>;
+    listAtSubscriptionLevelNextNextNextNextNext(nextLink: string, options?: ManagementLocksListAtSubscriptionLevelNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<ManagementLockObject>;
+    listAtSubscriptionLevelNextNextNextNextNextNext(nextLink: string, options?: ManagementLocksListAtSubscriptionLevelNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<ManagementLockObject>;
+    listAtSubscriptionLevelNextNextNextNextNextNextNext(nextLink: string, options?: ManagementLocksListAtSubscriptionLevelNextNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<ManagementLockObject>;
     listByScope(scope: string, options?: ManagementLocksListByScopeOptionalParams): PagedAsyncIterableIterator<ManagementLockObject>;
+    listByScopeNext(scope: string, nextLink: string, options?: ManagementLocksListByScopeNextOptionalParams): PagedAsyncIterableIterator<ManagementLockObject>;
+    listByScopeNextNext(scope: string, nextLink: string, options?: ManagementLocksListByScopeNextNextOptionalParams): PagedAsyncIterableIterator<ManagementLockObject>;
+    listByScopeNextNextNext(scope: string, nextLink: string, options?: ManagementLocksListByScopeNextNextNextOptionalParams): PagedAsyncIterableIterator<ManagementLockObject>;
+    listByScopeNextNextNextNext(scope: string, nextLink: string, options?: ManagementLocksListByScopeNextNextNextNextOptionalParams): PagedAsyncIterableIterator<ManagementLockObject>;
+    listByScopeNextNextNextNextNext(scope: string, nextLink: string, options?: ManagementLocksListByScopeNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<ManagementLockObject>;
+    listByScopeNextNextNextNextNextNext(scope: string, nextLink: string, options?: ManagementLocksListByScopeNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<ManagementLockObject>;
+    listByScopeNextNextNextNextNextNextNext(scope: string, nextLink: string, options?: ManagementLocksListByScopeNextNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<ManagementLockObject>;
 }
 
 // @public
@@ -176,6 +260,62 @@ export interface ManagementLocksGetByScopeOptionalParams extends coreClient.Oper
 export type ManagementLocksGetByScopeResponse = ManagementLockObject;
 
 // @public
+export interface ManagementLocksListAtResourceGroupLevelNextNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type ManagementLocksListAtResourceGroupLevelNextNextNextNextNextNextNextNextResponse = ManagementLockListResult;
+
+// @public
+export interface ManagementLocksListAtResourceGroupLevelNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type ManagementLocksListAtResourceGroupLevelNextNextNextNextNextNextNextResponse = ManagementLockListResult;
+
+// @public
+export interface ManagementLocksListAtResourceGroupLevelNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type ManagementLocksListAtResourceGroupLevelNextNextNextNextNextNextResponse = ManagementLockListResult;
+
+// @public
+export interface ManagementLocksListAtResourceGroupLevelNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type ManagementLocksListAtResourceGroupLevelNextNextNextNextNextResponse = ManagementLockListResult;
+
+// @public
+export interface ManagementLocksListAtResourceGroupLevelNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type ManagementLocksListAtResourceGroupLevelNextNextNextNextResponse = ManagementLockListResult;
+
+// @public
+export interface ManagementLocksListAtResourceGroupLevelNextNextNextOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type ManagementLocksListAtResourceGroupLevelNextNextNextResponse = ManagementLockListResult;
+
+// @public
+export interface ManagementLocksListAtResourceGroupLevelNextNextOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type ManagementLocksListAtResourceGroupLevelNextNextResponse = ManagementLockListResult;
+
+// @public
 export interface ManagementLocksListAtResourceGroupLevelNextOptionalParams extends coreClient.OperationOptions {
     filter?: string;
 }
@@ -190,6 +330,62 @@ export interface ManagementLocksListAtResourceGroupLevelOptionalParams extends c
 
 // @public
 export type ManagementLocksListAtResourceGroupLevelResponse = ManagementLockListResult;
+
+// @public
+export interface ManagementLocksListAtResourceLevelNextNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type ManagementLocksListAtResourceLevelNextNextNextNextNextNextNextNextResponse = ManagementLockListResult;
+
+// @public
+export interface ManagementLocksListAtResourceLevelNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type ManagementLocksListAtResourceLevelNextNextNextNextNextNextNextResponse = ManagementLockListResult;
+
+// @public
+export interface ManagementLocksListAtResourceLevelNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type ManagementLocksListAtResourceLevelNextNextNextNextNextNextResponse = ManagementLockListResult;
+
+// @public
+export interface ManagementLocksListAtResourceLevelNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type ManagementLocksListAtResourceLevelNextNextNextNextNextResponse = ManagementLockListResult;
+
+// @public
+export interface ManagementLocksListAtResourceLevelNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type ManagementLocksListAtResourceLevelNextNextNextNextResponse = ManagementLockListResult;
+
+// @public
+export interface ManagementLocksListAtResourceLevelNextNextNextOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type ManagementLocksListAtResourceLevelNextNextNextResponse = ManagementLockListResult;
+
+// @public
+export interface ManagementLocksListAtResourceLevelNextNextOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type ManagementLocksListAtResourceLevelNextNextResponse = ManagementLockListResult;
 
 // @public
 export interface ManagementLocksListAtResourceLevelNextOptionalParams extends coreClient.OperationOptions {
@@ -208,6 +404,62 @@ export interface ManagementLocksListAtResourceLevelOptionalParams extends coreCl
 export type ManagementLocksListAtResourceLevelResponse = ManagementLockListResult;
 
 // @public
+export interface ManagementLocksListAtSubscriptionLevelNextNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type ManagementLocksListAtSubscriptionLevelNextNextNextNextNextNextNextNextResponse = ManagementLockListResult;
+
+// @public
+export interface ManagementLocksListAtSubscriptionLevelNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type ManagementLocksListAtSubscriptionLevelNextNextNextNextNextNextNextResponse = ManagementLockListResult;
+
+// @public
+export interface ManagementLocksListAtSubscriptionLevelNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type ManagementLocksListAtSubscriptionLevelNextNextNextNextNextNextResponse = ManagementLockListResult;
+
+// @public
+export interface ManagementLocksListAtSubscriptionLevelNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type ManagementLocksListAtSubscriptionLevelNextNextNextNextNextResponse = ManagementLockListResult;
+
+// @public
+export interface ManagementLocksListAtSubscriptionLevelNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type ManagementLocksListAtSubscriptionLevelNextNextNextNextResponse = ManagementLockListResult;
+
+// @public
+export interface ManagementLocksListAtSubscriptionLevelNextNextNextOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type ManagementLocksListAtSubscriptionLevelNextNextNextResponse = ManagementLockListResult;
+
+// @public
+export interface ManagementLocksListAtSubscriptionLevelNextNextOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type ManagementLocksListAtSubscriptionLevelNextNextResponse = ManagementLockListResult;
+
+// @public
 export interface ManagementLocksListAtSubscriptionLevelNextOptionalParams extends coreClient.OperationOptions {
     filter?: string;
 }
@@ -222,6 +474,62 @@ export interface ManagementLocksListAtSubscriptionLevelOptionalParams extends co
 
 // @public
 export type ManagementLocksListAtSubscriptionLevelResponse = ManagementLockListResult;
+
+// @public
+export interface ManagementLocksListByScopeNextNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type ManagementLocksListByScopeNextNextNextNextNextNextNextNextResponse = ManagementLockListResult;
+
+// @public
+export interface ManagementLocksListByScopeNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type ManagementLocksListByScopeNextNextNextNextNextNextNextResponse = ManagementLockListResult;
+
+// @public
+export interface ManagementLocksListByScopeNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type ManagementLocksListByScopeNextNextNextNextNextNextResponse = ManagementLockListResult;
+
+// @public
+export interface ManagementLocksListByScopeNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type ManagementLocksListByScopeNextNextNextNextNextResponse = ManagementLockListResult;
+
+// @public
+export interface ManagementLocksListByScopeNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type ManagementLocksListByScopeNextNextNextNextResponse = ManagementLockListResult;
+
+// @public
+export interface ManagementLocksListByScopeNextNextNextOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type ManagementLocksListByScopeNextNextNextResponse = ManagementLockListResult;
+
+// @public
+export interface ManagementLocksListByScopeNextNextOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type ManagementLocksListByScopeNextNextResponse = ManagementLockListResult;
 
 // @public
 export interface ManagementLocksListByScopeNextOptionalParams extends coreClient.OperationOptions {

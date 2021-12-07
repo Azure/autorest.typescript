@@ -17,16 +17,27 @@ export type DeploymentScriptUnion =
 export interface ManagedServiceIdentity {
   /** Type of the managed identity. */
   type?: ManagedServiceIdentityType;
+  /**
+   * ID of the Azure Active Directory.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly tenantId?: string;
   /** The list of user-assigned managed identities associated with the resource. Key is the Azure resource Id of the managed identity. */
   userAssignedIdentities?: { [propertyName: string]: UserAssignedIdentity };
 }
 
 /** User-assigned managed identity. */
 export interface UserAssignedIdentity {
-  /** Azure Active Directory principal ID associated with this identity. */
-  principalId?: string;
-  /** Client App Id associated with this identity. */
-  clientId?: string;
+  /**
+   * Azure Active Directory principal ID associated with this identity.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly principalId?: string;
+  /**
+   * Client App Id associated with this identity.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly clientId?: string;
 }
 
 /** Metadata pertaining to creation and last modification of the resource. */
@@ -41,7 +52,7 @@ export interface SystemData {
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
   lastModifiedByType?: CreatedByType;
-  /** The type of identity that last modified the resource. */
+  /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: Date;
 }
 
@@ -66,11 +77,11 @@ export interface AzureResourceBase {
 
 /** Deployment scripts error response. */
 export interface DeploymentScriptsError {
-  /** The resource management error response. */
+  /** Common error response for all Azure Resource Manager APIs to return error details for failed operations. (This also follows the OData error response format.) */
   error?: ErrorResponse;
 }
 
-/** The resource management error response. */
+/** Common error response for all Azure Resource Manager APIs to return error details for failed operations. (This also follows the OData error response format.) */
 export interface ErrorResponse {
   /**
    * The error code.
@@ -214,9 +225,9 @@ export interface ScriptConfigurationBase {
   environmentVariables?: EnvironmentVariable[];
   /** Gets or sets how the deployment script should be forced to execute even if the script resource has not changed. Can be current time stamp or a GUID. */
   forceUpdateTag?: string;
-  /** Interval for which the service retains the script resource after it reaches a terminal state. Resource will be deleted when this duration expires. Duration is based on ISO 8601 pattern (for example P7D means one week). */
+  /** Interval for which the service retains the script resource after it reaches a terminal state. Resource will be deleted when this duration expires. Duration is based on ISO 8601 pattern (for example P1D means one day). */
   retentionInterval: string;
-  /** Maximum allowed script execution time specified in ISO 8601 format. Default value is PT1H */
+  /** Maximum allowed script execution time specified in ISO 8601 format. Default value is P1D */
   timeout?: string;
 }
 
@@ -311,9 +322,9 @@ export type AzurePowerShellScript = DeploymentScript & {
   environmentVariables?: EnvironmentVariable[];
   /** Gets or sets how the deployment script should be forced to execute even if the script resource has not changed. Can be current time stamp or a GUID. */
   forceUpdateTag?: string;
-  /** Interval for which the service retains the script resource after it reaches a terminal state. Resource will be deleted when this duration expires. Duration is based on ISO 8601 pattern (for example P7D means one week). */
+  /** Interval for which the service retains the script resource after it reaches a terminal state. Resource will be deleted when this duration expires. Duration is based on ISO 8601 pattern (for example P1D means one day). */
   retentionInterval: string;
-  /** Maximum allowed script execution time specified in ISO 8601 format. Default value is PT1H */
+  /** Maximum allowed script execution time specified in ISO 8601 format. Default value is P1D */
   timeout?: string;
   /** Azure PowerShell module version to be used. */
   azPowerShellVersion: string;
@@ -354,9 +365,9 @@ export type AzureCliScript = DeploymentScript & {
   environmentVariables?: EnvironmentVariable[];
   /** Gets or sets how the deployment script should be forced to execute even if the script resource has not changed. Can be current time stamp or a GUID. */
   forceUpdateTag?: string;
-  /** Interval for which the service retains the script resource after it reaches a terminal state. Resource will be deleted when this duration expires. Duration is based on ISO 8601 pattern (for example P7D means one week). */
+  /** Interval for which the service retains the script resource after it reaches a terminal state. Resource will be deleted when this duration expires. Duration is based on ISO 8601 pattern (for example P1D means one day). */
   retentionInterval: string;
-  /** Maximum allowed script execution time specified in ISO 8601 format. Default value is PT1H */
+  /** Maximum allowed script execution time specified in ISO 8601 format. Default value is P1D */
   timeout?: string;
   /** Azure CLI module version to be used. */
   azCliVersion: string;
@@ -531,6 +542,104 @@ export interface DeploymentScriptsListByResourceGroupNextOptionalParams
 
 /** Contains response data for the listByResourceGroupNext operation. */
 export type DeploymentScriptsListByResourceGroupNextResponse = DeploymentScriptListResult;
+
+/** Optional parameters. */
+export interface DeploymentScriptsListBySubscriptionNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listBySubscriptionNextNext operation. */
+export type DeploymentScriptsListBySubscriptionNextNextResponse = DeploymentScriptListResult;
+
+/** Optional parameters. */
+export interface DeploymentScriptsListByResourceGroupNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listByResourceGroupNextNext operation. */
+export type DeploymentScriptsListByResourceGroupNextNextResponse = DeploymentScriptListResult;
+
+/** Optional parameters. */
+export interface DeploymentScriptsListBySubscriptionNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listBySubscriptionNextNextNext operation. */
+export type DeploymentScriptsListBySubscriptionNextNextNextResponse = DeploymentScriptListResult;
+
+/** Optional parameters. */
+export interface DeploymentScriptsListByResourceGroupNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listByResourceGroupNextNextNext operation. */
+export type DeploymentScriptsListByResourceGroupNextNextNextResponse = DeploymentScriptListResult;
+
+/** Optional parameters. */
+export interface DeploymentScriptsListBySubscriptionNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listBySubscriptionNextNextNextNext operation. */
+export type DeploymentScriptsListBySubscriptionNextNextNextNextResponse = DeploymentScriptListResult;
+
+/** Optional parameters. */
+export interface DeploymentScriptsListByResourceGroupNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listByResourceGroupNextNextNextNext operation. */
+export type DeploymentScriptsListByResourceGroupNextNextNextNextResponse = DeploymentScriptListResult;
+
+/** Optional parameters. */
+export interface DeploymentScriptsListBySubscriptionNextNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listBySubscriptionNextNextNextNextNext operation. */
+export type DeploymentScriptsListBySubscriptionNextNextNextNextNextResponse = DeploymentScriptListResult;
+
+/** Optional parameters. */
+export interface DeploymentScriptsListByResourceGroupNextNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listByResourceGroupNextNextNextNextNext operation. */
+export type DeploymentScriptsListByResourceGroupNextNextNextNextNextResponse = DeploymentScriptListResult;
+
+/** Optional parameters. */
+export interface DeploymentScriptsListBySubscriptionNextNextNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listBySubscriptionNextNextNextNextNextNext operation. */
+export type DeploymentScriptsListBySubscriptionNextNextNextNextNextNextResponse = DeploymentScriptListResult;
+
+/** Optional parameters. */
+export interface DeploymentScriptsListByResourceGroupNextNextNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listByResourceGroupNextNextNextNextNextNext operation. */
+export type DeploymentScriptsListByResourceGroupNextNextNextNextNextNextResponse = DeploymentScriptListResult;
+
+/** Optional parameters. */
+export interface DeploymentScriptsListBySubscriptionNextNextNextNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listBySubscriptionNextNextNextNextNextNextNext operation. */
+export type DeploymentScriptsListBySubscriptionNextNextNextNextNextNextNextResponse = DeploymentScriptListResult;
+
+/** Optional parameters. */
+export interface DeploymentScriptsListByResourceGroupNextNextNextNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listByResourceGroupNextNextNextNextNextNextNext operation. */
+export type DeploymentScriptsListByResourceGroupNextNextNextNextNextNextNextResponse = DeploymentScriptListResult;
+
+/** Optional parameters. */
+export interface DeploymentScriptsListBySubscriptionNextNextNextNextNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listBySubscriptionNextNextNextNextNextNextNextNext operation. */
+export type DeploymentScriptsListBySubscriptionNextNextNextNextNextNextNextNextResponse = DeploymentScriptListResult;
+
+/** Optional parameters. */
+export interface DeploymentScriptsListByResourceGroupNextNextNextNextNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listByResourceGroupNextNextNextNextNextNextNextNext operation. */
+export type DeploymentScriptsListByResourceGroupNextNextNextNextNextNextNextNextResponse = DeploymentScriptListResult;
 
 /** Optional parameters. */
 export interface DeploymentScriptsClientOptionalParams

@@ -16,6 +16,13 @@ import {
   TagDetails,
   TagsListNextOptionalParams,
   TagsListOptionalParams,
+  TagsListNextNextOptionalParams,
+  TagsListNextNextNextOptionalParams,
+  TagsListNextNextNextNextOptionalParams,
+  TagsListNextNextNextNextNextOptionalParams,
+  TagsListNextNextNextNextNextNextOptionalParams,
+  TagsListNextNextNextNextNextNextNextOptionalParams,
+  TagsListNextNextNextNextNextNextNextNextOptionalParams,
   TagsDeleteValueOptionalParams,
   TagsCreateOrUpdateValueOptionalParams,
   TagsCreateOrUpdateValueResponse,
@@ -23,7 +30,14 @@ import {
   TagsCreateOrUpdateResponse,
   TagsDeleteOptionalParams,
   TagsListResponse,
-  TagsListNextResponse
+  TagsListNextResponse,
+  TagsListNextNextResponse,
+  TagsListNextNextNextResponse,
+  TagsListNextNextNextNextResponse,
+  TagsListNextNextNextNextNextResponse,
+  TagsListNextNextNextNextNextNextResponse,
+  TagsListNextNextNextNextNextNextNextResponse,
+  TagsListNextNextNextNextNextNextNextNextResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -77,6 +91,363 @@ export class TagsImpl implements Tags {
     options?: TagsListOptionalParams
   ): AsyncIterableIterator<TagDetails> {
     for await (const page of this.listPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListNext
+   * @param nextLink The nextLink from the previous successful call to the List method.
+   * @param options The options parameters.
+   */
+  public listNext(
+    nextLink: string,
+    options?: TagsListNextOptionalParams
+  ): PagedAsyncIterableIterator<TagDetails> {
+    const iter = this.listNextPagingAll(nextLink, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listNextPagingPage(nextLink, options);
+      }
+    };
+  }
+
+  private async *listNextPagingPage(
+    nextLink: string,
+    options?: TagsListNextOptionalParams
+  ): AsyncIterableIterator<TagDetails[]> {
+    let result = await this._listNext(nextLink, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNextNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listNextPagingAll(
+    nextLink: string,
+    options?: TagsListNextOptionalParams
+  ): AsyncIterableIterator<TagDetails> {
+    for await (const page of this.listNextPagingPage(nextLink, options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNext method.
+   * @param options The options parameters.
+   */
+  public listNextNext(
+    nextLink: string,
+    options?: TagsListNextNextOptionalParams
+  ): PagedAsyncIterableIterator<TagDetails> {
+    const iter = this.listNextNextPagingAll(nextLink, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listNextNextPagingPage(nextLink, options);
+      }
+    };
+  }
+
+  private async *listNextNextPagingPage(
+    nextLink: string,
+    options?: TagsListNextNextOptionalParams
+  ): AsyncIterableIterator<TagDetails[]> {
+    let result = await this._listNextNext(nextLink, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNextNextNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listNextNextPagingAll(
+    nextLink: string,
+    options?: TagsListNextNextOptionalParams
+  ): AsyncIterableIterator<TagDetails> {
+    for await (const page of this.listNextNextPagingPage(nextLink, options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNext method.
+   * @param options The options parameters.
+   */
+  public listNextNextNext(
+    nextLink: string,
+    options?: TagsListNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<TagDetails> {
+    const iter = this.listNextNextNextPagingAll(nextLink, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listNextNextNextPagingPage(nextLink, options);
+      }
+    };
+  }
+
+  private async *listNextNextNextPagingPage(
+    nextLink: string,
+    options?: TagsListNextNextNextOptionalParams
+  ): AsyncIterableIterator<TagDetails[]> {
+    let result = await this._listNextNextNext(nextLink, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNextNextNextNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listNextNextNextPagingAll(
+    nextLink: string,
+    options?: TagsListNextNextNextOptionalParams
+  ): AsyncIterableIterator<TagDetails> {
+    for await (const page of this.listNextNextNextPagingPage(
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNext method.
+   * @param options The options parameters.
+   */
+  public listNextNextNextNext(
+    nextLink: string,
+    options?: TagsListNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<TagDetails> {
+    const iter = this.listNextNextNextNextPagingAll(nextLink, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listNextNextNextNextPagingPage(nextLink, options);
+      }
+    };
+  }
+
+  private async *listNextNextNextNextPagingPage(
+    nextLink: string,
+    options?: TagsListNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<TagDetails[]> {
+    let result = await this._listNextNextNextNext(nextLink, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNextNextNextNextNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listNextNextNextNextPagingAll(
+    nextLink: string,
+    options?: TagsListNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<TagDetails> {
+    for await (const page of this.listNextNextNextNextPagingPage(
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  public listNextNextNextNextNext(
+    nextLink: string,
+    options?: TagsListNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<TagDetails> {
+    const iter = this.listNextNextNextNextNextPagingAll(nextLink, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listNextNextNextNextNextPagingPage(nextLink, options);
+      }
+    };
+  }
+
+  private async *listNextNextNextNextNextPagingPage(
+    nextLink: string,
+    options?: TagsListNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<TagDetails[]> {
+    let result = await this._listNextNextNextNextNext(nextLink, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNextNextNextNextNextNext(
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listNextNextNextNextNextPagingAll(
+    nextLink: string,
+    options?: TagsListNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<TagDetails> {
+    for await (const page of this.listNextNextNextNextNextPagingPage(
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  public listNextNextNextNextNextNext(
+    nextLink: string,
+    options?: TagsListNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<TagDetails> {
+    const iter = this.listNextNextNextNextNextNextPagingAll(nextLink, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listNextNextNextNextNextNextPagingPage(nextLink, options);
+      }
+    };
+  }
+
+  private async *listNextNextNextNextNextNextPagingPage(
+    nextLink: string,
+    options?: TagsListNextNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<TagDetails[]> {
+    let result = await this._listNextNextNextNextNextNext(nextLink, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNextNextNextNextNextNextNext(
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listNextNextNextNextNextNextPagingAll(
+    nextLink: string,
+    options?: TagsListNextNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<TagDetails> {
+    for await (const page of this.listNextNextNextNextNextNextPagingPage(
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListNextNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNextNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  public listNextNextNextNextNextNextNext(
+    nextLink: string,
+    options?: TagsListNextNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<TagDetails> {
+    const iter = this.listNextNextNextNextNextNextNextPagingAll(
+      nextLink,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listNextNextNextNextNextNextNextPagingPage(
+          nextLink,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listNextNextNextNextNextNextNextPagingPage(
+    nextLink: string,
+    options?: TagsListNextNextNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<TagDetails[]> {
+    let result = await this._listNextNextNextNextNextNextNext(
+      nextLink,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNextNextNextNextNextNextNextNext(
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listNextNextNextNextNextNextNextPagingAll(
+    nextLink: string,
+    options?: TagsListNextNextNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<TagDetails> {
+    for await (const page of this.listNextNextNextNextNextNextNextPagingPage(
+      nextLink,
+      options
+    )) {
       yield* page;
     }
   }
@@ -164,6 +535,114 @@ export class TagsImpl implements Tags {
     return this.client.sendOperationRequest(
       { nextLink, options },
       listNextOperationSpec
+    );
+  }
+
+  /**
+   * ListNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNext method.
+   * @param options The options parameters.
+   */
+  private _listNextNext(
+    nextLink: string,
+    options?: TagsListNextNextOptionalParams
+  ): Promise<TagsListNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      listNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNext method.
+   * @param options The options parameters.
+   */
+  private _listNextNextNext(
+    nextLink: string,
+    options?: TagsListNextNextNextOptionalParams
+  ): Promise<TagsListNextNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      listNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNext method.
+   * @param options The options parameters.
+   */
+  private _listNextNextNextNext(
+    nextLink: string,
+    options?: TagsListNextNextNextNextOptionalParams
+  ): Promise<TagsListNextNextNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      listNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  private _listNextNextNextNextNext(
+    nextLink: string,
+    options?: TagsListNextNextNextNextNextOptionalParams
+  ): Promise<TagsListNextNextNextNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      listNextNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  private _listNextNextNextNextNextNext(
+    nextLink: string,
+    options?: TagsListNextNextNextNextNextNextOptionalParams
+  ): Promise<TagsListNextNextNextNextNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      listNextNextNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListNextNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNextNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  private _listNextNextNextNextNextNextNext(
+    nextLink: string,
+    options?: TagsListNextNextNextNextNextNextNextOptionalParams
+  ): Promise<TagsListNextNextNextNextNextNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      listNextNextNextNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListNextNextNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListNextNextNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  private _listNextNextNextNextNextNextNextNext(
+    nextLink: string,
+    options?: TagsListNextNextNextNextNextNextNextNextOptionalParams
+  ): Promise<TagsListNextNextNextNextNextNextNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      listNextNextNextNextNextNextNextNextOperationSpec
     );
   }
 }
@@ -275,6 +754,146 @@ const listOperationSpec: coreClient.OperationSpec = {
   serializer
 };
 const listNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.TagsListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.nextLink,
+    Parameters.subscriptionId
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.TagsListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.nextLink,
+    Parameters.subscriptionId
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.TagsListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.nextLink,
+    Parameters.subscriptionId
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.TagsListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.nextLink,
+    Parameters.subscriptionId
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.TagsListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.nextLink,
+    Parameters.subscriptionId
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listNextNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.TagsListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.nextLink,
+    Parameters.subscriptionId
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listNextNextNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.TagsListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.nextLink,
+    Parameters.subscriptionId
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listNextNextNextNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

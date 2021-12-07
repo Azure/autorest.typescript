@@ -22,6 +22,34 @@ import {
   PolicyAssignmentsListForManagementGroupOptionalParams,
   PolicyAssignmentsListNextOptionalParams,
   PolicyAssignmentsListOptionalParams,
+  PolicyAssignmentsListForResourceGroupNextNextOptionalParams,
+  PolicyAssignmentsListForResourceNextNextOptionalParams,
+  PolicyAssignmentsListForManagementGroupNextNextOptionalParams,
+  PolicyAssignmentsListNextNextOptionalParams,
+  PolicyAssignmentsListForResourceGroupNextNextNextOptionalParams,
+  PolicyAssignmentsListForResourceNextNextNextOptionalParams,
+  PolicyAssignmentsListForManagementGroupNextNextNextOptionalParams,
+  PolicyAssignmentsListNextNextNextOptionalParams,
+  PolicyAssignmentsListForResourceGroupNextNextNextNextOptionalParams,
+  PolicyAssignmentsListForResourceNextNextNextNextOptionalParams,
+  PolicyAssignmentsListForManagementGroupNextNextNextNextOptionalParams,
+  PolicyAssignmentsListNextNextNextNextOptionalParams,
+  PolicyAssignmentsListForResourceGroupNextNextNextNextNextOptionalParams,
+  PolicyAssignmentsListForResourceNextNextNextNextNextOptionalParams,
+  PolicyAssignmentsListForManagementGroupNextNextNextNextNextOptionalParams,
+  PolicyAssignmentsListNextNextNextNextNextOptionalParams,
+  PolicyAssignmentsListForResourceGroupNextNextNextNextNextNextOptionalParams,
+  PolicyAssignmentsListForResourceNextNextNextNextNextNextOptionalParams,
+  PolicyAssignmentsListForManagementGroupNextNextNextNextNextNextOptionalParams,
+  PolicyAssignmentsListNextNextNextNextNextNextOptionalParams,
+  PolicyAssignmentsListForResourceGroupNextNextNextNextNextNextNextOptionalParams,
+  PolicyAssignmentsListForResourceNextNextNextNextNextNextNextOptionalParams,
+  PolicyAssignmentsListForManagementGroupNextNextNextNextNextNextNextOptionalParams,
+  PolicyAssignmentsListNextNextNextNextNextNextNextOptionalParams,
+  PolicyAssignmentsListForResourceGroupNextNextNextNextNextNextNextNextOptionalParams,
+  PolicyAssignmentsListForResourceNextNextNextNextNextNextNextNextOptionalParams,
+  PolicyAssignmentsListForManagementGroupNextNextNextNextNextNextNextNextOptionalParams,
+  PolicyAssignmentsListNextNextNextNextNextNextNextNextOptionalParams,
   PolicyAssignmentsDeleteOptionalParams,
   PolicyAssignmentsDeleteResponse,
   PolicyAssignmentsCreateOptionalParams,
@@ -41,7 +69,35 @@ import {
   PolicyAssignmentsListForResourceGroupNextResponse,
   PolicyAssignmentsListForResourceNextResponse,
   PolicyAssignmentsListForManagementGroupNextResponse,
-  PolicyAssignmentsListNextResponse
+  PolicyAssignmentsListNextResponse,
+  PolicyAssignmentsListForResourceGroupNextNextResponse,
+  PolicyAssignmentsListForResourceNextNextResponse,
+  PolicyAssignmentsListForManagementGroupNextNextResponse,
+  PolicyAssignmentsListNextNextResponse,
+  PolicyAssignmentsListForResourceGroupNextNextNextResponse,
+  PolicyAssignmentsListForResourceNextNextNextResponse,
+  PolicyAssignmentsListForManagementGroupNextNextNextResponse,
+  PolicyAssignmentsListNextNextNextResponse,
+  PolicyAssignmentsListForResourceGroupNextNextNextNextResponse,
+  PolicyAssignmentsListForResourceNextNextNextNextResponse,
+  PolicyAssignmentsListForManagementGroupNextNextNextNextResponse,
+  PolicyAssignmentsListNextNextNextNextResponse,
+  PolicyAssignmentsListForResourceGroupNextNextNextNextNextResponse,
+  PolicyAssignmentsListForResourceNextNextNextNextNextResponse,
+  PolicyAssignmentsListForManagementGroupNextNextNextNextNextResponse,
+  PolicyAssignmentsListNextNextNextNextNextResponse,
+  PolicyAssignmentsListForResourceGroupNextNextNextNextNextNextResponse,
+  PolicyAssignmentsListForResourceNextNextNextNextNextNextResponse,
+  PolicyAssignmentsListForManagementGroupNextNextNextNextNextNextResponse,
+  PolicyAssignmentsListNextNextNextNextNextNextResponse,
+  PolicyAssignmentsListForResourceGroupNextNextNextNextNextNextNextResponse,
+  PolicyAssignmentsListForResourceNextNextNextNextNextNextNextResponse,
+  PolicyAssignmentsListForManagementGroupNextNextNextNextNextNextNextResponse,
+  PolicyAssignmentsListNextNextNextNextNextNextNextResponse,
+  PolicyAssignmentsListForResourceGroupNextNextNextNextNextNextNextNextResponse,
+  PolicyAssignmentsListForResourceNextNextNextNextNextNextNextNextResponse,
+  PolicyAssignmentsListForManagementGroupNextNextNextNextNextNextNextNextResponse,
+  PolicyAssignmentsListNextNextNextNextNextNextNextNextResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -363,6 +419,2193 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
     options?: PolicyAssignmentsListOptionalParams
   ): AsyncIterableIterator<PolicyAssignment> {
     for await (const page of this.listPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListForResourceGroupNext
+   * @param resourceGroupName The name of the resource group that contains policy assignments.
+   * @param nextLink The nextLink from the previous successful call to the ListForResourceGroup method.
+   * @param options The options parameters.
+   */
+  public listForResourceGroupNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceGroupNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment> {
+    const iter = this.listForResourceGroupNextPagingAll(
+      resourceGroupName,
+      nextLink,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listForResourceGroupNextPagingPage(
+          resourceGroupName,
+          nextLink,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listForResourceGroupNextPagingPage(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceGroupNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment[]> {
+    let result = await this._listForResourceGroupNext(
+      resourceGroupName,
+      nextLink,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listForResourceGroupNextNext(
+        resourceGroupName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listForResourceGroupNextPagingAll(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceGroupNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment> {
+    for await (const page of this.listForResourceGroupNextPagingPage(
+      resourceGroupName,
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListForResourceNext
+   * @param resourceGroupName The name of the resource group containing the resource.
+   * @param resourceProviderNamespace The namespace of the resource provider. For example, the namespace
+   *                                  of a virtual machine is Microsoft.Compute (from Microsoft.Compute/virtualMachines)
+   * @param parentResourcePath The parent resource path. Use empty string if there is none.
+   * @param resourceType The resource type name. For example the type name of a web app is 'sites' (from
+   *                     Microsoft.Web/sites).
+   * @param resourceName The name of the resource.
+   * @param nextLink The nextLink from the previous successful call to the ListForResource method.
+   * @param options The options parameters.
+   */
+  public listForResourceNext(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment> {
+    const iter = this.listForResourceNextPagingAll(
+      resourceGroupName,
+      resourceProviderNamespace,
+      parentResourcePath,
+      resourceType,
+      resourceName,
+      nextLink,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listForResourceNextPagingPage(
+          resourceGroupName,
+          resourceProviderNamespace,
+          parentResourcePath,
+          resourceType,
+          resourceName,
+          nextLink,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listForResourceNextPagingPage(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment[]> {
+    let result = await this._listForResourceNext(
+      resourceGroupName,
+      resourceProviderNamespace,
+      parentResourcePath,
+      resourceType,
+      resourceName,
+      nextLink,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listForResourceNextNext(
+        resourceGroupName,
+        resourceProviderNamespace,
+        parentResourcePath,
+        resourceType,
+        resourceName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listForResourceNextPagingAll(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment> {
+    for await (const page of this.listForResourceNextPagingPage(
+      resourceGroupName,
+      resourceProviderNamespace,
+      parentResourcePath,
+      resourceType,
+      resourceName,
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListForManagementGroupNext
+   * @param managementGroupId The ID of the management group.
+   * @param filter The filter to apply on the operation. Valid values for $filter are: 'atScope()' or
+   *               'policyDefinitionId eq '{value}''. A filter is required when listing policy assignments at
+   *               management group scope.
+   * @param nextLink The nextLink from the previous successful call to the ListForManagementGroup method.
+   * @param options The options parameters.
+   */
+  public listForManagementGroupNext(
+    managementGroupId: string,
+    filter: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForManagementGroupNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment> {
+    const iter = this.listForManagementGroupNextPagingAll(
+      managementGroupId,
+      filter,
+      nextLink,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listForManagementGroupNextPagingPage(
+          managementGroupId,
+          filter,
+          nextLink,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listForManagementGroupNextPagingPage(
+    managementGroupId: string,
+    filter: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForManagementGroupNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment[]> {
+    let result = await this._listForManagementGroupNext(
+      managementGroupId,
+      filter,
+      nextLink,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listForManagementGroupNextNext(
+        managementGroupId,
+        filter,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listForManagementGroupNextPagingAll(
+    managementGroupId: string,
+    filter: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForManagementGroupNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment> {
+    for await (const page of this.listForManagementGroupNextPagingPage(
+      managementGroupId,
+      filter,
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListNext
+   * @param nextLink The nextLink from the previous successful call to the List method.
+   * @param options The options parameters.
+   */
+  public listNext(
+    nextLink: string,
+    options?: PolicyAssignmentsListNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment> {
+    const iter = this.listNextPagingAll(nextLink, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listNextPagingPage(nextLink, options);
+      }
+    };
+  }
+
+  private async *listNextPagingPage(
+    nextLink: string,
+    options?: PolicyAssignmentsListNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment[]> {
+    let result = await this._listNext(nextLink, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNextNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listNextPagingAll(
+    nextLink: string,
+    options?: PolicyAssignmentsListNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment> {
+    for await (const page of this.listNextPagingPage(nextLink, options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListForResourceGroupNextNext
+   * @param resourceGroupName The name of the resource group that contains policy assignments.
+   * @param nextLink The nextLink from the previous successful call to the ListForResourceGroupNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  public listForResourceGroupNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceGroupNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment> {
+    const iter = this.listForResourceGroupNextNextPagingAll(
+      resourceGroupName,
+      nextLink,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listForResourceGroupNextNextPagingPage(
+          resourceGroupName,
+          nextLink,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listForResourceGroupNextNextPagingPage(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceGroupNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment[]> {
+    let result = await this._listForResourceGroupNextNext(
+      resourceGroupName,
+      nextLink,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listForResourceGroupNextNextNext(
+        resourceGroupName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listForResourceGroupNextNextPagingAll(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceGroupNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment> {
+    for await (const page of this.listForResourceGroupNextNextPagingPage(
+      resourceGroupName,
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListForResourceNextNext
+   * @param resourceGroupName The name of the resource group containing the resource.
+   * @param resourceProviderNamespace The namespace of the resource provider. For example, the namespace
+   *                                  of a virtual machine is Microsoft.Compute (from Microsoft.Compute/virtualMachines)
+   * @param parentResourcePath The parent resource path. Use empty string if there is none.
+   * @param resourceType The resource type name. For example the type name of a web app is 'sites' (from
+   *                     Microsoft.Web/sites).
+   * @param resourceName The name of the resource.
+   * @param nextLink The nextLink from the previous successful call to the ListForResourceNext method.
+   * @param options The options parameters.
+   */
+  public listForResourceNextNext(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment> {
+    const iter = this.listForResourceNextNextPagingAll(
+      resourceGroupName,
+      resourceProviderNamespace,
+      parentResourcePath,
+      resourceType,
+      resourceName,
+      nextLink,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listForResourceNextNextPagingPage(
+          resourceGroupName,
+          resourceProviderNamespace,
+          parentResourcePath,
+          resourceType,
+          resourceName,
+          nextLink,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listForResourceNextNextPagingPage(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment[]> {
+    let result = await this._listForResourceNextNext(
+      resourceGroupName,
+      resourceProviderNamespace,
+      parentResourcePath,
+      resourceType,
+      resourceName,
+      nextLink,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listForResourceNextNextNext(
+        resourceGroupName,
+        resourceProviderNamespace,
+        parentResourcePath,
+        resourceType,
+        resourceName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listForResourceNextNextPagingAll(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment> {
+    for await (const page of this.listForResourceNextNextPagingPage(
+      resourceGroupName,
+      resourceProviderNamespace,
+      parentResourcePath,
+      resourceType,
+      resourceName,
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListForManagementGroupNextNext
+   * @param managementGroupId The ID of the management group.
+   * @param filter The filter to apply on the operation. Valid values for $filter are: 'atScope()' or
+   *               'policyDefinitionId eq '{value}''. A filter is required when listing policy assignments at
+   *               management group scope.
+   * @param nextLink The nextLink from the previous successful call to the ListForManagementGroupNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  public listForManagementGroupNextNext(
+    managementGroupId: string,
+    filter: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForManagementGroupNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment> {
+    const iter = this.listForManagementGroupNextNextPagingAll(
+      managementGroupId,
+      filter,
+      nextLink,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listForManagementGroupNextNextPagingPage(
+          managementGroupId,
+          filter,
+          nextLink,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listForManagementGroupNextNextPagingPage(
+    managementGroupId: string,
+    filter: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForManagementGroupNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment[]> {
+    let result = await this._listForManagementGroupNextNext(
+      managementGroupId,
+      filter,
+      nextLink,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listForManagementGroupNextNextNext(
+        managementGroupId,
+        filter,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listForManagementGroupNextNextPagingAll(
+    managementGroupId: string,
+    filter: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForManagementGroupNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment> {
+    for await (const page of this.listForManagementGroupNextNextPagingPage(
+      managementGroupId,
+      filter,
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNext method.
+   * @param options The options parameters.
+   */
+  public listNextNext(
+    nextLink: string,
+    options?: PolicyAssignmentsListNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment> {
+    const iter = this.listNextNextPagingAll(nextLink, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listNextNextPagingPage(nextLink, options);
+      }
+    };
+  }
+
+  private async *listNextNextPagingPage(
+    nextLink: string,
+    options?: PolicyAssignmentsListNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment[]> {
+    let result = await this._listNextNext(nextLink, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNextNextNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listNextNextPagingAll(
+    nextLink: string,
+    options?: PolicyAssignmentsListNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment> {
+    for await (const page of this.listNextNextPagingPage(nextLink, options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListForResourceGroupNextNextNext
+   * @param resourceGroupName The name of the resource group that contains policy assignments.
+   * @param nextLink The nextLink from the previous successful call to the ListForResourceGroupNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  public listForResourceGroupNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceGroupNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment> {
+    const iter = this.listForResourceGroupNextNextNextPagingAll(
+      resourceGroupName,
+      nextLink,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listForResourceGroupNextNextNextPagingPage(
+          resourceGroupName,
+          nextLink,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listForResourceGroupNextNextNextPagingPage(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceGroupNextNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment[]> {
+    let result = await this._listForResourceGroupNextNextNext(
+      resourceGroupName,
+      nextLink,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listForResourceGroupNextNextNextNext(
+        resourceGroupName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listForResourceGroupNextNextNextPagingAll(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceGroupNextNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment> {
+    for await (const page of this.listForResourceGroupNextNextNextPagingPage(
+      resourceGroupName,
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListForResourceNextNextNext
+   * @param resourceGroupName The name of the resource group containing the resource.
+   * @param resourceProviderNamespace The namespace of the resource provider. For example, the namespace
+   *                                  of a virtual machine is Microsoft.Compute (from Microsoft.Compute/virtualMachines)
+   * @param parentResourcePath The parent resource path. Use empty string if there is none.
+   * @param resourceType The resource type name. For example the type name of a web app is 'sites' (from
+   *                     Microsoft.Web/sites).
+   * @param resourceName The name of the resource.
+   * @param nextLink The nextLink from the previous successful call to the ListForResourceNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  public listForResourceNextNextNext(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment> {
+    const iter = this.listForResourceNextNextNextPagingAll(
+      resourceGroupName,
+      resourceProviderNamespace,
+      parentResourcePath,
+      resourceType,
+      resourceName,
+      nextLink,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listForResourceNextNextNextPagingPage(
+          resourceGroupName,
+          resourceProviderNamespace,
+          parentResourcePath,
+          resourceType,
+          resourceName,
+          nextLink,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listForResourceNextNextNextPagingPage(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceNextNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment[]> {
+    let result = await this._listForResourceNextNextNext(
+      resourceGroupName,
+      resourceProviderNamespace,
+      parentResourcePath,
+      resourceType,
+      resourceName,
+      nextLink,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listForResourceNextNextNextNext(
+        resourceGroupName,
+        resourceProviderNamespace,
+        parentResourcePath,
+        resourceType,
+        resourceName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listForResourceNextNextNextPagingAll(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceNextNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment> {
+    for await (const page of this.listForResourceNextNextNextPagingPage(
+      resourceGroupName,
+      resourceProviderNamespace,
+      parentResourcePath,
+      resourceType,
+      resourceName,
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListForManagementGroupNextNextNext
+   * @param managementGroupId The ID of the management group.
+   * @param filter The filter to apply on the operation. Valid values for $filter are: 'atScope()' or
+   *               'policyDefinitionId eq '{value}''. A filter is required when listing policy assignments at
+   *               management group scope.
+   * @param nextLink The nextLink from the previous successful call to the ListForManagementGroupNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  public listForManagementGroupNextNextNext(
+    managementGroupId: string,
+    filter: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForManagementGroupNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment> {
+    const iter = this.listForManagementGroupNextNextNextPagingAll(
+      managementGroupId,
+      filter,
+      nextLink,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listForManagementGroupNextNextNextPagingPage(
+          managementGroupId,
+          filter,
+          nextLink,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listForManagementGroupNextNextNextPagingPage(
+    managementGroupId: string,
+    filter: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForManagementGroupNextNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment[]> {
+    let result = await this._listForManagementGroupNextNextNext(
+      managementGroupId,
+      filter,
+      nextLink,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listForManagementGroupNextNextNextNext(
+        managementGroupId,
+        filter,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listForManagementGroupNextNextNextPagingAll(
+    managementGroupId: string,
+    filter: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForManagementGroupNextNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment> {
+    for await (const page of this.listForManagementGroupNextNextNextPagingPage(
+      managementGroupId,
+      filter,
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNext method.
+   * @param options The options parameters.
+   */
+  public listNextNextNext(
+    nextLink: string,
+    options?: PolicyAssignmentsListNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment> {
+    const iter = this.listNextNextNextPagingAll(nextLink, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listNextNextNextPagingPage(nextLink, options);
+      }
+    };
+  }
+
+  private async *listNextNextNextPagingPage(
+    nextLink: string,
+    options?: PolicyAssignmentsListNextNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment[]> {
+    let result = await this._listNextNextNext(nextLink, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNextNextNextNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listNextNextNextPagingAll(
+    nextLink: string,
+    options?: PolicyAssignmentsListNextNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment> {
+    for await (const page of this.listNextNextNextPagingPage(
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListForResourceGroupNextNextNextNext
+   * @param resourceGroupName The name of the resource group that contains policy assignments.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListForResourceGroupNextNextNext method.
+   * @param options The options parameters.
+   */
+  public listForResourceGroupNextNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceGroupNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment> {
+    const iter = this.listForResourceGroupNextNextNextNextPagingAll(
+      resourceGroupName,
+      nextLink,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listForResourceGroupNextNextNextNextPagingPage(
+          resourceGroupName,
+          nextLink,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listForResourceGroupNextNextNextNextPagingPage(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceGroupNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment[]> {
+    let result = await this._listForResourceGroupNextNextNextNext(
+      resourceGroupName,
+      nextLink,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listForResourceGroupNextNextNextNextNext(
+        resourceGroupName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listForResourceGroupNextNextNextNextPagingAll(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceGroupNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment> {
+    for await (const page of this.listForResourceGroupNextNextNextNextPagingPage(
+      resourceGroupName,
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListForResourceNextNextNextNext
+   * @param resourceGroupName The name of the resource group containing the resource.
+   * @param resourceProviderNamespace The namespace of the resource provider. For example, the namespace
+   *                                  of a virtual machine is Microsoft.Compute (from Microsoft.Compute/virtualMachines)
+   * @param parentResourcePath The parent resource path. Use empty string if there is none.
+   * @param resourceType The resource type name. For example the type name of a web app is 'sites' (from
+   *                     Microsoft.Web/sites).
+   * @param resourceName The name of the resource.
+   * @param nextLink The nextLink from the previous successful call to the ListForResourceNextNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  public listForResourceNextNextNextNext(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment> {
+    const iter = this.listForResourceNextNextNextNextPagingAll(
+      resourceGroupName,
+      resourceProviderNamespace,
+      parentResourcePath,
+      resourceType,
+      resourceName,
+      nextLink,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listForResourceNextNextNextNextPagingPage(
+          resourceGroupName,
+          resourceProviderNamespace,
+          parentResourcePath,
+          resourceType,
+          resourceName,
+          nextLink,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listForResourceNextNextNextNextPagingPage(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment[]> {
+    let result = await this._listForResourceNextNextNextNext(
+      resourceGroupName,
+      resourceProviderNamespace,
+      parentResourcePath,
+      resourceType,
+      resourceName,
+      nextLink,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listForResourceNextNextNextNextNext(
+        resourceGroupName,
+        resourceProviderNamespace,
+        parentResourcePath,
+        resourceType,
+        resourceName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listForResourceNextNextNextNextPagingAll(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment> {
+    for await (const page of this.listForResourceNextNextNextNextPagingPage(
+      resourceGroupName,
+      resourceProviderNamespace,
+      parentResourcePath,
+      resourceType,
+      resourceName,
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListForManagementGroupNextNextNextNext
+   * @param managementGroupId The ID of the management group.
+   * @param filter The filter to apply on the operation. Valid values for $filter are: 'atScope()' or
+   *               'policyDefinitionId eq '{value}''. A filter is required when listing policy assignments at
+   *               management group scope.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListForManagementGroupNextNextNext method.
+   * @param options The options parameters.
+   */
+  public listForManagementGroupNextNextNextNext(
+    managementGroupId: string,
+    filter: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForManagementGroupNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment> {
+    const iter = this.listForManagementGroupNextNextNextNextPagingAll(
+      managementGroupId,
+      filter,
+      nextLink,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listForManagementGroupNextNextNextNextPagingPage(
+          managementGroupId,
+          filter,
+          nextLink,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listForManagementGroupNextNextNextNextPagingPage(
+    managementGroupId: string,
+    filter: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForManagementGroupNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment[]> {
+    let result = await this._listForManagementGroupNextNextNextNext(
+      managementGroupId,
+      filter,
+      nextLink,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listForManagementGroupNextNextNextNextNext(
+        managementGroupId,
+        filter,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listForManagementGroupNextNextNextNextPagingAll(
+    managementGroupId: string,
+    filter: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForManagementGroupNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment> {
+    for await (const page of this.listForManagementGroupNextNextNextNextPagingPage(
+      managementGroupId,
+      filter,
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNext method.
+   * @param options The options parameters.
+   */
+  public listNextNextNextNext(
+    nextLink: string,
+    options?: PolicyAssignmentsListNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment> {
+    const iter = this.listNextNextNextNextPagingAll(nextLink, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listNextNextNextNextPagingPage(nextLink, options);
+      }
+    };
+  }
+
+  private async *listNextNextNextNextPagingPage(
+    nextLink: string,
+    options?: PolicyAssignmentsListNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment[]> {
+    let result = await this._listNextNextNextNext(nextLink, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNextNextNextNextNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listNextNextNextNextPagingAll(
+    nextLink: string,
+    options?: PolicyAssignmentsListNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment> {
+    for await (const page of this.listNextNextNextNextPagingPage(
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListForResourceGroupNextNextNextNextNext
+   * @param resourceGroupName The name of the resource group that contains policy assignments.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListForResourceGroupNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  public listForResourceGroupNextNextNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceGroupNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment> {
+    const iter = this.listForResourceGroupNextNextNextNextNextPagingAll(
+      resourceGroupName,
+      nextLink,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listForResourceGroupNextNextNextNextNextPagingPage(
+          resourceGroupName,
+          nextLink,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listForResourceGroupNextNextNextNextNextPagingPage(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceGroupNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment[]> {
+    let result = await this._listForResourceGroupNextNextNextNextNext(
+      resourceGroupName,
+      nextLink,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listForResourceGroupNextNextNextNextNextNext(
+        resourceGroupName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listForResourceGroupNextNextNextNextNextPagingAll(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceGroupNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment> {
+    for await (const page of this.listForResourceGroupNextNextNextNextNextPagingPage(
+      resourceGroupName,
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListForResourceNextNextNextNextNext
+   * @param resourceGroupName The name of the resource group containing the resource.
+   * @param resourceProviderNamespace The namespace of the resource provider. For example, the namespace
+   *                                  of a virtual machine is Microsoft.Compute (from Microsoft.Compute/virtualMachines)
+   * @param parentResourcePath The parent resource path. Use empty string if there is none.
+   * @param resourceType The resource type name. For example the type name of a web app is 'sites' (from
+   *                     Microsoft.Web/sites).
+   * @param resourceName The name of the resource.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListForResourceNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  public listForResourceNextNextNextNextNext(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment> {
+    const iter = this.listForResourceNextNextNextNextNextPagingAll(
+      resourceGroupName,
+      resourceProviderNamespace,
+      parentResourcePath,
+      resourceType,
+      resourceName,
+      nextLink,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listForResourceNextNextNextNextNextPagingPage(
+          resourceGroupName,
+          resourceProviderNamespace,
+          parentResourcePath,
+          resourceType,
+          resourceName,
+          nextLink,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listForResourceNextNextNextNextNextPagingPage(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment[]> {
+    let result = await this._listForResourceNextNextNextNextNext(
+      resourceGroupName,
+      resourceProviderNamespace,
+      parentResourcePath,
+      resourceType,
+      resourceName,
+      nextLink,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listForResourceNextNextNextNextNextNext(
+        resourceGroupName,
+        resourceProviderNamespace,
+        parentResourcePath,
+        resourceType,
+        resourceName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listForResourceNextNextNextNextNextPagingAll(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment> {
+    for await (const page of this.listForResourceNextNextNextNextNextPagingPage(
+      resourceGroupName,
+      resourceProviderNamespace,
+      parentResourcePath,
+      resourceType,
+      resourceName,
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListForManagementGroupNextNextNextNextNext
+   * @param managementGroupId The ID of the management group.
+   * @param filter The filter to apply on the operation. Valid values for $filter are: 'atScope()' or
+   *               'policyDefinitionId eq '{value}''. A filter is required when listing policy assignments at
+   *               management group scope.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListForManagementGroupNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  public listForManagementGroupNextNextNextNextNext(
+    managementGroupId: string,
+    filter: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForManagementGroupNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment> {
+    const iter = this.listForManagementGroupNextNextNextNextNextPagingAll(
+      managementGroupId,
+      filter,
+      nextLink,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listForManagementGroupNextNextNextNextNextPagingPage(
+          managementGroupId,
+          filter,
+          nextLink,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listForManagementGroupNextNextNextNextNextPagingPage(
+    managementGroupId: string,
+    filter: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForManagementGroupNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment[]> {
+    let result = await this._listForManagementGroupNextNextNextNextNext(
+      managementGroupId,
+      filter,
+      nextLink,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listForManagementGroupNextNextNextNextNextNext(
+        managementGroupId,
+        filter,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listForManagementGroupNextNextNextNextNextPagingAll(
+    managementGroupId: string,
+    filter: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForManagementGroupNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment> {
+    for await (const page of this.listForManagementGroupNextNextNextNextNextPagingPage(
+      managementGroupId,
+      filter,
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  public listNextNextNextNextNext(
+    nextLink: string,
+    options?: PolicyAssignmentsListNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment> {
+    const iter = this.listNextNextNextNextNextPagingAll(nextLink, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listNextNextNextNextNextPagingPage(nextLink, options);
+      }
+    };
+  }
+
+  private async *listNextNextNextNextNextPagingPage(
+    nextLink: string,
+    options?: PolicyAssignmentsListNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment[]> {
+    let result = await this._listNextNextNextNextNext(nextLink, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNextNextNextNextNextNext(
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listNextNextNextNextNextPagingAll(
+    nextLink: string,
+    options?: PolicyAssignmentsListNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment> {
+    for await (const page of this.listNextNextNextNextNextPagingPage(
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListForResourceGroupNextNextNextNextNextNext
+   * @param resourceGroupName The name of the resource group that contains policy assignments.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListForResourceGroupNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  public listForResourceGroupNextNextNextNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceGroupNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment> {
+    const iter = this.listForResourceGroupNextNextNextNextNextNextPagingAll(
+      resourceGroupName,
+      nextLink,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listForResourceGroupNextNextNextNextNextNextPagingPage(
+          resourceGroupName,
+          nextLink,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listForResourceGroupNextNextNextNextNextNextPagingPage(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceGroupNextNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment[]> {
+    let result = await this._listForResourceGroupNextNextNextNextNextNext(
+      resourceGroupName,
+      nextLink,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listForResourceGroupNextNextNextNextNextNextNext(
+        resourceGroupName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listForResourceGroupNextNextNextNextNextNextPagingAll(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceGroupNextNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment> {
+    for await (const page of this.listForResourceGroupNextNextNextNextNextNextPagingPage(
+      resourceGroupName,
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListForResourceNextNextNextNextNextNext
+   * @param resourceGroupName The name of the resource group containing the resource.
+   * @param resourceProviderNamespace The namespace of the resource provider. For example, the namespace
+   *                                  of a virtual machine is Microsoft.Compute (from Microsoft.Compute/virtualMachines)
+   * @param parentResourcePath The parent resource path. Use empty string if there is none.
+   * @param resourceType The resource type name. For example the type name of a web app is 'sites' (from
+   *                     Microsoft.Web/sites).
+   * @param resourceName The name of the resource.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListForResourceNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  public listForResourceNextNextNextNextNextNext(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment> {
+    const iter = this.listForResourceNextNextNextNextNextNextPagingAll(
+      resourceGroupName,
+      resourceProviderNamespace,
+      parentResourcePath,
+      resourceType,
+      resourceName,
+      nextLink,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listForResourceNextNextNextNextNextNextPagingPage(
+          resourceGroupName,
+          resourceProviderNamespace,
+          parentResourcePath,
+          resourceType,
+          resourceName,
+          nextLink,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listForResourceNextNextNextNextNextNextPagingPage(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceNextNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment[]> {
+    let result = await this._listForResourceNextNextNextNextNextNext(
+      resourceGroupName,
+      resourceProviderNamespace,
+      parentResourcePath,
+      resourceType,
+      resourceName,
+      nextLink,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listForResourceNextNextNextNextNextNextNext(
+        resourceGroupName,
+        resourceProviderNamespace,
+        parentResourcePath,
+        resourceType,
+        resourceName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listForResourceNextNextNextNextNextNextPagingAll(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceNextNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment> {
+    for await (const page of this.listForResourceNextNextNextNextNextNextPagingPage(
+      resourceGroupName,
+      resourceProviderNamespace,
+      parentResourcePath,
+      resourceType,
+      resourceName,
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListForManagementGroupNextNextNextNextNextNext
+   * @param managementGroupId The ID of the management group.
+   * @param filter The filter to apply on the operation. Valid values for $filter are: 'atScope()' or
+   *               'policyDefinitionId eq '{value}''. A filter is required when listing policy assignments at
+   *               management group scope.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListForManagementGroupNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  public listForManagementGroupNextNextNextNextNextNext(
+    managementGroupId: string,
+    filter: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForManagementGroupNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment> {
+    const iter = this.listForManagementGroupNextNextNextNextNextNextPagingAll(
+      managementGroupId,
+      filter,
+      nextLink,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listForManagementGroupNextNextNextNextNextNextPagingPage(
+          managementGroupId,
+          filter,
+          nextLink,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listForManagementGroupNextNextNextNextNextNextPagingPage(
+    managementGroupId: string,
+    filter: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForManagementGroupNextNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment[]> {
+    let result = await this._listForManagementGroupNextNextNextNextNextNext(
+      managementGroupId,
+      filter,
+      nextLink,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listForManagementGroupNextNextNextNextNextNextNext(
+        managementGroupId,
+        filter,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listForManagementGroupNextNextNextNextNextNextPagingAll(
+    managementGroupId: string,
+    filter: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForManagementGroupNextNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment> {
+    for await (const page of this.listForManagementGroupNextNextNextNextNextNextPagingPage(
+      managementGroupId,
+      filter,
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  public listNextNextNextNextNextNext(
+    nextLink: string,
+    options?: PolicyAssignmentsListNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment> {
+    const iter = this.listNextNextNextNextNextNextPagingAll(nextLink, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listNextNextNextNextNextNextPagingPage(nextLink, options);
+      }
+    };
+  }
+
+  private async *listNextNextNextNextNextNextPagingPage(
+    nextLink: string,
+    options?: PolicyAssignmentsListNextNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment[]> {
+    let result = await this._listNextNextNextNextNextNext(nextLink, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNextNextNextNextNextNextNext(
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listNextNextNextNextNextNextPagingAll(
+    nextLink: string,
+    options?: PolicyAssignmentsListNextNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment> {
+    for await (const page of this.listNextNextNextNextNextNextPagingPage(
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListForResourceGroupNextNextNextNextNextNextNext
+   * @param resourceGroupName The name of the resource group that contains policy assignments.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListForResourceGroupNextNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  public listForResourceGroupNextNextNextNextNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceGroupNextNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment> {
+    const iter = this.listForResourceGroupNextNextNextNextNextNextNextPagingAll(
+      resourceGroupName,
+      nextLink,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listForResourceGroupNextNextNextNextNextNextNextPagingPage(
+          resourceGroupName,
+          nextLink,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listForResourceGroupNextNextNextNextNextNextNextPagingPage(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceGroupNextNextNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment[]> {
+    let result = await this._listForResourceGroupNextNextNextNextNextNextNext(
+      resourceGroupName,
+      nextLink,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listForResourceGroupNextNextNextNextNextNextNextNext(
+        resourceGroupName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listForResourceGroupNextNextNextNextNextNextNextPagingAll(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceGroupNextNextNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment> {
+    for await (const page of this.listForResourceGroupNextNextNextNextNextNextNextPagingPage(
+      resourceGroupName,
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListForResourceNextNextNextNextNextNextNext
+   * @param resourceGroupName The name of the resource group containing the resource.
+   * @param resourceProviderNamespace The namespace of the resource provider. For example, the namespace
+   *                                  of a virtual machine is Microsoft.Compute (from Microsoft.Compute/virtualMachines)
+   * @param parentResourcePath The parent resource path. Use empty string if there is none.
+   * @param resourceType The resource type name. For example the type name of a web app is 'sites' (from
+   *                     Microsoft.Web/sites).
+   * @param resourceName The name of the resource.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListForResourceNextNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  public listForResourceNextNextNextNextNextNextNext(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceNextNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment> {
+    const iter = this.listForResourceNextNextNextNextNextNextNextPagingAll(
+      resourceGroupName,
+      resourceProviderNamespace,
+      parentResourcePath,
+      resourceType,
+      resourceName,
+      nextLink,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listForResourceNextNextNextNextNextNextNextPagingPage(
+          resourceGroupName,
+          resourceProviderNamespace,
+          parentResourcePath,
+          resourceType,
+          resourceName,
+          nextLink,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listForResourceNextNextNextNextNextNextNextPagingPage(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceNextNextNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment[]> {
+    let result = await this._listForResourceNextNextNextNextNextNextNext(
+      resourceGroupName,
+      resourceProviderNamespace,
+      parentResourcePath,
+      resourceType,
+      resourceName,
+      nextLink,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listForResourceNextNextNextNextNextNextNextNext(
+        resourceGroupName,
+        resourceProviderNamespace,
+        parentResourcePath,
+        resourceType,
+        resourceName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listForResourceNextNextNextNextNextNextNextPagingAll(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceNextNextNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment> {
+    for await (const page of this.listForResourceNextNextNextNextNextNextNextPagingPage(
+      resourceGroupName,
+      resourceProviderNamespace,
+      parentResourcePath,
+      resourceType,
+      resourceName,
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListForManagementGroupNextNextNextNextNextNextNext
+   * @param managementGroupId The ID of the management group.
+   * @param filter The filter to apply on the operation. Valid values for $filter are: 'atScope()' or
+   *               'policyDefinitionId eq '{value}''. A filter is required when listing policy assignments at
+   *               management group scope.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListForManagementGroupNextNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  public listForManagementGroupNextNextNextNextNextNextNext(
+    managementGroupId: string,
+    filter: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForManagementGroupNextNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment> {
+    const iter = this.listForManagementGroupNextNextNextNextNextNextNextPagingAll(
+      managementGroupId,
+      filter,
+      nextLink,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listForManagementGroupNextNextNextNextNextNextNextPagingPage(
+          managementGroupId,
+          filter,
+          nextLink,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listForManagementGroupNextNextNextNextNextNextNextPagingPage(
+    managementGroupId: string,
+    filter: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForManagementGroupNextNextNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment[]> {
+    let result = await this._listForManagementGroupNextNextNextNextNextNextNext(
+      managementGroupId,
+      filter,
+      nextLink,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listForManagementGroupNextNextNextNextNextNextNextNext(
+        managementGroupId,
+        filter,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listForManagementGroupNextNextNextNextNextNextNextPagingAll(
+    managementGroupId: string,
+    filter: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForManagementGroupNextNextNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment> {
+    for await (const page of this.listForManagementGroupNextNextNextNextNextNextNextPagingPage(
+      managementGroupId,
+      filter,
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListNextNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNextNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  public listNextNextNextNextNextNextNext(
+    nextLink: string,
+    options?: PolicyAssignmentsListNextNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment> {
+    const iter = this.listNextNextNextNextNextNextNextPagingAll(
+      nextLink,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listNextNextNextNextNextNextNextPagingPage(
+          nextLink,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listNextNextNextNextNextNextNextPagingPage(
+    nextLink: string,
+    options?: PolicyAssignmentsListNextNextNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment[]> {
+    let result = await this._listNextNextNextNextNextNextNext(
+      nextLink,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNextNextNextNextNextNextNextNext(
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listNextNextNextNextNextNextNextPagingAll(
+    nextLink: string,
+    options?: PolicyAssignmentsListNextNextNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<PolicyAssignment> {
+    for await (const page of this.listNextNextNextNextNextNextNextPagingPage(
+      nextLink,
+      options
+    )) {
       yield* page;
     }
   }
@@ -711,6 +2954,665 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
       listNextOperationSpec
     );
   }
+
+  /**
+   * ListForResourceGroupNextNext
+   * @param resourceGroupName The name of the resource group that contains policy assignments.
+   * @param nextLink The nextLink from the previous successful call to the ListForResourceGroupNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  private _listForResourceGroupNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceGroupNextNextOptionalParams
+  ): Promise<PolicyAssignmentsListForResourceGroupNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, nextLink, options },
+      listForResourceGroupNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListForResourceNextNext
+   * @param resourceGroupName The name of the resource group containing the resource.
+   * @param resourceProviderNamespace The namespace of the resource provider. For example, the namespace
+   *                                  of a virtual machine is Microsoft.Compute (from Microsoft.Compute/virtualMachines)
+   * @param parentResourcePath The parent resource path. Use empty string if there is none.
+   * @param resourceType The resource type name. For example the type name of a web app is 'sites' (from
+   *                     Microsoft.Web/sites).
+   * @param resourceName The name of the resource.
+   * @param nextLink The nextLink from the previous successful call to the ListForResourceNext method.
+   * @param options The options parameters.
+   */
+  private _listForResourceNextNext(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceNextNextOptionalParams
+  ): Promise<PolicyAssignmentsListForResourceNextNextResponse> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        resourceProviderNamespace,
+        parentResourcePath,
+        resourceType,
+        resourceName,
+        nextLink,
+        options
+      },
+      listForResourceNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListForManagementGroupNextNext
+   * @param managementGroupId The ID of the management group.
+   * @param filter The filter to apply on the operation. Valid values for $filter are: 'atScope()' or
+   *               'policyDefinitionId eq '{value}''. A filter is required when listing policy assignments at
+   *               management group scope.
+   * @param nextLink The nextLink from the previous successful call to the ListForManagementGroupNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  private _listForManagementGroupNextNext(
+    managementGroupId: string,
+    filter: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForManagementGroupNextNextOptionalParams
+  ): Promise<PolicyAssignmentsListForManagementGroupNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { managementGroupId, filter, nextLink, options },
+      listForManagementGroupNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNext method.
+   * @param options The options parameters.
+   */
+  private _listNextNext(
+    nextLink: string,
+    options?: PolicyAssignmentsListNextNextOptionalParams
+  ): Promise<PolicyAssignmentsListNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      listNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListForResourceGroupNextNextNext
+   * @param resourceGroupName The name of the resource group that contains policy assignments.
+   * @param nextLink The nextLink from the previous successful call to the ListForResourceGroupNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  private _listForResourceGroupNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceGroupNextNextNextOptionalParams
+  ): Promise<PolicyAssignmentsListForResourceGroupNextNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, nextLink, options },
+      listForResourceGroupNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListForResourceNextNextNext
+   * @param resourceGroupName The name of the resource group containing the resource.
+   * @param resourceProviderNamespace The namespace of the resource provider. For example, the namespace
+   *                                  of a virtual machine is Microsoft.Compute (from Microsoft.Compute/virtualMachines)
+   * @param parentResourcePath The parent resource path. Use empty string if there is none.
+   * @param resourceType The resource type name. For example the type name of a web app is 'sites' (from
+   *                     Microsoft.Web/sites).
+   * @param resourceName The name of the resource.
+   * @param nextLink The nextLink from the previous successful call to the ListForResourceNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  private _listForResourceNextNextNext(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceNextNextNextOptionalParams
+  ): Promise<PolicyAssignmentsListForResourceNextNextNextResponse> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        resourceProviderNamespace,
+        parentResourcePath,
+        resourceType,
+        resourceName,
+        nextLink,
+        options
+      },
+      listForResourceNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListForManagementGroupNextNextNext
+   * @param managementGroupId The ID of the management group.
+   * @param filter The filter to apply on the operation. Valid values for $filter are: 'atScope()' or
+   *               'policyDefinitionId eq '{value}''. A filter is required when listing policy assignments at
+   *               management group scope.
+   * @param nextLink The nextLink from the previous successful call to the ListForManagementGroupNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  private _listForManagementGroupNextNextNext(
+    managementGroupId: string,
+    filter: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForManagementGroupNextNextNextOptionalParams
+  ): Promise<PolicyAssignmentsListForManagementGroupNextNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { managementGroupId, filter, nextLink, options },
+      listForManagementGroupNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNext method.
+   * @param options The options parameters.
+   */
+  private _listNextNextNext(
+    nextLink: string,
+    options?: PolicyAssignmentsListNextNextNextOptionalParams
+  ): Promise<PolicyAssignmentsListNextNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      listNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListForResourceGroupNextNextNextNext
+   * @param resourceGroupName The name of the resource group that contains policy assignments.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListForResourceGroupNextNextNext method.
+   * @param options The options parameters.
+   */
+  private _listForResourceGroupNextNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceGroupNextNextNextNextOptionalParams
+  ): Promise<PolicyAssignmentsListForResourceGroupNextNextNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, nextLink, options },
+      listForResourceGroupNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListForResourceNextNextNextNext
+   * @param resourceGroupName The name of the resource group containing the resource.
+   * @param resourceProviderNamespace The namespace of the resource provider. For example, the namespace
+   *                                  of a virtual machine is Microsoft.Compute (from Microsoft.Compute/virtualMachines)
+   * @param parentResourcePath The parent resource path. Use empty string if there is none.
+   * @param resourceType The resource type name. For example the type name of a web app is 'sites' (from
+   *                     Microsoft.Web/sites).
+   * @param resourceName The name of the resource.
+   * @param nextLink The nextLink from the previous successful call to the ListForResourceNextNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  private _listForResourceNextNextNextNext(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceNextNextNextNextOptionalParams
+  ): Promise<PolicyAssignmentsListForResourceNextNextNextNextResponse> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        resourceProviderNamespace,
+        parentResourcePath,
+        resourceType,
+        resourceName,
+        nextLink,
+        options
+      },
+      listForResourceNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListForManagementGroupNextNextNextNext
+   * @param managementGroupId The ID of the management group.
+   * @param filter The filter to apply on the operation. Valid values for $filter are: 'atScope()' or
+   *               'policyDefinitionId eq '{value}''. A filter is required when listing policy assignments at
+   *               management group scope.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListForManagementGroupNextNextNext method.
+   * @param options The options parameters.
+   */
+  private _listForManagementGroupNextNextNextNext(
+    managementGroupId: string,
+    filter: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForManagementGroupNextNextNextNextOptionalParams
+  ): Promise<PolicyAssignmentsListForManagementGroupNextNextNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { managementGroupId, filter, nextLink, options },
+      listForManagementGroupNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNext method.
+   * @param options The options parameters.
+   */
+  private _listNextNextNextNext(
+    nextLink: string,
+    options?: PolicyAssignmentsListNextNextNextNextOptionalParams
+  ): Promise<PolicyAssignmentsListNextNextNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      listNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListForResourceGroupNextNextNextNextNext
+   * @param resourceGroupName The name of the resource group that contains policy assignments.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListForResourceGroupNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  private _listForResourceGroupNextNextNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceGroupNextNextNextNextNextOptionalParams
+  ): Promise<
+    PolicyAssignmentsListForResourceGroupNextNextNextNextNextResponse
+  > {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, nextLink, options },
+      listForResourceGroupNextNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListForResourceNextNextNextNextNext
+   * @param resourceGroupName The name of the resource group containing the resource.
+   * @param resourceProviderNamespace The namespace of the resource provider. For example, the namespace
+   *                                  of a virtual machine is Microsoft.Compute (from Microsoft.Compute/virtualMachines)
+   * @param parentResourcePath The parent resource path. Use empty string if there is none.
+   * @param resourceType The resource type name. For example the type name of a web app is 'sites' (from
+   *                     Microsoft.Web/sites).
+   * @param resourceName The name of the resource.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListForResourceNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  private _listForResourceNextNextNextNextNext(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceNextNextNextNextNextOptionalParams
+  ): Promise<PolicyAssignmentsListForResourceNextNextNextNextNextResponse> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        resourceProviderNamespace,
+        parentResourcePath,
+        resourceType,
+        resourceName,
+        nextLink,
+        options
+      },
+      listForResourceNextNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListForManagementGroupNextNextNextNextNext
+   * @param managementGroupId The ID of the management group.
+   * @param filter The filter to apply on the operation. Valid values for $filter are: 'atScope()' or
+   *               'policyDefinitionId eq '{value}''. A filter is required when listing policy assignments at
+   *               management group scope.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListForManagementGroupNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  private _listForManagementGroupNextNextNextNextNext(
+    managementGroupId: string,
+    filter: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForManagementGroupNextNextNextNextNextOptionalParams
+  ): Promise<
+    PolicyAssignmentsListForManagementGroupNextNextNextNextNextResponse
+  > {
+    return this.client.sendOperationRequest(
+      { managementGroupId, filter, nextLink, options },
+      listForManagementGroupNextNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  private _listNextNextNextNextNext(
+    nextLink: string,
+    options?: PolicyAssignmentsListNextNextNextNextNextOptionalParams
+  ): Promise<PolicyAssignmentsListNextNextNextNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      listNextNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListForResourceGroupNextNextNextNextNextNext
+   * @param resourceGroupName The name of the resource group that contains policy assignments.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListForResourceGroupNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  private _listForResourceGroupNextNextNextNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceGroupNextNextNextNextNextNextOptionalParams
+  ): Promise<
+    PolicyAssignmentsListForResourceGroupNextNextNextNextNextNextResponse
+  > {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, nextLink, options },
+      listForResourceGroupNextNextNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListForResourceNextNextNextNextNextNext
+   * @param resourceGroupName The name of the resource group containing the resource.
+   * @param resourceProviderNamespace The namespace of the resource provider. For example, the namespace
+   *                                  of a virtual machine is Microsoft.Compute (from Microsoft.Compute/virtualMachines)
+   * @param parentResourcePath The parent resource path. Use empty string if there is none.
+   * @param resourceType The resource type name. For example the type name of a web app is 'sites' (from
+   *                     Microsoft.Web/sites).
+   * @param resourceName The name of the resource.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListForResourceNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  private _listForResourceNextNextNextNextNextNext(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceNextNextNextNextNextNextOptionalParams
+  ): Promise<PolicyAssignmentsListForResourceNextNextNextNextNextNextResponse> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        resourceProviderNamespace,
+        parentResourcePath,
+        resourceType,
+        resourceName,
+        nextLink,
+        options
+      },
+      listForResourceNextNextNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListForManagementGroupNextNextNextNextNextNext
+   * @param managementGroupId The ID of the management group.
+   * @param filter The filter to apply on the operation. Valid values for $filter are: 'atScope()' or
+   *               'policyDefinitionId eq '{value}''. A filter is required when listing policy assignments at
+   *               management group scope.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListForManagementGroupNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  private _listForManagementGroupNextNextNextNextNextNext(
+    managementGroupId: string,
+    filter: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForManagementGroupNextNextNextNextNextNextOptionalParams
+  ): Promise<
+    PolicyAssignmentsListForManagementGroupNextNextNextNextNextNextResponse
+  > {
+    return this.client.sendOperationRequest(
+      { managementGroupId, filter, nextLink, options },
+      listForManagementGroupNextNextNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  private _listNextNextNextNextNextNext(
+    nextLink: string,
+    options?: PolicyAssignmentsListNextNextNextNextNextNextOptionalParams
+  ): Promise<PolicyAssignmentsListNextNextNextNextNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      listNextNextNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListForResourceGroupNextNextNextNextNextNextNext
+   * @param resourceGroupName The name of the resource group that contains policy assignments.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListForResourceGroupNextNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  private _listForResourceGroupNextNextNextNextNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceGroupNextNextNextNextNextNextNextOptionalParams
+  ): Promise<
+    PolicyAssignmentsListForResourceGroupNextNextNextNextNextNextNextResponse
+  > {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, nextLink, options },
+      listForResourceGroupNextNextNextNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListForResourceNextNextNextNextNextNextNext
+   * @param resourceGroupName The name of the resource group containing the resource.
+   * @param resourceProviderNamespace The namespace of the resource provider. For example, the namespace
+   *                                  of a virtual machine is Microsoft.Compute (from Microsoft.Compute/virtualMachines)
+   * @param parentResourcePath The parent resource path. Use empty string if there is none.
+   * @param resourceType The resource type name. For example the type name of a web app is 'sites' (from
+   *                     Microsoft.Web/sites).
+   * @param resourceName The name of the resource.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListForResourceNextNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  private _listForResourceNextNextNextNextNextNextNext(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceNextNextNextNextNextNextNextOptionalParams
+  ): Promise<
+    PolicyAssignmentsListForResourceNextNextNextNextNextNextNextResponse
+  > {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        resourceProviderNamespace,
+        parentResourcePath,
+        resourceType,
+        resourceName,
+        nextLink,
+        options
+      },
+      listForResourceNextNextNextNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListForManagementGroupNextNextNextNextNextNextNext
+   * @param managementGroupId The ID of the management group.
+   * @param filter The filter to apply on the operation. Valid values for $filter are: 'atScope()' or
+   *               'policyDefinitionId eq '{value}''. A filter is required when listing policy assignments at
+   *               management group scope.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListForManagementGroupNextNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  private _listForManagementGroupNextNextNextNextNextNextNext(
+    managementGroupId: string,
+    filter: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForManagementGroupNextNextNextNextNextNextNextOptionalParams
+  ): Promise<
+    PolicyAssignmentsListForManagementGroupNextNextNextNextNextNextNextResponse
+  > {
+    return this.client.sendOperationRequest(
+      { managementGroupId, filter, nextLink, options },
+      listForManagementGroupNextNextNextNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListNextNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNextNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  private _listNextNextNextNextNextNextNext(
+    nextLink: string,
+    options?: PolicyAssignmentsListNextNextNextNextNextNextNextOptionalParams
+  ): Promise<PolicyAssignmentsListNextNextNextNextNextNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      listNextNextNextNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListForResourceGroupNextNextNextNextNextNextNextNext
+   * @param resourceGroupName The name of the resource group that contains policy assignments.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListForResourceGroupNextNextNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  private _listForResourceGroupNextNextNextNextNextNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceGroupNextNextNextNextNextNextNextNextOptionalParams
+  ): Promise<
+    PolicyAssignmentsListForResourceGroupNextNextNextNextNextNextNextNextResponse
+  > {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, nextLink, options },
+      listForResourceGroupNextNextNextNextNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListForResourceNextNextNextNextNextNextNextNext
+   * @param resourceGroupName The name of the resource group containing the resource.
+   * @param resourceProviderNamespace The namespace of the resource provider. For example, the namespace
+   *                                  of a virtual machine is Microsoft.Compute (from Microsoft.Compute/virtualMachines)
+   * @param parentResourcePath The parent resource path. Use empty string if there is none.
+   * @param resourceType The resource type name. For example the type name of a web app is 'sites' (from
+   *                     Microsoft.Web/sites).
+   * @param resourceName The name of the resource.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListForResourceNextNextNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  private _listForResourceNextNextNextNextNextNextNextNext(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceNextNextNextNextNextNextNextNextOptionalParams
+  ): Promise<
+    PolicyAssignmentsListForResourceNextNextNextNextNextNextNextNextResponse
+  > {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        resourceProviderNamespace,
+        parentResourcePath,
+        resourceType,
+        resourceName,
+        nextLink,
+        options
+      },
+      listForResourceNextNextNextNextNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListForManagementGroupNextNextNextNextNextNextNextNext
+   * @param managementGroupId The ID of the management group.
+   * @param filter The filter to apply on the operation. Valid values for $filter are: 'atScope()' or
+   *               'policyDefinitionId eq '{value}''. A filter is required when listing policy assignments at
+   *               management group scope.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListForManagementGroupNextNextNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  private _listForManagementGroupNextNextNextNextNextNextNextNext(
+    managementGroupId: string,
+    filter: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForManagementGroupNextNextNextNextNextNextNextNextOptionalParams
+  ): Promise<
+    PolicyAssignmentsListForManagementGroupNextNextNextNextNextNextNextNextResponse
+  > {
+    return this.client.sendOperationRequest(
+      { managementGroupId, filter, nextLink, options },
+      listForManagementGroupNextNextNextNextNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListNextNextNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListNextNextNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  private _listNextNextNextNextNextNextNextNext(
+    nextLink: string,
+    options?: PolicyAssignmentsListNextNextNextNextNextNextNextNextOptionalParams
+  ): Promise<PolicyAssignmentsListNextNextNextNextNextNextNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      listNextNextNextNextNextNextNextNextOperationSpec
+    );
+  }
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
@@ -979,6 +3881,608 @@ const listForManagementGroupNextOperationSpec: coreClient.OperationSpec = {
   serializer
 };
 const listNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PolicyAssignmentListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.filter1],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listForResourceGroupNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PolicyAssignmentListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.filter],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listForResourceNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PolicyAssignmentListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.filter1],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.resourceProviderNamespace,
+    Parameters.parentResourcePath,
+    Parameters.resourceType,
+    Parameters.resourceName,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listForManagementGroupNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PolicyAssignmentListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.filter2],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.managementGroupId,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PolicyAssignmentListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.filter1],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listForResourceGroupNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PolicyAssignmentListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.filter],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listForResourceNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PolicyAssignmentListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.filter1],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.resourceProviderNamespace,
+    Parameters.parentResourcePath,
+    Parameters.resourceType,
+    Parameters.resourceName,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listForManagementGroupNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PolicyAssignmentListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.filter2],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.managementGroupId,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PolicyAssignmentListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.filter1],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listForResourceGroupNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PolicyAssignmentListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.filter],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listForResourceNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PolicyAssignmentListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.filter1],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.resourceProviderNamespace,
+    Parameters.parentResourcePath,
+    Parameters.resourceType,
+    Parameters.resourceName,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listForManagementGroupNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PolicyAssignmentListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.filter2],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.managementGroupId,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PolicyAssignmentListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.filter1],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listForResourceGroupNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PolicyAssignmentListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.filter],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listForResourceNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PolicyAssignmentListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.filter1],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.resourceProviderNamespace,
+    Parameters.parentResourcePath,
+    Parameters.resourceType,
+    Parameters.resourceName,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listForManagementGroupNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PolicyAssignmentListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.filter2],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.managementGroupId,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PolicyAssignmentListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.filter1],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listForResourceGroupNextNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PolicyAssignmentListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.filter],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listForResourceNextNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PolicyAssignmentListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.filter1],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.resourceProviderNamespace,
+    Parameters.parentResourcePath,
+    Parameters.resourceType,
+    Parameters.resourceName,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listForManagementGroupNextNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PolicyAssignmentListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.filter2],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.managementGroupId,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listNextNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PolicyAssignmentListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.filter1],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listForResourceGroupNextNextNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PolicyAssignmentListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.filter],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listForResourceNextNextNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PolicyAssignmentListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.filter1],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.resourceProviderNamespace,
+    Parameters.parentResourcePath,
+    Parameters.resourceType,
+    Parameters.resourceName,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listForManagementGroupNextNextNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PolicyAssignmentListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.filter2],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.managementGroupId,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listNextNextNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PolicyAssignmentListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.filter1],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listForResourceGroupNextNextNextNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PolicyAssignmentListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.filter],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listForResourceNextNextNextNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PolicyAssignmentListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.filter1],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.resourceProviderNamespace,
+    Parameters.parentResourcePath,
+    Parameters.resourceType,
+    Parameters.resourceName,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listForManagementGroupNextNextNextNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PolicyAssignmentListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.filter2],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.managementGroupId,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listNextNextNextNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

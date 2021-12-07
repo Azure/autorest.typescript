@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.18.19",
+    "toolVersion": "7.18.21",
     "schemaVersion": 1004,
     "oldestForwardsCompatibleVersion": 1001,
     "tsdocConfig": {
@@ -402,6 +402,531 @@
                 }
               ],
               "name": "listOperations"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureClient#listOperationsNext:member(1)",
+              "docComment": "/**\n * ListOperationsNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListOperations method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listOperationsNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ListOperationsNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!ListOperationsNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Operation",
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!Operation:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listOperationsNext"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureClient#listOperationsNextNext:member(1)",
+              "docComment": "/**\n * ListOperationsNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListOperationsNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listOperationsNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ListOperationsNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!ListOperationsNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Operation",
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!Operation:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listOperationsNextNext"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureClient#listOperationsNextNextNext:member(1)",
+              "docComment": "/**\n * ListOperationsNextNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListOperationsNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listOperationsNextNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ListOperationsNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!ListOperationsNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Operation",
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!Operation:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listOperationsNextNextNext"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureClient#listOperationsNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListOperationsNextNextNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListOperationsNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listOperationsNextNextNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ListOperationsNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!ListOperationsNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Operation",
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!Operation:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listOperationsNextNextNextNext"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureClient#listOperationsNextNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListOperationsNextNextNextNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListOperationsNextNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listOperationsNextNextNextNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ListOperationsNextNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!ListOperationsNextNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Operation",
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!Operation:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listOperationsNextNextNextNextNext"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureClient#listOperationsNextNextNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListOperationsNextNextNextNextNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListOperationsNextNextNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listOperationsNextNextNextNextNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ListOperationsNextNextNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!ListOperationsNextNextNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Operation",
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!Operation:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listOperationsNextNextNextNextNextNext"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureClient#listOperationsNextNextNextNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListOperationsNextNextNextNextNextNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListOperationsNextNextNextNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listOperationsNextNextNextNextNextNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ListOperationsNextNextNextNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!ListOperationsNextNextNextNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Operation",
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!Operation:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listOperationsNextNextNextNextNextNextNext"
             },
             {
               "kind": "Property",
@@ -1022,6 +1547,1147 @@
             },
             {
               "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!Features#listAllNext:member(1)",
+              "docComment": "/**\n * ListAllNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListAll method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listAllNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "FeaturesListAllNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListAllNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "FeatureResult",
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureResult:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listAllNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!Features#listAllNextNext:member(1)",
+              "docComment": "/**\n * ListAllNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListAllNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listAllNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "FeaturesListAllNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListAllNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "FeatureResult",
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureResult:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listAllNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!Features#listAllNextNextNext:member(1)",
+              "docComment": "/**\n * ListAllNextNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListAllNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listAllNextNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "FeaturesListAllNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListAllNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "FeatureResult",
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureResult:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listAllNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!Features#listAllNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListAllNextNextNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListAllNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listAllNextNextNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "FeaturesListAllNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListAllNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "FeatureResult",
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureResult:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listAllNextNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!Features#listAllNextNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListAllNextNextNextNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListAllNextNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listAllNextNextNextNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "FeaturesListAllNextNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListAllNextNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "FeatureResult",
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureResult:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listAllNextNextNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!Features#listAllNextNextNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListAllNextNextNextNextNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListAllNextNextNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listAllNextNextNextNextNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "FeaturesListAllNextNextNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListAllNextNextNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "FeatureResult",
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureResult:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listAllNextNextNextNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!Features#listAllNextNextNextNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListAllNextNextNextNextNextNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListAllNextNextNextNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listAllNextNextNextNextNextNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "FeaturesListAllNextNextNextNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListAllNextNextNextNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "FeatureResult",
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureResult:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listAllNextNextNextNextNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!Features#listNext:member(1)",
+              "docComment": "/**\n * ListNext\n *\n * @param resourceProviderNamespace - The namespace of the resource provider for getting features.\n *\n * @param nextLink - The nextLink from the previous successful call to the List method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listNext(resourceProviderNamespace: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "FeaturesListNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "FeatureResult",
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureResult:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceProviderNamespace",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "listNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!Features#listNextNext:member(1)",
+              "docComment": "/**\n * ListNextNext\n *\n * @param resourceProviderNamespace - The namespace of the resource provider for getting features.\n *\n * @param nextLink - The nextLink from the previous successful call to the ListNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listNextNext(resourceProviderNamespace: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "FeaturesListNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "FeatureResult",
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureResult:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceProviderNamespace",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "listNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!Features#listNextNextNext:member(1)",
+              "docComment": "/**\n * ListNextNextNext\n *\n * @param resourceProviderNamespace - The namespace of the resource provider for getting features.\n *\n * @param nextLink - The nextLink from the previous successful call to the ListNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listNextNextNext(resourceProviderNamespace: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "FeaturesListNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "FeatureResult",
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureResult:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceProviderNamespace",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "listNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!Features#listNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListNextNextNextNext\n *\n * @param resourceProviderNamespace - The namespace of the resource provider for getting features.\n *\n * @param nextLink - The nextLink from the previous successful call to the ListNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listNextNextNextNext(resourceProviderNamespace: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "FeaturesListNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "FeatureResult",
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureResult:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceProviderNamespace",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "listNextNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!Features#listNextNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListNextNextNextNextNext\n *\n * @param resourceProviderNamespace - The namespace of the resource provider for getting features.\n *\n * @param nextLink - The nextLink from the previous successful call to the ListNextNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listNextNextNextNextNext(resourceProviderNamespace: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "FeaturesListNextNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListNextNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "FeatureResult",
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureResult:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceProviderNamespace",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "listNextNextNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!Features#listNextNextNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListNextNextNextNextNextNext\n *\n * @param resourceProviderNamespace - The namespace of the resource provider for getting features.\n *\n * @param nextLink - The nextLink from the previous successful call to the ListNextNextNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listNextNextNextNextNextNext(resourceProviderNamespace: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "FeaturesListNextNextNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListNextNextNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "FeatureResult",
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureResult:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceProviderNamespace",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "listNextNextNextNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!Features#listNextNextNextNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListNextNextNextNextNextNextNext\n *\n * @param resourceProviderNamespace - The namespace of the resource provider for getting features.\n *\n * @param nextLink - The nextLink from the previous successful call to the ListNextNextNextNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listNextNextNextNextNextNextNext(resourceProviderNamespace: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "FeaturesListNextNextNextNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListNextNextNextNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "FeatureResult",
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureResult:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceProviderNamespace",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "listNextNextNextNextNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
               "canonicalReference": "@msinternal/arm-package-features-2015-12!Features#register:member(1)",
               "docComment": "/**\n * Registers the preview feature for the subscription.\n *\n * @param resourceProviderNamespace - The namespace of the resource provider.\n *\n * @param featureName - The name of the feature to register.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
@@ -1262,6 +2928,419 @@
         },
         {
           "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListAllNextNextNextNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface FeaturesListAllNextNextNextNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FeaturesListAllNextNextNextNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListAllNextNextNextNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listAllNextNextNextNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type FeaturesListAllNextNextNextNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "FeatureOperationsListResult",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureOperationsListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FeaturesListAllNextNextNextNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListAllNextNextNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface FeaturesListAllNextNextNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FeaturesListAllNextNextNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListAllNextNextNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listAllNextNextNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type FeaturesListAllNextNextNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "FeatureOperationsListResult",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureOperationsListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FeaturesListAllNextNextNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListAllNextNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface FeaturesListAllNextNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FeaturesListAllNextNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListAllNextNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listAllNextNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type FeaturesListAllNextNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "FeatureOperationsListResult",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureOperationsListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FeaturesListAllNextNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListAllNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface FeaturesListAllNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FeaturesListAllNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListAllNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listAllNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type FeaturesListAllNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "FeatureOperationsListResult",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureOperationsListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FeaturesListAllNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListAllNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface FeaturesListAllNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FeaturesListAllNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListAllNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listAllNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type FeaturesListAllNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "FeatureOperationsListResult",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureOperationsListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FeaturesListAllNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListAllNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface FeaturesListAllNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FeaturesListAllNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListAllNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listAllNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type FeaturesListAllNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "FeatureOperationsListResult",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureOperationsListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FeaturesListAllNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListAllNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface FeaturesListAllNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FeaturesListAllNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListAllNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listAllNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type FeaturesListAllNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "FeatureOperationsListResult",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureOperationsListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FeaturesListAllNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
           "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListAllNextOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
@@ -1373,6 +3452,419 @@
           ],
           "releaseTag": "Public",
           "name": "FeaturesListAllResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListNextNextNextNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface FeaturesListNextNextNextNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FeaturesListNextNextNextNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListNextNextNextNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listNextNextNextNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type FeaturesListNextNextNextNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "FeatureOperationsListResult",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureOperationsListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FeaturesListNextNextNextNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListNextNextNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface FeaturesListNextNextNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FeaturesListNextNextNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListNextNextNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listNextNextNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type FeaturesListNextNextNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "FeatureOperationsListResult",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureOperationsListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FeaturesListNextNextNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListNextNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface FeaturesListNextNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FeaturesListNextNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListNextNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listNextNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type FeaturesListNextNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "FeatureOperationsListResult",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureOperationsListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FeaturesListNextNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface FeaturesListNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FeaturesListNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type FeaturesListNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "FeatureOperationsListResult",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureOperationsListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FeaturesListNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface FeaturesListNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FeaturesListNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type FeaturesListNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "FeatureOperationsListResult",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureOperationsListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FeaturesListNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface FeaturesListNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FeaturesListNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type FeaturesListNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "FeatureOperationsListResult",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureOperationsListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FeaturesListNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface FeaturesListNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FeaturesListNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type FeaturesListNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "FeatureOperationsListResult",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureOperationsListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FeaturesListNextNextResponse",
           "typeTokenRange": {
             "startIndex": 1,
             "endIndex": 2
@@ -1609,6 +4101,419 @@
           ],
           "releaseTag": "Public",
           "name": "FeaturesUnregisterResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!ListOperationsNextNextNextNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ListOperationsNextNextNextNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ListOperationsNextNextNextNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!ListOperationsNextNextNextNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listOperationsNextNextNextNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ListOperationsNextNextNextNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationListResult",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!OperationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ListOperationsNextNextNextNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!ListOperationsNextNextNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ListOperationsNextNextNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ListOperationsNextNextNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!ListOperationsNextNextNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listOperationsNextNextNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ListOperationsNextNextNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationListResult",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!OperationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ListOperationsNextNextNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!ListOperationsNextNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ListOperationsNextNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ListOperationsNextNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!ListOperationsNextNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listOperationsNextNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ListOperationsNextNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationListResult",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!OperationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ListOperationsNextNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!ListOperationsNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ListOperationsNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ListOperationsNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!ListOperationsNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listOperationsNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ListOperationsNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationListResult",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!OperationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ListOperationsNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!ListOperationsNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ListOperationsNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ListOperationsNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!ListOperationsNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listOperationsNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ListOperationsNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationListResult",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!OperationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ListOperationsNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!ListOperationsNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ListOperationsNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ListOperationsNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!ListOperationsNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listOperationsNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ListOperationsNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationListResult",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!OperationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ListOperationsNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!ListOperationsNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ListOperationsNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ListOperationsNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!ListOperationsNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listOperationsNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ListOperationsNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationListResult",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!OperationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ListOperationsNextNextResponse",
           "typeTokenRange": {
             "startIndex": 1,
             "endIndex": 2

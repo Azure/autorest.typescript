@@ -62,7 +62,100 @@ export declare interface Operations {
      * @param options The options parameters.
      */
     list(options?: OperationsListOptionalParams): PagedAsyncIterableIterator<Operation>;
+    /**
+     * ListNext
+     * @param nextLink The nextLink from the previous successful call to the List method.
+     * @param options The options parameters.
+     */
+    listNext(nextLink: string, options?: OperationsListNextOptionalParams): PagedAsyncIterableIterator<Operation>;
+    /**
+     * ListNextNext
+     * @param nextLink The nextLink from the previous successful call to the ListNext method.
+     * @param options The options parameters.
+     */
+    listNextNext(nextLink: string, options?: OperationsListNextNextOptionalParams): PagedAsyncIterableIterator<Operation>;
+    /**
+     * ListNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the ListNextNext method.
+     * @param options The options parameters.
+     */
+    listNextNextNext(nextLink: string, options?: OperationsListNextNextNextOptionalParams): PagedAsyncIterableIterator<Operation>;
+    /**
+     * ListNextNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the ListNextNextNext method.
+     * @param options The options parameters.
+     */
+    listNextNextNextNext(nextLink: string, options?: OperationsListNextNextNextNextOptionalParams): PagedAsyncIterableIterator<Operation>;
+    /**
+     * ListNextNextNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNext method.
+     * @param options The options parameters.
+     */
+    listNextNextNextNextNext(nextLink: string, options?: OperationsListNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<Operation>;
+    /**
+     * ListNextNextNextNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNextNext
+     *                 method.
+     * @param options The options parameters.
+     */
+    listNextNextNextNextNextNext(nextLink: string, options?: OperationsListNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<Operation>;
+    /**
+     * ListNextNextNextNextNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNextNextNext
+     *                 method.
+     * @param options The options parameters.
+     */
+    listNextNextNextNextNextNextNext(nextLink: string, options?: OperationsListNextNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<Operation>;
 }
+
+/** Optional parameters. */
+export declare interface OperationsListNextNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listNextNextNextNextNextNextNextNext operation. */
+export declare type OperationsListNextNextNextNextNextNextNextNextResponse = OperationListResult;
+
+/** Optional parameters. */
+export declare interface OperationsListNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listNextNextNextNextNextNextNext operation. */
+export declare type OperationsListNextNextNextNextNextNextNextResponse = OperationListResult;
+
+/** Optional parameters. */
+export declare interface OperationsListNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listNextNextNextNextNextNext operation. */
+export declare type OperationsListNextNextNextNextNextNextResponse = OperationListResult;
+
+/** Optional parameters. */
+export declare interface OperationsListNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listNextNextNextNextNext operation. */
+export declare type OperationsListNextNextNextNextNextResponse = OperationListResult;
+
+/** Optional parameters. */
+export declare interface OperationsListNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listNextNextNextNext operation. */
+export declare type OperationsListNextNextNextNextResponse = OperationListResult;
+
+/** Optional parameters. */
+export declare interface OperationsListNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listNextNextNext operation. */
+export declare type OperationsListNextNextNextResponse = OperationListResult;
+
+/** Optional parameters. */
+export declare interface OperationsListNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listNextNext operation. */
+export declare type OperationsListNextNextResponse = OperationListResult;
 
 /** Optional parameters. */
 export declare interface OperationsListNextOptionalParams extends coreClient.OperationOptions {
@@ -145,6 +238,121 @@ export declare interface ResourceLinks {
      */
     listAtSourceScope(scope: string, options?: ResourceLinksListAtSourceScopeOptionalParams): PagedAsyncIterableIterator<ResourceLink>;
     /**
+     * ListAtSubscriptionNext
+     * @param nextLink The nextLink from the previous successful call to the ListAtSubscription method.
+     * @param options The options parameters.
+     */
+    listAtSubscriptionNext(nextLink: string, options?: ResourceLinksListAtSubscriptionNextOptionalParams): PagedAsyncIterableIterator<ResourceLink>;
+    /**
+     * ListAtSourceScopeNext
+     * @param scope The fully qualified ID of the scope for getting the resource links. For example, to
+     *              list resource links at and under a resource group, set the scope to
+     *              /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myGroup.
+     * @param nextLink The nextLink from the previous successful call to the ListAtSourceScope method.
+     * @param options The options parameters.
+     */
+    listAtSourceScopeNext(scope: string, nextLink: string, options?: ResourceLinksListAtSourceScopeNextOptionalParams): PagedAsyncIterableIterator<ResourceLink>;
+    /**
+     * ListAtSubscriptionNextNext
+     * @param nextLink The nextLink from the previous successful call to the ListAtSubscriptionNext method.
+     * @param options The options parameters.
+     */
+    listAtSubscriptionNextNext(nextLink: string, options?: ResourceLinksListAtSubscriptionNextNextOptionalParams): PagedAsyncIterableIterator<ResourceLink>;
+    /**
+     * ListAtSourceScopeNextNext
+     * @param scope The fully qualified ID of the scope for getting the resource links. For example, to
+     *              list resource links at and under a resource group, set the scope to
+     *              /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myGroup.
+     * @param nextLink The nextLink from the previous successful call to the ListAtSourceScopeNext method.
+     * @param options The options parameters.
+     */
+    listAtSourceScopeNextNext(scope: string, nextLink: string, options?: ResourceLinksListAtSourceScopeNextNextOptionalParams): PagedAsyncIterableIterator<ResourceLink>;
+    /**
+     * ListAtSubscriptionNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the ListAtSubscriptionNextNext
+     *                 method.
+     * @param options The options parameters.
+     */
+    listAtSubscriptionNextNextNext(nextLink: string, options?: ResourceLinksListAtSubscriptionNextNextNextOptionalParams): PagedAsyncIterableIterator<ResourceLink>;
+    /**
+     * ListAtSourceScopeNextNextNext
+     * @param scope The fully qualified ID of the scope for getting the resource links. For example, to
+     *              list resource links at and under a resource group, set the scope to
+     *              /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myGroup.
+     * @param nextLink The nextLink from the previous successful call to the ListAtSourceScopeNextNext
+     *                 method.
+     * @param options The options parameters.
+     */
+    listAtSourceScopeNextNextNext(scope: string, nextLink: string, options?: ResourceLinksListAtSourceScopeNextNextNextOptionalParams): PagedAsyncIterableIterator<ResourceLink>;
+    /**
+     * ListAtSubscriptionNextNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the ListAtSubscriptionNextNextNext
+     *                 method.
+     * @param options The options parameters.
+     */
+    listAtSubscriptionNextNextNextNext(nextLink: string, options?: ResourceLinksListAtSubscriptionNextNextNextNextOptionalParams): PagedAsyncIterableIterator<ResourceLink>;
+    /**
+     * ListAtSourceScopeNextNextNextNext
+     * @param scope The fully qualified ID of the scope for getting the resource links. For example, to
+     *              list resource links at and under a resource group, set the scope to
+     *              /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myGroup.
+     * @param nextLink The nextLink from the previous successful call to the ListAtSourceScopeNextNextNext
+     *                 method.
+     * @param options The options parameters.
+     */
+    listAtSourceScopeNextNextNextNext(scope: string, nextLink: string, options?: ResourceLinksListAtSourceScopeNextNextNextNextOptionalParams): PagedAsyncIterableIterator<ResourceLink>;
+    /**
+     * ListAtSubscriptionNextNextNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the
+     *                 ListAtSubscriptionNextNextNextNext method.
+     * @param options The options parameters.
+     */
+    listAtSubscriptionNextNextNextNextNext(nextLink: string, options?: ResourceLinksListAtSubscriptionNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<ResourceLink>;
+    /**
+     * ListAtSourceScopeNextNextNextNextNext
+     * @param scope The fully qualified ID of the scope for getting the resource links. For example, to
+     *              list resource links at and under a resource group, set the scope to
+     *              /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myGroup.
+     * @param nextLink The nextLink from the previous successful call to the
+     *                 ListAtSourceScopeNextNextNextNext method.
+     * @param options The options parameters.
+     */
+    listAtSourceScopeNextNextNextNextNext(scope: string, nextLink: string, options?: ResourceLinksListAtSourceScopeNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<ResourceLink>;
+    /**
+     * ListAtSubscriptionNextNextNextNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the
+     *                 ListAtSubscriptionNextNextNextNextNext method.
+     * @param options The options parameters.
+     */
+    listAtSubscriptionNextNextNextNextNextNext(nextLink: string, options?: ResourceLinksListAtSubscriptionNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<ResourceLink>;
+    /**
+     * ListAtSourceScopeNextNextNextNextNextNext
+     * @param scope The fully qualified ID of the scope for getting the resource links. For example, to
+     *              list resource links at and under a resource group, set the scope to
+     *              /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myGroup.
+     * @param nextLink The nextLink from the previous successful call to the
+     *                 ListAtSourceScopeNextNextNextNextNext method.
+     * @param options The options parameters.
+     */
+    listAtSourceScopeNextNextNextNextNextNext(scope: string, nextLink: string, options?: ResourceLinksListAtSourceScopeNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<ResourceLink>;
+    /**
+     * ListAtSubscriptionNextNextNextNextNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the
+     *                 ListAtSubscriptionNextNextNextNextNextNext method.
+     * @param options The options parameters.
+     */
+    listAtSubscriptionNextNextNextNextNextNextNext(nextLink: string, options?: ResourceLinksListAtSubscriptionNextNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<ResourceLink>;
+    /**
+     * ListAtSourceScopeNextNextNextNextNextNextNext
+     * @param scope The fully qualified ID of the scope for getting the resource links. For example, to
+     *              list resource links at and under a resource group, set the scope to
+     *              /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myGroup.
+     * @param nextLink The nextLink from the previous successful call to the
+     *                 ListAtSourceScopeNextNextNextNextNextNext method.
+     * @param options The options parameters.
+     */
+    listAtSourceScopeNextNextNextNextNextNextNext(scope: string, nextLink: string, options?: ResourceLinksListAtSourceScopeNextNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<ResourceLink>;
+    /**
      * Deletes a resource link with the specified ID.
      * @param linkId The fully qualified ID of the resource link. Use the format,
      *               /subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/{provider-namespace}/{resource-type}/{resource-name}/Microsoft.Resources/links/{link-name}.
@@ -191,6 +399,55 @@ export declare interface ResourceLinksGetOptionalParams extends coreClient.Opera
 export declare type ResourceLinksGetResponse = ResourceLink;
 
 /** Optional parameters. */
+export declare interface ResourceLinksListAtSourceScopeNextNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listAtSourceScopeNextNextNextNextNextNextNextNext operation. */
+export declare type ResourceLinksListAtSourceScopeNextNextNextNextNextNextNextNextResponse = ResourceLinkResult;
+
+/** Optional parameters. */
+export declare interface ResourceLinksListAtSourceScopeNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listAtSourceScopeNextNextNextNextNextNextNext operation. */
+export declare type ResourceLinksListAtSourceScopeNextNextNextNextNextNextNextResponse = ResourceLinkResult;
+
+/** Optional parameters. */
+export declare interface ResourceLinksListAtSourceScopeNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listAtSourceScopeNextNextNextNextNextNext operation. */
+export declare type ResourceLinksListAtSourceScopeNextNextNextNextNextNextResponse = ResourceLinkResult;
+
+/** Optional parameters. */
+export declare interface ResourceLinksListAtSourceScopeNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listAtSourceScopeNextNextNextNextNext operation. */
+export declare type ResourceLinksListAtSourceScopeNextNextNextNextNextResponse = ResourceLinkResult;
+
+/** Optional parameters. */
+export declare interface ResourceLinksListAtSourceScopeNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listAtSourceScopeNextNextNextNext operation. */
+export declare type ResourceLinksListAtSourceScopeNextNextNextNextResponse = ResourceLinkResult;
+
+/** Optional parameters. */
+export declare interface ResourceLinksListAtSourceScopeNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listAtSourceScopeNextNextNext operation. */
+export declare type ResourceLinksListAtSourceScopeNextNextNextResponse = ResourceLinkResult;
+
+/** Optional parameters. */
+export declare interface ResourceLinksListAtSourceScopeNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listAtSourceScopeNextNext operation. */
+export declare type ResourceLinksListAtSourceScopeNextNextResponse = ResourceLinkResult;
+
+/** Optional parameters. */
 export declare interface ResourceLinksListAtSourceScopeNextOptionalParams extends coreClient.OperationOptions {
 }
 
@@ -203,6 +460,69 @@ export declare interface ResourceLinksListAtSourceScopeOptionalParams extends co
 
 /** Contains response data for the listAtSourceScope operation. */
 export declare type ResourceLinksListAtSourceScopeResponse = ResourceLinkResult;
+
+/** Optional parameters. */
+export declare interface ResourceLinksListAtSubscriptionNextNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+    /** The filter to apply on the list resource links operation. The supported filter for list resource links is targetId. For example, $filter=targetId eq {value} */
+    filter?: string;
+}
+
+/** Contains response data for the listAtSubscriptionNextNextNextNextNextNextNextNext operation. */
+export declare type ResourceLinksListAtSubscriptionNextNextNextNextNextNextNextNextResponse = ResourceLinkResult;
+
+/** Optional parameters. */
+export declare interface ResourceLinksListAtSubscriptionNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+    /** The filter to apply on the list resource links operation. The supported filter for list resource links is targetId. For example, $filter=targetId eq {value} */
+    filter?: string;
+}
+
+/** Contains response data for the listAtSubscriptionNextNextNextNextNextNextNext operation. */
+export declare type ResourceLinksListAtSubscriptionNextNextNextNextNextNextNextResponse = ResourceLinkResult;
+
+/** Optional parameters. */
+export declare interface ResourceLinksListAtSubscriptionNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+    /** The filter to apply on the list resource links operation. The supported filter for list resource links is targetId. For example, $filter=targetId eq {value} */
+    filter?: string;
+}
+
+/** Contains response data for the listAtSubscriptionNextNextNextNextNextNext operation. */
+export declare type ResourceLinksListAtSubscriptionNextNextNextNextNextNextResponse = ResourceLinkResult;
+
+/** Optional parameters. */
+export declare interface ResourceLinksListAtSubscriptionNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+    /** The filter to apply on the list resource links operation. The supported filter for list resource links is targetId. For example, $filter=targetId eq {value} */
+    filter?: string;
+}
+
+/** Contains response data for the listAtSubscriptionNextNextNextNextNext operation. */
+export declare type ResourceLinksListAtSubscriptionNextNextNextNextNextResponse = ResourceLinkResult;
+
+/** Optional parameters. */
+export declare interface ResourceLinksListAtSubscriptionNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+    /** The filter to apply on the list resource links operation. The supported filter for list resource links is targetId. For example, $filter=targetId eq {value} */
+    filter?: string;
+}
+
+/** Contains response data for the listAtSubscriptionNextNextNextNext operation. */
+export declare type ResourceLinksListAtSubscriptionNextNextNextNextResponse = ResourceLinkResult;
+
+/** Optional parameters. */
+export declare interface ResourceLinksListAtSubscriptionNextNextNextOptionalParams extends coreClient.OperationOptions {
+    /** The filter to apply on the list resource links operation. The supported filter for list resource links is targetId. For example, $filter=targetId eq {value} */
+    filter?: string;
+}
+
+/** Contains response data for the listAtSubscriptionNextNextNext operation. */
+export declare type ResourceLinksListAtSubscriptionNextNextNextResponse = ResourceLinkResult;
+
+/** Optional parameters. */
+export declare interface ResourceLinksListAtSubscriptionNextNextOptionalParams extends coreClient.OperationOptions {
+    /** The filter to apply on the list resource links operation. The supported filter for list resource links is targetId. For example, $filter=targetId eq {value} */
+    filter?: string;
+}
+
+/** Contains response data for the listAtSubscriptionNextNext operation. */
+export declare type ResourceLinksListAtSubscriptionNextNextResponse = ResourceLinkResult;
 
 /** Optional parameters. */
 export declare interface ResourceLinksListAtSubscriptionNextOptionalParams extends coreClient.OperationOptions {

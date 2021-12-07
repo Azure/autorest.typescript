@@ -69,7 +69,7 @@ export async function generateTypeScriptLibrary(
 
   const clientDetails = await transformCodeModel(codeModel);
   conflictResolver(clientDetails);
-  clientDetails.samples = await transformSamples(codeModel, clientDetails.operationGroups, clientDetails.options);
+  clientDetails.samples = await transformSamples(codeModel, clientDetails);
 
   // Skip metadata generation if `generate-metadata` is explicitly false
   generatePackageJson(project, clientDetails);

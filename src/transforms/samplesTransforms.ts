@@ -2,12 +2,13 @@ import {
   ChoiceSchema,
   CodeModel,
   ConstantSchema,
+  ImplementationLocation,
   Operation,
   OperationGroup,
   Protocol,
   SchemaType
 } from "@autorest/codemodel";
-import { ClientOptions } from "../models/clientDetails";
+import { ClientDetails, ClientOptions } from "../models/clientDetails";
 import { SampleDetails } from "../models/sampleDetails";
 import { ExampleValue, TestCodeModel } from "@autorest/testmodeler";
 import { getLanguageMetadata } from "../utils/languageHelpers";
@@ -19,10 +20,9 @@ import { OperationGroupDetails } from "../models/operationDetails";
 
 export async function transformSamples(
   codeModel: CodeModel,
-  operationsGroupDetails: OperationGroupDetails[],
-  options: ClientOptions
+  clientDetails: ClientDetails
 ): Promise<SampleDetails[]> {
-  return await getAllExamples(codeModel as TestCodeModel, operationsGroupDetails);
+  return await getAllExamples(codeModel as TestCodeModel, clientDetails);
 }
 
 function getTransformedOperationGroup(operationGroup: OperationGroup, operationGroupDetails: OperationGroupDetails[]) {
@@ -33,7 +33,8 @@ function getTransformedOperation(operationGroup: OperationGroup, operation: Oper
   return operationGroupDetails.operations.filter(operationDetail => operationDetail.fullName === getOperationFullName(operationGroup, operation, clientName))[0];
 }
 
-export async function getAllExamples(codeModel: TestCodeModel, operationGroupDetails: OperationGroupDetails[]) {
+export async function getAllExamples(codeModel: TestCodeModel, clientDetails: ClientDetails) {
+  const operationGroupDetails = clientDetails.operationGroups;
   const { packageDetails } = getAutorestOptions();
   const session = getSession();
   let examplesModels: SampleDetails[] = [];
@@ -81,6 +82,13 @@ export async function getAllExamples(codeModel: TestCodeModel, operationGroupDet
           };
     
           const clientParameterNames = ["credential"];
+          const requiredParams = clientDetails.parameters.filter(
+            param =>
+              param.required &&
+              param.implementationLocation === ImplementationLocation.Client &&
+              !param.defaultValue &&
+              param.schemaType !== SchemaType.Constant
+          );
           for (const clientParameter of example.clientParameters) {
             if (
               clientParameter.exampleValue.schema.type === SchemaType.Constant
@@ -96,6 +104,11 @@ export async function getAllExamples(codeModel: TestCodeModel, operationGroupDet
               getParameterAssignment(clientParameter.exampleValue);
             sample.clientParamAssignments.push(paramAssignment);
             clientParameterNames.push(parameterName);
+          }
+          if (clientParameterNames.indexOf("subscriptionId") < 0 && requiredParams.find(param => param.name === 'subscriptionId')) {
+            const subscriptionIdAssignment = `const subscriptionId = "00000000-0000-0000-0000-000000000000"`;
+            sample.clientParamAssignments.push(subscriptionIdAssignment);
+            clientParameterNames.push('subscriptionId');
           }
           if (clientParameterNames.length > 0) {
             sample.clientParameterNames = clientParameterNames.join(", ");

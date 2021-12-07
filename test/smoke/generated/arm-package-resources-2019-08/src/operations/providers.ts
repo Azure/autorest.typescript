@@ -18,6 +18,20 @@ import {
   ProvidersListOptionalParams,
   ProvidersListAtTenantScopeNextOptionalParams,
   ProvidersListAtTenantScopeOptionalParams,
+  ProvidersListNextNextOptionalParams,
+  ProvidersListAtTenantScopeNextNextOptionalParams,
+  ProvidersListNextNextNextOptionalParams,
+  ProvidersListAtTenantScopeNextNextNextOptionalParams,
+  ProvidersListNextNextNextNextOptionalParams,
+  ProvidersListAtTenantScopeNextNextNextNextOptionalParams,
+  ProvidersListNextNextNextNextNextOptionalParams,
+  ProvidersListAtTenantScopeNextNextNextNextNextOptionalParams,
+  ProvidersListNextNextNextNextNextNextOptionalParams,
+  ProvidersListAtTenantScopeNextNextNextNextNextNextOptionalParams,
+  ProvidersListNextNextNextNextNextNextNextOptionalParams,
+  ProvidersListAtTenantScopeNextNextNextNextNextNextNextOptionalParams,
+  ProvidersListNextNextNextNextNextNextNextNextOptionalParams,
+  ProvidersListAtTenantScopeNextNextNextNextNextNextNextNextOptionalParams,
   ProvidersUnregisterOptionalParams,
   ProvidersUnregisterResponse,
   ProvidersRegisterOptionalParams,
@@ -29,7 +43,21 @@ import {
   ProvidersGetAtTenantScopeOptionalParams,
   ProvidersGetAtTenantScopeResponse,
   ProvidersListNextResponse,
-  ProvidersListAtTenantScopeNextResponse
+  ProvidersListAtTenantScopeNextResponse,
+  ProvidersListNextNextResponse,
+  ProvidersListAtTenantScopeNextNextResponse,
+  ProvidersListNextNextNextResponse,
+  ProvidersListAtTenantScopeNextNextNextResponse,
+  ProvidersListNextNextNextNextResponse,
+  ProvidersListAtTenantScopeNextNextNextNextResponse,
+  ProvidersListNextNextNextNextNextResponse,
+  ProvidersListAtTenantScopeNextNextNextNextNextResponse,
+  ProvidersListNextNextNextNextNextNextResponse,
+  ProvidersListAtTenantScopeNextNextNextNextNextNextResponse,
+  ProvidersListNextNextNextNextNextNextNextResponse,
+  ProvidersListAtTenantScopeNextNextNextNextNextNextNextResponse,
+  ProvidersListNextNextNextNextNextNextNextNextResponse,
+  ProvidersListAtTenantScopeNextNextNextNextNextNextNextNextResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -125,6 +153,768 @@ export class ProvidersImpl implements Providers {
     options?: ProvidersListAtTenantScopeOptionalParams
   ): AsyncIterableIterator<Provider> {
     for await (const page of this.listAtTenantScopePagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListNext
+   * @param nextLink The nextLink from the previous successful call to the List method.
+   * @param options The options parameters.
+   */
+  public listNext(
+    nextLink: string,
+    options?: ProvidersListNextOptionalParams
+  ): PagedAsyncIterableIterator<Provider> {
+    const iter = this.listNextPagingAll(nextLink, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listNextPagingPage(nextLink, options);
+      }
+    };
+  }
+
+  private async *listNextPagingPage(
+    nextLink: string,
+    options?: ProvidersListNextOptionalParams
+  ): AsyncIterableIterator<Provider[]> {
+    let result = await this._listNext(nextLink, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNextNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listNextPagingAll(
+    nextLink: string,
+    options?: ProvidersListNextOptionalParams
+  ): AsyncIterableIterator<Provider> {
+    for await (const page of this.listNextPagingPage(nextLink, options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListAtTenantScopeNext
+   * @param nextLink The nextLink from the previous successful call to the ListAtTenantScope method.
+   * @param options The options parameters.
+   */
+  public listAtTenantScopeNext(
+    nextLink: string,
+    options?: ProvidersListAtTenantScopeNextOptionalParams
+  ): PagedAsyncIterableIterator<Provider> {
+    const iter = this.listAtTenantScopeNextPagingAll(nextLink, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listAtTenantScopeNextPagingPage(nextLink, options);
+      }
+    };
+  }
+
+  private async *listAtTenantScopeNextPagingPage(
+    nextLink: string,
+    options?: ProvidersListAtTenantScopeNextOptionalParams
+  ): AsyncIterableIterator<Provider[]> {
+    let result = await this._listAtTenantScopeNext(nextLink, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listAtTenantScopeNextNext(
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listAtTenantScopeNextPagingAll(
+    nextLink: string,
+    options?: ProvidersListAtTenantScopeNextOptionalParams
+  ): AsyncIterableIterator<Provider> {
+    for await (const page of this.listAtTenantScopeNextPagingPage(
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNext method.
+   * @param options The options parameters.
+   */
+  public listNextNext(
+    nextLink: string,
+    options?: ProvidersListNextNextOptionalParams
+  ): PagedAsyncIterableIterator<Provider> {
+    const iter = this.listNextNextPagingAll(nextLink, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listNextNextPagingPage(nextLink, options);
+      }
+    };
+  }
+
+  private async *listNextNextPagingPage(
+    nextLink: string,
+    options?: ProvidersListNextNextOptionalParams
+  ): AsyncIterableIterator<Provider[]> {
+    let result = await this._listNextNext(nextLink, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNextNextNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listNextNextPagingAll(
+    nextLink: string,
+    options?: ProvidersListNextNextOptionalParams
+  ): AsyncIterableIterator<Provider> {
+    for await (const page of this.listNextNextPagingPage(nextLink, options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListAtTenantScopeNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListAtTenantScopeNext method.
+   * @param options The options parameters.
+   */
+  public listAtTenantScopeNextNext(
+    nextLink: string,
+    options?: ProvidersListAtTenantScopeNextNextOptionalParams
+  ): PagedAsyncIterableIterator<Provider> {
+    const iter = this.listAtTenantScopeNextNextPagingAll(nextLink, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listAtTenantScopeNextNextPagingPage(nextLink, options);
+      }
+    };
+  }
+
+  private async *listAtTenantScopeNextNextPagingPage(
+    nextLink: string,
+    options?: ProvidersListAtTenantScopeNextNextOptionalParams
+  ): AsyncIterableIterator<Provider[]> {
+    let result = await this._listAtTenantScopeNextNext(nextLink, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listAtTenantScopeNextNextNext(
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listAtTenantScopeNextNextPagingAll(
+    nextLink: string,
+    options?: ProvidersListAtTenantScopeNextNextOptionalParams
+  ): AsyncIterableIterator<Provider> {
+    for await (const page of this.listAtTenantScopeNextNextPagingPage(
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNext method.
+   * @param options The options parameters.
+   */
+  public listNextNextNext(
+    nextLink: string,
+    options?: ProvidersListNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<Provider> {
+    const iter = this.listNextNextNextPagingAll(nextLink, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listNextNextNextPagingPage(nextLink, options);
+      }
+    };
+  }
+
+  private async *listNextNextNextPagingPage(
+    nextLink: string,
+    options?: ProvidersListNextNextNextOptionalParams
+  ): AsyncIterableIterator<Provider[]> {
+    let result = await this._listNextNextNext(nextLink, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNextNextNextNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listNextNextNextPagingAll(
+    nextLink: string,
+    options?: ProvidersListNextNextNextOptionalParams
+  ): AsyncIterableIterator<Provider> {
+    for await (const page of this.listNextNextNextPagingPage(
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListAtTenantScopeNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListAtTenantScopeNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  public listAtTenantScopeNextNextNext(
+    nextLink: string,
+    options?: ProvidersListAtTenantScopeNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<Provider> {
+    const iter = this.listAtTenantScopeNextNextNextPagingAll(nextLink, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listAtTenantScopeNextNextNextPagingPage(nextLink, options);
+      }
+    };
+  }
+
+  private async *listAtTenantScopeNextNextNextPagingPage(
+    nextLink: string,
+    options?: ProvidersListAtTenantScopeNextNextNextOptionalParams
+  ): AsyncIterableIterator<Provider[]> {
+    let result = await this._listAtTenantScopeNextNextNext(nextLink, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listAtTenantScopeNextNextNextNext(
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listAtTenantScopeNextNextNextPagingAll(
+    nextLink: string,
+    options?: ProvidersListAtTenantScopeNextNextNextOptionalParams
+  ): AsyncIterableIterator<Provider> {
+    for await (const page of this.listAtTenantScopeNextNextNextPagingPage(
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNext method.
+   * @param options The options parameters.
+   */
+  public listNextNextNextNext(
+    nextLink: string,
+    options?: ProvidersListNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<Provider> {
+    const iter = this.listNextNextNextNextPagingAll(nextLink, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listNextNextNextNextPagingPage(nextLink, options);
+      }
+    };
+  }
+
+  private async *listNextNextNextNextPagingPage(
+    nextLink: string,
+    options?: ProvidersListNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<Provider[]> {
+    let result = await this._listNextNextNextNext(nextLink, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNextNextNextNextNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listNextNextNextNextPagingAll(
+    nextLink: string,
+    options?: ProvidersListNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<Provider> {
+    for await (const page of this.listNextNextNextNextPagingPage(
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListAtTenantScopeNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListAtTenantScopeNextNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  public listAtTenantScopeNextNextNextNext(
+    nextLink: string,
+    options?: ProvidersListAtTenantScopeNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<Provider> {
+    const iter = this.listAtTenantScopeNextNextNextNextPagingAll(
+      nextLink,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listAtTenantScopeNextNextNextNextPagingPage(
+          nextLink,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listAtTenantScopeNextNextNextNextPagingPage(
+    nextLink: string,
+    options?: ProvidersListAtTenantScopeNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<Provider[]> {
+    let result = await this._listAtTenantScopeNextNextNextNext(
+      nextLink,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listAtTenantScopeNextNextNextNextNext(
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listAtTenantScopeNextNextNextNextPagingAll(
+    nextLink: string,
+    options?: ProvidersListAtTenantScopeNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<Provider> {
+    for await (const page of this.listAtTenantScopeNextNextNextNextPagingPage(
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  public listNextNextNextNextNext(
+    nextLink: string,
+    options?: ProvidersListNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<Provider> {
+    const iter = this.listNextNextNextNextNextPagingAll(nextLink, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listNextNextNextNextNextPagingPage(nextLink, options);
+      }
+    };
+  }
+
+  private async *listNextNextNextNextNextPagingPage(
+    nextLink: string,
+    options?: ProvidersListNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<Provider[]> {
+    let result = await this._listNextNextNextNextNext(nextLink, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNextNextNextNextNextNext(
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listNextNextNextNextNextPagingAll(
+    nextLink: string,
+    options?: ProvidersListNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<Provider> {
+    for await (const page of this.listNextNextNextNextNextPagingPage(
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListAtTenantScopeNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListAtTenantScopeNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  public listAtTenantScopeNextNextNextNextNext(
+    nextLink: string,
+    options?: ProvidersListAtTenantScopeNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<Provider> {
+    const iter = this.listAtTenantScopeNextNextNextNextNextPagingAll(
+      nextLink,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listAtTenantScopeNextNextNextNextNextPagingPage(
+          nextLink,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listAtTenantScopeNextNextNextNextNextPagingPage(
+    nextLink: string,
+    options?: ProvidersListAtTenantScopeNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<Provider[]> {
+    let result = await this._listAtTenantScopeNextNextNextNextNext(
+      nextLink,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listAtTenantScopeNextNextNextNextNextNext(
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listAtTenantScopeNextNextNextNextNextPagingAll(
+    nextLink: string,
+    options?: ProvidersListAtTenantScopeNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<Provider> {
+    for await (const page of this.listAtTenantScopeNextNextNextNextNextPagingPage(
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  public listNextNextNextNextNextNext(
+    nextLink: string,
+    options?: ProvidersListNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<Provider> {
+    const iter = this.listNextNextNextNextNextNextPagingAll(nextLink, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listNextNextNextNextNextNextPagingPage(nextLink, options);
+      }
+    };
+  }
+
+  private async *listNextNextNextNextNextNextPagingPage(
+    nextLink: string,
+    options?: ProvidersListNextNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<Provider[]> {
+    let result = await this._listNextNextNextNextNextNext(nextLink, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNextNextNextNextNextNextNext(
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listNextNextNextNextNextNextPagingAll(
+    nextLink: string,
+    options?: ProvidersListNextNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<Provider> {
+    for await (const page of this.listNextNextNextNextNextNextPagingPage(
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListAtTenantScopeNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListAtTenantScopeNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  public listAtTenantScopeNextNextNextNextNextNext(
+    nextLink: string,
+    options?: ProvidersListAtTenantScopeNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<Provider> {
+    const iter = this.listAtTenantScopeNextNextNextNextNextNextPagingAll(
+      nextLink,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listAtTenantScopeNextNextNextNextNextNextPagingPage(
+          nextLink,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listAtTenantScopeNextNextNextNextNextNextPagingPage(
+    nextLink: string,
+    options?: ProvidersListAtTenantScopeNextNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<Provider[]> {
+    let result = await this._listAtTenantScopeNextNextNextNextNextNext(
+      nextLink,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listAtTenantScopeNextNextNextNextNextNextNext(
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listAtTenantScopeNextNextNextNextNextNextPagingAll(
+    nextLink: string,
+    options?: ProvidersListAtTenantScopeNextNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<Provider> {
+    for await (const page of this.listAtTenantScopeNextNextNextNextNextNextPagingPage(
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListNextNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNextNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  public listNextNextNextNextNextNextNext(
+    nextLink: string,
+    options?: ProvidersListNextNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<Provider> {
+    const iter = this.listNextNextNextNextNextNextNextPagingAll(
+      nextLink,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listNextNextNextNextNextNextNextPagingPage(
+          nextLink,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listNextNextNextNextNextNextNextPagingPage(
+    nextLink: string,
+    options?: ProvidersListNextNextNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<Provider[]> {
+    let result = await this._listNextNextNextNextNextNextNext(
+      nextLink,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNextNextNextNextNextNextNextNext(
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listNextNextNextNextNextNextNextPagingAll(
+    nextLink: string,
+    options?: ProvidersListNextNextNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<Provider> {
+    for await (const page of this.listNextNextNextNextNextNextNextPagingPage(
+      nextLink,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * ListAtTenantScopeNextNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListAtTenantScopeNextNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  public listAtTenantScopeNextNextNextNextNextNextNext(
+    nextLink: string,
+    options?: ProvidersListAtTenantScopeNextNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<Provider> {
+    const iter = this.listAtTenantScopeNextNextNextNextNextNextNextPagingAll(
+      nextLink,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listAtTenantScopeNextNextNextNextNextNextNextPagingPage(
+          nextLink,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listAtTenantScopeNextNextNextNextNextNextNextPagingPage(
+    nextLink: string,
+    options?: ProvidersListAtTenantScopeNextNextNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<Provider[]> {
+    let result = await this._listAtTenantScopeNextNextNextNextNextNextNext(
+      nextLink,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listAtTenantScopeNextNextNextNextNextNextNextNext(
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listAtTenantScopeNextNextNextNextNextNextNextPagingAll(
+    nextLink: string,
+    options?: ProvidersListAtTenantScopeNextNextNextNextNextNextNextOptionalParams
+  ): AsyncIterableIterator<Provider> {
+    for await (const page of this.listAtTenantScopeNextNextNextNextNextNextNextPagingPage(
+      nextLink,
+      options
+    )) {
       yield* page;
     }
   }
@@ -239,6 +1029,227 @@ export class ProvidersImpl implements Providers {
     return this.client.sendOperationRequest(
       { nextLink, options },
       listAtTenantScopeNextOperationSpec
+    );
+  }
+
+  /**
+   * ListNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNext method.
+   * @param options The options parameters.
+   */
+  private _listNextNext(
+    nextLink: string,
+    options?: ProvidersListNextNextOptionalParams
+  ): Promise<ProvidersListNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      listNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListAtTenantScopeNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListAtTenantScopeNext method.
+   * @param options The options parameters.
+   */
+  private _listAtTenantScopeNextNext(
+    nextLink: string,
+    options?: ProvidersListAtTenantScopeNextNextOptionalParams
+  ): Promise<ProvidersListAtTenantScopeNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      listAtTenantScopeNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNext method.
+   * @param options The options parameters.
+   */
+  private _listNextNextNext(
+    nextLink: string,
+    options?: ProvidersListNextNextNextOptionalParams
+  ): Promise<ProvidersListNextNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      listNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListAtTenantScopeNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListAtTenantScopeNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  private _listAtTenantScopeNextNextNext(
+    nextLink: string,
+    options?: ProvidersListAtTenantScopeNextNextNextOptionalParams
+  ): Promise<ProvidersListAtTenantScopeNextNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      listAtTenantScopeNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNext method.
+   * @param options The options parameters.
+   */
+  private _listNextNextNextNext(
+    nextLink: string,
+    options?: ProvidersListNextNextNextNextOptionalParams
+  ): Promise<ProvidersListNextNextNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      listNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListAtTenantScopeNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListAtTenantScopeNextNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  private _listAtTenantScopeNextNextNextNext(
+    nextLink: string,
+    options?: ProvidersListAtTenantScopeNextNextNextNextOptionalParams
+  ): Promise<ProvidersListAtTenantScopeNextNextNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      listAtTenantScopeNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  private _listNextNextNextNextNext(
+    nextLink: string,
+    options?: ProvidersListNextNextNextNextNextOptionalParams
+  ): Promise<ProvidersListNextNextNextNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      listNextNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListAtTenantScopeNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListAtTenantScopeNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  private _listAtTenantScopeNextNextNextNextNext(
+    nextLink: string,
+    options?: ProvidersListAtTenantScopeNextNextNextNextNextOptionalParams
+  ): Promise<ProvidersListAtTenantScopeNextNextNextNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      listAtTenantScopeNextNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  private _listNextNextNextNextNextNext(
+    nextLink: string,
+    options?: ProvidersListNextNextNextNextNextNextOptionalParams
+  ): Promise<ProvidersListNextNextNextNextNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      listNextNextNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListAtTenantScopeNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListAtTenantScopeNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  private _listAtTenantScopeNextNextNextNextNextNext(
+    nextLink: string,
+    options?: ProvidersListAtTenantScopeNextNextNextNextNextNextOptionalParams
+  ): Promise<ProvidersListAtTenantScopeNextNextNextNextNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      listAtTenantScopeNextNextNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListNextNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNextNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  private _listNextNextNextNextNextNextNext(
+    nextLink: string,
+    options?: ProvidersListNextNextNextNextNextNextNextOptionalParams
+  ): Promise<ProvidersListNextNextNextNextNextNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      listNextNextNextNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListAtTenantScopeNextNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListAtTenantScopeNextNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  private _listAtTenantScopeNextNextNextNextNextNextNext(
+    nextLink: string,
+    options?: ProvidersListAtTenantScopeNextNextNextNextNextNextNextOptionalParams
+  ): Promise<ProvidersListAtTenantScopeNextNextNextNextNextNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      listAtTenantScopeNextNextNextNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListNextNextNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListNextNextNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  private _listNextNextNextNextNextNextNextNext(
+    nextLink: string,
+    options?: ProvidersListNextNextNextNextNextNextNextNextOptionalParams
+  ): Promise<ProvidersListNextNextNextNextNextNextNextNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      listNextNextNextNextNextNextNextNextOperationSpec
+    );
+  }
+
+  /**
+   * ListAtTenantScopeNextNextNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListAtTenantScopeNextNextNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  private _listAtTenantScopeNextNextNextNextNextNextNextNext(
+    nextLink: string,
+    options?: ProvidersListAtTenantScopeNextNextNextNextNextNextNextNextOptionalParams
+  ): Promise<
+    ProvidersListAtTenantScopeNextNextNextNextNextNextNextNextResponse
+  > {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      listAtTenantScopeNextNextNextNextNextNextNextNextOperationSpec
     );
   }
 }
@@ -376,6 +1387,258 @@ const listNextOperationSpec: coreClient.OperationSpec = {
   serializer
 };
 const listAtTenantScopeNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProviderListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.top, Parameters.expand],
+  urlParameters: [Parameters.$host, Parameters.nextLink],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProviderListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.top, Parameters.expand],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.nextLink,
+    Parameters.subscriptionId
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listAtTenantScopeNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProviderListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.top, Parameters.expand],
+  urlParameters: [Parameters.$host, Parameters.nextLink],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProviderListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.top, Parameters.expand],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.nextLink,
+    Parameters.subscriptionId
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listAtTenantScopeNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProviderListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.top, Parameters.expand],
+  urlParameters: [Parameters.$host, Parameters.nextLink],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProviderListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.top, Parameters.expand],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.nextLink,
+    Parameters.subscriptionId
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listAtTenantScopeNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProviderListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.top, Parameters.expand],
+  urlParameters: [Parameters.$host, Parameters.nextLink],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProviderListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.top, Parameters.expand],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.nextLink,
+    Parameters.subscriptionId
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listAtTenantScopeNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProviderListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.top, Parameters.expand],
+  urlParameters: [Parameters.$host, Parameters.nextLink],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listNextNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProviderListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.top, Parameters.expand],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.nextLink,
+    Parameters.subscriptionId
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listAtTenantScopeNextNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProviderListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.top, Parameters.expand],
+  urlParameters: [Parameters.$host, Parameters.nextLink],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listNextNextNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProviderListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.top, Parameters.expand],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.nextLink,
+    Parameters.subscriptionId
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listAtTenantScopeNextNextNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProviderListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.top, Parameters.expand],
+  urlParameters: [Parameters.$host, Parameters.nextLink],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listNextNextNextNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProviderListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.top, Parameters.expand],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.nextLink,
+    Parameters.subscriptionId
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listAtTenantScopeNextNextNextNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

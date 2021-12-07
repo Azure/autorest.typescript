@@ -9,7 +9,14 @@
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import {
   Operation,
-  AuthorizationOperationsListOptionalParams
+  AuthorizationOperationsListNextOptionalParams,
+  AuthorizationOperationsListOptionalParams,
+  AuthorizationOperationsListNextNextOptionalParams,
+  AuthorizationOperationsListNextNextNextOptionalParams,
+  AuthorizationOperationsListNextNextNextNextOptionalParams,
+  AuthorizationOperationsListNextNextNextNextNextOptionalParams,
+  AuthorizationOperationsListNextNextNextNextNextNextOptionalParams,
+  AuthorizationOperationsListNextNextNextNextNextNextNextOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -21,5 +28,70 @@ export interface AuthorizationOperations {
    */
   list(
     options?: AuthorizationOperationsListOptionalParams
+  ): PagedAsyncIterableIterator<Operation>;
+  /**
+   * ListNext
+   * @param nextLink The nextLink from the previous successful call to the List method.
+   * @param options The options parameters.
+   */
+  listNext(
+    nextLink: string,
+    options?: AuthorizationOperationsListNextOptionalParams
+  ): PagedAsyncIterableIterator<Operation>;
+  /**
+   * ListNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNext method.
+   * @param options The options parameters.
+   */
+  listNextNext(
+    nextLink: string,
+    options?: AuthorizationOperationsListNextNextOptionalParams
+  ): PagedAsyncIterableIterator<Operation>;
+  /**
+   * ListNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNext method.
+   * @param options The options parameters.
+   */
+  listNextNextNext(
+    nextLink: string,
+    options?: AuthorizationOperationsListNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<Operation>;
+  /**
+   * ListNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNext method.
+   * @param options The options parameters.
+   */
+  listNextNextNextNext(
+    nextLink: string,
+    options?: AuthorizationOperationsListNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<Operation>;
+  /**
+   * ListNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listNextNextNextNextNext(
+    nextLink: string,
+    options?: AuthorizationOperationsListNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<Operation>;
+  /**
+   * ListNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  listNextNextNextNextNextNext(
+    nextLink: string,
+    options?: AuthorizationOperationsListNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<Operation>;
+  /**
+   * ListNextNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNextNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  listNextNextNextNextNextNextNext(
+    nextLink: string,
+    options?: AuthorizationOperationsListNextNextNextNextNextNextNextOptionalParams
   ): PagedAsyncIterableIterator<Operation>;
 }

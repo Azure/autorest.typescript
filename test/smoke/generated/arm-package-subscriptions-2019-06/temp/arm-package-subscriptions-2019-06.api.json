@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.18.19",
+    "toolVersion": "7.18.21",
     "schemaVersion": 1004,
     "oldestForwardsCompatibleVersion": 1001,
     "tsdocConfig": {
@@ -169,6 +169,356 @@
       "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!",
       "name": "",
       "members": [
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!CheckResourceNameOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface CheckResourceNameOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "CheckResourceNameOptionalParams",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!CheckResourceNameOptionalParams#resourceNameDefinition:member",
+              "docComment": "/**\n * Resource object with values for resource name and resource type\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "resourceNameDefinition?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ResourceName",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!ResourceName:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "resourceNameDefinition",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!CheckResourceNameResponse:type",
+          "docComment": "/**\n * Contains response data for the checkResourceName operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type CheckResourceNameResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "CheckResourceNameResult",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!CheckResourceNameResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "CheckResourceNameResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!CheckResourceNameResult:interface",
+          "docComment": "/**\n * Resource Name valid if not a reserved word, does not contain a reserved word and does not start with a reserved word\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface CheckResourceNameResult "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "CheckResourceNameResult",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!CheckResourceNameResult#name:member",
+              "docComment": "/**\n * Name of Resource\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "name?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "name",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!CheckResourceNameResult#status:member",
+              "docComment": "/**\n * Is the resource name Allowed or Reserved\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "status?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ResourceNameStatus",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!ResourceNameStatus:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "status",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!CheckResourceNameResult#type:member",
+              "docComment": "/**\n * Type of Resource\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "type?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "type",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!ErrorDefinition:interface",
+          "docComment": "/**\n * Error description and code explaining why resource name is invalid.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ErrorDefinition "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ErrorDefinition",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!ErrorDefinition#code:member",
+              "docComment": "/**\n * Code of the error.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "code?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "code",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!ErrorDefinition#message:member",
+              "docComment": "/**\n * Description of the error.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "message?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "message",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!ErrorResponse:interface",
+          "docComment": "/**\n * Error response.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ErrorResponse "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ErrorResponse",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!ErrorResponse#error:member",
+              "docComment": "/**\n * The error details.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "error?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ErrorDefinition",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!ErrorDefinition:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "error",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!KnownResourceNameStatus:enum",
+          "docComment": "/**\n * Known values of {@link ResourceNameStatus} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare enum KnownResourceNameStatus "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownResourceNameStatus",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!KnownResourceNameStatus.Allowed:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Allowed = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Allowed\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Allowed",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!KnownResourceNameStatus.Reserved:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Reserved = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"Reserved\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Reserved",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
         {
           "kind": "Interface",
           "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Location_2:interface",
@@ -763,9 +1113,940 @@
                 }
               ],
               "name": "list"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Operations#listNext:member(1)",
+              "docComment": "/**\n * ListNext\n *\n * @param nextLink - The nextLink from the previous successful call to the List method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "OperationsListNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationsListNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Operation",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Operation:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Operations#listNextNext:member(1)",
+              "docComment": "/**\n * ListNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "OperationsListNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationsListNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Operation",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Operation:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Operations#listNextNextNext:member(1)",
+              "docComment": "/**\n * ListNextNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listNextNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "OperationsListNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationsListNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Operation",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Operation:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Operations#listNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListNextNextNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listNextNextNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "OperationsListNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationsListNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Operation",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Operation:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listNextNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Operations#listNextNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListNextNextNextNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListNextNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listNextNextNextNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "OperationsListNextNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationsListNextNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Operation",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Operation:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listNextNextNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Operations#listNextNextNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListNextNextNextNextNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListNextNextNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listNextNextNextNextNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "OperationsListNextNextNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationsListNextNextNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Operation",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Operation:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listNextNextNextNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Operations#listNextNextNextNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListNextNextNextNextNextNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListNextNextNextNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listNextNextNextNextNextNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "OperationsListNextNextNextNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationsListNextNextNextNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Operation",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Operation:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listNextNextNextNextNextNextNext"
             }
           ],
           "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationsListNextNextNextNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface OperationsListNextNextNextNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "OperationsListNextNextNextNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationsListNextNextNextNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listNextNextNextNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type OperationsListNextNextNextNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationListResult",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "OperationsListNextNextNextNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationsListNextNextNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface OperationsListNextNextNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "OperationsListNextNextNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationsListNextNextNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listNextNextNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type OperationsListNextNextNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationListResult",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "OperationsListNextNextNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationsListNextNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface OperationsListNextNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "OperationsListNextNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationsListNextNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listNextNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type OperationsListNextNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationListResult",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "OperationsListNextNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationsListNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface OperationsListNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "OperationsListNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationsListNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type OperationsListNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationListResult",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "OperationsListNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationsListNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface OperationsListNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "OperationsListNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationsListNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type OperationsListNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationListResult",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "OperationsListNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationsListNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface OperationsListNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "OperationsListNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationsListNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type OperationsListNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationListResult",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "OperationsListNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationsListNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface OperationsListNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "OperationsListNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationsListNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type OperationsListNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationListResult",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "OperationsListNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
         },
         {
           "kind": "Interface",
@@ -880,6 +2161,99 @@
           ],
           "releaseTag": "Public",
           "name": "OperationsListResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!ResourceName:interface",
+          "docComment": "/**\n * Name and Type of the Resource\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ResourceName "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ResourceName",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!ResourceName#name:member",
+              "docComment": "/**\n * Name of the resource\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "name: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "name",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!ResourceName#type:member",
+              "docComment": "/**\n * The type of the resource\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "type: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "type",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!ResourceNameStatus:type",
+          "docComment": "/**\n * Defines values for ResourceNameStatus. \\ {@link KnownResourceNameStatus} can be used interchangeably with ResourceNameStatus, this enum contains the known values that the service supports. ### Known values supported by the service **Allowed** \\ **Reserved**\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ResourceNameStatus = "
+            },
+            {
+              "kind": "Content",
+              "text": "string"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ResourceNameStatus",
           "typeTokenRange": {
             "startIndex": 1,
             "endIndex": 2
@@ -1271,6 +2645,66 @@
                 "endIndex": 2
               },
               "isStatic": false
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionClient#checkResourceName:member(1)",
+              "docComment": "/**\n * A resource name is valid if it is not a reserved word, does not contains a reserved word and does not start with a reserved word\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "checkResourceName(options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "CheckResourceNameOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!CheckResourceNameOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "CheckResourceNameResponse",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!CheckResourceNameResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 7
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                }
+              ],
+              "name": "checkResourceName"
             },
             {
               "kind": "Property",
@@ -1862,6 +3296,524 @@
                 }
               ],
               "name": "listLocations"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Subscriptions#listNext:member(1)",
+              "docComment": "/**\n * ListNext\n *\n * @param nextLink - The nextLink from the previous successful call to the List method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "SubscriptionsListNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionsListNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Subscription",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Subscription:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Subscriptions#listNextNext:member(1)",
+              "docComment": "/**\n * ListNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "SubscriptionsListNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionsListNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Subscription",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Subscription:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Subscriptions#listNextNextNext:member(1)",
+              "docComment": "/**\n * ListNextNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listNextNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "SubscriptionsListNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionsListNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Subscription",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Subscription:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Subscriptions#listNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListNextNextNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listNextNextNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "SubscriptionsListNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionsListNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Subscription",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Subscription:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listNextNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Subscriptions#listNextNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListNextNextNextNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListNextNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listNextNextNextNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "SubscriptionsListNextNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionsListNextNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Subscription",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Subscription:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listNextNextNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Subscriptions#listNextNextNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListNextNextNextNextNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListNextNextNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listNextNextNextNextNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "SubscriptionsListNextNextNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionsListNextNextNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Subscription",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Subscription:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listNextNextNextNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Subscriptions#listNextNextNextNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListNextNextNextNextNextNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListNextNextNextNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listNextNextNextNextNextNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "SubscriptionsListNextNextNextNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionsListNextNextNextNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Subscription",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Subscription:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listNextNextNextNextNextNextNext"
             }
           ],
           "extendsTokenRanges": []
@@ -1979,6 +3931,419 @@
           ],
           "releaseTag": "Public",
           "name": "SubscriptionsListLocationsResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionsListNextNextNextNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface SubscriptionsListNextNextNextNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "SubscriptionsListNextNextNextNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionsListNextNextNextNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listNextNextNextNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type SubscriptionsListNextNextNextNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "SubscriptionListResult",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "SubscriptionsListNextNextNextNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionsListNextNextNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface SubscriptionsListNextNextNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "SubscriptionsListNextNextNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionsListNextNextNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listNextNextNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type SubscriptionsListNextNextNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "SubscriptionListResult",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "SubscriptionsListNextNextNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionsListNextNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface SubscriptionsListNextNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "SubscriptionsListNextNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionsListNextNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listNextNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type SubscriptionsListNextNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "SubscriptionListResult",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "SubscriptionsListNextNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionsListNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface SubscriptionsListNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "SubscriptionsListNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionsListNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type SubscriptionsListNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "SubscriptionListResult",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "SubscriptionsListNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionsListNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface SubscriptionsListNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "SubscriptionsListNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionsListNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type SubscriptionsListNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "SubscriptionListResult",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "SubscriptionsListNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionsListNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface SubscriptionsListNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "SubscriptionsListNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionsListNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type SubscriptionsListNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "SubscriptionListResult",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "SubscriptionsListNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionsListNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface SubscriptionsListNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "SubscriptionsListNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionsListNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type SubscriptionsListNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "SubscriptionListResult",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "SubscriptionsListNextNextResponse",
           "typeTokenRange": {
             "startIndex": 1,
             "endIndex": 2
@@ -2495,9 +4860,940 @@
                 }
               ],
               "name": "list"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Tenants#listNext:member(1)",
+              "docComment": "/**\n * ListNext\n *\n * @param nextLink - The nextLink from the previous successful call to the List method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "TenantsListNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantsListNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "TenantIdDescription",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantIdDescription:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Tenants#listNextNext:member(1)",
+              "docComment": "/**\n * ListNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "TenantsListNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantsListNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "TenantIdDescription",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantIdDescription:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Tenants#listNextNextNext:member(1)",
+              "docComment": "/**\n * ListNextNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listNextNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "TenantsListNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantsListNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "TenantIdDescription",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantIdDescription:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Tenants#listNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListNextNextNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listNextNextNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "TenantsListNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantsListNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "TenantIdDescription",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantIdDescription:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listNextNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Tenants#listNextNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListNextNextNextNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListNextNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listNextNextNextNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "TenantsListNextNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantsListNextNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "TenantIdDescription",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantIdDescription:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listNextNextNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Tenants#listNextNextNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListNextNextNextNextNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListNextNextNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listNextNextNextNextNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "TenantsListNextNextNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantsListNextNextNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "TenantIdDescription",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantIdDescription:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listNextNextNextNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Tenants#listNextNextNextNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListNextNextNextNextNextNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListNextNextNextNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listNextNextNextNextNextNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "TenantsListNextNextNextNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantsListNextNextNextNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "TenantIdDescription",
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantIdDescription:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listNextNextNextNextNextNextNext"
             }
           ],
           "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantsListNextNextNextNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface TenantsListNextNextNextNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "TenantsListNextNextNextNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantsListNextNextNextNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listNextNextNextNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type TenantsListNextNextNextNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "TenantListResult",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "TenantsListNextNextNextNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantsListNextNextNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface TenantsListNextNextNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "TenantsListNextNextNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantsListNextNextNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listNextNextNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type TenantsListNextNextNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "TenantListResult",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "TenantsListNextNextNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantsListNextNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface TenantsListNextNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "TenantsListNextNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantsListNextNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listNextNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type TenantsListNextNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "TenantListResult",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "TenantsListNextNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantsListNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface TenantsListNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "TenantsListNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantsListNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type TenantsListNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "TenantListResult",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "TenantsListNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantsListNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface TenantsListNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "TenantsListNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantsListNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type TenantsListNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "TenantListResult",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "TenantsListNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantsListNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface TenantsListNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "TenantsListNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantsListNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type TenantsListNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "TenantListResult",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "TenantsListNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantsListNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface TenantsListNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "TenantsListNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantsListNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type TenantsListNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "TenantListResult",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "TenantsListNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
         },
         {
           "kind": "Interface",

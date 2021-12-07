@@ -9,10 +9,38 @@
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import {
   ManagementLockObject,
+  ManagementLocksListAtResourceGroupLevelNextOptionalParams,
   ManagementLocksListAtResourceGroupLevelOptionalParams,
+  ManagementLocksListAtResourceLevelNextOptionalParams,
   ManagementLocksListAtResourceLevelOptionalParams,
+  ManagementLocksListAtSubscriptionLevelNextOptionalParams,
   ManagementLocksListAtSubscriptionLevelOptionalParams,
+  ManagementLocksListByScopeNextOptionalParams,
   ManagementLocksListByScopeOptionalParams,
+  ManagementLocksListAtResourceGroupLevelNextNextOptionalParams,
+  ManagementLocksListAtResourceLevelNextNextOptionalParams,
+  ManagementLocksListAtSubscriptionLevelNextNextOptionalParams,
+  ManagementLocksListByScopeNextNextOptionalParams,
+  ManagementLocksListAtResourceGroupLevelNextNextNextOptionalParams,
+  ManagementLocksListAtResourceLevelNextNextNextOptionalParams,
+  ManagementLocksListAtSubscriptionLevelNextNextNextOptionalParams,
+  ManagementLocksListByScopeNextNextNextOptionalParams,
+  ManagementLocksListAtResourceGroupLevelNextNextNextNextOptionalParams,
+  ManagementLocksListAtResourceLevelNextNextNextNextOptionalParams,
+  ManagementLocksListAtSubscriptionLevelNextNextNextNextOptionalParams,
+  ManagementLocksListByScopeNextNextNextNextOptionalParams,
+  ManagementLocksListAtResourceGroupLevelNextNextNextNextNextOptionalParams,
+  ManagementLocksListAtResourceLevelNextNextNextNextNextOptionalParams,
+  ManagementLocksListAtSubscriptionLevelNextNextNextNextNextOptionalParams,
+  ManagementLocksListByScopeNextNextNextNextNextOptionalParams,
+  ManagementLocksListAtResourceGroupLevelNextNextNextNextNextNextOptionalParams,
+  ManagementLocksListAtResourceLevelNextNextNextNextNextNextOptionalParams,
+  ManagementLocksListAtSubscriptionLevelNextNextNextNextNextNextOptionalParams,
+  ManagementLocksListByScopeNextNextNextNextNextNextOptionalParams,
+  ManagementLocksListAtResourceGroupLevelNextNextNextNextNextNextNextOptionalParams,
+  ManagementLocksListAtResourceLevelNextNextNextNextNextNextNextOptionalParams,
+  ManagementLocksListAtSubscriptionLevelNextNextNextNextNextNextNextOptionalParams,
+  ManagementLocksListByScopeNextNextNextNextNextNextNextOptionalParams,
   ManagementLocksCreateOrUpdateAtResourceGroupLevelOptionalParams,
   ManagementLocksCreateOrUpdateAtResourceGroupLevelResponse,
   ManagementLocksDeleteAtResourceGroupLevelOptionalParams,
@@ -84,6 +112,415 @@ export interface ManagementLocks {
   listByScope(
     scope: string,
     options?: ManagementLocksListByScopeOptionalParams
+  ): PagedAsyncIterableIterator<ManagementLockObject>;
+  /**
+   * ListAtResourceGroupLevelNext
+   * @param resourceGroupName The name of the resource group containing the locks to get.
+   * @param nextLink The nextLink from the previous successful call to the ListAtResourceGroupLevel
+   *                 method.
+   * @param options The options parameters.
+   */
+  listAtResourceGroupLevelNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: ManagementLocksListAtResourceGroupLevelNextOptionalParams
+  ): PagedAsyncIterableIterator<ManagementLockObject>;
+  /**
+   * ListAtResourceLevelNext
+   * @param resourceGroupName The name of the resource group containing the locked resource. The name is
+   *                          case insensitive.
+   * @param resourceProviderNamespace The namespace of the resource provider.
+   * @param parentResourcePath The parent resource identity.
+   * @param resourceType The resource type of the locked resource.
+   * @param resourceName The name of the locked resource.
+   * @param nextLink The nextLink from the previous successful call to the ListAtResourceLevel method.
+   * @param options The options parameters.
+   */
+  listAtResourceLevelNext(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    nextLink: string,
+    options?: ManagementLocksListAtResourceLevelNextOptionalParams
+  ): PagedAsyncIterableIterator<ManagementLockObject>;
+  /**
+   * ListAtSubscriptionLevelNext
+   * @param nextLink The nextLink from the previous successful call to the ListAtSubscriptionLevel
+   *                 method.
+   * @param options The options parameters.
+   */
+  listAtSubscriptionLevelNext(
+    nextLink: string,
+    options?: ManagementLocksListAtSubscriptionLevelNextOptionalParams
+  ): PagedAsyncIterableIterator<ManagementLockObject>;
+  /**
+   * ListByScopeNext
+   * @param scope The scope for the lock. When providing a scope for the assignment, use
+   *              '/subscriptions/{subscriptionId}' for subscriptions,
+   *              '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}' for resource groups, and
+   *              '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourcePathIfPresent}/{resourceType}/{resourceName}'
+   *              for resources.
+   * @param nextLink The nextLink from the previous successful call to the ListByScope method.
+   * @param options The options parameters.
+   */
+  listByScopeNext(
+    scope: string,
+    nextLink: string,
+    options?: ManagementLocksListByScopeNextOptionalParams
+  ): PagedAsyncIterableIterator<ManagementLockObject>;
+  /**
+   * ListAtResourceGroupLevelNextNext
+   * @param resourceGroupName The name of the resource group containing the locks to get.
+   * @param nextLink The nextLink from the previous successful call to the ListAtResourceGroupLevelNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  listAtResourceGroupLevelNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: ManagementLocksListAtResourceGroupLevelNextNextOptionalParams
+  ): PagedAsyncIterableIterator<ManagementLockObject>;
+  /**
+   * ListAtResourceLevelNextNext
+   * @param resourceGroupName The name of the resource group containing the locked resource. The name is
+   *                          case insensitive.
+   * @param resourceProviderNamespace The namespace of the resource provider.
+   * @param parentResourcePath The parent resource identity.
+   * @param resourceType The resource type of the locked resource.
+   * @param resourceName The name of the locked resource.
+   * @param nextLink The nextLink from the previous successful call to the ListAtResourceLevelNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  listAtResourceLevelNextNext(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    nextLink: string,
+    options?: ManagementLocksListAtResourceLevelNextNextOptionalParams
+  ): PagedAsyncIterableIterator<ManagementLockObject>;
+  /**
+   * ListAtSubscriptionLevelNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListAtSubscriptionLevelNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  listAtSubscriptionLevelNextNext(
+    nextLink: string,
+    options?: ManagementLocksListAtSubscriptionLevelNextNextOptionalParams
+  ): PagedAsyncIterableIterator<ManagementLockObject>;
+  /**
+   * ListByScopeNextNext
+   * @param scope The scope for the lock. When providing a scope for the assignment, use
+   *              '/subscriptions/{subscriptionId}' for subscriptions,
+   *              '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}' for resource groups, and
+   *              '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourcePathIfPresent}/{resourceType}/{resourceName}'
+   *              for resources.
+   * @param nextLink The nextLink from the previous successful call to the ListByScopeNext method.
+   * @param options The options parameters.
+   */
+  listByScopeNextNext(
+    scope: string,
+    nextLink: string,
+    options?: ManagementLocksListByScopeNextNextOptionalParams
+  ): PagedAsyncIterableIterator<ManagementLockObject>;
+  /**
+   * ListAtResourceGroupLevelNextNextNext
+   * @param resourceGroupName The name of the resource group containing the locks to get.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListAtResourceGroupLevelNextNext method.
+   * @param options The options parameters.
+   */
+  listAtResourceGroupLevelNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: ManagementLocksListAtResourceGroupLevelNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<ManagementLockObject>;
+  /**
+   * ListAtResourceLevelNextNextNext
+   * @param resourceGroupName The name of the resource group containing the locked resource. The name is
+   *                          case insensitive.
+   * @param resourceProviderNamespace The namespace of the resource provider.
+   * @param parentResourcePath The parent resource identity.
+   * @param resourceType The resource type of the locked resource.
+   * @param resourceName The name of the locked resource.
+   * @param nextLink The nextLink from the previous successful call to the ListAtResourceLevelNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  listAtResourceLevelNextNextNext(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    nextLink: string,
+    options?: ManagementLocksListAtResourceLevelNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<ManagementLockObject>;
+  /**
+   * ListAtSubscriptionLevelNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListAtSubscriptionLevelNextNext method.
+   * @param options The options parameters.
+   */
+  listAtSubscriptionLevelNextNextNext(
+    nextLink: string,
+    options?: ManagementLocksListAtSubscriptionLevelNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<ManagementLockObject>;
+  /**
+   * ListByScopeNextNextNext
+   * @param scope The scope for the lock. When providing a scope for the assignment, use
+   *              '/subscriptions/{subscriptionId}' for subscriptions,
+   *              '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}' for resource groups, and
+   *              '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourcePathIfPresent}/{resourceType}/{resourceName}'
+   *              for resources.
+   * @param nextLink The nextLink from the previous successful call to the ListByScopeNextNext method.
+   * @param options The options parameters.
+   */
+  listByScopeNextNextNext(
+    scope: string,
+    nextLink: string,
+    options?: ManagementLocksListByScopeNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<ManagementLockObject>;
+  /**
+   * ListAtResourceGroupLevelNextNextNextNext
+   * @param resourceGroupName The name of the resource group containing the locks to get.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListAtResourceGroupLevelNextNextNext method.
+   * @param options The options parameters.
+   */
+  listAtResourceGroupLevelNextNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: ManagementLocksListAtResourceGroupLevelNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<ManagementLockObject>;
+  /**
+   * ListAtResourceLevelNextNextNextNext
+   * @param resourceGroupName The name of the resource group containing the locked resource. The name is
+   *                          case insensitive.
+   * @param resourceProviderNamespace The namespace of the resource provider.
+   * @param parentResourcePath The parent resource identity.
+   * @param resourceType The resource type of the locked resource.
+   * @param resourceName The name of the locked resource.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListAtResourceLevelNextNextNext method.
+   * @param options The options parameters.
+   */
+  listAtResourceLevelNextNextNextNext(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    nextLink: string,
+    options?: ManagementLocksListAtResourceLevelNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<ManagementLockObject>;
+  /**
+   * ListAtSubscriptionLevelNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListAtSubscriptionLevelNextNextNext method.
+   * @param options The options parameters.
+   */
+  listAtSubscriptionLevelNextNextNextNext(
+    nextLink: string,
+    options?: ManagementLocksListAtSubscriptionLevelNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<ManagementLockObject>;
+  /**
+   * ListByScopeNextNextNextNext
+   * @param scope The scope for the lock. When providing a scope for the assignment, use
+   *              '/subscriptions/{subscriptionId}' for subscriptions,
+   *              '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}' for resource groups, and
+   *              '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourcePathIfPresent}/{resourceType}/{resourceName}'
+   *              for resources.
+   * @param nextLink The nextLink from the previous successful call to the ListByScopeNextNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  listByScopeNextNextNextNext(
+    scope: string,
+    nextLink: string,
+    options?: ManagementLocksListByScopeNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<ManagementLockObject>;
+  /**
+   * ListAtResourceGroupLevelNextNextNextNextNext
+   * @param resourceGroupName The name of the resource group containing the locks to get.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListAtResourceGroupLevelNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listAtResourceGroupLevelNextNextNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: ManagementLocksListAtResourceGroupLevelNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<ManagementLockObject>;
+  /**
+   * ListAtResourceLevelNextNextNextNextNext
+   * @param resourceGroupName The name of the resource group containing the locked resource. The name is
+   *                          case insensitive.
+   * @param resourceProviderNamespace The namespace of the resource provider.
+   * @param parentResourcePath The parent resource identity.
+   * @param resourceType The resource type of the locked resource.
+   * @param resourceName The name of the locked resource.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListAtResourceLevelNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listAtResourceLevelNextNextNextNextNext(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    nextLink: string,
+    options?: ManagementLocksListAtResourceLevelNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<ManagementLockObject>;
+  /**
+   * ListAtSubscriptionLevelNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListAtSubscriptionLevelNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listAtSubscriptionLevelNextNextNextNextNext(
+    nextLink: string,
+    options?: ManagementLocksListAtSubscriptionLevelNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<ManagementLockObject>;
+  /**
+   * ListByScopeNextNextNextNextNext
+   * @param scope The scope for the lock. When providing a scope for the assignment, use
+   *              '/subscriptions/{subscriptionId}' for subscriptions,
+   *              '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}' for resource groups, and
+   *              '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourcePathIfPresent}/{resourceType}/{resourceName}'
+   *              for resources.
+   * @param nextLink The nextLink from the previous successful call to the ListByScopeNextNextNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  listByScopeNextNextNextNextNext(
+    scope: string,
+    nextLink: string,
+    options?: ManagementLocksListByScopeNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<ManagementLockObject>;
+  /**
+   * ListAtResourceGroupLevelNextNextNextNextNextNext
+   * @param resourceGroupName The name of the resource group containing the locks to get.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListAtResourceGroupLevelNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listAtResourceGroupLevelNextNextNextNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: ManagementLocksListAtResourceGroupLevelNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<ManagementLockObject>;
+  /**
+   * ListAtResourceLevelNextNextNextNextNextNext
+   * @param resourceGroupName The name of the resource group containing the locked resource. The name is
+   *                          case insensitive.
+   * @param resourceProviderNamespace The namespace of the resource provider.
+   * @param parentResourcePath The parent resource identity.
+   * @param resourceType The resource type of the locked resource.
+   * @param resourceName The name of the locked resource.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListAtResourceLevelNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listAtResourceLevelNextNextNextNextNextNext(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    nextLink: string,
+    options?: ManagementLocksListAtResourceLevelNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<ManagementLockObject>;
+  /**
+   * ListAtSubscriptionLevelNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListAtSubscriptionLevelNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listAtSubscriptionLevelNextNextNextNextNextNext(
+    nextLink: string,
+    options?: ManagementLocksListAtSubscriptionLevelNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<ManagementLockObject>;
+  /**
+   * ListByScopeNextNextNextNextNextNext
+   * @param scope The scope for the lock. When providing a scope for the assignment, use
+   *              '/subscriptions/{subscriptionId}' for subscriptions,
+   *              '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}' for resource groups, and
+   *              '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourcePathIfPresent}/{resourceType}/{resourceName}'
+   *              for resources.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListByScopeNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listByScopeNextNextNextNextNextNext(
+    scope: string,
+    nextLink: string,
+    options?: ManagementLocksListByScopeNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<ManagementLockObject>;
+  /**
+   * ListAtResourceGroupLevelNextNextNextNextNextNextNext
+   * @param resourceGroupName The name of the resource group containing the locks to get.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListAtResourceGroupLevelNextNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listAtResourceGroupLevelNextNextNextNextNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: ManagementLocksListAtResourceGroupLevelNextNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<ManagementLockObject>;
+  /**
+   * ListAtResourceLevelNextNextNextNextNextNextNext
+   * @param resourceGroupName The name of the resource group containing the locked resource. The name is
+   *                          case insensitive.
+   * @param resourceProviderNamespace The namespace of the resource provider.
+   * @param parentResourcePath The parent resource identity.
+   * @param resourceType The resource type of the locked resource.
+   * @param resourceName The name of the locked resource.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListAtResourceLevelNextNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listAtResourceLevelNextNextNextNextNextNextNext(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    nextLink: string,
+    options?: ManagementLocksListAtResourceLevelNextNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<ManagementLockObject>;
+  /**
+   * ListAtSubscriptionLevelNextNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListAtSubscriptionLevelNextNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listAtSubscriptionLevelNextNextNextNextNextNextNext(
+    nextLink: string,
+    options?: ManagementLocksListAtSubscriptionLevelNextNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<ManagementLockObject>;
+  /**
+   * ListByScopeNextNextNextNextNextNextNext
+   * @param scope The scope for the lock. When providing a scope for the assignment, use
+   *              '/subscriptions/{subscriptionId}' for subscriptions,
+   *              '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}' for resource groups, and
+   *              '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourcePathIfPresent}/{resourceType}/{resourceName}'
+   *              for resources.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListByScopeNextNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listByScopeNextNextNextNextNextNextNext(
+    scope: string,
+    nextLink: string,
+    options?: ManagementLocksListByScopeNextNextNextNextNextNextNextOptionalParams
   ): PagedAsyncIterableIterator<ManagementLockObject>;
   /**
    * When you apply a lock at a parent scope, all child resources inherit the same lock. To create

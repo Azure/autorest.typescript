@@ -2,6 +2,45 @@ import * as coreAuth from '@azure/core-auth';
 import * as coreClient from '@azure/core-client';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 
+/** Optional parameters. */
+export declare interface CheckResourceNameOptionalParams extends coreClient.OperationOptions {
+    /** Resource object with values for resource name and resource type */
+    resourceNameDefinition?: ResourceName;
+}
+
+/** Contains response data for the checkResourceName operation. */
+export declare type CheckResourceNameResponse = CheckResourceNameResult;
+
+/** Resource Name valid if not a reserved word, does not contain a reserved word and does not start with a reserved word */
+export declare interface CheckResourceNameResult {
+    /** Name of Resource */
+    name?: string;
+    /** Type of Resource */
+    type?: string;
+    /** Is the resource name Allowed or Reserved */
+    status?: ResourceNameStatus;
+}
+
+/** Error description and code explaining why resource name is invalid. */
+export declare interface ErrorDefinition {
+    /** Description of the error. */
+    message?: string;
+    /** Code of the error. */
+    code?: string;
+}
+
+/** Error response. */
+export declare interface ErrorResponse {
+    /** The error details. */
+    error?: ErrorDefinition;
+}
+
+/** Known values of {@link ResourceNameStatus} that the service accepts. */
+export declare enum KnownResourceNameStatus {
+    Allowed = "Allowed",
+    Reserved = "Reserved"
+}
+
 /** Location information. */
 declare interface Location_2 {
     /**
@@ -87,7 +126,100 @@ export declare interface Operations {
      * @param options The options parameters.
      */
     list(options?: OperationsListOptionalParams): PagedAsyncIterableIterator<Operation>;
+    /**
+     * ListNext
+     * @param nextLink The nextLink from the previous successful call to the List method.
+     * @param options The options parameters.
+     */
+    listNext(nextLink: string, options?: OperationsListNextOptionalParams): PagedAsyncIterableIterator<Operation>;
+    /**
+     * ListNextNext
+     * @param nextLink The nextLink from the previous successful call to the ListNext method.
+     * @param options The options parameters.
+     */
+    listNextNext(nextLink: string, options?: OperationsListNextNextOptionalParams): PagedAsyncIterableIterator<Operation>;
+    /**
+     * ListNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the ListNextNext method.
+     * @param options The options parameters.
+     */
+    listNextNextNext(nextLink: string, options?: OperationsListNextNextNextOptionalParams): PagedAsyncIterableIterator<Operation>;
+    /**
+     * ListNextNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the ListNextNextNext method.
+     * @param options The options parameters.
+     */
+    listNextNextNextNext(nextLink: string, options?: OperationsListNextNextNextNextOptionalParams): PagedAsyncIterableIterator<Operation>;
+    /**
+     * ListNextNextNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNext method.
+     * @param options The options parameters.
+     */
+    listNextNextNextNextNext(nextLink: string, options?: OperationsListNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<Operation>;
+    /**
+     * ListNextNextNextNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNextNext
+     *                 method.
+     * @param options The options parameters.
+     */
+    listNextNextNextNextNextNext(nextLink: string, options?: OperationsListNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<Operation>;
+    /**
+     * ListNextNextNextNextNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNextNextNext
+     *                 method.
+     * @param options The options parameters.
+     */
+    listNextNextNextNextNextNextNext(nextLink: string, options?: OperationsListNextNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<Operation>;
 }
+
+/** Optional parameters. */
+export declare interface OperationsListNextNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listNextNextNextNextNextNextNextNext operation. */
+export declare type OperationsListNextNextNextNextNextNextNextNextResponse = OperationListResult;
+
+/** Optional parameters. */
+export declare interface OperationsListNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listNextNextNextNextNextNextNext operation. */
+export declare type OperationsListNextNextNextNextNextNextNextResponse = OperationListResult;
+
+/** Optional parameters. */
+export declare interface OperationsListNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listNextNextNextNextNextNext operation. */
+export declare type OperationsListNextNextNextNextNextNextResponse = OperationListResult;
+
+/** Optional parameters. */
+export declare interface OperationsListNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listNextNextNextNextNext operation. */
+export declare type OperationsListNextNextNextNextNextResponse = OperationListResult;
+
+/** Optional parameters. */
+export declare interface OperationsListNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listNextNextNextNext operation. */
+export declare type OperationsListNextNextNextNextResponse = OperationListResult;
+
+/** Optional parameters. */
+export declare interface OperationsListNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listNextNextNext operation. */
+export declare type OperationsListNextNextNextResponse = OperationListResult;
+
+/** Optional parameters. */
+export declare interface OperationsListNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listNextNext operation. */
+export declare type OperationsListNextNextResponse = OperationListResult;
 
 /** Optional parameters. */
 export declare interface OperationsListNextOptionalParams extends coreClient.OperationOptions {
@@ -102,6 +234,24 @@ export declare interface OperationsListOptionalParams extends coreClient.Operati
 
 /** Contains response data for the list operation. */
 export declare type OperationsListResponse = OperationListResult;
+
+/** Name and Type of the Resource */
+export declare interface ResourceName {
+    /** Name of the resource */
+    name: string;
+    /** The type of the resource */
+    type: string;
+}
+
+/**
+ * Defines values for ResourceNameStatus. \
+ * {@link KnownResourceNameStatus} can be used interchangeably with ResourceNameStatus,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Allowed** \
+ * **Reserved**
+ */
+export declare type ResourceNameStatus = string;
 
 /** Defines values for SpendingLimit. */
 export declare type SpendingLimit = "On" | "Off" | "CurrentPeriodOff";
@@ -150,6 +300,12 @@ export declare class SubscriptionClient extends coreClient.ServiceClient {
      * @param options The parameter options
      */
     constructor(credentials: coreAuth.TokenCredential, options?: SubscriptionClientOptionalParams);
+    /**
+     * A resource name is valid if it is not a reserved word, does not contains a reserved word and does
+     * not start with a reserved word
+     * @param options The options parameters.
+     */
+    checkResourceName(options?: CheckResourceNameOptionalParams): Promise<CheckResourceNameResponse>;
     operations: Operations;
     subscriptions: Subscriptions;
     tenants: Tenants;
@@ -207,6 +363,50 @@ export declare interface Subscriptions {
      */
     list(options?: SubscriptionsListOptionalParams): PagedAsyncIterableIterator<Subscription>;
     /**
+     * ListNext
+     * @param nextLink The nextLink from the previous successful call to the List method.
+     * @param options The options parameters.
+     */
+    listNext(nextLink: string, options?: SubscriptionsListNextOptionalParams): PagedAsyncIterableIterator<Subscription>;
+    /**
+     * ListNextNext
+     * @param nextLink The nextLink from the previous successful call to the ListNext method.
+     * @param options The options parameters.
+     */
+    listNextNext(nextLink: string, options?: SubscriptionsListNextNextOptionalParams): PagedAsyncIterableIterator<Subscription>;
+    /**
+     * ListNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the ListNextNext method.
+     * @param options The options parameters.
+     */
+    listNextNextNext(nextLink: string, options?: SubscriptionsListNextNextNextOptionalParams): PagedAsyncIterableIterator<Subscription>;
+    /**
+     * ListNextNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the ListNextNextNext method.
+     * @param options The options parameters.
+     */
+    listNextNextNextNext(nextLink: string, options?: SubscriptionsListNextNextNextNextOptionalParams): PagedAsyncIterableIterator<Subscription>;
+    /**
+     * ListNextNextNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNext method.
+     * @param options The options parameters.
+     */
+    listNextNextNextNextNext(nextLink: string, options?: SubscriptionsListNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<Subscription>;
+    /**
+     * ListNextNextNextNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNextNext
+     *                 method.
+     * @param options The options parameters.
+     */
+    listNextNextNextNextNextNext(nextLink: string, options?: SubscriptionsListNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<Subscription>;
+    /**
+     * ListNextNextNextNextNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNextNextNext
+     *                 method.
+     * @param options The options parameters.
+     */
+    listNextNextNextNextNextNextNext(nextLink: string, options?: SubscriptionsListNextNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<Subscription>;
+    /**
      * Gets details about a specified subscription.
      * @param subscriptionId The ID of the target subscription.
      * @param options The options parameters.
@@ -227,6 +427,55 @@ export declare interface SubscriptionsListLocationsOptionalParams extends coreCl
 
 /** Contains response data for the listLocations operation. */
 export declare type SubscriptionsListLocationsResponse = LocationListResult;
+
+/** Optional parameters. */
+export declare interface SubscriptionsListNextNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listNextNextNextNextNextNextNextNext operation. */
+export declare type SubscriptionsListNextNextNextNextNextNextNextNextResponse = SubscriptionListResult;
+
+/** Optional parameters. */
+export declare interface SubscriptionsListNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listNextNextNextNextNextNextNext operation. */
+export declare type SubscriptionsListNextNextNextNextNextNextNextResponse = SubscriptionListResult;
+
+/** Optional parameters. */
+export declare interface SubscriptionsListNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listNextNextNextNextNextNext operation. */
+export declare type SubscriptionsListNextNextNextNextNextNextResponse = SubscriptionListResult;
+
+/** Optional parameters. */
+export declare interface SubscriptionsListNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listNextNextNextNextNext operation. */
+export declare type SubscriptionsListNextNextNextNextNextResponse = SubscriptionListResult;
+
+/** Optional parameters. */
+export declare interface SubscriptionsListNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listNextNextNextNext operation. */
+export declare type SubscriptionsListNextNextNextNextResponse = SubscriptionListResult;
+
+/** Optional parameters. */
+export declare interface SubscriptionsListNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listNextNextNext operation. */
+export declare type SubscriptionsListNextNextNextResponse = SubscriptionListResult;
+
+/** Optional parameters. */
+export declare interface SubscriptionsListNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listNextNext operation. */
+export declare type SubscriptionsListNextNextResponse = SubscriptionListResult;
 
 /** Optional parameters. */
 export declare interface SubscriptionsListNextOptionalParams extends coreClient.OperationOptions {
@@ -302,7 +551,100 @@ export declare interface Tenants {
      * @param options The options parameters.
      */
     list(options?: TenantsListOptionalParams): PagedAsyncIterableIterator<TenantIdDescription>;
+    /**
+     * ListNext
+     * @param nextLink The nextLink from the previous successful call to the List method.
+     * @param options The options parameters.
+     */
+    listNext(nextLink: string, options?: TenantsListNextOptionalParams): PagedAsyncIterableIterator<TenantIdDescription>;
+    /**
+     * ListNextNext
+     * @param nextLink The nextLink from the previous successful call to the ListNext method.
+     * @param options The options parameters.
+     */
+    listNextNext(nextLink: string, options?: TenantsListNextNextOptionalParams): PagedAsyncIterableIterator<TenantIdDescription>;
+    /**
+     * ListNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the ListNextNext method.
+     * @param options The options parameters.
+     */
+    listNextNextNext(nextLink: string, options?: TenantsListNextNextNextOptionalParams): PagedAsyncIterableIterator<TenantIdDescription>;
+    /**
+     * ListNextNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the ListNextNextNext method.
+     * @param options The options parameters.
+     */
+    listNextNextNextNext(nextLink: string, options?: TenantsListNextNextNextNextOptionalParams): PagedAsyncIterableIterator<TenantIdDescription>;
+    /**
+     * ListNextNextNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNext method.
+     * @param options The options parameters.
+     */
+    listNextNextNextNextNext(nextLink: string, options?: TenantsListNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<TenantIdDescription>;
+    /**
+     * ListNextNextNextNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNextNext
+     *                 method.
+     * @param options The options parameters.
+     */
+    listNextNextNextNextNextNext(nextLink: string, options?: TenantsListNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<TenantIdDescription>;
+    /**
+     * ListNextNextNextNextNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNextNextNext
+     *                 method.
+     * @param options The options parameters.
+     */
+    listNextNextNextNextNextNextNext(nextLink: string, options?: TenantsListNextNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<TenantIdDescription>;
 }
+
+/** Optional parameters. */
+export declare interface TenantsListNextNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listNextNextNextNextNextNextNextNext operation. */
+export declare type TenantsListNextNextNextNextNextNextNextNextResponse = TenantListResult;
+
+/** Optional parameters. */
+export declare interface TenantsListNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listNextNextNextNextNextNextNext operation. */
+export declare type TenantsListNextNextNextNextNextNextNextResponse = TenantListResult;
+
+/** Optional parameters. */
+export declare interface TenantsListNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listNextNextNextNextNextNext operation. */
+export declare type TenantsListNextNextNextNextNextNextResponse = TenantListResult;
+
+/** Optional parameters. */
+export declare interface TenantsListNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listNextNextNextNextNext operation. */
+export declare type TenantsListNextNextNextNextNextResponse = TenantListResult;
+
+/** Optional parameters. */
+export declare interface TenantsListNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listNextNextNextNext operation. */
+export declare type TenantsListNextNextNextNextResponse = TenantListResult;
+
+/** Optional parameters. */
+export declare interface TenantsListNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listNextNextNext operation. */
+export declare type TenantsListNextNextNextResponse = TenantListResult;
+
+/** Optional parameters. */
+export declare interface TenantsListNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listNextNext operation. */
+export declare type TenantsListNextNextResponse = TenantListResult;
 
 /** Optional parameters. */
 export declare interface TenantsListNextOptionalParams extends coreClient.OperationOptions {

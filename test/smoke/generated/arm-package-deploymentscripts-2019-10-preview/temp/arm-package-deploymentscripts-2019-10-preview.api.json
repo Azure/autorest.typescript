@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.18.19",
+    "toolVersion": "7.18.21",
     "schemaVersion": 1004,
     "oldestForwardsCompatibleVersion": 1001,
     "tsdocConfig": {
@@ -1608,6 +1608,629 @@
             },
             {
               "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScripts#listByResourceGroupNext:member(1)",
+              "docComment": "/**\n * ListByResourceGroupNext\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param nextLink - The nextLink from the previous successful call to the ListByResourceGroup method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listByResourceGroupNext(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentScriptsListByResourceGroupNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListByResourceGroupNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentScriptUnion",
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "listByResourceGroupNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScripts#listByResourceGroupNextNext:member(1)",
+              "docComment": "/**\n * ListByResourceGroupNextNext\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param nextLink - The nextLink from the previous successful call to the ListByResourceGroupNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listByResourceGroupNextNext(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentScriptsListByResourceGroupNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListByResourceGroupNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentScriptUnion",
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "listByResourceGroupNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScripts#listByResourceGroupNextNextNext:member(1)",
+              "docComment": "/**\n * ListByResourceGroupNextNextNext\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param nextLink - The nextLink from the previous successful call to the ListByResourceGroupNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listByResourceGroupNextNextNext(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentScriptsListByResourceGroupNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListByResourceGroupNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentScriptUnion",
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "listByResourceGroupNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScripts#listByResourceGroupNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListByResourceGroupNextNextNextNext\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param nextLink - The nextLink from the previous successful call to the ListByResourceGroupNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listByResourceGroupNextNextNextNext(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentScriptsListByResourceGroupNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListByResourceGroupNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentScriptUnion",
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "listByResourceGroupNextNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScripts#listByResourceGroupNextNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListByResourceGroupNextNextNextNextNext\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param nextLink - The nextLink from the previous successful call to the ListByResourceGroupNextNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listByResourceGroupNextNextNextNextNext(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentScriptsListByResourceGroupNextNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListByResourceGroupNextNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentScriptUnion",
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "listByResourceGroupNextNextNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScripts#listByResourceGroupNextNextNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListByResourceGroupNextNextNextNextNextNext\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param nextLink - The nextLink from the previous successful call to the ListByResourceGroupNextNextNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listByResourceGroupNextNextNextNextNextNext(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentScriptsListByResourceGroupNextNextNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListByResourceGroupNextNextNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentScriptUnion",
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "listByResourceGroupNextNextNextNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScripts#listByResourceGroupNextNextNextNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListByResourceGroupNextNextNextNextNextNextNext\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param nextLink - The nextLink from the previous successful call to the ListByResourceGroupNextNextNextNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listByResourceGroupNextNextNextNextNextNextNext(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentScriptsListByResourceGroupNextNextNextNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListByResourceGroupNextNextNextNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentScriptUnion",
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "listByResourceGroupNextNextNextNextNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
               "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScripts#listBySubscription:member(1)",
               "docComment": "/**\n * Lists all deployment scripts for a given subscription.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
@@ -1664,6 +2287,524 @@
                 }
               ],
               "name": "listBySubscription"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScripts#listBySubscriptionNext:member(1)",
+              "docComment": "/**\n * ListBySubscriptionNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListBySubscription method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listBySubscriptionNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentScriptsListBySubscriptionNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListBySubscriptionNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentScriptUnion",
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listBySubscriptionNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScripts#listBySubscriptionNextNext:member(1)",
+              "docComment": "/**\n * ListBySubscriptionNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListBySubscriptionNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listBySubscriptionNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentScriptsListBySubscriptionNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListBySubscriptionNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentScriptUnion",
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listBySubscriptionNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScripts#listBySubscriptionNextNextNext:member(1)",
+              "docComment": "/**\n * ListBySubscriptionNextNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListBySubscriptionNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listBySubscriptionNextNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentScriptsListBySubscriptionNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListBySubscriptionNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentScriptUnion",
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listBySubscriptionNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScripts#listBySubscriptionNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListBySubscriptionNextNextNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListBySubscriptionNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listBySubscriptionNextNextNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentScriptsListBySubscriptionNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListBySubscriptionNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentScriptUnion",
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listBySubscriptionNextNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScripts#listBySubscriptionNextNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListBySubscriptionNextNextNextNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListBySubscriptionNextNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listBySubscriptionNextNextNextNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentScriptsListBySubscriptionNextNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListBySubscriptionNextNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentScriptUnion",
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listBySubscriptionNextNextNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScripts#listBySubscriptionNextNextNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListBySubscriptionNextNextNextNextNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListBySubscriptionNextNextNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listBySubscriptionNextNextNextNextNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentScriptsListBySubscriptionNextNextNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListBySubscriptionNextNextNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentScriptUnion",
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listBySubscriptionNextNextNextNextNextNext"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScripts#listBySubscriptionNextNextNextNextNextNextNext:member(1)",
+              "docComment": "/**\n * ListBySubscriptionNextNextNextNextNextNextNext\n *\n * @param nextLink - The nextLink from the previous successful call to the ListBySubscriptionNextNextNextNextNextNext method.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listBySubscriptionNextNextNextNextNextNextNext(nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentScriptsListBySubscriptionNextNextNextNextNextNextNextOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListBySubscriptionNextNextNextNextNextNextNextOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentScriptUnion",
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nextLink",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "listBySubscriptionNextNextNextNextNextNextNext"
             },
             {
               "kind": "MethodSignature",
@@ -2238,7 +3379,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsError#error:member",
-              "docComment": "/**\n * The resource management error response.\n */\n",
+              "docComment": "/**\n * Common error response for all Azure Resource Manager APIs to return error details for failed operations. (This also follows the OData error response format.)\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2471,6 +3612,419 @@
         },
         {
           "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListByResourceGroupNextNextNextNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface DeploymentScriptsListByResourceGroupNextNextNextNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptsListByResourceGroupNextNextNextNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListByResourceGroupNextNextNextNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listByResourceGroupNextNextNextNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type DeploymentScriptsListByResourceGroupNextNextNextNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "DeploymentScriptListResult",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptsListByResourceGroupNextNextNextNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListByResourceGroupNextNextNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface DeploymentScriptsListByResourceGroupNextNextNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptsListByResourceGroupNextNextNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListByResourceGroupNextNextNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listByResourceGroupNextNextNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type DeploymentScriptsListByResourceGroupNextNextNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "DeploymentScriptListResult",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptsListByResourceGroupNextNextNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListByResourceGroupNextNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface DeploymentScriptsListByResourceGroupNextNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptsListByResourceGroupNextNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListByResourceGroupNextNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listByResourceGroupNextNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type DeploymentScriptsListByResourceGroupNextNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "DeploymentScriptListResult",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptsListByResourceGroupNextNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListByResourceGroupNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface DeploymentScriptsListByResourceGroupNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptsListByResourceGroupNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListByResourceGroupNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listByResourceGroupNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type DeploymentScriptsListByResourceGroupNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "DeploymentScriptListResult",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptsListByResourceGroupNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListByResourceGroupNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface DeploymentScriptsListByResourceGroupNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptsListByResourceGroupNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListByResourceGroupNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listByResourceGroupNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type DeploymentScriptsListByResourceGroupNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "DeploymentScriptListResult",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptsListByResourceGroupNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListByResourceGroupNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface DeploymentScriptsListByResourceGroupNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptsListByResourceGroupNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListByResourceGroupNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listByResourceGroupNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type DeploymentScriptsListByResourceGroupNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "DeploymentScriptListResult",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptsListByResourceGroupNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListByResourceGroupNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface DeploymentScriptsListByResourceGroupNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptsListByResourceGroupNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListByResourceGroupNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listByResourceGroupNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type DeploymentScriptsListByResourceGroupNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "DeploymentScriptListResult",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptsListByResourceGroupNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
           "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListByResourceGroupNextOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
@@ -2582,6 +4136,419 @@
           ],
           "releaseTag": "Public",
           "name": "DeploymentScriptsListByResourceGroupResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListBySubscriptionNextNextNextNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface DeploymentScriptsListBySubscriptionNextNextNextNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptsListBySubscriptionNextNextNextNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListBySubscriptionNextNextNextNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listBySubscriptionNextNextNextNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type DeploymentScriptsListBySubscriptionNextNextNextNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "DeploymentScriptListResult",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptsListBySubscriptionNextNextNextNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListBySubscriptionNextNextNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface DeploymentScriptsListBySubscriptionNextNextNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptsListBySubscriptionNextNextNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListBySubscriptionNextNextNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listBySubscriptionNextNextNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type DeploymentScriptsListBySubscriptionNextNextNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "DeploymentScriptListResult",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptsListBySubscriptionNextNextNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListBySubscriptionNextNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface DeploymentScriptsListBySubscriptionNextNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptsListBySubscriptionNextNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListBySubscriptionNextNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listBySubscriptionNextNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type DeploymentScriptsListBySubscriptionNextNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "DeploymentScriptListResult",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptsListBySubscriptionNextNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListBySubscriptionNextNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface DeploymentScriptsListBySubscriptionNextNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptsListBySubscriptionNextNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListBySubscriptionNextNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listBySubscriptionNextNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type DeploymentScriptsListBySubscriptionNextNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "DeploymentScriptListResult",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptsListBySubscriptionNextNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListBySubscriptionNextNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface DeploymentScriptsListBySubscriptionNextNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptsListBySubscriptionNextNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListBySubscriptionNextNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listBySubscriptionNextNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type DeploymentScriptsListBySubscriptionNextNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "DeploymentScriptListResult",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptsListBySubscriptionNextNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListBySubscriptionNextNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface DeploymentScriptsListBySubscriptionNextNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptsListBySubscriptionNextNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListBySubscriptionNextNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listBySubscriptionNextNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type DeploymentScriptsListBySubscriptionNextNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "DeploymentScriptListResult",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptsListBySubscriptionNextNextNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListBySubscriptionNextNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface DeploymentScriptsListBySubscriptionNextNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptsListBySubscriptionNextNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListBySubscriptionNextNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listBySubscriptionNextNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type DeploymentScriptsListBySubscriptionNextNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "DeploymentScriptListResult",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptsListBySubscriptionNextNextResponse",
           "typeTokenRange": {
             "startIndex": 1,
             "endIndex": 2
@@ -3036,7 +5003,7 @@
         {
           "kind": "Interface",
           "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ErrorResponse:interface",
-          "docComment": "/**\n * The resource management error response.\n */\n",
+          "docComment": "/**\n * Common error response for all Azure Resource Manager APIs to return error details for failed operations. (This also follows the OData error response format.)\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -3615,6 +5582,32 @@
           "members": [
             {
               "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ManagedServiceIdentity#tenantId:member",
+              "docComment": "/**\n * ID of the Azure Active Directory. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly tenantId?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "tenantId",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
               "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ManagedServiceIdentity#type:member",
               "docComment": "/**\n * Type of the managed identity.\n */\n",
               "excerptTokens": [
@@ -3828,7 +5821,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ScriptConfigurationBase#retentionInterval:member",
-              "docComment": "/**\n * Interval for which the service retains the script resource after it reaches a terminal state. Resource will be deleted when this duration expires. Duration is based on ISO 8601 pattern (for example P7D means one week).\n */\n",
+              "docComment": "/**\n * Interval for which the service retains the script resource after it reaches a terminal state. Resource will be deleted when this duration expires. Duration is based on ISO 8601 pattern (for example P1D means one day).\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3906,7 +5899,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ScriptConfigurationBase#timeout:member",
-              "docComment": "/**\n * Maximum allowed script execution time specified in ISO 8601 format. Default value is PT1H\n */\n",
+              "docComment": "/**\n * Maximum allowed script execution time specified in ISO 8601 format. Default value is P1D\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -4399,7 +6392,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!SystemData#lastModifiedAt:member",
-              "docComment": "/**\n * The type of identity that last modified the resource.\n */\n",
+              "docComment": "/**\n * The timestamp of resource last modification (UTC)\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -4495,11 +6488,11 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!UserAssignedIdentity#clientId:member",
-              "docComment": "/**\n * Client App Id associated with this identity.\n */\n",
+              "docComment": "/**\n * Client App Id associated with this identity. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "clientId?: "
+                  "text": "readonly clientId?: "
                 },
                 {
                   "kind": "Content",
@@ -4521,11 +6514,11 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!UserAssignedIdentity#principalId:member",
-              "docComment": "/**\n * Azure Active Directory principal ID associated with this identity.\n */\n",
+              "docComment": "/**\n * Azure Active Directory principal ID associated with this identity. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "principalId?: "
+                  "text": "readonly principalId?: "
                 },
                 {
                   "kind": "Content",

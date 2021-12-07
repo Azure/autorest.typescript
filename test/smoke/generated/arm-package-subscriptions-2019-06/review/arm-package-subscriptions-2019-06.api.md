@@ -9,6 +9,40 @@ import * as coreClient from '@azure/core-client';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 
 // @public
+export interface CheckResourceNameOptionalParams extends coreClient.OperationOptions {
+    resourceNameDefinition?: ResourceName;
+}
+
+// @public
+export type CheckResourceNameResponse = CheckResourceNameResult;
+
+// @public
+export interface CheckResourceNameResult {
+    name?: string;
+    status?: ResourceNameStatus;
+    type?: string;
+}
+
+// @public
+export interface ErrorDefinition {
+    code?: string;
+    message?: string;
+}
+
+// @public
+export interface ErrorResponse {
+    error?: ErrorDefinition;
+}
+
+// @public
+export enum KnownResourceNameStatus {
+    // (undocumented)
+    Allowed = "Allowed",
+    // (undocumented)
+    Reserved = "Reserved"
+}
+
+// @public
 interface Location_2 {
     readonly displayName?: string;
     readonly id?: string;
@@ -52,7 +86,63 @@ export interface OperationListResult {
 // @public
 export interface Operations {
     list(options?: OperationsListOptionalParams): PagedAsyncIterableIterator<Operation>;
+    listNext(nextLink: string, options?: OperationsListNextOptionalParams): PagedAsyncIterableIterator<Operation>;
+    listNextNext(nextLink: string, options?: OperationsListNextNextOptionalParams): PagedAsyncIterableIterator<Operation>;
+    listNextNextNext(nextLink: string, options?: OperationsListNextNextNextOptionalParams): PagedAsyncIterableIterator<Operation>;
+    listNextNextNextNext(nextLink: string, options?: OperationsListNextNextNextNextOptionalParams): PagedAsyncIterableIterator<Operation>;
+    listNextNextNextNextNext(nextLink: string, options?: OperationsListNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<Operation>;
+    listNextNextNextNextNextNext(nextLink: string, options?: OperationsListNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<Operation>;
+    listNextNextNextNextNextNextNext(nextLink: string, options?: OperationsListNextNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<Operation>;
 }
+
+// @public
+export interface OperationsListNextNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type OperationsListNextNextNextNextNextNextNextNextResponse = OperationListResult;
+
+// @public
+export interface OperationsListNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type OperationsListNextNextNextNextNextNextNextResponse = OperationListResult;
+
+// @public
+export interface OperationsListNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type OperationsListNextNextNextNextNextNextResponse = OperationListResult;
+
+// @public
+export interface OperationsListNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type OperationsListNextNextNextNextNextResponse = OperationListResult;
+
+// @public
+export interface OperationsListNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type OperationsListNextNextNextNextResponse = OperationListResult;
+
+// @public
+export interface OperationsListNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type OperationsListNextNextNextResponse = OperationListResult;
+
+// @public
+export interface OperationsListNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type OperationsListNextNextResponse = OperationListResult;
 
 // @public
 export interface OperationsListNextOptionalParams extends coreClient.OperationOptions {
@@ -67,6 +157,15 @@ export interface OperationsListOptionalParams extends coreClient.OperationOption
 
 // @public
 export type OperationsListResponse = OperationListResult;
+
+// @public
+export interface ResourceName {
+    name: string;
+    type: string;
+}
+
+// @public
+export type ResourceNameStatus = string;
 
 // @public
 export type SpendingLimit = "On" | "Off" | "CurrentPeriodOff";
@@ -90,6 +189,7 @@ export class SubscriptionClient extends coreClient.ServiceClient {
     constructor(credentials: coreAuth.TokenCredential, options?: SubscriptionClientOptionalParams);
     // (undocumented)
     apiVersion: string;
+    checkResourceName(options?: CheckResourceNameOptionalParams): Promise<CheckResourceNameResponse>;
     // (undocumented)
     operations: Operations;
     // (undocumented)
@@ -123,6 +223,13 @@ export interface Subscriptions {
     get(subscriptionId: string, options?: SubscriptionsGetOptionalParams): Promise<SubscriptionsGetResponse>;
     list(options?: SubscriptionsListOptionalParams): PagedAsyncIterableIterator<Subscription>;
     listLocations(subscriptionId: string, options?: SubscriptionsListLocationsOptionalParams): PagedAsyncIterableIterator<Location_2>;
+    listNext(nextLink: string, options?: SubscriptionsListNextOptionalParams): PagedAsyncIterableIterator<Subscription>;
+    listNextNext(nextLink: string, options?: SubscriptionsListNextNextOptionalParams): PagedAsyncIterableIterator<Subscription>;
+    listNextNextNext(nextLink: string, options?: SubscriptionsListNextNextNextOptionalParams): PagedAsyncIterableIterator<Subscription>;
+    listNextNextNextNext(nextLink: string, options?: SubscriptionsListNextNextNextNextOptionalParams): PagedAsyncIterableIterator<Subscription>;
+    listNextNextNextNextNext(nextLink: string, options?: SubscriptionsListNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<Subscription>;
+    listNextNextNextNextNextNext(nextLink: string, options?: SubscriptionsListNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<Subscription>;
+    listNextNextNextNextNextNextNext(nextLink: string, options?: SubscriptionsListNextNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<Subscription>;
 }
 
 // @public
@@ -138,6 +245,55 @@ export interface SubscriptionsListLocationsOptionalParams extends coreClient.Ope
 
 // @public
 export type SubscriptionsListLocationsResponse = LocationListResult;
+
+// @public
+export interface SubscriptionsListNextNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type SubscriptionsListNextNextNextNextNextNextNextNextResponse = SubscriptionListResult;
+
+// @public
+export interface SubscriptionsListNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type SubscriptionsListNextNextNextNextNextNextNextResponse = SubscriptionListResult;
+
+// @public
+export interface SubscriptionsListNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type SubscriptionsListNextNextNextNextNextNextResponse = SubscriptionListResult;
+
+// @public
+export interface SubscriptionsListNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type SubscriptionsListNextNextNextNextNextResponse = SubscriptionListResult;
+
+// @public
+export interface SubscriptionsListNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type SubscriptionsListNextNextNextNextResponse = SubscriptionListResult;
+
+// @public
+export interface SubscriptionsListNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type SubscriptionsListNextNextNextResponse = SubscriptionListResult;
+
+// @public
+export interface SubscriptionsListNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type SubscriptionsListNextNextResponse = SubscriptionListResult;
 
 // @public
 export interface SubscriptionsListNextOptionalParams extends coreClient.OperationOptions {
@@ -179,7 +335,63 @@ export interface TenantListResult {
 // @public
 export interface Tenants {
     list(options?: TenantsListOptionalParams): PagedAsyncIterableIterator<TenantIdDescription>;
+    listNext(nextLink: string, options?: TenantsListNextOptionalParams): PagedAsyncIterableIterator<TenantIdDescription>;
+    listNextNext(nextLink: string, options?: TenantsListNextNextOptionalParams): PagedAsyncIterableIterator<TenantIdDescription>;
+    listNextNextNext(nextLink: string, options?: TenantsListNextNextNextOptionalParams): PagedAsyncIterableIterator<TenantIdDescription>;
+    listNextNextNextNext(nextLink: string, options?: TenantsListNextNextNextNextOptionalParams): PagedAsyncIterableIterator<TenantIdDescription>;
+    listNextNextNextNextNext(nextLink: string, options?: TenantsListNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<TenantIdDescription>;
+    listNextNextNextNextNextNext(nextLink: string, options?: TenantsListNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<TenantIdDescription>;
+    listNextNextNextNextNextNextNext(nextLink: string, options?: TenantsListNextNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<TenantIdDescription>;
 }
+
+// @public
+export interface TenantsListNextNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type TenantsListNextNextNextNextNextNextNextNextResponse = TenantListResult;
+
+// @public
+export interface TenantsListNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type TenantsListNextNextNextNextNextNextNextResponse = TenantListResult;
+
+// @public
+export interface TenantsListNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type TenantsListNextNextNextNextNextNextResponse = TenantListResult;
+
+// @public
+export interface TenantsListNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type TenantsListNextNextNextNextNextResponse = TenantListResult;
+
+// @public
+export interface TenantsListNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type TenantsListNextNextNextNextResponse = TenantListResult;
+
+// @public
+export interface TenantsListNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type TenantsListNextNextNextResponse = TenantListResult;
+
+// @public
+export interface TenantsListNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type TenantsListNextNextResponse = TenantListResult;
 
 // @public
 export interface TenantsListNextOptionalParams extends coreClient.OperationOptions {

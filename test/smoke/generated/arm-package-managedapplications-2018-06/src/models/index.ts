@@ -8,6 +8,32 @@
 
 import * as coreClient from "@azure/core-client";
 
+/** Result of the request to list Microsoft.Solutions operations. It contains a list of operations and a URL link to get the next set of results. */
+export interface OperationListResult {
+  /** List of Microsoft.Solutions operations. */
+  value?: Operation[];
+  /** URL to get the next set of operation list results if there are any. */
+  nextLink?: string;
+}
+
+/** Microsoft.Solutions operation */
+export interface Operation {
+  /** Operation name: {provider}/{resource}/{operation} */
+  name?: string;
+  /** The object that represents the operation. */
+  display?: OperationDisplay;
+}
+
+/** The object that represents the operation. */
+export interface OperationDisplay {
+  /** Service provider: Microsoft.Solutions */
+  provider?: string;
+  /** Resource on which the operation is performed: Application, JitRequest, etc. */
+  resource?: string;
+  /** Operation type: Read, write, delete, etc. */
+  operation?: string;
+}
+
 /** Plan for the managed application. */
 export interface Plan {
   /** The plan name. */
@@ -87,6 +113,20 @@ export interface ErrorResponse {
   errorMessage?: string;
 }
 
+/** Plan for the managed application. */
+export interface PlanPatchable {
+  /** The plan name. */
+  name?: string;
+  /** The publisher ID. */
+  publisher?: string;
+  /** The product code. */
+  product?: string;
+  /** The promotion code. */
+  promotionCode?: string;
+  /** The plan's version. */
+  version?: string;
+}
+
 /** The managed application provider authorization. */
 export interface ApplicationProviderAuthorization {
   /** The provider's principal identifier. This is the identity that the provider will use to call ARM to manage the managed application resources. */
@@ -119,20 +159,6 @@ export interface ApplicationListResult {
   value?: Application[];
   /** The URL to use for getting the next set of results. */
   nextLink?: string;
-}
-
-/** Plan for the managed application. */
-export interface PlanPatchable {
-  /** The plan name. */
-  name?: string;
-  /** The publisher ID. */
-  publisher?: string;
-  /** The product code. */
-  product?: string;
-  /** The promotion code. */
-  promotionCode?: string;
-  /** The plan's version. */
-  version?: string;
 }
 
 /** Resource information. */
@@ -169,28 +195,6 @@ export type Application = GenericResource & {
   readonly provisioningState?: ProvisioningState;
 };
 
-/** Information about managed application definition. */
-export type ApplicationDefinition = GenericResource & {
-  /** The managed application lock level. */
-  lockLevel: ApplicationLockLevel;
-  /** The managed application definition display name. */
-  displayName?: string;
-  /** A value indicating whether the package is enabled or not. */
-  isEnabled?: string;
-  /** The managed application provider authorizations. */
-  authorizations: ApplicationProviderAuthorization[];
-  /** The collection of managed application artifacts. The portal will use the files specified as artifacts to construct the user experience of creating a managed application from a managed application definition. */
-  artifacts?: ApplicationArtifact[];
-  /** The managed application definition description. */
-  description?: string;
-  /** The managed application definition package file Uri. Use this element */
-  packageFileUri?: string;
-  /** The inline main template json which has resources to be provisioned. It can be a JObject or well-formed JSON string. */
-  mainTemplate?: Record<string, unknown>;
-  /** The createUiDefinition json for the backing template with Microsoft.Solutions/applications resource. It can be a JObject or well-formed JSON string. */
-  createUiDefinition?: Record<string, unknown>;
-};
-
 /** Information about managed application. */
 export type ApplicationPatchable = GenericResource & {
   /** The plan information. */
@@ -213,6 +217,28 @@ export type ApplicationPatchable = GenericResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
+};
+
+/** Information about managed application definition. */
+export type ApplicationDefinition = GenericResource & {
+  /** The managed application lock level. */
+  lockLevel: ApplicationLockLevel;
+  /** The managed application definition display name. */
+  displayName?: string;
+  /** A value indicating whether the package is enabled or not. */
+  isEnabled?: string;
+  /** The managed application provider authorizations. */
+  authorizations: ApplicationProviderAuthorization[];
+  /** The collection of managed application artifacts. The portal will use the files specified as artifacts to construct the user experience of creating a managed application from a managed application definition. */
+  artifacts?: ApplicationArtifact[];
+  /** The managed application definition description. */
+  description?: string;
+  /** The managed application definition package file Uri. Use this element */
+  packageFileUri?: string;
+  /** The inline main template json which has resources to be provisioned. It can be a JObject or well-formed JSON string. */
+  mainTemplate?: Record<string, unknown>;
+  /** The createUiDefinition json for the backing template with Microsoft.Solutions/applications resource. It can be a JObject or well-formed JSON string. */
+  createUiDefinition?: Record<string, unknown>;
 };
 
 /** Known values of {@link ProvisioningState} that the service accepts. */
@@ -254,6 +280,69 @@ export type ApplicationLockLevel = "CanNotDelete" | "ReadOnly" | "None";
 export type ApplicationArtifactType = "Template" | "Custom";
 
 /** Optional parameters. */
+export interface ListOperationsOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listOperations operation. */
+export type ListOperationsResponse = OperationListResult;
+
+/** Optional parameters. */
+export interface ListOperationsNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listOperationsNext operation. */
+export type ListOperationsNextResponse = OperationListResult;
+
+/** Optional parameters. */
+export interface ListOperationsNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listOperationsNextNext operation. */
+export type ListOperationsNextNextResponse = OperationListResult;
+
+/** Optional parameters. */
+export interface ListOperationsNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listOperationsNextNextNext operation. */
+export type ListOperationsNextNextNextResponse = OperationListResult;
+
+/** Optional parameters. */
+export interface ListOperationsNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listOperationsNextNextNextNext operation. */
+export type ListOperationsNextNextNextNextResponse = OperationListResult;
+
+/** Optional parameters. */
+export interface ListOperationsNextNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listOperationsNextNextNextNextNext operation. */
+export type ListOperationsNextNextNextNextNextResponse = OperationListResult;
+
+/** Optional parameters. */
+export interface ListOperationsNextNextNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listOperationsNextNextNextNextNextNext operation. */
+export type ListOperationsNextNextNextNextNextNextResponse = OperationListResult;
+
+/** Optional parameters. */
+export interface ListOperationsNextNextNextNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listOperationsNextNextNextNextNextNextNext operation. */
+export type ListOperationsNextNextNextNextNextNextNextResponse = OperationListResult;
+
+/** Optional parameters. */
+export interface ListOperationsNextNextNextNextNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listOperationsNextNextNextNextNextNextNextNext operation. */
+export type ListOperationsNextNextNextNextNextNextNextNextResponse = OperationListResult;
+
+/** Optional parameters. */
 export interface ApplicationsGetOptionalParams
   extends coreClient.OperationOptions {}
 
@@ -285,7 +374,7 @@ export type ApplicationsCreateOrUpdateResponse = Application;
 export interface ApplicationsUpdateOptionalParams
   extends coreClient.OperationOptions {
   /** Parameters supplied to update an existing managed application. */
-  parameters?: Application;
+  parameters?: ApplicationPatchable;
 }
 
 /** Contains response data for the update operation. */
@@ -358,6 +447,104 @@ export interface ApplicationsListBySubscriptionNextOptionalParams
 export type ApplicationsListBySubscriptionNextResponse = ApplicationListResult;
 
 /** Optional parameters. */
+export interface ApplicationsListByResourceGroupNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listByResourceGroupNextNext operation. */
+export type ApplicationsListByResourceGroupNextNextResponse = ApplicationListResult;
+
+/** Optional parameters. */
+export interface ApplicationsListBySubscriptionNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listBySubscriptionNextNext operation. */
+export type ApplicationsListBySubscriptionNextNextResponse = ApplicationListResult;
+
+/** Optional parameters. */
+export interface ApplicationsListByResourceGroupNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listByResourceGroupNextNextNext operation. */
+export type ApplicationsListByResourceGroupNextNextNextResponse = ApplicationListResult;
+
+/** Optional parameters. */
+export interface ApplicationsListBySubscriptionNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listBySubscriptionNextNextNext operation. */
+export type ApplicationsListBySubscriptionNextNextNextResponse = ApplicationListResult;
+
+/** Optional parameters. */
+export interface ApplicationsListByResourceGroupNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listByResourceGroupNextNextNextNext operation. */
+export type ApplicationsListByResourceGroupNextNextNextNextResponse = ApplicationListResult;
+
+/** Optional parameters. */
+export interface ApplicationsListBySubscriptionNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listBySubscriptionNextNextNextNext operation. */
+export type ApplicationsListBySubscriptionNextNextNextNextResponse = ApplicationListResult;
+
+/** Optional parameters. */
+export interface ApplicationsListByResourceGroupNextNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listByResourceGroupNextNextNextNextNext operation. */
+export type ApplicationsListByResourceGroupNextNextNextNextNextResponse = ApplicationListResult;
+
+/** Optional parameters. */
+export interface ApplicationsListBySubscriptionNextNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listBySubscriptionNextNextNextNextNext operation. */
+export type ApplicationsListBySubscriptionNextNextNextNextNextResponse = ApplicationListResult;
+
+/** Optional parameters. */
+export interface ApplicationsListByResourceGroupNextNextNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listByResourceGroupNextNextNextNextNextNext operation. */
+export type ApplicationsListByResourceGroupNextNextNextNextNextNextResponse = ApplicationListResult;
+
+/** Optional parameters. */
+export interface ApplicationsListBySubscriptionNextNextNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listBySubscriptionNextNextNextNextNextNext operation. */
+export type ApplicationsListBySubscriptionNextNextNextNextNextNextResponse = ApplicationListResult;
+
+/** Optional parameters. */
+export interface ApplicationsListByResourceGroupNextNextNextNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listByResourceGroupNextNextNextNextNextNextNext operation. */
+export type ApplicationsListByResourceGroupNextNextNextNextNextNextNextResponse = ApplicationListResult;
+
+/** Optional parameters. */
+export interface ApplicationsListBySubscriptionNextNextNextNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listBySubscriptionNextNextNextNextNextNextNext operation. */
+export type ApplicationsListBySubscriptionNextNextNextNextNextNextNextResponse = ApplicationListResult;
+
+/** Optional parameters. */
+export interface ApplicationsListByResourceGroupNextNextNextNextNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listByResourceGroupNextNextNextNextNextNextNextNext operation. */
+export type ApplicationsListByResourceGroupNextNextNextNextNextNextNextNextResponse = ApplicationListResult;
+
+/** Optional parameters. */
+export interface ApplicationsListBySubscriptionNextNextNextNextNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listBySubscriptionNextNextNextNextNextNextNextNext operation. */
+export type ApplicationsListBySubscriptionNextNextNextNextNextNextNextNextResponse = ApplicationListResult;
+
+/** Optional parameters. */
 export interface ApplicationDefinitionsGetOptionalParams
   extends coreClient.OperationOptions {}
 
@@ -426,6 +613,55 @@ export interface ApplicationDefinitionsListByResourceGroupNextOptionalParams
 
 /** Contains response data for the listByResourceGroupNext operation. */
 export type ApplicationDefinitionsListByResourceGroupNextResponse = ApplicationDefinitionListResult;
+
+/** Optional parameters. */
+export interface ApplicationDefinitionsListByResourceGroupNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listByResourceGroupNextNext operation. */
+export type ApplicationDefinitionsListByResourceGroupNextNextResponse = ApplicationDefinitionListResult;
+
+/** Optional parameters. */
+export interface ApplicationDefinitionsListByResourceGroupNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listByResourceGroupNextNextNext operation. */
+export type ApplicationDefinitionsListByResourceGroupNextNextNextResponse = ApplicationDefinitionListResult;
+
+/** Optional parameters. */
+export interface ApplicationDefinitionsListByResourceGroupNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listByResourceGroupNextNextNextNext operation. */
+export type ApplicationDefinitionsListByResourceGroupNextNextNextNextResponse = ApplicationDefinitionListResult;
+
+/** Optional parameters. */
+export interface ApplicationDefinitionsListByResourceGroupNextNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listByResourceGroupNextNextNextNextNext operation. */
+export type ApplicationDefinitionsListByResourceGroupNextNextNextNextNextResponse = ApplicationDefinitionListResult;
+
+/** Optional parameters. */
+export interface ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listByResourceGroupNextNextNextNextNextNext operation. */
+export type ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextResponse = ApplicationDefinitionListResult;
+
+/** Optional parameters. */
+export interface ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listByResourceGroupNextNextNextNextNextNextNext operation. */
+export type ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextNextResponse = ApplicationDefinitionListResult;
+
+/** Optional parameters. */
+export interface ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextNextNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listByResourceGroupNextNextNextNextNextNextNextNext operation. */
+export type ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextNextNextResponse = ApplicationDefinitionListResult;
 
 /** Optional parameters. */
 export interface ApplicationClientOptionalParams

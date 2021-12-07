@@ -10,7 +10,14 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ApplicationDefinition,
+  ApplicationDefinitionsListByResourceGroupNextOptionalParams,
   ApplicationDefinitionsListByResourceGroupOptionalParams,
+  ApplicationDefinitionsListByResourceGroupNextNextOptionalParams,
+  ApplicationDefinitionsListByResourceGroupNextNextNextOptionalParams,
+  ApplicationDefinitionsListByResourceGroupNextNextNextNextOptionalParams,
+  ApplicationDefinitionsListByResourceGroupNextNextNextNextNextOptionalParams,
+  ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextOptionalParams,
+  ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextNextOptionalParams,
   ApplicationDefinitionsGetOptionalParams,
   ApplicationDefinitionsGetResponse,
   ApplicationDefinitionsDeleteOptionalParams,
@@ -34,6 +41,89 @@ export interface ApplicationDefinitions {
   listByResourceGroup(
     resourceGroupName: string,
     options?: ApplicationDefinitionsListByResourceGroupOptionalParams
+  ): PagedAsyncIterableIterator<ApplicationDefinition>;
+  /**
+   * ListByResourceGroupNext
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
+   * @param options The options parameters.
+   */
+  listByResourceGroupNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: ApplicationDefinitionsListByResourceGroupNextOptionalParams
+  ): PagedAsyncIterableIterator<ApplicationDefinition>;
+  /**
+   * ListByResourceGroupNextNext
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroupNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  listByResourceGroupNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: ApplicationDefinitionsListByResourceGroupNextNextOptionalParams
+  ): PagedAsyncIterableIterator<ApplicationDefinition>;
+  /**
+   * ListByResourceGroupNextNextNext
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroupNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  listByResourceGroupNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: ApplicationDefinitionsListByResourceGroupNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<ApplicationDefinition>;
+  /**
+   * ListByResourceGroupNextNextNextNext
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListByResourceGroupNextNextNext method.
+   * @param options The options parameters.
+   */
+  listByResourceGroupNextNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: ApplicationDefinitionsListByResourceGroupNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<ApplicationDefinition>;
+  /**
+   * ListByResourceGroupNextNextNextNextNext
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListByResourceGroupNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listByResourceGroupNextNextNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: ApplicationDefinitionsListByResourceGroupNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<ApplicationDefinition>;
+  /**
+   * ListByResourceGroupNextNextNextNextNextNext
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListByResourceGroupNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listByResourceGroupNextNextNextNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<ApplicationDefinition>;
+  /**
+   * ListByResourceGroupNextNextNextNextNextNextNext
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListByResourceGroupNextNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listByResourceGroupNextNextNextNextNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextNextOptionalParams
   ): PagedAsyncIterableIterator<ApplicationDefinition>;
   /**
    * Gets the managed application definition.
@@ -101,51 +191,47 @@ export interface ApplicationDefinitions {
   ): Promise<ApplicationDefinitionsCreateOrUpdateResponse>;
   /**
    * Gets the managed application definition.
-   * @param applicationDefinitionId The fully qualified ID of the managed application definition,
-   *                                including the managed application name and the managed application definition resource type. Use the
-   *                                format,
-   *                                /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applicationDefinitions/{applicationDefinition-name}
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param applicationDefinitionName The name of the managed application definition.
    * @param options The options parameters.
    */
   getById(
-    applicationDefinitionId: string,
+    resourceGroupName: string,
+    applicationDefinitionName: string,
     options?: ApplicationDefinitionsGetByIdOptionalParams
   ): Promise<ApplicationDefinitionsGetByIdResponse>;
   /**
    * Deletes the managed application definition.
-   * @param applicationDefinitionId The fully qualified ID of the managed application definition,
-   *                                including the managed application name and the managed application definition resource type. Use the
-   *                                format,
-   *                                /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applicationDefinitions/{applicationDefinition-name}
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param applicationDefinitionName The name of the managed application definition.
    * @param options The options parameters.
    */
   beginDeleteById(
-    applicationDefinitionId: string,
+    resourceGroupName: string,
+    applicationDefinitionName: string,
     options?: ApplicationDefinitionsDeleteByIdOptionalParams
   ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes the managed application definition.
-   * @param applicationDefinitionId The fully qualified ID of the managed application definition,
-   *                                including the managed application name and the managed application definition resource type. Use the
-   *                                format,
-   *                                /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applicationDefinitions/{applicationDefinition-name}
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param applicationDefinitionName The name of the managed application definition.
    * @param options The options parameters.
    */
   beginDeleteByIdAndWait(
-    applicationDefinitionId: string,
+    resourceGroupName: string,
+    applicationDefinitionName: string,
     options?: ApplicationDefinitionsDeleteByIdOptionalParams
   ): Promise<void>;
   /**
    * Creates a new managed application definition.
-   * @param applicationDefinitionId The fully qualified ID of the managed application definition,
-   *                                including the managed application name and the managed application definition resource type. Use the
-   *                                format,
-   *                                /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applicationDefinitions/{applicationDefinition-name}
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param applicationDefinitionName The name of the managed application definition.
    * @param parameters Parameters supplied to the create or update a managed application definition.
    * @param options The options parameters.
    */
   beginCreateOrUpdateById(
-    applicationDefinitionId: string,
+    resourceGroupName: string,
+    applicationDefinitionName: string,
     parameters: ApplicationDefinition,
     options?: ApplicationDefinitionsCreateOrUpdateByIdOptionalParams
   ): Promise<
@@ -156,15 +242,14 @@ export interface ApplicationDefinitions {
   >;
   /**
    * Creates a new managed application definition.
-   * @param applicationDefinitionId The fully qualified ID of the managed application definition,
-   *                                including the managed application name and the managed application definition resource type. Use the
-   *                                format,
-   *                                /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applicationDefinitions/{applicationDefinition-name}
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param applicationDefinitionName The name of the managed application definition.
    * @param parameters Parameters supplied to the create or update a managed application definition.
    * @param options The options parameters.
    */
   beginCreateOrUpdateByIdAndWait(
-    applicationDefinitionId: string,
+    resourceGroupName: string,
+    applicationDefinitionName: string,
     parameters: ApplicationDefinition,
     options?: ApplicationDefinitionsCreateOrUpdateByIdOptionalParams
   ): Promise<ApplicationDefinitionsCreateOrUpdateByIdResponse>;

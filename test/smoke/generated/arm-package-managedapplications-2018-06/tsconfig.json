@@ -12,8 +12,29 @@
     "lib": ["es6", "dom"],
     "declaration": true,
     "outDir": "./dist-esm",
-    "importHelpers": true
+    "importHelpers": true,
+    "paths": {
+      "@msinternal/arm-package-managedapplications-2018-06": ["./src/index"]
+    }
   },
-  "include": ["./src/**/*.ts", "./test/**/*.ts"],
+  "include": [
+    "./src/**/*.ts",
+    "./test/**/*.ts",
+    "samples-dev/**/*.ts",
+    "./test/**/*.ts",
+    "samples-dev/**/*.ts",
+    "./test/**/*.ts",
+    "samples-dev/**/*.ts",
+    "./test/**/*.ts",
+    "samples-dev/**/*.ts",
+    "./test/**/*.ts",
+    "samples-dev/**/*.ts",
+    "./test/**/*.ts",
+    "samples-dev/**/*.ts",
+    "./test/**/*.ts",
+    "samples-dev/**/*.ts",
+    "./test/**/*.ts",
+    "samples-dev/**/*.ts"
+  ],
   "exclude": ["node_modules"]
 }

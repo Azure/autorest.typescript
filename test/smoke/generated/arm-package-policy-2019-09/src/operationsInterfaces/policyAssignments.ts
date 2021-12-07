@@ -9,10 +9,38 @@
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import {
   PolicyAssignment,
+  PolicyAssignmentsListForResourceGroupNextOptionalParams,
   PolicyAssignmentsListForResourceGroupOptionalParams,
+  PolicyAssignmentsListForResourceNextOptionalParams,
   PolicyAssignmentsListForResourceOptionalParams,
+  PolicyAssignmentsListForManagementGroupNextOptionalParams,
   PolicyAssignmentsListForManagementGroupOptionalParams,
+  PolicyAssignmentsListNextOptionalParams,
   PolicyAssignmentsListOptionalParams,
+  PolicyAssignmentsListForResourceGroupNextNextOptionalParams,
+  PolicyAssignmentsListForResourceNextNextOptionalParams,
+  PolicyAssignmentsListForManagementGroupNextNextOptionalParams,
+  PolicyAssignmentsListNextNextOptionalParams,
+  PolicyAssignmentsListForResourceGroupNextNextNextOptionalParams,
+  PolicyAssignmentsListForResourceNextNextNextOptionalParams,
+  PolicyAssignmentsListForManagementGroupNextNextNextOptionalParams,
+  PolicyAssignmentsListNextNextNextOptionalParams,
+  PolicyAssignmentsListForResourceGroupNextNextNextNextOptionalParams,
+  PolicyAssignmentsListForResourceNextNextNextNextOptionalParams,
+  PolicyAssignmentsListForManagementGroupNextNextNextNextOptionalParams,
+  PolicyAssignmentsListNextNextNextNextOptionalParams,
+  PolicyAssignmentsListForResourceGroupNextNextNextNextNextOptionalParams,
+  PolicyAssignmentsListForResourceNextNextNextNextNextOptionalParams,
+  PolicyAssignmentsListForManagementGroupNextNextNextNextNextOptionalParams,
+  PolicyAssignmentsListNextNextNextNextNextOptionalParams,
+  PolicyAssignmentsListForResourceGroupNextNextNextNextNextNextOptionalParams,
+  PolicyAssignmentsListForResourceNextNextNextNextNextNextOptionalParams,
+  PolicyAssignmentsListForManagementGroupNextNextNextNextNextNextOptionalParams,
+  PolicyAssignmentsListNextNextNextNextNextNextOptionalParams,
+  PolicyAssignmentsListForResourceGroupNextNextNextNextNextNextNextOptionalParams,
+  PolicyAssignmentsListForResourceNextNextNextNextNextNextNextOptionalParams,
+  PolicyAssignmentsListForManagementGroupNextNextNextNextNextNextNextOptionalParams,
+  PolicyAssignmentsListNextNextNextNextNextNextNextOptionalParams,
   PolicyAssignmentsDeleteOptionalParams,
   PolicyAssignmentsDeleteResponse,
   PolicyAssignmentsCreateOptionalParams,
@@ -119,6 +147,417 @@ export interface PolicyAssignments {
    */
   list(
     options?: PolicyAssignmentsListOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment>;
+  /**
+   * ListForResourceGroupNext
+   * @param resourceGroupName The name of the resource group that contains policy assignments.
+   * @param nextLink The nextLink from the previous successful call to the ListForResourceGroup method.
+   * @param options The options parameters.
+   */
+  listForResourceGroupNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceGroupNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment>;
+  /**
+   * ListForResourceNext
+   * @param resourceGroupName The name of the resource group containing the resource.
+   * @param resourceProviderNamespace The namespace of the resource provider. For example, the namespace
+   *                                  of a virtual machine is Microsoft.Compute (from Microsoft.Compute/virtualMachines)
+   * @param parentResourcePath The parent resource path. Use empty string if there is none.
+   * @param resourceType The resource type name. For example the type name of a web app is 'sites' (from
+   *                     Microsoft.Web/sites).
+   * @param resourceName The name of the resource.
+   * @param nextLink The nextLink from the previous successful call to the ListForResource method.
+   * @param options The options parameters.
+   */
+  listForResourceNext(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment>;
+  /**
+   * ListForManagementGroupNext
+   * @param managementGroupId The ID of the management group.
+   * @param filter The filter to apply on the operation. Valid values for $filter are: 'atScope()' or
+   *               'policyDefinitionId eq '{value}''. A filter is required when listing policy assignments at
+   *               management group scope.
+   * @param nextLink The nextLink from the previous successful call to the ListForManagementGroup method.
+   * @param options The options parameters.
+   */
+  listForManagementGroupNext(
+    managementGroupId: string,
+    filter: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForManagementGroupNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment>;
+  /**
+   * ListNext
+   * @param nextLink The nextLink from the previous successful call to the List method.
+   * @param options The options parameters.
+   */
+  listNext(
+    nextLink: string,
+    options?: PolicyAssignmentsListNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment>;
+  /**
+   * ListForResourceGroupNextNext
+   * @param resourceGroupName The name of the resource group that contains policy assignments.
+   * @param nextLink The nextLink from the previous successful call to the ListForResourceGroupNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  listForResourceGroupNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceGroupNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment>;
+  /**
+   * ListForResourceNextNext
+   * @param resourceGroupName The name of the resource group containing the resource.
+   * @param resourceProviderNamespace The namespace of the resource provider. For example, the namespace
+   *                                  of a virtual machine is Microsoft.Compute (from Microsoft.Compute/virtualMachines)
+   * @param parentResourcePath The parent resource path. Use empty string if there is none.
+   * @param resourceType The resource type name. For example the type name of a web app is 'sites' (from
+   *                     Microsoft.Web/sites).
+   * @param resourceName The name of the resource.
+   * @param nextLink The nextLink from the previous successful call to the ListForResourceNext method.
+   * @param options The options parameters.
+   */
+  listForResourceNextNext(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment>;
+  /**
+   * ListForManagementGroupNextNext
+   * @param managementGroupId The ID of the management group.
+   * @param filter The filter to apply on the operation. Valid values for $filter are: 'atScope()' or
+   *               'policyDefinitionId eq '{value}''. A filter is required when listing policy assignments at
+   *               management group scope.
+   * @param nextLink The nextLink from the previous successful call to the ListForManagementGroupNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  listForManagementGroupNextNext(
+    managementGroupId: string,
+    filter: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForManagementGroupNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment>;
+  /**
+   * ListNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNext method.
+   * @param options The options parameters.
+   */
+  listNextNext(
+    nextLink: string,
+    options?: PolicyAssignmentsListNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment>;
+  /**
+   * ListForResourceGroupNextNextNext
+   * @param resourceGroupName The name of the resource group that contains policy assignments.
+   * @param nextLink The nextLink from the previous successful call to the ListForResourceGroupNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  listForResourceGroupNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceGroupNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment>;
+  /**
+   * ListForResourceNextNextNext
+   * @param resourceGroupName The name of the resource group containing the resource.
+   * @param resourceProviderNamespace The namespace of the resource provider. For example, the namespace
+   *                                  of a virtual machine is Microsoft.Compute (from Microsoft.Compute/virtualMachines)
+   * @param parentResourcePath The parent resource path. Use empty string if there is none.
+   * @param resourceType The resource type name. For example the type name of a web app is 'sites' (from
+   *                     Microsoft.Web/sites).
+   * @param resourceName The name of the resource.
+   * @param nextLink The nextLink from the previous successful call to the ListForResourceNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  listForResourceNextNextNext(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment>;
+  /**
+   * ListForManagementGroupNextNextNext
+   * @param managementGroupId The ID of the management group.
+   * @param filter The filter to apply on the operation. Valid values for $filter are: 'atScope()' or
+   *               'policyDefinitionId eq '{value}''. A filter is required when listing policy assignments at
+   *               management group scope.
+   * @param nextLink The nextLink from the previous successful call to the ListForManagementGroupNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  listForManagementGroupNextNextNext(
+    managementGroupId: string,
+    filter: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForManagementGroupNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment>;
+  /**
+   * ListNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNext method.
+   * @param options The options parameters.
+   */
+  listNextNextNext(
+    nextLink: string,
+    options?: PolicyAssignmentsListNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment>;
+  /**
+   * ListForResourceGroupNextNextNextNext
+   * @param resourceGroupName The name of the resource group that contains policy assignments.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListForResourceGroupNextNextNext method.
+   * @param options The options parameters.
+   */
+  listForResourceGroupNextNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceGroupNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment>;
+  /**
+   * ListForResourceNextNextNextNext
+   * @param resourceGroupName The name of the resource group containing the resource.
+   * @param resourceProviderNamespace The namespace of the resource provider. For example, the namespace
+   *                                  of a virtual machine is Microsoft.Compute (from Microsoft.Compute/virtualMachines)
+   * @param parentResourcePath The parent resource path. Use empty string if there is none.
+   * @param resourceType The resource type name. For example the type name of a web app is 'sites' (from
+   *                     Microsoft.Web/sites).
+   * @param resourceName The name of the resource.
+   * @param nextLink The nextLink from the previous successful call to the ListForResourceNextNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  listForResourceNextNextNextNext(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment>;
+  /**
+   * ListForManagementGroupNextNextNextNext
+   * @param managementGroupId The ID of the management group.
+   * @param filter The filter to apply on the operation. Valid values for $filter are: 'atScope()' or
+   *               'policyDefinitionId eq '{value}''. A filter is required when listing policy assignments at
+   *               management group scope.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListForManagementGroupNextNextNext method.
+   * @param options The options parameters.
+   */
+  listForManagementGroupNextNextNextNext(
+    managementGroupId: string,
+    filter: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForManagementGroupNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment>;
+  /**
+   * ListNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNext method.
+   * @param options The options parameters.
+   */
+  listNextNextNextNext(
+    nextLink: string,
+    options?: PolicyAssignmentsListNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment>;
+  /**
+   * ListForResourceGroupNextNextNextNextNext
+   * @param resourceGroupName The name of the resource group that contains policy assignments.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListForResourceGroupNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listForResourceGroupNextNextNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceGroupNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment>;
+  /**
+   * ListForResourceNextNextNextNextNext
+   * @param resourceGroupName The name of the resource group containing the resource.
+   * @param resourceProviderNamespace The namespace of the resource provider. For example, the namespace
+   *                                  of a virtual machine is Microsoft.Compute (from Microsoft.Compute/virtualMachines)
+   * @param parentResourcePath The parent resource path. Use empty string if there is none.
+   * @param resourceType The resource type name. For example the type name of a web app is 'sites' (from
+   *                     Microsoft.Web/sites).
+   * @param resourceName The name of the resource.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListForResourceNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listForResourceNextNextNextNextNext(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment>;
+  /**
+   * ListForManagementGroupNextNextNextNextNext
+   * @param managementGroupId The ID of the management group.
+   * @param filter The filter to apply on the operation. Valid values for $filter are: 'atScope()' or
+   *               'policyDefinitionId eq '{value}''. A filter is required when listing policy assignments at
+   *               management group scope.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListForManagementGroupNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listForManagementGroupNextNextNextNextNext(
+    managementGroupId: string,
+    filter: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForManagementGroupNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment>;
+  /**
+   * ListNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listNextNextNextNextNext(
+    nextLink: string,
+    options?: PolicyAssignmentsListNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment>;
+  /**
+   * ListForResourceGroupNextNextNextNextNextNext
+   * @param resourceGroupName The name of the resource group that contains policy assignments.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListForResourceGroupNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listForResourceGroupNextNextNextNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceGroupNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment>;
+  /**
+   * ListForResourceNextNextNextNextNextNext
+   * @param resourceGroupName The name of the resource group containing the resource.
+   * @param resourceProviderNamespace The namespace of the resource provider. For example, the namespace
+   *                                  of a virtual machine is Microsoft.Compute (from Microsoft.Compute/virtualMachines)
+   * @param parentResourcePath The parent resource path. Use empty string if there is none.
+   * @param resourceType The resource type name. For example the type name of a web app is 'sites' (from
+   *                     Microsoft.Web/sites).
+   * @param resourceName The name of the resource.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListForResourceNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listForResourceNextNextNextNextNextNext(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment>;
+  /**
+   * ListForManagementGroupNextNextNextNextNextNext
+   * @param managementGroupId The ID of the management group.
+   * @param filter The filter to apply on the operation. Valid values for $filter are: 'atScope()' or
+   *               'policyDefinitionId eq '{value}''. A filter is required when listing policy assignments at
+   *               management group scope.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListForManagementGroupNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listForManagementGroupNextNextNextNextNextNext(
+    managementGroupId: string,
+    filter: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForManagementGroupNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment>;
+  /**
+   * ListNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  listNextNextNextNextNextNext(
+    nextLink: string,
+    options?: PolicyAssignmentsListNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment>;
+  /**
+   * ListForResourceGroupNextNextNextNextNextNextNext
+   * @param resourceGroupName The name of the resource group that contains policy assignments.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListForResourceGroupNextNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listForResourceGroupNextNextNextNextNextNextNext(
+    resourceGroupName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceGroupNextNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment>;
+  /**
+   * ListForResourceNextNextNextNextNextNextNext
+   * @param resourceGroupName The name of the resource group containing the resource.
+   * @param resourceProviderNamespace The namespace of the resource provider. For example, the namespace
+   *                                  of a virtual machine is Microsoft.Compute (from Microsoft.Compute/virtualMachines)
+   * @param parentResourcePath The parent resource path. Use empty string if there is none.
+   * @param resourceType The resource type name. For example the type name of a web app is 'sites' (from
+   *                     Microsoft.Web/sites).
+   * @param resourceName The name of the resource.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListForResourceNextNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listForResourceNextNextNextNextNextNextNext(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForResourceNextNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment>;
+  /**
+   * ListForManagementGroupNextNextNextNextNextNextNext
+   * @param managementGroupId The ID of the management group.
+   * @param filter The filter to apply on the operation. Valid values for $filter are: 'atScope()' or
+   *               'policyDefinitionId eq '{value}''. A filter is required when listing policy assignments at
+   *               management group scope.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListForManagementGroupNextNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listForManagementGroupNextNextNextNextNextNextNext(
+    managementGroupId: string,
+    filter: string,
+    nextLink: string,
+    options?: PolicyAssignmentsListForManagementGroupNextNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyAssignment>;
+  /**
+   * ListNextNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNextNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  listNextNextNextNextNextNextNext(
+    nextLink: string,
+    options?: PolicyAssignmentsListNextNextNextNextNextNextNextOptionalParams
   ): PagedAsyncIterableIterator<PolicyAssignment>;
   /**
    * This operation deletes a policy assignment, given its name and the scope it was created in. The

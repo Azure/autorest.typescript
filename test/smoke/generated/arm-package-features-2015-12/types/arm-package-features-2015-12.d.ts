@@ -21,6 +21,66 @@ export declare class FeatureClient extends coreClient.ServiceClient {
     private listOperationsPagingPage;
     private listOperationsPagingAll;
     /**
+     * ListOperationsNext
+     * @param nextLink The nextLink from the previous successful call to the ListOperations method.
+     * @param options The options parameters.
+     */
+    listOperationsNext(nextLink: string, options?: ListOperationsNextOptionalParams): PagedAsyncIterableIterator<Operation>;
+    private listOperationsNextPagingPage;
+    private listOperationsNextPagingAll;
+    /**
+     * ListOperationsNextNext
+     * @param nextLink The nextLink from the previous successful call to the ListOperationsNext method.
+     * @param options The options parameters.
+     */
+    listOperationsNextNext(nextLink: string, options?: ListOperationsNextNextOptionalParams): PagedAsyncIterableIterator<Operation>;
+    private listOperationsNextNextPagingPage;
+    private listOperationsNextNextPagingAll;
+    /**
+     * ListOperationsNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the ListOperationsNextNext method.
+     * @param options The options parameters.
+     */
+    listOperationsNextNextNext(nextLink: string, options?: ListOperationsNextNextNextOptionalParams): PagedAsyncIterableIterator<Operation>;
+    private listOperationsNextNextNextPagingPage;
+    private listOperationsNextNextNextPagingAll;
+    /**
+     * ListOperationsNextNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the ListOperationsNextNextNext
+     *                 method.
+     * @param options The options parameters.
+     */
+    listOperationsNextNextNextNext(nextLink: string, options?: ListOperationsNextNextNextNextOptionalParams): PagedAsyncIterableIterator<Operation>;
+    private listOperationsNextNextNextNextPagingPage;
+    private listOperationsNextNextNextNextPagingAll;
+    /**
+     * ListOperationsNextNextNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the ListOperationsNextNextNextNext
+     *                 method.
+     * @param options The options parameters.
+     */
+    listOperationsNextNextNextNextNext(nextLink: string, options?: ListOperationsNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<Operation>;
+    private listOperationsNextNextNextNextNextPagingPage;
+    private listOperationsNextNextNextNextNextPagingAll;
+    /**
+     * ListOperationsNextNextNextNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the
+     *                 ListOperationsNextNextNextNextNext method.
+     * @param options The options parameters.
+     */
+    listOperationsNextNextNextNextNextNext(nextLink: string, options?: ListOperationsNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<Operation>;
+    private listOperationsNextNextNextNextNextNextPagingPage;
+    private listOperationsNextNextNextNextNextNextPagingAll;
+    /**
+     * ListOperationsNextNextNextNextNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the
+     *                 ListOperationsNextNextNextNextNextNext method.
+     * @param options The options parameters.
+     */
+    listOperationsNextNextNextNextNextNextNext(nextLink: string, options?: ListOperationsNextNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<Operation>;
+    private listOperationsNextNextNextNextNextNextNextPagingPage;
+    private listOperationsNextNextNextNextNextNextNextPagingAll;
+    /**
      * Lists all of the available Microsoft.Features REST API operations.
      * @param options The options parameters.
      */
@@ -31,6 +91,53 @@ export declare class FeatureClient extends coreClient.ServiceClient {
      * @param options The options parameters.
      */
     private _listOperationsNext;
+    /**
+     * ListOperationsNextNext
+     * @param nextLink The nextLink from the previous successful call to the ListOperationsNext method.
+     * @param options The options parameters.
+     */
+    private _listOperationsNextNext;
+    /**
+     * ListOperationsNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the ListOperationsNextNext method.
+     * @param options The options parameters.
+     */
+    private _listOperationsNextNextNext;
+    /**
+     * ListOperationsNextNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the ListOperationsNextNextNext
+     *                 method.
+     * @param options The options parameters.
+     */
+    private _listOperationsNextNextNextNext;
+    /**
+     * ListOperationsNextNextNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the ListOperationsNextNextNextNext
+     *                 method.
+     * @param options The options parameters.
+     */
+    private _listOperationsNextNextNextNextNext;
+    /**
+     * ListOperationsNextNextNextNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the
+     *                 ListOperationsNextNextNextNextNext method.
+     * @param options The options parameters.
+     */
+    private _listOperationsNextNextNextNextNextNext;
+    /**
+     * ListOperationsNextNextNextNextNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the
+     *                 ListOperationsNextNextNextNextNextNext method.
+     * @param options The options parameters.
+     */
+    private _listOperationsNextNextNextNextNextNextNext;
+    /**
+     * ListOperationsNextNextNextNextNextNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the
+     *                 ListOperationsNextNextNextNextNextNextNext method.
+     * @param options The options parameters.
+     */
+    private _listOperationsNextNextNextNextNextNextNextNext;
     features: Features;
 }
 
@@ -85,6 +192,102 @@ export declare interface Features {
      */
     list(resourceProviderNamespace: string, options?: FeaturesListOptionalParams): PagedAsyncIterableIterator<FeatureResult>;
     /**
+     * ListAllNext
+     * @param nextLink The nextLink from the previous successful call to the ListAll method.
+     * @param options The options parameters.
+     */
+    listAllNext(nextLink: string, options?: FeaturesListAllNextOptionalParams): PagedAsyncIterableIterator<FeatureResult>;
+    /**
+     * ListNext
+     * @param resourceProviderNamespace The namespace of the resource provider for getting features.
+     * @param nextLink The nextLink from the previous successful call to the List method.
+     * @param options The options parameters.
+     */
+    listNext(resourceProviderNamespace: string, nextLink: string, options?: FeaturesListNextOptionalParams): PagedAsyncIterableIterator<FeatureResult>;
+    /**
+     * ListAllNextNext
+     * @param nextLink The nextLink from the previous successful call to the ListAllNext method.
+     * @param options The options parameters.
+     */
+    listAllNextNext(nextLink: string, options?: FeaturesListAllNextNextOptionalParams): PagedAsyncIterableIterator<FeatureResult>;
+    /**
+     * ListNextNext
+     * @param resourceProviderNamespace The namespace of the resource provider for getting features.
+     * @param nextLink The nextLink from the previous successful call to the ListNext method.
+     * @param options The options parameters.
+     */
+    listNextNext(resourceProviderNamespace: string, nextLink: string, options?: FeaturesListNextNextOptionalParams): PagedAsyncIterableIterator<FeatureResult>;
+    /**
+     * ListAllNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the ListAllNextNext method.
+     * @param options The options parameters.
+     */
+    listAllNextNextNext(nextLink: string, options?: FeaturesListAllNextNextNextOptionalParams): PagedAsyncIterableIterator<FeatureResult>;
+    /**
+     * ListNextNextNext
+     * @param resourceProviderNamespace The namespace of the resource provider for getting features.
+     * @param nextLink The nextLink from the previous successful call to the ListNextNext method.
+     * @param options The options parameters.
+     */
+    listNextNextNext(resourceProviderNamespace: string, nextLink: string, options?: FeaturesListNextNextNextOptionalParams): PagedAsyncIterableIterator<FeatureResult>;
+    /**
+     * ListAllNextNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the ListAllNextNextNext method.
+     * @param options The options parameters.
+     */
+    listAllNextNextNextNext(nextLink: string, options?: FeaturesListAllNextNextNextNextOptionalParams): PagedAsyncIterableIterator<FeatureResult>;
+    /**
+     * ListNextNextNextNext
+     * @param resourceProviderNamespace The namespace of the resource provider for getting features.
+     * @param nextLink The nextLink from the previous successful call to the ListNextNextNext method.
+     * @param options The options parameters.
+     */
+    listNextNextNextNext(resourceProviderNamespace: string, nextLink: string, options?: FeaturesListNextNextNextNextOptionalParams): PagedAsyncIterableIterator<FeatureResult>;
+    /**
+     * ListAllNextNextNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the ListAllNextNextNextNext
+     *                 method.
+     * @param options The options parameters.
+     */
+    listAllNextNextNextNextNext(nextLink: string, options?: FeaturesListAllNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<FeatureResult>;
+    /**
+     * ListNextNextNextNextNext
+     * @param resourceProviderNamespace The namespace of the resource provider for getting features.
+     * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNext method.
+     * @param options The options parameters.
+     */
+    listNextNextNextNextNext(resourceProviderNamespace: string, nextLink: string, options?: FeaturesListNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<FeatureResult>;
+    /**
+     * ListAllNextNextNextNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the ListAllNextNextNextNextNext
+     *                 method.
+     * @param options The options parameters.
+     */
+    listAllNextNextNextNextNextNext(nextLink: string, options?: FeaturesListAllNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<FeatureResult>;
+    /**
+     * ListNextNextNextNextNextNext
+     * @param resourceProviderNamespace The namespace of the resource provider for getting features.
+     * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNextNext
+     *                 method.
+     * @param options The options parameters.
+     */
+    listNextNextNextNextNextNext(resourceProviderNamespace: string, nextLink: string, options?: FeaturesListNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<FeatureResult>;
+    /**
+     * ListAllNextNextNextNextNextNextNext
+     * @param nextLink The nextLink from the previous successful call to the
+     *                 ListAllNextNextNextNextNextNext method.
+     * @param options The options parameters.
+     */
+    listAllNextNextNextNextNextNextNext(nextLink: string, options?: FeaturesListAllNextNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<FeatureResult>;
+    /**
+     * ListNextNextNextNextNextNextNext
+     * @param resourceProviderNamespace The namespace of the resource provider for getting features.
+     * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNextNextNext
+     *                 method.
+     * @param options The options parameters.
+     */
+    listNextNextNextNextNextNextNext(resourceProviderNamespace: string, nextLink: string, options?: FeaturesListNextNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<FeatureResult>;
+    /**
      * Gets the preview feature with the specified name.
      * @param resourceProviderNamespace The resource provider namespace for the feature.
      * @param featureName The name of the feature to get.
@@ -115,6 +318,55 @@ export declare interface FeaturesGetOptionalParams extends coreClient.OperationO
 export declare type FeaturesGetResponse = FeatureResult;
 
 /** Optional parameters. */
+export declare interface FeaturesListAllNextNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listAllNextNextNextNextNextNextNextNext operation. */
+export declare type FeaturesListAllNextNextNextNextNextNextNextNextResponse = FeatureOperationsListResult;
+
+/** Optional parameters. */
+export declare interface FeaturesListAllNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listAllNextNextNextNextNextNextNext operation. */
+export declare type FeaturesListAllNextNextNextNextNextNextNextResponse = FeatureOperationsListResult;
+
+/** Optional parameters. */
+export declare interface FeaturesListAllNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listAllNextNextNextNextNextNext operation. */
+export declare type FeaturesListAllNextNextNextNextNextNextResponse = FeatureOperationsListResult;
+
+/** Optional parameters. */
+export declare interface FeaturesListAllNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listAllNextNextNextNextNext operation. */
+export declare type FeaturesListAllNextNextNextNextNextResponse = FeatureOperationsListResult;
+
+/** Optional parameters. */
+export declare interface FeaturesListAllNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listAllNextNextNextNext operation. */
+export declare type FeaturesListAllNextNextNextNextResponse = FeatureOperationsListResult;
+
+/** Optional parameters. */
+export declare interface FeaturesListAllNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listAllNextNextNext operation. */
+export declare type FeaturesListAllNextNextNextResponse = FeatureOperationsListResult;
+
+/** Optional parameters. */
+export declare interface FeaturesListAllNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listAllNextNext operation. */
+export declare type FeaturesListAllNextNextResponse = FeatureOperationsListResult;
+
+/** Optional parameters. */
 export declare interface FeaturesListAllNextOptionalParams extends coreClient.OperationOptions {
 }
 
@@ -127,6 +379,55 @@ export declare interface FeaturesListAllOptionalParams extends coreClient.Operat
 
 /** Contains response data for the listAll operation. */
 export declare type FeaturesListAllResponse = FeatureOperationsListResult;
+
+/** Optional parameters. */
+export declare interface FeaturesListNextNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listNextNextNextNextNextNextNextNext operation. */
+export declare type FeaturesListNextNextNextNextNextNextNextNextResponse = FeatureOperationsListResult;
+
+/** Optional parameters. */
+export declare interface FeaturesListNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listNextNextNextNextNextNextNext operation. */
+export declare type FeaturesListNextNextNextNextNextNextNextResponse = FeatureOperationsListResult;
+
+/** Optional parameters. */
+export declare interface FeaturesListNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listNextNextNextNextNextNext operation. */
+export declare type FeaturesListNextNextNextNextNextNextResponse = FeatureOperationsListResult;
+
+/** Optional parameters. */
+export declare interface FeaturesListNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listNextNextNextNextNext operation. */
+export declare type FeaturesListNextNextNextNextNextResponse = FeatureOperationsListResult;
+
+/** Optional parameters. */
+export declare interface FeaturesListNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listNextNextNextNext operation. */
+export declare type FeaturesListNextNextNextNextResponse = FeatureOperationsListResult;
+
+/** Optional parameters. */
+export declare interface FeaturesListNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listNextNextNext operation. */
+export declare type FeaturesListNextNextNextResponse = FeatureOperationsListResult;
+
+/** Optional parameters. */
+export declare interface FeaturesListNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listNextNext operation. */
+export declare type FeaturesListNextNextResponse = FeatureOperationsListResult;
 
 /** Optional parameters. */
 export declare interface FeaturesListNextOptionalParams extends coreClient.OperationOptions {
@@ -155,6 +456,55 @@ export declare interface FeaturesUnregisterOptionalParams extends coreClient.Ope
 
 /** Contains response data for the unregister operation. */
 export declare type FeaturesUnregisterResponse = FeatureResult;
+
+/** Optional parameters. */
+export declare interface ListOperationsNextNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listOperationsNextNextNextNextNextNextNextNext operation. */
+export declare type ListOperationsNextNextNextNextNextNextNextNextResponse = OperationListResult;
+
+/** Optional parameters. */
+export declare interface ListOperationsNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listOperationsNextNextNextNextNextNextNext operation. */
+export declare type ListOperationsNextNextNextNextNextNextNextResponse = OperationListResult;
+
+/** Optional parameters. */
+export declare interface ListOperationsNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listOperationsNextNextNextNextNextNext operation. */
+export declare type ListOperationsNextNextNextNextNextNextResponse = OperationListResult;
+
+/** Optional parameters. */
+export declare interface ListOperationsNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listOperationsNextNextNextNextNext operation. */
+export declare type ListOperationsNextNextNextNextNextResponse = OperationListResult;
+
+/** Optional parameters. */
+export declare interface ListOperationsNextNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listOperationsNextNextNextNext operation. */
+export declare type ListOperationsNextNextNextNextResponse = OperationListResult;
+
+/** Optional parameters. */
+export declare interface ListOperationsNextNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listOperationsNextNextNext operation. */
+export declare type ListOperationsNextNextNextResponse = OperationListResult;
+
+/** Optional parameters. */
+export declare interface ListOperationsNextNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listOperationsNextNext operation. */
+export declare type ListOperationsNextNextResponse = OperationListResult;
 
 /** Optional parameters. */
 export declare interface ListOperationsNextOptionalParams extends coreClient.OperationOptions {

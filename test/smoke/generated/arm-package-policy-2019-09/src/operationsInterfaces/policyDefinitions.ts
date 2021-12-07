@@ -9,9 +9,30 @@
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import {
   PolicyDefinition,
+  PolicyDefinitionsListNextOptionalParams,
   PolicyDefinitionsListOptionalParams,
+  PolicyDefinitionsListBuiltInNextOptionalParams,
   PolicyDefinitionsListBuiltInOptionalParams,
+  PolicyDefinitionsListByManagementGroupNextOptionalParams,
   PolicyDefinitionsListByManagementGroupOptionalParams,
+  PolicyDefinitionsListNextNextOptionalParams,
+  PolicyDefinitionsListBuiltInNextNextOptionalParams,
+  PolicyDefinitionsListByManagementGroupNextNextOptionalParams,
+  PolicyDefinitionsListNextNextNextOptionalParams,
+  PolicyDefinitionsListBuiltInNextNextNextOptionalParams,
+  PolicyDefinitionsListByManagementGroupNextNextNextOptionalParams,
+  PolicyDefinitionsListNextNextNextNextOptionalParams,
+  PolicyDefinitionsListBuiltInNextNextNextNextOptionalParams,
+  PolicyDefinitionsListByManagementGroupNextNextNextNextOptionalParams,
+  PolicyDefinitionsListNextNextNextNextNextOptionalParams,
+  PolicyDefinitionsListBuiltInNextNextNextNextNextOptionalParams,
+  PolicyDefinitionsListByManagementGroupNextNextNextNextNextOptionalParams,
+  PolicyDefinitionsListNextNextNextNextNextNextOptionalParams,
+  PolicyDefinitionsListBuiltInNextNextNextNextNextNextOptionalParams,
+  PolicyDefinitionsListByManagementGroupNextNextNextNextNextNextOptionalParams,
+  PolicyDefinitionsListNextNextNextNextNextNextNextOptionalParams,
+  PolicyDefinitionsListBuiltInNextNextNextNextNextNextNextOptionalParams,
+  PolicyDefinitionsListByManagementGroupNextNextNextNextNextNextNextOptionalParams,
   PolicyDefinitionsCreateOrUpdateOptionalParams,
   PolicyDefinitionsCreateOrUpdateResponse,
   PolicyDefinitionsDeleteOptionalParams,
@@ -51,6 +72,221 @@ export interface PolicyDefinitions {
   listByManagementGroup(
     managementGroupId: string,
     options?: PolicyDefinitionsListByManagementGroupOptionalParams
+  ): PagedAsyncIterableIterator<PolicyDefinition>;
+  /**
+   * ListNext
+   * @param nextLink The nextLink from the previous successful call to the List method.
+   * @param options The options parameters.
+   */
+  listNext(
+    nextLink: string,
+    options?: PolicyDefinitionsListNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyDefinition>;
+  /**
+   * ListBuiltInNext
+   * @param nextLink The nextLink from the previous successful call to the ListBuiltIn method.
+   * @param options The options parameters.
+   */
+  listBuiltInNext(
+    nextLink: string,
+    options?: PolicyDefinitionsListBuiltInNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyDefinition>;
+  /**
+   * ListByManagementGroupNext
+   * @param managementGroupId The ID of the management group.
+   * @param nextLink The nextLink from the previous successful call to the ListByManagementGroup method.
+   * @param options The options parameters.
+   */
+  listByManagementGroupNext(
+    managementGroupId: string,
+    nextLink: string,
+    options?: PolicyDefinitionsListByManagementGroupNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyDefinition>;
+  /**
+   * ListNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNext method.
+   * @param options The options parameters.
+   */
+  listNextNext(
+    nextLink: string,
+    options?: PolicyDefinitionsListNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyDefinition>;
+  /**
+   * ListBuiltInNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListBuiltInNext method.
+   * @param options The options parameters.
+   */
+  listBuiltInNextNext(
+    nextLink: string,
+    options?: PolicyDefinitionsListBuiltInNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyDefinition>;
+  /**
+   * ListByManagementGroupNextNext
+   * @param managementGroupId The ID of the management group.
+   * @param nextLink The nextLink from the previous successful call to the ListByManagementGroupNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  listByManagementGroupNextNext(
+    managementGroupId: string,
+    nextLink: string,
+    options?: PolicyDefinitionsListByManagementGroupNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyDefinition>;
+  /**
+   * ListNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNext method.
+   * @param options The options parameters.
+   */
+  listNextNextNext(
+    nextLink: string,
+    options?: PolicyDefinitionsListNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyDefinition>;
+  /**
+   * ListBuiltInNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListBuiltInNextNext method.
+   * @param options The options parameters.
+   */
+  listBuiltInNextNextNext(
+    nextLink: string,
+    options?: PolicyDefinitionsListBuiltInNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyDefinition>;
+  /**
+   * ListByManagementGroupNextNextNext
+   * @param managementGroupId The ID of the management group.
+   * @param nextLink The nextLink from the previous successful call to the ListByManagementGroupNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  listByManagementGroupNextNextNext(
+    managementGroupId: string,
+    nextLink: string,
+    options?: PolicyDefinitionsListByManagementGroupNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyDefinition>;
+  /**
+   * ListNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNext method.
+   * @param options The options parameters.
+   */
+  listNextNextNextNext(
+    nextLink: string,
+    options?: PolicyDefinitionsListNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyDefinition>;
+  /**
+   * ListBuiltInNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListBuiltInNextNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  listBuiltInNextNextNextNext(
+    nextLink: string,
+    options?: PolicyDefinitionsListBuiltInNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyDefinition>;
+  /**
+   * ListByManagementGroupNextNextNextNext
+   * @param managementGroupId The ID of the management group.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListByManagementGroupNextNextNext method.
+   * @param options The options parameters.
+   */
+  listByManagementGroupNextNextNextNext(
+    managementGroupId: string,
+    nextLink: string,
+    options?: PolicyDefinitionsListByManagementGroupNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyDefinition>;
+  /**
+   * ListNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listNextNextNextNextNext(
+    nextLink: string,
+    options?: PolicyDefinitionsListNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyDefinition>;
+  /**
+   * ListBuiltInNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListBuiltInNextNextNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  listBuiltInNextNextNextNextNext(
+    nextLink: string,
+    options?: PolicyDefinitionsListBuiltInNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyDefinition>;
+  /**
+   * ListByManagementGroupNextNextNextNextNext
+   * @param managementGroupId The ID of the management group.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListByManagementGroupNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listByManagementGroupNextNextNextNextNext(
+    managementGroupId: string,
+    nextLink: string,
+    options?: PolicyDefinitionsListByManagementGroupNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyDefinition>;
+  /**
+   * ListNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  listNextNextNextNextNextNext(
+    nextLink: string,
+    options?: PolicyDefinitionsListNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyDefinition>;
+  /**
+   * ListBuiltInNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListBuiltInNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listBuiltInNextNextNextNextNextNext(
+    nextLink: string,
+    options?: PolicyDefinitionsListBuiltInNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyDefinition>;
+  /**
+   * ListByManagementGroupNextNextNextNextNextNext
+   * @param managementGroupId The ID of the management group.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListByManagementGroupNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listByManagementGroupNextNextNextNextNextNext(
+    managementGroupId: string,
+    nextLink: string,
+    options?: PolicyDefinitionsListByManagementGroupNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyDefinition>;
+  /**
+   * ListNextNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNextNextNext
+   *                 method.
+   * @param options The options parameters.
+   */
+  listNextNextNextNextNextNextNext(
+    nextLink: string,
+    options?: PolicyDefinitionsListNextNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyDefinition>;
+  /**
+   * ListBuiltInNextNextNextNextNextNextNext
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListBuiltInNextNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listBuiltInNextNextNextNextNextNextNext(
+    nextLink: string,
+    options?: PolicyDefinitionsListBuiltInNextNextNextNextNextNextNextOptionalParams
+  ): PagedAsyncIterableIterator<PolicyDefinition>;
+  /**
+   * ListByManagementGroupNextNextNextNextNextNextNext
+   * @param managementGroupId The ID of the management group.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListByManagementGroupNextNextNextNextNextNext method.
+   * @param options The options parameters.
+   */
+  listByManagementGroupNextNextNextNextNextNextNext(
+    managementGroupId: string,
+    nextLink: string,
+    options?: PolicyDefinitionsListByManagementGroupNextNextNextNextNextNextNextOptionalParams
   ): PagedAsyncIterableIterator<PolicyDefinition>;
   /**
    * This operation creates or updates a policy definition in the given subscription with the given name.
