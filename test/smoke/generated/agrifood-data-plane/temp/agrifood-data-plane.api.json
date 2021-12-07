@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.18.19",
+    "toolVersion": "7.18.21",
     "schemaVersion": 1004,
     "oldestForwardsCompatibleVersion": 1001,
     "tsdocConfig": {
@@ -5425,15 +5425,16 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "@msinternal/agrifood-data-plane!AttachmentsCreateOrUpdateBodyParam#body:member",
-              "docComment": "/**\n * File to be uploaded.\n *\n * Value may contain any sequence of octets\n */\n",
+              "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
                   "text": "body?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "string"
+                  "kind": "Reference",
+                  "text": "AttachmentsCreateOrUpdateFormBody",
+                  "canonicalReference": "@msinternal/agrifood-data-plane!AttachmentsCreateOrUpdateFormBody:interface"
                 },
                 {
                   "kind": "Content",
@@ -5533,6 +5534,339 @@
               "endIndex": 3
             }
           ]
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/agrifood-data-plane!AttachmentsCreateOrUpdateFormBody:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface AttachmentsCreateOrUpdateFormBody "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "AttachmentsCreateOrUpdateFormBody",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/agrifood-data-plane!AttachmentsCreateOrUpdateFormBody#CreatedDateTime:member",
+              "docComment": "/**\n * Date when resource was created.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "CreatedDateTime?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "CreatedDateTime",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/agrifood-data-plane!AttachmentsCreateOrUpdateFormBody#Description:member",
+              "docComment": "/**\n * Textual description of resource.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Description?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "Description",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/agrifood-data-plane!AttachmentsCreateOrUpdateFormBody#ETag:member",
+              "docComment": "/**\n * The ETag value to implement optimistic concurrency.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "ETag?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "ETag",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/agrifood-data-plane!AttachmentsCreateOrUpdateFormBody#FarmerId:member",
+              "docComment": "/**\n * Farmer id for this attachment.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "FarmerId?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "FarmerId",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/agrifood-data-plane!AttachmentsCreateOrUpdateFormBody#file:member",
+              "docComment": "/**\n * File to be uploaded.\n *\n * Value may contain any sequence of octets\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "file?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string | "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Uint8Array",
+                  "canonicalReference": "!Uint8Array:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "file",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/agrifood-data-plane!AttachmentsCreateOrUpdateFormBody#Id:member",
+              "docComment": "/**\n * Unique id.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Id?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "Id",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/agrifood-data-plane!AttachmentsCreateOrUpdateFormBody#ModifiedDateTime:member",
+              "docComment": "/**\n * Date when resource was last modified.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "ModifiedDateTime?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "ModifiedDateTime",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/agrifood-data-plane!AttachmentsCreateOrUpdateFormBody#Name:member",
+              "docComment": "/**\n * Name to identify resource.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Name?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "Name",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/agrifood-data-plane!AttachmentsCreateOrUpdateFormBody#OriginalFileName:member",
+              "docComment": "/**\n * Original File Name for this attachment.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "OriginalFileName?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "OriginalFileName",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/agrifood-data-plane!AttachmentsCreateOrUpdateFormBody#ResourceId:member",
+              "docComment": "/**\n * Associated Resource id for this attachment.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "ResourceId?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "ResourceId",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/agrifood-data-plane!AttachmentsCreateOrUpdateFormBody#ResourceType:member",
+              "docComment": "/**\n * Associated Resource type for this attachment i.e. Farmer, Farm, Field, SeasonalField, Boundary, FarmOperationApplicationData, HarvestData, TillageData, PlantingData.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "ResourceType?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "ResourceType",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/agrifood-data-plane!AttachmentsCreateOrUpdateFormBody#Status:member",
+              "docComment": "/**\n * Status of the resource.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Status?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "Status",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
         },
         {
           "kind": "Interface",
@@ -5925,7 +6259,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "@msinternal/agrifood-data-plane!AttachmentsDownload200Response#body:member",
-              "docComment": "",
+              "docComment": "/**\n * Value may contain any sequence of octets\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -5933,12 +6267,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "Record",
-                  "canonicalReference": "!Record:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<string, unknown>"
+                  "text": "Uint8Array",
+                  "canonicalReference": "!Uint8Array:interface"
                 },
                 {
                   "kind": "Content",
@@ -5950,7 +6280,7 @@
               "name": "body",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 3
+                "endIndex": 2
               }
             },
             {
@@ -53875,7 +54205,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "@msinternal/agrifood-data-plane!ScenesDownload200Response#body:member",
-              "docComment": "",
+              "docComment": "/**\n * Value may contain any sequence of octets\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -53883,12 +54213,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "Record",
-                  "canonicalReference": "!Record:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<string, unknown>"
+                  "text": "Uint8Array",
+                  "canonicalReference": "!Uint8Array:interface"
                 },
                 {
                   "kind": "Content",
@@ -53900,7 +54226,7 @@
               "name": "body",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 3
+                "endIndex": 2
               }
             },
             {

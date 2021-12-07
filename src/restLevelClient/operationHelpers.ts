@@ -2,7 +2,9 @@ import {
   AnyObjectSchema,
   Operation,
   SchemaResponse,
-  Response
+  Response,
+  Schema,
+  BinarySchema
 } from "@autorest/codemodel";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { NameType, normalizeName } from "../utils/nameUtils";
@@ -22,7 +24,11 @@ export function getResponseTypeName(
 
 export function responseToSchemaResponse(response: Response | SchemaResponse) {
   if (!isSchemaResponse(response)) {
-    return new SchemaResponse(new AnyObjectSchema("AnyObject schema"), {
+    let schema: Schema = (response as any).binary
+      ? new BinarySchema("Binary schema")
+      : new AnyObjectSchema("AnyObject schema");
+
+    return new SchemaResponse(schema, {
       ...response
     });
   } else {

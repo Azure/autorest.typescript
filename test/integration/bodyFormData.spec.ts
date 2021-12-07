@@ -27,7 +27,7 @@ describe("Integration tests for BodyFormData", () => {
     }
   });
 
-  it.skip("should correctly accept file via body", async function() {
+  it("should correctly accept file via body", async function() {
     client = new BodyFormDataClient({ allowInsecureConnection: true });
     const fileName: string = `sample.png`;
     const filePath: string = `${__dirname}/../res/${fileName}`;
@@ -37,7 +37,7 @@ describe("Integration tests for BodyFormData", () => {
     );
     if (result.readableStreamBody) {
       const buff = await readStreamToBuffer(result.readableStreamBody);
-      assert.deepEqual(buff, fileContent);
+      assert.deepEqual(buff.toString(), fileContent.toString());
     } else {
       assert.fail("ReadableStreamBody must not be null!!!");
     }

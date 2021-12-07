@@ -903,7 +903,15 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     clientName: "MediaTypes",
     packageName: "media-types-service-rest",
     licenseHeader: true,
-    useCoreV2: true,
+    addCredentials: false,
+    isTestPackage: true,
+    restLevelClient: true
+  },
+  bodyFileRest: {
+    swaggerOrConfig: "body-file.json",
+    clientName: "BodyFile",
+    packageName: "body-file",
+    licenseHeader: true,
     allowInsecureConnection: true,
     addCredentials: false,
     isTestPackage: true,
@@ -919,6 +927,17 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     isTestPackage: true
   },
+  bodyFormDataRest: {
+    swaggerOrConfig: "body-formdata.json",
+    clientName: "BodyFormData",
+    packageName: "body-formdata-rest",
+    licenseHeader: true,
+    useCoreV2: true,
+    allowInsecureConnection: true,
+    addCredentials: false,
+    isTestPackage: true,
+    restLevelClient: true
+  }
 };
 
 const generateSwaggers = async (

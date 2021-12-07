@@ -8,12 +8,13 @@ import {
 import {
   InterfaceDeclarationStructure,
   Project,
+  PropertySignatureStructure,
   SourceFile,
   StructureKind
 } from "ts-morph";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { NameType, normalizeName } from "../utils/nameUtils";
-import { getDocs, getPropertySignature } from "./getPropertySignature";
+import { getPropertySignature } from "./getPropertySignature";
 import { primitiveSchemaToType } from "./schemaHelpers";
 import { getOperationParameters } from "./helpers/getOperationParameters";
 import { hasInputModels } from "./helpers/modelHelpers";
@@ -99,7 +100,7 @@ export function generateParameterInterfaces(
 
       // Add interfaces for body and query parameters
       parametersFile.addInterfaces([
-        ...(bodyParameterDefinition ? [bodyParameterDefinition] : []),
+        ...(bodyParameterDefinition ?? []),
         ...(queryParameterDefinitions ?? []),
         ...(headerParameterDefinitions ? [headerParameterDefinitions] : []),
         ...(contentTypeParameterDefinition
@@ -242,36 +243,76 @@ function buildBodyParametersDefinition(
   importedModels: Set<string>,
   internalReferences: Set<string>,
   requestIndex: number
-): InterfaceDeclarationStructure | undefined {
+): InterfaceDeclarationStructure[] {
   const bodyParameters = parameters.filter(p => p.protocol.http?.in === "body");
   if (!bodyParameters.length) {
-    return undefined;
+    return [];
   }
 
   const nameSuffix = requestIndex > 0 ? `${requestIndex}` : "";
   const bodyParameterInterfaceName = `${operationName}BodyParam${nameSuffix}`;
-  // There is only one body parameter can't be more than one so we can safely take the first
-  const bodySignature = getPropertySignature(
-    bodyParameters[0],
-    schemaUsage,
-    importedModels
-  );
-
   internalReferences.add(bodyParameterInterfaceName);
 
-  return {
-    isExported: true,
-    kind: StructureKind.Interface,
-    name: bodyParameterInterfaceName,
-    properties: [
-      {
-        docs: bodySignature.docs,
-        name: "body",
-        type: bodySignature.type,
-        hasQuestionToken: bodySignature.hasQuestionToken
+  // In case of formData we'd get multiple properties in body marked as partialBody
+  if (bodyParameters.some(p => p.isPartialBody)) {
+    let allOptionalParts = true;
+    const propertiesDefinitions: PropertySignatureStructure[] = [];
+    for (const param of bodyParameters) {
+      if (param.required) {
+        allOptionalParts = false;
       }
-    ]
-  };
+
+      propertiesDefinitions.push(
+        getPropertySignature(param, schemaUsage, importedModels)
+      );
+    }
+
+    const formBodyName = `${operationName}FormBody`;
+    const formBodyInterface: InterfaceDeclarationStructure = {
+      isExported: true,
+      kind: StructureKind.Interface,
+      name: formBodyName,
+      properties: propertiesDefinitions
+    };
+
+    return [
+      {
+        isExported: true,
+        kind: StructureKind.Interface,
+        name: bodyParameterInterfaceName,
+        properties: [
+          {
+            name: "body",
+            type: formBodyName,
+            hasQuestionToken: allOptionalParts
+          }
+        ]
+      },
+      formBodyInterface
+    ];
+  } else {
+    const bodySignature = getPropertySignature(
+      bodyParameters[0],
+      schemaUsage,
+      importedModels
+    );
+
+    return [
+      {
+        isExported: true,
+        kind: StructureKind.Interface,
+        name: bodyParameterInterfaceName,
+        properties: [
+          {
+            docs: bodySignature.docs,
+            name: "body",
+            type: bodySignature.type,
+            hasQuestionToken: bodySignature.hasQuestionToken
+          }
+        ]
+      }
+    ];
+  }
 }
 
 /**
