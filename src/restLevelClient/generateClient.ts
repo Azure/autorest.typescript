@@ -2,8 +2,7 @@ import {
   CodeModel,
   Operation,
   ParameterLocation,
-  ImplementationLocation,
-  SchemaContext
+  ImplementationLocation
 } from "@autorest/codemodel";
 
 import { getResponseTypeName } from "./operationHelpers";
@@ -146,14 +145,28 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
         return { name, type: interfaceName };
       });
 
+  // There may be operations without an operation group, those shortcut
+  // methods need to be handled differently.
+  const shortcutsInOperationGroup = shortcutElements.filter(s => s.name);
+
   clientFile.addTypeAlias({
     isExported: true,
     name: clientIterfaceName,
     type: Writers.intersectionType(
       "Client",
       Writers.objectType({
-        properties: [{ name: "path", type: "Routes" }, ...shortcutElements]
-      })
+        properties: [
+          { name: "path", type: "Routes" },
+          ...shortcutsInOperationGroup
+        ]
+      }),
+      // If the length of shortcutMethods in operation group and all shortcutMethods
+      // is the same, then we don't have any operations at the client level
+      // Otherwise we need to make the client interface name an union with the
+      // definition of all client level shortcut methods
+      ...(shortcutsInOperationGroup.length !== shortcutElements.length
+        ? [`ClientOperations`]
+        : [])
     )
   });
 
@@ -208,13 +221,25 @@ function writeShortcutInterface(
     return;
   }
 
+  // Create a map of Operation group descriptions
+  const descriptions = model.operationGroups.reduce((map, current) => {
+    const { name, description } = current.language.default;
+    map.set(name, description);
+
+    return map;
+  }, new Map<string, string>());
+
   const shortcuts = generateMethodShortcuts(model, pathDictionary);
 
   for (const group of Object.keys(shortcuts)) {
-    const groupName = normalizeName(group, NameType.Interface);
+    const groupName = normalizeName(group, NameType.Interface) || "Client";
     const groupOperations = shortcuts[group];
 
     clientFile.addInterface({
+      docs: [
+        descriptions.get(group) ||
+          `Contains operations for ${groupName} operations`
+      ],
       name: `${groupName}Operations`,
       isExported: true,
       methods: groupOperations
@@ -307,7 +332,12 @@ function getClientFactoryBody(
       paths
     );
     const shortcutBody = Object.keys(shortcutImplementations).map(key => {
-      return `"${key}": {${shortcutImplementations[key].join()}}`;
+      // If the operation group has an empty name, it means its operations are client
+      // level operations so we need to spread the definitions. Otherwise they are
+      // within an operation group so we add them as key: value
+      return `${key ? `"${key}":` : "..."} {${shortcutImplementations[
+        key
+      ].join()}}`;
     });
     returnStatement = `return { ...client, ${shortcutBody.join()} };`;
   }

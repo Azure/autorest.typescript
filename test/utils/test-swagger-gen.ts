@@ -507,6 +507,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "url-rest",
     licenseHeader: true,
     restLevelClient: true,
+    rlcShortcut: true,
     allowInsecureConnection: true,
     addCredentials: false,
     isTestPackage: true
@@ -897,6 +898,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     allowInsecureConnection: true,
     addCredentials: false,
     restLevelClient: true,
+    rlcShortcut: true,
     isTestPackage: true
   },
   mediaTypesRest: {
