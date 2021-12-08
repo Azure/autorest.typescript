@@ -31,6 +31,10 @@ import {
   ThroughputSettingsUpdateParameters,
   GremlinResourcesUpdateGremlinDatabaseThroughputOptionalParams,
   GremlinResourcesUpdateGremlinDatabaseThroughputResponse,
+  GremlinResourcesMigrateGremlinDatabaseToAutoscaleOptionalParams,
+  GremlinResourcesMigrateGremlinDatabaseToAutoscaleResponse,
+  GremlinResourcesMigrateGremlinDatabaseToManualThroughputOptionalParams,
+  GremlinResourcesMigrateGremlinDatabaseToManualThroughputResponse,
   GremlinResourcesListGremlinGraphsResponse,
   GremlinResourcesGetGremlinGraphOptionalParams,
   GremlinResourcesGetGremlinGraphResponse,
@@ -41,7 +45,11 @@ import {
   GremlinResourcesGetGremlinGraphThroughputOptionalParams,
   GremlinResourcesGetGremlinGraphThroughputResponse,
   GremlinResourcesUpdateGremlinGraphThroughputOptionalParams,
-  GremlinResourcesUpdateGremlinGraphThroughputResponse
+  GremlinResourcesUpdateGremlinGraphThroughputResponse,
+  GremlinResourcesMigrateGremlinGraphToAutoscaleOptionalParams,
+  GremlinResourcesMigrateGremlinGraphToAutoscaleResponse,
+  GremlinResourcesMigrateGremlinGraphToManualThroughputOptionalParams,
+  GremlinResourcesMigrateGremlinGraphToManualThroughputResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -536,6 +544,190 @@ export class GremlinResourcesImpl implements GremlinResources {
   }
 
   /**
+   * Migrate an Azure Cosmos DB Gremlin database from manual throughput to autoscale
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param options The options parameters.
+   */
+  async beginMigrateGremlinDatabaseToAutoscale(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    options?: GremlinResourcesMigrateGremlinDatabaseToAutoscaleOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<
+        GremlinResourcesMigrateGremlinDatabaseToAutoscaleResponse
+      >,
+      GremlinResourcesMigrateGremlinDatabaseToAutoscaleResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<GremlinResourcesMigrateGremlinDatabaseToAutoscaleResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { resourceGroupName, accountName, databaseName, options },
+      migrateGremlinDatabaseToAutoscaleOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs
+    });
+  }
+
+  /**
+   * Migrate an Azure Cosmos DB Gremlin database from manual throughput to autoscale
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param options The options parameters.
+   */
+  async beginMigrateGremlinDatabaseToAutoscaleAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    options?: GremlinResourcesMigrateGremlinDatabaseToAutoscaleOptionalParams
+  ): Promise<GremlinResourcesMigrateGremlinDatabaseToAutoscaleResponse> {
+    const poller = await this.beginMigrateGremlinDatabaseToAutoscale(
+      resourceGroupName,
+      accountName,
+      databaseName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
+   * Migrate an Azure Cosmos DB Gremlin database from autoscale to manual throughput
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param options The options parameters.
+   */
+  async beginMigrateGremlinDatabaseToManualThroughput(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    options?: GremlinResourcesMigrateGremlinDatabaseToManualThroughputOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<
+        GremlinResourcesMigrateGremlinDatabaseToManualThroughputResponse
+      >,
+      GremlinResourcesMigrateGremlinDatabaseToManualThroughputResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<GremlinResourcesMigrateGremlinDatabaseToManualThroughputResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { resourceGroupName, accountName, databaseName, options },
+      migrateGremlinDatabaseToManualThroughputOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs
+    });
+  }
+
+  /**
+   * Migrate an Azure Cosmos DB Gremlin database from autoscale to manual throughput
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param options The options parameters.
+   */
+  async beginMigrateGremlinDatabaseToManualThroughputAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    options?: GremlinResourcesMigrateGremlinDatabaseToManualThroughputOptionalParams
+  ): Promise<GremlinResourcesMigrateGremlinDatabaseToManualThroughputResponse> {
+    const poller = await this.beginMigrateGremlinDatabaseToManualThroughput(
+      resourceGroupName,
+      accountName,
+      databaseName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Lists the Gremlin graph under an existing Azure Cosmos DB database account.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param accountName Cosmos DB database account name.
@@ -902,6 +1094,200 @@ export class GremlinResourcesImpl implements GremlinResources {
     );
     return poller.pollUntilDone();
   }
+
+  /**
+   * Migrate an Azure Cosmos DB Gremlin graph from manual throughput to autoscale
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param graphName Cosmos DB graph name.
+   * @param options The options parameters.
+   */
+  async beginMigrateGremlinGraphToAutoscale(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    graphName: string,
+    options?: GremlinResourcesMigrateGremlinGraphToAutoscaleOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<
+        GremlinResourcesMigrateGremlinGraphToAutoscaleResponse
+      >,
+      GremlinResourcesMigrateGremlinGraphToAutoscaleResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<GremlinResourcesMigrateGremlinGraphToAutoscaleResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { resourceGroupName, accountName, databaseName, graphName, options },
+      migrateGremlinGraphToAutoscaleOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs
+    });
+  }
+
+  /**
+   * Migrate an Azure Cosmos DB Gremlin graph from manual throughput to autoscale
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param graphName Cosmos DB graph name.
+   * @param options The options parameters.
+   */
+  async beginMigrateGremlinGraphToAutoscaleAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    graphName: string,
+    options?: GremlinResourcesMigrateGremlinGraphToAutoscaleOptionalParams
+  ): Promise<GremlinResourcesMigrateGremlinGraphToAutoscaleResponse> {
+    const poller = await this.beginMigrateGremlinGraphToAutoscale(
+      resourceGroupName,
+      accountName,
+      databaseName,
+      graphName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
+   * Migrate an Azure Cosmos DB Gremlin graph from autoscale to manual throughput
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param graphName Cosmos DB graph name.
+   * @param options The options parameters.
+   */
+  async beginMigrateGremlinGraphToManualThroughput(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    graphName: string,
+    options?: GremlinResourcesMigrateGremlinGraphToManualThroughputOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<
+        GremlinResourcesMigrateGremlinGraphToManualThroughputResponse
+      >,
+      GremlinResourcesMigrateGremlinGraphToManualThroughputResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<GremlinResourcesMigrateGremlinGraphToManualThroughputResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { resourceGroupName, accountName, databaseName, graphName, options },
+      migrateGremlinGraphToManualThroughputOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs
+    });
+  }
+
+  /**
+   * Migrate an Azure Cosmos DB Gremlin graph from autoscale to manual throughput
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param graphName Cosmos DB graph name.
+   * @param options The options parameters.
+   */
+  async beginMigrateGremlinGraphToManualThroughputAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    graphName: string,
+    options?: GremlinResourcesMigrateGremlinGraphToManualThroughputOptionalParams
+  ): Promise<GremlinResourcesMigrateGremlinGraphToManualThroughputResponse> {
+    const poller = await this.beginMigrateGremlinGraphToManualThroughput(
+      resourceGroupName,
+      accountName,
+      databaseName,
+      graphName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
@@ -1042,6 +1428,70 @@ const updateGremlinDatabaseThroughputOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
+const migrateGremlinDatabaseToAutoscaleOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/throughputSettings/default/migrateToAutoscale",
+  httpMethod: "POST",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    201: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    202: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    204: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.accountName,
+    Parameters.databaseName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const migrateGremlinDatabaseToManualThroughputOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/throughputSettings/default/migrateToManualThroughput",
+  httpMethod: "POST",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    201: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    202: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    204: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.accountName,
+    Parameters.databaseName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
 const listGremlinGraphsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs",
@@ -1077,8 +1527,8 @@ const getGremlinGraphOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.accountName,
-    Parameters.databaseName,
-    Parameters.graphName
+    Parameters.graphName,
+    Parameters.databaseName
   ],
   headerParameters: [Parameters.accept],
   serializer
@@ -1108,8 +1558,8 @@ const createUpdateGremlinGraphOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.accountName,
-    Parameters.databaseName,
-    Parameters.graphName
+    Parameters.graphName,
+    Parameters.databaseName
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
@@ -1126,8 +1576,8 @@ const deleteGremlinGraphOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.accountName,
-    Parameters.databaseName,
-    Parameters.graphName
+    Parameters.graphName,
+    Parameters.databaseName
   ],
   serializer
 };
@@ -1146,8 +1596,8 @@ const getGremlinGraphThroughputOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.accountName,
-    Parameters.databaseName,
-    Parameters.graphName
+    Parameters.graphName,
+    Parameters.databaseName
   ],
   headerParameters: [Parameters.accept],
   serializer
@@ -1177,10 +1627,76 @@ const updateGremlinGraphThroughputOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.accountName,
-    Parameters.databaseName,
-    Parameters.graphName
+    Parameters.graphName,
+    Parameters.databaseName
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
+  serializer
+};
+const migrateGremlinGraphToAutoscaleOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}/throughputSettings/default/migrateToAutoscale",
+  httpMethod: "POST",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    201: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    202: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    204: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.accountName,
+    Parameters.graphName,
+    Parameters.databaseName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const migrateGremlinGraphToManualThroughputOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}/throughputSettings/default/migrateToManualThroughput",
+  httpMethod: "POST",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    201: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    202: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    204: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.accountName,
+    Parameters.graphName,
+    Parameters.databaseName
+  ],
+  headerParameters: [Parameters.accept],
   serializer
 };

@@ -17,6 +17,7 @@ import { getOperationFullName, NameType, normalizeName } from "../utils/nameUtil
 import { calculateMethodName } from "../generators/utils/operationsUtils";
 import { camelCase } from "@azure-tools/codegen";
 import { OperationGroupDetails } from "../models/operationDetails";
+import { getPublicMethodName } from '../generators/utils/pagingOperations';
 
 export async function transformSamples(
   codeModel: CodeModel,
@@ -59,6 +60,8 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
           let methodName = calculateMethodName(opDetails);
           if (opDetails.isLro && opDetails.pagination === undefined) {
             methodName = `${methodName}AndWait`;
+          } else if (opDetails.pagination) {
+            methodName = getPublicMethodName(opDetails);
           }
           const opGroupName = ogDetails.name;
           const sample: SampleDetails = {
@@ -80,7 +83,9 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
             isTopLevel: ogDetails.isTopLevel,
             isPaging: opDetails.pagination !== undefined
           };
-    
+          if (sample.sampleFunctionName === 'cosmosDbDatabaseAccountOfflineRegion') {
+            opDetails;
+          }
           const clientParameterNames = ["credential"];
           const requiredParams = clientDetails.parameters.filter(
             param =>
@@ -193,7 +198,7 @@ function getParameterAssignment(exampleValue: ExampleValue) {
     case SchemaType.Uri:
     case SchemaType.Credential:
     case SchemaType.Duration:
-      retValue = `"${rawValue?.toString().replace(/"/g, '\\"')}"`;
+      retValue = `"${rawValue?.toString().replace(/"/g, '\\"').replace(/\n/g, '\\n')}"`;
       break;
     case SchemaType.Boolean:
       (retValue = rawValue), toString();

@@ -31,6 +31,10 @@ import {
   ThroughputSettingsUpdateParameters,
   MongoDBResourcesUpdateMongoDBDatabaseThroughputOptionalParams,
   MongoDBResourcesUpdateMongoDBDatabaseThroughputResponse,
+  MongoDBResourcesMigrateMongoDBDatabaseToAutoscaleOptionalParams,
+  MongoDBResourcesMigrateMongoDBDatabaseToAutoscaleResponse,
+  MongoDBResourcesMigrateMongoDBDatabaseToManualThroughputOptionalParams,
+  MongoDBResourcesMigrateMongoDBDatabaseToManualThroughputResponse,
   MongoDBResourcesListMongoDBCollectionsResponse,
   MongoDBResourcesGetMongoDBCollectionOptionalParams,
   MongoDBResourcesGetMongoDBCollectionResponse,
@@ -41,7 +45,11 @@ import {
   MongoDBResourcesGetMongoDBCollectionThroughputOptionalParams,
   MongoDBResourcesGetMongoDBCollectionThroughputResponse,
   MongoDBResourcesUpdateMongoDBCollectionThroughputOptionalParams,
-  MongoDBResourcesUpdateMongoDBCollectionThroughputResponse
+  MongoDBResourcesUpdateMongoDBCollectionThroughputResponse,
+  MongoDBResourcesMigrateMongoDBCollectionToAutoscaleOptionalParams,
+  MongoDBResourcesMigrateMongoDBCollectionToAutoscaleResponse,
+  MongoDBResourcesMigrateMongoDBCollectionToManualThroughputOptionalParams,
+  MongoDBResourcesMigrateMongoDBCollectionToManualThroughputResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -536,6 +544,190 @@ export class MongoDBResourcesImpl implements MongoDBResources {
   }
 
   /**
+   * Migrate an Azure Cosmos DB MongoDB database from manual throughput to autoscale
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param options The options parameters.
+   */
+  async beginMigrateMongoDBDatabaseToAutoscale(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    options?: MongoDBResourcesMigrateMongoDBDatabaseToAutoscaleOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<
+        MongoDBResourcesMigrateMongoDBDatabaseToAutoscaleResponse
+      >,
+      MongoDBResourcesMigrateMongoDBDatabaseToAutoscaleResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<MongoDBResourcesMigrateMongoDBDatabaseToAutoscaleResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { resourceGroupName, accountName, databaseName, options },
+      migrateMongoDBDatabaseToAutoscaleOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs
+    });
+  }
+
+  /**
+   * Migrate an Azure Cosmos DB MongoDB database from manual throughput to autoscale
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param options The options parameters.
+   */
+  async beginMigrateMongoDBDatabaseToAutoscaleAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    options?: MongoDBResourcesMigrateMongoDBDatabaseToAutoscaleOptionalParams
+  ): Promise<MongoDBResourcesMigrateMongoDBDatabaseToAutoscaleResponse> {
+    const poller = await this.beginMigrateMongoDBDatabaseToAutoscale(
+      resourceGroupName,
+      accountName,
+      databaseName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
+   * Migrate an Azure Cosmos DB MongoDB database from autoscale to manual throughput
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param options The options parameters.
+   */
+  async beginMigrateMongoDBDatabaseToManualThroughput(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    options?: MongoDBResourcesMigrateMongoDBDatabaseToManualThroughputOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<
+        MongoDBResourcesMigrateMongoDBDatabaseToManualThroughputResponse
+      >,
+      MongoDBResourcesMigrateMongoDBDatabaseToManualThroughputResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<MongoDBResourcesMigrateMongoDBDatabaseToManualThroughputResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { resourceGroupName, accountName, databaseName, options },
+      migrateMongoDBDatabaseToManualThroughputOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs
+    });
+  }
+
+  /**
+   * Migrate an Azure Cosmos DB MongoDB database from autoscale to manual throughput
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param options The options parameters.
+   */
+  async beginMigrateMongoDBDatabaseToManualThroughputAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    options?: MongoDBResourcesMigrateMongoDBDatabaseToManualThroughputOptionalParams
+  ): Promise<MongoDBResourcesMigrateMongoDBDatabaseToManualThroughputResponse> {
+    const poller = await this.beginMigrateMongoDBDatabaseToManualThroughput(
+      resourceGroupName,
+      accountName,
+      databaseName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Lists the MongoDB collection under an existing Azure Cosmos DB database account.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param accountName Cosmos DB database account name.
@@ -906,6 +1098,202 @@ export class MongoDBResourcesImpl implements MongoDBResources {
     );
     return poller.pollUntilDone();
   }
+
+  /**
+   * Migrate an Azure Cosmos DB MongoDB collection from manual throughput to autoscale
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param collectionName Cosmos DB collection name.
+   * @param options The options parameters.
+   */
+  async beginMigrateMongoDBCollectionToAutoscale(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    collectionName: string,
+    options?: MongoDBResourcesMigrateMongoDBCollectionToAutoscaleOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<
+        MongoDBResourcesMigrateMongoDBCollectionToAutoscaleResponse
+      >,
+      MongoDBResourcesMigrateMongoDBCollectionToAutoscaleResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<MongoDBResourcesMigrateMongoDBCollectionToAutoscaleResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { resourceGroupName, accountName, databaseName, collectionName, options },
+      migrateMongoDBCollectionToAutoscaleOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs
+    });
+  }
+
+  /**
+   * Migrate an Azure Cosmos DB MongoDB collection from manual throughput to autoscale
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param collectionName Cosmos DB collection name.
+   * @param options The options parameters.
+   */
+  async beginMigrateMongoDBCollectionToAutoscaleAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    collectionName: string,
+    options?: MongoDBResourcesMigrateMongoDBCollectionToAutoscaleOptionalParams
+  ): Promise<MongoDBResourcesMigrateMongoDBCollectionToAutoscaleResponse> {
+    const poller = await this.beginMigrateMongoDBCollectionToAutoscale(
+      resourceGroupName,
+      accountName,
+      databaseName,
+      collectionName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
+   * Migrate an Azure Cosmos DB MongoDB collection from autoscale to manual throughput
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param collectionName Cosmos DB collection name.
+   * @param options The options parameters.
+   */
+  async beginMigrateMongoDBCollectionToManualThroughput(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    collectionName: string,
+    options?: MongoDBResourcesMigrateMongoDBCollectionToManualThroughputOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<
+        MongoDBResourcesMigrateMongoDBCollectionToManualThroughputResponse
+      >,
+      MongoDBResourcesMigrateMongoDBCollectionToManualThroughputResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<MongoDBResourcesMigrateMongoDBCollectionToManualThroughputResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { resourceGroupName, accountName, databaseName, collectionName, options },
+      migrateMongoDBCollectionToManualThroughputOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs
+    });
+  }
+
+  /**
+   * Migrate an Azure Cosmos DB MongoDB collection from autoscale to manual throughput
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param collectionName Cosmos DB collection name.
+   * @param options The options parameters.
+   */
+  async beginMigrateMongoDBCollectionToManualThroughputAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    collectionName: string,
+    options?: MongoDBResourcesMigrateMongoDBCollectionToManualThroughputOptionalParams
+  ): Promise<
+    MongoDBResourcesMigrateMongoDBCollectionToManualThroughputResponse
+  > {
+    const poller = await this.beginMigrateMongoDBCollectionToManualThroughput(
+      resourceGroupName,
+      accountName,
+      databaseName,
+      collectionName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
@@ -1031,6 +1419,9 @@ const updateMongoDBDatabaseThroughputOperationSpec: coreClient.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.updateThroughputParameters,
@@ -1044,6 +1435,70 @@ const updateMongoDBDatabaseThroughputOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
+  serializer
+};
+const migrateMongoDBDatabaseToAutoscaleOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/mongodbDatabases/{databaseName}/throughputSettings/default/migrateToAutoscale",
+  httpMethod: "POST",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    201: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    202: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    204: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.accountName,
+    Parameters.databaseName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const migrateMongoDBDatabaseToManualThroughputOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/mongodbDatabases/{databaseName}/throughputSettings/default/migrateToManualThroughput",
+  httpMethod: "POST",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    201: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    202: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    204: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.accountName,
+    Parameters.databaseName
+  ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listMongoDBCollectionsOperationSpec: coreClient.OperationSpec = {
@@ -1186,5 +1641,71 @@ const updateMongoDBCollectionThroughputOperationSpec: coreClient.OperationSpec =
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
+  serializer
+};
+const migrateMongoDBCollectionToAutoscaleOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/mongodbDatabases/{databaseName}/collections/{collectionName}/throughputSettings/default/migrateToAutoscale",
+  httpMethod: "POST",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    201: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    202: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    204: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.accountName,
+    Parameters.databaseName,
+    Parameters.collectionName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const migrateMongoDBCollectionToManualThroughputOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/mongodbDatabases/{databaseName}/collections/{collectionName}/throughputSettings/default/migrateToManualThroughput",
+  httpMethod: "POST",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    201: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    202: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    204: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.accountName,
+    Parameters.databaseName,
+    Parameters.collectionName
+  ],
+  headerParameters: [Parameters.accept],
   serializer
 };

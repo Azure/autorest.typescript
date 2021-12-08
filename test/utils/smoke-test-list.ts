@@ -18,14 +18,14 @@ export enum AutorestParams {
 
 const getArmReadmes = (): SpecDefinition[] => {
   const armTags = [
-    // "package-features-2015-12",
-    // "package-locks-2016-09",
+    "package-features-2015-12",
+    "package-locks-2016-09",
     "package-policy-2019-09",
     "package-resources-2019-08",
-    // "package-subscriptions-2019-06",
-    // "package-links-2016-09",
-    // "package-managedapplications-2018-06",
-    // "package-deploymentscripts-2019-10-preview"
+    "package-subscriptions-2019-06",
+    "package-links-2016-09",
+    "package-managedapplications-2018-06",
+    "package-deploymentscripts-2019-10-preview"
   ];
   return armTags.map(tag => ({
     path: joinPath(
@@ -42,7 +42,7 @@ const getArmReadmes = (): SpecDefinition[] => {
 };
 
 export const readmes: SpecDefinition[] = [
-  ...getArmReadmes(),
+  // ...getArmReadmes(),
   // {
   //   path: joinPath(
   //     `${__dirname}`,
@@ -90,6 +90,7 @@ export const readmes: SpecDefinition[] = [
   //     "./.tmp/specs/specification/cosmos-db/resource-manager/readme.md"
   //   ),
   //   params: [AutorestParams.ModelDedup, AutorestParams.GenerateTest],
+  //   branch: "main",
   //   buildTag: "ci_2"
   // },
   // {
@@ -102,16 +103,16 @@ export const readmes: SpecDefinition[] = [
   //   params: [AutorestParams.GenerateTest],
   //   buildTag: "ci_2"
   // },
-  // {
-  //   path: joinPath(
-  //     `${__dirname}`,
-  //     "..",
-  //     "..",
-  //     "./.tmp/specs/specification/network/resource-manager/readme.md"
-  //   ),
-  //   params: [AutorestParams.GenerateTest],
-  //   buildTag: "ci_3"
-  // },
+  {
+    path: joinPath(
+      `${__dirname}`,
+      "..",
+      "..",
+      "./.tmp/specs/specification/network/resource-manager/readme.md"
+    ),
+    params: [AutorestParams.GenerateTest],
+    buildTag: "ci_3"
+  },
   // {
   //   path: joinPath(
   //     `${__dirname}`,
