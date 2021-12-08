@@ -7,8 +7,7 @@ import {
 import {
   OptionalKind,
   MethodSignatureStructure,
-  ParameterDeclarationStructure,
-  StructureKind
+  ParameterDeclarationStructure
 } from "ts-morph";
 import { Methods, PathParameter } from "../interfaces";
 import { getElementType } from "../schemaHelpers";
@@ -60,7 +59,7 @@ export function buildMethodDefinitions(
       name: key,
       ...(description && { docs: [{ description }] }),
       parameters: [
-        ...getParhParamDefinitions(pathParams),
+        ...getPathParamDefinitions(pathParams),
         {
           name: "options",
           hasQuestionToken: areAllOptional,
@@ -74,7 +73,7 @@ export function buildMethodDefinitions(
   return methodDefinitions;
 }
 
-export function getParhParamDefinitions(
+export function getPathParamDefinitions(
   pathParams: PathParameter[]
 ): OptionalKind<ParameterDeclarationStructure>[] {
   return pathParams.map(p => {

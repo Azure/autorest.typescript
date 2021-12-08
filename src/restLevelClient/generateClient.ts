@@ -27,7 +27,7 @@ import { getLanguageMetadata } from "../utils/languageHelpers";
 import {
   buildMethodDefinitions,
   getOperationParameters,
-  getParhParamDefinitions
+  getPathParamDefinitions
 } from "./helpers/operationHelpers";
 import {
   generateMethodShortcutImplementation,
@@ -426,7 +426,7 @@ function getPathFirstRoutesInterfaceDefinition(
       ],
       parameters: [
         { name: "path", type: `"${key}"` },
-        ...getParhParamDefinitions(pathParams)
+        ...getPathParamDefinitions(pathParams)
       ],
       returnType: paths[key].name,
       kind: StructureKind.CallSignature

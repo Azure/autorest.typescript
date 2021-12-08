@@ -1,7 +1,6 @@
 import {
   AnyObjectSchema,
   ArraySchema,
-  ByteArraySchema,
   ChoiceSchema,
   ConstantSchema,
   DictionarySchema,

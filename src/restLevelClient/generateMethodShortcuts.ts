@@ -1,17 +1,10 @@
 import { CodeModel, Operation } from "@autorest/codemodel";
-import {
-  OptionalKind,
-  MethodSignatureStructure,
-  MethodDeclarationStructure,
-  ObjectLiteralElement,
-  PropertyDeclaration,
-  PropertyDeclarationStructure
-} from "ts-morph";
+import { OptionalKind, MethodSignatureStructure } from "ts-morph";
 import { NameType, normalizeName, ReservedName } from "../utils/nameUtils";
 import { buildMethodDefinitions } from "./helpers/operationHelpers";
-import { Methods, PathParameter, Paths } from "./interfaces";
+import { PathParameter, Paths } from "./interfaces";
 
-const RESCT_CLIENT_RESERVED: ReservedName[] = [
+const REST_CLIENT_RESERVED: ReservedName[] = [
   { name: "path", reservedFor: [NameType.Property] },
   { name: "pathUnchecked", reservedFor: [NameType.Property] },
   { name: "pipeline", reservedFor: [NameType.Property] }
@@ -25,7 +18,7 @@ export function generateMethodShortcuts(model: CodeModel, paths: Paths) {
       group.language.default.name,
       NameType.Property,
       true,
-      RESCT_CLIENT_RESERVED
+      REST_CLIENT_RESERVED
     );
 
     keys[groupName] = buildOperationDefinitions(group.operations, paths);
@@ -44,7 +37,7 @@ export function generateMethodShortcutImplementation(
       group.language.default.name,
       NameType.Property,
       true,
-      RESCT_CLIENT_RESERVED
+      REST_CLIENT_RESERVED
     );
 
     keys[groupName] = buildOperationDeclarations(group.operations, paths);
