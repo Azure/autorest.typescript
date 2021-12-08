@@ -10,6 +10,7 @@ import { TracingInfo } from "./models/clientDetails";
 
 export interface AutorestOptions {
   restLevelClient?: boolean;
+  rlcShortcut?: boolean;
   azureArm?: boolean;
   addCredentials?: boolean;
   credentialKeyHeaderName?: string;

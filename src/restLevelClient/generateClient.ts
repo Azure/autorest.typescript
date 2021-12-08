@@ -2,17 +2,13 @@ import {
   CodeModel,
   Operation,
   ParameterLocation,
-  ImplementationLocation,
-  Schema,
-  SchemaContext
+  ImplementationLocation
 } from "@autorest/codemodel";
 
 import { getResponseTypeName } from "./operationHelpers";
 
 import {
   CallSignatureDeclarationStructure,
-  MethodSignatureStructure,
-  OptionalKind,
   Project,
   SourceFile,
   StatementStructures,
@@ -28,28 +24,16 @@ import { transformBaseUrl } from "../transforms/urlTransforms";
 import { NameType, normalizeName } from "../utils/nameUtils";
 import { isConstantSchema, getElementType } from "./schemaHelpers";
 import { getLanguageMetadata } from "../utils/languageHelpers";
-import { getOperationParameters } from "./helpers/getOperationParameters";
-import { ParameterPath } from "@azure/core-http";
-
-type PathParameter = { name: string; schema: Schema, description?: string };
-
-type Methods = {
-  [key: string]: [
-    {
-      optionsName: string;
-      description: string;
-      hasOptionalOptions: boolean;
-      returnType: string;
-    }
-  ];
-};
-type Paths = {
-  [key: string]: {
-    name: string;
-    pathParameters: PathParameter[];
-    methods: Methods;
-  };
-};
+import {
+  buildMethodDefinitions,
+  getOperationParameters,
+  getPathParamDefinitions
+} from "./helpers/operationHelpers";
+import {
+  generateMethodShortcutImplementation,
+  generateMethodShortcuts
+} from "./generateMethodShortcuts";
+import { Methods, PathParameter, Paths } from "./interfaces";
 
 export function generatePathFirstClient(model: CodeModel, project: Project) {
   const name = normalizeName(
@@ -83,7 +67,7 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
       const path: string = operation.requests?.[0].protocol.http?.path;
       pathParameters.sort(function compare(a: PathParameter, b: PathParameter) {
         return path.indexOf(a.name) - path.indexOf(b.name);
-      })
+      });
 
       for (const request of operation.requests || []) {
         const path: string = (request.protocol.http?.path as string) || "";
@@ -119,6 +103,7 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
     }
   }
 
+  writeShortcutInterface(model, pathDictionary, clientFile);
   clientFile.addInterface({
     name: "Routes",
     isExported: true,
@@ -145,13 +130,43 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
       : [{ name: "credentials", type: credentialTypes.join(" | ") }])
   ];
   const clientIterfaceName = `${clientName}RestClient`;
-  // const factoryTypeName = `${clientName}Factory`;
+
+  const { rlcShortcut } = getAutorestOptions();
+
+  let shortcutElements = !rlcShortcut
+    ? []
+    : model.operationGroups.map(og => {
+        const groupName = og.language.default.name;
+        const name = normalizeName(groupName, NameType.Property);
+        const interfaceName = normalizeName(
+          `${name}Operations`,
+          NameType.Interface
+        );
+        return { name, type: interfaceName };
+      });
+
+  // There may be operations without an operation group, those shortcut
+  // methods need to be handled differently.
+  const shortcutsInOperationGroup = shortcutElements.filter(s => s.name);
+
   clientFile.addTypeAlias({
     isExported: true,
     name: clientIterfaceName,
     type: Writers.intersectionType(
       "Client",
-      Writers.objectType({ properties: [{ name: "path", type: "Routes" }] })
+      Writers.objectType({
+        properties: [
+          { name: "path", type: "Routes" },
+          ...shortcutsInOperationGroup
+        ]
+      }),
+      // If the length of shortcutMethods in operation group and all shortcutMethods
+      // is the same, then we don't have any operations at the client level
+      // Otherwise we need to make the client interface name an union with the
+      // definition of all client level shortcut methods
+      ...(shortcutsInOperationGroup.length !== shortcutElements.length
+        ? [`ClientOperations`]
+        : [])
     )
   });
 
@@ -164,7 +179,7 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
     ],
     returnType: clientIterfaceName,
     isDefaultExport: true,
-    statements: getClientFactoryBody(clientIterfaceName)
+    statements: getClientFactoryBody(clientIterfaceName, pathDictionary)
   });
 
   if (importedParameters.size) {
@@ -196,6 +211,42 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
   ]);
 }
 
+function writeShortcutInterface(
+  model: CodeModel,
+  pathDictionary: Paths,
+  clientFile: SourceFile
+) {
+  const { rlcShortcut } = getAutorestOptions();
+  if (!rlcShortcut) {
+    return;
+  }
+
+  // Create a map of Operation group descriptions
+  const descriptions = model.operationGroups.reduce((map, current) => {
+    const { name, description } = current.language.default;
+    map.set(name, description);
+
+    return map;
+  }, new Map<string, string>());
+
+  const shortcuts = generateMethodShortcuts(model, pathDictionary);
+
+  for (const group of Object.keys(shortcuts)) {
+    const groupName = normalizeName(group, NameType.Interface) || "Client";
+    const groupOperations = shortcuts[group];
+
+    clientFile.addInterface({
+      docs: [
+        descriptions.get(group) ||
+          `Contains operations for ${groupName} operations`
+      ],
+      name: `${groupName}Operations`,
+      isExported: true,
+      methods: groupOperations
+    });
+  }
+}
+
 function hasRequiredOptions(operation: Operation) {
   return getOperationParameters(operation)
     .filter(p => p.implementation === ImplementationLocation.Method)
@@ -216,8 +267,10 @@ function getOperationOptionsType(
 }
 
 function getClientFactoryBody(
-  clientTypeName: string
+  clientTypeName: string,
+  paths: Paths
 ): string | WriterFunction | (string | WriterFunction | StatementStructures)[] {
+  const { rlcShortcut } = getAutorestOptions();
   const { model } = getSession();
   const { endpoint, parameterName } = transformBaseUrl(model);
   let baseUrl: string;
@@ -266,13 +319,36 @@ function getClientFactoryBody(
     }`
       : "";
 
-  const getClient = `return getClient(
-      baseUrl,
-      ${credentials ? "credentials," : ""}
-      options
-    ) as ${clientTypeName};`;
+  const getClient = `const client = getClient(
+      baseUrl, ${credentials ? "credentials," : ""} options
+    ) as ${clientTypeName};
+    `;
 
-  return [baseUrlStatement, apiVersionStatement, credentials, getClient];
+  let returnStatement = `return client;`;
+
+  if (rlcShortcut) {
+    const shortcutImplementations = generateMethodShortcutImplementation(
+      model,
+      paths
+    );
+    const shortcutBody = Object.keys(shortcutImplementations).map(key => {
+      // If the operation group has an empty name, it means its operations are client
+      // level operations so we need to spread the definitions. Otherwise they are
+      // within an operation group so we add them as key: value
+      return `${key ? `"${key}":` : "..."} {${shortcutImplementations[
+        key
+      ].join()}}`;
+    });
+    returnStatement = `return { ...client, ${shortcutBody.join()} };`;
+  }
+
+  return [
+    baseUrlStatement,
+    apiVersionStatement,
+    credentials,
+    getClient,
+    returnStatement
+  ];
 }
 
 function getApiVersion(): string | undefined {
@@ -350,9 +426,7 @@ function getPathFirstRoutesInterfaceDefinition(
       ],
       parameters: [
         { name: "path", type: `"${key}"` },
-        ...pathParams.map(p => {
-          return { name: p.name, type: getElementType(p.schema, [SchemaContext.Input, SchemaContext.Exception]), description: p.description };
-        })
+        ...getPathParamDefinitions(pathParams)
       ],
       returnType: paths[key].name,
       kind: StructureKind.CallSignature
@@ -372,26 +446,7 @@ function generatePathFirstRouteMethodsDefinition(
   methods: Methods,
   file: SourceFile
 ): void {
-  const methodDefinitions: OptionalKind<MethodSignatureStructure>[] = [];
-  for (const key of Object.keys(methods)) {
-    const method = methods[key];
-    const description = methods[key][0].description;
-
-    let areAllOptional = !method.some(m => !m.hasOptionalOptions);
-
-    methodDefinitions.push({
-      name: key,
-      ...(description && { docs: [{ description }] }),
-      parameters: [
-        {
-          name: "options",
-          hasQuestionToken: areAllOptional,
-          type: method.map(m => m.optionsName).join(" | ")
-        }
-      ],
-      returnType: method.map(m => m.returnType).join(" | ")
-    });
-  }
+  const methodDefinitions = buildMethodDefinitions(methods);
 
   file.addInterface({
     methods: methodDefinitions,

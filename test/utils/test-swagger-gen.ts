@@ -17,6 +17,7 @@ interface SwaggerConfig {
   useCoreV2?: boolean;
   allowInsecureConnection?: boolean;
   restLevelClient?: boolean;
+  rlcShortcut?: boolean;
   headAsBoolean?: boolean;
   isTestPackage?: boolean;
   generateTest?: boolean;
@@ -506,6 +507,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "url-rest",
     licenseHeader: true,
     restLevelClient: true,
+    rlcShortcut: true,
     allowInsecureConnection: true,
     addCredentials: false,
     isTestPackage: true
@@ -896,6 +898,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     allowInsecureConnection: true,
     addCredentials: false,
     restLevelClient: true,
+    rlcShortcut: true,
     isTestPackage: true
   },
   mediaTypesRest: {
@@ -968,7 +971,8 @@ const generateSwaggers = async (
       restLevelClient,
       headAsBoolean,
       isTestPackage,
-      generateTest
+      generateTest,
+      rlcShortcut
     } = testSwaggers[name];
 
     let swaggerPath = swaggerOrConfig;
@@ -1005,6 +1009,7 @@ const generateSwaggers = async (
         useCoreV2,
         allowInsecureConnection,
         restLevelClient,
+        rlcShortcut,
         headAsBoolean,
         isTestPackage,
         generateTest
@@ -1014,7 +1019,30 @@ const generateSwaggers = async (
   }
 };
 
-const buildWhitelist = () =>
+const buildWhitelist = () => {
+  if (process.argv.find(arg => arg === "--all-rlc")) {
+    console.log("Generating all RLC test clients");
+    for (const swagger in testSwaggers) {
+      if (testSwaggers[swagger].restLevelClient) {
+        whiteList.push(swagger);
+      }
+    }
+
+    return;
+  }
+
+  if (process.argv.find(arg => arg === "--non-hlc")) {
+    console.log("Generating all non-RLC test clients");
+
+    for (const swagger in testSwaggers) {
+      if (!testSwaggers[swagger].restLevelClient) {
+        whiteList.push(swagger);
+      }
+    }
+
+    return;
+  }
+
   process.argv.forEach((arg, index) => {
     if (arg !== "--include" && arg !== "-i") {
       return;
@@ -1043,7 +1071,7 @@ const buildWhitelist = () =>
       whiteList.push(swagger);
     });
   });
-
+};
 const buildAutorest = () => {
   if (!process.argv.includes("--build") && !process.argv.includes("-b")) {
     console.warn(
