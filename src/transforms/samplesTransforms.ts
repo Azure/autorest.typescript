@@ -83,7 +83,7 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
             isTopLevel: ogDetails.isTopLevel,
             isPaging: opDetails.pagination !== undefined
           };
-          if (sample.sampleFunctionName === 'cosmosDbDatabaseAccountOfflineRegion') {
+          if (sample.sampleFunctionName === 'virtualWanCreate') {
             opDetails;
           }
           const clientParameterNames = ["credential"];
