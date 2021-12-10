@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.18.19",
+    "toolVersion": "7.19.2",
     "schemaVersion": 1004,
     "oldestForwardsCompatibleVersion": 1001,
     "tsdocConfig": {
@@ -1231,7 +1231,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "@msinternal/msi-resource-manager!ProxyResource:type",
-          "docComment": "/**\n * The resource model definition for a ARM proxy resource. It will have everything other than required location and tags\n */\n",
+          "docComment": "/**\n * The resource model definition for a Azure Resource Manager proxy resource. It will not have tags and a location\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -1261,7 +1261,7 @@
         {
           "kind": "Interface",
           "canonicalReference": "@msinternal/msi-resource-manager!Resource:interface",
-          "docComment": "",
+          "docComment": "/**\n * Common fields that are returned in the response for all Azure Resource Manager resources\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -1274,7 +1274,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "@msinternal/msi-resource-manager!Resource#id:member",
-              "docComment": "/**\n * Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1326,7 +1326,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "@msinternal/msi-resource-manager!Resource#type:member",
-              "docComment": "/**\n * The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
+              "docComment": "/**\n * The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\" NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1534,7 +1534,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "@msinternal/msi-resource-manager!TrackedResource:type",
-          "docComment": "/**\n * The resource model definition for a ARM tracked top level resource\n */\n",
+          "docComment": "/**\n * The resource model definition for an Azure Resource Manager tracked top level resource which has 'tags' and a 'location'\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",

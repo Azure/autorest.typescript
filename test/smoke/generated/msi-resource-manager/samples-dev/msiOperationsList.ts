@@ -27,7 +27,8 @@ async function msiOperationsList() {
 }
 async function main() {
   const credential = new DefaultAzureCredential();
-  client = new ManagedServiceIdentityClient(credential);
+  const subscriptionId = "00000000-0000-0000-0000-000000000000";
+  client = new ManagedServiceIdentityClient(credential, subscriptionId);
   await msiOperationsList();
 }
 main();

@@ -141,12 +141,13 @@ export declare interface OperationsListOptionalParams extends coreClient.Operati
 /** Contains response data for the list operation. */
 export declare type OperationsListResponse = OperationListResult;
 
-/** The resource model definition for a ARM proxy resource. It will have everything other than required location and tags */
+/** The resource model definition for a Azure Resource Manager proxy resource. It will not have tags and a location */
 export declare type ProxyResource = Resource & {};
 
+/** Common fields that are returned in the response for all Azure Resource Manager resources */
 export declare interface Resource {
     /**
-     * Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}
+     * Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}
      * NOTE: This property will not be serialized. It can only be populated by the server.
      */
     readonly id?: string;
@@ -156,7 +157,7 @@ export declare interface Resource {
      */
     readonly name?: string;
     /**
-     * The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts.
+     * The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts"
      * NOTE: This property will not be serialized. It can only be populated by the server.
      */
     readonly type?: string;
@@ -210,7 +211,7 @@ export declare type SystemAssignedIdentity = ProxyResource & {
     readonly clientSecretUrl?: string;
 };
 
-/** The resource model definition for a ARM tracked top level resource */
+/** The resource model definition for an Azure Resource Manager tracked top level resource which has 'tags' and a 'location' */
 export declare type TrackedResource = Resource & {
     /** Resource tags. */
     tags?: {
