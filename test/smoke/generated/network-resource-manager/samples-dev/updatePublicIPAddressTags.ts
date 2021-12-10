@@ -9,9 +9,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 /**
- * This sample demonstrates how to Updates public IP address tags.
+ * This sample demonstrates how to Updates custom IP prefix tags.
  *
- * @summary Updates public IP address tags.
+ * @summary Updates custom IP prefix tags.
  */
 import {
   TagsObject,
@@ -20,13 +20,13 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: NetworkManagementClient;
-//publicIPAddresses.updateTags
+//customIPPrefixes.updateTags
 async function updatePublicIPAddressTags() {
   const resourceGroupName = "rg1";
-  const publicIpAddressName = "test-ip";
+  const customIpPrefixName = "test-customipprefix";
   const parameters: TagsObject = { tags: { tag1: "value1", tag2: "value2" } };
-  await client.publicIPAddresses
-    .updateTags(resourceGroupName, publicIpAddressName, parameters)
+  await client.customIPPrefixes
+    .updateTags(resourceGroupName, customIpPrefixName, parameters)
     .then((res) => {
       console.log(res);
     });

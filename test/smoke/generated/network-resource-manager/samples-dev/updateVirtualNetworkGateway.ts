@@ -28,7 +28,9 @@ async function updateVirtualNetworkGateway() {
     active: false,
     bgpSettings: { asn: 65515, bgpPeeringAddress: "10.0.1.30", peerWeight: 0 },
     customRoutes: { addressPrefixes: ["101.168.0.6/32"] },
+    disableIPSecReplayProtection: false,
     enableBgp: false,
+    enableBgpRouteTranslationForNat: false,
     enableDnsForwarding: true,
     gatewayType: "Vpn",
     ipConfigurations: [
@@ -46,6 +48,28 @@ async function updateVirtualNetworkGateway() {
       }
     ],
     location: "centralus",
+    natRules: [
+      {
+        name: "natRule1",
+        typePropertiesType: "Static",
+        externalMappings: [{ addressSpace: "50.0.0.0/24" }],
+        id:
+          "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworkGateways/vpngw/natRules/natRule1",
+        internalMappings: [{ addressSpace: "10.10.0.0/24" }],
+        ipConfigurationId: "",
+        mode: "EgressSnat"
+      },
+      {
+        name: "natRule2",
+        typePropertiesType: "Static",
+        externalMappings: [{ addressSpace: "30.0.0.0/24" }],
+        id:
+          "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworkGateways/vpngw/natRules/natRule2",
+        internalMappings: [{ addressSpace: "20.10.0.0/24" }],
+        ipConfigurationId: "",
+        mode: "IngressSnat"
+      }
+    ],
     sku: { name: "VpnGw1", tier: "VpnGw1" },
     vpnClientConfiguration: {
       radiusServers: [

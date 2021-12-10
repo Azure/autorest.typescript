@@ -26,7 +26,7 @@ async function createVirtualNetworkWithBgpCommunities() {
   const virtualNetworkName = "test-vnet";
   const parameters: VirtualNetwork = {
     addressSpace: { addressPrefixes: ["10.0.0.0/16"] },
-    bgpCommunities: { virtualNetworkCommunity: "12076:60000" },
+    bgpCommunities: { virtualNetworkCommunity: "12076:20000" },
     location: "eastus",
     subnets: [{ name: "test-1", addressPrefix: "10.0.0.0/24" }]
   };

@@ -25,7 +25,20 @@ async function vpnGatewayPut() {
   const resourceGroupName = "rg1";
   const gatewayName = "gateway1";
   const vpnGatewayParameters: VpnGateway = {
-    bgpSettings: { asn: 65515, peerWeight: 0 },
+    bgpSettings: {
+      asn: 65515,
+      bgpPeeringAddresses: [
+        {
+          customBgpIpAddresses: ["169.254.21.5"],
+          ipconfigurationId: "Instance0"
+        },
+        {
+          customBgpIpAddresses: ["169.254.21.10"],
+          ipconfigurationId: "Instance1"
+        }
+      ],
+      peerWeight: 0
+    },
     connections: [
       {
         name: "vpnConnection1",
@@ -37,6 +50,12 @@ async function vpnGatewayPut() {
           {
             name: "Connection-Link1",
             connectionBandwidth: 200,
+            egressNatRules: [
+              {
+                id:
+                  "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/vpnGateways/gateway1/natRules/nat03"
+              }
+            ],
             sharedKey: "key",
             vpnConnectionProtocolType: "IKEv2",
             vpnSiteLink: {
@@ -47,7 +66,19 @@ async function vpnGatewayPut() {
         ]
       }
     ],
+    enableBgpRouteTranslationForNat: false,
+    isRoutingPreferenceInternet: false,
     location: "westcentralus",
+    natRules: [
+      {
+        name: "nat03",
+        typePropertiesType: "Static",
+        externalMappings: [{ addressSpace: "192.168.0.0/26" }],
+        internalMappings: [{ addressSpace: "0.0.0.0/26" }],
+        ipConfigurationId: "",
+        mode: "EgressSnat"
+      }
+    ],
     tags: { key1: "value1" },
     virtualHub: {
       id:

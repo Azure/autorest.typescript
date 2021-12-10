@@ -29,6 +29,7 @@ async function createAzureFirewallInVirtualHub() {
       id:
         "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/firewallPolicies/policy1"
     },
+    hubIPAddresses: { publicIPs: { addresses: [], count: 1 } },
     location: "West US",
     sku: { name: "AZFW_Hub", tier: "Standard" },
     tags: { key1: "value1" },

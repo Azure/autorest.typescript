@@ -9,21 +9,21 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 /**
- * This sample demonstrates how to Deletes a RouteTable.
+ * This sample demonstrates how to Deletes a RoutingIntent.
  *
- * @summary Deletes a RouteTable.
+ * @summary Deletes a RoutingIntent.
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: NetworkManagementClient;
-//hubRouteTables.beginDeleteAndWait
+//routingIntentOperations.beginDeleteAndWait
 async function routeTableDelete() {
   const resourceGroupName = "rg1";
   const virtualHubName = "virtualHub1";
-  const routeTableName = "hubRouteTable1";
-  await client.hubRouteTables
-    .beginDeleteAndWait(resourceGroupName, virtualHubName, routeTableName)
+  const routingIntentName = "Intent1";
+  await client.routingIntentOperations
+    .beginDeleteAndWait(resourceGroupName, virtualHubName, routingIntentName)
     .then((res) => {
       console.log(res);
     });

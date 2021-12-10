@@ -66,7 +66,45 @@ async function createsOrUpdatesAWafPolicyWithinAResourceGroup() {
     ],
     location: "WestUs",
     managedRules: {
-      managedRuleSets: [{ ruleSetType: "OWASP", ruleSetVersion: "3.0" }]
+      exclusions: [
+        {
+          exclusionManagedRuleSets: [
+            {
+              ruleGroups: [
+                {
+                  ruleGroupName: "REQUEST-930-APPLICATION-ATTACK-LFI",
+                  rules: [{ ruleId: "930120" }]
+                },
+                { ruleGroupName: "REQUEST-932-APPLICATION-ATTACK-RCE" }
+              ],
+              ruleSetType: "OWASP",
+              ruleSetVersion: "3.2"
+            }
+          ],
+          matchVariable: "RequestArgNames",
+          selector: "hello",
+          selectorMatchOperator: "StartsWith"
+        },
+        {
+          exclusionManagedRuleSets: [
+            { ruleGroups: [], ruleSetType: "OWASP", ruleSetVersion: "3.1" }
+          ],
+          matchVariable: "RequestArgNames",
+          selector: "hello",
+          selectorMatchOperator: "EndsWith"
+        },
+        {
+          matchVariable: "RequestArgNames",
+          selector: "test",
+          selectorMatchOperator: "StartsWith"
+        },
+        {
+          matchVariable: "RequestArgValues",
+          selector: "test",
+          selectorMatchOperator: "StartsWith"
+        }
+      ],
+      managedRuleSets: [{ ruleSetType: "OWASP", ruleSetVersion: "3.2" }]
     }
   };
   await client.webApplicationFirewallPolicies

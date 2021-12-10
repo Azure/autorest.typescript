@@ -26,12 +26,31 @@ async function createConnectionMonitorV1() {
   const networkWatcherName = "nw1";
   const connectionMonitorName = "cm1";
   const parameters: ConnectionMonitor = {
-    destination: { address: "bing.com", port: 80 },
-    monitoringIntervalInSeconds: 60,
-    source: {
-      resourceId:
-        "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Compute/virtualMachines/vm1"
-    }
+    endpoints: [
+      {
+        name: "source",
+        resourceId:
+          "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Compute/virtualMachines/ct1"
+      },
+      { name: "destination", address: "bing.com" }
+    ],
+    location: "eastus",
+    testConfigurations: [
+      {
+        name: "tcp",
+        tcpConfiguration: { port: 80 },
+        testFrequencySec: 60,
+        protocol: "Tcp"
+      }
+    ],
+    testGroups: [
+      {
+        name: "tg",
+        destinations: ["destination"],
+        sources: ["source"],
+        testConfigurations: ["tcp"]
+      }
+    ]
   };
   await client.connectionMonitors
     .beginCreateOrUpdateAndWait(

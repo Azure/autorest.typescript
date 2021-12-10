@@ -9,21 +9,21 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 /**
- * This sample demonstrates how to Retrieves the details of a VirtualHubRouteTableV2.
+ * This sample demonstrates how to Retrieves the details of a Virtual Hub Ip configuration.
  *
- * @summary Retrieves the details of a VirtualHubRouteTableV2.
+ * @summary Retrieves the details of a Virtual Hub Ip configuration.
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: NetworkManagementClient;
-//virtualHubRouteTableV2S.get
+//virtualHubIpConfiguration.get
 async function virtualHubVirtualHubRouteTableV2Get() {
   const resourceGroupName = "rg1";
-  const virtualHubName = "virtualHub1";
-  const routeTableName = "virtualHubRouteTable1a";
-  await client.virtualHubRouteTableV2S
-    .get(resourceGroupName, virtualHubName, routeTableName)
+  const virtualHubName = "hub1";
+  const ipConfigName = "ipconfig1";
+  await client.virtualHubIpConfiguration
+    .get(resourceGroupName, virtualHubName, ipConfigName)
     .then((res) => {
       console.log(res);
     });

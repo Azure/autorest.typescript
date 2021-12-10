@@ -29,6 +29,12 @@ async function createApplicationGateway() {
       {
         name: "appgwpool",
         backendAddresses: [{ ipAddress: "10.0.1.1" }, { ipAddress: "10.0.1.2" }]
+      },
+      {
+        name: "appgwpool1",
+        backendAddresses: [{}, {}],
+        id:
+          "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/applicationGateways/appgw/backendAddressPools/appgwpool1"
       }
     ],
     backendHttpSettingsCollection: [
@@ -62,6 +68,10 @@ async function createApplicationGateway() {
         }
       }
     ],
+    globalConfiguration: {
+      enableRequestBuffering: true,
+      enableResponseBuffering: true
+    },
     httpListeners: [
       {
         name: "appgwhl",
@@ -77,6 +87,10 @@ async function createApplicationGateway() {
         sslCertificate: {
           id:
             "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/applicationGateways/appgw/sslCertificates/sslcert"
+        },
+        sslProfile: {
+          id:
+            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/applicationGateways/appgw/sslProfiles/sslProfile1"
         },
         protocol: "Https"
       },
@@ -99,6 +113,30 @@ async function createApplicationGateway() {
         "/subscriptions/subid/resourceGroups/rg1/providers/MicrosoftManagedIdentity/userAssignedIdentities/identity1": {}
       }
     },
+    loadDistributionPolicies: [
+      {
+        name: "ldp1",
+        loadDistributionAlgorithm: "RoundRobin",
+        loadDistributionTargets: [
+          {
+            name: "ld11",
+            backendAddressPool: {
+              id:
+                "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/applicationGateways/appgw/backendAddressPools/appgwpool"
+            },
+            weightPerServer: 40
+          },
+          {
+            name: "ld11",
+            backendAddressPool: {
+              id:
+                "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/applicationGateways/appgw/backendAddressPools/appgwpool1"
+            },
+            weightPerServer: 60
+          }
+        ]
+      }
+    ],
     location: "eastus",
     requestRoutingRules: [
       {
@@ -114,6 +152,10 @@ async function createApplicationGateway() {
         httpListener: {
           id:
             "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/applicationGateways/appgw/httpListeners/appgwhl"
+        },
+        loadDistributionPolicy: {
+          id:
+            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/applicationGateways/appgw/loadDistributionPolicies/ldp1"
         },
         priority: 10,
         rewriteRuleSet: {
@@ -175,6 +217,24 @@ async function createApplicationGateway() {
       { name: "sslcert", data: "****", password: "****" },
       { name: "sslcert2", keyVaultSecretId: "https://kv/secret" }
     ],
+    sslProfiles: [
+      {
+        name: "sslProfile1",
+        clientAuthConfiguration: { verifyClientCertIssuerDN: true },
+        sslPolicy: {
+          cipherSuites: ["TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256"],
+          minProtocolVersion: "TLSv1_1",
+          policyType: "Custom"
+        },
+        trustedClientCertificates: [
+          {
+            id:
+              "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/applicationGateways/appgw/trustedClientCertificates/clientcert"
+          }
+        ]
+      }
+    ],
+    trustedClientCertificates: [{ name: "clientcert", data: "****" }],
     trustedRootCertificates: [
       { name: "rootcert", data: "****" },
       { name: "rootcert1", keyVaultSecretId: "https://kv/secret" }
@@ -190,6 +250,10 @@ async function createApplicationGateway() {
           id:
             "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/applicationGateways/appgw/backendHttpSettingsCollection/appgwbhs"
         },
+        defaultLoadDistributionPolicy: {
+          id:
+            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/applicationGateways/appgw/loadDistributionPolicies/ldp1"
+        },
         defaultRewriteRuleSet: {
           id:
             "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/applicationGateways/appgw/rewriteRuleSets/rewriteRuleSet1"
@@ -204,6 +268,10 @@ async function createApplicationGateway() {
             backendHttpSettings: {
               id:
                 "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/applicationGateways/appgw/backendHttpSettingsCollection/appgwbhs"
+            },
+            loadDistributionPolicy: {
+              id:
+                "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/applicationGateways/appgw/loadDistributionPolicies/ldp1"
             },
             paths: ["/api", "/v1/api"],
             rewriteRuleSet: {

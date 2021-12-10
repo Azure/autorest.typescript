@@ -30,12 +30,15 @@ async function vpnConnectionPut() {
       id:
         "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/vpnSites/vpnSite1"
     },
+    trafficSelectorPolicies: [],
     vpnLinkConnections: [
       {
         name: "Connection-Link1",
         connectionBandwidth: 200,
         sharedKey: "key",
+        usePolicyBasedTrafficSelectors: false,
         vpnConnectionProtocolType: "IKEv2",
+        vpnLinkConnectionMode: "Default",
         vpnSiteLink: {
           id:
             "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/vpnSites/vpnSite1/vpnSiteLinks/siteLink1"

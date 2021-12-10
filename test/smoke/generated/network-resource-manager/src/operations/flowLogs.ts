@@ -20,6 +20,9 @@ import {
   FlowLogsListOptionalParams,
   FlowLogsCreateOrUpdateOptionalParams,
   FlowLogsCreateOrUpdateResponse,
+  TagsObject,
+  FlowLogsUpdateTagsOptionalParams,
+  FlowLogsUpdateTagsResponse,
   FlowLogsGetOptionalParams,
   FlowLogsGetResponse,
   FlowLogsDeleteOptionalParams,
@@ -214,6 +217,33 @@ export class FlowLogsImpl implements FlowLogs {
   }
 
   /**
+   * Update tags of the specified flow log.
+   * @param resourceGroupName The name of the resource group.
+   * @param networkWatcherName The name of the network watcher.
+   * @param flowLogName The name of the flow log.
+   * @param parameters Parameters supplied to update flow log tags.
+   * @param options The options parameters.
+   */
+  updateTags(
+    resourceGroupName: string,
+    networkWatcherName: string,
+    flowLogName: string,
+    parameters: TagsObject,
+    options?: FlowLogsUpdateTagsOptionalParams
+  ): Promise<FlowLogsUpdateTagsResponse> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        networkWatcherName,
+        flowLogName,
+        parameters,
+        options
+      },
+      updateTagsOperationSpec
+    );
+  }
+
+  /**
    * Gets a flow log resource by name.
    * @param resourceGroupName The name of the resource group.
    * @param networkWatcherName The name of the network watcher.
@@ -378,7 +408,32 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorResponse
     }
   },
-  requestBody: Parameters.parameters36,
+  requestBody: Parameters.parameters47,
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.networkWatcherName,
+    Parameters.flowLogName
+  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
+  serializer
+};
+const updateTagsOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers/{networkWatcherName}/flowLogs/{flowLogName}",
+  httpMethod: "PATCH",
+  responses: {
+    200: {
+      bodyMapper: Mappers.FlowLog
+    },
+    default: {
+      bodyMapper: Mappers.ErrorResponse
+    }
+  },
+  requestBody: Parameters.parameters1,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

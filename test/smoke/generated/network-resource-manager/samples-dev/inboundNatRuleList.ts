@@ -9,9 +9,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 /**
- * This sample demonstrates how to Gets all the inbound nat rules in a load balancer.
+ * This sample demonstrates how to Gets all the inbound NAT rules in a load balancer.
  *
- * @summary Gets all the inbound nat rules in a load balancer.
+ * @summary Gets all the inbound NAT rules in a load balancer.
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";

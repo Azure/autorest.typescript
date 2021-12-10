@@ -41,7 +41,7 @@ export class InboundNatRulesImpl implements InboundNatRules {
   }
 
   /**
-   * Gets all the inbound nat rules in a load balancer.
+   * Gets all the inbound NAT rules in a load balancer.
    * @param resourceGroupName The name of the resource group.
    * @param loadBalancerName The name of the load balancer.
    * @param options The options parameters.
@@ -108,7 +108,7 @@ export class InboundNatRulesImpl implements InboundNatRules {
   }
 
   /**
-   * Gets all the inbound nat rules in a load balancer.
+   * Gets all the inbound NAT rules in a load balancer.
    * @param resourceGroupName The name of the resource group.
    * @param loadBalancerName The name of the load balancer.
    * @param options The options parameters.
@@ -125,10 +125,10 @@ export class InboundNatRulesImpl implements InboundNatRules {
   }
 
   /**
-   * Deletes the specified load balancer inbound nat rule.
+   * Deletes the specified load balancer inbound NAT rule.
    * @param resourceGroupName The name of the resource group.
    * @param loadBalancerName The name of the load balancer.
-   * @param inboundNatRuleName The name of the inbound nat rule.
+   * @param inboundNatRuleName The name of the inbound NAT rule.
    * @param options The options parameters.
    */
   async beginDelete(
@@ -189,10 +189,10 @@ export class InboundNatRulesImpl implements InboundNatRules {
   }
 
   /**
-   * Deletes the specified load balancer inbound nat rule.
+   * Deletes the specified load balancer inbound NAT rule.
    * @param resourceGroupName The name of the resource group.
    * @param loadBalancerName The name of the load balancer.
-   * @param inboundNatRuleName The name of the inbound nat rule.
+   * @param inboundNatRuleName The name of the inbound NAT rule.
    * @param options The options parameters.
    */
   async beginDeleteAndWait(
@@ -211,10 +211,10 @@ export class InboundNatRulesImpl implements InboundNatRules {
   }
 
   /**
-   * Gets the specified load balancer inbound nat rule.
+   * Gets the specified load balancer inbound NAT rule.
    * @param resourceGroupName The name of the resource group.
    * @param loadBalancerName The name of the load balancer.
-   * @param inboundNatRuleName The name of the inbound nat rule.
+   * @param inboundNatRuleName The name of the inbound NAT rule.
    * @param options The options parameters.
    */
   get(
@@ -230,11 +230,11 @@ export class InboundNatRulesImpl implements InboundNatRules {
   }
 
   /**
-   * Creates or updates a load balancer inbound nat rule.
+   * Creates or updates a load balancer inbound NAT rule.
    * @param resourceGroupName The name of the resource group.
    * @param loadBalancerName The name of the load balancer.
-   * @param inboundNatRuleName The name of the inbound nat rule.
-   * @param inboundNatRuleParameters Parameters supplied to the create or update inbound nat rule
+   * @param inboundNatRuleName The name of the inbound NAT rule.
+   * @param inboundNatRuleParameters Parameters supplied to the create or update inbound NAT rule
    *                                 operation.
    * @param options The options parameters.
    */
@@ -308,11 +308,11 @@ export class InboundNatRulesImpl implements InboundNatRules {
   }
 
   /**
-   * Creates or updates a load balancer inbound nat rule.
+   * Creates or updates a load balancer inbound NAT rule.
    * @param resourceGroupName The name of the resource group.
    * @param loadBalancerName The name of the load balancer.
-   * @param inboundNatRuleName The name of the inbound nat rule.
-   * @param inboundNatRuleParameters Parameters supplied to the create or update inbound nat rule
+   * @param inboundNatRuleName The name of the inbound NAT rule.
+   * @param inboundNatRuleParameters Parameters supplied to the create or update inbound NAT rule
    *                                 operation.
    * @param options The options parameters.
    */

@@ -9,21 +9,21 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 /**
- * This sample demonstrates how to Retrieves the details of a RouteTable.
+ * This sample demonstrates how to Retrieves the details of a RoutingIntent.
  *
- * @summary Retrieves the details of a RouteTable.
+ * @summary Retrieves the details of a RoutingIntent.
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: NetworkManagementClient;
-//hubRouteTables.get
+//routingIntentOperations.get
 async function routeTableGet() {
   const resourceGroupName = "rg1";
   const virtualHubName = "virtualHub1";
-  const routeTableName = "hubRouteTable1";
-  await client.hubRouteTables
-    .get(resourceGroupName, virtualHubName, routeTableName)
+  const routingIntentName = "Intent1";
+  await client.routingIntentOperations
+    .get(resourceGroupName, virtualHubName, routingIntentName)
     .then((res) => {
       console.log(res);
     });

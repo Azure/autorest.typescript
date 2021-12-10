@@ -111,6 +111,7 @@ export const readmes: SpecDefinition[] = [
       "./.tmp/specs/specification/network/resource-manager/readme.md"
     ),
     params: [AutorestParams.GenerateTest],
+    branch: "main",
     buildTag: "ci_3"
   },
   // {

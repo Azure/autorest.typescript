@@ -9,9 +9,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 /**
- * This sample demonstrates how to Creates or updates a load balancer inbound nat rule.
+ * This sample demonstrates how to Creates or updates a load balancer inbound NAT rule.
  *
- * @summary Creates or updates a load balancer inbound nat rule.
+ * @summary Creates or updates a load balancer inbound NAT rule.
  */
 import {
   InboundNatRule,

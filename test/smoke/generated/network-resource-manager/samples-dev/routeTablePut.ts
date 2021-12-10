@@ -9,41 +9,44 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 /**
- * This sample demonstrates how to Creates a RouteTable resource if it doesn't exist else updates the existing RouteTable.
+ * This sample demonstrates how to Creates a RoutingIntent resource if it doesn't exist else updates the existing RoutingIntent.
  *
- * @summary Creates a RouteTable resource if it doesn't exist else updates the existing RouteTable.
+ * @summary Creates a RoutingIntent resource if it doesn't exist else updates the existing RoutingIntent.
  */
 import {
-  HubRouteTable,
+  RoutingIntent,
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: NetworkManagementClient;
-//hubRouteTables.beginCreateOrUpdateAndWait
+//routingIntentOperations.beginCreateOrUpdateAndWait
 async function routeTablePut() {
   const resourceGroupName = "rg1";
   const virtualHubName = "virtualHub1";
-  const routeTableName = "hubRouteTable1";
-  const routeTableParameters: HubRouteTable = {
-    labels: ["label1", "label2"],
-    routes: [
+  const routingIntentName = "Intent1";
+  const routingIntentParameters: RoutingIntent = {
+    routingPolicies: [
       {
-        name: "route1",
-        destinationType: "CIDR",
-        destinations: ["10.0.0.0/8", "20.0.0.0/8", "30.0.0.0/8"],
+        name: "InternetTraffic",
+        destinations: ["Internet"],
         nextHop:
-          "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/azureFirewalls/azureFirewall1",
-        nextHopType: "ResourceId"
+          "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/azureFirewalls/azfw1"
+      },
+      {
+        name: "PrivateTrafficPolicy",
+        destinations: ["PrivateTraffic"],
+        nextHop:
+          "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/azureFirewalls/azfw1"
       }
     ]
   };
-  await client.hubRouteTables
+  await client.routingIntentOperations
     .beginCreateOrUpdateAndWait(
       resourceGroupName,
       virtualHubName,
-      routeTableName,
-      routeTableParameters
+      routingIntentName,
+      routingIntentParameters
     )
     .then((res) => {
       console.log(res);

@@ -25,12 +25,38 @@ async function p2SVpnGatewayPut() {
   const resourceGroupName = "rg1";
   const gatewayName = "p2sVpnGateway1";
   const p2SVpnGatewayParameters: P2SVpnGateway = {
+    customDnsServers: ["1.1.1.1", "2.2.2.2"],
+    isRoutingPreferenceInternet: false,
     location: "West US",
     p2SConnectionConfigurations: [
       {
         name: "P2SConnectionConfig1",
         id:
           "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/p2sVpnGateways/p2sVpnGateway1/p2sConnectionConfigurations/P2SConnectionConfig1",
+        routingConfiguration: {
+          associatedRouteTable: {
+            id:
+              "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualHubs/virtualHub1/hubRouteTables/hubRouteTable1"
+          },
+          propagatedRouteTables: {
+            ids: [
+              {
+                id:
+                  "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualHubs/virtualHub1/hubRouteTables/hubRouteTable1"
+              },
+              {
+                id:
+                  "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualHubs/virtualHub1/hubRouteTables/hubRouteTable2"
+              },
+              {
+                id:
+                  "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualHubs/virtualHub1/hubRouteTables/hubRouteTable3"
+              }
+            ],
+            labels: ["label1", "label2"]
+          },
+          vnetRoutes: { staticRoutes: [] }
+        },
         vpnClientAddressPool: { addressPrefixes: ["101.3.0.0/16"] }
       }
     ],

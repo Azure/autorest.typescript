@@ -25,6 +25,15 @@ async function createPrivateEndpoint() {
   const resourceGroupName = "rg1";
   const privateEndpointName = "testPe";
   const parameters: PrivateEndpoint = {
+    customNetworkInterfaceName: "testPeNic",
+    ipConfigurations: [
+      {
+        name: "pestaticconfig",
+        groupId: "file",
+        memberName: "file",
+        privateIPAddress: "192.168.0.6"
+      }
+    ],
     location: "eastus2euap",
     privateLinkServiceConnections: [
       {

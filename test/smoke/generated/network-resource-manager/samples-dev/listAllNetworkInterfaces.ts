@@ -9,18 +9,18 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 /**
- * This sample demonstrates how to Gets all network interfaces in a subscription.
+ * This sample demonstrates how to Gets all dscp configurations in a subscription.
  *
- * @summary Gets all network interfaces in a subscription.
+ * @summary Gets all dscp configurations in a subscription.
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: NetworkManagementClient;
-//networkInterfaces.listAll
+//dscpConfigurationOperations.listAll
 async function listAllNetworkInterfaces() {
   const resArray = new Array();
-  for await (let item of client.networkInterfaces.listAll()) {
+  for await (let item of client.dscpConfigurationOperations.listAll()) {
     resArray.push(item);
   }
   console.log(resArray);

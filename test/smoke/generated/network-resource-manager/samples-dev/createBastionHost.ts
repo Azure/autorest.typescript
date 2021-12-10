@@ -23,7 +23,7 @@ let client: NetworkManagementClient;
 //bastionHosts.beginCreateOrUpdateAndWait
 async function createBastionHost() {
   const resourceGroupName = "rg1";
-  const bastionHostName = "bastionhosttenant'";
+  const bastionHostName = "bastionhosttenant";
   const parameters: BastionHost = {
     ipConfigurations: [
       {

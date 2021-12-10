@@ -13,6 +13,9 @@ import {
   FlowLogsListOptionalParams,
   FlowLogsCreateOrUpdateOptionalParams,
   FlowLogsCreateOrUpdateResponse,
+  TagsObject,
+  FlowLogsUpdateTagsOptionalParams,
+  FlowLogsUpdateTagsResponse,
   FlowLogsGetOptionalParams,
   FlowLogsGetResponse,
   FlowLogsDeleteOptionalParams
@@ -67,6 +70,21 @@ export interface FlowLogs {
     parameters: FlowLog,
     options?: FlowLogsCreateOrUpdateOptionalParams
   ): Promise<FlowLogsCreateOrUpdateResponse>;
+  /**
+   * Update tags of the specified flow log.
+   * @param resourceGroupName The name of the resource group.
+   * @param networkWatcherName The name of the network watcher.
+   * @param flowLogName The name of the flow log.
+   * @param parameters Parameters supplied to update flow log tags.
+   * @param options The options parameters.
+   */
+  updateTags(
+    resourceGroupName: string,
+    networkWatcherName: string,
+    flowLogName: string,
+    parameters: TagsObject,
+    options?: FlowLogsUpdateTagsOptionalParams
+  ): Promise<FlowLogsUpdateTagsResponse>;
   /**
    * Gets a flow log resource by name.
    * @param resourceGroupName The name of the resource group.

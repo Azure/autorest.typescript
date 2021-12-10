@@ -28,6 +28,9 @@ async function vpnSiteCreate() {
     addressSpace: { addressPrefixes: ["10.0.0.0/16"] },
     isSecuritySite: false,
     location: "West US",
+    o365Policy: {
+      breakOutCategories: { default: false, allow: true, optimize: true }
+    },
     tags: { key1: "value1" },
     virtualWan: {
       id:

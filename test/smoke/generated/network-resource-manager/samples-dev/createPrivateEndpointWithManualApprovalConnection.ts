@@ -25,6 +25,15 @@ async function createPrivateEndpointWithManualApprovalConnection() {
   const resourceGroupName = "rg1";
   const privateEndpointName = "testPe";
   const parameters: PrivateEndpoint = {
+    customNetworkInterfaceName: "testPeNic",
+    ipConfigurations: [
+      {
+        name: "pestaticconfig",
+        groupId: "file",
+        memberName: "file",
+        privateIPAddress: "192.168.0.5"
+      }
+    ],
     location: "eastus",
     manualPrivateLinkServiceConnections: [
       {

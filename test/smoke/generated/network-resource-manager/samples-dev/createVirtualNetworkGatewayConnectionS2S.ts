@@ -25,10 +25,23 @@ async function createVirtualNetworkGatewayConnectionS2S() {
   const resourceGroupName = "rg1";
   const virtualNetworkGatewayConnectionName = "connS2S";
   const parameters: VirtualNetworkGatewayConnection = {
+    connectionMode: "Default",
     connectionProtocol: "IKEv2",
     connectionType: "IPsec",
     dpdTimeoutSeconds: 30,
+    egressNatRules: [
+      {
+        id:
+          "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworkGateways/vpngw/natRules/natRule2"
+      }
+    ],
     enableBgp: false,
+    ingressNatRules: [
+      {
+        id:
+          "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworkGateways/vpngw/natRules/natRule1"
+      }
+    ],
     ipsecPolicies: [],
     localNetworkGateway2: {
       gatewayIpAddress: "x.x.x.x",

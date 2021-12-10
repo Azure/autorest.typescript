@@ -9,9 +9,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 /**
- * This sample demonstrates how to Deletes the specified load balancer inbound nat rule.
+ * This sample demonstrates how to Deletes the specified load balancer inbound NAT rule.
  *
- * @summary Deletes the specified load balancer inbound nat rule.
+ * @summary Deletes the specified load balancer inbound NAT rule.
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";

@@ -20,7 +20,7 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: NetworkManagementClient;
-//p2SVpnGateways.updateTags
+//p2SVpnGateways.beginUpdateTagsAndWait
 async function p2SVpnGatewayUpdate() {
   const resourceGroupName = "rg1";
   const gatewayName = "p2sVpnGateway1";
@@ -28,7 +28,11 @@ async function p2SVpnGatewayUpdate() {
     tags: { tag1: "value1", tag2: "value2" }
   };
   await client.p2SVpnGateways
-    .updateTags(resourceGroupName, gatewayName, p2SVpnGatewayParameters)
+    .beginUpdateTagsAndWait(
+      resourceGroupName,
+      gatewayName,
+      p2SVpnGatewayParameters
+    )
     .then((res) => {
       console.log(res);
     });

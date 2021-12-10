@@ -29,7 +29,7 @@ async function createPublicIPAddressAllocationMethod() {
     location: "eastus",
     publicIPAddressVersion: "IPv4",
     publicIPAllocationMethod: "Static",
-    sku: { name: "Standard" }
+    sku: { name: "Standard", tier: "Global" }
   };
   await client.publicIPAddresses
     .beginCreateOrUpdateAndWait(

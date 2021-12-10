@@ -13,15 +13,22 @@ import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "./lroImpl";
 import {
   ApplicationGatewaysImpl,
+  ApplicationGatewayPrivateLinkResourcesImpl,
+  ApplicationGatewayPrivateEndpointConnectionsImpl,
   ApplicationSecurityGroupsImpl,
   AvailableDelegationsImpl,
   AvailableResourceGroupDelegationsImpl,
   AvailableServiceAliasesImpl,
   AzureFirewallsImpl,
   AzureFirewallFqdnTagsImpl,
+  WebCategoriesImpl,
   BastionHostsImpl,
+  NetworkInterfacesImpl,
+  PublicIPAddressesImpl,
+  CustomIPPrefixesImpl,
   DdosCustomPoliciesImpl,
   DdosProtectionPlansImpl,
+  DscpConfigurationOperationsImpl,
   AvailableEndpointServicesImpl,
   ExpressRouteCircuitAuthorizationsImpl,
   ExpressRouteCircuitPeeringsImpl,
@@ -35,7 +42,10 @@ import {
   ExpressRoutePortsImpl,
   ExpressRouteLinksImpl,
   FirewallPoliciesImpl,
-  FirewallPolicyRuleGroupsImpl,
+  FirewallPolicyRuleCollectionGroupsImpl,
+  FirewallPolicyIdpsSignaturesImpl,
+  FirewallPolicyIdpsSignaturesOverridesImpl,
+  FirewallPolicyIdpsSignaturesFilterValuesImpl,
   IpAllocationsImpl,
   IpGroupsImpl,
   LoadBalancersImpl,
@@ -47,7 +57,6 @@ import {
   LoadBalancerNetworkInterfacesImpl,
   LoadBalancerProbesImpl,
   NatGatewaysImpl,
-  NetworkInterfacesImpl,
   NetworkInterfaceIPConfigurationsImpl,
   NetworkInterfaceLoadBalancersImpl,
   NetworkInterfaceTapConfigurationsImpl,
@@ -56,6 +65,9 @@ import {
   SecurityRulesImpl,
   DefaultSecurityRulesImpl,
   NetworkVirtualAppliancesImpl,
+  VirtualApplianceSitesImpl,
+  VirtualApplianceSkusImpl,
+  InboundSecurityRuleOperationsImpl,
   NetworkWatchersImpl,
   PacketCapturesImpl,
   ConnectionMonitorsImpl,
@@ -65,7 +77,6 @@ import {
   AvailablePrivateEndpointTypesImpl,
   PrivateDnsZoneGroupsImpl,
   PrivateLinkServicesImpl,
-  PublicIPAddressesImpl,
   PublicIPPrefixesImpl,
   RouteFiltersImpl,
   RouteFilterRulesImpl,
@@ -76,6 +87,7 @@ import {
   ServiceEndpointPoliciesImpl,
   ServiceEndpointPolicyDefinitionsImpl,
   ServiceTagsImpl,
+  ServiceTagInformationOperationsImpl,
   UsagesImpl,
   VirtualNetworksImpl,
   SubnetsImpl,
@@ -85,6 +97,7 @@ import {
   VirtualNetworkGatewaysImpl,
   VirtualNetworkGatewayConnectionsImpl,
   LocalNetworkGatewaysImpl,
+  VirtualNetworkGatewayNatRulesImpl,
   VirtualNetworkTapsImpl,
   VirtualRoutersImpl,
   VirtualRouterPeeringsImpl,
@@ -96,28 +109,40 @@ import {
   VirtualHubsImpl,
   HubVirtualNetworkConnectionsImpl,
   VpnGatewaysImpl,
+  VpnLinkConnectionsImpl,
   VpnConnectionsImpl,
   VpnSiteLinkConnectionsImpl,
-  VpnLinkConnectionsImpl,
+  NatRulesImpl,
   P2SVpnGatewaysImpl,
   VpnServerConfigurationsAssociatedWithVirtualWanImpl,
   VirtualHubRouteTableV2SImpl,
   ExpressRouteGatewaysImpl,
   ExpressRouteConnectionsImpl,
+  VirtualHubBgpConnectionImpl,
+  VirtualHubBgpConnectionsImpl,
+  VirtualHubIpConfigurationImpl,
   HubRouteTablesImpl,
+  RoutingIntentOperationsImpl,
   WebApplicationFirewallPoliciesImpl
 } from "./operations";
 import {
   ApplicationGateways,
+  ApplicationGatewayPrivateLinkResources,
+  ApplicationGatewayPrivateEndpointConnections,
   ApplicationSecurityGroups,
   AvailableDelegations,
   AvailableResourceGroupDelegations,
   AvailableServiceAliases,
   AzureFirewalls,
   AzureFirewallFqdnTags,
+  WebCategories,
   BastionHosts,
+  NetworkInterfaces,
+  PublicIPAddresses,
+  CustomIPPrefixes,
   DdosCustomPolicies,
   DdosProtectionPlans,
+  DscpConfigurationOperations,
   AvailableEndpointServices,
   ExpressRouteCircuitAuthorizations,
   ExpressRouteCircuitPeerings,
@@ -131,7 +156,10 @@ import {
   ExpressRoutePorts,
   ExpressRouteLinks,
   FirewallPolicies,
-  FirewallPolicyRuleGroups,
+  FirewallPolicyRuleCollectionGroups,
+  FirewallPolicyIdpsSignatures,
+  FirewallPolicyIdpsSignaturesOverrides,
+  FirewallPolicyIdpsSignaturesFilterValues,
   IpAllocations,
   IpGroups,
   LoadBalancers,
@@ -143,7 +171,6 @@ import {
   LoadBalancerNetworkInterfaces,
   LoadBalancerProbes,
   NatGateways,
-  NetworkInterfaces,
   NetworkInterfaceIPConfigurations,
   NetworkInterfaceLoadBalancers,
   NetworkInterfaceTapConfigurations,
@@ -152,6 +179,9 @@ import {
   SecurityRules,
   DefaultSecurityRules,
   NetworkVirtualAppliances,
+  VirtualApplianceSites,
+  VirtualApplianceSkus,
+  InboundSecurityRuleOperations,
   NetworkWatchers,
   PacketCaptures,
   ConnectionMonitors,
@@ -161,7 +191,6 @@ import {
   AvailablePrivateEndpointTypes,
   PrivateDnsZoneGroups,
   PrivateLinkServices,
-  PublicIPAddresses,
   PublicIPPrefixes,
   RouteFilters,
   RouteFilterRules,
@@ -172,6 +201,7 @@ import {
   ServiceEndpointPolicies,
   ServiceEndpointPolicyDefinitions,
   ServiceTags,
+  ServiceTagInformationOperations,
   Usages,
   VirtualNetworks,
   Subnets,
@@ -181,6 +211,7 @@ import {
   VirtualNetworkGateways,
   VirtualNetworkGatewayConnections,
   LocalNetworkGateways,
+  VirtualNetworkGatewayNatRules,
   VirtualNetworkTaps,
   VirtualRouters,
   VirtualRouterPeerings,
@@ -192,15 +223,20 @@ import {
   VirtualHubs,
   HubVirtualNetworkConnections,
   VpnGateways,
+  VpnLinkConnections,
   VpnConnections,
   VpnSiteLinkConnections,
-  VpnLinkConnections,
+  NatRules,
   P2SVpnGateways,
   VpnServerConfigurationsAssociatedWithVirtualWan,
   VirtualHubRouteTableV2S,
   ExpressRouteGateways,
   ExpressRouteConnections,
+  VirtualHubBgpConnection,
+  VirtualHubBgpConnections,
+  VirtualHubIpConfiguration,
   HubRouteTables,
+  RoutingIntentOperations,
   WebApplicationFirewallPolicies
 } from "./operationsInterfaces";
 import * as Parameters from "./models/parameters";
@@ -277,9 +313,6 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
         ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
         : `${packageDetails}`;
 
-    if (!options.credentialScopes) {
-      options.credentialScopes = ["https://management.azure.com/.default"];
-    }
     const optionsWithDefaults = {
       ...defaults,
       ...options,
@@ -295,6 +328,12 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
     // Assigning values to Constant parameters
     this.$host = options.$host || "https://management.azure.com";
     this.applicationGateways = new ApplicationGatewaysImpl(this);
+    this.applicationGatewayPrivateLinkResources = new ApplicationGatewayPrivateLinkResourcesImpl(
+      this
+    );
+    this.applicationGatewayPrivateEndpointConnections = new ApplicationGatewayPrivateEndpointConnectionsImpl(
+      this
+    );
     this.applicationSecurityGroups = new ApplicationSecurityGroupsImpl(this);
     this.availableDelegations = new AvailableDelegationsImpl(this);
     this.availableResourceGroupDelegations = new AvailableResourceGroupDelegationsImpl(
@@ -303,9 +342,16 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
     this.availableServiceAliases = new AvailableServiceAliasesImpl(this);
     this.azureFirewalls = new AzureFirewallsImpl(this);
     this.azureFirewallFqdnTags = new AzureFirewallFqdnTagsImpl(this);
+    this.webCategories = new WebCategoriesImpl(this);
     this.bastionHosts = new BastionHostsImpl(this);
+    this.networkInterfaces = new NetworkInterfacesImpl(this);
+    this.publicIPAddresses = new PublicIPAddressesImpl(this);
+    this.customIPPrefixes = new CustomIPPrefixesImpl(this);
     this.ddosCustomPolicies = new DdosCustomPoliciesImpl(this);
     this.ddosProtectionPlans = new DdosProtectionPlansImpl(this);
+    this.dscpConfigurationOperations = new DscpConfigurationOperationsImpl(
+      this
+    );
     this.availableEndpointServices = new AvailableEndpointServicesImpl(this);
     this.expressRouteCircuitAuthorizations = new ExpressRouteCircuitAuthorizationsImpl(
       this
@@ -333,7 +379,18 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
     this.expressRoutePorts = new ExpressRoutePortsImpl(this);
     this.expressRouteLinks = new ExpressRouteLinksImpl(this);
     this.firewallPolicies = new FirewallPoliciesImpl(this);
-    this.firewallPolicyRuleGroups = new FirewallPolicyRuleGroupsImpl(this);
+    this.firewallPolicyRuleCollectionGroups = new FirewallPolicyRuleCollectionGroupsImpl(
+      this
+    );
+    this.firewallPolicyIdpsSignatures = new FirewallPolicyIdpsSignaturesImpl(
+      this
+    );
+    this.firewallPolicyIdpsSignaturesOverrides = new FirewallPolicyIdpsSignaturesOverridesImpl(
+      this
+    );
+    this.firewallPolicyIdpsSignaturesFilterValues = new FirewallPolicyIdpsSignaturesFilterValuesImpl(
+      this
+    );
     this.ipAllocations = new IpAllocationsImpl(this);
     this.ipGroups = new IpGroupsImpl(this);
     this.loadBalancers = new LoadBalancersImpl(this);
@@ -353,7 +410,6 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
     );
     this.loadBalancerProbes = new LoadBalancerProbesImpl(this);
     this.natGateways = new NatGatewaysImpl(this);
-    this.networkInterfaces = new NetworkInterfacesImpl(this);
     this.networkInterfaceIPConfigurations = new NetworkInterfaceIPConfigurationsImpl(
       this
     );
@@ -368,6 +424,11 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
     this.securityRules = new SecurityRulesImpl(this);
     this.defaultSecurityRules = new DefaultSecurityRulesImpl(this);
     this.networkVirtualAppliances = new NetworkVirtualAppliancesImpl(this);
+    this.virtualApplianceSites = new VirtualApplianceSitesImpl(this);
+    this.virtualApplianceSkus = new VirtualApplianceSkusImpl(this);
+    this.inboundSecurityRuleOperations = new InboundSecurityRuleOperationsImpl(
+      this
+    );
     this.networkWatchers = new NetworkWatchersImpl(this);
     this.packetCaptures = new PacketCapturesImpl(this);
     this.connectionMonitors = new ConnectionMonitorsImpl(this);
@@ -379,7 +440,6 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
     );
     this.privateDnsZoneGroups = new PrivateDnsZoneGroupsImpl(this);
     this.privateLinkServices = new PrivateLinkServicesImpl(this);
-    this.publicIPAddresses = new PublicIPAddressesImpl(this);
     this.publicIPPrefixes = new PublicIPPrefixesImpl(this);
     this.routeFilters = new RouteFiltersImpl(this);
     this.routeFilterRules = new RouteFilterRulesImpl(this);
@@ -392,6 +452,9 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
       this
     );
     this.serviceTags = new ServiceTagsImpl(this);
+    this.serviceTagInformationOperations = new ServiceTagInformationOperationsImpl(
+      this
+    );
     this.usages = new UsagesImpl(this);
     this.virtualNetworks = new VirtualNetworksImpl(this);
     this.subnets = new SubnetsImpl(this);
@@ -403,6 +466,9 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
       this
     );
     this.localNetworkGateways = new LocalNetworkGatewaysImpl(this);
+    this.virtualNetworkGatewayNatRules = new VirtualNetworkGatewayNatRulesImpl(
+      this
+    );
     this.virtualNetworkTaps = new VirtualNetworkTapsImpl(this);
     this.virtualRouters = new VirtualRoutersImpl(this);
     this.virtualRouterPeerings = new VirtualRouterPeeringsImpl(this);
@@ -416,9 +482,10 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
       this
     );
     this.vpnGateways = new VpnGatewaysImpl(this);
+    this.vpnLinkConnections = new VpnLinkConnectionsImpl(this);
     this.vpnConnections = new VpnConnectionsImpl(this);
     this.vpnSiteLinkConnections = new VpnSiteLinkConnectionsImpl(this);
-    this.vpnLinkConnections = new VpnLinkConnectionsImpl(this);
+    this.natRules = new NatRulesImpl(this);
     this.p2SVpnGateways = new P2SVpnGatewaysImpl(this);
     this.vpnServerConfigurationsAssociatedWithVirtualWan = new VpnServerConfigurationsAssociatedWithVirtualWanImpl(
       this
@@ -426,7 +493,11 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
     this.virtualHubRouteTableV2S = new VirtualHubRouteTableV2SImpl(this);
     this.expressRouteGateways = new ExpressRouteGatewaysImpl(this);
     this.expressRouteConnections = new ExpressRouteConnectionsImpl(this);
+    this.virtualHubBgpConnection = new VirtualHubBgpConnectionImpl(this);
+    this.virtualHubBgpConnections = new VirtualHubBgpConnectionsImpl(this);
+    this.virtualHubIpConfiguration = new VirtualHubIpConfigurationImpl(this);
     this.hubRouteTables = new HubRouteTablesImpl(this);
+    this.routingIntentOperations = new RoutingIntentOperationsImpl(this);
     this.webApplicationFirewallPolicies = new WebApplicationFirewallPoliciesImpl(
       this
     );
@@ -1223,15 +1294,22 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
   }
 
   applicationGateways: ApplicationGateways;
+  applicationGatewayPrivateLinkResources: ApplicationGatewayPrivateLinkResources;
+  applicationGatewayPrivateEndpointConnections: ApplicationGatewayPrivateEndpointConnections;
   applicationSecurityGroups: ApplicationSecurityGroups;
   availableDelegations: AvailableDelegations;
   availableResourceGroupDelegations: AvailableResourceGroupDelegations;
   availableServiceAliases: AvailableServiceAliases;
   azureFirewalls: AzureFirewalls;
   azureFirewallFqdnTags: AzureFirewallFqdnTags;
+  webCategories: WebCategories;
   bastionHosts: BastionHosts;
+  networkInterfaces: NetworkInterfaces;
+  publicIPAddresses: PublicIPAddresses;
+  customIPPrefixes: CustomIPPrefixes;
   ddosCustomPolicies: DdosCustomPolicies;
   ddosProtectionPlans: DdosProtectionPlans;
+  dscpConfigurationOperations: DscpConfigurationOperations;
   availableEndpointServices: AvailableEndpointServices;
   expressRouteCircuitAuthorizations: ExpressRouteCircuitAuthorizations;
   expressRouteCircuitPeerings: ExpressRouteCircuitPeerings;
@@ -1245,7 +1323,10 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
   expressRoutePorts: ExpressRoutePorts;
   expressRouteLinks: ExpressRouteLinks;
   firewallPolicies: FirewallPolicies;
-  firewallPolicyRuleGroups: FirewallPolicyRuleGroups;
+  firewallPolicyRuleCollectionGroups: FirewallPolicyRuleCollectionGroups;
+  firewallPolicyIdpsSignatures: FirewallPolicyIdpsSignatures;
+  firewallPolicyIdpsSignaturesOverrides: FirewallPolicyIdpsSignaturesOverrides;
+  firewallPolicyIdpsSignaturesFilterValues: FirewallPolicyIdpsSignaturesFilterValues;
   ipAllocations: IpAllocations;
   ipGroups: IpGroups;
   loadBalancers: LoadBalancers;
@@ -1257,7 +1338,6 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
   loadBalancerNetworkInterfaces: LoadBalancerNetworkInterfaces;
   loadBalancerProbes: LoadBalancerProbes;
   natGateways: NatGateways;
-  networkInterfaces: NetworkInterfaces;
   networkInterfaceIPConfigurations: NetworkInterfaceIPConfigurations;
   networkInterfaceLoadBalancers: NetworkInterfaceLoadBalancers;
   networkInterfaceTapConfigurations: NetworkInterfaceTapConfigurations;
@@ -1266,6 +1346,9 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
   securityRules: SecurityRules;
   defaultSecurityRules: DefaultSecurityRules;
   networkVirtualAppliances: NetworkVirtualAppliances;
+  virtualApplianceSites: VirtualApplianceSites;
+  virtualApplianceSkus: VirtualApplianceSkus;
+  inboundSecurityRuleOperations: InboundSecurityRuleOperations;
   networkWatchers: NetworkWatchers;
   packetCaptures: PacketCaptures;
   connectionMonitors: ConnectionMonitors;
@@ -1275,7 +1358,6 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
   availablePrivateEndpointTypes: AvailablePrivateEndpointTypes;
   privateDnsZoneGroups: PrivateDnsZoneGroups;
   privateLinkServices: PrivateLinkServices;
-  publicIPAddresses: PublicIPAddresses;
   publicIPPrefixes: PublicIPPrefixes;
   routeFilters: RouteFilters;
   routeFilterRules: RouteFilterRules;
@@ -1286,6 +1368,7 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
   serviceEndpointPolicies: ServiceEndpointPolicies;
   serviceEndpointPolicyDefinitions: ServiceEndpointPolicyDefinitions;
   serviceTags: ServiceTags;
+  serviceTagInformationOperations: ServiceTagInformationOperations;
   usages: Usages;
   virtualNetworks: VirtualNetworks;
   subnets: Subnets;
@@ -1295,6 +1378,7 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
   virtualNetworkGateways: VirtualNetworkGateways;
   virtualNetworkGatewayConnections: VirtualNetworkGatewayConnections;
   localNetworkGateways: LocalNetworkGateways;
+  virtualNetworkGatewayNatRules: VirtualNetworkGatewayNatRules;
   virtualNetworkTaps: VirtualNetworkTaps;
   virtualRouters: VirtualRouters;
   virtualRouterPeerings: VirtualRouterPeerings;
@@ -1306,15 +1390,20 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
   virtualHubs: VirtualHubs;
   hubVirtualNetworkConnections: HubVirtualNetworkConnections;
   vpnGateways: VpnGateways;
+  vpnLinkConnections: VpnLinkConnections;
   vpnConnections: VpnConnections;
   vpnSiteLinkConnections: VpnSiteLinkConnections;
-  vpnLinkConnections: VpnLinkConnections;
+  natRules: NatRules;
   p2SVpnGateways: P2SVpnGateways;
   vpnServerConfigurationsAssociatedWithVirtualWan: VpnServerConfigurationsAssociatedWithVirtualWan;
   virtualHubRouteTableV2S: VirtualHubRouteTableV2S;
   expressRouteGateways: ExpressRouteGateways;
   expressRouteConnections: ExpressRouteConnections;
+  virtualHubBgpConnection: VirtualHubBgpConnection;
+  virtualHubBgpConnections: VirtualHubBgpConnections;
+  virtualHubIpConfiguration: VirtualHubIpConfiguration;
   hubRouteTables: HubRouteTables;
+  routingIntentOperations: RoutingIntentOperations;
   webApplicationFirewallPolicies: WebApplicationFirewallPolicies;
 }
 // Operation Specifications

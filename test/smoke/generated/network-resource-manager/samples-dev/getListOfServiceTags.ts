@@ -9,24 +9,28 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 /**
- * This sample demonstrates how to Gets a list of service tag information resources.
+ * This sample demonstrates how to Gets a list of service tag information resources with pagination.
  *
- * @summary Gets a list of service tag information resources.
+ * @summary Gets a list of service tag information resources with pagination.
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: NetworkManagementClient;
-//serviceTags.list
+//serviceTagInformationOperations.list
 async function getListOfServiceTags() {
-  const location = "westcentralus";
-  await client.serviceTags.list(location).then((res) => {
-    console.log(res);
-  });
+  const location = "westeurope";
+  const resArray = new Array();
+  for await (let item of client.serviceTagInformationOperations.list(
+    location
+  )) {
+    resArray.push(item);
+  }
+  console.log(resArray);
 }
 async function main() {
   const credential = new DefaultAzureCredential();
-  const subscriptionId = "subId";
+  const subscriptionId = "subid";
   client = new NetworkManagementClient(credential, subscriptionId);
   await getListOfServiceTags();
 }

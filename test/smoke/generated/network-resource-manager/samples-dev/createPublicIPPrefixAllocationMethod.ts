@@ -28,7 +28,7 @@ async function createPublicIPPrefixAllocationMethod() {
     location: "westus",
     prefixLength: 30,
     publicIPAddressVersion: "IPv4",
-    sku: { name: "Standard" }
+    sku: { name: "Standard", tier: "Regional" }
   };
   await client.publicIPPrefixes
     .beginCreateOrUpdateAndWait(

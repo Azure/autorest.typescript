@@ -9,21 +9,21 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 /**
- * This sample demonstrates how to Deletes a VirtualHubRouteTableV2.
+ * This sample demonstrates how to Deletes a VirtualHubBgpConnection.
  *
- * @summary Deletes a VirtualHubRouteTableV2.
+ * @summary Deletes a VirtualHubBgpConnection.
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: NetworkManagementClient;
-//virtualHubRouteTableV2S.beginDeleteAndWait
+//virtualHubBgpConnection.beginDeleteAndWait
 async function virtualHubRouteTableV2Delete() {
   const resourceGroupName = "rg1";
-  const virtualHubName = "virtualHub1";
-  const routeTableName = "virtualHubRouteTable1a";
-  await client.virtualHubRouteTableV2S
-    .beginDeleteAndWait(resourceGroupName, virtualHubName, routeTableName)
+  const virtualHubName = "hub1";
+  const connectionName = "conn1";
+  await client.virtualHubBgpConnection
+    .beginDeleteAndWait(resourceGroupName, virtualHubName, connectionName)
     .then((res) => {
       console.log(res);
     });

@@ -9,45 +9,36 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 /**
- * This sample demonstrates how to Creates a VirtualHubRouteTableV2 resource if it doesn't exist else updates the existing VirtualHubRouteTableV2.
+ * This sample demonstrates how to Creates a VirtualHubBgpConnection resource if it doesn't exist else updates the existing VirtualHubBgpConnection.
  *
- * @summary Creates a VirtualHubRouteTableV2 resource if it doesn't exist else updates the existing VirtualHubRouteTableV2.
+ * @summary Creates a VirtualHubBgpConnection resource if it doesn't exist else updates the existing VirtualHubBgpConnection.
  */
 import {
-  VirtualHubRouteTableV2,
+  BgpConnection,
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: NetworkManagementClient;
-//virtualHubRouteTableV2S.beginCreateOrUpdateAndWait
+//virtualHubBgpConnection.beginCreateOrUpdateAndWait
 async function virtualHubRouteTableV2Put() {
   const resourceGroupName = "rg1";
-  const virtualHubName = "virtualHub1";
-  const routeTableName = "virtualHubRouteTable1a";
-  const virtualHubRouteTableV2Parameters: VirtualHubRouteTableV2 = {
-    attachedConnections: ["All_Vnets"],
-    routes: [
-      {
-        destinationType: "CIDR",
-        destinations: ["20.10.0.0/16", "20.20.0.0/16"],
-        nextHopType: "IPAddress",
-        nextHops: ["10.0.0.68"]
-      },
-      {
-        destinationType: "CIDR",
-        destinations: ["0.0.0.0/0"],
-        nextHopType: "IPAddress",
-        nextHops: ["10.0.0.68"]
-      }
-    ]
+  const virtualHubName = "hub1";
+  const connectionName = "conn1";
+  const parameters: BgpConnection = {
+    hubVirtualNetworkConnection: {
+      id:
+        "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualHubs/hub1/hubVirtualNetworkConnections/hubVnetConn1"
+    },
+    peerAsn: 20000,
+    peerIp: "192.168.1.5"
   };
-  await client.virtualHubRouteTableV2S
+  await client.virtualHubBgpConnection
     .beginCreateOrUpdateAndWait(
       resourceGroupName,
       virtualHubName,
-      routeTableName,
-      virtualHubRouteTableV2Parameters
+      connectionName,
+      parameters
     )
     .then((res) => {
       console.log(res);

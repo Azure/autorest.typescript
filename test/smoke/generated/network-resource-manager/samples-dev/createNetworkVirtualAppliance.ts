@@ -25,10 +25,10 @@ async function createNetworkVirtualAppliance() {
   const resourceGroupName = "rg1";
   const networkVirtualApplianceName = "nva";
   const parameters: NetworkVirtualAppliance = {
-    bootStrapConfigurationBlob: [
+    bootStrapConfigurationBlobs: [
       "https://csrncvhdstorage1.blob.core.windows.net/csrncvhdstoragecont/csrbootstrapconfig"
     ],
-    cloudInitConfigurationBlob: [
+    cloudInitConfigurationBlobs: [
       "https://csrncvhdstorage1.blob.core.windows.net/csrncvhdstoragecont/csrcloudinitconfig"
     ],
     identity: {
@@ -38,7 +38,7 @@ async function createNetworkVirtualAppliance() {
       }
     },
     location: "West US",
-    sku: {
+    nvaSku: {
       bundledScaleUnit: "1",
       marketPlaceVersion: "12.1",
       vendor: "Cisco SDWAN"

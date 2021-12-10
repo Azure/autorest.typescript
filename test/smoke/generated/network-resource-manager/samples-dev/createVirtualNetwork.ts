@@ -26,6 +26,7 @@ async function createVirtualNetwork() {
   const virtualNetworkName = "test-vnet";
   const parameters: VirtualNetwork = {
     addressSpace: { addressPrefixes: ["10.0.0.0/16"] },
+    flowTimeoutInMinutes: 10,
     location: "eastus"
   };
   await client.virtualNetworks

@@ -20,7 +20,7 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: NetworkManagementClient;
-//privateLinkServices.checkPrivateLinkServiceVisibilityByResourceGroup
+//privateLinkServices.beginCheckPrivateLinkServiceVisibilityByResourceGroupAndWait
 async function checkPrivateLinkServiceVisibility() {
   const location = "westus";
   const resourceGroupName = "rg1";
@@ -29,7 +29,7 @@ async function checkPrivateLinkServiceVisibility() {
       "mypls.00000000-0000-0000-0000-000000000000.azure.privatelinkservice"
   };
   await client.privateLinkServices
-    .checkPrivateLinkServiceVisibilityByResourceGroup(
+    .beginCheckPrivateLinkServiceVisibilityByResourceGroupAndWait(
       location,
       resourceGroupName,
       parameters
