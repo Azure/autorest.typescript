@@ -9,35 +9,30 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 /**
- * This sample demonstrates how to Updates the specified private endpoint connection associated with the key vault.
+ * This sample demonstrates how to Updates the specified private endpoint connection associated with the managed hsm pool.
  *
- * @summary Updates the specified private endpoint connection associated with the key vault.
+ * @summary Updates the specified private endpoint connection associated with the managed hsm pool.
  */
 import {
-  PrivateEndpointConnection,
+  MhsmPrivateEndpointConnection,
   KeyVaultManagementClient
 } from "@msinternal/keyvault-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: KeyVaultManagementClient;
-//privateEndpointConnections.put
-async function keyVaultPutPrivateEndpointConnection() {
+//mhsmPrivateEndpointConnections.put
+async function managedHsmPutPrivateEndpointConnection() {
   const resourceGroupName = "sample-group";
-  const vaultName = "sample-vault";
+  const name = "sample-mhsm";
   const privateEndpointConnectionName = "sample-pec";
-  const properties: PrivateEndpointConnection = {
+  const properties: MhsmPrivateEndpointConnection = {
     privateLinkServiceConnectionState: {
       description: "My name is Joe and I'm approving this.",
       status: "Approved"
     }
   };
-  await client.privateEndpointConnections
-    .put(
-      resourceGroupName,
-      vaultName,
-      privateEndpointConnectionName,
-      properties
-    )
+  await client.mhsmPrivateEndpointConnections
+    .put(resourceGroupName, name, privateEndpointConnectionName, properties)
     .then((res) => {
       console.log(res);
     });
@@ -46,6 +41,6 @@ async function main() {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-000000000000";
   client = new KeyVaultManagementClient(credential, subscriptionId);
-  await keyVaultPutPrivateEndpointConnection();
+  await managedHsmPutPrivateEndpointConnection();
 }
 main();

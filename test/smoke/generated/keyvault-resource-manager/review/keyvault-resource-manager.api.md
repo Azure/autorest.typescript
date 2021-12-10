@@ -21,6 +21,23 @@ export interface AccessPolicyEntry {
 // @public
 export type AccessPolicyUpdateKind = "add" | "replace" | "remove";
 
+// @public (undocumented)
+export interface Action {
+    type?: KeyRotationPolicyActionType;
+}
+
+// @public
+export type ActionsRequired = string;
+
+// @public
+export interface Attributes {
+    readonly created?: Date;
+    enabled?: boolean;
+    expires?: Date;
+    notBefore?: Date;
+    readonly updated?: Date;
+}
+
 // @public
 export type CertificatePermissions = string;
 
@@ -45,6 +62,32 @@ export interface CloudErrorBody {
 // @public
 export type CreateMode = "recover" | "default";
 
+// @public (undocumented)
+export interface DeletedManagedHsm {
+    readonly id?: string;
+    readonly name?: string;
+    properties?: DeletedManagedHsmProperties;
+    readonly type?: string;
+}
+
+// @public
+export interface DeletedManagedHsmListResult {
+    nextLink?: string;
+    value?: DeletedManagedHsm[];
+}
+
+// @public
+export interface DeletedManagedHsmProperties {
+    readonly deletionDate?: Date;
+    readonly location?: string;
+    readonly mhsmId?: string;
+    readonly purgeProtectionEnabled?: boolean;
+    readonly scheduledPurgeDate?: Date;
+    readonly tags?: {
+        [propertyName: string]: string;
+    };
+}
+
 // @public
 export interface DeletedVault {
     readonly id?: string;
@@ -63,6 +106,7 @@ export interface DeletedVaultListResult {
 export interface DeletedVaultProperties {
     readonly deletionDate?: Date;
     readonly location?: string;
+    readonly purgeProtectionEnabled?: boolean;
     readonly scheduledPurgeDate?: Date;
     readonly tags?: {
         [propertyName: string]: string;
@@ -71,12 +115,167 @@ export interface DeletedVaultProperties {
 }
 
 // @public
+export type DeletionRecoveryLevel = string;
+
+// @public
+export interface DimensionProperties {
+    displayName?: string;
+    name?: string;
+    toBeExportedForShoebox?: boolean;
+}
+
+// @public
+export interface ErrorModel {
+    readonly code?: string;
+    readonly innerError?: ErrorModel;
+    readonly message?: string;
+}
+
+// @public
+export type IdentityType = string;
+
+// @public
 export interface IPRule {
     value: string;
 }
 
 // @public
+export type JsonWebKeyCurveName = string;
+
+// @public
+export type JsonWebKeyOperation = string;
+
+// @public
+export type JsonWebKeyType = string;
+
+// @public
+export type Key = Resource & {
+    attributes?: KeyAttributes;
+    kty?: JsonWebKeyType;
+    keyOps?: JsonWebKeyOperation[];
+    keySize?: number;
+    curveName?: JsonWebKeyCurveName;
+    readonly keyUri?: string;
+    readonly keyUriWithVersion?: string;
+    rotationPolicy?: RotationPolicy;
+    releasePolicy?: KeyReleasePolicy;
+};
+
+// @public
+export interface KeyAttributes {
+    readonly created?: number;
+    enabled?: boolean;
+    expires?: number;
+    exportable?: boolean;
+    notBefore?: number;
+    readonly recoveryLevel?: DeletionRecoveryLevel;
+    readonly updated?: number;
+}
+
+// @public
+export interface KeyCreateParameters {
+    properties: KeyProperties;
+    tags?: {
+        [propertyName: string]: string;
+    };
+}
+
+// @public
+export interface KeyListResult {
+    nextLink?: string;
+    value?: Key[];
+}
+
+// @public
 export type KeyPermissions = string;
+
+// @public
+export interface KeyProperties {
+    attributes?: KeyAttributes;
+    curveName?: JsonWebKeyCurveName;
+    // (undocumented)
+    keyOps?: JsonWebKeyOperation[];
+    keySize?: number;
+    readonly keyUri?: string;
+    readonly keyUriWithVersion?: string;
+    kty?: JsonWebKeyType;
+    releasePolicy?: KeyReleasePolicy;
+    rotationPolicy?: RotationPolicy;
+}
+
+// @public (undocumented)
+export interface KeyReleasePolicy {
+    contentType?: string;
+    data?: Uint8Array;
+}
+
+// @public
+export type KeyRotationPolicyActionType = "rotate" | "notify";
+
+// @public (undocumented)
+export interface KeyRotationPolicyAttributes {
+    readonly created?: number;
+    expiryTime?: string;
+    readonly updated?: number;
+}
+
+// @public
+export interface Keys {
+    createIfNotExist(resourceGroupName: string, vaultName: string, keyName: string, parameters: KeyCreateParameters, options?: KeysCreateIfNotExistOptionalParams): Promise<KeysCreateIfNotExistResponse>;
+    get(resourceGroupName: string, vaultName: string, keyName: string, options?: KeysGetOptionalParams): Promise<KeysGetResponse>;
+    getVersion(resourceGroupName: string, vaultName: string, keyName: string, keyVersion: string, options?: KeysGetVersionOptionalParams): Promise<KeysGetVersionResponse>;
+    list(resourceGroupName: string, vaultName: string, options?: KeysListOptionalParams): PagedAsyncIterableIterator<Key>;
+    listVersions(resourceGroupName: string, vaultName: string, keyName: string, options?: KeysListVersionsOptionalParams): PagedAsyncIterableIterator<Key>;
+}
+
+// @public
+export interface KeysCreateIfNotExistOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type KeysCreateIfNotExistResponse = Key;
+
+// @public
+export interface KeysGetOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type KeysGetResponse = Key;
+
+// @public
+export interface KeysGetVersionOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type KeysGetVersionResponse = Key;
+
+// @public
+export interface KeysListNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type KeysListNextResponse = KeyListResult;
+
+// @public
+export interface KeysListOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type KeysListResponse = KeyListResult;
+
+// @public
+export interface KeysListVersionsNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type KeysListVersionsNextResponse = KeyListResult;
+
+// @public
+export interface KeysListVersionsOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type KeysListVersionsResponse = KeyListResult;
 
 // @public (undocumented)
 export class KeyVaultManagementClient extends coreClient.ServiceClient {
@@ -86,11 +285,21 @@ export class KeyVaultManagementClient extends coreClient.ServiceClient {
     // (undocumented)
     apiVersion: string;
     // (undocumented)
+    keys: Keys;
+    // (undocumented)
+    managedHsms: ManagedHsms;
+    // (undocumented)
+    mhsmPrivateEndpointConnections: MhsmPrivateEndpointConnections;
+    // (undocumented)
+    mhsmPrivateLinkResources: MhsmPrivateLinkResources;
+    // (undocumented)
     operations: Operations;
     // (undocumented)
     privateEndpointConnections: PrivateEndpointConnections;
     // (undocumented)
     privateLinkResources: PrivateLinkResources;
+    // (undocumented)
+    secrets: Secrets;
     // (undocumented)
     subscriptionId: string;
     // (undocumented)
@@ -105,7 +314,15 @@ export interface KeyVaultManagementClientOptionalParams extends coreClient.Servi
 }
 
 // @public
+export enum KnownActionsRequired {
+    // (undocumented)
+    None = "None"
+}
+
+// @public
 export enum KnownCertificatePermissions {
+    // (undocumented)
+    All = "all",
     // (undocumented)
     Backup = "backup",
     // (undocumented)
@@ -141,7 +358,77 @@ export enum KnownCertificatePermissions {
 }
 
 // @public
+export enum KnownDeletionRecoveryLevel {
+    // (undocumented)
+    Purgeable = "Purgeable",
+    // (undocumented)
+    Recoverable = "Recoverable",
+    // (undocumented)
+    RecoverableProtectedSubscription = "Recoverable+ProtectedSubscription",
+    // (undocumented)
+    RecoverablePurgeable = "Recoverable+Purgeable"
+}
+
+// @public
+export enum KnownIdentityType {
+    // (undocumented)
+    Application = "Application",
+    // (undocumented)
+    Key = "Key",
+    // (undocumented)
+    ManagedIdentity = "ManagedIdentity",
+    // (undocumented)
+    User = "User"
+}
+
+// @public
+export enum KnownJsonWebKeyCurveName {
+    // (undocumented)
+    P256 = "P-256",
+    // (undocumented)
+    P256K = "P-256K",
+    // (undocumented)
+    P384 = "P-384",
+    // (undocumented)
+    P521 = "P-521"
+}
+
+// @public
+export enum KnownJsonWebKeyOperation {
+    // (undocumented)
+    Decrypt = "decrypt",
+    // (undocumented)
+    Encrypt = "encrypt",
+    // (undocumented)
+    Import = "import",
+    // (undocumented)
+    Release = "release",
+    // (undocumented)
+    Sign = "sign",
+    // (undocumented)
+    UnwrapKey = "unwrapKey",
+    // (undocumented)
+    Verify = "verify",
+    // (undocumented)
+    WrapKey = "wrapKey"
+}
+
+// @public
+export enum KnownJsonWebKeyType {
+    // (undocumented)
+    EC = "EC",
+    // (undocumented)
+    ECHSM = "EC-HSM",
+    // (undocumented)
+    RSA = "RSA",
+    // (undocumented)
+    RSAHSM = "RSA-HSM"
+}
+
+// @public
 export enum KnownKeyPermissions {
+    // (undocumented)
+    All = "all",
     // (undocumented)
     Backup = "backup",
     // (undocumented)
@@ -155,6 +442,8 @@ export enum KnownKeyPermissions {
     // (undocumented)
     Get = "get",
     // (undocumented)
+    Getrotationpolicy = "getrotationpolicy",
+    // (undocumented)
     Import = "import",
     // (undocumented)
     List = "list",
@@ -163,7 +452,13 @@ export enum KnownKeyPermissions {
     // (undocumented)
     Recover = "recover",
     // (undocumented)
+    Release = "release",
+    // (undocumented)
     Restore = "restore",
+    // (undocumented)
+    Rotate = "rotate",
+    // (undocumented)
+    Setrotationpolicy = "setrotationpolicy",
     // (undocumented)
     Sign = "sign",
     // (undocumented)
@@ -174,6 +469,12 @@ export enum KnownKeyPermissions {
     Verify = "verify",
     // (undocumented)
     WrapKey = "wrapKey"
+}
+
+// @public
+export enum KnownManagedHsmSkuFamily {
+    // (undocumented)
+    B = "B"
 }
 
 // @public
@@ -221,7 +522,29 @@ export enum KnownPrivateEndpointServiceConnectionStatus {
 }
 
 // @public
+export enum KnownProvisioningState {
+    Activated = "Activated",
+    Deleting = "Deleting",
+    Failed = "Failed",
+    Provisioning = "Provisioning",
+    Restoring = "Restoring",
+    SecurityDomainRestore = "SecurityDomainRestore",
+    Succeeded = "Succeeded",
+    Updating = "Updating"
+}
+
+// @public
+export enum KnownPublicNetworkAccess {
+    // (undocumented)
+    Disabled = "Disabled",
+    // (undocumented)
+    Enabled = "Enabled"
+}
+
+// @public
 export enum KnownSecretPermissions {
+    // (undocumented)
+    All = "all",
     // (undocumented)
     Backup = "backup",
     // (undocumented)
@@ -248,6 +571,8 @@ export enum KnownSkuFamily {
 
 // @public
 export enum KnownStoragePermissions {
+    // (undocumented)
+    All = "all",
     // (undocumented)
     Backup = "backup",
     // (undocumented)
@@ -279,10 +604,337 @@ export enum KnownStoragePermissions {
 }
 
 // @public
+export enum KnownVaultProvisioningState {
+    // (undocumented)
+    RegisteringDns = "RegisteringDns",
+    // (undocumented)
+    Succeeded = "Succeeded"
+}
+
+// @public (undocumented)
+export interface LifetimeAction {
+    action?: Action;
+    trigger?: Trigger;
+}
+
+// @public
 export interface LogSpecification {
     blobDuration?: string;
     displayName?: string;
     name?: string;
+}
+
+// @public
+export type ManagedHsm = ManagedHsmResource & {
+    properties?: ManagedHsmProperties;
+};
+
+// @public
+export interface ManagedHsmError {
+    readonly error?: ErrorModel;
+}
+
+// @public
+export interface ManagedHsmListResult {
+    nextLink?: string;
+    value?: ManagedHsm[];
+}
+
+// @public
+export interface ManagedHsmProperties {
+    createMode?: CreateMode;
+    enablePurgeProtection?: boolean;
+    enableSoftDelete?: boolean;
+    readonly hsmUri?: string;
+    initialAdminObjectIds?: string[];
+    networkAcls?: MhsmNetworkRuleSet;
+    readonly privateEndpointConnections?: MhsmPrivateEndpointConnectionItem[];
+    readonly provisioningState?: ProvisioningState;
+    publicNetworkAccess?: PublicNetworkAccess;
+    readonly scheduledPurgeDate?: Date;
+    softDeleteRetentionInDays?: number;
+    readonly statusMessage?: string;
+    tenantId?: string;
+}
+
+// @public
+export interface ManagedHsmResource {
+    readonly id?: string;
+    location?: string;
+    readonly name?: string;
+    sku?: ManagedHsmSku;
+    readonly systemData?: SystemData;
+    tags?: {
+        [propertyName: string]: string;
+    };
+    readonly type?: string;
+}
+
+// @public
+export interface ManagedHsms {
+    beginCreateOrUpdate(resourceGroupName: string, name: string, parameters: ManagedHsm, options?: ManagedHsmsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ManagedHsmsCreateOrUpdateResponse>, ManagedHsmsCreateOrUpdateResponse>>;
+    beginCreateOrUpdateAndWait(resourceGroupName: string, name: string, parameters: ManagedHsm, options?: ManagedHsmsCreateOrUpdateOptionalParams): Promise<ManagedHsmsCreateOrUpdateResponse>;
+    beginDelete(resourceGroupName: string, name: string, options?: ManagedHsmsDeleteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteAndWait(resourceGroupName: string, name: string, options?: ManagedHsmsDeleteOptionalParams): Promise<void>;
+    beginPurgeDeleted(name: string, location: string, options?: ManagedHsmsPurgeDeletedOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginPurgeDeletedAndWait(name: string, location: string, options?: ManagedHsmsPurgeDeletedOptionalParams): Promise<void>;
+    beginUpdate(resourceGroupName: string, name: string, parameters: ManagedHsm, options?: ManagedHsmsUpdateOptionalParams): Promise<PollerLike<PollOperationState<ManagedHsmsUpdateResponse>, ManagedHsmsUpdateResponse>>;
+    beginUpdateAndWait(resourceGroupName: string, name: string, parameters: ManagedHsm, options?: ManagedHsmsUpdateOptionalParams): Promise<ManagedHsmsUpdateResponse>;
+    get(resourceGroupName: string, name: string, options?: ManagedHsmsGetOptionalParams): Promise<ManagedHsmsGetResponse>;
+    getDeleted(name: string, location: string, options?: ManagedHsmsGetDeletedOptionalParams): Promise<ManagedHsmsGetDeletedResponse>;
+    listByResourceGroup(resourceGroupName: string, options?: ManagedHsmsListByResourceGroupOptionalParams): PagedAsyncIterableIterator<ManagedHsm>;
+    listBySubscription(options?: ManagedHsmsListBySubscriptionOptionalParams): PagedAsyncIterableIterator<ManagedHsm>;
+    listDeleted(options?: ManagedHsmsListDeletedOptionalParams): PagedAsyncIterableIterator<DeletedManagedHsm>;
+}
+
+// @public
+export interface ManagedHsmsCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export type ManagedHsmsCreateOrUpdateResponse = ManagedHsm;
+
+// @public
+export interface ManagedHsmsDeleteOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface ManagedHsmsGetDeletedOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ManagedHsmsGetDeletedResponse = DeletedManagedHsm;
+
+// @public
+export interface ManagedHsmsGetOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ManagedHsmsGetResponse = ManagedHsm;
+
+// @public
+export interface ManagedHsmSku {
+    family: ManagedHsmSkuFamily;
+    name: ManagedHsmSkuName;
+}
+
+// @public
+export type ManagedHsmSkuFamily = string;
+
+// @public
+export type ManagedHsmSkuName = "Standard_B1" | "Custom_B32";
+
+// @public
+export interface ManagedHsmsListByResourceGroupNextOptionalParams extends coreClient.OperationOptions {
+    top?: number;
+}
+
+// @public
+export type ManagedHsmsListByResourceGroupNextResponse = ManagedHsmListResult;
+
+// @public
+export interface ManagedHsmsListByResourceGroupOptionalParams extends coreClient.OperationOptions {
+    top?: number;
+}
+
+// @public
+export type ManagedHsmsListByResourceGroupResponse = ManagedHsmListResult;
+
+// @public
+export interface ManagedHsmsListBySubscriptionNextOptionalParams extends coreClient.OperationOptions {
+    top?: number;
+}
+
+// @public
+export type ManagedHsmsListBySubscriptionNextResponse = ManagedHsmListResult;
+
+// @public
+export interface ManagedHsmsListBySubscriptionOptionalParams extends coreClient.OperationOptions {
+    top?: number;
+}
+
+// @public
+export type ManagedHsmsListBySubscriptionResponse = ManagedHsmListResult;
+
+// @public
+export interface ManagedHsmsListDeletedNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ManagedHsmsListDeletedNextResponse = DeletedManagedHsmListResult;
+
+// @public
+export interface ManagedHsmsListDeletedOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ManagedHsmsListDeletedResponse = DeletedManagedHsmListResult;
+
+// @public
+export interface ManagedHsmsPurgeDeletedOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface ManagedHsmsUpdateOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export type ManagedHsmsUpdateResponse = ManagedHsm;
+
+// @public
+export interface MetricSpecification {
+    aggregationType?: string;
+    dimensions?: DimensionProperties[];
+    displayDescription?: string;
+    displayName?: string;
+    fillGapWithZero?: boolean;
+    internalMetricName?: string;
+    lockAggregationType?: string;
+    name?: string;
+    supportedAggregationTypes?: string[];
+    supportedTimeGrainTypes?: string[];
+    unit?: string;
+}
+
+// @public
+export interface MhsmipRule {
+    value: string;
+}
+
+// @public
+export interface MhsmNetworkRuleSet {
+    bypass?: NetworkRuleBypassOptions;
+    defaultAction?: NetworkRuleAction;
+    ipRules?: MhsmipRule[];
+    virtualNetworkRules?: MhsmVirtualNetworkRule[];
+}
+
+// @public
+export interface MhsmPrivateEndpoint {
+    readonly id?: string;
+}
+
+// @public
+export type MhsmPrivateEndpointConnection = ManagedHsmResource & {
+    etag?: string;
+    privateEndpoint?: MhsmPrivateEndpoint;
+    privateLinkServiceConnectionState?: MhsmPrivateLinkServiceConnectionState;
+    provisioningState?: PrivateEndpointConnectionProvisioningState;
+};
+
+// @public
+export interface MhsmPrivateEndpointConnectionItem {
+    privateEndpoint?: MhsmPrivateEndpoint;
+    privateLinkServiceConnectionState?: MhsmPrivateLinkServiceConnectionState;
+    provisioningState?: PrivateEndpointConnectionProvisioningState;
+}
+
+// @public
+export interface MhsmPrivateEndpointConnections {
+    beginDelete(resourceGroupName: string, name: string, privateEndpointConnectionName: string, options?: MhsmPrivateEndpointConnectionsDeleteOptionalParams): Promise<PollerLike<PollOperationState<MhsmPrivateEndpointConnectionsDeleteResponse>, MhsmPrivateEndpointConnectionsDeleteResponse>>;
+    beginDeleteAndWait(resourceGroupName: string, name: string, privateEndpointConnectionName: string, options?: MhsmPrivateEndpointConnectionsDeleteOptionalParams): Promise<MhsmPrivateEndpointConnectionsDeleteResponse>;
+    get(resourceGroupName: string, name: string, privateEndpointConnectionName: string, options?: MhsmPrivateEndpointConnectionsGetOptionalParams): Promise<MhsmPrivateEndpointConnectionsGetResponse>;
+    listByResource(resourceGroupName: string, name: string, options?: MhsmPrivateEndpointConnectionsListByResourceOptionalParams): PagedAsyncIterableIterator<MhsmPrivateEndpointConnection>;
+    put(resourceGroupName: string, name: string, privateEndpointConnectionName: string, properties: MhsmPrivateEndpointConnection, options?: MhsmPrivateEndpointConnectionsPutOptionalParams): Promise<MhsmPrivateEndpointConnectionsPutResponse>;
+}
+
+// @public
+export interface MhsmPrivateEndpointConnectionsDeleteHeaders {
+    location?: string;
+    retryAfter?: number;
+}
+
+// @public
+export interface MhsmPrivateEndpointConnectionsDeleteOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export type MhsmPrivateEndpointConnectionsDeleteResponse = MhsmPrivateEndpointConnection;
+
+// @public
+export interface MhsmPrivateEndpointConnectionsGetOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type MhsmPrivateEndpointConnectionsGetResponse = MhsmPrivateEndpointConnection;
+
+// @public
+export interface MhsmPrivateEndpointConnectionsListByResourceNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type MhsmPrivateEndpointConnectionsListByResourceNextResponse = MhsmPrivateEndpointConnectionsListResult;
+
+// @public
+export interface MhsmPrivateEndpointConnectionsListByResourceOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type MhsmPrivateEndpointConnectionsListByResourceResponse = MhsmPrivateEndpointConnectionsListResult;
+
+// @public
+export interface MhsmPrivateEndpointConnectionsListResult {
+    nextLink?: string;
+    value?: MhsmPrivateEndpointConnection[];
+}
+
+// @public
+export interface MhsmPrivateEndpointConnectionsPutHeaders {
+    azureAsyncOperation?: string;
+    retryAfter?: number;
+}
+
+// @public
+export interface MhsmPrivateEndpointConnectionsPutOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type MhsmPrivateEndpointConnectionsPutResponse = MhsmPrivateEndpointConnectionsPutHeaders & MhsmPrivateEndpointConnection;
+
+// @public
+export type MhsmPrivateLinkResource = ManagedHsmResource & {
+    readonly groupId?: string;
+    readonly requiredMembers?: string[];
+    requiredZoneNames?: string[];
+};
+
+// @public
+export interface MhsmPrivateLinkResourceListResult {
+    value?: MhsmPrivateLinkResource[];
+}
+
+// @public
+export interface MhsmPrivateLinkResources {
+    listByMhsmResource(resourceGroupName: string, name: string, options?: MhsmPrivateLinkResourcesListByMhsmResourceOptionalParams): Promise<MhsmPrivateLinkResourcesListByMhsmResourceResponse>;
+}
+
+// @public
+export interface MhsmPrivateLinkResourcesListByMhsmResourceOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type MhsmPrivateLinkResourcesListByMhsmResourceResponse = MhsmPrivateLinkResourceListResult;
+
+// @public
+export interface MhsmPrivateLinkServiceConnectionState {
+    actionsRequired?: ActionsRequired;
+    description?: string;
+    status?: PrivateEndpointServiceConnectionStatus;
+}
+
+// @public
+export interface MhsmVirtualNetworkRule {
+    id: string;
 }
 
 // @public
@@ -302,6 +954,7 @@ export interface NetworkRuleSet {
 // @public
 export interface Operation {
     display?: OperationDisplay;
+    isDataAction?: boolean;
     name?: string;
     origin?: string;
     serviceSpecification?: ServiceSpecification;
@@ -356,16 +1009,25 @@ export interface PrivateEndpoint {
 
 // @public
 export type PrivateEndpointConnection = Resource & {
+    etag?: string;
     privateEndpoint?: PrivateEndpoint;
     privateLinkServiceConnectionState?: PrivateLinkServiceConnectionState;
-    readonly provisioningState?: PrivateEndpointConnectionProvisioningState;
+    provisioningState?: PrivateEndpointConnectionProvisioningState;
 };
 
 // @public
 export interface PrivateEndpointConnectionItem {
+    etag?: string;
+    id?: string;
     privateEndpoint?: PrivateEndpoint;
     privateLinkServiceConnectionState?: PrivateLinkServiceConnectionState;
-    readonly provisioningState?: PrivateEndpointConnectionProvisioningState;
+    provisioningState?: PrivateEndpointConnectionProvisioningState;
+}
+
+// @public
+export interface PrivateEndpointConnectionListResult {
+    nextLink?: string;
+    value?: PrivateEndpointConnection[];
 }
 
 // @public
@@ -376,6 +1038,7 @@ export interface PrivateEndpointConnections {
     beginDelete(resourceGroupName: string, vaultName: string, privateEndpointConnectionName: string, options?: PrivateEndpointConnectionsDeleteOptionalParams): Promise<PollerLike<PollOperationState<PrivateEndpointConnectionsDeleteResponse>, PrivateEndpointConnectionsDeleteResponse>>;
     beginDeleteAndWait(resourceGroupName: string, vaultName: string, privateEndpointConnectionName: string, options?: PrivateEndpointConnectionsDeleteOptionalParams): Promise<PrivateEndpointConnectionsDeleteResponse>;
     get(resourceGroupName: string, vaultName: string, privateEndpointConnectionName: string, options?: PrivateEndpointConnectionsGetOptionalParams): Promise<PrivateEndpointConnectionsGetResponse>;
+    listByResource(resourceGroupName: string, vaultName: string, options?: PrivateEndpointConnectionsListByResourceOptionalParams): PagedAsyncIterableIterator<PrivateEndpointConnection>;
     put(resourceGroupName: string, vaultName: string, privateEndpointConnectionName: string, properties: PrivateEndpointConnection, options?: PrivateEndpointConnectionsPutOptionalParams): Promise<PrivateEndpointConnectionsPutResponse>;
 }
 
@@ -400,6 +1063,20 @@ export interface PrivateEndpointConnectionsGetOptionalParams extends coreClient.
 
 // @public
 export type PrivateEndpointConnectionsGetResponse = PrivateEndpointConnection;
+
+// @public
+export interface PrivateEndpointConnectionsListByResourceNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type PrivateEndpointConnectionsListByResourceNextResponse = PrivateEndpointConnectionListResult;
+
+// @public
+export interface PrivateEndpointConnectionsListByResourceOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type PrivateEndpointConnectionsListByResourceResponse = PrivateEndpointConnectionListResult;
 
 // @public
 export interface PrivateEndpointConnectionsPutHeaders {
@@ -443,10 +1120,16 @@ export type PrivateLinkResourcesListByVaultResponse = PrivateLinkResourceListRes
 
 // @public
 export interface PrivateLinkServiceConnectionState {
-    actionRequired?: string;
+    actionsRequired?: ActionsRequired;
     description?: string;
     status?: PrivateEndpointServiceConnectionStatus;
 }
+
+// @public
+export type ProvisioningState = string;
+
+// @public
+export type PublicNetworkAccess = string;
 
 // @public
 export type Reason = "AccountNameInvalid" | "AlreadyExists";
@@ -468,12 +1151,110 @@ export interface ResourceListResult {
     value?: Resource[];
 }
 
+// @public (undocumented)
+export interface RotationPolicy {
+    attributes?: KeyRotationPolicyAttributes;
+    lifetimeActions?: LifetimeAction[];
+}
+
+// @public
+export type Secret = Resource & {
+    properties: SecretProperties;
+};
+
+// @public
+export type SecretAttributes = Attributes & {};
+
+// @public
+export interface SecretCreateOrUpdateParameters {
+    properties: SecretProperties;
+    tags?: {
+        [propertyName: string]: string;
+    };
+}
+
+// @public
+export interface SecretListResult {
+    nextLink?: string;
+    value?: Secret[];
+}
+
+// @public
+export interface SecretPatchParameters {
+    properties?: SecretPatchProperties;
+    tags?: {
+        [propertyName: string]: string;
+    };
+}
+
+// @public
+export interface SecretPatchProperties {
+    attributes?: SecretAttributes;
+    contentType?: string;
+    value?: string;
+}
+
 // @public
 export type SecretPermissions = string;
 
 // @public
+export interface SecretProperties {
+    attributes?: SecretAttributes;
+    contentType?: string;
+    readonly secretUri?: string;
+    readonly secretUriWithVersion?: string;
+    value?: string;
+}
+
+// @public
+export interface Secrets {
+    createOrUpdate(resourceGroupName: string, vaultName: string, secretName: string, parameters: SecretCreateOrUpdateParameters, options?: SecretsCreateOrUpdateOptionalParams): Promise<SecretsCreateOrUpdateResponse>;
+    get(resourceGroupName: string, vaultName: string, secretName: string, options?: SecretsGetOptionalParams): Promise<SecretsGetResponse>;
+    list(resourceGroupName: string, vaultName: string, options?: SecretsListOptionalParams): PagedAsyncIterableIterator<Secret>;
+    update(resourceGroupName: string, vaultName: string, secretName: string, parameters: SecretPatchParameters, options?: SecretsUpdateOptionalParams): Promise<SecretsUpdateResponse>;
+}
+
+// @public
+export interface SecretsCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type SecretsCreateOrUpdateResponse = Secret;
+
+// @public
+export interface SecretsGetOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type SecretsGetResponse = Secret;
+
+// @public
+export interface SecretsListNextOptionalParams extends coreClient.OperationOptions {
+    top?: number;
+}
+
+// @public
+export type SecretsListNextResponse = SecretListResult;
+
+// @public
+export interface SecretsListOptionalParams extends coreClient.OperationOptions {
+    top?: number;
+}
+
+// @public
+export type SecretsListResponse = SecretListResult;
+
+// @public
+export interface SecretsUpdateOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type SecretsUpdateResponse = Secret;
+
+// @public
 export interface ServiceSpecification {
     logSpecifications?: LogSpecification[];
+    metricSpecifications?: MetricSpecification[];
 }
 
 // @public
@@ -492,11 +1273,28 @@ export type SkuName = "standard" | "premium";
 export type StoragePermissions = string;
 
 // @public
+export interface SystemData {
+    createdAt?: Date;
+    createdBy?: string;
+    createdByType?: IdentityType;
+    lastModifiedAt?: Date;
+    lastModifiedBy?: string;
+    lastModifiedByType?: IdentityType;
+}
+
+// @public (undocumented)
+export interface Trigger {
+    timeAfterCreate?: string;
+    timeBeforeExpiry?: string;
+}
+
+// @public
 export interface Vault {
     readonly id?: string;
     location?: string;
     readonly name?: string;
     properties: VaultProperties;
+    readonly systemData?: SystemData;
     tags?: {
         [propertyName: string]: string;
     };
@@ -557,6 +1355,7 @@ export interface VaultPatchProperties {
     enableRbacAuthorization?: boolean;
     enableSoftDelete?: boolean;
     networkAcls?: NetworkRuleSet;
+    publicNetworkAccess?: string;
     sku?: Sku;
     softDeleteRetentionInDays?: number;
     tenantId?: string;
@@ -572,13 +1371,19 @@ export interface VaultProperties {
     enablePurgeProtection?: boolean;
     enableRbacAuthorization?: boolean;
     enableSoftDelete?: boolean;
+    readonly hsmPoolResourceId?: string;
     networkAcls?: NetworkRuleSet;
     readonly privateEndpointConnections?: PrivateEndpointConnectionItem[];
+    provisioningState?: VaultProvisioningState;
+    publicNetworkAccess?: string;
     sku: Sku;
     softDeleteRetentionInDays?: number;
     tenantId: string;
     vaultUri?: string;
 }
+
+// @public
+export type VaultProvisioningState = string;
 
 // @public
 export interface Vaults {
@@ -717,6 +1522,7 @@ export type VaultsUpdateResponse = Vault;
 // @public
 export interface VirtualNetworkRule {
     id: string;
+    ignoreMissingVnetServiceEndpoint?: boolean;
 }
 
 // (No @packageDocumentation comment for this package)

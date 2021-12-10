@@ -9,25 +9,33 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 /**
- * This sample demonstrates how to Lists all of the available Key Vault Rest API operations.
+ * This sample demonstrates how to Lists the versions of the specified key in the specified key vault.
  *
- * @summary Lists all of the available Key Vault Rest API operations.
+ * @summary Lists the versions of the specified key in the specified key vault.
  */
 import { KeyVaultManagementClient } from "@msinternal/keyvault-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: KeyVaultManagementClient;
-//operations.list
-async function listsAvailableRestApiOperations() {
+//keys.listVersions
+async function listKeyVersionsInTheVault() {
+  const resourceGroupName = "sample-group";
+  const vaultName = "sample-vault-name";
+  const keyName = "sample-key-name";
   const resArray = new Array();
-  for await (let item of client.operations.list()) {
+  for await (let item of client.keys.listVersions(
+    resourceGroupName,
+    vaultName,
+    keyName
+  )) {
     resArray.push(item);
   }
   console.log(resArray);
 }
 async function main() {
   const credential = new DefaultAzureCredential();
-  client = new KeyVaultManagementClient(credential);
-  await listsAvailableRestApiOperations();
+  const subscriptionId = "00000000-0000-0000-0000-000000000000";
+  client = new KeyVaultManagementClient(credential, subscriptionId);
+  await listKeyVersionsInTheVault();
 }
 main();

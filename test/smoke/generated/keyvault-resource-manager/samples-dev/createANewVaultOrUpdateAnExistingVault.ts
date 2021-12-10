@@ -82,6 +82,7 @@ async function createANewVaultOrUpdateAnExistingVault() {
       enabledForDeployment: true,
       enabledForDiskEncryption: true,
       enabledForTemplateDeployment: true,
+      publicNetworkAccess: "Enabled",
       sku: { name: "standard", family: "A" },
       tenantId: "00000000-0000-0000-0000-000000000000"
     }

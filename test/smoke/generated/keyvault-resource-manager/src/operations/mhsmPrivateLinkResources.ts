@@ -6,22 +6,22 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PrivateLinkResources } from "../operationsInterfaces";
+import { MhsmPrivateLinkResources } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { KeyVaultManagementClient } from "../keyVaultManagementClient";
 import {
-  PrivateLinkResourcesListByVaultOptionalParams,
-  PrivateLinkResourcesListByVaultResponse
+  MhsmPrivateLinkResourcesListByMhsmResourceOptionalParams,
+  MhsmPrivateLinkResourcesListByMhsmResourceResponse
 } from "../models";
 
-/** Class containing PrivateLinkResources operations. */
-export class PrivateLinkResourcesImpl implements PrivateLinkResources {
+/** Class containing MhsmPrivateLinkResources operations. */
+export class MhsmPrivateLinkResourcesImpl implements MhsmPrivateLinkResources {
   private readonly client: KeyVaultManagementClient;
 
   /**
-   * Initialize a new instance of the class PrivateLinkResources class.
+   * Initialize a new instance of the class MhsmPrivateLinkResources class.
    * @param client Reference to the service client
    */
   constructor(client: KeyVaultManagementClient) {
@@ -29,32 +29,32 @@ export class PrivateLinkResourcesImpl implements PrivateLinkResources {
   }
 
   /**
-   * Gets the private link resources supported for the key vault.
-   * @param resourceGroupName Name of the resource group that contains the key vault.
-   * @param vaultName The name of the key vault.
+   * Gets the private link resources supported for the managed hsm pool.
+   * @param resourceGroupName Name of the resource group that contains the managed HSM pool.
+   * @param name Name of the managed HSM Pool
    * @param options The options parameters.
    */
-  listByVault(
+  listByMhsmResource(
     resourceGroupName: string,
-    vaultName: string,
-    options?: PrivateLinkResourcesListByVaultOptionalParams
-  ): Promise<PrivateLinkResourcesListByVaultResponse> {
+    name: string,
+    options?: MhsmPrivateLinkResourcesListByMhsmResourceOptionalParams
+  ): Promise<MhsmPrivateLinkResourcesListByMhsmResourceResponse> {
     return this.client.sendOperationRequest(
-      { resourceGroupName, vaultName, options },
-      listByVaultOperationSpec
+      { resourceGroupName, name, options },
+      listByMhsmResourceOperationSpec
     );
   }
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listByVaultOperationSpec: coreClient.OperationSpec = {
+const listByMhsmResourceOperationSpec: coreClient.OperationSpec = {
   path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults/{vaultName}/privateLinkResources",
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/managedHSMs/{name}/privateLinkResources",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.PrivateLinkResourceListResult
+      bodyMapper: Mappers.MhsmPrivateLinkResourceListResult
     },
     default: {
       bodyMapper: Mappers.CloudError
@@ -65,7 +65,7 @@ const listByVaultOperationSpec: coreClient.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.vaultName
+    Parameters.name
   ],
   headerParameters: [Parameters.accept],
   serializer

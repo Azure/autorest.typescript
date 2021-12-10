@@ -103,27 +103,27 @@ export const readmes: SpecDefinition[] = [
   //   params: [AutorestParams.GenerateTest],
   //   buildTag: "ci_2"
   // },
-  {
-    path: joinPath(
-      `${__dirname}`,
-      "..",
-      "..",
-      "./.tmp/specs/specification/network/resource-manager/readme.md"
-    ),
-    params: [AutorestParams.GenerateTest],
-    branch: "main",
-    buildTag: "ci_3"
-  },
   // {
   //   path: joinPath(
   //     `${__dirname}`,
   //     "..",
   //     "..",
-  //     "./.tmp/specs/specification/keyvault/resource-manager/readme.md"
+  //     "./.tmp/specs/specification/network/resource-manager/readme.md"
   //   ),
   //   params: [AutorestParams.GenerateTest],
+  //   branch: "main",
   //   buildTag: "ci_3"
   // },
+  {
+    path: joinPath(
+      `${__dirname}`,
+      "..",
+      "..",
+      "./.tmp/specs/specification/keyvault/resource-manager/readme.md"
+    ),
+    params: [AutorestParams.GenerateTest],
+    buildTag: "ci_3"
+  },
   // {
   //   path: joinPath(
   //     `${__dirname}`,

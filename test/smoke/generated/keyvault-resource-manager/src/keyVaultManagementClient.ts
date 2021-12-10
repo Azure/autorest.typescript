@@ -9,23 +9,33 @@
 import * as coreClient from "@azure/core-client";
 import * as coreAuth from "@azure/core-auth";
 import {
+  KeysImpl,
   VaultsImpl,
   PrivateEndpointConnectionsImpl,
   PrivateLinkResourcesImpl,
-  OperationsImpl
+  ManagedHsmsImpl,
+  MhsmPrivateEndpointConnectionsImpl,
+  MhsmPrivateLinkResourcesImpl,
+  OperationsImpl,
+  SecretsImpl
 } from "./operations";
 import {
+  Keys,
   Vaults,
   PrivateEndpointConnections,
   PrivateLinkResources,
-  Operations
+  ManagedHsms,
+  MhsmPrivateEndpointConnections,
+  MhsmPrivateLinkResources,
+  Operations,
+  Secrets
 } from "./operationsInterfaces";
 import { KeyVaultManagementClientOptionalParams } from "./models";
 
 export class KeyVaultManagementClient extends coreClient.ServiceClient {
   $host: string;
-  apiVersion: string;
   subscriptionId: string;
+  apiVersion: string;
 
   /**
    * Initializes a new instance of the KeyVaultManagementClient class.
@@ -75,15 +85,27 @@ export class KeyVaultManagementClient extends coreClient.ServiceClient {
 
     // Assigning values to Constant parameters
     this.$host = options.$host || "https://management.azure.com";
-    this.apiVersion = options.apiVersion || "2019-09-01";
+    this.apiVersion = options.apiVersion || "2021-06-01-preview";
+    this.keys = new KeysImpl(this);
     this.vaults = new VaultsImpl(this);
     this.privateEndpointConnections = new PrivateEndpointConnectionsImpl(this);
     this.privateLinkResources = new PrivateLinkResourcesImpl(this);
+    this.managedHsms = new ManagedHsmsImpl(this);
+    this.mhsmPrivateEndpointConnections = new MhsmPrivateEndpointConnectionsImpl(
+      this
+    );
+    this.mhsmPrivateLinkResources = new MhsmPrivateLinkResourcesImpl(this);
     this.operations = new OperationsImpl(this);
+    this.secrets = new SecretsImpl(this);
   }
 
+  keys: Keys;
   vaults: Vaults;
   privateEndpointConnections: PrivateEndpointConnections;
   privateLinkResources: PrivateLinkResources;
+  managedHsms: ManagedHsms;
+  mhsmPrivateEndpointConnections: MhsmPrivateEndpointConnections;
+  mhsmPrivateLinkResources: MhsmPrivateLinkResources;
   operations: Operations;
+  secrets: Secrets;
 }
