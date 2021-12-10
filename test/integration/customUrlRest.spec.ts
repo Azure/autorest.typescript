@@ -5,12 +5,12 @@ describe("CustomRest Endpoint", () => {
   let client: CustomUrlRestClientRestClient;
   let clientOptions: any;
   beforeEach(() => {
-    clientOptions = { host: "host:3000", allowInsecureConnection: true };
-    client = CustomUrlRestClient(clientOptions);
+    clientOptions = { allowInsecureConnection: true };
+    client = CustomUrlRestClient("host:3000", clientOptions);
   });
 
   it("should return 200", async () => {
-    const result = await client.path("/customuri", 'localhost').get();
+    const result = await client.path("/customuri", 'local').get();
     assert.strictEqual(result.status, '200');
   });
 });
