@@ -114,26 +114,26 @@ export const readmes: SpecDefinition[] = [
   //   branch: "main",
   //   buildTag: "ci_3"
   // },
-  {
-    path: joinPath(
-      `${__dirname}`,
-      "..",
-      "..",
-      "./.tmp/specs/specification/keyvault/resource-manager/readme.md"
-    ),
-    params: [AutorestParams.GenerateTest],
-    buildTag: "ci_3"
-  },
   // {
   //   path: joinPath(
   //     `${__dirname}`,
   //     "..",
   //     "..",
-  //     "./.tmp/specs/specification/storage/resource-manager/readme.md"
+  //     "./.tmp/specs/specification/keyvault/resource-manager/readme.md"
   //   ),
-  //   params: [AutorestParams.ModelDedup, AutorestParams.GenerateTest],
+  //   params: [AutorestParams.GenerateTest],
   //   buildTag: "ci_3"
   // },
+  {
+    path: joinPath(
+      `${__dirname}`,
+      "..",
+      "..",
+      "./.tmp/specs/specification/storage/resource-manager/readme.md"
+    ),
+    params: [AutorestParams.ModelDedup, AutorestParams.GenerateTest],
+    buildTag: "ci_3"
+  },
   // {
   //   path: joinPath(
   //     `${__dirname}`,

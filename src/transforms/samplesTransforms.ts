@@ -179,6 +179,9 @@ function getParameterAssignment(exampleValue: ExampleValue) {
   let schemaType = exampleValue.schema.type;
   const rawValue = exampleValue.rawValue;
   let retValue = rawValue;
+  if (rawValue === null) {
+    return undefined;
+  }
   switch (schemaType) {
     case SchemaType.Constant:
       const contentSchema = exampleValue.schema as ConstantSchema;
