@@ -13,16 +13,25 @@
  *
  * @summary Updates a VirtualWAN tags.
  */
-import { NetworkManagementClient } from "@msinternal/network-resource-manager";
+import {
+  TagsObject,
+  NetworkManagementClient
+} from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: NetworkManagementClient;
 //virtualWans.updateTags
 async function virtualWanUpdate() {
   const resourceGroupName = "rg1";
-  await client.virtualWans.updateTags(resourceGroupName).then((res) => {
-    console.log(res);
-  });
+  const virtualWANName = "wan1";
+  const WANParameters: TagsObject = {
+    tags: { key1: "value1", key2: "value2" }
+  };
+  await client.virtualWans
+    .updateTags(resourceGroupName, virtualWANName, WANParameters)
+    .then((res) => {
+      console.log(res);
+    });
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -13,15 +13,29 @@
  *
  * @summary Creates a VirtualWAN resource if it doesn't exist else updates the existing VirtualWAN.
  */
-import { NetworkManagementClient } from "@msinternal/network-resource-manager";
+import {
+  VirtualWAN,
+  NetworkManagementClient
+} from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: NetworkManagementClient;
 //virtualWans.beginCreateOrUpdateAndWait
 async function virtualWanCreate() {
   const resourceGroupName = "rg1";
+  const virtualWANName = "wan1";
+  const WANParameters: VirtualWAN = {
+    typePropertiesType: "Basic",
+    disableVpnEncryption: false,
+    location: "West US",
+    tags: { key1: "value1" }
+  };
   await client.virtualWans
-    .beginCreateOrUpdateAndWait(resourceGroupName)
+    .beginCreateOrUpdateAndWait(
+      resourceGroupName,
+      virtualWANName,
+      WANParameters
+    )
     .then((res) => {
       console.log(res);
     });

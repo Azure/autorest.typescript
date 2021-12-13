@@ -22,8 +22,14 @@ async function deleteImmutabilityPolicy() {
   const resourceGroupName = "res1581";
   const accountName = "sto9621";
   const containerName = "container4910";
+  const ifMatch = '"8d59f81a7fa7be0"';
   await client.blobContainers
-    .deleteImmutabilityPolicy(resourceGroupName, accountName, containerName)
+    .deleteImmutabilityPolicy(
+      resourceGroupName,
+      accountName,
+      containerName,
+      ifMatch
+    )
     .then((res) => {
       console.log(res);
     });

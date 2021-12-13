@@ -20,9 +20,12 @@ let client: NetworkManagementClient;
 //virtualWans.beginDeleteAndWait
 async function virtualWanDelete() {
   const resourceGroupName = "rg1";
-  await client.virtualWans.beginDeleteAndWait(resourceGroupName).then((res) => {
-    console.log(res);
-  });
+  const virtualWANName = "virtualWan1";
+  await client.virtualWans
+    .beginDeleteAndWait(resourceGroupName, virtualWANName)
+    .then((res) => {
+      console.log(res);
+    });
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -33,7 +33,7 @@ async function createsOrUpdatesAWafPolicyWithinAResourceGroup() {
           {
             matchValues: ["192.168.1.0/24", "10.0.0.0/24"],
             matchVariables: [
-              { selector: "undefined", variableName: "RemoteAddr" }
+              { selector: undefined, variableName: "RemoteAddr" }
             ],
             operator: "IPMatch"
           }
@@ -48,7 +48,7 @@ async function createsOrUpdatesAWafPolicyWithinAResourceGroup() {
           {
             matchValues: ["192.168.1.0/24"],
             matchVariables: [
-              { selector: "undefined", variableName: "RemoteAddr" }
+              { selector: undefined, variableName: "RemoteAddr" }
             ],
             operator: "IPMatch"
           },

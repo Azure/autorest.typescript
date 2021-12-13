@@ -20,9 +20,12 @@ let client: NetworkManagementClient;
 //virtualWans.get
 async function virtualWanGet() {
   const resourceGroupName = "rg1";
-  await client.virtualWans.get(resourceGroupName).then((res) => {
-    console.log(res);
-  });
+  const virtualWANName = "wan1";
+  await client.virtualWans
+    .get(resourceGroupName, virtualWANName)
+    .then((res) => {
+      console.log(res);
+    });
 }
 async function main() {
   const credential = new DefaultAzureCredential();

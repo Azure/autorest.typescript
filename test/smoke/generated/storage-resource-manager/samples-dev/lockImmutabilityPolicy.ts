@@ -22,8 +22,14 @@ async function lockImmutabilityPolicy() {
   const resourceGroupName = "res2702";
   const accountName = "sto5009";
   const containerName = "container1631";
+  const ifMatch = '"8d59f825b721dd3"';
   await client.blobContainers
-    .lockImmutabilityPolicy(resourceGroupName, accountName, containerName)
+    .lockImmutabilityPolicy(
+      resourceGroupName,
+      accountName,
+      containerName,
+      ifMatch
+    )
     .then((res) => {
       console.log(res);
     });

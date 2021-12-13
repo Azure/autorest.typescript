@@ -25,6 +25,7 @@ async function extendImmutabilityPolicy() {
   const resourceGroupName = "res6238";
   const accountName = "sto232";
   const containerName = "container5023";
+  const ifMatch = '"8d59f830d0c3bf9"';
   const parameters: ImmutabilityPolicy = {
     immutabilityPeriodSinceCreationInDays: 100
   };
@@ -34,6 +35,7 @@ async function extendImmutabilityPolicy() {
       resourceGroupName,
       accountName,
       containerName,
+      ifMatch,
       options
     )
     .then((res) => {

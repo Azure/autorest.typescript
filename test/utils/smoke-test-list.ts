@@ -93,27 +93,27 @@ export const readmes: SpecDefinition[] = [
   //   branch: "main",
   //   buildTag: "ci_2"
   // },
-  // {
-  //   path: joinPath(
-  //     `${__dirname}`,
-  //     "..",
-  //     "..",
-  //     "./.tmp/specs/specification/compute/resource-manager/readme.md"
-  //   ),
-  //   params: [AutorestParams.GenerateTest],
-  //   buildTag: "ci_2"
-  // },
-  // {
-  //   path: joinPath(
-  //     `${__dirname}`,
-  //     "..",
-  //     "..",
-  //     "./.tmp/specs/specification/network/resource-manager/readme.md"
-  //   ),
-  //   params: [AutorestParams.GenerateTest],
-  //   branch: "main",
-  //   buildTag: "ci_3"
-  // },
+  {
+    path: joinPath(
+      `${__dirname}`,
+      "..",
+      "..",
+      "./.tmp/specs/specification/compute/resource-manager/readme.md"
+    ),
+    params: [AutorestParams.GenerateTest],
+    buildTag: "ci_2"
+  },
+  {
+    path: joinPath(
+      `${__dirname}`,
+      "..",
+      "..",
+      "./.tmp/specs/specification/network/resource-manager/readme.md"
+    ),
+    params: [AutorestParams.GenerateTest],
+    branch: "main",
+    buildTag: "ci_3"
+  },
   // {
   //   path: joinPath(
   //     `${__dirname}`,
@@ -134,16 +134,16 @@ export const readmes: SpecDefinition[] = [
   //   params: [AutorestParams.ModelDedup, AutorestParams.GenerateTest],
   //   buildTag: "ci_3"
   // },
-  {
-    path: joinPath(
-      `${__dirname}`,
-      "..",
-      "..",
-      "./.tmp/specs/specification/msi/resource-manager/readme.md"
-    ),
-    params: [AutorestParams.GenerateTest],
-    buildTag: "ci_3"
-  },
+  // {
+  //   path: joinPath(
+  //     `${__dirname}`,
+  //     "..",
+  //     "..",
+  //     "./.tmp/specs/specification/msi/resource-manager/readme.md"
+  //   ),
+  //   params: [AutorestParams.GenerateTest],
+  //   buildTag: "ci_3"
+  // },
   // {
   //   path: joinPath(
   //     `${__dirname}`,
