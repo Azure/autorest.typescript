@@ -17,13 +17,13 @@ import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: WebSiteManagementClient;
-//staticSites.deleteStaticSiteBuild
+//staticSites.beginDeleteStaticSiteBuildAndWait
 async function deleteAStaticSiteBuild() {
   const resourceGroupName = "rg";
   const name = "testStaticSite0";
-  const prId = "12";
+  const environmentName = "12";
   await client.staticSites
-    .deleteStaticSiteBuild(resourceGroupName, name, prId)
+    .beginDeleteStaticSiteBuildAndWait(resourceGroupName, name, environmentName)
     .then((res) => {
       console.log(res);
     });

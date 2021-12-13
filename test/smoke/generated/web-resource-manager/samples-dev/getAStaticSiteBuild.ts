@@ -21,9 +21,9 @@ let client: WebSiteManagementClient;
 async function getAStaticSiteBuild() {
   const resourceGroupName = "rg";
   const name = "testStaticSite0";
-  const prId = "12";
+  const environmentName = "12";
   await client.staticSites
-    .getStaticSiteBuild(resourceGroupName, name, prId)
+    .getStaticSiteBuild(resourceGroupName, name, environmentName)
     .then((res) => {
       console.log(res);
     });

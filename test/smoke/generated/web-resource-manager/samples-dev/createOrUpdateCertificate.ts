@@ -27,7 +27,7 @@ async function createOrUpdateCertificate() {
   const certificateEnvelope: Certificate = {
     hostNames: ["ServerCert"],
     location: "East US",
-    password: "SWsSsd__233$Sdsds#%Sd!"
+    password: "<password>"
   };
   await client.certificates
     .createOrUpdate(resourceGroupName, name, certificateEnvelope)

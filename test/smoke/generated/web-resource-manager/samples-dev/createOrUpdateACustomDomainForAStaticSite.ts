@@ -13,17 +13,26 @@
  *
  * @summary Description for Creates a new static site custom domain in an existing resource group and static site.
  */
-import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
+import {
+  StaticSiteCustomDomainRequestPropertiesARMResource,
+  WebSiteManagementClient
+} from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: WebSiteManagementClient;
-//staticSites.createOrUpdateStaticSiteCustomDomain
+//staticSites.beginCreateOrUpdateStaticSiteCustomDomainAndWait
 async function createOrUpdateACustomDomainForAStaticSite() {
   const resourceGroupName = "rg";
   const name = "testStaticSite0";
   const domainName = "custom.domain.net";
+  const staticSiteCustomDomainRequestPropertiesEnvelope: StaticSiteCustomDomainRequestPropertiesARMResource = {};
   await client.staticSites
-    .createOrUpdateStaticSiteCustomDomain(resourceGroupName, name, domainName)
+    .beginCreateOrUpdateStaticSiteCustomDomainAndWait(
+      resourceGroupName,
+      name,
+      domainName,
+      staticSiteCustomDomainRequestPropertiesEnvelope
+    )
     .then((res) => {
       console.log(res);
     });

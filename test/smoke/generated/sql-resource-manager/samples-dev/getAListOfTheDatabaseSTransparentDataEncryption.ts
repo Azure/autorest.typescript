@@ -9,26 +9,24 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 /**
- * This sample demonstrates how to Returns a database's transparent data encryption operation result.
+ * This sample demonstrates how to Gets a list of the logical database's transparent data encryption.
  *
- * @summary Returns a database's transparent data encryption operation result.
+ * @summary Gets a list of the logical database's transparent data encryption.
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//transparentDataEncryptionActivities.listByConfiguration
-async function listADatabaseSTransparentDataEncryptionActivities() {
-  const resourceGroupName = "sqlcrudtest-6852";
-  const serverName = "sqlcrudtest-2080";
-  const databaseName = "sqlcrudtest-9187";
-  const transparentDataEncryptionName = "current";
+//transparentDataEncryptions.listByDatabase
+async function getAListOfTheDatabaseSTransparentDataEncryption() {
+  const resourceGroupName = "security-tde-resourcegroup";
+  const serverName = "securitytde";
+  const databaseName = "testdb";
   const resArray = new Array();
-  for await (let item of client.transparentDataEncryptionActivities.listByConfiguration(
+  for await (let item of client.transparentDataEncryptions.listByDatabase(
     resourceGroupName,
     serverName,
-    databaseName,
-    transparentDataEncryptionName
+    databaseName
   )) {
     resArray.push(item);
   }
@@ -38,6 +36,6 @@ async function main() {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-1111-2222-3333-444444444444";
   client = new SqlManagementClient(credential, subscriptionId);
-  await listADatabaseSTransparentDataEncryptionActivities();
+  await getAListOfTheDatabaseSTransparentDataEncryption();
 }
 main();

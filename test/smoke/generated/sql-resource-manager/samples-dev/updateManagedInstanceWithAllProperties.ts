@@ -34,6 +34,7 @@ async function updateManagedInstanceWithAllProperties() {
     minimalTlsVersion: "1.2",
     proxyOverride: "Redirect",
     publicDataEndpointEnabled: false,
+    requestedBackupStorageRedundancy: "Geo",
     sku: { name: "GP_Gen4", capacity: 8, tier: "GeneralPurpose" },
     storageSizeInGB: 448,
     tags: { tagKey1: "TagValue1" },

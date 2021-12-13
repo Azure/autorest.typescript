@@ -20,8 +20,8 @@ let client: WebSiteManagementClient;
 //webApps.getAppSettingKeyVaultReference
 async function getAzureKeyVaultAppSettingReference() {
   const resourceGroupName = "testrg123";
-  const name = "tests346";
-  const appSettingKey = "ref1";
+  const name = "testc6282";
+  const appSettingKey = "setting";
   await client.webApps
     .getAppSettingKeyVaultReference(resourceGroupName, name, appSettingKey)
     .then((res) => {

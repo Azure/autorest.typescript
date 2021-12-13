@@ -46,8 +46,9 @@ async function createManagedInstanceWithAllProperties() {
     minimalTlsVersion: "1.2",
     proxyOverride: "Redirect",
     publicDataEndpointEnabled: false,
+    requestedBackupStorageRedundancy: "Geo",
+    servicePrincipal: { type: "SystemAssigned" },
     sku: { name: "GP_Gen5", tier: "GeneralPurpose" },
-    storageAccountType: "GRS",
     storageSizeInGB: 1024,
     subnetId:
       "/subscriptions/20D7082A-0FC7-4468-82BD-542694D5042B/resourceGroups/testrg/providers/Microsoft.Network/virtualNetworks/vnet1/subnets/subnet1",

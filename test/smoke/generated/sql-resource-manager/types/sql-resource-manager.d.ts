@@ -355,7 +355,8 @@ export declare interface BackupShortTermRetentionPolicyListResult {
  * ### Known values supported by the service
  * **Geo** \
  * **Local** \
- * **Zone**
+ * **Zone** \
+ * **GeoZone**
  */
 export declare type BackupStorageRedundancy = string;
 
@@ -510,7 +511,7 @@ export declare interface CopyLongTermRetentionBackupParameters {
     /** The name of the database owns the copied backup. */
     targetDatabaseName?: string;
     /** The storage redundancy type of the copied backup */
-    targetBackupStorageRedundancy?: TargetBackupStorageRedundancy;
+    targetBackupStorageRedundancy?: BackupStorageRedundancy;
 }
 
 /** Contains the information necessary to perform a create database restore point operation. */
@@ -549,17 +550,6 @@ export declare type CreatedByType = string;
  */
 export declare type CreateMode = string;
 
-/**
- * Defines values for CurrentBackupStorageRedundancy. \
- * {@link KnownCurrentBackupStorageRedundancy} can be used interchangeably with CurrentBackupStorageRedundancy,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Geo** \
- * **Local** \
- * **Zone**
- */
-export declare type CurrentBackupStorageRedundancy = string;
-
 /** A database resource. */
 export declare type Database = TrackedResource & {
     /**
@@ -587,6 +577,8 @@ export declare type Database = TrackedResource & {
      * NOTE: This property will not be serialized. It can only be populated by the server.
      */
     readonly managedBy?: string;
+    /** The Azure Active Directory identity of the database. */
+    identity?: DatabaseIdentity;
     /**
      * Specifies the mode of database creation.
      *
@@ -697,9 +689,9 @@ export declare type Database = TrackedResource & {
      * The storage account type used to store backups for this database.
      * NOTE: This property will not be serialized. It can only be populated by the server.
      */
-    readonly currentBackupStorageRedundancy?: CurrentBackupStorageRedundancy;
+    readonly currentBackupStorageRedundancy?: BackupStorageRedundancy;
     /** The storage account type to be used to store backups for this database. */
-    requestedBackupStorageRedundancy?: RequestedBackupStorageRedundancy;
+    requestedBackupStorageRedundancy?: BackupStorageRedundancy;
     /** Minimal capacity that database will always have allocated, if not paused */
     minCapacity?: number;
     /**
@@ -721,6 +713,10 @@ export declare type Database = TrackedResource & {
      * NOTE: This property will not be serialized. It can only be populated by the server.
      */
     readonly isInfraEncryptionEnabled?: boolean;
+    /** The Client id used for cross tenant per database CMK scenario */
+    federatedClientId?: string;
+    /** The Primary Delegated Identity Client id used for per database CMK - for internal use only */
+    primaryDelegatedIdentityClientId?: string;
 };
 
 /** Interface representing a DatabaseAdvisors. */
@@ -1220,6 +1216,35 @@ export declare interface DatabaseExtensionsOperations {
      */
     beginCreateOrUpdateAndWait(resourceGroupName: string, serverName: string, databaseName: string, extensionName: string, parameters: DatabaseExtensions, options?: DatabaseExtensionsCreateOrUpdateOptionalParams): Promise<DatabaseExtensionsCreateOrUpdateResponse>;
 }
+
+/** Azure Active Directory identity configuration for a resource. */
+export declare interface DatabaseIdentity {
+    /** The identity type */
+    type?: DatabaseIdentityType;
+    /**
+     * The Azure Active Directory tenant id.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly tenantId?: string;
+    /** The resource ids of the user assigned identities to use */
+    userAssignedIdentities?: {
+        [propertyName: string]: DatabaseUserIdentity;
+    };
+    /** Resources delegated to the database - Internal Use Only */
+    delegatedResources?: {
+        [propertyName: string]: Delegation;
+    };
+}
+
+/**
+ * Defines values for DatabaseIdentityType. \
+ * {@link KnownDatabaseIdentityType} can be used interchangeably with DatabaseIdentityType,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **None** \
+ * **UserAssigned**
+ */
+export declare type DatabaseIdentityType = string;
 
 /**
  * Defines values for DatabaseLicenseType. \
@@ -2026,7 +2051,10 @@ export declare type DatabaseState = string;
  * **Scaling** \
  * **OfflineChangingDwPerformanceTiers** \
  * **OnlineChangingDwPerformanceTiers** \
- * **Disabled**
+ * **Disabled** \
+ * **Stopping** \
+ * **Stopped** \
+ * **Starting**
  */
 export declare type DatabaseStatus = string;
 
@@ -2125,6 +2153,8 @@ export declare type DatabaseTablesListBySchemaResponse = DatabaseTableListResult
 export declare interface DatabaseUpdate {
     /** The name and tier of the SKU. */
     sku?: Sku;
+    /** Database identity */
+    identity?: DatabaseIdentity;
     /** Resource tags. */
     tags?: {
         [propertyName: string]: string;
@@ -2239,9 +2269,9 @@ export declare interface DatabaseUpdate {
      * The storage account type used to store backups for this database.
      * NOTE: This property will not be serialized. It can only be populated by the server.
      */
-    readonly currentBackupStorageRedundancy?: CurrentBackupStorageRedundancy;
+    readonly currentBackupStorageRedundancy?: BackupStorageRedundancy;
     /** The storage account type to be used to store backups for this database. */
-    requestedBackupStorageRedundancy?: RequestedBackupStorageRedundancy;
+    requestedBackupStorageRedundancy?: BackupStorageRedundancy;
     /** Minimal capacity that database will always have allocated, if not paused */
     minCapacity?: number;
     /**
@@ -2263,6 +2293,10 @@ export declare interface DatabaseUpdate {
      * NOTE: This property will not be serialized. It can only be populated by the server.
      */
     readonly isInfraEncryptionEnabled?: boolean;
+    /** The Client id used for cross tenant per database CMK scenario */
+    federatedClientId?: string;
+    /** The Primary Delegated Identity Client id used for per database CMK - for internal use only */
+    primaryDelegatedIdentityClientId?: string;
 }
 
 /** Usage metric of a database. */
@@ -2329,6 +2363,20 @@ export declare interface DatabaseUsagesListByDatabaseOptionalParams extends core
 
 /** Contains response data for the listByDatabase operation. */
 export declare type DatabaseUsagesListByDatabaseResponse = DatabaseUsageListResult;
+
+/** Azure Active Directory identity configuration for a resource. */
+export declare interface DatabaseUserIdentity {
+    /**
+     * The Azure Active Directory principal id.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly principalId?: string;
+    /**
+     * The Azure Active Directory client id.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly clientId?: string;
+}
 
 /** A database vulnerability assessment. */
 export declare type DatabaseVulnerabilityAssessment = ProxyResource & {
@@ -2862,6 +2910,17 @@ export declare type DataWarehouseUserActivityName = string;
  * **Saturday**
  */
 export declare type DayOfWeek = string;
+
+/** Delegated Resource Properties - Internal Use Only */
+export declare interface Delegation {
+    /** The resource id of the source resource - Internal Use Only */
+    resourceId?: string;
+    /**
+     * AAD tenant guid of the source resource identity - Internal Use Only.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly tenantId?: string;
+}
 
 /** A deleted server. */
 export declare type DeletedServer = ProxyResource & {
@@ -3995,8 +4054,8 @@ export declare interface EncryptionProtectorsRevalidateOptionalParams extends co
 }
 
 /**
- * Defines values for Enum76. \
- * {@link KnownEnum76} can be used interchangeably with Enum76,
+ * Defines values for Enum60. \
+ * {@link KnownEnum60} can be used interchangeably with Enum60,
  *  this enum contains the known values that the service supports.
  * ### Known values supported by the service
  * **All** \
@@ -4004,7 +4063,7 @@ export declare interface EncryptionProtectorsRevalidateOptionalParams extends co
  * **Warning** \
  * **Success**
  */
-export declare type Enum76 = string;
+export declare type Enum60 = string;
 
 /** Contains the information necessary to perform export database operation. */
 export declare interface ExportDatabaseDefinition {
@@ -6902,7 +6961,8 @@ export declare enum KnownAuthenticationName {
 export declare enum KnownBackupStorageRedundancy {
     Geo = "Geo",
     Local = "Local",
-    Zone = "Zone"
+    Zone = "Zone",
+    GeoZone = "GeoZone"
 }
 
 /** Known values of {@link CapabilityGroup} that the service accepts. */
@@ -6985,11 +7045,10 @@ export declare enum KnownCreateMode {
     OnlineSecondary = "OnlineSecondary"
 }
 
-/** Known values of {@link CurrentBackupStorageRedundancy} that the service accepts. */
-export declare enum KnownCurrentBackupStorageRedundancy {
-    Geo = "Geo",
-    Local = "Local",
-    Zone = "Zone"
+/** Known values of {@link DatabaseIdentityType} that the service accepts. */
+export declare enum KnownDatabaseIdentityType {
+    None = "None",
+    UserAssigned = "UserAssigned"
 }
 
 /** Known values of {@link DatabaseLicenseType} that the service accepts. */
@@ -7033,7 +7092,10 @@ export declare enum KnownDatabaseStatus {
     Scaling = "Scaling",
     OfflineChangingDwPerformanceTiers = "OfflineChangingDwPerformanceTiers",
     OnlineChangingDwPerformanceTiers = "OnlineChangingDwPerformanceTiers",
-    Disabled = "Disabled"
+    Disabled = "Disabled",
+    Stopping = "Stopping",
+    Stopped = "Stopped",
+    Starting = "Starting"
 }
 
 /** Known values of {@link DataWarehouseUserActivityName} that the service accepts. */
@@ -7082,8 +7144,8 @@ export declare enum KnownEncryptionProtectorName {
     Current = "current"
 }
 
-/** Known values of {@link Enum76} that the service accepts. */
-export declare enum KnownEnum76 {
+/** Known values of {@link Enum60} that the service accepts. */
+export declare enum KnownEnum60 {
     All = "All",
     Error = "Error",
     Warning = "Warning",
@@ -7230,7 +7292,16 @@ export declare enum KnownManagedInstancePropertiesProvisioningState {
     Updating = "Updating",
     Unknown = "Unknown",
     Succeeded = "Succeeded",
-    Failed = "Failed"
+    Failed = "Failed",
+    Accepted = "Accepted",
+    Created = "Created",
+    Deleted = "Deleted",
+    Unrecognized = "Unrecognized",
+    Running = "Running",
+    Canceled = "Canceled",
+    NotSpecified = "NotSpecified",
+    Registering = "Registering",
+    TimedOut = "TimedOut"
 }
 
 /** Known values of {@link ManagedInstanceProxyOverride} that the service accepts. */
@@ -7412,20 +7483,6 @@ export declare enum KnownReplicaType {
     ReadableSecondary = "ReadableSecondary"
 }
 
-/** Known values of {@link RequestedBackupStorageRedundancy} that the service accepts. */
-export declare enum KnownRequestedBackupStorageRedundancy {
-    Geo = "Geo",
-    Local = "Local",
-    Zone = "Zone"
-}
-
-/** Known values of {@link RestorableDroppedDatabasePropertiesBackupStorageRedundancy} that the service accepts. */
-export declare enum KnownRestorableDroppedDatabasePropertiesBackupStorageRedundancy {
-    Geo = "Geo",
-    Local = "Local",
-    Zone = "Zone"
-}
-
 /** Known values of {@link RestoreDetailsName} that the service accepts. */
 export declare enum KnownRestoreDetailsName {
     Default = "Default"
@@ -7447,6 +7504,13 @@ export declare enum KnownSecondaryType {
 /** Known values of {@link SecurityAlertPolicyName} that the service accepts. */
 export declare enum KnownSecurityAlertPolicyName {
     Default = "Default"
+}
+
+/** Known values of {@link ServerConnectionType} that the service accepts. */
+export declare enum KnownServerConnectionType {
+    Default = "Default",
+    Redirect = "Redirect",
+    Proxy = "Proxy"
 }
 
 /** Known values of {@link ServerKeyType} that the service accepts. */
@@ -7542,6 +7606,12 @@ export declare enum KnownServiceObjectiveName {
     ElasticPool = "ElasticPool"
 }
 
+/** Known values of {@link ServicePrincipalType} that the service accepts. */
+export declare enum KnownServicePrincipalType {
+    None = "None",
+    SystemAssigned = "SystemAssigned"
+}
+
 /** Known values of {@link ShortTermRetentionPolicyName} that the service accepts. */
 export declare enum KnownShortTermRetentionPolicyName {
     Default = "default"
@@ -7551,13 +7621,6 @@ export declare enum KnownShortTermRetentionPolicyName {
 export declare enum KnownSqlAgentConfigurationPropertiesState {
     Enabled = "Enabled",
     Disabled = "Disabled"
-}
-
-/** Known values of {@link StorageAccountType} that the service accepts. */
-export declare enum KnownStorageAccountType {
-    GRS = "GRS",
-    LRS = "LRS",
-    ZRS = "ZRS"
 }
 
 /** Known values of {@link StorageCapabilityStorageAccountType} that the service accepts. */
@@ -7643,19 +7706,6 @@ export declare enum KnownTableTemporalType {
     NonTemporalTable = "NonTemporalTable",
     HistoryTable = "HistoryTable",
     SystemVersionedTemporalTable = "SystemVersionedTemporalTable"
-}
-
-/** Known values of {@link TargetBackupStorageRedundancy} that the service accepts. */
-export declare enum KnownTargetBackupStorageRedundancy {
-    Geo = "Geo",
-    Local = "Local",
-    Zone = "Zone"
-}
-
-/** Known values of {@link TransparentDataEncryptionActivityStatus} that the service accepts. */
-export declare enum KnownTransparentDataEncryptionActivityStatus {
-    Encrypting = "Encrypting",
-    Decrypting = "Decrypting"
 }
 
 /** Known values of {@link TransparentDataEncryptionName} that the service accepts. */
@@ -7909,6 +7959,26 @@ export declare interface LocationCapabilities {
     readonly status?: CapabilityStatus;
     /** The reason for the capability not being available. */
     reason?: string;
+}
+
+/** A logical database transparent data encryption state. */
+export declare type LogicalDatabaseTransparentDataEncryption = ProxyResource & {
+    /** Specifies the state of the transparent data encryption. */
+    state?: TransparentDataEncryptionState;
+};
+
+/** A list of transparent data encryptions */
+export declare interface LogicalDatabaseTransparentDataEncryptionListResult {
+    /**
+     * Array of results.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly value?: LogicalDatabaseTransparentDataEncryption[];
+    /**
+     * Link to retrieve next page of results.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly nextLink?: string;
 }
 
 /** A list of the server's security alert policies. */
@@ -10442,8 +10512,13 @@ export declare type ManagedInstance = TrackedResource & {
     readonly privateEndpointConnections?: ManagedInstancePecProperty[];
     /** Minimal TLS version. Allowed values: 'None', '1.0', '1.1', '1.2' */
     minimalTlsVersion?: string;
-    /** The storage account type used to store backups for this instance. The options are LRS (LocallyRedundantStorage), ZRS (ZoneRedundantStorage) and GRS (GeoRedundantStorage) */
-    storageAccountType?: StorageAccountType;
+    /**
+     * The storage account type used to store backups for this instance. The options are Local (LocallyRedundantStorage), Zone (ZoneRedundantStorage), Geo (GeoRedundantStorage) and GeoZone(GeoZoneRedundantStorage)
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly currentBackupStorageRedundancy?: BackupStorageRedundancy;
+    /** The storage account type to be used to store backups for this instance. The options are Local (LocallyRedundantStorage), Zone (ZoneRedundantStorage), Geo (GeoRedundantStorage) and GeoZone(GeoZoneRedundantStorage) */
+    requestedBackupStorageRedundancy?: BackupStorageRedundancy;
     /** Whether or not the multi-az is enabled. */
     zoneRedundant?: boolean;
     /** The resource id of a user assigned identity to be used by default. */
@@ -10452,6 +10527,8 @@ export declare type ManagedInstance = TrackedResource & {
     keyId?: string;
     /** The Azure Active Directory administrator of the server. */
     administrators?: ManagedInstanceExternalAdministrator;
+    /** The managed instance's service principal. */
+    servicePrincipal?: ServicePrincipal;
 };
 
 /** An Azure SQL managed instance administrator. */
@@ -11725,7 +11802,16 @@ export declare interface ManagedInstancePrivateLinkServiceConnectionStatePropert
  * **Updating** \
  * **Unknown** \
  * **Succeeded** \
- * **Failed**
+ * **Failed** \
+ * **Accepted** \
+ * **Created** \
+ * **Deleted** \
+ * **Unrecognized** \
+ * **Running** \
+ * **Canceled** \
+ * **NotSpecified** \
+ * **Registering** \
+ * **TimedOut**
  */
 export declare type ManagedInstancePropertiesProvisioningState = string;
 
@@ -12122,8 +12208,13 @@ export declare interface ManagedInstanceUpdate {
     readonly privateEndpointConnections?: ManagedInstancePecProperty[];
     /** Minimal TLS version. Allowed values: 'None', '1.0', '1.1', '1.2' */
     minimalTlsVersion?: string;
-    /** The storage account type used to store backups for this instance. The options are LRS (LocallyRedundantStorage), ZRS (ZoneRedundantStorage) and GRS (GeoRedundantStorage) */
-    storageAccountType?: StorageAccountType;
+    /**
+     * The storage account type used to store backups for this instance. The options are Local (LocallyRedundantStorage), Zone (ZoneRedundantStorage), Geo (GeoRedundantStorage) and GeoZone(GeoZoneRedundantStorage)
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly currentBackupStorageRedundancy?: BackupStorageRedundancy;
+    /** The storage account type to be used to store backups for this instance. The options are Local (LocallyRedundantStorage), Zone (ZoneRedundantStorage), Geo (GeoRedundantStorage) and GeoZone(GeoZoneRedundantStorage) */
+    requestedBackupStorageRedundancy?: BackupStorageRedundancy;
     /** Whether or not the multi-az is enabled. */
     zoneRedundant?: boolean;
     /** The resource id of a user assigned identity to be used by default. */
@@ -12132,6 +12223,8 @@ export declare interface ManagedInstanceUpdate {
     keyId?: string;
     /** The Azure Active Directory administrator of the server. */
     administrators?: ManagedInstanceExternalAdministrator;
+    /** The managed instance's service principal. */
+    servicePrincipal?: ServicePrincipal;
 }
 
 /** The managed instance virtual cores capability. */
@@ -12941,63 +13034,6 @@ export declare interface Operations {
      * @param options The options parameters.
      */
     list(options?: OperationsListOptionalParams): PagedAsyncIterableIterator<Operation>;
-}
-
-/** Operations health status in a location. */
-export declare type OperationsHealth = ProxyResource & {
-    /**
-     * Operation name for the service
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly namePropertiesName?: string;
-    /**
-     * Operation health status of the service.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly health?: string;
-    /**
-     * Health status description.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly description?: string;
-};
-
-/** Optional parameters. */
-export declare interface OperationsHealthListByLocationNextOptionalParams extends coreClient.OperationOptions {
-}
-
-/** Contains response data for the listByLocationNext operation. */
-export declare type OperationsHealthListByLocationNextResponse = OperationsHealthListResult;
-
-/** Optional parameters. */
-export declare interface OperationsHealthListByLocationOptionalParams extends coreClient.OperationOptions {
-}
-
-/** Contains response data for the listByLocation operation. */
-export declare type OperationsHealthListByLocationResponse = OperationsHealthListResult;
-
-/** A list of service health statuses in a location. */
-export declare interface OperationsHealthListResult {
-    /**
-     * Array of results.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly value?: OperationsHealth[];
-    /**
-     * Link to retrieve next page of results.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly nextLink?: string;
-}
-
-/** Interface representing a OperationsHealthOperations. */
-export declare interface OperationsHealthOperations {
-    /**
-     * Gets a service operation health status.
-     * @param locationName The name of the region where the resource is located.
-     * @param options The options parameters.
-     */
-    listByLocation(locationName: string, options?: OperationsHealthListByLocationOptionalParams): PagedAsyncIterableIterator<OperationsHealth>;
 }
 
 /** Optional parameters. */
@@ -14410,17 +14446,6 @@ export declare type ReplicationState = string;
  */
 export declare type ReplicaType = string;
 
-/**
- * Defines values for RequestedBackupStorageRedundancy. \
- * {@link KnownRequestedBackupStorageRedundancy} can be used interchangeably with RequestedBackupStorageRedundancy,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Geo** \
- * **Local** \
- * **Zone**
- */
-export declare type RequestedBackupStorageRedundancy = string;
-
 /** ARM resource. */
 export declare interface Resource {
     /**
@@ -14503,11 +14528,6 @@ export declare type RestorableDroppedDatabase = ProxyResource & {
      */
     readonly maxSizeBytes?: number;
     /**
-     * DEPRECATED: The resource name of the elastic pool containing this database. This property is deprecated and the value will always be null.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly elasticPoolId?: string;
-    /**
      * The creation date of the database (ISO8601 format).
      * NOTE: This property will not be serialized. It can only be populated by the server.
      */
@@ -14526,7 +14546,7 @@ export declare type RestorableDroppedDatabase = ProxyResource & {
      * The storage account type used to store backups for this database.
      * NOTE: This property will not be serialized. It can only be populated by the server.
      */
-    readonly backupStorageRedundancy?: RestorableDroppedDatabasePropertiesBackupStorageRedundancy;
+    readonly backupStorageRedundancy?: BackupStorageRedundancy;
 };
 
 /** A list of restorable dropped databases. */
@@ -14542,17 +14562,6 @@ export declare interface RestorableDroppedDatabaseListResult {
      */
     readonly nextLink?: string;
 }
-
-/**
- * Defines values for RestorableDroppedDatabasePropertiesBackupStorageRedundancy. \
- * {@link KnownRestorableDroppedDatabasePropertiesBackupStorageRedundancy} can be used interchangeably with RestorableDroppedDatabasePropertiesBackupStorageRedundancy,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Geo** \
- * **Local** \
- * **Zone**
- */
-export declare type RestorableDroppedDatabasePropertiesBackupStorageRedundancy = string;
 
 /** Interface representing a RestorableDroppedDatabases. */
 export declare interface RestorableDroppedDatabases {
@@ -15909,17 +15918,15 @@ export declare type ServerCommunicationLinksListByServerResponse = ServerCommuni
 /** Interface representing a ServerConnectionPolicies. */
 export declare interface ServerConnectionPolicies {
     /**
-     * Creates or updates the server's connection policy.
+     * Lists connection policy
      * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
      *                          this value from the Azure Resource Manager API or the portal.
      * @param serverName The name of the server.
-     * @param connectionPolicyName The name of the connection policy.
-     * @param parameters The required parameters for updating a secure connection policy.
      * @param options The options parameters.
      */
-    createOrUpdate(resourceGroupName: string, serverName: string, connectionPolicyName: ConnectionPolicyName, parameters: ServerConnectionPolicy, options?: ServerConnectionPoliciesCreateOrUpdateOptionalParams): Promise<ServerConnectionPoliciesCreateOrUpdateResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: ServerConnectionPoliciesListByServerOptionalParams): PagedAsyncIterableIterator<ServerConnectionPolicy>;
     /**
-     * Gets the server's secure connection policy.
+     * Gets a server connection policy
      * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
      *                          this value from the Azure Resource Manager API or the portal.
      * @param serverName The name of the server.
@@ -15927,10 +15934,34 @@ export declare interface ServerConnectionPolicies {
      * @param options The options parameters.
      */
     get(resourceGroupName: string, serverName: string, connectionPolicyName: ConnectionPolicyName, options?: ServerConnectionPoliciesGetOptionalParams): Promise<ServerConnectionPoliciesGetResponse>;
+    /**
+     * Updates a server connection policy
+     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+     *                          this value from the Azure Resource Manager API or the portal.
+     * @param serverName The name of the server.
+     * @param connectionPolicyName The name of the connection policy.
+     * @param parameters The required parameters for updating a server connection policy.
+     * @param options The options parameters.
+     */
+    beginCreateOrUpdate(resourceGroupName: string, serverName: string, connectionPolicyName: ConnectionPolicyName, parameters: ServerConnectionPolicy, options?: ServerConnectionPoliciesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ServerConnectionPoliciesCreateOrUpdateResponse>, ServerConnectionPoliciesCreateOrUpdateResponse>>;
+    /**
+     * Updates a server connection policy
+     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+     *                          this value from the Azure Resource Manager API or the portal.
+     * @param serverName The name of the server.
+     * @param connectionPolicyName The name of the connection policy.
+     * @param parameters The required parameters for updating a server connection policy.
+     * @param options The options parameters.
+     */
+    beginCreateOrUpdateAndWait(resourceGroupName: string, serverName: string, connectionPolicyName: ConnectionPolicyName, parameters: ServerConnectionPolicy, options?: ServerConnectionPoliciesCreateOrUpdateOptionalParams): Promise<ServerConnectionPoliciesCreateOrUpdateResponse>;
 }
 
 /** Optional parameters. */
 export declare interface ServerConnectionPoliciesCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
+    /** Delay to wait until next poll, in milliseconds. */
+    updateIntervalInMs?: number;
+    /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+    resumeFrom?: string;
 }
 
 /** Contains response data for the createOrUpdate operation. */
@@ -15943,24 +15974,60 @@ export declare interface ServerConnectionPoliciesGetOptionalParams extends coreC
 /** Contains response data for the get operation. */
 export declare type ServerConnectionPoliciesGetResponse = ServerConnectionPolicy;
 
-/** A server secure connection policy. */
+/** Optional parameters. */
+export declare interface ServerConnectionPoliciesListByServerNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listByServerNext operation. */
+export declare type ServerConnectionPoliciesListByServerNextResponse = ServerConnectionPolicyListResult;
+
+/** Optional parameters. */
+export declare interface ServerConnectionPoliciesListByServerOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listByServer operation. */
+export declare type ServerConnectionPoliciesListByServerResponse = ServerConnectionPolicyListResult;
+
+/** A server connection policy */
 export declare type ServerConnectionPolicy = ProxyResource & {
-    /**
-     * Metadata used for the Azure portal experience.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly kind?: string;
     /**
      * Resource location.
      * NOTE: This property will not be serialized. It can only be populated by the server.
      */
     readonly location?: string;
+    /**
+     * Metadata used for the Azure portal experience.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly kind?: string;
     /** The server connection type. */
     connectionType?: ServerConnectionType;
 };
 
-/** Defines values for ServerConnectionType. */
-export declare type ServerConnectionType = "Default" | "Proxy" | "Redirect";
+/** A list of server connection policy objects. */
+export declare interface ServerConnectionPolicyListResult {
+    /**
+     * Array of results.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly value?: ServerConnectionPolicy[];
+    /**
+     * Link to retrieve next page of results.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly nextLink?: string;
+}
+
+/**
+ * Defines values for ServerConnectionType. \
+ * {@link KnownServerConnectionType} can be used interchangeably with ServerConnectionType,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Default** \
+ * **Redirect** \
+ * **Proxy**
+ */
+export declare type ServerConnectionType = string;
 
 /** A server DevOps auditing settings. */
 export declare type ServerDevOpsAuditingSettings = ProxyResource & {
@@ -17494,6 +17561,37 @@ export declare interface ServiceObjectivesListByServerOptionalParams extends cor
 /** Contains response data for the listByServer operation. */
 export declare type ServiceObjectivesListByServerResponse = ServiceObjectiveListResult;
 
+/** The managed instance's service principal configuration for a resource. */
+export declare interface ServicePrincipal {
+    /**
+     * The Azure Active Directory application object id.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly principalId?: string;
+    /**
+     * The Azure Active Directory application client id.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly clientId?: string;
+    /**
+     * The Azure Active Directory tenant id.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly tenantId?: string;
+    /** Service principal type. */
+    type?: ServicePrincipalType;
+}
+
+/**
+ * Defines values for ServicePrincipalType. \
+ * {@link KnownServicePrincipalType} can be used interchangeably with ServicePrincipalType,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **None** \
+ * **SystemAssigned**
+ */
+export declare type ServicePrincipalType = string;
+
 /**
  * Defines values for ShortTermRetentionPolicyName. \
  * {@link KnownShortTermRetentionPolicyName} can be used interchangeably with ShortTermRetentionPolicyName,
@@ -17598,7 +17696,6 @@ export declare class SqlManagementClient extends coreClient.ServiceClient {
      */
     constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: SqlManagementClientOptionalParams);
     recoverableDatabases: RecoverableDatabases;
-    serverConnectionPolicies: ServerConnectionPolicies;
     dataMaskingPolicies: DataMaskingPolicies;
     dataMaskingRules: DataMaskingRules;
     geoBackupPolicies: GeoBackupPolicies;
@@ -17609,8 +17706,6 @@ export declare class SqlManagementClient extends coreClient.ServiceClient {
     serviceObjectives: ServiceObjectives;
     elasticPoolActivities: ElasticPoolActivities;
     elasticPoolDatabaseActivities: ElasticPoolDatabaseActivities;
-    transparentDataEncryptions: TransparentDataEncryptions;
-    transparentDataEncryptionActivities: TransparentDataEncryptionActivities;
     serverUsages: ServerUsages;
     extendedDatabaseBlobAuditingPolicies: ExtendedDatabaseBlobAuditingPolicies;
     extendedServerBlobAuditingPolicies: ExtendedServerBlobAuditingPolicies;
@@ -17644,8 +17739,6 @@ export declare class SqlManagementClient extends coreClient.ServiceClient {
     jobTargetGroups: JobTargetGroups;
     jobVersions: JobVersions;
     capabilities: Capabilities;
-    longTermRetentionBackups: LongTermRetentionBackups;
-    longTermRetentionManagedInstanceBackups: LongTermRetentionManagedInstanceBackups;
     longTermRetentionPolicies: LongTermRetentionPolicies;
     maintenanceWindowOptionsOperations: MaintenanceWindowOptionsOperations;
     maintenanceWindowsOperations: MaintenanceWindowsOperations;
@@ -17672,13 +17765,11 @@ export declare class SqlManagementClient extends coreClient.ServiceClient {
     managedInstanceOperations: ManagedInstanceOperations;
     managedInstancePrivateEndpointConnections: ManagedInstancePrivateEndpointConnections;
     managedInstancePrivateLinkResources: ManagedInstancePrivateLinkResources;
-    managedInstances: ManagedInstances;
     managedInstanceTdeCertificates: ManagedInstanceTdeCertificates;
     managedInstanceVulnerabilityAssessments: ManagedInstanceVulnerabilityAssessments;
     managedRestorableDroppedDatabaseBackupShortTermRetentionPolicies: ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicies;
     managedServerSecurityAlertPolicies: ManagedServerSecurityAlertPolicies;
     operations: Operations;
-    operationsHealthOperations: OperationsHealthOperations;
     privateEndpointConnections: PrivateEndpointConnections;
     privateLinkResources: PrivateLinkResources;
     recoverableManagedDatabases: RecoverableManagedDatabases;
@@ -17707,16 +17798,21 @@ export declare class SqlManagementClient extends coreClient.ServiceClient {
     virtualNetworkRules: VirtualNetworkRules;
     workloadClassifiers: WorkloadClassifiers;
     workloadGroups: WorkloadGroups;
+    transparentDataEncryptions: TransparentDataEncryptions;
     backupShortTermRetentionPolicies: BackupShortTermRetentionPolicies;
     databaseExtensionsOperations: DatabaseExtensionsOperations;
     databaseOperations: DatabaseOperations;
     databaseUsages: DatabaseUsages;
     ledgerDigestUploadsOperations: LedgerDigestUploadsOperations;
     outboundFirewallRules: OutboundFirewallRules;
-    restorableDroppedDatabases: RestorableDroppedDatabases;
-    restorableDroppedManagedDatabases: RestorableDroppedManagedDatabases;
     servers: Servers;
     usages: Usages;
+    longTermRetentionBackups: LongTermRetentionBackups;
+    longTermRetentionManagedInstanceBackups: LongTermRetentionManagedInstanceBackups;
+    managedInstances: ManagedInstances;
+    restorableDroppedDatabases: RestorableDroppedDatabases;
+    restorableDroppedManagedDatabases: RestorableDroppedManagedDatabases;
+    serverConnectionPolicies: ServerConnectionPolicies;
 }
 
 /** Optional parameters. */
@@ -17726,17 +17822,6 @@ export declare interface SqlManagementClientOptionalParams extends coreClient.Se
     /** Overrides client endpoint. */
     endpoint?: string;
 }
-
-/**
- * Defines values for StorageAccountType. \
- * {@link KnownStorageAccountType} can be used interchangeably with StorageAccountType,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **GRS** \
- * **LRS** \
- * **ZRS**
- */
-export declare type StorageAccountType = string;
 
 /** The storage account type capability. */
 export declare interface StorageCapability {
@@ -18390,7 +18475,7 @@ export declare interface SyncGroups {
      * @param typeParam The types of logs to retrieve.
      * @param options The options parameters.
      */
-    listLogs(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, startTime: string, endTime: string, typeParam: Enum76, options?: SyncGroupsListLogsOptionalParams): PagedAsyncIterableIterator<SyncGroupLogProperties>;
+    listLogs(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, startTime: string, endTime: string, typeParam: Enum60, options?: SyncGroupsListLogsOptionalParams): PagedAsyncIterableIterator<SyncGroupLogProperties>;
     /**
      * Lists sync groups under a hub database.
      * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -18980,17 +19065,6 @@ export declare interface SystemData {
  */
 export declare type TableTemporalType = string;
 
-/**
- * Defines values for TargetBackupStorageRedundancy. \
- * {@link KnownTargetBackupStorageRedundancy} can be used interchangeably with TargetBackupStorageRedundancy,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Geo** \
- * **Local** \
- * **Zone**
- */
-export declare type TargetBackupStorageRedundancy = string;
-
 /** A TDE certificate that can be uploaded into a server. */
 export declare type TdeCertificate = ProxyResource & {
     /** The base64 encoded certificate private blob. */
@@ -19154,73 +19228,6 @@ export declare type TrackedResource = Resource & {
     };
 };
 
-/** Represents a database transparent data encryption configuration. */
-export declare type TransparentDataEncryption = ProxyResource & {
-    /**
-     * Resource location.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly location?: string;
-    /** The status of the database transparent data encryption. */
-    status?: TransparentDataEncryptionStatus;
-};
-
-/** Interface representing a TransparentDataEncryptionActivities. */
-export declare interface TransparentDataEncryptionActivities {
-    /**
-     * Returns a database's transparent data encryption operation result.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-     *                          this value from the Azure Resource Manager API or the portal.
-     * @param serverName The name of the server.
-     * @param databaseName The name of the database for which the transparent data encryption applies.
-     * @param transparentDataEncryptionName The name of the transparent data encryption configuration.
-     * @param options The options parameters.
-     */
-    listByConfiguration(resourceGroupName: string, serverName: string, databaseName: string, transparentDataEncryptionName: TransparentDataEncryptionName, options?: TransparentDataEncryptionActivitiesListByConfigurationOptionalParams): PagedAsyncIterableIterator<TransparentDataEncryptionActivity>;
-}
-
-/** Optional parameters. */
-export declare interface TransparentDataEncryptionActivitiesListByConfigurationOptionalParams extends coreClient.OperationOptions {
-}
-
-/** Contains response data for the listByConfiguration operation. */
-export declare type TransparentDataEncryptionActivitiesListByConfigurationResponse = TransparentDataEncryptionActivityListResult;
-
-/** Represents a database transparent data encryption Scan. */
-export declare type TransparentDataEncryptionActivity = ProxyResource & {
-    /**
-     * Resource location.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly location?: string;
-    /**
-     * The status of the database.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly status?: TransparentDataEncryptionActivityStatus;
-    /**
-     * The percent complete of the transparent data encryption scan for a database.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly percentComplete?: number;
-};
-
-/** Represents the response to a list database transparent data encryption activity request. */
-export declare interface TransparentDataEncryptionActivityListResult {
-    /** The list of database transparent data encryption activities. */
-    value: TransparentDataEncryptionActivity[];
-}
-
-/**
- * Defines values for TransparentDataEncryptionActivityStatus. \
- * {@link KnownTransparentDataEncryptionActivityStatus} can be used interchangeably with TransparentDataEncryptionActivityStatus,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Encrypting** \
- * **Decrypting**
- */
-export declare type TransparentDataEncryptionActivityStatus = string;
-
 /**
  * Defines values for TransparentDataEncryptionName. \
  * {@link KnownTransparentDataEncryptionName} can be used interchangeably with TransparentDataEncryptionName,
@@ -19233,27 +19240,37 @@ export declare type TransparentDataEncryptionName = string;
 /** Interface representing a TransparentDataEncryptions. */
 export declare interface TransparentDataEncryptions {
     /**
-     * Creates or updates a database's transparent data encryption configuration.
+     * Gets a list of the logical database's transparent data encryption.
      * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
      *                          this value from the Azure Resource Manager API or the portal.
      * @param serverName The name of the server.
-     * @param databaseName The name of the database for which setting the transparent data encryption
-     *                     applies.
-     * @param transparentDataEncryptionName The name of the transparent data encryption configuration.
-     * @param parameters The required parameters for creating or updating transparent data encryption.
+     * @param databaseName The name of the logical database for which the transparent data encryption is
+     *                     defined.
      * @param options The options parameters.
      */
-    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, transparentDataEncryptionName: TransparentDataEncryptionName, parameters: TransparentDataEncryption, options?: TransparentDataEncryptionsCreateOrUpdateOptionalParams): Promise<TransparentDataEncryptionsCreateOrUpdateResponse>;
+    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: TransparentDataEncryptionsListByDatabaseOptionalParams): PagedAsyncIterableIterator<LogicalDatabaseTransparentDataEncryption>;
     /**
-     * Gets a database's transparent data encryption configuration.
+     * Gets a logical database's transparent data encryption.
      * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
      *                          this value from the Azure Resource Manager API or the portal.
      * @param serverName The name of the server.
-     * @param databaseName The name of the database for which the transparent data encryption applies.
-     * @param transparentDataEncryptionName The name of the transparent data encryption configuration.
+     * @param databaseName The name of the logical database for which the transparent data encryption is
+     *                     defined.
+     * @param tdeName The name of the transparent data encryption configuration.
      * @param options The options parameters.
      */
-    get(resourceGroupName: string, serverName: string, databaseName: string, transparentDataEncryptionName: TransparentDataEncryptionName, options?: TransparentDataEncryptionsGetOptionalParams): Promise<TransparentDataEncryptionsGetResponse>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, tdeName: TransparentDataEncryptionName, options?: TransparentDataEncryptionsGetOptionalParams): Promise<TransparentDataEncryptionsGetResponse>;
+    /**
+     * Updates a logical database's transparent data encryption configuration.
+     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+     *                          this value from the Azure Resource Manager API or the portal.
+     * @param serverName The name of the server.
+     * @param databaseName The name of the logical database for which the security alert policy is defined.
+     * @param tdeName The name of the transparent data encryption configuration.
+     * @param parameters The database transparent data encryption.
+     * @param options The options parameters.
+     */
+    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, tdeName: TransparentDataEncryptionName, parameters: LogicalDatabaseTransparentDataEncryption, options?: TransparentDataEncryptionsCreateOrUpdateOptionalParams): Promise<TransparentDataEncryptionsCreateOrUpdateResponse>;
 }
 
 /** Optional parameters. */
@@ -19261,20 +19278,31 @@ export declare interface TransparentDataEncryptionsCreateOrUpdateOptionalParams 
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export declare type TransparentDataEncryptionsCreateOrUpdateResponse = TransparentDataEncryption;
+export declare type TransparentDataEncryptionsCreateOrUpdateResponse = LogicalDatabaseTransparentDataEncryption;
 
 /** Optional parameters. */
 export declare interface TransparentDataEncryptionsGetOptionalParams extends coreClient.OperationOptions {
 }
 
 /** Contains response data for the get operation. */
-export declare type TransparentDataEncryptionsGetResponse = TransparentDataEncryption;
+export declare type TransparentDataEncryptionsGetResponse = LogicalDatabaseTransparentDataEncryption;
+
+/** Optional parameters. */
+export declare interface TransparentDataEncryptionsListByDatabaseNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listByDatabaseNext operation. */
+export declare type TransparentDataEncryptionsListByDatabaseNextResponse = LogicalDatabaseTransparentDataEncryptionListResult;
+
+/** Optional parameters. */
+export declare interface TransparentDataEncryptionsListByDatabaseOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listByDatabase operation. */
+export declare type TransparentDataEncryptionsListByDatabaseResponse = LogicalDatabaseTransparentDataEncryptionListResult;
 
 /** Defines values for TransparentDataEncryptionState. */
 export declare type TransparentDataEncryptionState = "Enabled" | "Disabled";
-
-/** Defines values for TransparentDataEncryptionStatus. */
-export declare type TransparentDataEncryptionStatus = "Enabled" | "Disabled";
 
 /**
  * Defines values for UnitDefinitionType. \
@@ -19313,7 +19341,7 @@ export declare interface UnlinkParameters {
 /** Contains the information necessary to perform long term retention backup update operation. */
 export declare interface UpdateLongTermRetentionBackupParameters {
     /** The storage redundancy type of the copied backup */
-    requestedBackupStorageRedundancy?: RequestedBackupStorageRedundancy;
+    requestedBackupStorageRedundancy?: BackupStorageRedundancy;
 }
 
 /** A recoverable managed database resource. */

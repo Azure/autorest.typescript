@@ -25,7 +25,7 @@ async function patchCertificate() {
   const resourceGroupName = "testrg123";
   const name = "testc6282";
   const certificateEnvelope: CertificatePatchResource = {
-    password: "SWsSsd__233$Sdsds#%Sd!"
+    password: "<password>"
   };
   await client.certificates
     .update(resourceGroupName, name, certificateEnvelope)

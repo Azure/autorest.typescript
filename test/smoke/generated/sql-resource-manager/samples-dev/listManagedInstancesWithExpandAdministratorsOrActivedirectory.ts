@@ -9,28 +9,26 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 /**
- * This sample demonstrates how to Gets a managed instance.
+ * This sample demonstrates how to Gets a list of all managed instances in the subscription.
  *
- * @summary Gets a managed instance.
+ * @summary Gets a list of all managed instances in the subscription.
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//managedInstances.get
-async function getManagedInstanceWithExpandAdministrators() {
-  const resourceGroupName = "testrg";
-  const managedInstanceName = "testinstance";
-  await client.managedInstances
-    .get(resourceGroupName, managedInstanceName)
-    .then((res) => {
-      console.log(res);
-    });
+//managedInstances.list
+async function listManagedInstancesWithExpandAdministratorsOrActivedirectory() {
+  const resArray = new Array();
+  for await (let item of client.managedInstances.list()) {
+    resArray.push(item);
+  }
+  console.log(resArray);
 }
 async function main() {
   const credential = new DefaultAzureCredential();
-  const subscriptionId = "20d7082a-0fc7-4468-82bd-542694d5042b";
+  const subscriptionId = "20D7082A-0FC7-4468-82BD-542694D5042B";
   client = new SqlManagementClient(credential, subscriptionId);
-  await getManagedInstanceWithExpandAdministrators();
+  await listManagedInstancesWithExpandAdministratorsOrActivedirectory();
 }
 main();

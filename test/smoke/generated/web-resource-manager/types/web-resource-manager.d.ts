@@ -18,9 +18,6 @@ export declare interface AbnormalTimePeriod {
     solutions?: Solution[];
 }
 
-/** Defines values for AccessControlEntryAction. */
-export declare type AccessControlEntryAction = "Permit" | "Deny";
-
 /** Address information for domain registration. */
 export declare interface Address {
     /** First line of an Address. */
@@ -48,6 +45,20 @@ export declare type AddressResponse = ProxyOnlyResource & {
     /** Additional virtual IPs. */
     vipMappings?: VirtualIPMapping[];
 };
+
+/** The configuration settings of the Allowed Audiences validation flow. */
+export declare interface AllowedAudiencesValidation {
+    /** The configuration settings of the allowed list of audiences from which to validate the JWT token. */
+    allowedAudiences?: string[];
+}
+
+/** The configuration settings of the Azure Active Directory allowed principals. */
+export declare interface AllowedPrincipals {
+    /** The list of the allowed groups. */
+    groups?: string[];
+    /** The list of the allowed identities. */
+    identities?: string[];
+}
 
 /** Class Representing Detector Evidence used for analysis */
 export declare interface AnalysisData {
@@ -79,23 +90,65 @@ export declare interface ApiDefinitionInfo {
 }
 
 /** Description of site key vault references. */
-export declare interface ApiKVReference {
+export declare type ApiKVReference = ProxyOnlyResource & {
     reference?: string;
     status?: ResolveStatus;
     vaultName?: string;
     secretName?: string;
     secretVersion?: string;
-    /** Type of managed service identity. */
-    identityType?: ManagedServiceIdentityType;
+    /** Managed service identity. */
+    identityType?: ManagedServiceIdentity;
     details?: string;
     source?: "KeyVault";
-    location?: "ApplicationSetting";
+    activeVersion?: string;
+};
+
+export declare interface ApiKVReferenceCollection {
+    /** Collection of resources. */
+    value: ApiKVReference[];
+    /**
+     * Link to next page of resources.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly nextLink?: string;
 }
 
 /** Azure API management (APIM) configuration linked to the app. */
 export declare interface ApiManagementConfig {
     /** APIM-Api Identifier. */
     id?: string;
+}
+
+/** App Insights Web App stack settings. */
+export declare interface AppInsightsWebAppStackSettings {
+    /**
+     * <code>true</code> if remote Application Insights is supported for the stack; otherwise, <code>false</code>.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly isSupported?: boolean;
+    /**
+     * <code>true</code> if Application Insights is disabled by default for the stack; otherwise, <code>false</code>.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly isDefaultOff?: boolean;
+}
+
+/** The configuration settings of the Apple provider. */
+export declare interface Apple {
+    /** <code>false</code> if the Apple provider should not be enabled despite the set registration; otherwise, <code>true</code>. */
+    enabled?: boolean;
+    /** The configuration settings of the Apple registration. */
+    registration?: AppleRegistration;
+    /** The configuration settings of the login flow. */
+    login?: LoginScopes;
+}
+
+/** The configuration settings of the registration for the Apple provider */
+export declare interface AppleRegistration {
+    /** The Client ID of the app used for login. */
+    clientId?: string;
+    /** The app setting name that contains the client secret. */
+    clientSecretSettingName?: string;
 }
 
 /** Application logs configuration. */
@@ -120,6 +173,8 @@ export declare interface ApplicationStack {
     majorVersions?: StackMajorVersion[];
     /** List of frameworks associated with application stack. */
     frameworks?: ApplicationStack[];
+    /** <code>true</code> if this is the stack is deprecated; otherwise, <code>false</code>. */
+    isDeprecated?: ApplicationStack[];
 }
 
 /** Collection of Application Stacks */
@@ -145,7 +200,22 @@ export declare type ApplicationStackResource = ProxyOnlyResource & {
     majorVersions?: StackMajorVersion[];
     /** List of frameworks associated with application stack. */
     frameworks?: ApplicationStack[];
+    /** <code>true</code> if this is the stack is deprecated; otherwise, <code>false</code>. */
+    isDeprecated?: ApplicationStack[];
 };
+
+export declare interface AppLogsConfiguration {
+    destination?: string;
+    logAnalyticsConfiguration?: LogAnalyticsConfiguration;
+}
+
+/** The configuration settings of the app registration for providers that have app ids and app secrets */
+export declare interface AppRegistration {
+    /** The App ID of the app used for login. */
+    appId?: string;
+    /** The app setting name that contains the app secret. */
+    appSecretSettingName?: string;
+}
 
 /** Key Vault container for a certificate that is purchased through Azure. */
 export declare interface AppServiceCertificate {
@@ -184,7 +254,7 @@ export declare type AppServiceCertificateOrder = Resource & {
      * NOTE: This property will not be serialized. It can only be populated by the server.
      */
     readonly domainVerificationToken?: string;
-    /** Duration in years (must be between 1 and 3). */
+    /** Duration in years (must be 1). */
     validityInYears?: number;
     /** Certificate key size. */
     keySize?: number;
@@ -249,6 +319,11 @@ export declare type AppServiceCertificateOrder = Resource & {
      * NOTE: This property will not be serialized. It can only be populated by the server.
      */
     readonly nextAutoRenewalTimeStamp?: Date;
+    /**
+     * Contact info
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly contact?: CertificateOrderContact;
 };
 
 /** Collection of certificate orders. */
@@ -275,7 +350,7 @@ export declare type AppServiceCertificateOrderPatchResource = ProxyOnlyResource 
      * NOTE: This property will not be serialized. It can only be populated by the server.
      */
     readonly domainVerificationToken?: string;
-    /** Duration in years (must be between 1 and 3). */
+    /** Duration in years (must be 1). */
     validityInYears?: number;
     /** Certificate key size. */
     keySize?: number;
@@ -340,6 +415,11 @@ export declare type AppServiceCertificateOrderPatchResource = ProxyOnlyResource 
      * NOTE: This property will not be serialized. It can only be populated by the server.
      */
     readonly nextAutoRenewalTimeStamp?: Date;
+    /**
+     * Contact info
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly contact?: CertificateOrderContact;
 };
 
 /**
@@ -495,7 +575,8 @@ export declare interface AppServiceCertificateOrders {
      */
     resendEmail(resourceGroupName: string, certificateOrderName: string, options?: AppServiceCertificateOrdersResendEmailOptionalParams): Promise<void>;
     /**
-     * Description for Verify domain ownership for this certificate order.
+     * Resend domain verification ownership email containing steps on how to verify a domain for a given
+     * certificate order
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param certificateOrderName Name of the certificate order.
      * @param nameIdentifier Email address
@@ -503,7 +584,13 @@ export declare interface AppServiceCertificateOrders {
      */
     resendRequestEmails(resourceGroupName: string, certificateOrderName: string, nameIdentifier: NameIdentifier, options?: AppServiceCertificateOrdersResendRequestEmailsOptionalParams): Promise<void>;
     /**
-     * Description for Verify domain ownership for this certificate order.
+     * This method is used to obtain the site seal information for an issued certificate. A site seal is a
+     * graphic that the certificate purchaser can embed on their web site to show their visitors
+     * information about their SSL certificate. If a web site visitor clicks on the site seal image, a
+     * pop-up page is displayed that contains detailed information about the SSL certificate. The site seal
+     * token is used to link the site seal graphic image to the appropriate certificate details pop-up page
+     * display when a user clicks on the site seal. The site seal images are expected to be static images
+     * and hosted by the reseller, to minimize delays for customer page load times.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param certificateOrderName Name of the certificate order.
      * @param siteSealRequest Site seal request.
@@ -706,10 +793,6 @@ export declare type AppServiceCertificateResource = Resource & {
 
 /** Description of an App Service Environment. */
 export declare interface AppServiceEnvironment {
-    /** Name of the App Service Environment. */
-    name: string;
-    /** Location of the App Service Environment, e.g. "West US". */
-    location: string;
     /**
      * Provisioning state of the App Service Environment.
      * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -720,127 +803,47 @@ export declare interface AppServiceEnvironment {
      * NOTE: This property will not be serialized. It can only be populated by the server.
      */
     readonly status?: HostingEnvironmentStatus;
-    /** Name of the Virtual Network for the App Service Environment. */
-    vnetName?: string;
-    /** Resource group of the Virtual Network. */
-    vnetResourceGroupName?: string;
-    /** Subnet of the Virtual Network. */
-    vnetSubnetName?: string;
     /** Description of the Virtual Network. */
     virtualNetwork: VirtualNetworkProfile;
     /** Specifies which endpoints to serve internally in the Virtual Network for the App Service Environment. */
-    internalLoadBalancingMode?: InternalLoadBalancingMode;
+    internalLoadBalancingMode?: LoadBalancingMode;
     /** Front-end VM size, e.g. "Medium", "Large". */
     multiSize?: string;
-    /** Number of front-end instances. */
-    multiRoleCount?: number;
-    /** Description of worker pools with worker size IDs, VM sizes, and number of workers in each pool. */
-    workerPools: WorkerPool[];
+    /**
+     * Number of front-end instances.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly multiRoleCount?: number;
     /** Number of IP SSL addresses reserved for the App Service Environment. */
     ipsslAddressCount?: number;
-    /**
-     * Edition of the metadata database for the App Service Environment, e.g. "Standard".
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly databaseEdition?: string;
-    /**
-     * Service objective of the metadata database for the App Service Environment, e.g. "S0".
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly databaseServiceObjective?: string;
-    /**
-     * Number of upgrade domains of the App Service Environment.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly upgradeDomains?: number;
-    /**
-     * Subscription of the App Service Environment.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly subscriptionId?: string;
     /** DNS suffix of the App Service Environment. */
     dnsSuffix?: string;
-    /**
-     * Last deployment action on the App Service Environment.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly lastAction?: string;
-    /**
-     * Result of the last deployment action on the App Service Environment.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly lastActionResult?: string;
-    /**
-     * List of comma separated strings describing which VM sizes are allowed for front-ends.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly allowedMultiSizes?: string;
-    /**
-     * List of comma separated strings describing which VM sizes are allowed for workers.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly allowedWorkerSizes?: string;
     /**
      * Maximum number of VMs in the App Service Environment.
      * NOTE: This property will not be serialized. It can only be populated by the server.
      */
     readonly maximumNumberOfMachines?: number;
-    /**
-     * Description of IP SSL mapping for the App Service Environment.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly vipMappings?: VirtualIPMapping[];
-    /**
-     * Current total, used, and available worker capacities.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly environmentCapacities?: StampCapacity[];
-    /** Access control list for controlling traffic to the App Service Environment. */
-    networkAccessControlList?: NetworkAccessControlEntry[];
-    /**
-     * True/false indicating whether the App Service Environment is healthy.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly environmentIsHealthy?: boolean;
-    /**
-     * Detailed message about with results of the last check of the App Service Environment.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly environmentStatus?: string;
-    /**
-     * Resource group of the App Service Environment.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly resourceGroup?: string;
     /** Scale factor for front-ends. */
     frontEndScaleFactor?: number;
     /**
-     * Default Scale Factor for FrontEnds.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly defaultFrontEndScaleFactor?: number;
-    /** API Management Account associated with the App Service Environment. */
-    apiManagementAccountId?: string;
-    /**
      * <code>true</code> if the App Service Environment is suspended; otherwise, <code>false</code>. The environment can be suspended, e.g. when the management endpoint is no longer available
      *  (most likely because NSG blocked the incoming traffic).
+     * NOTE: This property will not be serialized. It can only be populated by the server.
      */
-    suspended?: boolean;
-    /**
-     * True/false indicating whether the App Service Environment is suspended. The environment can be suspended e.g. when the management endpoint is no longer available
-     * (most likely because NSG blocked the incoming traffic).
-     */
-    dynamicCacheEnabled?: boolean;
+    readonly suspended?: boolean;
     /** Custom settings for changing the behavior of the App Service Environment. */
     clusterSettings?: NameValuePair[];
     /** User added ip ranges to whitelist on ASE db */
     userWhitelistedIpRanges?: string[];
-    /** Flag that displays whether an ASE has linux workers or not */
-    hasLinuxWorkers?: boolean;
-    /** Key Vault ID for ILB App Service Environment default SSL certificate */
-    sslCertKeyVaultId?: string;
-    /** Key Vault Secret Name for ILB App Service Environment default SSL certificate */
-    sslCertKeyVaultSecretName?: string;
+    /**
+     * Flag that displays whether an ASE has linux workers or not
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly hasLinuxWorkers?: boolean;
+    /** Dedicated Host Count */
+    dedicatedHostCount?: number;
+    /** Whether or not this App Service Environment is zone-redundant. */
+    zoneRedundant?: boolean;
 }
 
 /** Collection of App Service Environments. */
@@ -856,10 +859,6 @@ export declare interface AppServiceEnvironmentCollection {
 
 /** ARM resource for a app service environment. */
 export declare type AppServiceEnvironmentPatchResource = ProxyOnlyResource & {
-    /** Name of the App Service Environment. */
-    namePropertiesName?: string;
-    /** Location of the App Service Environment, e.g. "West US". */
-    location?: string;
     /**
      * Provisioning state of the App Service Environment.
      * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -870,135 +869,51 @@ export declare type AppServiceEnvironmentPatchResource = ProxyOnlyResource & {
      * NOTE: This property will not be serialized. It can only be populated by the server.
      */
     readonly status?: HostingEnvironmentStatus;
-    /** Name of the Virtual Network for the App Service Environment. */
-    vnetName?: string;
-    /** Resource group of the Virtual Network. */
-    vnetResourceGroupName?: string;
-    /** Subnet of the Virtual Network. */
-    vnetSubnetName?: string;
     /** Description of the Virtual Network. */
     virtualNetwork?: VirtualNetworkProfile;
     /** Specifies which endpoints to serve internally in the Virtual Network for the App Service Environment. */
-    internalLoadBalancingMode?: InternalLoadBalancingMode;
+    internalLoadBalancingMode?: LoadBalancingMode;
     /** Front-end VM size, e.g. "Medium", "Large". */
     multiSize?: string;
-    /** Number of front-end instances. */
-    multiRoleCount?: number;
-    /** Description of worker pools with worker size IDs, VM sizes, and number of workers in each pool. */
-    workerPools?: WorkerPool[];
+    /**
+     * Number of front-end instances.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly multiRoleCount?: number;
     /** Number of IP SSL addresses reserved for the App Service Environment. */
     ipsslAddressCount?: number;
-    /**
-     * Edition of the metadata database for the App Service Environment, e.g. "Standard".
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly databaseEdition?: string;
-    /**
-     * Service objective of the metadata database for the App Service Environment, e.g. "S0".
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly databaseServiceObjective?: string;
-    /**
-     * Number of upgrade domains of the App Service Environment.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly upgradeDomains?: number;
-    /**
-     * Subscription of the App Service Environment.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly subscriptionId?: string;
     /** DNS suffix of the App Service Environment. */
     dnsSuffix?: string;
-    /**
-     * Last deployment action on the App Service Environment.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly lastAction?: string;
-    /**
-     * Result of the last deployment action on the App Service Environment.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly lastActionResult?: string;
-    /**
-     * List of comma separated strings describing which VM sizes are allowed for front-ends.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly allowedMultiSizes?: string;
-    /**
-     * List of comma separated strings describing which VM sizes are allowed for workers.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly allowedWorkerSizes?: string;
     /**
      * Maximum number of VMs in the App Service Environment.
      * NOTE: This property will not be serialized. It can only be populated by the server.
      */
     readonly maximumNumberOfMachines?: number;
-    /**
-     * Description of IP SSL mapping for the App Service Environment.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly vipMappings?: VirtualIPMapping[];
-    /**
-     * Current total, used, and available worker capacities.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly environmentCapacities?: StampCapacity[];
-    /** Access control list for controlling traffic to the App Service Environment. */
-    networkAccessControlList?: NetworkAccessControlEntry[];
-    /**
-     * True/false indicating whether the App Service Environment is healthy.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly environmentIsHealthy?: boolean;
-    /**
-     * Detailed message about with results of the last check of the App Service Environment.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly environmentStatus?: string;
-    /**
-     * Resource group of the App Service Environment.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly resourceGroup?: string;
     /** Scale factor for front-ends. */
     frontEndScaleFactor?: number;
     /**
-     * Default Scale Factor for FrontEnds.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly defaultFrontEndScaleFactor?: number;
-    /** API Management Account associated with the App Service Environment. */
-    apiManagementAccountId?: string;
-    /**
      * <code>true</code> if the App Service Environment is suspended; otherwise, <code>false</code>. The environment can be suspended, e.g. when the management endpoint is no longer available
      *  (most likely because NSG blocked the incoming traffic).
+     * NOTE: This property will not be serialized. It can only be populated by the server.
      */
-    suspended?: boolean;
-    /**
-     * True/false indicating whether the App Service Environment is suspended. The environment can be suspended e.g. when the management endpoint is no longer available
-     * (most likely because NSG blocked the incoming traffic).
-     */
-    dynamicCacheEnabled?: boolean;
+    readonly suspended?: boolean;
     /** Custom settings for changing the behavior of the App Service Environment. */
     clusterSettings?: NameValuePair[];
     /** User added ip ranges to whitelist on ASE db */
     userWhitelistedIpRanges?: string[];
-    /** Flag that displays whether an ASE has linux workers or not */
-    hasLinuxWorkers?: boolean;
-    /** Key Vault ID for ILB App Service Environment default SSL certificate */
-    sslCertKeyVaultId?: string;
-    /** Key Vault Secret Name for ILB App Service Environment default SSL certificate */
-    sslCertKeyVaultSecretName?: string;
+    /**
+     * Flag that displays whether an ASE has linux workers or not
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly hasLinuxWorkers?: boolean;
+    /** Dedicated Host Count */
+    dedicatedHostCount?: number;
+    /** Whether or not this App Service Environment is zone-redundant. */
+    zoneRedundant?: boolean;
 };
 
 /** App Service Environment ARM resource. */
 export declare type AppServiceEnvironmentResource = Resource & {
-    /** Name of the App Service Environment. */
-    namePropertiesName?: string;
-    /** Location of the App Service Environment, e.g. "West US". */
-    locationPropertiesLocation?: string;
     /**
      * Provisioning state of the App Service Environment.
      * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -1009,127 +924,47 @@ export declare type AppServiceEnvironmentResource = Resource & {
      * NOTE: This property will not be serialized. It can only be populated by the server.
      */
     readonly status?: HostingEnvironmentStatus;
-    /** Name of the Virtual Network for the App Service Environment. */
-    vnetName?: string;
-    /** Resource group of the Virtual Network. */
-    vnetResourceGroupName?: string;
-    /** Subnet of the Virtual Network. */
-    vnetSubnetName?: string;
     /** Description of the Virtual Network. */
     virtualNetwork?: VirtualNetworkProfile;
     /** Specifies which endpoints to serve internally in the Virtual Network for the App Service Environment. */
-    internalLoadBalancingMode?: InternalLoadBalancingMode;
+    internalLoadBalancingMode?: LoadBalancingMode;
     /** Front-end VM size, e.g. "Medium", "Large". */
     multiSize?: string;
-    /** Number of front-end instances. */
-    multiRoleCount?: number;
-    /** Description of worker pools with worker size IDs, VM sizes, and number of workers in each pool. */
-    workerPools?: WorkerPool[];
+    /**
+     * Number of front-end instances.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly multiRoleCount?: number;
     /** Number of IP SSL addresses reserved for the App Service Environment. */
     ipsslAddressCount?: number;
-    /**
-     * Edition of the metadata database for the App Service Environment, e.g. "Standard".
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly databaseEdition?: string;
-    /**
-     * Service objective of the metadata database for the App Service Environment, e.g. "S0".
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly databaseServiceObjective?: string;
-    /**
-     * Number of upgrade domains of the App Service Environment.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly upgradeDomains?: number;
-    /**
-     * Subscription of the App Service Environment.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly subscriptionId?: string;
     /** DNS suffix of the App Service Environment. */
     dnsSuffix?: string;
-    /**
-     * Last deployment action on the App Service Environment.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly lastAction?: string;
-    /**
-     * Result of the last deployment action on the App Service Environment.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly lastActionResult?: string;
-    /**
-     * List of comma separated strings describing which VM sizes are allowed for front-ends.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly allowedMultiSizes?: string;
-    /**
-     * List of comma separated strings describing which VM sizes are allowed for workers.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly allowedWorkerSizes?: string;
     /**
      * Maximum number of VMs in the App Service Environment.
      * NOTE: This property will not be serialized. It can only be populated by the server.
      */
     readonly maximumNumberOfMachines?: number;
-    /**
-     * Description of IP SSL mapping for the App Service Environment.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly vipMappings?: VirtualIPMapping[];
-    /**
-     * Current total, used, and available worker capacities.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly environmentCapacities?: StampCapacity[];
-    /** Access control list for controlling traffic to the App Service Environment. */
-    networkAccessControlList?: NetworkAccessControlEntry[];
-    /**
-     * True/false indicating whether the App Service Environment is healthy.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly environmentIsHealthy?: boolean;
-    /**
-     * Detailed message about with results of the last check of the App Service Environment.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly environmentStatus?: string;
-    /**
-     * Resource group of the App Service Environment.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly resourceGroup?: string;
     /** Scale factor for front-ends. */
     frontEndScaleFactor?: number;
     /**
-     * Default Scale Factor for FrontEnds.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly defaultFrontEndScaleFactor?: number;
-    /** API Management Account associated with the App Service Environment. */
-    apiManagementAccountId?: string;
-    /**
      * <code>true</code> if the App Service Environment is suspended; otherwise, <code>false</code>. The environment can be suspended, e.g. when the management endpoint is no longer available
      *  (most likely because NSG blocked the incoming traffic).
+     * NOTE: This property will not be serialized. It can only be populated by the server.
      */
-    suspended?: boolean;
-    /**
-     * True/false indicating whether the App Service Environment is suspended. The environment can be suspended e.g. when the management endpoint is no longer available
-     * (most likely because NSG blocked the incoming traffic).
-     */
-    dynamicCacheEnabled?: boolean;
+    readonly suspended?: boolean;
     /** Custom settings for changing the behavior of the App Service Environment. */
     clusterSettings?: NameValuePair[];
     /** User added ip ranges to whitelist on ASE db */
     userWhitelistedIpRanges?: string[];
-    /** Flag that displays whether an ASE has linux workers or not */
-    hasLinuxWorkers?: boolean;
-    /** Key Vault ID for ILB App Service Environment default SSL certificate */
-    sslCertKeyVaultId?: string;
-    /** Key Vault Secret Name for ILB App Service Environment default SSL certificate */
-    sslCertKeyVaultSecretName?: string;
+    /**
+     * Flag that displays whether an ASE has linux workers or not
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly hasLinuxWorkers?: boolean;
+    /** Dedicated Host Count */
+    dedicatedHostCount?: number;
+    /** Whether or not this App Service Environment is zone-redundant. */
+    zoneRedundant?: boolean;
 };
 
 /** Interface representing a AppServiceEnvironments. */
@@ -1212,6 +1047,13 @@ export declare interface AppServiceEnvironments {
      * @param options The options parameters.
      */
     listOutboundNetworkDependenciesEndpoints(resourceGroupName: string, name: string, options?: AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsOptionalParams): PagedAsyncIterableIterator<OutboundEnvironmentEndpoint>;
+    /**
+     * Description for Gets the list of private endpoints associated with a hosting environment
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the App Service Environment.
+     * @param options The options parameters.
+     */
+    listPrivateEndpointConnectionList(resourceGroupName: string, name: string, options?: AppServiceEnvironmentsGetPrivateEndpointConnectionListOptionalParams): PagedAsyncIterableIterator<RemotePrivateEndpointConnectionARMResource>;
     /**
      * Description for Resume an App Service Environment.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -1341,6 +1183,21 @@ export declare interface AppServiceEnvironments {
      */
     getVipInfo(resourceGroupName: string, name: string, options?: AppServiceEnvironmentsGetVipInfoOptionalParams): Promise<AppServiceEnvironmentsGetVipInfoResponse>;
     /**
+     * Description for Get networking configuration of an App Service Environment
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the App Service Environment.
+     * @param options The options parameters.
+     */
+    getAseV3NetworkingConfiguration(resourceGroupName: string, name: string, options?: AppServiceEnvironmentsGetAseV3NetworkingConfigurationOptionalParams): Promise<AppServiceEnvironmentsGetAseV3NetworkingConfigurationResponse>;
+    /**
+     * Description for Update networking configuration of an App Service Environment
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the App Service Environment.
+     * @param aseNetworkingConfiguration Full view of networking configuration for an ASE.
+     * @param options The options parameters.
+     */
+    updateAseNetworkingConfiguration(resourceGroupName: string, name: string, aseNetworkingConfiguration: AseV3NetworkingConfiguration, options?: AppServiceEnvironmentsUpdateAseNetworkingConfigurationOptionalParams): Promise<AppServiceEnvironmentsUpdateAseNetworkingConfigurationResponse>;
+    /**
      * Description for Get diagnostic information for an App Service Environment.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param name Name of the App Service Environment.
@@ -1394,6 +1251,55 @@ export declare interface AppServiceEnvironments {
      */
     listOperations(resourceGroupName: string, name: string, options?: AppServiceEnvironmentsListOperationsOptionalParams): Promise<AppServiceEnvironmentsListOperationsResponse>;
     /**
+     * Description for Gets a private endpoint connection
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the App Service Environment.
+     * @param privateEndpointConnectionName Name of the private endpoint connection.
+     * @param options The options parameters.
+     */
+    getPrivateEndpointConnection(resourceGroupName: string, name: string, privateEndpointConnectionName: string, options?: AppServiceEnvironmentsGetPrivateEndpointConnectionOptionalParams): Promise<AppServiceEnvironmentsGetPrivateEndpointConnectionResponse>;
+    /**
+     * Description for Approves or rejects a private endpoint connection
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the App Service Environment.
+     * @param privateEndpointConnectionName
+     * @param privateEndpointWrapper Private Endpoint Connection Approval ARM resource.
+     * @param options The options parameters.
+     */
+    beginApproveOrRejectPrivateEndpointConnection(resourceGroupName: string, name: string, privateEndpointConnectionName: string, privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource, options?: AppServiceEnvironmentsApproveOrRejectPrivateEndpointConnectionOptionalParams): Promise<PollerLike<PollOperationState<AppServiceEnvironmentsApproveOrRejectPrivateEndpointConnectionResponse>, AppServiceEnvironmentsApproveOrRejectPrivateEndpointConnectionResponse>>;
+    /**
+     * Description for Approves or rejects a private endpoint connection
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the App Service Environment.
+     * @param privateEndpointConnectionName
+     * @param privateEndpointWrapper Private Endpoint Connection Approval ARM resource.
+     * @param options The options parameters.
+     */
+    beginApproveOrRejectPrivateEndpointConnectionAndWait(resourceGroupName: string, name: string, privateEndpointConnectionName: string, privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource, options?: AppServiceEnvironmentsApproveOrRejectPrivateEndpointConnectionOptionalParams): Promise<AppServiceEnvironmentsApproveOrRejectPrivateEndpointConnectionResponse>;
+    /**
+     * Description for Deletes a private endpoint connection
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the App Service Environment.
+     * @param privateEndpointConnectionName
+     * @param options The options parameters.
+     */
+    beginDeletePrivateEndpointConnection(resourceGroupName: string, name: string, privateEndpointConnectionName: string, options?: AppServiceEnvironmentsDeletePrivateEndpointConnectionOptionalParams): Promise<PollerLike<PollOperationState<AppServiceEnvironmentsDeletePrivateEndpointConnectionResponse>, AppServiceEnvironmentsDeletePrivateEndpointConnectionResponse>>;
+    /**
+     * Description for Deletes a private endpoint connection
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the App Service Environment.
+     * @param privateEndpointConnectionName
+     * @param options The options parameters.
+     */
+    beginDeletePrivateEndpointConnectionAndWait(resourceGroupName: string, name: string, privateEndpointConnectionName: string, options?: AppServiceEnvironmentsDeletePrivateEndpointConnectionOptionalParams): Promise<AppServiceEnvironmentsDeletePrivateEndpointConnectionResponse>;
+    /**
+     * Description for Gets the private link resources
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the App Service Environment.
+     * @param options The options parameters.
+     */
+    getPrivateLinkResources(resourceGroupName: string, name: string, options?: AppServiceEnvironmentsGetPrivateLinkResourcesOptionalParams): Promise<AppServiceEnvironmentsGetPrivateLinkResourcesResponse>;
+    /**
      * Description for Reboot all machines in an App Service Environment.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param name Name of the App Service Environment.
@@ -1436,6 +1342,17 @@ export declare interface AppServiceEnvironments {
      */
     updateWorkerPool(resourceGroupName: string, name: string, workerPoolName: string, workerPoolEnvelope: WorkerPoolResource, options?: AppServiceEnvironmentsUpdateWorkerPoolOptionalParams): Promise<AppServiceEnvironmentsUpdateWorkerPoolResponse>;
 }
+
+/** Optional parameters. */
+export declare interface AppServiceEnvironmentsApproveOrRejectPrivateEndpointConnectionOptionalParams extends coreClient.OperationOptions {
+    /** Delay to wait until next poll, in milliseconds. */
+    updateIntervalInMs?: number;
+    /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+    resumeFrom?: string;
+}
+
+/** Contains response data for the approveOrRejectPrivateEndpointConnection operation. */
+export declare type AppServiceEnvironmentsApproveOrRejectPrivateEndpointConnectionResponse = RemotePrivateEndpointConnectionARMResource;
 
 /** Optional parameters. */
 export declare interface AppServiceEnvironmentsChangeVnetNextOptionalParams extends coreClient.OperationOptions {
@@ -1499,6 +1416,24 @@ export declare interface AppServiceEnvironmentsDeleteOptionalParams extends core
 }
 
 /** Optional parameters. */
+export declare interface AppServiceEnvironmentsDeletePrivateEndpointConnectionOptionalParams extends coreClient.OperationOptions {
+    /** Delay to wait until next poll, in milliseconds. */
+    updateIntervalInMs?: number;
+    /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+    resumeFrom?: string;
+}
+
+/** Contains response data for the deletePrivateEndpointConnection operation. */
+export declare type AppServiceEnvironmentsDeletePrivateEndpointConnectionResponse = Record<string, unknown>;
+
+/** Optional parameters. */
+export declare interface AppServiceEnvironmentsGetAseV3NetworkingConfigurationOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getAseV3NetworkingConfiguration operation. */
+export declare type AppServiceEnvironmentsGetAseV3NetworkingConfigurationResponse = AseV3NetworkingConfiguration;
+
+/** Optional parameters. */
 export declare interface AppServiceEnvironmentsGetDiagnosticsItemOptionalParams extends coreClient.OperationOptions {
 }
 
@@ -1543,6 +1478,34 @@ export declare interface AppServiceEnvironmentsGetOutboundNetworkDependenciesEnd
 
 /** Contains response data for the getOutboundNetworkDependenciesEndpoints operation. */
 export declare type AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsResponse = OutboundEnvironmentEndpointCollection;
+
+/** Optional parameters. */
+export declare interface AppServiceEnvironmentsGetPrivateEndpointConnectionListNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getPrivateEndpointConnectionListNext operation. */
+export declare type AppServiceEnvironmentsGetPrivateEndpointConnectionListNextResponse = PrivateEndpointConnectionCollection;
+
+/** Optional parameters. */
+export declare interface AppServiceEnvironmentsGetPrivateEndpointConnectionListOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getPrivateEndpointConnectionList operation. */
+export declare type AppServiceEnvironmentsGetPrivateEndpointConnectionListResponse = PrivateEndpointConnectionCollection;
+
+/** Optional parameters. */
+export declare interface AppServiceEnvironmentsGetPrivateEndpointConnectionOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getPrivateEndpointConnection operation. */
+export declare type AppServiceEnvironmentsGetPrivateEndpointConnectionResponse = RemotePrivateEndpointConnectionARMResource;
+
+/** Optional parameters. */
+export declare interface AppServiceEnvironmentsGetPrivateLinkResourcesOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getPrivateLinkResources operation. */
+export declare type AppServiceEnvironmentsGetPrivateLinkResourcesResponse = PrivateLinkResourcesWrapper;
 
 /** Contains response data for the get operation. */
 export declare type AppServiceEnvironmentsGetResponse = AppServiceEnvironmentResource;
@@ -1848,6 +1811,13 @@ export declare interface AppServiceEnvironmentsSuspendOptionalParams extends cor
 export declare type AppServiceEnvironmentsSuspendResponse = WebAppCollection;
 
 /** Optional parameters. */
+export declare interface AppServiceEnvironmentsUpdateAseNetworkingConfigurationOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the updateAseNetworkingConfiguration operation. */
+export declare type AppServiceEnvironmentsUpdateAseNetworkingConfigurationResponse = AseV3NetworkingConfiguration;
+
+/** Optional parameters. */
 export declare interface AppServiceEnvironmentsUpdateMultiRolePoolOptionalParams extends coreClient.OperationOptions {
 }
 
@@ -1868,10 +1838,34 @@ export declare interface AppServiceEnvironmentsUpdateWorkerPoolOptionalParams ex
 /** Contains response data for the updateWorkerPool operation. */
 export declare type AppServiceEnvironmentsUpdateWorkerPoolResponse = WorkerPoolResource;
 
+/** Github access token for Appservice CLI github integration. */
+export declare interface AppserviceGithubToken {
+    /** Github access token for Appservice CLI github integration */
+    accessToken?: string;
+    /** Scope of the github access token */
+    scope?: string;
+    /** token type */
+    tokenType?: string;
+    /** True if valid github token received, False otherwise */
+    gotToken?: boolean;
+    /** Error message if unable to get token */
+    errorMessage?: string;
+}
+
+/** Appservice Github token request content. */
+export declare interface AppserviceGithubTokenRequest {
+    /** Code string to exchange for Github Access token */
+    code: string;
+    /** State string used for verification. */
+    state: string;
+}
+
 /** App Service plan. */
 export declare type AppServicePlan = Resource & {
     /** Description of a SKU for a scalable resource. */
     sku?: SkuDescription;
+    /** Extended Location. */
+    extendedLocation?: ExtendedLocation;
     /** Target worker tier assigned to the App Service plan. */
     workerTierName?: string;
     /**
@@ -1901,6 +1895,8 @@ export declare type AppServicePlan = Resource & {
      * If <code>false</code>, apps assigned to this App Service plan will scale to all instances of the plan.
      */
     perSiteScaling?: boolean;
+    /** ServerFarm supports ElasticScale. Apps in this plan will scale as if the ServerFarm was ElasticPremium sku */
+    elasticScaleEnabled?: boolean;
     /** Maximum number of total workers allowed for this ElasticScaleEnabled App Service Plan */
     maximumElasticWorkerCount?: number;
     /**
@@ -1930,10 +1926,17 @@ export declare type AppServicePlan = Resource & {
     /** Scaling worker size ID. */
     targetWorkerSizeId?: number;
     /**
-     * Provisioning state of the App Service Environment.
+     * Provisioning state of the App Service Plan.
      * NOTE: This property will not be serialized. It can only be populated by the server.
      */
     readonly provisioningState?: ProvisioningState;
+    /** Specification for the Kubernetes Environment to use for the App Service plan. */
+    kubeEnvironmentProfile?: KubeEnvironmentProfile;
+    /**
+     * If <code>true</code>, this App Service Plan will perform availability zone balancing.
+     * If <code>false</code>, this App Service Plan will not perform availability zone balancing.
+     */
+    zoneRedundant?: boolean;
 };
 
 /** Collection of App Service plans. */
@@ -1978,6 +1981,8 @@ export declare type AppServicePlanPatchResource = ProxyOnlyResource & {
      * If <code>false</code>, apps assigned to this App Service plan will scale to all instances of the plan.
      */
     perSiteScaling?: boolean;
+    /** ServerFarm supports ElasticScale. Apps in this plan will scale as if the ServerFarm was ElasticPremium sku */
+    elasticScaleEnabled?: boolean;
     /** Maximum number of total workers allowed for this ElasticScaleEnabled App Service Plan */
     maximumElasticWorkerCount?: number;
     /**
@@ -2007,10 +2012,17 @@ export declare type AppServicePlanPatchResource = ProxyOnlyResource & {
     /** Scaling worker size ID. */
     targetWorkerSizeId?: number;
     /**
-     * Provisioning state of the App Service Environment.
+     * Provisioning state of the App Service Plan.
      * NOTE: This property will not be serialized. It can only be populated by the server.
      */
     readonly provisioningState?: ProvisioningState;
+    /** Specification for the Kubernetes Environment to use for the App Service plan. */
+    kubeEnvironmentProfile?: KubeEnvironmentProfile;
+    /**
+     * If <code>true</code>, this App Service Plan will perform availability zone balancing.
+     * If <code>false</code>, this App Service Plan will not perform availability zone balancing.
+     */
+    zoneRedundant?: boolean;
 };
 
 /** Defines values for AppServicePlanRestrictions. */
@@ -2312,7 +2324,7 @@ export declare interface AppServicePlansGetVnetFromServerFarmOptionalParams exte
 }
 
 /** Contains response data for the getVnetFromServerFarm operation. */
-export declare type AppServicePlansGetVnetFromServerFarmResponse = VnetInfo;
+export declare type AppServicePlansGetVnetFromServerFarmResponse = VnetInfoResource;
 
 /** Optional parameters. */
 export declare interface AppServicePlansGetVnetGatewayOptionalParams extends coreClient.OperationOptions {
@@ -2417,7 +2429,7 @@ export declare interface AppServicePlansListVnetsOptionalParams extends coreClie
 }
 
 /** Contains response data for the listVnets operation. */
-export declare type AppServicePlansListVnetsResponse = VnetInfo[];
+export declare type AppServicePlansListVnetsResponse = VnetInfoResource[];
 
 /** Optional parameters. */
 export declare interface AppServicePlansListWebAppsByHybridConnectionNextOptionalParams extends coreClient.OperationOptions {
@@ -2490,10 +2502,64 @@ export declare interface AppServicePlansUpdateVnetRouteOptionalParams extends co
 /** Contains response data for the updateVnetRoute operation. */
 export declare type AppServicePlansUpdateVnetRouteResponse = VnetRoute;
 
+export declare interface ArcConfiguration {
+    artifactsStorageType?: StorageType;
+    artifactStorageClassName?: string;
+    artifactStorageMountPath?: string;
+    artifactStorageNodeName?: string;
+    artifactStorageAccessMode?: string;
+    frontEndServiceConfiguration?: FrontEndConfiguration;
+    kubeConfig?: string;
+}
+
 /** A wrapper for an ARM resource id */
 export declare interface ArmIdWrapper {
     /** NOTE: This property will not be serialized. It can only be populated by the server. */
     readonly id?: string;
+}
+
+/** The plan object in Azure Resource Manager, represents a marketplace plan. */
+export declare interface ArmPlan {
+    /** The name. */
+    name?: string;
+    /** The publisher. */
+    publisher?: string;
+    /** The product. */
+    product?: string;
+    /** The promotion code. */
+    promotionCode?: string;
+    /** Version of product. */
+    version?: string;
+}
+
+/** Full view of networking configuration for an ASE. */
+export declare type AseV3NetworkingConfiguration = ProxyOnlyResource & {
+    /** NOTE: This property will not be serialized. It can only be populated by the server. */
+    readonly windowsOutboundIpAddresses?: string[];
+    /** NOTE: This property will not be serialized. It can only be populated by the server. */
+    readonly linuxOutboundIpAddresses?: string[];
+    /** NOTE: This property will not be serialized. It can only be populated by the server. */
+    readonly externalInboundIpAddresses?: string[];
+    /** NOTE: This property will not be serialized. It can only be populated by the server. */
+    readonly internalInboundIpAddresses?: string[];
+    /** Property to enable and disable new private endpoint connection creation on ASE */
+    allowNewPrivateEndpointConnections?: boolean;
+};
+
+/** The configuration settings of the platform of App Service Authentication/Authorization. */
+export declare interface AuthPlatform {
+    /** <code>true</code> if the Authentication / Authorization feature is enabled for the current app; otherwise, <code>false</code>. */
+    enabled?: boolean;
+    /**
+     * The RuntimeVersion of the Authentication / Authorization feature in use for the current app.
+     * The setting in this value can control the behavior of certain features in the Authentication / Authorization module.
+     */
+    runtimeVersion?: string;
+    /**
+     * The path of the config file containing auth settings if they come from a file.
+     * If the path is relative, base will the site's root directory.
+     */
+    configFilePath?: string;
 }
 
 /** Actions which to take by the auto-heal module when a rule is triggered. */
@@ -2541,6 +2607,84 @@ export declare interface AutoHealTriggers {
     statusCodes?: StatusCodesBasedTrigger[];
     /** A rule based on request execution time. */
     slowRequests?: SlowRequestsBasedTrigger;
+    /** A rule based on multiple Slow Requests Rule with path */
+    slowRequestsWithPath?: SlowRequestsBasedTrigger[];
+    /** A rule based on status codes ranges. */
+    statusCodesRange?: StatusCodesRangeBasedTrigger[];
+}
+
+/** The configuration settings of the Azure Active directory provider. */
+export declare interface AzureActiveDirectory {
+    /** <code>false</code> if the Azure Active Directory provider should not be enabled despite the set registration; otherwise, <code>true</code>. */
+    enabled?: boolean;
+    /** The configuration settings of the Azure Active Directory app registration. */
+    registration?: AzureActiveDirectoryRegistration;
+    /** The configuration settings of the Azure Active Directory login flow. */
+    login?: AzureActiveDirectoryLogin;
+    /** The configuration settings of the Azure Active Directory token validation flow. */
+    validation?: AzureActiveDirectoryValidation;
+    /**
+     * Gets a value indicating whether the Azure AD configuration was auto-provisioned using 1st party tooling.
+     * This is an internal flag primarily intended to support the Azure Management Portal. Users should not
+     * read or write to this property.
+     */
+    isAutoProvisioned?: boolean;
+}
+
+/** The configuration settings of the Azure Active Directory login flow. */
+export declare interface AzureActiveDirectoryLogin {
+    /**
+     * Login parameters to send to the OpenID Connect authorization endpoint when
+     * a user logs in. Each parameter must be in the form "key=value".
+     */
+    loginParameters?: string[];
+    /** <code>true</code> if the www-authenticate provider should be omitted from the request; otherwise, <code>false</code>. */
+    disableWWWAuthenticate?: boolean;
+}
+
+/** The configuration settings of the Azure Active Directory app registration. */
+export declare interface AzureActiveDirectoryRegistration {
+    /**
+     * The OpenID Connect Issuer URI that represents the entity which issues access tokens for this application.
+     * When using Azure Active Directory, this value is the URI of the directory tenant, e.g. https://login.microsoftonline.com/v2.0/{tenant-guid}/.
+     * This URI is a case-sensitive identifier for the token issuer.
+     * More information on OpenID Connect Discovery: http://openid.net/specs/openid-connect-discovery-1_0.html
+     */
+    openIdIssuer?: string;
+    /**
+     * The Client ID of this relying party application, known as the client_id.
+     * This setting is required for enabling OpenID Connection authentication with Azure Active Directory or
+     * other 3rd party OpenID Connect providers.
+     * More information on OpenID Connect: http://openid.net/specs/openid-connect-core-1_0.html
+     */
+    clientId?: string;
+    /** The app setting name that contains the client secret of the relying party application. */
+    clientSecretSettingName?: string;
+    /**
+     * An alternative to the client secret, that is the thumbprint of a certificate used for signing purposes. This property acts as
+     * a replacement for the Client Secret. It is also optional.
+     */
+    clientSecretCertificateThumbprint?: string;
+    /**
+     * An alternative to the client secret thumbprint, that is the subject alternative name of a certificate used for signing purposes. This property acts as
+     * a replacement for the Client Secret Certificate Thumbprint. It is also optional.
+     */
+    clientSecretCertificateSubjectAlternativeName?: string;
+    /**
+     * An alternative to the client secret thumbprint, that is the issuer of a certificate used for signing purposes. This property acts as
+     * a replacement for the Client Secret Certificate Thumbprint. It is also optional.
+     */
+    clientSecretCertificateIssuer?: string;
+}
+
+/** The configuration settings of the Azure Active Directory token validation flow. */
+export declare interface AzureActiveDirectoryValidation {
+    /** The configuration settings of the checks that should be made while validating the JWT Claims. */
+    jwtClaimChecks?: JwtClaimChecks;
+    /** The list of audiences that can make successful authentication/authorization requests. */
+    allowedAudiences?: string[];
+    /** The configuration settings of the default authorization policy. */
+    defaultAuthorizationPolicy?: DefaultAuthorizationPolicy;
 }
 
 /** Application logs azure blob storage configuration. */
@@ -2574,6 +2718,20 @@ export declare interface AzureBlobStorageHttpLogsConfig {
 /** Defines values for AzureResourceType. */
 export declare type AzureResourceType = "Website" | "TrafficManager";
 
+/** The configuration settings of the Azure Static Web Apps provider. */
+export declare interface AzureStaticWebApps {
+    /** <code>false</code> if the Azure Static Web Apps provider should not be enabled despite the set registration; otherwise, <code>true</code>. */
+    enabled?: boolean;
+    /** The configuration settings of the Azure Static Web Apps registration. */
+    registration?: AzureStaticWebAppsRegistration;
+}
+
+/** The configuration settings of the registration for the Azure Static Web Apps provider */
+export declare interface AzureStaticWebAppsRegistration {
+    /** The Client ID of the app used for login. */
+    clientId?: string;
+}
+
 /** Azure Files or Blob Storage access information value for dictionary storage. */
 export declare interface AzureStorageInfoValue {
     /** Type of storage. */
@@ -2602,7 +2760,7 @@ export declare type AzureStoragePropertyDictionaryResource = ProxyOnlyResource &
 };
 
 /** Defines values for AzureStorageState. */
-export declare type AzureStorageState = "Ok" | "InvalidCredentials" | "InvalidShare";
+export declare type AzureStorageState = "Ok" | "InvalidCredentials" | "InvalidShare" | "NotValidated";
 
 /** Defines values for AzureStorageType. */
 export declare type AzureStorageType = "AzureFiles" | "AzureBlob";
@@ -2753,6 +2911,8 @@ export declare type BillingMeter = ProxyOnlyResource & {
     resourceType?: string;
     /** App Service OS type meter used for */
     osType?: string;
+    /** Meter Multiplier */
+    multiplier?: number;
 };
 
 /** Collection of Billing Meters */
@@ -2764,6 +2924,12 @@ export declare interface BillingMeterCollection {
      * NOTE: This property will not be serialized. It can only be populated by the server.
      */
     readonly nextLink?: string;
+}
+
+/** The configuration settings of the storage of the tokens if blob storage is used. */
+export declare interface BlobStorageTokenStore {
+    /** The name of the app setting containing the SAS URL of the blob storage containing the tokens. */
+    sasUrlSettingName?: string;
 }
 
 /**
@@ -2782,7 +2948,7 @@ export declare interface BillingMeterCollection {
 export declare type BuildStatus = string;
 
 /** Defines values for BuiltInAuthenticationProvider. */
-export declare type BuiltInAuthenticationProvider = "AzureActiveDirectory" | "Facebook" | "Google" | "MicrosoftAccount" | "Twitter";
+export declare type BuiltInAuthenticationProvider = "AzureActiveDirectory" | "Facebook" | "Google" | "MicrosoftAccount" | "Twitter" | "Github";
 
 /** Describes the capabilities/features allowed for a specific SKU. */
 export declare interface Capability {
@@ -2796,6 +2962,8 @@ export declare interface Capability {
 
 /** SSL certificate for an app. */
 export declare type Certificate = Resource & {
+    /** Certificate password. */
+    password?: string;
     /**
      * Friendly name of the certificate.
      * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -2835,8 +3003,6 @@ export declare type Certificate = Resource & {
      * NOTE: This property will not be serialized. It can only be populated by the server.
      */
     readonly expirationDate?: Date;
-    /** Certificate password. */
-    password?: string;
     /**
      * Certificate thumbprint.
      * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -2875,6 +3041,8 @@ export declare type Certificate = Resource & {
     serverFarmId?: string;
     /** CNAME of the certificate to be issued via free certificate */
     canonicalName?: string;
+    /** Method of domain validation for free cert */
+    domainValidationMethod?: string;
 };
 
 /** Collection of certificates. */
@@ -2962,11 +3130,66 @@ export declare type CertificateOrderAction = ProxyOnlyResource & {
 /** Defines values for CertificateOrderActionType. */
 export declare type CertificateOrderActionType = "CertificateIssued" | "CertificateOrderCanceled" | "CertificateOrderCreated" | "CertificateRevoked" | "DomainValidationComplete" | "FraudDetected" | "OrgNameChange" | "OrgValidationComplete" | "SanDrop" | "FraudCleared" | "CertificateExpired" | "CertificateExpirationWarning" | "FraudDocumentationRequired" | "Unknown";
 
+export declare interface CertificateOrderContact {
+    email?: string;
+    nameFirst?: string;
+    nameLast?: string;
+    phone?: string;
+}
+
+/** Interface representing a CertificateOrdersDiagnostics. */
+export declare interface CertificateOrdersDiagnostics {
+    /**
+     * Description for Microsoft.CertificateRegistration to get the list of detectors for this RP.
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param certificateOrderName The certificate order name for which the response is needed.
+     * @param options The options parameters.
+     */
+    listAppServiceCertificateOrderDetectorResponse(resourceGroupName: string, certificateOrderName: string, options?: CertificateOrdersDiagnosticsListAppServiceCertificateOrderDetectorResponseOptionalParams): PagedAsyncIterableIterator<DetectorResponse>;
+    /**
+     * Description for Microsoft.CertificateRegistration call to get a detector response from App Lens.
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param certificateOrderName The certificate order name for which the response is needed.
+     * @param detectorName The detector name which needs to be run.
+     * @param options The options parameters.
+     */
+    getAppServiceCertificateOrderDetectorResponse(resourceGroupName: string, certificateOrderName: string, detectorName: string, options?: CertificateOrdersDiagnosticsGetAppServiceCertificateOrderDetectorResponseOptionalParams): Promise<CertificateOrdersDiagnosticsGetAppServiceCertificateOrderDetectorResponseResponse>;
+}
+
+/** Optional parameters. */
+export declare interface CertificateOrdersDiagnosticsGetAppServiceCertificateOrderDetectorResponseOptionalParams extends coreClient.OperationOptions {
+    /** The start time for detector response. */
+    startTime?: Date;
+    /** The end time for the detector response. */
+    endTime?: Date;
+    /** The time grain for the detector response. */
+    timeGrain?: string;
+}
+
+/** Contains response data for the getAppServiceCertificateOrderDetectorResponse operation. */
+export declare type CertificateOrdersDiagnosticsGetAppServiceCertificateOrderDetectorResponseResponse = DetectorResponse;
+
+/** Optional parameters. */
+export declare interface CertificateOrdersDiagnosticsListAppServiceCertificateOrderDetectorResponseNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listAppServiceCertificateOrderDetectorResponseNext operation. */
+export declare type CertificateOrdersDiagnosticsListAppServiceCertificateOrderDetectorResponseNextResponse = DetectorResponseCollection;
+
+/** Optional parameters. */
+export declare interface CertificateOrdersDiagnosticsListAppServiceCertificateOrderDetectorResponseOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listAppServiceCertificateOrderDetectorResponse operation. */
+export declare type CertificateOrdersDiagnosticsListAppServiceCertificateOrderDetectorResponseResponse = DetectorResponseCollection;
+
 /** Defines values for CertificateOrderStatus. */
 export declare type CertificateOrderStatus = "Pendingissuance" | "Issued" | "Revoked" | "Canceled" | "Denied" | "Pendingrevocation" | "PendingRekey" | "Unused" | "Expired" | "NotSubmitted";
 
 /** ARM resource for a certificate. */
 export declare type CertificatePatchResource = ProxyOnlyResource & {
+    /** Certificate password. */
+    password?: string;
     /**
      * Friendly name of the certificate.
      * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -3006,8 +3229,6 @@ export declare type CertificatePatchResource = ProxyOnlyResource & {
      * NOTE: This property will not be serialized. It can only be populated by the server.
      */
     readonly expirationDate?: Date;
-    /** Certificate password. */
-    password?: string;
     /**
      * Certificate thumbprint.
      * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -3046,6 +3267,8 @@ export declare type CertificatePatchResource = ProxyOnlyResource & {
     serverFarmId?: string;
     /** CNAME of the certificate to be issued via free certificate */
     canonicalName?: string;
+    /** Method of domain validation for free cert */
+    domainValidationMethod?: string;
 };
 
 /** Defines values for CertificateProductType. */
@@ -3154,6 +3377,8 @@ export declare type CertificatesListByResourceGroupResponse = CertificateCollect
 
 /** Optional parameters. */
 export declare interface CertificatesListNextOptionalParams extends coreClient.OperationOptions {
+    /** Return only information specified in the filter (using OData syntax). For example: $filter=KeyVaultId eq 'KeyVaultId' */
+    filter?: string;
 }
 
 /** Contains response data for the listNext operation. */
@@ -3161,6 +3386,8 @@ export declare type CertificatesListNextResponse = CertificateCollection;
 
 /** Optional parameters. */
 export declare interface CertificatesListOptionalParams extends coreClient.OperationOptions {
+    /** Return only information specified in the filter (using OData syntax). For example: $filter=KeyVaultId eq 'KeyVaultId' */
+    filter?: string;
 }
 
 /** Contains response data for the list operation. */
@@ -3200,6 +3427,17 @@ export declare type CheckNameAvailabilityResponse = ResourceNameAvailability;
  * **Microsoft.Web\/publishingUsers**
  */
 export declare type CheckNameResourceTypes = string;
+
+/** Defines values for ClientCertMode. */
+export declare type ClientCertMode = "Required" | "Optional" | "OptionalInteractiveUser";
+
+/** The configuration settings of the app registration for providers that have client ids and client secrets */
+export declare interface ClientRegistration {
+    /** The Client ID of the app used for login. */
+    clientId?: string;
+    /** The app setting name that contains the client secret. */
+    clientSecretSettingName?: string;
+}
 
 /** Defines values for CloneAbilityResult. */
 export declare type CloneAbilityResult = "Cloneable" | "PartiallyCloneable" | "NotCloneable";
@@ -3243,19 +3481,6 @@ export declare interface CloningInfo {
     trafficManagerProfileId?: string;
     /** Name of Traffic Manager profile to create. This is only needed if Traffic Manager profile does not already exist. */
     trafficManagerProfileName?: string;
-}
-
-export declare interface Components1Jq1T4ISchemasManagedserviceidentityPropertiesUserassignedidentitiesAdditionalproperties {
-    /**
-     * Principal Id of user assigned identity
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly principalId?: string;
-    /**
-     * Client Id of user assigned identity
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly clientId?: string;
 }
 
 /** Defines values for ComputeModeOptions. */
@@ -3403,6 +3628,17 @@ export declare interface ContinuousWebJobCollection {
 /** Defines values for ContinuousWebJobStatus. */
 export declare type ContinuousWebJobStatus = "Initializing" | "Starting" | "Running" | "PendingRestart" | "Stopped";
 
+/** The configuration settings of the session cookie's expiration. */
+export declare interface CookieExpiration {
+    /** The convention used when determining the session cookie's expiration. */
+    convention?: CookieExpirationConvention;
+    /** The time after the request is made when the session cookie should expire. */
+    timeToExpiration?: string;
+}
+
+/** Defines values for CookieExpirationConvention. */
+export declare type CookieExpirationConvention = "FixedTime" | "IdentityProviderDerived";
+
 /** Cross-Origin Resource Sharing (CORS) settings for the app. */
 export declare interface CorsSettings {
     /**
@@ -3416,19 +3652,6 @@ export declare interface CorsSettings {
      * for more details.
      */
     supportCredentials?: boolean;
-}
-
-/** Copy deployment slot parameters. */
-export declare interface CsmCopySlotEntity {
-    /** Destination deployment slot during copy operation. */
-    targetSlot: string;
-    /**
-     * The site object which will be merged with the source slot site
-     * to produce new destination slot site object.
-     * <code>null</code> to just copy source slot content. Otherwise a <code>Site</code>
-     * object with properties to override source slot site.
-     */
-    siteConfig: SiteConfig;
 }
 
 /** Object with a list of the resources that need to be moved and the resource group they should be moved to. */
@@ -3451,6 +3674,7 @@ export declare interface CsmOperationCollection {
 /** Description of an operation available for Microsoft.Web resource provider. */
 export declare interface CsmOperationDescription {
     name?: string;
+    isDataAction?: boolean;
     /** Meta data about operation used for display in portal. */
     display?: CsmOperationDisplay;
     origin?: string;
@@ -3471,6 +3695,12 @@ export declare interface CsmOperationDisplay {
     operation?: string;
     description?: string;
 }
+
+/** Publishing Credentials Policies parameters. */
+export declare type CsmPublishingCredentialsPoliciesEntity = ProxyOnlyResource & {
+    /** <code>true</code> to allow access to a publishing method; otherwise, <code>false</code>. */
+    allow?: boolean;
+};
 
 /** Publishing options for requested profile. */
 export declare interface CsmPublishingProfileOptions {
@@ -3517,6 +3747,20 @@ export declare interface CsmUsageQuotaCollection {
      */
     readonly nextLink?: string;
 }
+
+/**
+ * Defines values for CustomDomainStatus. \
+ * {@link KnownCustomDomainStatus} can be used interchangeably with CustomDomainStatus,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **RetrievingValidationToken** \
+ * **Validating** \
+ * **Adding** \
+ * **Ready** \
+ * **Failed** \
+ * **Deleting**
+ */
+export declare type CustomDomainStatus = string;
 
 /** Custom domain analysis. */
 export declare type CustomHostnameAnalysisResult = ProxyOnlyResource & {
@@ -3565,6 +3809,16 @@ export declare type CustomHostnameAnalysisResult = ProxyOnlyResource & {
 /** Defines values for CustomHostNameDnsRecordType. */
 export declare type CustomHostNameDnsRecordType = "CName" | "A";
 
+/** The configuration settings of the custom Open ID Connect provider. */
+export declare interface CustomOpenIdConnectProvider {
+    /** <code>false</code> if the custom Open ID provider provider should not be enabled; otherwise, <code>true</code>. */
+    enabled?: boolean;
+    /** The configuration settings of the app registration for the custom Open ID Connect provider. */
+    registration?: OpenIdConnectRegistration;
+    /** The configuration settings of the login flow of the custom Open ID Connect provider. */
+    login?: OpenIdConnectLogin;
+}
+
 /** Database backup settings. */
 export declare interface DatabaseBackupSetting {
     /** Database type (e.g. SqlAzure / MySql). */
@@ -3590,6 +3844,16 @@ export declare interface DatabaseBackupSetting {
  * **PostgreSql**
  */
 export declare type DatabaseType = string;
+
+/** Additional configuration for a data providers */
+export declare interface DataProviderMetadata {
+    providerName?: string;
+    /**
+     * Settings for the data provider
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly propertyBag?: KeyValuePairStringObject[];
+}
 
 /** Class representing data source used by the detectors */
 export declare interface DataSource {
@@ -3617,6 +3881,14 @@ export declare interface DataTableResponseObject {
     columns?: DataTableResponseColumn[];
     /** Raw row values */
     rows?: string[][];
+}
+
+/** The configuration settings of the Azure Active Directory default authorization policy. */
+export declare interface DefaultAuthorizationPolicy {
+    /** The configuration settings of the Azure Active Directory allowed principals. */
+    allowedPrincipals?: AllowedPrincipals;
+    /** The configuration settings of the Azure Active Directory allowed applications. */
+    allowedApplications?: string[];
 }
 
 /** App Service error response. */
@@ -3869,7 +4141,31 @@ export declare interface DetectorAbnormalTimePeriod {
 }
 
 /** Class representing detector definition */
-export declare type DetectorDefinition = ProxyOnlyResource & {
+export declare interface DetectorDefinition {
+    /**
+     * Display name of the detector
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly displayName?: string;
+    /**
+     * Description of the detector
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly description?: string;
+    /**
+     * Detector Rank
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly rank?: number;
+    /**
+     * Flag representing whether detector is enabled or not.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly isEnabled?: boolean;
+}
+
+/** ARM resource for a detector definition */
+export declare type DetectorDefinitionResource = ProxyOnlyResource & {
     /**
      * Display name of the detector
      * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -3895,25 +4191,50 @@ export declare type DetectorDefinition = ProxyOnlyResource & {
 /** Definition of Detector */
 export declare interface DetectorInfo {
     /**
-     * Short description of the detector and its purpose
+     * Id of detector
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly id?: string;
+    /**
+     * Name of detector
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly name?: string;
+    /**
+     * Short description of the detector and its purpose.
      * NOTE: This property will not be serialized. It can only be populated by the server.
      */
     readonly description?: string;
     /**
-     * Support Category
+     * Author of the detector.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly author?: string;
+    /**
+     * Problem category. This serves for organizing group for detectors.
      * NOTE: This property will not be serialized. It can only be populated by the server.
      */
     readonly category?: string;
     /**
-     * Support Sub Category
+     * List of Support Topics for which this detector is enabled.
      * NOTE: This property will not be serialized. It can only be populated by the server.
      */
-    readonly subCategory?: string;
+    readonly supportTopicList?: SupportTopic[];
     /**
-     * Support Topic Id
+     * Analysis Types for which this detector should apply to.
      * NOTE: This property will not be serialized. It can only be populated by the server.
      */
-    readonly supportTopicId?: string;
+    readonly analysisType?: string[];
+    /**
+     * Whether this detector is an Analysis Detector or not.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly type?: DetectorType;
+    /**
+     * Defines score of a detector to power ML based matching.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly score?: number;
 }
 
 /** Class representing Response from Detector */
@@ -3922,6 +4243,12 @@ export declare type DetectorResponse = ProxyOnlyResource & {
     metadata?: DetectorInfo;
     /** Data Set */
     dataset?: DiagnosticData[];
+    /** Indicates status of the most severe insight. */
+    status?: Status;
+    /** Additional configuration for different data providers to be used by the UI */
+    dataProvidersMetadata?: DataProviderMetadata[];
+    /** Suggested utterances where the detector can be applicable. */
+    suggestedUtterances?: QueryUtterancesResults;
 };
 
 /** Collection of detector responses */
@@ -3934,6 +4261,9 @@ export declare interface DetectorResponseCollection {
      */
     readonly nextLink?: string;
 }
+
+/** Defines values for DetectorType. */
+export declare type DetectorType = "Detector" | "Analysis" | "CategoryOverview";
 
 /** Class representing a diagnostic analysis done on an application */
 export declare type DiagnosticAnalysis = ProxyOnlyResource & {
@@ -3991,7 +4321,7 @@ export declare interface DiagnosticData {
 /** Collection of Diagnostic Detectors */
 export declare interface DiagnosticDetectorCollection {
     /** Collection of resources. */
-    value: DetectorDefinition[];
+    value: DetectorDefinitionResource[];
     /**
      * Link to next page of resources.
      * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -4094,7 +4424,7 @@ export declare interface Diagnostics {
      * @param diagnosticCategory Diagnostic Category
      * @param options The options parameters.
      */
-    listSiteDetectors(resourceGroupName: string, siteName: string, diagnosticCategory: string, options?: DiagnosticsListSiteDetectorsOptionalParams): PagedAsyncIterableIterator<DetectorDefinition>;
+    listSiteDetectors(resourceGroupName: string, siteName: string, diagnosticCategory: string, options?: DiagnosticsListSiteDetectorsOptionalParams): PagedAsyncIterableIterator<DetectorDefinitionResource>;
     /**
      * Description for List Site Detector Responses
      * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -4128,7 +4458,7 @@ export declare interface Diagnostics {
      * @param slot Slot Name
      * @param options The options parameters.
      */
-    listSiteDetectorsSlot(resourceGroupName: string, siteName: string, diagnosticCategory: string, slot: string, options?: DiagnosticsListSiteDetectorsSlotOptionalParams): PagedAsyncIterableIterator<DetectorDefinition>;
+    listSiteDetectorsSlot(resourceGroupName: string, siteName: string, diagnosticCategory: string, slot: string, options?: DiagnosticsListSiteDetectorsSlotOptionalParams): PagedAsyncIterableIterator<DetectorDefinitionResource>;
     /**
      * Description for Get Hosting Environment Detector Response
      * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -4333,7 +4663,7 @@ export declare interface DiagnosticsGetSiteDetectorOptionalParams extends coreCl
 }
 
 /** Contains response data for the getSiteDetector operation. */
-export declare type DiagnosticsGetSiteDetectorResponse = DetectorDefinition;
+export declare type DiagnosticsGetSiteDetectorResponse = DetectorDefinitionResource;
 
 /** Optional parameters. */
 export declare interface DiagnosticsGetSiteDetectorResponseOptionalParams extends coreClient.OperationOptions {
@@ -4366,7 +4696,7 @@ export declare interface DiagnosticsGetSiteDetectorSlotOptionalParams extends co
 }
 
 /** Contains response data for the getSiteDetectorSlot operation. */
-export declare type DiagnosticsGetSiteDetectorSlotResponse = DetectorDefinition;
+export declare type DiagnosticsGetSiteDetectorSlotResponse = DetectorDefinitionResource;
 
 /** Optional parameters. */
 export declare interface DiagnosticsGetSiteDiagnosticCategoryOptionalParams extends coreClient.OperationOptions {
@@ -4873,7 +5203,7 @@ export declare interface Domains {
     getOwnershipIdentifier(resourceGroupName: string, domainName: string, name: string, options?: DomainsGetOwnershipIdentifierOptionalParams): Promise<DomainsGetOwnershipIdentifierResponse>;
     /**
      * Description for Creates an ownership identifier for a domain or updates identifier details for an
-     * existing identifer
+     * existing identifier
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param domainName Name of domain.
      * @param name Name of identifier.
@@ -4891,7 +5221,7 @@ export declare interface Domains {
     deleteOwnershipIdentifier(resourceGroupName: string, domainName: string, name: string, options?: DomainsDeleteOwnershipIdentifierOptionalParams): Promise<void>;
     /**
      * Description for Creates an ownership identifier for a domain or updates identifier details for an
-     * existing identifer
+     * existing identifier
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param domainName Name of domain.
      * @param name Name of identifier.
@@ -5071,28 +5401,74 @@ export declare interface EndpointDetail {
 }
 
 /**
- * Defines values for Enum4. \
- * {@link KnownEnum4} can be used interchangeably with Enum4,
+ * Defines values for Enum10. \
+ * {@link KnownEnum10} can be used interchangeably with Enum10,
  *  this enum contains the known values that the service supports.
  * ### Known values supported by the service
  * **Windows** \
  * **Linux** \
  * **WindowsFunctions** \
- * **LinuxFunctions**
+ * **LinuxFunctions** \
+ * **All**
  */
-export declare type Enum4 = string;
+export declare type Enum10 = string;
 
 /**
- * Defines values for Enum5. \
- * {@link KnownEnum5} can be used interchangeably with Enum5,
+ * Defines values for Enum11. \
+ * {@link KnownEnum11} can be used interchangeably with Enum11,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Windows** \
+ * **Linux** \
+ * **All**
+ */
+export declare type Enum11 = string;
+
+/**
+ * Defines values for Enum12. \
+ * {@link KnownEnum12} can be used interchangeably with Enum12,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Windows** \
+ * **Linux** \
+ * **All**
+ */
+export declare type Enum12 = string;
+
+/**
+ * Defines values for Enum13. \
+ * {@link KnownEnum13} can be used interchangeably with Enum13,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Windows** \
+ * **Linux** \
+ * **All**
+ */
+export declare type Enum13 = string;
+
+/**
+ * Defines values for Enum14. \
+ * {@link KnownEnum14} can be used interchangeably with Enum14,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Windows** \
+ * **Linux** \
+ * **All**
+ */
+export declare type Enum14 = string;
+
+/**
+ * Defines values for Enum15. \
+ * {@link KnownEnum15} can be used interchangeably with Enum15,
  *  this enum contains the known values that the service supports.
  * ### Known values supported by the service
  * **Windows** \
  * **Linux** \
  * **WindowsFunctions** \
- * **LinuxFunctions**
+ * **LinuxFunctions** \
+ * **All**
  */
-export declare type Enum5 = string;
+export declare type Enum15 = string;
 
 /** Body of the error response returned from the API. */
 export declare interface ErrorEntity {
@@ -5104,6 +5480,10 @@ export declare interface ErrorEntity {
     parameters?: string[];
     /** Inner errors. */
     innerErrors?: ErrorEntity[];
+    /** Error Details. */
+    details?: ErrorEntity[];
+    /** The error target. */
+    target?: string;
     /** Basic error code. */
     code?: string;
     /** Any details of the error. */
@@ -5114,6 +5494,29 @@ export declare interface ErrorEntity {
 export declare interface Experiments {
     /** List of ramp-up rules. */
     rampUpRules?: RampUpRule[];
+}
+
+/** Extended Location. */
+export declare interface ExtendedLocation {
+    /** Name of extended location. */
+    name?: string;
+    /**
+     * Type of extended location.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly type?: string;
+}
+
+/** The configuration settings of the Facebook provider. */
+export declare interface Facebook {
+    /** <code>false</code> if the Facebook provider should not be enabled despite the set registration; otherwise, <code>true</code>. */
+    enabled?: boolean;
+    /** The configuration settings of the app registration for the Facebook provider. */
+    registration?: AppRegistration;
+    /** The version of the Facebook api to be used while logging in. */
+    graphApiVersion?: string;
+    /** The configuration settings of the login flow. */
+    login?: LoginScopes;
 }
 
 /** Application logs to file system configuration. */
@@ -5140,8 +5543,34 @@ export declare interface FileSystemHttpLogsConfig {
     enabled?: boolean;
 }
 
+/** The configuration settings of the storage of the tokens if a file system is used. */
+export declare interface FileSystemTokenStore {
+    /** The directory in which the tokens will be stored. */
+    directory?: string;
+}
+
+/** The configuration settings of a forward proxy used to make the requests. */
+export declare interface ForwardProxy {
+    /** The convention used to determine the url of the request made. */
+    convention?: ForwardProxyConvention;
+    /** The name of the header containing the host of the request. */
+    customHostHeaderName?: string;
+    /** The name of the header containing the scheme of the request. */
+    customProtoHeaderName?: string;
+}
+
+/** Defines values for ForwardProxyConvention. */
+export declare type ForwardProxyConvention = "NoProxy" | "Standard" | "Custom";
+
 /** Defines values for FrequencyUnit. */
 export declare type FrequencyUnit = "Day" | "Hour";
+
+export declare interface FrontEndConfiguration {
+    kind?: FrontEndServiceType;
+}
+
+/** Defines values for FrontEndServiceType. */
+export declare type FrontEndServiceType = "NodePort" | "LoadBalancer";
 
 /**
  * Defines values for FtpsState. \
@@ -5153,6 +5582,174 @@ export declare type FrequencyUnit = "Day" | "Hour";
  * **Disabled**
  */
 export declare type FtpsState = string;
+
+/** Function App stack major version. */
+export declare interface FunctionAppMajorVersion {
+    /**
+     * Function App stack major version (display only).
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly displayText?: string;
+    /**
+     * Function App stack major version name.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly value?: string;
+    /**
+     * Minor versions associated with the major version.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly minorVersions?: FunctionAppMinorVersion[];
+}
+
+/** Function App stack minor version. */
+export declare interface FunctionAppMinorVersion {
+    /**
+     * Function App stack (display only).
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly displayText?: string;
+    /**
+     * Function App stack name.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly value?: string;
+    /**
+     * Settings associated with the minor version.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly stackSettings?: FunctionAppRuntimes;
+}
+
+/** Function App stack runtimes. */
+export declare interface FunctionAppRuntimes {
+    /**
+     * Linux-specific settings associated with the minor version.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly linuxRuntimeSettings?: FunctionAppRuntimeSettings;
+    /**
+     * Windows-specific settings associated with the minor version.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly windowsRuntimeSettings?: FunctionAppRuntimeSettings;
+}
+
+/** Function App runtime settings. */
+export declare interface FunctionAppRuntimeSettings {
+    /**
+     * Function App stack minor version (runtime only).
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly runtimeVersion?: string;
+    /**
+     * <code>true</code> if remote debugging is supported for the stack; otherwise, <code>false</code>.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly remoteDebuggingSupported?: boolean;
+    /**
+     * Application Insights settings associated with the minor version.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly appInsightsSettings?: AppInsightsWebAppStackSettings;
+    /**
+     * GitHub Actions settings associated with the minor version.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly gitHubActionSettings?: GitHubActionWebAppStackSettings;
+    /**
+     * Application settings associated with the minor version.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly appSettingsDictionary?: {
+        [propertyName: string]: string;
+    };
+    /**
+     * Configuration settings associated with the minor version.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly siteConfigPropertiesDictionary?: SiteConfigPropertiesDictionary;
+    /**
+     * List of supported Functions extension versions.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly supportedFunctionsExtensionVersions?: string[];
+    /**
+     * <code>true</code> if the stack is in preview; otherwise, <code>false</code>.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly isPreview?: boolean;
+    /**
+     * <code>true</code> if the stack is deprecated; otherwise, <code>false</code>.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly isDeprecated?: boolean;
+    /**
+     * <code>true</code> if the stack should be hidden; otherwise, <code>false</code>.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly isHidden?: boolean;
+    /**
+     * End-of-life date for the minor version.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly endOfLifeDate?: Date;
+    /**
+     * <code>true</code> if the stack version is auto-updated; otherwise, <code>false</code>.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly isAutoUpdate?: boolean;
+    /**
+     * <code>true</code> if the minor version is early-access; otherwise, <code>false</code>.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly isEarlyAccess?: boolean;
+    /**
+     * <code>true</code> if the minor version the default; otherwise, <code>false</code>.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly isDefault?: boolean;
+}
+
+/** Function App Stack. */
+export declare type FunctionAppStack = ProxyOnlyResource & {
+    /**
+     * Function App stack location.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly location?: string;
+    /**
+     * Function App stack (display only).
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly displayText?: string;
+    /**
+     * Function App stack name.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly value?: string;
+    /**
+     * List of major versions available.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly majorVersions?: FunctionAppMajorVersion[];
+    /**
+     * Function App stack preferred OS.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly preferredOs?: StackPreferredOs;
+};
+
+/** Collection of Function app Stacks */
+export declare interface FunctionAppStackCollection {
+    /** Collection of resources. */
+    value: FunctionAppStack[];
+    /**
+     * Link to next page of resources.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly nextLink?: string;
+}
 
 /** Function information. */
 export declare type FunctionEnvelope = ProxyOnlyResource & {
@@ -5198,12 +5795,12 @@ export declare interface FunctionEnvelopeCollection {
 }
 
 /** Function secrets. */
-export declare type FunctionSecrets = ProxyOnlyResource & {
+export declare interface FunctionSecrets {
     /** Secret key. */
     key?: string;
     /** Trigger URL. */
     triggerUrl?: string;
-};
+}
 
 /** Geographical region. */
 export declare type GeoRegion = ProxyOnlyResource & {
@@ -5256,6 +5853,85 @@ export declare interface GetSubscriptionDeploymentLocationsOptionalParams extend
 /** Contains response data for the getSubscriptionDeploymentLocations operation. */
 export declare type GetSubscriptionDeploymentLocationsResponse = DeploymentLocations;
 
+/** The configuration settings of the GitHub provider. */
+export declare interface GitHub {
+    /** <code>false</code> if the GitHub provider should not be enabled despite the set registration; otherwise, <code>true</code>. */
+    enabled?: boolean;
+    /** The configuration settings of the app registration for the GitHub provider. */
+    registration?: ClientRegistration;
+    /** The configuration settings of the login flow. */
+    login?: LoginScopes;
+}
+
+/** The GitHub action code configuration. */
+export declare interface GitHubActionCodeConfiguration {
+    /** Runtime stack is used to determine the workflow file content for code base apps. */
+    runtimeStack?: string;
+    /** Runtime version is used to determine what build version to set in the workflow file. */
+    runtimeVersion?: string;
+}
+
+/** The GitHub action configuration. */
+export declare interface GitHubActionConfiguration {
+    /** GitHub Action code configuration. */
+    codeConfiguration?: GitHubActionCodeConfiguration;
+    /** GitHub Action container configuration. */
+    containerConfiguration?: GitHubActionContainerConfiguration;
+    /** This will help determine the workflow configuration to select. */
+    isLinux?: boolean;
+    /** Workflow option to determine whether the workflow file should be generated and written to the repository. */
+    generateWorkflowFile?: boolean;
+}
+
+/** The GitHub action container configuration. */
+export declare interface GitHubActionContainerConfiguration {
+    /** The server URL for the container registry where the build will be hosted. */
+    serverUrl?: string;
+    /** The image name for the build. */
+    imageName?: string;
+    /** The username used to upload the image to the container registry. */
+    username?: string;
+    /** The password used to upload the image to the container registry. */
+    password?: string;
+}
+
+/** GitHub Actions Web App stack settings. */
+export declare interface GitHubActionWebAppStackSettings {
+    /**
+     * <code>true</code> if GitHub Actions is supported for the stack; otherwise, <code>false</code>.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly isSupported?: boolean;
+    /**
+     * The minor version that is supported for GitHub Actions.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly supportedVersion?: string;
+}
+
+/** Interface representing a Global. */
+export declare interface Global {
+    /**
+     * Description for Get deleted app for a subscription.
+     * @param deletedSiteId The numeric ID of the deleted app, e.g. 12345
+     * @param options The options parameters.
+     */
+    getDeletedWebApp(deletedSiteId: string, options?: GlobalGetDeletedWebAppOptionalParams): Promise<GlobalGetDeletedWebAppResponse>;
+    /**
+     * Description for Get all deleted apps for a subscription.
+     * @param deletedSiteId The numeric ID of the deleted app, e.g. 12345
+     * @param options The options parameters.
+     */
+    getDeletedWebAppSnapshots(deletedSiteId: string, options?: GlobalGetDeletedWebAppSnapshotsOptionalParams): Promise<GlobalGetDeletedWebAppSnapshotsResponse>;
+    /**
+     * Description for Gets an operation in a subscription and given region
+     * @param location Location name
+     * @param operationId Operation Id
+     * @param options The options parameters.
+     */
+    getSubscriptionOperationWithAsyncResponse(location: string, operationId: string, options?: GlobalGetSubscriptionOperationWithAsyncResponseOptionalParams): Promise<void>;
+}
+
 /** A Global SKU Description. */
 export declare interface GlobalCsmSkuDescription {
     /** Name of the resource SKU. */
@@ -5272,6 +5948,52 @@ export declare interface GlobalCsmSkuDescription {
     locations?: string[];
     /** Capabilities of the SKU, e.g., is traffic manager enabled? */
     capabilities?: Capability[];
+}
+
+/** Optional parameters. */
+export declare interface GlobalGetDeletedWebAppOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getDeletedWebApp operation. */
+export declare type GlobalGetDeletedWebAppResponse = DeletedSite;
+
+/** Optional parameters. */
+export declare interface GlobalGetDeletedWebAppSnapshotsOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getDeletedWebAppSnapshots operation. */
+export declare type GlobalGetDeletedWebAppSnapshotsResponse = Snapshot[];
+
+/** Optional parameters. */
+export declare interface GlobalGetSubscriptionOperationWithAsyncResponseOptionalParams extends coreClient.OperationOptions {
+}
+
+/** The configuration settings that determines the validation flow of users using App Service Authentication/Authorization. */
+export declare interface GlobalValidation {
+    /** <code>true</code> if the authentication flow is required any request is made; otherwise, <code>false</code>. */
+    requireAuthentication?: boolean;
+    /** The action to take when an unauthenticated client attempts to access the app. */
+    unauthenticatedClientAction?: UnauthenticatedClientActionV2;
+    /**
+     * The default authentication provider to use when multiple providers are configured.
+     * This setting is only needed if multiple providers are configured and the unauthenticated client
+     * action is set to "RedirectToLoginPage".
+     */
+    redirectToProvider?: string;
+    /** The paths for which unauthenticated flow would not be redirected to the login page. */
+    excludedPaths?: string[];
+}
+
+/** The configuration settings of the Google provider. */
+export declare interface Google {
+    /** <code>false</code> if the Google provider should not be enabled despite the set registration; otherwise, <code>true</code>. */
+    enabled?: boolean;
+    /** The configuration settings of the app registration for the Google provider. */
+    registration?: ClientRegistration;
+    /** The configuration settings of the login flow. */
+    login?: LoginScopes;
+    /** The configuration settings of the Azure Active Directory token validation flow. */
+    validation?: AllowedAudiencesValidation;
 }
 
 /**
@@ -5418,6 +6140,22 @@ export declare interface HttpLogsConfig {
     azureBlobStorage?: AzureBlobStorageHttpLogsConfig;
 }
 
+/** The configuration settings of the HTTP requests for authentication and authorization requests made against App Service Authentication/Authorization. */
+export declare interface HttpSettings {
+    /** <code>false</code> if the authentication/authorization responses not having the HTTPS scheme are permissible; otherwise, <code>true</code>. */
+    requireHttps?: boolean;
+    /** The configuration settings of the paths HTTP requests. */
+    routes?: HttpSettingsRoutes;
+    /** The configuration settings of a forward proxy used to make the requests. */
+    forwardProxy?: ForwardProxy;
+}
+
+/** The configuration settings of the paths HTTP requests. */
+export declare interface HttpSettingsRoutes {
+    /** The prefix that should precede all the authentication/authorization paths. */
+    apiPrefix?: string;
+}
+
 /** Hybrid Connection contract. This is used to configure a Hybrid Connection. */
 export declare type HybridConnection = ProxyOnlyResource & {
     /** The name of the Service Bus namespace. */
@@ -5497,6 +6235,33 @@ export declare interface IdentifierCollection {
     readonly nextLink?: string;
 }
 
+/** The configuration settings of each of the identity providers used to configure App Service Authentication/Authorization. */
+export declare interface IdentityProviders {
+    /** The configuration settings of the Azure Active directory provider. */
+    azureActiveDirectory?: AzureActiveDirectory;
+    /** The configuration settings of the Facebook provider. */
+    facebook?: Facebook;
+    /** The configuration settings of the GitHub provider. */
+    gitHub?: GitHub;
+    /** The configuration settings of the Google provider. */
+    google?: Google;
+    /** The configuration settings of the legacy Microsoft Account provider. */
+    legacyMicrosoftAccount?: LegacyMicrosoftAccount;
+    /** The configuration settings of the Twitter provider. */
+    twitter?: Twitter;
+    /** The configuration settings of the Apple provider. */
+    apple?: Apple;
+    /** The configuration settings of the Azure Static Web Apps provider. */
+    azureStaticWebApps?: AzureStaticWebApps;
+    /**
+     * The map of the name of the alias of each custom Open ID Connect provider to the
+     * configuration settings of the custom Open ID Connect provider.
+     */
+    customOpenIdConnectProviders?: {
+        [propertyName: string]: CustomOpenIdConnectProvider;
+    };
+}
+
 /**
  * Defines values for InAvailabilityReasonType. \
  * {@link KnownInAvailabilityReasonType} can be used interchangeably with InAvailabilityReasonType,
@@ -5528,11 +6293,19 @@ export declare interface InboundEnvironmentEndpointCollection {
     readonly nextLink?: string;
 }
 
-/** Defines values for InternalLoadBalancingMode. */
-export declare type InternalLoadBalancingMode = "None" | "Web" | "Publishing";
+/** Defines values for InsightStatus. */
+export declare type InsightStatus = "Critical" | "Warning" | "Info" | "Success" | "None";
 
-/** Defines values for IpFilterTag. */
-export declare type IpFilterTag = "Default" | "XffProxy";
+/**
+ * Defines values for IpFilterTag. \
+ * {@link KnownIpFilterTag} can be used interchangeably with IpFilterTag,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Default** \
+ * **XffProxy** \
+ * **ServiceTag**
+ */
+export declare type IpFilterTag = string;
 
 /** IP security restriction on an app. */
 export declare interface IpSecurityRestriction {
@@ -5561,10 +6334,39 @@ export declare interface IpSecurityRestriction {
     name?: string;
     /** IP restriction rule description. */
     description?: string;
+    /**
+     * IP restriction rule headers.
+     * X-Forwarded-Host (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Host#Examples).
+     * The matching logic is ..
+     * - If the property is null or empty (default), all hosts(or lack of) are allowed.
+     * - A value is compared using ordinal-ignore-case (excluding port number).
+     * - Subdomain wildcards are permitted but don't match the root domain. For example, *.contoso.com matches the subdomain foo.contoso.com
+     *  but not the root domain contoso.com or multi-level foo.bar.contoso.com
+     * - Unicode host names are allowed but are converted to Punycode for matching.
+     *
+     * X-Forwarded-For (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-For#Examples).
+     * The matching logic is ..
+     * - If the property is null or empty (default), any forwarded-for chains (or lack of) are allowed.
+     * - If any address (excluding port number) in the chain (comma separated) matches the CIDR defined by the property.
+     *
+     * X-Azure-FDID and X-FD-HealthProbe.
+     * The matching logic is exact match.
+     */
+    headers?: {
+        [propertyName: string]: string[];
+    };
 }
 
 /** Defines values for IssueType. */
 export declare type IssueType = "ServiceIncident" | "AppDeployment" | "AppCrash" | "RuntimeIssueDetected" | "AseDeployment" | "UserIssue" | "PlatformIssue" | "Other";
+
+/** The configuration settings of the checks that should be made while validating the JWT Claims. */
+export declare interface JwtClaimChecks {
+    /** The list of the allowed groups. */
+    allowedGroups?: string[];
+    /** The list of the allowed client applications. */
+    allowedClientApplications?: string[];
+}
 
 /** Function key info. */
 export declare interface KeyInfo {
@@ -5574,27 +6376,15 @@ export declare interface KeyInfo {
     value?: string;
 }
 
-/** Web app key vault reference and status ARM resource. */
-export declare type KeyVaultReferenceCollection = ProxyOnlyResource & {
-    /** Dictionary of <ApiKVReference> */
-    keyToReferenceStatuses?: {
-        [propertyName: string]: ApiKVReference;
-    };
-};
-
-/** Web app key vault reference and status ARM resource. */
-export declare type KeyVaultReferenceResource = ProxyOnlyResource & {
-    reference?: string;
-    status?: ResolveStatus;
-    vaultName?: string;
-    secretName?: string;
-    secretVersion?: string;
-    /** Type of managed service identity. */
-    identityType?: ManagedServiceIdentityType;
-    details?: string;
-    source?: "KeyVault";
-    location?: "ApplicationSetting";
-};
+export declare interface KeyValuePairStringObject {
+    /** NOTE: This property will not be serialized. It can only be populated by the server. */
+    readonly key?: string;
+    /**
+     * Any object
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly value?: Record<string, unknown>;
+}
 
 /** Defines values for KeyVaultSecretStatus. */
 export declare type KeyVaultSecretStatus = "Initialized" | "WaitingOnCertificateOrder" | "Succeeded" | "CertificateOrderFailed" | "OperationNotPermittedOnKeyVault" | "AzureServiceUnauthorizedToAccessKeyVault" | "KeyVaultDoesNotExist" | "KeyVaultSecretDoesNotExist" | "UnknownError" | "ExternalPrivateKey" | "Unknown";
@@ -5636,6 +6426,16 @@ export declare enum KnownCheckNameResourceTypes {
     MicrosoftWebPublishingUsers = "Microsoft.Web/publishingUsers"
 }
 
+/** Known values of {@link CustomDomainStatus} that the service accepts. */
+export declare enum KnownCustomDomainStatus {
+    RetrievingValidationToken = "RetrievingValidationToken",
+    Validating = "Validating",
+    Adding = "Adding",
+    Ready = "Ready",
+    Failed = "Failed",
+    Deleting = "Deleting"
+}
+
 /** Known values of {@link DatabaseType} that the service accepts. */
 export declare enum KnownDatabaseType {
     SqlAzure = "SqlAzure",
@@ -5658,20 +6458,50 @@ export declare enum KnownDomainPropertiesDomainNotRenewableReasonsItem {
     SubscriptionNotActive = "SubscriptionNotActive"
 }
 
-/** Known values of {@link Enum4} that the service accepts. */
-export declare enum KnownEnum4 {
+/** Known values of {@link Enum10} that the service accepts. */
+export declare enum KnownEnum10 {
     Windows = "Windows",
     Linux = "Linux",
     WindowsFunctions = "WindowsFunctions",
-    LinuxFunctions = "LinuxFunctions"
+    LinuxFunctions = "LinuxFunctions",
+    All = "All"
 }
 
-/** Known values of {@link Enum5} that the service accepts. */
-export declare enum KnownEnum5 {
+/** Known values of {@link Enum11} that the service accepts. */
+export declare enum KnownEnum11 {
+    Windows = "Windows",
+    Linux = "Linux",
+    All = "All"
+}
+
+/** Known values of {@link Enum12} that the service accepts. */
+export declare enum KnownEnum12 {
+    Windows = "Windows",
+    Linux = "Linux",
+    All = "All"
+}
+
+/** Known values of {@link Enum13} that the service accepts. */
+export declare enum KnownEnum13 {
+    Windows = "Windows",
+    Linux = "Linux",
+    All = "All"
+}
+
+/** Known values of {@link Enum14} that the service accepts. */
+export declare enum KnownEnum14 {
+    Windows = "Windows",
+    Linux = "Linux",
+    All = "All"
+}
+
+/** Known values of {@link Enum15} that the service accepts. */
+export declare enum KnownEnum15 {
     Windows = "Windows",
     Linux = "Linux",
     WindowsFunctions = "WindowsFunctions",
-    LinuxFunctions = "LinuxFunctions"
+    LinuxFunctions = "LinuxFunctions",
+    All = "All"
 }
 
 /** Known values of {@link FtpsState} that the service accepts. */
@@ -5685,6 +6515,21 @@ export declare enum KnownFtpsState {
 export declare enum KnownInAvailabilityReasonType {
     Invalid = "Invalid",
     AlreadyExists = "AlreadyExists"
+}
+
+/** Known values of {@link IpFilterTag} that the service accepts. */
+export declare enum KnownIpFilterTag {
+    Default = "Default",
+    XffProxy = "XffProxy",
+    ServiceTag = "ServiceTag"
+}
+
+/** Known values of {@link LoadBalancingMode} that the service accepts. */
+export declare enum KnownLoadBalancingMode {
+    None = "None",
+    Web = "Web",
+    Publishing = "Publishing",
+    WebPublishing = "Web, Publishing"
 }
 
 /** Known values of {@link PublishingProfileFormat} that the service accepts. */
@@ -5735,7 +6580,10 @@ export declare enum KnownSkuName {
     Premium = "Premium",
     Dynamic = "Dynamic",
     Isolated = "Isolated",
+    IsolatedV2 = "IsolatedV2",
     PremiumV2 = "PremiumV2",
+    PremiumV3 = "PremiumV3",
+    PremiumContainer = "PremiumContainer",
     ElasticPremium = "ElasticPremium",
     ElasticIsolated = "ElasticIsolated"
 }
@@ -5756,7 +6604,289 @@ export declare enum KnownTriggerTypes {
 /** Known values of {@link ValidateResourceTypes} that the service accepts. */
 export declare enum KnownValidateResourceTypes {
     ServerFarm = "ServerFarm",
-    Site = "Site"
+    Site = "Site",
+    MicrosoftWebHostingEnvironments = "Microsoft.Web/hostingEnvironments"
+}
+
+/** A Kubernetes cluster specialized for web workloads by Azure App Service */
+export declare type KubeEnvironment = Resource & {
+    /** Extended Location. */
+    extendedLocation?: ExtendedLocation;
+    /**
+     * Provisioning state of the Kubernetes Environment.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly provisioningState?: KubeEnvironmentProvisioningState;
+    /**
+     * Any errors that occurred during deployment or deployment validation
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly deploymentErrors?: string;
+    /** Only visible within Vnet/Subnet */
+    internalLoadBalancerEnabled?: boolean;
+    /**
+     * Default Domain Name for the cluster
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly defaultDomain?: string;
+    /** Static IP of the KubeEnvironment */
+    staticIp?: string;
+    /**
+     * Cluster configuration which determines the ARC cluster
+     * components types. Eg: Choosing between BuildService kind,
+     * FrontEnd Service ArtifactsStorageType etc.
+     */
+    arcConfiguration?: ArcConfiguration;
+    /**
+     * Cluster configuration which enables the log daemon to export
+     * app logs to a destination. Currently only "log-analytics" is
+     * supported
+     */
+    appLogsConfiguration?: AppLogsConfiguration;
+    aksResourceID?: string;
+};
+
+/** Collection of Kubernetes Environments */
+export declare interface KubeEnvironmentCollection {
+    /** Collection of resources. */
+    value: KubeEnvironment[];
+    /**
+     * Link to next page of resources.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly nextLink?: string;
+}
+
+/** ARM resource for a KubeEnvironment when patching */
+export declare type KubeEnvironmentPatchResource = ProxyOnlyResource & {
+    /**
+     * Provisioning state of the Kubernetes Environment.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly provisioningState?: KubeEnvironmentProvisioningState;
+    /**
+     * Any errors that occurred during deployment or deployment validation
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly deploymentErrors?: string;
+    /** Only visible within Vnet/Subnet */
+    internalLoadBalancerEnabled?: boolean;
+    /**
+     * Default Domain Name for the cluster
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly defaultDomain?: string;
+    /** Static IP of the KubeEnvironment */
+    staticIp?: string;
+    /**
+     * Cluster configuration which determines the ARC cluster
+     * components types. Eg: Choosing between BuildService kind,
+     * FrontEnd Service ArtifactsStorageType etc.
+     */
+    arcConfiguration?: ArcConfiguration;
+    /**
+     * Cluster configuration which enables the log daemon to export
+     * app logs to a destination. Currently only "log-analytics" is
+     * supported
+     */
+    appLogsConfiguration?: AppLogsConfiguration;
+    aksResourceID?: string;
+};
+
+/** Specification for a Kubernetes Environment to use for this resource. */
+export declare interface KubeEnvironmentProfile {
+    /** Resource ID of the Kubernetes Environment. */
+    id?: string;
+    /**
+     * Name of the Kubernetes Environment.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly name?: string;
+    /**
+     * Resource type of the Kubernetes Environment.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly type?: string;
+}
+
+/** Defines values for KubeEnvironmentProvisioningState. */
+export declare type KubeEnvironmentProvisioningState = "Succeeded" | "Failed" | "Canceled" | "Waiting" | "InitializationInProgress" | "InfrastructureSetupInProgress" | "InfrastructureSetupComplete" | "ScheduledForDelete" | "UpgradeRequested" | "UpgradeFailed";
+
+/** Interface representing a KubeEnvironments. */
+export declare interface KubeEnvironments {
+    /**
+     * Description for Get all Kubernetes Environments for a subscription.
+     * @param options The options parameters.
+     */
+    listBySubscription(options?: KubeEnvironmentsListBySubscriptionOptionalParams): PagedAsyncIterableIterator<KubeEnvironment>;
+    /**
+     * Description for Get all the Kubernetes Environments in a resource group.
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param options The options parameters.
+     */
+    listByResourceGroup(resourceGroupName: string, options?: KubeEnvironmentsListByResourceGroupOptionalParams): PagedAsyncIterableIterator<KubeEnvironment>;
+    /**
+     * Description for Get the properties of a Kubernetes Environment.
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the Kubernetes Environment.
+     * @param options The options parameters.
+     */
+    get(resourceGroupName: string, name: string, options?: KubeEnvironmentsGetOptionalParams): Promise<KubeEnvironmentsGetResponse>;
+    /**
+     * Description for Creates or updates a Kubernetes Environment.
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the Kubernetes Environment.
+     * @param kubeEnvironmentEnvelope Configuration details of the Kubernetes Environment.
+     * @param options The options parameters.
+     */
+    beginCreateOrUpdate(resourceGroupName: string, name: string, kubeEnvironmentEnvelope: KubeEnvironment, options?: KubeEnvironmentsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<KubeEnvironmentsCreateOrUpdateResponse>, KubeEnvironmentsCreateOrUpdateResponse>>;
+    /**
+     * Description for Creates or updates a Kubernetes Environment.
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the Kubernetes Environment.
+     * @param kubeEnvironmentEnvelope Configuration details of the Kubernetes Environment.
+     * @param options The options parameters.
+     */
+    beginCreateOrUpdateAndWait(resourceGroupName: string, name: string, kubeEnvironmentEnvelope: KubeEnvironment, options?: KubeEnvironmentsCreateOrUpdateOptionalParams): Promise<KubeEnvironmentsCreateOrUpdateResponse>;
+    /**
+     * Description for Delete a Kubernetes Environment.
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the Kubernetes Environment.
+     * @param options The options parameters.
+     */
+    beginDelete(resourceGroupName: string, name: string, options?: KubeEnvironmentsDeleteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    /**
+     * Description for Delete a Kubernetes Environment.
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the Kubernetes Environment.
+     * @param options The options parameters.
+     */
+    beginDeleteAndWait(resourceGroupName: string, name: string, options?: KubeEnvironmentsDeleteOptionalParams): Promise<void>;
+    /**
+     * Description for Creates or updates a Kubernetes Environment.
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the Kubernetes Environment.
+     * @param kubeEnvironmentEnvelope Configuration details of the Kubernetes Environment.
+     * @param options The options parameters.
+     */
+    update(resourceGroupName: string, name: string, kubeEnvironmentEnvelope: KubeEnvironmentPatchResource, options?: KubeEnvironmentsUpdateOptionalParams): Promise<KubeEnvironmentsUpdateResponse>;
+}
+
+/** Optional parameters. */
+export declare interface KubeEnvironmentsCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
+    /** Delay to wait until next poll, in milliseconds. */
+    updateIntervalInMs?: number;
+    /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+    resumeFrom?: string;
+}
+
+/** Contains response data for the createOrUpdate operation. */
+export declare type KubeEnvironmentsCreateOrUpdateResponse = KubeEnvironment;
+
+/** Optional parameters. */
+export declare interface KubeEnvironmentsDeleteOptionalParams extends coreClient.OperationOptions {
+    /** Delay to wait until next poll, in milliseconds. */
+    updateIntervalInMs?: number;
+    /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+    resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export declare interface KubeEnvironmentsGetOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the get operation. */
+export declare type KubeEnvironmentsGetResponse = KubeEnvironment;
+
+/** Optional parameters. */
+export declare interface KubeEnvironmentsListByResourceGroupNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listByResourceGroupNext operation. */
+export declare type KubeEnvironmentsListByResourceGroupNextResponse = KubeEnvironmentCollection;
+
+/** Optional parameters. */
+export declare interface KubeEnvironmentsListByResourceGroupOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listByResourceGroup operation. */
+export declare type KubeEnvironmentsListByResourceGroupResponse = KubeEnvironmentCollection;
+
+/** Optional parameters. */
+export declare interface KubeEnvironmentsListBySubscriptionNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listBySubscriptionNext operation. */
+export declare type KubeEnvironmentsListBySubscriptionNextResponse = KubeEnvironmentCollection;
+
+/** Optional parameters. */
+export declare interface KubeEnvironmentsListBySubscriptionOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listBySubscription operation. */
+export declare type KubeEnvironmentsListBySubscriptionResponse = KubeEnvironmentCollection;
+
+/** Optional parameters. */
+export declare interface KubeEnvironmentsUpdateOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the update operation. */
+export declare type KubeEnvironmentsUpdateResponse = KubeEnvironment;
+
+/** The configuration settings of the legacy Microsoft Account provider. */
+export declare interface LegacyMicrosoftAccount {
+    /** <code>false</code> if the legacy Microsoft Account provider should not be enabled despite the set registration; otherwise, <code>true</code>. */
+    enabled?: boolean;
+    /** The configuration settings of the app registration for the legacy Microsoft Account provider. */
+    registration?: ClientRegistration;
+    /** The configuration settings of the login flow. */
+    login?: LoginScopes;
+    /** The configuration settings of the legacy Microsoft Account provider token validation flow. */
+    validation?: AllowedAudiencesValidation;
+}
+
+/** Linux Java Container settings. */
+export declare interface LinuxJavaContainerSettings {
+    /**
+     * Java 11 version (runtime only).
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly java11Runtime?: string;
+    /**
+     * Java 8 version (runtime only).
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly java8Runtime?: string;
+    /**
+     * <code>true</code> if the stack is in preview; otherwise, <code>false</code>.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly isPreview?: boolean;
+    /**
+     * <code>true</code> if the stack is deprecated; otherwise, <code>false</code>.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly isDeprecated?: boolean;
+    /**
+     * <code>true</code> if the stack should be hidden; otherwise, <code>false</code>.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly isHidden?: boolean;
+    /**
+     * End-of-life date for the minor version.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly endOfLifeDate?: Date;
+    /**
+     * <code>true</code> if the stack version is auto-updated; otherwise, <code>false</code>.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly isAutoUpdate?: boolean;
+    /**
+     * <code>true</code> if the minor version is early-access; otherwise, <code>false</code>.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly isEarlyAccess?: boolean;
 }
 
 /** Optional parameters. */
@@ -5860,12 +6990,61 @@ export declare interface ListSourceControlsOptionalParams extends coreClient.Ope
 /** Contains response data for the listSourceControls operation. */
 export declare type ListSourceControlsResponse = SourceControlCollection;
 
+/**
+ * Defines values for LoadBalancingMode. \
+ * {@link KnownLoadBalancingMode} can be used interchangeably with LoadBalancingMode,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **None** \
+ * **Web** \
+ * **Publishing** \
+ * **Web, Publishing**
+ */
+export declare type LoadBalancingMode = string;
+
 /** Localizable string object containing the name and a localized value. */
 export declare interface LocalizableString {
     /** Non-localized name. */
     value?: string;
     /** Localized name. */
     localizedValue?: string;
+}
+
+export declare interface LogAnalyticsConfiguration {
+    customerId?: string;
+    sharedKey?: string;
+}
+
+/** The configuration settings of the login flow of users using App Service Authentication/Authorization. */
+export declare interface Login {
+    /** The routes that specify the endpoints used for login and logout requests. */
+    routes?: LoginRoutes;
+    /** The configuration settings of the token store. */
+    tokenStore?: TokenStore;
+    /** <code>true</code> if the fragments from the request are preserved after the login request is made; otherwise, <code>false</code>. */
+    preserveUrlFragmentsForLogins?: boolean;
+    /**
+     * External URLs that can be redirected to as part of logging in or logging out of the app. Note that the query string part of the URL is ignored.
+     * This is an advanced setting typically only needed by Windows Store application backends.
+     * Note that URLs within the current domain are always implicitly allowed.
+     */
+    allowedExternalRedirectUrls?: string[];
+    /** The configuration settings of the session cookie's expiration. */
+    cookieExpiration?: CookieExpiration;
+    /** The configuration settings of the nonce used in the login flow. */
+    nonce?: Nonce;
+}
+
+/** The routes that specify the endpoints used for login and logout requests. */
+export declare interface LoginRoutes {
+    /** The endpoint at which a logout request should be made. */
+    logoutEndpoint?: string;
+}
+
+/** The configuration settings of the login flow, including the scopes that should be requested. */
+export declare interface LoginScopes {
+    /** A list of the scopes that should be requested while authenticating. */
+    scopes?: string[];
 }
 
 /** Defines values for LogLevel. */
@@ -5876,6 +7055,7 @@ export declare interface LogSpecification {
     name?: string;
     displayName?: string;
     blobDuration?: string;
+    logFilterPattern?: string;
 }
 
 /** Defines values for ManagedPipelineMode. */
@@ -5897,12 +7077,12 @@ export declare interface ManagedServiceIdentity {
     readonly principalId?: string;
     /** The list of user assigned identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName} */
     userAssignedIdentities?: {
-        [propertyName: string]: Components1Jq1T4ISchemasManagedserviceidentityPropertiesUserassignedidentitiesAdditionalproperties;
+        [propertyName: string]: UserAssignedIdentity;
     };
 }
 
 /** Defines values for ManagedServiceIdentityType. */
-export declare type ManagedServiceIdentityType = "None" | "SystemAssigned" | "UserAssigned";
+export declare type ManagedServiceIdentityType = "SystemAssigned" | "UserAssigned" | "SystemAssigned, UserAssigned" | "None";
 
 /** Retention policy of a resource metric. */
 export declare interface MetricAvailability {
@@ -5928,6 +7108,7 @@ export declare interface MetricSpecification {
     category?: string;
     availabilities?: MetricAvailability[];
     supportedTimeGrainTypes?: string[];
+    supportedAggregationTypes?: string[];
 }
 
 /** MySQL migration request. */
@@ -6080,18 +7261,6 @@ export declare interface NameValuePair {
     value?: string;
 }
 
-/** Network access control entry. */
-export declare interface NetworkAccessControlEntry {
-    /** Action object. */
-    action?: AccessControlEntryAction;
-    /** Description of network access control entry. */
-    description?: string;
-    /** Order of precedence. */
-    order?: number;
-    /** Remote subnet. */
-    remoteSubnet?: string;
-}
-
 /** Full view of network features for an app (presently VNET integration and Hybrid Connections). */
 export declare type NetworkFeatures = ProxyOnlyResource & {
     /**
@@ -6126,8 +7295,56 @@ export declare interface NetworkTrace {
     message?: string;
 }
 
+/** The configuration settings of the nonce used in the login flow. */
+export declare interface Nonce {
+    /** <code>false</code> if the nonce should not be validated while completing the login flow; otherwise, <code>true</code>. */
+    validateNonce?: boolean;
+    /** The time after the request is made when the nonce should expire. */
+    nonceExpirationInterval?: string;
+}
+
 /** Defines values for NotificationLevel. */
 export declare type NotificationLevel = "Critical" | "Warning" | "Information" | "NonUrgentSuggestion";
+
+/** The authentication client credentials of the custom Open ID Connect provider. */
+export declare interface OpenIdConnectClientCredential {
+    /** The method that should be used to authenticate the user. */
+    method?: "ClientSecretPost";
+    /** The app setting that contains the client secret for the custom Open ID Connect provider. */
+    clientSecretSettingName?: string;
+}
+
+/** The configuration settings of the endpoints used for the custom Open ID Connect provider. */
+export declare interface OpenIdConnectConfig {
+    /** The endpoint to be used to make an authorization request. */
+    authorizationEndpoint?: string;
+    /** The endpoint to be used to request a token. */
+    tokenEndpoint?: string;
+    /** The endpoint that issues the token. */
+    issuer?: string;
+    /** The endpoint that provides the keys necessary to validate the token. */
+    certificationUri?: string;
+    /** The endpoint that contains all the configuration endpoints for the provider. */
+    wellKnownOpenIdConfiguration?: string;
+}
+
+/** The configuration settings of the login flow of the custom Open ID Connect provider. */
+export declare interface OpenIdConnectLogin {
+    /** The name of the claim that contains the users name. */
+    nameClaimType?: string;
+    /** A list of the scopes that should be requested while authenticating. */
+    scopes?: string[];
+}
+
+/** The configuration settings of the app registration for the custom Open ID Connect provider. */
+export declare interface OpenIdConnectRegistration {
+    /** The client id of the custom Open ID Connect provider. */
+    clientId?: string;
+    /** The authentication credentials of the custom Open ID Connect provider. */
+    clientCredential?: OpenIdConnectClientCredential;
+    /** The configuration settings of the endpoints used for the custom Open ID Connect provider. */
+    openIdConnectConfiguration?: OpenIdConnectConfig;
+}
 
 /** An operation on a resource. */
 export declare interface Operation {
@@ -6307,15 +7524,15 @@ export declare interface PrivateAccessVirtualNetwork {
     subnets?: PrivateAccessSubnet[];
 }
 
-/** Private Endpoint Connection ARM resource. */
-export declare type PrivateEndpointConnectionResource = ProxyOnlyResource & {
-    /** NOTE: This property will not be serialized. It can only be populated by the server. */
-    readonly provisioningState?: string;
-    /** PrivateEndpoint of a remote private endpoint connection */
-    privateEndpoint?: ArmIdWrapper;
-    /** The state of a private link connection */
-    privateLinkServiceConnectionState?: PrivateLinkConnectionState;
-};
+export declare interface PrivateEndpointConnectionCollection {
+    /** Collection of resources. */
+    value: RemotePrivateEndpointConnectionARMResource[];
+    /**
+     * Link to next page of resources.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly nextLink?: string;
+}
 
 /** Private Endpoint Connection Approval ARM resource. */
 export declare type PrivateLinkConnectionApprovalRequestResource = ProxyOnlyResource & {
@@ -6546,11 +7763,33 @@ export declare interface Provider {
      */
     listAvailableStacks(options?: ProviderGetAvailableStacksOptionalParams): PagedAsyncIterableIterator<ApplicationStackResource>;
     /**
+     * Description for Get available Function app frameworks and their versions
+     * @param options The options parameters.
+     */
+    listFunctionAppStacks(options?: ProviderGetFunctionAppStacksOptionalParams): PagedAsyncIterableIterator<FunctionAppStack>;
+    /**
+     * Description for Get available Function app frameworks and their versions for location
+     * @param location Function App stack location.
+     * @param options The options parameters.
+     */
+    listFunctionAppStacksForLocation(location: string, options?: ProviderGetFunctionAppStacksForLocationOptionalParams): PagedAsyncIterableIterator<FunctionAppStack>;
+    /**
+     * Description for Get available Web app frameworks and their versions for location
+     * @param location Web App stack location.
+     * @param options The options parameters.
+     */
+    listWebAppStacksForLocation(location: string, options?: ProviderGetWebAppStacksForLocationOptionalParams): PagedAsyncIterableIterator<WebAppStack>;
+    /**
      * Description for Gets all available operations for the Microsoft.Web resource provider. Also exposes
      * resource metric definitions
      * @param options The options parameters.
      */
     listOperations(options?: ProviderListOperationsOptionalParams): PagedAsyncIterableIterator<CsmOperationDescription>;
+    /**
+     * Description for Get available Web app frameworks and their versions
+     * @param options The options parameters.
+     */
+    listWebAppStacks(options?: ProviderGetWebAppStacksOptionalParams): PagedAsyncIterableIterator<WebAppStack>;
     /**
      * Description for Get available application frameworks and their versions
      * @param options The options parameters.
@@ -6560,7 +7799,7 @@ export declare interface Provider {
 
 /** Optional parameters. */
 export declare interface ProviderGetAvailableStacksNextOptionalParams extends coreClient.OperationOptions {
-    osTypeSelected?: Enum4;
+    osTypeSelected?: Enum10;
 }
 
 /** Contains response data for the getAvailableStacksNext operation. */
@@ -6568,7 +7807,7 @@ export declare type ProviderGetAvailableStacksNextResponse = ApplicationStackCol
 
 /** Optional parameters. */
 export declare interface ProviderGetAvailableStacksOnPremNextOptionalParams extends coreClient.OperationOptions {
-    osTypeSelected?: Enum5;
+    osTypeSelected?: Enum15;
 }
 
 /** Contains response data for the getAvailableStacksOnPremNext operation. */
@@ -6576,7 +7815,7 @@ export declare type ProviderGetAvailableStacksOnPremNextResponse = ApplicationSt
 
 /** Optional parameters. */
 export declare interface ProviderGetAvailableStacksOnPremOptionalParams extends coreClient.OperationOptions {
-    osTypeSelected?: Enum5;
+    osTypeSelected?: Enum15;
 }
 
 /** Contains response data for the getAvailableStacksOnPrem operation. */
@@ -6584,11 +7823,83 @@ export declare type ProviderGetAvailableStacksOnPremResponse = ApplicationStackC
 
 /** Optional parameters. */
 export declare interface ProviderGetAvailableStacksOptionalParams extends coreClient.OperationOptions {
-    osTypeSelected?: Enum4;
+    osTypeSelected?: Enum10;
 }
 
 /** Contains response data for the getAvailableStacks operation. */
 export declare type ProviderGetAvailableStacksResponse = ApplicationStackCollection;
+
+/** Optional parameters. */
+export declare interface ProviderGetFunctionAppStacksForLocationNextOptionalParams extends coreClient.OperationOptions {
+    /** Stack OS Type */
+    stackOsType?: Enum12;
+}
+
+/** Contains response data for the getFunctionAppStacksForLocationNext operation. */
+export declare type ProviderGetFunctionAppStacksForLocationNextResponse = FunctionAppStackCollection;
+
+/** Optional parameters. */
+export declare interface ProviderGetFunctionAppStacksForLocationOptionalParams extends coreClient.OperationOptions {
+    /** Stack OS Type */
+    stackOsType?: Enum12;
+}
+
+/** Contains response data for the getFunctionAppStacksForLocation operation. */
+export declare type ProviderGetFunctionAppStacksForLocationResponse = FunctionAppStackCollection;
+
+/** Optional parameters. */
+export declare interface ProviderGetFunctionAppStacksNextOptionalParams extends coreClient.OperationOptions {
+    /** Stack OS Type */
+    stackOsType?: Enum11;
+}
+
+/** Contains response data for the getFunctionAppStacksNext operation. */
+export declare type ProviderGetFunctionAppStacksNextResponse = FunctionAppStackCollection;
+
+/** Optional parameters. */
+export declare interface ProviderGetFunctionAppStacksOptionalParams extends coreClient.OperationOptions {
+    /** Stack OS Type */
+    stackOsType?: Enum11;
+}
+
+/** Contains response data for the getFunctionAppStacks operation. */
+export declare type ProviderGetFunctionAppStacksResponse = FunctionAppStackCollection;
+
+/** Optional parameters. */
+export declare interface ProviderGetWebAppStacksForLocationNextOptionalParams extends coreClient.OperationOptions {
+    /** Stack OS Type */
+    stackOsType?: Enum13;
+}
+
+/** Contains response data for the getWebAppStacksForLocationNext operation. */
+export declare type ProviderGetWebAppStacksForLocationNextResponse = WebAppStackCollection;
+
+/** Optional parameters. */
+export declare interface ProviderGetWebAppStacksForLocationOptionalParams extends coreClient.OperationOptions {
+    /** Stack OS Type */
+    stackOsType?: Enum13;
+}
+
+/** Contains response data for the getWebAppStacksForLocation operation. */
+export declare type ProviderGetWebAppStacksForLocationResponse = WebAppStackCollection;
+
+/** Optional parameters. */
+export declare interface ProviderGetWebAppStacksNextOptionalParams extends coreClient.OperationOptions {
+    /** Stack OS Type */
+    stackOsType?: Enum14;
+}
+
+/** Contains response data for the getWebAppStacksNext operation. */
+export declare type ProviderGetWebAppStacksNextResponse = WebAppStackCollection;
+
+/** Optional parameters. */
+export declare interface ProviderGetWebAppStacksOptionalParams extends coreClient.OperationOptions {
+    /** Stack OS Type */
+    stackOsType?: Enum14;
+}
+
+/** Contains response data for the getWebAppStacks operation. */
+export declare type ProviderGetWebAppStacksResponse = WebAppStackCollection;
 
 /** Optional parameters. */
 export declare interface ProviderListOperationsNextOptionalParams extends coreClient.OperationOptions {
@@ -6655,6 +7966,17 @@ export declare interface PublicCertificateCollection {
 /** Defines values for PublicCertificateLocation. */
 export declare type PublicCertificateLocation = "CurrentUserMy" | "LocalMachineMy" | "Unknown";
 
+/** Publishing Credentials Policies entity collection ARM resource. */
+export declare interface PublishingCredentialsPoliciesCollection {
+    /** Collection of resources. */
+    value: CsmPublishingCredentialsPoliciesEntity[];
+    /**
+     * Link to next page of resources.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly nextLink?: string;
+}
+
 /**
  * Defines values for PublishingProfileFormat. \
  * {@link KnownPublishingProfileFormat} can be used interchangeably with PublishingProfileFormat,
@@ -6682,6 +8004,22 @@ export declare type PushSettings = ProxyOnlyResource & {
     /** Gets or sets a JSON string containing a list of dynamic tags that will be evaluated from user claims in the push registration endpoint. */
     dynamicTagsJson?: string;
 };
+
+/** Result for utterances query. */
+export declare interface QueryUtterancesResult {
+    /** A sample utterance. */
+    sampleUtterance?: SampleUtterance;
+    /** Score of a sample utterance. */
+    score?: number;
+}
+
+/** Suggested utterances where the detector can be applicable */
+export declare interface QueryUtterancesResults {
+    /** Search Query. */
+    query?: string;
+    /** Array of utterance results for search query. */
+    results?: QueryUtterancesResult[];
+}
 
 /** Routing rules for ramp up testing. This rule allows to redirect static traffic % to a slot or to gradually change routing % based on performance. */
 export declare interface RampUpRule {
@@ -6825,7 +8163,7 @@ export declare interface Recommendations {
      */
     listHistoryForHostingEnvironment(resourceGroupName: string, hostingEnvironmentName: string, options?: RecommendationsListHistoryForHostingEnvironmentOptionalParams): PagedAsyncIterableIterator<Recommendation>;
     /**
-     * Description for Get all recommendations for an app.
+     * Description for Get all recommendations for a hosting environment.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param hostingEnvironmentName Name of the app.
      * @param options The options parameters.
@@ -7009,10 +8347,10 @@ export declare type RecommendationsListHistoryForWebAppResponse = Recommendation
 
 /** Optional parameters. */
 export declare interface RecommendationsListNextOptionalParams extends coreClient.OperationOptions {
-    /** Specify <code>true</code> to return only the most critical recommendations. The default is <code>false</code>, which returns all recommendations. */
-    featured?: boolean;
     /** Filter is specified by using OData syntax. Example: $filter=channel eq 'Api' or channel eq 'Notification' and startTime eq 2014-01-01T00:00:00Z and endTime eq 2014-12-31T23:59:59Z and timeGrain eq duration'[PT1H|PT1M|P1D] */
     filter?: string;
+    /** Specify <code>true</code> to return only the most critical recommendations. The default is <code>false</code>, which returns all recommendations. */
+    featured?: boolean;
 }
 
 /** Contains response data for the listNext operation. */
@@ -7020,18 +8358,18 @@ export declare type RecommendationsListNextResponse = RecommendationCollection;
 
 /** Optional parameters. */
 export declare interface RecommendationsListOptionalParams extends coreClient.OperationOptions {
-    /** Specify <code>true</code> to return only the most critical recommendations. The default is <code>false</code>, which returns all recommendations. */
-    featured?: boolean;
     /** Filter is specified by using OData syntax. Example: $filter=channel eq 'Api' or channel eq 'Notification' and startTime eq 2014-01-01T00:00:00Z and endTime eq 2014-12-31T23:59:59Z and timeGrain eq duration'[PT1H|PT1M|P1D] */
     filter?: string;
+    /** Specify <code>true</code> to return only the most critical recommendations. The default is <code>false</code>, which returns all recommendations. */
+    featured?: boolean;
 }
 
 /** Optional parameters. */
 export declare interface RecommendationsListRecommendedRulesForHostingEnvironmentNextOptionalParams extends coreClient.OperationOptions {
-    /** Specify <code>true</code> to return only the most critical recommendations. The default is <code>false</code>, which returns all recommendations. */
-    featured?: boolean;
     /** Return only channels specified in the filter. Filter is specified by using OData syntax. Example: $filter=channel eq 'Api' or channel eq 'Notification' */
     filter?: string;
+    /** Specify <code>true</code> to return only the most critical recommendations. The default is <code>false</code>, which returns all recommendations. */
+    featured?: boolean;
 }
 
 /** Contains response data for the listRecommendedRulesForHostingEnvironmentNext operation. */
@@ -7039,10 +8377,10 @@ export declare type RecommendationsListRecommendedRulesForHostingEnvironmentNext
 
 /** Optional parameters. */
 export declare interface RecommendationsListRecommendedRulesForHostingEnvironmentOptionalParams extends coreClient.OperationOptions {
-    /** Specify <code>true</code> to return only the most critical recommendations. The default is <code>false</code>, which returns all recommendations. */
-    featured?: boolean;
     /** Return only channels specified in the filter. Filter is specified by using OData syntax. Example: $filter=channel eq 'Api' or channel eq 'Notification' */
     filter?: string;
+    /** Specify <code>true</code> to return only the most critical recommendations. The default is <code>false</code>, which returns all recommendations. */
+    featured?: boolean;
 }
 
 /** Contains response data for the listRecommendedRulesForHostingEnvironment operation. */
@@ -7050,10 +8388,10 @@ export declare type RecommendationsListRecommendedRulesForHostingEnvironmentResp
 
 /** Optional parameters. */
 export declare interface RecommendationsListRecommendedRulesForWebAppNextOptionalParams extends coreClient.OperationOptions {
-    /** Specify <code>true</code> to return only the most critical recommendations. The default is <code>false</code>, which returns all recommendations. */
-    featured?: boolean;
     /** Return only channels specified in the filter. Filter is specified by using OData syntax. Example: $filter=channel eq 'Api' or channel eq 'Notification' */
     filter?: string;
+    /** Specify <code>true</code> to return only the most critical recommendations. The default is <code>false</code>, which returns all recommendations. */
+    featured?: boolean;
 }
 
 /** Contains response data for the listRecommendedRulesForWebAppNext operation. */
@@ -7061,10 +8399,10 @@ export declare type RecommendationsListRecommendedRulesForWebAppNextResponse = R
 
 /** Optional parameters. */
 export declare interface RecommendationsListRecommendedRulesForWebAppOptionalParams extends coreClient.OperationOptions {
-    /** Specify <code>true</code> to return only the most critical recommendations. The default is <code>false</code>, which returns all recommendations. */
-    featured?: boolean;
     /** Return only channels specified in the filter. Filter is specified by using OData syntax. Example: $filter=channel eq 'Api' or channel eq 'Notification' */
     filter?: string;
+    /** Specify <code>true</code> to return only the most critical recommendations. The default is <code>false</code>, which returns all recommendations. */
+    featured?: boolean;
 }
 
 /** Contains response data for the listRecommendedRulesForWebApp operation. */
@@ -7111,6 +8449,30 @@ export declare type RelayServiceConnectionEntity = ProxyOnlyResource & {
     biztalkUri?: string;
 };
 
+/** A remote private endpoint connection */
+export declare type RemotePrivateEndpointConnection = ProxyOnlyResource & {
+    /** NOTE: This property will not be serialized. It can only be populated by the server. */
+    readonly provisioningState?: string;
+    /** PrivateEndpoint of a remote private endpoint connection */
+    privateEndpoint?: ArmIdWrapper;
+    /** The state of a private link connection */
+    privateLinkServiceConnectionState?: PrivateLinkConnectionState;
+    /** Private IPAddresses mapped to the remote private endpoint */
+    ipAddresses?: string[];
+};
+
+/** Remote Private Endpoint Connection ARM resource. */
+export declare type RemotePrivateEndpointConnectionARMResource = ProxyOnlyResource & {
+    /** NOTE: This property will not be serialized. It can only be populated by the server. */
+    readonly provisioningState?: string;
+    /** PrivateEndpoint of a remote private endpoint connection */
+    privateEndpoint?: ArmIdWrapper;
+    /** The state of a private link connection */
+    privateLinkServiceConnectionState?: PrivateLinkConnectionState;
+    /** Private IPAddresses mapped to the remote private endpoint */
+    ipAddresses?: string[];
+};
+
 /** Instructions for rendering the data */
 export declare interface Rendering {
     /** Rendering Type */
@@ -7122,7 +8484,7 @@ export declare interface Rendering {
 }
 
 /** Defines values for RenderingType. */
-export declare type RenderingType = "NoGraph" | "Table" | "TimeSeries" | "TimeSeriesPerInstance";
+export declare type RenderingType = "NoGraph" | "Table" | "TimeSeries" | "TimeSeriesPerInstance" | "PieChart" | "DataSummary" | "Email" | "Insights" | "DynamicInsight" | "Markdown" | "Detector" | "DropDown" | "Card" | "Solution" | "Guage" | "Form" | "ChangeSets" | "ChangeAnalysisOnboarding" | "ChangesView" | "AppInsight" | "DependencyGraph" | "DownTime" | "SummaryCard" | "SearchComponent" | "AppInsightEnablement";
 
 /** Class representing certificate renew request. */
 export declare type RenewCertificateOrderRequest = ProxyOnlyResource & {
@@ -7143,7 +8505,7 @@ export declare interface RequestsBasedTrigger {
 }
 
 /** Defines values for ResolveStatus. */
-export declare type ResolveStatus = "Initialized" | "Resolved" | "InvalidSyntax" | "MSINotEnabled" | "VaultNotFound" | "SecretNotFound" | "SecretVersionNotFound" | "AccessToKeyVaultDenied" | "OtherReasons";
+export declare type ResolveStatus = "Initialized" | "Resolved" | "InvalidSyntax" | "MSINotEnabled" | "VaultNotFound" | "SecretNotFound" | "SecretVersionNotFound" | "AccessToKeyVaultDenied" | "OtherReasons" | "FetchTimedOut" | "UnauthorizedClient";
 
 /** Azure resource. This resource is tracked in Azure Resource Manager */
 export declare interface Resource {
@@ -7407,6 +8769,40 @@ export declare interface ResourceNameAvailabilityRequest {
  */
 export declare type ResourceScopeType = string;
 
+/** Message envelope that contains the common Azure resource manager properties and the resource provider specific content. */
+export declare interface ResponseMessageEnvelopeRemotePrivateEndpointConnection {
+    /**
+     * Resource Id. Typically ID is populated only for responses to GET requests. Caller is responsible for passing in this
+     * value for GET requests only.
+     * For example: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupId}/providers/Microsoft.Web/sites/{sitename}
+     */
+    id?: string;
+    /** Name of resource. */
+    name?: string;
+    /** Type of resource e.g "Microsoft.Web/sites". */
+    type?: string;
+    /** Geographical region resource belongs to e.g. SouthCentralUS, SouthEastAsia. */
+    location?: string;
+    /** Tags associated with resource. */
+    tags?: {
+        [propertyName: string]: string;
+    };
+    /** Azure resource manager plan. */
+    plan?: ArmPlan;
+    /** Resource specific properties. */
+    properties?: RemotePrivateEndpointConnection;
+    /** SKU description of the resource. */
+    sku?: SkuDescription;
+    /** Azure-AsyncOperation Status info. */
+    status?: string;
+    /** Azure-AsyncOperation Error info. */
+    error?: ErrorEntity;
+    /** MSI resource */
+    identity?: ManagedServiceIdentity;
+    /** Logical Availability Zones the service is hosted in */
+    zones?: string[];
+}
+
 export declare interface ResponseMetaData {
     /** Source of the Data */
     dataSource?: DataSource;
@@ -7452,6 +8848,16 @@ export declare type RestoreRequest = ProxyOnlyResource & {
  */
 export declare type RouteType = string;
 
+/** Sample utterance. */
+export declare interface SampleUtterance {
+    /** Text attribute of sample utterance. */
+    text?: string;
+    /** Links attribute of sample utterance. */
+    links?: string[];
+    /** Question id of sample utterance (for stackoverflow questions titles). */
+    qid?: string;
+}
+
 /**
  * Defines values for ScmType. \
  * {@link KnownScmType} can be used interchangeably with ScmType,
@@ -7484,6 +8890,8 @@ export declare interface ServiceSpecification {
 export declare type Site = Resource & {
     /** Managed service identity. */
     identity?: ManagedServiceIdentity;
+    /** Extended Location. */
+    extendedLocation?: ExtendedLocation;
     /**
      * Current state of the app.
      * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -7552,6 +8960,13 @@ export declare type Site = Resource & {
     clientAffinityEnabled?: boolean;
     /** <code>true</code> to enable client certificate authentication (TLS mutual authentication); otherwise, <code>false</code>. Default is <code>false</code>. */
     clientCertEnabled?: boolean;
+    /**
+     * This composes with ClientCertEnabled setting.
+     * - ClientCertEnabled: false means ClientCert is ignored.
+     * - ClientCertEnabled: true and ClientCertMode: Required means ClientCert is required.
+     * - ClientCertEnabled: true and ClientCertMode: Optional means ClientCert is optional or accepted.
+     */
+    clientCertMode?: ClientCertMode;
     /** client certificate authentication comma-separated exclusion paths */
     clientCertExclusionPaths?: string;
     /**
@@ -7559,6 +8974,8 @@ export declare type Site = Resource & {
      *  If <code>true</code>, the app is only accessible via API management process.
      */
     hostNamesDisabled?: boolean;
+    /** Unique identifier that verifies the custom domains assigned to the app. Customer will add this id to a txt record for verification. */
+    customDomainVerificationId?: string;
     /**
      * List of IP addresses that the app uses for outbound connections (e.g. database access). Includes VIPs from tenants that site can be hosted with current settings. Read-only.
      * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -7618,6 +9035,15 @@ export declare type Site = Resource & {
      * NOTE: This property will not be serialized. It can only be populated by the server.
      */
     readonly inProgressOperationId?: string;
+    /** Checks if Customer provided storage account is required */
+    storageAccountRequired?: boolean;
+    /** Identity to use for Key Vault Reference authentication. */
+    keyVaultReferenceIdentity?: string;
+    /**
+     * Azure Resource Manager ID of the Virtual network and subnet to be joined by Regional VNET Integration.
+     * This must be of the form /subscriptions/{subscriptionName}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{vnetName}/subnets/{subnetName}
+     */
+    virtualNetworkSubnetId?: string;
 };
 
 /** Configuration settings for the Azure App Service Authentication / Authorization feature. */
@@ -7667,6 +9093,8 @@ export declare type SiteAuthSettings = ProxyOnlyResource & {
      * More information on OpenID Connect: http://openid.net/specs/openid-connect-core-1_0.html
      */
     clientSecret?: string;
+    /** The app setting name that contains the client secret of the relying party application. */
+    clientSecretSettingName?: string;
     /**
      * An alternative to the client secret, that is the thumbprint of a certificate used for signing purposes. This property acts as
      * a replacement for the Client Secret. It is also optional.
@@ -7692,6 +9120,8 @@ export declare type SiteAuthSettings = ProxyOnlyResource & {
      * a user logs in. Each parameter must be in the form "key=value".
      */
     additionalLoginParams?: string[];
+    /** Gets a JSON string containing the Azure AD Acl settings. */
+    aadClaimsAuthorization?: string;
     /**
      * The OpenID Connect Client ID for the Google web application.
      * This setting is required for enabling Google Sign-In.
@@ -7704,6 +9134,11 @@ export declare type SiteAuthSettings = ProxyOnlyResource & {
      * Google Sign-In documentation: https://developers.google.com/identity/sign-in/web/
      */
     googleClientSecret?: string;
+    /**
+     * The app setting name that contains the client secret associated with
+     * the Google web application.
+     */
+    googleClientSecretSettingName?: string;
     /**
      * The OAuth 2.0 scopes that will be requested as part of Google Sign-In authentication.
      * This setting is optional. If not specified, "openid", "profile", and "email" are used as default scopes.
@@ -7722,12 +9157,34 @@ export declare type SiteAuthSettings = ProxyOnlyResource & {
      * Facebook Login documentation: https://developers.facebook.com/docs/facebook-login
      */
     facebookAppSecret?: string;
+    /** The app setting name that contains the app secret used for Facebook Login. */
+    facebookAppSecretSettingName?: string;
     /**
      * The OAuth 2.0 scopes that will be requested as part of Facebook Login authentication.
      * This setting is optional.
      * Facebook Login documentation: https://developers.facebook.com/docs/facebook-login
      */
     facebookOAuthScopes?: string[];
+    /**
+     * The Client Id of the GitHub app used for login.
+     * This setting is required for enabling Github login
+     */
+    gitHubClientId?: string;
+    /**
+     * The Client Secret of the GitHub app used for Github Login.
+     * This setting is required for enabling Github login.
+     */
+    gitHubClientSecret?: string;
+    /**
+     * The app setting name that contains the client secret of the Github
+     * app used for GitHub Login.
+     */
+    gitHubClientSecretSettingName?: string;
+    /**
+     * The OAuth 2.0 scopes that will be requested as part of GitHub Login authentication.
+     * This setting is optional
+     */
+    gitHubOAuthScopes?: string[];
     /**
      * The OAuth 1.0a consumer key of the Twitter application used for sign-in.
      * This setting is required for enabling Twitter Sign-In.
@@ -7741,6 +9198,11 @@ export declare type SiteAuthSettings = ProxyOnlyResource & {
      */
     twitterConsumerSecret?: string;
     /**
+     * The app setting name that contains the OAuth 1.0a consumer secret of the Twitter
+     * application used for sign-in.
+     */
+    twitterConsumerSecretSettingName?: string;
+    /**
      * The OAuth 2.0 client ID that was created for the app used for authentication.
      * This setting is required for enabling Microsoft Account authentication.
      * Microsoft Account OAuth documentation: https://dev.onedrive.com/auth/msa_oauth.htm
@@ -7753,11 +9215,45 @@ export declare type SiteAuthSettings = ProxyOnlyResource & {
      */
     microsoftAccountClientSecret?: string;
     /**
+     * The app setting name containing the OAuth 2.0 client secret that was created for the
+     * app used for authentication.
+     */
+    microsoftAccountClientSecretSettingName?: string;
+    /**
      * The OAuth 2.0 scopes that will be requested as part of Microsoft Account authentication.
      * This setting is optional. If not specified, "wl.basic" is used as the default scope.
      * Microsoft Account Scopes and permissions documentation: https://msdn.microsoft.com/en-us/library/dn631845.aspx
      */
     microsoftAccountOAuthScopes?: string[];
+    /**
+     * "true" if the auth config settings should be read from a file,
+     * "false" otherwise
+     */
+    isAuthFromFile?: string;
+    /**
+     * The path of the config file containing auth settings.
+     * If the path is relative, base will the site's root directory.
+     */
+    authFilePath?: string;
+    /**
+     * The ConfigVersion of the Authentication / Authorization feature in use for the current app.
+     * The setting in this value can control the behavior of the control plane for Authentication / Authorization.
+     */
+    configVersion?: string;
+};
+
+/** Configuration settings for the Azure App Service Authentication / Authorization V2 feature. */
+export declare type SiteAuthSettingsV2 = ProxyOnlyResource & {
+    /** The configuration settings of the platform of App Service Authentication/Authorization. */
+    platform?: AuthPlatform;
+    /** The configuration settings that determines the validation flow of users using App Service Authentication/Authorization. */
+    globalValidation?: GlobalValidation;
+    /** The configuration settings of each of the identity providers used to configure App Service Authentication/Authorization. */
+    identityProviders?: IdentityProviders;
+    /** The configuration settings of the login flow of users using App Service Authentication/Authorization. */
+    login?: Login;
+    /** The configuration settings of the HTTP requests for authentication and authorization requests made against App Service Authentication/Authorization. */
+    httpSettings?: HttpSettings;
 };
 
 /** Defines values for SiteAvailabilityState. */
@@ -7816,6 +9312,10 @@ export declare interface SiteConfig {
     remoteDebuggingVersion?: string;
     /** <code>true</code> if HTTP logging is enabled; otherwise, <code>false</code>. */
     httpLoggingEnabled?: boolean;
+    /** Flag to use Managed Identity Creds for ACR pull */
+    acrUseManagedIdentityCreds?: boolean;
+    /** If using user managed identity, the user managed identity ClientId */
+    acrUserManagedIdentityID?: string;
     /** HTTP logs directory size limit. */
     logsDirectorySizeLimit?: number;
     /** <code>true</code> if detailed error logging is enabled; otherwise, <code>false</code>. */
@@ -7869,6 +9369,10 @@ export declare interface SiteConfig {
     tracingOptions?: string;
     /** Virtual Network name. */
     vnetName?: string;
+    /** Virtual Network Route All enabled. This causes all outbound traffic to have Virtual Network Security Groups and User Defined Routes applied. */
+    vnetRouteAllEnabled?: boolean;
+    /** The number of private ports assigned to this app. These will be assigned dynamically on runtime. */
+    vnetPrivatePortsCount?: number;
     /** Cross-Origin Resource Sharing (CORS) settings. */
     cors?: CorsSettings;
     /** Push endpoint settings. */
@@ -7885,6 +9389,8 @@ export declare interface SiteConfig {
     managedServiceIdentityId?: number;
     /** Explicit Managed Service Identity Id */
     xManagedServiceIdentityId?: number;
+    /** Identity to use for Key Vault Reference authentication. */
+    keyVaultReferenceIdentity?: string;
     /** IP security restrictions for main. */
     ipSecurityRestrictions?: IpSecurityRestriction[];
     /** IP security restrictions for scm. */
@@ -7895,6 +9401,8 @@ export declare interface SiteConfig {
     http20Enabled?: boolean;
     /** MinTlsVersion: configures the minimum version of TLS required for SSL requests */
     minTlsVersion?: SupportedTlsVersions;
+    /** ScmMinTlsVersion: configures the minimum version of TLS required for SSL requests for SCM site */
+    scmMinTlsVersion?: SupportedTlsVersions;
     /** State of FTP / FTPS service */
     ftpsState?: FtpsState;
     /**
@@ -7902,8 +9410,56 @@ export declare interface SiteConfig {
      * This setting only applies to the Consumption and Elastic Plans
      */
     preWarmedInstanceCount?: number;
+    /**
+     * Maximum number of workers that a site can scale out to.
+     * This setting only applies to the Consumption and Elastic Premium Plans
+     */
+    functionAppScaleLimit?: number;
     /** Health check path */
     healthCheckPath?: string;
+    /**
+     * Gets or sets a value indicating whether functions runtime scale monitoring is enabled. When enabled,
+     * the ScaleController will not monitor event sources directly, but will instead call to the
+     * runtime to get scale status.
+     */
+    functionsRuntimeScaleMonitoringEnabled?: boolean;
+    /** Sets the time zone a site uses for generating timestamps. Compatible with Linux and Windows App Service. Setting the WEBSITE_TIME_ZONE app setting takes precedence over this config. For Linux, expects tz database values https://www.iana.org/time-zones (for a quick reference see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). For Windows, expects one of the time zones listed under HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Time Zones */
+    websiteTimeZone?: string;
+    /**
+     * Number of minimum instance count for a site
+     * This setting only applies to the Elastic Plans
+     */
+    minimumElasticInstanceCount?: number;
+    /** List of Azure Storage Accounts. */
+    azureStorageAccounts?: {
+        [propertyName: string]: AzureStorageInfoValue;
+    };
+    /** Property to allow or block all public traffic. */
+    publicNetworkAccess?: string;
+}
+
+/** Site config properties dictionary. */
+export declare interface SiteConfigPropertiesDictionary {
+    /**
+     * <code>true</code> if use32BitWorkerProcess should be set to true for the stack; otherwise, <code>false</code>.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly use32BitWorkerProcess?: boolean;
+    /**
+     * LinuxFxVersion configuration setting.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly linuxFxVersion?: string;
+    /**
+     * JavaVersion configuration setting.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly javaVersion?: string;
+    /**
+     * PowerShellVersion configuration setting.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly powerShellVersion?: string;
 }
 
 /** Web app configuration ARM resource. */
@@ -7936,6 +9492,10 @@ export declare type SiteConfigResource = ProxyOnlyResource & {
     remoteDebuggingVersion?: string;
     /** <code>true</code> if HTTP logging is enabled; otherwise, <code>false</code>. */
     httpLoggingEnabled?: boolean;
+    /** Flag to use Managed Identity Creds for ACR pull */
+    acrUseManagedIdentityCreds?: boolean;
+    /** If using user managed identity, the user managed identity ClientId */
+    acrUserManagedIdentityID?: string;
     /** HTTP logs directory size limit. */
     logsDirectorySizeLimit?: number;
     /** <code>true</code> if detailed error logging is enabled; otherwise, <code>false</code>. */
@@ -7989,6 +9549,10 @@ export declare type SiteConfigResource = ProxyOnlyResource & {
     tracingOptions?: string;
     /** Virtual Network name. */
     vnetName?: string;
+    /** Virtual Network Route All enabled. This causes all outbound traffic to have Virtual Network Security Groups and User Defined Routes applied. */
+    vnetRouteAllEnabled?: boolean;
+    /** The number of private ports assigned to this app. These will be assigned dynamically on runtime. */
+    vnetPrivatePortsCount?: number;
     /** Cross-Origin Resource Sharing (CORS) settings. */
     cors?: CorsSettings;
     /** Push endpoint settings. */
@@ -8005,6 +9569,8 @@ export declare type SiteConfigResource = ProxyOnlyResource & {
     managedServiceIdentityId?: number;
     /** Explicit Managed Service Identity Id */
     xManagedServiceIdentityId?: number;
+    /** Identity to use for Key Vault Reference authentication. */
+    keyVaultReferenceIdentity?: string;
     /** IP security restrictions for main. */
     ipSecurityRestrictions?: IpSecurityRestriction[];
     /** IP security restrictions for scm. */
@@ -8015,6 +9581,8 @@ export declare type SiteConfigResource = ProxyOnlyResource & {
     http20Enabled?: boolean;
     /** MinTlsVersion: configures the minimum version of TLS required for SSL requests */
     minTlsVersion?: SupportedTlsVersions;
+    /** ScmMinTlsVersion: configures the minimum version of TLS required for SSL requests for SCM site */
+    scmMinTlsVersion?: SupportedTlsVersions;
     /** State of FTP / FTPS service */
     ftpsState?: FtpsState;
     /**
@@ -8022,8 +9590,32 @@ export declare type SiteConfigResource = ProxyOnlyResource & {
      * This setting only applies to the Consumption and Elastic Plans
      */
     preWarmedInstanceCount?: number;
+    /**
+     * Maximum number of workers that a site can scale out to.
+     * This setting only applies to the Consumption and Elastic Premium Plans
+     */
+    functionAppScaleLimit?: number;
     /** Health check path */
     healthCheckPath?: string;
+    /**
+     * Gets or sets a value indicating whether functions runtime scale monitoring is enabled. When enabled,
+     * the ScaleController will not monitor event sources directly, but will instead call to the
+     * runtime to get scale status.
+     */
+    functionsRuntimeScaleMonitoringEnabled?: boolean;
+    /** Sets the time zone a site uses for generating timestamps. Compatible with Linux and Windows App Service. Setting the WEBSITE_TIME_ZONE app setting takes precedence over this config. For Linux, expects tz database values https://www.iana.org/time-zones (for a quick reference see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). For Windows, expects one of the time zones listed under HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Time Zones */
+    websiteTimeZone?: string;
+    /**
+     * Number of minimum instance count for a site
+     * This setting only applies to the Elastic Plans
+     */
+    minimumElasticInstanceCount?: number;
+    /** List of Azure Storage Accounts. */
+    azureStorageAccounts?: {
+        [propertyName: string]: AzureStorageInfoValue;
+    };
+    /** Property to allow or block all public traffic. */
+    publicNetworkAccess?: string;
 };
 
 /** Collection of site configurations. */
@@ -8119,15 +9711,6 @@ export declare interface SiteExtensionInfoCollection {
 /** Defines values for SiteExtensionType. */
 export declare type SiteExtensionType = "Gallery" | "WebRoot";
 
-/** Instance of an app. */
-export declare type SiteInstance = ProxyOnlyResource & {
-    /**
-     * Name of instance.
-     * NOTE: This property will not be serialized. It can only be populated by the server.
-     */
-    readonly siteInstanceName?: string;
-};
-
 /** Metric limits set on an app. */
 export declare interface SiteLimits {
     /** Maximum allowed CPU usage percentage. */
@@ -8139,7 +9722,7 @@ export declare interface SiteLimits {
 }
 
 /** Defines values for SiteLoadBalancing. */
-export declare type SiteLoadBalancing = "WeightedRoundRobin" | "LeastRequests" | "LeastResponseTime" | "WeightedTotalTraffic" | "RequestHash";
+export declare type SiteLoadBalancing = "WeightedRoundRobin" | "LeastRequests" | "LeastResponseTime" | "WeightedTotalTraffic" | "RequestHash" | "PerSiteRoundRobin";
 
 /** Configuration of App Service site logs. */
 export declare type SiteLogsConfig = ProxyOnlyResource & {
@@ -8237,6 +9820,13 @@ export declare type SitePatchResource = ProxyOnlyResource & {
     clientAffinityEnabled?: boolean;
     /** <code>true</code> to enable client certificate authentication (TLS mutual authentication); otherwise, <code>false</code>. Default is <code>false</code>. */
     clientCertEnabled?: boolean;
+    /**
+     * This composes with ClientCertEnabled setting.
+     * - ClientCertEnabled: false means ClientCert is ignored.
+     * - ClientCertEnabled: true and ClientCertMode: Required means ClientCert is required.
+     * - ClientCertEnabled: true and ClientCertMode: Optional means ClientCert is optional or accepted.
+     */
+    clientCertMode?: ClientCertMode;
     /** client certificate authentication comma-separated exclusion paths */
     clientCertExclusionPaths?: string;
     /**
@@ -8244,6 +9834,8 @@ export declare type SitePatchResource = ProxyOnlyResource & {
      *  If <code>true</code>, the app is only accessible via API management process.
      */
     hostNamesDisabled?: boolean;
+    /** Unique identifier that verifies the custom domains assigned to the app. Customer will add this id to a txt record for verification. */
+    customDomainVerificationId?: string;
     /**
      * List of IP addresses that the app uses for outbound connections (e.g. database access). Includes VIPs from tenants that site can be hosted with current settings. Read-only.
      * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -8303,6 +9895,15 @@ export declare type SitePatchResource = ProxyOnlyResource & {
      * NOTE: This property will not be serialized. It can only be populated by the server.
      */
     readonly inProgressOperationId?: string;
+    /** Checks if Customer provided storage account is required */
+    storageAccountRequired?: boolean;
+    /** Identity to use for Key Vault Reference authentication. */
+    keyVaultReferenceIdentity?: string;
+    /**
+     * Azure Resource Manager ID of the Virtual network and subnet to be joined by Regional VNET Integration.
+     * This must be of the form /subscriptions/{subscriptionName}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{vnetName}/subnets/{subnetName}
+     */
+    virtualNetworkSubnetId?: string;
 };
 
 /** Used for getting PHP error logging flag. */
@@ -8342,10 +9943,14 @@ export declare type SiteSourceControl = ProxyOnlyResource & {
     branch?: string;
     /** <code>true</code> to limit to manual integration; <code>false</code> to enable continuous integration (which configures webhooks into online repos like GitHub). */
     isManualIntegration?: boolean;
+    /** <code>true</code> if this is deployed via GitHub action. */
+    isGitHubAction?: boolean;
     /** <code>true</code> to enable deployment rollback; otherwise, <code>false</code>. */
     deploymentRollbackEnabled?: boolean;
     /** <code>true</code> for a Mercurial repository; <code>false</code> for a Git repository. */
     isMercurial?: boolean;
+    /** If GitHub Action is selected, than the associated configuration. */
+    gitHubActionConfiguration?: GitHubActionConfiguration;
 };
 
 /** Description of the App Service plan scale options. */
@@ -8354,6 +9959,8 @@ export declare interface SkuCapacity {
     minimum?: number;
     /** Maximum number of workers for this App Service plan SKU. */
     maximum?: number;
+    /** Maximum number of Elastic workers for this App Service plan SKU. */
+    elasticMaximum?: number;
     /** Default number of workers for this App Service plan SKU. */
     default?: number;
     /** Available scale configurations for an App Service plan. */
@@ -8421,7 +10028,10 @@ export declare interface SkuInfos {
  * **Premium** \
  * **Dynamic** \
  * **Isolated** \
+ * **IsolatedV2** \
  * **PremiumV2** \
+ * **PremiumV3** \
+ * **PremiumContainer** \
  * **ElasticPremium** \
  * **ElasticIsolated**
  */
@@ -8510,6 +10120,8 @@ export declare interface SlotSwapStatus {
 export declare interface SlowRequestsBasedTrigger {
     /** Time taken. */
     timeTaken?: string;
+    /** Request Path. */
+    path?: string;
     /** Request Count. */
     count?: number;
     /** Time interval. */
@@ -8635,6 +10247,24 @@ export declare interface StackMajorVersion {
     isDeprecated?: boolean;
     /** <code>true</code> if this stack should be hidden for new customers on portal, otherwise <code>false</code>. */
     isHidden?: boolean;
+    /**
+     * <appSettings>
+     *  <appSetting name="FUNCTIONS_WORKER_RUNTIME" value="dotnet" />
+     * </appSettings>
+     *  Example: All the function apps need AppSetting: "FUNCTIONS_WORKER_RUNTIME" to be set stack name
+     */
+    appSettingsDictionary?: {
+        [propertyName: string]: Record<string, unknown>;
+    };
+    /**
+     * <siteConfigProperties>
+     *  <siteConfigProperty name="Use32BitWorkerProcess" value="false" />
+     * </siteConfigProperties>
+     *  Example: All Linux Function Apps, need Use32BitWorkerProcess to be set to 0
+     */
+    siteConfigPropertiesDictionary?: {
+        [propertyName: string]: Record<string, unknown>;
+    };
 }
 
 /** Application stack minor version. */
@@ -8648,6 +10278,12 @@ export declare interface StackMinorVersion {
     /** <code>true</code> if this supports Remote Debugging, otherwise <code>false</code>. */
     isRemoteDebuggingEnabled?: boolean;
 }
+
+/** Defines values for StackPreferredOs. */
+export declare type StackPreferredOs = "Windows" | "Linux";
+
+/** Defines values for StagingEnvironmentPolicy. */
+export declare type StagingEnvironmentPolicy = "Enabled" | "Disabled";
 
 /** Stamp capacity information. */
 export declare interface StampCapacity {
@@ -8698,6 +10334,8 @@ export declare interface StampCapacityCollection {
 export declare type StaticSiteARMResource = Resource & {
     /** Description of a SKU for a scalable resource. */
     sku?: SkuDescription;
+    /** Managed service identity. */
+    identity?: ManagedServiceIdentity;
     /**
      * The default autogenerated hostname for the static site.
      * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -8716,6 +10354,37 @@ export declare type StaticSiteARMResource = Resource & {
     repositoryToken?: string;
     /** Build properties to configure on the repository. */
     buildProperties?: StaticSiteBuildProperties;
+    /**
+     * Private endpoint connections
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly privateEndpointConnections?: ResponseMessageEnvelopeRemotePrivateEndpointConnection[];
+    /** State indicating whether staging environments are allowed or not allowed for a static web app. */
+    stagingEnvironmentPolicy?: StagingEnvironmentPolicy;
+    /** <code>false</code> if config file is locked for this static web app; otherwise, <code>true</code>. */
+    allowConfigFileUpdates?: boolean;
+    /** Template options for generating a new repository. */
+    templateProperties?: StaticSiteTemplateOptions;
+    /**
+     * The content distribution endpoint for the static site.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly contentDistributionEndpoint?: string;
+    /**
+     * Identity to use for Key Vault Reference authentication.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly keyVaultReferenceIdentity?: string;
+    /**
+     * User provided function apps registered with the static site
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly userProvidedFunctionApps?: StaticSiteUserProvidedFunctionApp[];
+    /**
+     * The provider that submitted the last deployment to the primary environment of the static site.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly provider?: string;
 };
 
 /** Static Site Build ARM resource. */
@@ -8755,6 +10424,11 @@ export declare type StaticSiteBuildARMResource = ProxyOnlyResource & {
      * NOTE: This property will not be serialized. It can only be populated by the server.
      */
     readonly status?: BuildStatus;
+    /**
+     * User provided function apps registered with the static site build
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly userProvidedFunctionApps?: StaticSiteUserProvidedFunctionApp[];
 };
 
 /** Collection of static site builds. */
@@ -8774,8 +10448,18 @@ export declare interface StaticSiteBuildProperties {
     appLocation?: string;
     /** The path to the api code within the repository. */
     apiLocation?: string;
-    /** The path of the app artifacts after building. */
+    /** Deprecated: The path of the app artifacts after building (deprecated in favor of OutputLocation) */
     appArtifactLocation?: string;
+    /** The output path of the app after building. */
+    outputLocation?: string;
+    /** A custom command to run during deployment of the static content application. */
+    appBuildCommand?: string;
+    /** A custom command to run during deployment of the Azure Functions API application. */
+    apiBuildCommand?: string;
+    /** Skip Github Action workflow generation. */
+    skipGithubActionWorkflowGeneration?: boolean;
+    /** Github Action secret name override. */
+    githubActionSecretNameOverride?: string;
 }
 
 /** Collection of static sites. */
@@ -8801,6 +10485,18 @@ export declare type StaticSiteCustomDomainOverviewARMResource = ProxyOnlyResourc
      * NOTE: This property will not be serialized. It can only be populated by the server.
      */
     readonly createdOn?: Date;
+    /**
+     * The status of the custom domain
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly status?: CustomDomainStatus;
+    /**
+     * The TXT record validation token
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly validationToken?: string;
+    /** NOTE: This property will not be serialized. It can only be populated by the server. */
+    readonly errorMessage?: string;
 };
 
 /** Collection of static site custom domains. */
@@ -8813,6 +10509,12 @@ export declare interface StaticSiteCustomDomainOverviewCollection {
      */
     readonly nextLink?: string;
 }
+
+/** Static Site Custom Domain Request Properties ARM resource. */
+export declare type StaticSiteCustomDomainRequestPropertiesARMResource = ProxyOnlyResource & {
+    /** Validation method for adding a custom domain */
+    validationMethod?: string;
+};
 
 /** Static Site Function Overview ARM resource. */
 export declare type StaticSiteFunctionOverviewARMResource = ProxyOnlyResource & {
@@ -8859,6 +10561,37 @@ export declare type StaticSitePatchResource = ProxyOnlyResource & {
     repositoryToken?: string;
     /** Build properties to configure on the repository. */
     buildProperties?: StaticSiteBuildProperties;
+    /**
+     * Private endpoint connections
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly privateEndpointConnections?: ResponseMessageEnvelopeRemotePrivateEndpointConnection[];
+    /** State indicating whether staging environments are allowed or not allowed for a static web app. */
+    stagingEnvironmentPolicy?: StagingEnvironmentPolicy;
+    /** <code>false</code> if config file is locked for this static web app; otherwise, <code>true</code>. */
+    allowConfigFileUpdates?: boolean;
+    /** Template options for generating a new repository. */
+    templateProperties?: StaticSiteTemplateOptions;
+    /**
+     * The content distribution endpoint for the static site.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly contentDistributionEndpoint?: string;
+    /**
+     * Identity to use for Key Vault Reference authentication.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly keyVaultReferenceIdentity?: string;
+    /**
+     * User provided function apps registered with the static site
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly userProvidedFunctionApps?: StaticSiteUserProvidedFunctionApp[];
+    /**
+     * The provider that submitted the last deployment to the primary environment of the static site.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly provider?: string;
 };
 
 /** Static Site Reset Properties ARM resource. */
@@ -8901,10 +10634,19 @@ export declare interface StaticSites {
      * Description for Gets the functions of a particular static site build.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param name Name of the static site.
-     * @param prId The stage site identifier.
+     * @param environmentName The stage site identifier.
      * @param options The options parameters.
      */
-    listStaticSiteBuildFunctions(resourceGroupName: string, name: string, prId: string, options?: StaticSitesListStaticSiteBuildFunctionsOptionalParams): PagedAsyncIterableIterator<StaticSiteFunctionOverviewARMResource>;
+    listStaticSiteBuildFunctions(resourceGroupName: string, name: string, environmentName: string, options?: StaticSitesListStaticSiteBuildFunctionsOptionalParams): PagedAsyncIterableIterator<StaticSiteFunctionOverviewARMResource>;
+    /**
+     * Description for Gets the details of the user provided function apps registered with a static site
+     * build
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the static site.
+     * @param environmentName The stage site identifier.
+     * @param options The options parameters.
+     */
+    listUserProvidedFunctionAppsForStaticSiteBuild(resourceGroupName: string, name: string, environmentName: string, options?: StaticSitesGetUserProvidedFunctionAppsForStaticSiteBuildOptionalParams): PagedAsyncIterableIterator<StaticSiteUserProvidedFunctionAppARMResource>;
     /**
      * Description for Gets all static site custom domains for a particular static site.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -8920,6 +10662,28 @@ export declare interface StaticSites {
      */
     listStaticSiteFunctions(resourceGroupName: string, name: string, options?: StaticSitesListStaticSiteFunctionsOptionalParams): PagedAsyncIterableIterator<StaticSiteFunctionOverviewARMResource>;
     /**
+     * Description for Gets the list of private endpoint connections associated with a static site
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the static site.
+     * @param options The options parameters.
+     */
+    listPrivateEndpointConnectionList(resourceGroupName: string, name: string, options?: StaticSitesGetPrivateEndpointConnectionListOptionalParams): PagedAsyncIterableIterator<RemotePrivateEndpointConnectionARMResource>;
+    /**
+     * Description for Gets the details of the user provided function apps registered with a static site
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the static site.
+     * @param options The options parameters.
+     */
+    listUserProvidedFunctionAppsForStaticSite(resourceGroupName: string, name: string, options?: StaticSitesGetUserProvidedFunctionAppsForStaticSiteOptionalParams): PagedAsyncIterableIterator<StaticSiteUserProvidedFunctionAppARMResource>;
+    /**
+     * Description for Generates a preview workflow file for the static site
+     * @param location Location where you plan to create the static site.
+     * @param staticSitesWorkflowPreviewRequest A JSON representation of the
+     *                                          StaticSitesWorkflowPreviewRequest properties. See example.
+     * @param options The options parameters.
+     */
+    previewWorkflow(location: string, staticSitesWorkflowPreviewRequest: StaticSitesWorkflowPreviewRequest, options?: StaticSitesPreviewWorkflowOptionalParams): Promise<StaticSitesPreviewWorkflowResponse>;
+    /**
      * Description for Gets the details of a static site.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param name Name of the static site.
@@ -8934,14 +10698,30 @@ export declare interface StaticSites {
      * @param staticSiteEnvelope A JSON representation of the staticsite properties. See example.
      * @param options The options parameters.
      */
-    createOrUpdateStaticSite(resourceGroupName: string, name: string, staticSiteEnvelope: StaticSiteARMResource, options?: StaticSitesCreateOrUpdateStaticSiteOptionalParams): Promise<StaticSitesCreateOrUpdateStaticSiteResponse>;
+    beginCreateOrUpdateStaticSite(resourceGroupName: string, name: string, staticSiteEnvelope: StaticSiteARMResource, options?: StaticSitesCreateOrUpdateStaticSiteOptionalParams): Promise<PollerLike<PollOperationState<StaticSitesCreateOrUpdateStaticSiteResponse>, StaticSitesCreateOrUpdateStaticSiteResponse>>;
+    /**
+     * Description for Creates a new static site in an existing resource group, or updates an existing
+     * static site.
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the static site to create or update.
+     * @param staticSiteEnvelope A JSON representation of the staticsite properties. See example.
+     * @param options The options parameters.
+     */
+    beginCreateOrUpdateStaticSiteAndWait(resourceGroupName: string, name: string, staticSiteEnvelope: StaticSiteARMResource, options?: StaticSitesCreateOrUpdateStaticSiteOptionalParams): Promise<StaticSitesCreateOrUpdateStaticSiteResponse>;
     /**
      * Description for Deletes a static site.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param name Name of the static site to delete.
      * @param options The options parameters.
      */
-    deleteStaticSite(resourceGroupName: string, name: string, options?: StaticSitesDeleteStaticSiteOptionalParams): Promise<void>;
+    beginDeleteStaticSite(resourceGroupName: string, name: string, options?: StaticSitesDeleteStaticSiteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    /**
+     * Description for Deletes a static site.
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the static site to delete.
+     * @param options The options parameters.
+     */
+    beginDeleteStaticSiteAndWait(resourceGroupName: string, name: string, options?: StaticSitesDeleteStaticSiteOptionalParams): Promise<void>;
     /**
      * Description for Creates a new static site in an existing resource group, or updates an existing
      * static site.
@@ -8974,40 +10754,134 @@ export declare interface StaticSites {
      * Description for Gets the details of a static site build.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param name Name of the static site.
-     * @param prId The stage site identifier.
+     * @param environmentName The stage site identifier.
      * @param options The options parameters.
      */
-    getStaticSiteBuild(resourceGroupName: string, name: string, prId: string, options?: StaticSitesGetStaticSiteBuildOptionalParams): Promise<StaticSitesGetStaticSiteBuildResponse>;
+    getStaticSiteBuild(resourceGroupName: string, name: string, environmentName: string, options?: StaticSitesGetStaticSiteBuildOptionalParams): Promise<StaticSitesGetStaticSiteBuildResponse>;
     /**
      * Description for Deletes a static site build.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param name Name of the static site.
-     * @param prId The stage site identifier.
+     * @param environmentName The stage site identifier.
      * @param options The options parameters.
      */
-    deleteStaticSiteBuild(resourceGroupName: string, name: string, prId: string, options?: StaticSitesDeleteStaticSiteBuildOptionalParams): Promise<void>;
+    beginDeleteStaticSiteBuild(resourceGroupName: string, name: string, environmentName: string, options?: StaticSitesDeleteStaticSiteBuildOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    /**
+     * Description for Deletes a static site build.
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the static site.
+     * @param environmentName The stage site identifier.
+     * @param options The options parameters.
+     */
+    beginDeleteStaticSiteBuildAndWait(resourceGroupName: string, name: string, environmentName: string, options?: StaticSitesDeleteStaticSiteBuildOptionalParams): Promise<void>;
+    /**
+     * Description for Creates or updates the app settings of a static site build.
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the static site.
+     * @param environmentName The stage site identifier.
+     * @param appSettings The dictionary containing the static site app settings to update.
+     * @param options The options parameters.
+     */
+    createOrUpdateStaticSiteBuildAppSettings(resourceGroupName: string, name: string, environmentName: string, appSettings: StringDictionary, options?: StaticSitesCreateOrUpdateStaticSiteBuildAppSettingsOptionalParams): Promise<StaticSitesCreateOrUpdateStaticSiteBuildAppSettingsResponse>;
     /**
      * Description for Creates or updates the function app settings of a static site build.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param name Name of the static site.
-     * @param prId The stage site identifier.
-     * @param appSettings String dictionary resource.
+     * @param environmentName The stage site identifier.
+     * @param appSettings The dictionary containing the static site function app settings to update.
      * @param options The options parameters.
      */
-    createOrUpdateStaticSiteBuildFunctionAppSettings(resourceGroupName: string, name: string, prId: string, appSettings: StringDictionary, options?: StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettingsOptionalParams): Promise<StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettingsResponse>;
+    createOrUpdateStaticSiteBuildFunctionAppSettings(resourceGroupName: string, name: string, environmentName: string, appSettings: StringDictionary, options?: StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettingsOptionalParams): Promise<StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettingsResponse>;
     /**
-     * Description for Gets the application settings of a static site.
+     * Description for Gets the application settings of a static site build.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param name Name of the static site.
-     * @param prId The stage site identifier.
+     * @param environmentName The stage site identifier.
      * @param options The options parameters.
      */
-    listStaticSiteBuildFunctionAppSettings(resourceGroupName: string, name: string, prId: string, options?: StaticSitesListStaticSiteBuildFunctionAppSettingsOptionalParams): Promise<StaticSitesListStaticSiteBuildFunctionAppSettingsResponse>;
+    listStaticSiteBuildAppSettings(resourceGroupName: string, name: string, environmentName: string, options?: StaticSitesListStaticSiteBuildAppSettingsOptionalParams): Promise<StaticSitesListStaticSiteBuildAppSettingsResponse>;
+    /**
+     * Description for Gets the application settings of a static site build.
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the static site.
+     * @param environmentName The stage site identifier.
+     * @param options The options parameters.
+     */
+    listStaticSiteBuildFunctionAppSettings(resourceGroupName: string, name: string, environmentName: string, options?: StaticSitesListStaticSiteBuildFunctionAppSettingsOptionalParams): Promise<StaticSitesListStaticSiteBuildFunctionAppSettingsResponse>;
+    /**
+     * Description for Gets the details of the user provided function app registered with a static site
+     * build
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the static site.
+     * @param environmentName The stage site identifier.
+     * @param functionAppName Name of the function app registered with the static site build.
+     * @param options The options parameters.
+     */
+    getUserProvidedFunctionAppForStaticSiteBuild(resourceGroupName: string, name: string, environmentName: string, functionAppName: string, options?: StaticSitesGetUserProvidedFunctionAppForStaticSiteBuildOptionalParams): Promise<StaticSitesGetUserProvidedFunctionAppForStaticSiteBuildResponse>;
+    /**
+     * Description for Register a user provided function app with a static site build
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the static site.
+     * @param environmentName The stage site identifier.
+     * @param functionAppName Name of the function app to register with the static site build.
+     * @param staticSiteUserProvidedFunctionEnvelope A JSON representation of the user provided function
+     *                                               app properties. See example.
+     * @param options The options parameters.
+     */
+    beginRegisterUserProvidedFunctionAppWithStaticSiteBuild(resourceGroupName: string, name: string, environmentName: string, functionAppName: string, staticSiteUserProvidedFunctionEnvelope: StaticSiteUserProvidedFunctionAppARMResource, options?: StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildOptionalParams): Promise<PollerLike<PollOperationState<StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildResponse>, StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildResponse>>;
+    /**
+     * Description for Register a user provided function app with a static site build
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the static site.
+     * @param environmentName The stage site identifier.
+     * @param functionAppName Name of the function app to register with the static site build.
+     * @param staticSiteUserProvidedFunctionEnvelope A JSON representation of the user provided function
+     *                                               app properties. See example.
+     * @param options The options parameters.
+     */
+    beginRegisterUserProvidedFunctionAppWithStaticSiteBuildAndWait(resourceGroupName: string, name: string, environmentName: string, functionAppName: string, staticSiteUserProvidedFunctionEnvelope: StaticSiteUserProvidedFunctionAppARMResource, options?: StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildOptionalParams): Promise<StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildResponse>;
+    /**
+     * Description for Detach the user provided function app from the static site build
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the static site.
+     * @param environmentName The stage site identifier.
+     * @param functionAppName Name of the function app registered with the static site build.
+     * @param options The options parameters.
+     */
+    detachUserProvidedFunctionAppFromStaticSiteBuild(resourceGroupName: string, name: string, environmentName: string, functionAppName: string, options?: StaticSitesDetachUserProvidedFunctionAppFromStaticSiteBuildOptionalParams): Promise<void>;
+    /**
+     * Description for Deploys zipped content to a specific environment of a static site.
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the static site.
+     * @param environmentName Name of the environment.
+     * @param staticSiteZipDeploymentEnvelope A JSON representation of the StaticSiteZipDeployment
+     *                                        properties. See example.
+     * @param options The options parameters.
+     */
+    beginCreateZipDeploymentForStaticSiteBuild(resourceGroupName: string, name: string, environmentName: string, staticSiteZipDeploymentEnvelope: StaticSiteZipDeploymentARMResource, options?: StaticSitesCreateZipDeploymentForStaticSiteBuildOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    /**
+     * Description for Deploys zipped content to a specific environment of a static site.
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the static site.
+     * @param environmentName Name of the environment.
+     * @param staticSiteZipDeploymentEnvelope A JSON representation of the StaticSiteZipDeployment
+     *                                        properties. See example.
+     * @param options The options parameters.
+     */
+    beginCreateZipDeploymentForStaticSiteBuildAndWait(resourceGroupName: string, name: string, environmentName: string, staticSiteZipDeploymentEnvelope: StaticSiteZipDeploymentARMResource, options?: StaticSitesCreateZipDeploymentForStaticSiteBuildOptionalParams): Promise<void>;
+    /**
+     * Description for Creates or updates the app settings of a static site.
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the static site.
+     * @param appSettings The dictionary containing the static site app settings to update.
+     * @param options The options parameters.
+     */
+    createOrUpdateStaticSiteAppSettings(resourceGroupName: string, name: string, appSettings: StringDictionary, options?: StaticSitesCreateOrUpdateStaticSiteAppSettingsOptionalParams): Promise<StaticSitesCreateOrUpdateStaticSiteAppSettingsResponse>;
     /**
      * Description for Creates or updates the function app settings of a static site.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param name Name of the static site.
-     * @param appSettings String dictionary resource.
+     * @param appSettings The dictionary containing the static site function app settings to update.
      * @param options The options parameters.
      */
     createOrUpdateStaticSiteFunctionAppSettings(resourceGroupName: string, name: string, appSettings: StringDictionary, options?: StaticSitesCreateOrUpdateStaticSiteFunctionAppSettingsOptionalParams): Promise<StaticSitesCreateOrUpdateStaticSiteFunctionAppSettingsResponse>;
@@ -9020,14 +10894,35 @@ export declare interface StaticSites {
      */
     createUserRolesInvitationLink(resourceGroupName: string, name: string, staticSiteUserRolesInvitationEnvelope: StaticSiteUserInvitationRequestResource, options?: StaticSitesCreateUserRolesInvitationLinkOptionalParams): Promise<StaticSitesCreateUserRolesInvitationLinkResponse>;
     /**
+     * Description for Gets an existing custom domain for a particular static site.
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the static site resource to search in.
+     * @param domainName The custom domain name.
+     * @param options The options parameters.
+     */
+    getStaticSiteCustomDomain(resourceGroupName: string, name: string, domainName: string, options?: StaticSitesGetStaticSiteCustomDomainOptionalParams): Promise<StaticSitesGetStaticSiteCustomDomainResponse>;
+    /**
      * Description for Creates a new static site custom domain in an existing resource group and static
      * site.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param name Name of the static site.
      * @param domainName The custom domain to create.
+     * @param staticSiteCustomDomainRequestPropertiesEnvelope A JSON representation of the static site
+     *                                                        custom domain request properties. See example.
      * @param options The options parameters.
      */
-    createOrUpdateStaticSiteCustomDomain(resourceGroupName: string, name: string, domainName: string, options?: StaticSitesCreateOrUpdateStaticSiteCustomDomainOptionalParams): Promise<StaticSitesCreateOrUpdateStaticSiteCustomDomainResponse>;
+    beginCreateOrUpdateStaticSiteCustomDomain(resourceGroupName: string, name: string, domainName: string, staticSiteCustomDomainRequestPropertiesEnvelope: StaticSiteCustomDomainRequestPropertiesARMResource, options?: StaticSitesCreateOrUpdateStaticSiteCustomDomainOptionalParams): Promise<PollerLike<PollOperationState<StaticSitesCreateOrUpdateStaticSiteCustomDomainResponse>, StaticSitesCreateOrUpdateStaticSiteCustomDomainResponse>>;
+    /**
+     * Description for Creates a new static site custom domain in an existing resource group and static
+     * site.
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the static site.
+     * @param domainName The custom domain to create.
+     * @param staticSiteCustomDomainRequestPropertiesEnvelope A JSON representation of the static site
+     *                                                        custom domain request properties. See example.
+     * @param options The options parameters.
+     */
+    beginCreateOrUpdateStaticSiteCustomDomainAndWait(resourceGroupName: string, name: string, domainName: string, staticSiteCustomDomainRequestPropertiesEnvelope: StaticSiteCustomDomainRequestPropertiesARMResource, options?: StaticSitesCreateOrUpdateStaticSiteCustomDomainOptionalParams): Promise<StaticSitesCreateOrUpdateStaticSiteCustomDomainResponse>;
     /**
      * Description for Deletes a custom domain.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -9035,22 +10930,63 @@ export declare interface StaticSites {
      * @param domainName The custom domain to delete.
      * @param options The options parameters.
      */
-    deleteStaticSiteCustomDomain(resourceGroupName: string, name: string, domainName: string, options?: StaticSitesDeleteStaticSiteCustomDomainOptionalParams): Promise<void>;
+    beginDeleteStaticSiteCustomDomain(resourceGroupName: string, name: string, domainName: string, options?: StaticSitesDeleteStaticSiteCustomDomainOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    /**
+     * Description for Deletes a custom domain.
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the static site.
+     * @param domainName The custom domain to delete.
+     * @param options The options parameters.
+     */
+    beginDeleteStaticSiteCustomDomainAndWait(resourceGroupName: string, name: string, domainName: string, options?: StaticSitesDeleteStaticSiteCustomDomainOptionalParams): Promise<void>;
     /**
      * Description for Validates a particular custom domain can be added to a static site.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param name Name of the static site.
      * @param domainName The custom domain to validate.
+     * @param staticSiteCustomDomainRequestPropertiesEnvelope A JSON representation of the static site
+     *                                                        custom domain request properties. See example.
      * @param options The options parameters.
      */
-    validateCustomDomainCanBeAddedToStaticSite(resourceGroupName: string, name: string, domainName: string, options?: StaticSitesValidateCustomDomainCanBeAddedToStaticSiteOptionalParams): Promise<void>;
+    beginValidateCustomDomainCanBeAddedToStaticSite(resourceGroupName: string, name: string, domainName: string, staticSiteCustomDomainRequestPropertiesEnvelope: StaticSiteCustomDomainRequestPropertiesARMResource, options?: StaticSitesValidateCustomDomainCanBeAddedToStaticSiteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    /**
+     * Description for Validates a particular custom domain can be added to a static site.
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the static site.
+     * @param domainName The custom domain to validate.
+     * @param staticSiteCustomDomainRequestPropertiesEnvelope A JSON representation of the static site
+     *                                                        custom domain request properties. See example.
+     * @param options The options parameters.
+     */
+    beginValidateCustomDomainCanBeAddedToStaticSiteAndWait(resourceGroupName: string, name: string, domainName: string, staticSiteCustomDomainRequestPropertiesEnvelope: StaticSiteCustomDomainRequestPropertiesARMResource, options?: StaticSitesValidateCustomDomainCanBeAddedToStaticSiteOptionalParams): Promise<void>;
     /**
      * Description for Detaches a static site.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param name Name of the static site to detach.
      * @param options The options parameters.
      */
-    detachStaticSite(resourceGroupName: string, name: string, options?: StaticSitesDetachStaticSiteOptionalParams): Promise<void>;
+    beginDetachStaticSite(resourceGroupName: string, name: string, options?: StaticSitesDetachStaticSiteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    /**
+     * Description for Detaches a static site.
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the static site to detach.
+     * @param options The options parameters.
+     */
+    beginDetachStaticSiteAndWait(resourceGroupName: string, name: string, options?: StaticSitesDetachStaticSiteOptionalParams): Promise<void>;
+    /**
+     * Description for Gets the application settings of a static site.
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the static site.
+     * @param options The options parameters.
+     */
+    listStaticSiteAppSettings(resourceGroupName: string, name: string, options?: StaticSitesListStaticSiteAppSettingsOptionalParams): Promise<StaticSitesListStaticSiteAppSettingsResponse>;
+    /**
+     * Description for Lists the roles configured for the static site.
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the static site.
+     * @param options The options parameters.
+     */
+    listStaticSiteConfiguredRoles(resourceGroupName: string, name: string, options?: StaticSitesListStaticSiteConfiguredRolesOptionalParams): Promise<StaticSitesListStaticSiteConfiguredRolesResponse>;
     /**
      * Description for Gets the application settings of a static site.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -9066,6 +11002,55 @@ export declare interface StaticSites {
      */
     listStaticSiteSecrets(resourceGroupName: string, name: string, options?: StaticSitesListStaticSiteSecretsOptionalParams): Promise<StaticSitesListStaticSiteSecretsResponse>;
     /**
+     * Description for Gets a private endpoint connection
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the static site.
+     * @param privateEndpointConnectionName Name of the private endpoint connection.
+     * @param options The options parameters.
+     */
+    getPrivateEndpointConnection(resourceGroupName: string, name: string, privateEndpointConnectionName: string, options?: StaticSitesGetPrivateEndpointConnectionOptionalParams): Promise<StaticSitesGetPrivateEndpointConnectionResponse>;
+    /**
+     * Description for Approves or rejects a private endpoint connection
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the static site.
+     * @param privateEndpointConnectionName Name of the private endpoint connection.
+     * @param privateEndpointWrapper Request body.
+     * @param options The options parameters.
+     */
+    beginApproveOrRejectPrivateEndpointConnection(resourceGroupName: string, name: string, privateEndpointConnectionName: string, privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource, options?: StaticSitesApproveOrRejectPrivateEndpointConnectionOptionalParams): Promise<PollerLike<PollOperationState<StaticSitesApproveOrRejectPrivateEndpointConnectionResponse>, StaticSitesApproveOrRejectPrivateEndpointConnectionResponse>>;
+    /**
+     * Description for Approves or rejects a private endpoint connection
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the static site.
+     * @param privateEndpointConnectionName Name of the private endpoint connection.
+     * @param privateEndpointWrapper Request body.
+     * @param options The options parameters.
+     */
+    beginApproveOrRejectPrivateEndpointConnectionAndWait(resourceGroupName: string, name: string, privateEndpointConnectionName: string, privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource, options?: StaticSitesApproveOrRejectPrivateEndpointConnectionOptionalParams): Promise<StaticSitesApproveOrRejectPrivateEndpointConnectionResponse>;
+    /**
+     * Description for Deletes a private endpoint connection
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the static site.
+     * @param privateEndpointConnectionName Name of the private endpoint connection.
+     * @param options The options parameters.
+     */
+    beginDeletePrivateEndpointConnection(resourceGroupName: string, name: string, privateEndpointConnectionName: string, options?: StaticSitesDeletePrivateEndpointConnectionOptionalParams): Promise<PollerLike<PollOperationState<StaticSitesDeletePrivateEndpointConnectionResponse>, StaticSitesDeletePrivateEndpointConnectionResponse>>;
+    /**
+     * Description for Deletes a private endpoint connection
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the static site.
+     * @param privateEndpointConnectionName Name of the private endpoint connection.
+     * @param options The options parameters.
+     */
+    beginDeletePrivateEndpointConnectionAndWait(resourceGroupName: string, name: string, privateEndpointConnectionName: string, options?: StaticSitesDeletePrivateEndpointConnectionOptionalParams): Promise<StaticSitesDeletePrivateEndpointConnectionResponse>;
+    /**
+     * Description for Gets the private link resources
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the site.
+     * @param options The options parameters.
+     */
+    getPrivateLinkResources(resourceGroupName: string, name: string, options?: StaticSitesGetPrivateLinkResourcesOptionalParams): Promise<StaticSitesGetPrivateLinkResourcesResponse>;
+    /**
      * Description for Resets the api key for an existing static site.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param name Name of the static site.
@@ -9073,7 +11058,86 @@ export declare interface StaticSites {
      * @param options The options parameters.
      */
     resetStaticSiteApiKey(resourceGroupName: string, name: string, resetPropertiesEnvelope: StaticSiteResetPropertiesARMResource, options?: StaticSitesResetStaticSiteApiKeyOptionalParams): Promise<void>;
+    /**
+     * Description for Gets the details of the user provided function app registered with a static site
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the static site.
+     * @param functionAppName Name of the function app registered with the static site.
+     * @param options The options parameters.
+     */
+    getUserProvidedFunctionAppForStaticSite(resourceGroupName: string, name: string, functionAppName: string, options?: StaticSitesGetUserProvidedFunctionAppForStaticSiteOptionalParams): Promise<StaticSitesGetUserProvidedFunctionAppForStaticSiteResponse>;
+    /**
+     * Description for Register a user provided function app with a static site
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the static site.
+     * @param functionAppName Name of the function app to register with the static site.
+     * @param staticSiteUserProvidedFunctionEnvelope A JSON representation of the user provided function
+     *                                               app properties. See example.
+     * @param options The options parameters.
+     */
+    beginRegisterUserProvidedFunctionAppWithStaticSite(resourceGroupName: string, name: string, functionAppName: string, staticSiteUserProvidedFunctionEnvelope: StaticSiteUserProvidedFunctionAppARMResource, options?: StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteOptionalParams): Promise<PollerLike<PollOperationState<StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteResponse>, StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteResponse>>;
+    /**
+     * Description for Register a user provided function app with a static site
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the static site.
+     * @param functionAppName Name of the function app to register with the static site.
+     * @param staticSiteUserProvidedFunctionEnvelope A JSON representation of the user provided function
+     *                                               app properties. See example.
+     * @param options The options parameters.
+     */
+    beginRegisterUserProvidedFunctionAppWithStaticSiteAndWait(resourceGroupName: string, name: string, functionAppName: string, staticSiteUserProvidedFunctionEnvelope: StaticSiteUserProvidedFunctionAppARMResource, options?: StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteOptionalParams): Promise<StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteResponse>;
+    /**
+     * Description for Detach the user provided function app from the static site
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the static site.
+     * @param functionAppName Name of the function app registered with the static site.
+     * @param options The options parameters.
+     */
+    detachUserProvidedFunctionAppFromStaticSite(resourceGroupName: string, name: string, functionAppName: string, options?: StaticSitesDetachUserProvidedFunctionAppFromStaticSiteOptionalParams): Promise<void>;
+    /**
+     * Description for Deploys zipped content to a static site.
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the static site.
+     * @param staticSiteZipDeploymentEnvelope A JSON representation of the StaticSiteZipDeployment
+     *                                        properties. See example.
+     * @param options The options parameters.
+     */
+    beginCreateZipDeploymentForStaticSite(resourceGroupName: string, name: string, staticSiteZipDeploymentEnvelope: StaticSiteZipDeploymentARMResource, options?: StaticSitesCreateZipDeploymentForStaticSiteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    /**
+     * Description for Deploys zipped content to a static site.
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the static site.
+     * @param staticSiteZipDeploymentEnvelope A JSON representation of the StaticSiteZipDeployment
+     *                                        properties. See example.
+     * @param options The options parameters.
+     */
+    beginCreateZipDeploymentForStaticSiteAndWait(resourceGroupName: string, name: string, staticSiteZipDeploymentEnvelope: StaticSiteZipDeploymentARMResource, options?: StaticSitesCreateZipDeploymentForStaticSiteOptionalParams): Promise<void>;
 }
+
+/** Optional parameters. */
+export declare interface StaticSitesApproveOrRejectPrivateEndpointConnectionOptionalParams extends coreClient.OperationOptions {
+    /** Delay to wait until next poll, in milliseconds. */
+    updateIntervalInMs?: number;
+    /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+    resumeFrom?: string;
+}
+
+/** Contains response data for the approveOrRejectPrivateEndpointConnection operation. */
+export declare type StaticSitesApproveOrRejectPrivateEndpointConnectionResponse = RemotePrivateEndpointConnectionARMResource;
+
+/** Optional parameters. */
+export declare interface StaticSitesCreateOrUpdateStaticSiteAppSettingsOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the createOrUpdateStaticSiteAppSettings operation. */
+export declare type StaticSitesCreateOrUpdateStaticSiteAppSettingsResponse = StringDictionary;
+
+/** Optional parameters. */
+export declare interface StaticSitesCreateOrUpdateStaticSiteBuildAppSettingsOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the createOrUpdateStaticSiteBuildAppSettings operation. */
+export declare type StaticSitesCreateOrUpdateStaticSiteBuildAppSettingsResponse = StringDictionary;
 
 /** Optional parameters. */
 export declare interface StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettingsOptionalParams extends coreClient.OperationOptions {
@@ -9084,6 +11148,10 @@ export declare type StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettingsR
 
 /** Optional parameters. */
 export declare interface StaticSitesCreateOrUpdateStaticSiteCustomDomainOptionalParams extends coreClient.OperationOptions {
+    /** Delay to wait until next poll, in milliseconds. */
+    updateIntervalInMs?: number;
+    /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+    resumeFrom?: string;
 }
 
 /** Contains response data for the createOrUpdateStaticSiteCustomDomain operation. */
@@ -9098,6 +11166,10 @@ export declare type StaticSitesCreateOrUpdateStaticSiteFunctionAppSettingsRespon
 
 /** Optional parameters. */
 export declare interface StaticSitesCreateOrUpdateStaticSiteOptionalParams extends coreClient.OperationOptions {
+    /** Delay to wait until next poll, in milliseconds. */
+    updateIntervalInMs?: number;
+    /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+    resumeFrom?: string;
 }
 
 /** Contains response data for the createOrUpdateStaticSite operation. */
@@ -9111,15 +11183,54 @@ export declare interface StaticSitesCreateUserRolesInvitationLinkOptionalParams 
 export declare type StaticSitesCreateUserRolesInvitationLinkResponse = StaticSiteUserInvitationResponseResource;
 
 /** Optional parameters. */
+export declare interface StaticSitesCreateZipDeploymentForStaticSiteBuildOptionalParams extends coreClient.OperationOptions {
+    /** Delay to wait until next poll, in milliseconds. */
+    updateIntervalInMs?: number;
+    /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+    resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export declare interface StaticSitesCreateZipDeploymentForStaticSiteOptionalParams extends coreClient.OperationOptions {
+    /** Delay to wait until next poll, in milliseconds. */
+    updateIntervalInMs?: number;
+    /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+    resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export declare interface StaticSitesDeletePrivateEndpointConnectionOptionalParams extends coreClient.OperationOptions {
+    /** Delay to wait until next poll, in milliseconds. */
+    updateIntervalInMs?: number;
+    /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+    resumeFrom?: string;
+}
+
+/** Contains response data for the deletePrivateEndpointConnection operation. */
+export declare type StaticSitesDeletePrivateEndpointConnectionResponse = Record<string, unknown>;
+
+/** Optional parameters. */
 export declare interface StaticSitesDeleteStaticSiteBuildOptionalParams extends coreClient.OperationOptions {
+    /** Delay to wait until next poll, in milliseconds. */
+    updateIntervalInMs?: number;
+    /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+    resumeFrom?: string;
 }
 
 /** Optional parameters. */
 export declare interface StaticSitesDeleteStaticSiteCustomDomainOptionalParams extends coreClient.OperationOptions {
+    /** Delay to wait until next poll, in milliseconds. */
+    updateIntervalInMs?: number;
+    /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+    resumeFrom?: string;
 }
 
 /** Optional parameters. */
 export declare interface StaticSitesDeleteStaticSiteOptionalParams extends coreClient.OperationOptions {
+    /** Delay to wait until next poll, in milliseconds. */
+    updateIntervalInMs?: number;
+    /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+    resumeFrom?: string;
 }
 
 /** Optional parameters. */
@@ -9128,7 +11239,47 @@ export declare interface StaticSitesDeleteStaticSiteUserOptionalParams extends c
 
 /** Optional parameters. */
 export declare interface StaticSitesDetachStaticSiteOptionalParams extends coreClient.OperationOptions {
+    /** Delay to wait until next poll, in milliseconds. */
+    updateIntervalInMs?: number;
+    /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+    resumeFrom?: string;
 }
+
+/** Optional parameters. */
+export declare interface StaticSitesDetachUserProvidedFunctionAppFromStaticSiteBuildOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Optional parameters. */
+export declare interface StaticSitesDetachUserProvidedFunctionAppFromStaticSiteOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Optional parameters. */
+export declare interface StaticSitesGetPrivateEndpointConnectionListNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getPrivateEndpointConnectionListNext operation. */
+export declare type StaticSitesGetPrivateEndpointConnectionListNextResponse = PrivateEndpointConnectionCollection;
+
+/** Optional parameters. */
+export declare interface StaticSitesGetPrivateEndpointConnectionListOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getPrivateEndpointConnectionList operation. */
+export declare type StaticSitesGetPrivateEndpointConnectionListResponse = PrivateEndpointConnectionCollection;
+
+/** Optional parameters. */
+export declare interface StaticSitesGetPrivateEndpointConnectionOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getPrivateEndpointConnection operation. */
+export declare type StaticSitesGetPrivateEndpointConnectionResponse = RemotePrivateEndpointConnectionARMResource;
+
+/** Optional parameters. */
+export declare interface StaticSitesGetPrivateLinkResourcesOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getPrivateLinkResources operation. */
+export declare type StaticSitesGetPrivateLinkResourcesResponse = PrivateLinkResourcesWrapper;
 
 /** Optional parameters. */
 export declare interface StaticSitesGetStaticSiteBuildOptionalParams extends coreClient.OperationOptions {
@@ -9152,6 +11303,13 @@ export declare interface StaticSitesGetStaticSiteBuildsOptionalParams extends co
 export declare type StaticSitesGetStaticSiteBuildsResponse = StaticSiteBuildCollection;
 
 /** Optional parameters. */
+export declare interface StaticSitesGetStaticSiteCustomDomainOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getStaticSiteCustomDomain operation. */
+export declare type StaticSitesGetStaticSiteCustomDomainResponse = StaticSiteCustomDomainOverviewARMResource;
+
+/** Optional parameters. */
 export declare interface StaticSitesGetStaticSiteOptionalParams extends coreClient.OperationOptions {
 }
 
@@ -9173,6 +11331,48 @@ export declare interface StaticSitesGetStaticSitesByResourceGroupOptionalParams 
 export declare type StaticSitesGetStaticSitesByResourceGroupResponse = StaticSiteCollection;
 
 /** Optional parameters. */
+export declare interface StaticSitesGetUserProvidedFunctionAppForStaticSiteBuildOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getUserProvidedFunctionAppForStaticSiteBuild operation. */
+export declare type StaticSitesGetUserProvidedFunctionAppForStaticSiteBuildResponse = StaticSiteUserProvidedFunctionAppARMResource;
+
+/** Optional parameters. */
+export declare interface StaticSitesGetUserProvidedFunctionAppForStaticSiteOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getUserProvidedFunctionAppForStaticSite operation. */
+export declare type StaticSitesGetUserProvidedFunctionAppForStaticSiteResponse = StaticSiteUserProvidedFunctionAppARMResource;
+
+/** Optional parameters. */
+export declare interface StaticSitesGetUserProvidedFunctionAppsForStaticSiteBuildNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getUserProvidedFunctionAppsForStaticSiteBuildNext operation. */
+export declare type StaticSitesGetUserProvidedFunctionAppsForStaticSiteBuildNextResponse = StaticSiteUserProvidedFunctionAppsCollection;
+
+/** Optional parameters. */
+export declare interface StaticSitesGetUserProvidedFunctionAppsForStaticSiteBuildOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getUserProvidedFunctionAppsForStaticSiteBuild operation. */
+export declare type StaticSitesGetUserProvidedFunctionAppsForStaticSiteBuildResponse = StaticSiteUserProvidedFunctionAppsCollection;
+
+/** Optional parameters. */
+export declare interface StaticSitesGetUserProvidedFunctionAppsForStaticSiteNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getUserProvidedFunctionAppsForStaticSiteNext operation. */
+export declare type StaticSitesGetUserProvidedFunctionAppsForStaticSiteNextResponse = StaticSiteUserProvidedFunctionAppsCollection;
+
+/** Optional parameters. */
+export declare interface StaticSitesGetUserProvidedFunctionAppsForStaticSiteOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getUserProvidedFunctionAppsForStaticSite operation. */
+export declare type StaticSitesGetUserProvidedFunctionAppsForStaticSiteResponse = StaticSiteUserProvidedFunctionAppsCollection;
+
+/** Optional parameters. */
 export declare interface StaticSitesListNextOptionalParams extends coreClient.OperationOptions {
 }
 
@@ -9185,6 +11385,20 @@ export declare interface StaticSitesListOptionalParams extends coreClient.Operat
 
 /** Contains response data for the list operation. */
 export declare type StaticSitesListResponse = StaticSiteCollection;
+
+/** Optional parameters. */
+export declare interface StaticSitesListStaticSiteAppSettingsOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listStaticSiteAppSettings operation. */
+export declare type StaticSitesListStaticSiteAppSettingsResponse = StringDictionary;
+
+/** Optional parameters. */
+export declare interface StaticSitesListStaticSiteBuildAppSettingsOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listStaticSiteBuildAppSettings operation. */
+export declare type StaticSitesListStaticSiteBuildAppSettingsResponse = StringDictionary;
 
 /** Optional parameters. */
 export declare interface StaticSitesListStaticSiteBuildFunctionAppSettingsOptionalParams extends coreClient.OperationOptions {
@@ -9206,6 +11420,13 @@ export declare interface StaticSitesListStaticSiteBuildFunctionsOptionalParams e
 
 /** Contains response data for the listStaticSiteBuildFunctions operation. */
 export declare type StaticSitesListStaticSiteBuildFunctionsResponse = StaticSiteFunctionOverviewCollection;
+
+/** Optional parameters. */
+export declare interface StaticSitesListStaticSiteConfiguredRolesOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listStaticSiteConfiguredRoles operation. */
+export declare type StaticSitesListStaticSiteConfiguredRolesResponse = StringList;
 
 /** Optional parameters. */
 export declare interface StaticSitesListStaticSiteCustomDomainsNextOptionalParams extends coreClient.OperationOptions {
@@ -9264,6 +11485,39 @@ export declare interface StaticSitesListStaticSiteUsersOptionalParams extends co
 export declare type StaticSitesListStaticSiteUsersResponse = StaticSiteUserCollection;
 
 /** Optional parameters. */
+export declare interface StaticSitesPreviewWorkflowOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the previewWorkflow operation. */
+export declare type StaticSitesPreviewWorkflowResponse = StaticSitesWorkflowPreview;
+
+/** Optional parameters. */
+export declare interface StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildOptionalParams extends coreClient.OperationOptions {
+    /** Specify <code>true</code> to force the update of the auth configuration on the function app even if an AzureStaticWebApps provider is already configured on the function app. The default is <code>false</code>. */
+    isForced?: boolean;
+    /** Delay to wait until next poll, in milliseconds. */
+    updateIntervalInMs?: number;
+    /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+    resumeFrom?: string;
+}
+
+/** Contains response data for the registerUserProvidedFunctionAppWithStaticSiteBuild operation. */
+export declare type StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildResponse = StaticSiteUserProvidedFunctionAppARMResource;
+
+/** Optional parameters. */
+export declare interface StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteOptionalParams extends coreClient.OperationOptions {
+    /** Specify <code>true</code> to force the update of the auth configuration on the function app even if an AzureStaticWebApps provider is already configured on the function app. The default is <code>false</code>. */
+    isForced?: boolean;
+    /** Delay to wait until next poll, in milliseconds. */
+    updateIntervalInMs?: number;
+    /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+    resumeFrom?: string;
+}
+
+/** Contains response data for the registerUserProvidedFunctionAppWithStaticSite operation. */
+export declare type StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteResponse = StaticSiteUserProvidedFunctionAppARMResource;
+
+/** Optional parameters. */
 export declare interface StaticSitesResetStaticSiteApiKeyOptionalParams extends coreClient.OperationOptions {
 }
 
@@ -9283,6 +11537,48 @@ export declare type StaticSitesUpdateStaticSiteUserResponse = StaticSiteUserARMR
 
 /** Optional parameters. */
 export declare interface StaticSitesValidateCustomDomainCanBeAddedToStaticSiteOptionalParams extends coreClient.OperationOptions {
+    /** Delay to wait until next poll, in milliseconds. */
+    updateIntervalInMs?: number;
+    /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+    resumeFrom?: string;
+}
+
+/** Preview for the Static Site Workflow to be generated */
+export declare type StaticSitesWorkflowPreview = ProxyOnlyResource & {
+    /**
+     * The path for the workflow file to be generated
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly path?: string;
+    /**
+     * The contents for the workflow file to be generated
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly contents?: string;
+};
+
+/** Request entity for previewing the Static Site workflow */
+export declare type StaticSitesWorkflowPreviewRequest = ProxyOnlyResource & {
+    /** URL for the repository of the static site. */
+    repositoryUrl?: string;
+    /** The target branch in the repository. */
+    branch?: string;
+    /** Build properties to configure on the repository. */
+    buildProperties?: StaticSiteBuildProperties;
+};
+
+/** Template Options for the static site. */
+export declare interface StaticSiteTemplateOptions {
+    /** URL of the template repository. The newly generated repository will be based on this one. */
+    templateRepositoryUrl?: string;
+    /** Owner of the newly generated repository. */
+    owner?: string;
+    /** Name of the newly generated repository. */
+    repositoryName?: string;
+    /** Description of the newly generated repository. */
+    description?: string;
+    /** Whether or not the newly generated repository is a private repository. Defaults to false (i.e. public). */
+    isPrivate?: boolean;
 }
 
 /** Static Site User ARM resource. */
@@ -9345,6 +11641,65 @@ export declare type StaticSiteUserInvitationResponseResource = ProxyOnlyResource
     readonly invitationUrl?: string;
 };
 
+/** A static site user provided function. */
+export declare type StaticSiteUserProvidedFunctionApp = ProxyOnlyResource & {
+    /** The resource id of the function app registered with the static site */
+    functionAppResourceId?: string;
+    /** The region of the function app registered with the static site */
+    functionAppRegion?: string;
+    /**
+     * The date and time on which the function app was registered with the static site.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly createdOn?: Date;
+};
+
+/** Static Site User Provided Function App ARM resource. */
+export declare type StaticSiteUserProvidedFunctionAppARMResource = ProxyOnlyResource & {
+    /** The resource id of the function app registered with the static site */
+    functionAppResourceId?: string;
+    /** The region of the function app registered with the static site */
+    functionAppRegion?: string;
+    /**
+     * The date and time on which the function app was registered with the static site.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly createdOn?: Date;
+};
+
+/** Collection of static site user provided function apps. */
+export declare interface StaticSiteUserProvidedFunctionAppsCollection {
+    /** Collection of resources. */
+    value: StaticSiteUserProvidedFunctionAppARMResource[];
+    /**
+     * Link to next page of resources.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly nextLink?: string;
+}
+
+/** Static site zip deployment ARM resource. */
+export declare type StaticSiteZipDeploymentARMResource = ProxyOnlyResource & {
+    /** URL for the zipped app content */
+    appZipUrl?: string;
+    /** URL for the zipped api content */
+    apiZipUrl?: string;
+    /** A title to label the deployment */
+    deploymentTitle?: string;
+    /** The provider submitting this deployment */
+    provider?: string;
+    /** The language of the api content, if it exists */
+    functionLanguage?: string;
+};
+
+/** Identify the status of the most severe insight generated by the detector. */
+export declare interface Status {
+    /** Descriptive message. */
+    message?: string;
+    /** Level of the most severe insight generated by the detector. */
+    statusId?: InsightStatus;
+}
+
 /** Trigger based on status code. */
 export declare interface StatusCodesBasedTrigger {
     /** HTTP status code. */
@@ -9353,6 +11708,19 @@ export declare interface StatusCodesBasedTrigger {
     subStatus?: number;
     /** Win32 error code. */
     win32Status?: number;
+    /** Request Count. */
+    count?: number;
+    /** Time interval. */
+    timeInterval?: string;
+    /** Request Path */
+    path?: string;
+}
+
+/** Trigger based on range of status codes. */
+export declare interface StatusCodesRangeBasedTrigger {
+    /** HTTP status code. */
+    statusCodes?: string;
+    path?: string;
     /** Request Count. */
     count?: number;
     /** Time interval. */
@@ -9383,12 +11751,21 @@ export declare type StorageMigrationResponse = ProxyOnlyResource & {
     readonly operationId?: string;
 };
 
+/** Defines values for StorageType. */
+export declare type StorageType = "LocalNode" | "NetworkFileSystem";
+
 /** String dictionary resource. */
 export declare type StringDictionary = ProxyOnlyResource & {
     /** Settings. */
     properties?: {
         [propertyName: string]: string;
     };
+};
+
+/** String list resource. */
+export declare type StringList = ProxyOnlyResource & {
+    /** List of string resources. */
+    properties?: string[];
 };
 
 /**
@@ -9401,6 +11778,20 @@ export declare type StringDictionary = ProxyOnlyResource & {
  * **1.2**
  */
 export declare type SupportedTlsVersions = string;
+
+/** Defines a unique Support Topic */
+export declare interface SupportTopic {
+    /**
+     * Support Topic Id
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly id?: string;
+    /**
+     * Unique resource Id
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly pesId?: string;
+}
 
 /** Swift Virtual Network Contract. This is used to enable the new Swift way of doing virtual network integration. */
 export declare type SwiftVirtualNetwork = ProxyOnlyResource & {
@@ -9431,6 +11822,24 @@ export declare interface TldLegalAgreementCollection {
      * NOTE: This property will not be serialized. It can only be populated by the server.
      */
     readonly nextLink?: string;
+}
+
+/** The configuration settings of the token store. */
+export declare interface TokenStore {
+    /**
+     * <code>true</code> to durably store platform-specific security tokens that are obtained during login flows; otherwise, <code>false</code>.
+     *  The default is <code>false</code>.
+     */
+    enabled?: boolean;
+    /**
+     * The number of hours after session token expiration that a session token can be used to
+     * call the token refresh API. The default is 72 hours.
+     */
+    tokenRefreshExtensionHours?: number;
+    /** The configuration settings of the storage of the tokens if a file system is used. */
+    fileSystem?: FileSystemTokenStore;
+    /** The configuration settings of the storage of the tokens if blob storage is used. */
+    azureBlobStorage?: BlobStorageTokenStore;
 }
 
 /** A top level domain object. */
@@ -9533,7 +11942,7 @@ export declare interface TriggeredJobHistoryCollection {
 }
 
 /** Triggered Web Job Run Information. */
-export declare type TriggeredJobRun = ProxyOnlyResource & {
+export declare interface TriggeredJobRun {
     /** Job ID. */
     webJobId?: string;
     /** Job name. */
@@ -9556,7 +11965,7 @@ export declare type TriggeredJobRun = ProxyOnlyResource & {
     jobName?: string;
     /** Job trigger. */
     trigger?: string;
-};
+}
 
 /** Triggered Web Job Information. */
 export declare type TriggeredWebJob = ProxyOnlyResource & {
@@ -9608,8 +12017,34 @@ export declare type TriggeredWebJobStatus = "Success" | "Failed" | "Error";
  */
 export declare type TriggerTypes = string;
 
+/** The configuration settings of the Twitter provider. */
+export declare interface Twitter {
+    /** <code>false</code> if the Twitter provider should not be enabled despite the set registration; otherwise, <code>true</code>. */
+    enabled?: boolean;
+    /** The configuration settings of the app registration for the Twitter provider. */
+    registration?: TwitterRegistration;
+}
+
+/** The configuration settings of the app registration for the Twitter provider. */
+export declare interface TwitterRegistration {
+    /**
+     * The OAuth 1.0a consumer key of the Twitter application used for sign-in.
+     * This setting is required for enabling Twitter Sign-In.
+     * Twitter Sign-In documentation: https://dev.twitter.com/web/sign-in
+     */
+    consumerKey?: string;
+    /**
+     * The app setting name that contains the OAuth 1.0a consumer secret of the Twitter
+     * application used for sign-in.
+     */
+    consumerSecretSettingName?: string;
+}
+
 /** Defines values for UnauthenticatedClientAction. */
 export declare type UnauthenticatedClientAction = "RedirectToLoginPage" | "AllowAnonymous";
+
+/** Defines values for UnauthenticatedClientActionV2. */
+export declare type UnauthenticatedClientActionV2 = "RedirectToLoginPage" | "AllowAnonymous" | "Return401" | "Return403";
 
 /** Optional parameters. */
 export declare interface UpdatePublishingUserOptionalParams extends coreClient.OperationOptions {
@@ -9706,6 +12141,20 @@ export declare type User = ProxyOnlyResource & {
     scmUri?: string;
 };
 
+/** User Assigned identity. */
+export declare interface UserAssignedIdentity {
+    /**
+     * Principal Id of user assigned identity
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly principalId?: string;
+    /**
+     * Client Id of user assigned identity
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly clientId?: string;
+}
+
 /** Optional parameters. */
 export declare interface ValidateMoveOptionalParams extends coreClient.OperationOptions {
 }
@@ -9751,6 +12200,8 @@ export declare interface ValidateRequest {
     containerImageTag?: string;
     /** Platform (windows or linux) */
     containerImagePlatform?: string;
+    /** App Service Environment Properties */
+    appServiceEnvironment?: AppServiceEnvironment;
 }
 
 /**
@@ -9759,7 +12210,8 @@ export declare interface ValidateRequest {
  *  this enum contains the known values that the service supports.
  * ### Known values supported by the service
  * **ServerFarm** \
- * **Site**
+ * **Site** \
+ * **Microsoft.Web\/hostingEnvironments**
  */
 export declare type ValidateResourceTypes = string;
 
@@ -9823,7 +12275,7 @@ export declare interface VirtualIPMapping {
 /** Specification for using a Virtual Network. */
 export declare interface VirtualNetworkProfile {
     /** Resource id of the Virtual Network. */
-    id?: string;
+    id: string;
     /**
      * Name of the Virtual Network (read-only).
      * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -9847,7 +12299,37 @@ export declare type VnetGateway = ProxyOnlyResource & {
 };
 
 /** Virtual Network information contract. */
-export declare type VnetInfo = ProxyOnlyResource & {
+export declare interface VnetInfo {
+    /** The Virtual Network's resource ID. */
+    vnetResourceId?: string;
+    /**
+     * The client certificate thumbprint.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly certThumbprint?: string;
+    /**
+     * A certificate file (.cer) blob containing the public key of the private key used to authenticate a
+     * Point-To-Site VPN connection.
+     */
+    certBlob?: string;
+    /**
+     * The routes that this Virtual Network connection uses.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly routes?: VnetRoute[];
+    /**
+     * <code>true</code> if a resync is required; otherwise, <code>false</code>.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly resyncRequired?: boolean;
+    /** DNS servers to be used by this Virtual Network. This should be a comma-separated list of IP addresses. */
+    dnsServers?: string;
+    /** Flag that is used to denote if this is VNET injection */
+    isSwift?: boolean;
+}
+
+/** Virtual Network information ARM resource. */
+export declare type VnetInfoResource = ProxyOnlyResource & {
     /** The Virtual Network's resource ID. */
     vnetResourceId?: string;
     /**
@@ -9884,6 +12366,8 @@ export declare type VnetParameters = ProxyOnlyResource & {
     vnetName?: string;
     /** The subnet name to be validated */
     vnetSubnetName?: string;
+    /** The ARM Resource ID of the subnet to validate */
+    subnetResourceId?: string;
 };
 
 /** Virtual Network route contract used to pass routing information for a Virtual Network. */
@@ -9905,10 +12389,14 @@ export declare type VnetRoute = ProxyOnlyResource & {
 
 /** A class that describes the reason for a validation failure. */
 export declare type VnetValidationFailureDetails = ProxyOnlyResource & {
+    /** Text describing the validation outcome. */
+    message?: string;
     /** A flag describing whether or not validation failed. */
     failed?: boolean;
     /** A list of tests that failed in the validation. */
     failedTests?: VnetValidationTestFailure[];
+    /** A list of warnings generated during validation. */
+    warnings?: VnetValidationTestFailure[];
 };
 
 /** A class that describes a test that failed during NSG and UDR validation. */
@@ -9931,14 +12419,130 @@ export declare interface WebAppCollection {
 }
 
 /** Collection of app instances. */
-export declare interface WebAppInstanceCollection {
+export declare interface WebAppInstanceStatusCollection {
     /** Collection of resources. */
-    value: SiteInstance[];
+    value: WebSiteInstanceStatus[];
     /**
      * Link to next page of resources.
      * NOTE: This property will not be serialized. It can only be populated by the server.
      */
     readonly nextLink?: string;
+}
+
+/** Web App stack major version. */
+export declare interface WebAppMajorVersion {
+    /**
+     * Web App stack major version (display only).
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly displayText?: string;
+    /**
+     * Web App stack major version name.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly value?: string;
+    /**
+     * Minor versions associated with the major version.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly minorVersions?: WebAppMinorVersion[];
+}
+
+/** Web App stack minor version. */
+export declare interface WebAppMinorVersion {
+    /**
+     * Web App stack minor version (display only).
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly displayText?: string;
+    /**
+     * Web App stack major version name.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly value?: string;
+    /**
+     * Settings associated with the minor version.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly stackSettings?: WebAppRuntimes;
+}
+
+/** Web App stack runtimes. */
+export declare interface WebAppRuntimes {
+    /**
+     * Linux-specific settings associated with the minor version.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly linuxRuntimeSettings?: WebAppRuntimeSettings;
+    /**
+     * Windows-specific settings associated with the minor version.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly windowsRuntimeSettings?: WebAppRuntimeSettings;
+    /**
+     * Linux-specific settings associated with the Java container minor version.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly linuxContainerSettings?: LinuxJavaContainerSettings;
+    /**
+     * Windows-specific settings associated with the Java container minor version.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly windowsContainerSettings?: WindowsJavaContainerSettings;
+}
+
+/** Web App runtime settings. */
+export declare interface WebAppRuntimeSettings {
+    /**
+     * Web App stack minor version (runtime only).
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly runtimeVersion?: string;
+    /**
+     * <code>true</code> if remote debugging is supported for the stack; otherwise, <code>false</code>.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly remoteDebuggingSupported?: boolean;
+    /**
+     * Application Insights settings associated with the minor version.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly appInsightsSettings?: AppInsightsWebAppStackSettings;
+    /**
+     * GitHub Actions settings associated with the minor version.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly gitHubActionSettings?: GitHubActionWebAppStackSettings;
+    /**
+     * <code>true</code> if the stack is in preview; otherwise, <code>false</code>.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly isPreview?: boolean;
+    /**
+     * <code>true</code> if the stack is deprecated; otherwise, <code>false</code>.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly isDeprecated?: boolean;
+    /**
+     * <code>true</code> if the stack should be hidden; otherwise, <code>false</code>.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly isHidden?: boolean;
+    /**
+     * End-of-life date for the minor version.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly endOfLifeDate?: Date;
+    /**
+     * <code>true</code> if the stack version is auto-updated; otherwise, <code>false</code>.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly isAutoUpdate?: boolean;
+    /**
+     * <code>true</code> if the minor version is early-access; otherwise, <code>false</code>.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly isEarlyAccess?: boolean;
 }
 
 /** Interface representing a WebApps. */
@@ -9962,12 +12566,34 @@ export declare interface WebApps {
      */
     listBackups(resourceGroupName: string, name: string, options?: WebAppsListBackupsOptionalParams): PagedAsyncIterableIterator<BackupItem>;
     /**
+     * Description for Returns whether Scm basic auth is allowed and whether Ftp is allowed for a given
+     * site.
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the app.
+     * @param options The options parameters.
+     */
+    listBasicPublishingCredentialsPolicies(resourceGroupName: string, name: string, options?: WebAppsListBasicPublishingCredentialsPoliciesOptionalParams): PagedAsyncIterableIterator<CsmPublishingCredentialsPoliciesEntity>;
+    /**
      * Description for List the configurations of an app
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param name Name of the app.
      * @param options The options parameters.
      */
     listConfigurations(resourceGroupName: string, name: string, options?: WebAppsListConfigurationsOptionalParams): PagedAsyncIterableIterator<SiteConfigResource>;
+    /**
+     * Description for Gets the config reference app settings and status of an app
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the app.
+     * @param options The options parameters.
+     */
+    listAppSettingsKeyVaultReferences(resourceGroupName: string, name: string, options?: WebAppsGetAppSettingsKeyVaultReferencesOptionalParams): PagedAsyncIterableIterator<ApiKVReference>;
+    /**
+     * Description for Gets the config reference app settings and status of an app
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the app.
+     * @param options The options parameters.
+     */
+    listSiteConnectionStringKeyVaultReferences(resourceGroupName: string, name: string, options?: WebAppsGetSiteConnectionStringKeyVaultReferencesOptionalParams): PagedAsyncIterableIterator<ApiKVReference>;
     /**
      * Description for Gets a list of web app configuration snapshots identifiers. Each element of the list
      * contains a timestamp and the ID of the snapshot.
@@ -10017,7 +12643,7 @@ export declare interface WebApps {
      * @param name Name of the app.
      * @param options The options parameters.
      */
-    listInstanceIdentifiers(resourceGroupName: string, name: string, options?: WebAppsListInstanceIdentifiersOptionalParams): PagedAsyncIterableIterator<SiteInstance>;
+    listInstanceIdentifiers(resourceGroupName: string, name: string, options?: WebAppsListInstanceIdentifiersOptionalParams): PagedAsyncIterableIterator<WebSiteInstanceStatus>;
     /**
      * Description for Get list of processes for a web site, or a deployment slot, or for a specific
      * scaled-out instance in a web site.
@@ -10064,6 +12690,13 @@ export declare interface WebApps {
      * @param options The options parameters.
      */
     listPerfMonCounters(resourceGroupName: string, name: string, options?: WebAppsListPerfMonCountersOptionalParams): PagedAsyncIterableIterator<PerfMonResponse>;
+    /**
+     * Description for Gets the list of private endpoint connections associated with a site
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the site.
+     * @param options The options parameters.
+     */
+    listPrivateEndpointConnectionList(resourceGroupName: string, name: string, options?: WebAppsGetPrivateEndpointConnectionListOptionalParams): PagedAsyncIterableIterator<RemotePrivateEndpointConnectionARMResource>;
     /**
      * Description for Get list of processes for a web site, or a deployment slot, or for a specific
      * scaled-out instance in a web site.
@@ -10121,6 +12754,15 @@ export declare interface WebApps {
      */
     listBackupsSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsListBackupsSlotOptionalParams): PagedAsyncIterableIterator<BackupItem>;
     /**
+     * Description for Returns whether Scm basic auth is allowed and whether Ftp is allowed for a given
+     * site.
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the app.
+     * @param slot
+     * @param options The options parameters.
+     */
+    listBasicPublishingCredentialsPoliciesSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsListBasicPublishingCredentialsPoliciesSlotOptionalParams): PagedAsyncIterableIterator<CsmPublishingCredentialsPoliciesEntity>;
+    /**
      * Description for List the configurations of an app
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param name Name of the app.
@@ -10129,6 +12771,22 @@ export declare interface WebApps {
      * @param options The options parameters.
      */
     listConfigurationsSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsListConfigurationsSlotOptionalParams): PagedAsyncIterableIterator<SiteConfigResource>;
+    /**
+     * Description for Gets the config reference app settings and status of an app
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the app.
+     * @param slot
+     * @param options The options parameters.
+     */
+    listAppSettingsKeyVaultReferencesSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsGetAppSettingsKeyVaultReferencesSlotOptionalParams): PagedAsyncIterableIterator<ApiKVReference>;
+    /**
+     * Description for Gets the config reference app settings and status of an app
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the app.
+     * @param slot
+     * @param options The options parameters.
+     */
+    listSiteConnectionStringKeyVaultReferencesSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsGetSiteConnectionStringKeyVaultReferencesSlotOptionalParams): PagedAsyncIterableIterator<ApiKVReference>;
     /**
      * Description for Gets a list of web app configuration snapshots identifiers. Each element of the list
      * contains a timestamp and the ID of the snapshot.
@@ -10191,7 +12849,7 @@ export declare interface WebApps {
      *             slot instances.
      * @param options The options parameters.
      */
-    listInstanceIdentifiersSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsListInstanceIdentifiersSlotOptionalParams): PagedAsyncIterableIterator<SiteInstance>;
+    listInstanceIdentifiersSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsListInstanceIdentifiersSlotOptionalParams): PagedAsyncIterableIterator<WebSiteInstanceStatus>;
     /**
      * Description for Get list of processes for a web site, or a deployment slot, or for a specific
      * scaled-out instance in a web site.
@@ -10247,6 +12905,14 @@ export declare interface WebApps {
      * @param options The options parameters.
      */
     listPerfMonCountersSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsListPerfMonCountersSlotOptionalParams): PagedAsyncIterableIterator<PerfMonResponse>;
+    /**
+     * Description for Gets the list of private endpoint connections associated with a site
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the site.
+     * @param slot Name of the site deployment slot.
+     * @param options The options parameters.
+     */
+    listPrivateEndpointConnectionListSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsGetPrivateEndpointConnectionListSlotOptionalParams): PagedAsyncIterableIterator<RemotePrivateEndpointConnectionARMResource>;
     /**
      * Description for Get list of processes for a web site, or a deployment slot, or for a specific
      * scaled-out instance in a web site.
@@ -10525,6 +13191,36 @@ export declare interface WebApps {
      */
     beginRestoreAndWait(resourceGroupName: string, name: string, backupId: string, request: RestoreRequest, options?: WebAppsRestoreOptionalParams): Promise<void>;
     /**
+     * Description for Returns whether FTP is allowed on the site or not.
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the app.
+     * @param options The options parameters.
+     */
+    getFtpAllowed(resourceGroupName: string, name: string, options?: WebAppsGetFtpAllowedOptionalParams): Promise<WebAppsGetFtpAllowedResponse>;
+    /**
+     * Description for Updates whether FTP is allowed on the site or not.
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the app.
+     * @param csmPublishingAccessPoliciesEntity Publishing Credentials Policies parameters.
+     * @param options The options parameters.
+     */
+    updateFtpAllowed(resourceGroupName: string, name: string, csmPublishingAccessPoliciesEntity: CsmPublishingCredentialsPoliciesEntity, options?: WebAppsUpdateFtpAllowedOptionalParams): Promise<WebAppsUpdateFtpAllowedResponse>;
+    /**
+     * Description for Returns whether Scm basic auth is allowed on the site or not.
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the app.
+     * @param options The options parameters.
+     */
+    getScmAllowed(resourceGroupName: string, name: string, options?: WebAppsGetScmAllowedOptionalParams): Promise<WebAppsGetScmAllowedResponse>;
+    /**
+     * Description for Updates whether user publishing credentials are allowed on the site or not.
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the app.
+     * @param csmPublishingAccessPoliciesEntity Publishing Credentials Policies parameters.
+     * @param options The options parameters.
+     */
+    updateScmAllowed(resourceGroupName: string, name: string, csmPublishingAccessPoliciesEntity: CsmPublishingCredentialsPoliciesEntity, options?: WebAppsUpdateScmAllowedOptionalParams): Promise<WebAppsUpdateScmAllowedResponse>;
+    /**
      * Description for Replaces the application settings of an app.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param name Name of the app.
@@ -10554,6 +13250,21 @@ export declare interface WebApps {
      * @param options The options parameters.
      */
     getAuthSettings(resourceGroupName: string, name: string, options?: WebAppsGetAuthSettingsOptionalParams): Promise<WebAppsGetAuthSettingsResponse>;
+    /**
+     * Description for Updates site's Authentication / Authorization settings for apps via the V2 format
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of web app.
+     * @param siteAuthSettingsV2 Auth settings associated with web app.
+     * @param options The options parameters.
+     */
+    updateAuthSettingsV2(resourceGroupName: string, name: string, siteAuthSettingsV2: SiteAuthSettingsV2, options?: WebAppsUpdateAuthSettingsV2OptionalParams): Promise<WebAppsUpdateAuthSettingsV2Response>;
+    /**
+     * Description for Gets site's Authentication / Authorization settings for apps via the V2 format
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the app.
+     * @param options The options parameters.
+     */
+    getAuthSettingsV2(resourceGroupName: string, name: string, options?: WebAppsGetAuthSettingsV2OptionalParams): Promise<WebAppsGetAuthSettingsV2Response>;
     /**
      * Description for Updates the Azure storage account configurations of an app.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -10592,13 +13303,6 @@ export declare interface WebApps {
      */
     getBackupConfiguration(resourceGroupName: string, name: string, options?: WebAppsGetBackupConfigurationOptionalParams): Promise<WebAppsGetBackupConfigurationResponse>;
     /**
-     * Description for Gets the config reference app settings and status of an app
-     * @param resourceGroupName Name of the resource group to which the resource belongs.
-     * @param name Name of the app.
-     * @param options The options parameters.
-     */
-    getAppSettingsKeyVaultReferences(resourceGroupName: string, name: string, options?: WebAppsGetAppSettingsKeyVaultReferencesOptionalParams): Promise<WebAppsGetAppSettingsKeyVaultReferencesResponse>;
-    /**
      * Description for Gets the config reference and status of an app
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param name Name of the app.
@@ -10606,6 +13310,14 @@ export declare interface WebApps {
      * @param options The options parameters.
      */
     getAppSettingKeyVaultReference(resourceGroupName: string, name: string, appSettingKey: string, options?: WebAppsGetAppSettingKeyVaultReferenceOptionalParams): Promise<WebAppsGetAppSettingKeyVaultReferenceResponse>;
+    /**
+     * Description for Gets the config reference and status of an app
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the app.
+     * @param connectionStringKey
+     * @param options The options parameters.
+     */
+    getSiteConnectionStringKeyVaultReference(resourceGroupName: string, name: string, connectionStringKey: string, options?: WebAppsGetSiteConnectionStringKeyVaultReferenceOptionalParams): Promise<WebAppsGetSiteConnectionStringKeyVaultReferenceResponse>;
     /**
      * Description for Replaces the connection strings of an app.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -11281,7 +13993,7 @@ export declare interface WebApps {
      * @param connectionEnvelope Properties of the Virtual Network connection. See example.
      * @param options The options parameters.
      */
-    createOrUpdateSwiftVirtualNetworkConnection(resourceGroupName: string, name: string, connectionEnvelope: SwiftVirtualNetwork, options?: WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionOptionalParams): Promise<WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionResponse>;
+    createOrUpdateSwiftVirtualNetworkConnectionWithCheck(resourceGroupName: string, name: string, connectionEnvelope: SwiftVirtualNetwork, options?: WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionWithCheckOptionalParams): Promise<WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionWithCheckResponse>;
     /**
      * Description for Deletes a Swift Virtual Network connection from an app (or deployment slot).
      * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -11299,12 +14011,12 @@ export declare interface WebApps {
      * @param connectionEnvelope Properties of the Virtual Network connection. See example.
      * @param options The options parameters.
      */
-    updateSwiftVirtualNetworkConnection(resourceGroupName: string, name: string, connectionEnvelope: SwiftVirtualNetwork, options?: WebAppsUpdateSwiftVirtualNetworkConnectionOptionalParams): Promise<WebAppsUpdateSwiftVirtualNetworkConnectionResponse>;
+    updateSwiftVirtualNetworkConnectionWithCheck(resourceGroupName: string, name: string, connectionEnvelope: SwiftVirtualNetwork, options?: WebAppsUpdateSwiftVirtualNetworkConnectionWithCheckOptionalParams): Promise<WebAppsUpdateSwiftVirtualNetworkConnectionWithCheckResponse>;
     /**
      * Description for Gets all network features used by the app (or deployment slot, if specified).
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param name Name of the app.
-     * @param view The type of view. This can either be "summary" or "detailed".
+     * @param view The type of view. Only "summary" is supported at this time.
      * @param options The options parameters.
      */
     listNetworkFeatures(resourceGroupName: string, name: string, view: string, options?: WebAppsListNetworkFeaturesOptionalParams): Promise<WebAppsListNetworkFeaturesResponse>;
@@ -11444,6 +14156,55 @@ export declare interface WebApps {
      * @param options The options parameters.
      */
     putPrivateAccessVnet(resourceGroupName: string, name: string, access: PrivateAccess, options?: WebAppsPutPrivateAccessVnetOptionalParams): Promise<WebAppsPutPrivateAccessVnetResponse>;
+    /**
+     * Description for Gets a private endpoint connection
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the site.
+     * @param privateEndpointConnectionName Name of the private endpoint connection.
+     * @param options The options parameters.
+     */
+    getPrivateEndpointConnection(resourceGroupName: string, name: string, privateEndpointConnectionName: string, options?: WebAppsGetPrivateEndpointConnectionOptionalParams): Promise<WebAppsGetPrivateEndpointConnectionResponse>;
+    /**
+     * Description for Approves or rejects a private endpoint connection
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the site.
+     * @param privateEndpointConnectionName
+     * @param privateEndpointWrapper Private Endpoint Connection Approval ARM resource.
+     * @param options The options parameters.
+     */
+    beginApproveOrRejectPrivateEndpointConnection(resourceGroupName: string, name: string, privateEndpointConnectionName: string, privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource, options?: WebAppsApproveOrRejectPrivateEndpointConnectionOptionalParams): Promise<PollerLike<PollOperationState<WebAppsApproveOrRejectPrivateEndpointConnectionResponse>, WebAppsApproveOrRejectPrivateEndpointConnectionResponse>>;
+    /**
+     * Description for Approves or rejects a private endpoint connection
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the site.
+     * @param privateEndpointConnectionName
+     * @param privateEndpointWrapper Private Endpoint Connection Approval ARM resource.
+     * @param options The options parameters.
+     */
+    beginApproveOrRejectPrivateEndpointConnectionAndWait(resourceGroupName: string, name: string, privateEndpointConnectionName: string, privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource, options?: WebAppsApproveOrRejectPrivateEndpointConnectionOptionalParams): Promise<WebAppsApproveOrRejectPrivateEndpointConnectionResponse>;
+    /**
+     * Description for Deletes a private endpoint connection
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the site.
+     * @param privateEndpointConnectionName
+     * @param options The options parameters.
+     */
+    beginDeletePrivateEndpointConnection(resourceGroupName: string, name: string, privateEndpointConnectionName: string, options?: WebAppsDeletePrivateEndpointConnectionOptionalParams): Promise<PollerLike<PollOperationState<WebAppsDeletePrivateEndpointConnectionResponse>, WebAppsDeletePrivateEndpointConnectionResponse>>;
+    /**
+     * Description for Deletes a private endpoint connection
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the site.
+     * @param privateEndpointConnectionName
+     * @param options The options parameters.
+     */
+    beginDeletePrivateEndpointConnectionAndWait(resourceGroupName: string, name: string, privateEndpointConnectionName: string, options?: WebAppsDeletePrivateEndpointConnectionOptionalParams): Promise<WebAppsDeletePrivateEndpointConnectionResponse>;
+    /**
+     * Description for Gets the private link resources
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the site.
+     * @param options The options parameters.
+     */
+    getPrivateLinkResources(resourceGroupName: string, name: string, options?: WebAppsGetPrivateLinkResourcesOptionalParams): Promise<WebAppsGetPrivateLinkResourcesResponse>;
     /**
      * Description for Get process information by its ID for a specific scaled-out instance in a web site.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -11612,24 +14373,6 @@ export declare interface WebApps {
      */
     deleteSiteExtension(resourceGroupName: string, name: string, siteExtensionId: string, options?: WebAppsDeleteSiteExtensionOptionalParams): Promise<void>;
     /**
-     * Description for Copies a deployment slot to another deployment slot of an app.
-     * @param resourceGroupName Name of the resource group to which the resource belongs.
-     * @param name Name of the app.
-     * @param copySlotEntity JSON object that contains the target slot name and site config properties to
-     *                       override the source slot config. See example.
-     * @param options The options parameters.
-     */
-    beginCopyProductionSlot(resourceGroupName: string, name: string, copySlotEntity: CsmCopySlotEntity, options?: WebAppsCopyProductionSlotOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
-    /**
-     * Description for Copies a deployment slot to another deployment slot of an app.
-     * @param resourceGroupName Name of the resource group to which the resource belongs.
-     * @param name Name of the app.
-     * @param copySlotEntity JSON object that contains the target slot name and site config properties to
-     *                       override the source slot config. See example.
-     * @param options The options parameters.
-     */
-    beginCopyProductionSlotAndWait(resourceGroupName: string, name: string, copySlotEntity: CsmCopySlotEntity, options?: WebAppsCopyProductionSlotOptionalParams): Promise<void>;
-    /**
      * Description for Gets the details of a web, mobile, or API app.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param name Name of the app.
@@ -11765,6 +14508,40 @@ export declare interface WebApps {
      */
     beginRestoreSlotAndWait(resourceGroupName: string, name: string, backupId: string, slot: string, request: RestoreRequest, options?: WebAppsRestoreSlotOptionalParams): Promise<void>;
     /**
+     * Description for Returns whether FTP is allowed on the site or not.
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the app.
+     * @param slot
+     * @param options The options parameters.
+     */
+    getFtpAllowedSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsGetFtpAllowedSlotOptionalParams): Promise<WebAppsGetFtpAllowedSlotResponse>;
+    /**
+     * Description for Updates whether FTP is allowed on the site or not.
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the app.
+     * @param slot
+     * @param csmPublishingAccessPoliciesEntity Publishing Credentials Policies parameters.
+     * @param options The options parameters.
+     */
+    updateFtpAllowedSlot(resourceGroupName: string, name: string, slot: string, csmPublishingAccessPoliciesEntity: CsmPublishingCredentialsPoliciesEntity, options?: WebAppsUpdateFtpAllowedSlotOptionalParams): Promise<WebAppsUpdateFtpAllowedSlotResponse>;
+    /**
+     * Description for Returns whether Scm basic auth is allowed on the site or not.
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the app.
+     * @param slot
+     * @param options The options parameters.
+     */
+    getScmAllowedSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsGetScmAllowedSlotOptionalParams): Promise<WebAppsGetScmAllowedSlotResponse>;
+    /**
+     * Description for Updates whether user publishing credentials are allowed on the site or not.
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the app.
+     * @param slot
+     * @param csmPublishingAccessPoliciesEntity Publishing Credentials Policies parameters.
+     * @param options The options parameters.
+     */
+    updateScmAllowedSlot(resourceGroupName: string, name: string, slot: string, csmPublishingAccessPoliciesEntity: CsmPublishingCredentialsPoliciesEntity, options?: WebAppsUpdateScmAllowedSlotOptionalParams): Promise<WebAppsUpdateScmAllowedSlotResponse>;
+    /**
      * Description for Replaces the application settings of an app.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param name Name of the app.
@@ -11801,6 +14578,24 @@ export declare interface WebApps {
      * @param options The options parameters.
      */
     getAuthSettingsSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsGetAuthSettingsSlotOptionalParams): Promise<WebAppsGetAuthSettingsSlotResponse>;
+    /**
+     * Description for Updates site's Authentication / Authorization settings for apps via the V2 format
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of web app.
+     * @param slot Name of web app slot. If not specified then will default to production slot.
+     * @param siteAuthSettingsV2 Auth settings associated with web app.
+     * @param options The options parameters.
+     */
+    updateAuthSettingsV2Slot(resourceGroupName: string, name: string, slot: string, siteAuthSettingsV2: SiteAuthSettingsV2, options?: WebAppsUpdateAuthSettingsV2SlotOptionalParams): Promise<WebAppsUpdateAuthSettingsV2SlotResponse>;
+    /**
+     * Description for Gets site's Authentication / Authorization settings for apps via the V2 format
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the app.
+     * @param slot Name of the deployment slot. If a slot is not specified, the API will get the settings
+     *             for the production slot.
+     * @param options The options parameters.
+     */
+    getAuthSettingsV2Slot(resourceGroupName: string, name: string, slot: string, options?: WebAppsGetAuthSettingsV2SlotOptionalParams): Promise<WebAppsGetAuthSettingsV2SlotResponse>;
     /**
      * Description for Updates the Azure storage account configurations of an app.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -11848,6 +14643,24 @@ export declare interface WebApps {
      * @param options The options parameters.
      */
     getBackupConfigurationSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsGetBackupConfigurationSlotOptionalParams): Promise<WebAppsGetBackupConfigurationSlotResponse>;
+    /**
+     * Description for Gets the config reference and status of an app
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the app.
+     * @param appSettingKey App Setting key name.
+     * @param slot
+     * @param options The options parameters.
+     */
+    getAppSettingKeyVaultReferenceSlot(resourceGroupName: string, name: string, appSettingKey: string, slot: string, options?: WebAppsGetAppSettingKeyVaultReferenceSlotOptionalParams): Promise<WebAppsGetAppSettingKeyVaultReferenceSlotResponse>;
+    /**
+     * Description for Gets the config reference and status of an app
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of the app.
+     * @param connectionStringKey
+     * @param slot
+     * @param options The options parameters.
+     */
+    getSiteConnectionStringKeyVaultReferenceSlot(resourceGroupName: string, name: string, connectionStringKey: string, slot: string, options?: WebAppsGetSiteConnectionStringKeyVaultReferenceSlotOptionalParams): Promise<WebAppsGetSiteConnectionStringKeyVaultReferenceSlotResponse>;
     /**
      * Description for Replaces the connection strings of an app.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -12589,7 +15402,7 @@ export declare interface WebApps {
      * @param connectionEnvelope Properties of the Virtual Network connection. See example.
      * @param options The options parameters.
      */
-    createOrUpdateSwiftVirtualNetworkConnectionSlot(resourceGroupName: string, name: string, slot: string, connectionEnvelope: SwiftVirtualNetwork, options?: WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionSlotOptionalParams): Promise<WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionSlotResponse>;
+    createOrUpdateSwiftVirtualNetworkConnectionWithCheckSlot(resourceGroupName: string, name: string, slot: string, connectionEnvelope: SwiftVirtualNetwork, options?: WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionWithCheckSlotOptionalParams): Promise<WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionWithCheckSlotResponse>;
     /**
      * Description for Deletes a Swift Virtual Network connection from an app (or deployment slot).
      * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -12611,12 +15424,12 @@ export declare interface WebApps {
      * @param connectionEnvelope Properties of the Virtual Network connection. See example.
      * @param options The options parameters.
      */
-    updateSwiftVirtualNetworkConnectionSlot(resourceGroupName: string, name: string, slot: string, connectionEnvelope: SwiftVirtualNetwork, options?: WebAppsUpdateSwiftVirtualNetworkConnectionSlotOptionalParams): Promise<WebAppsUpdateSwiftVirtualNetworkConnectionSlotResponse>;
+    updateSwiftVirtualNetworkConnectionWithCheckSlot(resourceGroupName: string, name: string, slot: string, connectionEnvelope: SwiftVirtualNetwork, options?: WebAppsUpdateSwiftVirtualNetworkConnectionWithCheckSlotOptionalParams): Promise<WebAppsUpdateSwiftVirtualNetworkConnectionWithCheckSlotResponse>;
     /**
      * Description for Gets all network features used by the app (or deployment slot, if specified).
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param name Name of the app.
-     * @param view The type of view. This can either be "summary" or "detailed".
+     * @param view The type of view. Only "summary" is supported at this time.
      * @param slot Name of the deployment slot. If a slot is not specified, the API will get network
      *             features for the production slot.
      * @param options The options parameters.
@@ -12789,51 +15602,57 @@ export declare interface WebApps {
      * Description for Gets a private endpoint connection
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param name Name of the site.
-     * @param privateEndpointConnectionName
+     * @param privateEndpointConnectionName Name of the private endpoint connection.
+     * @param slot Name of the site deployment slot.
      * @param options The options parameters.
      */
-    getPrivateEndpointConnection(resourceGroupName: string, name: string, privateEndpointConnectionName: string, options?: WebAppsGetPrivateEndpointConnectionOptionalParams): Promise<WebAppsGetPrivateEndpointConnectionResponse>;
+    getPrivateEndpointConnectionSlot(resourceGroupName: string, name: string, privateEndpointConnectionName: string, slot: string, options?: WebAppsGetPrivateEndpointConnectionSlotOptionalParams): Promise<WebAppsGetPrivateEndpointConnectionSlotResponse>;
     /**
      * Description for Approves or rejects a private endpoint connection
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param name Name of the site.
      * @param privateEndpointConnectionName
+     * @param slot
      * @param privateEndpointWrapper Private Endpoint Connection Approval ARM resource.
      * @param options The options parameters.
      */
-    beginApproveOrRejectPrivateEndpointConnection(resourceGroupName: string, name: string, privateEndpointConnectionName: string, privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource, options?: WebAppsApproveOrRejectPrivateEndpointConnectionOptionalParams): Promise<PollerLike<PollOperationState<WebAppsApproveOrRejectPrivateEndpointConnectionResponse>, WebAppsApproveOrRejectPrivateEndpointConnectionResponse>>;
+    beginApproveOrRejectPrivateEndpointConnectionSlot(resourceGroupName: string, name: string, privateEndpointConnectionName: string, slot: string, privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource, options?: WebAppsApproveOrRejectPrivateEndpointConnectionSlotOptionalParams): Promise<PollerLike<PollOperationState<WebAppsApproveOrRejectPrivateEndpointConnectionSlotResponse>, WebAppsApproveOrRejectPrivateEndpointConnectionSlotResponse>>;
     /**
      * Description for Approves or rejects a private endpoint connection
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param name Name of the site.
      * @param privateEndpointConnectionName
+     * @param slot
      * @param privateEndpointWrapper Private Endpoint Connection Approval ARM resource.
      * @param options The options parameters.
      */
-    beginApproveOrRejectPrivateEndpointConnectionAndWait(resourceGroupName: string, name: string, privateEndpointConnectionName: string, privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource, options?: WebAppsApproveOrRejectPrivateEndpointConnectionOptionalParams): Promise<WebAppsApproveOrRejectPrivateEndpointConnectionResponse>;
+    beginApproveOrRejectPrivateEndpointConnectionSlotAndWait(resourceGroupName: string, name: string, privateEndpointConnectionName: string, slot: string, privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource, options?: WebAppsApproveOrRejectPrivateEndpointConnectionSlotOptionalParams): Promise<WebAppsApproveOrRejectPrivateEndpointConnectionSlotResponse>;
     /**
      * Description for Deletes a private endpoint connection
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param name Name of the site.
      * @param privateEndpointConnectionName
+     * @param slot
      * @param options The options parameters.
      */
-    beginDeletePrivateEndpointConnection(resourceGroupName: string, name: string, privateEndpointConnectionName: string, options?: WebAppsDeletePrivateEndpointConnectionOptionalParams): Promise<PollerLike<PollOperationState<WebAppsDeletePrivateEndpointConnectionResponse>, WebAppsDeletePrivateEndpointConnectionResponse>>;
+    beginDeletePrivateEndpointConnectionSlot(resourceGroupName: string, name: string, privateEndpointConnectionName: string, slot: string, options?: WebAppsDeletePrivateEndpointConnectionSlotOptionalParams): Promise<PollerLike<PollOperationState<WebAppsDeletePrivateEndpointConnectionSlotResponse>, WebAppsDeletePrivateEndpointConnectionSlotResponse>>;
     /**
      * Description for Deletes a private endpoint connection
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param name Name of the site.
      * @param privateEndpointConnectionName
+     * @param slot
      * @param options The options parameters.
      */
-    beginDeletePrivateEndpointConnectionAndWait(resourceGroupName: string, name: string, privateEndpointConnectionName: string, options?: WebAppsDeletePrivateEndpointConnectionOptionalParams): Promise<WebAppsDeletePrivateEndpointConnectionResponse>;
+    beginDeletePrivateEndpointConnectionSlotAndWait(resourceGroupName: string, name: string, privateEndpointConnectionName: string, slot: string, options?: WebAppsDeletePrivateEndpointConnectionSlotOptionalParams): Promise<WebAppsDeletePrivateEndpointConnectionSlotResponse>;
     /**
      * Description for Gets the private link resources
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param name Name of the site.
+     * @param slot
      * @param options The options parameters.
      */
-    getPrivateLinkResources(resourceGroupName: string, name: string, options?: WebAppsGetPrivateLinkResourcesOptionalParams): Promise<WebAppsGetPrivateLinkResourcesResponse>;
+    getPrivateLinkResourcesSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsGetPrivateLinkResourcesSlotOptionalParams): Promise<WebAppsGetPrivateLinkResourcesSlotResponse>;
     /**
      * Description for Get process information by its ID for a specific scaled-out instance in a web site.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -13038,28 +15857,6 @@ export declare interface WebApps {
      */
     deleteSiteExtensionSlot(resourceGroupName: string, name: string, siteExtensionId: string, slot: string, options?: WebAppsDeleteSiteExtensionSlotOptionalParams): Promise<void>;
     /**
-     * Description for Copies a deployment slot to another deployment slot of an app.
-     * @param resourceGroupName Name of the resource group to which the resource belongs.
-     * @param name Name of the app.
-     * @param slot Name of the source slot. If a slot is not specified, the production slot is used as the
-     *             source slot.
-     * @param copySlotEntity JSON object that contains the target slot name and site config properties to
-     *                       override the source slot config. See example.
-     * @param options The options parameters.
-     */
-    beginCopySlot(resourceGroupName: string, name: string, slot: string, copySlotEntity: CsmCopySlotEntity, options?: WebAppsCopySlotOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
-    /**
-     * Description for Copies a deployment slot to another deployment slot of an app.
-     * @param resourceGroupName Name of the resource group to which the resource belongs.
-     * @param name Name of the app.
-     * @param slot Name of the source slot. If a slot is not specified, the production slot is used as the
-     *             source slot.
-     * @param copySlotEntity JSON object that contains the target slot name and site config properties to
-     *                       override the source slot config. See example.
-     * @param options The options parameters.
-     */
-    beginCopySlotAndWait(resourceGroupName: string, name: string, slot: string, copySlotEntity: CsmCopySlotEntity, options?: WebAppsCopySlotOptionalParams): Promise<void>;
-    /**
      * Description for Swaps two deployment slots of an app.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param name Name of the app.
@@ -13256,7 +16053,7 @@ export declare interface WebApps {
      * @param connectionEnvelope Properties of the Virtual Network connection. See example.
      * @param options The options parameters.
      */
-    createOrUpdateVnetConnectionSlot(resourceGroupName: string, name: string, vnetName: string, slot: string, connectionEnvelope: VnetInfo, options?: WebAppsCreateOrUpdateVnetConnectionSlotOptionalParams): Promise<WebAppsCreateOrUpdateVnetConnectionSlotResponse>;
+    createOrUpdateVnetConnectionSlot(resourceGroupName: string, name: string, vnetName: string, slot: string, connectionEnvelope: VnetInfoResource, options?: WebAppsCreateOrUpdateVnetConnectionSlotOptionalParams): Promise<WebAppsCreateOrUpdateVnetConnectionSlotResponse>;
     /**
      * Description for Deletes a connection from an app (or deployment slot to a named virtual network.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -13278,7 +16075,7 @@ export declare interface WebApps {
      * @param connectionEnvelope Properties of the Virtual Network connection. See example.
      * @param options The options parameters.
      */
-    updateVnetConnectionSlot(resourceGroupName: string, name: string, vnetName: string, slot: string, connectionEnvelope: VnetInfo, options?: WebAppsUpdateVnetConnectionSlotOptionalParams): Promise<WebAppsUpdateVnetConnectionSlotResponse>;
+    updateVnetConnectionSlot(resourceGroupName: string, name: string, vnetName: string, slot: string, connectionEnvelope: VnetInfoResource, options?: WebAppsUpdateVnetConnectionSlotOptionalParams): Promise<WebAppsUpdateVnetConnectionSlotResponse>;
     /**
      * Description for Gets an app's Virtual Network gateway.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -13484,7 +16281,7 @@ export declare interface WebApps {
      * @param connectionEnvelope Properties of the Virtual Network connection. See example.
      * @param options The options parameters.
      */
-    createOrUpdateVnetConnection(resourceGroupName: string, name: string, vnetName: string, connectionEnvelope: VnetInfo, options?: WebAppsCreateOrUpdateVnetConnectionOptionalParams): Promise<WebAppsCreateOrUpdateVnetConnectionResponse>;
+    createOrUpdateVnetConnection(resourceGroupName: string, name: string, vnetName: string, connectionEnvelope: VnetInfoResource, options?: WebAppsCreateOrUpdateVnetConnectionOptionalParams): Promise<WebAppsCreateOrUpdateVnetConnectionResponse>;
     /**
      * Description for Deletes a connection from an app (or deployment slot to a named virtual network.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -13502,7 +16299,7 @@ export declare interface WebApps {
      * @param connectionEnvelope Properties of the Virtual Network connection. See example.
      * @param options The options parameters.
      */
-    updateVnetConnection(resourceGroupName: string, name: string, vnetName: string, connectionEnvelope: VnetInfo, options?: WebAppsUpdateVnetConnectionOptionalParams): Promise<WebAppsUpdateVnetConnectionResponse>;
+    updateVnetConnection(resourceGroupName: string, name: string, vnetName: string, connectionEnvelope: VnetInfoResource, options?: WebAppsUpdateVnetConnectionOptionalParams): Promise<WebAppsUpdateVnetConnectionResponse>;
     /**
      * Description for Gets an app's Virtual Network gateway.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -13591,7 +16388,18 @@ export declare interface WebAppsApproveOrRejectPrivateEndpointConnectionOptional
 }
 
 /** Contains response data for the approveOrRejectPrivateEndpointConnection operation. */
-export declare type WebAppsApproveOrRejectPrivateEndpointConnectionResponse = PrivateEndpointConnectionResource;
+export declare type WebAppsApproveOrRejectPrivateEndpointConnectionResponse = RemotePrivateEndpointConnectionARMResource;
+
+/** Optional parameters. */
+export declare interface WebAppsApproveOrRejectPrivateEndpointConnectionSlotOptionalParams extends coreClient.OperationOptions {
+    /** Delay to wait until next poll, in milliseconds. */
+    updateIntervalInMs?: number;
+    /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+    resumeFrom?: string;
+}
+
+/** Contains response data for the approveOrRejectPrivateEndpointConnectionSlot operation. */
+export declare type WebAppsApproveOrRejectPrivateEndpointConnectionSlotResponse = RemotePrivateEndpointConnectionARMResource;
 
 /** Optional parameters. */
 export declare interface WebAppsBackupOptionalParams extends coreClient.OperationOptions {
@@ -13606,22 +16414,6 @@ export declare interface WebAppsBackupSlotOptionalParams extends coreClient.Oper
 
 /** Contains response data for the backupSlot operation. */
 export declare type WebAppsBackupSlotResponse = BackupItem;
-
-/** Optional parameters. */
-export declare interface WebAppsCopyProductionSlotOptionalParams extends coreClient.OperationOptions {
-    /** Delay to wait until next poll, in milliseconds. */
-    updateIntervalInMs?: number;
-    /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
-    resumeFrom?: string;
-}
-
-/** Optional parameters. */
-export declare interface WebAppsCopySlotOptionalParams extends coreClient.OperationOptions {
-    /** Delay to wait until next poll, in milliseconds. */
-    updateIntervalInMs?: number;
-    /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
-    resumeFrom?: string;
-}
 
 /** Optional parameters. */
 export declare interface WebAppsCreateDeploymentOptionalParams extends coreClient.OperationOptions {
@@ -13860,18 +16652,18 @@ export declare interface WebAppsCreateOrUpdateSourceControlSlotOptionalParams ex
 export declare type WebAppsCreateOrUpdateSourceControlSlotResponse = SiteSourceControl;
 
 /** Optional parameters. */
-export declare interface WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionOptionalParams extends coreClient.OperationOptions {
+export declare interface WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionWithCheckOptionalParams extends coreClient.OperationOptions {
 }
 
-/** Contains response data for the createOrUpdateSwiftVirtualNetworkConnection operation. */
-export declare type WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionResponse = SwiftVirtualNetwork;
+/** Contains response data for the createOrUpdateSwiftVirtualNetworkConnectionWithCheck operation. */
+export declare type WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionWithCheckResponse = SwiftVirtualNetwork;
 
 /** Optional parameters. */
-export declare interface WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionSlotOptionalParams extends coreClient.OperationOptions {
+export declare interface WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionWithCheckSlotOptionalParams extends coreClient.OperationOptions {
 }
 
-/** Contains response data for the createOrUpdateSwiftVirtualNetworkConnectionSlot operation. */
-export declare type WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionSlotResponse = SwiftVirtualNetwork;
+/** Contains response data for the createOrUpdateSwiftVirtualNetworkConnectionWithCheckSlot operation. */
+export declare type WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionWithCheckSlotResponse = SwiftVirtualNetwork;
 
 /** Optional parameters. */
 export declare interface WebAppsCreateOrUpdateVnetConnectionGatewayOptionalParams extends coreClient.OperationOptions {
@@ -13892,14 +16684,14 @@ export declare interface WebAppsCreateOrUpdateVnetConnectionOptionalParams exten
 }
 
 /** Contains response data for the createOrUpdateVnetConnection operation. */
-export declare type WebAppsCreateOrUpdateVnetConnectionResponse = VnetInfo;
+export declare type WebAppsCreateOrUpdateVnetConnectionResponse = VnetInfoResource;
 
 /** Optional parameters. */
 export declare interface WebAppsCreateOrUpdateVnetConnectionSlotOptionalParams extends coreClient.OperationOptions {
 }
 
 /** Contains response data for the createOrUpdateVnetConnectionSlot operation. */
-export declare type WebAppsCreateOrUpdateVnetConnectionSlotResponse = VnetInfo;
+export declare type WebAppsCreateOrUpdateVnetConnectionSlotResponse = VnetInfoResource;
 
 /** Optional parameters. */
 export declare interface WebAppsDeleteBackupConfigurationOptionalParams extends coreClient.OperationOptions {
@@ -14017,6 +16809,17 @@ export declare interface WebAppsDeletePrivateEndpointConnectionOptionalParams ex
 export declare type WebAppsDeletePrivateEndpointConnectionResponse = Record<string, unknown>;
 
 /** Optional parameters. */
+export declare interface WebAppsDeletePrivateEndpointConnectionSlotOptionalParams extends coreClient.OperationOptions {
+    /** Delay to wait until next poll, in milliseconds. */
+    updateIntervalInMs?: number;
+    /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+    resumeFrom?: string;
+}
+
+/** Contains response data for the deletePrivateEndpointConnectionSlot operation. */
+export declare type WebAppsDeletePrivateEndpointConnectionSlotResponse = Record<string, unknown>;
+
+/** Optional parameters. */
 export declare interface WebAppsDeleteProcessOptionalParams extends coreClient.OperationOptions {
 }
 
@@ -14052,16 +16855,18 @@ export declare interface WebAppsDeleteSiteExtensionSlotOptionalParams extends co
 export declare interface WebAppsDeleteSlotOptionalParams extends coreClient.OperationOptions {
     /** If true, web app metrics are also deleted. */
     deleteMetrics?: boolean;
-    /** Specify true if the App Service plan will be empty after app deletion and you want to delete the empty App Service plan. By default, the empty App Service plan is not deleted. */
+    /** Specify false if you want to keep empty App Service plan. By default, empty App Service plan is deleted. */
     deleteEmptyServerFarm?: boolean;
 }
 
 /** Optional parameters. */
 export declare interface WebAppsDeleteSourceControlOptionalParams extends coreClient.OperationOptions {
+    additionalFlags?: string;
 }
 
 /** Optional parameters. */
 export declare interface WebAppsDeleteSourceControlSlotOptionalParams extends coreClient.OperationOptions {
+    additionalFlags?: string;
 }
 
 /** Optional parameters. */
@@ -14115,14 +16920,42 @@ export declare interface WebAppsGetAppSettingKeyVaultReferenceOptionalParams ext
 }
 
 /** Contains response data for the getAppSettingKeyVaultReference operation. */
-export declare type WebAppsGetAppSettingKeyVaultReferenceResponse = KeyVaultReferenceResource;
+export declare type WebAppsGetAppSettingKeyVaultReferenceResponse = ApiKVReference;
+
+/** Optional parameters. */
+export declare interface WebAppsGetAppSettingKeyVaultReferenceSlotOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getAppSettingKeyVaultReferenceSlot operation. */
+export declare type WebAppsGetAppSettingKeyVaultReferenceSlotResponse = ApiKVReference;
+
+/** Optional parameters. */
+export declare interface WebAppsGetAppSettingsKeyVaultReferencesNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getAppSettingsKeyVaultReferencesNext operation. */
+export declare type WebAppsGetAppSettingsKeyVaultReferencesNextResponse = ApiKVReferenceCollection;
 
 /** Optional parameters. */
 export declare interface WebAppsGetAppSettingsKeyVaultReferencesOptionalParams extends coreClient.OperationOptions {
 }
 
 /** Contains response data for the getAppSettingsKeyVaultReferences operation. */
-export declare type WebAppsGetAppSettingsKeyVaultReferencesResponse = KeyVaultReferenceCollection;
+export declare type WebAppsGetAppSettingsKeyVaultReferencesResponse = ApiKVReferenceCollection;
+
+/** Optional parameters. */
+export declare interface WebAppsGetAppSettingsKeyVaultReferencesSlotNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getAppSettingsKeyVaultReferencesSlotNext operation. */
+export declare type WebAppsGetAppSettingsKeyVaultReferencesSlotNextResponse = ApiKVReferenceCollection;
+
+/** Optional parameters. */
+export declare interface WebAppsGetAppSettingsKeyVaultReferencesSlotOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getAppSettingsKeyVaultReferencesSlot operation. */
+export declare type WebAppsGetAppSettingsKeyVaultReferencesSlotResponse = ApiKVReferenceCollection;
 
 /** Optional parameters. */
 export declare interface WebAppsGetAuthSettingsOptionalParams extends coreClient.OperationOptions {
@@ -14137,6 +16970,20 @@ export declare interface WebAppsGetAuthSettingsSlotOptionalParams extends coreCl
 
 /** Contains response data for the getAuthSettingsSlot operation. */
 export declare type WebAppsGetAuthSettingsSlotResponse = SiteAuthSettings;
+
+/** Optional parameters. */
+export declare interface WebAppsGetAuthSettingsV2OptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getAuthSettingsV2 operation. */
+export declare type WebAppsGetAuthSettingsV2Response = SiteAuthSettingsV2;
+
+/** Optional parameters. */
+export declare interface WebAppsGetAuthSettingsV2SlotOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getAuthSettingsV2Slot operation. */
+export declare type WebAppsGetAuthSettingsV2SlotResponse = SiteAuthSettingsV2;
 
 /** Optional parameters. */
 export declare interface WebAppsGetBackupConfigurationOptionalParams extends coreClient.OperationOptions {
@@ -14293,6 +17140,20 @@ export declare interface WebAppsGetDomainOwnershipIdentifierSlotOptionalParams e
 
 /** Contains response data for the getDomainOwnershipIdentifierSlot operation. */
 export declare type WebAppsGetDomainOwnershipIdentifierSlotResponse = Identifier;
+
+/** Optional parameters. */
+export declare interface WebAppsGetFtpAllowedOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getFtpAllowed operation. */
+export declare type WebAppsGetFtpAllowedResponse = CsmPublishingCredentialsPoliciesEntity;
+
+/** Optional parameters. */
+export declare interface WebAppsGetFtpAllowedSlotOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getFtpAllowedSlot operation. */
+export declare type WebAppsGetFtpAllowedSlotResponse = CsmPublishingCredentialsPoliciesEntity;
 
 /** Optional parameters. */
 export declare interface WebAppsGetFunctionOptionalParams extends coreClient.OperationOptions {
@@ -14601,11 +17462,46 @@ export declare interface WebAppsGetPrivateAccessSlotOptionalParams extends coreC
 export declare type WebAppsGetPrivateAccessSlotResponse = PrivateAccess;
 
 /** Optional parameters. */
+export declare interface WebAppsGetPrivateEndpointConnectionListNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getPrivateEndpointConnectionListNext operation. */
+export declare type WebAppsGetPrivateEndpointConnectionListNextResponse = PrivateEndpointConnectionCollection;
+
+/** Optional parameters. */
+export declare interface WebAppsGetPrivateEndpointConnectionListOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getPrivateEndpointConnectionList operation. */
+export declare type WebAppsGetPrivateEndpointConnectionListResponse = PrivateEndpointConnectionCollection;
+
+/** Optional parameters. */
+export declare interface WebAppsGetPrivateEndpointConnectionListSlotNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getPrivateEndpointConnectionListSlotNext operation. */
+export declare type WebAppsGetPrivateEndpointConnectionListSlotNextResponse = PrivateEndpointConnectionCollection;
+
+/** Optional parameters. */
+export declare interface WebAppsGetPrivateEndpointConnectionListSlotOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getPrivateEndpointConnectionListSlot operation. */
+export declare type WebAppsGetPrivateEndpointConnectionListSlotResponse = PrivateEndpointConnectionCollection;
+
+/** Optional parameters. */
 export declare interface WebAppsGetPrivateEndpointConnectionOptionalParams extends coreClient.OperationOptions {
 }
 
 /** Contains response data for the getPrivateEndpointConnection operation. */
-export declare type WebAppsGetPrivateEndpointConnectionResponse = PrivateEndpointConnectionResource;
+export declare type WebAppsGetPrivateEndpointConnectionResponse = RemotePrivateEndpointConnectionARMResource;
+
+/** Optional parameters. */
+export declare interface WebAppsGetPrivateEndpointConnectionSlotOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getPrivateEndpointConnectionSlot operation. */
+export declare type WebAppsGetPrivateEndpointConnectionSlotResponse = RemotePrivateEndpointConnectionARMResource;
 
 /** Optional parameters. */
 export declare interface WebAppsGetPrivateLinkResourcesOptionalParams extends coreClient.OperationOptions {
@@ -14613,6 +17509,13 @@ export declare interface WebAppsGetPrivateLinkResourcesOptionalParams extends co
 
 /** Contains response data for the getPrivateLinkResources operation. */
 export declare type WebAppsGetPrivateLinkResourcesResponse = PrivateLinkResourcesWrapper;
+
+/** Optional parameters. */
+export declare interface WebAppsGetPrivateLinkResourcesSlotOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getPrivateLinkResourcesSlot operation. */
+export declare type WebAppsGetPrivateLinkResourcesSlotResponse = PrivateLinkResourcesWrapper;
 
 /** Optional parameters. */
 export declare interface WebAppsGetProcessDumpOptionalParams extends coreClient.OperationOptions {
@@ -14716,6 +17619,62 @@ export declare type WebAppsGetRelayServiceConnectionSlotResponse = RelayServiceC
 
 /** Contains response data for the get operation. */
 export declare type WebAppsGetResponse = Site;
+
+/** Optional parameters. */
+export declare interface WebAppsGetScmAllowedOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getScmAllowed operation. */
+export declare type WebAppsGetScmAllowedResponse = CsmPublishingCredentialsPoliciesEntity;
+
+/** Optional parameters. */
+export declare interface WebAppsGetScmAllowedSlotOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getScmAllowedSlot operation. */
+export declare type WebAppsGetScmAllowedSlotResponse = CsmPublishingCredentialsPoliciesEntity;
+
+/** Optional parameters. */
+export declare interface WebAppsGetSiteConnectionStringKeyVaultReferenceOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getSiteConnectionStringKeyVaultReference operation. */
+export declare type WebAppsGetSiteConnectionStringKeyVaultReferenceResponse = ApiKVReference;
+
+/** Optional parameters. */
+export declare interface WebAppsGetSiteConnectionStringKeyVaultReferenceSlotOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getSiteConnectionStringKeyVaultReferenceSlot operation. */
+export declare type WebAppsGetSiteConnectionStringKeyVaultReferenceSlotResponse = ApiKVReference;
+
+/** Optional parameters. */
+export declare interface WebAppsGetSiteConnectionStringKeyVaultReferencesNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getSiteConnectionStringKeyVaultReferencesNext operation. */
+export declare type WebAppsGetSiteConnectionStringKeyVaultReferencesNextResponse = ApiKVReferenceCollection;
+
+/** Optional parameters. */
+export declare interface WebAppsGetSiteConnectionStringKeyVaultReferencesOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getSiteConnectionStringKeyVaultReferences operation. */
+export declare type WebAppsGetSiteConnectionStringKeyVaultReferencesResponse = ApiKVReferenceCollection;
+
+/** Optional parameters. */
+export declare interface WebAppsGetSiteConnectionStringKeyVaultReferencesSlotNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getSiteConnectionStringKeyVaultReferencesSlotNext operation. */
+export declare type WebAppsGetSiteConnectionStringKeyVaultReferencesSlotNextResponse = ApiKVReferenceCollection;
+
+/** Optional parameters. */
+export declare interface WebAppsGetSiteConnectionStringKeyVaultReferencesSlotOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getSiteConnectionStringKeyVaultReferencesSlot operation. */
+export declare type WebAppsGetSiteConnectionStringKeyVaultReferencesSlotResponse = ApiKVReferenceCollection;
 
 /** Optional parameters. */
 export declare interface WebAppsGetSiteExtensionOptionalParams extends coreClient.OperationOptions {
@@ -14827,14 +17786,14 @@ export declare interface WebAppsGetVnetConnectionOptionalParams extends coreClie
 }
 
 /** Contains response data for the getVnetConnection operation. */
-export declare type WebAppsGetVnetConnectionResponse = VnetInfo;
+export declare type WebAppsGetVnetConnectionResponse = VnetInfoResource;
 
 /** Optional parameters. */
 export declare interface WebAppsGetVnetConnectionSlotOptionalParams extends coreClient.OperationOptions {
 }
 
 /** Contains response data for the getVnetConnectionSlot operation. */
-export declare type WebAppsGetVnetConnectionSlotResponse = VnetInfo;
+export declare type WebAppsGetVnetConnectionSlotResponse = VnetInfoResource;
 
 /** Optional parameters. */
 export declare interface WebAppsGetWebJobOptionalParams extends coreClient.OperationOptions {
@@ -14999,6 +17958,34 @@ export declare interface WebAppsListBackupStatusSecretsSlotOptionalParams extend
 
 /** Contains response data for the listBackupStatusSecretsSlot operation. */
 export declare type WebAppsListBackupStatusSecretsSlotResponse = BackupItem;
+
+/** Optional parameters. */
+export declare interface WebAppsListBasicPublishingCredentialsPoliciesNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listBasicPublishingCredentialsPoliciesNext operation. */
+export declare type WebAppsListBasicPublishingCredentialsPoliciesNextResponse = PublishingCredentialsPoliciesCollection;
+
+/** Optional parameters. */
+export declare interface WebAppsListBasicPublishingCredentialsPoliciesOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listBasicPublishingCredentialsPolicies operation. */
+export declare type WebAppsListBasicPublishingCredentialsPoliciesResponse = PublishingCredentialsPoliciesCollection;
+
+/** Optional parameters. */
+export declare interface WebAppsListBasicPublishingCredentialsPoliciesSlotNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listBasicPublishingCredentialsPoliciesSlotNext operation. */
+export declare type WebAppsListBasicPublishingCredentialsPoliciesSlotNextResponse = PublishingCredentialsPoliciesCollection;
+
+/** Optional parameters. */
+export declare interface WebAppsListBasicPublishingCredentialsPoliciesSlotOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listBasicPublishingCredentialsPoliciesSlot operation. */
+export declare type WebAppsListBasicPublishingCredentialsPoliciesSlotResponse = PublishingCredentialsPoliciesCollection;
 
 /** Optional parameters. */
 export declare interface WebAppsListByResourceGroupNextOptionalParams extends coreClient.OperationOptions {
@@ -15303,28 +18290,28 @@ export declare interface WebAppsListInstanceIdentifiersNextOptionalParams extend
 }
 
 /** Contains response data for the listInstanceIdentifiersNext operation. */
-export declare type WebAppsListInstanceIdentifiersNextResponse = WebAppInstanceCollection;
+export declare type WebAppsListInstanceIdentifiersNextResponse = WebAppInstanceStatusCollection;
 
 /** Optional parameters. */
 export declare interface WebAppsListInstanceIdentifiersOptionalParams extends coreClient.OperationOptions {
 }
 
 /** Contains response data for the listInstanceIdentifiers operation. */
-export declare type WebAppsListInstanceIdentifiersResponse = WebAppInstanceCollection;
+export declare type WebAppsListInstanceIdentifiersResponse = WebAppInstanceStatusCollection;
 
 /** Optional parameters. */
 export declare interface WebAppsListInstanceIdentifiersSlotNextOptionalParams extends coreClient.OperationOptions {
 }
 
 /** Contains response data for the listInstanceIdentifiersSlotNext operation. */
-export declare type WebAppsListInstanceIdentifiersSlotNextResponse = WebAppInstanceCollection;
+export declare type WebAppsListInstanceIdentifiersSlotNextResponse = WebAppInstanceStatusCollection;
 
 /** Optional parameters. */
 export declare interface WebAppsListInstanceIdentifiersSlotOptionalParams extends coreClient.OperationOptions {
 }
 
 /** Contains response data for the listInstanceIdentifiersSlot operation. */
-export declare type WebAppsListInstanceIdentifiersSlotResponse = WebAppInstanceCollection;
+export declare type WebAppsListInstanceIdentifiersSlotResponse = WebAppInstanceStatusCollection;
 
 /** Optional parameters. */
 export declare interface WebAppsListInstanceProcessesNextOptionalParams extends coreClient.OperationOptions {
@@ -15988,14 +18975,14 @@ export declare interface WebAppsListVnetConnectionsOptionalParams extends coreCl
 }
 
 /** Contains response data for the listVnetConnections operation. */
-export declare type WebAppsListVnetConnectionsResponse = VnetInfo[];
+export declare type WebAppsListVnetConnectionsResponse = VnetInfoResource[];
 
 /** Optional parameters. */
 export declare interface WebAppsListVnetConnectionsSlotOptionalParams extends coreClient.OperationOptions {
 }
 
 /** Contains response data for the listVnetConnectionsSlot operation. */
-export declare type WebAppsListVnetConnectionsSlotResponse = VnetInfo[];
+export declare type WebAppsListVnetConnectionsSlotResponse = VnetInfoResource[];
 
 /** Optional parameters. */
 export declare interface WebAppsListWebJobsNextOptionalParams extends coreClient.OperationOptions {
@@ -16353,6 +19340,46 @@ export declare interface WebAppsSyncRepositoryOptionalParams extends coreClient.
 export declare interface WebAppsSyncRepositorySlotOptionalParams extends coreClient.OperationOptions {
 }
 
+/** Web App stack. */
+export declare type WebAppStack = ProxyOnlyResource & {
+    /**
+     * Web App stack location.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly location?: string;
+    /**
+     * Web App stack (display only).
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly displayText?: string;
+    /**
+     * Web App stack name.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly value?: string;
+    /**
+     * List of major versions available.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly majorVersions?: WebAppMajorVersion[];
+    /**
+     * Web App stack preferred OS.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly preferredOs?: StackPreferredOs;
+};
+
+/** Collection of Web app Stacks */
+export declare interface WebAppStackCollection {
+    /** Collection of resources. */
+    value: WebAppStack[];
+    /**
+     * Link to next page of resources.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly nextLink?: string;
+}
+
 /** Optional parameters. */
 export declare interface WebAppsUpdateApplicationSettingsOptionalParams extends coreClient.OperationOptions {
 }
@@ -16380,6 +19407,20 @@ export declare interface WebAppsUpdateAuthSettingsSlotOptionalParams extends cor
 
 /** Contains response data for the updateAuthSettingsSlot operation. */
 export declare type WebAppsUpdateAuthSettingsSlotResponse = SiteAuthSettings;
+
+/** Optional parameters. */
+export declare interface WebAppsUpdateAuthSettingsV2OptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the updateAuthSettingsV2 operation. */
+export declare type WebAppsUpdateAuthSettingsV2Response = SiteAuthSettingsV2;
+
+/** Optional parameters. */
+export declare interface WebAppsUpdateAuthSettingsV2SlotOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the updateAuthSettingsV2Slot operation. */
+export declare type WebAppsUpdateAuthSettingsV2SlotResponse = SiteAuthSettingsV2;
 
 /** Optional parameters. */
 export declare interface WebAppsUpdateAzureStorageAccountsOptionalParams extends coreClient.OperationOptions {
@@ -16466,6 +19507,20 @@ export declare interface WebAppsUpdateDomainOwnershipIdentifierSlotOptionalParam
 export declare type WebAppsUpdateDomainOwnershipIdentifierSlotResponse = Identifier;
 
 /** Optional parameters. */
+export declare interface WebAppsUpdateFtpAllowedOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the updateFtpAllowed operation. */
+export declare type WebAppsUpdateFtpAllowedResponse = CsmPublishingCredentialsPoliciesEntity;
+
+/** Optional parameters. */
+export declare interface WebAppsUpdateFtpAllowedSlotOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the updateFtpAllowedSlot operation. */
+export declare type WebAppsUpdateFtpAllowedSlotResponse = CsmPublishingCredentialsPoliciesEntity;
+
+/** Optional parameters. */
 export declare interface WebAppsUpdateHybridConnectionOptionalParams extends coreClient.OperationOptions {
 }
 
@@ -16529,6 +19584,20 @@ export declare type WebAppsUpdateRelayServiceConnectionSlotResponse = RelayServi
 export declare type WebAppsUpdateResponse = Site;
 
 /** Optional parameters. */
+export declare interface WebAppsUpdateScmAllowedOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the updateScmAllowed operation. */
+export declare type WebAppsUpdateScmAllowedResponse = CsmPublishingCredentialsPoliciesEntity;
+
+/** Optional parameters. */
+export declare interface WebAppsUpdateScmAllowedSlotOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the updateScmAllowedSlot operation. */
+export declare type WebAppsUpdateScmAllowedSlotResponse = CsmPublishingCredentialsPoliciesEntity;
+
+/** Optional parameters. */
 export declare interface WebAppsUpdateSitePushSettingsOptionalParams extends coreClient.OperationOptions {
 }
 
@@ -16571,18 +19640,18 @@ export declare interface WebAppsUpdateSourceControlSlotOptionalParams extends co
 export declare type WebAppsUpdateSourceControlSlotResponse = SiteSourceControl;
 
 /** Optional parameters. */
-export declare interface WebAppsUpdateSwiftVirtualNetworkConnectionOptionalParams extends coreClient.OperationOptions {
+export declare interface WebAppsUpdateSwiftVirtualNetworkConnectionWithCheckOptionalParams extends coreClient.OperationOptions {
 }
 
-/** Contains response data for the updateSwiftVirtualNetworkConnection operation. */
-export declare type WebAppsUpdateSwiftVirtualNetworkConnectionResponse = SwiftVirtualNetwork;
+/** Contains response data for the updateSwiftVirtualNetworkConnectionWithCheck operation. */
+export declare type WebAppsUpdateSwiftVirtualNetworkConnectionWithCheckResponse = SwiftVirtualNetwork;
 
 /** Optional parameters. */
-export declare interface WebAppsUpdateSwiftVirtualNetworkConnectionSlotOptionalParams extends coreClient.OperationOptions {
+export declare interface WebAppsUpdateSwiftVirtualNetworkConnectionWithCheckSlotOptionalParams extends coreClient.OperationOptions {
 }
 
-/** Contains response data for the updateSwiftVirtualNetworkConnectionSlot operation. */
-export declare type WebAppsUpdateSwiftVirtualNetworkConnectionSlotResponse = SwiftVirtualNetwork;
+/** Contains response data for the updateSwiftVirtualNetworkConnectionWithCheckSlot operation. */
+export declare type WebAppsUpdateSwiftVirtualNetworkConnectionWithCheckSlotResponse = SwiftVirtualNetwork;
 
 /** Optional parameters. */
 export declare interface WebAppsUpdateVnetConnectionGatewayOptionalParams extends coreClient.OperationOptions {
@@ -16603,14 +19672,14 @@ export declare interface WebAppsUpdateVnetConnectionOptionalParams extends coreC
 }
 
 /** Contains response data for the updateVnetConnection operation. */
-export declare type WebAppsUpdateVnetConnectionResponse = VnetInfo;
+export declare type WebAppsUpdateVnetConnectionResponse = VnetInfoResource;
 
 /** Optional parameters. */
 export declare interface WebAppsUpdateVnetConnectionSlotOptionalParams extends coreClient.OperationOptions {
 }
 
 /** Contains response data for the updateVnetConnectionSlot operation. */
-export declare type WebAppsUpdateVnetConnectionSlotResponse = VnetInfo;
+export declare type WebAppsUpdateVnetConnectionSlotResponse = VnetInfoResource;
 
 /** Web Job Information. */
 export declare type WebJob = ProxyOnlyResource & {
@@ -16652,8 +19721,10 @@ export declare type WebSiteInstanceStatus = ProxyOnlyResource & {
     statusUrl?: string;
     /** Link to the Diagnose and Solve Portal */
     detectorUrl?: string;
-    /** Link to the Diagnose and Solve Portal */
+    /** Link to the console to web app instance */
     consoleUrl?: string;
+    /** Link to the console to web app instance */
+    healthCheckUrl?: string;
     /** Dictionary of <ContainerInfo> */
     containers?: {
         [propertyName: string]: ContainerInfo;
@@ -16836,20 +19907,23 @@ export declare class WebSiteManagementClient extends coreClient.ServiceClient {
      */
     private _listPremierAddOnOffersNext;
     appServiceCertificateOrders: AppServiceCertificateOrders;
+    certificateOrdersDiagnostics: CertificateOrdersDiagnostics;
     certificateRegistrationProvider: CertificateRegistrationProvider;
     domains: Domains;
     topLevelDomains: TopLevelDomains;
     domainRegistrationProvider: DomainRegistrationProvider;
+    appServiceEnvironments: AppServiceEnvironments;
+    appServicePlans: AppServicePlans;
     certificates: Certificates;
     deletedWebApps: DeletedWebApps;
     diagnostics: Diagnostics;
+    global: Global;
+    kubeEnvironments: KubeEnvironments;
     provider: Provider;
     recommendations: Recommendations;
-    webApps: WebApps;
-    staticSites: StaticSites;
-    appServiceEnvironments: AppServiceEnvironments;
-    appServicePlans: AppServicePlans;
     resourceHealthMetadataOperations: ResourceHealthMetadataOperations;
+    staticSites: StaticSites;
+    webApps: WebApps;
 }
 
 /** Optional parameters. */
@@ -16862,21 +19936,48 @@ export declare interface WebSiteManagementClientOptionalParams extends coreClien
     endpoint?: string;
 }
 
-/** Worker pool of an App Service Environment. */
-export declare interface WorkerPool {
-    /** Worker size ID for referencing this worker pool. */
-    workerSizeId?: number;
-    /** Shared or dedicated app hosting. */
-    computeMode?: ComputeModeOptions;
-    /** VM size of the worker pool instances. */
-    workerSize?: string;
-    /** Number of instances in the worker pool. */
-    workerCount?: number;
+/** Windows Java Container settings. */
+export declare interface WindowsJavaContainerSettings {
     /**
-     * Names of all instances in the worker pool (read only).
+     * Java container (runtime only).
      * NOTE: This property will not be serialized. It can only be populated by the server.
      */
-    readonly instanceNames?: string[];
+    readonly javaContainer?: string;
+    /**
+     * Java container version (runtime only).
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly javaContainerVersion?: string;
+    /**
+     * <code>true</code> if the stack is in preview; otherwise, <code>false</code>.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly isPreview?: boolean;
+    /**
+     * <code>true</code> if the stack is deprecated; otherwise, <code>false</code>.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly isDeprecated?: boolean;
+    /**
+     * <code>true</code> if the stack should be hidden; otherwise, <code>false</code>.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly isHidden?: boolean;
+    /**
+     * End-of-life date for the minor version.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly endOfLifeDate?: Date;
+    /**
+     * <code>true</code> if the stack version is auto-updated; otherwise, <code>false</code>.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly isAutoUpdate?: boolean;
+    /**
+     * <code>true</code> if the minor version is early-access; otherwise, <code>false</code>.
+     * NOTE: This property will not be serialized. It can only be populated by the server.
+     */
+    readonly isEarlyAccess?: boolean;
 }
 
 /** Collection of worker pools. */
@@ -16910,6 +20011,6 @@ export declare type WorkerPoolResource = ProxyOnlyResource & {
 };
 
 /** Defines values for WorkerSizeOptions. */
-export declare type WorkerSizeOptions = "Small" | "Medium" | "Large" | "D1" | "D2" | "D3" | "NestedSmall" | "Default";
+export declare type WorkerSizeOptions = "Small" | "Medium" | "Large" | "D1" | "D2" | "D3" | "SmallV3" | "MediumV3" | "LargeV3" | "NestedSmall" | "NestedSmallLinux" | "Default";
 
 export { }

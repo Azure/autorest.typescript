@@ -538,7 +538,7 @@ export class DomainsImpl implements Domains {
 
   /**
    * Description for Creates an ownership identifier for a domain or updates identifier details for an
-   * existing identifer
+   * existing identifier
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param domainName Name of domain.
    * @param name Name of identifier.
@@ -585,7 +585,7 @@ export class DomainsImpl implements Domains {
 
   /**
    * Description for Creates an ownership identifier for a domain or updates identifier details for an
-   * existing identifer
+   * existing identifier
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param domainName Name of domain.
    * @param name Name of identifier.

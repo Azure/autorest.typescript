@@ -93,16 +93,16 @@ export const readmes: SpecDefinition[] = [
   //   branch: "main",
   //   buildTag: "ci_2"
   // },
-  {
-    path: joinPath(
-      `${__dirname}`,
-      "..",
-      "..",
-      "./.tmp/specs/specification/compute/resource-manager/readme.md"
-    ),
-    params: [AutorestParams.GenerateTest],
-    buildTag: "ci_2"
-  },
+  // {
+  //   path: joinPath(
+  //     `${__dirname}`,
+  //     "..",
+  //     "..",
+  //     "./.tmp/specs/specification/compute/resource-manager/readme.md"
+  //   ),
+  //   params: [AutorestParams.GenerateTest],
+  //   buildTag: "ci_2"
+  // },
   {
     path: joinPath(
       `${__dirname}`,

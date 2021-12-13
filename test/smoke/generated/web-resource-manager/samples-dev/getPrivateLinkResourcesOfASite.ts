@@ -17,12 +17,13 @@ import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: WebSiteManagementClient;
-//webApps.getPrivateLinkResources
+//webApps.getPrivateLinkResourcesSlot
 async function getPrivateLinkResourcesOfASite() {
   const resourceGroupName = "rg";
   const name = "testSite";
+  const slot = "stage";
   await client.webApps
-    .getPrivateLinkResources(resourceGroupName, name)
+    .getPrivateLinkResourcesSlot(resourceGroupName, name, slot)
     .then((res) => {
       console.log(res);
     });

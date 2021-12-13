@@ -9,18 +9,18 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 /**
- * This sample demonstrates how to Gets the server's secure connection policy.
+ * This sample demonstrates how to Gets a server connection policy
  *
- * @summary Gets the server's secure connection policy.
+ * @summary Gets a server connection policy
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
 //serverConnectionPolicies.get
-async function getAServerSSecureConnectionPolicy() {
-  const resourceGroupName = "test-1234";
-  const serverName = "test-5678";
+async function getsAServerConnectionPolicy() {
+  const resourceGroupName = "rgtest-12";
+  const serverName = "servertest-6285";
   const connectionPolicyName = "default";
   await client.serverConnectionPolicies
     .get(resourceGroupName, serverName, connectionPolicyName)
@@ -32,6 +32,6 @@ async function main() {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-1111-2222-3333-444444444444";
   client = new SqlManagementClient(credential, subscriptionId);
-  await getAServerSSecureConnectionPolicy();
+  await getsAServerConnectionPolicy();
 }
 main();

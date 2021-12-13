@@ -20,7 +20,7 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: WebSiteManagementClient;
-//staticSites.createOrUpdateStaticSite
+//staticSites.beginCreateOrUpdateStaticSiteAndWait
 async function createOrUpdateAStaticSite() {
   const resourceGroupName = "rg";
   const name = "testStaticSite0";
@@ -37,7 +37,11 @@ async function createOrUpdateAStaticSite() {
     sku: { name: "Basic", tier: "Basic" }
   };
   await client.staticSites
-    .createOrUpdateStaticSite(resourceGroupName, name, staticSiteEnvelope)
+    .beginCreateOrUpdateStaticSiteAndWait(
+      resourceGroupName,
+      name,
+      staticSiteEnvelope
+    )
     .then((res) => {
       console.log(res);
     });

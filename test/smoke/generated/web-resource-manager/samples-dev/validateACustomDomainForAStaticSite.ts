@@ -13,20 +13,25 @@
  *
  * @summary Description for Validates a particular custom domain can be added to a static site.
  */
-import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
+import {
+  StaticSiteCustomDomainRequestPropertiesARMResource,
+  WebSiteManagementClient
+} from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: WebSiteManagementClient;
-//staticSites.validateCustomDomainCanBeAddedToStaticSite
+//staticSites.beginValidateCustomDomainCanBeAddedToStaticSiteAndWait
 async function validateACustomDomainForAStaticSite() {
   const resourceGroupName = "rg";
   const name = "testStaticSite0";
   const domainName = "custom.domain.net";
+  const staticSiteCustomDomainRequestPropertiesEnvelope: StaticSiteCustomDomainRequestPropertiesARMResource = {};
   await client.staticSites
-    .validateCustomDomainCanBeAddedToStaticSite(
+    .beginValidateCustomDomainCanBeAddedToStaticSiteAndWait(
       resourceGroupName,
       name,
-      domainName
+      domainName,
+      staticSiteCustomDomainRequestPropertiesEnvelope
     )
     .then((res) => {
       console.log(res);

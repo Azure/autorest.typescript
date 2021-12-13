@@ -17,12 +17,12 @@ import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: WebSiteManagementClient;
-//staticSites.detachStaticSite
+//staticSites.beginDetachStaticSiteAndWait
 async function detachAStaticSite() {
   const resourceGroupName = "rg";
   const name = "testStaticSite0";
   await client.staticSites
-    .detachStaticSite(resourceGroupName, name)
+    .beginDetachStaticSiteAndWait(resourceGroupName, name)
     .then((res) => {
       console.log(res);
     });

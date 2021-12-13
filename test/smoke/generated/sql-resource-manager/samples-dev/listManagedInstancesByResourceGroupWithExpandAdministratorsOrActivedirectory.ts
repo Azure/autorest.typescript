@@ -9,20 +9,20 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 /**
- * This sample demonstrates how to Gets a service operation health status.
+ * This sample demonstrates how to Gets a list of managed instances in a resource group.
  *
- * @summary Gets a service operation health status.
+ * @summary Gets a list of managed instances in a resource group.
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//operationsHealthOperations.listByLocation
-async function getManagementOperationsHealthInTheGivenLocation() {
-  const locationName = "WestUS";
+//managedInstances.listByResourceGroup
+async function listManagedInstancesByResourceGroupWithExpandAdministratorsOrActivedirectory() {
+  const resourceGroupName = "Test1";
   const resArray = new Array();
-  for await (let item of client.operationsHealthOperations.listByLocation(
-    locationName
+  for await (let item of client.managedInstances.listByResourceGroup(
+    resourceGroupName
   )) {
     resArray.push(item);
   }
@@ -30,8 +30,8 @@ async function getManagementOperationsHealthInTheGivenLocation() {
 }
 async function main() {
   const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
+  const subscriptionId = "20D7082A-0FC7-4468-82BD-542694D5042B";
   client = new SqlManagementClient(credential, subscriptionId);
-  await getManagementOperationsHealthInTheGivenLocation();
+  await listManagedInstancesByResourceGroupWithExpandAdministratorsOrActivedirectory();
 }
 main();

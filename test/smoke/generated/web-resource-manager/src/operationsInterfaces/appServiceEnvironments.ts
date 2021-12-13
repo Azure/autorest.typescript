@@ -30,6 +30,8 @@ import {
   AppServiceEnvironmentsListMultiRoleUsagesOptionalParams,
   OutboundEnvironmentEndpoint,
   AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsOptionalParams,
+  RemotePrivateEndpointConnectionARMResource,
+  AppServiceEnvironmentsGetPrivateEndpointConnectionListOptionalParams,
   AppServiceEnvironmentsResumeOptionalParams,
   AppServicePlan,
   AppServiceEnvironmentsListAppServicePlansOptionalParams,
@@ -52,6 +54,11 @@ import {
   AppServiceEnvironmentsUpdateResponse,
   AppServiceEnvironmentsGetVipInfoOptionalParams,
   AppServiceEnvironmentsGetVipInfoResponse,
+  AppServiceEnvironmentsGetAseV3NetworkingConfigurationOptionalParams,
+  AppServiceEnvironmentsGetAseV3NetworkingConfigurationResponse,
+  AseV3NetworkingConfiguration,
+  AppServiceEnvironmentsUpdateAseNetworkingConfigurationOptionalParams,
+  AppServiceEnvironmentsUpdateAseNetworkingConfigurationResponse,
   AppServiceEnvironmentsListDiagnosticsOptionalParams,
   AppServiceEnvironmentsListDiagnosticsResponse,
   AppServiceEnvironmentsGetDiagnosticsItemOptionalParams,
@@ -64,6 +71,15 @@ import {
   AppServiceEnvironmentsUpdateMultiRolePoolResponse,
   AppServiceEnvironmentsListOperationsOptionalParams,
   AppServiceEnvironmentsListOperationsResponse,
+  AppServiceEnvironmentsGetPrivateEndpointConnectionOptionalParams,
+  AppServiceEnvironmentsGetPrivateEndpointConnectionResponse,
+  PrivateLinkConnectionApprovalRequestResource,
+  AppServiceEnvironmentsApproveOrRejectPrivateEndpointConnectionOptionalParams,
+  AppServiceEnvironmentsApproveOrRejectPrivateEndpointConnectionResponse,
+  AppServiceEnvironmentsDeletePrivateEndpointConnectionOptionalParams,
+  AppServiceEnvironmentsDeletePrivateEndpointConnectionResponse,
+  AppServiceEnvironmentsGetPrivateLinkResourcesOptionalParams,
+  AppServiceEnvironmentsGetPrivateLinkResourcesResponse,
   AppServiceEnvironmentsRebootOptionalParams,
   AppServiceEnvironmentsGetWorkerPoolOptionalParams,
   AppServiceEnvironmentsGetWorkerPoolResponse,
@@ -197,6 +213,17 @@ export interface AppServiceEnvironments {
     name: string,
     options?: AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsOptionalParams
   ): PagedAsyncIterableIterator<OutboundEnvironmentEndpoint>;
+  /**
+   * Description for Gets the list of private endpoints associated with a hosting environment
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param options The options parameters.
+   */
+  listPrivateEndpointConnectionList(
+    resourceGroupName: string,
+    name: string,
+    options?: AppServiceEnvironmentsGetPrivateEndpointConnectionListOptionalParams
+  ): PagedAsyncIterableIterator<RemotePrivateEndpointConnectionARMResource>;
   /**
    * Description for Resume an App Service Environment.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -407,6 +434,30 @@ export interface AppServiceEnvironments {
     options?: AppServiceEnvironmentsGetVipInfoOptionalParams
   ): Promise<AppServiceEnvironmentsGetVipInfoResponse>;
   /**
+   * Description for Get networking configuration of an App Service Environment
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param options The options parameters.
+   */
+  getAseV3NetworkingConfiguration(
+    resourceGroupName: string,
+    name: string,
+    options?: AppServiceEnvironmentsGetAseV3NetworkingConfigurationOptionalParams
+  ): Promise<AppServiceEnvironmentsGetAseV3NetworkingConfigurationResponse>;
+  /**
+   * Description for Update networking configuration of an App Service Environment
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param aseNetworkingConfiguration Full view of networking configuration for an ASE.
+   * @param options The options parameters.
+   */
+  updateAseNetworkingConfiguration(
+    resourceGroupName: string,
+    name: string,
+    aseNetworkingConfiguration: AseV3NetworkingConfiguration,
+    options?: AppServiceEnvironmentsUpdateAseNetworkingConfigurationOptionalParams
+  ): Promise<AppServiceEnvironmentsUpdateAseNetworkingConfigurationResponse>;
+  /**
    * Description for Get diagnostic information for an App Service Environment.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the App Service Environment.
@@ -498,6 +549,102 @@ export interface AppServiceEnvironments {
     name: string,
     options?: AppServiceEnvironmentsListOperationsOptionalParams
   ): Promise<AppServiceEnvironmentsListOperationsResponse>;
+  /**
+   * Description for Gets a private endpoint connection
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param privateEndpointConnectionName Name of the private endpoint connection.
+   * @param options The options parameters.
+   */
+  getPrivateEndpointConnection(
+    resourceGroupName: string,
+    name: string,
+    privateEndpointConnectionName: string,
+    options?: AppServiceEnvironmentsGetPrivateEndpointConnectionOptionalParams
+  ): Promise<AppServiceEnvironmentsGetPrivateEndpointConnectionResponse>;
+  /**
+   * Description for Approves or rejects a private endpoint connection
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param privateEndpointConnectionName
+   * @param privateEndpointWrapper Private Endpoint Connection Approval ARM resource.
+   * @param options The options parameters.
+   */
+  beginApproveOrRejectPrivateEndpointConnection(
+    resourceGroupName: string,
+    name: string,
+    privateEndpointConnectionName: string,
+    privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource,
+    options?: AppServiceEnvironmentsApproveOrRejectPrivateEndpointConnectionOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<
+        AppServiceEnvironmentsApproveOrRejectPrivateEndpointConnectionResponse
+      >,
+      AppServiceEnvironmentsApproveOrRejectPrivateEndpointConnectionResponse
+    >
+  >;
+  /**
+   * Description for Approves or rejects a private endpoint connection
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param privateEndpointConnectionName
+   * @param privateEndpointWrapper Private Endpoint Connection Approval ARM resource.
+   * @param options The options parameters.
+   */
+  beginApproveOrRejectPrivateEndpointConnectionAndWait(
+    resourceGroupName: string,
+    name: string,
+    privateEndpointConnectionName: string,
+    privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource,
+    options?: AppServiceEnvironmentsApproveOrRejectPrivateEndpointConnectionOptionalParams
+  ): Promise<
+    AppServiceEnvironmentsApproveOrRejectPrivateEndpointConnectionResponse
+  >;
+  /**
+   * Description for Deletes a private endpoint connection
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param privateEndpointConnectionName
+   * @param options The options parameters.
+   */
+  beginDeletePrivateEndpointConnection(
+    resourceGroupName: string,
+    name: string,
+    privateEndpointConnectionName: string,
+    options?: AppServiceEnvironmentsDeletePrivateEndpointConnectionOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<
+        AppServiceEnvironmentsDeletePrivateEndpointConnectionResponse
+      >,
+      AppServiceEnvironmentsDeletePrivateEndpointConnectionResponse
+    >
+  >;
+  /**
+   * Description for Deletes a private endpoint connection
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param privateEndpointConnectionName
+   * @param options The options parameters.
+   */
+  beginDeletePrivateEndpointConnectionAndWait(
+    resourceGroupName: string,
+    name: string,
+    privateEndpointConnectionName: string,
+    options?: AppServiceEnvironmentsDeletePrivateEndpointConnectionOptionalParams
+  ): Promise<AppServiceEnvironmentsDeletePrivateEndpointConnectionResponse>;
+  /**
+   * Description for Gets the private link resources
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param options The options parameters.
+   */
+  getPrivateLinkResources(
+    resourceGroupName: string,
+    name: string,
+    options?: AppServiceEnvironmentsGetPrivateLinkResourcesOptionalParams
+  ): Promise<AppServiceEnvironmentsGetPrivateLinkResourcesResponse>;
   /**
    * Description for Reboot all machines in an App Service Environment.
    * @param resourceGroupName Name of the resource group to which the resource belongs.

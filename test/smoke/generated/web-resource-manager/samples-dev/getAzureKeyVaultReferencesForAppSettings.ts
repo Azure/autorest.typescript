@@ -17,15 +17,18 @@ import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: WebSiteManagementClient;
-//webApps.getAppSettingsKeyVaultReferences
+//webApps.listAppSettingsKeyVaultReferences
 async function getAzureKeyVaultReferencesForAppSettings() {
   const resourceGroupName = "testrg123";
-  const name = "tests346";
-  await client.webApps
-    .getAppSettingsKeyVaultReferences(resourceGroupName, name)
-    .then((res) => {
-      console.log(res);
-    });
+  const name = "testc6282";
+  const resArray = new Array();
+  for await (let item of client.webApps.listAppSettingsKeyVaultReferences(
+    resourceGroupName,
+    name
+  )) {
+    resArray.push(item);
+  }
+  console.log(resArray);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

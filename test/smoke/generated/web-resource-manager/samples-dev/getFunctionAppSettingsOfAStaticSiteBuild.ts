@@ -9,9 +9,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 /**
- * This sample demonstrates how to Description for Gets the application settings of a static site.
+ * This sample demonstrates how to Description for Gets the application settings of a static site build.
  *
- * @summary Description for Gets the application settings of a static site.
+ * @summary Description for Gets the application settings of a static site build.
  */
 import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
@@ -21,9 +21,13 @@ let client: WebSiteManagementClient;
 async function getFunctionAppSettingsOfAStaticSiteBuild() {
   const resourceGroupName = "rg";
   const name = "testStaticSite0";
-  const prId = "12";
+  const environmentName = "12";
   await client.staticSites
-    .listStaticSiteBuildFunctionAppSettings(resourceGroupName, name, prId)
+    .listStaticSiteBuildFunctionAppSettings(
+      resourceGroupName,
+      name,
+      environmentName
+    )
     .then((res) => {
       console.log(res);
     });

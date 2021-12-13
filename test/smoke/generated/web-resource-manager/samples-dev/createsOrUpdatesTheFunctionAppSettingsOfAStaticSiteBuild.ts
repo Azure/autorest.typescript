@@ -24,7 +24,7 @@ let client: WebSiteManagementClient;
 async function createsOrUpdatesTheFunctionAppSettingsOfAStaticSiteBuild() {
   const resourceGroupName = "rg";
   const name = "testStaticSite0";
-  const prId = "12";
+  const environmentName = "12";
   const appSettings: StringDictionary = {
     properties: { setting1: "someval", setting2: "someval2" }
   };
@@ -32,7 +32,7 @@ async function createsOrUpdatesTheFunctionAppSettingsOfAStaticSiteBuild() {
     .createOrUpdateStaticSiteBuildFunctionAppSettings(
       resourceGroupName,
       name,
-      prId,
+      environmentName,
       appSettings
     )
     .then((res) => {

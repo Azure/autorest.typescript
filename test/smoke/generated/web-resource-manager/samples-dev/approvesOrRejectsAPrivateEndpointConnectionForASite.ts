@@ -20,11 +20,12 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: WebSiteManagementClient;
-//webApps.beginApproveOrRejectPrivateEndpointConnectionAndWait
+//webApps.beginApproveOrRejectPrivateEndpointConnectionSlotAndWait
 async function approvesOrRejectsAPrivateEndpointConnectionForASite() {
   const resourceGroupName = "rg";
   const name = "testSite";
   const privateEndpointConnectionName = "connection";
+  const slot = "stage";
   const privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource = {
     privateLinkServiceConnectionState: {
       description: "Approved by admin.",
@@ -33,10 +34,11 @@ async function approvesOrRejectsAPrivateEndpointConnectionForASite() {
     }
   };
   await client.webApps
-    .beginApproveOrRejectPrivateEndpointConnectionAndWait(
+    .beginApproveOrRejectPrivateEndpointConnectionSlotAndWait(
       resourceGroupName,
       name,
       privateEndpointConnectionName,
+      slot,
       privateEndpointWrapper
     )
     .then((res) => {

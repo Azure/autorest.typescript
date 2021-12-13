@@ -9,20 +9,22 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 /**
- * This sample demonstrates how to Gets a list of managed instances in a resource group.
+ * This sample demonstrates how to Lists connection policy
  *
- * @summary Gets a list of managed instances in a resource group.
+ * @summary Lists connection policy
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//managedInstances.listByResourceGroup
-async function listManagedInstancesByResourceGroupWithExpandAdministrators() {
-  const resourceGroupName = "Test1";
+//serverConnectionPolicies.listByServer
+async function listsAServersConnectionPolicies() {
+  const resourceGroupName = "rgtest-12";
+  const serverName = "servertest-6285";
   const resArray = new Array();
-  for await (let item of client.managedInstances.listByResourceGroup(
-    resourceGroupName
+  for await (let item of client.serverConnectionPolicies.listByServer(
+    resourceGroupName,
+    serverName
   )) {
     resArray.push(item);
   }
@@ -30,8 +32,8 @@ async function listManagedInstancesByResourceGroupWithExpandAdministrators() {
 }
 async function main() {
   const credential = new DefaultAzureCredential();
-  const subscriptionId = "20D7082A-0FC7-4468-82BD-542694D5042B";
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   client = new SqlManagementClient(credential, subscriptionId);
-  await listManagedInstancesByResourceGroupWithExpandAdministrators();
+  await listsAServersConnectionPolicies();
 }
 main();

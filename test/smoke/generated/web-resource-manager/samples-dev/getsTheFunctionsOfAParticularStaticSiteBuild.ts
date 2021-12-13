@@ -21,12 +21,12 @@ let client: WebSiteManagementClient;
 async function getsTheFunctionsOfAParticularStaticSiteBuild() {
   const resourceGroupName = "rg";
   const name = "testStaticSite0";
-  const prId = "default";
+  const environmentName = "default";
   const resArray = new Array();
   for await (let item of client.staticSites.listStaticSiteBuildFunctions(
     resourceGroupName,
     name,
-    prId
+    environmentName
   )) {
     resArray.push(item);
   }

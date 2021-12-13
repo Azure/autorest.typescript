@@ -17,13 +17,17 @@ import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: WebSiteManagementClient;
-//staticSites.deleteStaticSiteCustomDomain
+//staticSites.beginDeleteStaticSiteCustomDomainAndWait
 async function deleteACustomDomainForAStaticSite() {
   const resourceGroupName = "rg";
   const name = "testStaticSite0";
   const domainName = "custom.domain.net";
   await client.staticSites
-    .deleteStaticSiteCustomDomain(resourceGroupName, name, domainName)
+    .beginDeleteStaticSiteCustomDomainAndWait(
+      resourceGroupName,
+      name,
+      domainName
+    )
     .then((res) => {
       console.log(res);
     });

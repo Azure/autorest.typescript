@@ -9,28 +9,30 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 /**
- * This sample demonstrates how to Updates a database's transparent data encryption configuration.
+ * This sample demonstrates how to Updates a logical database's transparent data encryption configuration.
  *
- * @summary Updates a database's transparent data encryption configuration.
+ * @summary Updates a logical database's transparent data encryption configuration.
  */
 import {
-  ManagedTransparentDataEncryption,
+  LogicalDatabaseTransparentDataEncryption,
   SqlManagementClient
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//managedDatabaseTransparentDataEncryption.createOrUpdate
+//transparentDataEncryptions.createOrUpdate
 async function updateADatabaseSTransparentDataEncryptionStateWithMinimalParameters() {
   const resourceGroupName = "securitytde-42-rg";
-  const managedInstanceName = "securitytde-42";
+  const serverName = "securitytde-42";
   const databaseName = "testdb";
   const tdeName = "current";
-  const parameters: ManagedTransparentDataEncryption = { state: "Enabled" };
-  await client.managedDatabaseTransparentDataEncryption
+  const parameters: LogicalDatabaseTransparentDataEncryption = {
+    state: "Enabled"
+  };
+  await client.transparentDataEncryptions
     .createOrUpdate(
       resourceGroupName,
-      managedInstanceName,
+      serverName,
       databaseName,
       tdeName,
       parameters

@@ -17,16 +17,18 @@ import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: WebSiteManagementClient;
-//webApps.beginDeletePrivateEndpointConnectionAndWait
+//webApps.beginDeletePrivateEndpointConnectionSlotAndWait
 async function deleteAPrivateEndpointConnectionForASite() {
   const resourceGroupName = "rg";
   const name = "testSite";
   const privateEndpointConnectionName = "connection";
+  const slot = "stage";
   await client.webApps
-    .beginDeletePrivateEndpointConnectionAndWait(
+    .beginDeletePrivateEndpointConnectionSlotAndWait(
       resourceGroupName,
       name,
-      privateEndpointConnectionName
+      privateEndpointConnectionName,
+      slot
     )
     .then((res) => {
       console.log(res);
