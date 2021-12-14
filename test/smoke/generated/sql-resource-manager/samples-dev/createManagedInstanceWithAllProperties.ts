@@ -56,15 +56,12 @@ async function createManagedInstanceWithAllProperties() {
     timezoneId: "UTC",
     vCores: 8
   };
-  await client.managedInstances
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      managedInstanceName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.managedInstances.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    managedInstanceName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

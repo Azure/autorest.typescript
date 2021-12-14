@@ -30,18 +30,15 @@ async function updateTheLongTermRetentionBackup() {
   const parameters: UpdateLongTermRetentionBackupParameters = {
     requestedBackupStorageRedundancy: "Geo"
   };
-  await client.longTermRetentionBackups
-    .beginUpdateByResourceGroupAndWait(
-      resourceGroupName,
-      locationName,
-      longTermRetentionServerName,
-      longTermRetentionDatabaseName,
-      backupName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.longTermRetentionBackups.beginUpdateByResourceGroupAndWait(
+    resourceGroupName,
+    locationName,
+    longTermRetentionServerName,
+    longTermRetentionDatabaseName,
+    backupName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

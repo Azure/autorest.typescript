@@ -33,11 +33,13 @@ async function updatesDatabaseAutomaticTuningSettingsWithAllProperties() {
       forceLastGoodPlan: { desiredState: "Default" }
     }
   };
-  await client.databaseAutomaticTuningOperations
-    .update(resourceGroupName, serverName, databaseName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.databaseAutomaticTuningOperations.update(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

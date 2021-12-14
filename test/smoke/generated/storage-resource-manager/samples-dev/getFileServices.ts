@@ -21,11 +21,11 @@ let client: StorageManagementClient;
 async function getFileServices() {
   const resourceGroupName = "res4410";
   const accountName = "sto8607";
-  await client.fileServices
-    .getServiceProperties(resourceGroupName, accountName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.fileServices.getServiceProperties(
+    resourceGroupName,
+    accountName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

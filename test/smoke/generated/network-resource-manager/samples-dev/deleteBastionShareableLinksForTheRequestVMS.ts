@@ -40,15 +40,12 @@ async function deleteBastionShareableLinksForTheRequestVMS() {
       }
     ]
   };
-  await client
-    .beginDeleteBastionShareableLinkAndWait(
-      resourceGroupName,
-      bastionHostName,
-      bslRequest
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.beginDeleteBastionShareableLinkAndWait(
+    resourceGroupName,
+    bastionHostName,
+    bslRequest
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

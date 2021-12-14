@@ -28,18 +28,15 @@ async function updateDatabaseRecommendedAction() {
   const advisorName = "CreateIndex";
   const recommendedActionName = "IR_[CRM]_[DataPoints]_4821CD2F9510D98184BB";
   const parameters: RecommendedAction = { state: { currentValue: "Pending" } };
-  await client.databaseRecommendedActions
-    .update(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      advisorName,
-      recommendedActionName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.databaseRecommendedActions.update(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    advisorName,
+    recommendedActionName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

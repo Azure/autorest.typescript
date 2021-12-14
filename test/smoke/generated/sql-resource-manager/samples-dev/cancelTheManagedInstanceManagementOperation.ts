@@ -22,11 +22,12 @@ async function cancelTheManagedInstanceManagementOperation() {
   const resourceGroupName = "sqlcrudtest-7398";
   const managedInstanceName = "sqlcrudtest-4645";
   const operationId = "11111111-1111-1111-1111-111111111111";
-  await client.managedInstanceOperations
-    .cancel(resourceGroupName, managedInstanceName, operationId)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.managedInstanceOperations.cancel(
+    resourceGroupName,
+    managedInstanceName,
+    operationId
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -21,11 +21,11 @@ let client: SqlManagementClient;
 async function deleteServer() {
   const resourceGroupName = "sqlcrudtest-7398";
   const serverName = "sqlcrudtest-6661";
-  await client.servers
-    .beginDeleteAndWait(resourceGroupName, serverName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.servers.beginDeleteAndWait(
+    resourceGroupName,
+    serverName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

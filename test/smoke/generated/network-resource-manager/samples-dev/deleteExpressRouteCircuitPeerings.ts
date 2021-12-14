@@ -22,11 +22,12 @@ async function deleteExpressRouteCircuitPeerings() {
   const resourceGroupName = "rg1";
   const circuitName = "circuitName";
   const peeringName = "peeringName";
-  await client.expressRouteCircuitPeerings
-    .beginDeleteAndWait(resourceGroupName, circuitName, peeringName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.expressRouteCircuitPeerings.beginDeleteAndWait(
+    resourceGroupName,
+    circuitName,
+    peeringName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

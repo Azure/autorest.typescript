@@ -22,11 +22,12 @@ async function deleteAServerCommunicationLink() {
   const resourceGroupName = "sqlcrudtest-7398";
   const serverName = "sqlcrudtest-4645";
   const communicationLinkName = "link1";
-  await client.serverCommunicationLinks
-    .delete(resourceGroupName, serverName, communicationLinkName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.serverCommunicationLinks.delete(
+    resourceGroupName,
+    serverName,
+    communicationLinkName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -61,11 +61,12 @@ async function createAVMInAVirtualMachineScaleSetWithCustomerAssignedPlatformFau
         "/subscriptions/{subscription-id}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachineScaleSets/{existing-flex-vmss-name-with-platformFaultDomainCount-greater-than-1}"
     }
   };
-  await client.virtualMachines
-    .beginCreateOrUpdateAndWait(resourceGroupName, vmName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualMachines.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    vmName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

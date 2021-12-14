@@ -22,11 +22,12 @@ async function getServerDnsAlias() {
   const resourceGroupName = "Default";
   const serverName = "dns-alias-server";
   const dnsAliasName = "dns-alias-name-1";
-  await client.serverDnsAliases
-    .get(resourceGroupName, serverName, dnsAliasName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.serverDnsAliases.get(
+    resourceGroupName,
+    serverName,
+    dnsAliasName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

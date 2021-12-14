@@ -50,11 +50,12 @@ async function createPrivateLinkService() {
       subscriptions: ["subscription1", "subscription2", "subscription3"]
     }
   };
-  await client.privateLinkServices
-    .beginCreateOrUpdateAndWait(resourceGroupName, serviceName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.privateLinkServices.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    serviceName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

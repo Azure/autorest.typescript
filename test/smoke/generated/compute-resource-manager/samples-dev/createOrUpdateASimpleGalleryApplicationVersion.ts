@@ -50,17 +50,14 @@ async function createOrUpdateASimpleGalleryApplicationVersion() {
       ]
     }
   };
-  await client.galleryApplicationVersions
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      galleryName,
-      galleryApplicationName,
-      galleryApplicationVersionName,
-      galleryApplicationVersion
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.galleryApplicationVersions.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    galleryName,
+    galleryApplicationName,
+    galleryApplicationVersionName,
+    galleryApplicationVersion
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

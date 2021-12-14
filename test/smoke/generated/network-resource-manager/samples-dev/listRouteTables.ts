@@ -23,16 +23,13 @@ async function listRouteTables() {
   const circuitName = "circuitName";
   const peeringName = "peeringName";
   const devicePath = "devicePath";
-  await client.expressRouteCircuits
-    .beginListRoutesTableAndWait(
-      resourceGroupName,
-      circuitName,
-      peeringName,
-      devicePath
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.expressRouteCircuits.beginListRoutesTableAndWait(
+    resourceGroupName,
+    circuitName,
+    peeringName,
+    devicePath
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

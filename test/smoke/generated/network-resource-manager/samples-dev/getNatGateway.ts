@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function getNatGateway() {
   const resourceGroupName = "rg1";
   const natGatewayName = "test-natGateway";
-  await client.natGateways
-    .get(resourceGroupName, natGatewayName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.natGateways.get(
+    resourceGroupName,
+    natGatewayName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

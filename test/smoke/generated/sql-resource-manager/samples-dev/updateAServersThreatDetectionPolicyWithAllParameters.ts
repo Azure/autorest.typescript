@@ -35,16 +35,13 @@ async function updateAServerSThreatDetectionPolicyWithAllParameters() {
       "sdlfkjabc+sdlfkjsdlkfsjdfLDKFTERLKFDFKLjsdfksjdflsdkfD2342309432849328476458/3RSD==",
     storageEndpoint: "https://mystorage.blob.core.windows.net"
   };
-  await client.serverSecurityAlertPolicies
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      serverName,
-      securityAlertPolicyName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.serverSecurityAlertPolicies.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    serverName,
+    securityAlertPolicyName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

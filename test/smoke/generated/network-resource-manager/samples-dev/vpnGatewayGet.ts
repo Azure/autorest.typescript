@@ -21,9 +21,8 @@ let client: NetworkManagementClient;
 async function vpnGatewayGet() {
   const resourceGroupName = "rg1";
   const gatewayName = "gateway1";
-  await client.vpnGateways.get(resourceGroupName, gatewayName).then((res) => {
-    console.log(res);
-  });
+  const result = await client.vpnGateways.get(resourceGroupName, gatewayName);
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

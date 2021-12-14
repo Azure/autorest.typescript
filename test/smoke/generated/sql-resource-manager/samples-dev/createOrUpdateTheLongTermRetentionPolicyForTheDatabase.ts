@@ -32,17 +32,14 @@ async function createOrUpdateTheLongTermRetentionPolicyForTheDatabase() {
     weeklyRetention: "P1M",
     yearlyRetention: "P5Y"
   };
-  await client.longTermRetentionPolicies
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      policyName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.longTermRetentionPolicies.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    policyName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

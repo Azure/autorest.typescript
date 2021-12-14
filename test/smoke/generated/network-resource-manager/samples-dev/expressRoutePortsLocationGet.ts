@@ -20,9 +20,8 @@ let client: NetworkManagementClient;
 //expressRoutePortsLocations.get
 async function expressRoutePortsLocationGet() {
   const locationName = "locationName";
-  await client.expressRoutePortsLocations.get(locationName).then((res) => {
-    console.log(res);
-  });
+  const result = await client.expressRoutePortsLocations.get(locationName);
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

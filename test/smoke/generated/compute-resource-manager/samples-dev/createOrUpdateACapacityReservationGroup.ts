@@ -29,11 +29,12 @@ async function createOrUpdateACapacityReservationGroup() {
     tags: { department: "finance" },
     zones: ["1", "2"]
   };
-  await client.capacityReservationGroups
-    .createOrUpdate(resourceGroupName, capacityReservationGroupName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.capacityReservationGroups.createOrUpdate(
+    resourceGroupName,
+    capacityReservationGroupName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

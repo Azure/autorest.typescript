@@ -23,11 +23,12 @@ async function failoverAManagedInstance() {
   const managedInstanceName = "instanceName";
   const replicaType = "Primary";
   const options = { replicaType: replicaType };
-  await client.managedInstances
-    .beginFailoverAndWait(resourceGroupName, managedInstanceName, options)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.managedInstances.beginFailoverAndWait(
+    resourceGroupName,
+    managedInstanceName,
+    options
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

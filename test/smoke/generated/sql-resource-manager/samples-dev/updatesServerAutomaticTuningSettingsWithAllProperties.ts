@@ -32,11 +32,12 @@ async function updatesServerAutomaticTuningSettingsWithAllProperties() {
       forceLastGoodPlan: { desiredState: "Default" }
     }
   };
-  await client.serverAutomaticTuningOperations
-    .update(resourceGroupName, serverName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.serverAutomaticTuningOperations.update(
+    resourceGroupName,
+    serverName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

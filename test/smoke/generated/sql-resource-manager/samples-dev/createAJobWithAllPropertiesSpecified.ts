@@ -33,17 +33,14 @@ async function createAJobWithAllPropertiesSpecified() {
       startTime: new Date("2015-09-24T18:30:01Z")
     }
   };
-  await client.jobs
-    .createOrUpdate(
-      resourceGroupName,
-      serverName,
-      jobAgentName,
-      jobName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.jobs.createOrUpdate(
+    resourceGroupName,
+    serverName,
+    jobAgentName,
+    jobName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

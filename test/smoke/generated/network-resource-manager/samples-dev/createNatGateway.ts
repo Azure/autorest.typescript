@@ -40,11 +40,12 @@ async function createNatGateway() {
     ],
     sku: { name: "Standard" }
   };
-  await client.natGateways
-    .beginCreateOrUpdateAndWait(resourceGroupName, natGatewayName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.natGateways.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    natGatewayName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

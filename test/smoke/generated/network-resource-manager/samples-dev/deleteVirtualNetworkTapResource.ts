@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function deleteVirtualNetworkTapResource() {
   const resourceGroupName = "rg1";
   const tapName = "test-vtap";
-  await client.virtualNetworkTaps
-    .beginDeleteAndWait(resourceGroupName, tapName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualNetworkTaps.beginDeleteAndWait(
+    resourceGroupName,
+    tapName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

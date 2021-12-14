@@ -33,18 +33,15 @@ async function copyTheLongTermRetentionBackup() {
     targetServerResourceId:
       "/subscriptions/00000000-1111-2222-3333-444444444444/providers/Microsoft.Sql/resourceGroups/resourceGroup/servers/testserver2"
   };
-  await client.longTermRetentionBackups
-    .beginCopyByResourceGroupAndWait(
-      resourceGroupName,
-      locationName,
-      longTermRetentionServerName,
-      longTermRetentionDatabaseName,
-      backupName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.longTermRetentionBackups.beginCopyByResourceGroupAndWait(
+    resourceGroupName,
+    locationName,
+    longTermRetentionServerName,
+    longTermRetentionDatabaseName,
+    backupName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

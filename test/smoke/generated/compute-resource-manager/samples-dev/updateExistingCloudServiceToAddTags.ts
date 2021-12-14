@@ -26,11 +26,12 @@ async function updateExistingCloudServiceToAddTags() {
   const cloudServiceName = "{cs-name}";
   const parameters: CloudServiceUpdate = { tags: { documentation: "RestAPI" } };
   const options = { parameters: parameters };
-  await client.cloudServices
-    .beginUpdateAndWait(resourceGroupName, cloudServiceName, options)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.cloudServices.beginUpdateAndWait(
+    resourceGroupName,
+    cloudServiceName,
+    options
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

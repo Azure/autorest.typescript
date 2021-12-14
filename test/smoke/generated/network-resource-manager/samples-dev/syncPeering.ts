@@ -37,17 +37,14 @@ async function syncPeering() {
     useRemoteGateways: false
   };
   const options = { syncRemoteAddressSpace: syncRemoteAddressSpace };
-  await client.virtualNetworkPeerings
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      virtualNetworkName,
-      virtualNetworkPeeringName,
-      virtualNetworkPeeringParameters,
-      options
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualNetworkPeerings.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    virtualNetworkName,
+    virtualNetworkPeeringName,
+    virtualNetworkPeeringParameters,
+    options
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

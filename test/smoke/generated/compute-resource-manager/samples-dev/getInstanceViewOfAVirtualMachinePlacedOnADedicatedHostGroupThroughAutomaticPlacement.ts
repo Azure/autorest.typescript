@@ -21,11 +21,11 @@ let client: ComputeManagementClient;
 async function getInstanceViewOfAVirtualMachinePlacedOnADedicatedHostGroupThroughAutomaticPlacement() {
   const resourceGroupName = "myResourceGroup";
   const vmName = "myVM";
-  await client.virtualMachines
-    .instanceView(resourceGroupName, vmName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualMachines.instanceView(
+    resourceGroupName,
+    vmName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

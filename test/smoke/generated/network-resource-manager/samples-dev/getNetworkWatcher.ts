@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function getNetworkWatcher() {
   const resourceGroupName = "rg1";
   const networkWatcherName = "nw1";
-  await client.networkWatchers
-    .get(resourceGroupName, networkWatcherName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.networkWatchers.get(
+    resourceGroupName,
+    networkWatcherName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

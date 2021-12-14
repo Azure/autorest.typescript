@@ -22,15 +22,12 @@ async function forcedFailoverOfAFailoverGroupAllowingDataLoss() {
   const resourceGroupName = "Default";
   const locationName = "Japan West";
   const failoverGroupName = "failover-group-test-3";
-  await client.instanceFailoverGroups
-    .beginForceFailoverAllowDataLossAndWait(
-      resourceGroupName,
-      locationName,
-      failoverGroupName
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.instanceFailoverGroups.beginForceFailoverAllowDataLossAndWait(
+    resourceGroupName,
+    locationName,
+    failoverGroupName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

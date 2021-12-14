@@ -22,11 +22,12 @@ async function getExpressRouteCircuitPeering() {
   const resourceGroupName = "rg1";
   const circuitName = "circuitName";
   const peeringName = "MicrosoftPeering";
-  await client.expressRouteCircuitPeerings
-    .get(resourceGroupName, circuitName, peeringName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.expressRouteCircuitPeerings.get(
+    resourceGroupName,
+    circuitName,
+    peeringName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

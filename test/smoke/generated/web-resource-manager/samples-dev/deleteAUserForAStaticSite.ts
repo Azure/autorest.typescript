@@ -23,11 +23,13 @@ async function deleteAUserForAStaticSite() {
   const name = "testStaticSite0";
   const authprovider = "aad";
   const userid = "1234";
-  await client.staticSites
-    .deleteStaticSiteUser(resourceGroupName, name, authprovider, userid)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.staticSites.deleteStaticSiteUser(
+    resourceGroupName,
+    name,
+    authprovider,
+    userid
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

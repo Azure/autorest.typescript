@@ -31,16 +31,13 @@ async function approveOrRejectAPrivateEndpointConnectionWithAGivenName() {
       status: "Approved"
     }
   };
-  await client.privateEndpointConnections
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      serverName,
-      privateEndpointConnectionName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.privateEndpointConnections.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    serverName,
+    privateEndpointConnectionName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

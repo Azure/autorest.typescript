@@ -23,11 +23,13 @@ async function triggerASyncGroupSynchronization() {
   const serverName = "syncgroupcrud-8475";
   const databaseName = "syncgroupcrud-4328";
   const syncGroupName = "syncgroupcrud-3187";
-  await client.syncGroups
-    .triggerSync(resourceGroupName, serverName, databaseName, syncGroupName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.syncGroups.triggerSync(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    syncGroupName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

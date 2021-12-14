@@ -21,9 +21,8 @@ let client: WebSiteManagementClient;
 async function getCertificate() {
   const resourceGroupName = "testrg123";
   const name = "testc6282";
-  await client.certificates.get(resourceGroupName, name).then((res) => {
-    console.log(res);
-  });
+  const result = await client.certificates.get(resourceGroupName, name);
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

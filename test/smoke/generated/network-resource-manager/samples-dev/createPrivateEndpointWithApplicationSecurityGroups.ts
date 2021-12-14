@@ -45,15 +45,12 @@ async function createPrivateEndpointWithApplicationSecurityGroups() {
         "/subscriptions/subId/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworks/myVnet/subnets/mySubnet"
     }
   };
-  await client.privateEndpoints
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      privateEndpointName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.privateEndpoints.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    privateEndpointName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

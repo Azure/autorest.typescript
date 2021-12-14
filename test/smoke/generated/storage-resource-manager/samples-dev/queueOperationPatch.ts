@@ -26,11 +26,13 @@ async function queueOperationPatch() {
   const accountName = "sto328";
   const queueName = "queue6185";
   const queue: StorageQueue = {};
-  await client.queue
-    .update(resourceGroupName, accountName, queueName, queue)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.queue.update(
+    resourceGroupName,
+    accountName,
+    queueName,
+    queue
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

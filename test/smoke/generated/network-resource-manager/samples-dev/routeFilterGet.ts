@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function routeFilterGet() {
   const resourceGroupName = "rg1";
   const routeFilterName = "filterName";
-  await client.routeFilters
-    .get(resourceGroupName, routeFilterName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.routeFilters.get(
+    resourceGroupName,
+    routeFilterName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

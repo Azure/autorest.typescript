@@ -22,11 +22,12 @@ async function getFailoverGroup() {
   const resourceGroupName = "Default";
   const locationName = "Japan East";
   const failoverGroupName = "failover-group-test";
-  await client.instanceFailoverGroups
-    .get(resourceGroupName, locationName, failoverGroupName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.instanceFailoverGroups.get(
+    resourceGroupName,
+    locationName,
+    failoverGroupName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

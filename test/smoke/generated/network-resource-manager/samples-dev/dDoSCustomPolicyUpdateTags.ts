@@ -25,11 +25,12 @@ async function dDoSCustomPolicyUpdateTags() {
   const resourceGroupName = "rg1";
   const ddosCustomPolicyName = "test-ddos-custom-policy";
   const parameters: TagsObject = { tags: { tag1: "value1", tag2: "value2" } };
-  await client.ddosCustomPolicies
-    .updateTags(resourceGroupName, ddosCustomPolicyName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.ddosCustomPolicies.updateTags(
+    resourceGroupName,
+    ddosCustomPolicyName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

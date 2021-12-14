@@ -23,11 +23,13 @@ async function obtainQueryProperties() {
   const managedInstanceName = "sqlcrudtest-4645";
   const databaseName = "database_1";
   const queryId = "42";
-  await client.managedDatabaseQueries
-    .get(resourceGroupName, managedInstanceName, databaseName, queryId)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.managedDatabaseQueries.get(
+    resourceGroupName,
+    managedInstanceName,
+    databaseName,
+    queryId
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -22,11 +22,12 @@ async function deleteARunCommand() {
   const resourceGroupName = "myResourceGroup";
   const vmName = "myVM";
   const runCommandName = "myRunCommand";
-  await client.virtualMachineRunCommands
-    .beginDeleteAndWait(resourceGroupName, vmName, runCommandName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualMachineRunCommands.beginDeleteAndWait(
+    resourceGroupName,
+    vmName,
+    runCommandName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

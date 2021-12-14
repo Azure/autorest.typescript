@@ -23,11 +23,13 @@ async function getVirtualMachineScaleSetVMExtension() {
   const vmScaleSetName = "myvmScaleSet";
   const instanceId = "0";
   const vmExtensionName = "myVMExtension";
-  await client.virtualMachineScaleSetVMExtensions
-    .get(resourceGroupName, vmScaleSetName, instanceId, vmExtensionName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualMachineScaleSetVMExtensions.get(
+    resourceGroupName,
+    vmScaleSetName,
+    instanceId,
+    vmExtensionName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

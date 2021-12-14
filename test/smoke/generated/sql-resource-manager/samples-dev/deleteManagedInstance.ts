@@ -21,11 +21,11 @@ let client: SqlManagementClient;
 async function deleteManagedInstance() {
   const resourceGroupName = "testrg";
   const managedInstanceName = "testinstance";
-  await client.managedInstances
-    .beginDeleteAndWait(resourceGroupName, managedInstanceName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.managedInstances.beginDeleteAndWait(
+    resourceGroupName,
+    managedInstanceName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

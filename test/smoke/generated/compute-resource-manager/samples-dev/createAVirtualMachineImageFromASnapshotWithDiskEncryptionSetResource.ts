@@ -41,11 +41,12 @@ async function createAVirtualMachineImageFromASnapshotWithDiskEncryptionSetResou
       }
     }
   };
-  await client.images
-    .beginCreateOrUpdateAndWait(resourceGroupName, imageName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.images.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    imageName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

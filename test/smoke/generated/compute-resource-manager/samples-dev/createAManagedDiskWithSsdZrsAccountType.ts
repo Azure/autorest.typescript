@@ -30,11 +30,12 @@ async function createAManagedDiskWithSsdZrsAccountType() {
     location: "West US",
     sku: { name: "Premium_ZRS" }
   };
-  await client.disks
-    .beginCreateOrUpdateAndWait(resourceGroupName, diskName, disk)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.disks.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    diskName,
+    disk
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

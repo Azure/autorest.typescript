@@ -31,16 +31,13 @@ async function createOrUpdateADedicatedHost() {
     sku: { name: "DSv3-Type1" },
     tags: { department: "HR" }
   };
-  await client.dedicatedHosts
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      hostGroupName,
-      hostName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.dedicatedHosts.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    hostGroupName,
+    hostName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

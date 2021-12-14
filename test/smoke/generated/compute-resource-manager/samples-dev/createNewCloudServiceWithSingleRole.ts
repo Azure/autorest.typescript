@@ -61,11 +61,12 @@ async function createNewCloudServiceWithSingleRole() {
     }
   };
   const options = { parameters: parameters };
-  await client.cloudServices
-    .beginCreateOrUpdateAndWait(resourceGroupName, cloudServiceName, options)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.cloudServices.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    cloudServiceName,
+    options
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

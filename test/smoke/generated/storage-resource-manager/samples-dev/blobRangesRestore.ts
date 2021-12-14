@@ -31,11 +31,12 @@ async function blobRangesRestore() {
     ],
     timeToRestore: new Date("2019-04-20T15:30:00.0000000Z")
   };
-  await client.storageAccounts
-    .beginRestoreBlobRangesAndWait(resourceGroupName, accountName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.storageAccounts.beginRestoreBlobRangesAndWait(
+    resourceGroupName,
+    accountName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

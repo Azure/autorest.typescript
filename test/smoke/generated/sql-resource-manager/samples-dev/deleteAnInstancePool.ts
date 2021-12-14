@@ -21,11 +21,11 @@ let client: SqlManagementClient;
 async function deleteAnInstancePool() {
   const resourceGroupName = "group1";
   const instancePoolName = "testIP";
-  await client.instancePools
-    .beginDeleteAndWait(resourceGroupName, instancePoolName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.instancePools.beginDeleteAndWait(
+    resourceGroupName,
+    instancePoolName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

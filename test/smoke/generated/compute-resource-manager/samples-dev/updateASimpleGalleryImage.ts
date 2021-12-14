@@ -35,16 +35,13 @@ async function updateASimpleGalleryImage() {
     osState: "Generalized",
     osType: "Windows"
   };
-  await client.galleryImages
-    .beginUpdateAndWait(
-      resourceGroupName,
-      galleryName,
-      galleryImageName,
-      galleryImage
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.galleryImages.beginUpdateAndWait(
+    resourceGroupName,
+    galleryName,
+    galleryImageName,
+    galleryImage
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

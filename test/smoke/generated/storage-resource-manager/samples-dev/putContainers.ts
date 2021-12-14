@@ -26,11 +26,13 @@ async function putContainers() {
   const accountName = "sto328";
   const containerName = "container6185";
   const blobContainer: BlobContainer = {};
-  await client.blobContainers
-    .create(resourceGroupName, accountName, containerName, blobContainer)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.blobContainers.create(
+    resourceGroupName,
+    accountName,
+    containerName,
+    blobContainer
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

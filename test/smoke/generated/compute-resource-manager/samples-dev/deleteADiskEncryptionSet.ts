@@ -21,11 +21,11 @@ let client: ComputeManagementClient;
 async function deleteADiskEncryptionSet() {
   const resourceGroupName = "myResourceGroup";
   const diskEncryptionSetName = "myDiskEncryptionSet";
-  await client.diskEncryptionSets
-    .beginDeleteAndWait(resourceGroupName, diskEncryptionSetName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.diskEncryptionSets.beginDeleteAndWait(
+    resourceGroupName,
+    diskEncryptionSetName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -22,11 +22,12 @@ async function getInstanceViewOfAVirtualMachineFromAVMScaleSetPlacedOnADedicated
   const resourceGroupName = "myResourceGroup";
   const vmScaleSetName = "myVirtualMachineScaleSet";
   const instanceId = "0";
-  await client.virtualMachineScaleSetVMs
-    .getInstanceView(resourceGroupName, vmScaleSetName, instanceId)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualMachineScaleSetVMs.getInstanceView(
+    resourceGroupName,
+    vmScaleSetName,
+    instanceId
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

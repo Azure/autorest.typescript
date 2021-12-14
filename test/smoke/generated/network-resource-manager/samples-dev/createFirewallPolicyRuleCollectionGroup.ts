@@ -46,16 +46,13 @@ async function createFirewallPolicyRuleCollectionGroup() {
       }
     ]
   };
-  await client.firewallPolicyRuleCollectionGroups
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      firewallPolicyName,
-      ruleCollectionGroupName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.firewallPolicyRuleCollectionGroups.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    firewallPolicyName,
+    ruleCollectionGroupName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

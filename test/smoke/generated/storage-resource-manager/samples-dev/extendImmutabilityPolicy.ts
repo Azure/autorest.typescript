@@ -30,17 +30,14 @@ async function extendImmutabilityPolicy() {
     immutabilityPeriodSinceCreationInDays: 100
   };
   const options = { parameters: parameters };
-  await client.blobContainers
-    .extendImmutabilityPolicy(
-      resourceGroupName,
-      accountName,
-      containerName,
-      ifMatch,
-      options
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.blobContainers.extendImmutabilityPolicy(
+    resourceGroupName,
+    accountName,
+    containerName,
+    ifMatch,
+    options
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

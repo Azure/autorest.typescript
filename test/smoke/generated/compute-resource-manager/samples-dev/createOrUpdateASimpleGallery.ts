@@ -28,11 +28,12 @@ async function createOrUpdateASimpleGallery() {
     description: "This is the gallery description.",
     location: "West US"
   };
-  await client.galleries
-    .beginCreateOrUpdateAndWait(resourceGroupName, galleryName, gallery)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.galleries.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    galleryName,
+    gallery
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

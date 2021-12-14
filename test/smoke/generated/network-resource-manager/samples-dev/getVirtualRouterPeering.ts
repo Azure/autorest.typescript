@@ -22,11 +22,12 @@ async function getVirtualRouterPeering() {
   const resourceGroupName = "rg1";
   const virtualRouterName = "virtualRouter";
   const peeringName = "peering1";
-  await client.virtualRouterPeerings
-    .get(resourceGroupName, virtualRouterName, peeringName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualRouterPeerings.get(
+    resourceGroupName,
+    virtualRouterName,
+    peeringName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

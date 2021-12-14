@@ -28,15 +28,12 @@ async function createDDoSCustomPolicy() {
     location: "centraluseuap",
     protocolCustomSettings: [{ protocol: "Tcp" }]
   };
-  await client.ddosCustomPolicies
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      ddosCustomPolicyName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.ddosCustomPolicies.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    ddosCustomPolicyName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

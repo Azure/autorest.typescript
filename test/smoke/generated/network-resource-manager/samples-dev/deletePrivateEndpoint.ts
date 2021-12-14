@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function deletePrivateEndpoint() {
   const resourceGroupName = "rg1";
   const privateEndpointName = "testPe";
-  await client.privateEndpoints
-    .beginDeleteAndWait(resourceGroupName, privateEndpointName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.privateEndpoints.beginDeleteAndWait(
+    resourceGroupName,
+    privateEndpointName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -30,15 +30,12 @@ async function createPublicIPPrefixAllocationMethod() {
     publicIPAddressVersion: "IPv4",
     sku: { name: "Standard", tier: "Regional" }
   };
-  await client.publicIPPrefixes
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      publicIpPrefixName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.publicIPPrefixes.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    publicIpPrefixName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

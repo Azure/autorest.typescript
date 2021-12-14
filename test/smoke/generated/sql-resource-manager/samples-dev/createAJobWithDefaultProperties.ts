@@ -24,17 +24,14 @@ async function createAJobWithDefaultProperties() {
   const jobAgentName = "agent1";
   const jobName = "job1";
   const parameters: Job = {};
-  await client.jobs
-    .createOrUpdate(
-      resourceGroupName,
-      serverName,
-      jobAgentName,
-      jobName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.jobs.createOrUpdate(
+    resourceGroupName,
+    serverName,
+    jobAgentName,
+    jobName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

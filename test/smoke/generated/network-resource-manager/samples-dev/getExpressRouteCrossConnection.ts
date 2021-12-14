@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function getExpressRouteCrossConnection() {
   const resourceGroupName = "CrossConnection-SiliconValley";
   const crossConnectionName = "<circuitServiceKey>";
-  await client.expressRouteCrossConnections
-    .get(resourceGroupName, crossConnectionName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.expressRouteCrossConnections.get(
+    resourceGroupName,
+    crossConnectionName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

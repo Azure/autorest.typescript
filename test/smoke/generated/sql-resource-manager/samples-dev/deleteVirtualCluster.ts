@@ -21,11 +21,11 @@ let client: SqlManagementClient;
 async function deleteVirtualCluster() {
   const resourceGroupName = "testrg";
   const virtualClusterName = "vc-subnet1-f769ed71-b3ad-491a-a9d5-26eeceaa6be2";
-  await client.virtualClusters
-    .beginDeleteAndWait(resourceGroupName, virtualClusterName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualClusters.beginDeleteAndWait(
+    resourceGroupName,
+    virtualClusterName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

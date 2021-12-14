@@ -28,11 +28,12 @@ async function updateASnapshot() {
     diskSizeGB: 20,
     tags: { department: "Development", project: "UpdateSnapshots" }
   };
-  await client.snapshots
-    .beginUpdateAndWait(resourceGroupName, snapshotName, snapshot)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.snapshots.beginUpdateAndWait(
+    resourceGroupName,
+    snapshotName,
+    snapshot
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

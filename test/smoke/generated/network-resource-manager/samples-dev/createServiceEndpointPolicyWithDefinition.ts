@@ -39,15 +39,12 @@ async function createServiceEndpointPolicyWithDefinition() {
       }
     ]
   };
-  await client.serviceEndpointPolicies
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      serviceEndpointPolicyName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.serviceEndpointPolicies.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    serviceEndpointPolicyName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

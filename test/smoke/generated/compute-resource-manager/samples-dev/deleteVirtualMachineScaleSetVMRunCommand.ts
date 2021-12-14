@@ -23,16 +23,13 @@ async function deleteVirtualMachineScaleSetVMRunCommand() {
   const vmScaleSetName = "myvmScaleSet";
   const instanceId = "0";
   const runCommandName = "myRunCommand";
-  await client.virtualMachineScaleSetVMRunCommands
-    .beginDeleteAndWait(
-      resourceGroupName,
-      vmScaleSetName,
-      instanceId,
-      runCommandName
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualMachineScaleSetVMRunCommands.beginDeleteAndWait(
+    resourceGroupName,
+    vmScaleSetName,
+    instanceId,
+    runCommandName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

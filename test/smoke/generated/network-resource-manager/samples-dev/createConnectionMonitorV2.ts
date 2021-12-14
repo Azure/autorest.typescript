@@ -63,16 +63,13 @@ async function createConnectionMonitorV2() {
       }
     ]
   };
-  await client.connectionMonitors
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      networkWatcherName,
-      connectionMonitorName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.connectionMonitors.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    networkWatcherName,
+    connectionMonitorName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

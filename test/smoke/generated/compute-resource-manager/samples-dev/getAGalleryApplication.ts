@@ -22,11 +22,12 @@ async function getAGalleryApplication() {
   const resourceGroupName = "myResourceGroup";
   const galleryName = "myGalleryName";
   const galleryApplicationName = "myGalleryApplicationName";
-  await client.galleryApplications
-    .get(resourceGroupName, galleryName, galleryApplicationName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.galleryApplications.get(
+    resourceGroupName,
+    galleryName,
+    galleryApplicationName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

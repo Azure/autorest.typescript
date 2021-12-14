@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function deleteCustomIPPrefix() {
   const resourceGroupName = "rg1";
   const customIpPrefixName = "test-customipprefix";
-  await client.customIPPrefixes
-    .beginDeleteAndWait(resourceGroupName, customIpPrefixName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.customIPPrefixes.beginDeleteAndWait(
+    resourceGroupName,
+    customIpPrefixName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

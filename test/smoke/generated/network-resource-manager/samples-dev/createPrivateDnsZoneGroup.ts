@@ -33,16 +33,13 @@ async function createPrivateDnsZoneGroup() {
       }
     ]
   };
-  await client.privateDnsZoneGroups
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      privateEndpointName,
-      privateDnsZoneGroupName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.privateDnsZoneGroups.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    privateEndpointName,
+    privateDnsZoneGroupName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

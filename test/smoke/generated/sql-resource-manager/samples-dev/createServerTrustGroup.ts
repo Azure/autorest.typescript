@@ -38,16 +38,13 @@ async function createServerTrustGroup() {
     ],
     trustScopes: ["GlobalTransactions", "ServiceBroker"]
   };
-  await client.serverTrustGroups
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      locationName,
-      serverTrustGroupName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.serverTrustGroups.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    locationName,
+    serverTrustGroupName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

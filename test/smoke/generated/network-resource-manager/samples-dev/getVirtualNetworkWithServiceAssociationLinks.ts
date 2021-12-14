@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function getVirtualNetworkWithServiceAssociationLinks() {
   const resourceGroupName = "rg1";
   const virtualNetworkName = "test-vnet";
-  await client.virtualNetworks
-    .get(resourceGroupName, virtualNetworkName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualNetworks.get(
+    resourceGroupName,
+    virtualNetworkName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -22,11 +22,12 @@ async function managedHsmDeletePrivateEndpointConnection() {
   const resourceGroupName = "sample-group";
   const name = "sample-mhsm";
   const privateEndpointConnectionName = "sample-pec";
-  await client.mhsmPrivateEndpointConnections
-    .beginDeleteAndWait(resourceGroupName, name, privateEndpointConnectionName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.mhsmPrivateEndpointConnections.beginDeleteAndWait(
+    resourceGroupName,
+    name,
+    privateEndpointConnectionName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

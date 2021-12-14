@@ -22,11 +22,12 @@ async function getsARestorableDroppedDatabase() {
   const resourceGroupName = "Default-SQL-SouthEastAsia";
   const serverName = "testsvr";
   const restorableDroppedDatabaseId = "testdb,131403269876900000";
-  await client.restorableDroppedDatabases
-    .get(resourceGroupName, serverName, restorableDroppedDatabaseId)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.restorableDroppedDatabases.get(
+    resourceGroupName,
+    serverName,
+    restorableDroppedDatabaseId
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -22,11 +22,12 @@ async function getAzureKeyVaultAppSettingReference() {
   const resourceGroupName = "testrg123";
   const name = "testc6282";
   const appSettingKey = "setting";
-  await client.webApps
-    .getAppSettingKeyVaultReference(resourceGroupName, name, appSettingKey)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.webApps.getAppSettingKeyVaultReference(
+    resourceGroupName,
+    name,
+    appSettingKey
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

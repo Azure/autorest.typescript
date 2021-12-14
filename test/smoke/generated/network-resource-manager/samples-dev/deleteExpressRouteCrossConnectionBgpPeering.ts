@@ -22,11 +22,12 @@ async function deleteExpressRouteCrossConnectionBgpPeering() {
   const resourceGroupName = "CrossConnection-SiliconValley";
   const crossConnectionName = "<circuitServiceKey>";
   const peeringName = "AzurePrivatePeering";
-  await client.expressRouteCrossConnectionPeerings
-    .beginDeleteAndWait(resourceGroupName, crossConnectionName, peeringName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.expressRouteCrossConnectionPeerings.beginDeleteAndWait(
+    resourceGroupName,
+    crossConnectionName,
+    peeringName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

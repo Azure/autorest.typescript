@@ -26,16 +26,13 @@ async function updatesAServerConnectionPolicy() {
   const serverName = "testserver";
   const connectionPolicyName = "default";
   const parameters: ServerConnectionPolicy = { connectionType: "Redirect" };
-  await client.serverConnectionPolicies
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      serverName,
-      connectionPolicyName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.serverConnectionPolicies.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    serverName,
+    connectionPolicyName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

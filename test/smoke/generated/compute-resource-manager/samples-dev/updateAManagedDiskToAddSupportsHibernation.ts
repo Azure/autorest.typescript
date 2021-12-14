@@ -25,11 +25,12 @@ async function updateAManagedDiskToAddSupportsHibernation() {
   const resourceGroupName = "myResourceGroup";
   const diskName = "myDisk";
   const disk: DiskUpdate = { supportsHibernation: true };
-  await client.disks
-    .beginUpdateAndWait(resourceGroupName, diskName, disk)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.disks.beginUpdateAndWait(
+    resourceGroupName,
+    diskName,
+    disk
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

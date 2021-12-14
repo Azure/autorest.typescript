@@ -23,11 +23,13 @@ async function getsAWorkloadGroupForADataWarehouse() {
   const serverName = "testsvr";
   const databaseName = "testdb";
   const workloadGroupName = "smallrc";
-  await client.workloadGroups
-    .get(resourceGroupName, serverName, databaseName, workloadGroupName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.workloadGroups.get(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    workloadGroupName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

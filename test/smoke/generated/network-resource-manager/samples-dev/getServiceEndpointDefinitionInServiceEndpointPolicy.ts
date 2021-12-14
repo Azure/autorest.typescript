@@ -22,15 +22,12 @@ async function getServiceEndpointDefinitionInServiceEndpointPolicy() {
   const resourceGroupName = "rg1";
   const serviceEndpointPolicyName = "testPolicy";
   const serviceEndpointPolicyDefinitionName = "testDefinition";
-  await client.serviceEndpointPolicyDefinitions
-    .get(
-      resourceGroupName,
-      serviceEndpointPolicyName,
-      serviceEndpointPolicyDefinitionName
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.serviceEndpointPolicyDefinitions.get(
+    resourceGroupName,
+    serviceEndpointPolicyName,
+    serviceEndpointPolicyDefinitionName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -32,15 +32,12 @@ async function createVirtualRouter() {
     location: "West US",
     tags: { key1: "value1" }
   };
-  await client.virtualRouters
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      virtualRouterName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualRouters.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    virtualRouterName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

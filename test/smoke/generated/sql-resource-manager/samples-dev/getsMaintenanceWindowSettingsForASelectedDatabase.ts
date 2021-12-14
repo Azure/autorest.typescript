@@ -23,11 +23,13 @@ async function getsMaintenanceWindowSettingsForASelectedDatabase() {
   const serverName = "testsvr";
   const databaseName = "testdb";
   const maintenanceWindowName = "current";
-  await client.maintenanceWindowsOperations
-    .get(resourceGroupName, serverName, databaseName, maintenanceWindowName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.maintenanceWindowsOperations.get(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    maintenanceWindowName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

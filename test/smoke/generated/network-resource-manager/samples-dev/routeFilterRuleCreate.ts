@@ -30,16 +30,13 @@ async function routeFilterRuleCreate() {
     communities: ["12076:5030", "12076:5040"],
     routeFilterRuleType: "Community"
   };
-  await client.routeFilterRules
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      routeFilterName,
-      ruleName,
-      routeFilterRuleParameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.routeFilterRules.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    routeFilterName,
+    ruleName,
+    routeFilterRuleParameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

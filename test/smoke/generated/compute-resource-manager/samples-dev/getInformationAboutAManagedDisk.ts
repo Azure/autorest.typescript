@@ -21,9 +21,8 @@ let client: ComputeManagementClient;
 async function getInformationAboutAManagedDisk() {
   const resourceGroupName = "myResourceGroup";
   const diskName = "myManagedDisk";
-  await client.disks.get(resourceGroupName, diskName).then((res) => {
-    console.log(res);
-  });
+  const result = await client.disks.get(resourceGroupName, diskName);
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

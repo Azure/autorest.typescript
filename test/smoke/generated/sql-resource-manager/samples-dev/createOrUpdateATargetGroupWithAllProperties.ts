@@ -59,17 +59,14 @@ async function createOrUpdateATargetGroupWithAllProperties() {
       }
     ]
   };
-  await client.jobTargetGroups
-    .createOrUpdate(
-      resourceGroupName,
-      serverName,
-      jobAgentName,
-      targetGroupName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.jobTargetGroups.createOrUpdate(
+    resourceGroupName,
+    serverName,
+    jobAgentName,
+    targetGroupName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

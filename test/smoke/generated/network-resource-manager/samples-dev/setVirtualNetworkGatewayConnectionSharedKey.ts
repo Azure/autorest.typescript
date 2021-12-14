@@ -25,15 +25,12 @@ async function setVirtualNetworkGatewayConnectionSharedKey() {
   const resourceGroupName = "rg1";
   const virtualNetworkGatewayConnectionName = "connS2S";
   const parameters: ConnectionSharedKey = { value: "AzureAbc123" };
-  await client.virtualNetworkGatewayConnections
-    .beginSetSharedKeyAndWait(
-      resourceGroupName,
-      virtualNetworkGatewayConnectionName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualNetworkGatewayConnections.beginSetSharedKeyAndWait(
+    resourceGroupName,
+    virtualNetworkGatewayConnectionName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

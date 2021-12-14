@@ -31,16 +31,13 @@ async function virtualHubIPConfigurationPut() {
         "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworks/vnet1/subnets/subnet1"
     }
   };
-  await client.virtualHubIpConfiguration
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      virtualHubName,
-      ipConfigName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualHubIpConfiguration.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    virtualHubName,
+    ipConfigName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

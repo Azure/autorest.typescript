@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function checkDnsNameAvailability() {
   const location = "westus";
   const domainNameLabel = "testdns";
-  await client
-    .checkDnsNameAvailability(location, domainNameLabel)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.checkDnsNameAvailability(
+    location,
+    domainNameLabel
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

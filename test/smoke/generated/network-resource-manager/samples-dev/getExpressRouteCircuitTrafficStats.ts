@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function getExpressRouteCircuitTrafficStats() {
   const resourceGroupName = "rg1";
   const circuitName = "circuitName";
-  await client.expressRouteCircuits
-    .getStats(resourceGroupName, circuitName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.expressRouteCircuits.getStats(
+    resourceGroupName,
+    circuitName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

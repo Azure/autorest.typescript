@@ -26,16 +26,13 @@ async function validateACustomDomainForAStaticSite() {
   const name = "testStaticSite0";
   const domainName = "custom.domain.net";
   const staticSiteCustomDomainRequestPropertiesEnvelope: StaticSiteCustomDomainRequestPropertiesARMResource = {};
-  await client.staticSites
-    .beginValidateCustomDomainCanBeAddedToStaticSiteAndWait(
-      resourceGroupName,
-      name,
-      domainName,
-      staticSiteCustomDomainRequestPropertiesEnvelope
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.staticSites.beginValidateCustomDomainCanBeAddedToStaticSiteAndWait(
+    resourceGroupName,
+    name,
+    domainName,
+    staticSiteCustomDomainRequestPropertiesEnvelope
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

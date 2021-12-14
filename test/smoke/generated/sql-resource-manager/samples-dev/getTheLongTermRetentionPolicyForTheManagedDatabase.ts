@@ -23,11 +23,13 @@ async function getTheLongTermRetentionPolicyForTheManagedDatabase() {
   const managedInstanceName = "testInstance";
   const databaseName = "testDatabase";
   const policyName = "default";
-  await client.managedInstanceLongTermRetentionPolicies
-    .get(resourceGroupName, managedInstanceName, databaseName, policyName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.managedInstanceLongTermRetentionPolicies.get(
+    resourceGroupName,
+    managedInstanceName,
+    databaseName,
+    policyName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

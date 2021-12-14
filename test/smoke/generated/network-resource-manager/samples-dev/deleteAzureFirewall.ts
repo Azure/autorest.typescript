@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function deleteAzureFirewall() {
   const resourceGroupName = "rg1";
   const azureFirewallName = "azurefirewall";
-  await client.azureFirewalls
-    .beginDeleteAndWait(resourceGroupName, azureFirewallName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.azureFirewalls.beginDeleteAndWait(
+    resourceGroupName,
+    azureFirewallName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -25,11 +25,12 @@ async function resetSharingProfileOfAGallery() {
   const resourceGroupName = "myResourceGroup";
   const galleryName = "myGalleryName";
   const sharingUpdate: SharingUpdate = { operationType: "Reset" };
-  await client.gallerySharingProfile
-    .beginUpdateAndWait(resourceGroupName, galleryName, sharingUpdate)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.gallerySharingProfile.beginUpdateAndWait(
+    resourceGroupName,
+    galleryName,
+    sharingUpdate
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -27,15 +27,12 @@ async function updateExpressRouteCrossConnectionTags() {
   const crossConnectionParameters: TagsObject = {
     tags: { tag1: "value1", tag2: "value2" }
   };
-  await client.expressRouteCrossConnections
-    .updateTags(
-      resourceGroupName,
-      crossConnectionName,
-      crossConnectionParameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.expressRouteCrossConnections.updateTags(
+    resourceGroupName,
+    crossConnectionName,
+    crossConnectionParameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

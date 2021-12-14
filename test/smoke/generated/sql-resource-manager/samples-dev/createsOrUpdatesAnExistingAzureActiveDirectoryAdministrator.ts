@@ -31,16 +31,13 @@ async function createsOrUpdatesAnExistingAzureActiveDirectoryAdministrator() {
     sid: "c6b82b90-a647-49cb-8a62-0d2d3cb7ac7c",
     tenantId: "c6b82b90-a647-49cb-8a62-0d2d3cb7ac7c"
   };
-  await client.serverAzureADAdministrators
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      serverName,
-      administratorName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.serverAzureADAdministrators.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    serverName,
+    administratorName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

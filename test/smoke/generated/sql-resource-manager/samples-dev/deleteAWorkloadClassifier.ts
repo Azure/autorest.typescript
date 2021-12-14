@@ -24,17 +24,14 @@ async function deleteAWorkloadClassifier() {
   const databaseName = "testdb";
   const workloadGroupName = "wlm_workloadgroup";
   const workloadClassifierName = "wlm_workloadclassifier";
-  await client.workloadClassifiers
-    .beginDeleteAndWait(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      workloadGroupName,
-      workloadClassifierName
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.workloadClassifiers.beginDeleteAndWait(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    workloadGroupName,
+    workloadClassifierName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

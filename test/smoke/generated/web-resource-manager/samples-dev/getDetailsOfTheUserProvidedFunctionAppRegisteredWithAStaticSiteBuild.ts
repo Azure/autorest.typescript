@@ -23,16 +23,13 @@ async function getDetailsOfTheUserProvidedFunctionAppRegisteredWithAStaticSiteBu
   const name = "testStaticSite0";
   const environmentName = "default";
   const functionAppName = "testFunctionApp";
-  await client.staticSites
-    .getUserProvidedFunctionAppForStaticSiteBuild(
-      resourceGroupName,
-      name,
-      environmentName,
-      functionAppName
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.staticSites.getUserProvidedFunctionAppForStaticSiteBuild(
+    resourceGroupName,
+    name,
+    environmentName,
+    functionAppName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

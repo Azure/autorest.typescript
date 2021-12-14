@@ -21,11 +21,11 @@ let client: ComputeManagementClient;
 async function reapplyTheStateOfAVirtualMachine() {
   const resourceGroupName = "ResourceGroup";
   const vmName = "VMName";
-  await client.virtualMachines
-    .beginReapplyAndWait(resourceGroupName, vmName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualMachines.beginReapplyAndWait(
+    resourceGroupName,
+    vmName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

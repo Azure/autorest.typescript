@@ -31,16 +31,13 @@ async function createNetworkInterfaceTapConfigurations() {
         "/subscriptions/subid/resourceGroups/testrg/providers/Microsoft.Network/virtualNetworkTaps/testvtap"
     }
   };
-  await client.networkInterfaceTapConfigurations
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      networkInterfaceName,
-      tapConfigurationName,
-      tapConfigurationParameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.networkInterfaceTapConfigurations.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    networkInterfaceName,
+    tapConfigurationName,
+    tapConfigurationParameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

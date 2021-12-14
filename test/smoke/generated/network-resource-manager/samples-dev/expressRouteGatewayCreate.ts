@@ -32,15 +32,12 @@ async function expressRouteGatewayCreate() {
         "/subscriptions/subid/resourceGroups/resourceGroupId/providers/Microsoft.Network/virtualHubs/virtualHubName"
     }
   };
-  await client.expressRouteGateways
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      expressRouteGatewayName,
-      putExpressRouteGatewayParameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.expressRouteGateways.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    expressRouteGatewayName,
+    putExpressRouteGatewayParameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

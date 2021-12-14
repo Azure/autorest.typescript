@@ -29,16 +29,13 @@ async function virtualMachineScaleSetVMSRunCommand() {
     commandId: "RunPowerShellScript",
     script: ["Write-Host Hello World!"]
   };
-  await client.virtualMachineScaleSetVMs
-    .beginRunCommandAndWait(
-      resourceGroupName,
-      vmScaleSetName,
-      instanceId,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualMachineScaleSetVMs.beginRunCommandAndWait(
+    resourceGroupName,
+    vmScaleSetName,
+    instanceId,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -28,11 +28,12 @@ async function getASasOnAManagedDisk() {
     access: "Read",
     durationInSeconds: 300
   };
-  await client.disks
-    .beginGrantAccessAndWait(resourceGroupName, diskName, grantAccessData)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.disks.beginGrantAccessAndWait(
+    resourceGroupName,
+    diskName,
+    grantAccessData
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -29,15 +29,12 @@ async function createPublicIPPrefixDefaults() {
     prefixLength: 30,
     sku: { name: "Standard" }
   };
-  await client.publicIPPrefixes
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      publicIpPrefixName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.publicIPPrefixes.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    publicIpPrefixName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

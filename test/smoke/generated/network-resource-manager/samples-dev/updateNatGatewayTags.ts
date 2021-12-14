@@ -25,11 +25,12 @@ async function updateNatGatewayTags() {
   const resourceGroupName = "rg1";
   const natGatewayName = "test-natGateway";
   const parameters: TagsObject = { tags: { tag1: "value1", tag2: "value2" } };
-  await client.natGateways
-    .updateTags(resourceGroupName, natGatewayName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.natGateways.updateTags(
+    resourceGroupName,
+    natGatewayName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

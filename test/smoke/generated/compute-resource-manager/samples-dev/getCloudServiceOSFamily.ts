@@ -21,11 +21,11 @@ let client: ComputeManagementClient;
 async function getCloudServiceOSFamily() {
   const location = "westus2";
   const osFamilyName = "3";
-  await client.cloudServiceOperatingSystems
-    .getOSFamily(location, osFamilyName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.cloudServiceOperatingSystems.getOSFamily(
+    location,
+    osFamilyName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

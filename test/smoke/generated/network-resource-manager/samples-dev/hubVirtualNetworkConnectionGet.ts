@@ -22,11 +22,12 @@ async function hubVirtualNetworkConnectionGet() {
   const resourceGroupName = "rg1";
   const virtualHubName = "virtualHub1";
   const connectionName = "connection1";
-  await client.hubVirtualNetworkConnections
-    .get(resourceGroupName, virtualHubName, connectionName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.hubVirtualNetworkConnections.get(
+    resourceGroupName,
+    virtualHubName,
+    connectionName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

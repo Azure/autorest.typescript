@@ -23,16 +23,13 @@ async function getCloudServiceNetworkInterface() {
   const cloudServiceName = "cs1";
   const roleInstanceName = "TestVMRole_IN_0";
   const networkInterfaceName = "nic1";
-  await client.networkInterfaces
-    .getCloudServiceNetworkInterface(
-      resourceGroupName,
-      cloudServiceName,
-      roleInstanceName,
-      networkInterfaceName
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.networkInterfaces.getCloudServiceNetworkInterface(
+    resourceGroupName,
+    cloudServiceName,
+    roleInstanceName,
+    networkInterfaceName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

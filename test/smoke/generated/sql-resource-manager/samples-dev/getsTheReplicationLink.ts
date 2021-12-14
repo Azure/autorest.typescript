@@ -23,11 +23,13 @@ async function getsTheReplicationLink() {
   const serverName = "sourcesvr";
   const databaseName = "gamma-db";
   const linkId = "4891ca10-ebd0-47d7-9182-c722651780fb";
-  await client.replicationLinks
-    .get(resourceGroupName, serverName, databaseName, linkId)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.replicationLinks.get(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    linkId
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

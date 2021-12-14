@@ -22,15 +22,12 @@ async function storageAccountHierarchicalNamespaceMigration() {
   const resourceGroupName = "res4228";
   const accountName = "sto2434";
   const requestType = "HnsOnValidationRequest";
-  await client.storageAccounts
-    .beginHierarchicalNamespaceMigrationAndWait(
-      resourceGroupName,
-      accountName,
-      requestType
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.storageAccounts.beginHierarchicalNamespaceMigrationAndWait(
+    resourceGroupName,
+    accountName,
+    requestType
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

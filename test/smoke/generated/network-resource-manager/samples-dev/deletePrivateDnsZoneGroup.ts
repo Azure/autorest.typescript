@@ -22,15 +22,12 @@ async function deletePrivateDnsZoneGroup() {
   const resourceGroupName = "rg1";
   const privateEndpointName = "testPe";
   const privateDnsZoneGroupName = "testPdnsgroup";
-  await client.privateDnsZoneGroups
-    .beginDeleteAndWait(
-      resourceGroupName,
-      privateEndpointName,
-      privateDnsZoneGroupName
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.privateDnsZoneGroups.beginDeleteAndWait(
+    resourceGroupName,
+    privateEndpointName,
+    privateDnsZoneGroupName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

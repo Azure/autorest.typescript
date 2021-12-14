@@ -24,16 +24,13 @@ async function revokesAccessToADiskRestorePoint() {
   const vmRestorePointName = "vmrp";
   const diskRestorePointName =
     "TestDisk45ceb03433006d1baee0_b70cd924-3362-4a80-93c2-9415eaa12745";
-  await client.diskRestorePointOperations
-    .beginRevokeAccessAndWait(
-      resourceGroupName,
-      restorePointCollectionName,
-      vmRestorePointName,
-      diskRestorePointName
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.diskRestorePointOperations.beginRevokeAccessAndWait(
+    resourceGroupName,
+    restorePointCollectionName,
+    vmRestorePointName,
+    diskRestorePointName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

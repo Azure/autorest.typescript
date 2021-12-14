@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function getDDoSCustomPolicy() {
   const resourceGroupName = "rg1";
   const ddosCustomPolicyName = "test-ddos-custom-policy";
-  await client.ddosCustomPolicies
-    .get(resourceGroupName, ddosCustomPolicyName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.ddosCustomPolicies.get(
+    resourceGroupName,
+    ddosCustomPolicyName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

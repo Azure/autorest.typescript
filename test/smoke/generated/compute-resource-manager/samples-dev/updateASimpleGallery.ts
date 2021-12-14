@@ -27,11 +27,12 @@ async function updateASimpleGallery() {
   const gallery: GalleryUpdate = {
     description: "This is the gallery description."
   };
-  await client.galleries
-    .beginUpdateAndWait(resourceGroupName, galleryName, gallery)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.galleries.beginUpdateAndWait(
+    resourceGroupName,
+    galleryName,
+    gallery
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

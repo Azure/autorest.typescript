@@ -21,9 +21,8 @@ let client: KeyVaultManagementClient;
 async function deleteAVault() {
   const resourceGroupName = "sample-resource-group";
   const vaultName = "sample-vault";
-  await client.vaults.delete(resourceGroupName, vaultName).then((res) => {
-    console.log(res);
-  });
+  const result = await client.vaults.delete(resourceGroupName, vaultName);
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

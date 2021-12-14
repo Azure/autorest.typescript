@@ -26,16 +26,13 @@ async function createsADatabaseWithLedgerOn() {
   const serverName = "testsvr";
   const databaseName = "testdb";
   const parameters: Database = { isLedgerOn: true, location: "southeastasia" };
-  await client.databases
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.databases.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

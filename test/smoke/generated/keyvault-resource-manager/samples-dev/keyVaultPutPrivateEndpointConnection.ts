@@ -32,16 +32,13 @@ async function keyVaultPutPrivateEndpointConnection() {
       status: "Approved"
     }
   };
-  await client.privateEndpointConnections
-    .put(
-      resourceGroupName,
-      vaultName,
-      privateEndpointConnectionName,
-      properties
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.privateEndpointConnections.put(
+    resourceGroupName,
+    vaultName,
+    privateEndpointConnectionName,
+    properties
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -28,16 +28,13 @@ async function completesAManagedDatabaseExternalBackupRestore() {
   const parameters: CompleteDatabaseRestoreDefinition = {
     lastBackupName: "testdb1_log4"
   };
-  await client.managedDatabases
-    .beginCompleteRestoreAndWait(
-      resourceGroupName,
-      managedInstanceName,
-      databaseName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.managedDatabases.beginCompleteRestoreAndWait(
+    resourceGroupName,
+    managedInstanceName,
+    databaseName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -35,16 +35,13 @@ async function expressRouteCrossConnectionBgpPeeringCreate() {
     secondaryPeerAddressPrefix: "192.168.18.252/30",
     vlanId: 200
   };
-  await client.expressRouteCrossConnectionPeerings
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      crossConnectionName,
-      peeringName,
-      peeringParameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.expressRouteCrossConnectionPeerings.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    crossConnectionName,
+    peeringName,
+    peeringParameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

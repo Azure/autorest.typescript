@@ -24,11 +24,14 @@ async function getDatabaseTable() {
   const databaseName = "myDatabase";
   const schemaName = "dbo";
   const tableName = "table1";
-  await client.databaseTables
-    .get(resourceGroupName, serverName, databaseName, schemaName, tableName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.databaseTables.get(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    schemaName,
+    tableName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

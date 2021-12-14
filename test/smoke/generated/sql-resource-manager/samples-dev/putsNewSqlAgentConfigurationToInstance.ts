@@ -25,11 +25,12 @@ async function putsNewSqlAgentConfigurationToInstance() {
   const resourceGroupName = "sqlcrudtest-7398";
   const managedInstanceName = "sqlcrudtest-4645";
   const parameters: SqlAgentConfiguration = { state: "Enabled" };
-  await client.sqlAgent
-    .createOrUpdate(resourceGroupName, managedInstanceName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.sqlAgent.createOrUpdate(
+    resourceGroupName,
+    managedInstanceName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

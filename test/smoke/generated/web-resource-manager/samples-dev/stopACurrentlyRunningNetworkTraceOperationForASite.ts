@@ -21,9 +21,8 @@ let client: WebSiteManagementClient;
 async function stopACurrentlyRunningNetworkTraceOperationForASite() {
   const resourceGroupName = "testrg123";
   const name = "SampleApp";
-  await client.webApps.stopNetworkTrace(resourceGroupName, name).then((res) => {
-    console.log(res);
-  });
+  const result = await client.webApps.stopNetworkTrace(resourceGroupName, name);
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -30,16 +30,13 @@ async function createOrUpdateAVirtualNetworkRule() {
     virtualNetworkSubnetId:
       "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Default/providers/Microsoft.Network/virtualNetworks/testvnet/subnets/testsubnet"
   };
-  await client.virtualNetworkRules
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      serverName,
-      virtualNetworkRuleName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualNetworkRules.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    serverName,
+    virtualNetworkRuleName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

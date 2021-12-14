@@ -29,11 +29,12 @@ async function createOrUpdateCertificate() {
     location: "East US",
     password: "<password>"
   };
-  await client.certificates
-    .createOrUpdate(resourceGroupName, name, certificateEnvelope)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.certificates.createOrUpdate(
+    resourceGroupName,
+    name,
+    certificateEnvelope
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

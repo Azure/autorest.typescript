@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function expressRoutePortDelete() {
   const resourceGroupName = "rg1";
   const expressRoutePortName = "portName";
-  await client.expressRoutePorts
-    .beginDeleteAndWait(resourceGroupName, expressRoutePortName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.expressRoutePorts.beginDeleteAndWait(
+    resourceGroupName,
+    expressRoutePortName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

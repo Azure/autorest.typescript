@@ -22,11 +22,12 @@ async function getASecret() {
   const resourceGroupName = "sample-group";
   const vaultName = "sample-vault";
   const secretName = "secret-name";
-  await client.secrets
-    .get(resourceGroupName, vaultName, secretName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.secrets.get(
+    resourceGroupName,
+    vaultName,
+    secretName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -30,15 +30,12 @@ async function createVirtualNetworkWithBgpCommunities() {
     location: "eastus",
     subnets: [{ name: "test-1", addressPrefix: "10.0.0.0/24" }]
   };
-  await client.virtualNetworks
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      virtualNetworkName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualNetworks.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    virtualNetworkName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

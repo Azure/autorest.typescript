@@ -23,11 +23,13 @@ async function getsTheCurrentLedgerDigestUploadConfigurationForADatabase() {
   const serverName = "ledgertestserver";
   const databaseName = "testdb";
   const ledgerDigestUploads = "current";
-  await client.ledgerDigestUploadsOperations
-    .get(resourceGroupName, serverName, databaseName, ledgerDigestUploads)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.ledgerDigestUploadsOperations.get(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    ledgerDigestUploads
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

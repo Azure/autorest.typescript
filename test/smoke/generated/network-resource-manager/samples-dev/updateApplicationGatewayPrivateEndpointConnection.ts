@@ -36,16 +36,13 @@ async function updateApplicationGatewayPrivateEndpointConnection() {
       status: "Approved"
     }
   };
-  await client.applicationGatewayPrivateEndpointConnections
-    .beginUpdateAndWait(
-      resourceGroupName,
-      applicationGatewayName,
-      connectionName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.applicationGatewayPrivateEndpointConnections.beginUpdateAndWait(
+    resourceGroupName,
+    applicationGatewayName,
+    connectionName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

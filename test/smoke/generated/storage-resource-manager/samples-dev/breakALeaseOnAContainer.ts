@@ -33,11 +33,13 @@ async function breakALeaseOnAContainer() {
     proposedLeaseId: undefined
   };
   const options = { parameters: parameters };
-  await client.blobContainers
-    .lease(resourceGroupName, accountName, containerName, options)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.blobContainers.lease(
+    resourceGroupName,
+    accountName,
+    containerName,
+    options
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

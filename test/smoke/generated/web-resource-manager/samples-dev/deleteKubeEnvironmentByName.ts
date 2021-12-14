@@ -21,11 +21,11 @@ let client: WebSiteManagementClient;
 async function deleteKubeEnvironmentByName() {
   const resourceGroupName = "examplerg";
   const name = "examplekenv";
-  await client.kubeEnvironments
-    .beginDeleteAndWait(resourceGroupName, name)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.kubeEnvironments.beginDeleteAndWait(
+    resourceGroupName,
+    name
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

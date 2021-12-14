@@ -26,11 +26,13 @@ async function clearLegalHoldContainers() {
   const accountName = "sto7280";
   const containerName = "container8723";
   const legalHold: LegalHold = { tags: ["tag1", "tag2", "tag3"] };
-  await client.blobContainers
-    .clearLegalHold(resourceGroupName, accountName, containerName, legalHold)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.blobContainers.clearLegalHold(
+    resourceGroupName,
+    accountName,
+    containerName,
+    legalHold
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

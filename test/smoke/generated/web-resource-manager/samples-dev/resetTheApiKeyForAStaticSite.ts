@@ -28,11 +28,12 @@ async function resetTheApiKeyForAStaticSite() {
     repositoryToken: "repoToken123",
     shouldUpdateRepository: true
   };
-  await client.staticSites
-    .resetStaticSiteApiKey(resourceGroupName, name, resetPropertiesEnvelope)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.staticSites.resetStaticSiteApiKey(
+    resourceGroupName,
+    name,
+    resetPropertiesEnvelope
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

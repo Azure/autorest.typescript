@@ -22,15 +22,12 @@ async function backendAddressPoolDelete() {
   const resourceGroupName = "testrg";
   const loadBalancerName = "lb";
   const backendAddressPoolName = "backend";
-  await client.loadBalancerBackendAddressPools
-    .beginDeleteAndWait(
-      resourceGroupName,
-      loadBalancerName,
-      backendAddressPoolName
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.loadBalancerBackendAddressPools.beginDeleteAndWait(
+    resourceGroupName,
+    loadBalancerName,
+    backendAddressPoolName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

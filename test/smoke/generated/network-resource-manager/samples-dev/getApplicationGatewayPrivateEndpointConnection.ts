@@ -22,11 +22,12 @@ async function getApplicationGatewayPrivateEndpointConnection() {
   const resourceGroupName = "rg1";
   const applicationGatewayName = "appgw";
   const connectionName = "connection1";
-  await client.applicationGatewayPrivateEndpointConnections
-    .get(resourceGroupName, applicationGatewayName, connectionName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.applicationGatewayPrivateEndpointConnections.get(
+    resourceGroupName,
+    applicationGatewayName,
+    connectionName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

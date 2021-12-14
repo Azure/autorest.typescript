@@ -22,11 +22,12 @@ async function storageAccountDeletePrivateEndpointConnection() {
   const resourceGroupName = "res6977";
   const accountName = "sto2527";
   const privateEndpointConnectionName = "{privateEndpointConnectionName}";
-  await client.privateEndpointConnections
-    .delete(resourceGroupName, accountName, privateEndpointConnectionName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.privateEndpointConnections.delete(
+    resourceGroupName,
+    accountName,
+    privateEndpointConnectionName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

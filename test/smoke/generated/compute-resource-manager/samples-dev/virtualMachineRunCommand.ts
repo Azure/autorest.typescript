@@ -25,11 +25,12 @@ async function virtualMachineRunCommand() {
   const resourceGroupName = "crptestar98131";
   const vmName = "vm3036";
   const parameters: RunCommandInput = { commandId: "RunPowerShellScript" };
-  await client.virtualMachines
-    .beginRunCommandAndWait(resourceGroupName, vmName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualMachines.beginRunCommandAndWait(
+    resourceGroupName,
+    vmName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -29,11 +29,13 @@ async function renamesADatabase() {
     id:
       "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Default-SQL-SouthEastAsia/providers/Microsoft.Sql/servers/testsvr/databases/newtestdb"
   };
-  await client.databases
-    .rename(resourceGroupName, serverName, databaseName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.databases.rename(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

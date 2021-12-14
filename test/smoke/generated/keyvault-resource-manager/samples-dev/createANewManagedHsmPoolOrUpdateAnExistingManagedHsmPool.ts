@@ -36,11 +36,12 @@ async function createANewManagedHsmPoolOrUpdateAnExistingManagedHsmPool() {
     sku: { name: "Standard_B1", family: "B" },
     tags: { dept: "hsm", environment: "dogfood" }
   };
-  await client.managedHsms
-    .beginCreateOrUpdateAndWait(resourceGroupName, name, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.managedHsms.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    name,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

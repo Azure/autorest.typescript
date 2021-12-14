@@ -22,11 +22,12 @@ async function getARunCommand() {
   const resourceGroupName = "myResourceGroup";
   const vmName = "myVM";
   const runCommandName = "myRunCommand";
-  await client.virtualMachineRunCommands
-    .getByVirtualMachine(resourceGroupName, vmName, runCommandName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualMachineRunCommands.getByVirtualMachine(
+    resourceGroupName,
+    vmName,
+    runCommandName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

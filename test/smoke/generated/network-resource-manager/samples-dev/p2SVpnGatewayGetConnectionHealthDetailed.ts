@@ -29,15 +29,12 @@ async function p2SVpnGatewayGetConnectionHealthDetailed() {
       "https://blobcortextesturl.blob.core.windows.net/folderforconfig/p2sconnectionhealths?sp=rw&se=2018-01-10T03%3A42%3A04Z&sv=2017-04-17&sig=WvXrT5bDmDFfgHs%2Brz%2BjAu123eRCNE9BO0eQYcPDT7pY%3D&sr=b",
     vpnUserNamesFilter: ["vpnUser1", "vpnUser2"]
   };
-  await client.p2SVpnGateways
-    .beginGetP2SVpnConnectionHealthDetailedAndWait(
-      resourceGroupName,
-      gatewayName,
-      request
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.p2SVpnGateways.beginGetP2SVpnConnectionHealthDetailedAndWait(
+    resourceGroupName,
+    gatewayName,
+    request
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

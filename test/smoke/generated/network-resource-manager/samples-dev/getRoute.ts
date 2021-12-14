@@ -22,11 +22,12 @@ async function getRoute() {
   const resourceGroupName = "rg1";
   const routeTableName = "testrt";
   const routeName = "route1";
-  await client.routes
-    .get(resourceGroupName, routeTableName, routeName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.routes.get(
+    resourceGroupName,
+    routeTableName,
+    routeName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

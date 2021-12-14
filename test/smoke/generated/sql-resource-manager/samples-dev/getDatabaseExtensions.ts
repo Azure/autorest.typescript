@@ -23,11 +23,13 @@ async function getDatabaseExtensions() {
   const serverName = "srv_65858e0f-b1d1-4bdc-8351-a7da86ca4939";
   const databaseName = "11aa6c5e-58ed-4693-b303-3b8e3131deaa";
   const extensionName = "polybaseimport";
-  await client.databaseExtensionsOperations
-    .get(resourceGroupName, serverName, databaseName, extensionName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.databaseExtensionsOperations.get(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    extensionName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

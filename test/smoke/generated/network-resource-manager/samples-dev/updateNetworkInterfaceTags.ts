@@ -25,11 +25,12 @@ async function updateNetworkInterfaceTags() {
   const resourceGroupName = "rg1";
   const networkInterfaceName = "test-nic";
   const parameters: TagsObject = { tags: { tag1: "value1", tag2: "value2" } };
-  await client.networkInterfaces
-    .updateTags(resourceGroupName, networkInterfaceName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.networkInterfaces.updateTags(
+    resourceGroupName,
+    networkInterfaceName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -26,11 +26,13 @@ async function updatesDatabaseAutomaticTuningSettingsWithMinimalProperties() {
   const serverName = "testsvr11";
   const databaseName = "db1";
   const parameters: DatabaseAutomaticTuning = { desiredState: "Auto" };
-  await client.databaseAutomaticTuningOperations
-    .update(resourceGroupName, serverName, databaseName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.databaseAutomaticTuningOperations.update(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

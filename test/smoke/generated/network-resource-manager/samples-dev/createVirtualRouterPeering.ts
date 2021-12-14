@@ -29,16 +29,13 @@ async function createVirtualRouterPeering() {
     peerAsn: 20000,
     peerIp: "192.168.1.5"
   };
-  await client.virtualRouterPeerings
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      virtualRouterName,
-      peeringName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualRouterPeerings.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    virtualRouterName,
+    peeringName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

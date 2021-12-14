@@ -31,15 +31,12 @@ async function configureFlowLog() {
     targetResourceId:
       "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/networkSecurityGroups/nsg1"
   };
-  await client.networkWatchers
-    .beginSetFlowLogConfigurationAndWait(
-      resourceGroupName,
-      networkWatcherName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.networkWatchers.beginSetFlowLogConfigurationAndWait(
+    resourceGroupName,
+    networkWatcherName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

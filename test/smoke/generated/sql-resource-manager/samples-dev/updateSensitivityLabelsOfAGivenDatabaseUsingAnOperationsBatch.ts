@@ -56,11 +56,13 @@ async function updateSensitivityLabelsOfAGivenDatabaseUsingAnOperationsBatch() {
       { schema: "dbo", column: "Column3", op: "remove", table: "Table1" }
     ]
   };
-  await client.sensitivityLabels
-    .update(resourceGroupName, serverName, databaseName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.sensitivityLabels.update(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

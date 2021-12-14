@@ -22,11 +22,12 @@ async function getsAAzureActiveDirectoryOnlyAuthenticationProperty() {
   const resourceGroupName = "sqlcrudtest-4799";
   const serverName = "sqlcrudtest-6440";
   const authenticationName = "Default";
-  await client.serverAzureADOnlyAuthentications
-    .get(resourceGroupName, serverName, authenticationName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.serverAzureADOnlyAuthentications.get(
+    resourceGroupName,
+    serverName,
+    authenticationName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

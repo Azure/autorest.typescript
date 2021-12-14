@@ -34,11 +34,12 @@ async function ipFlowVerify() {
       "/subscriptions/subid/resourceGroups/rg2/providers/Microsoft.Compute/virtualMachines/vm1",
     protocol: "TCP"
   };
-  await client.networkWatchers
-    .beginVerifyIPFlowAndWait(resourceGroupName, networkWatcherName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.networkWatchers.beginVerifyIPFlowAndWait(
+    resourceGroupName,
+    networkWatcherName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

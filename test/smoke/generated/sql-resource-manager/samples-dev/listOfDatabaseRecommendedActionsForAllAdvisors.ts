@@ -24,11 +24,13 @@ async function listOfDatabaseRecommendedActionsForAllAdvisors() {
   const databaseName = "IndexAdvisor_test_3";
   const expand = "recommendedActions";
   const options = { expand: expand };
-  await client.databaseAdvisors
-    .listByDatabase(resourceGroupName, serverName, databaseName, options)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.databaseAdvisors.listByDatabase(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    options
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

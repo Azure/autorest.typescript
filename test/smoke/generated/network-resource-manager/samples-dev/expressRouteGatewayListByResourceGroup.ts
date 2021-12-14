@@ -20,11 +20,10 @@ let client: NetworkManagementClient;
 //expressRouteGateways.listByResourceGroup
 async function expressRouteGatewayListByResourceGroup() {
   const resourceGroupName = "resourceGroupName";
-  await client.expressRouteGateways
-    .listByResourceGroup(resourceGroupName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.expressRouteGateways.listByResourceGroup(
+    resourceGroupName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

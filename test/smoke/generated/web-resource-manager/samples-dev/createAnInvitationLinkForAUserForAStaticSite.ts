@@ -31,15 +31,12 @@ async function createAnInvitationLinkForAUserForAStaticSite() {
     roles: "admin,contributor",
     userDetails: "username"
   };
-  await client.staticSites
-    .createUserRolesInvitationLink(
-      resourceGroupName,
-      name,
-      staticSiteUserRolesInvitationEnvelope
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.staticSites.createUserRolesInvitationLink(
+    resourceGroupName,
+    name,
+    staticSiteUserRolesInvitationEnvelope
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -22,11 +22,12 @@ async function queueOperationGet() {
   const resourceGroupName = "res3376";
   const accountName = "sto328";
   const queueName = "queue6185";
-  await client.queue
-    .get(resourceGroupName, accountName, queueName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.queue.get(
+    resourceGroupName,
+    accountName,
+    queueName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

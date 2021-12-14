@@ -25,18 +25,15 @@ async function enablesSensitivityRecommendationsOnAGivenColumn() {
   const schemaName = "dbo";
   const tableName = "myTable";
   const columnName = "myColumn";
-  await client.sensitivityLabels
-    .enableRecommendation(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      schemaName,
-      tableName,
-      columnName
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.sensitivityLabels.enableRecommendation(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    schemaName,
+    tableName,
+    columnName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

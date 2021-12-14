@@ -39,11 +39,12 @@ async function createBastionHost() {
       }
     ]
   };
-  await client.bastionHosts
-    .beginCreateOrUpdateAndWait(resourceGroupName, bastionHostName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.bastionHosts.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    bastionHostName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

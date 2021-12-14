@@ -31,16 +31,13 @@ async function updateAServerSDevOpsAuditSettingsWithMinimalInput() {
       "sdlfkjabc+sdlfkjsdlkfsjdfLDKFTERLKFDFKLjsdfksjdflsdkfD2342309432849328476458/3RSD==",
     storageEndpoint: "https://mystorage.blob.core.windows.net"
   };
-  await client.serverDevOpsAuditSettings
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      serverName,
-      devOpsAuditingSettingsName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.serverDevOpsAuditSettings.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    serverName,
+    devOpsAuditingSettingsName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

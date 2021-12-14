@@ -41,15 +41,12 @@ async function createNetworkInterface() {
     ],
     location: "eastus"
   };
-  await client.networkInterfaces
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      networkInterfaceName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.networkInterfaces.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    networkInterfaceName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -21,11 +21,11 @@ let client: ComputeManagementClient;
 async function listAllPossiblePrivateLinkResourcesUnderDiskAccessResource() {
   const resourceGroupName = "myResourceGroup";
   const diskAccessName = "myDiskAccess";
-  await client.diskAccesses
-    .getPrivateLinkResources(resourceGroupName, diskAccessName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.diskAccesses.getPrivateLinkResources(
+    resourceGroupName,
+    diskAccessName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

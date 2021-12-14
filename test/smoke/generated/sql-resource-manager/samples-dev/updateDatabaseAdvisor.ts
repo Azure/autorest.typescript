@@ -24,17 +24,14 @@ async function updateDatabaseAdvisor() {
   const databaseName = "IndexAdvisor_test_3";
   const advisorName = "CreateIndex";
   const parameters: Advisor = { autoExecuteStatus: "Disabled" };
-  await client.databaseAdvisors
-    .update(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      advisorName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.databaseAdvisors.update(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    advisorName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

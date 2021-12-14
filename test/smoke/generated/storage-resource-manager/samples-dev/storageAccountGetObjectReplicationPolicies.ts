@@ -22,11 +22,12 @@ async function storageAccountGetObjectReplicationPolicies() {
   const resourceGroupName = "res6977";
   const accountName = "sto2527";
   const objectReplicationPolicyId = "{objectReplicationPolicy-Id}";
-  await client.objectReplicationPoliciesOperations
-    .get(resourceGroupName, accountName, objectReplicationPolicyId)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.objectReplicationPoliciesOperations.get(
+    resourceGroupName,
+    accountName,
+    objectReplicationPolicyId
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

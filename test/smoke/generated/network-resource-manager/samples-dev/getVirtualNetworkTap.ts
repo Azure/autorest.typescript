@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function getVirtualNetworkTap() {
   const resourceGroupName = "rg1";
   const tapName = "testvtap";
-  await client.virtualNetworkTaps
-    .get(resourceGroupName, tapName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualNetworkTaps.get(
+    resourceGroupName,
+    tapName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

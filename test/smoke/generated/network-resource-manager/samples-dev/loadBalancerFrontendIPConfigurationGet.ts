@@ -22,11 +22,12 @@ async function loadBalancerFrontendIPConfigurationGet() {
   const resourceGroupName = "testrg";
   const loadBalancerName = "lb";
   const frontendIPConfigurationName = "frontend";
-  await client.loadBalancerFrontendIPConfigurations
-    .get(resourceGroupName, loadBalancerName, frontendIPConfigurationName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.loadBalancerFrontendIPConfigurations.get(
+    resourceGroupName,
+    loadBalancerName,
+    frontendIPConfigurationName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

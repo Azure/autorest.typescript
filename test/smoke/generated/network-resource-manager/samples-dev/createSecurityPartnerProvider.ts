@@ -33,15 +33,12 @@ async function createSecurityPartnerProvider() {
         "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualHubs/hub1"
     }
   };
-  await client.securityPartnerProviders
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      securityPartnerProviderName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.securityPartnerProviders.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    securityPartnerProviderName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

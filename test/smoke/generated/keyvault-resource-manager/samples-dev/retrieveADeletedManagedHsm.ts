@@ -21,9 +21,8 @@ let client: KeyVaultManagementClient;
 async function retrieveADeletedManagedHsm() {
   const name = "hsm1";
   const location = "westus";
-  await client.managedHsms.getDeleted(name, location).then((res) => {
-    console.log(res);
-  });
+  const result = await client.managedHsms.getDeleted(name, location);
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

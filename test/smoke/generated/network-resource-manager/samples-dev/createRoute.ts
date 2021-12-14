@@ -29,16 +29,13 @@ async function createRoute() {
     addressPrefix: "10.0.3.0/24",
     nextHopType: "VirtualNetworkGateway"
   };
-  await client.routes
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      routeTableName,
-      routeName,
-      routeParameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.routes.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    routeTableName,
+    routeName,
+    routeParameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

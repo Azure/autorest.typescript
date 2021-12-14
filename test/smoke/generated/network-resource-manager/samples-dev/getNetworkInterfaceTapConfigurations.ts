@@ -22,11 +22,12 @@ async function getNetworkInterfaceTapConfigurations() {
   const resourceGroupName = "testrg";
   const networkInterfaceName = "mynic";
   const tapConfigurationName = "tapconfiguration1";
-  await client.networkInterfaceTapConfigurations
-    .get(resourceGroupName, networkInterfaceName, tapConfigurationName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.networkInterfaceTapConfigurations.get(
+    resourceGroupName,
+    networkInterfaceName,
+    tapConfigurationName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

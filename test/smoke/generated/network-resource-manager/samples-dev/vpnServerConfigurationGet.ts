@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function vpnServerConfigurationGet() {
   const resourceGroupName = "rg1";
   const vpnServerConfigurationName = "vpnServerConfiguration1";
-  await client.vpnServerConfigurations
-    .get(resourceGroupName, vpnServerConfigurationName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.vpnServerConfigurations.get(
+    resourceGroupName,
+    vpnServerConfigurationName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

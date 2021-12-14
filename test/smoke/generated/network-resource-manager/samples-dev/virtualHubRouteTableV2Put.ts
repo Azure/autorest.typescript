@@ -33,16 +33,13 @@ async function virtualHubRouteTableV2Put() {
     peerAsn: 20000,
     peerIp: "192.168.1.5"
   };
-  await client.virtualHubBgpConnection
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      virtualHubName,
-      connectionName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualHubBgpConnection.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    virtualHubName,
+    connectionName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -23,16 +23,13 @@ async function resetVpnLinkConnection() {
   const gatewayName = "gateway1";
   const connectionName = "vpnConnection1";
   const linkConnectionName = "Connection-Link1";
-  await client.vpnLinkConnections
-    .beginResetConnectionAndWait(
-      resourceGroupName,
-      gatewayName,
-      connectionName,
-      linkConnectionName
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.vpnLinkConnections.beginResetConnectionAndWait(
+    resourceGroupName,
+    gatewayName,
+    connectionName,
+    linkConnectionName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

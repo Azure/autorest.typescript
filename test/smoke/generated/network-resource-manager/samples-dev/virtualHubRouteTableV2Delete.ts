@@ -22,11 +22,12 @@ async function virtualHubRouteTableV2Delete() {
   const resourceGroupName = "rg1";
   const virtualHubName = "hub1";
   const connectionName = "conn1";
-  await client.virtualHubBgpConnection
-    .beginDeleteAndWait(resourceGroupName, virtualHubName, connectionName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualHubBgpConnection.beginDeleteAndWait(
+    resourceGroupName,
+    virtualHubName,
+    connectionName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

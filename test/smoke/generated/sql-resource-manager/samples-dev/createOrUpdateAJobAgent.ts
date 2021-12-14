@@ -30,16 +30,13 @@ async function createOrUpdateAJobAgent() {
       "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/group1/providers/Microsoft.Sql/servers/server1/databases/db1",
     location: "southeastasia"
   };
-  await client.jobAgents
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      serverName,
-      jobAgentName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.jobAgents.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    serverName,
+    jobAgentName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

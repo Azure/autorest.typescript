@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function deleteServiceEndpointPolicy() {
   const resourceGroupName = "rg1";
   const serviceEndpointPolicyName = "serviceEndpointPolicy1";
-  await client.serviceEndpointPolicies
-    .beginDeleteAndWait(resourceGroupName, serviceEndpointPolicyName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.serviceEndpointPolicies.beginDeleteAndWait(
+    resourceGroupName,
+    serviceEndpointPolicyName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

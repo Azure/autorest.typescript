@@ -34,16 +34,13 @@ async function createsANewManagedDatabaseByRestoringFromAnExternalBackup() {
     storageContainerSasToken: "sv=2015-12-11&sr=c&sp=rl&sig=1234",
     storageContainerUri: "https://myaccountname.blob.core.windows.net/backups"
   };
-  await client.managedDatabases
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      managedInstanceName,
-      databaseName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.managedDatabases.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    managedInstanceName,
+    databaseName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

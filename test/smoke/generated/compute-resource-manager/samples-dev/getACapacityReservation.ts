@@ -22,15 +22,12 @@ async function getACapacityReservation() {
   const resourceGroupName = "myResourceGroup";
   const capacityReservationGroupName = "myCapacityReservationGroup";
   const capacityReservationName = "myCapacityReservation";
-  await client.capacityReservations
-    .get(
-      resourceGroupName,
-      capacityReservationGroupName,
-      capacityReservationName
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.capacityReservations.get(
+    resourceGroupName,
+    capacityReservationGroupName,
+    capacityReservationName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

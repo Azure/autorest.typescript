@@ -21,11 +21,11 @@ let client: WebSiteManagementClient;
 async function getDeletedWebAppByLocation() {
   const location = "West US 2";
   const deletedSiteId = "9";
-  await client.deletedWebApps
-    .getDeletedWebAppByLocation(location, deletedSiteId)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.deletedWebApps.getDeletedWebAppByLocation(
+    location,
+    deletedSiteId
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

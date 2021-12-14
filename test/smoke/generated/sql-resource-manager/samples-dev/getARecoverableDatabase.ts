@@ -22,11 +22,12 @@ async function getARecoverableDatabase() {
   const resourceGroupName = "recoverabledatabasetest-6852";
   const serverName = "recoverabledatabasetest-2080";
   const databaseName = "recoverabledatabasetest-9187";
-  await client.recoverableDatabases
-    .get(resourceGroupName, serverName, databaseName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.recoverableDatabases.get(
+    resourceGroupName,
+    serverName,
+    databaseName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

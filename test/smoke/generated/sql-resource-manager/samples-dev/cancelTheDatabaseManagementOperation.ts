@@ -23,11 +23,13 @@ async function cancelTheDatabaseManagementOperation() {
   const serverName = "sqlcrudtest-6661";
   const databaseName = "testdb";
   const operationId = "f779414b-e748-4925-8cfe-c8598f7660ae";
-  await client.databaseOperations
-    .cancel(resourceGroupName, serverName, databaseName, operationId)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.databaseOperations.cancel(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    operationId
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

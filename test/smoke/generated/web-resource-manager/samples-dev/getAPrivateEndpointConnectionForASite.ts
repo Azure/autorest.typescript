@@ -23,16 +23,13 @@ async function getAPrivateEndpointConnectionForASite() {
   const name = "testSite";
   const privateEndpointConnectionName = "connection";
   const slot = "stage";
-  await client.webApps
-    .getPrivateEndpointConnectionSlot(
-      resourceGroupName,
-      name,
-      privateEndpointConnectionName,
-      slot
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.webApps.getPrivateEndpointConnectionSlot(
+    resourceGroupName,
+    name,
+    privateEndpointConnectionName,
+    slot
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

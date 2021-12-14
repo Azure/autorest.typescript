@@ -38,15 +38,12 @@ async function testBackendHealth() {
     timeout: 30,
     protocol: "Http"
   };
-  await client.applicationGateways
-    .beginBackendHealthOnDemandAndWait(
-      resourceGroupName,
-      applicationGatewayName,
-      probeRequest
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.applicationGateways.beginBackendHealthOnDemandAndWait(
+    resourceGroupName,
+    applicationGatewayName,
+    probeRequest
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

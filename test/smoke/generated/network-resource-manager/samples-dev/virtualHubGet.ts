@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function virtualHubGet() {
   const resourceGroupName = "rg1";
   const virtualHubName = "virtualHub1";
-  await client.virtualHubs
-    .get(resourceGroupName, virtualHubName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualHubs.get(
+    resourceGroupName,
+    virtualHubName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

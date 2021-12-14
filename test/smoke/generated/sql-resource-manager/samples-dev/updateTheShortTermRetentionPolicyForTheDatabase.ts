@@ -30,17 +30,14 @@ async function updateTheShortTermRetentionPolicyForTheDatabase() {
     diffBackupIntervalInHours: 24,
     retentionDays: 7
   };
-  await client.backupShortTermRetentionPolicies
-    .beginUpdateAndWait(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      policyName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.backupShortTermRetentionPolicies.beginUpdateAndWait(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    policyName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

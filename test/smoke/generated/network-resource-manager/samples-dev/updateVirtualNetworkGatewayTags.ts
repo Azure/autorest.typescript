@@ -25,15 +25,12 @@ async function updateVirtualNetworkGatewayTags() {
   const resourceGroupName = "rg1";
   const virtualNetworkGatewayName = "vpngw";
   const parameters: TagsObject = { tags: { tag1: "value1", tag2: "value2" } };
-  await client.virtualNetworkGateways
-    .beginUpdateTagsAndWait(
-      resourceGroupName,
-      virtualNetworkGatewayName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualNetworkGateways.beginUpdateTagsAndWait(
+    resourceGroupName,
+    virtualNetworkGatewayName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -21,11 +21,11 @@ let client: ComputeManagementClient;
 async function deleteAManagedDisk() {
   const resourceGroupName = "myResourceGroup";
   const diskName = "myDisk";
-  await client.disks
-    .beginDeleteAndWait(resourceGroupName, diskName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.disks.beginDeleteAndWait(
+    resourceGroupName,
+    diskName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

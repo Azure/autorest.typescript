@@ -30,11 +30,13 @@ async function updatesADatabase() {
     maxSizeBytes: 1073741824,
     sku: { name: "BC_Gen4_4" }
   };
-  await client.databases
-    .beginUpdateAndWait(resourceGroupName, serverName, databaseName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.databases.beginUpdateAndWait(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -25,11 +25,12 @@ async function updateIPGroups() {
   const resourceGroupName = "myResourceGroup";
   const ipGroupsName = "ipGroups1";
   const parameters: TagsObject = { tags: { key1: "value1", key2: "value2" } };
-  await client.ipGroups
-    .updateGroups(resourceGroupName, ipGroupsName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.ipGroups.updateGroups(
+    resourceGroupName,
+    ipGroupsName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

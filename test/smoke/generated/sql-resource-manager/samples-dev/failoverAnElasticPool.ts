@@ -22,11 +22,12 @@ async function failoverAnElasticPool() {
   const resourceGroupName = "group1";
   const serverName = "testServer";
   const elasticPoolName = "testElasticPool";
-  await client.elasticPools
-    .beginFailoverAndWait(resourceGroupName, serverName, elasticPoolName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.elasticPools.beginFailoverAndWait(
+    resourceGroupName,
+    serverName,
+    elasticPoolName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

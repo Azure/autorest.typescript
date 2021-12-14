@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function deleteNetworkInterface() {
   const resourceGroupName = "rg1";
   const networkInterfaceName = "test-nic";
-  await client.networkInterfaces
-    .beginDeleteAndWait(resourceGroupName, networkInterfaceName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.networkInterfaces.beginDeleteAndWait(
+    resourceGroupName,
+    networkInterfaceName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

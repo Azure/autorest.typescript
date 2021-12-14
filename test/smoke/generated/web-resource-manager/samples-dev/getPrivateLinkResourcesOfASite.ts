@@ -22,11 +22,12 @@ async function getPrivateLinkResourcesOfASite() {
   const resourceGroupName = "rg";
   const name = "testSite";
   const slot = "stage";
-  await client.webApps
-    .getPrivateLinkResourcesSlot(resourceGroupName, name, slot)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.webApps.getPrivateLinkResourcesSlot(
+    resourceGroupName,
+    name,
+    slot
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -22,11 +22,12 @@ async function getExpressRouteCrossConnectionBgpPeering() {
   const resourceGroupName = "CrossConnection-SiliconValley";
   const crossConnectionName = "<circuitServiceKey>";
   const peeringName = "AzurePrivatePeering";
-  await client.expressRouteCrossConnectionPeerings
-    .get(resourceGroupName, crossConnectionName, peeringName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.expressRouteCrossConnectionPeerings.get(
+    resourceGroupName,
+    crossConnectionName,
+    peeringName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -21,11 +21,11 @@ let client: ComputeManagementClient;
 async function revokeAccessToAManagedDisk() {
   const resourceGroupName = "myResourceGroup";
   const diskName = "myDisk";
-  await client.disks
-    .beginRevokeAccessAndWait(resourceGroupName, diskName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.disks.beginRevokeAccessAndWait(
+    resourceGroupName,
+    diskName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

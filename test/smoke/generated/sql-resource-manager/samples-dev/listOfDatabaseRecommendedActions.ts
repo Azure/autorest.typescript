@@ -23,16 +23,13 @@ async function listOfDatabaseRecommendedActions() {
   const serverName = "misosisvr";
   const databaseName = "IndexAdvisor_test_3";
   const advisorName = "CreateIndex";
-  await client.databaseRecommendedActions
-    .listByDatabaseAdvisor(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      advisorName
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.databaseRecommendedActions.listByDatabaseAdvisor(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    advisorName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

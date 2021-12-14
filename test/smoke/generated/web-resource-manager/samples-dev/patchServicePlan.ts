@@ -25,11 +25,12 @@ async function patchServicePlan() {
   const resourceGroupName = "testrg123";
   const name = "testsf6141";
   const appServicePlan: AppServicePlanPatchResource = { kind: "app" };
-  await client.appServicePlans
-    .update(resourceGroupName, name, appServicePlan)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.appServicePlans.update(
+    resourceGroupName,
+    name,
+    appServicePlan
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

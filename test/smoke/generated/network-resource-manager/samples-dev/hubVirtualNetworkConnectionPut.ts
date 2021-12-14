@@ -61,16 +61,13 @@ async function hubVirtualNetworkConnectionPut() {
       }
     }
   };
-  await client.hubVirtualNetworkConnections
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      virtualHubName,
-      connectionName,
-      hubVirtualNetworkConnectionParameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.hubVirtualNetworkConnections.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    virtualHubName,
+    connectionName,
+    hubVirtualNetworkConnectionParameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function getAzureFirewallWithManagementSubnet() {
   const resourceGroupName = "rg1";
   const azureFirewallName = "azurefirewall";
-  await client.azureFirewalls
-    .get(resourceGroupName, azureFirewallName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.azureFirewalls.get(
+    resourceGroupName,
+    azureFirewallName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

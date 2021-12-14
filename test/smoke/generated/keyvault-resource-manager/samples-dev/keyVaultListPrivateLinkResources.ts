@@ -21,11 +21,11 @@ let client: KeyVaultManagementClient;
 async function keyVaultListPrivateLinkResources() {
   const resourceGroupName = "sample-group";
   const name = "sample-mhsm";
-  await client.mhsmPrivateLinkResources
-    .listByMhsmResource(resourceGroupName, name)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.mhsmPrivateLinkResources.listByMhsmResource(
+    resourceGroupName,
+    name
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

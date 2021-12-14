@@ -23,16 +23,13 @@ async function getAzureKeyVaultSlotAppSettingReference() {
   const name = "testc6282";
   const appSettingKey = "setting";
   const slot = "stage";
-  await client.webApps
-    .getAppSettingKeyVaultReferenceSlot(
-      resourceGroupName,
-      name,
-      appSettingKey,
-      slot
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.webApps.getAppSettingKeyVaultReferenceSlot(
+    resourceGroupName,
+    name,
+    appSettingKey,
+    slot
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

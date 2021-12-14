@@ -23,11 +23,13 @@ async function getAKeyVersion() {
   const vaultName = "sample-vault-name";
   const keyName = "sample-key-name";
   const keyVersion = "fd618d9519b74f9aae94ade66b876acc";
-  await client.keys
-    .getVersion(resourceGroupName, vaultName, keyName, keyVersion)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.keys.getVersion(
+    resourceGroupName,
+    vaultName,
+    keyName,
+    keyVersion
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

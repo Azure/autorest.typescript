@@ -22,11 +22,12 @@ async function getBlobContainersGetWithAllowProtectedAppendWritesAll() {
   const resourceGroupName = "res9871";
   const accountName = "sto6217";
   const containerName = "container1634";
-  await client.blobContainers
-    .get(resourceGroupName, accountName, containerName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.blobContainers.get(
+    resourceGroupName,
+    accountName,
+    containerName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

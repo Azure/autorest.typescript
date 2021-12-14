@@ -27,17 +27,14 @@ async function deleteReplicationLink() {
   const databaseName = "testdb";
   const linkId = "f0550bf5-07ce-4270-8e4b-71737975973a";
   const parameters: UnlinkParameters = { forcedTermination: true };
-  await client.replicationLinks
-    .beginUnlinkAndWait(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      linkId,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.replicationLinks.beginUnlinkAndWait(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    linkId,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

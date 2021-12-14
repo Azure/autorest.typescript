@@ -25,15 +25,12 @@ async function createCustomIPPrefixAllocationMethod() {
   const resourceGroupName = "rg1";
   const customIpPrefixName = "test-customipprefix";
   const parameters: CustomIpPrefix = { cidr: "0.0.0.0/24", location: "westus" };
-  await client.customIPPrefixes
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      customIpPrefixName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.customIPPrefixes.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    customIpPrefixName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

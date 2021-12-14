@@ -22,11 +22,12 @@ async function getFirewallPolicyRuleCollectionGroupWithWebCategories() {
   const resourceGroupName = "rg1";
   const firewallPolicyName = "firewallPolicy";
   const ruleCollectionGroupName = "ruleCollectionGroup1";
-  await client.firewallPolicyRuleCollectionGroups
-    .get(resourceGroupName, firewallPolicyName, ruleCollectionGroupName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.firewallPolicyRuleCollectionGroups.get(
+    resourceGroupName,
+    firewallPolicyName,
+    ruleCollectionGroupName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

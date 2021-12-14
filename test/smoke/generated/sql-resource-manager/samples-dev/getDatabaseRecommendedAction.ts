@@ -24,17 +24,14 @@ async function getDatabaseRecommendedAction() {
   const databaseName = "IndexAdvisor_test_3";
   const advisorName = "CreateIndex";
   const recommendedActionName = "IR_[CRM]_[DataPoints]_4821CD2F9510D98184BB";
-  await client.databaseRecommendedActions
-    .get(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      advisorName,
-      recommendedActionName
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.databaseRecommendedActions.get(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    advisorName,
+    recommendedActionName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

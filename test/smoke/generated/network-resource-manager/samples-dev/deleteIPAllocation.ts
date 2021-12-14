@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function deleteIPAllocation() {
   const resourceGroupName = "rg1";
   const ipAllocationName = "test-ipallocation";
-  await client.ipAllocations
-    .beginDeleteAndWait(resourceGroupName, ipAllocationName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.ipAllocations.beginDeleteAndWait(
+    resourceGroupName,
+    ipAllocationName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

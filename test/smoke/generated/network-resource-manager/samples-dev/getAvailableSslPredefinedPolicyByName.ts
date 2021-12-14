@@ -20,11 +20,10 @@ let client: NetworkManagementClient;
 //applicationGateways.getSslPredefinedPolicy
 async function getAvailableSslPredefinedPolicyByName() {
   const predefinedPolicyName = "AppGwSslPolicy20150501";
-  await client.applicationGateways
-    .getSslPredefinedPolicy(predefinedPolicyName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.applicationGateways.getSslPredefinedPolicy(
+    predefinedPolicyName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

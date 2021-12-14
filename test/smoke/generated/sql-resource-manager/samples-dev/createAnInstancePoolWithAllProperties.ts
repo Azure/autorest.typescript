@@ -33,11 +33,12 @@ async function createAnInstancePoolWithAllProperties() {
     tags: { a: "b" },
     vCores: 8
   };
-  await client.instancePools
-    .beginCreateOrUpdateAndWait(resourceGroupName, instancePoolName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.instancePools.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    instancePoolName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

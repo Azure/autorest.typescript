@@ -35,16 +35,13 @@ async function createSecurityRule() {
     sourcePortRange: "*",
     protocol: "*"
   };
-  await client.securityRules
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      networkSecurityGroupName,
-      securityRuleName,
-      securityRuleParameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.securityRules.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    networkSecurityGroupName,
+    securityRuleName,
+    securityRuleParameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -26,19 +26,16 @@ async function getsTheSensitivityLabelOfAGivenColumn() {
   const tableName = "myTable";
   const columnName = "myColumn";
   const sensitivityLabelSource = "current";
-  await client.sensitivityLabels
-    .get(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      schemaName,
-      tableName,
-      columnName,
-      sensitivityLabelSource
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.sensitivityLabels.get(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    schemaName,
+    tableName,
+    columnName,
+    sensitivityLabelSource
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

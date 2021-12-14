@@ -27,11 +27,12 @@ async function storageAccountRegenerateKey() {
   const regenerateKey: StorageAccountRegenerateKeyParameters = {
     keyName: "key2"
   };
-  await client.storageAccounts
-    .regenerateKey(resourceGroupName, accountName, regenerateKey)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.storageAccounts.regenerateKey(
+    resourceGroupName,
+    accountName,
+    regenerateKey
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

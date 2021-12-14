@@ -27,9 +27,8 @@ async function verifyHostingEnvironmentVnet() {
     vnetResourceGroup: "vNet123rg",
     vnetSubnetName: "vNet123SubNet"
   };
-  await client.verifyHostingEnvironmentVnet(parameters).then((res) => {
-    console.log(res);
-  });
+  const result = await client.verifyHostingEnvironmentVnet(parameters);
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

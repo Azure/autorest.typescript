@@ -22,11 +22,12 @@ async function getVMScaleSetVMWithUserData() {
   const resourceGroupName = "myResourceGroup";
   const vmScaleSetName = "{vmss-name}";
   const instanceId = "0";
-  await client.virtualMachineScaleSetVMs
-    .get(resourceGroupName, vmScaleSetName, instanceId)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualMachineScaleSetVMs.get(
+    resourceGroupName,
+    vmScaleSetName,
+    instanceId
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

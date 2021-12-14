@@ -22,11 +22,12 @@ async function getASyncAgent() {
   const resourceGroupName = "syncagentcrud-65440";
   const serverName = "syncagentcrud-8475";
   const syncAgentName = "syncagentcrud-3187";
-  await client.syncAgents
-    .get(resourceGroupName, serverName, syncAgentName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.syncAgents.get(
+    resourceGroupName,
+    serverName,
+    syncAgentName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

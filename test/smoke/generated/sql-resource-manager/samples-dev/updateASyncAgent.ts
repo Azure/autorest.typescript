@@ -29,16 +29,13 @@ async function updateASyncAgent() {
     syncDatabaseId:
       "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Default-SQL-Onebox/providers/Microsoft.Sql/servers/syncagentcrud-8475/databases/sync"
   };
-  await client.syncAgents
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      serverName,
-      syncAgentName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.syncAgents.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    serverName,
+    syncAgentName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -34,17 +34,14 @@ async function createOrUpdateDataMaskingRuleForDefaultMax() {
     schemaName: "dbo",
     tableName: "Table_1"
   };
-  await client.dataMaskingRules
-    .createOrUpdate(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      dataMaskingRuleName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.dataMaskingRules.createOrUpdate(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    dataMaskingRuleName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

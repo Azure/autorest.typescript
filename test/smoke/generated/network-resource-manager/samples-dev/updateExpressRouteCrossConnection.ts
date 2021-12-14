@@ -27,15 +27,12 @@ async function updateExpressRouteCrossConnection() {
   const parameters: ExpressRouteCrossConnection = {
     serviceProviderProvisioningState: "NotProvisioned"
   };
-  await client.expressRouteCrossConnections
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      crossConnectionName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.expressRouteCrossConnections.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    crossConnectionName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

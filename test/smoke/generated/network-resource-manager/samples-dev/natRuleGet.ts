@@ -22,11 +22,12 @@ async function natRuleGet() {
   const resourceGroupName = "rg1";
   const gatewayName = "gateway1";
   const natRuleName = "natRule1";
-  await client.natRules
-    .get(resourceGroupName, gatewayName, natRuleName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.natRules.get(
+    resourceGroupName,
+    gatewayName,
+    natRuleName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -23,16 +23,13 @@ async function getAGalleryApplicationVersion() {
   const galleryName = "myGalleryName";
   const galleryApplicationName = "myGalleryApplicationName";
   const galleryApplicationVersionName = "1.0.0";
-  await client.galleryApplicationVersions
-    .get(
-      resourceGroupName,
-      galleryName,
-      galleryApplicationName,
-      galleryApplicationVersionName
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.galleryApplicationVersions.get(
+    resourceGroupName,
+    galleryName,
+    galleryApplicationName,
+    galleryApplicationVersionName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

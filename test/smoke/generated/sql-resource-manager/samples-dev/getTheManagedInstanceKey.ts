@@ -22,11 +22,12 @@ async function getTheManagedInstanceKey() {
   const resourceGroupName = "sqlcrudtest-7398";
   const managedInstanceName = "sqlcrudtest-4645";
   const keyName = "someVault_someKey_01234567890123456789012345678901";
-  await client.managedInstanceKeys
-    .get(resourceGroupName, managedInstanceName, keyName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.managedInstanceKeys.get(
+    resourceGroupName,
+    managedInstanceName,
+    keyName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

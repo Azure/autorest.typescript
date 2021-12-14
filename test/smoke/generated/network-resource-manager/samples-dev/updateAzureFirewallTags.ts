@@ -25,11 +25,12 @@ async function updateAzureFirewallTags() {
   const resourceGroupName = "azfwtest";
   const azureFirewallName = "fw1";
   const parameters: TagsObject = { tags: { tag1: "value1", tag2: "value2" } };
-  await client.azureFirewalls
-    .beginUpdateTagsAndWait(resourceGroupName, azureFirewallName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.azureFirewalls.beginUpdateTagsAndWait(
+    resourceGroupName,
+    azureFirewallName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

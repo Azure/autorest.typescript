@@ -22,11 +22,12 @@ async function getImmutabilityPolicy() {
   const resourceGroupName = "res5221";
   const accountName = "sto9177";
   const containerName = "container3489";
-  await client.blobContainers
-    .getImmutabilityPolicy(resourceGroupName, accountName, containerName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.blobContainers.getImmutabilityPolicy(
+    resourceGroupName,
+    accountName,
+    containerName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

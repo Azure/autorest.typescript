@@ -48,15 +48,12 @@ async function createDscpConfiguration() {
       }
     ]
   };
-  await client.dscpConfigurationOperations
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      dscpConfigurationName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.dscpConfigurationOperations.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    dscpConfigurationName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

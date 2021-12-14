@@ -32,11 +32,12 @@ async function installPatchStateOfAVirtualMachine() {
       maxPatchPublishDate: new Date("2020-11-19T02:36:43.0539904+00:00")
     }
   };
-  await client.virtualMachines
-    .beginInstallPatchesAndWait(resourceGroupName, vmName, installPatchesInput)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualMachines.beginInstallPatchesAndWait(
+    resourceGroupName,
+    vmName,
+    installPatchesInput
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

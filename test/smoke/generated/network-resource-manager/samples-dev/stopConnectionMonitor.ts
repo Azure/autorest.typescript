@@ -22,15 +22,12 @@ async function stopConnectionMonitor() {
   const resourceGroupName = "rg1";
   const networkWatcherName = "nw1";
   const connectionMonitorName = "cm1";
-  await client.connectionMonitors
-    .beginStopAndWait(
-      resourceGroupName,
-      networkWatcherName,
-      connectionMonitorName
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.connectionMonitors.beginStopAndWait(
+    resourceGroupName,
+    networkWatcherName,
+    connectionMonitorName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

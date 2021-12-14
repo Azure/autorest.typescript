@@ -26,11 +26,13 @@ async function storageAccountPutEncryptionScope() {
   const accountName = "{storage-account-name}";
   const encryptionScopeName = "{encryption-scope-name}";
   const encryptionScope: EncryptionScope = {};
-  await client.encryptionScopes
-    .put(resourceGroupName, accountName, encryptionScopeName, encryptionScope)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.encryptionScopes.put(
+    resourceGroupName,
+    accountName,
+    encryptionScopeName,
+    encryptionScope
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

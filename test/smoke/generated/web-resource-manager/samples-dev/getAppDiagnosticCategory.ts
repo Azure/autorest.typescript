@@ -23,16 +23,13 @@ async function getAppDiagnosticCategory() {
   const siteName = "SampleApp";
   const diagnosticCategory = "availability";
   const slot = "Production";
-  await client.diagnostics
-    .getSiteDiagnosticCategorySlot(
-      resourceGroupName,
-      siteName,
-      diagnosticCategory,
-      slot
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.diagnostics.getSiteDiagnosticCategorySlot(
+    resourceGroupName,
+    siteName,
+    diagnosticCategory,
+    slot
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

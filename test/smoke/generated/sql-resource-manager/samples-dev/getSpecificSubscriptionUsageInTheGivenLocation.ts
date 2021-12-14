@@ -21,9 +21,8 @@ let client: SqlManagementClient;
 async function getSpecificSubscriptionUsageInTheGivenLocation() {
   const locationName = "WestUS";
   const usageName = "ServerQuota";
-  await client.subscriptionUsages.get(locationName, usageName).then((res) => {
-    console.log(res);
-  });
+  const result = await client.subscriptionUsages.get(locationName, usageName);
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -23,11 +23,13 @@ async function peerExpressRouteCircuitConnectionGet() {
   const circuitName = "ExpressRouteARMCircuitA";
   const peeringName = "AzurePrivatePeering";
   const connectionName = "60aee347-e889-4a42-8c1b-0aae8b1e4013";
-  await client.peerExpressRouteCircuitConnections
-    .get(resourceGroupName, circuitName, peeringName, connectionName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.peerExpressRouteCircuitConnections.get(
+    resourceGroupName,
+    circuitName,
+    peeringName,
+    connectionName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

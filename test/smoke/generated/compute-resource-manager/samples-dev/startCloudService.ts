@@ -21,11 +21,11 @@ let client: ComputeManagementClient;
 async function startCloudService() {
   const resourceGroupName = "ConstosoRG";
   const cloudServiceName = "{cs-name}";
-  await client.cloudServices
-    .beginStartAndWait(resourceGroupName, cloudServiceName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.cloudServices.beginStartAndWait(
+    resourceGroupName,
+    cloudServiceName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

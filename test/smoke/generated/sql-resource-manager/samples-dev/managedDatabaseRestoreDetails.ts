@@ -23,16 +23,13 @@ async function managedDatabaseRestoreDetails() {
   const managedInstanceName = "managedInstance";
   const databaseName = "testdb";
   const restoreDetailsName = "Default";
-  await client.managedDatabaseRestoreDetails
-    .get(
-      resourceGroupName,
-      managedInstanceName,
-      databaseName,
-      restoreDetailsName
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.managedDatabaseRestoreDetails.get(
+    resourceGroupName,
+    managedInstanceName,
+    databaseName,
+    restoreDetailsName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -28,16 +28,13 @@ async function prepareNetworkPolicies() {
   const prepareNetworkPoliciesRequestParameters: PrepareNetworkPoliciesRequest = {
     serviceName: "Microsoft.Sql/managedInstances"
   };
-  await client.subnets
-    .beginPrepareNetworkPoliciesAndWait(
-      resourceGroupName,
-      virtualNetworkName,
-      subnetName,
-      prepareNetworkPoliciesRequestParameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.subnets.beginPrepareNetworkPoliciesAndWait(
+    resourceGroupName,
+    virtualNetworkName,
+    subnetName,
+    prepareNetworkPoliciesRequestParameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

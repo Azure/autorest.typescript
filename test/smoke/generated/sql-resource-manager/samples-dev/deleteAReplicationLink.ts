@@ -23,11 +23,13 @@ async function deleteAReplicationLink() {
   const serverName = "sqlcrudtest-6440";
   const databaseName = "testdb";
   const linkId = "5b301b68-03f6-4b26-b0f4-73ebb8634238";
-  await client.replicationLinks
-    .delete(resourceGroupName, serverName, databaseName, linkId)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.replicationLinks.delete(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    linkId
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

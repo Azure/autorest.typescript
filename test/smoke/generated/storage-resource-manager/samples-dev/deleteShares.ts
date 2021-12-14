@@ -22,11 +22,12 @@ async function deleteShares() {
   const resourceGroupName = "res4079";
   const accountName = "sto4506";
   const shareName = "share9689";
-  await client.fileShares
-    .delete(resourceGroupName, accountName, shareName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.fileShares.delete(
+    resourceGroupName,
+    accountName,
+    shareName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

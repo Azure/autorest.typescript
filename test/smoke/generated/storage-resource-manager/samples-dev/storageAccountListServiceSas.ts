@@ -30,11 +30,12 @@ async function storageAccountListServiceSas() {
     permissions: "l",
     resource: "c"
   };
-  await client.storageAccounts
-    .listServiceSAS(resourceGroupName, accountName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.storageAccounts.listServiceSAS(
+    resourceGroupName,
+    accountName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -21,11 +21,11 @@ let client: ComputeManagementClient;
 async function createADedicatedHostGroup() {
   const resourceGroupName = "myResourceGroup";
   const hostGroupName = "myDedicatedHostGroup";
-  await client.dedicatedHostGroups
-    .get(resourceGroupName, hostGroupName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.dedicatedHostGroups.get(
+    resourceGroupName,
+    hostGroupName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

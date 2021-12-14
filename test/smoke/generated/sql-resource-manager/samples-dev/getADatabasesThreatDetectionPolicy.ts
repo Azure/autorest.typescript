@@ -23,16 +23,13 @@ async function getADatabaseSThreatDetectionPolicy() {
   const managedInstanceName = "securityalert-2080";
   const databaseName = "testdb";
   const securityAlertPolicyName = "Default";
-  await client.managedDatabaseSecurityAlertPolicies
-    .get(
-      resourceGroupName,
-      managedInstanceName,
-      databaseName,
-      securityAlertPolicyName
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.managedDatabaseSecurityAlertPolicies.get(
+    resourceGroupName,
+    managedInstanceName,
+    databaseName,
+    securityAlertPolicyName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

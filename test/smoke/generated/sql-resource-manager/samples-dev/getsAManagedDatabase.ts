@@ -22,11 +22,12 @@ async function getsAManagedDatabase() {
   const resourceGroupName = "Test1";
   const managedInstanceName = "managedInstance";
   const databaseName = "managedDatabase";
-  await client.managedDatabases
-    .get(resourceGroupName, managedInstanceName, databaseName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.managedDatabases.get(
+    resourceGroupName,
+    managedInstanceName,
+    databaseName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

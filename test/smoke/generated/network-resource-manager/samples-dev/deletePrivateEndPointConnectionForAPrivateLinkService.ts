@@ -22,15 +22,12 @@ async function deletePrivateEndPointConnectionForAPrivateLinkService() {
   const resourceGroupName = "rg1";
   const serviceName = "testPls";
   const peConnectionName = "testPlePeConnection";
-  await client.privateLinkServices
-    .beginDeletePrivateEndpointConnectionAndWait(
-      resourceGroupName,
-      serviceName,
-      peConnectionName
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.privateLinkServices.beginDeletePrivateEndpointConnectionAndWait(
+    resourceGroupName,
+    serviceName,
+    peConnectionName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

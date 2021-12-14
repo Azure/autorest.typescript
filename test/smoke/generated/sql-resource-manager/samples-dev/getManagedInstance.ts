@@ -21,11 +21,11 @@ let client: SqlManagementClient;
 async function getManagedInstance() {
   const resourceGroupName = "testrg";
   const managedInstanceName = "testinstance";
-  await client.managedInstances
-    .get(resourceGroupName, managedInstanceName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.managedInstances.get(
+    resourceGroupName,
+    managedInstanceName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -27,11 +27,12 @@ async function generateP2SVpnGatewayVpnprofile() {
   const parameters: P2SVpnProfileParameters = {
     authenticationMethod: "EAPTLS"
   };
-  await client.p2SVpnGateways
-    .beginGenerateVpnProfileAndWait(resourceGroupName, gatewayName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.p2SVpnGateways.beginGenerateVpnProfileAndWait(
+    resourceGroupName,
+    gatewayName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

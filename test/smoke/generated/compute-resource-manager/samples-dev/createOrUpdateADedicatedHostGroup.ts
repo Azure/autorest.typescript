@@ -31,11 +31,12 @@ async function createOrUpdateADedicatedHostGroup() {
     tags: { department: "finance" },
     zones: ["1"]
   };
-  await client.dedicatedHostGroups
-    .createOrUpdate(resourceGroupName, hostGroupName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.dedicatedHostGroups.createOrUpdate(
+    resourceGroupName,
+    hostGroupName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

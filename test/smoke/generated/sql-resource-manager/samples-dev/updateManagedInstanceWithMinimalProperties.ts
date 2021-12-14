@@ -25,11 +25,12 @@ async function updateManagedInstanceWithMinimalProperties() {
   const resourceGroupName = "testrg";
   const managedInstanceName = "testinstance";
   const parameters: ManagedInstanceUpdate = { tags: { tagKey1: "TagValue1" } };
-  await client.managedInstances
-    .beginUpdateAndWait(resourceGroupName, managedInstanceName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.managedInstances.beginUpdateAndWait(
+    resourceGroupName,
+    managedInstanceName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

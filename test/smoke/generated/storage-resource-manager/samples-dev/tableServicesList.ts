@@ -21,11 +21,11 @@ let client: StorageManagementClient;
 async function tableServicesList() {
   const resourceGroupName = "res9290";
   const accountName = "sto1590";
-  await client.tableServices
-    .list(resourceGroupName, accountName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.tableServices.list(
+    resourceGroupName,
+    accountName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

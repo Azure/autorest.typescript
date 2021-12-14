@@ -38,11 +38,12 @@ async function storageAccountEnableCmk() {
       }
     }
   };
-  await client.storageAccounts
-    .update(resourceGroupName, accountName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.storageAccounts.update(
+    resourceGroupName,
+    accountName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function deleteDscpConfiguration() {
   const resourceGroupName = "rg1";
   const dscpConfigurationName = "mydscpConfig";
-  await client.dscpConfigurationOperations
-    .beginDeleteAndWait(resourceGroupName, dscpConfigurationName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.dscpConfigurationOperations.beginDeleteAndWait(
+    resourceGroupName,
+    dscpConfigurationName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

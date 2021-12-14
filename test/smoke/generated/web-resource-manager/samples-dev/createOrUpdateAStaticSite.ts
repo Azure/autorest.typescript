@@ -36,15 +36,12 @@ async function createOrUpdateAStaticSite() {
     repositoryUrl: "https://github.com/username/RepoName",
     sku: { name: "Basic", tier: "Basic" }
   };
-  await client.staticSites
-    .beginCreateOrUpdateStaticSiteAndWait(
-      resourceGroupName,
-      name,
-      staticSiteEnvelope
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.staticSites.beginCreateOrUpdateStaticSiteAndWait(
+    resourceGroupName,
+    name,
+    staticSiteEnvelope
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

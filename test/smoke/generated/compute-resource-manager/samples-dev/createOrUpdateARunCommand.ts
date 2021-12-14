@@ -37,16 +37,13 @@ async function createOrUpdateARunCommand() {
     source: { script: "Write-Host Hello World!" },
     timeoutInSeconds: 3600
   };
-  await client.virtualMachineRunCommands
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      vmName,
-      runCommandName,
-      runCommand
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualMachineRunCommands.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    vmName,
+    runCommandName,
+    runCommand
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

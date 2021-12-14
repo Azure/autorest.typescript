@@ -29,11 +29,13 @@ async function restoreShares() {
     deletedShareName: "share1249",
     deletedShareVersion: "1234567890"
   };
-  await client.fileShares
-    .restore(resourceGroupName, accountName, shareName, deletedShare)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.fileShares.restore(
+    resourceGroupName,
+    accountName,
+    shareName,
+    deletedShare
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

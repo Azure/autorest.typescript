@@ -23,11 +23,13 @@ async function getsADatawarehouseDatabaseRestorePoint() {
   const serverName = "testserver";
   const databaseName = "testDatabase";
   const restorePointName = "131546477590000000";
-  await client.restorePoints
-    .get(resourceGroupName, serverName, databaseName, restorePointName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.restorePoints.get(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    restorePointName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

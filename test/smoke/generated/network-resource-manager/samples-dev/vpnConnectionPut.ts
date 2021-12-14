@@ -46,16 +46,13 @@ async function vpnConnectionPut() {
       }
     ]
   };
-  await client.vpnConnections
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      gatewayName,
-      connectionName,
-      vpnConnectionParameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.vpnConnections.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    gatewayName,
+    connectionName,
+    vpnConnectionParameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

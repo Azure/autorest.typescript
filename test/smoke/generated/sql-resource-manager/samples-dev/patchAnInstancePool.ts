@@ -25,11 +25,12 @@ async function patchAnInstancePool() {
   const resourceGroupName = "group1";
   const instancePoolName = "testIP";
   const parameters: InstancePoolUpdate = { tags: { x: "y" } };
-  await client.instancePools
-    .beginUpdateAndWait(resourceGroupName, instancePoolName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.instancePools.beginUpdateAndWait(
+    resourceGroupName,
+    instancePoolName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

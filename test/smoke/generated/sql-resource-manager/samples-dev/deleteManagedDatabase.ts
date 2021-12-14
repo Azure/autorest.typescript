@@ -22,11 +22,12 @@ async function deleteManagedDatabase() {
   const resourceGroupName = "Default-SQL-SouthEastAsia";
   const managedInstanceName = "managedInstance";
   const databaseName = "testdb";
-  await client.managedDatabases
-    .beginDeleteAndWait(resourceGroupName, managedInstanceName, databaseName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.managedDatabases.beginDeleteAndWait(
+    resourceGroupName,
+    managedInstanceName,
+    databaseName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

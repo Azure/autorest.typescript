@@ -22,11 +22,12 @@ async function deleteFlowLog() {
   const resourceGroupName = "rg1";
   const networkWatcherName = "nw1";
   const flowLogName = "fl";
-  await client.flowLogs
-    .beginDeleteAndWait(resourceGroupName, networkWatcherName, flowLogName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.flowLogs.beginDeleteAndWait(
+    resourceGroupName,
+    networkWatcherName,
+    flowLogName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

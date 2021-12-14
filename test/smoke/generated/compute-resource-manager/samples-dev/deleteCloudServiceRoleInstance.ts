@@ -22,11 +22,12 @@ async function deleteCloudServiceRoleInstance() {
   const roleInstanceName = "{roleInstance-name}";
   const resourceGroupName = "ConstosoRG";
   const cloudServiceName = "{cs-name}";
-  await client.cloudServiceRoleInstances
-    .beginDeleteAndWait(roleInstanceName, resourceGroupName, cloudServiceName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.cloudServiceRoleInstances.beginDeleteAndWait(
+    roleInstanceName,
+    resourceGroupName,
+    cloudServiceName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -21,9 +21,8 @@ let client: WebSiteManagementClient;
 async function getKubeEnvironmentsByName() {
   const resourceGroupName = "examplerg";
   const name = "jlaw-demo1";
-  await client.kubeEnvironments.get(resourceGroupName, name).then((res) => {
-    console.log(res);
-  });
+  const result = await client.kubeEnvironments.get(resourceGroupName, name);
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -22,11 +22,12 @@ async function getsTheManagedInstanceManagementOperation() {
   const resourceGroupName = "sqlcrudtest-7398";
   const managedInstanceName = "sqlcrudtest-4645";
   const operationId = "00000000-1111-2222-3333-444444444444";
-  await client.managedInstanceOperations
-    .get(resourceGroupName, managedInstanceName, operationId)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.managedInstanceOperations.get(
+    resourceGroupName,
+    managedInstanceName,
+    operationId
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

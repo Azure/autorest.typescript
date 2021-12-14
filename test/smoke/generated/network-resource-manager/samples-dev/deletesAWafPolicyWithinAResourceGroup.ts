@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function deletesAWafPolicyWithinAResourceGroup() {
   const resourceGroupName = "rg1";
   const policyName = "Policy1";
-  await client.webApplicationFirewallPolicies
-    .beginDeleteAndWait(resourceGroupName, policyName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.webApplicationFirewallPolicies.beginDeleteAndWait(
+    resourceGroupName,
+    policyName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

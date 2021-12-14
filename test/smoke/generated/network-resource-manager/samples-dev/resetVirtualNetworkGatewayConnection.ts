@@ -21,14 +21,11 @@ let client: NetworkManagementClient;
 async function resetVirtualNetworkGatewayConnection() {
   const resourceGroupName = "rg1";
   const virtualNetworkGatewayConnectionName = "conn1";
-  await client.virtualNetworkGatewayConnections
-    .beginResetConnectionAndWait(
-      resourceGroupName,
-      virtualNetworkGatewayConnectionName
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualNetworkGatewayConnections.beginResetConnectionAndWait(
+    resourceGroupName,
+    virtualNetworkGatewayConnectionName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

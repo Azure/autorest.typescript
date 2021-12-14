@@ -27,15 +27,12 @@ async function disconnectVpnConnectionsFromVirtualNetworkGateway() {
   const request: P2SVpnConnectionRequest = {
     vpnConnectionIds: ["vpnconnId1", "vpnconnId2"]
   };
-  await client.virtualNetworkGateways
-    .beginDisconnectVirtualNetworkGatewayVpnConnectionsAndWait(
-      resourceGroupName,
-      virtualNetworkGatewayName,
-      request
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualNetworkGateways.beginDisconnectVirtualNetworkGatewayVpnConnectionsAndWait(
+    resourceGroupName,
+    virtualNetworkGatewayName,
+    request
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

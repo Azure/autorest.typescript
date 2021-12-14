@@ -25,11 +25,12 @@ async function updateApplicationSecurityGroupTags() {
   const resourceGroupName = "rg1";
   const applicationSecurityGroupName = "test-asg";
   const parameters: TagsObject = { tags: { tag1: "value1", tag2: "value2" } };
-  await client.applicationSecurityGroups
-    .updateTags(resourceGroupName, applicationSecurityGroupName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.applicationSecurityGroups.updateTags(
+    resourceGroupName,
+    applicationSecurityGroupName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

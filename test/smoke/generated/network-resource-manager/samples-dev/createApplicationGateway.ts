@@ -283,15 +283,12 @@ async function createApplicationGateway() {
       }
     ]
   };
-  await client.applicationGateways
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      applicationGatewayName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.applicationGateways.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    applicationGatewayName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

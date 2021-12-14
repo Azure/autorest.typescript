@@ -22,11 +22,12 @@ async function networkInterfaceIPConfigurationGet() {
   const resourceGroupName = "testrg";
   const networkInterfaceName = "mynic";
   const ipConfigurationName = "ipconfig1";
-  await client.networkInterfaceIPConfigurations
-    .get(resourceGroupName, networkInterfaceName, ipConfigurationName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.networkInterfaceIPConfigurations.get(
+    resourceGroupName,
+    networkInterfaceName,
+    ipConfigurationName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

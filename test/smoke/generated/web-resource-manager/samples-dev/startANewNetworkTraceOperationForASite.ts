@@ -23,11 +23,12 @@ async function startANewNetworkTraceOperationForASite() {
   const name = "SampleApp";
   const durationInSeconds = 60;
   const options = { durationInSeconds: durationInSeconds };
-  await client.webApps
-    .beginStartNetworkTraceAndWait(resourceGroupName, name, options)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.webApps.beginStartNetworkTraceAndWait(
+    resourceGroupName,
+    name,
+    options
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

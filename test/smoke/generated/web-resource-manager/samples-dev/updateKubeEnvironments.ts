@@ -27,11 +27,12 @@ async function updateKubeEnvironments() {
   const kubeEnvironmentEnvelope: KubeEnvironmentPatchResource = {
     staticIp: "1.2.3.4"
   };
-  await client.kubeEnvironments
-    .update(resourceGroupName, name, kubeEnvironmentEnvelope)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.kubeEnvironments.update(
+    resourceGroupName,
+    name,
+    kubeEnvironmentEnvelope
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

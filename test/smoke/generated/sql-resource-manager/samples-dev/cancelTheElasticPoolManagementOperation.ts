@@ -23,11 +23,13 @@ async function cancelTheElasticPoolManagementOperation() {
   const serverName = "sqlcrudtest-6661";
   const elasticPoolName = "testpool";
   const operationId = "f779414b-e748-4925-8cfe-c8598f7660ae";
-  await client.elasticPoolOperations
-    .cancel(resourceGroupName, serverName, elasticPoolName, operationId)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.elasticPoolOperations.cancel(
+    resourceGroupName,
+    serverName,
+    elasticPoolName,
+    operationId
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

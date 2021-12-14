@@ -24,11 +24,13 @@ async function forceDeleteAVirtualMachineFromAVMScaleSet() {
   const instanceId = "0";
   const forceDeletion = true;
   const options = { forceDeletion: forceDeletion };
-  await client.virtualMachineScaleSetVMs
-    .beginDeleteAndWait(resourceGroupName, vmScaleSetName, instanceId, options)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualMachineScaleSetVMs.beginDeleteAndWait(
+    resourceGroupName,
+    vmScaleSetName,
+    instanceId,
+    options
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

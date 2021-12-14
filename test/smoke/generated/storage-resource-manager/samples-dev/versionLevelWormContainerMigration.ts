@@ -22,11 +22,12 @@ async function versionLevelWormContainerMigration() {
   const resourceGroupName = "res1782";
   const accountName = "sto7069";
   const containerName = "container6397";
-  await client.blobContainers
-    .beginObjectLevelWormAndWait(resourceGroupName, accountName, containerName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.blobContainers.beginObjectLevelWormAndWait(
+    resourceGroupName,
+    accountName,
+    containerName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

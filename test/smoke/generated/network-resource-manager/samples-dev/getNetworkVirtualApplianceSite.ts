@@ -22,11 +22,12 @@ async function getNetworkVirtualApplianceSite() {
   const resourceGroupName = "rg1";
   const networkVirtualApplianceName = "nva";
   const siteName = "site1";
-  await client.virtualApplianceSites
-    .get(resourceGroupName, networkVirtualApplianceName, siteName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualApplianceSites.get(
+    resourceGroupName,
+    networkVirtualApplianceName,
+    siteName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

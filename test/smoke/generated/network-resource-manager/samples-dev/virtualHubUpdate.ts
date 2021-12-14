@@ -27,11 +27,12 @@ async function virtualHubUpdate() {
   const virtualHubParameters: TagsObject = {
     tags: { key1: "value1", key2: "value2" }
   };
-  await client.virtualHubs
-    .updateTags(resourceGroupName, virtualHubName, virtualHubParameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualHubs.updateTags(
+    resourceGroupName,
+    virtualHubName,
+    virtualHubParameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -22,11 +22,12 @@ async function storageAccountDeleteBlobInventoryPolicy() {
   const resourceGroupName = "res6977";
   const accountName = "sto2527";
   const blobInventoryPolicyName = "default";
-  await client.blobInventoryPolicies
-    .delete(resourceGroupName, accountName, blobInventoryPolicyName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.blobInventoryPolicies.delete(
+    resourceGroupName,
+    accountName,
+    blobInventoryPolicyName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

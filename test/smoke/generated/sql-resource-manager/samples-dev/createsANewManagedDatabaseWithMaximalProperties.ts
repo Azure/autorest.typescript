@@ -29,16 +29,13 @@ async function createsANewManagedDatabaseWithMaximalProperties() {
     location: "southeastasia",
     tags: { tagKey1: "TagValue1" }
   };
-  await client.managedDatabases
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      managedInstanceName,
-      databaseName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.managedDatabases.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    managedInstanceName,
+    databaseName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -33,15 +33,12 @@ async function deployASiteFromAZippedPackage() {
     functionLanguage: "testFunctionLanguage",
     provider: "testProvider"
   };
-  await client.staticSites
-    .beginCreateZipDeploymentForStaticSiteAndWait(
-      resourceGroupName,
-      name,
-      staticSiteZipDeploymentEnvelope
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.staticSites.beginCreateZipDeploymentForStaticSiteAndWait(
+    resourceGroupName,
+    name,
+    staticSiteZipDeploymentEnvelope
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

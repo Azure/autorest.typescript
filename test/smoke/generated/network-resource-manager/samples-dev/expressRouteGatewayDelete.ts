@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function expressRouteGatewayDelete() {
   const resourceGroupName = "resourceGroupName";
   const expressRouteGatewayName = "expressRouteGatewayName";
-  await client.expressRouteGateways
-    .beginDeleteAndWait(resourceGroupName, expressRouteGatewayName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.expressRouteGateways.beginDeleteAndWait(
+    resourceGroupName,
+    expressRouteGatewayName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

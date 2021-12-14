@@ -33,16 +33,13 @@ async function natRulePut() {
       "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworkGateways/cloudnet1-VNG/ipConfigurations/default",
     mode: "EgressSnat"
   };
-  await client.natRules
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      gatewayName,
-      natRuleName,
-      natRuleParameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.natRules.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    gatewayName,
+    natRuleName,
+    natRuleParameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -28,11 +28,12 @@ async function updateVirtualClusterWithTags() {
     maintenanceConfigurationId:
       "/subscriptions/ab0e51c0-83c0-4380-8ae9-025516df392f/resourceGroups/Federation/providers/Microsoft.Maintenance/maintenanceConfigurations/MiPolicy1"
   };
-  await client.virtualClusters
-    .beginUpdateAndWait(resourceGroupName, virtualClusterName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualClusters.beginUpdateAndWait(
+    resourceGroupName,
+    virtualClusterName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

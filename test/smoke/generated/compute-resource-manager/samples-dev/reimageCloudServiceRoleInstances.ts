@@ -28,11 +28,12 @@ async function reimageCloudServiceRoleInstances() {
     roleInstances: ["ContosoFrontend_IN_0", "ContosoBackend_IN_1"]
   };
   const options = { parameters: parameters };
-  await client.cloudServices
-    .beginReimageAndWait(resourceGroupName, cloudServiceName, options)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.cloudServices.beginReimageAndWait(
+    resourceGroupName,
+    cloudServiceName,
+    options
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -23,11 +23,13 @@ async function getADatabaseSTransparentDataEncryption() {
   const serverName = "securitytde";
   const databaseName = "testdb";
   const tdeName = "current";
-  await client.transparentDataEncryptions
-    .get(resourceGroupName, serverName, databaseName, tdeName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.transparentDataEncryptions.get(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    tdeName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

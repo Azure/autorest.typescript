@@ -22,11 +22,12 @@ async function getCloudServiceRoleInstance() {
   const roleInstanceName = "{roleInstance-name}";
   const resourceGroupName = "ConstosoRG";
   const cloudServiceName = "{cs-name}";
-  await client.cloudServiceRoleInstances
-    .get(roleInstanceName, resourceGroupName, cloudServiceName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.cloudServiceRoleInstances.get(
+    roleInstanceName,
+    resourceGroupName,
+    cloudServiceName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

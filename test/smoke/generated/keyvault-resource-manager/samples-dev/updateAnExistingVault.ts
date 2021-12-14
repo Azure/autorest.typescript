@@ -86,11 +86,12 @@ async function updateAnExistingVault() {
       tenantId: "00000000-0000-0000-0000-000000000000"
     }
   };
-  await client.vaults
-    .update(resourceGroupName, vaultName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.vaults.update(
+    resourceGroupName,
+    vaultName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

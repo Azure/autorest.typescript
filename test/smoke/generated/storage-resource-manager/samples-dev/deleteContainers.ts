@@ -22,11 +22,12 @@ async function deleteContainers() {
   const resourceGroupName = "res4079";
   const accountName = "sto4506";
   const containerName = "container9689";
-  await client.blobContainers
-    .delete(resourceGroupName, accountName, containerName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.blobContainers.delete(
+    resourceGroupName,
+    accountName,
+    containerName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

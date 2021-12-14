@@ -23,11 +23,13 @@ async function deletesARestorePoint() {
   const serverName = "testserver";
   const databaseName = "testDatabase";
   const restorePointName = "131546477590000000";
-  await client.restorePoints
-    .delete(resourceGroupName, serverName, databaseName, restorePointName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.restorePoints.delete(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    restorePointName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

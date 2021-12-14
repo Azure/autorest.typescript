@@ -22,15 +22,12 @@ async function deletesAPrivateEndpointConnectionWithAGivenName() {
   const resourceGroupName = "Default";
   const serverName = "test-svr";
   const privateEndpointConnectionName = "private-endpoint-connection-name";
-  await client.privateEndpointConnections
-    .beginDeleteAndWait(
-      resourceGroupName,
-      serverName,
-      privateEndpointConnectionName
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.privateEndpointConnections.beginDeleteAndWait(
+    resourceGroupName,
+    serverName,
+    privateEndpointConnectionName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

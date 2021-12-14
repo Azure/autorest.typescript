@@ -27,11 +27,12 @@ async function updateVirtualNetworkTapTags() {
   const tapParameters: TagsObject = {
     tags: { tag1: "value1", tag2: "value2" }
   };
-  await client.virtualNetworkTaps
-    .updateTags(resourceGroupName, tapName, tapParameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualNetworkTaps.updateTags(
+    resourceGroupName,
+    tapName,
+    tapParameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

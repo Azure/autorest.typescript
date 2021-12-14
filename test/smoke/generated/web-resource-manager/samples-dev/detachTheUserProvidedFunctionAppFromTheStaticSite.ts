@@ -22,15 +22,12 @@ async function detachTheUserProvidedFunctionAppFromTheStaticSite() {
   const resourceGroupName = "rg";
   const name = "testStaticSite0";
   const functionAppName = "testFunctionApp";
-  await client.staticSites
-    .detachUserProvidedFunctionAppFromStaticSite(
-      resourceGroupName,
-      name,
-      functionAppName
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.staticSites.detachUserProvidedFunctionAppFromStaticSite(
+    resourceGroupName,
+    name,
+    functionAppName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function expressRouteGatewayGet() {
   const resourceGroupName = "resourceGroupName";
   const expressRouteGatewayName = "expressRouteGatewayName";
-  await client.expressRouteGateways
-    .get(resourceGroupName, expressRouteGatewayName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.expressRouteGateways.get(
+    resourceGroupName,
+    expressRouteGatewayName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

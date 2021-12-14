@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function getBastionHost() {
   const resourceGroupName = "rg1";
   const bastionHostName = "bastionhosttenant'";
-  await client.bastionHosts
-    .get(resourceGroupName, bastionHostName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.bastionHosts.get(
+    resourceGroupName,
+    bastionHostName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

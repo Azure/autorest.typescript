@@ -25,15 +25,12 @@ async function createApplicationSecurityGroup() {
   const resourceGroupName = "rg1";
   const applicationSecurityGroupName = "test-asg";
   const parameters: ApplicationSecurityGroup = { location: "westus" };
-  await client.applicationSecurityGroups
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      applicationSecurityGroupName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.applicationSecurityGroups.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    applicationSecurityGroupName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

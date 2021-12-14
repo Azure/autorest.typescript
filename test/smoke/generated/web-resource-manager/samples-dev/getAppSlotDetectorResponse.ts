@@ -23,16 +23,13 @@ async function getAppSlotDetectorResponse() {
   const siteName = "SampleApp";
   const detectorName = "runtimeavailability";
   const slot = "staging";
-  await client.diagnostics
-    .getSiteDetectorResponseSlot(
-      resourceGroupName,
-      siteName,
-      detectorName,
-      slot
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.diagnostics.getSiteDetectorResponseSlot(
+    resourceGroupName,
+    siteName,
+    detectorName,
+    slot
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

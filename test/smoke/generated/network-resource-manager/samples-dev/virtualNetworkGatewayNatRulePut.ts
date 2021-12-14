@@ -35,16 +35,13 @@ async function virtualNetworkGatewayNatRulePut() {
       "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworkGateways/gateway1/ipConfigurations/default",
     mode: "EgressSnat"
   };
-  await client.virtualNetworkGatewayNatRules
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      virtualNetworkGatewayName,
-      natRuleName,
-      natRuleParameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualNetworkGatewayNatRules.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    virtualNetworkGatewayName,
+    natRuleName,
+    natRuleParameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

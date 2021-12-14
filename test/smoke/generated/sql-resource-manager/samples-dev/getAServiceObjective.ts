@@ -22,11 +22,12 @@ async function getAServiceObjective() {
   const resourceGroupName = "group1";
   const serverName = "sqlcrudtest";
   const serviceObjectiveName = "29dd7459-4a7c-4e56-be22-f0adda49440d";
-  await client.serviceObjectives
-    .get(resourceGroupName, serverName, serviceObjectiveName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.serviceObjectives.get(
+    resourceGroupName,
+    serverName,
+    serviceObjectiveName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

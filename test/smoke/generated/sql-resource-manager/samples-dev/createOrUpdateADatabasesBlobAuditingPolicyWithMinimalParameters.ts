@@ -31,11 +31,13 @@ async function createOrUpdateADatabaseSBlobAuditingPolicyWithMinimalParameters()
       "sdlfkjabc+sdlfkjsdlkfsjdfLDKFTERLKFDFKLjsdfksjdflsdkfD2342309432849328476458/3RSD==",
     storageEndpoint: "https://mystorage.blob.core.windows.net"
   };
-  await client.databaseBlobAuditingPolicies
-    .createOrUpdate(resourceGroupName, serverName, databaseName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.databaseBlobAuditingPolicies.createOrUpdate(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

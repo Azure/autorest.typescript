@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function deletePublicIPAddress() {
   const resourceGroupName = "rg1";
   const publicIpAddressName = "test-ip";
-  await client.publicIPAddresses
-    .beginDeleteAndWait(resourceGroupName, publicIpAddressName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.publicIPAddresses.beginDeleteAndWait(
+    resourceGroupName,
+    publicIpAddressName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

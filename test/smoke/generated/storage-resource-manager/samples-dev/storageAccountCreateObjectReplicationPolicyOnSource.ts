@@ -40,16 +40,13 @@ async function storageAccountCreateObjectReplicationPolicyOnSource() {
     ],
     sourceAccount: "src1122"
   };
-  await client.objectReplicationPoliciesOperations
-    .createOrUpdate(
-      resourceGroupName,
-      accountName,
-      objectReplicationPolicyId,
-      properties
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.objectReplicationPoliciesOperations.createOrUpdate(
+    resourceGroupName,
+    accountName,
+    objectReplicationPolicyId,
+    properties
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

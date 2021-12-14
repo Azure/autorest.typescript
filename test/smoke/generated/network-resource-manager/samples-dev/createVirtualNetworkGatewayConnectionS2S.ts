@@ -89,15 +89,12 @@ async function createVirtualNetworkGatewayConnectionS2S() {
       vpnType: "RouteBased"
     }
   };
-  await client.virtualNetworkGatewayConnections
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      virtualNetworkGatewayConnectionName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualNetworkGatewayConnections.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    virtualNetworkGatewayConnectionName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

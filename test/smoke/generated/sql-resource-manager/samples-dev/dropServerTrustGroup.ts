@@ -22,11 +22,12 @@ async function dropServerTrustGroup() {
   const resourceGroupName = "Default";
   const locationName = "Japan East";
   const serverTrustGroupName = "server-trust-group-test";
-  await client.serverTrustGroups
-    .beginDeleteAndWait(resourceGroupName, locationName, serverTrustGroupName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.serverTrustGroups.beginDeleteAndWait(
+    resourceGroupName,
+    locationName,
+    serverTrustGroupName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

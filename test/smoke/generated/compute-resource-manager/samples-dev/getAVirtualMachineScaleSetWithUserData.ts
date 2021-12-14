@@ -21,11 +21,11 @@ let client: ComputeManagementClient;
 async function getAVirtualMachineScaleSetWithUserData() {
   const resourceGroupName = "myResourceGroup";
   const vmScaleSetName = "myVirtualMachineScaleSet";
-  await client.virtualMachineScaleSets
-    .get(resourceGroupName, vmScaleSetName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualMachineScaleSets.get(
+    resourceGroupName,
+    vmScaleSetName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

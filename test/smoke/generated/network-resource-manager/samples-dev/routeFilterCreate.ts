@@ -36,15 +36,12 @@ async function routeFilterCreate() {
     ],
     tags: { key1: "value1" }
   };
-  await client.routeFilters
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      routeFilterName,
-      routeFilterParameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.routeFilters.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    routeFilterName,
+    routeFilterParameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

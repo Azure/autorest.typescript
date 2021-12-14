@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function getServiceEndPointPolicy() {
   const resourceGroupName = "rg1";
   const serviceEndpointPolicyName = "testServiceEndpointPolicy";
-  await client.serviceEndpointPolicies
-    .get(resourceGroupName, serviceEndpointPolicyName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.serviceEndpointPolicies.get(
+    resourceGroupName,
+    serviceEndpointPolicyName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

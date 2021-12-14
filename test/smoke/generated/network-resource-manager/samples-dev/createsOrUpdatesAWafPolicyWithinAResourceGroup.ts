@@ -107,11 +107,12 @@ async function createsOrUpdatesAWafPolicyWithinAResourceGroup() {
       managedRuleSets: [{ ruleSetType: "OWASP", ruleSetVersion: "3.2" }]
     }
   };
-  await client.webApplicationFirewallPolicies
-    .createOrUpdate(resourceGroupName, policyName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.webApplicationFirewallPolicies.createOrUpdate(
+    resourceGroupName,
+    policyName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

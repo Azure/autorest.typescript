@@ -30,16 +30,13 @@ async function createOrUpdateElasticPoolWithMaintenanceConfigurationParameter() 
     maintenanceConfigurationId:
       "/subscriptions/00000000-1111-2222-3333-444444444444/providers/Microsoft.Maintenance/publicMaintenanceConfigurations/SQL_JapanEast_1"
   };
-  await client.elasticPools
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      serverName,
-      elasticPoolName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.elasticPools.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    serverName,
+    elasticPoolName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

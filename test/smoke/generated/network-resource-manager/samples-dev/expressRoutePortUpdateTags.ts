@@ -25,11 +25,12 @@ async function expressRoutePortUpdateTags() {
   const resourceGroupName = "rg1";
   const expressRoutePortName = "portName";
   const parameters: TagsObject = { tags: { tag1: "value1", tag2: "value2" } };
-  await client.expressRoutePorts
-    .updateTags(resourceGroupName, expressRoutePortName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.expressRoutePorts.updateTags(
+    resourceGroupName,
+    expressRoutePortName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

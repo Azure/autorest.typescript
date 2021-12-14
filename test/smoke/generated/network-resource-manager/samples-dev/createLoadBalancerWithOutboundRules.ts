@@ -103,11 +103,12 @@ async function createLoadBalancerWithOutboundRules() {
     ],
     sku: { name: "Standard" }
   };
-  await client.loadBalancers
-    .beginCreateOrUpdateAndWait(resourceGroupName, loadBalancerName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.loadBalancers.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    loadBalancerName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

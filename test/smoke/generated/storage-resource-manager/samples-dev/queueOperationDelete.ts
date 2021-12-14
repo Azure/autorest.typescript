@@ -22,11 +22,12 @@ async function queueOperationDelete() {
   const resourceGroupName = "res3376";
   const accountName = "sto328";
   const queueName = "queue6185";
-  await client.queue
-    .delete(resourceGroupName, accountName, queueName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.queue.delete(
+    resourceGroupName,
+    accountName,
+    queueName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

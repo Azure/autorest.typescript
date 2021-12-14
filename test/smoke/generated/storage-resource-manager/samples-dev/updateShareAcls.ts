@@ -37,11 +37,13 @@ async function updateShareAcls() {
       }
     ]
   };
-  await client.fileShares
-    .update(resourceGroupName, accountName, shareName, fileShare)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.fileShares.update(
+    resourceGroupName,
+    accountName,
+    shareName,
+    fileShare
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

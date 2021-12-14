@@ -22,11 +22,12 @@ async function rebuildCloudServiceRoleInstance() {
   const roleInstanceName = "{roleInstance-name}";
   const resourceGroupName = "ConstosoRG";
   const cloudServiceName = "{cs-name}";
-  await client.cloudServiceRoleInstances
-    .beginRebuildAndWait(roleInstanceName, resourceGroupName, cloudServiceName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.cloudServiceRoleInstances.beginRebuildAndWait(
+    roleInstanceName,
+    resourceGroupName,
+    cloudServiceName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -28,11 +28,13 @@ async function updateASecret() {
   const parameters: SecretPatchParameters = {
     properties: { value: "secret-value2" }
   };
-  await client.secrets
-    .update(resourceGroupName, vaultName, secretName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.secrets.update(
+    resourceGroupName,
+    vaultName,
+    secretName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

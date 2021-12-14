@@ -22,15 +22,12 @@ async function getFunctionAppSettingsOfAStaticSiteBuild() {
   const resourceGroupName = "rg";
   const name = "testStaticSite0";
   const environmentName = "12";
-  await client.staticSites
-    .listStaticSiteBuildFunctionAppSettings(
-      resourceGroupName,
-      name,
-      environmentName
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.staticSites.listStaticSiteBuildFunctionAppSettings(
+    resourceGroupName,
+    name,
+    environmentName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

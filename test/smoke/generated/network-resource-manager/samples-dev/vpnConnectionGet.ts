@@ -22,11 +22,12 @@ async function vpnConnectionGet() {
   const resourceGroupName = "rg1";
   const gatewayName = "gateway1";
   const connectionName = "vpnConnection1";
-  await client.vpnConnections
-    .get(resourceGroupName, gatewayName, connectionName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.vpnConnections.get(
+    resourceGroupName,
+    gatewayName,
+    connectionName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

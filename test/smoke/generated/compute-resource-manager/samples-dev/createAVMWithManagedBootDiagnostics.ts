@@ -57,11 +57,12 @@ async function createAVMWithManagedBootDiagnostics() {
       }
     }
   };
-  await client.virtualMachines
-    .beginCreateOrUpdateAndWait(resourceGroupName, vmName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualMachines.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    vmName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

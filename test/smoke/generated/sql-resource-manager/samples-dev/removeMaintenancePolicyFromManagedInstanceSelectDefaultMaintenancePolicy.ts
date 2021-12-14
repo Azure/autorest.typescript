@@ -28,11 +28,12 @@ async function removeMaintenancePolicyFromManagedInstanceSelectDefaultMaintenanc
     maintenanceConfigurationId:
       "/subscriptions/20d7082a-0fc7-4468-82bd-542694d5042b/providers/Microsoft.Maintenance/publicMaintenanceConfigurations/SQL_Default"
   };
-  await client.managedInstances
-    .beginUpdateAndWait(resourceGroupName, managedInstanceName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.managedInstances.beginUpdateAndWait(
+    resourceGroupName,
+    managedInstanceName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

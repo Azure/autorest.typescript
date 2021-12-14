@@ -25,11 +25,12 @@ async function getTopology() {
   const resourceGroupName = "rg1";
   const networkWatcherName = "nw1";
   const parameters: TopologyParameters = { targetResourceGroupName: "rg2" };
-  await client.networkWatchers
-    .getTopology(resourceGroupName, networkWatcherName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.networkWatchers.getTopology(
+    resourceGroupName,
+    networkWatcherName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

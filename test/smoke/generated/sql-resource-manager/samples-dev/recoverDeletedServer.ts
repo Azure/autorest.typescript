@@ -21,11 +21,11 @@ let client: SqlManagementClient;
 async function recoverDeletedServer() {
   const locationName = "japaneast";
   const deletedServerName = "sqlcrudtest-d-1414";
-  await client.deletedServers
-    .beginRecoverAndWait(locationName, deletedServerName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.deletedServers.beginRecoverAndWait(
+    locationName,
+    deletedServerName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

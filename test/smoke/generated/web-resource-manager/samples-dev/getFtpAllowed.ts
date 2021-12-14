@@ -22,11 +22,12 @@ async function getFtpAllowed() {
   const resourceGroupName = "rg";
   const name = "testSite";
   const slot = "stage";
-  await client.webApps
-    .getFtpAllowedSlot(resourceGroupName, name, slot)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.webApps.getFtpAllowedSlot(
+    resourceGroupName,
+    name,
+    slot
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

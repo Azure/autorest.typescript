@@ -22,11 +22,12 @@ async function getsOutboundFirewallRule() {
   const resourceGroupName = "sqlcrudtest-7398";
   const serverName = "sqlcrudtest-4645";
   const outboundRuleFqdn = "server.database.windows.net";
-  await client.outboundFirewallRules
-    .get(resourceGroupName, serverName, outboundRuleFqdn)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.outboundFirewallRules.get(
+    resourceGroupName,
+    serverName,
+    outboundRuleFqdn
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

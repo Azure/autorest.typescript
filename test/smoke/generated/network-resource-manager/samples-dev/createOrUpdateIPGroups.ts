@@ -29,11 +29,12 @@ async function createOrUpdateIPGroups() {
     location: "West US",
     tags: { key1: "value1" }
   };
-  await client.ipGroups
-    .beginCreateOrUpdateAndWait(resourceGroupName, ipGroupsName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.ipGroups.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    ipGroupsName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

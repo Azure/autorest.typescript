@@ -20,9 +20,8 @@ let client: NetworkManagementClient;
 //virtualApplianceSkus.get
 async function networkVirtualApplianceSkuGet() {
   const skuName = "ciscoSdwan";
-  await client.virtualApplianceSkus.get(skuName).then((res) => {
-    console.log(res);
-  });
+  const result = await client.virtualApplianceSkus.get(skuName);
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

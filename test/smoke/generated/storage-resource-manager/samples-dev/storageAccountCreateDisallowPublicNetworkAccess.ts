@@ -51,11 +51,12 @@ async function storageAccountCreateDisallowPublicNetworkAccess() {
     sku: { name: "Standard_GRS" },
     tags: { key1: "value1", key2: "value2" }
   };
-  await client.storageAccounts
-    .beginCreateAndWait(resourceGroupName, accountName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.storageAccounts.beginCreateAndWait(
+    resourceGroupName,
+    accountName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -22,11 +22,12 @@ async function deleteFailoverGroup() {
   const resourceGroupName = "Default";
   const locationName = "Japan East";
   const failoverGroupName = "failover-group-test-1";
-  await client.instanceFailoverGroups
-    .beginDeleteAndWait(resourceGroupName, locationName, failoverGroupName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.instanceFailoverGroups.beginDeleteAndWait(
+    resourceGroupName,
+    locationName,
+    failoverGroupName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

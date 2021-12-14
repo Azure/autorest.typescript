@@ -21,9 +21,8 @@ let client: StorageManagementClient;
 async function deletedAccountGet() {
   const deletedAccountName = "sto1125";
   const location = "eastus";
-  await client.deletedAccounts.get(deletedAccountName, location).then((res) => {
-    console.log(res);
-  });
+  const result = await client.deletedAccounts.get(deletedAccountName, location);
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

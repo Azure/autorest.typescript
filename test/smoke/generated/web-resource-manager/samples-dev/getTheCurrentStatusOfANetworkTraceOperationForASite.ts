@@ -23,11 +23,13 @@ async function getTheCurrentStatusOfANetworkTraceOperationForASite() {
   const name = "SampleApp";
   const operationId = "c291433b-53ad-4c49-8cae-0a293eae1c6d";
   const slot = "Production";
-  await client.webApps
-    .getNetworkTraceOperationSlotV2(resourceGroupName, name, operationId, slot)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.webApps.getNetworkTraceOperationSlotV2(
+    resourceGroupName,
+    name,
+    operationId,
+    slot
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

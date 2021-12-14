@@ -22,15 +22,12 @@ async function updateCloudServiceToSpecifiedDomain() {
   const resourceGroupName = "ConstosoRG";
   const cloudServiceName = "{cs-name}";
   const updateDomain = 1;
-  await client.cloudServicesUpdateDomain
-    .beginWalkUpdateDomainAndWait(
-      resourceGroupName,
-      cloudServiceName,
-      updateDomain
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.cloudServicesUpdateDomain.beginWalkUpdateDomainAndWait(
+    resourceGroupName,
+    cloudServiceName,
+    updateDomain
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

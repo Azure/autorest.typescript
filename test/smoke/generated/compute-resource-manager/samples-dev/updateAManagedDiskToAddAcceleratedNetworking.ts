@@ -27,11 +27,12 @@ async function updateAManagedDiskToAddAcceleratedNetworking() {
   const disk: DiskUpdate = {
     supportedCapabilities: { acceleratedNetwork: false }
   };
-  await client.disks
-    .beginUpdateAndWait(resourceGroupName, diskName, disk)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.disks.beginUpdateAndWait(
+    resourceGroupName,
+    diskName,
+    disk
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

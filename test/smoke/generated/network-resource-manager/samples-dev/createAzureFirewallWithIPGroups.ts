@@ -118,15 +118,12 @@ async function createAzureFirewallWithIPGroups() {
     threatIntelMode: "Alert",
     zones: []
   };
-  await client.azureFirewalls
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      azureFirewallName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.azureFirewalls.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    azureFirewallName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -22,11 +22,12 @@ async function getShares() {
   const resourceGroupName = "res9871";
   const accountName = "sto6217";
   const shareName = "share1634";
-  await client.fileShares
-    .get(resourceGroupName, accountName, shareName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.fileShares.get(
+    resourceGroupName,
+    accountName,
+    shareName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

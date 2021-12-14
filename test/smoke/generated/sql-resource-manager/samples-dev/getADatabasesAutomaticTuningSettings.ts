@@ -22,11 +22,12 @@ async function getADatabaseSAutomaticTuningSettings() {
   const resourceGroupName = "default-sql-onebox";
   const serverName = "testsvr11";
   const databaseName = "db1";
-  await client.databaseAutomaticTuningOperations
-    .get(resourceGroupName, serverName, databaseName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.databaseAutomaticTuningOperations.get(
+    resourceGroupName,
+    serverName,
+    databaseName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

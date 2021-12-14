@@ -20,9 +20,8 @@ let client: NetworkManagementClient;
 //webCategories.get
 async function getAzureWebCategoryByName() {
   const name = "Arts";
-  await client.webCategories.get(name).then((res) => {
-    console.log(res);
-  });
+  const result = await client.webCategories.get(name);
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

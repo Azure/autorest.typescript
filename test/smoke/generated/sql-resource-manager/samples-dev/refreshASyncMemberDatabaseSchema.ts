@@ -24,17 +24,14 @@ async function refreshASyncMemberDatabaseSchema() {
   const databaseName = "syncgroupcrud-4328";
   const syncGroupName = "syncgroupcrud-3187";
   const syncMemberName = "syncgroupcrud-4879";
-  await client.syncMembers
-    .beginRefreshMemberSchemaAndWait(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      syncGroupName,
-      syncMemberName
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.syncMembers.beginRefreshMemberSchemaAndWait(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    syncGroupName,
+    syncMemberName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

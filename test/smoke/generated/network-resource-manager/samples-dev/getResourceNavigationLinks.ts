@@ -22,11 +22,12 @@ async function getResourceNavigationLinks() {
   const resourceGroupName = "rg1";
   const virtualNetworkName = "vnet";
   const subnetName = "subnet";
-  await client.resourceNavigationLinks
-    .list(resourceGroupName, virtualNetworkName, subnetName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.resourceNavigationLinks.list(
+    resourceGroupName,
+    virtualNetworkName,
+    subnetName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

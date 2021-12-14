@@ -21,11 +21,11 @@ let client: ComputeManagementClient;
 async function getARestorePointCollectionIncludingTheRestorePointsContainedInTheRestorePointCollection() {
   const resourceGroupName = "myResourceGroup";
   const restorePointCollectionName = "rpcName";
-  await client.restorePointCollections
-    .get(resourceGroupName, restorePointCollectionName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.restorePointCollections.get(
+    resourceGroupName,
+    restorePointCollectionName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

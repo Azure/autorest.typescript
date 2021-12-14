@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function deleteRouteTable() {
   const resourceGroupName = "rg1";
   const routeTableName = "testrt";
-  await client.routeTables
-    .beginDeleteAndWait(resourceGroupName, routeTableName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.routeTables.beginDeleteAndWait(
+    resourceGroupName,
+    routeTableName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

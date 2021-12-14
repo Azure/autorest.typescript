@@ -22,11 +22,12 @@ async function listOfDatabaseAdvisors() {
   const resourceGroupName = "workloadinsight-demos";
   const serverName = "misosisvr";
   const databaseName = "IndexAdvisor_test_3";
-  await client.databaseAdvisors
-    .listByDatabase(resourceGroupName, serverName, databaseName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.databaseAdvisors.listByDatabase(
+    resourceGroupName,
+    serverName,
+    databaseName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

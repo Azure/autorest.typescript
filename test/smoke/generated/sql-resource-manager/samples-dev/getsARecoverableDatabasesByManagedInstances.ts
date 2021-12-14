@@ -22,11 +22,12 @@ async function getsARecoverableDatabasesByManagedInstances() {
   const resourceGroupName = "Test1";
   const managedInstanceName = "managedInstance";
   const recoverableDatabaseName = "testdb";
-  await client.recoverableManagedDatabases
-    .get(resourceGroupName, managedInstanceName, recoverableDatabaseName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.recoverableManagedDatabases.get(
+    resourceGroupName,
+    managedInstanceName,
+    recoverableDatabaseName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

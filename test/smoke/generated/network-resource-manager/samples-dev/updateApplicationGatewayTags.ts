@@ -25,11 +25,12 @@ async function updateApplicationGatewayTags() {
   const resourceGroupName = "rg1";
   const applicationGatewayName = "AppGw";
   const parameters: TagsObject = { tags: { tag1: "value1", tag2: "value2" } };
-  await client.applicationGateways
-    .updateTags(resourceGroupName, applicationGatewayName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.applicationGateways.updateTags(
+    resourceGroupName,
+    applicationGatewayName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

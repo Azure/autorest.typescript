@@ -27,11 +27,12 @@ async function virtualWanUpdate() {
   const WANParameters: TagsObject = {
     tags: { key1: "value1", key2: "value2" }
   };
-  await client.virtualWans
-    .updateTags(resourceGroupName, virtualWANName, WANParameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualWans.updateTags(
+    resourceGroupName,
+    virtualWANName,
+    WANParameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

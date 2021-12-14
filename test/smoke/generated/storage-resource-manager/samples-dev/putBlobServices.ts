@@ -66,11 +66,12 @@ async function putBlobServices() {
     deleteRetentionPolicy: { days: 300, enabled: true },
     isVersioningEnabled: true
   };
-  await client.blobServices
-    .setServiceProperties(resourceGroupName, accountName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.blobServices.setServiceProperties(
+    resourceGroupName,
+    accountName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

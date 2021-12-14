@@ -22,11 +22,12 @@ async function deleteAGalleryApplication() {
   const resourceGroupName = "myResourceGroup";
   const galleryName = "myGalleryName";
   const galleryApplicationName = "myGalleryApplicationName";
-  await client.galleryApplications
-    .beginDeleteAndWait(resourceGroupName, galleryName, galleryApplicationName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.galleryApplications.beginDeleteAndWait(
+    resourceGroupName,
+    galleryName,
+    galleryApplicationName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -32,16 +32,13 @@ async function updateASimpleGalleryApplication() {
     releaseNoteUri: "myReleaseNoteUri",
     supportedOSType: "Windows"
   };
-  await client.galleryApplications
-    .beginUpdateAndWait(
-      resourceGroupName,
-      galleryName,
-      galleryApplicationName,
-      galleryApplication
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.galleryApplications.beginUpdateAndWait(
+    resourceGroupName,
+    galleryName,
+    galleryApplicationName,
+    galleryApplication
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

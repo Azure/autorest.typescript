@@ -21,14 +21,11 @@ let client: NetworkManagementClient;
 async function startPacketCaptureOnVirtualNetworkGatewayWithoutFilter() {
   const resourceGroupName = "rg1";
   const virtualNetworkGatewayName = "vpngw";
-  await client.virtualNetworkGateways
-    .beginStartPacketCaptureAndWait(
-      resourceGroupName,
-      virtualNetworkGatewayName
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualNetworkGateways.beginStartPacketCaptureAndWait(
+    resourceGroupName,
+    virtualNetworkGatewayName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

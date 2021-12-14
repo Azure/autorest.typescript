@@ -22,11 +22,12 @@ async function natRuleDelete() {
   const resourceGroupName = "rg1";
   const gatewayName = "gateway1";
   const natRuleName = "natRule1";
-  await client.natRules
-    .beginDeleteAndWait(resourceGroupName, gatewayName, natRuleName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.natRules.beginDeleteAndWait(
+    resourceGroupName,
+    gatewayName,
+    natRuleName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

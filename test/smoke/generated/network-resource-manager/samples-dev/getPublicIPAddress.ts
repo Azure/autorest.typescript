@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function getPublicIPAddress() {
   const resourceGroupName = "rg1";
   const publicIpAddressName = "testDNS-ip";
-  await client.publicIPAddresses
-    .get(resourceGroupName, publicIpAddressName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.publicIPAddresses.get(
+    resourceGroupName,
+    publicIpAddressName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -28,11 +28,13 @@ async function putContainerWithObjectLevelWorm() {
   const blobContainer: BlobContainer = {
     immutableStorageWithVersioning: { enabled: true }
   };
-  await client.blobContainers
-    .create(resourceGroupName, accountName, containerName, blobContainer)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.blobContainers.create(
+    resourceGroupName,
+    accountName,
+    containerName,
+    blobContainer
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

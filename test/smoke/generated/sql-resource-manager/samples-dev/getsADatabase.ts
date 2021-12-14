@@ -22,11 +22,12 @@ async function getsADatabase() {
   const resourceGroupName = "Default-SQL-SouthEastAsia";
   const serverName = "testsvr";
   const databaseName = "testdb";
-  await client.databases
-    .get(resourceGroupName, serverName, databaseName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.databases.get(
+    resourceGroupName,
+    serverName,
+    databaseName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -22,11 +22,12 @@ async function getResourceHealthMetadata() {
   const resourceGroupName = "Default-Web-NorthCentralUS";
   const name = "newsiteinnewASE-NCUS";
   const slot = "Production";
-  await client.resourceHealthMetadataOperations
-    .getBySiteSlot(resourceGroupName, name, slot)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.resourceHealthMetadataOperations.getBySiteSlot(
+    resourceGroupName,
+    name,
+    slot
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

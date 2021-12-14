@@ -22,11 +22,12 @@ async function getsAVirtualNetworkRule() {
   const resourceGroupName = "Default";
   const serverName = "vnet-test-svr";
   const virtualNetworkRuleName = "vnet-firewall-rule";
-  await client.virtualNetworkRules
-    .get(resourceGroupName, serverName, virtualNetworkRuleName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualNetworkRules.get(
+    resourceGroupName,
+    serverName,
+    virtualNetworkRuleName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

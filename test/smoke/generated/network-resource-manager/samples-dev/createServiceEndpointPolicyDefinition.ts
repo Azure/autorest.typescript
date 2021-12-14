@@ -34,16 +34,13 @@ async function createServiceEndpointPolicyDefinition() {
       "/subscriptions/subid1/resourceGroups/storageRg/providers/Microsoft.Storage/storageAccounts/stAccount"
     ]
   };
-  await client.serviceEndpointPolicyDefinitions
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      serviceEndpointPolicyName,
-      serviceEndpointPolicyDefinitionName,
-      serviceEndpointPolicyDefinitions
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.serviceEndpointPolicyDefinitions.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    serviceEndpointPolicyName,
+    serviceEndpointPolicyDefinitionName,
+    serviceEndpointPolicyDefinitions
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -35,15 +35,12 @@ async function createManagedInstanceWithMinimalProperties() {
       "/subscriptions/20D7082A-0FC7-4468-82BD-542694D5042B/resourceGroups/testrg/providers/Microsoft.Network/virtualNetworks/vnet1/subnets/subnet1",
     vCores: 8
   };
-  await client.managedInstances
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      managedInstanceName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.managedInstances.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    managedInstanceName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

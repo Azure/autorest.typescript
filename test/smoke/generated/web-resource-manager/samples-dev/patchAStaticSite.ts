@@ -25,11 +25,12 @@ async function patchAStaticSite() {
   const resourceGroupName = "rg";
   const name = "testStaticSite0";
   const staticSiteEnvelope: StaticSitePatchResource = {};
-  await client.staticSites
-    .updateStaticSite(resourceGroupName, name, staticSiteEnvelope)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.staticSites.updateStaticSite(
+    resourceGroupName,
+    name,
+    staticSiteEnvelope
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

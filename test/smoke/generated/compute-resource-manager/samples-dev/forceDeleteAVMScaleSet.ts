@@ -23,11 +23,12 @@ async function forceDeleteAVMScaleSet() {
   const vmScaleSetName = "myvmScaleSet";
   const forceDeletion = true;
   const options = { forceDeletion: forceDeletion };
-  await client.virtualMachineScaleSets
-    .beginDeleteAndWait(resourceGroupName, vmScaleSetName, options)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualMachineScaleSets.beginDeleteAndWait(
+    resourceGroupName,
+    vmScaleSetName,
+    options
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

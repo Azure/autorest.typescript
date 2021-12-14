@@ -21,11 +21,11 @@ let client: StorageManagementClient;
 async function storageAccountRevokeUserDelegationKeys() {
   const resourceGroupName = "res4167";
   const accountName = "sto3539";
-  await client.storageAccounts
-    .revokeUserDelegationKeys(resourceGroupName, accountName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.storageAccounts.revokeUserDelegationKeys(
+    resourceGroupName,
+    accountName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

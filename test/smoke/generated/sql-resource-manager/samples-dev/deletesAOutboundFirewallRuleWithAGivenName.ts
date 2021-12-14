@@ -22,11 +22,12 @@ async function deletesAOutboundFirewallRuleWithAGivenName() {
   const resourceGroupName = "sqlcrudtest-7398";
   const serverName = "sqlcrudtest-6661";
   const outboundRuleFqdn = "server.database.windows.net";
-  await client.outboundFirewallRules
-    .beginDeleteAndWait(resourceGroupName, serverName, outboundRuleFqdn)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.outboundFirewallRules.beginDeleteAndWait(
+    resourceGroupName,
+    serverName,
+    outboundRuleFqdn
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

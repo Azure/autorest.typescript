@@ -27,17 +27,14 @@ async function updateGeoBackupPolicy() {
   const databaseName = "testdw";
   const geoBackupPolicyName = "Default";
   const parameters: GeoBackupPolicy = { state: "Enabled" };
-  await client.geoBackupPolicies
-    .createOrUpdate(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      geoBackupPolicyName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.geoBackupPolicies.createOrUpdate(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    geoBackupPolicyName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

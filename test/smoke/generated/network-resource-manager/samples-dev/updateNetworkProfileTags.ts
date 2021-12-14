@@ -25,11 +25,12 @@ async function updateNetworkProfileTags() {
   const resourceGroupName = "rg1";
   const networkProfileName = "test-np";
   const parameters: TagsObject = { tags: { tag1: "value1", tag2: "value2" } };
-  await client.networkProfiles
-    .updateTags(resourceGroupName, networkProfileName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.networkProfiles.updateTags(
+    resourceGroupName,
+    networkProfileName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

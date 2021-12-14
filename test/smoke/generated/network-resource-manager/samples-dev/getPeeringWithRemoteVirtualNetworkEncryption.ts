@@ -22,11 +22,12 @@ async function getPeeringWithRemoteVirtualNetworkEncryption() {
   const resourceGroupName = "peerTest";
   const virtualNetworkName = "vnet1";
   const virtualNetworkPeeringName = "peer";
-  await client.virtualNetworkPeerings
-    .get(resourceGroupName, virtualNetworkName, virtualNetworkPeeringName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualNetworkPeerings.get(
+    resourceGroupName,
+    virtualNetworkName,
+    virtualNetworkPeeringName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

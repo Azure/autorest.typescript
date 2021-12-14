@@ -25,11 +25,12 @@ async function updateLoadBalancerTags() {
   const resourceGroupName = "rg1";
   const loadBalancerName = "lb";
   const parameters: TagsObject = { tags: { tag1: "value1", tag2: "value2" } };
-  await client.loadBalancers
-    .updateTags(resourceGroupName, loadBalancerName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.loadBalancers.updateTags(
+    resourceGroupName,
+    loadBalancerName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

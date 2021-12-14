@@ -21,11 +21,11 @@ let client: ComputeManagementClient;
 async function getCloudServiceOSVersion() {
   const location = "westus2";
   const osVersionName = "WA-GUEST-OS-3.90_202010-02";
-  await client.cloudServiceOperatingSystems
-    .getOSVersion(location, osVersionName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.cloudServiceOperatingSystems.getOSVersion(
+    location,
+    osVersionName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

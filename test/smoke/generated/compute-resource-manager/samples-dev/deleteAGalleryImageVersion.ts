@@ -23,16 +23,13 @@ async function deleteAGalleryImageVersion() {
   const galleryName = "myGalleryName";
   const galleryImageName = "myGalleryImageName";
   const galleryImageVersionName = "1.0.0";
-  await client.galleryImageVersions
-    .beginDeleteAndWait(
-      resourceGroupName,
-      galleryName,
-      galleryImageName,
-      galleryImageVersionName
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.galleryImageVersions.beginDeleteAndWait(
+    resourceGroupName,
+    galleryName,
+    galleryImageName,
+    galleryImageVersionName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

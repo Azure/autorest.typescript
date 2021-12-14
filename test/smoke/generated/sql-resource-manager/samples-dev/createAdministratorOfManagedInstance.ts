@@ -31,16 +31,13 @@ async function createAdministratorOfManagedInstance() {
     sid: "44444444-3333-2222-1111-000000000000",
     tenantId: "55555555-4444-3333-2222-111111111111"
   };
-  await client.managedInstanceAdministrators
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      managedInstanceName,
-      administratorName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.managedInstanceAdministrators.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    managedInstanceName,
+    administratorName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

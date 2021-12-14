@@ -19,9 +19,8 @@ import { DefaultAzureCredential } from "@azure/identity";
 let client: NetworkManagementClient;
 //expressRouteGateways.listBySubscription
 async function expressRouteGatewayListBySubscription() {
-  await client.expressRouteGateways.listBySubscription().then((res) => {
-    console.log(res);
-  });
+  const result = await client.expressRouteGateways.listBySubscription();
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

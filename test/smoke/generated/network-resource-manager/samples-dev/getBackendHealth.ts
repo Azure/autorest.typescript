@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function getBackendHealth() {
   const resourceGroupName = "appgw";
   const applicationGatewayName = "appgw";
-  await client.applicationGateways
-    .beginBackendHealthAndWait(resourceGroupName, applicationGatewayName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.applicationGateways.beginBackendHealthAndWait(
+    resourceGroupName,
+    applicationGatewayName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

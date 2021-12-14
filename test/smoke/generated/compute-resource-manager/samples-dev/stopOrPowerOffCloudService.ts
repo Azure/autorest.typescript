@@ -21,11 +21,11 @@ let client: ComputeManagementClient;
 async function stopOrPowerOffCloudService() {
   const resourceGroupName = "ConstosoRG";
   const cloudServiceName = "{cs-name}";
-  await client.cloudServices
-    .beginPowerOffAndWait(resourceGroupName, cloudServiceName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.cloudServices.beginPowerOffAndWait(
+    resourceGroupName,
+    cloudServiceName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function getLocalNetworkGateway() {
   const resourceGroupName = "rg1";
   const localNetworkGatewayName = "localgw";
-  await client.localNetworkGateways
-    .get(resourceGroupName, localNetworkGatewayName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.localNetworkGateways.get(
+    resourceGroupName,
+    localNetworkGatewayName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -21,11 +21,11 @@ let client: ManagedServiceIdentityClient;
 async function identityDelete() {
   const resourceGroupName = "rgName";
   const resourceName = "resourceName";
-  await client.userAssignedIdentities
-    .delete(resourceGroupName, resourceName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.userAssignedIdentities.delete(
+    resourceGroupName,
+    resourceName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

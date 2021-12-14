@@ -24,17 +24,14 @@ async function cancelAJobExecution() {
   const jobAgentName = "agent1";
   const jobName = "job1";
   const jobExecutionId = "5555-6666-7777-8888-999999999999";
-  await client.jobExecutions
-    .cancel(
-      resourceGroupName,
-      serverName,
-      jobAgentName,
-      jobName,
-      jobExecutionId
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.jobExecutions.cancel(
+    resourceGroupName,
+    serverName,
+    jobAgentName,
+    jobName,
+    jobExecutionId
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

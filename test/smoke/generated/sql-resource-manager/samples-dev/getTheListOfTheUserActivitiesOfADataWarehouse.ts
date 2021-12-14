@@ -23,16 +23,13 @@ async function getTheListOfTheUserActivitiesOfADataWarehouse() {
   const serverName = "testsvr";
   const databaseName = "testdb";
   const dataWarehouseUserActivityName = "current";
-  await client.dataWarehouseUserActivitiesOperations
-    .get(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      dataWarehouseUserActivityName
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.dataWarehouseUserActivitiesOperations.get(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    dataWarehouseUserActivityName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

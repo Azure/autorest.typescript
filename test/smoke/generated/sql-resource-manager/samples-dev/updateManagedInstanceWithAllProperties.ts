@@ -40,11 +40,12 @@ async function updateManagedInstanceWithAllProperties() {
     tags: { tagKey1: "TagValue1" },
     vCores: 8
   };
-  await client.managedInstances
-    .beginUpdateAndWait(resourceGroupName, managedInstanceName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.managedInstances.beginUpdateAndWait(
+    resourceGroupName,
+    managedInstanceName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

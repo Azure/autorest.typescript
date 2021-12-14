@@ -44,17 +44,14 @@ async function updateASimpleGalleryImageVersionManagedImageAsSource() {
       }
     }
   };
-  await client.galleryImageVersions
-    .beginUpdateAndWait(
-      resourceGroupName,
-      galleryName,
-      galleryImageName,
-      galleryImageVersionName,
-      galleryImageVersion
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.galleryImageVersions.beginUpdateAndWait(
+    resourceGroupName,
+    galleryName,
+    galleryImageName,
+    galleryImageVersionName,
+    galleryImageVersion
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

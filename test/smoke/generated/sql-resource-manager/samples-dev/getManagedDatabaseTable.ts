@@ -24,17 +24,14 @@ async function getManagedDatabaseTable() {
   const databaseName = "myDatabase";
   const schemaName = "dbo";
   const tableName = "table1";
-  await client.managedDatabaseTables
-    .get(
-      resourceGroupName,
-      managedInstanceName,
-      databaseName,
-      schemaName,
-      tableName
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.managedDatabaseTables.get(
+    resourceGroupName,
+    managedInstanceName,
+    databaseName,
+    schemaName,
+    tableName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

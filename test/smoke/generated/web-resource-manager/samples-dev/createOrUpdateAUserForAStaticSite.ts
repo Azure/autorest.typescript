@@ -29,17 +29,14 @@ async function createOrUpdateAUserForAStaticSite() {
   const staticSiteUserEnvelope: StaticSiteUserARMResource = {
     roles: "contributor"
   };
-  await client.staticSites
-    .updateStaticSiteUser(
-      resourceGroupName,
-      name,
-      authprovider,
-      userid,
-      staticSiteUserEnvelope
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.staticSites.updateStaticSiteUser(
+    resourceGroupName,
+    name,
+    authprovider,
+    userid,
+    staticSiteUserEnvelope
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

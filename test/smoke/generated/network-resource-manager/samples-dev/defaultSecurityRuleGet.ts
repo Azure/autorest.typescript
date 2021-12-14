@@ -22,11 +22,12 @@ async function defaultSecurityRuleGet() {
   const resourceGroupName = "testrg";
   const networkSecurityGroupName = "nsg1";
   const defaultSecurityRuleName = "AllowVnetInBound";
-  await client.defaultSecurityRules
-    .get(resourceGroupName, networkSecurityGroupName, defaultSecurityRuleName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.defaultSecurityRules.get(
+    resourceGroupName,
+    networkSecurityGroupName,
+    defaultSecurityRuleName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

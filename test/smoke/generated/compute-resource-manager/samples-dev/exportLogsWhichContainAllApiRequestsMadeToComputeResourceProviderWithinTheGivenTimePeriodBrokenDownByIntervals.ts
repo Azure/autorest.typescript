@@ -30,11 +30,11 @@ async function exportLogsWhichContainAllApiRequestsMadeToComputeResourceProvider
     intervalLength: "FiveMins",
     toTime: new Date("2018-01-23T01:54:06.862601Z")
   };
-  await client.logAnalytics
-    .beginExportRequestRateByIntervalAndWait(location, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.logAnalytics.beginExportRequestRateByIntervalAndWait(
+    location,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

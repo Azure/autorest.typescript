@@ -23,16 +23,13 @@ async function deleteVirtualMachineScaleSetVMExtension() {
   const vmScaleSetName = "myvmScaleSet";
   const instanceId = "0";
   const vmExtensionName = "myVMExtension";
-  await client.virtualMachineScaleSetVMExtensions
-    .beginDeleteAndWait(
-      resourceGroupName,
-      vmScaleSetName,
-      instanceId,
-      vmExtensionName
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualMachineScaleSetVMExtensions.beginDeleteAndWait(
+    resourceGroupName,
+    vmScaleSetName,
+    instanceId,
+    vmExtensionName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

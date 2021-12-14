@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function getApplicationGateway() {
   const resourceGroupName = "rg1";
   const applicationGatewayName = "appgw";
-  await client.applicationGateways
-    .get(resourceGroupName, applicationGatewayName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.applicationGateways.get(
+    resourceGroupName,
+    applicationGatewayName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

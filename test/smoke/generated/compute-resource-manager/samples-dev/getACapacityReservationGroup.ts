@@ -21,11 +21,11 @@ let client: ComputeManagementClient;
 async function getACapacityReservationGroup() {
   const resourceGroupName = "myResourceGroup";
   const capacityReservationGroupName = "myCapacityReservationGroup";
-  await client.capacityReservationGroups
-    .get(resourceGroupName, capacityReservationGroupName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.capacityReservationGroups.get(
+    resourceGroupName,
+    capacityReservationGroupName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

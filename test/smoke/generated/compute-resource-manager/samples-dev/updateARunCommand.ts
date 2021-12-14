@@ -28,11 +28,13 @@ async function updateARunCommand() {
   const runCommand: VirtualMachineRunCommandUpdate = {
     source: { script: "Write-Host Script Source Updated!" }
   };
-  await client.virtualMachineRunCommands
-    .beginUpdateAndWait(resourceGroupName, vmName, runCommandName, runCommand)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualMachineRunCommands.beginUpdateAndWait(
+    resourceGroupName,
+    vmName,
+    runCommandName,
+    runCommand
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

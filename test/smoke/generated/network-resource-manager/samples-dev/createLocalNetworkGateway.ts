@@ -30,15 +30,12 @@ async function createLocalNetworkGateway() {
     localNetworkAddressSpace: { addressPrefixes: ["10.1.0.0/16"] },
     location: "Central US"
   };
-  await client.localNetworkGateways
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      localNetworkGatewayName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.localNetworkGateways.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    localNetworkGatewayName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

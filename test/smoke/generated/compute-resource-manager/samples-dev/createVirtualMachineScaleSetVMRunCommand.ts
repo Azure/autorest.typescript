@@ -38,17 +38,14 @@ async function createVirtualMachineScaleSetVMRunCommand() {
     source: { script: "Write-Host Hello World!" },
     timeoutInSeconds: 3600
   };
-  await client.virtualMachineScaleSetVMRunCommands
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      vmScaleSetName,
-      instanceId,
-      runCommandName,
-      runCommand
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualMachineScaleSetVMRunCommands.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    vmScaleSetName,
+    instanceId,
+    runCommandName,
+    runCommand
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

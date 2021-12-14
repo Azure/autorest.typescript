@@ -22,11 +22,12 @@ async function deleteAzureActiveDirectoryAdministrator() {
   const resourceGroupName = "sqlcrudtest-4799";
   const serverName = "sqlcrudtest-6440";
   const administratorName = "ActiveDirectory";
-  await client.serverAzureADAdministrators
-    .beginDeleteAndWait(resourceGroupName, serverName, administratorName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.serverAzureADAdministrators.beginDeleteAndWait(
+    resourceGroupName,
+    serverName,
+    administratorName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

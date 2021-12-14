@@ -31,17 +31,14 @@ async function setsMaintenanceWindowSettingsForASelectedDatabase() {
       { dayOfWeek: "Saturday", duration: "PT60M", startTime: "00:00:00" }
     ]
   };
-  await client.maintenanceWindowsOperations
-    .createOrUpdate(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      maintenanceWindowName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.maintenanceWindowsOperations.createOrUpdate(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    maintenanceWindowName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

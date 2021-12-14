@@ -32,11 +32,12 @@ async function getNextHop() {
     targetResourceId:
       "/subscriptions/subid/resourceGroups/rg2/providers/Microsoft.Compute/virtualMachines/vm1"
   };
-  await client.networkWatchers
-    .beginGetNextHopAndWait(resourceGroupName, networkWatcherName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.networkWatchers.beginGetNextHopAndWait(
+    resourceGroupName,
+    networkWatcherName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

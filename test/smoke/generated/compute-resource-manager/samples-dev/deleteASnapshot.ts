@@ -21,11 +21,11 @@ let client: ComputeManagementClient;
 async function deleteASnapshot() {
   const resourceGroupName = "myResourceGroup";
   const snapshotName = "mySnapshot";
-  await client.snapshots
-    .beginDeleteAndWait(resourceGroupName, snapshotName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.snapshots.beginDeleteAndWait(
+    resourceGroupName,
+    snapshotName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

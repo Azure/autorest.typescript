@@ -26,9 +26,8 @@ async function validateAVaultName() {
     name: "sample-vault",
     type: "Microsoft.KeyVault/vaults"
   };
-  await client.vaults.checkNameAvailability(vaultName).then((res) => {
-    console.log(res);
-  });
+  const result = await client.vaults.checkNameAvailability(vaultName);
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

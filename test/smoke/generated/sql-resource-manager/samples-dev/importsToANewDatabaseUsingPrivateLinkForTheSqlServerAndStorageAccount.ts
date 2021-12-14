@@ -40,11 +40,12 @@ async function importsToANewDatabaseUsingPrivateLinkForTheSqlServerAndStorageAcc
     storageKeyType: "StorageAccessKey",
     storageUri: "https://test.blob.core.windows.net/test.bacpac"
   };
-  await client.servers
-    .beginImportDatabaseAndWait(resourceGroupName, serverName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.servers.beginImportDatabaseAndWait(
+    resourceGroupName,
+    serverName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

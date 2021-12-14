@@ -25,11 +25,12 @@ async function updateRouteTableTags() {
   const resourceGroupName = "rg1";
   const routeTableName = "testrt";
   const parameters: TagsObject = { tags: { tag1: "value1", tag2: "value2" } };
-  await client.routeTables
-    .updateTags(resourceGroupName, routeTableName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.routeTables.updateTags(
+    resourceGroupName,
+    routeTableName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

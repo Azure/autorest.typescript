@@ -25,11 +25,12 @@ async function createADiskAccessResource() {
   const resourceGroupName = "myResourceGroup";
   const diskAccessName = "myDiskAccess";
   const diskAccess: DiskAccess = { location: "West US" };
-  await client.diskAccesses
-    .beginCreateOrUpdateAndWait(resourceGroupName, diskAccessName, diskAccess)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.diskAccesses.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    diskAccessName,
+    diskAccess
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

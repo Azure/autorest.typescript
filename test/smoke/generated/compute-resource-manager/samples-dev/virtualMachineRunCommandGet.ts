@@ -21,11 +21,11 @@ let client: ComputeManagementClient;
 async function virtualMachineRunCommandGet() {
   const location = "SoutheastAsia";
   const commandId = "RunPowerShellScript";
-  await client.virtualMachineRunCommands
-    .get(location, commandId)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualMachineRunCommands.get(
+    location,
+    commandId
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

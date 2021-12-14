@@ -29,11 +29,13 @@ async function setLegalHoldContainersWithAllowProtectedAppendWritesAll() {
     allowProtectedAppendWritesAll: true,
     tags: ["tag1", "tag2", "tag3"]
   };
-  await client.blobContainers
-    .setLegalHold(resourceGroupName, accountName, containerName, legalHold)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.blobContainers.setLegalHold(
+    resourceGroupName,
+    accountName,
+    containerName,
+    legalHold
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

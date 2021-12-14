@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function deleteBastionHost() {
   const resourceGroupName = "rg1";
   const bastionHostName = "bastionhosttenant";
-  await client.bastionHosts
-    .beginDeleteAndWait(resourceGroupName, bastionHostName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.bastionHosts.beginDeleteAndWait(
+    resourceGroupName,
+    bastionHostName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

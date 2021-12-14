@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function getVirtualNetworkGatewayConnectionSharedKey() {
   const resourceGroupName = "rg1";
   const virtualNetworkGatewayConnectionName = "connS2S";
-  await client.virtualNetworkGatewayConnections
-    .getSharedKey(resourceGroupName, virtualNetworkGatewayConnectionName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualNetworkGatewayConnections.getSharedKey(
+    resourceGroupName,
+    virtualNetworkGatewayConnectionName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

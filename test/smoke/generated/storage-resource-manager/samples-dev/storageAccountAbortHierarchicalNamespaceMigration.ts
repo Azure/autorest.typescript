@@ -21,14 +21,11 @@ let client: StorageManagementClient;
 async function storageAccountAbortHierarchicalNamespaceMigration() {
   const resourceGroupName = "res4228";
   const accountName = "sto2434";
-  await client.storageAccounts
-    .beginAbortHierarchicalNamespaceMigrationAndWait(
-      resourceGroupName,
-      accountName
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.storageAccounts.beginAbortHierarchicalNamespaceMigrationAndWait(
+    resourceGroupName,
+    accountName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

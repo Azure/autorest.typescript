@@ -23,16 +23,13 @@ async function lockImmutabilityPolicy() {
   const accountName = "sto5009";
   const containerName = "container1631";
   const ifMatch = '"8d59f825b721dd3"';
-  await client.blobContainers
-    .lockImmutabilityPolicy(
-      resourceGroupName,
-      accountName,
-      containerName,
-      ifMatch
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.blobContainers.lockImmutabilityPolicy(
+    resourceGroupName,
+    accountName,
+    containerName,
+    ifMatch
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

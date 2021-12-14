@@ -28,11 +28,13 @@ async function createsDatawarehouseDatabaseRestorePoint() {
   const parameters: CreateDatabaseRestorePointDefinition = {
     restorePointLabel: "mylabel"
   };
-  await client.restorePoints
-    .beginCreateAndWait(resourceGroupName, serverName, databaseName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.restorePoints.beginCreateAndWait(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

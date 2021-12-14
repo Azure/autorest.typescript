@@ -26,11 +26,13 @@ async function updateAJobAgentSTags() {
   const serverName = "server1";
   const jobAgentName = "agent1";
   const parameters: JobAgentUpdate = { tags: { mytag1: "myvalue1" } };
-  await client.jobAgents
-    .beginUpdateAndWait(resourceGroupName, serverName, jobAgentName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.jobAgents.beginUpdateAndWait(
+    resourceGroupName,
+    serverName,
+    jobAgentName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

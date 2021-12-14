@@ -27,15 +27,12 @@ async function createsOrUpdatesTheFunctionAppSettingsOfAStaticSite() {
   const appSettings: StringDictionary = {
     properties: { setting1: "someval", setting2: "someval2" }
   };
-  await client.staticSites
-    .createOrUpdateStaticSiteFunctionAppSettings(
-      resourceGroupName,
-      name,
-      appSettings
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.staticSites.createOrUpdateStaticSiteFunctionAppSettings(
+    resourceGroupName,
+    name,
+    appSettings
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

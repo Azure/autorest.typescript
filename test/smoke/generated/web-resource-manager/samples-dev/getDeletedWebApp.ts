@@ -20,9 +20,8 @@ let client: WebSiteManagementClient;
 //global.getDeletedWebApp
 async function getDeletedWebApp() {
   const deletedSiteId = "9";
-  await client.global.getDeletedWebApp(deletedSiteId).then((res) => {
-    console.log(res);
-  });
+  const result = await client.global.getDeletedWebApp(deletedSiteId);
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

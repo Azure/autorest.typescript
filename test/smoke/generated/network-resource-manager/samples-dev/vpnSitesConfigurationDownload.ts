@@ -31,11 +31,12 @@ async function vpnSitesConfigurationDownload() {
       "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/vpnSites/abc"
     ]
   };
-  await client.vpnSitesConfiguration
-    .beginDownloadAndWait(resourceGroupName, virtualWANName, request)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.vpnSitesConfiguration.beginDownloadAndWait(
+    resourceGroupName,
+    virtualWANName,
+    request
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

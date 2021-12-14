@@ -19,9 +19,8 @@ import { DefaultAzureCredential } from "@azure/identity";
 let client: NetworkManagementClient;
 //applicationGateways.listAvailableSslOptions
 async function getAvailableSslOptions() {
-  await client.applicationGateways.listAvailableSslOptions().then((res) => {
-    console.log(res);
-  });
+  const result = await client.applicationGateways.listAvailableSslOptions();
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

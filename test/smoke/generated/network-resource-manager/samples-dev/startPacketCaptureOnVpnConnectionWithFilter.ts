@@ -31,16 +31,13 @@ async function startPacketCaptureOnVpnConnectionWithFilter() {
     linkConnectionNames: ["siteLink1", "siteLink2"]
   };
   const options = { parameters: parameters };
-  await client.vpnConnections
-    .beginStartPacketCaptureAndWait(
-      resourceGroupName,
-      gatewayName,
-      vpnConnectionName,
-      options
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.vpnConnections.beginStartPacketCaptureAndWait(
+    resourceGroupName,
+    gatewayName,
+    vpnConnectionName,
+    options
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

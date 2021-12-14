@@ -37,18 +37,15 @@ async function createANewSyncMember() {
     usePrivateLinkConnection: true,
     userName: "myUser"
   };
-  await client.syncMembers
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      syncGroupName,
-      syncMemberName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.syncMembers.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    syncGroupName,
+    syncMemberName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

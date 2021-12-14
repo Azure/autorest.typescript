@@ -26,11 +26,13 @@ async function createAKey() {
   const vaultName = "sample-vault-name";
   const keyName = "sample-key-name";
   const parameters: KeyCreateParameters = { properties: { kty: "RSA" } };
-  await client.keys
-    .createIfNotExist(resourceGroupName, vaultName, keyName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.keys.createIfNotExist(
+    resourceGroupName,
+    vaultName,
+    keyName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

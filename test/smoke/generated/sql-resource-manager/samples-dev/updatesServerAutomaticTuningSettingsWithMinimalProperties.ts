@@ -25,11 +25,12 @@ async function updatesServerAutomaticTuningSettingsWithMinimalProperties() {
   const resourceGroupName = "default-sql-onebox";
   const serverName = "testsvr11";
   const parameters: ServerAutomaticTuning = { desiredState: "Auto" };
-  await client.serverAutomaticTuningOperations
-    .update(resourceGroupName, serverName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.serverAutomaticTuningOperations.update(
+    resourceGroupName,
+    serverName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

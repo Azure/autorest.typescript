@@ -25,17 +25,14 @@ async function getAGalleryImageVersionWithReplicationStatus() {
   const galleryImageVersionName = "1.0.0";
   const expand = "ReplicationStatus";
   const options = { expand: expand };
-  await client.galleryImageVersions
-    .get(
-      resourceGroupName,
-      galleryName,
-      galleryImageName,
-      galleryImageVersionName,
-      options
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.galleryImageVersions.get(
+    resourceGroupName,
+    galleryName,
+    galleryImageName,
+    galleryImageVersionName,
+    options
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

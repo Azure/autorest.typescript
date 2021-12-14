@@ -32,11 +32,12 @@ async function createOrUpdateARestorePointCollection() {
     },
     tags: { myTag1: "tagValue1" }
   };
-  await client.restorePointCollections
-    .createOrUpdate(resourceGroupName, restorePointCollectionName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.restorePointCollections.createOrUpdate(
+    resourceGroupName,
+    restorePointCollectionName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -21,11 +21,11 @@ let client: WebSiteManagementClient;
 async function getsAnOperationInASubscriptionAndGivenRegion() {
   const location = "West US";
   const operationId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab5d5";
-  await client.global
-    .getSubscriptionOperationWithAsyncResponse(location, operationId)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.global.getSubscriptionOperationWithAsyncResponse(
+    location,
+    operationId
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

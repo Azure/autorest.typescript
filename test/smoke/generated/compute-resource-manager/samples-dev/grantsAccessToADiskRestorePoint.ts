@@ -31,17 +31,14 @@ async function grantsAccessToADiskRestorePoint() {
     access: "Read",
     durationInSeconds: 300
   };
-  await client.diskRestorePointOperations
-    .beginGrantAccessAndWait(
-      resourceGroupName,
-      restorePointCollectionName,
-      vmRestorePointName,
-      diskRestorePointName,
-      grantAccessData
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.diskRestorePointOperations.beginGrantAccessAndWait(
+    resourceGroupName,
+    restorePointCollectionName,
+    vmRestorePointName,
+    diskRestorePointName,
+    grantAccessData
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

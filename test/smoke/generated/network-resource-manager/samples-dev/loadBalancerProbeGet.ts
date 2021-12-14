@@ -22,11 +22,12 @@ async function loadBalancerProbeGet() {
   const resourceGroupName = "testrg";
   const loadBalancerName = "lb";
   const probeName = "probe1";
-  await client.loadBalancerProbes
-    .get(resourceGroupName, loadBalancerName, probeName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.loadBalancerProbes.get(
+    resourceGroupName,
+    loadBalancerName,
+    probeName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

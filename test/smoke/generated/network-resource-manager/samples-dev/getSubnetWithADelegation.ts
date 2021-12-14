@@ -22,11 +22,12 @@ async function getSubnetWithADelegation() {
   const resourceGroupName = "subnet-test";
   const virtualNetworkName = "vnetname";
   const subnetName = "subnet1";
-  await client.subnets
-    .get(resourceGroupName, virtualNetworkName, subnetName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.subnets.get(
+    resourceGroupName,
+    virtualNetworkName,
+    subnetName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

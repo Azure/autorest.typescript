@@ -28,11 +28,12 @@ async function identityUpdate() {
     location: "eastus",
     tags: { key1: "value1", key2: "value2" }
   };
-  await client.userAssignedIdentities
-    .update(resourceGroupName, resourceName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.userAssignedIdentities.update(
+    resourceGroupName,
+    resourceName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

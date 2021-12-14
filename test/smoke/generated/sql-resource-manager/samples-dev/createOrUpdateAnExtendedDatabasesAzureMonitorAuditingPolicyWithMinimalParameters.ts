@@ -29,11 +29,13 @@ async function createOrUpdateAnExtendedDatabaseSAzureMonitorAuditingPolicyWithMi
     isAzureMonitorTargetEnabled: true,
     state: "Enabled"
   };
-  await client.extendedDatabaseBlobAuditingPolicies
-    .createOrUpdate(resourceGroupName, serverName, databaseName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.extendedDatabaseBlobAuditingPolicies.createOrUpdate(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

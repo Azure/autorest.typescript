@@ -21,11 +21,11 @@ let client: WebSiteManagementClient;
 async function getFunctionAppSettingsOfAStaticSite() {
   const resourceGroupName = "rg";
   const name = "testStaticSite0";
-  await client.staticSites
-    .listStaticSiteFunctionAppSettings(resourceGroupName, name)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.staticSites.listStaticSiteFunctionAppSettings(
+    resourceGroupName,
+    name
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -22,15 +22,12 @@ async function deleteTapConfiguration() {
   const resourceGroupName = "rg1";
   const networkInterfaceName = "test-networkinterface";
   const tapConfigurationName = "test-tapconfiguration";
-  await client.networkInterfaceTapConfigurations
-    .beginDeleteAndWait(
-      resourceGroupName,
-      networkInterfaceName,
-      tapConfigurationName
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.networkInterfaceTapConfigurations.beginDeleteAndWait(
+    resourceGroupName,
+    networkInterfaceName,
+    tapConfigurationName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

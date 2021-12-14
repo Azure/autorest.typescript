@@ -26,16 +26,13 @@ async function createSubnet() {
   const virtualNetworkName = "vnetname";
   const subnetName = "subnet1";
   const subnetParameters: Subnet = { addressPrefix: "10.0.0.0/16" };
-  await client.subnets
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      virtualNetworkName,
-      subnetName,
-      subnetParameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.subnets.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    virtualNetworkName,
+    subnetName,
+    subnetParameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

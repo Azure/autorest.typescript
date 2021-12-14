@@ -40,11 +40,12 @@ async function createExpressRouteCircuit() {
       tier: "Standard"
     }
   };
-  await client.expressRouteCircuits
-    .beginCreateOrUpdateAndWait(resourceGroupName, circuitName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.expressRouteCircuits.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    circuitName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

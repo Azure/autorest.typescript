@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function deletePrivateLinkService() {
   const resourceGroupName = "rg1";
   const serviceName = "testPls";
-  await client.privateLinkServices
-    .beginDeleteAndWait(resourceGroupName, serviceName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.privateLinkServices.beginDeleteAndWait(
+    resourceGroupName,
+    serviceName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

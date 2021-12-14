@@ -21,14 +21,11 @@ let client: NetworkManagementClient;
 async function listNetworkInterfaceEffectiveNetworkSecurityGroups() {
   const resourceGroupName = "rg1";
   const networkInterfaceName = "nic1";
-  await client.networkInterfaces
-    .beginListEffectiveNetworkSecurityGroupsAndWait(
-      resourceGroupName,
-      networkInterfaceName
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.networkInterfaces.beginListEffectiveNetworkSecurityGroupsAndWait(
+    resourceGroupName,
+    networkInterfaceName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

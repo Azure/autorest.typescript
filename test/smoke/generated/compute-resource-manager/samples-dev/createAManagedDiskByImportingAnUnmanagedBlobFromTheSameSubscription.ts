@@ -32,11 +32,12 @@ async function createAManagedDiskByImportingAnUnmanagedBlobFromTheSameSubscripti
     },
     location: "West US"
   };
-  await client.disks
-    .beginCreateOrUpdateAndWait(resourceGroupName, diskName, disk)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.disks.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    diskName,
+    disk
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

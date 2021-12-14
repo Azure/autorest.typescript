@@ -33,16 +33,13 @@ async function updateVMExtension() {
     suppressFailures: true,
     typeHandlerVersion: "1.2"
   };
-  await client.virtualMachineExtensions
-    .beginUpdateAndWait(
-      resourceGroupName,
-      vmName,
-      vmExtensionName,
-      extensionParameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualMachineExtensions.beginUpdateAndWait(
+    resourceGroupName,
+    vmName,
+    vmExtensionName,
+    extensionParameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

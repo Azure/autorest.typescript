@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function getNetworkSecurityGroup() {
   const resourceGroupName = "rg1";
   const networkSecurityGroupName = "testnsg";
-  await client.networkSecurityGroups
-    .get(resourceGroupName, networkSecurityGroupName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.networkSecurityGroups.get(
+    resourceGroupName,
+    networkSecurityGroupName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

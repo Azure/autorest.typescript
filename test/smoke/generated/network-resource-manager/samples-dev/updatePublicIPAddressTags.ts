@@ -25,11 +25,12 @@ async function updatePublicIPAddressTags() {
   const resourceGroupName = "rg1";
   const customIpPrefixName = "test-customipprefix";
   const parameters: TagsObject = { tags: { tag1: "value1", tag2: "value2" } };
-  await client.customIPPrefixes
-    .updateTags(resourceGroupName, customIpPrefixName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.customIPPrefixes.updateTags(
+    resourceGroupName,
+    customIpPrefixName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

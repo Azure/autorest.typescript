@@ -26,16 +26,13 @@ async function createsANewManagedDatabaseWithMinimalProperties() {
   const managedInstanceName = "managedInstance";
   const databaseName = "managedDatabase";
   const parameters: ManagedDatabase = { location: "southeastasia" };
-  await client.managedDatabases
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      managedInstanceName,
-      databaseName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.managedDatabases.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    managedInstanceName,
+    databaseName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

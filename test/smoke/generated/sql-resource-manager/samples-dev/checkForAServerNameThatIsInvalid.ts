@@ -26,9 +26,8 @@ async function checkForAServerNameThatIsInvalid() {
     name: "SERVER1",
     type: "Microsoft.Sql/servers"
   };
-  await client.servers.checkNameAvailability(parameters).then((res) => {
-    console.log(res);
-  });
+  const result = await client.servers.checkNameAvailability(parameters);
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

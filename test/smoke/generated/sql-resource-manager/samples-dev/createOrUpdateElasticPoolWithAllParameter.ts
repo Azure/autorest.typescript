@@ -30,16 +30,13 @@ async function createOrUpdateElasticPoolWithAllParameter() {
     perDatabaseSettings: { maxCapacity: 2, minCapacity: 0.25 },
     sku: { name: "GP_Gen4_2", capacity: 2, tier: "GeneralPurpose" }
   };
-  await client.elasticPools
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      serverName,
-      elasticPoolName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.elasticPools.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    serverName,
+    elasticPoolName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

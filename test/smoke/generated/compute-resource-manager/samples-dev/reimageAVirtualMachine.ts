@@ -26,11 +26,12 @@ async function reimageAVirtualMachine() {
   const vmName = "myVMName";
   const parameters: VirtualMachineReimageParameters = { tempDisk: true };
   const options = { parameters: parameters };
-  await client.virtualMachines
-    .beginReimageAndWait(resourceGroupName, vmName, options)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualMachines.beginReimageAndWait(
+    resourceGroupName,
+    vmName,
+    options
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

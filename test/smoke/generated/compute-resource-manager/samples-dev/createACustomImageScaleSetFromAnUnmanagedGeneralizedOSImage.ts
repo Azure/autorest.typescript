@@ -66,11 +66,12 @@ async function createACustomImageScaleSetFromAnUnmanagedGeneralizedOSImage() {
       }
     }
   };
-  await client.virtualMachineScaleSets
-    .beginCreateOrUpdateAndWait(resourceGroupName, vmScaleSetName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualMachineScaleSets.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    vmScaleSetName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

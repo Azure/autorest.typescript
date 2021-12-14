@@ -25,15 +25,12 @@ async function createPublicIPAddressDefaults() {
   const resourceGroupName = "rg1";
   const publicIpAddressName = "test-ip";
   const parameters: PublicIPAddress = { location: "eastus" };
-  await client.publicIPAddresses
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      publicIpAddressName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.publicIPAddresses.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    publicIpAddressName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

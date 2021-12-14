@@ -20,9 +20,8 @@ let client: SqlManagementClient;
 //capabilities.listByLocation
 async function listSubscriptionCapabilitiesInTheGivenLocation() {
   const locationName = "eastus";
-  await client.capabilities.listByLocation(locationName).then((res) => {
-    console.log(res);
-  });
+  const result = await client.capabilities.listByLocation(locationName);
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -22,11 +22,12 @@ async function listExtensionsInVmssInstance() {
   const resourceGroupName = "myResourceGroup";
   const vmScaleSetName = "myvmScaleSet";
   const instanceId = "0";
-  await client.virtualMachineScaleSetVMExtensions
-    .list(resourceGroupName, vmScaleSetName, instanceId)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualMachineScaleSetVMExtensions.list(
+    resourceGroupName,
+    vmScaleSetName,
+    instanceId
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

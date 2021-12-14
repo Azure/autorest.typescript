@@ -34,17 +34,14 @@ async function createOrUpdateDatabaseExtensions() {
     storageUri:
       "https://teststorage.blob.core.windows.net/testcontainer/Manifest.xml"
   };
-  await client.databaseExtensionsOperations
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      extensionName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.databaseExtensionsOperations.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    extensionName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

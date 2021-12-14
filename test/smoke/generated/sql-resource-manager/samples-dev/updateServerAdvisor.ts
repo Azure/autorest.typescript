@@ -23,11 +23,13 @@ async function updateServerAdvisor() {
   const serverName = "misosisvr";
   const advisorName = "CreateIndex";
   const parameters: Advisor = { autoExecuteStatus: "Disabled" };
-  await client.serverAdvisors
-    .update(resourceGroupName, serverName, advisorName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.serverAdvisors.update(
+    resourceGroupName,
+    serverName,
+    advisorName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

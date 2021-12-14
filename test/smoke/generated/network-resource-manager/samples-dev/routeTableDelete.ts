@@ -22,11 +22,12 @@ async function routeTableDelete() {
   const resourceGroupName = "rg1";
   const virtualHubName = "virtualHub1";
   const routingIntentName = "Intent1";
-  await client.routingIntentOperations
-    .beginDeleteAndWait(resourceGroupName, virtualHubName, routingIntentName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.routingIntentOperations.beginDeleteAndWait(
+    resourceGroupName,
+    virtualHubName,
+    routingIntentName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -22,11 +22,12 @@ async function virtualHubIPConfigurationDelete() {
   const resourceGroupName = "rg1";
   const virtualHubName = "hub1";
   const ipConfigName = "ipconfig1";
-  await client.virtualHubIpConfiguration
-    .beginDeleteAndWait(resourceGroupName, virtualHubName, ipConfigName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualHubIpConfiguration.beginDeleteAndWait(
+    resourceGroupName,
+    virtualHubName,
+    ipConfigName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

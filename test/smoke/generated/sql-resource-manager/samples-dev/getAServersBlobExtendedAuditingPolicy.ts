@@ -21,11 +21,11 @@ let client: SqlManagementClient;
 async function getAServerSBlobExtendedAuditingPolicy() {
   const resourceGroupName = "blobauditingtest-4799";
   const serverName = "blobauditingtest-6440";
-  await client.extendedServerBlobAuditingPolicies
-    .get(resourceGroupName, serverName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.extendedServerBlobAuditingPolicies.get(
+    resourceGroupName,
+    serverName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -22,11 +22,12 @@ async function getFirewallRule() {
   const resourceGroupName = "firewallrulecrudtest-12";
   const serverName = "firewallrulecrudtest-6285";
   const firewallRuleName = "firewallrulecrudtest-2304";
-  await client.firewallRules
-    .get(resourceGroupName, serverName, firewallRuleName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.firewallRules.get(
+    resourceGroupName,
+    serverName,
+    firewallRuleName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -22,11 +22,12 @@ async function storageAccountGetManagementPolicies() {
   const resourceGroupName = "res6977";
   const accountName = "sto2527";
   const managementPolicyName = "default";
-  await client.managementPolicies
-    .get(resourceGroupName, accountName, managementPolicyName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.managementPolicies.get(
+    resourceGroupName,
+    accountName,
+    managementPolicyName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

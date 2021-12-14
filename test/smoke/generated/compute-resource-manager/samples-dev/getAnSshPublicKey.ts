@@ -21,11 +21,11 @@ let client: ComputeManagementClient;
 async function getAnSshPublicKey() {
   const resourceGroupName = "myResourceGroup";
   const sshPublicKeyName = "mySshPublicKeyName";
-  await client.sshPublicKeys
-    .get(resourceGroupName, sshPublicKeyName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.sshPublicKeys.get(
+    resourceGroupName,
+    sshPublicKeyName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -29,11 +29,13 @@ async function createAFirewallRuleMaxOrMin() {
     endIpAddress: "0.0.0.3",
     startIpAddress: "0.0.0.3"
   };
-  await client.firewallRules
-    .createOrUpdate(resourceGroupName, serverName, firewallRuleName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.firewallRules.createOrUpdate(
+    resourceGroupName,
+    serverName,
+    firewallRuleName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

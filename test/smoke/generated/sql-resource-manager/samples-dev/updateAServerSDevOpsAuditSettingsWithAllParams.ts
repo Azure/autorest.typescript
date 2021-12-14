@@ -33,16 +33,13 @@ async function updateAServerSDevOpsAuditSettingsWithAllParams() {
     storageAccountSubscriptionId: "00000000-1234-0000-5678-000000000000",
     storageEndpoint: "https://mystorage.blob.core.windows.net"
   };
-  await client.serverDevOpsAuditSettings
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      serverName,
-      devOpsAuditingSettingsName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.serverDevOpsAuditSettings.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    serverName,
+    devOpsAuditingSettingsName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

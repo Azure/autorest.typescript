@@ -21,9 +21,8 @@ let client: NetworkManagementClient;
 async function getIPGroups() {
   const resourceGroupName = "myResourceGroup";
   const ipGroupsName = "ipGroups1";
-  await client.ipGroups.get(resourceGroupName, ipGroupsName).then((res) => {
-    console.log(res);
-  });
+  const result = await client.ipGroups.get(resourceGroupName, ipGroupsName);
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

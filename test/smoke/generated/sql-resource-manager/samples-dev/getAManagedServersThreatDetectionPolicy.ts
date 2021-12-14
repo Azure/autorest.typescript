@@ -22,11 +22,12 @@ async function getAManagedServerSThreatDetectionPolicy() {
   const resourceGroupName = "securityalert-4799";
   const managedInstanceName = "securityalert-6440";
   const securityAlertPolicyName = "Default";
-  await client.managedServerSecurityAlertPolicies
-    .get(resourceGroupName, managedInstanceName, securityAlertPolicyName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.managedServerSecurityAlertPolicies.get(
+    resourceGroupName,
+    managedInstanceName,
+    securityAlertPolicyName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -26,11 +26,13 @@ async function putShares() {
   const accountName = "sto328";
   const shareName = "share6185";
   const fileShare: FileShare = {};
-  await client.fileShares
-    .create(resourceGroupName, accountName, shareName, fileShare)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.fileShares.create(
+    resourceGroupName,
+    accountName,
+    shareName,
+    fileShare
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

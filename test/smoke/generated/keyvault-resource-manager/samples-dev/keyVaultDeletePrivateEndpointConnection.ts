@@ -22,15 +22,12 @@ async function keyVaultDeletePrivateEndpointConnection() {
   const resourceGroupName = "sample-group";
   const vaultName = "sample-vault";
   const privateEndpointConnectionName = "sample-pec";
-  await client.privateEndpointConnections
-    .beginDeleteAndWait(
-      resourceGroupName,
-      vaultName,
-      privateEndpointConnectionName
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.privateEndpointConnections.beginDeleteAndWait(
+    resourceGroupName,
+    vaultName,
+    privateEndpointConnectionName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

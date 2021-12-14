@@ -23,11 +23,13 @@ async function getAGallery() {
   const publicGalleryName = "publicGalleryName";
   const galleryImageName = "myGalleryImageName";
   const galleryImageVersionName = "myGalleryImageVersionName";
-  await client.communityGalleryImageVersions
-    .get(location, publicGalleryName, galleryImageName, galleryImageVersionName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.communityGalleryImageVersions.get(
+    location,
+    publicGalleryName,
+    galleryImageName,
+    galleryImageVersionName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

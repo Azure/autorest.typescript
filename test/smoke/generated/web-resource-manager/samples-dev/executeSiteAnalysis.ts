@@ -24,17 +24,14 @@ async function executeSiteAnalysis() {
   const diagnosticCategory = "availability";
   const analysisName = "apprestartanalyses";
   const slot = "Production";
-  await client.diagnostics
-    .executeSiteAnalysisSlot(
-      resourceGroupName,
-      siteName,
-      diagnosticCategory,
-      analysisName,
-      slot
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.diagnostics.executeSiteAnalysisSlot(
+    resourceGroupName,
+    siteName,
+    diagnosticCategory,
+    analysisName,
+    slot
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

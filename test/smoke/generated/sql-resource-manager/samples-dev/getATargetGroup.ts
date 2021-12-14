@@ -23,11 +23,13 @@ async function getATargetGroup() {
   const serverName = "server1";
   const jobAgentName = "agent1";
   const targetGroupName = "targetGroup1";
-  await client.jobTargetGroups
-    .get(resourceGroupName, serverName, jobAgentName, targetGroupName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.jobTargetGroups.get(
+    resourceGroupName,
+    serverName,
+    jobAgentName,
+    targetGroupName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

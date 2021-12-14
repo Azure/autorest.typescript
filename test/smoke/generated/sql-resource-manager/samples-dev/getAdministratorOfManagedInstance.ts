@@ -22,11 +22,12 @@ async function getAdministratorOfManagedInstance() {
   const resourceGroupName = "Default-SQL-SouthEastAsia";
   const managedInstanceName = "managedInstance";
   const administratorName = "ActiveDirectory";
-  await client.managedInstanceAdministrators
-    .get(resourceGroupName, managedInstanceName, administratorName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.managedInstanceAdministrators.get(
+    resourceGroupName,
+    managedInstanceName,
+    administratorName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

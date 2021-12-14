@@ -46,15 +46,12 @@ async function vpnSiteCreate() {
       }
     ]
   };
-  await client.vpnSites
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      vpnSiteName,
-      vpnSiteParameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.vpnSites.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    vpnSiteName,
+    vpnSiteParameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

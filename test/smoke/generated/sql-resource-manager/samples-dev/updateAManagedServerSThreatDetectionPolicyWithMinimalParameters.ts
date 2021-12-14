@@ -26,16 +26,13 @@ async function updateAManagedServerSThreatDetectionPolicyWithMinimalParameters()
   const managedInstanceName = "securityalert-6440";
   const securityAlertPolicyName = "Default";
   const parameters: ManagedServerSecurityAlertPolicy = { state: "Enabled" };
-  await client.managedServerSecurityAlertPolicies
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      managedInstanceName,
-      securityAlertPolicyName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.managedServerSecurityAlertPolicies.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    managedInstanceName,
+    securityAlertPolicyName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

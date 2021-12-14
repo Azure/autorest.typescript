@@ -31,16 +31,13 @@ async function createsANewManagedDatabaseFromRestoringAGeoReplicatedBackup() {
     recoverableDatabaseId:
       "/subscriptions/11111111-2222-3333-4444-555555555555/resourceGroups/Default-SQL-WestEurope/providers/Microsoft.Sql/managedInstances/testsvr/recoverableDatabases/testdb"
   };
-  await client.managedDatabases
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      managedInstanceName,
-      databaseName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.managedDatabases.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    managedInstanceName,
+    databaseName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

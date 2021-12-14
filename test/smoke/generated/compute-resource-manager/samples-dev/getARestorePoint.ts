@@ -22,11 +22,12 @@ async function getARestorePoint() {
   const resourceGroupName = "myResourceGroup";
   const restorePointCollectionName = "rpcName";
   const restorePointName = "rpName";
-  await client.restorePoints
-    .get(resourceGroupName, restorePointCollectionName, restorePointName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.restorePoints.get(
+    resourceGroupName,
+    restorePointCollectionName,
+    restorePointName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

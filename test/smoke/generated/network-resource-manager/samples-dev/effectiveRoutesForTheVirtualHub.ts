@@ -26,15 +26,12 @@ async function effectiveRoutesForTheVirtualHub() {
   const virtualHubName = "virtualHub1";
   const effectiveRoutesParameters: EffectiveRoutesParameters = {};
   const options = { effectiveRoutesParameters: effectiveRoutesParameters };
-  await client.virtualHubs
-    .beginGetEffectiveVirtualHubRoutesAndWait(
-      resourceGroupName,
-      virtualHubName,
-      options
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualHubs.beginGetEffectiveVirtualHubRoutesAndWait(
+    resourceGroupName,
+    virtualHubName,
+    options
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

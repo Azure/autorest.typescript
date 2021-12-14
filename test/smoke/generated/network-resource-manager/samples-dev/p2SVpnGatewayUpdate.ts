@@ -27,15 +27,12 @@ async function p2SVpnGatewayUpdate() {
   const p2SVpnGatewayParameters: TagsObject = {
     tags: { tag1: "value1", tag2: "value2" }
   };
-  await client.p2SVpnGateways
-    .beginUpdateTagsAndWait(
-      resourceGroupName,
-      gatewayName,
-      p2SVpnGatewayParameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.p2SVpnGateways.beginUpdateTagsAndWait(
+    resourceGroupName,
+    gatewayName,
+    p2SVpnGatewayParameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

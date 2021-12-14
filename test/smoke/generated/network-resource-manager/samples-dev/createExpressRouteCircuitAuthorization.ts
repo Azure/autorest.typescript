@@ -26,16 +26,13 @@ async function createExpressRouteCircuitAuthorization() {
   const circuitName = "circuitName";
   const authorizationName = "authorizatinName";
   const authorizationParameters: ExpressRouteCircuitAuthorization = {};
-  await client.expressRouteCircuitAuthorizations
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      circuitName,
-      authorizationName,
-      authorizationParameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.expressRouteCircuitAuthorizations.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    circuitName,
+    authorizationName,
+    authorizationParameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

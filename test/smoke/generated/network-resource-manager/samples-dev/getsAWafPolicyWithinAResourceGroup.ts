@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function getsAWafPolicyWithinAResourceGroup() {
   const resourceGroupName = "rg1";
   const policyName = "Policy1";
-  await client.webApplicationFirewallPolicies
-    .get(resourceGroupName, policyName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.webApplicationFirewallPolicies.get(
+    resourceGroupName,
+    policyName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

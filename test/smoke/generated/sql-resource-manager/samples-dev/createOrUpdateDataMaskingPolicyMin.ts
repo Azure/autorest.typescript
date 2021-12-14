@@ -26,11 +26,13 @@ async function createOrUpdateDataMaskingPolicyMin() {
   const serverName = "sqlcrudtest-2080";
   const databaseName = "sqlcrudtest-331";
   const parameters: DataMaskingPolicy = { dataMaskingState: "Enabled" };
-  await client.dataMaskingPolicies
-    .createOrUpdate(resourceGroupName, serverName, databaseName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.dataMaskingPolicies.createOrUpdate(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

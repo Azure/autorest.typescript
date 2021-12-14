@@ -22,15 +22,12 @@ async function getAppServiceCertificateOrderDetectorResponse() {
   const resourceGroupName = "Sample-WestUSResourceGroup";
   const certificateOrderName = "SampleCertificateOrderName";
   const detectorName = "AutoRenewStatus";
-  await client.certificateOrdersDiagnostics
-    .getAppServiceCertificateOrderDetectorResponse(
-      resourceGroupName,
-      certificateOrderName,
-      detectorName
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.certificateOrdersDiagnostics.getAppServiceCertificateOrderDetectorResponse(
+    resourceGroupName,
+    certificateOrderName,
+    detectorName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

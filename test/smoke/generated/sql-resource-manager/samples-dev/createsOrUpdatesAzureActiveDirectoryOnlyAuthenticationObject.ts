@@ -28,16 +28,13 @@ async function createsOrUpdatesAzureActiveDirectoryOnlyAuthenticationObject() {
   const parameters: ServerAzureADOnlyAuthentication = {
     azureADOnlyAuthentication: false
   };
-  await client.serverAzureADOnlyAuthentications
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      serverName,
-      authenticationName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.serverAzureADOnlyAuthentications.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    serverName,
+    authenticationName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

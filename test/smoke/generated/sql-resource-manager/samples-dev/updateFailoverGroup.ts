@@ -34,16 +34,13 @@ async function updateFailoverGroup() {
       failoverWithDataLossGracePeriodMinutes: 120
     }
   };
-  await client.failoverGroups
-    .beginUpdateAndWait(
-      resourceGroupName,
-      serverName,
-      failoverGroupName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.failoverGroups.beginUpdateAndWait(
+    resourceGroupName,
+    serverName,
+    failoverGroupName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

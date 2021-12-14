@@ -33,11 +33,12 @@ async function replaceFirewallRules() {
       }
     ]
   };
-  await client.firewallRules
-    .replace(resourceGroupName, serverName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.firewallRules.replace(
+    resourceGroupName,
+    serverName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

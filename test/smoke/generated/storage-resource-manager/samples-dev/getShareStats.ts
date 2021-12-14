@@ -24,11 +24,13 @@ async function getShareStats() {
   const shareName = "share1634";
   const expand = "stats";
   const options = { expand: expand };
-  await client.fileShares
-    .get(resourceGroupName, accountName, shareName, options)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.fileShares.get(
+    resourceGroupName,
+    accountName,
+    shareName,
+    options
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

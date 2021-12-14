@@ -22,11 +22,12 @@ async function getServerAdvisor() {
   const resourceGroupName = "workloadinsight-demos";
   const serverName = "misosisvr";
   const advisorName = "CreateIndex";
-  await client.serverAdvisors
-    .get(resourceGroupName, serverName, advisorName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.serverAdvisors.get(
+    resourceGroupName,
+    serverName,
+    advisorName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

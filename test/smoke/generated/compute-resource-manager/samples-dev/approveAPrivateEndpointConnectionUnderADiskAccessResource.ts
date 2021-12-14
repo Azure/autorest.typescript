@@ -31,16 +31,13 @@ async function approveAPrivateEndpointConnectionUnderADiskAccessResource() {
       status: "Approved"
     }
   };
-  await client.diskAccesses
-    .beginUpdateAPrivateEndpointConnectionAndWait(
-      resourceGroupName,
-      diskAccessName,
-      privateEndpointConnectionName,
-      privateEndpointConnection
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.diskAccesses.beginUpdateAPrivateEndpointConnectionAndWait(
+    resourceGroupName,
+    diskAccessName,
+    privateEndpointConnectionName,
+    privateEndpointConnection
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

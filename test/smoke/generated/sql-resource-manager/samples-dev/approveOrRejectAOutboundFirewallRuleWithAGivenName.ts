@@ -26,16 +26,13 @@ async function approveOrRejectAOutboundFirewallRuleWithAGivenName() {
   const serverName = "sqlcrudtest-4645";
   const outboundRuleFqdn = "server.database.windows.net";
   const parameters: OutboundFirewallRule = {};
-  await client.outboundFirewallRules
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      serverName,
-      outboundRuleFqdn,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.outboundFirewallRules.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    serverName,
+    outboundRuleFqdn,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

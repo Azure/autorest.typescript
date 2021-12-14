@@ -22,11 +22,12 @@ async function getsAServerConnectionPolicy() {
   const resourceGroupName = "rgtest-12";
   const serverName = "servertest-6285";
   const connectionPolicyName = "default";
-  await client.serverConnectionPolicies
-    .get(resourceGroupName, serverName, connectionPolicyName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.serverConnectionPolicies.get(
+    resourceGroupName,
+    serverName,
+    connectionPolicyName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

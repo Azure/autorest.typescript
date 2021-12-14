@@ -21,9 +21,8 @@ let client: ComputeManagementClient;
 async function getInformationAboutAVirtualMachineImage() {
   const resourceGroupName = "myResourceGroup";
   const imageName = "myImage";
-  await client.images.get(resourceGroupName, imageName).then((res) => {
-    console.log(res);
-  });
+  const result = await client.images.get(resourceGroupName, imageName);
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

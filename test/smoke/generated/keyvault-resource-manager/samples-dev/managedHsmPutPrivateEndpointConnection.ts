@@ -31,11 +31,13 @@ async function managedHsmPutPrivateEndpointConnection() {
       status: "Approved"
     }
   };
-  await client.mhsmPrivateEndpointConnections
-    .put(resourceGroupName, name, privateEndpointConnectionName, properties)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.mhsmPrivateEndpointConnections.put(
+    resourceGroupName,
+    name,
+    privateEndpointConnectionName,
+    properties
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -21,11 +21,11 @@ let client: ComputeManagementClient;
 async function getInformationAboutADiskEncryptionSet() {
   const resourceGroupName = "myResourceGroup";
   const diskEncryptionSetName = "myDiskEncryptionSet";
-  await client.diskEncryptionSets
-    .get(resourceGroupName, diskEncryptionSetName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.diskEncryptionSets.get(
+    resourceGroupName,
+    diskEncryptionSetName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

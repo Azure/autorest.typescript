@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function showNetworkInterfaceEffectiveRouteTables() {
   const resourceGroupName = "rg1";
   const networkInterfaceName = "nic1";
-  await client.networkInterfaces
-    .beginGetEffectiveRouteTableAndWait(resourceGroupName, networkInterfaceName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.networkInterfaces.beginGetEffectiveRouteTableAndWait(
+    resourceGroupName,
+    networkInterfaceName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

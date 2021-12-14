@@ -30,15 +30,12 @@ async function getAvailableProvidersList() {
     country: "United States",
     state: "washington"
   };
-  await client.networkWatchers
-    .beginListAvailableProvidersAndWait(
-      resourceGroupName,
-      networkWatcherName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.networkWatchers.beginListAvailableProvidersAndWait(
+    resourceGroupName,
+    networkWatcherName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -26,11 +26,10 @@ async function storageAccountCheckNameAvailability() {
     name: "sto3363",
     type: "Microsoft.Storage/storageAccounts"
   };
-  await client.storageAccounts
-    .checkNameAvailability(accountName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.storageAccounts.checkNameAvailability(
+    accountName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -21,9 +21,8 @@ let client: SqlManagementClient;
 async function getManagedInstanceTimeZone() {
   const locationName = "canadaeast";
   const timeZoneId = "Haiti Standard Time";
-  await client.timeZones.get(locationName, timeZoneId).then((res) => {
-    console.log(res);
-  });
+  const result = await client.timeZones.get(locationName, timeZoneId);
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

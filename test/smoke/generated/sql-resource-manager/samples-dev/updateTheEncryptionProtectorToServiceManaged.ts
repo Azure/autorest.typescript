@@ -29,16 +29,13 @@ async function updateTheEncryptionProtectorToServiceManaged() {
     serverKeyName: "ServiceManaged",
     serverKeyType: "ServiceManaged"
   };
-  await client.managedInstanceEncryptionProtectors
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      managedInstanceName,
-      encryptionProtectorName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.managedInstanceEncryptionProtectors.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    managedInstanceName,
+    encryptionProtectorName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

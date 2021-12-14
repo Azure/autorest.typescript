@@ -22,11 +22,12 @@ async function deleteAJobAgent() {
   const resourceGroupName = "group1";
   const serverName = "server1";
   const jobAgentName = "agent1";
-  await client.jobAgents
-    .beginDeleteAndWait(resourceGroupName, serverName, jobAgentName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.jobAgents.beginDeleteAndWait(
+    resourceGroupName,
+    serverName,
+    jobAgentName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

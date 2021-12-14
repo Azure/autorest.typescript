@@ -21,9 +21,8 @@ let client: WebSiteManagementClient;
 async function renewAnExistingDomain() {
   const resourceGroupName = "RG";
   const domainName = "example.com";
-  await client.domains.renew(resourceGroupName, domainName).then((res) => {
-    console.log(res);
-  });
+  const result = await client.domains.renew(resourceGroupName, domainName);
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

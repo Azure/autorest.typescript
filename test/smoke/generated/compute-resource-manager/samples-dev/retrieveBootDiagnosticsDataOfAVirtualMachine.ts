@@ -26,16 +26,13 @@ async function retrieveBootDiagnosticsDataOfAVirtualMachine() {
   const options = {
     sasUriExpirationTimeInMinutes: sasUriExpirationTimeInMinutes
   };
-  await client.virtualMachineScaleSetVMs
-    .retrieveBootDiagnosticsData(
-      resourceGroupName,
-      vmScaleSetName,
-      instanceId,
-      options
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualMachineScaleSetVMs.retrieveBootDiagnosticsData(
+    resourceGroupName,
+    vmScaleSetName,
+    instanceId,
+    options
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

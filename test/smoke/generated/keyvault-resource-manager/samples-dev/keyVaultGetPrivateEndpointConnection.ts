@@ -22,11 +22,12 @@ async function keyVaultGetPrivateEndpointConnection() {
   const resourceGroupName = "sample-group";
   const vaultName = "sample-vault";
   const privateEndpointConnectionName = "sample-pec";
-  await client.privateEndpointConnections
-    .get(resourceGroupName, vaultName, privateEndpointConnectionName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.privateEndpointConnections.get(
+    resourceGroupName,
+    vaultName,
+    privateEndpointConnectionName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

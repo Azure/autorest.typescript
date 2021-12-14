@@ -36,16 +36,13 @@ async function approveOrRejectPrivateEndPointConnectionForAPrivateLinkService() 
       status: "Approved"
     }
   };
-  await client.privateLinkServices
-    .updatePrivateEndpointConnection(
-      resourceGroupName,
-      serviceName,
-      peConnectionName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.privateLinkServices.updatePrivateEndpointConnection(
+    resourceGroupName,
+    serviceName,
+    peConnectionName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

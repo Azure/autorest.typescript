@@ -21,11 +21,11 @@ let client: ComputeManagementClient;
 async function generalizeAVirtualMachine() {
   const resourceGroupName = "myResourceGroup";
   const vmName = "myVMName";
-  await client.virtualMachines
-    .generalize(resourceGroupName, vmName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualMachines.generalize(
+    resourceGroupName,
+    vmName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -24,17 +24,14 @@ async function executeSiteSlotDetector() {
   const detectorName = "sitecrashes";
   const diagnosticCategory = "availability";
   const slot = "staging";
-  await client.diagnostics
-    .executeSiteDetectorSlot(
-      resourceGroupName,
-      siteName,
-      detectorName,
-      diagnosticCategory,
-      slot
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.diagnostics.executeSiteDetectorSlot(
+    resourceGroupName,
+    siteName,
+    detectorName,
+    diagnosticCategory,
+    slot
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

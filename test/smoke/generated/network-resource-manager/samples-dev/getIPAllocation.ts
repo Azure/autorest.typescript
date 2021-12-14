@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function getIPAllocation() {
   const resourceGroupName = "rg1";
   const ipAllocationName = "test-ipallocation";
-  await client.ipAllocations
-    .get(resourceGroupName, ipAllocationName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.ipAllocations.get(
+    resourceGroupName,
+    ipAllocationName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

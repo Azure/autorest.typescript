@@ -34,11 +34,12 @@ async function createASnapshotByImportingAnUnmanagedBlobFromADifferentSubscripti
     },
     location: "West US"
   };
-  await client.snapshots
-    .beginCreateOrUpdateAndWait(resourceGroupName, snapshotName, snapshot)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.snapshots.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    snapshotName,
+    snapshot
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

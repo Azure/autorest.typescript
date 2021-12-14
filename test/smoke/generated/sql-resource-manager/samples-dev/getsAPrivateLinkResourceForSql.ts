@@ -22,11 +22,12 @@ async function getsAPrivateLinkResourceForSql() {
   const resourceGroupName = "Default";
   const serverName = "test-svr";
   const groupName = "plr";
-  await client.privateLinkResources
-    .get(resourceGroupName, serverName, groupName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.privateLinkResources.get(
+    resourceGroupName,
+    serverName,
+    groupName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

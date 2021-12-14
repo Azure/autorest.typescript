@@ -27,11 +27,12 @@ async function querySignatureOverrides() {
   const parameters: SignatureOverridesFilterValuesQuery = {
     filterName: "severity"
   };
-  await client.firewallPolicyIdpsSignaturesFilterValues
-    .list(resourceGroupName, firewallPolicyName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.firewallPolicyIdpsSignaturesFilterValues.list(
+    resourceGroupName,
+    firewallPolicyName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function routeFilterDelete() {
   const resourceGroupName = "rg1";
   const routeFilterName = "filterName";
-  await client.routeFilters
-    .beginDeleteAndWait(resourceGroupName, routeFilterName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.routeFilters.beginDeleteAndWait(
+    resourceGroupName,
+    routeFilterName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

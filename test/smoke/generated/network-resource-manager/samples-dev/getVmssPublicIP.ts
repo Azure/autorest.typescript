@@ -25,18 +25,15 @@ async function getVmssPublicIP() {
   const networkInterfaceName = "nic1";
   const ipConfigurationName = "ip1";
   const publicIpAddressName = "pub1";
-  await client.publicIPAddresses
-    .getVirtualMachineScaleSetPublicIPAddress(
-      resourceGroupName,
-      virtualMachineScaleSetName,
-      virtualmachineIndex,
-      networkInterfaceName,
-      ipConfigurationName,
-      publicIpAddressName
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.publicIPAddresses.getVirtualMachineScaleSetPublicIPAddress(
+    resourceGroupName,
+    virtualMachineScaleSetName,
+    virtualmachineIndex,
+    networkInterfaceName,
+    ipConfigurationName,
+    publicIpAddressName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

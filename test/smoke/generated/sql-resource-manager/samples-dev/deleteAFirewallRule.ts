@@ -22,11 +22,12 @@ async function deleteAFirewallRule() {
   const resourceGroupName = "firewallrulecrudtest-9886";
   const serverName = "firewallrulecrudtest-2368";
   const firewallRuleName = "firewallrulecrudtest-7011";
-  await client.firewallRules
-    .delete(resourceGroupName, serverName, firewallRuleName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.firewallRules.delete(
+    resourceGroupName,
+    serverName,
+    firewallRuleName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

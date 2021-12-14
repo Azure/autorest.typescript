@@ -25,11 +25,12 @@ async function createNetworkWatcher() {
   const resourceGroupName = "rg1";
   const networkWatcherName = "nw1";
   const parameters: NetworkWatcher = { location: "eastus" };
-  await client.networkWatchers
-    .createOrUpdate(resourceGroupName, networkWatcherName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.networkWatchers.createOrUpdate(
+    resourceGroupName,
+    networkWatcherName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

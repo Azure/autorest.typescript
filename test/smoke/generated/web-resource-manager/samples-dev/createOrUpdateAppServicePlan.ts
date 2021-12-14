@@ -29,11 +29,12 @@ async function createOrUpdateAppServicePlan() {
     location: "East US",
     sku: { name: "P1", capacity: 1, family: "P", size: "P1", tier: "Premium" }
   };
-  await client.appServicePlans
-    .beginCreateOrUpdateAndWait(resourceGroupName, name, appServicePlan)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.appServicePlans.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    name,
+    appServicePlan
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

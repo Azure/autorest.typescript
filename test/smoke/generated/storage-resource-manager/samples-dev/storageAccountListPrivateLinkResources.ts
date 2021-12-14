@@ -21,11 +21,11 @@ let client: StorageManagementClient;
 async function storageAccountListPrivateLinkResources() {
   const resourceGroupName = "res6977";
   const accountName = "sto2527";
-  await client.privateLinkResources
-    .listByStorageAccount(resourceGroupName, accountName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.privateLinkResources.listByStorageAccount(
+    resourceGroupName,
+    accountName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

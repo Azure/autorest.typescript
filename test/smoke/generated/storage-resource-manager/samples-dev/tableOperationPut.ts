@@ -22,11 +22,12 @@ async function tableOperationPut() {
   const resourceGroupName = "res3376";
   const accountName = "sto328";
   const tableName = "table6185";
-  await client.tableOperations
-    .create(resourceGroupName, accountName, tableName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.tableOperations.create(
+    resourceGroupName,
+    accountName,
+    tableName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

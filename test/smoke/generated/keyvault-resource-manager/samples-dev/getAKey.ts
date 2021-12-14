@@ -22,9 +22,8 @@ async function getAKey() {
   const resourceGroupName = "sample-group";
   const vaultName = "sample-vault-name";
   const keyName = "sample-key-name";
-  await client.keys.get(resourceGroupName, vaultName, keyName).then((res) => {
-    console.log(res);
-  });
+  const result = await client.keys.get(resourceGroupName, vaultName, keyName);
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

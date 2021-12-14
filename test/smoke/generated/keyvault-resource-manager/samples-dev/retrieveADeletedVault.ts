@@ -21,9 +21,8 @@ let client: KeyVaultManagementClient;
 async function retrieveADeletedVault() {
   const vaultName = "sample-vault";
   const location = "westus";
-  await client.vaults.getDeleted(vaultName, location).then((res) => {
-    console.log(res);
-  });
+  const result = await client.vaults.getDeleted(vaultName, location);
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

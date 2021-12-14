@@ -40,15 +40,12 @@ async function createNetworkSecurityGroupWithRule() {
       }
     ]
   };
-  await client.networkSecurityGroups
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      networkSecurityGroupName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.networkSecurityGroups.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    networkSecurityGroupName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

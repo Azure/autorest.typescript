@@ -21,11 +21,11 @@ let client: SqlManagementClient;
 async function getAnInstancePool() {
   const resourceGroupName = "group1";
   const instancePoolName = "testIP";
-  await client.instancePools
-    .get(resourceGroupName, instancePoolName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.instancePools.get(
+    resourceGroupName,
+    instancePoolName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -25,18 +25,15 @@ async function getTheSpecifiedVersionOfAJobStep() {
   const jobName = "job1";
   const jobVersion = 1;
   const stepName = "step1";
-  await client.jobSteps
-    .getByVersion(
-      resourceGroupName,
-      serverName,
-      jobAgentName,
-      jobName,
-      jobVersion,
-      stepName
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.jobSteps.getByVersion(
+    resourceGroupName,
+    serverName,
+    jobAgentName,
+    jobName,
+    jobVersion,
+    stepName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -26,16 +26,13 @@ async function updateConnectionMonitorTags() {
   const networkWatcherName = "nw1";
   const connectionMonitorName = "cm1";
   const parameters: TagsObject = { tags: { tag1: "value1", tag2: "value2" } };
-  await client.connectionMonitors
-    .updateTags(
-      resourceGroupName,
-      networkWatcherName,
-      connectionMonitorName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.connectionMonitors.updateTags(
+    resourceGroupName,
+    networkWatcherName,
+    connectionMonitorName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -33,17 +33,14 @@ async function updateVirtualMachineScaleSetVMExtension() {
     settings: { UserName: "xyz@microsoft.com" },
     typeHandlerVersion: "1.2"
   };
-  await client.virtualMachineScaleSetVMExtensions
-    .beginUpdateAndWait(
-      resourceGroupName,
-      vmScaleSetName,
-      instanceId,
-      vmExtensionName,
-      extensionParameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualMachineScaleSetVMExtensions.beginUpdateAndWait(
+    resourceGroupName,
+    vmScaleSetName,
+    instanceId,
+    vmExtensionName,
+    extensionParameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -29,17 +29,14 @@ async function updateTheShortTermRetentionPolicyForTheRestorableDroppedDatabase(
   const parameters: ManagedBackupShortTermRetentionPolicy = {
     retentionDays: 14
   };
-  await client.managedRestorableDroppedDatabaseBackupShortTermRetentionPolicies
-    .beginUpdateAndWait(
-      resourceGroupName,
-      managedInstanceName,
-      restorableDroppedDatabaseId,
-      policyName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.managedRestorableDroppedDatabaseBackupShortTermRetentionPolicies.beginUpdateAndWait(
+    resourceGroupName,
+    managedInstanceName,
+    restorableDroppedDatabaseId,
+    policyName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

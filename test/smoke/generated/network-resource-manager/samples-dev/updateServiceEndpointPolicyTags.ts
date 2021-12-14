@@ -25,11 +25,12 @@ async function updateServiceEndpointPolicyTags() {
   const resourceGroupName = "rg1";
   const serviceEndpointPolicyName = "testServiceEndpointPolicy";
   const parameters: TagsObject = { tags: { tag1: "value1", tag2: "value2" } };
-  await client.serviceEndpointPolicies
-    .updateTags(resourceGroupName, serviceEndpointPolicyName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.serviceEndpointPolicies.updateTags(
+    resourceGroupName,
+    serviceEndpointPolicyName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

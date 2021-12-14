@@ -50,15 +50,12 @@ async function createNetworkVirtualAppliance() {
         "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualHubs/hub1"
     }
   };
-  await client.networkVirtualAppliances
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      networkVirtualApplianceName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.networkVirtualAppliances.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    networkVirtualApplianceName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

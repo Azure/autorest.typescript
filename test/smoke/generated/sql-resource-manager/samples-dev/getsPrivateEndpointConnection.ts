@@ -22,11 +22,12 @@ async function getsPrivateEndpointConnection() {
   const resourceGroupName = "Default";
   const serverName = "test-svr";
   const privateEndpointConnectionName = "private-endpoint-connection-name";
-  await client.privateEndpointConnections
-    .get(resourceGroupName, serverName, privateEndpointConnectionName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.privateEndpointConnections.get(
+    resourceGroupName,
+    serverName,
+    privateEndpointConnectionName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

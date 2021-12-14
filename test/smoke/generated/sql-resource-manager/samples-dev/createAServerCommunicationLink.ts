@@ -28,16 +28,13 @@ async function createAServerCommunicationLink() {
   const parameters: ServerCommunicationLink = {
     partnerServer: "sqldcrudtest-test"
   };
-  await client.serverCommunicationLinks
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      serverName,
-      communicationLinkName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.serverCommunicationLinks.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    serverName,
+    communicationLinkName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -29,17 +29,14 @@ async function enablesLedgerDigestUploadConfigurationForADatabase() {
   const parameters: LedgerDigestUploads = {
     digestStorageEndpoint: "https://MyAccount.blob.core.windows.net"
   };
-  await client.ledgerDigestUploadsOperations
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      ledgerDigestUploads,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.ledgerDigestUploadsOperations.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    ledgerDigestUploads,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

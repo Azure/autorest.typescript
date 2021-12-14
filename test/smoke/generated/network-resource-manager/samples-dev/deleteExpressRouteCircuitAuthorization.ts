@@ -22,11 +22,12 @@ async function deleteExpressRouteCircuitAuthorization() {
   const resourceGroupName = "rg1";
   const circuitName = "circuitName";
   const authorizationName = "authorizationName";
-  await client.expressRouteCircuitAuthorizations
-    .beginDeleteAndWait(resourceGroupName, circuitName, authorizationName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.expressRouteCircuitAuthorizations.beginDeleteAndWait(
+    resourceGroupName,
+    circuitName,
+    authorizationName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

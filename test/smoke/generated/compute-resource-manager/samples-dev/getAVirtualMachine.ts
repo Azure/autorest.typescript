@@ -21,9 +21,8 @@ let client: ComputeManagementClient;
 async function getAVirtualMachine() {
   const resourceGroupName = "myResourceGroup";
   const vmName = "myVM";
-  await client.virtualMachines.get(resourceGroupName, vmName).then((res) => {
-    console.log(res);
-  });
+  const result = await client.virtualMachines.get(resourceGroupName, vmName);
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

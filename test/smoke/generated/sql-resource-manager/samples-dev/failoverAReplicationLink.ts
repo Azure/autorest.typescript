@@ -23,16 +23,13 @@ async function failoverAReplicationLink() {
   const serverName = "sqlcrudtest-2137";
   const databaseName = "testdb";
   const linkId = "f0550bf5-07ce-4270-8e4b-71737975973a";
-  await client.replicationLinks
-    .beginFailoverAllowDataLossAndWait(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      linkId
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.replicationLinks.beginFailoverAllowDataLossAndWait(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    linkId
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -32,11 +32,13 @@ async function updateRecommendedSensitivityLabelsOfAGivenDatabaseUsingAnOperatio
       { schema: "dbo", column: "column3", op: "disable", table: "table1" }
     ]
   };
-  await client.recommendedSensitivityLabels
-    .update(resourceGroupName, serverName, databaseName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.recommendedSensitivityLabels.update(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

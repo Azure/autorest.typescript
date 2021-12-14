@@ -22,11 +22,12 @@ async function getTheEncryptionProtector() {
   const resourceGroupName = "sqlcrudtest-7398";
   const managedInstanceName = "sqlcrudtest-4645";
   const encryptionProtectorName = "current";
-  await client.managedInstanceEncryptionProtectors
-    .get(resourceGroupName, managedInstanceName, encryptionProtectorName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.managedInstanceEncryptionProtectors.get(
+    resourceGroupName,
+    managedInstanceName,
+    encryptionProtectorName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

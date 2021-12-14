@@ -27,11 +27,12 @@ async function generateExpressRoutePortLoa() {
   const request: GenerateExpressRoutePortsLOARequest = {
     customerName: "customerName"
   };
-  await client.expressRoutePorts
-    .generateLOA(resourceGroupName, expressRoutePortName, request)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.expressRoutePorts.generateLOA(
+    resourceGroupName,
+    expressRoutePortName,
+    request
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

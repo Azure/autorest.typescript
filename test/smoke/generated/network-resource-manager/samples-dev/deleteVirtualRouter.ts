@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function deleteVirtualRouter() {
   const resourceGroupName = "rg1";
   const virtualRouterName = "virtualRouter";
-  await client.virtualRouters
-    .beginDeleteAndWait(resourceGroupName, virtualRouterName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualRouters.beginDeleteAndWait(
+    resourceGroupName,
+    virtualRouterName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -29,17 +29,14 @@ async function updateVirtualMachineScaleSetVMRunCommand() {
   const runCommand: VirtualMachineRunCommandUpdate = {
     source: { script: "Write-Host Script Source Updated!" }
   };
-  await client.virtualMachineScaleSetVMRunCommands
-    .beginUpdateAndWait(
-      resourceGroupName,
-      vmScaleSetName,
-      instanceId,
-      runCommandName,
-      runCommand
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualMachineScaleSetVMRunCommands.beginUpdateAndWait(
+    resourceGroupName,
+    vmScaleSetName,
+    instanceId,
+    runCommandName,
+    runCommand
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

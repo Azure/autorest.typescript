@@ -22,11 +22,12 @@ async function getAnElasticPool() {
   const resourceGroupName = "sqlcrudtest-2369";
   const serverName = "sqlcrudtest-8069";
   const elasticPoolName = "sqlcrudtest-8102";
-  await client.elasticPools
-    .get(resourceGroupName, serverName, elasticPoolName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.elasticPools.get(
+    resourceGroupName,
+    serverName,
+    elasticPoolName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

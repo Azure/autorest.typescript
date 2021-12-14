@@ -21,9 +21,8 @@ let client: ComputeManagementClient;
 async function getInformationAboutASnapshot() {
   const resourceGroupName = "myResourceGroup";
   const snapshotName = "mySnapshot";
-  await client.snapshots.get(resourceGroupName, snapshotName).then((res) => {
-    console.log(res);
-  });
+  const result = await client.snapshots.get(resourceGroupName, snapshotName);
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

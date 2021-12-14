@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function getNetworkVirtualAppliance() {
   const resourceGroupName = "rg1";
   const networkVirtualApplianceName = "nva";
-  await client.networkVirtualAppliances
-    .get(resourceGroupName, networkVirtualApplianceName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.networkVirtualAppliances.get(
+    resourceGroupName,
+    networkVirtualApplianceName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

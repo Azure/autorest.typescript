@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function resetVpnGateway() {
   const resourceGroupName = "rg1";
   const gatewayName = "vpngw";
-  await client.vpnGateways
-    .beginResetAndWait(resourceGroupName, gatewayName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.vpnGateways.beginResetAndWait(
+    resourceGroupName,
+    gatewayName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

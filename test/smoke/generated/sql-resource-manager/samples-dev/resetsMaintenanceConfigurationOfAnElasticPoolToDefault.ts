@@ -29,16 +29,13 @@ async function resetsMaintenanceConfigurationOfAnElasticPoolToDefault() {
     maintenanceConfigurationId:
       "/subscriptions/00000000-1111-2222-3333-444444444444/providers/Microsoft.Maintenance/publicMaintenanceConfigurations/SQL_Default"
   };
-  await client.elasticPools
-    .beginUpdateAndWait(
-      resourceGroupName,
-      serverName,
-      elasticPoolName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.elasticPools.beginUpdateAndWait(
+    resourceGroupName,
+    serverName,
+    elasticPoolName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -19,9 +19,8 @@ import { DefaultAzureCredential } from "@azure/identity";
 let client: NetworkManagementClient;
 //applicationGateways.listAvailableRequestHeaders
 async function getAvailableRequestHeaders() {
-  await client.applicationGateways.listAvailableRequestHeaders().then((res) => {
-    console.log(res);
-  });
+  const result = await client.applicationGateways.listAvailableRequestHeaders();
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

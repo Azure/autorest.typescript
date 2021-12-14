@@ -28,16 +28,13 @@ async function updateFtpAllowed() {
   const csmPublishingAccessPoliciesEntity: CsmPublishingCredentialsPoliciesEntity = {
     allow: true
   };
-  await client.webApps
-    .updateFtpAllowedSlot(
-      resourceGroupName,
-      name,
-      slot,
-      csmPublishingAccessPoliciesEntity
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.webApps.updateFtpAllowedSlot(
+    resourceGroupName,
+    name,
+    slot,
+    csmPublishingAccessPoliciesEntity
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

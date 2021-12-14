@@ -28,16 +28,13 @@ async function queryInboundNatRulePortMapping() {
   const parameters: QueryInboundNatRulePortMappingRequest = {
     ipAddress: "10.0.0.4"
   };
-  await client.loadBalancers
-    .beginListInboundNatRulePortMappingsAndWait(
-      groupName,
-      loadBalancerName,
-      backendPoolName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.loadBalancers.beginListInboundNatRulePortMappingsAndWait(
+    groupName,
+    loadBalancerName,
+    backendPoolName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

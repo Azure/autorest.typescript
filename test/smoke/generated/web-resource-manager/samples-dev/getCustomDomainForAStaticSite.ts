@@ -22,11 +22,12 @@ async function getCustomDomainForAStaticSite() {
   const resourceGroupName = "rg";
   const name = "testStaticSite0";
   const domainName = "custom.domain.net";
-  await client.staticSites
-    .getStaticSiteCustomDomain(resourceGroupName, name, domainName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.staticSites.getStaticSiteCustomDomain(
+    resourceGroupName,
+    name,
+    domainName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

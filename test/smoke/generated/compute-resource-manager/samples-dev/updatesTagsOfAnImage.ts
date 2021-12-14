@@ -32,11 +32,12 @@ async function updatesTagsOfAnImage() {
     },
     tags: { department: "HR" }
   };
-  await client.images
-    .beginUpdateAndWait(resourceGroupName, imageName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.images.beginUpdateAndWait(
+    resourceGroupName,
+    imageName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

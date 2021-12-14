@@ -22,15 +22,12 @@ async function queryPacketCaptureStatus() {
   const resourceGroupName = "rg1";
   const networkWatcherName = "nw1";
   const packetCaptureName = "pc1";
-  await client.packetCaptures
-    .beginGetStatusAndWait(
-      resourceGroupName,
-      networkWatcherName,
-      packetCaptureName
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.packetCaptures.beginGetStatusAndWait(
+    resourceGroupName,
+    networkWatcherName,
+    packetCaptureName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

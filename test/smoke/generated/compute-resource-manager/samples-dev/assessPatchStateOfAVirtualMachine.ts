@@ -21,11 +21,11 @@ let client: ComputeManagementClient;
 async function assessPatchStateOfAVirtualMachine() {
   const resourceGroupName = "myResourceGroupName";
   const vmName = "myVMName";
-  await client.virtualMachines
-    .beginAssessPatchesAndWait(resourceGroupName, vmName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualMachines.beginAssessPatchesAndWait(
+    resourceGroupName,
+    vmName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

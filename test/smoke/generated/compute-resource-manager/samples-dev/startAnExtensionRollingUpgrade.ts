@@ -21,11 +21,11 @@ let client: ComputeManagementClient;
 async function startAnExtensionRollingUpgrade() {
   const resourceGroupName = "myResourceGroup";
   const vmScaleSetName = "{vmss-name}";
-  await client.virtualMachineScaleSetRollingUpgrades
-    .beginStartExtensionUpgradeAndWait(resourceGroupName, vmScaleSetName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualMachineScaleSetRollingUpgrades.beginStartExtensionUpgradeAndWait(
+    resourceGroupName,
+    vmScaleSetName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -31,17 +31,14 @@ async function createAWorkloadGroupWithTheRequiredPropertiesSpecified() {
     minResourcePercent: 0,
     minResourcePercentPerRequest: 3
   };
-  await client.workloadGroups
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      workloadGroupName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.workloadGroups.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    workloadGroupName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

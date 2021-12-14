@@ -28,11 +28,13 @@ async function storageAccountPutEncryptionScopeWithInfrastructureEncryption() {
   const encryptionScope: EncryptionScope = {
     requireInfrastructureEncryption: true
   };
-  await client.encryptionScopes
-    .put(resourceGroupName, accountName, encryptionScopeName, encryptionScope)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.encryptionScopes.put(
+    resourceGroupName,
+    accountName,
+    encryptionScopeName,
+    encryptionScope
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

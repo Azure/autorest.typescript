@@ -25,11 +25,12 @@ async function uploadATdeCertificate() {
   const resourceGroupName = "testtdecert";
   const serverName = "testtdecert";
   const parameters: TdeCertificate = { privateBlob: "MIIXXXXXXXX" };
-  await client.tdeCertificates
-    .beginCreateAndWait(resourceGroupName, serverName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.tdeCertificates.beginCreateAndWait(
+    resourceGroupName,
+    serverName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

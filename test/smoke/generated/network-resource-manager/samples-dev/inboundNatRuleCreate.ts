@@ -37,16 +37,13 @@ async function inboundNatRuleCreate() {
     idleTimeoutInMinutes: 4,
     protocol: "Tcp"
   };
-  await client.inboundNatRules
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      loadBalancerName,
-      inboundNatRuleName,
-      inboundNatRuleParameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.inboundNatRules.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    loadBalancerName,
+    inboundNatRuleName,
+    inboundNatRuleParameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

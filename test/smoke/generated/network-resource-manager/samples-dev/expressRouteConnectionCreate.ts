@@ -36,16 +36,13 @@ async function expressRouteConnectionCreate() {
       "/subscriptions/subid/resourceGroups/resourceGroupName/providers/Microsoft.Network/expressRouteGateways/gateway-2/expressRouteConnections/connectionName",
     routingWeight: 2
   };
-  await client.expressRouteConnections
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      expressRouteGatewayName,
-      connectionName,
-      putExpressRouteConnectionParameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.expressRouteConnections.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    expressRouteGatewayName,
+    connectionName,
+    putExpressRouteConnectionParameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

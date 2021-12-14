@@ -84,16 +84,13 @@ async function storageAccountSetBlobInventoryPolicy() {
       ]
     }
   };
-  await client.blobInventoryPolicies
-    .createOrUpdate(
-      resourceGroupName,
-      accountName,
-      blobInventoryPolicyName,
-      properties
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.blobInventoryPolicies.createOrUpdate(
+    resourceGroupName,
+    accountName,
+    blobInventoryPolicyName,
+    properties
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

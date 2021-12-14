@@ -22,11 +22,12 @@ async function loadBalancerOutboundRuleGet() {
   const resourceGroupName = "testrg";
   const loadBalancerName = "lb1";
   const outboundRuleName = "rule1";
-  await client.loadBalancerOutboundRules
-    .get(resourceGroupName, loadBalancerName, outboundRuleName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.loadBalancerOutboundRules.get(
+    resourceGroupName,
+    loadBalancerName,
+    outboundRuleName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

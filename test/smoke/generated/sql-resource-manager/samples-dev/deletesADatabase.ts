@@ -22,11 +22,12 @@ async function deletesADatabase() {
   const resourceGroupName = "Default-SQL-SouthEastAsia";
   const serverName = "testsvr";
   const databaseName = "testdb";
-  await client.databases
-    .beginDeleteAndWait(resourceGroupName, serverName, databaseName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.databases.beginDeleteAndWait(
+    resourceGroupName,
+    serverName,
+    databaseName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -21,11 +21,11 @@ let client: SqlManagementClient;
 async function getAServerSAutomaticTuningSettings() {
   const resourceGroupName = "default-sql-onebox";
   const serverName = "testsvr11";
-  await client.serverAutomaticTuningOperations
-    .get(resourceGroupName, serverName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.serverAutomaticTuningOperations.get(
+    resourceGroupName,
+    serverName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

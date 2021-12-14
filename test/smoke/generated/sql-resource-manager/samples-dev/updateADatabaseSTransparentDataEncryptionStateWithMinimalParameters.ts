@@ -29,17 +29,14 @@ async function updateADatabaseSTransparentDataEncryptionStateWithMinimalParamete
   const parameters: LogicalDatabaseTransparentDataEncryption = {
     state: "Enabled"
   };
-  await client.transparentDataEncryptions
-    .createOrUpdate(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      tdeName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.transparentDataEncryptions.createOrUpdate(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    tdeName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

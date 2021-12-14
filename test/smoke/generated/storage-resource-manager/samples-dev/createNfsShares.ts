@@ -26,11 +26,13 @@ async function createNfsShares() {
   const accountName = "sto666";
   const shareName = "share1235";
   const fileShare: FileShare = { enabledProtocols: "NFS" };
-  await client.fileShares
-    .create(resourceGroupName, accountName, shareName, fileShare)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.fileShares.create(
+    resourceGroupName,
+    accountName,
+    shareName,
+    fileShare
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

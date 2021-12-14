@@ -29,15 +29,12 @@ async function getVpnDeviceConfigurationScript() {
     firmwareVersion: "IOS 15.1 (Preview)",
     vendor: "Cisco"
   };
-  await client.virtualNetworkGateways
-    .vpnDeviceConfigurationScript(
-      resourceGroupName,
-      virtualNetworkGatewayConnectionName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualNetworkGateways.vpnDeviceConfigurationScript(
+    resourceGroupName,
+    virtualNetworkGatewayConnectionName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

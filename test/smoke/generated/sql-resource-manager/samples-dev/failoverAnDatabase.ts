@@ -24,11 +24,13 @@ async function failoverAnDatabase() {
   const databaseName = "testDatabase";
   const replicaType = "Primary";
   const options = { replicaType: replicaType };
-  await client.databases
-    .beginFailoverAndWait(resourceGroupName, serverName, databaseName, options)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.databases.beginFailoverAndWait(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    options
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

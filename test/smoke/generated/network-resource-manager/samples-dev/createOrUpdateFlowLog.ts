@@ -34,16 +34,13 @@ async function createOrUpdateFlowLog() {
     targetResourceId:
       "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/networkSecurityGroups/desmondcentral-nsg"
   };
-  await client.flowLogs
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      networkWatcherName,
-      flowLogName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.flowLogs.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    networkWatcherName,
+    flowLogName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -21,11 +21,11 @@ let client: ComputeManagementClient;
 async function deleteAGallery() {
   const resourceGroupName = "myResourceGroup";
   const galleryName = "myGalleryName";
-  await client.galleries
-    .beginDeleteAndWait(resourceGroupName, galleryName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.galleries.beginDeleteAndWait(
+    resourceGroupName,
+    galleryName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

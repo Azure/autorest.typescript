@@ -33,18 +33,15 @@ async function registerAUserProvidedFunctionAppWithAStaticSiteBuild() {
       "/subscription/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/functionRG/providers/Microsoft.Web/sites/testFunctionApp"
   };
   const options = { isForced: isForced };
-  await client.staticSites
-    .beginRegisterUserProvidedFunctionAppWithStaticSiteBuildAndWait(
-      resourceGroupName,
-      name,
-      environmentName,
-      functionAppName,
-      staticSiteUserProvidedFunctionEnvelope,
-      options
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.staticSites.beginRegisterUserProvidedFunctionAppWithStaticSiteBuildAndWait(
+    resourceGroupName,
+    name,
+    environmentName,
+    functionAppName,
+    staticSiteUserProvidedFunctionEnvelope,
+    options
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

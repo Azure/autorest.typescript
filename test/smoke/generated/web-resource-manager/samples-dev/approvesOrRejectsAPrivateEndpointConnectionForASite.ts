@@ -33,17 +33,14 @@ async function approvesOrRejectsAPrivateEndpointConnectionForASite() {
       status: "Approved"
     }
   };
-  await client.webApps
-    .beginApproveOrRejectPrivateEndpointConnectionSlotAndWait(
-      resourceGroupName,
-      name,
-      privateEndpointConnectionName,
-      slot,
-      privateEndpointWrapper
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.webApps.beginApproveOrRejectPrivateEndpointConnectionSlotAndWait(
+    resourceGroupName,
+    name,
+    privateEndpointConnectionName,
+    slot,
+    privateEndpointWrapper
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

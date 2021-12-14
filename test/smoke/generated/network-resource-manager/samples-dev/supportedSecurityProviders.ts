@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function supportedSecurityProviders() {
   const resourceGroupName = "rg1";
   const virtualWANName = "wan1";
-  await client
-    .supportedSecurityProviders(resourceGroupName, virtualWANName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.supportedSecurityProviders(
+    resourceGroupName,
+    virtualWANName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

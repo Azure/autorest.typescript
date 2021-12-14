@@ -25,18 +25,15 @@ async function getManagedDatabaseColumn() {
   const schemaName = "dbo";
   const tableName = "table1";
   const columnName = "column1";
-  await client.managedDatabaseColumns
-    .get(
-      resourceGroupName,
-      managedInstanceName,
-      databaseName,
-      schemaName,
-      tableName,
-      columnName
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.managedDatabaseColumns.get(
+    resourceGroupName,
+    managedInstanceName,
+    databaseName,
+    schemaName,
+    tableName,
+    columnName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

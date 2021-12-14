@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function deleteSecurityPartnerProvider() {
   const resourceGroupName = "rg1";
   const securityPartnerProviderName = "securityPartnerProvider";
-  await client.securityPartnerProviders
-    .beginDeleteAndWait(resourceGroupName, securityPartnerProviderName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.securityPartnerProviders.beginDeleteAndWait(
+    resourceGroupName,
+    securityPartnerProviderName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

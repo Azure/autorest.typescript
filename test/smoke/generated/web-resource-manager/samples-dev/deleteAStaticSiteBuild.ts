@@ -22,11 +22,12 @@ async function deleteAStaticSiteBuild() {
   const resourceGroupName = "rg";
   const name = "testStaticSite0";
   const environmentName = "12";
-  await client.staticSites
-    .beginDeleteStaticSiteBuildAndWait(resourceGroupName, name, environmentName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.staticSites.beginDeleteStaticSiteBuildAndWait(
+    resourceGroupName,
+    name,
+    environmentName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

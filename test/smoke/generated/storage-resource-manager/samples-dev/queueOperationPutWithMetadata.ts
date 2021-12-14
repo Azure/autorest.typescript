@@ -28,11 +28,13 @@ async function queueOperationPutWithMetadata() {
   const queue: StorageQueue = {
     metadata: { sample1: "meta1", sample2: "meta2" }
   };
-  await client.queue
-    .create(resourceGroupName, accountName, queueName, queue)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.queue.create(
+    resourceGroupName,
+    accountName,
+    queueName,
+    queue
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

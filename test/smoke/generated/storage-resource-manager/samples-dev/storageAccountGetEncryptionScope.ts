@@ -22,11 +22,12 @@ async function storageAccountGetEncryptionScope() {
   const resourceGroupName = "resource-group-name";
   const accountName = "{storage-account-name}";
   const encryptionScopeName = "{encryption-scope-name}";
-  await client.encryptionScopes
-    .get(resourceGroupName, accountName, encryptionScopeName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.encryptionScopes.get(
+    resourceGroupName,
+    accountName,
+    encryptionScopeName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

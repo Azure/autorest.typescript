@@ -33,11 +33,12 @@ async function createIPAllocation() {
     location: "centraluseuap",
     prefix: "3.2.5.0/24"
   };
-  await client.ipAllocations
-    .beginCreateOrUpdateAndWait(resourceGroupName, ipAllocationName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.ipAllocations.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    ipAllocationName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -22,11 +22,12 @@ async function deleteVirtualRouterPeering() {
   const resourceGroupName = "rg1";
   const virtualRouterName = "virtualRouter";
   const peeringName = "peering1";
-  await client.virtualRouterPeerings
-    .beginDeleteAndWait(resourceGroupName, virtualRouterName, peeringName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualRouterPeerings.beginDeleteAndWait(
+    resourceGroupName,
+    virtualRouterName,
+    peeringName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

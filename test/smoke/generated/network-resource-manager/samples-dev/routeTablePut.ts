@@ -41,16 +41,13 @@ async function routeTablePut() {
       }
     ]
   };
-  await client.routingIntentOperations
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      virtualHubName,
-      routingIntentName,
-      routingIntentParameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.routingIntentOperations.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    virtualHubName,
+    routingIntentName,
+    routingIntentParameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

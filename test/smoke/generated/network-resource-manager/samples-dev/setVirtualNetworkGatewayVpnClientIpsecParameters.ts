@@ -34,15 +34,12 @@ async function setVirtualNetworkGatewayVpnClientIpsecParameters() {
     saDataSizeKilobytes: 429497,
     saLifeTimeSeconds: 86473
   };
-  await client.virtualNetworkGateways
-    .beginSetVpnclientIpsecParametersAndWait(
-      resourceGroupName,
-      virtualNetworkGatewayName,
-      vpnclientIpsecParams
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualNetworkGateways.beginSetVpnclientIpsecParametersAndWait(
+    resourceGroupName,
+    virtualNetworkGatewayName,
+    vpnclientIpsecParams
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

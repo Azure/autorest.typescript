@@ -23,11 +23,12 @@ async function forceDeleteAVM() {
   const vmName = "myVM";
   const forceDeletion = true;
   const options = { forceDeletion: forceDeletion };
-  await client.virtualMachines
-    .beginDeleteAndWait(resourceGroupName, vmName, options)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualMachines.beginDeleteAndWait(
+    resourceGroupName,
+    vmName,
+    options
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

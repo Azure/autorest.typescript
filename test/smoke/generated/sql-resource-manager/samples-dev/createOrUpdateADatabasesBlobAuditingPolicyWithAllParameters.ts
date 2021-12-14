@@ -41,11 +41,13 @@ async function createOrUpdateADatabaseSBlobAuditingPolicyWithAllParameters() {
     storageAccountSubscriptionId: "00000000-1234-0000-5678-000000000000",
     storageEndpoint: "https://mystorage.blob.core.windows.net"
   };
-  await client.databaseBlobAuditingPolicies
-    .createOrUpdate(resourceGroupName, serverName, databaseName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.databaseBlobAuditingPolicies.createOrUpdate(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

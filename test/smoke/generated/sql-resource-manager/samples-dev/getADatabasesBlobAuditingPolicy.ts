@@ -22,11 +22,12 @@ async function getADatabaseSBlobAuditingPolicy() {
   const resourceGroupName = "blobauditingtest-6852";
   const serverName = "blobauditingtest-2080";
   const databaseName = "testdb";
-  await client.databaseBlobAuditingPolicies
-    .get(resourceGroupName, serverName, databaseName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.databaseBlobAuditingPolicies.get(
+    resourceGroupName,
+    serverName,
+    databaseName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -30,15 +30,12 @@ async function virtualWanCreate() {
     location: "West US",
     tags: { key1: "value1" }
   };
-  await client.virtualWans
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      virtualWANName,
-      WANParameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualWans.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    virtualWANName,
+    WANParameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -22,11 +22,12 @@ async function routeFilterRuleGet() {
   const resourceGroupName = "rg1";
   const routeFilterName = "filterName";
   const ruleName = "filterName";
-  await client.routeFilterRules
-    .get(resourceGroupName, routeFilterName, ruleName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.routeFilterRules.get(
+    resourceGroupName,
+    routeFilterName,
+    ruleName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

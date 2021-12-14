@@ -33,11 +33,13 @@ async function acquireALeaseOnAShare() {
     proposedLeaseId: undefined
   };
   const options = { parameters: parameters };
-  await client.fileShares
-    .lease(resourceGroupName, accountName, shareName, options)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.fileShares.lease(
+    resourceGroupName,
+    accountName,
+    shareName,
+    options
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

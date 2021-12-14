@@ -28,15 +28,12 @@ async function checkPrivateLinkServiceVisibility() {
     privateLinkServiceAlias:
       "mypls.00000000-0000-0000-0000-000000000000.azure.privatelinkservice"
   };
-  await client.privateLinkServices
-    .beginCheckPrivateLinkServiceVisibilityByResourceGroupAndWait(
-      location,
-      resourceGroupName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.privateLinkServices.beginCheckPrivateLinkServiceVisibilityByResourceGroupAndWait(
+    location,
+    resourceGroupName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

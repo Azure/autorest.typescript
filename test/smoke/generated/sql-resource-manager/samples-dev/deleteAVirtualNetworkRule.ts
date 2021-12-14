@@ -22,11 +22,12 @@ async function deleteAVirtualNetworkRule() {
   const resourceGroupName = "Default";
   const serverName = "vnet-test-svr";
   const virtualNetworkRuleName = "vnet-firewall-rule";
-  await client.virtualNetworkRules
-    .beginDeleteAndWait(resourceGroupName, serverName, virtualNetworkRuleName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualNetworkRules.beginDeleteAndWait(
+    resourceGroupName,
+    serverName,
+    virtualNetworkRuleName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

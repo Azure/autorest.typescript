@@ -22,11 +22,12 @@ async function expressRouteConnectionGet() {
   const resourceGroupName = "resourceGroupName";
   const expressRouteGatewayName = "expressRouteGatewayName";
   const connectionName = "connectionName";
-  await client.expressRouteConnections
-    .get(resourceGroupName, expressRouteGatewayName, connectionName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.expressRouteConnections.get(
+    resourceGroupName,
+    expressRouteGatewayName,
+    connectionName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

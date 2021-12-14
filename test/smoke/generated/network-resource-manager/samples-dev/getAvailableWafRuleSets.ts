@@ -19,9 +19,8 @@ import { DefaultAzureCredential } from "@azure/identity";
 let client: NetworkManagementClient;
 //applicationGateways.listAvailableWafRuleSets
 async function getAvailableWafRuleSets() {
-  await client.applicationGateways.listAvailableWafRuleSets().then((res) => {
-    console.log(res);
-  });
+  const result = await client.applicationGateways.listAvailableWafRuleSets();
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

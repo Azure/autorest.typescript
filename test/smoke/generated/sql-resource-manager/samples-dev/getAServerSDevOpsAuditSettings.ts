@@ -22,11 +22,12 @@ async function getAServerSDevOpsAuditSettings() {
   const resourceGroupName = "devAuditTestRG";
   const serverName = "devOpsAuditTestSvr";
   const devOpsAuditingSettingsName = "default";
-  await client.serverDevOpsAuditSettings
-    .get(resourceGroupName, serverName, devOpsAuditingSettingsName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.serverDevOpsAuditSettings.get(
+    resourceGroupName,
+    serverName,
+    devOpsAuditingSettingsName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

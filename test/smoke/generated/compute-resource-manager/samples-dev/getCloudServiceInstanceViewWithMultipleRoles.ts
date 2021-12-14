@@ -21,11 +21,11 @@ let client: ComputeManagementClient;
 async function getCloudServiceInstanceViewWithMultipleRoles() {
   const resourceGroupName = "ConstosoRG";
   const cloudServiceName = "{cs-name}";
-  await client.cloudServices
-    .getInstanceView(resourceGroupName, cloudServiceName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.cloudServices.getInstanceView(
+    resourceGroupName,
+    cloudServiceName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

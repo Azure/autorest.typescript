@@ -25,11 +25,12 @@ async function updateLocalNetworkGatewayTags() {
   const resourceGroupName = "rg1";
   const localNetworkGatewayName = "lgw";
   const parameters: TagsObject = { tags: { tag1: "value1", tag2: "value2" } };
-  await client.localNetworkGateways
-    .updateTags(resourceGroupName, localNetworkGatewayName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.localNetworkGateways.updateTags(
+    resourceGroupName,
+    localNetworkGatewayName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

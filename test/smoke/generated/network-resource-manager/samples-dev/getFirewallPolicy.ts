@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function getFirewallPolicy() {
   const resourceGroupName = "rg1";
   const firewallPolicyName = "firewallPolicy";
-  await client.firewallPolicies
-    .get(resourceGroupName, firewallPolicyName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.firewallPolicies.get(
+    resourceGroupName,
+    firewallPolicyName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

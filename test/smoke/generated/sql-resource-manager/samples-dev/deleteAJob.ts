@@ -23,11 +23,13 @@ async function deleteAJob() {
   const serverName = "server1";
   const jobAgentName = "agent1";
   const jobName = "job1";
-  await client.jobs
-    .delete(resourceGroupName, serverName, jobAgentName, jobName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.jobs.delete(
+    resourceGroupName,
+    serverName,
+    jobAgentName,
+    jobName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -28,11 +28,12 @@ async function restartCloudServiceRoleInstances() {
     roleInstances: ["ContosoFrontend_IN_0", "ContosoBackend_IN_1"]
   };
   const options = { parameters: parameters };
-  await client.cloudServices
-    .beginRestartAndWait(resourceGroupName, cloudServiceName, options)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.cloudServices.beginRestartAndWait(
+    resourceGroupName,
+    cloudServiceName,
+    options
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

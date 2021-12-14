@@ -31,11 +31,12 @@ async function putSignatureOverrides() {
       "/subscriptions/e747cc13-97d4-4a79-b463-42d7f4e558f2/resourceGroups/rg1/providers/Microsoft.Network/firewallPolicies/firewallPolicy/signatureOverrides/default",
     properties: { signatures: { "2000105": "Off", "2000106": "Deny" } }
   };
-  await client.firewallPolicyIdpsSignaturesOverrides
-    .put(resourceGroupName, firewallPolicyName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.firewallPolicyIdpsSignaturesOverrides.put(
+    resourceGroupName,
+    firewallPolicyName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

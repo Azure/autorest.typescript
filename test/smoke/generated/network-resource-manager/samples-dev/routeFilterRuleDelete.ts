@@ -22,11 +22,12 @@ async function routeFilterRuleDelete() {
   const resourceGroupName = "rg1";
   const routeFilterName = "filterName";
   const ruleName = "ruleName";
-  await client.routeFilterRules
-    .beginDeleteAndWait(resourceGroupName, routeFilterName, ruleName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.routeFilterRules.beginDeleteAndWait(
+    resourceGroupName,
+    routeFilterName,
+    ruleName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

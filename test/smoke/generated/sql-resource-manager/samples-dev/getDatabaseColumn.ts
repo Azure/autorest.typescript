@@ -25,18 +25,15 @@ async function getDatabaseColumn() {
   const schemaName = "dbo";
   const tableName = "table1";
   const columnName = "column1";
-  await client.databaseColumns
-    .get(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      schemaName,
-      tableName,
-      columnName
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.databaseColumns.get(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    schemaName,
+    tableName,
+    columnName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

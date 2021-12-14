@@ -29,16 +29,13 @@ async function createSubnetWithServiceEndpoints() {
     addressPrefix: "10.0.0.0/16",
     serviceEndpoints: [{ service: "Microsoft.Storage" }]
   };
-  await client.subnets
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      virtualNetworkName,
-      subnetName,
-      subnetParameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.subnets.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    virtualNetworkName,
+    subnetName,
+    subnetParameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

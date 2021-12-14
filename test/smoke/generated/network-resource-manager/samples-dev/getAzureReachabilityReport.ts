@@ -31,15 +31,12 @@ async function getAzureReachabilityReport() {
     providers: ["Frontier Communications of America, Inc. - ASN 5650"],
     startTime: new Date("2017-09-07T00:00:00Z")
   };
-  await client.networkWatchers
-    .beginGetAzureReachabilityReportAndWait(
-      resourceGroupName,
-      networkWatcherName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.networkWatchers.beginGetAzureReachabilityReportAndWait(
+    resourceGroupName,
+    networkWatcherName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

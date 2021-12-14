@@ -26,16 +26,13 @@ async function createOrUpdateElasticPoolWithMinimumParameters() {
   const serverName = "sqlcrudtest-8069";
   const elasticPoolName = "sqlcrudtest-8102";
   const parameters: ElasticPool = { location: "Japan East" };
-  await client.elasticPools
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      serverName,
-      elasticPoolName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.elasticPools.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    serverName,
+    elasticPoolName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

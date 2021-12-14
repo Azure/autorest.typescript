@@ -35,19 +35,16 @@ async function updatesOrCreatesASensitivityLabelOfAGivenColumnWithAllParametersI
     labelName: "PII",
     rank: "High"
   };
-  await client.managedDatabaseSensitivityLabels
-    .createOrUpdate(
-      resourceGroupName,
-      managedInstanceName,
-      databaseName,
-      schemaName,
-      tableName,
-      columnName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.managedDatabaseSensitivityLabels.createOrUpdate(
+    resourceGroupName,
+    managedInstanceName,
+    databaseName,
+    schemaName,
+    tableName,
+    columnName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

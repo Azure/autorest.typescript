@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function startPacketCaptureOnVpnGatewayWithoutFilter() {
   const resourceGroupName = "rg1";
   const gatewayName = "vpngw";
-  await client.vpnGateways
-    .beginStartPacketCaptureAndWait(resourceGroupName, gatewayName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.vpnGateways.beginStartPacketCaptureAndWait(
+    resourceGroupName,
+    gatewayName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

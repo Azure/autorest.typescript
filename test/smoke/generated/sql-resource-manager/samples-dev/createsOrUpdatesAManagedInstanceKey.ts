@@ -30,16 +30,13 @@ async function createsOrUpdatesAManagedInstanceKey() {
     uri:
       "https://someVault.vault.azure.net/keys/someKey/01234567890123456789012345678901"
   };
-  await client.managedInstanceKeys
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      managedInstanceName,
-      keyName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.managedInstanceKeys.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    managedInstanceName,
+    keyName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

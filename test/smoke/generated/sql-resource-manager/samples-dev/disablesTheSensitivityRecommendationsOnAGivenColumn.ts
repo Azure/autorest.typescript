@@ -25,18 +25,15 @@ async function disablesTheSensitivityRecommendationsOnAGivenColumn() {
   const schemaName = "dbo";
   const tableName = "myTable";
   const columnName = "myColumn";
-  await client.managedDatabaseSensitivityLabels
-    .disableRecommendation(
-      resourceGroupName,
-      managedInstanceName,
-      databaseName,
-      schemaName,
-      tableName,
-      columnName
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.managedDatabaseSensitivityLabels.disableRecommendation(
+    resourceGroupName,
+    managedInstanceName,
+    databaseName,
+    schemaName,
+    tableName,
+    columnName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

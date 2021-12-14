@@ -29,15 +29,12 @@ async function generateVirtualWanVpnServerConfigurationVpnProfile() {
     vpnServerConfigurationResourceId:
       "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/vpnServerConfigurations/vpnconfig1"
   };
-  await client
-    .beginGeneratevirtualwanvpnserverconfigurationvpnprofileAndWait(
-      resourceGroupName,
-      virtualWANName,
-      vpnClientParams
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.beginGeneratevirtualwanvpnserverconfigurationvpnprofileAndWait(
+    resourceGroupName,
+    virtualWANName,
+    vpnClientParams
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

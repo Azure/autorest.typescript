@@ -21,11 +21,11 @@ let client: KeyVaultManagementClient;
 async function purgeAManagedHsmPool() {
   const name = "hsm1";
   const location = "westus";
-  await client.managedHsms
-    .beginPurgeDeletedAndWait(name, location)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.managedHsms.beginPurgeDeletedAndWait(
+    name,
+    location
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

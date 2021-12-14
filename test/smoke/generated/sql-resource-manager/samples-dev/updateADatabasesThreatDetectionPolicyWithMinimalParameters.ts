@@ -27,17 +27,14 @@ async function updateADatabaseSThreatDetectionPolicyWithMinimalParameters() {
   const databaseName = "testdb";
   const securityAlertPolicyName = "Default";
   const parameters: ManagedDatabaseSecurityAlertPolicy = { state: "Enabled" };
-  await client.managedDatabaseSecurityAlertPolicies
-    .createOrUpdate(
-      resourceGroupName,
-      managedInstanceName,
-      databaseName,
-      securityAlertPolicyName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.managedDatabaseSecurityAlertPolicies.createOrUpdate(
+    resourceGroupName,
+    managedInstanceName,
+    databaseName,
+    securityAlertPolicyName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -22,11 +22,12 @@ async function getADedicatedHost() {
   const resourceGroupName = "myResourceGroup";
   const hostGroupName = "myDedicatedHostGroup";
   const hostName = "myHost";
-  await client.dedicatedHosts
-    .get(resourceGroupName, hostGroupName, hostName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.dedicatedHosts.get(
+    resourceGroupName,
+    hostGroupName,
+    hostName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -24,11 +24,14 @@ async function getAVersionOfAJob() {
   const jobAgentName = "agent1";
   const jobName = "job1";
   const jobVersion = 1;
-  await client.jobVersions
-    .get(resourceGroupName, serverName, jobAgentName, jobName, jobVersion)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.jobVersions.get(
+    resourceGroupName,
+    serverName,
+    jobAgentName,
+    jobName,
+    jobVersion
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

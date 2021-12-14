@@ -20,9 +20,8 @@ let client: WebSiteManagementClient;
 //topLevelDomains.get
 async function getTopLevelDomain() {
   const name = "com";
-  await client.topLevelDomains.get(name).then((res) => {
-    console.log(res);
-  });
+  const result = await client.topLevelDomains.get(name);
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -34,16 +34,13 @@ async function createNetworkVirtualApplianceInboundSecurityRules() {
       }
     ]
   };
-  await client.inboundSecurityRuleOperations
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      networkVirtualApplianceName,
-      ruleCollectionName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.inboundSecurityRuleOperations.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    networkVirtualApplianceName,
+    ruleCollectionName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -21,9 +21,8 @@ let client: WebSiteManagementClient;
 async function getAppServicePlan() {
   const resourceGroupName = "testrg123";
   const name = "testsf6141";
-  await client.appServicePlans.get(resourceGroupName, name).then((res) => {
-    console.log(res);
-  });
+  const result = await client.appServicePlans.get(resourceGroupName, name);
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

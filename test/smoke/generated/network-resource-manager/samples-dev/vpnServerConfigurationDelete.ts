@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function vpnServerConfigurationDelete() {
   const resourceGroupName = "rg1";
   const vpnServerConfigurationName = "vpnServerConfiguration1";
-  await client.vpnServerConfigurations
-    .beginDeleteAndWait(resourceGroupName, vpnServerConfigurationName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.vpnServerConfigurations.beginDeleteAndWait(
+    resourceGroupName,
+    vpnServerConfigurationName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

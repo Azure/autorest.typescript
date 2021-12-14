@@ -21,14 +21,11 @@ let client: NetworkManagementClient;
 async function getVirtualNetworkGatewayVpnProfilePackageUrl() {
   const resourceGroupName = "rg1";
   const virtualNetworkGatewayName = "vpngw";
-  await client.virtualNetworkGateways
-    .beginGetVpnProfilePackageUrlAndWait(
-      resourceGroupName,
-      virtualNetworkGatewayName
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualNetworkGateways.beginGetVpnProfilePackageUrlAndWait(
+    resourceGroupName,
+    virtualNetworkGatewayName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

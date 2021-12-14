@@ -26,19 +26,16 @@ async function getAJobStepTargetExecution() {
   const jobExecutionId = "5555-6666-7777-8888-999999999999";
   const stepName = "step1";
   const targetId = "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee";
-  await client.jobTargetExecutions
-    .get(
-      resourceGroupName,
-      serverName,
-      jobAgentName,
-      jobName,
-      jobExecutionId,
-      stepName,
-      targetId
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.jobTargetExecutions.get(
+    resourceGroupName,
+    serverName,
+    jobAgentName,
+    jobName,
+    jobExecutionId,
+    stepName,
+    targetId
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

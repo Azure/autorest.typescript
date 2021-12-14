@@ -21,11 +21,11 @@ let client: StorageManagementClient;
 async function storageAccountDelete() {
   const resourceGroupName = "res4228";
   const accountName = "sto2434";
-  await client.storageAccounts
-    .delete(resourceGroupName, accountName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.storageAccounts.delete(
+    resourceGroupName,
+    accountName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -22,15 +22,12 @@ async function checkIPAddressAvailability() {
   const resourceGroupName = "rg1";
   const virtualNetworkName = "test-vnet";
   const ipAddress = "10.0.1.4";
-  await client.virtualNetworks
-    .checkIPAddressAvailability(
-      resourceGroupName,
-      virtualNetworkName,
-      ipAddress
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualNetworks.checkIPAddressAvailability(
+    resourceGroupName,
+    virtualNetworkName,
+    ipAddress
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

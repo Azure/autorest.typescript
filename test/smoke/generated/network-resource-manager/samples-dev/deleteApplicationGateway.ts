@@ -21,11 +21,11 @@ let client: NetworkManagementClient;
 async function deleteApplicationGateway() {
   const resourceGroupName = "rg1";
   const applicationGatewayName = "appgw";
-  await client.applicationGateways
-    .beginDeleteAndWait(resourceGroupName, applicationGatewayName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.applicationGateways.beginDeleteAndWait(
+    resourceGroupName,
+    applicationGatewayName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

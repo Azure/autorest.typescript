@@ -21,9 +21,8 @@ let client: SqlManagementClient;
 async function getServer() {
   const resourceGroupName = "sqlcrudtest-7398";
   const serverName = "sqlcrudtest-4645";
-  await client.servers.get(resourceGroupName, serverName).then((res) => {
-    console.log(res);
-  });
+  const result = await client.servers.get(resourceGroupName, serverName);
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

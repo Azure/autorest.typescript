@@ -22,11 +22,12 @@ async function vpnConnectionDelete() {
   const resourceGroupName = "rg1";
   const gatewayName = "gateway1";
   const connectionName = "vpnConnection1";
-  await client.vpnConnections
-    .beginDeleteAndWait(resourceGroupName, gatewayName, connectionName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.vpnConnections.beginDeleteAndWait(
+    resourceGroupName,
+    gatewayName,
+    connectionName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

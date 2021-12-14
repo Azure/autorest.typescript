@@ -40,16 +40,13 @@ async function createPacketCapture() {
     timeLimitInSeconds: 100,
     totalBytesPerSession: 100000
   };
-  await client.packetCaptures
-    .beginCreateAndWait(
-      resourceGroupName,
-      networkWatcherName,
-      packetCaptureName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.packetCaptures.beginCreateAndWait(
+    resourceGroupName,
+    networkWatcherName,
+    packetCaptureName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -21,11 +21,11 @@ let client: ManagedServiceIdentityClient;
 async function identityGet() {
   const resourceGroupName = "rgName";
   const resourceName = "resourceName";
-  await client.userAssignedIdentities
-    .get(resourceGroupName, resourceName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.userAssignedIdentities.get(
+    resourceGroupName,
+    resourceName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

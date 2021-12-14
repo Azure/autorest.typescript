@@ -27,11 +27,12 @@ async function updateAnExistingManagedHsmPool() {
   const parameters: ManagedHsm = {
     tags: { dept: "hsm", environment: "dogfood", slice: "A" }
   };
-  await client.managedHsms
-    .beginUpdateAndWait(resourceGroupName, name, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.managedHsms.beginUpdateAndWait(
+    resourceGroupName,
+    name,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

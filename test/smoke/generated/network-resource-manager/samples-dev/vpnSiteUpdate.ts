@@ -27,11 +27,12 @@ async function vpnSiteUpdate() {
   const vpnSiteParameters: TagsObject = {
     tags: { key1: "value1", key2: "value2" }
   };
-  await client.vpnSites
-    .updateTags(resourceGroupName, vpnSiteName, vpnSiteParameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.vpnSites.updateTags(
+    resourceGroupName,
+    vpnSiteName,
+    vpnSiteParameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

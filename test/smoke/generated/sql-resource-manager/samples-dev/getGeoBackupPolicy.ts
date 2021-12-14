@@ -23,11 +23,13 @@ async function getGeoBackupPolicy() {
   const serverName = "sqlcrudtest-5961";
   const databaseName = "testdw";
   const geoBackupPolicyName = "Default";
-  await client.geoBackupPolicies
-    .get(resourceGroupName, serverName, databaseName, geoBackupPolicyName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.geoBackupPolicies.get(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    geoBackupPolicyName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

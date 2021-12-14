@@ -30,11 +30,13 @@ async function resetsMaintenanceWindowOfADatabaseToDefault() {
       "/subscriptions/00000000-1111-2222-3333-444444444444/providers/Microsoft.Maintenance/publicMaintenanceConfigurations/SQL_Default",
     sku: { name: "BC_Gen5_4" }
   };
-  await client.databases
-    .beginUpdateAndWait(resourceGroupName, serverName, databaseName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.databases.beginUpdateAndWait(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

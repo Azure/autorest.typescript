@@ -27,11 +27,12 @@ async function storageAccountRegenerateKerbKey() {
   const regenerateKey: StorageAccountRegenerateKeyParameters = {
     keyName: "kerb1"
   };
-  await client.storageAccounts
-    .regenerateKey(resourceGroupName, accountName, regenerateKey)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.storageAccounts.regenerateKey(
+    resourceGroupName,
+    accountName,
+    regenerateKey
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

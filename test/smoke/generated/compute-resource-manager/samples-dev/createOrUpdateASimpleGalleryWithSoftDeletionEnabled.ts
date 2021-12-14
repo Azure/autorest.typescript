@@ -29,11 +29,12 @@ async function createOrUpdateASimpleGalleryWithSoftDeletionEnabled() {
     location: "West US",
     softDeletePolicy: { isSoftDeleteEnabled: true }
   };
-  await client.galleries
-    .beginCreateOrUpdateAndWait(resourceGroupName, galleryName, gallery)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.galleries.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    galleryName,
+    gallery
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

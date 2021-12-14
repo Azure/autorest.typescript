@@ -74,15 +74,12 @@ async function vpnServerConfigurationCreate() {
     ],
     vpnProtocols: ["IkeV2"]
   };
-  await client.vpnServerConfigurations
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      vpnServerConfigurationName,
-      vpnServerConfigurationParameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.vpnServerConfigurations.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    vpnServerConfigurationName,
+    vpnServerConfigurationParameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

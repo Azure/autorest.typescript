@@ -29,16 +29,13 @@ async function acquireServerDnsAlias() {
     oldServerDnsAliasId:
       "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Default/providers/Microsoft.Sql/servers/dns-alias-old-server/dnsAliases/dns-alias-name-1"
   };
-  await client.serverDnsAliases
-    .beginAcquireAndWait(
-      resourceGroupName,
-      serverName,
-      dnsAliasName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.serverDnsAliases.beginAcquireAndWait(
+    resourceGroupName,
+    serverName,
+    dnsAliasName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

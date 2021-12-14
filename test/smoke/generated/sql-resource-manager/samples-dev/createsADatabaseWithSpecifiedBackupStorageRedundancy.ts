@@ -29,16 +29,13 @@ async function createsADatabaseWithSpecifiedBackupStorageRedundancy() {
     location: "southeastasia",
     requestedBackupStorageRedundancy: "Zone"
   };
-  await client.databases
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.databases.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

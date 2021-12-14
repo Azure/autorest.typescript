@@ -25,11 +25,12 @@ async function updateNetworkVirtualAppliance() {
   const resourceGroupName = "rg1";
   const networkVirtualApplianceName = "nva";
   const parameters: TagsObject = { tags: { key1: "value1", key2: "value2" } };
-  await client.networkVirtualAppliances
-    .updateTags(resourceGroupName, networkVirtualApplianceName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.networkVirtualAppliances.updateTags(
+    resourceGroupName,
+    networkVirtualApplianceName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

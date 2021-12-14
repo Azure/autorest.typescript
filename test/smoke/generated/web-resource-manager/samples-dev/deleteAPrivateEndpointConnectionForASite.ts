@@ -23,16 +23,13 @@ async function deleteAPrivateEndpointConnectionForASite() {
   const name = "testSite";
   const privateEndpointConnectionName = "connection";
   const slot = "stage";
-  await client.webApps
-    .beginDeletePrivateEndpointConnectionSlotAndWait(
-      resourceGroupName,
-      name,
-      privateEndpointConnectionName,
-      slot
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.webApps.beginDeletePrivateEndpointConnectionSlotAndWait(
+    resourceGroupName,
+    name,
+    privateEndpointConnectionName,
+    slot
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -34,15 +34,12 @@ async function virtualHubPut() {
         "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualWans/virtualWan1"
     }
   };
-  await client.virtualHubs
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      virtualHubName,
-      virtualHubParameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualHubs.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    virtualHubName,
+    virtualHubParameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -22,11 +22,12 @@ async function getDataMaskingPolicy() {
   const resourceGroupName = "sqlcrudtest-6852";
   const serverName = "sqlcrudtest-2080";
   const databaseName = "sqlcrudtest-331";
-  await client.dataMaskingPolicies
-    .get(resourceGroupName, serverName, databaseName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.dataMaskingPolicies.get(
+    resourceGroupName,
+    serverName,
+    databaseName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

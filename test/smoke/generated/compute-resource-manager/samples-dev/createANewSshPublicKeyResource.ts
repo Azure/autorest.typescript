@@ -28,11 +28,12 @@ async function createANewSshPublicKeyResource() {
     location: "westus",
     publicKey: "{ssh-rsa public key}"
   };
-  await client.sshPublicKeys
-    .create(resourceGroupName, sshPublicKeyName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.sshPublicKeys.create(
+    resourceGroupName,
+    sshPublicKeyName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -45,16 +45,13 @@ async function updateLoadBalancerBackendPoolWithBackendAddressesContainingVirtua
       }
     ]
   };
-  await client.loadBalancerBackendAddressPools
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      loadBalancerName,
-      backendAddressPoolName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.loadBalancerBackendAddressPools.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    loadBalancerName,
+    backendAddressPoolName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

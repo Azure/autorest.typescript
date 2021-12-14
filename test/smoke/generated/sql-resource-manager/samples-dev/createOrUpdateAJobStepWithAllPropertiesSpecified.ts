@@ -50,18 +50,15 @@ async function createOrUpdateAJobStepWithAllPropertiesSpecified() {
     targetGroup:
       "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/group1/providers/Microsoft.Sql/servers/server1/jobAgents/agent1/targetGroups/targetGroup1"
   };
-  await client.jobSteps
-    .createOrUpdate(
-      resourceGroupName,
-      serverName,
-      jobAgentName,
-      jobName,
-      stepName,
-      parameters
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.jobSteps.createOrUpdate(
+    resourceGroupName,
+    serverName,
+    jobAgentName,
+    jobName,
+    stepName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

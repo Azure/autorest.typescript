@@ -24,17 +24,14 @@ async function getVirtualMachineScaleSetNetworkInterface() {
   const virtualmachineIndex = "2";
   const networkInterfaceName = "nic1";
   const ipConfigurationName = "ip1";
-  await client.networkInterfaces
-    .getVirtualMachineScaleSetIpConfiguration(
-      resourceGroupName,
-      virtualMachineScaleSetName,
-      virtualmachineIndex,
-      networkInterfaceName,
-      ipConfigurationName
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.networkInterfaces.getVirtualMachineScaleSetIpConfiguration(
+    resourceGroupName,
+    virtualMachineScaleSetName,
+    virtualmachineIndex,
+    networkInterfaceName,
+    ipConfigurationName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

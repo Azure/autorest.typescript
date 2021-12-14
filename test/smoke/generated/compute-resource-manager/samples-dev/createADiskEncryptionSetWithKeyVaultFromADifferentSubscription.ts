@@ -32,15 +32,12 @@ async function createADiskEncryptionSetWithKeyVaultFromADifferentSubscription() 
     identity: { type: "SystemAssigned" },
     location: "West US"
   };
-  await client.diskEncryptionSets
-    .beginCreateOrUpdateAndWait(
-      resourceGroupName,
-      diskEncryptionSetName,
-      diskEncryptionSet
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.diskEncryptionSets.beginCreateOrUpdateAndWait(
+    resourceGroupName,
+    diskEncryptionSetName,
+    diskEncryptionSet
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

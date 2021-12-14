@@ -40,11 +40,13 @@ async function addAnAccessPolicyOrUpdateAnAccessPolicyWithNewPermissions() {
       ]
     }
   };
-  await client.vaults
-    .updateAccessPolicy(resourceGroupName, vaultName, operationKind, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.vaults.updateAccessPolicy(
+    resourceGroupName,
+    vaultName,
+    operationKind,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

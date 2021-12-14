@@ -22,11 +22,12 @@ async function simulateEvictionAVirtualMachine() {
   const resourceGroupName = "ResourceGroup";
   const vmScaleSetName = "VmScaleSetName";
   const instanceId = "InstanceId";
-  await client.virtualMachineScaleSetVMs
-    .simulateEviction(resourceGroupName, vmScaleSetName, instanceId)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.virtualMachineScaleSetVMs.simulateEviction(
+    resourceGroupName,
+    vmScaleSetName,
+    instanceId
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

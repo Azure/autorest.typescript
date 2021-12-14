@@ -51,16 +51,13 @@ async function storageAccountSetManagementPolicyLastAccessTimeBasedBlobActions()
       ]
     }
   };
-  await client.managementPolicies
-    .createOrUpdate(
-      resourceGroupName,
-      accountName,
-      managementPolicyName,
-      properties
-    )
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.managementPolicies.createOrUpdate(
+    resourceGroupName,
+    accountName,
+    managementPolicyName,
+    properties
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

@@ -28,11 +28,12 @@ async function createOrUpdateAProximityPlacementGroup() {
     location: "westus",
     proximityPlacementGroupType: "Standard"
   };
-  await client.proximityPlacementGroups
-    .createOrUpdate(resourceGroupName, proximityPlacementGroupName, parameters)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.proximityPlacementGroups.createOrUpdate(
+    resourceGroupName,
+    proximityPlacementGroupName,
+    parameters
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

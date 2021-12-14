@@ -23,11 +23,13 @@ async function getDatabaseSchema() {
   const serverName = "serverName";
   const databaseName = "myDatabase";
   const schemaName = "dbo";
-  await client.databaseSchemas
-    .get(resourceGroupName, serverName, databaseName, schemaName)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.databaseSchemas.get(
+    resourceGroupName,
+    serverName,
+    databaseName,
+    schemaName
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();

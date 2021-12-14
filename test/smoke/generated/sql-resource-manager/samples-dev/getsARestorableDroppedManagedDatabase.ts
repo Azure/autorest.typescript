@@ -22,11 +22,12 @@ async function getsARestorableDroppedManagedDatabase() {
   const resourceGroupName = "Test1";
   const managedInstanceName = "managedInstance";
   const restorableDroppedDatabaseId = "testdb,131403269876900000";
-  await client.restorableDroppedManagedDatabases
-    .get(resourceGroupName, managedInstanceName, restorableDroppedDatabaseId)
-    .then((res) => {
-      console.log(res);
-    });
+  const result = await client.restorableDroppedManagedDatabases.get(
+    resourceGroupName,
+    managedInstanceName,
+    restorableDroppedDatabaseId
+  );
+  console.log(result);
 }
 async function main() {
   const credential = new DefaultAzureCredential();
