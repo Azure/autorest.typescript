@@ -3,6 +3,7 @@ package-lock.json
 node_modules
 test.json
 test/**/dist
+test/**/dist-test
 test/**/dist-esm
 test/**/node_modules
 test-browser
