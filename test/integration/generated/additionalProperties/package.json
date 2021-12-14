@@ -84,5 +84,11 @@
     "docs": "echo skipped"
   },
   "sideEffects": false,
-  "autoPublish": true
+  "autoPublish": true,
+  "//sampleConfiguration": {
+    "productName": "",
+    "productSlugs": ["azure"],
+    "disableDocsMs": true,
+    "apiRefLink": "https://docs.microsoft.com/javascript/api/@msinternal/additional-properties"
+  }
 }
