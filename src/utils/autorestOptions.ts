@@ -11,6 +11,7 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
   const host = getHost();
   const useCoreV2 = await getUseCoreV2(host);
   const restLevelClient = await getRestLevelClient(host);
+  const rlcShortcut = await getHasShortcutMethods(host);
   const azureArm = await getIsAzureArm(host);
   const addCredentials = await getAddCredentials(host);
   const credentialKeyHeaderName = await getKeyCredentialHeaderName(host);
@@ -39,6 +40,7 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
     credentialKeyHeaderName,
     credentialScopes,
     restLevelClient,
+    rlcShortcut,
     srcPath,
     outputPath,
     packageDetails,
@@ -57,6 +59,14 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
     isTestPackage,
     generateTest
   };
+}
+
+async function getHasShortcutMethods(
+  host: AutorestExtensionHost
+): Promise<boolean> {
+  const headAsBoolean = await host.getValue("rlc-shortcut");
+
+  return Boolean(headAsBoolean);
 }
 
 async function getHeadAsBoolean(host: AutorestExtensionHost): Promise<boolean> {

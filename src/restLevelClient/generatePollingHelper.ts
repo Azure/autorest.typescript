@@ -1,6 +1,4 @@
 import { readFileSync } from "fs";
-import { getSession } from "../autorestSession";
-import { extractPaginationDetails } from "../utils/extractPaginationDetails";
 import * as path from "path";
 import * as hbs from "handlebars";
 import { Project } from "ts-morph";

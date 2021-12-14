@@ -1301,9 +1301,7 @@ export default function LRORestClient(
 ): LRORestClientRestClient {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
 
-  return getClient(
-    baseUrl,
+  const client = getClient(baseUrl, options) as LRORestClientRestClient;
 
-    options
-  ) as LRORestClientRestClient;
+  return client;
 }

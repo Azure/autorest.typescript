@@ -317,9 +317,7 @@ export type PagingRestClient = Client & {
 export default function Paging(options: ClientOptions = {}): PagingRestClient {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
 
-  return getClient(
-    baseUrl,
+  const client = getClient(baseUrl, options) as PagingRestClient;
 
-    options
-  ) as PagingRestClient;
+  return client;
 }

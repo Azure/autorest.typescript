@@ -1258,9 +1258,10 @@ export default function AzureAgriFoodPlatformDataPlaneService(
   const baseUrl = options.baseUrl ?? `${Endpoint}`;
   options.apiVersion = options.apiVersion ?? "2021-03-31-preview";
 
-  return getClient(
+  const client = getClient(
     baseUrl,
-
     options
   ) as AzureAgriFoodPlatformDataPlaneServiceRestClient;
+
+  return client;
 }

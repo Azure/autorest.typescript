@@ -169,7 +169,8 @@ export interface AttachmentsDeletedefaultResponse extends HttpResponse {
 /** Downloads and returns attachment as response for the given input filePath. */
 export interface AttachmentsDownload200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
+  /** Value may contain any sequence of octets */
+  body: Uint8Array;
 }
 
 /** Downloads and returns attachment as response for the given input filePath. */
@@ -1032,7 +1033,8 @@ export interface ScenesGetSatelliteDataIngestionJobDetailsdefaultResponse
 /** Downloads and returns file stream as response for the given input filePath. */
 export interface ScenesDownload200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
+  /** Value may contain any sequence of octets */
+  body: Uint8Array;
 }
 
 /** Downloads and returns file stream as response for the given input filePath. */

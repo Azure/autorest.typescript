@@ -235,9 +235,7 @@ export default function BodyStringRest(
 ): BodyStringRestRestClient {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
 
-  return getClient(
-    baseUrl,
+  const client = getClient(baseUrl, options) as BodyStringRestRestClient;
 
-    options
-  ) as BodyStringRestRestClient;
+  return client;
 }
