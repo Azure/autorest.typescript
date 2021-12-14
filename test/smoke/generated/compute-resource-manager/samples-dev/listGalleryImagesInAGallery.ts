@@ -9,9 +9,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 /**
- * This sample demonstrates how to List gallery Image Definitions in a gallery.
+ * This sample demonstrates how to List gallery image definitions in a gallery.
  *
- * @summary List gallery Image Definitions in a gallery.
+ * @summary List gallery image definitions in a gallery.
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";

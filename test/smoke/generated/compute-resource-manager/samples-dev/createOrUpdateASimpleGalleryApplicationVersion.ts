@@ -30,9 +30,13 @@ async function createOrUpdateASimpleGalleryApplicationVersion() {
     location: "West US",
     publishingProfile: {
       endOfLifeDate: new Date("2019-07-01T07:00:00Z"),
+      manageActions: {
+        install:
+          'powershell -command "Expand-Archive -Path package.zip -DestinationPath C:package"',
+        remove: "del C:package "
+      },
       replicaCount: 1,
       source: {
-        fileName: "package.zip",
         mediaLink:
           "https://mystorageaccount.blob.core.windows.net/mycontainer/package.zip?{sasKey}"
       },

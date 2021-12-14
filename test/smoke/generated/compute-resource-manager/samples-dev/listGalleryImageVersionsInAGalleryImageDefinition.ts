@@ -9,9 +9,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 /**
- * This sample demonstrates how to List gallery Image Versions in a gallery Image Definition.
+ * This sample demonstrates how to List gallery image versions in a gallery image definition.
  *
- * @summary List gallery Image Versions in a gallery Image Definition.
+ * @summary List gallery image versions in a gallery image definition.
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";

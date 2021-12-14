@@ -111,7 +111,11 @@ const listOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ResourceSkusResult
     }
   },
-  queryParameters: [Parameters.filter, Parameters.apiVersion1],
+  queryParameters: [
+    Parameters.apiVersion,
+    Parameters.filter,
+    Parameters.includeExtendedLocations
+  ],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.accept],
   serializer
@@ -124,7 +128,11 @@ const listNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ResourceSkusResult
     }
   },
-  queryParameters: [Parameters.filter, Parameters.apiVersion1],
+  queryParameters: [
+    Parameters.apiVersion,
+    Parameters.filter,
+    Parameters.includeExtendedLocations
+  ],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,

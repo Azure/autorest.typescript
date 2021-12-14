@@ -50,8 +50,15 @@ import {
   VirtualMachinesStartOptionalParams,
   VirtualMachinesRedeployOptionalParams,
   VirtualMachinesReimageOptionalParams,
+  VirtualMachinesRetrieveBootDiagnosticsDataOptionalParams,
+  VirtualMachinesRetrieveBootDiagnosticsDataResponse,
   VirtualMachinesPerformMaintenanceOptionalParams,
   VirtualMachinesSimulateEvictionOptionalParams,
+  VirtualMachinesAssessPatchesOptionalParams,
+  VirtualMachinesAssessPatchesResponse,
+  VirtualMachineInstallPatchesParameters,
+  VirtualMachinesInstallPatchesOptionalParams,
+  VirtualMachinesInstallPatchesResponse,
   RunCommandInput,
   VirtualMachinesRunCommandOptionalParams,
   VirtualMachinesRunCommandResponse,
@@ -845,9 +852,9 @@ export class VirtualMachinesImpl implements VirtualMachines {
    * Sets the OS state of the virtual machine to generalized. It is recommended to sysprep the virtual
    * machine before performing this operation. <br>For Windows, please refer to [Create a managed image
    * of a generalized VM in
-   * Azure](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/capture-image-resource).<br>For
+   * Azure](https://docs.microsoft.com/azure/virtual-machines/windows/capture-image-resource).<br>For
    * Linux, please refer to [How to create an image of a virtual machine or
-   * VHD](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/capture-image).
+   * VHD](https://docs.microsoft.com/azure/virtual-machines/linux/capture-image).
    * @param resourceGroupName The name of the resource group.
    * @param vmName The name of the virtual machine.
    * @param options The options parameters.
@@ -1366,6 +1373,23 @@ export class VirtualMachinesImpl implements VirtualMachines {
   }
 
   /**
+   * The operation to retrieve SAS URIs for a virtual machine's boot diagnostic logs.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmName The name of the virtual machine.
+   * @param options The options parameters.
+   */
+  retrieveBootDiagnosticsData(
+    resourceGroupName: string,
+    vmName: string,
+    options?: VirtualMachinesRetrieveBootDiagnosticsDataOptionalParams
+  ): Promise<VirtualMachinesRetrieveBootDiagnosticsDataResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, vmName, options },
+      retrieveBootDiagnosticsDataOperationSpec
+    );
+  }
+
+  /**
    * The operation to perform maintenance on a virtual machine.
    * @param resourceGroupName The name of the resource group.
    * @param vmName The name of the virtual machine.
@@ -1446,8 +1470,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
   }
 
   /**
-   * The operation to simulate the eviction of spot virtual machine. The eviction will occur within 30
-   * minutes of calling the API
+   * The operation to simulate the eviction of spot virtual machine.
    * @param resourceGroupName The name of the resource group.
    * @param vmName The name of the virtual machine.
    * @param options The options parameters.
@@ -1461,6 +1484,183 @@ export class VirtualMachinesImpl implements VirtualMachines {
       { resourceGroupName, vmName, options },
       simulateEvictionOperationSpec
     );
+  }
+
+  /**
+   * Assess patches on the VM.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmName The name of the virtual machine.
+   * @param options The options parameters.
+   */
+  async beginAssessPatches(
+    resourceGroupName: string,
+    vmName: string,
+    options?: VirtualMachinesAssessPatchesOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<VirtualMachinesAssessPatchesResponse>,
+      VirtualMachinesAssessPatchesResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<VirtualMachinesAssessPatchesResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { resourceGroupName, vmName, options },
+      assessPatchesOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs,
+      lroResourceLocationConfig: "location"
+    });
+  }
+
+  /**
+   * Assess patches on the VM.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmName The name of the virtual machine.
+   * @param options The options parameters.
+   */
+  async beginAssessPatchesAndWait(
+    resourceGroupName: string,
+    vmName: string,
+    options?: VirtualMachinesAssessPatchesOptionalParams
+  ): Promise<VirtualMachinesAssessPatchesResponse> {
+    const poller = await this.beginAssessPatches(
+      resourceGroupName,
+      vmName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
+   * Installs patches on the VM.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmName The name of the virtual machine.
+   * @param installPatchesInput Input for InstallPatches as directly received by the API
+   * @param options The options parameters.
+   */
+  async beginInstallPatches(
+    resourceGroupName: string,
+    vmName: string,
+    installPatchesInput: VirtualMachineInstallPatchesParameters,
+    options?: VirtualMachinesInstallPatchesOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<VirtualMachinesInstallPatchesResponse>,
+      VirtualMachinesInstallPatchesResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<VirtualMachinesInstallPatchesResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { resourceGroupName, vmName, installPatchesInput, options },
+      installPatchesOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs,
+      lroResourceLocationConfig: "location"
+    });
+  }
+
+  /**
+   * Installs patches on the VM.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmName The name of the virtual machine.
+   * @param installPatchesInput Input for InstallPatches as directly received by the API
+   * @param options The options parameters.
+   */
+  async beginInstallPatchesAndWait(
+    resourceGroupName: string,
+    vmName: string,
+    installPatchesInput: VirtualMachineInstallPatchesParameters,
+    options?: VirtualMachinesInstallPatchesOptionalParams
+  ): Promise<VirtualMachinesInstallPatchesResponse> {
+    const poller = await this.beginInstallPatches(
+      resourceGroupName,
+      vmName,
+      installPatchesInput,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -1719,7 +1919,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}",
   httpMethod: "DELETE",
   responses: { 200: {}, 201: {}, 202: {}, 204: {} },
-  queryParameters: [Parameters.apiVersion],
+  queryParameters: [Parameters.apiVersion, Parameters.forceDeletion],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -1785,7 +1985,7 @@ const deallocateOperationSpec: coreClient.OperationSpec = {
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/deallocate",
   httpMethod: "POST",
   responses: { 200: {}, 201: {}, 202: {}, 204: {} },
-  queryParameters: [Parameters.apiVersion],
+  queryParameters: [Parameters.apiVersion, Parameters.hibernate],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -1955,6 +2155,31 @@ const reimageOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
+const retrieveBootDiagnosticsDataOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/retrieveBootDiagnosticsData",
+  httpMethod: "POST",
+  responses: {
+    200: {
+      bodyMapper: Mappers.RetrieveBootDiagnosticsDataResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [
+    Parameters.apiVersion,
+    Parameters.sasUriExpirationTimeInMinutes
+  ],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.vmName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
 const performMaintenanceOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/performMaintenance",
@@ -1981,6 +2206,70 @@ const simulateEvictionOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.vmName
   ],
+  serializer
+};
+const assessPatchesOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/assessPatches",
+  httpMethod: "POST",
+  responses: {
+    200: {
+      bodyMapper: Mappers.VirtualMachineAssessPatchesResult
+    },
+    201: {
+      bodyMapper: Mappers.VirtualMachineAssessPatchesResult
+    },
+    202: {
+      bodyMapper: Mappers.VirtualMachineAssessPatchesResult
+    },
+    204: {
+      bodyMapper: Mappers.VirtualMachineAssessPatchesResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.vmName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const installPatchesOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/installPatches",
+  httpMethod: "POST",
+  responses: {
+    200: {
+      bodyMapper: Mappers.VirtualMachineInstallPatchesResult
+    },
+    201: {
+      bodyMapper: Mappers.VirtualMachineInstallPatchesResult
+    },
+    202: {
+      bodyMapper: Mappers.VirtualMachineInstallPatchesResult
+    },
+    204: {
+      bodyMapper: Mappers.VirtualMachineInstallPatchesResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  requestBody: Parameters.installPatchesInput,
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.vmName
+  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const runCommandOperationSpec: coreClient.OperationSpec = {

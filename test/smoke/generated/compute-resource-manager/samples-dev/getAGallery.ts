@@ -9,21 +9,25 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 /**
- * This sample demonstrates how to Retrieves information about a Shared Image Gallery.
+ * This sample demonstrates how to Get a community gallery image version.
  *
- * @summary Retrieves information about a Shared Image Gallery.
+ * @summary Get a community gallery image version.
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: ComputeManagementClient;
-//galleries.get
+//communityGalleryImageVersions.get
 async function getAGallery() {
-  const resourceGroupName = "myResourceGroup";
-  const galleryName = "myGalleryName";
-  await client.galleries.get(resourceGroupName, galleryName).then((res) => {
-    console.log(res);
-  });
+  const location = "myLocation";
+  const publicGalleryName = "publicGalleryName";
+  const galleryImageName = "myGalleryImageName";
+  const galleryImageVersionName = "myGalleryImageVersionName";
+  await client.communityGalleryImageVersions
+    .get(location, publicGalleryName, galleryImageName, galleryImageVersionName)
+    .then((res) => {
+      console.log(res);
+    });
 }
 async function main() {
   const credential = new DefaultAzureCredential();

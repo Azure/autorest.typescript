@@ -26,8 +26,10 @@ async function exportLogsWhichContainAllThrottledApiRequestsMadeToComputeResourc
   const parameters: ThrottledRequestsInput = {
     blobContainerSasUri: "https://somesasuri",
     fromTime: new Date("2018-01-21T01:54:06.862601Z"),
+    groupByClientApplicationId: false,
     groupByOperationName: true,
     groupByResourceName: false,
+    groupByUserAgent: false,
     toTime: new Date("2018-01-23T01:54:06.862601Z")
   };
   await client.logAnalytics

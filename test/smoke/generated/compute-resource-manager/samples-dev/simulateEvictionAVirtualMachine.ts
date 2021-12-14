@@ -9,9 +9,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 /**
- * This sample demonstrates how to The operation to simulate the eviction of spot virtual machine in a VM scale set. The eviction will occur within 30 minutes of calling the API
+ * This sample demonstrates how to The operation to simulate the eviction of spot virtual machine in a VM scale set.
  *
- * @summary The operation to simulate the eviction of spot virtual machine in a VM scale set. The eviction will occur within 30 minutes of calling the API
+ * @summary The operation to simulate the eviction of spot virtual machine in a VM scale set.
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";

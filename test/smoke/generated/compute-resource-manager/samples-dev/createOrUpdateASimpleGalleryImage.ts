@@ -9,9 +9,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 /**
- * This sample demonstrates how to Create or update a gallery Image Definition.
+ * This sample demonstrates how to Create or update a gallery image definition.
  *
- * @summary Create or update a gallery Image Definition.
+ * @summary Create or update a gallery image definition.
  */
 import {
   GalleryImage,

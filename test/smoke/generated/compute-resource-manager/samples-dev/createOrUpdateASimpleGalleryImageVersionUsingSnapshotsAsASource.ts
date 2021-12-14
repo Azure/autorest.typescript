@@ -9,9 +9,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 /**
- * This sample demonstrates how to Create or update a gallery Image Version.
+ * This sample demonstrates how to Create or update a gallery image version.
  *
- * @summary Create or update a gallery Image Version.
+ * @summary Create or update a gallery image version.
  */
 import {
   GalleryImageVersion,
@@ -36,19 +36,32 @@ async function createOrUpdateASimpleGalleryImageVersionUsingSnapshotsAsASource()
             dataDiskImages: [
               {
                 diskEncryptionSetId:
-                  "/subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/diskEncryptionSet/myOtherDiskEncryptionSet",
+                  "/subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/diskEncryptionSet/myWestUSDiskEncryptionSet",
                 lun: 1
               }
             ],
             osDiskImage: {
               diskEncryptionSetId:
-                "/subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/diskEncryptionSet/myDiskEncryptionSet"
+                "/subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/diskEncryptionSet/myWestUSDiskEncryptionSet"
             }
           },
           regionalReplicaCount: 1
         },
         {
           name: "East US",
+          encryption: {
+            dataDiskImages: [
+              {
+                diskEncryptionSetId:
+                  "/subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/diskEncryptionSet/myEastUSDiskEncryptionSet",
+                lun: 1
+              }
+            ],
+            osDiskImage: {
+              diskEncryptionSetId:
+                "/subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/diskEncryptionSet/myEastUSDiskEncryptionSet"
+            }
+          },
           regionalReplicaCount: 2,
           storageAccountType: "Standard_ZRS"
         }
@@ -61,7 +74,7 @@ async function createOrUpdateASimpleGalleryImageVersionUsingSnapshotsAsASource()
           lun: 1,
           source: {
             id:
-              "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Compute/snapshots/{diskSnapshotName}"
+              "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Compute/disks/{dataDiskName}"
           }
         }
       ],
@@ -69,7 +82,7 @@ async function createOrUpdateASimpleGalleryImageVersionUsingSnapshotsAsASource()
         hostCaching: "ReadOnly",
         source: {
           id:
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Compute/snapshots/{snapshotName}"
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Compute/snapshots/{osSnapshotName}"
         }
       }
     }

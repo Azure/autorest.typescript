@@ -9,9 +9,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 /**
- * This sample demonstrates how to Retrieves information about a gallery Image Definition.
+ * This sample demonstrates how to Retrieves information about a gallery image definition.
  *
- * @summary Retrieves information about a gallery Image Definition.
+ * @summary Retrieves information about a gallery image definition.
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";

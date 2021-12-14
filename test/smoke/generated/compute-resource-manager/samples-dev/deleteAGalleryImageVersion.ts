@@ -9,9 +9,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 /**
- * This sample demonstrates how to Delete a gallery Image Version.
+ * This sample demonstrates how to Delete a gallery image version.
  *
- * @summary Delete a gallery Image Version.
+ * @summary Delete a gallery image version.
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";

@@ -14,7 +14,7 @@
  * @summary The operation to create or update the VMSS VM extension.
  */
 import {
-  VirtualMachineExtension,
+  VirtualMachineScaleSetVMExtension,
   ComputeManagementClient
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
@@ -26,10 +26,9 @@ async function createVirtualMachineScaleSetVMExtension() {
   const vmScaleSetName = "myvmScaleSet";
   const instanceId = "0";
   const vmExtensionName = "myVMExtension";
-  const extensionParameters: VirtualMachineExtension = {
+  const extensionParameters: VirtualMachineScaleSetVMExtension = {
     typePropertiesType: "extType",
     autoUpgradeMinorVersion: true,
-    location: "westus",
     publisher: "extPublisher",
     settings: { UserName: "xyz@microsoft.com" },
     typeHandlerVersion: "1.2"

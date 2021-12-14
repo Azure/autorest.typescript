@@ -26,12 +26,14 @@ async function updateADiskEncryptionSet() {
   const diskEncryptionSetName = "myDiskEncryptionSet";
   const diskEncryptionSet: DiskEncryptionSetUpdate = {
     activeKey: {
-      keyUrl: "https://myvmvault.vault-int.azure-int.net/keys/{key}",
+      keyUrl:
+        "https://myvmvault.vault-int.azure-int.net/keys/keyName/keyVersion",
       sourceVault: {
         id:
           "/subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.KeyVault/vaults/myVMVault"
       }
     },
+    encryptionType: "EncryptionAtRestWithCustomerKey",
     tags: { department: "Development", project: "Encryption" }
   };
   await client.diskEncryptionSets

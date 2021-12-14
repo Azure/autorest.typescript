@@ -18,27 +18,46 @@ import {
   VirtualMachineExtensionImagesImpl,
   VirtualMachineExtensionsImpl,
   VirtualMachineImagesImpl,
+  VirtualMachineImagesEdgeZoneImpl,
   UsageOperationsImpl,
   VirtualMachinesImpl,
+  VirtualMachineScaleSetsImpl,
   VirtualMachineSizesImpl,
   ImagesImpl,
-  VirtualMachineScaleSetsImpl,
+  RestorePointCollectionsImpl,
+  RestorePointsImpl,
+  CapacityReservationGroupsImpl,
+  CapacityReservationsImpl,
   VirtualMachineScaleSetExtensionsImpl,
   VirtualMachineScaleSetRollingUpgradesImpl,
   VirtualMachineScaleSetVMExtensionsImpl,
   VirtualMachineScaleSetVMsImpl,
   LogAnalyticsImpl,
   VirtualMachineRunCommandsImpl,
+  VirtualMachineScaleSetVMRunCommandsImpl,
   ResourceSkusImpl,
   DisksImpl,
   SnapshotsImpl,
   DiskEncryptionSetsImpl,
+  DiskAccessesImpl,
+  DiskRestorePointOperationsImpl,
   GalleriesImpl,
   GalleryImagesImpl,
   GalleryImageVersionsImpl,
   GalleryApplicationsImpl,
   GalleryApplicationVersionsImpl,
-  ContainerServicesImpl
+  GallerySharingProfileImpl,
+  SharedGalleriesImpl,
+  SharedGalleryImagesImpl,
+  SharedGalleryImageVersionsImpl,
+  CommunityGalleriesImpl,
+  CommunityGalleryImagesImpl,
+  CommunityGalleryImageVersionsImpl,
+  CloudServiceRoleInstancesImpl,
+  CloudServiceRolesImpl,
+  CloudServicesImpl,
+  CloudServicesUpdateDomainImpl,
+  CloudServiceOperatingSystemsImpl
 } from "./operations";
 import {
   Operations,
@@ -50,27 +69,46 @@ import {
   VirtualMachineExtensionImages,
   VirtualMachineExtensions,
   VirtualMachineImages,
+  VirtualMachineImagesEdgeZone,
   UsageOperations,
   VirtualMachines,
+  VirtualMachineScaleSets,
   VirtualMachineSizes,
   Images,
-  VirtualMachineScaleSets,
+  RestorePointCollections,
+  RestorePoints,
+  CapacityReservationGroups,
+  CapacityReservations,
   VirtualMachineScaleSetExtensions,
   VirtualMachineScaleSetRollingUpgrades,
   VirtualMachineScaleSetVMExtensions,
   VirtualMachineScaleSetVMs,
   LogAnalytics,
   VirtualMachineRunCommands,
+  VirtualMachineScaleSetVMRunCommands,
   ResourceSkus,
   Disks,
   Snapshots,
   DiskEncryptionSets,
+  DiskAccesses,
+  DiskRestorePointOperations,
   Galleries,
   GalleryImages,
   GalleryImageVersions,
   GalleryApplications,
   GalleryApplicationVersions,
-  ContainerServices
+  GallerySharingProfile,
+  SharedGalleries,
+  SharedGalleryImages,
+  SharedGalleryImageVersions,
+  CommunityGalleries,
+  CommunityGalleryImages,
+  CommunityGalleryImageVersions,
+  CloudServiceRoleInstances,
+  CloudServiceRoles,
+  CloudServices,
+  CloudServicesUpdateDomain,
+  CloudServiceOperatingSystems
 } from "./operationsInterfaces";
 import { ComputeManagementClientOptionalParams } from "./models";
 
@@ -137,11 +175,18 @@ export class ComputeManagementClient extends coreClient.ServiceClient {
     );
     this.virtualMachineExtensions = new VirtualMachineExtensionsImpl(this);
     this.virtualMachineImages = new VirtualMachineImagesImpl(this);
+    this.virtualMachineImagesEdgeZone = new VirtualMachineImagesEdgeZoneImpl(
+      this
+    );
     this.usageOperations = new UsageOperationsImpl(this);
     this.virtualMachines = new VirtualMachinesImpl(this);
+    this.virtualMachineScaleSets = new VirtualMachineScaleSetsImpl(this);
     this.virtualMachineSizes = new VirtualMachineSizesImpl(this);
     this.images = new ImagesImpl(this);
-    this.virtualMachineScaleSets = new VirtualMachineScaleSetsImpl(this);
+    this.restorePointCollections = new RestorePointCollectionsImpl(this);
+    this.restorePoints = new RestorePointsImpl(this);
+    this.capacityReservationGroups = new CapacityReservationGroupsImpl(this);
+    this.capacityReservations = new CapacityReservationsImpl(this);
     this.virtualMachineScaleSetExtensions = new VirtualMachineScaleSetExtensionsImpl(
       this
     );
@@ -154,16 +199,36 @@ export class ComputeManagementClient extends coreClient.ServiceClient {
     this.virtualMachineScaleSetVMs = new VirtualMachineScaleSetVMsImpl(this);
     this.logAnalytics = new LogAnalyticsImpl(this);
     this.virtualMachineRunCommands = new VirtualMachineRunCommandsImpl(this);
+    this.virtualMachineScaleSetVMRunCommands = new VirtualMachineScaleSetVMRunCommandsImpl(
+      this
+    );
     this.resourceSkus = new ResourceSkusImpl(this);
     this.disks = new DisksImpl(this);
     this.snapshots = new SnapshotsImpl(this);
     this.diskEncryptionSets = new DiskEncryptionSetsImpl(this);
+    this.diskAccesses = new DiskAccessesImpl(this);
+    this.diskRestorePointOperations = new DiskRestorePointOperationsImpl(this);
     this.galleries = new GalleriesImpl(this);
     this.galleryImages = new GalleryImagesImpl(this);
     this.galleryImageVersions = new GalleryImageVersionsImpl(this);
     this.galleryApplications = new GalleryApplicationsImpl(this);
     this.galleryApplicationVersions = new GalleryApplicationVersionsImpl(this);
-    this.containerServices = new ContainerServicesImpl(this);
+    this.gallerySharingProfile = new GallerySharingProfileImpl(this);
+    this.sharedGalleries = new SharedGalleriesImpl(this);
+    this.sharedGalleryImages = new SharedGalleryImagesImpl(this);
+    this.sharedGalleryImageVersions = new SharedGalleryImageVersionsImpl(this);
+    this.communityGalleries = new CommunityGalleriesImpl(this);
+    this.communityGalleryImages = new CommunityGalleryImagesImpl(this);
+    this.communityGalleryImageVersions = new CommunityGalleryImageVersionsImpl(
+      this
+    );
+    this.cloudServiceRoleInstances = new CloudServiceRoleInstancesImpl(this);
+    this.cloudServiceRoles = new CloudServiceRolesImpl(this);
+    this.cloudServices = new CloudServicesImpl(this);
+    this.cloudServicesUpdateDomain = new CloudServicesUpdateDomainImpl(this);
+    this.cloudServiceOperatingSystems = new CloudServiceOperatingSystemsImpl(
+      this
+    );
   }
 
   operations: Operations;
@@ -175,25 +240,44 @@ export class ComputeManagementClient extends coreClient.ServiceClient {
   virtualMachineExtensionImages: VirtualMachineExtensionImages;
   virtualMachineExtensions: VirtualMachineExtensions;
   virtualMachineImages: VirtualMachineImages;
+  virtualMachineImagesEdgeZone: VirtualMachineImagesEdgeZone;
   usageOperations: UsageOperations;
   virtualMachines: VirtualMachines;
+  virtualMachineScaleSets: VirtualMachineScaleSets;
   virtualMachineSizes: VirtualMachineSizes;
   images: Images;
-  virtualMachineScaleSets: VirtualMachineScaleSets;
+  restorePointCollections: RestorePointCollections;
+  restorePoints: RestorePoints;
+  capacityReservationGroups: CapacityReservationGroups;
+  capacityReservations: CapacityReservations;
   virtualMachineScaleSetExtensions: VirtualMachineScaleSetExtensions;
   virtualMachineScaleSetRollingUpgrades: VirtualMachineScaleSetRollingUpgrades;
   virtualMachineScaleSetVMExtensions: VirtualMachineScaleSetVMExtensions;
   virtualMachineScaleSetVMs: VirtualMachineScaleSetVMs;
   logAnalytics: LogAnalytics;
   virtualMachineRunCommands: VirtualMachineRunCommands;
+  virtualMachineScaleSetVMRunCommands: VirtualMachineScaleSetVMRunCommands;
   resourceSkus: ResourceSkus;
   disks: Disks;
   snapshots: Snapshots;
   diskEncryptionSets: DiskEncryptionSets;
+  diskAccesses: DiskAccesses;
+  diskRestorePointOperations: DiskRestorePointOperations;
   galleries: Galleries;
   galleryImages: GalleryImages;
   galleryImageVersions: GalleryImageVersions;
   galleryApplications: GalleryApplications;
   galleryApplicationVersions: GalleryApplicationVersions;
-  containerServices: ContainerServices;
+  gallerySharingProfile: GallerySharingProfile;
+  sharedGalleries: SharedGalleries;
+  sharedGalleryImages: SharedGalleryImages;
+  sharedGalleryImageVersions: SharedGalleryImageVersions;
+  communityGalleries: CommunityGalleries;
+  communityGalleryImages: CommunityGalleryImages;
+  communityGalleryImageVersions: CommunityGalleryImageVersions;
+  cloudServiceRoleInstances: CloudServiceRoleInstances;
+  cloudServiceRoles: CloudServiceRoles;
+  cloudServices: CloudServices;
+  cloudServicesUpdateDomain: CloudServicesUpdateDomain;
+  cloudServiceOperatingSystems: CloudServiceOperatingSystems;
 }

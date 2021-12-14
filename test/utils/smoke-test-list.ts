@@ -34,15 +34,14 @@ const getArmReadmes = (): SpecDefinition[] => {
       "..",
       "./.tmp/specs/specification/resources/resource-manager/readme.md",
     ),
-    params: [AutorestParams.GenerateTest, `--tag=${tag}`],
-    branch: "925e8285703ddd461588d8f5fbf14bd97c286fab",
+    params: [`--tag=${tag}`],
     outputFolderName: `arm-${tag}`,
     buildTag: "ci_1"
   }));
 };
 
 export const readmes: SpecDefinition[] = [
-  // ...getArmReadmes(),
+  ...getArmReadmes(),
   {
     path: joinPath(
       `${__dirname}`,
@@ -90,7 +89,7 @@ export const readmes: SpecDefinition[] = [
       "..",
       "./.tmp/specs/specification/cosmos-db/resource-manager/readme.md"
     ),
-    params: [AutorestParams.ModelDedup, AutorestParams.GenerateTest],
+    params: [AutorestParams.ModelDedup],
     branch: "925e8285703ddd461588d8f5fbf14bd97c286fab",
     buildTag: "ci_2"
   },
@@ -101,7 +100,7 @@ export const readmes: SpecDefinition[] = [
       "..",
       "./.tmp/specs/specification/compute/resource-manager/readme.md"
     ),
-    params: [AutorestParams.GenerateTest],
+    params: [AutorestParams.GenerateTest, AutorestParams.ModelDedup],
     branch: "925e8285703ddd461588d8f5fbf14bd97c286fab",
     buildTag: "ci_2"
   },

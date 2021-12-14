@@ -44,7 +44,7 @@ export class GalleryImagesImpl implements GalleryImages {
   }
 
   /**
-   * List gallery Image Definitions in a gallery.
+   * List gallery image definitions in a gallery.
    * @param resourceGroupName The name of the resource group.
    * @param galleryName The name of the Shared Image Gallery from which Image Definitions are to be
    *                    listed.
@@ -116,11 +116,11 @@ export class GalleryImagesImpl implements GalleryImages {
   }
 
   /**
-   * Create or update a gallery Image Definition.
+   * Create or update a gallery image definition.
    * @param resourceGroupName The name of the resource group.
    * @param galleryName The name of the Shared Image Gallery in which the Image Definition is to be
    *                    created.
-   * @param galleryImageName The name of the gallery Image Definition to be created or updated. The
+   * @param galleryImageName The name of the gallery image definition to be created or updated. The
    *                         allowed characters are alphabets and numbers with dots, dashes, and periods allowed in the middle.
    *                         The maximum length is 80 characters.
    * @param galleryImage Parameters supplied to the create or update gallery image operation.
@@ -195,11 +195,11 @@ export class GalleryImagesImpl implements GalleryImages {
   }
 
   /**
-   * Create or update a gallery Image Definition.
+   * Create or update a gallery image definition.
    * @param resourceGroupName The name of the resource group.
    * @param galleryName The name of the Shared Image Gallery in which the Image Definition is to be
    *                    created.
-   * @param galleryImageName The name of the gallery Image Definition to be created or updated. The
+   * @param galleryImageName The name of the gallery image definition to be created or updated. The
    *                         allowed characters are alphabets and numbers with dots, dashes, and periods allowed in the middle.
    *                         The maximum length is 80 characters.
    * @param galleryImage Parameters supplied to the create or update gallery image operation.
@@ -223,11 +223,11 @@ export class GalleryImagesImpl implements GalleryImages {
   }
 
   /**
-   * Update a gallery Image Definition.
+   * Update a gallery image definition.
    * @param resourceGroupName The name of the resource group.
    * @param galleryName The name of the Shared Image Gallery in which the Image Definition is to be
    *                    updated.
-   * @param galleryImageName The name of the gallery Image Definition to be updated. The allowed
+   * @param galleryImageName The name of the gallery image definition to be updated. The allowed
    *                         characters are alphabets and numbers with dots, dashes, and periods allowed in the middle. The
    *                         maximum length is 80 characters.
    * @param galleryImage Parameters supplied to the update gallery image operation.
@@ -302,11 +302,11 @@ export class GalleryImagesImpl implements GalleryImages {
   }
 
   /**
-   * Update a gallery Image Definition.
+   * Update a gallery image definition.
    * @param resourceGroupName The name of the resource group.
    * @param galleryName The name of the Shared Image Gallery in which the Image Definition is to be
    *                    updated.
-   * @param galleryImageName The name of the gallery Image Definition to be updated. The allowed
+   * @param galleryImageName The name of the gallery image definition to be updated. The allowed
    *                         characters are alphabets and numbers with dots, dashes, and periods allowed in the middle. The
    *                         maximum length is 80 characters.
    * @param galleryImage Parameters supplied to the update gallery image operation.
@@ -330,11 +330,11 @@ export class GalleryImagesImpl implements GalleryImages {
   }
 
   /**
-   * Retrieves information about a gallery Image Definition.
+   * Retrieves information about a gallery image definition.
    * @param resourceGroupName The name of the resource group.
    * @param galleryName The name of the Shared Image Gallery from which the Image Definitions are to be
    *                    retrieved.
-   * @param galleryImageName The name of the gallery Image Definition to be retrieved.
+   * @param galleryImageName The name of the gallery image definition to be retrieved.
    * @param options The options parameters.
    */
   get(
@@ -354,7 +354,7 @@ export class GalleryImagesImpl implements GalleryImages {
    * @param resourceGroupName The name of the resource group.
    * @param galleryName The name of the Shared Image Gallery in which the Image Definition is to be
    *                    deleted.
-   * @param galleryImageName The name of the gallery Image Definition to be deleted.
+   * @param galleryImageName The name of the gallery image definition to be deleted.
    * @param options The options parameters.
    */
   async beginDelete(
@@ -418,7 +418,7 @@ export class GalleryImagesImpl implements GalleryImages {
    * @param resourceGroupName The name of the resource group.
    * @param galleryName The name of the Shared Image Gallery in which the Image Definition is to be
    *                    deleted.
-   * @param galleryImageName The name of the gallery Image Definition to be deleted.
+   * @param galleryImageName The name of the gallery image definition to be deleted.
    * @param options The options parameters.
    */
   async beginDeleteAndWait(
@@ -437,7 +437,7 @@ export class GalleryImagesImpl implements GalleryImages {
   }
 
   /**
-   * List gallery Image Definitions in a gallery.
+   * List gallery image definitions in a gallery.
    * @param resourceGroupName The name of the resource group.
    * @param galleryName The name of the Shared Image Gallery from which Image Definitions are to be
    *                    listed.

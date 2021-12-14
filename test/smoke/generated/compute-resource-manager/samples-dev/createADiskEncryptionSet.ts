@@ -32,6 +32,7 @@ async function createADiskEncryptionSet() {
           "/subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.KeyVault/vaults/myVMVault"
       }
     },
+    encryptionType: "EncryptionAtRestWithCustomerKey",
     identity: { type: "SystemAssigned" },
     location: "West US"
   };

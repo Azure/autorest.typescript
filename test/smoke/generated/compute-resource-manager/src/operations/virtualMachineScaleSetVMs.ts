@@ -33,6 +33,8 @@ import {
   VirtualMachineScaleSetVMsRestartOptionalParams,
   VirtualMachineScaleSetVMsStartOptionalParams,
   VirtualMachineScaleSetVMsRedeployOptionalParams,
+  VirtualMachineScaleSetVMsRetrieveBootDiagnosticsDataOptionalParams,
+  VirtualMachineScaleSetVMsRetrieveBootDiagnosticsDataResponse,
   VirtualMachineScaleSetVMsPerformMaintenanceOptionalParams,
   VirtualMachineScaleSetVMsSimulateEvictionOptionalParams,
   RunCommandInput,
@@ -969,6 +971,25 @@ export class VirtualMachineScaleSetVMsImpl
   }
 
   /**
+   * The operation to retrieve SAS URIs of boot diagnostic logs for a virtual machine in a VM scale set.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmScaleSetName The name of the VM scale set.
+   * @param instanceId The instance ID of the virtual machine.
+   * @param options The options parameters.
+   */
+  retrieveBootDiagnosticsData(
+    resourceGroupName: string,
+    vmScaleSetName: string,
+    instanceId: string,
+    options?: VirtualMachineScaleSetVMsRetrieveBootDiagnosticsDataOptionalParams
+  ): Promise<VirtualMachineScaleSetVMsRetrieveBootDiagnosticsDataResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, vmScaleSetName, instanceId, options },
+      retrieveBootDiagnosticsDataOperationSpec
+    );
+  }
+
+  /**
    * Performs maintenance on a virtual machine in a VM scale set.
    * @param resourceGroupName The name of the resource group.
    * @param vmScaleSetName The name of the VM scale set.
@@ -1054,8 +1075,7 @@ export class VirtualMachineScaleSetVMsImpl
   }
 
   /**
-   * The operation to simulate the eviction of spot virtual machine in a VM scale set. The eviction will
-   * occur within 30 minutes of calling the API
+   * The operation to simulate the eviction of spot virtual machine in a VM scale set.
    * @param resourceGroupName The name of the resource group.
    * @param vmScaleSetName The name of the VM scale set.
    * @param instanceId The instance ID of the virtual machine.
@@ -1257,7 +1277,7 @@ const updateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.VirtualMachineScaleSetVM
     }
   },
-  requestBody: Parameters.parameters21,
+  requestBody: Parameters.parameters28,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1275,7 +1295,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualmachines/{instanceId}",
   httpMethod: "DELETE",
   responses: { 200: {}, 201: {}, 202: {}, 204: {} },
-  queryParameters: [Parameters.apiVersion],
+  queryParameters: [Parameters.apiVersion, Parameters.forceDeletion],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -1407,6 +1427,32 @@ const redeployOperationSpec: coreClient.OperationSpec = {
     Parameters.vmScaleSetName,
     Parameters.instanceId
   ],
+  serializer
+};
+const retrieveBootDiagnosticsDataOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualmachines/{instanceId}/retrieveBootDiagnosticsData",
+  httpMethod: "POST",
+  responses: {
+    200: {
+      bodyMapper: Mappers.RetrieveBootDiagnosticsDataResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [
+    Parameters.apiVersion,
+    Parameters.sasUriExpirationTimeInMinutes
+  ],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.vmScaleSetName,
+    Parameters.instanceId
+  ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const performMaintenanceOperationSpec: coreClient.OperationSpec = {

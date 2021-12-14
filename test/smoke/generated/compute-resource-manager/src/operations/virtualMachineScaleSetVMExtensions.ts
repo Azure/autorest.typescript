@@ -14,10 +14,10 @@ import { ComputeManagementClient } from "../computeManagementClient";
 import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
-  VirtualMachineExtension,
+  VirtualMachineScaleSetVMExtension,
   VirtualMachineScaleSetVMExtensionsCreateOrUpdateOptionalParams,
   VirtualMachineScaleSetVMExtensionsCreateOrUpdateResponse,
-  VirtualMachineExtensionUpdate,
+  VirtualMachineScaleSetVMExtensionUpdate,
   VirtualMachineScaleSetVMExtensionsUpdateOptionalParams,
   VirtualMachineScaleSetVMExtensionsUpdateResponse,
   VirtualMachineScaleSetVMExtensionsDeleteOptionalParams,
@@ -54,7 +54,7 @@ export class VirtualMachineScaleSetVMExtensionsImpl
     vmScaleSetName: string,
     instanceId: string,
     vmExtensionName: string,
-    extensionParameters: VirtualMachineExtension,
+    extensionParameters: VirtualMachineScaleSetVMExtension,
     options?: VirtualMachineScaleSetVMExtensionsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
@@ -135,7 +135,7 @@ export class VirtualMachineScaleSetVMExtensionsImpl
     vmScaleSetName: string,
     instanceId: string,
     vmExtensionName: string,
-    extensionParameters: VirtualMachineExtension,
+    extensionParameters: VirtualMachineScaleSetVMExtension,
     options?: VirtualMachineScaleSetVMExtensionsCreateOrUpdateOptionalParams
   ): Promise<VirtualMachineScaleSetVMExtensionsCreateOrUpdateResponse> {
     const poller = await this.beginCreateOrUpdate(
@@ -163,7 +163,7 @@ export class VirtualMachineScaleSetVMExtensionsImpl
     vmScaleSetName: string,
     instanceId: string,
     vmExtensionName: string,
-    extensionParameters: VirtualMachineExtensionUpdate,
+    extensionParameters: VirtualMachineScaleSetVMExtensionUpdate,
     options?: VirtualMachineScaleSetVMExtensionsUpdateOptionalParams
   ): Promise<
     PollerLike<
@@ -242,7 +242,7 @@ export class VirtualMachineScaleSetVMExtensionsImpl
     vmScaleSetName: string,
     instanceId: string,
     vmExtensionName: string,
-    extensionParameters: VirtualMachineExtensionUpdate,
+    extensionParameters: VirtualMachineScaleSetVMExtensionUpdate,
     options?: VirtualMachineScaleSetVMExtensionsUpdateOptionalParams
   ): Promise<VirtualMachineScaleSetVMExtensionsUpdateResponse> {
     const poller = await this.beginUpdate(
@@ -407,22 +407,22 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.VirtualMachineExtension
+      bodyMapper: Mappers.VirtualMachineScaleSetVMExtension
     },
     201: {
-      bodyMapper: Mappers.VirtualMachineExtension
+      bodyMapper: Mappers.VirtualMachineScaleSetVMExtension
     },
     202: {
-      bodyMapper: Mappers.VirtualMachineExtension
+      bodyMapper: Mappers.VirtualMachineScaleSetVMExtension
     },
     204: {
-      bodyMapper: Mappers.VirtualMachineExtension
+      bodyMapper: Mappers.VirtualMachineScaleSetVMExtension
     },
     default: {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.extensionParameters,
+  requestBody: Parameters.extensionParameters4,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -442,22 +442,22 @@ const updateOperationSpec: coreClient.OperationSpec = {
   httpMethod: "PATCH",
   responses: {
     200: {
-      bodyMapper: Mappers.VirtualMachineExtension
+      bodyMapper: Mappers.VirtualMachineScaleSetVMExtension
     },
     201: {
-      bodyMapper: Mappers.VirtualMachineExtension
+      bodyMapper: Mappers.VirtualMachineScaleSetVMExtension
     },
     202: {
-      bodyMapper: Mappers.VirtualMachineExtension
+      bodyMapper: Mappers.VirtualMachineScaleSetVMExtension
     },
     204: {
-      bodyMapper: Mappers.VirtualMachineExtension
+      bodyMapper: Mappers.VirtualMachineScaleSetVMExtension
     },
     default: {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.extensionParameters1,
+  requestBody: Parameters.extensionParameters5,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -502,7 +502,7 @@ const getOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.VirtualMachineExtension
+      bodyMapper: Mappers.VirtualMachineScaleSetVMExtension
     },
     default: {
       bodyMapper: Mappers.CloudError
@@ -526,7 +526,7 @@ const listOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.VirtualMachineExtensionsListResult
+      bodyMapper: Mappers.VirtualMachineScaleSetVMExtensionsListResult
     },
     default: {
       bodyMapper: Mappers.CloudError

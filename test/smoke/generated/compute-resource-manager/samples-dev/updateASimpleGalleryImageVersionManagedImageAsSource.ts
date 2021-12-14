@@ -9,9 +9,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 /**
- * This sample demonstrates how to Update a gallery Image Version.
+ * This sample demonstrates how to Update a gallery image version.
  *
- * @summary Update a gallery Image Version.
+ * @summary Update a gallery image version.
  */
 import {
   GalleryImageVersionUpdate,

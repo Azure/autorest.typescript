@@ -27,6 +27,7 @@ async function createOrUpdateADedicatedHostGroup() {
   const parameters: DedicatedHostGroup = {
     location: "westus",
     platformFaultDomainCount: 3,
+    supportAutomaticPlacement: true,
     tags: { department: "finance" },
     zones: ["1"]
   };

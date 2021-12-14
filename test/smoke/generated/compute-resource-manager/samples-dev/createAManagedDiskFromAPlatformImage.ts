@@ -29,7 +29,7 @@ async function createAManagedDiskFromAPlatformImage() {
       createOption: "FromImage",
       imageReference: {
         id:
-          "/Subscriptions/{subscriptionId}/Providers/Microsoft.Compute/Locations/uswest/Publishers/Microsoft/ArtifactTypes/VMImage/Offers/{offer}"
+          "/Subscriptions/{subscriptionId}/Providers/Microsoft.Compute/Locations/westus/Publishers/{publisher}/ArtifactTypes/VMImage/Offers/{offer}/Skus/{sku}/Versions/1.0.0"
       }
     },
     location: "West US",
@@ -43,7 +43,7 @@ async function createAManagedDiskFromAPlatformImage() {
 }
 async function main() {
   const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
+  const subscriptionId = "{subscriptionId}";
   client = new ComputeManagementClient(credential, subscriptionId);
   await createAManagedDiskFromAPlatformImage();
 }
