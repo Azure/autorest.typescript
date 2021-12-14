@@ -179,9 +179,6 @@ function getParameterAssignment(exampleValue: ExampleValue) {
   let schemaType = exampleValue.schema.type;
   const rawValue = exampleValue.rawValue;
   let retValue = rawValue;
-  if (rawValue === null) {
-    return undefined;
-  }
   switch (schemaType) {
     case SchemaType.Constant:
       const contentSchema = exampleValue.schema as ConstantSchema;
@@ -192,6 +189,21 @@ function getParameterAssignment(exampleValue: ExampleValue) {
       const choiceSchema = exampleValue.schema as ChoiceSchema;
       schemaType = choiceSchema.choiceType.type; 
       break;    
+  }
+  if (rawValue === null) {
+    switch (schemaType) {
+      case SchemaType.Object:
+      case SchemaType.Any:
+      case SchemaType.Dictionary:
+        retValue = `{}`;
+        break;
+      case SchemaType.Array:
+        retValue = `[]`;
+        break;
+      default:
+        retValue = undefined;
+    }
+    return retValue;
   }
   switch (schemaType) { 
     case SchemaType.String:
