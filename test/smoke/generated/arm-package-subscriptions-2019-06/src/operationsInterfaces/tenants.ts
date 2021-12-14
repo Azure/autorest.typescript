@@ -7,17 +7,7 @@
  */
 
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import {
-  TenantIdDescription,
-  TenantsListNextOptionalParams,
-  TenantsListOptionalParams,
-  TenantsListNextNextOptionalParams,
-  TenantsListNextNextNextOptionalParams,
-  TenantsListNextNextNextNextOptionalParams,
-  TenantsListNextNextNextNextNextOptionalParams,
-  TenantsListNextNextNextNextNextNextOptionalParams,
-  TenantsListNextNextNextNextNextNextNextOptionalParams
-} from "../models";
+import { TenantIdDescription, TenantsListOptionalParams } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a Tenants. */
@@ -28,70 +18,5 @@ export interface Tenants {
    */
   list(
     options?: TenantsListOptionalParams
-  ): PagedAsyncIterableIterator<TenantIdDescription>;
-  /**
-   * ListNext
-   * @param nextLink The nextLink from the previous successful call to the List method.
-   * @param options The options parameters.
-   */
-  listNext(
-    nextLink: string,
-    options?: TenantsListNextOptionalParams
-  ): PagedAsyncIterableIterator<TenantIdDescription>;
-  /**
-   * ListNextNext
-   * @param nextLink The nextLink from the previous successful call to the ListNext method.
-   * @param options The options parameters.
-   */
-  listNextNext(
-    nextLink: string,
-    options?: TenantsListNextNextOptionalParams
-  ): PagedAsyncIterableIterator<TenantIdDescription>;
-  /**
-   * ListNextNextNext
-   * @param nextLink The nextLink from the previous successful call to the ListNextNext method.
-   * @param options The options parameters.
-   */
-  listNextNextNext(
-    nextLink: string,
-    options?: TenantsListNextNextNextOptionalParams
-  ): PagedAsyncIterableIterator<TenantIdDescription>;
-  /**
-   * ListNextNextNextNext
-   * @param nextLink The nextLink from the previous successful call to the ListNextNextNext method.
-   * @param options The options parameters.
-   */
-  listNextNextNextNext(
-    nextLink: string,
-    options?: TenantsListNextNextNextNextOptionalParams
-  ): PagedAsyncIterableIterator<TenantIdDescription>;
-  /**
-   * ListNextNextNextNextNext
-   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNext method.
-   * @param options The options parameters.
-   */
-  listNextNextNextNextNext(
-    nextLink: string,
-    options?: TenantsListNextNextNextNextNextOptionalParams
-  ): PagedAsyncIterableIterator<TenantIdDescription>;
-  /**
-   * ListNextNextNextNextNextNext
-   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNextNext
-   *                 method.
-   * @param options The options parameters.
-   */
-  listNextNextNextNextNextNext(
-    nextLink: string,
-    options?: TenantsListNextNextNextNextNextNextOptionalParams
-  ): PagedAsyncIterableIterator<TenantIdDescription>;
-  /**
-   * ListNextNextNextNextNextNextNext
-   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNextNextNext
-   *                 method.
-   * @param options The options parameters.
-   */
-  listNextNextNextNextNextNextNext(
-    nextLink: string,
-    options?: TenantsListNextNextNextNextNextNextNextOptionalParams
   ): PagedAsyncIterableIterator<TenantIdDescription>;
 }

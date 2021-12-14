@@ -18,13 +18,6 @@ export class FeatureClient extends coreClient.ServiceClient {
     // (undocumented)
     features: Features;
     listOperations(options?: ListOperationsOptionalParams): PagedAsyncIterableIterator<Operation>;
-    listOperationsNext(nextLink: string, options?: ListOperationsNextOptionalParams): PagedAsyncIterableIterator<Operation>;
-    listOperationsNextNext(nextLink: string, options?: ListOperationsNextNextOptionalParams): PagedAsyncIterableIterator<Operation>;
-    listOperationsNextNextNext(nextLink: string, options?: ListOperationsNextNextNextOptionalParams): PagedAsyncIterableIterator<Operation>;
-    listOperationsNextNextNextNext(nextLink: string, options?: ListOperationsNextNextNextNextOptionalParams): PagedAsyncIterableIterator<Operation>;
-    listOperationsNextNextNextNextNext(nextLink: string, options?: ListOperationsNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<Operation>;
-    listOperationsNextNextNextNextNextNext(nextLink: string, options?: ListOperationsNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<Operation>;
-    listOperationsNextNextNextNextNextNextNext(nextLink: string, options?: ListOperationsNextNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<Operation>;
     // (undocumented)
     subscriptionId: string;
 }
@@ -60,20 +53,6 @@ export interface Features {
     get(resourceProviderNamespace: string, featureName: string, options?: FeaturesGetOptionalParams): Promise<FeaturesGetResponse>;
     list(resourceProviderNamespace: string, options?: FeaturesListOptionalParams): PagedAsyncIterableIterator<FeatureResult>;
     listAll(options?: FeaturesListAllOptionalParams): PagedAsyncIterableIterator<FeatureResult>;
-    listAllNext(nextLink: string, options?: FeaturesListAllNextOptionalParams): PagedAsyncIterableIterator<FeatureResult>;
-    listAllNextNext(nextLink: string, options?: FeaturesListAllNextNextOptionalParams): PagedAsyncIterableIterator<FeatureResult>;
-    listAllNextNextNext(nextLink: string, options?: FeaturesListAllNextNextNextOptionalParams): PagedAsyncIterableIterator<FeatureResult>;
-    listAllNextNextNextNext(nextLink: string, options?: FeaturesListAllNextNextNextNextOptionalParams): PagedAsyncIterableIterator<FeatureResult>;
-    listAllNextNextNextNextNext(nextLink: string, options?: FeaturesListAllNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<FeatureResult>;
-    listAllNextNextNextNextNextNext(nextLink: string, options?: FeaturesListAllNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<FeatureResult>;
-    listAllNextNextNextNextNextNextNext(nextLink: string, options?: FeaturesListAllNextNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<FeatureResult>;
-    listNext(resourceProviderNamespace: string, nextLink: string, options?: FeaturesListNextOptionalParams): PagedAsyncIterableIterator<FeatureResult>;
-    listNextNext(resourceProviderNamespace: string, nextLink: string, options?: FeaturesListNextNextOptionalParams): PagedAsyncIterableIterator<FeatureResult>;
-    listNextNextNext(resourceProviderNamespace: string, nextLink: string, options?: FeaturesListNextNextNextOptionalParams): PagedAsyncIterableIterator<FeatureResult>;
-    listNextNextNextNext(resourceProviderNamespace: string, nextLink: string, options?: FeaturesListNextNextNextNextOptionalParams): PagedAsyncIterableIterator<FeatureResult>;
-    listNextNextNextNextNext(resourceProviderNamespace: string, nextLink: string, options?: FeaturesListNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<FeatureResult>;
-    listNextNextNextNextNextNext(resourceProviderNamespace: string, nextLink: string, options?: FeaturesListNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<FeatureResult>;
-    listNextNextNextNextNextNextNext(resourceProviderNamespace: string, nextLink: string, options?: FeaturesListNextNextNextNextNextNextNextOptionalParams): PagedAsyncIterableIterator<FeatureResult>;
     register(resourceProviderNamespace: string, featureName: string, options?: FeaturesRegisterOptionalParams): Promise<FeaturesRegisterResponse>;
     unregister(resourceProviderNamespace: string, featureName: string, options?: FeaturesUnregisterOptionalParams): Promise<FeaturesUnregisterResponse>;
 }
@@ -84,55 +63,6 @@ export interface FeaturesGetOptionalParams extends coreClient.OperationOptions {
 
 // @public
 export type FeaturesGetResponse = FeatureResult;
-
-// @public
-export interface FeaturesListAllNextNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
-}
-
-// @public
-export type FeaturesListAllNextNextNextNextNextNextNextNextResponse = FeatureOperationsListResult;
-
-// @public
-export interface FeaturesListAllNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
-}
-
-// @public
-export type FeaturesListAllNextNextNextNextNextNextNextResponse = FeatureOperationsListResult;
-
-// @public
-export interface FeaturesListAllNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
-}
-
-// @public
-export type FeaturesListAllNextNextNextNextNextNextResponse = FeatureOperationsListResult;
-
-// @public
-export interface FeaturesListAllNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
-}
-
-// @public
-export type FeaturesListAllNextNextNextNextNextResponse = FeatureOperationsListResult;
-
-// @public
-export interface FeaturesListAllNextNextNextNextOptionalParams extends coreClient.OperationOptions {
-}
-
-// @public
-export type FeaturesListAllNextNextNextNextResponse = FeatureOperationsListResult;
-
-// @public
-export interface FeaturesListAllNextNextNextOptionalParams extends coreClient.OperationOptions {
-}
-
-// @public
-export type FeaturesListAllNextNextNextResponse = FeatureOperationsListResult;
-
-// @public
-export interface FeaturesListAllNextNextOptionalParams extends coreClient.OperationOptions {
-}
-
-// @public
-export type FeaturesListAllNextNextResponse = FeatureOperationsListResult;
 
 // @public
 export interface FeaturesListAllNextOptionalParams extends coreClient.OperationOptions {
@@ -147,55 +77,6 @@ export interface FeaturesListAllOptionalParams extends coreClient.OperationOptio
 
 // @public
 export type FeaturesListAllResponse = FeatureOperationsListResult;
-
-// @public
-export interface FeaturesListNextNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
-}
-
-// @public
-export type FeaturesListNextNextNextNextNextNextNextNextResponse = FeatureOperationsListResult;
-
-// @public
-export interface FeaturesListNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
-}
-
-// @public
-export type FeaturesListNextNextNextNextNextNextNextResponse = FeatureOperationsListResult;
-
-// @public
-export interface FeaturesListNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
-}
-
-// @public
-export type FeaturesListNextNextNextNextNextNextResponse = FeatureOperationsListResult;
-
-// @public
-export interface FeaturesListNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
-}
-
-// @public
-export type FeaturesListNextNextNextNextNextResponse = FeatureOperationsListResult;
-
-// @public
-export interface FeaturesListNextNextNextNextOptionalParams extends coreClient.OperationOptions {
-}
-
-// @public
-export type FeaturesListNextNextNextNextResponse = FeatureOperationsListResult;
-
-// @public
-export interface FeaturesListNextNextNextOptionalParams extends coreClient.OperationOptions {
-}
-
-// @public
-export type FeaturesListNextNextNextResponse = FeatureOperationsListResult;
-
-// @public
-export interface FeaturesListNextNextOptionalParams extends coreClient.OperationOptions {
-}
-
-// @public
-export type FeaturesListNextNextResponse = FeatureOperationsListResult;
 
 // @public
 export interface FeaturesListNextOptionalParams extends coreClient.OperationOptions {
@@ -224,55 +105,6 @@ export interface FeaturesUnregisterOptionalParams extends coreClient.OperationOp
 
 // @public
 export type FeaturesUnregisterResponse = FeatureResult;
-
-// @public
-export interface ListOperationsNextNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
-}
-
-// @public
-export type ListOperationsNextNextNextNextNextNextNextNextResponse = OperationListResult;
-
-// @public
-export interface ListOperationsNextNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
-}
-
-// @public
-export type ListOperationsNextNextNextNextNextNextNextResponse = OperationListResult;
-
-// @public
-export interface ListOperationsNextNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
-}
-
-// @public
-export type ListOperationsNextNextNextNextNextNextResponse = OperationListResult;
-
-// @public
-export interface ListOperationsNextNextNextNextNextOptionalParams extends coreClient.OperationOptions {
-}
-
-// @public
-export type ListOperationsNextNextNextNextNextResponse = OperationListResult;
-
-// @public
-export interface ListOperationsNextNextNextNextOptionalParams extends coreClient.OperationOptions {
-}
-
-// @public
-export type ListOperationsNextNextNextNextResponse = OperationListResult;
-
-// @public
-export interface ListOperationsNextNextNextOptionalParams extends coreClient.OperationOptions {
-}
-
-// @public
-export type ListOperationsNextNextNextResponse = OperationListResult;
-
-// @public
-export interface ListOperationsNextNextOptionalParams extends coreClient.OperationOptions {
-}
-
-// @public
-export type ListOperationsNextNextResponse = OperationListResult;
 
 // @public
 export interface ListOperationsNextOptionalParams extends coreClient.OperationOptions {

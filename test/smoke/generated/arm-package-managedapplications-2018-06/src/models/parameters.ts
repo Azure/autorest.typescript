@@ -13,7 +13,6 @@ import {
 } from "@azure/core-client";
 import {
   Application as ApplicationMapper,
-  ApplicationPatchable as ApplicationPatchableMapper,
   ApplicationDefinition as ApplicationDefinitionMapper
 } from "../models/mappers";
 
@@ -33,30 +32,6 @@ export const $host: OperationURLParameter = {
   parameterPath: "$host",
   mapper: {
     serializedName: "$host",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const apiVersion: OperationQueryParameter = {
-  parameterPath: "apiVersion",
-  mapper: {
-    defaultValue: "2018-06-01",
-    isConstant: true,
-    serializedName: "api-version",
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const nextLink: OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
     required: true,
     type: {
       name: "String"
@@ -96,6 +71,18 @@ export const applicationName: OperationURLParameter = {
   }
 };
 
+export const apiVersion: OperationQueryParameter = {
+  parameterPath: "apiVersion",
+  mapper: {
+    defaultValue: "2018-06-01",
+    isConstant: true,
+    serializedName: "api-version",
+    type: {
+      name: "String"
+    }
+  }
+};
+
 export const subscriptionId: OperationURLParameter = {
   parameterPath: "subscriptionId",
   mapper: {
@@ -126,7 +113,7 @@ export const parameters: OperationParameter = {
 
 export const parameters1: OperationParameter = {
   parameterPath: ["options", "parameters"],
-  mapper: ApplicationPatchableMapper
+  mapper: ApplicationMapper
 };
 
 export const applicationId: OperationURLParameter = {
@@ -141,9 +128,16 @@ export const applicationId: OperationURLParameter = {
   skipEncoding: true
 };
 
-export const parameters2: OperationParameter = {
-  parameterPath: ["options", "parameters"],
-  mapper: ApplicationMapper
+export const nextLink: OperationURLParameter = {
+  parameterPath: "nextLink",
+  mapper: {
+    serializedName: "nextLink",
+    required: true,
+    type: {
+      name: "String"
+    }
+  },
+  skipEncoding: true
 };
 
 export const applicationDefinitionName: OperationURLParameter = {
@@ -161,7 +155,19 @@ export const applicationDefinitionName: OperationURLParameter = {
   }
 };
 
-export const parameters3: OperationParameter = {
+export const parameters2: OperationParameter = {
   parameterPath: "parameters",
   mapper: ApplicationDefinitionMapper
+};
+
+export const applicationDefinitionId: OperationURLParameter = {
+  parameterPath: "applicationDefinitionId",
+  mapper: {
+    serializedName: "applicationDefinitionId",
+    required: true,
+    type: {
+      name: "String"
+    }
+  },
+  skipEncoding: true
 };

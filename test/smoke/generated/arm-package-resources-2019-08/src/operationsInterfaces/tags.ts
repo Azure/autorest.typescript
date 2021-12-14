@@ -9,14 +9,7 @@
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import {
   TagDetails,
-  TagsListNextOptionalParams,
   TagsListOptionalParams,
-  TagsListNextNextOptionalParams,
-  TagsListNextNextNextOptionalParams,
-  TagsListNextNextNextNextOptionalParams,
-  TagsListNextNextNextNextNextOptionalParams,
-  TagsListNextNextNextNextNextNextOptionalParams,
-  TagsListNextNextNextNextNextNextNextOptionalParams,
   TagsDeleteValueOptionalParams,
   TagsCreateOrUpdateValueOptionalParams,
   TagsCreateOrUpdateValueResponse,
@@ -34,71 +27,6 @@ export interface Tags {
    */
   list(
     options?: TagsListOptionalParams
-  ): PagedAsyncIterableIterator<TagDetails>;
-  /**
-   * ListNext
-   * @param nextLink The nextLink from the previous successful call to the List method.
-   * @param options The options parameters.
-   */
-  listNext(
-    nextLink: string,
-    options?: TagsListNextOptionalParams
-  ): PagedAsyncIterableIterator<TagDetails>;
-  /**
-   * ListNextNext
-   * @param nextLink The nextLink from the previous successful call to the ListNext method.
-   * @param options The options parameters.
-   */
-  listNextNext(
-    nextLink: string,
-    options?: TagsListNextNextOptionalParams
-  ): PagedAsyncIterableIterator<TagDetails>;
-  /**
-   * ListNextNextNext
-   * @param nextLink The nextLink from the previous successful call to the ListNextNext method.
-   * @param options The options parameters.
-   */
-  listNextNextNext(
-    nextLink: string,
-    options?: TagsListNextNextNextOptionalParams
-  ): PagedAsyncIterableIterator<TagDetails>;
-  /**
-   * ListNextNextNextNext
-   * @param nextLink The nextLink from the previous successful call to the ListNextNextNext method.
-   * @param options The options parameters.
-   */
-  listNextNextNextNext(
-    nextLink: string,
-    options?: TagsListNextNextNextNextOptionalParams
-  ): PagedAsyncIterableIterator<TagDetails>;
-  /**
-   * ListNextNextNextNextNext
-   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNext method.
-   * @param options The options parameters.
-   */
-  listNextNextNextNextNext(
-    nextLink: string,
-    options?: TagsListNextNextNextNextNextOptionalParams
-  ): PagedAsyncIterableIterator<TagDetails>;
-  /**
-   * ListNextNextNextNextNextNext
-   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNextNext
-   *                 method.
-   * @param options The options parameters.
-   */
-  listNextNextNextNextNextNext(
-    nextLink: string,
-    options?: TagsListNextNextNextNextNextNextOptionalParams
-  ): PagedAsyncIterableIterator<TagDetails>;
-  /**
-   * ListNextNextNextNextNextNextNext
-   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNextNextNext
-   *                 method.
-   * @param options The options parameters.
-   */
-  listNextNextNextNextNextNextNext(
-    nextLink: string,
-    options?: TagsListNextNextNextNextNextNextNextOptionalParams
   ): PagedAsyncIterableIterator<TagDetails>;
   /**
    * Deletes a tag value.

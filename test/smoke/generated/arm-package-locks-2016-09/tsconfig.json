@@ -12,27 +12,8 @@
     "lib": ["es6", "dom"],
     "declaration": true,
     "outDir": "./dist-esm",
-    "importHelpers": true,
-    "paths": { "@msinternal/arm-package-locks-2016-09": ["./src/index"] }
+    "importHelpers": true
   },
-  "include": [
-    "./src/**/*.ts",
-    "./test/**/*.ts",
-    "samples-dev/**/*.ts",
-    "./test/**/*.ts",
-    "samples-dev/**/*.ts",
-    "./test/**/*.ts",
-    "samples-dev/**/*.ts",
-    "./test/**/*.ts",
-    "samples-dev/**/*.ts",
-    "./test/**/*.ts",
-    "samples-dev/**/*.ts",
-    "./test/**/*.ts",
-    "samples-dev/**/*.ts",
-    "./test/**/*.ts",
-    "samples-dev/**/*.ts",
-    "./test/**/*.ts",
-    "samples-dev/**/*.ts"
-  ],
+  "include": ["./src/**/*.ts"],
   "exclude": ["node_modules"]
 }

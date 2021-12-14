@@ -8,82 +8,6 @@
 
 import * as coreClient from "@azure/core-client";
 
-export const OperationListResult: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "OperationListResult",
-    modelProperties: {
-      value: {
-        serializedName: "value",
-        type: {
-          name: "Sequence",
-          element: {
-            type: {
-              name: "Composite",
-              className: "Operation"
-            }
-          }
-        }
-      },
-      nextLink: {
-        serializedName: "nextLink",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const Operation: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "Operation",
-    modelProperties: {
-      name: {
-        serializedName: "name",
-        type: {
-          name: "String"
-        }
-      },
-      display: {
-        serializedName: "display",
-        type: {
-          name: "Composite",
-          className: "OperationDisplay"
-        }
-      }
-    }
-  }
-};
-
-export const OperationDisplay: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "OperationDisplay",
-    modelProperties: {
-      provider: {
-        serializedName: "provider",
-        type: {
-          name: "String"
-        }
-      },
-      resource: {
-        serializedName: "resource",
-        type: {
-          name: "String"
-        }
-      },
-      operation: {
-        serializedName: "operation",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
 export const Plan: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
@@ -274,45 +198,6 @@ export const ErrorResponse: coreClient.CompositeMapper = {
   }
 };
 
-export const PlanPatchable: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "PlanPatchable",
-    modelProperties: {
-      name: {
-        serializedName: "name",
-        type: {
-          name: "String"
-        }
-      },
-      publisher: {
-        serializedName: "publisher",
-        type: {
-          name: "String"
-        }
-      },
-      product: {
-        serializedName: "product",
-        type: {
-          name: "String"
-        }
-      },
-      promotionCode: {
-        serializedName: "promotionCode",
-        type: {
-          name: "String"
-        }
-      },
-      version: {
-        serializedName: "version",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
 export const ApplicationProviderAuthorization: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
@@ -418,6 +303,45 @@ export const ApplicationListResult: coreClient.CompositeMapper = {
   }
 };
 
+export const PlanPatchable: coreClient.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "PlanPatchable",
+    modelProperties: {
+      name: {
+        serializedName: "name",
+        type: {
+          name: "String"
+        }
+      },
+      publisher: {
+        serializedName: "publisher",
+        type: {
+          name: "String"
+        }
+      },
+      product: {
+        serializedName: "product",
+        type: {
+          name: "String"
+        }
+      },
+      promotionCode: {
+        serializedName: "promotionCode",
+        type: {
+          name: "String"
+        }
+      },
+      version: {
+        serializedName: "version",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
 export const GenericResource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
@@ -474,66 +398,6 @@ export const Application: coreClient.CompositeMapper = {
       managedResourceGroupId: {
         serializedName: "properties.managedResourceGroupId",
         required: true,
-        type: {
-          name: "String"
-        }
-      },
-      applicationDefinitionId: {
-        serializedName: "properties.applicationDefinitionId",
-        type: {
-          name: "String"
-        }
-      },
-      parameters: {
-        serializedName: "properties.parameters",
-        type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
-        }
-      },
-      outputs: {
-        serializedName: "properties.outputs",
-        readOnly: true,
-        type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
-        }
-      },
-      provisioningState: {
-        serializedName: "properties.provisioningState",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const ApplicationPatchable: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "ApplicationPatchable",
-    modelProperties: {
-      ...GenericResource.type.modelProperties,
-      plan: {
-        serializedName: "plan",
-        type: {
-          name: "Composite",
-          className: "PlanPatchable"
-        }
-      },
-      kind: {
-        constraints: {
-          Pattern: new RegExp("^[-\\w\\._,\\(\\)]+$")
-        },
-        serializedName: "kind",
-        type: {
-          name: "String"
-        }
-      },
-      managedResourceGroupId: {
-        serializedName: "properties.managedResourceGroupId",
         type: {
           name: "String"
         }
@@ -645,6 +509,66 @@ export const ApplicationDefinition: coreClient.CompositeMapper = {
         type: {
           name: "Dictionary",
           value: { type: { name: "any" } }
+        }
+      }
+    }
+  }
+};
+
+export const ApplicationPatchable: coreClient.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "ApplicationPatchable",
+    modelProperties: {
+      ...GenericResource.type.modelProperties,
+      plan: {
+        serializedName: "plan",
+        type: {
+          name: "Composite",
+          className: "PlanPatchable"
+        }
+      },
+      kind: {
+        constraints: {
+          Pattern: new RegExp("^[-\\w\\._,\\(\\)]+$")
+        },
+        serializedName: "kind",
+        type: {
+          name: "String"
+        }
+      },
+      managedResourceGroupId: {
+        serializedName: "properties.managedResourceGroupId",
+        type: {
+          name: "String"
+        }
+      },
+      applicationDefinitionId: {
+        serializedName: "properties.applicationDefinitionId",
+        type: {
+          name: "String"
+        }
+      },
+      parameters: {
+        serializedName: "properties.parameters",
+        type: {
+          name: "Dictionary",
+          value: { type: { name: "any" } }
+        }
+      },
+      outputs: {
+        serializedName: "properties.outputs",
+        readOnly: true,
+        type: {
+          name: "Dictionary",
+          value: { type: { name: "any" } }
+        }
+      },
+      provisioningState: {
+        serializedName: "properties.provisioningState",
+        readOnly: true,
+        type: {
+          name: "String"
         }
       }
     }

@@ -194,53 +194,6 @@ export interface TenantIdDescription {
   readonly domains?: string[];
 }
 
-/** Name and Type of the Resource */
-export interface ResourceName {
-  /** Name of the resource */
-  name: string;
-  /** The type of the resource */
-  type: string;
-}
-
-/** Resource Name valid if not a reserved word, does not contain a reserved word and does not start with a reserved word */
-export interface CheckResourceNameResult {
-  /** Name of Resource */
-  name?: string;
-  /** Type of Resource */
-  type?: string;
-  /** Is the resource name Allowed or Reserved */
-  status?: ResourceNameStatus;
-}
-
-/** Error response. */
-export interface ErrorResponse {
-  /** The error details. */
-  error?: ErrorDefinition;
-}
-
-/** Error description and code explaining why resource name is invalid. */
-export interface ErrorDefinition {
-  /** Description of the error. */
-  message?: string;
-  /** Code of the error. */
-  code?: string;
-}
-
-/** Known values of {@link ResourceNameStatus} that the service accepts. */
-export enum KnownResourceNameStatus {
-  Allowed = "Allowed",
-  Reserved = "Reserved"
-}
-
-/**
- * Defines values for ResourceNameStatus. \
- * {@link KnownResourceNameStatus} can be used interchangeably with ResourceNameStatus,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Allowed** \
- * **Reserved**
- */
-export type ResourceNameStatus = string;
 /** Defines values for SubscriptionState. */
 export type SubscriptionState =
   | "Enabled"
@@ -266,55 +219,6 @@ export interface OperationsListNextOptionalParams
 
 /** Contains response data for the listNext operation. */
 export type OperationsListNextResponse = OperationListResult;
-
-/** Optional parameters. */
-export interface OperationsListNextNextOptionalParams
-  extends coreClient.OperationOptions {}
-
-/** Contains response data for the listNextNext operation. */
-export type OperationsListNextNextResponse = OperationListResult;
-
-/** Optional parameters. */
-export interface OperationsListNextNextNextOptionalParams
-  extends coreClient.OperationOptions {}
-
-/** Contains response data for the listNextNextNext operation. */
-export type OperationsListNextNextNextResponse = OperationListResult;
-
-/** Optional parameters. */
-export interface OperationsListNextNextNextNextOptionalParams
-  extends coreClient.OperationOptions {}
-
-/** Contains response data for the listNextNextNextNext operation. */
-export type OperationsListNextNextNextNextResponse = OperationListResult;
-
-/** Optional parameters. */
-export interface OperationsListNextNextNextNextNextOptionalParams
-  extends coreClient.OperationOptions {}
-
-/** Contains response data for the listNextNextNextNextNext operation. */
-export type OperationsListNextNextNextNextNextResponse = OperationListResult;
-
-/** Optional parameters. */
-export interface OperationsListNextNextNextNextNextNextOptionalParams
-  extends coreClient.OperationOptions {}
-
-/** Contains response data for the listNextNextNextNextNextNext operation. */
-export type OperationsListNextNextNextNextNextNextResponse = OperationListResult;
-
-/** Optional parameters. */
-export interface OperationsListNextNextNextNextNextNextNextOptionalParams
-  extends coreClient.OperationOptions {}
-
-/** Contains response data for the listNextNextNextNextNextNextNext operation. */
-export type OperationsListNextNextNextNextNextNextNextResponse = OperationListResult;
-
-/** Optional parameters. */
-export interface OperationsListNextNextNextNextNextNextNextNextOptionalParams
-  extends coreClient.OperationOptions {}
-
-/** Contains response data for the listNextNextNextNextNextNextNextNext operation. */
-export type OperationsListNextNextNextNextNextNextNextNextResponse = OperationListResult;
 
 /** Optional parameters. */
 export interface SubscriptionsListLocationsOptionalParams
@@ -345,55 +249,6 @@ export interface SubscriptionsListNextOptionalParams
 export type SubscriptionsListNextResponse = SubscriptionListResult;
 
 /** Optional parameters. */
-export interface SubscriptionsListNextNextOptionalParams
-  extends coreClient.OperationOptions {}
-
-/** Contains response data for the listNextNext operation. */
-export type SubscriptionsListNextNextResponse = SubscriptionListResult;
-
-/** Optional parameters. */
-export interface SubscriptionsListNextNextNextOptionalParams
-  extends coreClient.OperationOptions {}
-
-/** Contains response data for the listNextNextNext operation. */
-export type SubscriptionsListNextNextNextResponse = SubscriptionListResult;
-
-/** Optional parameters. */
-export interface SubscriptionsListNextNextNextNextOptionalParams
-  extends coreClient.OperationOptions {}
-
-/** Contains response data for the listNextNextNextNext operation. */
-export type SubscriptionsListNextNextNextNextResponse = SubscriptionListResult;
-
-/** Optional parameters. */
-export interface SubscriptionsListNextNextNextNextNextOptionalParams
-  extends coreClient.OperationOptions {}
-
-/** Contains response data for the listNextNextNextNextNext operation. */
-export type SubscriptionsListNextNextNextNextNextResponse = SubscriptionListResult;
-
-/** Optional parameters. */
-export interface SubscriptionsListNextNextNextNextNextNextOptionalParams
-  extends coreClient.OperationOptions {}
-
-/** Contains response data for the listNextNextNextNextNextNext operation. */
-export type SubscriptionsListNextNextNextNextNextNextResponse = SubscriptionListResult;
-
-/** Optional parameters. */
-export interface SubscriptionsListNextNextNextNextNextNextNextOptionalParams
-  extends coreClient.OperationOptions {}
-
-/** Contains response data for the listNextNextNextNextNextNextNext operation. */
-export type SubscriptionsListNextNextNextNextNextNextNextResponse = SubscriptionListResult;
-
-/** Optional parameters. */
-export interface SubscriptionsListNextNextNextNextNextNextNextNextOptionalParams
-  extends coreClient.OperationOptions {}
-
-/** Contains response data for the listNextNextNextNextNextNextNextNext operation. */
-export type SubscriptionsListNextNextNextNextNextNextNextNextResponse = SubscriptionListResult;
-
-/** Optional parameters. */
 export interface TenantsListOptionalParams
   extends coreClient.OperationOptions {}
 
@@ -406,65 +261,6 @@ export interface TenantsListNextOptionalParams
 
 /** Contains response data for the listNext operation. */
 export type TenantsListNextResponse = TenantListResult;
-
-/** Optional parameters. */
-export interface TenantsListNextNextOptionalParams
-  extends coreClient.OperationOptions {}
-
-/** Contains response data for the listNextNext operation. */
-export type TenantsListNextNextResponse = TenantListResult;
-
-/** Optional parameters. */
-export interface TenantsListNextNextNextOptionalParams
-  extends coreClient.OperationOptions {}
-
-/** Contains response data for the listNextNextNext operation. */
-export type TenantsListNextNextNextResponse = TenantListResult;
-
-/** Optional parameters. */
-export interface TenantsListNextNextNextNextOptionalParams
-  extends coreClient.OperationOptions {}
-
-/** Contains response data for the listNextNextNextNext operation. */
-export type TenantsListNextNextNextNextResponse = TenantListResult;
-
-/** Optional parameters. */
-export interface TenantsListNextNextNextNextNextOptionalParams
-  extends coreClient.OperationOptions {}
-
-/** Contains response data for the listNextNextNextNextNext operation. */
-export type TenantsListNextNextNextNextNextResponse = TenantListResult;
-
-/** Optional parameters. */
-export interface TenantsListNextNextNextNextNextNextOptionalParams
-  extends coreClient.OperationOptions {}
-
-/** Contains response data for the listNextNextNextNextNextNext operation. */
-export type TenantsListNextNextNextNextNextNextResponse = TenantListResult;
-
-/** Optional parameters. */
-export interface TenantsListNextNextNextNextNextNextNextOptionalParams
-  extends coreClient.OperationOptions {}
-
-/** Contains response data for the listNextNextNextNextNextNextNext operation. */
-export type TenantsListNextNextNextNextNextNextNextResponse = TenantListResult;
-
-/** Optional parameters. */
-export interface TenantsListNextNextNextNextNextNextNextNextOptionalParams
-  extends coreClient.OperationOptions {}
-
-/** Contains response data for the listNextNextNextNextNextNextNextNext operation. */
-export type TenantsListNextNextNextNextNextNextNextNextResponse = TenantListResult;
-
-/** Optional parameters. */
-export interface CheckResourceNameOptionalParams
-  extends coreClient.OperationOptions {
-  /** Resource object with values for resource name and resource type */
-  resourceNameDefinition?: ResourceName;
-}
-
-/** Contains response data for the checkResourceName operation. */
-export type CheckResourceNameResponse = CheckResourceNameResult;
 
 /** Optional parameters. */
 export interface SubscriptionClientOptionalParams

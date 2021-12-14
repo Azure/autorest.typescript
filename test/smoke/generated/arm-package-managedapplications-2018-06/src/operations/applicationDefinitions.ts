@@ -18,13 +18,6 @@ import {
   ApplicationDefinition,
   ApplicationDefinitionsListByResourceGroupNextOptionalParams,
   ApplicationDefinitionsListByResourceGroupOptionalParams,
-  ApplicationDefinitionsListByResourceGroupNextNextOptionalParams,
-  ApplicationDefinitionsListByResourceGroupNextNextNextOptionalParams,
-  ApplicationDefinitionsListByResourceGroupNextNextNextNextOptionalParams,
-  ApplicationDefinitionsListByResourceGroupNextNextNextNextNextOptionalParams,
-  ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextOptionalParams,
-  ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextNextOptionalParams,
-  ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextNextNextOptionalParams,
   ApplicationDefinitionsGetOptionalParams,
   ApplicationDefinitionsGetResponse,
   ApplicationDefinitionsDeleteOptionalParams,
@@ -36,14 +29,7 @@ import {
   ApplicationDefinitionsDeleteByIdOptionalParams,
   ApplicationDefinitionsCreateOrUpdateByIdOptionalParams,
   ApplicationDefinitionsCreateOrUpdateByIdResponse,
-  ApplicationDefinitionsListByResourceGroupNextResponse,
-  ApplicationDefinitionsListByResourceGroupNextNextResponse,
-  ApplicationDefinitionsListByResourceGroupNextNextNextResponse,
-  ApplicationDefinitionsListByResourceGroupNextNextNextNextResponse,
-  ApplicationDefinitionsListByResourceGroupNextNextNextNextNextResponse,
-  ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextResponse,
-  ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextNextResponse,
-  ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextNextNextResponse
+  ApplicationDefinitionsListByResourceGroupNextResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -106,502 +92,6 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
   ): AsyncIterableIterator<ApplicationDefinition> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
-      options
-    )) {
-      yield* page;
-    }
-  }
-
-  /**
-   * ListByResourceGroupNext
-   * @param resourceGroupName The name of the resource group. The name is case insensitive.
-   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
-   * @param options The options parameters.
-   */
-  public listByResourceGroupNext(
-    resourceGroupName: string,
-    nextLink: string,
-    options?: ApplicationDefinitionsListByResourceGroupNextOptionalParams
-  ): PagedAsyncIterableIterator<ApplicationDefinition> {
-    const iter = this.listByResourceGroupNextPagingAll(
-      resourceGroupName,
-      nextLink,
-      options
-    );
-    return {
-      next() {
-        return iter.next();
-      },
-      [Symbol.asyncIterator]() {
-        return this;
-      },
-      byPage: () => {
-        return this.listByResourceGroupNextPagingPage(
-          resourceGroupName,
-          nextLink,
-          options
-        );
-      }
-    };
-  }
-
-  private async *listByResourceGroupNextPagingPage(
-    resourceGroupName: string,
-    nextLink: string,
-    options?: ApplicationDefinitionsListByResourceGroupNextOptionalParams
-  ): AsyncIterableIterator<ApplicationDefinition[]> {
-    let result = await this._listByResourceGroupNext(
-      resourceGroupName,
-      nextLink,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
-    while (continuationToken) {
-      result = await this._listByResourceGroupNextNext(
-        resourceGroupName,
-        continuationToken,
-        options
-      );
-      continuationToken = result.nextLink;
-      yield result.value || [];
-    }
-  }
-
-  private async *listByResourceGroupNextPagingAll(
-    resourceGroupName: string,
-    nextLink: string,
-    options?: ApplicationDefinitionsListByResourceGroupNextOptionalParams
-  ): AsyncIterableIterator<ApplicationDefinition> {
-    for await (const page of this.listByResourceGroupNextPagingPage(
-      resourceGroupName,
-      nextLink,
-      options
-    )) {
-      yield* page;
-    }
-  }
-
-  /**
-   * ListByResourceGroupNextNext
-   * @param resourceGroupName The name of the resource group. The name is case insensitive.
-   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroupNext
-   *                 method.
-   * @param options The options parameters.
-   */
-  public listByResourceGroupNextNext(
-    resourceGroupName: string,
-    nextLink: string,
-    options?: ApplicationDefinitionsListByResourceGroupNextNextOptionalParams
-  ): PagedAsyncIterableIterator<ApplicationDefinition> {
-    const iter = this.listByResourceGroupNextNextPagingAll(
-      resourceGroupName,
-      nextLink,
-      options
-    );
-    return {
-      next() {
-        return iter.next();
-      },
-      [Symbol.asyncIterator]() {
-        return this;
-      },
-      byPage: () => {
-        return this.listByResourceGroupNextNextPagingPage(
-          resourceGroupName,
-          nextLink,
-          options
-        );
-      }
-    };
-  }
-
-  private async *listByResourceGroupNextNextPagingPage(
-    resourceGroupName: string,
-    nextLink: string,
-    options?: ApplicationDefinitionsListByResourceGroupNextNextOptionalParams
-  ): AsyncIterableIterator<ApplicationDefinition[]> {
-    let result = await this._listByResourceGroupNextNext(
-      resourceGroupName,
-      nextLink,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
-    while (continuationToken) {
-      result = await this._listByResourceGroupNextNextNext(
-        resourceGroupName,
-        continuationToken,
-        options
-      );
-      continuationToken = result.nextLink;
-      yield result.value || [];
-    }
-  }
-
-  private async *listByResourceGroupNextNextPagingAll(
-    resourceGroupName: string,
-    nextLink: string,
-    options?: ApplicationDefinitionsListByResourceGroupNextNextOptionalParams
-  ): AsyncIterableIterator<ApplicationDefinition> {
-    for await (const page of this.listByResourceGroupNextNextPagingPage(
-      resourceGroupName,
-      nextLink,
-      options
-    )) {
-      yield* page;
-    }
-  }
-
-  /**
-   * ListByResourceGroupNextNextNext
-   * @param resourceGroupName The name of the resource group. The name is case insensitive.
-   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroupNextNext
-   *                 method.
-   * @param options The options parameters.
-   */
-  public listByResourceGroupNextNextNext(
-    resourceGroupName: string,
-    nextLink: string,
-    options?: ApplicationDefinitionsListByResourceGroupNextNextNextOptionalParams
-  ): PagedAsyncIterableIterator<ApplicationDefinition> {
-    const iter = this.listByResourceGroupNextNextNextPagingAll(
-      resourceGroupName,
-      nextLink,
-      options
-    );
-    return {
-      next() {
-        return iter.next();
-      },
-      [Symbol.asyncIterator]() {
-        return this;
-      },
-      byPage: () => {
-        return this.listByResourceGroupNextNextNextPagingPage(
-          resourceGroupName,
-          nextLink,
-          options
-        );
-      }
-    };
-  }
-
-  private async *listByResourceGroupNextNextNextPagingPage(
-    resourceGroupName: string,
-    nextLink: string,
-    options?: ApplicationDefinitionsListByResourceGroupNextNextNextOptionalParams
-  ): AsyncIterableIterator<ApplicationDefinition[]> {
-    let result = await this._listByResourceGroupNextNextNext(
-      resourceGroupName,
-      nextLink,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
-    while (continuationToken) {
-      result = await this._listByResourceGroupNextNextNextNext(
-        resourceGroupName,
-        continuationToken,
-        options
-      );
-      continuationToken = result.nextLink;
-      yield result.value || [];
-    }
-  }
-
-  private async *listByResourceGroupNextNextNextPagingAll(
-    resourceGroupName: string,
-    nextLink: string,
-    options?: ApplicationDefinitionsListByResourceGroupNextNextNextOptionalParams
-  ): AsyncIterableIterator<ApplicationDefinition> {
-    for await (const page of this.listByResourceGroupNextNextNextPagingPage(
-      resourceGroupName,
-      nextLink,
-      options
-    )) {
-      yield* page;
-    }
-  }
-
-  /**
-   * ListByResourceGroupNextNextNextNext
-   * @param resourceGroupName The name of the resource group. The name is case insensitive.
-   * @param nextLink The nextLink from the previous successful call to the
-   *                 ListByResourceGroupNextNextNext method.
-   * @param options The options parameters.
-   */
-  public listByResourceGroupNextNextNextNext(
-    resourceGroupName: string,
-    nextLink: string,
-    options?: ApplicationDefinitionsListByResourceGroupNextNextNextNextOptionalParams
-  ): PagedAsyncIterableIterator<ApplicationDefinition> {
-    const iter = this.listByResourceGroupNextNextNextNextPagingAll(
-      resourceGroupName,
-      nextLink,
-      options
-    );
-    return {
-      next() {
-        return iter.next();
-      },
-      [Symbol.asyncIterator]() {
-        return this;
-      },
-      byPage: () => {
-        return this.listByResourceGroupNextNextNextNextPagingPage(
-          resourceGroupName,
-          nextLink,
-          options
-        );
-      }
-    };
-  }
-
-  private async *listByResourceGroupNextNextNextNextPagingPage(
-    resourceGroupName: string,
-    nextLink: string,
-    options?: ApplicationDefinitionsListByResourceGroupNextNextNextNextOptionalParams
-  ): AsyncIterableIterator<ApplicationDefinition[]> {
-    let result = await this._listByResourceGroupNextNextNextNext(
-      resourceGroupName,
-      nextLink,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
-    while (continuationToken) {
-      result = await this._listByResourceGroupNextNextNextNextNext(
-        resourceGroupName,
-        continuationToken,
-        options
-      );
-      continuationToken = result.nextLink;
-      yield result.value || [];
-    }
-  }
-
-  private async *listByResourceGroupNextNextNextNextPagingAll(
-    resourceGroupName: string,
-    nextLink: string,
-    options?: ApplicationDefinitionsListByResourceGroupNextNextNextNextOptionalParams
-  ): AsyncIterableIterator<ApplicationDefinition> {
-    for await (const page of this.listByResourceGroupNextNextNextNextPagingPage(
-      resourceGroupName,
-      nextLink,
-      options
-    )) {
-      yield* page;
-    }
-  }
-
-  /**
-   * ListByResourceGroupNextNextNextNextNext
-   * @param resourceGroupName The name of the resource group. The name is case insensitive.
-   * @param nextLink The nextLink from the previous successful call to the
-   *                 ListByResourceGroupNextNextNextNext method.
-   * @param options The options parameters.
-   */
-  public listByResourceGroupNextNextNextNextNext(
-    resourceGroupName: string,
-    nextLink: string,
-    options?: ApplicationDefinitionsListByResourceGroupNextNextNextNextNextOptionalParams
-  ): PagedAsyncIterableIterator<ApplicationDefinition> {
-    const iter = this.listByResourceGroupNextNextNextNextNextPagingAll(
-      resourceGroupName,
-      nextLink,
-      options
-    );
-    return {
-      next() {
-        return iter.next();
-      },
-      [Symbol.asyncIterator]() {
-        return this;
-      },
-      byPage: () => {
-        return this.listByResourceGroupNextNextNextNextNextPagingPage(
-          resourceGroupName,
-          nextLink,
-          options
-        );
-      }
-    };
-  }
-
-  private async *listByResourceGroupNextNextNextNextNextPagingPage(
-    resourceGroupName: string,
-    nextLink: string,
-    options?: ApplicationDefinitionsListByResourceGroupNextNextNextNextNextOptionalParams
-  ): AsyncIterableIterator<ApplicationDefinition[]> {
-    let result = await this._listByResourceGroupNextNextNextNextNext(
-      resourceGroupName,
-      nextLink,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
-    while (continuationToken) {
-      result = await this._listByResourceGroupNextNextNextNextNextNext(
-        resourceGroupName,
-        continuationToken,
-        options
-      );
-      continuationToken = result.nextLink;
-      yield result.value || [];
-    }
-  }
-
-  private async *listByResourceGroupNextNextNextNextNextPagingAll(
-    resourceGroupName: string,
-    nextLink: string,
-    options?: ApplicationDefinitionsListByResourceGroupNextNextNextNextNextOptionalParams
-  ): AsyncIterableIterator<ApplicationDefinition> {
-    for await (const page of this.listByResourceGroupNextNextNextNextNextPagingPage(
-      resourceGroupName,
-      nextLink,
-      options
-    )) {
-      yield* page;
-    }
-  }
-
-  /**
-   * ListByResourceGroupNextNextNextNextNextNext
-   * @param resourceGroupName The name of the resource group. The name is case insensitive.
-   * @param nextLink The nextLink from the previous successful call to the
-   *                 ListByResourceGroupNextNextNextNextNext method.
-   * @param options The options parameters.
-   */
-  public listByResourceGroupNextNextNextNextNextNext(
-    resourceGroupName: string,
-    nextLink: string,
-    options?: ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextOptionalParams
-  ): PagedAsyncIterableIterator<ApplicationDefinition> {
-    const iter = this.listByResourceGroupNextNextNextNextNextNextPagingAll(
-      resourceGroupName,
-      nextLink,
-      options
-    );
-    return {
-      next() {
-        return iter.next();
-      },
-      [Symbol.asyncIterator]() {
-        return this;
-      },
-      byPage: () => {
-        return this.listByResourceGroupNextNextNextNextNextNextPagingPage(
-          resourceGroupName,
-          nextLink,
-          options
-        );
-      }
-    };
-  }
-
-  private async *listByResourceGroupNextNextNextNextNextNextPagingPage(
-    resourceGroupName: string,
-    nextLink: string,
-    options?: ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextOptionalParams
-  ): AsyncIterableIterator<ApplicationDefinition[]> {
-    let result = await this._listByResourceGroupNextNextNextNextNextNext(
-      resourceGroupName,
-      nextLink,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
-    while (continuationToken) {
-      result = await this._listByResourceGroupNextNextNextNextNextNextNext(
-        resourceGroupName,
-        continuationToken,
-        options
-      );
-      continuationToken = result.nextLink;
-      yield result.value || [];
-    }
-  }
-
-  private async *listByResourceGroupNextNextNextNextNextNextPagingAll(
-    resourceGroupName: string,
-    nextLink: string,
-    options?: ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextOptionalParams
-  ): AsyncIterableIterator<ApplicationDefinition> {
-    for await (const page of this.listByResourceGroupNextNextNextNextNextNextPagingPage(
-      resourceGroupName,
-      nextLink,
-      options
-    )) {
-      yield* page;
-    }
-  }
-
-  /**
-   * ListByResourceGroupNextNextNextNextNextNextNext
-   * @param resourceGroupName The name of the resource group. The name is case insensitive.
-   * @param nextLink The nextLink from the previous successful call to the
-   *                 ListByResourceGroupNextNextNextNextNextNext method.
-   * @param options The options parameters.
-   */
-  public listByResourceGroupNextNextNextNextNextNextNext(
-    resourceGroupName: string,
-    nextLink: string,
-    options?: ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextNextOptionalParams
-  ): PagedAsyncIterableIterator<ApplicationDefinition> {
-    const iter = this.listByResourceGroupNextNextNextNextNextNextNextPagingAll(
-      resourceGroupName,
-      nextLink,
-      options
-    );
-    return {
-      next() {
-        return iter.next();
-      },
-      [Symbol.asyncIterator]() {
-        return this;
-      },
-      byPage: () => {
-        return this.listByResourceGroupNextNextNextNextNextNextNextPagingPage(
-          resourceGroupName,
-          nextLink,
-          options
-        );
-      }
-    };
-  }
-
-  private async *listByResourceGroupNextNextNextNextNextNextNextPagingPage(
-    resourceGroupName: string,
-    nextLink: string,
-    options?: ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextNextOptionalParams
-  ): AsyncIterableIterator<ApplicationDefinition[]> {
-    let result = await this._listByResourceGroupNextNextNextNextNextNextNext(
-      resourceGroupName,
-      nextLink,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
-    while (continuationToken) {
-      result = await this._listByResourceGroupNextNextNextNextNextNextNextNext(
-        resourceGroupName,
-        continuationToken,
-        options
-      );
-      continuationToken = result.nextLink;
-      yield result.value || [];
-    }
-  }
-
-  private async *listByResourceGroupNextNextNextNextNextNextNextPagingAll(
-    resourceGroupName: string,
-    nextLink: string,
-    options?: ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextNextOptionalParams
-  ): AsyncIterableIterator<ApplicationDefinition> {
-    for await (const page of this.listByResourceGroupNextNextNextNextNextNextNextPagingPage(
-      resourceGroupName,
-      nextLink,
       options
     )) {
       yield* page;
@@ -812,30 +302,32 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
 
   /**
    * Gets the managed application definition.
-   * @param resourceGroupName The name of the resource group. The name is case insensitive.
-   * @param applicationDefinitionName The name of the managed application definition.
+   * @param applicationDefinitionId The fully qualified ID of the managed application definition,
+   *                                including the managed application name and the managed application definition resource type. Use the
+   *                                format,
+   *                                /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applicationDefinitions/{applicationDefinition-name}
    * @param options The options parameters.
    */
   getById(
-    resourceGroupName: string,
-    applicationDefinitionName: string,
+    applicationDefinitionId: string,
     options?: ApplicationDefinitionsGetByIdOptionalParams
   ): Promise<ApplicationDefinitionsGetByIdResponse> {
     return this.client.sendOperationRequest(
-      { resourceGroupName, applicationDefinitionName, options },
+      { applicationDefinitionId, options },
       getByIdOperationSpec
     );
   }
 
   /**
    * Deletes the managed application definition.
-   * @param resourceGroupName The name of the resource group. The name is case insensitive.
-   * @param applicationDefinitionName The name of the managed application definition.
+   * @param applicationDefinitionId The fully qualified ID of the managed application definition,
+   *                                including the managed application name and the managed application definition resource type. Use the
+   *                                format,
+   *                                /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applicationDefinitions/{applicationDefinition-name}
    * @param options The options parameters.
    */
   async beginDeleteById(
-    resourceGroupName: string,
-    applicationDefinitionName: string,
+    applicationDefinitionId: string,
     options?: ApplicationDefinitionsDeleteByIdOptionalParams
   ): Promise<PollerLike<PollOperationState<void>, void>> {
     const directSendOperation = async (
@@ -879,7 +371,7 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
 
     const lro = new LroImpl(
       sendOperation,
-      { resourceGroupName, applicationDefinitionName, options },
+      { applicationDefinitionId, options },
       deleteByIdOperationSpec
     );
     return new LroEngine(lro, {
@@ -890,33 +382,31 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
 
   /**
    * Deletes the managed application definition.
-   * @param resourceGroupName The name of the resource group. The name is case insensitive.
-   * @param applicationDefinitionName The name of the managed application definition.
+   * @param applicationDefinitionId The fully qualified ID of the managed application definition,
+   *                                including the managed application name and the managed application definition resource type. Use the
+   *                                format,
+   *                                /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applicationDefinitions/{applicationDefinition-name}
    * @param options The options parameters.
    */
   async beginDeleteByIdAndWait(
-    resourceGroupName: string,
-    applicationDefinitionName: string,
+    applicationDefinitionId: string,
     options?: ApplicationDefinitionsDeleteByIdOptionalParams
   ): Promise<void> {
-    const poller = await this.beginDeleteById(
-      resourceGroupName,
-      applicationDefinitionName,
-      options
-    );
+    const poller = await this.beginDeleteById(applicationDefinitionId, options);
     return poller.pollUntilDone();
   }
 
   /**
    * Creates a new managed application definition.
-   * @param resourceGroupName The name of the resource group. The name is case insensitive.
-   * @param applicationDefinitionName The name of the managed application definition.
+   * @param applicationDefinitionId The fully qualified ID of the managed application definition,
+   *                                including the managed application name and the managed application definition resource type. Use the
+   *                                format,
+   *                                /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applicationDefinitions/{applicationDefinition-name}
    * @param parameters Parameters supplied to the create or update a managed application definition.
    * @param options The options parameters.
    */
   async beginCreateOrUpdateById(
-    resourceGroupName: string,
-    applicationDefinitionName: string,
+    applicationDefinitionId: string,
     parameters: ApplicationDefinition,
     options?: ApplicationDefinitionsCreateOrUpdateByIdOptionalParams
   ): Promise<
@@ -966,7 +456,7 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
 
     const lro = new LroImpl(
       sendOperation,
-      { resourceGroupName, applicationDefinitionName, parameters, options },
+      { applicationDefinitionId, parameters, options },
       createOrUpdateByIdOperationSpec
     );
     return new LroEngine(lro, {
@@ -977,20 +467,20 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
 
   /**
    * Creates a new managed application definition.
-   * @param resourceGroupName The name of the resource group. The name is case insensitive.
-   * @param applicationDefinitionName The name of the managed application definition.
+   * @param applicationDefinitionId The fully qualified ID of the managed application definition,
+   *                                including the managed application name and the managed application definition resource type. Use the
+   *                                format,
+   *                                /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applicationDefinitions/{applicationDefinition-name}
    * @param parameters Parameters supplied to the create or update a managed application definition.
    * @param options The options parameters.
    */
   async beginCreateOrUpdateByIdAndWait(
-    resourceGroupName: string,
-    applicationDefinitionName: string,
+    applicationDefinitionId: string,
     parameters: ApplicationDefinition,
     options?: ApplicationDefinitionsCreateOrUpdateByIdOptionalParams
   ): Promise<ApplicationDefinitionsCreateOrUpdateByIdResponse> {
     const poller = await this.beginCreateOrUpdateById(
-      resourceGroupName,
-      applicationDefinitionName,
+      applicationDefinitionId,
       parameters,
       options
     );
@@ -1011,142 +501,6 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
     return this.client.sendOperationRequest(
       { resourceGroupName, nextLink, options },
       listByResourceGroupNextOperationSpec
-    );
-  }
-
-  /**
-   * ListByResourceGroupNextNext
-   * @param resourceGroupName The name of the resource group. The name is case insensitive.
-   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroupNext
-   *                 method.
-   * @param options The options parameters.
-   */
-  private _listByResourceGroupNextNext(
-    resourceGroupName: string,
-    nextLink: string,
-    options?: ApplicationDefinitionsListByResourceGroupNextNextOptionalParams
-  ): Promise<ApplicationDefinitionsListByResourceGroupNextNextResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options },
-      listByResourceGroupNextNextOperationSpec
-    );
-  }
-
-  /**
-   * ListByResourceGroupNextNextNext
-   * @param resourceGroupName The name of the resource group. The name is case insensitive.
-   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroupNextNext
-   *                 method.
-   * @param options The options parameters.
-   */
-  private _listByResourceGroupNextNextNext(
-    resourceGroupName: string,
-    nextLink: string,
-    options?: ApplicationDefinitionsListByResourceGroupNextNextNextOptionalParams
-  ): Promise<ApplicationDefinitionsListByResourceGroupNextNextNextResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options },
-      listByResourceGroupNextNextNextOperationSpec
-    );
-  }
-
-  /**
-   * ListByResourceGroupNextNextNextNext
-   * @param resourceGroupName The name of the resource group. The name is case insensitive.
-   * @param nextLink The nextLink from the previous successful call to the
-   *                 ListByResourceGroupNextNextNext method.
-   * @param options The options parameters.
-   */
-  private _listByResourceGroupNextNextNextNext(
-    resourceGroupName: string,
-    nextLink: string,
-    options?: ApplicationDefinitionsListByResourceGroupNextNextNextNextOptionalParams
-  ): Promise<
-    ApplicationDefinitionsListByResourceGroupNextNextNextNextResponse
-  > {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options },
-      listByResourceGroupNextNextNextNextOperationSpec
-    );
-  }
-
-  /**
-   * ListByResourceGroupNextNextNextNextNext
-   * @param resourceGroupName The name of the resource group. The name is case insensitive.
-   * @param nextLink The nextLink from the previous successful call to the
-   *                 ListByResourceGroupNextNextNextNext method.
-   * @param options The options parameters.
-   */
-  private _listByResourceGroupNextNextNextNextNext(
-    resourceGroupName: string,
-    nextLink: string,
-    options?: ApplicationDefinitionsListByResourceGroupNextNextNextNextNextOptionalParams
-  ): Promise<
-    ApplicationDefinitionsListByResourceGroupNextNextNextNextNextResponse
-  > {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options },
-      listByResourceGroupNextNextNextNextNextOperationSpec
-    );
-  }
-
-  /**
-   * ListByResourceGroupNextNextNextNextNextNext
-   * @param resourceGroupName The name of the resource group. The name is case insensitive.
-   * @param nextLink The nextLink from the previous successful call to the
-   *                 ListByResourceGroupNextNextNextNextNext method.
-   * @param options The options parameters.
-   */
-  private _listByResourceGroupNextNextNextNextNextNext(
-    resourceGroupName: string,
-    nextLink: string,
-    options?: ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextOptionalParams
-  ): Promise<
-    ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextResponse
-  > {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options },
-      listByResourceGroupNextNextNextNextNextNextOperationSpec
-    );
-  }
-
-  /**
-   * ListByResourceGroupNextNextNextNextNextNextNext
-   * @param resourceGroupName The name of the resource group. The name is case insensitive.
-   * @param nextLink The nextLink from the previous successful call to the
-   *                 ListByResourceGroupNextNextNextNextNextNext method.
-   * @param options The options parameters.
-   */
-  private _listByResourceGroupNextNextNextNextNextNextNext(
-    resourceGroupName: string,
-    nextLink: string,
-    options?: ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextNextOptionalParams
-  ): Promise<
-    ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextNextResponse
-  > {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options },
-      listByResourceGroupNextNextNextNextNextNextNextOperationSpec
-    );
-  }
-
-  /**
-   * ListByResourceGroupNextNextNextNextNextNextNextNext
-   * @param resourceGroupName The name of the resource group. The name is case insensitive.
-   * @param nextLink The nextLink from the previous successful call to the
-   *                 ListByResourceGroupNextNextNextNextNextNextNext method.
-   * @param options The options parameters.
-   */
-  private _listByResourceGroupNextNextNextNextNextNextNextNext(
-    resourceGroupName: string,
-    nextLink: string,
-    options?: ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextNextNextOptionalParams
-  ): Promise<
-    ApplicationDefinitionsListByResourceGroupNextNextNextNextNextNextNextNextResponse
-  > {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options },
-      listByResourceGroupNextNextNextNextNextNextNextNextOperationSpec
     );
   }
 }
@@ -1220,7 +574,7 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorResponse
     }
   },
-  requestBody: Parameters.parameters3,
+  requestBody: Parameters.parameters2,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1254,8 +608,7 @@ const listByResourceGroupOperationSpec: coreClient.OperationSpec = {
   serializer
 };
 const getByIdOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Solutions/applicationDefinitions/{applicationDefinitionName}",
+  path: "/{applicationDefinitionId}",
   httpMethod: "GET",
   responses: {
     200: {
@@ -1267,18 +620,12 @@ const getByIdOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId,
-    Parameters.applicationDefinitionName
-  ],
+  urlParameters: [Parameters.$host, Parameters.applicationDefinitionId],
   headerParameters: [Parameters.accept],
   serializer
 };
 const deleteByIdOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Solutions/applicationDefinitions/{applicationDefinitionName}",
+  path: "/{applicationDefinitionId}",
   httpMethod: "DELETE",
   responses: {
     200: {},
@@ -1290,18 +637,12 @@ const deleteByIdOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId,
-    Parameters.applicationDefinitionName
-  ],
+  urlParameters: [Parameters.$host, Parameters.applicationDefinitionId],
   headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateByIdOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Solutions/applicationDefinitions/{applicationDefinitionName}",
+  path: "/{applicationDefinitionId}",
   httpMethod: "PUT",
   responses: {
     200: {
@@ -1320,14 +661,9 @@ const createOrUpdateByIdOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorResponse
     }
   },
-  requestBody: Parameters.parameters3,
+  requestBody: Parameters.parameters2,
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId,
-    Parameters.applicationDefinitionName
-  ],
+  urlParameters: [Parameters.$host, Parameters.applicationDefinitionId],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -1346,156 +682,9 @@ const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
-    Parameters.nextLink,
     Parameters.resourceGroupName,
-    Parameters.subscriptionId
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByResourceGroupNextNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ApplicationDefinitionListResult
-    },
-    default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.nextLink,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByResourceGroupNextNextNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ApplicationDefinitionListResult
-    },
-    default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.nextLink,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByResourceGroupNextNextNextNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ApplicationDefinitionListResult
-    },
-    default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.nextLink,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByResourceGroupNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ApplicationDefinitionListResult
-    },
-    default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.nextLink,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByResourceGroupNextNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ApplicationDefinitionListResult
-    },
-    default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.nextLink,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByResourceGroupNextNextNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ApplicationDefinitionListResult
-    },
-    default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.nextLink,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByResourceGroupNextNextNextNextNextNextNextNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ApplicationDefinitionListResult
-    },
-    default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.nextLink,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId
+    Parameters.subscriptionId,
+    Parameters.nextLink
   ],
   headerParameters: [Parameters.accept],
   serializer

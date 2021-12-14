@@ -602,18 +602,6 @@ export const ProviderResourceType: coreClient.CompositeMapper = {
           }
         }
       },
-      zoneMappings: {
-        serializedName: "zoneMappings",
-        type: {
-          name: "Sequence",
-          element: {
-            type: {
-              name: "Composite",
-              className: "ZoneMapping"
-            }
-          }
-        }
-      },
       capabilities: {
         serializedName: "capabilities",
         type: {
@@ -671,32 +659,6 @@ export const AliasPathType: coreClient.CompositeMapper = {
       },
       apiVersions: {
         serializedName: "apiVersions",
-        type: {
-          name: "Sequence",
-          element: {
-            type: {
-              name: "String"
-            }
-          }
-        }
-      }
-    }
-  }
-};
-
-export const ZoneMapping: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "ZoneMapping",
-    modelProperties: {
-      location: {
-        serializedName: "location",
-        type: {
-          name: "String"
-        }
-      },
-      zones: {
-        serializedName: "zones",
         type: {
           name: "Sequence",
           element: {

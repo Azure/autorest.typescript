@@ -10,14 +10,7 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ResourceGroup,
-  ResourceGroupsListNextOptionalParams,
   ResourceGroupsListOptionalParams,
-  ResourceGroupsListNextNextOptionalParams,
-  ResourceGroupsListNextNextNextOptionalParams,
-  ResourceGroupsListNextNextNextNextOptionalParams,
-  ResourceGroupsListNextNextNextNextNextOptionalParams,
-  ResourceGroupsListNextNextNextNextNextNextOptionalParams,
-  ResourceGroupsListNextNextNextNextNextNextNextOptionalParams,
   ResourceGroupsCheckExistenceOptionalParams,
   ResourceGroupsCreateOrUpdateOptionalParams,
   ResourceGroupsCreateOrUpdateResponse,
@@ -41,71 +34,6 @@ export interface ResourceGroups {
    */
   list(
     options?: ResourceGroupsListOptionalParams
-  ): PagedAsyncIterableIterator<ResourceGroup>;
-  /**
-   * ListNext
-   * @param nextLink The nextLink from the previous successful call to the List method.
-   * @param options The options parameters.
-   */
-  listNext(
-    nextLink: string,
-    options?: ResourceGroupsListNextOptionalParams
-  ): PagedAsyncIterableIterator<ResourceGroup>;
-  /**
-   * ListNextNext
-   * @param nextLink The nextLink from the previous successful call to the ListNext method.
-   * @param options The options parameters.
-   */
-  listNextNext(
-    nextLink: string,
-    options?: ResourceGroupsListNextNextOptionalParams
-  ): PagedAsyncIterableIterator<ResourceGroup>;
-  /**
-   * ListNextNextNext
-   * @param nextLink The nextLink from the previous successful call to the ListNextNext method.
-   * @param options The options parameters.
-   */
-  listNextNextNext(
-    nextLink: string,
-    options?: ResourceGroupsListNextNextNextOptionalParams
-  ): PagedAsyncIterableIterator<ResourceGroup>;
-  /**
-   * ListNextNextNextNext
-   * @param nextLink The nextLink from the previous successful call to the ListNextNextNext method.
-   * @param options The options parameters.
-   */
-  listNextNextNextNext(
-    nextLink: string,
-    options?: ResourceGroupsListNextNextNextNextOptionalParams
-  ): PagedAsyncIterableIterator<ResourceGroup>;
-  /**
-   * ListNextNextNextNextNext
-   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNext method.
-   * @param options The options parameters.
-   */
-  listNextNextNextNextNext(
-    nextLink: string,
-    options?: ResourceGroupsListNextNextNextNextNextOptionalParams
-  ): PagedAsyncIterableIterator<ResourceGroup>;
-  /**
-   * ListNextNextNextNextNextNext
-   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNextNext
-   *                 method.
-   * @param options The options parameters.
-   */
-  listNextNextNextNextNextNext(
-    nextLink: string,
-    options?: ResourceGroupsListNextNextNextNextNextNextOptionalParams
-  ): PagedAsyncIterableIterator<ResourceGroup>;
-  /**
-   * ListNextNextNextNextNextNextNext
-   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNextNextNext
-   *                 method.
-   * @param options The options parameters.
-   */
-  listNextNextNextNextNextNextNext(
-    nextLink: string,
-    options?: ResourceGroupsListNextNextNextNextNextNextNextOptionalParams
   ): PagedAsyncIterableIterator<ResourceGroup>;
   /**
    * Checks whether a resource group exists.

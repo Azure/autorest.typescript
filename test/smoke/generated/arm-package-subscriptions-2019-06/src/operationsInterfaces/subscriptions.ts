@@ -11,14 +11,7 @@ import {
   Location,
   SubscriptionsListLocationsOptionalParams,
   Subscription,
-  SubscriptionsListNextOptionalParams,
   SubscriptionsListOptionalParams,
-  SubscriptionsListNextNextOptionalParams,
-  SubscriptionsListNextNextNextOptionalParams,
-  SubscriptionsListNextNextNextNextOptionalParams,
-  SubscriptionsListNextNextNextNextNextOptionalParams,
-  SubscriptionsListNextNextNextNextNextNextOptionalParams,
-  SubscriptionsListNextNextNextNextNextNextNextOptionalParams,
   SubscriptionsGetOptionalParams,
   SubscriptionsGetResponse
 } from "../models";
@@ -42,71 +35,6 @@ export interface Subscriptions {
    */
   list(
     options?: SubscriptionsListOptionalParams
-  ): PagedAsyncIterableIterator<Subscription>;
-  /**
-   * ListNext
-   * @param nextLink The nextLink from the previous successful call to the List method.
-   * @param options The options parameters.
-   */
-  listNext(
-    nextLink: string,
-    options?: SubscriptionsListNextOptionalParams
-  ): PagedAsyncIterableIterator<Subscription>;
-  /**
-   * ListNextNext
-   * @param nextLink The nextLink from the previous successful call to the ListNext method.
-   * @param options The options parameters.
-   */
-  listNextNext(
-    nextLink: string,
-    options?: SubscriptionsListNextNextOptionalParams
-  ): PagedAsyncIterableIterator<Subscription>;
-  /**
-   * ListNextNextNext
-   * @param nextLink The nextLink from the previous successful call to the ListNextNext method.
-   * @param options The options parameters.
-   */
-  listNextNextNext(
-    nextLink: string,
-    options?: SubscriptionsListNextNextNextOptionalParams
-  ): PagedAsyncIterableIterator<Subscription>;
-  /**
-   * ListNextNextNextNext
-   * @param nextLink The nextLink from the previous successful call to the ListNextNextNext method.
-   * @param options The options parameters.
-   */
-  listNextNextNextNext(
-    nextLink: string,
-    options?: SubscriptionsListNextNextNextNextOptionalParams
-  ): PagedAsyncIterableIterator<Subscription>;
-  /**
-   * ListNextNextNextNextNext
-   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNext method.
-   * @param options The options parameters.
-   */
-  listNextNextNextNextNext(
-    nextLink: string,
-    options?: SubscriptionsListNextNextNextNextNextOptionalParams
-  ): PagedAsyncIterableIterator<Subscription>;
-  /**
-   * ListNextNextNextNextNextNext
-   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNextNext
-   *                 method.
-   * @param options The options parameters.
-   */
-  listNextNextNextNextNextNext(
-    nextLink: string,
-    options?: SubscriptionsListNextNextNextNextNextNextOptionalParams
-  ): PagedAsyncIterableIterator<Subscription>;
-  /**
-   * ListNextNextNextNextNextNextNext
-   * @param nextLink The nextLink from the previous successful call to the ListNextNextNextNextNextNext
-   *                 method.
-   * @param options The options parameters.
-   */
-  listNextNextNextNextNextNextNext(
-    nextLink: string,
-    options?: SubscriptionsListNextNextNextNextNextNextNextOptionalParams
   ): PagedAsyncIterableIterator<Subscription>;
   /**
    * Gets details about a specified subscription.

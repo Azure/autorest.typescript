@@ -10,13 +10,7 @@ import * as coreClient from "@azure/core-client";
 import * as coreAuth from "@azure/core-auth";
 import { OperationsImpl, SubscriptionsImpl, TenantsImpl } from "./operations";
 import { Operations, Subscriptions, Tenants } from "./operationsInterfaces";
-import * as Parameters from "./models/parameters";
-import * as Mappers from "./models/mappers";
-import {
-  SubscriptionClientOptionalParams,
-  CheckResourceNameOptionalParams,
-  CheckResourceNameResponse
-} from "./models";
+import { SubscriptionClientOptionalParams } from "./models";
 
 export class SubscriptionClient extends coreClient.ServiceClient {
   $host: string;
@@ -68,42 +62,7 @@ export class SubscriptionClient extends coreClient.ServiceClient {
     this.tenants = new TenantsImpl(this);
   }
 
-  /**
-   * A resource name is valid if it is not a reserved word, does not contains a reserved word and does
-   * not start with a reserved word
-   * @param options The options parameters.
-   */
-  checkResourceName(
-    options?: CheckResourceNameOptionalParams
-  ): Promise<CheckResourceNameResponse> {
-    return this.sendOperationRequest(
-      { options },
-      checkResourceNameOperationSpec
-    );
-  }
-
   operations: Operations;
   subscriptions: Subscriptions;
   tenants: Tenants;
 }
-// Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
-
-const checkResourceNameOperationSpec: coreClient.OperationSpec = {
-  path: "/providers/Microsoft.Resources/checkResourceName",
-  httpMethod: "POST",
-  responses: {
-    200: {
-      bodyMapper: Mappers.CheckResourceNameResult
-    },
-    default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
-  },
-  requestBody: Parameters.resourceNameDefinition,
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept, Parameters.contentType],
-  mediaType: "json",
-  serializer
-};
