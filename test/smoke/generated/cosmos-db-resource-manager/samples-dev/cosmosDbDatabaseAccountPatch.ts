@@ -31,16 +31,16 @@ async function cosmosDbDatabaseAccountPatch() {
       periodicModeProperties: {
         backupIntervalInMinutes: 240,
         backupRetentionIntervalInHours: 720,
-        backupStorageRedundancy: "Geo"
+        backupStorageRedundancy: "Local"
       }
     },
+    capacity: { totalThroughputLimit: 2000 },
     consistencyPolicy: {
       defaultConsistencyLevel: "BoundedStaleness",
       maxIntervalInSeconds: 10,
       maxStalenessPrefix: 200
     },
     defaultIdentity: "FirstPartyIdentity",
-    diagnosticLogSettings: { enableFullTextQuery: "True" },
     enableAnalyticalStorage: true,
     enableFreeTier: false,
     identity: {

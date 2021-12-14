@@ -29,7 +29,7 @@ async function cosmosDbManagedCassandraClusterGet() {
 }
 async function main() {
   const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
+  const subscriptionId = "00000000-0000-0000-0000-000000000000";
   client = new CosmosDBManagementClient(credential, subscriptionId);
   await cosmosDbManagedCassandraClusterGet();
 }

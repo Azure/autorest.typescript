@@ -35,6 +35,7 @@ async function cosmosDbDatabaseAccountCreateMax() {
         backupStorageRedundancy: "Geo"
       }
     },
+    capacity: { totalThroughputLimit: 2000 },
     consistencyPolicy: {
       defaultConsistencyLevel: "BoundedStaleness",
       maxIntervalInSeconds: 10,

@@ -24,7 +24,7 @@ let client: NetworkManagementClient;
 async function effectiveRoutesForTheVirtualHub() {
   const resourceGroupName = "rg1";
   const virtualHubName = "virtualHub1";
-  const effectiveRoutesParameters: EffectiveRoutesParameters = undefined;
+  const effectiveRoutesParameters: EffectiveRoutesParameters = {};
   const options = { effectiveRoutesParameters: effectiveRoutesParameters };
   await client.virtualHubs
     .beginGetEffectiveVirtualHubRoutesAndWait(

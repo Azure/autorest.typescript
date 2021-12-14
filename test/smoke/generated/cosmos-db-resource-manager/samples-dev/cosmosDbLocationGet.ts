@@ -17,10 +17,10 @@ import { CosmosDBManagementClient } from "@msinternal/cosmos-db-resource-manager
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: CosmosDBManagementClient;
-//cosmosDBManagementClient.locationGet
+//locations.get
 async function cosmosDbLocationGet() {
   const location = "westus";
-  await client.locationGet(location).then((res) => {
+  await client.locations.get(location).then((res) => {
     console.log(res);
   });
 }

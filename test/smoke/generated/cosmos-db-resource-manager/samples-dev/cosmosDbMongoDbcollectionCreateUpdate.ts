@@ -30,7 +30,6 @@ async function cosmosDbMongoDbcollectionCreateUpdate() {
     location: "West US",
     options: {},
     resource: {
-      analyticalStorageTtl: 500,
       id: "collectionName",
       indexes: [
         {

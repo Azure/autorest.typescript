@@ -35,7 +35,6 @@ async function cosmosDbCassandraTableCreateUpdate() {
         columns: [{ name: "columnA", type: "Ascii" }],
         partitionKeys: [{ name: "columnA" }]
       },
-      analyticalStorageTtl: 500,
       defaultTtl: 100,
       id: "tableName"
     },

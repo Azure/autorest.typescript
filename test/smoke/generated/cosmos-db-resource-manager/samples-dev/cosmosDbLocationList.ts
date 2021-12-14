@@ -17,10 +17,10 @@ import { CosmosDBManagementClient } from "@msinternal/cosmos-db-resource-manager
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: CosmosDBManagementClient;
-//cosmosDBManagementClient.listLocationList
+//locations.list
 async function cosmosDbLocationList() {
   const resArray = new Array();
-  for await (let item of client.listLocationList()) {
+  for await (let item of client.locations.list()) {
     resArray.push(item);
   }
   console.log(resArray);

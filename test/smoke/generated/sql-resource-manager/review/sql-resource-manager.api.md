@@ -1729,9 +1729,6 @@ export interface EncryptionProtectorsRevalidateOptionalParams extends coreClient
 }
 
 // @public
-export type Enum60 = string;
-
-// @public
 export interface ExportDatabaseDefinition {
     administratorLogin: string;
     administratorLoginPassword: string;
@@ -3367,18 +3364,6 @@ export enum KnownEncryptionProtectorName {
 }
 
 // @public
-export enum KnownEnum60 {
-    // (undocumented)
-    All = "All",
-    // (undocumented)
-    Error = "Error",
-    // (undocumented)
-    Success = "Success",
-    // (undocumented)
-    Warning = "Warning"
-}
-
-// @public
 export enum KnownFailoverGroupReplicationRole {
     // (undocumented)
     Primary = "Primary",
@@ -4160,6 +4145,18 @@ export enum KnownSyncGroupState {
     NotReady = "NotReady",
     // (undocumented)
     Progressing = "Progressing",
+    // (undocumented)
+    Warning = "Warning"
+}
+
+// @public
+export enum KnownSyncGroupsType {
+    // (undocumented)
+    All = "All",
+    // (undocumented)
+    Error = "Error",
+    // (undocumented)
+    Success = "Success",
     // (undocumented)
     Warning = "Warning"
 }
@@ -9276,7 +9273,7 @@ export interface SyncGroups {
     get(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, options?: SyncGroupsGetOptionalParams): Promise<SyncGroupsGetResponse>;
     listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: SyncGroupsListByDatabaseOptionalParams): PagedAsyncIterableIterator<SyncGroup>;
     listHubSchemas(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, options?: SyncGroupsListHubSchemasOptionalParams): PagedAsyncIterableIterator<SyncFullSchemaProperties>;
-    listLogs(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, startTime: string, endTime: string, typeParam: Enum60, options?: SyncGroupsListLogsOptionalParams): PagedAsyncIterableIterator<SyncGroupLogProperties>;
+    listLogs(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, startTime: string, endTime: string, typeParam: SyncGroupsType, options?: SyncGroupsListLogsOptionalParams): PagedAsyncIterableIterator<SyncGroupLogProperties>;
     listSyncDatabaseIds(locationName: string, options?: SyncGroupsListSyncDatabaseIdsOptionalParams): PagedAsyncIterableIterator<SyncDatabaseIdProperties>;
     triggerSync(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, options?: SyncGroupsTriggerSyncOptionalParams): Promise<void>;
 }
@@ -9396,6 +9393,9 @@ export type SyncGroupState = string;
 // @public
 export interface SyncGroupsTriggerSyncOptionalParams extends coreClient.OperationOptions {
 }
+
+// @public
+export type SyncGroupsType = string;
 
 // @public
 export interface SyncGroupsUpdateOptionalParams extends coreClient.OperationOptions {

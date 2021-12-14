@@ -8537,8 +8537,8 @@ export enum KnownSyncMemberDbType {
  */
 export type SyncMemberDbType = string;
 
-/** Known values of {@link Enum60} that the service accepts. */
-export enum KnownEnum60 {
+/** Known values of {@link SyncGroupsType} that the service accepts. */
+export enum KnownSyncGroupsType {
   All = "All",
   Error = "Error",
   Warning = "Warning",
@@ -8546,8 +8546,8 @@ export enum KnownEnum60 {
 }
 
 /**
- * Defines values for Enum60. \
- * {@link KnownEnum60} can be used interchangeably with Enum60,
+ * Defines values for SyncGroupsType. \
+ * {@link KnownSyncGroupsType} can be used interchangeably with SyncGroupsType,
  *  this enum contains the known values that the service supports.
  * ### Known values supported by the service
  * **All** \
@@ -8555,7 +8555,7 @@ export enum KnownEnum60 {
  * **Warning** \
  * **Success**
  */
-export type Enum60 = string;
+export type SyncGroupsType = string;
 
 /** Known values of {@link SyncGroupLogType} that the service accepts. */
 export enum KnownSyncGroupLogType {
