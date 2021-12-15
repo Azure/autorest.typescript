@@ -1,4 +1,4 @@
-import { getHost, getSession } from "../autorestSession";
+import { getAutorestOptions, getHost, getSession } from "../autorestSession";
 import { Project, IndentationText } from "ts-morph";
 import { generatePackageJson } from "../generators/static/packageFileGenerator";
 import { generateLicenseFile } from "../generators/static/licenseFileGenerator";
@@ -14,14 +14,24 @@ import { generatePathFirstClient } from "./generateClient";
 import { generateIndexFile } from "../generators/indexGenerator";
 import { generatePagingHelper } from "./generatePagingHelper";
 import { generatePollingHelper } from "./generatePollingHelper";
+import { generateTopLevelIndexFile } from './generateTopLevelIndexFile';
 import { hasPagingOperations } from "../utils/extractPaginationDetails";
 import { hasPollingOperations } from "./helpers/hasPollingOperations";
+import { NameType, normalizeName } from "../utils/nameUtils";
+
+const batchOutputFolder: [string, string, string][] = [];
 /**
  * Generates a Rest Level Client library
  */
 export async function generateRestLevelClient() {
   const host = getHost();
   const { model } = getSession();
+  const { batch, outputPath } = getAutorestOptions();
+  if (outputPath) {
+    const clientName = model.language.default.name;
+    const moduleName = normalizeName(clientName, NameType.File);
+    batchOutputFolder.push([outputPath, clientName, moduleName]);
+  }
 
   const project = new Project({
     useInMemoryFileSystem: true,
@@ -48,6 +58,10 @@ export async function generateRestLevelClient() {
   generateParameterInterfaces(model, project);
   generatePathFirstClient(model, project);
   generateIndexFile(project);
+  
+  if (batch && batch.length > 1) {
+    generateTopLevelIndexFile(batchOutputFolder, project);
+  }
 
   // Save the source files to the virtual filesystem
   project.saveSync();
