@@ -22,10 +22,13 @@ import { NameType, normalizeName } from "../utils/nameUtils";
 import { getElementType, getFormatDocs, primitiveSchemaToType } from "./schemaHelpers";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { hasOutputModels } from "./helpers/modelHelpers";
+import { getAutorestOptions } from "../autorestSession";
+import * as path from 'path';
 
 export function generateResponseInterfaces(model: CodeModel, project: Project) {
+  const { srcPath } = getAutorestOptions();
   const responsesFile = project.createSourceFile(
-    `src/responses.ts`,
+    path.join(srcPath, `responses.ts`),
     undefined,
     {
       overwrite: true

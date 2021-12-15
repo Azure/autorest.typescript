@@ -18,6 +18,7 @@ import {
   WriterFunction,
   Writers
 } from "ts-morph";
+import * as path from 'path';
 
 import { getAutorestOptions, getSession } from "../autorestSession";
 import { transformBaseUrl } from "../transforms/urlTransforms";
@@ -40,7 +41,8 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
     getLanguageMetadata(model.language).name,
     NameType.File
   );
-  const clientFile = project.createSourceFile(`src/${name}.ts`, undefined, {
+  const { srcPath } = getAutorestOptions();
+  const clientFile = project.createSourceFile(path.join(srcPath, `${name}.ts`), undefined, {
     overwrite: true
   });
 

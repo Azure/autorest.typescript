@@ -12,7 +12,7 @@ export function generateIndexFile(
   project: Project,
   clientDetails?: ClientDetails
 ) {
-  const { restLevelClient, srcPath } = getAutorestOptions();
+  const { restLevelClient, srcPath, batch } = getAutorestOptions();
   const indexFile = project.createSourceFile(`${srcPath}/index.ts`, undefined, {
     overwrite: true
   });
@@ -24,9 +24,70 @@ export function generateIndexFile(
       );
     }
     generateHLCIndex(clientDetails, indexFile);
-  } else {
+  } else if (!batch || batch?.length === 1) {
     generateRLCIndex(indexFile);
+  } else {
+    generateRLCIndexForMultiClient(indexFile);
   }
+}
+
+function generateRLCIndexForMultiClient(file: SourceFile) {
+  const { model } = getSession();
+  const clientName = model.language.default.name;
+  const moduleName = normalizeName(clientName, NameType.File);
+
+  file.addImportDeclaration({
+    namespaceImport: "Parameters",
+    moduleSpecifier: "./parameters"
+  });
+
+  file.addImportDeclaration({
+    namespaceImport: "Responses",
+    moduleSpecifier: "./responses"
+  });
+
+  const exports = ['Parameters', 'Responses'];
+  if (hasInputModels(model)) {
+    file.addImportDeclaration({
+      namespaceImport: "Models",
+      moduleSpecifier: "./models",
+    });
+    exports.push("Models");
+  }
+
+  if (hasOutputModels(model)) {
+    file.addImportDeclaration({
+      namespaceImport: "OutputModels",
+      moduleSpecifier: "./outputModels",
+    });
+    exports.push("OutputModels");
+  }
+
+  if (hasPagingOperations(model)) {
+    file.addImportDeclaration({
+      namespaceImport: "PaginateHelper",
+      moduleSpecifier: './paginateHelper',
+    });
+    exports.push("PaginateHelper");
+  }
+
+  if (hasPollingOperations(model)) {
+    file.addImportDeclaration({
+      namespaceImport: 'PollingHelper',
+      moduleSpecifier: './pollingHelper',
+    })
+    exports.push("PollingHelper");
+  }
+
+  file.addExportDeclarations([
+    {
+      moduleSpecifier: `./${moduleName}`,
+      namedExports: [clientName],
+    },
+    {
+      namedExports: [...exports]
+    }
+  ]);
 }
 
 function generateRLCIndex(file: SourceFile) {
