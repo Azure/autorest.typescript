@@ -77,7 +77,7 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
             bodySchemaName: "",
             hasBody: false,
             hasOptional: false,
-            sampleFunctionName: camelCase(example.name.replace(/\//g, " Or ").replace(/,|\.|\(|\)/g, " ")),
+            sampleFunctionName: camelCase(example.name.replace(/\//g, " Or ").replace(/,|\.|\(|\)/g, " ").replace('\'s ', ' ')),
             methodParamAssignments: [],
             clientParamAssignments: [],
             isTopLevel: ogDetails.isTopLevel,
