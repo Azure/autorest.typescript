@@ -1,3 +1,5 @@
+# Introducing the new Azure SDK Management Libraries for JS
+
 We're excited to announce the new GA release for Javascript SDKs. These SDKs have several new features that help our customers to have a great experience in using the Azure Services. Some of the important SDKs that have been released are:
 
 1. [Compute](https://www.npmjs.com/package/@azure/arm-compute/v/17.0.0)
@@ -11,18 +13,18 @@ We're excited to announce the new GA release for Javascript SDKs. These SDKs hav
 9. [Locks](https://www.npmjs.com/package/@azure/arm-locks/v/2.0.0)
 10. [Features](https://www.npmjs.com/package/@azure/arm-features/v/3.0.0)
 
-Each of these SDKs follows the new Azure SDK guidelines. All these SDKs have been generated using the latest version of the new [Autorest Typescript SDK Generator](https://www.npmjs.com/package/@autorest/typescript/v/6.0.0-beta.15). These libraries provide new authentication mechanisms, uses Promises, etc. We encourage you to try out the libraries and provide your feedback.
+Each of these SDKs follows the new [Azure SDK guidelines](https://azure.github.io/azure-sdk/typescript_introduction.html). All these SDKs have been generated using the latest version of the new [Autorest Typescript SDK Generator](https://www.npmjs.com/package/@autorest/typescript/v/6.0.0-beta.15). These libraries provide new authentication mechanisms, uses Promises, etc. We encourage you to try out the libraries and provide your feedback.
 
 ## Key concepts
 
 The new libraries have the following changes:
 
-1. **Authentication**: The packages `@azure/ms-rest-nodeauth` or `@azure/ms-rest-browserauth` are replaced with a new package `@azure/identity` instead.
+1. **Authentication**: The packages `@azure/ms-rest-nodeauth` or `@azure/ms-rest-browserauth` are replaced with a new package `@azure/identity` instead. The [migration guide](https://github.com/Azure/ms-rest-nodeauth/blob/master/migrate-to-identity-v2.md) helps in the process of migration to the new identity package.
 2. **Promises**: Method overloads that use callbacks have been replaced to use Promise instead.
 3. The results of List operations could be iterated by using the `PagedAsyncIterableIterator` interface
 4. The SDKs have been changed to support ECMAScript 2015 (ES6) and beyond
 
-A detailed list and usage of these features could be found in the [migration guide](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/MIGRATION-guide-for-next-generation-management-libraries.md)
+A detailed list and usage of these features could be found in the [migration guide](https://aka.ms/js-track2-migration-guide) A [Quick Start](https://aka.ms/js-track2-quickstart) helps to get started with the new libraries.
 
 ## What's next
 
@@ -54,5 +56,5 @@ We hope these changes make management of your Azure resources much easier with t
    9. [Locks](https://www.npmjs.com/package/@azure/arm-locks/v/2.0.0)
    10. [Features](https://www.npmjs.com/package/@azure/arm-features/v/3.0.0)
 2. [Autorest Typescript SDK Generator](https://www.npmjs.com/package/@autorest/typescript/v/6.0.0-beta.15)
-3. [Migration Guide for SDKs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/MIGRATION-guide-for-next-generation-management-libraries.md)
+3. [Migration Guide for SDKs](https://aka.ms/js-track2-migration-guide)
 4. [Migration Guide for `@azure/identity`](https://github.com/Azure/ms-rest-nodeauth/blob/master/migrate-to-identity-v2.md)
