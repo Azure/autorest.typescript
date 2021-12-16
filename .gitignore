@@ -6,6 +6,8 @@ test/**/dist
 test/**/dist-test
 test/**/dist-esm
 test/**/node_modules
+test/**/types
+test/**/temp
 test-browser
 .tmp
 coverage
