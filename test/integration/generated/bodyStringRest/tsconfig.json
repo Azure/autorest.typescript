@@ -7,13 +7,5 @@
     "declarationMap": true,
     "outDir": "./dist-esm"
   },
-  "exclude": [
-    "node_modules",
-    "types",
-    "temp",
-    "browser",
-    "dist",
-    "dist-esm",
-    "./samples/**/*.ts"
-  ]
+  "include": ["src/**/*.ts", "./test/**/*.ts"]
 }
