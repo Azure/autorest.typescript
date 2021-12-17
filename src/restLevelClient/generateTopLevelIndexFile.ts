@@ -1,27 +1,27 @@
-import { CodeModel } from "@autorest/codemodel";
-import { StringMappingType } from "@ts-morph/common/node_modules/typescript";
 import { Project } from 'ts-morph';
-import { getAutorestOptions } from "../autorestSession";
-
-interface BatchInfo {
-    srcPath: string,
-    subModules: [string, string][],
-}
-
-function getBatchInfo(batchOutputFolder: [string, string, string][]) {
-    const batchOutput = batchOutputFolder.map(value => {
-        return value[0];
-    });
-    batchOutput.forEach(item => {
-
-    });
-    
-}
+import * as path from 'path';
+import { getAutorestOptions } from '../autorestSession';
 
 export function generateTopLevelIndexFile(batchOutputFolder: [string, string, string][], project: Project) {
-
-    const indexFile = project.createSourceFile(`../src/index.ts`, undefined, {
-      overwrite: true
+    const { srcPath } = getAutorestOptions();
+    const fileDirectory= path.join(srcPath as string, '../../');
+    const file = project.createSourceFile('/src/index.ts', undefined, {
+        overwrite: true
+    });
+    file.moveToDirectory(fileDirectory);
+    const allModules: string[] = [];  
+    batchOutputFolder.forEach(item => {
+        file.addImportDeclaration({
+            namespaceImport: item[1],
+            moduleSpecifier: `${item[0]}`
+        });
+        file.addExportDeclaration({
+            moduleSpecifier: `${item[0]}/${item[2]}`,
+            namedExports: [`${item[1]}Client`]
+        })
+        allModules.push(item[1]);
+    });
+    file.addExportDeclaration({
+        namedExports: [...allModules]
     });
 }
-

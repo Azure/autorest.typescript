@@ -10,7 +10,8 @@ import { generateSchemaTypes } from "./generateSchemaTypes";
 import { format } from "prettier";
 import { prettierJSONOptions, prettierTypeScriptOptions } from "./config";
 import { generateParameterInterfaces } from "./generateParameterTypes";
-import { generatePathFirstClient } from "./generateClient";
+import { generatePathFirstClient } from "./generateClientDefinition";
+import { generateClient } from './generateClient';
 import { generateIndexFile } from "../generators/indexGenerator";
 import { generatePagingHelper } from "./generatePagingHelper";
 import { generatePollingHelper } from "./generatePollingHelper";
@@ -26,11 +27,11 @@ const batchOutputFolder: [string, string, string][] = [];
 export async function generateRestLevelClient() {
   const host = getHost();
   const { model } = getSession();
-  const { batch, outputPath } = getAutorestOptions();
-  if (outputPath) {
+  const { batch, srcPath } = getAutorestOptions();
+  if (srcPath) {
     const clientName = model.language.default.name;
     const moduleName = normalizeName(clientName, NameType.File);
-    batchOutputFolder.push([outputPath, clientName, moduleName]);
+    batchOutputFolder.push([srcPath, clientName, moduleName]);
   }
 
   const project = new Project({
@@ -57,9 +58,10 @@ export async function generateRestLevelClient() {
   generateSchemaTypes(model, project);
   generateParameterInterfaces(model, project);
   generatePathFirstClient(model, project);
+  generateClient(model, project);
   generateIndexFile(project);
   
-  if (batch && batch.length > 1) {
+  if (batch && batch.length > 1 && batchOutputFolder.length === batch.length) {
     generateTopLevelIndexFile(batchOutputFolder, project);
   }
 

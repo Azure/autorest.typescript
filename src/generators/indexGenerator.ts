@@ -46,7 +46,12 @@ function generateRLCIndexForMultiClient(file: SourceFile) {
     moduleSpecifier: "./responses"
   });
 
-  const exports = ['Parameters', 'Responses'];
+  file.addImportDeclaration({
+    namespaceImport: "Client",
+    moduleSpecifier: "./clientDefinitions"
+  })
+
+  const exports = ['Parameters', 'Responses', 'Client'];
   if (hasInputModels(model)) {
     file.addImportDeclaration({
       namespaceImport: "Models",
@@ -82,7 +87,7 @@ function generateRLCIndexForMultiClient(file: SourceFile) {
   file.addExportDeclarations([
     {
       moduleSpecifier: `./${moduleName}`,
-      namedExports: [clientName],
+      namedExports: [`${clientName}Client`],
     },
     {
       namedExports: [...exports]
