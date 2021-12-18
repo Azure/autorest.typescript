@@ -1,0 +1,10 @@
+jobs:
+  - job: Version Tolerance Tests
+    steps:
+      - template: build.yml
+
+      - script: npm run validate-version-tolerance
+        displayName: "Run Version Tolerance Validation"
+
+      - script: npm run check:tree
+        displayName: "Check git Tree"
