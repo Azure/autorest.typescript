@@ -1,5 +1,5 @@
 jobs:
-  - job: Version Tolerance Tests
+  - job: VersionToleranceTests
     steps:
       - template: build.yml
 
