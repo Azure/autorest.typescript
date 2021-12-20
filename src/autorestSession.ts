@@ -39,17 +39,9 @@ let session: Session<CodeModel>;
 let options: AutorestOptions;
 
 export async function initializeSession(autorestHost: AutorestExtensionHost) {
-  if (!host) {
-    host = autorestHost;
-  }
-
-  if (!session) {
-    session = await startSession<CodeModel>(host, codeModelSchema);
-  }
-
-  if (!options) {
-    options = await extractAutorestOptions();
-  }
+  host = autorestHost;
+  session = await startSession<CodeModel>(host, codeModelSchema);
+  options = await extractAutorestOptions();
 }
 
 export function getSession(): Session<CodeModel> {
