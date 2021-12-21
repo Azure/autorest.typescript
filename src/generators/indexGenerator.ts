@@ -100,11 +100,6 @@ function generateRLCIndex(file: SourceFile) {
   const clientName = model.language.default.name;
   const moduleName = normalizeName(clientName, NameType.File);
 
-  file.addImportDeclaration({
-    moduleSpecifier: `./${moduleName}`,
-    defaultImport: clientName
-  });
-
   file.addExportDeclarations([
     {
       moduleSpecifier: `./${moduleName}`
@@ -114,6 +109,9 @@ function generateRLCIndex(file: SourceFile) {
     },
     {
       moduleSpecifier: "./responses"
+    },
+    {
+      moduleSpecifier: "./clientDefinitions"
     }
   ]);
 
@@ -149,9 +147,9 @@ function generateRLCIndex(file: SourceFile) {
     ]);
   }
 
-  file.addExportAssignment({
-    expression: clientName,
-    isExportEquals: false
+  file.addExportDeclaration({
+    moduleSpecifier: `./${moduleName}`,
+    namedExports: [`${clientName}`],
   });
 }
 
