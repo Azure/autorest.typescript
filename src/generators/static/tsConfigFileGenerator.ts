@@ -34,15 +34,7 @@ const restLevelTsConfig = {
     declarationMap: true,
     outDir: "./dist-esm"
   },
-  exclude: [
-    "node_modules",
-    "types",
-    "temp",
-    "browser",
-    "dist",
-    "dist-esm",
-    "./samples/**/*.ts"
-  ]
+  include: ["src/**/*.ts"]
 };
 
 export function generateTsConfig(project: Project) {
@@ -56,9 +48,10 @@ export function generateTsConfig(project: Project) {
   if (generateTest) {
     highLevelTsConfig.include.push("./test/**/*.ts", "samples-dev/**/*.ts");
     highLevelTsConfig.compilerOptions["paths"] = {};
-    highLevelTsConfig.compilerOptions["paths"][clientPackageName] = ["./src/index"]
+    highLevelTsConfig.compilerOptions["paths"][clientPackageName] = ["./src/index"];
+    restLevelTsConfig.include.push("./test/**/*.ts");
   }
-  
+
   const tsConfigContents = restLevelClient
     ? restLevelTsConfig
     : highLevelTsConfig;

@@ -156,7 +156,7 @@ export const readmes: SpecDefinition[] = [
       "./.tmp/specs/specification/agrifood/data-plane/readme.md"
     ),
     branch: "3ac6ce225efe665e6c74abe48016dcb2a236d609",
-    params: [AutorestParams.RestClient],
+    params: [AutorestParams.RestClient, AutorestParams.GenerateTest],
     buildTag: "ci_rlc"
   }
   // {
