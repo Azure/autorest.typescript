@@ -92,6 +92,7 @@ stages:
             workingDirectory: node_modules/@microsoft.azure/autorest.testserver
             displayName: "Upload Coverage Report"
             condition: and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'))
+      - template: version-tolerance.yml
       # We are splitting smoke test validation in buckets to help reduce the overall run time by running each bucket in parallel
       - template: smoke-test.yml
         parameters:
@@ -111,7 +112,7 @@ stages:
           tag: ci_rlc
 
   # The Prerelease and Release stages are conditioned on whether we are building a pull request and the branch.
-  - ? ${{if and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'), eq(parameters.IncludeRelease,true))}}
-    : - template: release.yml
+  - ${{if and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'), eq(parameters.IncludeRelease,true))}}:
+      - template: release.yml
         parameters:
           DependsOn: BuildStage
