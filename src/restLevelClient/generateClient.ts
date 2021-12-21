@@ -55,7 +55,7 @@ export function generateClient(model: CodeModel, project: Project) {
 
   clientFile.addFunction({
     isExported: true,
-    name: `${clientName}Client`,
+    name: `${clientName}`,
     parameters: [
       ...commonClientParams,
       { name: "options", type: "ClientOptions = {}" }

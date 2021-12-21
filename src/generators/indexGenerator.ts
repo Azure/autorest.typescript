@@ -87,7 +87,7 @@ function generateRLCIndexForMultiClient(file: SourceFile) {
   file.addExportDeclarations([
     {
       moduleSpecifier: `./${moduleName}`,
-      namedExports: [`${clientName}Client`],
+      namedExports: [`${clientName} as ${clientName}Client`],
     },
     {
       namedExports: [...exports]
