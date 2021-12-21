@@ -12,13 +12,13 @@
  * This sample demonstrates how to The operation to retrieve SAS URIs of boot diagnostic logs for a virtual machine in a VM scale set.
  *
  * @summary The operation to retrieve SAS URIs of boot diagnostic logs for a virtual machine in a VM scale set.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/RetrieveBootDiagnosticsDataVMScaleSetVM.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//virtualMachineScaleSetVMs.retrieveBootDiagnosticsData
 async function retrieveBootDiagnosticsDataOfAVirtualMachine() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "ResourceGroup";
   const vmScaleSetName = "myvmScaleSet";
   const instanceId = "0";
@@ -26,6 +26,8 @@ async function retrieveBootDiagnosticsDataOfAVirtualMachine() {
   const options = {
     sasUriExpirationTimeInMinutes: sasUriExpirationTimeInMinutes
   };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.virtualMachineScaleSetVMs.retrieveBootDiagnosticsData(
     resourceGroupName,
     vmScaleSetName,
@@ -34,10 +36,5 @@ async function retrieveBootDiagnosticsDataOfAVirtualMachine() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await retrieveBootDiagnosticsDataOfAVirtualMachine();
-}
-main();
+
+retrieveBootDiagnosticsDataOfAVirtualMachine().catch(console.error);

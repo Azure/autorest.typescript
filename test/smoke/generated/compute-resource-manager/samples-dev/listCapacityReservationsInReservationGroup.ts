@@ -12,15 +12,17 @@
  * This sample demonstrates how to Lists all of the capacity reservations in the specified capacity reservation group. Use the nextLink property in the response to get the next page of capacity reservations.
  *
  * @summary Lists all of the capacity reservations in the specified capacity reservation group. Use the nextLink property in the response to get the next page of capacity reservations.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/ListCapacityReservationsInReservationGroup.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//capacityReservations.listByCapacityReservationGroup
 async function listCapacityReservationsInReservationGroup() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const capacityReservationGroupName = "myCapacityReservationGroup";
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.capacityReservations.listByCapacityReservationGroup(
     resourceGroupName,
@@ -30,10 +32,5 @@ async function listCapacityReservationsInReservationGroup() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await listCapacityReservationsInReservationGroup();
-}
-main();
+
+listCapacityReservationsInReservationGroup().catch(console.error);

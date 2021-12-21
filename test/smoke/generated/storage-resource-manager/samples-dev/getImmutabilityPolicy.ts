@@ -12,16 +12,18 @@
  * This sample demonstrates how to Gets the existing immutability policy along with the corresponding ETag in response headers and body.
  *
  * @summary Gets the existing immutability policy along with the corresponding ETag in response headers and body.
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/BlobContainersGetImmutabilityPolicy.json
  */
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//blobContainers.getImmutabilityPolicy
 async function getImmutabilityPolicy() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "res5221";
   const accountName = "sto9177";
   const containerName = "container3489";
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.blobContainers.getImmutabilityPolicy(
     resourceGroupName,
     accountName,
@@ -29,10 +31,5 @@ async function getImmutabilityPolicy() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await getImmutabilityPolicy();
-}
-main();
+
+getImmutabilityPolicy().catch(console.error);

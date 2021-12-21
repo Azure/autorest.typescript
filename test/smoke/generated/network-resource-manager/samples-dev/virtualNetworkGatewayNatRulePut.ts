@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates a nat rule to a scalable virtual network gateway if it doesn't exist else updates the existing nat rules.
  *
  * @summary Creates a nat rule to a scalable virtual network gateway if it doesn't exist else updates the existing nat rules.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkGatewayNatRulePut.json
  */
 import {
   VirtualNetworkGatewayNatRule,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualNetworkGatewayNatRules.beginCreateOrUpdateAndWait
 async function virtualNetworkGatewayNatRulePut() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualNetworkGatewayName = "gateway1";
   const natRuleName = "natRule1";
@@ -35,6 +35,8 @@ async function virtualNetworkGatewayNatRulePut() {
       "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworkGateways/gateway1/ipConfigurations/default",
     mode: "EgressSnat"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworkGatewayNatRules.beginCreateOrUpdateAndWait(
     resourceGroupName,
     virtualNetworkGatewayName,
@@ -43,10 +45,5 @@ async function virtualNetworkGatewayNatRulePut() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await virtualNetworkGatewayNatRulePut();
-}
-main();
+
+virtualNetworkGatewayNatRulePut().catch(console.error);

@@ -12,6 +12,7 @@
  * This sample demonstrates how to Create or update a connection monitor.
  *
  * @summary Create or update a connection monitor.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkWatcherConnectionMonitorV2Create.json
  */
 import {
   ConnectionMonitor,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//connectionMonitors.beginCreateOrUpdateAndWait
 async function createConnectionMonitorV2() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const networkWatcherName = "nw1";
   const connectionMonitorName = "cm1";
@@ -63,6 +63,8 @@ async function createConnectionMonitorV2() {
       }
     ]
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.connectionMonitors.beginCreateOrUpdateAndWait(
     resourceGroupName,
     networkWatcherName,
@@ -71,10 +73,5 @@ async function createConnectionMonitorV2() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await createConnectionMonitorV2();
-}
-main();
+
+createConnectionMonitorV2().catch(console.error);

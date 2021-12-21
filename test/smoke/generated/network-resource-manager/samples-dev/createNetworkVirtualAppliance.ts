@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates the specified Network Virtual Appliance.
  *
  * @summary Creates or updates the specified Network Virtual Appliance.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkVirtualAppliancePut.json
  */
 import {
   NetworkVirtualAppliance,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//networkVirtualAppliances.beginCreateOrUpdateAndWait
 async function createNetworkVirtualAppliance() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const networkVirtualApplianceName = "nva";
   const parameters: NetworkVirtualAppliance = {
@@ -50,6 +50,8 @@ async function createNetworkVirtualAppliance() {
         "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualHubs/hub1"
     }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.networkVirtualAppliances.beginCreateOrUpdateAndWait(
     resourceGroupName,
     networkVirtualApplianceName,
@@ -57,10 +59,5 @@ async function createNetworkVirtualAppliance() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await createNetworkVirtualAppliance();
-}
-main();
+
+createNetworkVirtualAppliance().catch(console.error);

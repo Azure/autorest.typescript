@@ -12,12 +12,11 @@
  * This sample demonstrates how to Deletes a job step. This will implicitly create a new job version.
  *
  * @summary Deletes a job step. This will implicitly create a new job version.
- * x-ms-original-file:
+ * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/DeleteJobStep.json
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: SqlManagementClient;
 async function deleteAJobStep() {
   const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "group1";

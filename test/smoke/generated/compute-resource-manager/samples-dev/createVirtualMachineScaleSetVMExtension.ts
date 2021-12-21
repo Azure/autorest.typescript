@@ -12,6 +12,7 @@
  * This sample demonstrates how to The operation to create or update the VMSS VM extension.
  *
  * @summary The operation to create or update the VMSS VM extension.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateOrUpdateVirtualMachineScaleSetVMExtensions.json
  */
 import {
   VirtualMachineScaleSetVMExtension,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//virtualMachineScaleSetVMExtensions.beginCreateOrUpdateAndWait
 async function createVirtualMachineScaleSetVMExtension() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const vmScaleSetName = "myvmScaleSet";
   const instanceId = "0";
@@ -33,6 +33,8 @@ async function createVirtualMachineScaleSetVMExtension() {
     settings: { UserName: "xyz@microsoft.com" },
     typeHandlerVersion: "1.2"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.virtualMachineScaleSetVMExtensions.beginCreateOrUpdateAndWait(
     resourceGroupName,
     vmScaleSetName,
@@ -42,10 +44,5 @@ async function createVirtualMachineScaleSetVMExtension() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await createVirtualMachineScaleSetVMExtension();
-}
-main();
+
+createVirtualMachineScaleSetVMExtension().catch(console.error);

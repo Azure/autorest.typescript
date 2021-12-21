@@ -12,6 +12,7 @@
  * This sample demonstrates how to Updates VirtualHub tags.
  *
  * @summary Updates VirtualHub tags.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualHubUpdateTags.json
  */
 import {
   TagsObject,
@@ -19,14 +20,15 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualHubs.updateTags
 async function virtualHubUpdate() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualHubName = "virtualHub2";
   const virtualHubParameters: TagsObject = {
     tags: { key1: "value1", key2: "value2" }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualHubs.updateTags(
     resourceGroupName,
     virtualHubName,
@@ -34,10 +36,5 @@ async function virtualHubUpdate() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await virtualHubUpdate();
-}
-main();
+
+virtualHubUpdate().catch(console.error);

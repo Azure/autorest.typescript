@@ -12,25 +12,22 @@
  * This sample demonstrates how to Deletes the specified custom IP prefix.
  *
  * @summary Deletes the specified custom IP prefix.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/CustomIpPrefixDelete.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//customIPPrefixes.beginDeleteAndWait
 async function deleteCustomIPPrefix() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const customIpPrefixName = "test-customipprefix";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.customIPPrefixes.beginDeleteAndWait(
     resourceGroupName,
     customIpPrefixName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await deleteCustomIPPrefix();
-}
-main();
+
+deleteCustomIPPrefix().catch(console.error);

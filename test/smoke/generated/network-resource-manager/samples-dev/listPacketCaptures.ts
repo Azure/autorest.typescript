@@ -12,15 +12,17 @@
  * This sample demonstrates how to Lists all packet capture sessions within the specified resource group.
  *
  * @summary Lists all packet capture sessions within the specified resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkWatcherPacketCapturesList.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//packetCaptures.list
 async function listPacketCaptures() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const networkWatcherName = "nw1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.packetCaptures.list(
     resourceGroupName,
@@ -30,10 +32,5 @@ async function listPacketCaptures() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await listPacketCaptures();
-}
-main();
+
+listPacketCaptures().catch(console.error);

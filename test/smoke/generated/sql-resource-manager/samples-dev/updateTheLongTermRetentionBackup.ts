@@ -12,7 +12,7 @@
  * This sample demonstrates how to Updates an existing long term retention backup.
  *
  * @summary Updates an existing long term retention backup.
- * x-ms-original-file:
+ * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ResourceGroupBasedLongTermRetentionBackupUpdate.json
  */
 import {
   UpdateLongTermRetentionBackupParameters,
@@ -20,7 +20,6 @@ import {
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: SqlManagementClient;
 async function updateTheLongTermRetentionBackup() {
   const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "testResourceGroup";

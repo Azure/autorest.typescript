@@ -12,6 +12,7 @@
  * This sample demonstrates how to Gets the effective routes configured for the Virtual Hub resource or the specified resource .
  *
  * @summary Gets the effective routes configured for the Virtual Hub resource or the specified resource .
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/EffectiveRoutesListForConnection.json
  */
 import {
   EffectiveRoutesParameters,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualHubs.beginGetEffectiveVirtualHubRoutesAndWait
 async function effectiveRoutesForAConnectionResource() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualHubName = "virtualHub1";
   const effectiveRoutesParameters: EffectiveRoutesParameters = {
@@ -30,6 +30,8 @@ async function effectiveRoutesForAConnectionResource() {
     virtualWanResourceType: "ExpressRouteConnection"
   };
   const options = { effectiveRoutesParameters: effectiveRoutesParameters };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualHubs.beginGetEffectiveVirtualHubRoutesAndWait(
     resourceGroupName,
     virtualHubName,
@@ -37,10 +39,5 @@ async function effectiveRoutesForAConnectionResource() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await effectiveRoutesForAConnectionResource();
-}
-main();
+
+effectiveRoutesForAConnectionResource().catch(console.error);

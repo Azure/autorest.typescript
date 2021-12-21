@@ -12,16 +12,18 @@
  * This sample demonstrates how to Deletes a HubVirtualNetworkConnection.
  *
  * @summary Deletes a HubVirtualNetworkConnection.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/HubVirtualNetworkConnectionDelete.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//hubVirtualNetworkConnections.beginDeleteAndWait
 async function hubVirtualNetworkConnectionDelete() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualHubName = "virtualHub1";
   const connectionName = "connection1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.hubVirtualNetworkConnections.beginDeleteAndWait(
     resourceGroupName,
     virtualHubName,
@@ -29,10 +31,5 @@ async function hubVirtualNetworkConnectionDelete() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await hubVirtualNetworkConnectionDelete();
-}
-main();
+
+hubVirtualNetworkConnectionDelete().catch(console.error);

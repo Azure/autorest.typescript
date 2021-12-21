@@ -12,12 +12,11 @@
  * This sample demonstrates how to Gets a database's automatic tuning.
  *
  * @summary Gets a database's automatic tuning.
- * x-ms-original-file:
+ * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/DatabaseAutomaticTuningGet.json
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: SqlManagementClient;
 async function getADatabaseAutomaticTuningSettings() {
   const subscriptionId = "c3aa9078-0000-0000-0000-e36f151182d7";
   const resourceGroupName = "default-sql-onebox";

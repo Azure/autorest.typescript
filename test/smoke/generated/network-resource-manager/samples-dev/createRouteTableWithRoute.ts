@@ -12,6 +12,7 @@
  * This sample demonstrates how to Create or updates a route table in a specified resource group.
  *
  * @summary Create or updates a route table in a specified resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/RouteTableCreateWithRoute.json
  */
 import {
   RouteTable,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//routeTables.beginCreateOrUpdateAndWait
 async function createRouteTableWithRoute() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const routeTableName = "testrt";
   const parameters: RouteTable = {
@@ -35,6 +35,8 @@ async function createRouteTableWithRoute() {
       }
     ]
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.routeTables.beginCreateOrUpdateAndWait(
     resourceGroupName,
     routeTableName,
@@ -42,10 +44,5 @@ async function createRouteTableWithRoute() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await createRouteTableWithRoute();
-}
-main();
+
+createRouteTableWithRoute().catch(console.error);

@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates a new queue with the specified queue name, under the specified account.
  *
  * @summary Creates a new queue with the specified queue name, under the specified account.
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/QueueOperationPatch.json
  */
 import {
   StorageQueue,
@@ -19,13 +20,14 @@ import {
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//queue.update
 async function queueOperationPatch() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "res3376";
   const accountName = "sto328";
   const queueName = "queue6185";
   const queue: StorageQueue = {};
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.queue.update(
     resourceGroupName,
     accountName,
@@ -34,10 +36,5 @@ async function queueOperationPatch() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await queueOperationPatch();
-}
-main();
+
+queueOperationPatch().catch(console.error);

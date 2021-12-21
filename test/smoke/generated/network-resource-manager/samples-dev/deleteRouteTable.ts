@@ -12,25 +12,22 @@
  * This sample demonstrates how to Deletes the specified route table.
  *
  * @summary Deletes the specified route table.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/RouteTableDelete.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//routeTables.beginDeleteAndWait
 async function deleteRouteTable() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const routeTableName = "testrt";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.routeTables.beginDeleteAndWait(
     resourceGroupName,
     routeTableName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await deleteRouteTable();
-}
-main();
+
+deleteRouteTable().catch(console.error);

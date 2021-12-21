@@ -12,14 +12,16 @@
  * This sample demonstrates how to Description for List all ResourceHealthMetadata for all sites in the resource group in the subscription.
  *
  * @summary Description for List all ResourceHealthMetadata for all sites in the resource group in the subscription.
+ * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/ListResourceHealthMetadataByResourceGroup.json
  */
 import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: WebSiteManagementClient;
-//resourceHealthMetadataOperations.listByResourceGroup
 async function listResourceHealthMetadataForAResourceGroup() {
+  const subscriptionId = "4adb32ad-8327-4cbb-b775-b84b4465bb38";
   const resourceGroupName = "Default-Web-NorthCentralUS";
+  const credential = new DefaultAzureCredential();
+  const client = new WebSiteManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.resourceHealthMetadataOperations.listByResourceGroup(
     resourceGroupName
@@ -28,10 +30,5 @@ async function listResourceHealthMetadataForAResourceGroup() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "4adb32ad-8327-4cbb-b775-b84b4465bb38";
-  client = new WebSiteManagementClient(credential, subscriptionId);
-  await listResourceHealthMetadataForAResourceGroup();
-}
-main();
+
+listResourceHealthMetadataForAResourceGroup().catch(console.error);

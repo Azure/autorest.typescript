@@ -12,15 +12,17 @@
  * This sample demonstrates how to Get all Tap configurations in a network interface.
  *
  * @summary Get all Tap configurations in a network interface.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkInterfaceTapConfigurationList.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//networkInterfaceTapConfigurations.list
 async function listVirtualNetworkTapConfigurations() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const networkInterfaceName = "mynic";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.networkInterfaceTapConfigurations.list(
     resourceGroupName,
@@ -30,10 +32,5 @@ async function listVirtualNetworkTapConfigurations() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await listVirtualNetworkTapConfigurations();
-}
-main();
+
+listVirtualNetworkTapConfigurations().catch(console.error);

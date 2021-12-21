@@ -12,23 +12,20 @@
  * This sample demonstrates how to Lists the available SKUs supported by Microsoft.Storage for given subscription.
  *
  * @summary Lists the available SKUs supported by Microsoft.Storage for given subscription.
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/SKUList.json
  */
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//skus.list
 async function skuList() {
+  const subscriptionId = "{subscription-id}";
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.skus.list()) {
     resArray.push(item);
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await skuList();
-}
-main();
+
+skuList().catch(console.error);

@@ -12,6 +12,7 @@
  * This sample demonstrates how to Run command on a virtual machine in a VM scale set.
  *
  * @summary Run command on a virtual machine in a VM scale set.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/runCommands/VMScaleSetRunCommand.json
  */
 import {
   RunCommandInput,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//virtualMachineScaleSetVMs.beginRunCommandAndWait
 async function virtualMachineScaleSetVMSRunCommand() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const vmScaleSetName = "myVirtualMachineScaleSet";
   const instanceId = "0";
@@ -29,6 +29,8 @@ async function virtualMachineScaleSetVMSRunCommand() {
     commandId: "RunPowerShellScript",
     script: ["Write-Host Hello World!"]
   };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.virtualMachineScaleSetVMs.beginRunCommandAndWait(
     resourceGroupName,
     vmScaleSetName,
@@ -37,10 +39,5 @@ async function virtualMachineScaleSetVMSRunCommand() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await virtualMachineScaleSetVMSRunCommand();
-}
-main();
+
+virtualMachineScaleSetVMSRunCommand().catch(console.error);

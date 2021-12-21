@@ -12,6 +12,7 @@
  * This sample demonstrates how to The operation to update a virtual machine.
  *
  * @summary The operation to update a virtual machine.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/UpdateVMDetachDataDiskUsingToBeDetachedProperty.json
  */
 import {
   VirtualMachineUpdate,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//virtualMachines.beginUpdateAndWait
 async function updateAVMByDetachingDataDisk() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const vmName = "myVM";
   const parameters: VirtualMachineUpdate = {
@@ -59,6 +59,8 @@ async function updateAVMByDetachingDataDisk() {
       }
     }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.virtualMachines.beginUpdateAndWait(
     resourceGroupName,
     vmName,
@@ -66,10 +68,5 @@ async function updateAVMByDetachingDataDisk() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await updateAVMByDetachingDataDisk();
-}
-main();
+
+updateAVMByDetachingDataDisk().catch(console.error);

@@ -12,16 +12,18 @@
  * This sample demonstrates how to Get the specified default network security rule.
  *
  * @summary Get the specified default network security rule.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/DefaultSecurityRuleGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//defaultSecurityRules.get
 async function defaultSecurityRuleGet() {
+  const subscriptionId = "subid";
   const resourceGroupName = "testrg";
   const networkSecurityGroupName = "nsg1";
   const defaultSecurityRuleName = "AllowVnetInBound";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.defaultSecurityRules.get(
     resourceGroupName,
     networkSecurityGroupName,
@@ -29,10 +31,5 @@ async function defaultSecurityRuleGet() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await defaultSecurityRuleGet();
-}
-main();
+
+defaultSecurityRuleGet().catch(console.error);

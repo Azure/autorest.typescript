@@ -12,6 +12,7 @@
  * This sample demonstrates how to Stops packet capture on Vpn connection in the specified resource group.
  *
  * @summary Stops packet capture on Vpn connection in the specified resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VpnConnectionStopPacketCapture.json
  */
 import {
   VpnConnectionPacketCaptureStopParameters,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//vpnConnections.beginStopPacketCaptureAndWait
 async function startPacketCaptureOnVpnConnectionWithoutFilter() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const gatewayName = "gateway1";
   const vpnConnectionName = "vpnConnection1";
@@ -31,6 +31,8 @@ async function startPacketCaptureOnVpnConnectionWithoutFilter() {
       "https://teststorage.blob.core.windows.net/?sv=2018-03-28&ss=bfqt&srt=sco&sp=rwdlacup&se=2019-09-13T07:44:05Z&st=2019-09-06T23:44:05Z&spr=https&sig=V1h9D1riltvZMI69d6ihENnFo%2FrCvTqGgjO2lf%2FVBhE%3D"
   };
   const options = { parameters: parameters };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.vpnConnections.beginStopPacketCaptureAndWait(
     resourceGroupName,
     gatewayName,
@@ -39,10 +41,5 @@ async function startPacketCaptureOnVpnConnectionWithoutFilter() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await startPacketCaptureOnVpnConnectionWithoutFilter();
-}
-main();
+
+startPacketCaptureOnVpnConnectionWithoutFilter().catch(console.error);

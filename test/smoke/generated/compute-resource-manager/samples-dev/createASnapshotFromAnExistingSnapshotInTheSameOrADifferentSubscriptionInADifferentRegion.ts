@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates a snapshot.
  *
  * @summary Creates or updates a snapshot.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/CreateASnapshotFromAnExistingSnapshotInDifferentRegion.json
  */
 import {
   Snapshot,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//snapshots.beginCreateOrUpdateAndWait
 async function createASnapshotFromAnExistingSnapshotInTheSameOrADifferentSubscriptionInADifferentRegion() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const snapshotName = "mySnapshot2";
   const snapshot: Snapshot = {
@@ -32,6 +32,8 @@ async function createASnapshotFromAnExistingSnapshotInTheSameOrADifferentSubscri
     },
     location: "West US"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.snapshots.beginCreateOrUpdateAndWait(
     resourceGroupName,
     snapshotName,
@@ -39,10 +41,7 @@ async function createASnapshotFromAnExistingSnapshotInTheSameOrADifferentSubscri
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await createASnapshotFromAnExistingSnapshotInTheSameOrADifferentSubscriptionInADifferentRegion();
-}
-main();
+
+createASnapshotFromAnExistingSnapshotInTheSameOrADifferentSubscriptionInADifferentRegion().catch(
+  console.error
+);

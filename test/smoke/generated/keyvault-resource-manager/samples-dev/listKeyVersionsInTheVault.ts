@@ -12,16 +12,18 @@
  * This sample demonstrates how to Lists the versions of the specified key in the specified key vault.
  *
  * @summary Lists the versions of the specified key in the specified key vault.
+ * x-ms-original-file: specification/keyvault/resource-manager/Microsoft.KeyVault/preview/2021-06-01-preview/examples/listKeyVersions.json
  */
 import { KeyVaultManagementClient } from "@msinternal/keyvault-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: KeyVaultManagementClient;
-//keys.listVersions
 async function listKeyVersionsInTheVault() {
+  const subscriptionId = "00000000-0000-0000-0000-000000000000";
   const resourceGroupName = "sample-group";
   const vaultName = "sample-vault-name";
   const keyName = "sample-key-name";
+  const credential = new DefaultAzureCredential();
+  const client = new KeyVaultManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.keys.listVersions(
     resourceGroupName,
@@ -32,10 +34,5 @@ async function listKeyVersionsInTheVault() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-0000-0000-0000-000000000000";
-  client = new KeyVaultManagementClient(credential, subscriptionId);
-  await listKeyVersionsInTheVault();
-}
-main();
+
+listKeyVersionsInTheVault().catch(console.error);

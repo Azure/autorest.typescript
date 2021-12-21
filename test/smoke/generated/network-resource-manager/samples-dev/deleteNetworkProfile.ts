@@ -12,25 +12,22 @@
  * This sample demonstrates how to Deletes the specified network profile.
  *
  * @summary Deletes the specified network profile.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkProfileDelete.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//networkProfiles.beginDeleteAndWait
 async function deleteNetworkProfile() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const networkProfileName = "networkProfile1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.networkProfiles.beginDeleteAndWait(
     resourceGroupName,
     networkProfileName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await deleteNetworkProfile();
-}
-main();
+
+deleteNetworkProfile().catch(console.error);

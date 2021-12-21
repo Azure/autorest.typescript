@@ -12,15 +12,17 @@
  * This sample demonstrates how to Gets information about all public IP addresses on a virtual machine scale set level.
  *
  * @summary Gets information about all public IP addresses on a virtual machine scale set level.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VmssPublicIpListAll.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//publicIPAddresses.listVirtualMachineScaleSetPublicIPAddresses
 async function listVmssPublicIP() {
+  const subscriptionId = "subid";
   const resourceGroupName = "vmss-tester";
   const virtualMachineScaleSetName = "vmss1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.publicIPAddresses.listVirtualMachineScaleSetPublicIPAddresses(
     resourceGroupName,
@@ -30,10 +32,5 @@ async function listVmssPublicIP() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await listVmssPublicIP();
-}
-main();
+
+listVmssPublicIP().catch(console.error);

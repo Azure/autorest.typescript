@@ -12,14 +12,16 @@
  * This sample demonstrates how to List all the ExpressRoutePort resources in the specified resource group.
  *
  * @summary List all the ExpressRoutePort resources in the specified resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ExpressRoutePortListByResourceGroup.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//expressRoutePorts.listByResourceGroup
 async function expressRoutePortListByResourceGroup() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.expressRoutePorts.listByResourceGroup(
     resourceGroupName
@@ -28,10 +30,5 @@ async function expressRoutePortListByResourceGroup() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await expressRoutePortListByResourceGroup();
-}
-main();
+
+expressRoutePortListByResourceGroup().catch(console.error);

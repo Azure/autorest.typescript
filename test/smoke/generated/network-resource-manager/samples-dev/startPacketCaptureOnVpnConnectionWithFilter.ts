@@ -12,6 +12,7 @@
  * This sample demonstrates how to Starts packet capture on Vpn connection in the specified resource group.
  *
  * @summary Starts packet capture on Vpn connection in the specified resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VpnConnectionStartPacketCaptureFilterData.json
  */
 import {
   VpnConnectionPacketCaptureStartParameters,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//vpnConnections.beginStartPacketCaptureAndWait
 async function startPacketCaptureOnVpnConnectionWithFilter() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const gatewayName = "gateway1";
   const vpnConnectionName = "vpnConnection1";
@@ -31,6 +31,8 @@ async function startPacketCaptureOnVpnConnectionWithFilter() {
     linkConnectionNames: ["siteLink1", "siteLink2"]
   };
   const options = { parameters: parameters };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.vpnConnections.beginStartPacketCaptureAndWait(
     resourceGroupName,
     gatewayName,
@@ -39,10 +41,5 @@ async function startPacketCaptureOnVpnConnectionWithFilter() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await startPacketCaptureOnVpnConnectionWithFilter();
-}
-main();
+
+startPacketCaptureOnVpnConnectionWithFilter().catch(console.error);

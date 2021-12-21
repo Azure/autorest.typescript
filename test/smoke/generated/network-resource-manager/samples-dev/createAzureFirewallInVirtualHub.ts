@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates the specified Azure Firewall.
  *
  * @summary Creates or updates the specified Azure Firewall.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/AzureFirewallPutInHub.json
  */
 import {
   AzureFirewall,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//azureFirewalls.beginCreateOrUpdateAndWait
 async function createAzureFirewallInVirtualHub() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const azureFirewallName = "azurefirewall";
   const parameters: AzureFirewall = {
@@ -40,6 +40,8 @@ async function createAzureFirewallInVirtualHub() {
     },
     zones: []
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.azureFirewalls.beginCreateOrUpdateAndWait(
     resourceGroupName,
     azureFirewallName,
@@ -47,10 +49,5 @@ async function createAzureFirewallInVirtualHub() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await createAzureFirewallInVirtualHub();
-}
-main();
+
+createAzureFirewallInVirtualHub().catch(console.error);

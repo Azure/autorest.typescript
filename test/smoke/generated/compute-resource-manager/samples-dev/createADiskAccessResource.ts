@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates a disk access resource
  *
  * @summary Creates or updates a disk access resource
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/CreateADiskAccess.json
  */
 import {
   DiskAccess,
@@ -19,12 +20,13 @@ import {
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//diskAccesses.beginCreateOrUpdateAndWait
 async function createADiskAccessResource() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const diskAccessName = "myDiskAccess";
   const diskAccess: DiskAccess = { location: "West US" };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.diskAccesses.beginCreateOrUpdateAndWait(
     resourceGroupName,
     diskAccessName,
@@ -32,10 +34,5 @@ async function createADiskAccessResource() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await createADiskAccessResource();
-}
-main();
+
+createADiskAccessResource().catch(console.error);

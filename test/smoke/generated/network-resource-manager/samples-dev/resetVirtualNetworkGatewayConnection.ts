@@ -12,25 +12,22 @@
  * This sample demonstrates how to Resets the virtual network gateway connection specified.
  *
  * @summary Resets the virtual network gateway connection specified.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkGatewayConnectionReset.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualNetworkGatewayConnections.beginResetConnectionAndWait
 async function resetVirtualNetworkGatewayConnection() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualNetworkGatewayConnectionName = "conn1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworkGatewayConnections.beginResetConnectionAndWait(
     resourceGroupName,
     virtualNetworkGatewayConnectionName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await resetVirtualNetworkGatewayConnection();
-}
-main();
+
+resetVirtualNetworkGatewayConnection().catch(console.error);

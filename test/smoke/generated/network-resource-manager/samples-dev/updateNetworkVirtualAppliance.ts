@@ -12,6 +12,7 @@
  * This sample demonstrates how to Updates a Network Virtual Appliance.
  *
  * @summary Updates a Network Virtual Appliance.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkVirtualApplianceUpdateTags.json
  */
 import {
   TagsObject,
@@ -19,12 +20,13 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//networkVirtualAppliances.updateTags
 async function updateNetworkVirtualAppliance() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const networkVirtualApplianceName = "nva";
   const parameters: TagsObject = { tags: { key1: "value1", key2: "value2" } };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.networkVirtualAppliances.updateTags(
     resourceGroupName,
     networkVirtualApplianceName,
@@ -32,10 +34,5 @@ async function updateNetworkVirtualAppliance() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await updateNetworkVirtualAppliance();
-}
-main();
+
+updateNetworkVirtualAppliance().catch(console.error);

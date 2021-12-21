@@ -12,22 +12,19 @@
  * This sample demonstrates how to Gets an image.
  *
  * @summary Gets an image.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/GetInformationAboutAnImage.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//images.get
 async function getInformationAboutAVirtualMachineImage() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const imageName = "myImage";
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.images.get(resourceGroupName, imageName);
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await getInformationAboutAVirtualMachineImage();
-}
-main();
+
+getInformationAboutAVirtualMachineImage().catch(console.error);

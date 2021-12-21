@@ -12,6 +12,7 @@
  * This sample demonstrates how to Sets the managementpolicy to the specified storage account.
  *
  * @summary Sets the managementpolicy to the specified storage account.
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountSetManagementPolicyWithSnapshotAndVersion.json
  */
 import {
   ManagementPolicy,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//managementPolicies.createOrUpdate
 async function storageAccountSetManagementPolicyWithSnapshotAndVersion() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "res7687";
   const accountName = "sto9699";
   const managementPolicyName = "default";
@@ -59,6 +59,8 @@ async function storageAccountSetManagementPolicyWithSnapshotAndVersion() {
       ]
     }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.managementPolicies.createOrUpdate(
     resourceGroupName,
     accountName,
@@ -67,10 +69,5 @@ async function storageAccountSetManagementPolicyWithSnapshotAndVersion() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await storageAccountSetManagementPolicyWithSnapshotAndVersion();
-}
-main();
+
+storageAccountSetManagementPolicyWithSnapshotAndVersion().catch(console.error);

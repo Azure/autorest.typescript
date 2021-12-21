@@ -12,6 +12,7 @@
  * This sample demonstrates how to Sets the properties of a storage account’s Blob service, including properties for Storage Analytics and CORS (Cross-Origin Resource Sharing) rules.
  *
  * @summary Sets the properties of a storage account’s Blob service, including properties for Storage Analytics and CORS (Cross-Origin Resource Sharing) rules.
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/BlobServicesPut.json
  */
 import {
   BlobServiceProperties,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//blobServices.setServiceProperties
 async function putBlobServices() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "res4410";
   const accountName = "sto8607";
   const parameters: BlobServiceProperties = {
@@ -66,6 +66,8 @@ async function putBlobServices() {
     deleteRetentionPolicy: { days: 300, enabled: true },
     isVersioningEnabled: true
   };
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.blobServices.setServiceProperties(
     resourceGroupName,
     accountName,
@@ -73,10 +75,5 @@ async function putBlobServices() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await putBlobServices();
-}
-main();
+
+putBlobServices().catch(console.error);

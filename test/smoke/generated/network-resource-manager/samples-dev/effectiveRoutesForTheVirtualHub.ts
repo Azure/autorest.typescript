@@ -12,6 +12,7 @@
  * This sample demonstrates how to Gets the effective routes configured for the Virtual Hub resource or the specified resource .
  *
  * @summary Gets the effective routes configured for the Virtual Hub resource or the specified resource .
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/EffectiveRoutesListForVirtualHub.json
  */
 import {
   EffectiveRoutesParameters,
@@ -19,13 +20,14 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualHubs.beginGetEffectiveVirtualHubRoutesAndWait
 async function effectiveRoutesForTheVirtualHub() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualHubName = "virtualHub1";
   const effectiveRoutesParameters: EffectiveRoutesParameters = {};
   const options = { effectiveRoutesParameters: effectiveRoutesParameters };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualHubs.beginGetEffectiveVirtualHubRoutesAndWait(
     resourceGroupName,
     virtualHubName,
@@ -33,10 +35,5 @@ async function effectiveRoutesForTheVirtualHub() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await effectiveRoutesForTheVirtualHub();
-}
-main();
+
+effectiveRoutesForTheVirtualHub().catch(console.error);

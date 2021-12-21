@@ -12,6 +12,7 @@
  * This sample demonstrates how to Sets the properties of a storage account’s Queue service, including properties for Storage Analytics and CORS (Cross-Origin Resource Sharing) rules.
  *
  * @summary Sets the properties of a storage account’s Queue service, including properties for Storage Analytics and CORS (Cross-Origin Resource Sharing) rules.
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/QueueServicesPut.json
  */
 import {
   QueueServiceProperties,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//queueServices.setServiceProperties
 async function queueServicesPut() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "res4410";
   const accountName = "sto8607";
   const parameters: QueueServiceProperties = {
@@ -62,6 +62,8 @@ async function queueServicesPut() {
       ]
     }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.queueServices.setServiceProperties(
     resourceGroupName,
     accountName,
@@ -69,10 +71,5 @@ async function queueServicesPut() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await queueServicesPut();
-}
-main();
+
+queueServicesPut().catch(console.error);

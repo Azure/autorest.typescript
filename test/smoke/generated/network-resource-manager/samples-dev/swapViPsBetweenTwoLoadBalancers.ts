@@ -12,6 +12,7 @@
  * This sample demonstrates how to Swaps VIPs between two load balancers.
  *
  * @summary Swaps VIPs between two load balancers.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/LoadBalancersSwapPublicIpAddresses.json
  */
 import {
   LoadBalancerVipSwapRequest,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//loadBalancers.beginSwapPublicIpAddressesAndWait
 async function swapViPsBetweenTwoLoadBalancers() {
+  const subscriptionId = "subid";
   const location = "westus";
   const parameters: LoadBalancerVipSwapRequest = {
     frontendIPConfigurations: [
@@ -43,16 +43,13 @@ async function swapViPsBetweenTwoLoadBalancers() {
       }
     ]
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.loadBalancers.beginSwapPublicIpAddressesAndWait(
     location,
     parameters
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await swapViPsBetweenTwoLoadBalancers();
-}
-main();
+
+swapViPsBetweenTwoLoadBalancers().catch(console.error);

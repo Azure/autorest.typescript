@@ -12,23 +12,20 @@
  * This sample demonstrates how to Gets all IpAllocations in a subscription.
  *
  * @summary Gets all IpAllocations in a subscription.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/IpAllocationList.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//ipAllocations.list
 async function listAllIPAllocations() {
+  const subscriptionId = "subid";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.ipAllocations.list()) {
     resArray.push(item);
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await listAllIPAllocations();
-}
-main();
+
+listAllIPAllocations().catch(console.error);

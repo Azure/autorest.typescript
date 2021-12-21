@@ -12,16 +12,18 @@
  * This sample demonstrates how to Get the object replication policy of the storage account by policy ID.
  *
  * @summary Get the object replication policy of the storage account by policy ID.
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountGetObjectReplicationPolicy.json
  */
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//objectReplicationPoliciesOperations.get
 async function storageAccountGetObjectReplicationPolicies() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "res6977";
   const accountName = "sto2527";
   const objectReplicationPolicyId = "{objectReplicationPolicy-Id}";
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.objectReplicationPoliciesOperations.get(
     resourceGroupName,
     accountName,
@@ -29,10 +31,5 @@ async function storageAccountGetObjectReplicationPolicies() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await storageAccountGetObjectReplicationPolicies();
-}
-main();
+
+storageAccountGetObjectReplicationPolicies().catch(console.error);

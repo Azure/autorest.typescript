@@ -12,25 +12,22 @@
  * This sample demonstrates how to Gets the specified Security Partner Provider.
  *
  * @summary Gets the specified Security Partner Provider.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/SecurityPartnerProviderGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//securityPartnerProviders.get
 async function getSecurityPartnerProvider() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const securityPartnerProviderName = "securityPartnerProvider";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.securityPartnerProviders.get(
     resourceGroupName,
     securityPartnerProviderName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getSecurityPartnerProvider();
-}
-main();
+
+getSecurityPartnerProvider().catch(console.error);

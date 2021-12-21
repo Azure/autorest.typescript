@@ -12,22 +12,19 @@
  * This sample demonstrates how to Get properties of specified deleted account resource.
  *
  * @summary Get properties of specified deleted account resource.
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/DeletedAccountGet.json
  */
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//deletedAccounts.get
 async function deletedAccountGet() {
+  const subscriptionId = "{subscription-id}";
   const deletedAccountName = "sto1125";
   const location = "eastus";
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.deletedAccounts.get(deletedAccountName, location);
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await deletedAccountGet();
-}
-main();
+
+deletedAccountGet().catch(console.error);

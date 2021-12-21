@@ -12,23 +12,20 @@
  * This sample demonstrates how to Gets all the network profiles in a subscription.
  *
  * @summary Gets all the network profiles in a subscription.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkProfileListAll.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//networkProfiles.listAll
 async function listAllNetworkProfiles() {
+  const subscriptionId = "subid";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.networkProfiles.listAll()) {
     resArray.push(item);
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await listAllNetworkProfiles();
-}
-main();
+
+listAllNetworkProfiles().catch(console.error);

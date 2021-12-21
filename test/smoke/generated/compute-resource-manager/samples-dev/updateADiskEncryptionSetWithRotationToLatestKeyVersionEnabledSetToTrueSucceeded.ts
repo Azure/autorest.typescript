@@ -12,6 +12,7 @@
  * This sample demonstrates how to Updates (patches) a disk encryption set.
  *
  * @summary Updates (patches) a disk encryption set.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/UpdateADiskEncryptionSetWithRotationToLatestKeyVersionEnabled.json
  */
 import {
   DiskEncryptionSetUpdate,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//diskEncryptionSets.beginUpdateAndWait
 async function updateADiskEncryptionSetWithRotationToLatestKeyVersionEnabledSetToTrueSucceeded() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const diskEncryptionSetName = "myDiskEncryptionSet";
   const diskEncryptionSet: DiskEncryptionSetUpdate = {
@@ -33,6 +33,8 @@ async function updateADiskEncryptionSetWithRotationToLatestKeyVersionEnabledSetT
     identity: { type: "SystemAssigned" },
     rotationToLatestKeyVersionEnabled: true
   };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.diskEncryptionSets.beginUpdateAndWait(
     resourceGroupName,
     diskEncryptionSetName,
@@ -40,10 +42,7 @@ async function updateADiskEncryptionSetWithRotationToLatestKeyVersionEnabledSetT
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await updateADiskEncryptionSetWithRotationToLatestKeyVersionEnabledSetToTrueSucceeded();
-}
-main();
+
+updateADiskEncryptionSetWithRotationToLatestKeyVersionEnabledSetToTrueSucceeded().catch(
+  console.error
+);

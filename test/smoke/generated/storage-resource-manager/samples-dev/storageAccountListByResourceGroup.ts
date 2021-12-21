@@ -12,14 +12,16 @@
  * This sample demonstrates how to Lists all the storage accounts available under the given resource group. Note that storage keys are not returned; use the ListKeys operation for this.
  *
  * @summary Lists all the storage accounts available under the given resource group. Note that storage keys are not returned; use the ListKeys operation for this.
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountListByResourceGroup.json
  */
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//storageAccounts.listByResourceGroup
 async function storageAccountListByResourceGroup() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "res6117";
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.storageAccounts.listByResourceGroup(
     resourceGroupName
@@ -28,10 +30,5 @@ async function storageAccountListByResourceGroup() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await storageAccountListByResourceGroup();
-}
-main();
+
+storageAccountListByResourceGroup().catch(console.error);

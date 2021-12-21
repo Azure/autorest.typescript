@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates a virtual wan p2s vpn gateway if it doesn't exist else updates the existing gateway.
  *
  * @summary Creates a virtual wan p2s vpn gateway if it doesn't exist else updates the existing gateway.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/P2SVpnGatewayPut.json
  */
 import {
   P2SVpnGateway,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//p2SVpnGateways.beginCreateOrUpdateAndWait
 async function p2SVpnGatewayPut() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const gatewayName = "p2sVpnGateway1";
   const p2SVpnGatewayParameters: P2SVpnGateway = {
@@ -71,6 +71,8 @@ async function p2SVpnGatewayPut() {
         "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/vpnServerConfigurations/vpnServerConfiguration1"
     }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.p2SVpnGateways.beginCreateOrUpdateAndWait(
     resourceGroupName,
     gatewayName,
@@ -78,10 +80,5 @@ async function p2SVpnGatewayPut() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await p2SVpnGatewayPut();
-}
-main();
+
+p2SVpnGatewayPut().catch(console.error);

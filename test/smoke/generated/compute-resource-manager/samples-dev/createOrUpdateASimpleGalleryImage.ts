@@ -12,6 +12,7 @@
  * This sample demonstrates how to Create or update a gallery image definition.
  *
  * @summary Create or update a gallery image definition.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/CreateOrUpdateASimpleGalleryImage.json
  */
 import {
   GalleryImage,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//galleryImages.beginCreateOrUpdateAndWait
 async function createOrUpdateASimpleGalleryImage() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const galleryName = "myGalleryName";
   const galleryImageName = "myGalleryImageName";
@@ -36,6 +36,8 @@ async function createOrUpdateASimpleGalleryImage() {
     osState: "Generalized",
     osType: "Windows"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.galleryImages.beginCreateOrUpdateAndWait(
     resourceGroupName,
     galleryName,
@@ -44,10 +46,5 @@ async function createOrUpdateASimpleGalleryImage() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await createOrUpdateASimpleGalleryImage();
-}
-main();
+
+createOrUpdateASimpleGalleryImage().catch(console.error);

@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates a connection between an ExpressRoute gateway and an ExpressRoute circuit.
  *
  * @summary Creates a connection between an ExpressRoute gateway and an ExpressRoute circuit.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ExpressRouteConnectionCreate.json
  */
 import {
   ExpressRouteConnection,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//expressRouteConnections.beginCreateOrUpdateAndWait
 async function expressRouteConnectionCreate() {
+  const subscriptionId = "subid";
   const resourceGroupName = "resourceGroupName";
   const expressRouteGatewayName = "gateway-2";
   const connectionName = "connectionName";
@@ -36,6 +36,8 @@ async function expressRouteConnectionCreate() {
       "/subscriptions/subid/resourceGroups/resourceGroupName/providers/Microsoft.Network/expressRouteGateways/gateway-2/expressRouteConnections/connectionName",
     routingWeight: 2
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.expressRouteConnections.beginCreateOrUpdateAndWait(
     resourceGroupName,
     expressRouteGatewayName,
@@ -44,10 +46,5 @@ async function expressRouteConnectionCreate() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await expressRouteConnectionCreate();
-}
-main();
+
+expressRouteConnectionCreate().catch(console.error);

@@ -12,23 +12,20 @@
  * This sample demonstrates how to Lists all SSL predefined policies for configuring Ssl policy.
  *
  * @summary Lists all SSL predefined policies for configuring Ssl policy.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ApplicationGatewayAvailableSslOptionsPredefinedPoliciesGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//applicationGateways.listAvailableSslPredefinedPolicies
 async function getAvailableSslPredefinedPolicies() {
+  const subscriptionId = "subid";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.applicationGateways.listAvailableSslPredefinedPolicies()) {
     resArray.push(item);
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getAvailableSslPredefinedPolicies();
-}
-main();
+
+getAvailableSslPredefinedPolicies().catch(console.error);

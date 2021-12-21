@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates a load balancer.
  *
  * @summary Creates or updates a load balancer.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/LoadBalancerCreateWithZones.json
  */
 import {
   LoadBalancer,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//loadBalancers.beginCreateOrUpdateAndWait
 async function createLoadBalancerWithFrontendIPInZone1() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const loadBalancerName = "lb";
   const parameters: LoadBalancer = {
@@ -88,6 +88,8 @@ async function createLoadBalancerWithFrontendIPInZone1() {
     ],
     sku: { name: "Standard" }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.loadBalancers.beginCreateOrUpdateAndWait(
     resourceGroupName,
     loadBalancerName,
@@ -95,10 +97,5 @@ async function createLoadBalancerWithFrontendIPInZone1() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await createLoadBalancerWithFrontendIPInZone1();
-}
-main();
+
+createLoadBalancerWithFrontendIPInZone1().catch(console.error);

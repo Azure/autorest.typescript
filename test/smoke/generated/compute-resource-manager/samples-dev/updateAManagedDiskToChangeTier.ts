@@ -12,6 +12,7 @@
  * This sample demonstrates how to Updates (patches) a disk.
  *
  * @summary Updates (patches) a disk.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/UpdateAManagedDiskToChangeTier.json
  */
 import {
   DiskUpdate,
@@ -19,12 +20,13 @@ import {
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//disks.beginUpdateAndWait
 async function updateAManagedDiskToChangeTier() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const diskName = "myDisk";
   const disk: DiskUpdate = { tier: "P30" };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.disks.beginUpdateAndWait(
     resourceGroupName,
     diskName,
@@ -32,10 +34,5 @@ async function updateAManagedDiskToChangeTier() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await updateAManagedDiskToChangeTier();
-}
-main();
+
+updateAManagedDiskToChangeTier().catch(console.error);

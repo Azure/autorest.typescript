@@ -12,15 +12,17 @@
  * This sample demonstrates how to The operation to get all run commands of a Virtual Machine.
  *
  * @summary The operation to get all run commands of a Virtual Machine.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/runCommands/ListRunCommandsInVM.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//virtualMachineRunCommands.listByVirtualMachine
 async function listRunCommandsInAVirtualMachine() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const vmName = "myVM";
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.virtualMachineRunCommands.listByVirtualMachine(
     resourceGroupName,
@@ -30,10 +32,5 @@ async function listRunCommandsInAVirtualMachine() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await listRunCommandsInAVirtualMachine();
-}
-main();
+
+listRunCommandsInAVirtualMachine().catch(console.error);

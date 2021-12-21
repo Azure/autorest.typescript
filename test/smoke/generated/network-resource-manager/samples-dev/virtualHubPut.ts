@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates a VirtualHub resource if it doesn't exist else updates the existing VirtualHub.
  *
  * @summary Creates a VirtualHub resource if it doesn't exist else updates the existing VirtualHub.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualHubPut.json
  */
 import {
   VirtualHub,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualHubs.beginCreateOrUpdateAndWait
 async function virtualHubPut() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualHubName = "virtualHub2";
   const virtualHubParameters: VirtualHub = {
@@ -34,6 +34,8 @@ async function virtualHubPut() {
         "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualWans/virtualWan1"
     }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualHubs.beginCreateOrUpdateAndWait(
     resourceGroupName,
     virtualHubName,
@@ -41,10 +43,5 @@ async function virtualHubPut() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await virtualHubPut();
-}
-main();
+
+virtualHubPut().catch(console.error);

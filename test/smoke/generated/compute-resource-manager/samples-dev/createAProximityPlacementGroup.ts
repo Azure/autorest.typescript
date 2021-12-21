@@ -12,14 +12,16 @@
  * This sample demonstrates how to Lists all proximity placement groups in a resource group.
  *
  * @summary Lists all proximity placement groups in a resource group.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/ListProximityPlacementGroupsInAResourceGroup.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//proximityPlacementGroups.listByResourceGroup
 async function createAProximityPlacementGroup() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.proximityPlacementGroups.listByResourceGroup(
     resourceGroupName
@@ -28,10 +30,5 @@ async function createAProximityPlacementGroup() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await createAProximityPlacementGroup();
-}
-main();
+
+createAProximityPlacementGroup().catch(console.error);

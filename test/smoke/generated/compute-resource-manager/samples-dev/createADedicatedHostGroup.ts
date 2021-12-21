@@ -12,25 +12,22 @@
  * This sample demonstrates how to Retrieves information about a dedicated host group.
  *
  * @summary Retrieves information about a dedicated host group.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/GetADedicatedHostGroup.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//dedicatedHostGroups.get
 async function createADedicatedHostGroup() {
+  const subscriptionId = "{subscriptionId}";
   const resourceGroupName = "myResourceGroup";
   const hostGroupName = "myDedicatedHostGroup";
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.dedicatedHostGroups.get(
     resourceGroupName,
     hostGroupName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscriptionId}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await createADedicatedHostGroup();
-}
-main();
+
+createADedicatedHostGroup().catch(console.error);

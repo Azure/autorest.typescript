@@ -12,6 +12,7 @@
  * This sample demonstrates how to Sets legal hold tags. Setting the same tag results in an idempotent operation. SetLegalHold follows an append pattern and does not clear out the existing tags that are not specified in the request.
  *
  * @summary Sets legal hold tags. Setting the same tag results in an idempotent operation. SetLegalHold follows an append pattern and does not clear out the existing tags that are not specified in the request.
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/BlobContainersSetLegalHoldAllowProtectedAppendWritesAll.json
  */
 import {
   LegalHold,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//blobContainers.setLegalHold
 async function setLegalHoldContainersWithAllowProtectedAppendWritesAll() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "res4303";
   const accountName = "sto7280";
   const containerName = "container8723";
@@ -29,6 +29,8 @@ async function setLegalHoldContainersWithAllowProtectedAppendWritesAll() {
     allowProtectedAppendWritesAll: true,
     tags: ["tag1", "tag2", "tag3"]
   };
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.blobContainers.setLegalHold(
     resourceGroupName,
     accountName,
@@ -37,10 +39,5 @@ async function setLegalHoldContainersWithAllowProtectedAppendWritesAll() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await setLegalHoldContainersWithAllowProtectedAppendWritesAll();
-}
-main();
+
+setLegalHoldContainersWithAllowProtectedAppendWritesAll().catch(console.error);

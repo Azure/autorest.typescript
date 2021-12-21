@@ -12,25 +12,24 @@
  * This sample demonstrates how to Starts packet capture on virtual network gateway connection in the specified resource group.
  *
  * @summary Starts packet capture on virtual network gateway connection in the specified resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkGatewayConnectionStartPacketCapture.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualNetworkGatewayConnections.beginStartPacketCaptureAndWait
 async function startPacketCaptureOnVirtualNetworkGatewayConnectionWithoutFilter() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualNetworkGatewayConnectionName = "vpngwcn1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworkGatewayConnections.beginStartPacketCaptureAndWait(
     resourceGroupName,
     virtualNetworkGatewayConnectionName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await startPacketCaptureOnVirtualNetworkGatewayConnectionWithoutFilter();
-}
-main();
+
+startPacketCaptureOnVirtualNetworkGatewayConnectionWithoutFilter().catch(
+  console.error
+);

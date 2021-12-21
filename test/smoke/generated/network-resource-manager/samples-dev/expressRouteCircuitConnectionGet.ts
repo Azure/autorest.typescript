@@ -12,17 +12,19 @@
  * This sample demonstrates how to Gets the specified Express Route Circuit Connection from the specified express route circuit.
  *
  * @summary Gets the specified Express Route Circuit Connection from the specified express route circuit.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ExpressRouteCircuitConnectionGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//expressRouteCircuitConnections.get
 async function expressRouteCircuitConnectionGet() {
+  const subscriptionId = "subid1";
   const resourceGroupName = "rg1";
   const circuitName = "ExpressRouteARMCircuitA";
   const peeringName = "AzurePrivatePeering";
   const connectionName = "circuitConnectionUSAUS";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.expressRouteCircuitConnections.get(
     resourceGroupName,
     circuitName,
@@ -31,10 +33,5 @@ async function expressRouteCircuitConnectionGet() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid1";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await expressRouteCircuitConnectionGet();
-}
-main();
+
+expressRouteCircuitConnectionGet().catch(console.error);

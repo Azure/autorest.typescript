@@ -12,16 +12,18 @@
  * This sample demonstrates how to The operation to get all run commands of an instance in Virtual Machine Scaleset.
  *
  * @summary The operation to get all run commands of an instance in Virtual Machine Scaleset.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/runCommands/ListVirtualMachineScaleSetVMRunCommands.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//virtualMachineScaleSetVMRunCommands.list
 async function listRunCommandsInVmssInstance() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const vmScaleSetName = "myvmScaleSet";
   const instanceId = "0";
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.virtualMachineScaleSetVMRunCommands.list(
     resourceGroupName,
@@ -32,10 +34,5 @@ async function listRunCommandsInVmssInstance() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await listRunCommandsInVmssInstance();
-}
-main();
+
+listRunCommandsInVmssInstance().catch(console.error);

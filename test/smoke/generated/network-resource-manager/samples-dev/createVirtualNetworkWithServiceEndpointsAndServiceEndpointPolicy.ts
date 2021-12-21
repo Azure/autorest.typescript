@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates a virtual network in the specified resource group.
  *
  * @summary Creates or updates a virtual network in the specified resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkCreateServiceEndpointPolicy.json
  */
 import {
   VirtualNetwork,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualNetworks.beginCreateOrUpdateAndWait
 async function createVirtualNetworkWithServiceEndpointsAndServiceEndpointPolicy() {
+  const subscriptionId = "subid";
   const resourceGroupName = "vnetTest";
   const virtualNetworkName = "vnet1";
   const parameters: VirtualNetwork = {
@@ -41,6 +41,8 @@ async function createVirtualNetworkWithServiceEndpointsAndServiceEndpointPolicy(
       }
     ]
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworks.beginCreateOrUpdateAndWait(
     resourceGroupName,
     virtualNetworkName,
@@ -48,10 +50,7 @@ async function createVirtualNetworkWithServiceEndpointsAndServiceEndpointPolicy(
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await createVirtualNetworkWithServiceEndpointsAndServiceEndpointPolicy();
-}
-main();
+
+createVirtualNetworkWithServiceEndpointsAndServiceEndpointPolicy().catch(
+  console.error
+);

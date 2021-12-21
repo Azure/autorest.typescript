@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates an IpAllocation in the specified resource group.
  *
  * @summary Creates or updates an IpAllocation in the specified resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/IpAllocationCreate.json
  */
 import {
   IpAllocation,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//ipAllocations.beginCreateOrUpdateAndWait
 async function createIPAllocation() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const ipAllocationName = "test-ipallocation";
   const parameters: IpAllocation = {
@@ -33,6 +33,8 @@ async function createIPAllocation() {
     location: "centraluseuap",
     prefix: "3.2.5.0/24"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.ipAllocations.beginCreateOrUpdateAndWait(
     resourceGroupName,
     ipAllocationName,
@@ -40,10 +42,5 @@ async function createIPAllocation() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await createIPAllocation();
-}
-main();
+
+createIPAllocation().catch(console.error);

@@ -12,25 +12,22 @@
  * This sample demonstrates how to Gives the supported security providers for the virtual wan.
  *
  * @summary Gives the supported security providers for the virtual wan.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualWanSupportedSecurityProviders.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//networkManagementClient.supportedSecurityProviders
 async function supportedSecurityProviders() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualWANName = "wan1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.supportedSecurityProviders(
     resourceGroupName,
     virtualWANName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await supportedSecurityProviders();
-}
-main();
+
+supportedSecurityProviders().catch(console.error);

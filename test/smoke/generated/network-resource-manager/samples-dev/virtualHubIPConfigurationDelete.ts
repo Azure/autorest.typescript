@@ -12,16 +12,18 @@
  * This sample demonstrates how to Deletes a VirtualHubIpConfiguration.
  *
  * @summary Deletes a VirtualHubIpConfiguration.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualHubIpConfigurationDelete.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualHubIpConfiguration.beginDeleteAndWait
 async function virtualHubIPConfigurationDelete() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualHubName = "hub1";
   const ipConfigName = "ipconfig1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualHubIpConfiguration.beginDeleteAndWait(
     resourceGroupName,
     virtualHubName,
@@ -29,10 +31,5 @@ async function virtualHubIPConfigurationDelete() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await virtualHubIPConfigurationDelete();
-}
-main();
+
+virtualHubIPConfigurationDelete().catch(console.error);

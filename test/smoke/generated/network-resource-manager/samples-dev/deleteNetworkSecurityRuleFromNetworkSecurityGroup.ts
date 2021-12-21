@@ -12,16 +12,18 @@
  * This sample demonstrates how to Deletes the specified network security rule.
  *
  * @summary Deletes the specified network security rule.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkSecurityGroupRuleDelete.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//securityRules.beginDeleteAndWait
 async function deleteNetworkSecurityRuleFromNetworkSecurityGroup() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const networkSecurityGroupName = "testnsg";
   const securityRuleName = "rule1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.securityRules.beginDeleteAndWait(
     resourceGroupName,
     networkSecurityGroupName,
@@ -29,10 +31,5 @@ async function deleteNetworkSecurityRuleFromNetworkSecurityGroup() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await deleteNetworkSecurityRuleFromNetworkSecurityGroup();
-}
-main();
+
+deleteNetworkSecurityRuleFromNetworkSecurityGroup().catch(console.error);

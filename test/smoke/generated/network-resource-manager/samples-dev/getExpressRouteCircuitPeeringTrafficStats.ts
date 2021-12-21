@@ -12,16 +12,18 @@
  * This sample demonstrates how to Gets all stats from an express route circuit in a resource group.
  *
  * @summary Gets all stats from an express route circuit in a resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ExpressRouteCircuitPeeringStats.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//expressRouteCircuits.getPeeringStats
 async function getExpressRouteCircuitPeeringTrafficStats() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const circuitName = "circuitName";
   const peeringName = "peeringName";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.expressRouteCircuits.getPeeringStats(
     resourceGroupName,
     circuitName,
@@ -29,10 +31,5 @@ async function getExpressRouteCircuitPeeringTrafficStats() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getExpressRouteCircuitPeeringTrafficStats();
-}
-main();
+
+getExpressRouteCircuitPeeringTrafficStats().catch(console.error);

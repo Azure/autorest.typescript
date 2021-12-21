@@ -12,6 +12,7 @@
  * This sample demonstrates how to Description for Register a user provided function app with a static site build
  *
  * @summary Description for Register a user provided function app with a static site build
+ * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/RegisterUserProvidedFunctionAppWithStaticSiteBuild.json
  */
 import {
   StaticSiteUserProvidedFunctionAppARMResource,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: WebSiteManagementClient;
-//staticSites.beginRegisterUserProvidedFunctionAppWithStaticSiteBuildAndWait
 async function registerAUserProvidedFunctionAppWithAStaticSiteBuild() {
+  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const resourceGroupName = "rg";
   const name = "testStaticSite0";
   const environmentName = "default";
@@ -33,6 +33,8 @@ async function registerAUserProvidedFunctionAppWithAStaticSiteBuild() {
       "/subscription/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/functionRG/providers/Microsoft.Web/sites/testFunctionApp"
   };
   const options = { isForced: isForced };
+  const credential = new DefaultAzureCredential();
+  const client = new WebSiteManagementClient(credential, subscriptionId);
   const result = await client.staticSites.beginRegisterUserProvidedFunctionAppWithStaticSiteBuildAndWait(
     resourceGroupName,
     name,
@@ -43,10 +45,5 @@ async function registerAUserProvidedFunctionAppWithAStaticSiteBuild() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
-  client = new WebSiteManagementClient(credential, subscriptionId);
-  await registerAUserProvidedFunctionAppWithAStaticSiteBuild();
-}
-main();
+
+registerAUserProvidedFunctionAppWithAStaticSiteBuild().catch(console.error);

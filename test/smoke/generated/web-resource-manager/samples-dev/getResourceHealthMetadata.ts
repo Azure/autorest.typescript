@@ -12,16 +12,18 @@
  * This sample demonstrates how to Description for Gets the category of ResourceHealthMetadata to use for the given site
  *
  * @summary Description for Gets the category of ResourceHealthMetadata to use for the given site
+ * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/GetResourceHealthMetadataBySite.json
  */
 import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: WebSiteManagementClient;
-//resourceHealthMetadataOperations.getBySiteSlot
 async function getResourceHealthMetadata() {
+  const subscriptionId = "4adb32ad-8327-4cbb-b775-b84b4465bb38";
   const resourceGroupName = "Default-Web-NorthCentralUS";
   const name = "newsiteinnewASE-NCUS";
   const slot = "Production";
+  const credential = new DefaultAzureCredential();
+  const client = new WebSiteManagementClient(credential, subscriptionId);
   const result = await client.resourceHealthMetadataOperations.getBySiteSlot(
     resourceGroupName,
     name,
@@ -29,10 +31,5 @@ async function getResourceHealthMetadata() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "4adb32ad-8327-4cbb-b775-b84b4465bb38";
-  client = new WebSiteManagementClient(credential, subscriptionId);
-  await getResourceHealthMetadata();
-}
-main();
+
+getResourceHealthMetadata().catch(console.error);

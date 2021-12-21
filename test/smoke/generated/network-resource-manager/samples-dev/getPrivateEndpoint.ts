@@ -12,25 +12,22 @@
  * This sample demonstrates how to Gets the specified private endpoint by resource group.
  *
  * @summary Gets the specified private endpoint by resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/PrivateEndpointGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//privateEndpoints.get
 async function getPrivateEndpoint() {
+  const subscriptionId = "subId";
   const resourceGroupName = "rg1";
   const privateEndpointName = "testPe";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.privateEndpoints.get(
     resourceGroupName,
     privateEndpointName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subId";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getPrivateEndpoint();
-}
-main();
+
+getPrivateEndpoint().catch(console.error);

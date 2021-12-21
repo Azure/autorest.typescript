@@ -12,16 +12,18 @@
  * This sample demonstrates how to Returns the properties for the specified encryption scope.
  *
  * @summary Returns the properties for the specified encryption scope.
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountGetEncryptionScope.json
  */
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//encryptionScopes.get
 async function storageAccountGetEncryptionScope() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "resource-group-name";
   const accountName = "{storage-account-name}";
   const encryptionScopeName = "{encryption-scope-name}";
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.encryptionScopes.get(
     resourceGroupName,
     accountName,
@@ -29,10 +31,5 @@ async function storageAccountGetEncryptionScope() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await storageAccountGetEncryptionScope();
-}
-main();
+
+storageAccountGetEncryptionScope().catch(console.error);

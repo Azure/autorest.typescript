@@ -12,23 +12,20 @@
  * This sample demonstrates how to Lists all of the available Key Vault Rest API operations.
  *
  * @summary Lists all of the available Key Vault Rest API operations.
+ * x-ms-original-file: specification/keyvault/resource-manager/Microsoft.KeyVault/preview/2021-06-01-preview/examples/listOperations.json
  */
 import { KeyVaultManagementClient } from "@msinternal/keyvault-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: KeyVaultManagementClient;
-//operations.list
 async function listsAvailableRestApiOperations() {
+  const subscriptionId = "00000000-0000-0000-0000-000000000000";
+  const credential = new DefaultAzureCredential();
+  const client = new KeyVaultManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.operations.list()) {
     resArray.push(item);
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-0000-0000-0000-000000000000";
-  client = new KeyVaultManagementClient(credential, subscriptionId);
-  await listsAvailableRestApiOperations();
-}
-main();
+
+listsAvailableRestApiOperations().catch(console.error);

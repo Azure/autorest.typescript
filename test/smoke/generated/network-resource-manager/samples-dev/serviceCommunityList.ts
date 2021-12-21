@@ -12,23 +12,20 @@
  * This sample demonstrates how to Gets all the available bgp service communities.
  *
  * @summary Gets all the available bgp service communities.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ServiceCommunityList.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//bgpServiceCommunities.list
 async function serviceCommunityList() {
+  const subscriptionId = "subid";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.bgpServiceCommunities.list()) {
     resArray.push(item);
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await serviceCommunityList();
-}
-main();
+
+serviceCommunityList().catch(console.error);

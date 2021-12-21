@@ -12,15 +12,17 @@
  * This sample demonstrates how to Gets a list of all roles in a cloud service. Use nextLink property in the response to get the next page of roles. Do this till nextLink is null to fetch all the roles.
  *
  * @summary Gets a list of all roles in a cloud service. Use nextLink property in the response to get the next page of roles. Do this till nextLink is null to fetch all the roles.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-03-01/examples/ListCloudServiceRoles.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//cloudServiceRoles.list
 async function listRolesInACloudService() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "ConstosoRG";
   const cloudServiceName = "{cs-name}";
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.cloudServiceRoles.list(
     resourceGroupName,
@@ -30,10 +32,5 @@ async function listRolesInACloudService() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await listRolesInACloudService();
-}
-main();
+
+listRolesInACloudService().catch(console.error);

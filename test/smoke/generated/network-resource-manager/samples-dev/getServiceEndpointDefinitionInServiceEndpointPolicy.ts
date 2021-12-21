@@ -12,16 +12,18 @@
  * This sample demonstrates how to Get the specified service endpoint policy definitions from service endpoint policy.
  *
  * @summary Get the specified service endpoint policy definitions from service endpoint policy.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ServiceEndpointPolicyDefinitionGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//serviceEndpointPolicyDefinitions.get
 async function getServiceEndpointDefinitionInServiceEndpointPolicy() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const serviceEndpointPolicyName = "testPolicy";
   const serviceEndpointPolicyDefinitionName = "testDefinition";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.serviceEndpointPolicyDefinitions.get(
     resourceGroupName,
     serviceEndpointPolicyName,
@@ -29,10 +31,5 @@ async function getServiceEndpointDefinitionInServiceEndpointPolicy() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getServiceEndpointDefinitionInServiceEndpointPolicy();
-}
-main();
+
+getServiceEndpointDefinitionInServiceEndpointPolicy().catch(console.error);

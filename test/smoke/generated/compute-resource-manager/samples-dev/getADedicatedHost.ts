@@ -12,16 +12,18 @@
  * This sample demonstrates how to Retrieves information about a dedicated host.
  *
  * @summary Retrieves information about a dedicated host.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/GetADedicatedHost.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//dedicatedHosts.get
 async function getADedicatedHost() {
+  const subscriptionId = "{subscriptionId}";
   const resourceGroupName = "myResourceGroup";
   const hostGroupName = "myDedicatedHostGroup";
   const hostName = "myHost";
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.dedicatedHosts.get(
     resourceGroupName,
     hostGroupName,
@@ -29,10 +31,5 @@ async function getADedicatedHost() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscriptionId}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await getADedicatedHost();
-}
-main();
+
+getADedicatedHost().catch(console.error);

@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates a nat rule to a scalable vpn gateway if it doesn't exist else updates the existing nat rules.
  *
  * @summary Creates a nat rule to a scalable vpn gateway if it doesn't exist else updates the existing nat rules.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NatRulePut.json
  */
 import {
   VpnGatewayNatRule,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//natRules.beginCreateOrUpdateAndWait
 async function natRulePut() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const gatewayName = "gateway1";
   const natRuleName = "natRule1";
@@ -33,6 +33,8 @@ async function natRulePut() {
       "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworkGateways/cloudnet1-VNG/ipConfigurations/default",
     mode: "EgressSnat"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.natRules.beginCreateOrUpdateAndWait(
     resourceGroupName,
     gatewayName,
@@ -41,10 +43,5 @@ async function natRulePut() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await natRulePut();
-}
-main();
+
+natRulePut().catch(console.error);

@@ -12,15 +12,17 @@
  * This sample demonstrates how to Gets all peerings in a specified ExpressRouteCrossConnection.
  *
  * @summary Gets all peerings in a specified ExpressRouteCrossConnection.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ExpressRouteCrossConnectionBgpPeeringList.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//expressRouteCrossConnectionPeerings.list
 async function expressRouteCrossConnectionBgpPeeringList() {
+  const subscriptionId = "subid";
   const resourceGroupName = "CrossConnection-SiliconValley";
   const crossConnectionName = "<circuitServiceKey>";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.expressRouteCrossConnectionPeerings.list(
     resourceGroupName,
@@ -30,10 +32,5 @@ async function expressRouteCrossConnectionBgpPeeringList() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await expressRouteCrossConnectionBgpPeeringList();
-}
-main();
+
+expressRouteCrossConnectionBgpPeeringList().catch(console.error);

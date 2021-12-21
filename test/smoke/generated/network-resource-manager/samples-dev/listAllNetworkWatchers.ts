@@ -12,23 +12,20 @@
  * This sample demonstrates how to Gets all network watchers by subscription.
  *
  * @summary Gets all network watchers by subscription.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkWatcherListAll.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//networkWatchers.listAll
 async function listAllNetworkWatchers() {
+  const subscriptionId = "subid";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.networkWatchers.listAll()) {
     resArray.push(item);
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await listAllNetworkWatchers();
-}
-main();
+
+listAllNetworkWatchers().catch(console.error);

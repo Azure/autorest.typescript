@@ -12,17 +12,19 @@
  * This sample demonstrates how to Description for Detach the user provided function app from the static site build
  *
  * @summary Description for Detach the user provided function app from the static site build
+ * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/DetachUserProvidedFunctionAppFromStaticSiteBuild.json
  */
 import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: WebSiteManagementClient;
-//staticSites.detachUserProvidedFunctionAppFromStaticSiteBuild
 async function detachTheUserProvidedFunctionAppFromTheStaticSiteBuild() {
+  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const resourceGroupName = "rg";
   const name = "testStaticSite0";
   const environmentName = "12";
   const functionAppName = "testFunctionApp";
+  const credential = new DefaultAzureCredential();
+  const client = new WebSiteManagementClient(credential, subscriptionId);
   const result = await client.staticSites.detachUserProvidedFunctionAppFromStaticSiteBuild(
     resourceGroupName,
     name,
@@ -31,10 +33,5 @@ async function detachTheUserProvidedFunctionAppFromTheStaticSiteBuild() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
-  client = new WebSiteManagementClient(credential, subscriptionId);
-  await detachTheUserProvidedFunctionAppFromTheStaticSiteBuild();
-}
-main();
+
+detachTheUserProvidedFunctionAppFromTheStaticSiteBuild().catch(console.error);

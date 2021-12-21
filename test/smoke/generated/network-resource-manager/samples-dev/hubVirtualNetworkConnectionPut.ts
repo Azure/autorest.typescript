@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates a hub virtual network connection if it doesn't exist else updates the existing one.
  *
  * @summary Creates a hub virtual network connection if it doesn't exist else updates the existing one.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/HubVirtualNetworkConnectionPut.json
  */
 import {
   HubVirtualNetworkConnection,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//hubVirtualNetworkConnections.beginCreateOrUpdateAndWait
 async function hubVirtualNetworkConnectionPut() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualHubName = "virtualHub1";
   const connectionName = "connection1";
@@ -61,6 +61,8 @@ async function hubVirtualNetworkConnectionPut() {
       }
     }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.hubVirtualNetworkConnections.beginCreateOrUpdateAndWait(
     resourceGroupName,
     virtualHubName,
@@ -69,10 +71,5 @@ async function hubVirtualNetworkConnectionPut() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await hubVirtualNetworkConnectionPut();
-}
-main();
+
+hubVirtualNetworkConnectionPut().catch(console.error);

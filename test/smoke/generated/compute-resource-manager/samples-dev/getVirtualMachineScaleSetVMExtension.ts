@@ -12,17 +12,19 @@
  * This sample demonstrates how to The operation to get the VMSS VM extension.
  *
  * @summary The operation to get the VMSS VM extension.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/GetVirtualMachineScaleSetVMExtensions.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//virtualMachineScaleSetVMExtensions.get
 async function getVirtualMachineScaleSetVMExtension() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const vmScaleSetName = "myvmScaleSet";
   const instanceId = "0";
   const vmExtensionName = "myVMExtension";
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.virtualMachineScaleSetVMExtensions.get(
     resourceGroupName,
     vmScaleSetName,
@@ -31,10 +33,5 @@ async function getVirtualMachineScaleSetVMExtension() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await getVirtualMachineScaleSetVMExtension();
-}
-main();
+
+getVirtualMachineScaleSetVMExtension().catch(console.error);

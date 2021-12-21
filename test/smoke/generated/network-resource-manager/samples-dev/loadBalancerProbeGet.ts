@@ -12,16 +12,18 @@
  * This sample demonstrates how to Gets load balancer probe.
  *
  * @summary Gets load balancer probe.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/LoadBalancerProbeGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//loadBalancerProbes.get
 async function loadBalancerProbeGet() {
+  const subscriptionId = "subid";
   const resourceGroupName = "testrg";
   const loadBalancerName = "lb";
   const probeName = "probe1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.loadBalancerProbes.get(
     resourceGroupName,
     loadBalancerName,
@@ -29,10 +31,5 @@ async function loadBalancerProbeGet() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await loadBalancerProbeGet();
-}
-main();
+
+loadBalancerProbeGet().catch(console.error);

@@ -12,25 +12,22 @@
  * This sample demonstrates how to Deletes the specified private link service.
  *
  * @summary Deletes the specified private link service.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/PrivateLinkServiceDelete.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//privateLinkServices.beginDeleteAndWait
 async function deletePrivateLinkService() {
+  const subscriptionId = "subId";
   const resourceGroupName = "rg1";
   const serviceName = "testPls";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.privateLinkServices.beginDeleteAndWait(
     resourceGroupName,
     serviceName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subId";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await deletePrivateLinkService();
-}
-main();
+
+deletePrivateLinkService().catch(console.error);

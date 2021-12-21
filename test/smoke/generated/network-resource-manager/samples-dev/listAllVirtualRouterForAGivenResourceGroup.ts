@@ -12,14 +12,16 @@
  * This sample demonstrates how to Lists all Virtual Routers in a resource group.
  *
  * @summary Lists all Virtual Routers in a resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualRouterListByResourceGroup.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualRouters.listByResourceGroup
 async function listAllVirtualRouterForAGivenResourceGroup() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.virtualRouters.listByResourceGroup(
     resourceGroupName
@@ -28,10 +30,5 @@ async function listAllVirtualRouterForAGivenResourceGroup() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await listAllVirtualRouterForAGivenResourceGroup();
-}
-main();
+
+listAllVirtualRouterForAGivenResourceGroup().catch(console.error);

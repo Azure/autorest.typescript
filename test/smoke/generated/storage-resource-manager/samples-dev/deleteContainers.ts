@@ -12,16 +12,18 @@
  * This sample demonstrates how to Deletes specified container under its account.
  *
  * @summary Deletes specified container under its account.
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/BlobContainersDelete.json
  */
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//blobContainers.delete
 async function deleteContainers() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "res4079";
   const accountName = "sto4506";
   const containerName = "container9689";
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.blobContainers.delete(
     resourceGroupName,
     accountName,
@@ -29,10 +31,5 @@ async function deleteContainers() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await deleteContainers();
-}
-main();
+
+deleteContainers().catch(console.error);

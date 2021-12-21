@@ -12,23 +12,20 @@
  * This sample demonstrates how to Description for Get available Web app frameworks and their versions
  *
  * @summary Description for Get available Web app frameworks and their versions
+ * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/GetWebAppStacks.json
  */
 import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: WebSiteManagementClient;
-//provider.listWebAppStacks
 async function getWebAppStacks() {
+  const subscriptionId = "00000000-0000-0000-0000-000000000000";
+  const credential = new DefaultAzureCredential();
+  const client = new WebSiteManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.provider.listWebAppStacks()) {
     resArray.push(item);
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-0000-0000-0000-000000000000";
-  client = new WebSiteManagementClient(credential, subscriptionId);
-  await getWebAppStacks();
-}
-main();
+
+getWebAppStacks().catch(console.error);

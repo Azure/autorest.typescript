@@ -12,16 +12,18 @@
  * This sample demonstrates how to Gets the status of a virtual machine from a VM scale set.
  *
  * @summary Gets the status of a virtual machine from a VM scale set.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/GetVirtualMachineScaleSetVMInstanceViewAutoPlacedOnDedicatedHostGroup.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//virtualMachineScaleSetVMs.getInstanceView
 async function getInstanceViewOfAVirtualMachineFromAVMScaleSetPlacedOnADedicatedHostGroupThroughAutomaticPlacement() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const vmScaleSetName = "myVirtualMachineScaleSet";
   const instanceId = "0";
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.virtualMachineScaleSetVMs.getInstanceView(
     resourceGroupName,
     vmScaleSetName,
@@ -29,10 +31,7 @@ async function getInstanceViewOfAVirtualMachineFromAVMScaleSetPlacedOnADedicated
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await getInstanceViewOfAVirtualMachineFromAVMScaleSetPlacedOnADedicatedHostGroupThroughAutomaticPlacement();
-}
-main();
+
+getInstanceViewOfAVirtualMachineFromAVMScaleSetPlacedOnADedicatedHostGroupThroughAutomaticPlacement().catch(
+  console.error
+);

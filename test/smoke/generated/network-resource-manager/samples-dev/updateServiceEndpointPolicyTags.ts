@@ -12,6 +12,7 @@
  * This sample demonstrates how to Updates tags of a service endpoint policy.
  *
  * @summary Updates tags of a service endpoint policy.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ServiceEndpointPolicyUpdateTags.json
  */
 import {
   TagsObject,
@@ -19,12 +20,13 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//serviceEndpointPolicies.updateTags
 async function updateServiceEndpointPolicyTags() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const serviceEndpointPolicyName = "testServiceEndpointPolicy";
   const parameters: TagsObject = { tags: { tag1: "value1", tag2: "value2" } };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.serviceEndpointPolicies.updateTags(
     resourceGroupName,
     serviceEndpointPolicyName,
@@ -32,10 +34,5 @@ async function updateServiceEndpointPolicyTags() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await updateServiceEndpointPolicyTags();
-}
-main();
+
+updateServiceEndpointPolicyTags().catch(console.error);

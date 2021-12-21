@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates a Express Route Circuit Connection in the specified express route circuits.
  *
  * @summary Creates or updates a Express Route Circuit Connection in the specified express route circuits.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ExpressRouteCircuitConnectionCreate.json
  */
 import {
   ExpressRouteCircuitConnection,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//expressRouteCircuitConnections.beginCreateOrUpdateAndWait
 async function expressRouteCircuitConnectionCreate() {
+  const subscriptionId = "subid1";
   const resourceGroupName = "rg1";
   const circuitName = "ExpressRouteARMCircuitA";
   const peeringName = "AzurePrivatePeering";
@@ -39,6 +39,8 @@ async function expressRouteCircuitConnectionCreate() {
         "/subscriptions/subid2/resourceGroups/dedharcktpeer/providers/Microsoft.Network/expressRouteCircuits/dedharcktremote/peerings/AzurePrivatePeering"
     }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.expressRouteCircuitConnections.beginCreateOrUpdateAndWait(
     resourceGroupName,
     circuitName,
@@ -48,10 +50,5 @@ async function expressRouteCircuitConnectionCreate() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid1";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await expressRouteCircuitConnectionCreate();
-}
-main();
+
+expressRouteCircuitConnectionCreate().catch(console.error);

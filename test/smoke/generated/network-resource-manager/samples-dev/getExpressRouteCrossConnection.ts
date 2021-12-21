@@ -12,25 +12,22 @@
  * This sample demonstrates how to Gets details about the specified ExpressRouteCrossConnection.
  *
  * @summary Gets details about the specified ExpressRouteCrossConnection.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ExpressRouteCrossConnectionGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//expressRouteCrossConnections.get
 async function getExpressRouteCrossConnection() {
+  const subscriptionId = "subid";
   const resourceGroupName = "CrossConnection-SiliconValley";
   const crossConnectionName = "<circuitServiceKey>";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.expressRouteCrossConnections.get(
     resourceGroupName,
     crossConnectionName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getExpressRouteCrossConnection();
-}
-main();
+
+getExpressRouteCrossConnection().catch(console.error);

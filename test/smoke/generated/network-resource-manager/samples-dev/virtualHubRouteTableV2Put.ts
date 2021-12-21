@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates a VirtualHubBgpConnection resource if it doesn't exist else updates the existing VirtualHubBgpConnection.
  *
  * @summary Creates a VirtualHubBgpConnection resource if it doesn't exist else updates the existing VirtualHubBgpConnection.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualHubBgpConnectionPut.json
  */
 import {
   BgpConnection,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualHubBgpConnection.beginCreateOrUpdateAndWait
 async function virtualHubRouteTableV2Put() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualHubName = "hub1";
   const connectionName = "conn1";
@@ -33,6 +33,8 @@ async function virtualHubRouteTableV2Put() {
     peerAsn: 20000,
     peerIp: "192.168.1.5"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualHubBgpConnection.beginCreateOrUpdateAndWait(
     resourceGroupName,
     virtualHubName,
@@ -41,10 +43,5 @@ async function virtualHubRouteTableV2Put() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await virtualHubRouteTableV2Put();
-}
-main();
+
+virtualHubRouteTableV2Put().catch(console.error);

@@ -12,17 +12,19 @@
  * This sample demonstrates how to Description for Gets a named operation for a network trace capturing (or deployment slot, if specified).
  *
  * @summary Description for Gets a named operation for a network trace capturing (or deployment slot, if specified).
+ * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/GetWebSiteNetworkTraces.json
  */
 import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: WebSiteManagementClient;
-//webApps.getNetworkTracesSlotV2
 async function getNetworkTracesForASite() {
+  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const resourceGroupName = "testrg123";
   const name = "SampleApp";
   const operationId = "c291433b-53ad-4c49-8cae-0a293eae1c6d";
   const slot = "Production";
+  const credential = new DefaultAzureCredential();
+  const client = new WebSiteManagementClient(credential, subscriptionId);
   const result = await client.webApps.getNetworkTracesSlotV2(
     resourceGroupName,
     name,
@@ -31,10 +33,5 @@ async function getNetworkTracesForASite() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
-  client = new WebSiteManagementClient(credential, subscriptionId);
-  await getNetworkTracesForASite();
-}
-main();
+
+getNetworkTracesForASite().catch(console.error);

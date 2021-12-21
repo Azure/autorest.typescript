@@ -12,6 +12,7 @@
  * This sample demonstrates how to Returns the list of currently active sessions on the Bastion.
  *
  * @summary Returns the list of currently active sessions on the Bastion.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/BastionSessionDelete.json
  */
 import {
   SessionIds,
@@ -19,12 +20,13 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//networkManagementClient.listDisconnectActiveSessions
 async function deletesTheSpecifiedActiveSession() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const bastionHostName = "bastionhosttenant";
   const sessionIds: SessionIds = {};
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.listDisconnectActiveSessions(
     resourceGroupName,
@@ -35,10 +37,5 @@ async function deletesTheSpecifiedActiveSession() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await deletesTheSpecifiedActiveSession();
-}
-main();
+
+deletesTheSpecifiedActiveSession().catch(console.error);

@@ -12,16 +12,18 @@
  * This sample demonstrates how to Retrieves the details of a nat rule.
  *
  * @summary Retrieves the details of a nat rule.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkGatewayNatRuleGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualNetworkGatewayNatRules.get
 async function virtualNetworkGatewayNatRuleGet() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualNetworkGatewayName = "gateway1";
   const natRuleName = "natRule1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworkGatewayNatRules.get(
     resourceGroupName,
     virtualNetworkGatewayName,
@@ -29,10 +31,5 @@ async function virtualNetworkGatewayNatRuleGet() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await virtualNetworkGatewayNatRuleGet();
-}
-main();
+
+virtualNetworkGatewayNatRuleGet().catch(console.error);

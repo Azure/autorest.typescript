@@ -12,17 +12,19 @@
  * This sample demonstrates how to Get the specified network interface in a cloud service.
  *
  * @summary Get the specified network interface in a cloud service.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/CloudServiceNetworkInterfaceGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//networkInterfaces.getCloudServiceNetworkInterface
 async function getCloudServiceNetworkInterface() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const cloudServiceName = "cs1";
   const roleInstanceName = "TestVMRole_IN_0";
   const networkInterfaceName = "nic1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.networkInterfaces.getCloudServiceNetworkInterface(
     resourceGroupName,
     cloudServiceName,
@@ -31,10 +33,5 @@ async function getCloudServiceNetworkInterface() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getCloudServiceNetworkInterface();
-}
-main();
+
+getCloudServiceNetworkInterface().catch(console.error);

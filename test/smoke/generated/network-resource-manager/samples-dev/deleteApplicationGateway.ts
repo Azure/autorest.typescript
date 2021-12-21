@@ -12,25 +12,22 @@
  * This sample demonstrates how to Deletes the specified application gateway.
  *
  * @summary Deletes the specified application gateway.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ApplicationGatewayDelete.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//applicationGateways.beginDeleteAndWait
 async function deleteApplicationGateway() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const applicationGatewayName = "appgw";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.applicationGateways.beginDeleteAndWait(
     resourceGroupName,
     applicationGatewayName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await deleteApplicationGateway();
-}
-main();
+
+deleteApplicationGateway().catch(console.error);

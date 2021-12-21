@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates a vpn connection to a scalable vpn gateway if it doesn't exist else updates the existing connection.
  *
  * @summary Creates a vpn connection to a scalable vpn gateway if it doesn't exist else updates the existing connection.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VpnConnectionPut.json
  */
 import {
   VpnConnection,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//vpnConnections.beginCreateOrUpdateAndWait
 async function vpnConnectionPut() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const gatewayName = "gateway1";
   const connectionName = "vpnConnection1";
@@ -46,6 +46,8 @@ async function vpnConnectionPut() {
       }
     ]
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.vpnConnections.beginCreateOrUpdateAndWait(
     resourceGroupName,
     gatewayName,
@@ -54,10 +56,5 @@ async function vpnConnectionPut() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await vpnConnectionPut();
-}
-main();
+
+vpnConnectionPut().catch(console.error);

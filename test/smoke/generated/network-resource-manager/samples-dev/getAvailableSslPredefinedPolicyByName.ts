@@ -12,23 +12,20 @@
  * This sample demonstrates how to Gets Ssl predefined policy with the specified policy name.
  *
  * @summary Gets Ssl predefined policy with the specified policy name.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ApplicationGatewayAvailableSslOptionsPredefinedPolicyGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//applicationGateways.getSslPredefinedPolicy
 async function getAvailableSslPredefinedPolicyByName() {
+  const subscriptionId = "subid";
   const predefinedPolicyName = "AppGwSslPolicy20150501";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.applicationGateways.getSslPredefinedPolicy(
     predefinedPolicyName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getAvailableSslPredefinedPolicyByName();
-}
-main();
+
+getAvailableSslPredefinedPolicyByName().catch(console.error);

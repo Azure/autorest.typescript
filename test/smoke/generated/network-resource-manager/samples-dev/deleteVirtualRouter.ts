@@ -12,25 +12,22 @@
  * This sample demonstrates how to Deletes the specified Virtual Router.
  *
  * @summary Deletes the specified Virtual Router.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualRouterDelete.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualRouters.beginDeleteAndWait
 async function deleteVirtualRouter() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualRouterName = "virtualRouter";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualRouters.beginDeleteAndWait(
     resourceGroupName,
     virtualRouterName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await deleteVirtualRouter();
-}
-main();
+
+deleteVirtualRouter().catch(console.error);

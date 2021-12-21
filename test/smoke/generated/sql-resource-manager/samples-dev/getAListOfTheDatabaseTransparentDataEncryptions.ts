@@ -12,12 +12,11 @@
  * This sample demonstrates how to Gets a list of managed database's transparent data encryptions.
  *
  * @summary Gets a list of managed database's transparent data encryptions.
- * x-ms-original-file:
+ * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ManagedTransparentDataEncryptionList.json
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: SqlManagementClient;
 async function getAListOfTheDatabaseTransparentDataEncryptions() {
   const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "security-tde-resourcegroup";

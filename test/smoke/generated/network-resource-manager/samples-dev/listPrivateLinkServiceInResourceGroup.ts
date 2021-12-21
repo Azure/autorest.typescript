@@ -12,15 +12,17 @@
  * This sample demonstrates how to Gets all private end point connections for a specific private link service.
  *
  * @summary Gets all private end point connections for a specific private link service.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/PrivateLinkServiceListPrivateEndpointConnection.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//privateLinkServices.listPrivateEndpointConnections
 async function listPrivateLinkServiceInResourceGroup() {
+  const subscriptionId = "subId";
   const resourceGroupName = "rg1";
   const serviceName = "testPls";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.privateLinkServices.listPrivateEndpointConnections(
     resourceGroupName,
@@ -30,10 +32,5 @@ async function listPrivateLinkServiceInResourceGroup() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subId";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await listPrivateLinkServiceInResourceGroup();
-}
-main();
+
+listPrivateLinkServiceInResourceGroup().catch(console.error);

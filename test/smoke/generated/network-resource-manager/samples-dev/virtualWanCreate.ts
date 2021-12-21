@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates a VirtualWAN resource if it doesn't exist else updates the existing VirtualWAN.
  *
  * @summary Creates a VirtualWAN resource if it doesn't exist else updates the existing VirtualWAN.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualWANPut.json
  */
 import {
   VirtualWAN,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualWans.beginCreateOrUpdateAndWait
 async function virtualWanCreate() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualWANName = "wan1";
   const WANParameters: VirtualWAN = {
@@ -30,6 +30,8 @@ async function virtualWanCreate() {
     location: "West US",
     tags: { key1: "value1" }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualWans.beginCreateOrUpdateAndWait(
     resourceGroupName,
     virtualWANName,
@@ -37,10 +39,5 @@ async function virtualWanCreate() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await virtualWanCreate();
-}
-main();
+
+virtualWanCreate().catch(console.error);

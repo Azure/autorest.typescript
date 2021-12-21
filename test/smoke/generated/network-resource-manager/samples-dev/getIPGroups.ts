@@ -12,22 +12,19 @@
  * This sample demonstrates how to Gets the specified ipGroups.
  *
  * @summary Gets the specified ipGroups.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/IpGroupsGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//ipGroups.get
 async function getIPGroups() {
+  const subscriptionId = "subId";
   const resourceGroupName = "myResourceGroup";
   const ipGroupsName = "ipGroups1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.ipGroups.get(resourceGroupName, ipGroupsName);
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subId";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getIPGroups();
-}
-main();
+
+getIPGroups().catch(console.error);

@@ -12,6 +12,7 @@
  * This sample demonstrates how to Asynchronously creates a new storage account with the specified parameters. If an account is already created and a subsequent create request is issued with different properties, the account properties will be updated. If an account is already created and a subsequent create or update request is issued with the exact same set of properties, the request will succeed.
  *
  * @summary Asynchronously creates a new storage account with the specified parameters. If an account is already created and a subsequent create request is issued with different properties, the account properties will be updated. If an account is already created and a subsequent create or update request is issued with the exact same set of properties, the request will succeed.
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountCreateWithImmutabilityPolicy.json
  */
 import {
   StorageAccountCreateParameters,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//storageAccounts.beginCreateAndWait
 async function storageAccountCreateWithImmutabilityPolicy() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "res9101";
   const accountName = "sto4445";
   const parameters: StorageAccountCreateParameters = {
@@ -38,6 +38,8 @@ async function storageAccountCreateWithImmutabilityPolicy() {
     location: "eastus",
     sku: { name: "Standard_GRS" }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.storageAccounts.beginCreateAndWait(
     resourceGroupName,
     accountName,
@@ -45,10 +47,5 @@ async function storageAccountCreateWithImmutabilityPolicy() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await storageAccountCreateWithImmutabilityPolicy();
-}
-main();
+
+storageAccountCreateWithImmutabilityPolicy().catch(console.error);

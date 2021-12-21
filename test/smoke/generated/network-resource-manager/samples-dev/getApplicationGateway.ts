@@ -12,25 +12,22 @@
  * This sample demonstrates how to Gets the specified application gateway.
  *
  * @summary Gets the specified application gateway.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ApplicationGatewayGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//applicationGateways.get
 async function getApplicationGateway() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const applicationGatewayName = "appgw";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.applicationGateways.get(
     resourceGroupName,
     applicationGatewayName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getApplicationGateway();
-}
-main();
+
+getApplicationGateway().catch(console.error);

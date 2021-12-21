@@ -12,20 +12,17 @@
  * This sample demonstrates how to Lists all available web application firewall rule sets.
  *
  * @summary Lists all available web application firewall rule sets.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ApplicationGatewayAvailableWafRuleSetsGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//applicationGateways.listAvailableWafRuleSets
 async function getAvailableWafRuleSets() {
+  const subscriptionId = "subid";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.applicationGateways.listAvailableWafRuleSets();
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getAvailableWafRuleSets();
-}
-main();
+
+getAvailableWafRuleSets().catch(console.error);

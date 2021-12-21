@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates a security rule in the specified network security group.
  *
  * @summary Creates or updates a security rule in the specified network security group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkSecurityGroupRuleCreate.json
  */
 import {
   SecurityRule,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//securityRules.beginCreateOrUpdateAndWait
 async function createSecurityRule() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const networkSecurityGroupName = "testnsg";
   const securityRuleName = "rule1";
@@ -35,6 +35,8 @@ async function createSecurityRule() {
     sourcePortRange: "*",
     protocol: "*"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.securityRules.beginCreateOrUpdateAndWait(
     resourceGroupName,
     networkSecurityGroupName,
@@ -43,10 +45,5 @@ async function createSecurityRule() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await createSecurityRule();
-}
-main();
+
+createSecurityRule().catch(console.error);

@@ -12,23 +12,20 @@
  * This sample demonstrates how to Gets all the public IP prefixes in a subscription.
  *
  * @summary Gets all the public IP prefixes in a subscription.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/PublicIpPrefixListAll.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//publicIPPrefixes.listAll
 async function listAllPublicIPPrefixes() {
+  const subscriptionId = "subid";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.publicIPPrefixes.listAll()) {
     resArray.push(item);
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await listAllPublicIPPrefixes();
-}
-main();
+
+listAllPublicIPPrefixes().catch(console.error);

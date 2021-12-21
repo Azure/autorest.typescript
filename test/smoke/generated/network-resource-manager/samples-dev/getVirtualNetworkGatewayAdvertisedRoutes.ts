@@ -12,16 +12,18 @@
  * This sample demonstrates how to This operation retrieves a list of routes the virtual network gateway is advertising to the specified peer.
  *
  * @summary This operation retrieves a list of routes the virtual network gateway is advertising to the specified peer.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkGatewayGetAdvertisedRoutes.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualNetworkGateways.beginGetAdvertisedRoutesAndWait
 async function getVirtualNetworkGatewayAdvertisedRoutes() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualNetworkGatewayName = "vpngw";
   const peer = "test";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworkGateways.beginGetAdvertisedRoutesAndWait(
     resourceGroupName,
     virtualNetworkGatewayName,
@@ -29,10 +31,5 @@ async function getVirtualNetworkGatewayAdvertisedRoutes() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getVirtualNetworkGatewayAdvertisedRoutes();
-}
-main();
+
+getVirtualNetworkGatewayAdvertisedRoutes().catch(console.error);

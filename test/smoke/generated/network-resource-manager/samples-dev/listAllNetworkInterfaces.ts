@@ -12,23 +12,20 @@
  * This sample demonstrates how to Gets all dscp configurations in a subscription.
  *
  * @summary Gets all dscp configurations in a subscription.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/DscpConfigurationListAll.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//dscpConfigurationOperations.listAll
 async function listAllNetworkInterfaces() {
+  const subscriptionId = "subid";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.dscpConfigurationOperations.listAll()) {
     resArray.push(item);
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await listAllNetworkInterfaces();
-}
-main();
+
+listAllNetworkInterfaces().catch(console.error);

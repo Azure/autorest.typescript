@@ -12,25 +12,22 @@
  * This sample demonstrates how to Deletes the specified load balancer.
  *
  * @summary Deletes the specified load balancer.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/LoadBalancerDelete.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//loadBalancers.beginDeleteAndWait
 async function deleteLoadBalancer() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const loadBalancerName = "lb";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.loadBalancers.beginDeleteAndWait(
     resourceGroupName,
     loadBalancerName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await deleteLoadBalancer();
-}
-main();
+
+deleteLoadBalancer().catch(console.error);

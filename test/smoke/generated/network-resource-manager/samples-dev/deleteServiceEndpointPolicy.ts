@@ -12,25 +12,22 @@
  * This sample demonstrates how to Deletes the specified service endpoint policy.
  *
  * @summary Deletes the specified service endpoint policy.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ServiceEndpointPolicyDelete.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//serviceEndpointPolicies.beginDeleteAndWait
 async function deleteServiceEndpointPolicy() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const serviceEndpointPolicyName = "serviceEndpointPolicy1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.serviceEndpointPolicies.beginDeleteAndWait(
     resourceGroupName,
     serviceEndpointPolicyName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await deleteServiceEndpointPolicy();
-}
-main();
+
+deleteServiceEndpointPolicy().catch(console.error);

@@ -12,6 +12,7 @@
  * This sample demonstrates how to Gets the backend health for given combination of backend pool and http setting of the specified application gateway in a resource group.
  *
  * @summary Gets the backend health for given combination of backend pool and http setting of the specified application gateway in a resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ApplicationGatewayBackendHealthTest.json
  */
 import {
   ApplicationGatewayOnDemandProbe,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//applicationGateways.beginBackendHealthOnDemandAndWait
 async function testBackendHealth() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const applicationGatewayName = "appgw";
   const probeRequest: ApplicationGatewayOnDemandProbe = {
@@ -38,6 +38,8 @@ async function testBackendHealth() {
     timeout: 30,
     protocol: "Http"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.applicationGateways.beginBackendHealthOnDemandAndWait(
     resourceGroupName,
     applicationGatewayName,
@@ -45,10 +47,5 @@ async function testBackendHealth() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await testBackendHealth();
-}
-main();
+
+testBackendHealth().catch(console.error);

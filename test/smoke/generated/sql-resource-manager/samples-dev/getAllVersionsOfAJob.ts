@@ -12,12 +12,11 @@
  * This sample demonstrates how to Gets all versions of a job.
  *
  * @summary Gets all versions of a job.
- * x-ms-original-file:
+ * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ListJobVersions.json
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: SqlManagementClient;
 async function getAllVersionsOfAJob() {
   const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "group1";

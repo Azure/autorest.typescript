@@ -12,15 +12,17 @@
  * This sample demonstrates how to List information about private endpoint connections under a disk access resource
  *
  * @summary List information about private endpoint connections under a disk access resource
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/ListPrivateEndpointConnectionsInADiskAccess.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//diskAccesses.listPrivateEndpointConnections
 async function getInformationAboutAPrivateEndpointConnectionUnderADiskAccessResource() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const diskAccessName = "myDiskAccess";
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.diskAccesses.listPrivateEndpointConnections(
     resourceGroupName,
@@ -30,10 +32,7 @@ async function getInformationAboutAPrivateEndpointConnectionUnderADiskAccessReso
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await getInformationAboutAPrivateEndpointConnectionUnderADiskAccessResource();
-}
-main();
+
+getInformationAboutAPrivateEndpointConnectionUnderADiskAccessResource().catch(
+  console.error
+);

@@ -12,6 +12,7 @@
  * This sample demonstrates how to Extends the immutabilityPeriodSinceCreationInDays of a locked immutabilityPolicy. The only action allowed on a Locked policy will be this action. ETag in If-Match is required for this operation.
  *
  * @summary Extends the immutabilityPeriodSinceCreationInDays of a locked immutabilityPolicy. The only action allowed on a Locked policy will be this action. ETag in If-Match is required for this operation.
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/BlobContainersExtendImmutabilityPolicy.json
  */
 import {
   ImmutabilityPolicy,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//blobContainers.extendImmutabilityPolicy
 async function extendImmutabilityPolicy() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "res6238";
   const accountName = "sto232";
   const containerName = "container5023";
@@ -30,6 +30,8 @@ async function extendImmutabilityPolicy() {
     immutabilityPeriodSinceCreationInDays: 100
   };
   const options = { parameters: parameters };
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.blobContainers.extendImmutabilityPolicy(
     resourceGroupName,
     accountName,
@@ -39,10 +41,5 @@ async function extendImmutabilityPolicy() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await extendImmutabilityPolicy();
-}
-main();
+
+extendImmutabilityPolicy().catch(console.error);

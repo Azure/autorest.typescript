@@ -12,16 +12,18 @@
  * This sample demonstrates how to The operation to simulate the eviction of spot virtual machine in a VM scale set.
  *
  * @summary The operation to simulate the eviction of spot virtual machine in a VM scale set.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/SimulateEvictionOfVmssVM.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//virtualMachineScaleSetVMs.simulateEviction
 async function simulateEvictionAVirtualMachine() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "ResourceGroup";
   const vmScaleSetName = "VmScaleSetName";
   const instanceId = "InstanceId";
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.virtualMachineScaleSetVMs.simulateEviction(
     resourceGroupName,
     vmScaleSetName,
@@ -29,10 +31,5 @@ async function simulateEvictionAVirtualMachine() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await simulateEvictionAVirtualMachine();
-}
-main();
+
+simulateEvictionAVirtualMachine().catch(console.error);

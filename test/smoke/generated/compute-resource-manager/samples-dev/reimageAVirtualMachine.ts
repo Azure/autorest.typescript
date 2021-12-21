@@ -12,6 +12,7 @@
  * This sample demonstrates how to Reimages the virtual machine which has an ephemeral OS disk back to its initial state.
  *
  * @summary Reimages the virtual machine which has an ephemeral OS disk back to its initial state.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/ReimageVirtualMachine.json
  */
 import {
   VirtualMachineReimageParameters,
@@ -19,13 +20,14 @@ import {
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//virtualMachines.beginReimageAndWait
 async function reimageAVirtualMachine() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const vmName = "myVMName";
   const parameters: VirtualMachineReimageParameters = { tempDisk: true };
   const options = { parameters: parameters };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.virtualMachines.beginReimageAndWait(
     resourceGroupName,
     vmName,
@@ -33,10 +35,5 @@ async function reimageAVirtualMachine() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await reimageAVirtualMachine();
-}
-main();
+
+reimageAVirtualMachine().catch(console.error);

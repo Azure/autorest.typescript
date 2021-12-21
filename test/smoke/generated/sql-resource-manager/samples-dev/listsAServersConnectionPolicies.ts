@@ -12,12 +12,11 @@
  * This sample demonstrates how to Lists connection policy
  *
  * @summary Lists connection policy
- * x-ms-original-file:
+ * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ServerConnectionPoliciesList.json
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: SqlManagementClient;
 async function listsAServersConnectionPolicies() {
   const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "rgtest-12";

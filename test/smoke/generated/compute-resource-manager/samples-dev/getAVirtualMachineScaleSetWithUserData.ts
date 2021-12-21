@@ -12,25 +12,22 @@
  * This sample demonstrates how to Display information about a virtual machine scale set.
  *
  * @summary Display information about a virtual machine scale set.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/GetVirtualMachineScaleSetWithUserData.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//virtualMachineScaleSets.get
 async function getAVirtualMachineScaleSetWithUserData() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const vmScaleSetName = "myVirtualMachineScaleSet";
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.virtualMachineScaleSets.get(
     resourceGroupName,
     vmScaleSetName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await getAVirtualMachineScaleSetWithUserData();
-}
-main();
+
+getAVirtualMachineScaleSetWithUserData().catch(console.error);

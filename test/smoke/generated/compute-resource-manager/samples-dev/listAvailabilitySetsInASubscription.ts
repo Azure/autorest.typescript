@@ -12,25 +12,22 @@
  * This sample demonstrates how to Lists all availability sets in a subscription.
  *
  * @summary Lists all availability sets in a subscription.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/ListAvailabilitySetsInASubscription.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//availabilitySets.listBySubscription
 async function listAvailabilitySetsInASubscription() {
+  const subscriptionId = "{subscriptionId}";
   const expand = "virtualMachines$ref";
   const options = { expand: expand };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.availabilitySets.listBySubscription(options)) {
     resArray.push(item);
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscriptionId}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await listAvailabilitySetsInASubscription();
-}
-main();
+
+listAvailabilitySetsInASubscription().catch(console.error);

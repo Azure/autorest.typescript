@@ -12,7 +12,7 @@
  * This sample demonstrates how to Determines whether a resource can be created with the specified name.
  *
  * @summary Determines whether a resource can be created with the specified name.
- * x-ms-original-file:
+ * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-02-01-preview/examples/CheckNameAvailabilityServerAvailable.json
  */
 import {
   CheckNameAvailabilityRequest,
@@ -20,7 +20,6 @@ import {
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: SqlManagementClient;
 async function checkForAServerNameThatIsAvailable() {
   const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const parameters: CheckNameAvailabilityRequest = {

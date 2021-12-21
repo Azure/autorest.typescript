@@ -12,25 +12,22 @@
  * This sample demonstrates how to Deletes the specified network interface.
  *
  * @summary Deletes the specified network interface.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkInterfaceDelete.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//networkInterfaces.beginDeleteAndWait
 async function deleteNetworkInterface() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const networkInterfaceName = "test-nic";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.networkInterfaces.beginDeleteAndWait(
     resourceGroupName,
     networkInterfaceName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await deleteNetworkInterface();
-}
-main();
+
+deleteNetworkInterface().catch(console.error);

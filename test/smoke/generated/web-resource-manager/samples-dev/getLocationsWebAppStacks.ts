@@ -12,14 +12,16 @@
  * This sample demonstrates how to Description for Get available Web app frameworks and their versions for location
  *
  * @summary Description for Get available Web app frameworks and their versions for location
+ * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/GetWebAppStacksForLocation.json
  */
 import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: WebSiteManagementClient;
-//provider.listWebAppStacksForLocation
 async function getLocationsWebAppStacks() {
+  const subscriptionId = "00000000-0000-0000-0000-000000000000";
   const location = "westus";
+  const credential = new DefaultAzureCredential();
+  const client = new WebSiteManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.provider.listWebAppStacksForLocation(
     location
@@ -28,10 +30,5 @@ async function getLocationsWebAppStacks() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-0000-0000-0000-000000000000";
-  client = new WebSiteManagementClient(credential, subscriptionId);
-  await getLocationsWebAppStacks();
-}
-main();
+
+getLocationsWebAppStacks().catch(console.error);

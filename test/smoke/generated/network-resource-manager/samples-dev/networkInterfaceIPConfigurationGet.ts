@@ -12,16 +12,18 @@
  * This sample demonstrates how to Gets the specified network interface ip configuration.
  *
  * @summary Gets the specified network interface ip configuration.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkInterfaceIPConfigurationGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//networkInterfaceIPConfigurations.get
 async function networkInterfaceIPConfigurationGet() {
+  const subscriptionId = "subid";
   const resourceGroupName = "testrg";
   const networkInterfaceName = "mynic";
   const ipConfigurationName = "ipconfig1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.networkInterfaceIPConfigurations.get(
     resourceGroupName,
     networkInterfaceName,
@@ -29,10 +31,5 @@ async function networkInterfaceIPConfigurationGet() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await networkInterfaceIPConfigurationGet();
-}
-main();
+
+networkInterfaceIPConfigurationGet().catch(console.error);

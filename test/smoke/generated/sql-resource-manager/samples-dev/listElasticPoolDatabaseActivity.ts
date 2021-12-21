@@ -12,12 +12,11 @@
  * This sample demonstrates how to Returns activity on databases inside of an elastic pool.
  *
  * @summary Returns activity on databases inside of an elastic pool.
- * x-ms-original-file:
+ * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/stable/2014-04-01-legacy/examples/ElasticPoolDatabaseActivityList.json
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: SqlManagementClient;
 async function listElasticPoolDatabaseActivity() {
   const subscriptionId = "9d4e2ad0-e20b-4464-9219-353bded52513";
   const resourceGroupName = "sqlcrudtest-4673";

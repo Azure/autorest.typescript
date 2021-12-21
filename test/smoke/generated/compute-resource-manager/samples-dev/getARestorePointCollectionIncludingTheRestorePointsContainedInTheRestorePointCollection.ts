@@ -12,25 +12,24 @@
  * This sample demonstrates how to The operation to get the restore point collection.
  *
  * @summary The operation to get the restore point collection.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/GetRestorePointCollectionWithContainedRestorePoints.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//restorePointCollections.get
 async function getARestorePointCollectionIncludingTheRestorePointsContainedInTheRestorePointCollection() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const restorePointCollectionName = "rpcName";
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.restorePointCollections.get(
     resourceGroupName,
     restorePointCollectionName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await getARestorePointCollectionIncludingTheRestorePointsContainedInTheRestorePointCollection();
-}
-main();
+
+getARestorePointCollectionIncludingTheRestorePointsContainedInTheRestorePointCollection().catch(
+  console.error
+);

@@ -12,6 +12,7 @@
  * This sample demonstrates how to Updates express route gateway tags.
  *
  * @summary Updates express route gateway tags.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ExpressRouteGatewayUpdateTags.json
  */
 import {
   TagsObject,
@@ -19,14 +20,15 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//expressRouteGateways.beginUpdateTagsAndWait
 async function expressRouteGatewayUpdate() {
+  const subscriptionId = "subid";
   const resourceGroupName = "resourceGroupName";
   const expressRouteGatewayName = "expressRouteGatewayName";
   const expressRouteGatewayParameters: TagsObject = {
     tags: { tag1: "value1", tag2: "value2" }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.expressRouteGateways.beginUpdateTagsAndWait(
     resourceGroupName,
     expressRouteGatewayName,
@@ -34,10 +36,5 @@ async function expressRouteGatewayUpdate() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await expressRouteGatewayUpdate();
-}
-main();
+
+expressRouteGatewayUpdate().catch(console.error);

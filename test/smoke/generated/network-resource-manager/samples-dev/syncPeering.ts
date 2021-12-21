@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates a peering in the specified virtual network.
  *
  * @summary Creates or updates a peering in the specified virtual network.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkPeeringSync.json
  */
 import {
   VirtualNetworkPeering,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualNetworkPeerings.beginCreateOrUpdateAndWait
 async function syncPeering() {
+  const subscriptionId = "subid";
   const resourceGroupName = "peerTest";
   const virtualNetworkName = "vnet1";
   const virtualNetworkPeeringName = "peer";
@@ -37,6 +37,8 @@ async function syncPeering() {
     useRemoteGateways: false
   };
   const options = { syncRemoteAddressSpace: syncRemoteAddressSpace };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworkPeerings.beginCreateOrUpdateAndWait(
     resourceGroupName,
     virtualNetworkName,
@@ -46,10 +48,5 @@ async function syncPeering() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await syncPeering();
-}
-main();
+
+syncPeering().catch(console.error);

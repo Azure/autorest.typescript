@@ -12,15 +12,17 @@
  * This sample demonstrates how to Gets all available service aliases for this resource group in this region.
  *
  * @summary Gets all available service aliases for this resource group in this region.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/AvailableServiceAliasesListByResourceGroup.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//availableServiceAliases.listByResourceGroup
 async function getAvailableServiceAliasesInTheResourceGroup() {
+  const subscriptionId = "subId";
   const resourceGroupName = "rg1";
   const location = "westcentralus";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.availableServiceAliases.listByResourceGroup(
     resourceGroupName,
@@ -30,10 +32,5 @@ async function getAvailableServiceAliasesInTheResourceGroup() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subId";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getAvailableServiceAliasesInTheResourceGroup();
-}
-main();
+
+getAvailableServiceAliasesInTheResourceGroup().catch(console.error);

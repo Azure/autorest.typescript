@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates the specified Virtual Router.
  *
  * @summary Creates or updates the specified Virtual Router.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualRouterPut.json
  */
 import {
   VirtualRouter,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualRouters.beginCreateOrUpdateAndWait
 async function createVirtualRouter() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualRouterName = "virtualRouter";
   const parameters: VirtualRouter = {
@@ -32,6 +32,8 @@ async function createVirtualRouter() {
     location: "West US",
     tags: { key1: "value1" }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualRouters.beginCreateOrUpdateAndWait(
     resourceGroupName,
     virtualRouterName,
@@ -39,10 +41,5 @@ async function createVirtualRouter() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await createVirtualRouter();
-}
-main();
+
+createVirtualRouter().catch(console.error);

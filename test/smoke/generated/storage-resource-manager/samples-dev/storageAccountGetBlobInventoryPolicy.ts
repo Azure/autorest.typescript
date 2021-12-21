@@ -12,15 +12,17 @@
  * This sample demonstrates how to Gets the blob inventory policy associated with the specified storage account.
  *
  * @summary Gets the blob inventory policy associated with the specified storage account.
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountListBlobInventoryPolicy.json
  */
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//blobInventoryPolicies.list
 async function storageAccountGetBlobInventoryPolicy() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "res7687";
   const accountName = "sto9699";
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.blobInventoryPolicies.list(
     resourceGroupName,
@@ -30,10 +32,5 @@ async function storageAccountGetBlobInventoryPolicy() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await storageAccountGetBlobInventoryPolicy();
-}
-main();
+
+storageAccountGetBlobInventoryPolicy().catch(console.error);

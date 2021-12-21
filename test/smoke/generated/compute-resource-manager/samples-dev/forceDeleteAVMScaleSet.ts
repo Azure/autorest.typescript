@@ -12,17 +12,19 @@
  * This sample demonstrates how to Deletes a VM scale set.
  *
  * @summary Deletes a VM scale set.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/ForceDeleteVirtualMachineScaleSets.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//virtualMachineScaleSets.beginDeleteAndWait
 async function forceDeleteAVMScaleSet() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const vmScaleSetName = "myvmScaleSet";
   const forceDeletion = true;
   const options = { forceDeletion: forceDeletion };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.virtualMachineScaleSets.beginDeleteAndWait(
     resourceGroupName,
     vmScaleSetName,
@@ -30,10 +32,5 @@ async function forceDeleteAVMScaleSet() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await forceDeleteAVMScaleSet();
-}
-main();
+
+forceDeleteAVMScaleSet().catch(console.error);

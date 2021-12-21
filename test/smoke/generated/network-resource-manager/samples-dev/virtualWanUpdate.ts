@@ -12,6 +12,7 @@
  * This sample demonstrates how to Updates a VirtualWAN tags.
  *
  * @summary Updates a VirtualWAN tags.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualWANUpdateTags.json
  */
 import {
   TagsObject,
@@ -19,14 +20,15 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualWans.updateTags
 async function virtualWanUpdate() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualWANName = "wan1";
   const WANParameters: TagsObject = {
     tags: { key1: "value1", key2: "value2" }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualWans.updateTags(
     resourceGroupName,
     virtualWANName,
@@ -34,10 +36,5 @@ async function virtualWanUpdate() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await virtualWanUpdate();
-}
-main();
+
+virtualWanUpdate().catch(console.error);

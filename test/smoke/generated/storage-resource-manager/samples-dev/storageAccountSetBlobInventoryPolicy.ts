@@ -12,6 +12,7 @@
  * This sample demonstrates how to Sets the blob inventory policy to the specified storage account.
  *
  * @summary Sets the blob inventory policy to the specified storage account.
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountSetBlobInventoryPolicy.json
  */
 import {
   BlobInventoryPolicy,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//blobInventoryPolicies.createOrUpdate
 async function storageAccountSetBlobInventoryPolicy() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "res7687";
   const accountName = "sto9699";
   const blobInventoryPolicyName = "default";
@@ -84,6 +84,8 @@ async function storageAccountSetBlobInventoryPolicy() {
       ]
     }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.blobInventoryPolicies.createOrUpdate(
     resourceGroupName,
     accountName,
@@ -92,10 +94,5 @@ async function storageAccountSetBlobInventoryPolicy() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await storageAccountSetBlobInventoryPolicy();
-}
-main();
+
+storageAccountSetBlobInventoryPolicy().catch(console.error);

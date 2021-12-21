@@ -12,16 +12,18 @@
  * This sample demonstrates how to Gets a list of service tag information resources with pagination.
  *
  * @summary Gets a list of service tag information resources with pagination.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ServiceTagInformationListResultWithNoAddressPrefixes.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//serviceTagInformationOperations.list
 async function getListOfServiceTagsWithNoAddressPrefixes() {
+  const subscriptionId = "subid";
   const location = "westeurope";
   const noAddressPrefixes = true;
   const options = { noAddressPrefixes: noAddressPrefixes };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.serviceTagInformationOperations.list(
     location,
@@ -31,10 +33,5 @@ async function getListOfServiceTagsWithNoAddressPrefixes() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getListOfServiceTagsWithNoAddressPrefixes();
-}
-main();
+
+getListOfServiceTagsWithNoAddressPrefixes().catch(console.error);

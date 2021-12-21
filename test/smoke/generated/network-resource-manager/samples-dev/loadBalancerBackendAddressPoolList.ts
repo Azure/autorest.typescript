@@ -12,15 +12,17 @@
  * This sample demonstrates how to Gets all the load balancer backed address pools.
  *
  * @summary Gets all the load balancer backed address pools.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/LoadBalancerBackendAddressPoolList.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//loadBalancerBackendAddressPools.list
 async function loadBalancerBackendAddressPoolList() {
+  const subscriptionId = "subid";
   const resourceGroupName = "testrg";
   const loadBalancerName = "lb";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.loadBalancerBackendAddressPools.list(
     resourceGroupName,
@@ -30,10 +32,5 @@ async function loadBalancerBackendAddressPoolList() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await loadBalancerBackendAddressPoolList();
-}
-main();
+
+loadBalancerBackendAddressPoolList().catch(console.error);

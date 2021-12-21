@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or update policy with specified rule set name within a resource group.
  *
  * @summary Creates or update policy with specified rule set name within a resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/WafPolicyCreateOrUpdate.json
  */
 import {
   WebApplicationFirewallPolicy,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//webApplicationFirewallPolicies.createOrUpdate
 async function createsOrUpdatesAWafPolicyWithinAResourceGroup() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const policyName = "Policy1";
   const parameters: WebApplicationFirewallPolicy = {
@@ -107,6 +107,8 @@ async function createsOrUpdatesAWafPolicyWithinAResourceGroup() {
       managedRuleSets: [{ ruleSetType: "OWASP", ruleSetVersion: "3.2" }]
     }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.webApplicationFirewallPolicies.createOrUpdate(
     resourceGroupName,
     policyName,
@@ -114,10 +116,5 @@ async function createsOrUpdatesAWafPolicyWithinAResourceGroup() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await createsOrUpdatesAWafPolicyWithinAResourceGroup();
-}
-main();
+
+createsOrUpdatesAWafPolicyWithinAResourceGroup().catch(console.error);

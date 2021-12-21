@@ -12,15 +12,17 @@
  * This sample demonstrates how to Retrieves all nat rules for a particular virtual network gateway.
  *
  * @summary Retrieves all nat rules for a particular virtual network gateway.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkGatewayNatRuleList.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualNetworkGatewayNatRules.listByVirtualNetworkGateway
 async function virtualNetworkGatewayNatRuleList() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualNetworkGatewayName = "gateway1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.virtualNetworkGatewayNatRules.listByVirtualNetworkGateway(
     resourceGroupName,
@@ -30,10 +32,5 @@ async function virtualNetworkGatewayNatRuleList() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await virtualNetworkGatewayNatRuleList();
-}
-main();
+
+virtualNetworkGatewayNatRuleList().catch(console.error);

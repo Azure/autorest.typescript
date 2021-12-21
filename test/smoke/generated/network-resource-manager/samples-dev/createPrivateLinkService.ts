@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates an private link service in the specified resource group.
  *
  * @summary Creates or updates an private link service in the specified resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/PrivateLinkServiceCreate.json
  */
 import {
   PrivateLinkService,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//privateLinkServices.beginCreateOrUpdateAndWait
 async function createPrivateLinkService() {
+  const subscriptionId = "subId";
   const resourceGroupName = "rg1";
   const serviceName = "testPls";
   const parameters: PrivateLinkService = {
@@ -50,6 +50,8 @@ async function createPrivateLinkService() {
       subscriptions: ["subscription1", "subscription2", "subscription3"]
     }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.privateLinkServices.beginCreateOrUpdateAndWait(
     resourceGroupName,
     serviceName,
@@ -57,10 +59,5 @@ async function createPrivateLinkService() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subId";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await createPrivateLinkService();
-}
-main();
+
+createPrivateLinkService().catch(console.error);

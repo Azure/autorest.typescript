@@ -12,6 +12,7 @@
  * This sample demonstrates how to Restarts one or more role instances in a cloud service.
  *
  * @summary Restarts one or more role instances in a cloud service.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-03-01/examples/RestartCloudServiceRoleInstances.json
  */
 import {
   RoleInstances,
@@ -19,15 +20,16 @@ import {
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//cloudServices.beginRestartAndWait
 async function restartCloudServiceRoleInstances() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "ConstosoRG";
   const cloudServiceName = "{cs-name}";
   const parameters: RoleInstances = {
     roleInstances: ["ContosoFrontend_IN_0", "ContosoBackend_IN_1"]
   };
   const options = { parameters: parameters };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.cloudServices.beginRestartAndWait(
     resourceGroupName,
     cloudServiceName,
@@ -35,10 +37,5 @@ async function restartCloudServiceRoleInstances() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await restartCloudServiceRoleInstances();
-}
-main();
+
+restartCloudServiceRoleInstances().catch(console.error);

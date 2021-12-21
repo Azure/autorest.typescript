@@ -12,25 +12,22 @@
  * This sample demonstrates how to Gets the specified Bastion Host.
  *
  * @summary Gets the specified Bastion Host.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/BastionHostGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//bastionHosts.get
 async function getBastionHost() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const bastionHostName = "bastionhosttenant'";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.bastionHosts.get(
     resourceGroupName,
     bastionHostName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getBastionHost();
-}
-main();
+
+getBastionHost().catch(console.error);

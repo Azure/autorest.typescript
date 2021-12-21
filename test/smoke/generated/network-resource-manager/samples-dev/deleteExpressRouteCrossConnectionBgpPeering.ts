@@ -12,16 +12,18 @@
  * This sample demonstrates how to Deletes the specified peering from the ExpressRouteCrossConnection.
  *
  * @summary Deletes the specified peering from the ExpressRouteCrossConnection.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ExpressRouteCrossConnectionBgpPeeringDelete.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//expressRouteCrossConnectionPeerings.beginDeleteAndWait
 async function deleteExpressRouteCrossConnectionBgpPeering() {
+  const subscriptionId = "subid";
   const resourceGroupName = "CrossConnection-SiliconValley";
   const crossConnectionName = "<circuitServiceKey>";
   const peeringName = "AzurePrivatePeering";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.expressRouteCrossConnectionPeerings.beginDeleteAndWait(
     resourceGroupName,
     crossConnectionName,
@@ -29,10 +31,5 @@ async function deleteExpressRouteCrossConnectionBgpPeering() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await deleteExpressRouteCrossConnectionBgpPeering();
-}
-main();
+
+deleteExpressRouteCrossConnectionBgpPeering().catch(console.error);

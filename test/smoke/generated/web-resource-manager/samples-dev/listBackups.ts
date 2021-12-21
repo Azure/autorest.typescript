@@ -12,16 +12,18 @@
  * This sample demonstrates how to Description for Gets existing backups of an app.
  *
  * @summary Description for Gets existing backups of an app.
+ * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/ListSlotBackups.json
  */
 import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: WebSiteManagementClient;
-//webApps.listSiteBackupsSlot
 async function listBackups() {
+  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const resourceGroupName = "testrg123";
   const name = "tests346";
   const slot = "staging";
+  const credential = new DefaultAzureCredential();
+  const client = new WebSiteManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.webApps.listSiteBackupsSlot(
     resourceGroupName,
@@ -32,10 +34,5 @@ async function listBackups() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
-  client = new WebSiteManagementClient(credential, subscriptionId);
-  await listBackups();
-}
-main();
+
+listBackups().catch(console.error);

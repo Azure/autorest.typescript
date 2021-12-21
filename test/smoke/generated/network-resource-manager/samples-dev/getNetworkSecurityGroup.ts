@@ -12,25 +12,22 @@
  * This sample demonstrates how to Gets the specified network security group.
  *
  * @summary Gets the specified network security group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkSecurityGroupGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//networkSecurityGroups.get
 async function getNetworkSecurityGroup() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const networkSecurityGroupName = "testnsg";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.networkSecurityGroups.get(
     resourceGroupName,
     networkSecurityGroupName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getNetworkSecurityGroup();
-}
-main();
+
+getNetworkSecurityGroup().catch(console.error);

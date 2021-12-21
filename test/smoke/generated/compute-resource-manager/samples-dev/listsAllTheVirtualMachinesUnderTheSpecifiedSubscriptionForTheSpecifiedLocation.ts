@@ -12,24 +12,23 @@
  * This sample demonstrates how to Gets all the virtual machines under the specified subscription for the specified location.
  *
  * @summary Gets all the virtual machines under the specified subscription for the specified location.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/ListVirtualMachinesInASubscriptionByLocation.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//virtualMachines.listByLocation
 async function listsAllTheVirtualMachinesUnderTheSpecifiedSubscriptionForTheSpecifiedLocation() {
+  const subscriptionId = "{subscriptionId}";
   const location = "eastus";
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.virtualMachines.listByLocation(location)) {
     resArray.push(item);
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscriptionId}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await listsAllTheVirtualMachinesUnderTheSpecifiedSubscriptionForTheSpecifiedLocation();
-}
-main();
+
+listsAllTheVirtualMachinesUnderTheSpecifiedSubscriptionForTheSpecifiedLocation().catch(
+  console.error
+);

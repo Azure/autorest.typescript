@@ -12,6 +12,7 @@
  * This sample demonstrates how to The operation to create or update the restore point collection. Please refer to https://aka.ms/RestorePoints for more details. When updating a restore point collection, only tags may be modified.
  *
  * @summary The operation to create or update the restore point collection. Please refer to https://aka.ms/RestorePoints for more details. When updating a restore point collection, only tags may be modified.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateOrUpdateARestorePointCollection.json
  */
 import {
   RestorePointCollection,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//restorePointCollections.createOrUpdate
 async function createOrUpdateARestorePointCollection() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const restorePointCollectionName = "myRpc";
   const parameters: RestorePointCollection = {
@@ -32,6 +32,8 @@ async function createOrUpdateARestorePointCollection() {
     },
     tags: { myTag1: "tagValue1" }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.restorePointCollections.createOrUpdate(
     resourceGroupName,
     restorePointCollectionName,
@@ -39,10 +41,5 @@ async function createOrUpdateARestorePointCollection() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await createOrUpdateARestorePointCollection();
-}
-main();
+
+createOrUpdateARestorePointCollection().catch(console.error);

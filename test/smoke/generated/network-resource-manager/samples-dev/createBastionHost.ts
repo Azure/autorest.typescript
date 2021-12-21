@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates the specified Bastion Host.
  *
  * @summary Creates or updates the specified Bastion Host.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/BastionHostPut.json
  */
 import {
   BastionHost,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//bastionHosts.beginCreateOrUpdateAndWait
 async function createBastionHost() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const bastionHostName = "bastionhosttenant";
   const parameters: BastionHost = {
@@ -39,6 +39,8 @@ async function createBastionHost() {
       }
     ]
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.bastionHosts.beginCreateOrUpdateAndWait(
     resourceGroupName,
     bastionHostName,
@@ -46,10 +48,5 @@ async function createBastionHost() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await createBastionHost();
-}
-main();
+
+createBastionHost().catch(console.error);

@@ -12,6 +12,7 @@
  * This sample demonstrates how to Create and start a packet capture on the specified VM.
  *
  * @summary Create and start a packet capture on the specified VM.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkWatcherPacketCaptureCreate.json
  */
 import {
   PacketCapture,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//packetCaptures.beginCreateAndWait
 async function createPacketCapture() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const networkWatcherName = "nw1";
   const packetCaptureName = "pc1";
@@ -40,6 +40,8 @@ async function createPacketCapture() {
     timeLimitInSeconds: 100,
     totalBytesPerSession: 100000
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.packetCaptures.beginCreateAndWait(
     resourceGroupName,
     networkWatcherName,
@@ -48,10 +50,5 @@ async function createPacketCapture() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await createPacketCapture();
-}
-main();
+
+createPacketCapture().catch(console.error);

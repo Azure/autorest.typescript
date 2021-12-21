@@ -12,25 +12,22 @@
  * This sample demonstrates how to The operation that retrieves information about a capacity reservation group.
  *
  * @summary The operation that retrieves information about a capacity reservation group.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/GetACapacityReservationGroup.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//capacityReservationGroups.get
 async function getACapacityReservationGroup() {
+  const subscriptionId = "{subscriptionId}";
   const resourceGroupName = "myResourceGroup";
   const capacityReservationGroupName = "myCapacityReservationGroup";
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.capacityReservationGroups.get(
     resourceGroupName,
     capacityReservationGroupName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscriptionId}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await getACapacityReservationGroup();
-}
-main();
+
+getACapacityReservationGroup().catch(console.error);

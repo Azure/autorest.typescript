@@ -12,15 +12,17 @@
  * This sample demonstrates how to Gets a list of all the tables under the specified storage account
  *
  * @summary Gets a list of all the tables under the specified storage account
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/TableOperationList.json
  */
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//tableOperations.list
 async function tableOperationList() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "res9290";
   const accountName = "sto328";
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.tableOperations.list(
     resourceGroupName,
@@ -30,10 +32,5 @@ async function tableOperationList() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await tableOperationList();
-}
-main();
+
+tableOperationList().catch(console.error);

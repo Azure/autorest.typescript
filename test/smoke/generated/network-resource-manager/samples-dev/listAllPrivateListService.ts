@@ -12,23 +12,20 @@
  * This sample demonstrates how to Gets all private link service in a subscription.
  *
  * @summary Gets all private link service in a subscription.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/PrivateLinkServiceListAll.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//privateLinkServices.listBySubscription
 async function listAllPrivateListService() {
+  const subscriptionId = "subId";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.privateLinkServices.listBySubscription()) {
     resArray.push(item);
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subId";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await listAllPrivateListService();
-}
-main();
+
+listAllPrivateListService().catch(console.error);

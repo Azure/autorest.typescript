@@ -12,22 +12,19 @@
  * This sample demonstrates how to Description for Renew a domain.
  *
  * @summary Description for Renew a domain.
+ * x-ms-original-file: specification/web/resource-manager/Microsoft.DomainRegistration/stable/2021-02-01/examples/RenewDomain.json
  */
 import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: WebSiteManagementClient;
-//domains.renew
 async function renewAnExistingDomain() {
+  const subscriptionId = "3dddfa4f-cedf-4dc0-ba29-b6d1a69ab545";
   const resourceGroupName = "RG";
   const domainName = "example.com";
+  const credential = new DefaultAzureCredential();
+  const client = new WebSiteManagementClient(credential, subscriptionId);
   const result = await client.domains.renew(resourceGroupName, domainName);
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "3dddfa4f-cedf-4dc0-ba29-b6d1a69ab545";
-  client = new WebSiteManagementClient(credential, subscriptionId);
-  await renewAnExistingDomain();
-}
-main();
+
+renewAnExistingDomain().catch(console.error);

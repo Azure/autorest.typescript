@@ -12,17 +12,19 @@
  * This sample demonstrates how to Gets the currently advertised routes table summary associated with the express route circuit in a resource group.
  *
  * @summary Gets the currently advertised routes table summary associated with the express route circuit in a resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ExpressRouteCircuitRouteTableSummaryList.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//expressRouteCircuits.beginListRoutesTableSummaryAndWait
 async function listRouteTableSummary() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const circuitName = "circuitName";
   const peeringName = "peeringName";
   const devicePath = "devicePath";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.expressRouteCircuits.beginListRoutesTableSummaryAndWait(
     resourceGroupName,
     circuitName,
@@ -31,10 +33,5 @@ async function listRouteTableSummary() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await listRouteTableSummary();
-}
-main();
+
+listRouteTableSummary().catch(console.error);

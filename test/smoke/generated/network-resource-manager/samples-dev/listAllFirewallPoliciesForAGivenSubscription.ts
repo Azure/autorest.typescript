@@ -12,23 +12,20 @@
  * This sample demonstrates how to Gets all the Firewall Policies in a subscription.
  *
  * @summary Gets all the Firewall Policies in a subscription.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/FirewallPolicyListBySubscription.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//firewallPolicies.listAll
 async function listAllFirewallPoliciesForAGivenSubscription() {
+  const subscriptionId = "subid";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.firewallPolicies.listAll()) {
     resArray.push(item);
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await listAllFirewallPoliciesForAGivenSubscription();
-}
-main();
+
+listAllFirewallPoliciesForAGivenSubscription().catch(console.error);

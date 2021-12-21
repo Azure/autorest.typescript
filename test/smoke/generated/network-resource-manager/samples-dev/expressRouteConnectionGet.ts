@@ -12,16 +12,18 @@
  * This sample demonstrates how to Gets the specified ExpressRouteConnection.
  *
  * @summary Gets the specified ExpressRouteConnection.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ExpressRouteConnectionGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//expressRouteConnections.get
 async function expressRouteConnectionGet() {
+  const subscriptionId = "subid";
   const resourceGroupName = "resourceGroupName";
   const expressRouteGatewayName = "expressRouteGatewayName";
   const connectionName = "connectionName";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.expressRouteConnections.get(
     resourceGroupName,
     expressRouteGatewayName,
@@ -29,10 +31,5 @@ async function expressRouteConnectionGet() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await expressRouteConnectionGet();
-}
-main();
+
+expressRouteConnectionGet().catch(console.error);

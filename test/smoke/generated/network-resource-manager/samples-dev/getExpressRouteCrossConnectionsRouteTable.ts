@@ -12,17 +12,19 @@
  * This sample demonstrates how to Gets the currently advertised routes table associated with the express route cross connection in a resource group.
  *
  * @summary Gets the currently advertised routes table associated with the express route cross connection in a resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ExpressRouteCrossConnectionsRouteTable.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//expressRouteCrossConnections.beginListRoutesTableAndWait
 async function getExpressRouteCrossConnectionsRouteTable() {
+  const subscriptionId = "subid";
   const resourceGroupName = "CrossConnection-SiliconValley";
   const crossConnectionName = "<circuitServiceKey>";
   const peeringName = "AzurePrivatePeering";
   const devicePath = "primary";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.expressRouteCrossConnections.beginListRoutesTableAndWait(
     resourceGroupName,
     crossConnectionName,
@@ -31,10 +33,5 @@ async function getExpressRouteCrossConnectionsRouteTable() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getExpressRouteCrossConnectionsRouteTable();
-}
-main();
+
+getExpressRouteCrossConnectionsRouteTable().catch(console.error);

@@ -12,6 +12,7 @@
  * This sample demonstrates how to Update a gallery image version.
  *
  * @summary Update a gallery image version.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/UpdateASimpleGalleryImageVersionWithoutSourceId.json
  */
 import {
   GalleryImageVersionUpdate,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//galleryImageVersions.beginUpdateAndWait
 async function updateASimpleGalleryImageVersionWithoutSourceId() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const galleryName = "myGalleryName";
   const galleryImageName = "myGalleryImageName";
@@ -39,6 +39,8 @@ async function updateASimpleGalleryImageVersionWithoutSourceId() {
     },
     storageProfile: {}
   };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.galleryImageVersions.beginUpdateAndWait(
     resourceGroupName,
     galleryName,
@@ -48,10 +50,5 @@ async function updateASimpleGalleryImageVersionWithoutSourceId() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await updateASimpleGalleryImageVersionWithoutSourceId();
-}
-main();
+
+updateASimpleGalleryImageVersionWithoutSourceId().catch(console.error);

@@ -12,6 +12,7 @@
  * This sample demonstrates how to Update a cloud service.
  *
  * @summary Update a cloud service.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-03-01/examples/UpdateCloudServiceToIncludeTags.json
  */
 import {
   CloudServiceUpdate,
@@ -19,13 +20,14 @@ import {
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//cloudServices.beginUpdateAndWait
 async function updateExistingCloudServiceToAddTags() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "ConstosoRG";
   const cloudServiceName = "{cs-name}";
   const parameters: CloudServiceUpdate = { tags: { documentation: "RestAPI" } };
   const options = { parameters: parameters };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.cloudServices.beginUpdateAndWait(
     resourceGroupName,
     cloudServiceName,
@@ -33,10 +35,5 @@ async function updateExistingCloudServiceToAddTags() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await updateExistingCloudServiceToAddTags();
-}
-main();
+
+updateExistingCloudServiceToAddTags().catch(console.error);

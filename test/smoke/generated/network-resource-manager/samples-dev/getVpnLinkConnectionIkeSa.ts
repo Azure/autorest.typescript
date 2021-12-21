@@ -12,17 +12,19 @@
  * This sample demonstrates how to Lists IKE Security Associations for Vpn Site Link Connection in the specified resource group.
  *
  * @summary Lists IKE Security Associations for Vpn Site Link Connection in the specified resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VpnSiteLinkConnectionGetIkeSas.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//vpnLinkConnections.beginGetIkeSasAndWait
 async function getVpnLinkConnectionIkeSa() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const gatewayName = "gateway1";
   const connectionName = "vpnConnection1";
   const linkConnectionName = "Connection-Link1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.vpnLinkConnections.beginGetIkeSasAndWait(
     resourceGroupName,
     gatewayName,
@@ -31,10 +33,5 @@ async function getVpnLinkConnectionIkeSa() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getVpnLinkConnectionIkeSa();
-}
-main();
+
+getVpnLinkConnectionIkeSa().catch(console.error);

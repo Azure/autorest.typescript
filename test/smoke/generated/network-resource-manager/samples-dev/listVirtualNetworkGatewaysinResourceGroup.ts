@@ -12,14 +12,16 @@
  * This sample demonstrates how to Gets all virtual network gateways by resource group.
  *
  * @summary Gets all virtual network gateways by resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkGatewayList.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualNetworkGateways.list
 async function listVirtualNetworkGatewaysinResourceGroup() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.virtualNetworkGateways.list(
     resourceGroupName
@@ -28,10 +30,5 @@ async function listVirtualNetworkGatewaysinResourceGroup() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await listVirtualNetworkGatewaysinResourceGroup();
-}
-main();
+
+listVirtualNetworkGatewaysinResourceGroup().catch(console.error);

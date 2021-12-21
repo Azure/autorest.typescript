@@ -12,6 +12,7 @@
  * This sample demonstrates how to Description for Creates or updates an App Service Plan.
  *
  * @summary Description for Creates or updates an App Service Plan.
+ * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/PatchAppServicePlan.json
  */
 import {
   AppServicePlanPatchResource,
@@ -19,12 +20,13 @@ import {
 } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: WebSiteManagementClient;
-//appServicePlans.update
 async function patchServicePlan() {
+  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const resourceGroupName = "testrg123";
   const name = "testsf6141";
   const appServicePlan: AppServicePlanPatchResource = { kind: "app" };
+  const credential = new DefaultAzureCredential();
+  const client = new WebSiteManagementClient(credential, subscriptionId);
   const result = await client.appServicePlans.update(
     resourceGroupName,
     name,
@@ -32,10 +34,5 @@ async function patchServicePlan() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
-  client = new WebSiteManagementClient(credential, subscriptionId);
-  await patchServicePlan();
-}
-main();
+
+patchServicePlan().catch(console.error);

@@ -12,6 +12,7 @@
  * This sample demonstrates how to Create or update a gallery image version.
  *
  * @summary Create or update a gallery image version.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/CreateOrUpdateASimpleGalleryImageVersionWithShallowReplicationMode.json
  */
 import {
   GalleryImageVersion,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//galleryImageVersions.beginCreateOrUpdateAndWait
 async function createOrUpdateASimpleGalleryImageVersionUsingShallowReplicationMode() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const galleryName = "myGalleryName";
   const galleryImageName = "myGalleryImageName";
@@ -39,6 +39,8 @@ async function createOrUpdateASimpleGalleryImageVersionUsingShallowReplicationMo
       }
     }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.galleryImageVersions.beginCreateOrUpdateAndWait(
     resourceGroupName,
     galleryName,
@@ -48,10 +50,7 @@ async function createOrUpdateASimpleGalleryImageVersionUsingShallowReplicationMo
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await createOrUpdateASimpleGalleryImageVersionUsingShallowReplicationMode();
-}
-main();
+
+createOrUpdateASimpleGalleryImageVersionUsingShallowReplicationMode().catch(
+  console.error
+);

@@ -12,6 +12,7 @@
  * This sample demonstrates how to Create or update a VM scale set.
  *
  * @summary Create or update a VM scale set.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateAScaleSetFromACustomImage.json
  */
 import {
   VirtualMachineScaleSet,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//virtualMachineScaleSets.beginCreateOrUpdateAndWait
 async function createAScaleSetFromACustomImage() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const vmScaleSetName = "{vmss-name}";
   const parameters: VirtualMachineScaleSet = {
@@ -66,6 +66,8 @@ async function createAScaleSetFromACustomImage() {
       }
     }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.virtualMachineScaleSets.beginCreateOrUpdateAndWait(
     resourceGroupName,
     vmScaleSetName,
@@ -73,10 +75,5 @@ async function createAScaleSetFromACustomImage() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await createAScaleSetFromACustomImage();
-}
-main();
+
+createAScaleSetFromACustomImage().catch(console.error);

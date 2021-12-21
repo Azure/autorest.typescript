@@ -12,14 +12,16 @@
  * This sample demonstrates how to Lists all Network Virtual Appliances in a resource group.
  *
  * @summary Lists all Network Virtual Appliances in a resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkVirtualApplianceListByResourceGroup.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//networkVirtualAppliances.listByResourceGroup
 async function listAllNetworkVirtualApplianceForAGivenResourceGroup() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.networkVirtualAppliances.listByResourceGroup(
     resourceGroupName
@@ -28,10 +30,5 @@ async function listAllNetworkVirtualApplianceForAGivenResourceGroup() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await listAllNetworkVirtualApplianceForAGivenResourceGroup();
-}
-main();
+
+listAllNetworkVirtualApplianceForAGivenResourceGroup().catch(console.error);

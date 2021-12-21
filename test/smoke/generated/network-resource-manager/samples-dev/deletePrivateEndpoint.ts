@@ -12,25 +12,22 @@
  * This sample demonstrates how to Deletes the specified private endpoint.
  *
  * @summary Deletes the specified private endpoint.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/PrivateEndpointDelete.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//privateEndpoints.beginDeleteAndWait
 async function deletePrivateEndpoint() {
+  const subscriptionId = "subId";
   const resourceGroupName = "rg1";
   const privateEndpointName = "testPe";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.privateEndpoints.beginDeleteAndWait(
     resourceGroupName,
     privateEndpointName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subId";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await deletePrivateEndpoint();
-}
-main();
+
+deletePrivateEndpoint().catch(console.error);

@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates a virtual network in the specified resource group.
  *
  * @summary Creates or updates a virtual network in the specified resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkCreateSubnetWithDelegation.json
  */
 import {
   VirtualNetwork,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualNetworks.beginCreateOrUpdateAndWait
 async function createVirtualNetworkWithDelegatedSubnets() {
+  const subscriptionId = "subId";
   const resourceGroupName = "rg1";
   const virtualNetworkName = "test-vnet";
   const parameters: VirtualNetwork = {
@@ -40,6 +40,8 @@ async function createVirtualNetworkWithDelegatedSubnets() {
       }
     ]
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworks.beginCreateOrUpdateAndWait(
     resourceGroupName,
     virtualNetworkName,
@@ -47,10 +49,5 @@ async function createVirtualNetworkWithDelegatedSubnets() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subId";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await createVirtualNetworkWithDelegatedSubnets();
-}
-main();
+
+createVirtualNetworkWithDelegatedSubnets().catch(console.error);

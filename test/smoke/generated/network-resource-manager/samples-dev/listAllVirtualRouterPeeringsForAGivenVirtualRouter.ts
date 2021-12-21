@@ -12,15 +12,17 @@
  * This sample demonstrates how to Lists all Virtual Router Peerings in a Virtual Router resource.
  *
  * @summary Lists all Virtual Router Peerings in a Virtual Router resource.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualRouterPeeringList.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualRouterPeerings.list
 async function listAllVirtualRouterPeeringsForAGivenVirtualRouter() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualRouterName = "virtualRouter";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.virtualRouterPeerings.list(
     resourceGroupName,
@@ -30,10 +32,5 @@ async function listAllVirtualRouterPeeringsForAGivenVirtualRouter() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await listAllVirtualRouterPeeringsForAGivenVirtualRouter();
-}
-main();
+
+listAllVirtualRouterPeeringsForAGivenVirtualRouter().catch(console.error);

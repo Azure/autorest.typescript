@@ -12,6 +12,7 @@
  * This sample demonstrates how to Gives the sas-url to download the configurations for vpn-sites in a resource group.
  *
  * @summary Gives the sas-url to download the configurations for vpn-sites in a resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VpnSitesConfigurationDownload.json
  */
 import {
   GetVpnSitesConfigurationRequest,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//vpnSitesConfiguration.beginDownloadAndWait
 async function vpnSitesConfigurationDownload() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualWANName = "wan1";
   const request: GetVpnSitesConfigurationRequest = {
@@ -31,6 +31,8 @@ async function vpnSitesConfigurationDownload() {
       "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/vpnSites/abc"
     ]
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.vpnSitesConfiguration.beginDownloadAndWait(
     resourceGroupName,
     virtualWANName,
@@ -38,10 +40,5 @@ async function vpnSitesConfigurationDownload() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await vpnSitesConfigurationDownload();
-}
-main();
+
+vpnSitesConfigurationDownload().catch(console.error);

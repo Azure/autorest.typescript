@@ -12,12 +12,11 @@
  * This sample demonstrates how to Sets which replica database is primary by failing over from the current primary replica database. This operation might result in data loss.
  *
  * @summary Sets which replica database is primary by failing over from the current primary replica database. This operation might result in data loss.
- * x-ms-original-file:
+ * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/stable/2014-04-01-legacy/examples/ReplicationLinkFailover.json
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: SqlManagementClient;
 async function failoverAReplicationLink() {
   const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "sqlcrudtest-8931";

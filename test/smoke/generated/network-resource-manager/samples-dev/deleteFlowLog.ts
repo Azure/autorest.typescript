@@ -12,16 +12,18 @@
  * This sample demonstrates how to Deletes the specified flow log resource.
  *
  * @summary Deletes the specified flow log resource.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkWatcherFlowLogDelete.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//flowLogs.beginDeleteAndWait
 async function deleteFlowLog() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const networkWatcherName = "nw1";
   const flowLogName = "fl";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.flowLogs.beginDeleteAndWait(
     resourceGroupName,
     networkWatcherName,
@@ -29,10 +31,5 @@ async function deleteFlowLog() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await deleteFlowLog();
-}
-main();
+
+deleteFlowLog().catch(console.error);

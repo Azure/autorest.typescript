@@ -12,16 +12,18 @@
  * This sample demonstrates how to Gets the specified peering for the express route circuit.
  *
  * @summary Gets the specified peering for the express route circuit.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ExpressRouteCircuitPeeringGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//expressRouteCircuitPeerings.get
 async function getExpressRouteCircuitPeering() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const circuitName = "circuitName";
   const peeringName = "MicrosoftPeering";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.expressRouteCircuitPeerings.get(
     resourceGroupName,
     circuitName,
@@ -29,10 +31,5 @@ async function getExpressRouteCircuitPeering() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getExpressRouteCircuitPeering();
-}
-main();
+
+getExpressRouteCircuitPeering().catch(console.error);

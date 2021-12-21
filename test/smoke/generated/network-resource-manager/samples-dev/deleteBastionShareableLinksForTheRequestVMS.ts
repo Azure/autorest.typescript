@@ -12,6 +12,7 @@
  * This sample demonstrates how to Deletes the Bastion Shareable Links for all the VMs specified in the request.
  *
  * @summary Deletes the Bastion Shareable Links for all the VMs specified in the request.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/BastionShareableLinkDelete.json
  */
 import {
   BastionShareableLinkListRequest,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//networkManagementClient.beginDeleteBastionShareableLinkAndWait
 async function deleteBastionShareableLinksForTheRequestVMS() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const bastionHostName = "bastionhosttenant";
   const bslRequest: BastionShareableLinkListRequest = {
@@ -40,6 +40,8 @@ async function deleteBastionShareableLinksForTheRequestVMS() {
       }
     ]
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.beginDeleteBastionShareableLinkAndWait(
     resourceGroupName,
     bastionHostName,
@@ -47,10 +49,5 @@ async function deleteBastionShareableLinksForTheRequestVMS() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await deleteBastionShareableLinksForTheRequestVMS();
-}
-main();
+
+deleteBastionShareableLinksForTheRequestVMS().catch(console.error);

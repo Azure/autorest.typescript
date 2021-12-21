@@ -12,16 +12,18 @@
  * This sample demonstrates how to Checks whether a private IP address is available for use.
  *
  * @summary Checks whether a private IP address is available for use.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkCheckIPAddressAvailability.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualNetworks.checkIPAddressAvailability
 async function checkIPAddressAvailability() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualNetworkName = "test-vnet";
   const ipAddress = "10.0.1.4";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworks.checkIPAddressAvailability(
     resourceGroupName,
     virtualNetworkName,
@@ -29,10 +31,5 @@ async function checkIPAddressAvailability() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await checkIPAddressAvailability();
-}
-main();
+
+checkIPAddressAvailability().catch(console.error);

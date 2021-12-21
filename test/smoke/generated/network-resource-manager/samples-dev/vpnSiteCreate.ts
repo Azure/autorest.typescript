@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates a VpnSite resource if it doesn't exist else updates the existing VpnSite.
  *
  * @summary Creates a VpnSite resource if it doesn't exist else updates the existing VpnSite.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VpnSitePut.json
  */
 import {
   VpnSite,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//vpnSites.beginCreateOrUpdateAndWait
 async function vpnSiteCreate() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const vpnSiteName = "vpnSite1";
   const vpnSiteParameters: VpnSite = {
@@ -46,6 +46,8 @@ async function vpnSiteCreate() {
       }
     ]
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.vpnSites.beginCreateOrUpdateAndWait(
     resourceGroupName,
     vpnSiteName,
@@ -53,10 +55,5 @@ async function vpnSiteCreate() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await vpnSiteCreate();
-}
-main();
+
+vpnSiteCreate().catch(console.error);

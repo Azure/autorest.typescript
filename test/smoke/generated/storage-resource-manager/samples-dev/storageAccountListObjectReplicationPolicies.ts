@@ -12,15 +12,17 @@
  * This sample demonstrates how to List the object replication policies associated with the storage account.
  *
  * @summary List the object replication policies associated with the storage account.
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountListObjectReplicationPolicies.json
  */
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//objectReplicationPoliciesOperations.list
 async function storageAccountListObjectReplicationPolicies() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "res6977";
   const accountName = "sto2527";
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.objectReplicationPoliciesOperations.list(
     resourceGroupName,
@@ -30,10 +32,5 @@ async function storageAccountListObjectReplicationPolicies() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await storageAccountListObjectReplicationPolicies();
-}
-main();
+
+storageAccountListObjectReplicationPolicies().catch(console.error);

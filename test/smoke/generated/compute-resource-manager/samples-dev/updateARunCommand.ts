@@ -12,6 +12,7 @@
  * This sample demonstrates how to The operation to update the run command.
  *
  * @summary The operation to update the run command.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/runCommands/UpdateRunCommand.json
  */
 import {
   VirtualMachineRunCommandUpdate,
@@ -19,15 +20,16 @@ import {
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//virtualMachineRunCommands.beginUpdateAndWait
 async function updateARunCommand() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const vmName = "myVM";
   const runCommandName = "myRunCommand";
   const runCommand: VirtualMachineRunCommandUpdate = {
     source: { script: "Write-Host Script Source Updated!" }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.virtualMachineRunCommands.beginUpdateAndWait(
     resourceGroupName,
     vmName,
@@ -36,10 +38,5 @@ async function updateARunCommand() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await updateARunCommand();
-}
-main();
+
+updateARunCommand().catch(console.error);

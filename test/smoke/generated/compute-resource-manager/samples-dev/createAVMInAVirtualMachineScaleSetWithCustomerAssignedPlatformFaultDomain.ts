@@ -12,6 +12,7 @@
  * This sample demonstrates how to The operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
  *
  * @summary The operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateAVmInAVirtualMachineScaleSetWithCustomerAssignedPlatformFaultDomain.json
  */
 import {
   VirtualMachine,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//virtualMachines.beginCreateOrUpdateAndWait
 async function createAVMInAVirtualMachineScaleSetWithCustomerAssignedPlatformFaultDomain() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const vmName = "myVM";
   const parameters: VirtualMachine = {
@@ -61,6 +61,8 @@ async function createAVMInAVirtualMachineScaleSetWithCustomerAssignedPlatformFau
         "/subscriptions/{subscription-id}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachineScaleSets/{existing-flex-vmss-name-with-platformFaultDomainCount-greater-than-1}"
     }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.virtualMachines.beginCreateOrUpdateAndWait(
     resourceGroupName,
     vmName,
@@ -68,10 +70,7 @@ async function createAVMInAVirtualMachineScaleSetWithCustomerAssignedPlatformFau
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await createAVMInAVirtualMachineScaleSetWithCustomerAssignedPlatformFaultDomain();
-}
-main();
+
+createAVMInAVirtualMachineScaleSetWithCustomerAssignedPlatformFaultDomain().catch(
+  console.error
+);

@@ -12,6 +12,7 @@
  * This sample demonstrates how to Export logs that show total throttled Api requests for this subscription in the given time window.
  *
  * @summary Export logs that show total throttled Api requests for this subscription in the given time window.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/LogAnalyticsThrottledRequests.json
  */
 import {
   ThrottledRequestsInput,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//logAnalytics.beginExportThrottledRequestsAndWait
 async function exportLogsWhichContainAllThrottledApiRequestsMadeToComputeResourceProviderWithinTheGivenTimePeriod() {
+  const subscriptionId = "{subscription-id}";
   const location = "westus";
   const parameters: ThrottledRequestsInput = {
     blobContainerSasUri: "https://somesasuri",
@@ -32,16 +32,15 @@ async function exportLogsWhichContainAllThrottledApiRequestsMadeToComputeResourc
     groupByUserAgent: false,
     toTime: new Date("2018-01-23T01:54:06.862601Z")
   };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.logAnalytics.beginExportThrottledRequestsAndWait(
     location,
     parameters
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await exportLogsWhichContainAllThrottledApiRequestsMadeToComputeResourceProviderWithinTheGivenTimePeriod();
-}
-main();
+
+exportLogsWhichContainAllThrottledApiRequestsMadeToComputeResourceProviderWithinTheGivenTimePeriod().catch(
+  console.error
+);

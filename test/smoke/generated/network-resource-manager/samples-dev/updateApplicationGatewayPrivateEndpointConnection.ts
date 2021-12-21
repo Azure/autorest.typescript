@@ -12,6 +12,7 @@
  * This sample demonstrates how to Updates the specified private endpoint connection on application gateway.
  *
  * @summary Updates the specified private endpoint connection on application gateway.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ApplicationGatewayPrivateEndpointConnectionUpdate.json
  */
 import {
   ApplicationGatewayPrivateEndpointConnection,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//applicationGatewayPrivateEndpointConnections.beginUpdateAndWait
 async function updateApplicationGatewayPrivateEndpointConnection() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const applicationGatewayName = "appgw";
   const connectionName = "connection1";
@@ -36,6 +36,8 @@ async function updateApplicationGatewayPrivateEndpointConnection() {
       status: "Approved"
     }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.applicationGatewayPrivateEndpointConnections.beginUpdateAndWait(
     resourceGroupName,
     applicationGatewayName,
@@ -44,10 +46,5 @@ async function updateApplicationGatewayPrivateEndpointConnection() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await updateApplicationGatewayPrivateEndpointConnection();
-}
-main();
+
+updateApplicationGatewayPrivateEndpointConnection().catch(console.error);

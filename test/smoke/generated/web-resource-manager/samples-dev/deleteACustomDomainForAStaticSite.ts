@@ -12,16 +12,18 @@
  * This sample demonstrates how to Description for Deletes a custom domain.
  *
  * @summary Description for Deletes a custom domain.
+ * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/DeleteStaticSiteCustomDomain.json
  */
 import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: WebSiteManagementClient;
-//staticSites.beginDeleteStaticSiteCustomDomainAndWait
 async function deleteACustomDomainForAStaticSite() {
+  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const resourceGroupName = "rg";
   const name = "testStaticSite0";
   const domainName = "custom.domain.net";
+  const credential = new DefaultAzureCredential();
+  const client = new WebSiteManagementClient(credential, subscriptionId);
   const result = await client.staticSites.beginDeleteStaticSiteCustomDomainAndWait(
     resourceGroupName,
     name,
@@ -29,10 +31,5 @@ async function deleteACustomDomainForAStaticSite() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
-  client = new WebSiteManagementClient(credential, subscriptionId);
-  await deleteACustomDomainForAStaticSite();
-}
-main();
+
+deleteACustomDomainForAStaticSite().catch(console.error);

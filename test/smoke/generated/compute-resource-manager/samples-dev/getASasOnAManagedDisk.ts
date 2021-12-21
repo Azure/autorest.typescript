@@ -12,6 +12,7 @@
  * This sample demonstrates how to Grants access to a disk.
  *
  * @summary Grants access to a disk.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/BeginGetAccessManagedDisk.json
  */
 import {
   GrantAccessData,
@@ -19,15 +20,16 @@ import {
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//disks.beginGrantAccessAndWait
 async function getASasOnAManagedDisk() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const diskName = "myDisk";
   const grantAccessData: GrantAccessData = {
     access: "Read",
     durationInSeconds: 300
   };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.disks.beginGrantAccessAndWait(
     resourceGroupName,
     diskName,
@@ -35,10 +37,5 @@ async function getASasOnAManagedDisk() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await getASasOnAManagedDisk();
-}
-main();
+
+getASasOnAManagedDisk().catch(console.error);

@@ -12,17 +12,19 @@
  * This sample demonstrates how to Retrieves information about a Shared Image Gallery.
  *
  * @summary Retrieves information about a Shared Image Gallery.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/GetAGalleryWithSelectPermissions.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//galleries.get
 async function getAGalleryWithSelectPermissions() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const galleryName = "myGalleryName";
   const select = "Permissions";
   const options = { select: select };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.galleries.get(
     resourceGroupName,
     galleryName,
@@ -30,10 +32,5 @@ async function getAGalleryWithSelectPermissions() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await getAGalleryWithSelectPermissions();
-}
-main();
+
+getAGalleryWithSelectPermissions().catch(console.error);

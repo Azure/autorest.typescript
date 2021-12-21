@@ -12,15 +12,17 @@
  * This sample demonstrates how to Lists all Network Virtual Appliance Sites in a Network Virtual Appliance resource.
  *
  * @summary Lists all Network Virtual Appliance Sites in a Network Virtual Appliance resource.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkVirtualApplianceSiteList.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualApplianceSites.list
 async function listAllNetworkVirtualApplianceSitesForAGivenNetworkVirtualAppliance() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const networkVirtualApplianceName = "nva";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.virtualApplianceSites.list(
     resourceGroupName,
@@ -30,10 +32,7 @@ async function listAllNetworkVirtualApplianceSitesForAGivenNetworkVirtualApplian
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await listAllNetworkVirtualApplianceSitesForAGivenNetworkVirtualAppliance();
-}
-main();
+
+listAllNetworkVirtualApplianceSitesForAGivenNetworkVirtualAppliance().catch(
+  console.error
+);

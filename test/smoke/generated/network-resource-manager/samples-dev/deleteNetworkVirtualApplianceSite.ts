@@ -12,16 +12,18 @@
  * This sample demonstrates how to Deletes the specified site from a Virtual Appliance.
  *
  * @summary Deletes the specified site from a Virtual Appliance.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkVirtualApplianceSiteDelete.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualApplianceSites.beginDeleteAndWait
 async function deleteNetworkVirtualApplianceSite() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const networkVirtualApplianceName = "nva";
   const siteName = "site1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualApplianceSites.beginDeleteAndWait(
     resourceGroupName,
     networkVirtualApplianceName,
@@ -29,10 +31,5 @@ async function deleteNetworkVirtualApplianceSite() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await deleteNetworkVirtualApplianceSite();
-}
-main();
+
+deleteNetworkVirtualApplianceSite().catch(console.error);

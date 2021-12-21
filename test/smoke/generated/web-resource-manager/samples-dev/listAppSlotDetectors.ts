@@ -12,17 +12,19 @@
  * This sample demonstrates how to Description for Get Detectors
  *
  * @summary Description for Get Detectors
+ * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/Diagnostics_ListSiteDetectorsSlot.json
  */
 import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: WebSiteManagementClient;
-//diagnostics.listSiteDetectorsSlot
 async function listAppSlotDetectors() {
+  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const resourceGroupName = "Sample-WestUSResourceGroup";
   const siteName = "SampleApp";
   const diagnosticCategory = "availability";
   const slot = "staging";
+  const credential = new DefaultAzureCredential();
+  const client = new WebSiteManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.diagnostics.listSiteDetectorsSlot(
     resourceGroupName,
@@ -34,10 +36,5 @@ async function listAppSlotDetectors() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
-  client = new WebSiteManagementClient(credential, subscriptionId);
-  await listAppSlotDetectors();
-}
-main();
+
+listAppSlotDetectors().catch(console.error);

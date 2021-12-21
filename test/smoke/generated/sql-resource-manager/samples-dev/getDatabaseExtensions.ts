@@ -12,12 +12,11 @@
  * This sample demonstrates how to Gets a database extension. This will return resource not found as it is not supported.
  *
  * @summary Gets a database extension. This will return resource not found as it is not supported.
- * x-ms-original-file:
+ * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-02-01-preview/examples/GetDatabaseExtensions.json
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: SqlManagementClient;
 async function getDatabaseExtensions() {
   const subscriptionId = "a3473687-7581-41e1-ac24-6bcca5843f07";
   const resourceGroupName = "rg_a1f9d6f8-30d5-4228-9504-8a364361bca3";

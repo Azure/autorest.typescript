@@ -12,25 +12,22 @@
  * This sample demonstrates how to Gets the specified route filter.
  *
  * @summary Gets the specified route filter.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/RouteFilterGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//routeFilters.get
 async function routeFilterGet() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const routeFilterName = "filterName";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.routeFilters.get(
     resourceGroupName,
     routeFilterName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await routeFilterGet();
-}
-main();
+
+routeFilterGet().catch(console.error);

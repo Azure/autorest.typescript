@@ -12,16 +12,18 @@
  * This sample demonstrates how to Deletes the blob inventory policy associated with the specified storage account.
  *
  * @summary Deletes the blob inventory policy associated with the specified storage account.
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountDeleteBlobInventoryPolicy.json
  */
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//blobInventoryPolicies.delete
 async function storageAccountDeleteBlobInventoryPolicy() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "res6977";
   const accountName = "sto2527";
   const blobInventoryPolicyName = "default";
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.blobInventoryPolicies.delete(
     resourceGroupName,
     accountName,
@@ -29,10 +31,5 @@ async function storageAccountDeleteBlobInventoryPolicy() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await storageAccountDeleteBlobInventoryPolicy();
-}
-main();
+
+storageAccountDeleteBlobInventoryPolicy().catch(console.error);

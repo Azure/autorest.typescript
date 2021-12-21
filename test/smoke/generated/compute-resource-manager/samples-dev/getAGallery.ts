@@ -12,17 +12,19 @@
  * This sample demonstrates how to Get a community gallery image version.
  *
  * @summary Get a community gallery image version.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/communityGallery/GetACommunityGalleryImageVersion.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//communityGalleryImageVersions.get
 async function getAGallery() {
+  const subscriptionId = "{subscription-id}";
   const location = "myLocation";
   const publicGalleryName = "publicGalleryName";
   const galleryImageName = "myGalleryImageName";
   const galleryImageVersionName = "myGalleryImageVersionName";
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.communityGalleryImageVersions.get(
     location,
     publicGalleryName,
@@ -31,10 +33,5 @@ async function getAGallery() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await getAGallery();
-}
-main();
+
+getAGallery().catch(console.error);

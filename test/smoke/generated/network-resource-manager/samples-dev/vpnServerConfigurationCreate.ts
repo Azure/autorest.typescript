@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates a VpnServerConfiguration resource if it doesn't exist else updates the existing VpnServerConfiguration.
  *
  * @summary Creates a VpnServerConfiguration resource if it doesn't exist else updates the existing VpnServerConfiguration.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VpnServerConfigurationPut.json
  */
 import {
   VpnServerConfiguration,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//vpnServerConfigurations.beginCreateOrUpdateAndWait
 async function vpnServerConfigurationCreate() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const vpnServerConfigurationName = "vpnServerConfiguration1";
   const vpnServerConfigurationParameters: VpnServerConfiguration = {
@@ -74,6 +74,8 @@ async function vpnServerConfigurationCreate() {
     ],
     vpnProtocols: ["IkeV2"]
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.vpnServerConfigurations.beginCreateOrUpdateAndWait(
     resourceGroupName,
     vpnServerConfigurationName,
@@ -81,10 +83,5 @@ async function vpnServerConfigurationCreate() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await vpnServerConfigurationCreate();
-}
-main();
+
+vpnServerConfigurationCreate().catch(console.error);

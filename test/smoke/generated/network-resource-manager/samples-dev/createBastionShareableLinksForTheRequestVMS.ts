@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates a Bastion Shareable Links for all the VMs specified in the request.
  *
  * @summary Creates a Bastion Shareable Links for all the VMs specified in the request.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/BastionShareableLinkCreate.json
  */
 import {
   BastionShareableLinkListRequest,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//networkManagementClient.beginListPutBastionShareableLinkAndWait
 async function createBastionShareableLinksForTheRequestVMS() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const bastionHostName = "bastionhosttenant";
   const bslRequest: BastionShareableLinkListRequest = {
@@ -40,6 +40,8 @@ async function createBastionShareableLinksForTheRequestVMS() {
       }
     ]
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.beginListPutBastionShareableLinkAndWait(
     resourceGroupName,
@@ -50,10 +52,5 @@ async function createBastionShareableLinksForTheRequestVMS() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await createBastionShareableLinksForTheRequestVMS();
-}
-main();
+
+createBastionShareableLinksForTheRequestVMS().catch(console.error);

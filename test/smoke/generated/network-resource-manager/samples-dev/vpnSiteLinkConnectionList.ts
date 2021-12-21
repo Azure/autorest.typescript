@@ -12,16 +12,18 @@
  * This sample demonstrates how to Retrieves all vpn site link connections for a particular virtual wan vpn gateway vpn connection.
  *
  * @summary Retrieves all vpn site link connections for a particular virtual wan vpn gateway vpn connection.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VpnSiteLinkConnectionList.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//vpnLinkConnections.listByVpnConnection
 async function vpnSiteLinkConnectionList() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const gatewayName = "gateway1";
   const connectionName = "vpnConnection1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.vpnLinkConnections.listByVpnConnection(
     resourceGroupName,
@@ -32,10 +34,5 @@ async function vpnSiteLinkConnectionList() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await vpnSiteLinkConnectionList();
-}
-main();
+
+vpnSiteLinkConnectionList().catch(console.error);

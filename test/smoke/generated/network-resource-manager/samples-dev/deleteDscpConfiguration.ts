@@ -12,25 +12,22 @@
  * This sample demonstrates how to Deletes a DSCP Configuration.
  *
  * @summary Deletes a DSCP Configuration.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/DscpConfigurationDelete.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//dscpConfigurationOperations.beginDeleteAndWait
 async function deleteDscpConfiguration() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const dscpConfigurationName = "mydscpConfig";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.dscpConfigurationOperations.beginDeleteAndWait(
     resourceGroupName,
     dscpConfigurationName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await deleteDscpConfiguration();
-}
-main();
+
+deleteDscpConfiguration().catch(console.error);

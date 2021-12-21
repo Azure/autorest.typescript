@@ -12,15 +12,17 @@
  * This sample demonstrates how to Gets a list of all update domains in a cloud service.
  *
  * @summary Gets a list of all update domains in a cloud service.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-03-01/examples/ListCloudServiceUpdateDomains.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//cloudServicesUpdateDomain.listUpdateDomains
 async function listUpdateDomainsInCloudService() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "ConstosoRG";
   const cloudServiceName = "{cs-name}";
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.cloudServicesUpdateDomain.listUpdateDomains(
     resourceGroupName,
@@ -30,10 +32,5 @@ async function listUpdateDomainsInCloudService() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await listUpdateDomainsInCloudService();
-}
-main();
+
+listUpdateDomainsInCloudService().catch(console.error);

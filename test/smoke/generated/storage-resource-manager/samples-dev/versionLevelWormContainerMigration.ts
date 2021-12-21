@@ -12,16 +12,18 @@
  * This sample demonstrates how to This operation migrates a blob container from container level WORM to object level immutability enabled container. Prerequisites require a container level immutability policy either in locked or unlocked state, Account level versioning must be enabled and there should be no Legal hold on the container.
  *
  * @summary This operation migrates a blob container from container level WORM to object level immutability enabled container. Prerequisites require a container level immutability policy either in locked or unlocked state, Account level versioning must be enabled and there should be no Legal hold on the container.
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/ObjectLevelWormContainerMigration.json
  */
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//blobContainers.beginObjectLevelWormAndWait
 async function versionLevelWormContainerMigration() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "res1782";
   const accountName = "sto7069";
   const containerName = "container6397";
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.blobContainers.beginObjectLevelWormAndWait(
     resourceGroupName,
     accountName,
@@ -29,10 +31,5 @@ async function versionLevelWormContainerMigration() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await versionLevelWormContainerMigration();
-}
-main();
+
+versionLevelWormContainerMigration().catch(console.error);

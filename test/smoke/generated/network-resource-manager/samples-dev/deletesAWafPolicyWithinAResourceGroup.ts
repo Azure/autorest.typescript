@@ -12,25 +12,22 @@
  * This sample demonstrates how to Deletes Policy.
  *
  * @summary Deletes Policy.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/WafPolicyDelete.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//webApplicationFirewallPolicies.beginDeleteAndWait
 async function deletesAWafPolicyWithinAResourceGroup() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const policyName = "Policy1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.webApplicationFirewallPolicies.beginDeleteAndWait(
     resourceGroupName,
     policyName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await deletesAWafPolicyWithinAResourceGroup();
-}
-main();
+
+deletesAWafPolicyWithinAResourceGroup().catch(console.error);

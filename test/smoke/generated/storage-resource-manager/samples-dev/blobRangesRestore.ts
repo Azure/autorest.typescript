@@ -12,6 +12,7 @@
  * This sample demonstrates how to Restore blobs in the specified blob ranges
  *
  * @summary Restore blobs in the specified blob ranges
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/BlobRangesRestore.json
  */
 import {
   BlobRestoreParameters,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//storageAccounts.beginRestoreBlobRangesAndWait
 async function blobRangesRestore() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "res9101";
   const accountName = "sto4445";
   const parameters: BlobRestoreParameters = {
@@ -31,6 +31,8 @@ async function blobRangesRestore() {
     ],
     timeToRestore: new Date("2019-04-20T15:30:00.0000000Z")
   };
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.storageAccounts.beginRestoreBlobRangesAndWait(
     resourceGroupName,
     accountName,
@@ -38,10 +40,5 @@ async function blobRangesRestore() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await blobRangesRestore();
-}
-main();
+
+blobRangesRestore().catch(console.error);

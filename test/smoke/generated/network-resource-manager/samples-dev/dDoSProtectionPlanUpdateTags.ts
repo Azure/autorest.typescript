@@ -12,6 +12,7 @@
  * This sample demonstrates how to Update a DDoS protection plan tags.
  *
  * @summary Update a DDoS protection plan tags.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/DdosProtectionPlanUpdateTags.json
  */
 import {
   TagsObject,
@@ -19,12 +20,13 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//ddosProtectionPlans.updateTags
 async function dDoSProtectionPlanUpdateTags() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const ddosProtectionPlanName = "test-plan";
   const parameters: TagsObject = { tags: { tag1: "value1", tag2: "value2" } };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.ddosProtectionPlans.updateTags(
     resourceGroupName,
     ddosProtectionPlanName,
@@ -32,10 +34,5 @@ async function dDoSProtectionPlanUpdateTags() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await dDoSProtectionPlanUpdateTags();
-}
-main();
+
+dDoSProtectionPlanUpdateTags().catch(console.error);

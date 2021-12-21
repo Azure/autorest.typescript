@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates a new container under the specified account as described by request body. The container resource includes metadata and properties for that container. It does not include a list of the blobs contained by the container.
  *
  * @summary Creates a new container under the specified account as described by request body. The container resource includes metadata and properties for that container. It does not include a list of the blobs contained by the container.
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/BlobContainersPutDefaultEncryptionScope.json
  */
 import {
   BlobContainer,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//blobContainers.create
 async function putContainerWithDefaultEncryptionScope() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "res3376";
   const accountName = "sto328";
   const containerName = "container6185";
@@ -29,6 +29,8 @@ async function putContainerWithDefaultEncryptionScope() {
     defaultEncryptionScope: "encryptionscope185",
     denyEncryptionScopeOverride: true
   };
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.blobContainers.create(
     resourceGroupName,
     accountName,
@@ -37,10 +39,5 @@ async function putContainerWithDefaultEncryptionScope() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await putContainerWithDefaultEncryptionScope();
-}
-main();
+
+putContainerWithDefaultEncryptionScope().catch(console.error);

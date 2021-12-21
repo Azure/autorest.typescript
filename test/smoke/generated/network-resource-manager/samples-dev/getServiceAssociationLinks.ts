@@ -12,16 +12,18 @@
  * This sample demonstrates how to Gets a list of service association links for a subnet.
  *
  * @summary Gets a list of service association links for a subnet.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkGetServiceAssociationLinks.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//serviceAssociationLinks.list
 async function getServiceAssociationLinks() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualNetworkName = "vnet";
   const subnetName = "subnet";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.serviceAssociationLinks.list(
     resourceGroupName,
     virtualNetworkName,
@@ -29,10 +31,5 @@ async function getServiceAssociationLinks() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getServiceAssociationLinks();
-}
-main();
+
+getServiceAssociationLinks().catch(console.error);

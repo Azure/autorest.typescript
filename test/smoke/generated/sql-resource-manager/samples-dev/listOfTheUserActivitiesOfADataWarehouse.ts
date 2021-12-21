@@ -12,12 +12,11 @@
  * This sample demonstrates how to List the user activities of a data warehouse which includes running and suspended queries
  *
  * @summary List the user activities of a data warehouse which includes running and suspended queries
- * x-ms-original-file:
+ * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ListDataWarehouseUserActivities.json
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: SqlManagementClient;
 async function listOfTheUserActivitiesOfADataWarehouse() {
   const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "Default-SQL-SouthEastAsia";

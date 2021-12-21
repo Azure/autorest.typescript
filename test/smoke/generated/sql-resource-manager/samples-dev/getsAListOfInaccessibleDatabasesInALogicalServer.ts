@@ -12,12 +12,11 @@
  * This sample demonstrates how to Gets a list of inaccessible databases in a logical server
  *
  * @summary Gets a list of inaccessible databases in a logical server
- * x-ms-original-file:
+ * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ListVCoreInaccessibleDatabasesByServer.json
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: SqlManagementClient;
 async function getsAListOfInaccessibleDatabasesInALogicalServer() {
   const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "Default-SQL-SouthEastAsia";

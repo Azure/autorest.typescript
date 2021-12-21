@@ -12,16 +12,18 @@
  * This sample demonstrates how to Gets the private dns zone group resource by specified private dns zone group name.
  *
  * @summary Gets the private dns zone group resource by specified private dns zone group name.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/PrivateEndpointDnsZoneGroupGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//privateDnsZoneGroups.get
 async function getPrivateDnsZoneGroup() {
+  const subscriptionId = "subId";
   const resourceGroupName = "rg1";
   const privateEndpointName = "testPe";
   const privateDnsZoneGroupName = "testPdnsgroup";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.privateDnsZoneGroups.get(
     resourceGroupName,
     privateEndpointName,
@@ -29,10 +31,5 @@ async function getPrivateDnsZoneGroup() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subId";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getPrivateDnsZoneGroup();
-}
-main();
+
+getPrivateDnsZoneGroup().catch(console.error);

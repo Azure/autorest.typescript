@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates the specified Virtual Router Peering.
  *
  * @summary Creates or updates the specified Virtual Router Peering.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualRouterPeeringPut.json
  */
 import {
   VirtualRouterPeering,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualRouterPeerings.beginCreateOrUpdateAndWait
 async function createVirtualRouterPeering() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualRouterName = "virtualRouter";
   const peeringName = "peering1";
@@ -29,6 +29,8 @@ async function createVirtualRouterPeering() {
     peerAsn: 20000,
     peerIp: "192.168.1.5"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualRouterPeerings.beginCreateOrUpdateAndWait(
     resourceGroupName,
     virtualRouterName,
@@ -37,10 +39,5 @@ async function createVirtualRouterPeering() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await createVirtualRouterPeering();
-}
-main();
+
+createVirtualRouterPeering().catch(console.error);

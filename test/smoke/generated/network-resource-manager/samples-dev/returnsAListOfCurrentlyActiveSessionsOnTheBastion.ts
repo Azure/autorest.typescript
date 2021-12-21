@@ -12,15 +12,17 @@
  * This sample demonstrates how to Returns the list of currently active sessions on the Bastion.
  *
  * @summary Returns the list of currently active sessions on the Bastion.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/BastionSessionsList.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//networkManagementClient.beginListActiveSessionsAndWait
 async function returnsAListOfCurrentlyActiveSessionsOnTheBastion() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const bastionHostName = "bastionhosttenant";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.beginListActiveSessionsAndWait(
     resourceGroupName,
@@ -30,10 +32,5 @@ async function returnsAListOfCurrentlyActiveSessionsOnTheBastion() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await returnsAListOfCurrentlyActiveSessionsOnTheBastion();
-}
-main();
+
+returnsAListOfCurrentlyActiveSessionsOnTheBastion().catch(console.error);

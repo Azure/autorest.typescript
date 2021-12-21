@@ -12,6 +12,7 @@
  * This sample demonstrates how to Description for Generates a preview workflow file for the static site
  *
  * @summary Description for Generates a preview workflow file for the static site
+ * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/GenerateStaticSiteWorkflowPreview.json
  */
 import {
   StaticSitesWorkflowPreviewRequest,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: WebSiteManagementClient;
-//staticSites.previewWorkflow
 async function generatesAPreviewWorkflowFileForTheStaticSite() {
+  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const location = "West US 2";
   const staticSitesWorkflowPreviewRequest: StaticSitesWorkflowPreviewRequest = {
     branch: "master",
@@ -32,16 +32,13 @@ async function generatesAPreviewWorkflowFileForTheStaticSite() {
     },
     repositoryUrl: "https://github.com/username/RepoName"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new WebSiteManagementClient(credential, subscriptionId);
   const result = await client.staticSites.previewWorkflow(
     location,
     staticSitesWorkflowPreviewRequest
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
-  client = new WebSiteManagementClient(credential, subscriptionId);
-  await generatesAPreviewWorkflowFileForTheStaticSite();
-}
-main();
+
+generatesAPreviewWorkflowFileForTheStaticSite().catch(console.error);

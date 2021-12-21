@@ -12,21 +12,18 @@
  * This sample demonstrates how to Retrieves a single ExpressRoutePort peering location, including the list of available bandwidths available at said peering location.
  *
  * @summary Retrieves a single ExpressRoutePort peering location, including the list of available bandwidths available at said peering location.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ExpressRoutePortsLocationGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//expressRoutePortsLocations.get
 async function expressRoutePortsLocationGet() {
+  const subscriptionId = "subid";
   const locationName = "locationName";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.expressRoutePortsLocations.get(locationName);
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await expressRoutePortsLocationGet();
-}
-main();
+
+expressRoutePortsLocationGet().catch(console.error);

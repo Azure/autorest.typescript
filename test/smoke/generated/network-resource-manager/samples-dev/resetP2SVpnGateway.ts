@@ -12,25 +12,22 @@
  * This sample demonstrates how to Resets the primary of the p2s vpn gateway in the specified resource group.
  *
  * @summary Resets the primary of the p2s vpn gateway in the specified resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/P2SVpnGatewayReset.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//p2SVpnGateways.beginResetAndWait
 async function resetP2SVpnGateway() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const gatewayName = "p2sVpnGateway1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.p2SVpnGateways.beginResetAndWait(
     resourceGroupName,
     gatewayName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await resetP2SVpnGateway();
-}
-main();
+
+resetP2SVpnGateway().catch(console.error);

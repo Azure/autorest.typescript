@@ -12,15 +12,17 @@
  * This sample demonstrates how to Gets all the outbound rules in a load balancer.
  *
  * @summary Gets all the outbound rules in a load balancer.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/LoadBalancerOutboundRuleList.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//loadBalancerOutboundRules.list
 async function loadBalancerOutboundRuleList() {
+  const subscriptionId = "subid";
   const resourceGroupName = "testrg";
   const loadBalancerName = "lb1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.loadBalancerOutboundRules.list(
     resourceGroupName,
@@ -30,10 +32,5 @@ async function loadBalancerOutboundRuleList() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await loadBalancerOutboundRuleList();
-}
-main();
+
+loadBalancerOutboundRuleList().catch(console.error);

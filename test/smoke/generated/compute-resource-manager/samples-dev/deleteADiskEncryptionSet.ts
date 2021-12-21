@@ -12,25 +12,22 @@
  * This sample demonstrates how to Deletes a disk encryption set.
  *
  * @summary Deletes a disk encryption set.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/DeleteADiskEncryptionSet.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//diskEncryptionSets.beginDeleteAndWait
 async function deleteADiskEncryptionSet() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const diskEncryptionSetName = "myDiskEncryptionSet";
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.diskEncryptionSets.beginDeleteAndWait(
     resourceGroupName,
     diskEncryptionSetName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await deleteADiskEncryptionSet();
-}
-main();
+
+deleteADiskEncryptionSet().catch(console.error);

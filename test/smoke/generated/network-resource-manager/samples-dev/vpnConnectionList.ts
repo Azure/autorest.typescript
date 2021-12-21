@@ -12,15 +12,17 @@
  * This sample demonstrates how to Retrieves all vpn connections for a particular virtual wan vpn gateway.
  *
  * @summary Retrieves all vpn connections for a particular virtual wan vpn gateway.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VpnConnectionList.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//vpnConnections.listByVpnGateway
 async function vpnConnectionList() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const gatewayName = "gateway1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.vpnConnections.listByVpnGateway(
     resourceGroupName,
@@ -30,10 +32,5 @@ async function vpnConnectionList() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await vpnConnectionList();
-}
-main();
+
+vpnConnectionList().catch(console.error);

@@ -12,6 +12,7 @@
  * This sample demonstrates how to The operation to create the restore point. Updating properties of an existing restore point is not allowed
  *
  * @summary The operation to create the restore point. Updating properties of an existing restore point is not allowed
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateARestorePoint.json
  */
 import {
   RestorePoint,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//restorePoints.beginCreateAndWait
 async function createARestorePoint() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const restorePointCollectionName = "rpcName";
   const restorePointName = "rpName";
@@ -33,6 +33,8 @@ async function createARestorePoint() {
       }
     ]
   };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.restorePoints.beginCreateAndWait(
     resourceGroupName,
     restorePointCollectionName,
@@ -41,10 +43,5 @@ async function createARestorePoint() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await createARestorePoint();
-}
-main();
+
+createARestorePoint().catch(console.error);

@@ -12,6 +12,7 @@
  * This sample demonstrates how to Reimage asynchronous operation reinstalls the operating system on instances of web roles or worker roles.
  *
  * @summary Reimage asynchronous operation reinstalls the operating system on instances of web roles or worker roles.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-03-01/examples/ReimageCloudServiceRoleInstances.json
  */
 import {
   RoleInstances,
@@ -19,15 +20,16 @@ import {
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//cloudServices.beginReimageAndWait
 async function reimageCloudServiceRoleInstances() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "ConstosoRG";
   const cloudServiceName = "{cs-name}";
   const parameters: RoleInstances = {
     roleInstances: ["ContosoFrontend_IN_0", "ContosoBackend_IN_1"]
   };
   const options = { parameters: parameters };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.cloudServices.beginReimageAndWait(
     resourceGroupName,
     cloudServiceName,
@@ -35,10 +37,5 @@ async function reimageCloudServiceRoleInstances() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await reimageCloudServiceRoleInstances();
-}
-main();
+
+reimageCloudServiceRoleInstances().catch(console.error);

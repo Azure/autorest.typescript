@@ -12,12 +12,11 @@
  * This sample demonstrates how to Get a managed server's threat detection policy.
  *
  * @summary Get a managed server's threat detection policy.
- * x-ms-original-file:
+ * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ManagedServerSecurityAlertGet.json
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: SqlManagementClient;
 async function getAManagedServerThreatDetectionPolicy() {
   const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "securityalert-4799";

@@ -12,16 +12,18 @@
  * This sample demonstrates how to Deletes a nat rule.
  *
  * @summary Deletes a nat rule.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkGatewayNatRuleDelete.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualNetworkGatewayNatRules.beginDeleteAndWait
 async function virtualNetworkGatewayNatRuleDelete() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualNetworkGatewayName = "gateway1";
   const natRuleName = "natRule1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworkGatewayNatRules.beginDeleteAndWait(
     resourceGroupName,
     virtualNetworkGatewayName,
@@ -29,10 +31,5 @@ async function virtualNetworkGatewayNatRuleDelete() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await virtualNetworkGatewayNatRuleDelete();
-}
-main();
+
+virtualNetworkGatewayNatRuleDelete().catch(console.error);

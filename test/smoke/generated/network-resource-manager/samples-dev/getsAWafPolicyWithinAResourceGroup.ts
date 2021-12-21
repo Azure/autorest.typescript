@@ -12,25 +12,22 @@
  * This sample demonstrates how to Retrieve protection policy with specified name within a resource group.
  *
  * @summary Retrieve protection policy with specified name within a resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/WafPolicyGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//webApplicationFirewallPolicies.get
 async function getsAWafPolicyWithinAResourceGroup() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const policyName = "Policy1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.webApplicationFirewallPolicies.get(
     resourceGroupName,
     policyName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getsAWafPolicyWithinAResourceGroup();
-}
-main();
+
+getsAWafPolicyWithinAResourceGroup().catch(console.error);

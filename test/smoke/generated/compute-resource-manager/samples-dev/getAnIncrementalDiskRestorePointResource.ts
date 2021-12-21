@@ -12,16 +12,18 @@
  * This sample demonstrates how to Lists diskRestorePoints under a vmRestorePoint.
  *
  * @summary Lists diskRestorePoints under a vmRestorePoint.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/ListDiskRestorePointsInVmRestorePoint.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//diskRestorePointOperations.listByRestorePoint
 async function getAnIncrementalDiskRestorePointResource() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const restorePointCollectionName = "rpc";
   const vmRestorePointName = "vmrp";
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.diskRestorePointOperations.listByRestorePoint(
     resourceGroupName,
@@ -32,10 +34,5 @@ async function getAnIncrementalDiskRestorePointResource() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await getAnIncrementalDiskRestorePointResource();
-}
-main();
+
+getAnIncrementalDiskRestorePointResource().catch(console.error);

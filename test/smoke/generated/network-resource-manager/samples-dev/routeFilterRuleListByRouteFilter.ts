@@ -12,15 +12,17 @@
  * This sample demonstrates how to Gets all RouteFilterRules in a route filter.
  *
  * @summary Gets all RouteFilterRules in a route filter.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/RouteFilterRuleListByRouteFilter.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//routeFilterRules.listByRouteFilter
 async function routeFilterRuleListByRouteFilter() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const routeFilterName = "filterName";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.routeFilterRules.listByRouteFilter(
     resourceGroupName,
@@ -30,10 +32,5 @@ async function routeFilterRuleListByRouteFilter() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await routeFilterRuleListByRouteFilter();
-}
-main();
+
+routeFilterRuleListByRouteFilter().catch(console.error);

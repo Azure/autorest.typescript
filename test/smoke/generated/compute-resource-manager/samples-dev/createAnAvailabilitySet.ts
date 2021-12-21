@@ -12,6 +12,7 @@
  * This sample demonstrates how to Create or update an availability set.
  *
  * @summary Create or update an availability set.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateAnAvailabilitySet.json
  */
 import {
   AvailabilitySet,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//availabilitySets.createOrUpdate
 async function createAnAvailabilitySet() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const availabilitySetName = "myAvailabilitySet";
   const parameters: AvailabilitySet = {
@@ -29,6 +29,8 @@ async function createAnAvailabilitySet() {
     platformFaultDomainCount: 2,
     platformUpdateDomainCount: 20
   };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.availabilitySets.createOrUpdate(
     resourceGroupName,
     availabilitySetName,
@@ -36,10 +38,5 @@ async function createAnAvailabilitySet() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await createAnAvailabilitySet();
-}
-main();
+
+createAnAvailabilitySet().catch(console.error);

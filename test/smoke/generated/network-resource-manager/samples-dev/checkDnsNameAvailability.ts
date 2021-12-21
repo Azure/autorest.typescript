@@ -12,25 +12,22 @@
  * This sample demonstrates how to Checks whether a domain name in the cloudapp.azure.com zone is available for use.
  *
  * @summary Checks whether a domain name in the cloudapp.azure.com zone is available for use.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/CheckDnsNameAvailability.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//networkManagementClient.checkDnsNameAvailability
 async function checkDnsNameAvailability() {
+  const subscriptionId = "subid";
   const location = "westus";
   const domainNameLabel = "testdns";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.checkDnsNameAvailability(
     location,
     domainNameLabel
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await checkDnsNameAvailability();
-}
-main();
+
+checkDnsNameAvailability().catch(console.error);

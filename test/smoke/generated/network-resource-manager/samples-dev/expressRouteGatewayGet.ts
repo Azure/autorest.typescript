@@ -12,25 +12,22 @@
  * This sample demonstrates how to Fetches the details of a ExpressRoute gateway in a resource group.
  *
  * @summary Fetches the details of a ExpressRoute gateway in a resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ExpressRouteGatewayGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//expressRouteGateways.get
 async function expressRouteGatewayGet() {
+  const subscriptionId = "subid";
   const resourceGroupName = "resourceGroupName";
   const expressRouteGatewayName = "expressRouteGatewayName";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.expressRouteGateways.get(
     resourceGroupName,
     expressRouteGatewayName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await expressRouteGatewayGet();
-}
-main();
+
+expressRouteGatewayGet().catch(console.error);

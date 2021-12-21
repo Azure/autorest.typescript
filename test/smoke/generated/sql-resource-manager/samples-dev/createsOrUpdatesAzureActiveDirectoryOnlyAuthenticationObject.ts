@@ -12,7 +12,7 @@
  * This sample demonstrates how to Sets Server Active Directory only authentication property or updates an existing server Active Directory only authentication property.
  *
  * @summary Sets Server Active Directory only authentication property or updates an existing server Active Directory only authentication property.
- * x-ms-original-file:
+ * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/AzureADOnlyAuthCreateOrUpdate.json
  */
 import {
   ServerAzureADOnlyAuthentication,
@@ -20,7 +20,6 @@ import {
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: SqlManagementClient;
 async function createsOrUpdatesAzureActiveDirectoryOnlyAuthenticationObject() {
   const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "sqlcrudtest-4799";

@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates a virtual network in the specified resource group.
  *
  * @summary Creates or updates a virtual network in the specified resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkCreateSubnetWithAddressPrefixes.json
  */
 import {
   VirtualNetwork,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualNetworks.beginCreateOrUpdateAndWait
 async function createVirtualNetworkWithSubnetContainingAddressPrefixes() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualNetworkName = "test-vnet";
   const parameters: VirtualNetwork = {
@@ -31,6 +31,8 @@ async function createVirtualNetworkWithSubnetContainingAddressPrefixes() {
       { name: "test-2", addressPrefixes: ["10.0.0.0/28", "10.0.1.0/28"] }
     ]
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworks.beginCreateOrUpdateAndWait(
     resourceGroupName,
     virtualNetworkName,
@@ -38,10 +40,5 @@ async function createVirtualNetworkWithSubnetContainingAddressPrefixes() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await createVirtualNetworkWithSubnetContainingAddressPrefixes();
-}
-main();
+
+createVirtualNetworkWithSubnetContainingAddressPrefixes().catch(console.error);

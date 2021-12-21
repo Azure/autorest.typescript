@@ -12,16 +12,18 @@
  * This sample demonstrates how to Deletes a vpn connection.
  *
  * @summary Deletes a vpn connection.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VpnConnectionDelete.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//vpnConnections.beginDeleteAndWait
 async function vpnConnectionDelete() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const gatewayName = "gateway1";
   const connectionName = "vpnConnection1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.vpnConnections.beginDeleteAndWait(
     resourceGroupName,
     gatewayName,
@@ -29,10 +31,5 @@ async function vpnConnectionDelete() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await vpnConnectionDelete();
-}
-main();
+
+vpnConnectionDelete().catch(console.error);

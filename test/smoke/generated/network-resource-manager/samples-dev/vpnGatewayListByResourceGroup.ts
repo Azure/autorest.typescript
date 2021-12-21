@@ -12,14 +12,16 @@
  * This sample demonstrates how to Lists all the VpnGateways in a resource group.
  *
  * @summary Lists all the VpnGateways in a resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VpnGatewayListByResourceGroup.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//vpnGateways.listByResourceGroup
 async function vpnGatewayListByResourceGroup() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.vpnGateways.listByResourceGroup(
     resourceGroupName
@@ -28,10 +30,5 @@ async function vpnGatewayListByResourceGroup() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await vpnGatewayListByResourceGroup();
-}
-main();
+
+vpnGatewayListByResourceGroup().catch(console.error);

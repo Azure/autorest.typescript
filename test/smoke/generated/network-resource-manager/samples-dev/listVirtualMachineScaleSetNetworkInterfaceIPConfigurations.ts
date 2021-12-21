@@ -12,17 +12,19 @@
  * This sample demonstrates how to Get the specified network interface ip configuration in a virtual machine scale set.
  *
  * @summary Get the specified network interface ip configuration in a virtual machine scale set.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VmssNetworkInterfaceIpConfigList.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//networkInterfaces.listVirtualMachineScaleSetIpConfigurations
 async function listVirtualMachineScaleSetNetworkInterfaceIPConfigurations() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualMachineScaleSetName = "vmss1";
   const virtualmachineIndex = "2";
   const networkInterfaceName = "nic1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.networkInterfaces.listVirtualMachineScaleSetIpConfigurations(
     resourceGroupName,
@@ -34,10 +36,7 @@ async function listVirtualMachineScaleSetNetworkInterfaceIPConfigurations() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await listVirtualMachineScaleSetNetworkInterfaceIPConfigurations();
-}
-main();
+
+listVirtualMachineScaleSetNetworkInterfaceIPConfigurations().catch(
+  console.error
+);

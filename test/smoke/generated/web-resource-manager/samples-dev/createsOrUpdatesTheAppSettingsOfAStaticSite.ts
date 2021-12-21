@@ -12,6 +12,7 @@
  * This sample demonstrates how to Description for Creates or updates the app settings of a static site.
  *
  * @summary Description for Creates or updates the app settings of a static site.
+ * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/CreateOrUpdateStaticSiteAppSettings.json
  */
 import {
   StringDictionary,
@@ -19,14 +20,15 @@ import {
 } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: WebSiteManagementClient;
-//staticSites.createOrUpdateStaticSiteAppSettings
 async function createsOrUpdatesTheAppSettingsOfAStaticSite() {
+  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const resourceGroupName = "rg";
   const name = "testStaticSite0";
   const appSettings: StringDictionary = {
     properties: { setting1: "someval", setting2: "someval2" }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new WebSiteManagementClient(credential, subscriptionId);
   const result = await client.staticSites.createOrUpdateStaticSiteAppSettings(
     resourceGroupName,
     name,
@@ -34,10 +36,5 @@ async function createsOrUpdatesTheAppSettingsOfAStaticSite() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
-  client = new WebSiteManagementClient(credential, subscriptionId);
-  await createsOrUpdatesTheAppSettingsOfAStaticSite();
-}
-main();
+
+createsOrUpdatesTheAppSettingsOfAStaticSite().catch(console.error);

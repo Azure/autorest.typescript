@@ -12,25 +12,22 @@
  * This sample demonstrates how to Gets the specified Network Virtual Appliance.
  *
  * @summary Gets the specified Network Virtual Appliance.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkVirtualApplianceGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//networkVirtualAppliances.get
 async function getNetworkVirtualAppliance() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const networkVirtualApplianceName = "nva";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.networkVirtualAppliances.get(
     resourceGroupName,
     networkVirtualApplianceName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getNetworkVirtualAppliance();
-}
-main();
+
+getNetworkVirtualAppliance().catch(console.error);

@@ -12,15 +12,17 @@
  * This sample demonstrates how to List blob services of storage account. It returns a collection of one object named default.
  *
  * @summary List blob services of storage account. It returns a collection of one object named default.
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/BlobServicesList.json
  */
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//blobServices.list
 async function listBlobServices() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "res4410";
   const accountName = "sto8607";
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.blobServices.list(
     resourceGroupName,
@@ -30,10 +32,5 @@ async function listBlobServices() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await listBlobServices();
-}
-main();
+
+listBlobServices().catch(console.error);

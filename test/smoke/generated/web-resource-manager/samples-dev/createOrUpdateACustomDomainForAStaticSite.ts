@@ -12,6 +12,7 @@
  * This sample demonstrates how to Description for Creates a new static site custom domain in an existing resource group and static site.
  *
  * @summary Description for Creates a new static site custom domain in an existing resource group and static site.
+ * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/CreateOrUpdateStaticSiteCustomDomain.json
  */
 import {
   StaticSiteCustomDomainRequestPropertiesARMResource,
@@ -19,13 +20,14 @@ import {
 } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: WebSiteManagementClient;
-//staticSites.beginCreateOrUpdateStaticSiteCustomDomainAndWait
 async function createOrUpdateACustomDomainForAStaticSite() {
+  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const resourceGroupName = "rg";
   const name = "testStaticSite0";
   const domainName = "custom.domain.net";
   const staticSiteCustomDomainRequestPropertiesEnvelope: StaticSiteCustomDomainRequestPropertiesARMResource = {};
+  const credential = new DefaultAzureCredential();
+  const client = new WebSiteManagementClient(credential, subscriptionId);
   const result = await client.staticSites.beginCreateOrUpdateStaticSiteCustomDomainAndWait(
     resourceGroupName,
     name,
@@ -34,10 +36,5 @@ async function createOrUpdateACustomDomainForAStaticSite() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
-  client = new WebSiteManagementClient(credential, subscriptionId);
-  await createOrUpdateACustomDomainForAStaticSite();
-}
-main();
+
+createOrUpdateACustomDomainForAStaticSite().catch(console.error);

@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates the specified FirewallPolicyRuleCollectionGroup.
  *
  * @summary Creates or updates the specified FirewallPolicyRuleCollectionGroup.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/FirewallPolicyRuleCollectionGroupPut.json
  */
 import {
   FirewallPolicyRuleCollectionGroup,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//firewallPolicyRuleCollectionGroups.beginCreateOrUpdateAndWait
 async function createFirewallPolicyRuleCollectionGroup() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const firewallPolicyName = "firewallPolicy";
   const ruleCollectionGroupName = "ruleCollectionGroup1";
@@ -46,6 +46,8 @@ async function createFirewallPolicyRuleCollectionGroup() {
       }
     ]
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.firewallPolicyRuleCollectionGroups.beginCreateOrUpdateAndWait(
     resourceGroupName,
     firewallPolicyName,
@@ -54,10 +56,5 @@ async function createFirewallPolicyRuleCollectionGroup() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await createFirewallPolicyRuleCollectionGroup();
-}
-main();
+
+createFirewallPolicyRuleCollectionGroup().catch(console.error);

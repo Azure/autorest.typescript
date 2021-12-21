@@ -12,6 +12,7 @@
  * This sample demonstrates how to Updates an express route circuit tags.
  *
  * @summary Updates an express route circuit tags.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ExpressRouteCircuitUpdateTags.json
  */
 import {
   TagsObject,
@@ -19,12 +20,13 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//expressRouteCircuits.updateTags
 async function updateExpressRouteCircuitTags() {
+  const subscriptionId = "subid";
   const resourceGroupName = "ertest";
   const circuitName = "er1";
   const parameters: TagsObject = { tags: { tag1: "value1", tag2: "value2" } };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.expressRouteCircuits.updateTags(
     resourceGroupName,
     circuitName,
@@ -32,10 +34,5 @@ async function updateExpressRouteCircuitTags() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await updateExpressRouteCircuitTags();
-}
-main();
+
+updateExpressRouteCircuitTags().catch(console.error);

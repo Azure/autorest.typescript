@@ -12,6 +12,7 @@
  * This sample demonstrates how to Updates tags of a route filter.
  *
  * @summary Updates tags of a route filter.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/RouteFilterUpdateTags.json
  */
 import {
   TagsObject,
@@ -19,12 +20,13 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//routeFilters.updateTags
 async function updateRouteFilterTags() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const routeFilterName = "filterName";
   const parameters: TagsObject = { tags: { key1: "value1" } };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.routeFilters.updateTags(
     resourceGroupName,
     routeFilterName,
@@ -32,10 +34,5 @@ async function updateRouteFilterTags() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await updateRouteFilterTags();
-}
-main();
+
+updateRouteFilterTags().catch(console.error);

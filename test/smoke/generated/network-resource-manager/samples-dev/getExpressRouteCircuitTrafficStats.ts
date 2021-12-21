@@ -12,25 +12,22 @@
  * This sample demonstrates how to Gets all the stats from an express route circuit in a resource group.
  *
  * @summary Gets all the stats from an express route circuit in a resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ExpressRouteCircuitStats.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//expressRouteCircuits.getStats
 async function getExpressRouteCircuitTrafficStats() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const circuitName = "circuitName";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.expressRouteCircuits.getStats(
     resourceGroupName,
     circuitName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getExpressRouteCircuitTrafficStats();
-}
-main();
+
+getExpressRouteCircuitTrafficStats().catch(console.error);

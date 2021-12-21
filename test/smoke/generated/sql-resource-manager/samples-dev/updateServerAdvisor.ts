@@ -12,12 +12,11 @@
  * This sample demonstrates how to Updates a server advisor.
  *
  * @summary Updates a server advisor.
- * x-ms-original-file:
+ * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ServerAdvisorUpdate.json
  */
 import { Advisor, SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: SqlManagementClient;
 async function updateServerAdvisor() {
   const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "workloadinsight-demos";

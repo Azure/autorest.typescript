@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates a custom IP prefix.
  *
  * @summary Creates or updates a custom IP prefix.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/CustomIpPrefixCreateCustomizedValues.json
  */
 import {
   CustomIpPrefix,
@@ -19,12 +20,13 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//customIPPrefixes.beginCreateOrUpdateAndWait
 async function createCustomIPPrefixAllocationMethod() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const customIpPrefixName = "test-customipprefix";
   const parameters: CustomIpPrefix = { cidr: "0.0.0.0/24", location: "westus" };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.customIPPrefixes.beginCreateOrUpdateAndWait(
     resourceGroupName,
     customIpPrefixName,
@@ -32,10 +34,5 @@ async function createCustomIPPrefixAllocationMethod() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await createCustomIPPrefixAllocationMethod();
-}
-main();
+
+createCustomIPPrefixAllocationMethod().catch(console.error);

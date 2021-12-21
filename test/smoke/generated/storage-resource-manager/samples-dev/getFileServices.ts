@@ -12,25 +12,22 @@
  * This sample demonstrates how to Gets the properties of file services in storage accounts, including CORS (Cross-Origin Resource Sharing) rules.
  *
  * @summary Gets the properties of file services in storage accounts, including CORS (Cross-Origin Resource Sharing) rules.
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/FileServicesGet.json
  */
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//fileServices.getServiceProperties
 async function getFileServices() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "res4410";
   const accountName = "sto8607";
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.fileServices.getServiceProperties(
     resourceGroupName,
     accountName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await getFileServices();
-}
-main();
+
+getFileServices().catch(console.error);

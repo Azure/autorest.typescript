@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates a DDoS custom policy.
  *
  * @summary Creates or updates a DDoS custom policy.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/DdosCustomPolicyCreate.json
  */
 import {
   DdosCustomPolicy,
@@ -19,15 +20,16 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//ddosCustomPolicies.beginCreateOrUpdateAndWait
 async function createDDoSCustomPolicy() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const ddosCustomPolicyName = "test-ddos-custom-policy";
   const parameters: DdosCustomPolicy = {
     location: "centraluseuap",
     protocolCustomSettings: [{ protocol: "Tcp" }]
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.ddosCustomPolicies.beginCreateOrUpdateAndWait(
     resourceGroupName,
     ddosCustomPolicyName,
@@ -35,10 +37,5 @@ async function createDDoSCustomPolicy() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await createDDoSCustomPolicy();
-}
-main();
+
+createDDoSCustomPolicy().catch(console.error);

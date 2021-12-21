@@ -12,25 +12,22 @@
  * This sample demonstrates how to Deletes the specified DDoS protection plan.
  *
  * @summary Deletes the specified DDoS protection plan.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/DdosProtectionPlanDelete.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//ddosProtectionPlans.beginDeleteAndWait
 async function deleteDDoSProtectionPlan() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const ddosProtectionPlanName = "test-plan";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.ddosProtectionPlans.beginDeleteAndWait(
     resourceGroupName,
     ddosProtectionPlanName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await deleteDDoSProtectionPlan();
-}
-main();
+
+deleteDDoSProtectionPlan().catch(console.error);

@@ -12,12 +12,11 @@
  * This sample demonstrates how to Returns elastic pool metric definitions.
  *
  * @summary Returns elastic pool metric definitions.
- * x-ms-original-file:
+ * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/stable/2014-04-01/examples/ElasticPoolMetricsDefinitionsList.json
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: SqlManagementClient;
 async function listDatabaseUsageMetrics() {
   const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "sqlcrudtest-6730";

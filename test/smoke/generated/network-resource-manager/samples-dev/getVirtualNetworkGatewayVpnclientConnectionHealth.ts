@@ -12,25 +12,22 @@
  * This sample demonstrates how to Get VPN client connection health detail per P2S client connection of the virtual network gateway in the specified resource group.
  *
  * @summary Get VPN client connection health detail per P2S client connection of the virtual network gateway in the specified resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkGatewayGetVpnclientConnectionHealth.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualNetworkGateways.beginGetVpnclientConnectionHealthAndWait
 async function getVirtualNetworkGatewayVpnclientConnectionHealth() {
+  const subscriptionId = "subid";
   const resourceGroupName = "p2s-vnet-test";
   const virtualNetworkGatewayName = "vpnp2sgw";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworkGateways.beginGetVpnclientConnectionHealthAndWait(
     resourceGroupName,
     virtualNetworkGatewayName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getVirtualNetworkGatewayVpnclientConnectionHealth();
-}
-main();
+
+getVirtualNetworkGatewayVpnclientConnectionHealth().catch(console.error);

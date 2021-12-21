@@ -12,20 +12,17 @@
  * This sample demonstrates how to Lists ExpressRoute gateways under a given subscription.
  *
  * @summary Lists ExpressRoute gateways under a given subscription.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ExpressRouteGatewayListBySubscription.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//expressRouteGateways.listBySubscription
 async function expressRouteGatewayListBySubscription() {
+  const subscriptionId = "subid";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.expressRouteGateways.listBySubscription();
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await expressRouteGatewayListBySubscription();
-}
-main();
+
+expressRouteGatewayListBySubscription().catch(console.error);

@@ -12,6 +12,7 @@
  * This sample demonstrates how to Description for Creates or updates the function app settings of a static site build.
  *
  * @summary Description for Creates or updates the function app settings of a static site build.
+ * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/CreateOrUpdateStaticSiteBuildFunctionAppSettings.json
  */
 import {
   StringDictionary,
@@ -19,15 +20,16 @@ import {
 } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: WebSiteManagementClient;
-//staticSites.createOrUpdateStaticSiteBuildFunctionAppSettings
 async function createsOrUpdatesTheFunctionAppSettingsOfAStaticSiteBuild() {
+  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const resourceGroupName = "rg";
   const name = "testStaticSite0";
   const environmentName = "12";
   const appSettings: StringDictionary = {
     properties: { setting1: "someval", setting2: "someval2" }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new WebSiteManagementClient(credential, subscriptionId);
   const result = await client.staticSites.createOrUpdateStaticSiteBuildFunctionAppSettings(
     resourceGroupName,
     name,
@@ -36,10 +38,5 @@ async function createsOrUpdatesTheFunctionAppSettingsOfAStaticSiteBuild() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
-  client = new WebSiteManagementClient(credential, subscriptionId);
-  await createsOrUpdatesTheFunctionAppSettingsOfAStaticSiteBuild();
-}
-main();
+
+createsOrUpdatesTheFunctionAppSettingsOfAStaticSiteBuild().catch(console.error);

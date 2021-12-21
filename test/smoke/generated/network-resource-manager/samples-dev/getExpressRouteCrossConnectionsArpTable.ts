@@ -12,17 +12,19 @@
  * This sample demonstrates how to Gets the currently advertised ARP table associated with the express route cross connection in a resource group.
  *
  * @summary Gets the currently advertised ARP table associated with the express route cross connection in a resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ExpressRouteCrossConnectionsArpTable.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//expressRouteCrossConnections.beginListArpTableAndWait
 async function getExpressRouteCrossConnectionsArpTable() {
+  const subscriptionId = "subid";
   const resourceGroupName = "CrossConnection-SiliconValley";
   const crossConnectionName = "<circuitServiceKey>";
   const peeringName = "AzurePrivatePeering";
   const devicePath = "primary";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.expressRouteCrossConnections.beginListArpTableAndWait(
     resourceGroupName,
     crossConnectionName,
@@ -31,10 +33,5 @@ async function getExpressRouteCrossConnectionsArpTable() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getExpressRouteCrossConnectionsArpTable();
-}
-main();
+
+getExpressRouteCrossConnectionsArpTable().catch(console.error);

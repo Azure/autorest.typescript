@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates the specified Security Partner Provider.
  *
  * @summary Creates or updates the specified Security Partner Provider.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/SecurityPartnerProviderPut.json
  */
 import {
   SecurityPartnerProvider,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//securityPartnerProviders.beginCreateOrUpdateAndWait
 async function createSecurityPartnerProvider() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const securityPartnerProviderName = "securityPartnerProvider";
   const parameters: SecurityPartnerProvider = {
@@ -33,6 +33,8 @@ async function createSecurityPartnerProvider() {
         "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualHubs/hub1"
     }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.securityPartnerProviders.beginCreateOrUpdateAndWait(
     resourceGroupName,
     securityPartnerProviderName,
@@ -40,10 +42,5 @@ async function createSecurityPartnerProvider() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await createSecurityPartnerProvider();
-}
-main();
+
+createSecurityPartnerProvider().catch(console.error);

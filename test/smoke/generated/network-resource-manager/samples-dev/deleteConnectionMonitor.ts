@@ -12,16 +12,18 @@
  * This sample demonstrates how to Deletes the specified connection monitor.
  *
  * @summary Deletes the specified connection monitor.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkWatcherConnectionMonitorDelete.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//connectionMonitors.beginDeleteAndWait
 async function deleteConnectionMonitor() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const networkWatcherName = "nw1";
   const connectionMonitorName = "cm1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.connectionMonitors.beginDeleteAndWait(
     resourceGroupName,
     networkWatcherName,
@@ -29,10 +31,5 @@ async function deleteConnectionMonitor() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await deleteConnectionMonitor();
-}
-main();
+
+deleteConnectionMonitor().catch(console.error);

@@ -12,12 +12,11 @@
  * This sample demonstrates how to Gets a step execution of a job execution.
  *
  * @summary Gets a step execution of a job execution.
- * x-ms-original-file:
+ * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/GetJobExecutionStep.json
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: SqlManagementClient;
 async function getAJobStepExecution() {
   const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "group1";

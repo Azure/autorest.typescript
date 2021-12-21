@@ -12,25 +12,22 @@
  * This sample demonstrates how to Deletes a snapshot.
  *
  * @summary Deletes a snapshot.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/DeleteASnapshot.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//snapshots.beginDeleteAndWait
 async function deleteASnapshot() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const snapshotName = "mySnapshot";
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.snapshots.beginDeleteAndWait(
     resourceGroupName,
     snapshotName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await deleteASnapshot();
-}
-main();
+
+deleteASnapshot().catch(console.error);

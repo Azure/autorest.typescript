@@ -12,23 +12,20 @@
  * This sample demonstrates how to Lists all the disks under a subscription.
  *
  * @summary Lists all the disks under a subscription.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/ListManagedDisksInASubscription.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//disks.list
 async function listAllManagedDisksInASubscription() {
+  const subscriptionId = "{subscription-id}";
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.disks.list()) {
     resArray.push(item);
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await listAllManagedDisksInASubscription();
-}
-main();
+
+listAllManagedDisksInASubscription().catch(console.error);

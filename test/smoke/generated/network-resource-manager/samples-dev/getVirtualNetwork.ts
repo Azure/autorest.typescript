@@ -12,25 +12,22 @@
  * This sample demonstrates how to Gets the specified virtual network by resource group.
  *
  * @summary Gets the specified virtual network by resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualNetworks.get
 async function getVirtualNetwork() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualNetworkName = "test-vnet";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworks.get(
     resourceGroupName,
     virtualNetworkName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getVirtualNetwork();
-}
-main();
+
+getVirtualNetwork().catch(console.error);

@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates a disk.
  *
  * @summary Creates or updates a disk.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/CreateAManagedDiskFromAnExistingManagedDisk.json
  */
 import {
   Disk,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//disks.beginCreateOrUpdateAndWait
 async function createAManagedDiskFromAnExistingManagedDiskInTheSameOrDifferentSubscription() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const diskName = "myDisk2";
   const disk: Disk = {
@@ -32,6 +32,8 @@ async function createAManagedDiskFromAnExistingManagedDiskInTheSameOrDifferentSu
     },
     location: "West US"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.disks.beginCreateOrUpdateAndWait(
     resourceGroupName,
     diskName,
@@ -39,10 +41,7 @@ async function createAManagedDiskFromAnExistingManagedDiskInTheSameOrDifferentSu
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await createAManagedDiskFromAnExistingManagedDiskInTheSameOrDifferentSubscription();
-}
-main();
+
+createAManagedDiskFromAnExistingManagedDiskInTheSameOrDifferentSubscription().catch(
+  console.error
+);

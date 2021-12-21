@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates a RoutingIntent resource if it doesn't exist else updates the existing RoutingIntent.
  *
  * @summary Creates a RoutingIntent resource if it doesn't exist else updates the existing RoutingIntent.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/RoutingIntentPut.json
  */
 import {
   RoutingIntent,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//routingIntentOperations.beginCreateOrUpdateAndWait
 async function routeTablePut() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualHubName = "virtualHub1";
   const routingIntentName = "Intent1";
@@ -41,6 +41,8 @@ async function routeTablePut() {
       }
     ]
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.routingIntentOperations.beginCreateOrUpdateAndWait(
     resourceGroupName,
     virtualHubName,
@@ -49,10 +51,5 @@ async function routeTablePut() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await routeTablePut();
-}
-main();
+
+routeTablePut().catch(console.error);

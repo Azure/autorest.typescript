@@ -12,15 +12,17 @@
  * This sample demonstrates how to Lists all resources that are encrypted with this disk encryption set.
  *
  * @summary Lists all resources that are encrypted with this disk encryption set.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/ListDiskEncryptionSetAssociatedResources.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//diskEncryptionSets.listAssociatedResources
 async function listAllResourcesThatAreEncryptedWithThisDiskEncryptionSet() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const diskEncryptionSetName = "myDiskEncryptionSet";
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.diskEncryptionSets.listAssociatedResources(
     resourceGroupName,
@@ -30,10 +32,7 @@ async function listAllResourcesThatAreEncryptedWithThisDiskEncryptionSet() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await listAllResourcesThatAreEncryptedWithThisDiskEncryptionSet();
-}
-main();
+
+listAllResourcesThatAreEncryptedWithThisDiskEncryptionSet().catch(
+  console.error
+);

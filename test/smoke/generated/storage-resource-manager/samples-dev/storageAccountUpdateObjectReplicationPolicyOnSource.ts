@@ -12,6 +12,7 @@
  * This sample demonstrates how to Create or update the object replication policy of the storage account.
  *
  * @summary Create or update the object replication policy of the storage account.
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountUpdateObjectReplicationPolicyOnSource.json
  */
 import {
   ObjectReplicationPolicy,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//objectReplicationPoliciesOperations.createOrUpdate
 async function storageAccountUpdateObjectReplicationPolicyOnSource() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "res7687";
   const accountName = "src1122";
   const objectReplicationPolicyId = "2a20bb73-5717-4635-985a-5d4cf777438f";
@@ -42,6 +42,8 @@ async function storageAccountUpdateObjectReplicationPolicyOnSource() {
     ],
     sourceAccount: "src1122"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.objectReplicationPoliciesOperations.createOrUpdate(
     resourceGroupName,
     accountName,
@@ -50,10 +52,5 @@ async function storageAccountUpdateObjectReplicationPolicyOnSource() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await storageAccountUpdateObjectReplicationPolicyOnSource();
-}
-main();
+
+storageAccountUpdateObjectReplicationPolicyOnSource().catch(console.error);

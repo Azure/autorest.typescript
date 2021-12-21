@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates the specified Network Virtual Appliance Site.
  *
  * @summary Creates or updates the specified Network Virtual Appliance Site.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkVirtualApplianceSitePut.json
  */
 import {
   VirtualApplianceSite,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualApplianceSites.beginCreateOrUpdateAndWait
 async function createNetworkVirtualApplianceSite() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const networkVirtualApplianceName = "nva";
   const siteName = "site1";
@@ -31,6 +31,8 @@ async function createNetworkVirtualApplianceSite() {
       breakOutCategories: { default: true, allow: true, optimize: true }
     }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualApplianceSites.beginCreateOrUpdateAndWait(
     resourceGroupName,
     networkVirtualApplianceName,
@@ -39,10 +41,5 @@ async function createNetworkVirtualApplianceSite() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await createNetworkVirtualApplianceSite();
-}
-main();
+
+createNetworkVirtualApplianceSite().catch(console.error);

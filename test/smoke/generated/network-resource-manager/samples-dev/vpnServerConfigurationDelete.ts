@@ -12,25 +12,22 @@
  * This sample demonstrates how to Deletes a VpnServerConfiguration.
  *
  * @summary Deletes a VpnServerConfiguration.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VpnServerConfigurationDelete.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//vpnServerConfigurations.beginDeleteAndWait
 async function vpnServerConfigurationDelete() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const vpnServerConfigurationName = "vpnServerConfiguration1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.vpnServerConfigurations.beginDeleteAndWait(
     resourceGroupName,
     vpnServerConfigurationName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await vpnServerConfigurationDelete();
-}
-main();
+
+vpnServerConfigurationDelete().catch(console.error);

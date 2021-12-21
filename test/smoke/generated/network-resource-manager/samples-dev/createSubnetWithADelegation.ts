@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates a subnet in the specified virtual network.
  *
  * @summary Creates or updates a subnet in the specified virtual network.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/SubnetCreateWithDelegation.json
  */
 import {
   Subnet,
@@ -19,13 +20,14 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//subnets.beginCreateOrUpdateAndWait
 async function createSubnetWithADelegation() {
+  const subscriptionId = "subId";
   const resourceGroupName = "subnet-test";
   const virtualNetworkName = "vnetname";
   const subnetName = "subnet1";
   const subnetParameters: Subnet = { addressPrefix: "10.0.0.0/16" };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.subnets.beginCreateOrUpdateAndWait(
     resourceGroupName,
     virtualNetworkName,
@@ -34,10 +36,5 @@ async function createSubnetWithADelegation() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subId";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await createSubnetWithADelegation();
-}
-main();
+
+createSubnetWithADelegation().catch(console.error);

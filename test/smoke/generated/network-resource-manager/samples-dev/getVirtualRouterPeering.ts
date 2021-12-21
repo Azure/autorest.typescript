@@ -12,16 +12,18 @@
  * This sample demonstrates how to Gets the specified Virtual Router Peering.
  *
  * @summary Gets the specified Virtual Router Peering.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualRouterPeeringGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualRouterPeerings.get
 async function getVirtualRouterPeering() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualRouterName = "virtualRouter";
   const peeringName = "peering1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualRouterPeerings.get(
     resourceGroupName,
     virtualRouterName,
@@ -29,10 +31,5 @@ async function getVirtualRouterPeering() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getVirtualRouterPeering();
-}
-main();
+
+getVirtualRouterPeering().catch(console.error);

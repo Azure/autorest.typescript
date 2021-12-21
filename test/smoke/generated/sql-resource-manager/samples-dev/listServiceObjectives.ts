@@ -12,12 +12,11 @@
  * This sample demonstrates how to Returns database service objectives.
  *
  * @summary Returns database service objectives.
- * x-ms-original-file:
+ * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/stable/2014-04-01/examples/ServiceObjectiveList.json
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: SqlManagementClient;
 async function listServiceObjectives() {
   const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "group1";

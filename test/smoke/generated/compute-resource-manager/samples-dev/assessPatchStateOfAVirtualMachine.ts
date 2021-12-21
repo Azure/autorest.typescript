@@ -12,25 +12,22 @@
  * This sample demonstrates how to Assess patches on the VM.
  *
  * @summary Assess patches on the VM.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/VirtualMachineAssessPatches.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//virtualMachines.beginAssessPatchesAndWait
 async function assessPatchStateOfAVirtualMachine() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroupName";
   const vmName = "myVMName";
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.virtualMachines.beginAssessPatchesAndWait(
     resourceGroupName,
     vmName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await assessPatchStateOfAVirtualMachine();
-}
-main();
+
+assessPatchStateOfAVirtualMachine().catch(console.error);

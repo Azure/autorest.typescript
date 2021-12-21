@@ -12,16 +12,18 @@
  * This sample demonstrates how to Gets a role from a cloud service.
  *
  * @summary Gets a role from a cloud service.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-03-01/examples/GetCloudServiceRole.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//cloudServiceRoles.get
 async function getCloudServiceRole() {
+  const subscriptionId = "{subscription-id}";
   const roleName = "{role-name}";
   const resourceGroupName = "ConstosoRG";
   const cloudServiceName = "{cs-name}";
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.cloudServiceRoles.get(
     roleName,
     resourceGroupName,
@@ -29,10 +31,5 @@ async function getCloudServiceRole() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await getCloudServiceRole();
-}
-main();
+
+getCloudServiceRole().catch(console.error);

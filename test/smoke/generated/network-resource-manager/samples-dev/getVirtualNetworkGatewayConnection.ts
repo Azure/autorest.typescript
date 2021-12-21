@@ -12,25 +12,22 @@
  * This sample demonstrates how to Gets the specified virtual network gateway connection by resource group.
  *
  * @summary Gets the specified virtual network gateway connection by resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkGatewayConnectionGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualNetworkGatewayConnections.get
 async function getVirtualNetworkGatewayConnection() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualNetworkGatewayConnectionName = "connS2S";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworkGatewayConnections.get(
     resourceGroupName,
     virtualNetworkGatewayConnectionName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getVirtualNetworkGatewayConnection();
-}
-main();
+
+getVirtualNetworkGatewayConnection().catch(console.error);

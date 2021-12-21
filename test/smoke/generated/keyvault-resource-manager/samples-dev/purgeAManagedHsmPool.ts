@@ -12,25 +12,22 @@
  * This sample demonstrates how to Permanently deletes the specified managed HSM.
  *
  * @summary Permanently deletes the specified managed HSM.
+ * x-ms-original-file: specification/keyvault/resource-manager/Microsoft.KeyVault/preview/2021-06-01-preview/examples/DeletedManagedHsm_Purge.json
  */
 import { KeyVaultManagementClient } from "@msinternal/keyvault-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: KeyVaultManagementClient;
-//managedHsms.beginPurgeDeletedAndWait
 async function purgeAManagedHsmPool() {
+  const subscriptionId = "00000000-0000-0000-0000-000000000000";
   const name = "hsm1";
   const location = "westus";
+  const credential = new DefaultAzureCredential();
+  const client = new KeyVaultManagementClient(credential, subscriptionId);
   const result = await client.managedHsms.beginPurgeDeletedAndWait(
     name,
     location
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-0000-0000-0000-000000000000";
-  client = new KeyVaultManagementClient(credential, subscriptionId);
-  await purgeAManagedHsmPool();
-}
-main();
+
+purgeAManagedHsmPool().catch(console.error);

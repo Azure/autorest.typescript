@@ -12,12 +12,11 @@
  * This sample demonstrates how to Deletes an instance pool
  *
  * @summary Deletes an instance pool
- * x-ms-original-file:
+ * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/DeleteInstancePool.json
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: SqlManagementClient;
 async function deleteAnInstancePool() {
   const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "group1";

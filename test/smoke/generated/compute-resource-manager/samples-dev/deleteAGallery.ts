@@ -12,25 +12,22 @@
  * This sample demonstrates how to Delete a Shared Image Gallery.
  *
  * @summary Delete a Shared Image Gallery.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/DeleteAGallery.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//galleries.beginDeleteAndWait
 async function deleteAGallery() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const galleryName = "myGalleryName";
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.galleries.beginDeleteAndWait(
     resourceGroupName,
     galleryName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await deleteAGallery();
-}
-main();
+
+deleteAGallery().catch(console.error);

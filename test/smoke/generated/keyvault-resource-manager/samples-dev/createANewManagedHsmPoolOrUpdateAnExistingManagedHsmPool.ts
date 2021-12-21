@@ -12,6 +12,7 @@
  * This sample demonstrates how to Create or update a managed HSM Pool in the specified subscription.
  *
  * @summary Create or update a managed HSM Pool in the specified subscription.
+ * x-ms-original-file: specification/keyvault/resource-manager/Microsoft.KeyVault/preview/2021-06-01-preview/examples/ManagedHsm_CreateOrUpdate.json
  */
 import {
   ManagedHsm,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/keyvault-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: KeyVaultManagementClient;
-//managedHsms.beginCreateOrUpdateAndWait
 async function createANewManagedHsmPoolOrUpdateAnExistingManagedHsmPool() {
+  const subscriptionId = "00000000-0000-0000-0000-000000000000";
   const resourceGroupName = "hsm-group";
   const name = "hsm1";
   const parameters: ManagedHsm = {
@@ -36,6 +36,8 @@ async function createANewManagedHsmPoolOrUpdateAnExistingManagedHsmPool() {
     sku: { name: "Standard_B1", family: "B" },
     tags: { dept: "hsm", environment: "dogfood" }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new KeyVaultManagementClient(credential, subscriptionId);
   const result = await client.managedHsms.beginCreateOrUpdateAndWait(
     resourceGroupName,
     name,
@@ -43,10 +45,5 @@ async function createANewManagedHsmPoolOrUpdateAnExistingManagedHsmPool() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-0000-0000-0000-000000000000";
-  client = new KeyVaultManagementClient(credential, subscriptionId);
-  await createANewManagedHsmPoolOrUpdateAnExistingManagedHsmPool();
-}
-main();
+
+createANewManagedHsmPoolOrUpdateAnExistingManagedHsmPool().catch(console.error);

@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates a peering in the specified ExpressRouteCrossConnection.
  *
  * @summary Creates or updates a peering in the specified ExpressRouteCrossConnection.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ExpressRouteCrossConnectionBgpPeeringCreate.json
  */
 import {
   ExpressRouteCrossConnectionPeering,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//expressRouteCrossConnectionPeerings.beginCreateOrUpdateAndWait
 async function expressRouteCrossConnectionBgpPeeringCreate() {
+  const subscriptionId = "subid";
   const resourceGroupName = "CrossConnection-SiliconValley";
   const crossConnectionName = "<circuitServiceKey>";
   const peeringName = "AzurePrivatePeering";
@@ -35,6 +35,8 @@ async function expressRouteCrossConnectionBgpPeeringCreate() {
     secondaryPeerAddressPrefix: "192.168.18.252/30",
     vlanId: 200
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.expressRouteCrossConnectionPeerings.beginCreateOrUpdateAndWait(
     resourceGroupName,
     crossConnectionName,
@@ -43,10 +45,5 @@ async function expressRouteCrossConnectionBgpPeeringCreate() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await expressRouteCrossConnectionBgpPeeringCreate();
-}
-main();
+
+expressRouteCrossConnectionBgpPeeringCreate().catch(console.error);

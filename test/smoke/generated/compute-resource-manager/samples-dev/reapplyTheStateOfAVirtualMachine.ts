@@ -12,25 +12,22 @@
  * This sample demonstrates how to The operation to reapply a virtual machine's state.
  *
  * @summary The operation to reapply a virtual machine's state.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/ReapplyVirtualMachine.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//virtualMachines.beginReapplyAndWait
 async function reapplyTheStateOfAVirtualMachine() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "ResourceGroup";
   const vmName = "VMName";
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.virtualMachines.beginReapplyAndWait(
     resourceGroupName,
     vmName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await reapplyTheStateOfAVirtualMachine();
-}
-main();
+
+reapplyTheStateOfAVirtualMachine().catch(console.error);

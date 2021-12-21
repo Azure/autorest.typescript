@@ -12,6 +12,7 @@
  * This sample demonstrates how to The operation to create or update a capacity reservation group. When updating a capacity reservation group, only tags may be modified. Please refer to https://aka.ms/CapacityReservation for more details.
  *
  * @summary The operation to create or update a capacity reservation group. When updating a capacity reservation group, only tags may be modified. Please refer to https://aka.ms/CapacityReservation for more details.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateOrUpdateACapacityReservationGroup.json
  */
 import {
   CapacityReservationGroup,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//capacityReservationGroups.createOrUpdate
 async function createOrUpdateACapacityReservationGroup() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const capacityReservationGroupName = "myCapacityReservationGroup";
   const parameters: CapacityReservationGroup = {
@@ -29,6 +29,8 @@ async function createOrUpdateACapacityReservationGroup() {
     tags: { department: "finance" },
     zones: ["1", "2"]
   };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.capacityReservationGroups.createOrUpdate(
     resourceGroupName,
     capacityReservationGroupName,
@@ -36,10 +38,5 @@ async function createOrUpdateACapacityReservationGroup() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await createOrUpdateACapacityReservationGroup();
-}
-main();
+
+createOrUpdateACapacityReservationGroup().catch(console.error);

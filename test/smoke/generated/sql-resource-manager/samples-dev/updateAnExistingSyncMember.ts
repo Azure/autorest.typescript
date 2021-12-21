@@ -12,7 +12,7 @@
  * This sample demonstrates how to Updates an existing sync member.
  *
  * @summary Updates an existing sync member.
- * x-ms-original-file:
+ * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/SyncMemberPatch.json
  */
 import {
   SyncMember,
@@ -20,7 +20,6 @@ import {
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: SqlManagementClient;
 async function updateAnExistingSyncMember() {
   const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "syncgroupcrud-65440";

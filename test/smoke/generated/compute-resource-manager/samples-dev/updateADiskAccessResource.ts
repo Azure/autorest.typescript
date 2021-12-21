@@ -12,6 +12,7 @@
  * This sample demonstrates how to Updates (patches) a disk access resource.
  *
  * @summary Updates (patches) a disk access resource.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/UpdateADiskAccess.json
  */
 import {
   DiskAccessUpdate,
@@ -19,14 +20,15 @@ import {
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//diskAccesses.beginUpdateAndWait
 async function updateADiskAccessResource() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const diskAccessName = "myDiskAccess";
   const diskAccess: DiskAccessUpdate = {
     tags: { department: "Development", project: "PrivateEndpoints" }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.diskAccesses.beginUpdateAndWait(
     resourceGroupName,
     diskAccessName,
@@ -34,10 +36,5 @@ async function updateADiskAccessResource() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await updateADiskAccessResource();
-}
-main();
+
+updateADiskAccessResource().catch(console.error);

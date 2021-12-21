@@ -12,16 +12,18 @@
  * This sample demonstrates how to Gets the specified virtual network peering.
  *
  * @summary Gets the specified virtual network peering.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkPeeringGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualNetworkPeerings.get
 async function getPeering() {
+  const subscriptionId = "subid";
   const resourceGroupName = "peerTest";
   const virtualNetworkName = "vnet1";
   const virtualNetworkPeeringName = "peer";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworkPeerings.get(
     resourceGroupName,
     virtualNetworkName,
@@ -29,10 +31,5 @@ async function getPeering() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getPeering();
-}
-main();
+
+getPeering().catch(console.error);

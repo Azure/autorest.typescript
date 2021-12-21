@@ -12,12 +12,11 @@
  * This sample demonstrates how to Gets a long term retention backup for a managed database.
  *
  * @summary Gets a long term retention backup for a managed database.
- * x-ms-original-file:
+ * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ManagedInstanceLongTermRetentionBackupGet.json
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: SqlManagementClient;
 async function getTheLongTermRetentionBackupOfAManagedDatabase() {
   const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const locationName = "japaneast";

@@ -12,16 +12,18 @@
  * This sample demonstrates how to Deletes the specified private endpoint connection associated with the storage account.
  *
  * @summary Deletes the specified private endpoint connection associated with the storage account.
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountDeletePrivateEndpointConnection.json
  */
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//privateEndpointConnections.delete
 async function storageAccountDeletePrivateEndpointConnection() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "res6977";
   const accountName = "sto2527";
   const privateEndpointConnectionName = "{privateEndpointConnectionName}";
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.privateEndpointConnections.delete(
     resourceGroupName,
     accountName,
@@ -29,10 +31,5 @@ async function storageAccountDeletePrivateEndpointConnection() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await storageAccountDeletePrivateEndpointConnection();
-}
-main();
+
+storageAccountDeletePrivateEndpointConnection().catch(console.error);

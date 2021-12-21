@@ -12,6 +12,7 @@
  * This sample demonstrates how to Description for Gets all legal agreements that user needs to accept before purchasing a domain.
  *
  * @summary Description for Gets all legal agreements that user needs to accept before purchasing a domain.
+ * x-ms-original-file: specification/web/resource-manager/Microsoft.DomainRegistration/stable/2021-02-01/examples/ListTopLevelDomainAgreements.json
  */
 import {
   TopLevelDomainAgreementOption,
@@ -19,14 +20,15 @@ import {
 } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: WebSiteManagementClient;
-//topLevelDomains.listAgreements
 async function listTopLevelDomainAgreements() {
+  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const name = "in";
   const agreementOption: TopLevelDomainAgreementOption = {
     forTransfer: false,
     includePrivacy: true
   };
+  const credential = new DefaultAzureCredential();
+  const client = new WebSiteManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.topLevelDomains.listAgreements(
     name,
@@ -36,10 +38,5 @@ async function listTopLevelDomainAgreements() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
-  client = new WebSiteManagementClient(credential, subscriptionId);
-  await listTopLevelDomainAgreements();
-}
-main();
+
+listTopLevelDomainAgreements().catch(console.error);

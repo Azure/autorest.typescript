@@ -12,21 +12,18 @@
  * This sample demonstrates how to Description for Get details of a top-level domain.
  *
  * @summary Description for Get details of a top-level domain.
+ * x-ms-original-file: specification/web/resource-manager/Microsoft.DomainRegistration/stable/2021-02-01/examples/GetTopLevelDomain.json
  */
 import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: WebSiteManagementClient;
-//topLevelDomains.get
 async function getTopLevelDomain() {
+  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const name = "com";
+  const credential = new DefaultAzureCredential();
+  const client = new WebSiteManagementClient(credential, subscriptionId);
   const result = await client.topLevelDomains.get(name);
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
-  client = new WebSiteManagementClient(credential, subscriptionId);
-  await getTopLevelDomain();
-}
-main();
+
+getTopLevelDomain().catch(console.error);

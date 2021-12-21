@@ -12,14 +12,16 @@
  * This sample demonstrates how to Gets a list of service tag information resources with pagination.
  *
  * @summary Gets a list of service tag information resources with pagination.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ServiceTagInformationListResult.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//serviceTagInformationOperations.list
 async function getListOfServiceTags() {
+  const subscriptionId = "subid";
   const location = "westeurope";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.serviceTagInformationOperations.list(
     location
@@ -28,10 +30,5 @@ async function getListOfServiceTags() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getListOfServiceTags();
-}
-main();
+
+getListOfServiceTags().catch(console.error);

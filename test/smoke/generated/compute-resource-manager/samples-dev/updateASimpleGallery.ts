@@ -12,6 +12,7 @@
  * This sample demonstrates how to Update a Shared Image Gallery.
  *
  * @summary Update a Shared Image Gallery.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/UpdateASimpleGallery.json
  */
 import {
   GalleryUpdate,
@@ -19,14 +20,15 @@ import {
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//galleries.beginUpdateAndWait
 async function updateASimpleGallery() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const galleryName = "myGalleryName";
   const gallery: GalleryUpdate = {
     description: "This is the gallery description."
   };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.galleries.beginUpdateAndWait(
     resourceGroupName,
     galleryName,
@@ -34,10 +36,5 @@ async function updateASimpleGallery() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await updateASimpleGallery();
-}
-main();
+
+updateASimpleGallery().catch(console.error);

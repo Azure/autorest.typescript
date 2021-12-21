@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates a ExpressRoute gateway in a specified resource group.
  *
  * @summary Creates or updates a ExpressRoute gateway in a specified resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ExpressRouteGatewayCreate.json
  */
 import {
   ExpressRouteGateway,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//expressRouteGateways.beginCreateOrUpdateAndWait
 async function expressRouteGatewayCreate() {
+  const subscriptionId = "subid";
   const resourceGroupName = "resourceGroupName";
   const expressRouteGatewayName = "gateway-2";
   const putExpressRouteGatewayParameters: ExpressRouteGateway = {
@@ -32,6 +32,8 @@ async function expressRouteGatewayCreate() {
         "/subscriptions/subid/resourceGroups/resourceGroupId/providers/Microsoft.Network/virtualHubs/virtualHubName"
     }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.expressRouteGateways.beginCreateOrUpdateAndWait(
     resourceGroupName,
     expressRouteGatewayName,
@@ -39,10 +41,5 @@ async function expressRouteGatewayCreate() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await expressRouteGatewayCreate();
-}
-main();
+
+expressRouteGatewayCreate().catch(console.error);

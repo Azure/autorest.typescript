@@ -12,25 +12,22 @@
  * This sample demonstrates how to Lists the access keys or Kerberos keys (if active directory enabled) for the specified storage account.
  *
  * @summary Lists the access keys or Kerberos keys (if active directory enabled) for the specified storage account.
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountListKeys.json
  */
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//storageAccounts.listKeys
 async function storageAccountListKeys() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "res418";
   const accountName = "sto2220";
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.storageAccounts.listKeys(
     resourceGroupName,
     accountName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await storageAccountListKeys();
-}
-main();
+
+storageAccountListKeys().catch(console.error);

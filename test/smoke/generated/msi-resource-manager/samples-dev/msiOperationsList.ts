@@ -12,23 +12,20 @@
  * This sample demonstrates how to Lists available operations for the Microsoft.ManagedIdentity provider
  *
  * @summary Lists available operations for the Microsoft.ManagedIdentity provider
+ * x-ms-original-file: specification/msi/resource-manager/Microsoft.ManagedIdentity/stable/2018-11-30/examples/MsiOperationsList.json
  */
 import { ManagedServiceIdentityClient } from "@msinternal/msi-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ManagedServiceIdentityClient;
-//operations.list
 async function msiOperationsList() {
+  const subscriptionId = "00000000-0000-0000-0000-000000000000";
+  const credential = new DefaultAzureCredential();
+  const client = new ManagedServiceIdentityClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.operations.list()) {
     resArray.push(item);
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-0000-0000-0000-000000000000";
-  client = new ManagedServiceIdentityClient(credential, subscriptionId);
-  await msiOperationsList();
-}
-main();
+
+msiOperationsList().catch(console.error);

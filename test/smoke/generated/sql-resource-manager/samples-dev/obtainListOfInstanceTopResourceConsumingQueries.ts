@@ -12,12 +12,11 @@
  * This sample demonstrates how to Get top resource consuming queries of a managed instance.
  *
  * @summary Get top resource consuming queries of a managed instance.
- * x-ms-original-file:
+ * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ManagedInstanceTopQueriesList.json
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: SqlManagementClient;
 async function obtainListOfInstanceTopResourceConsumingQueries() {
   const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "sqlcrudtest-7398";

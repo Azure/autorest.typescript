@@ -12,14 +12,16 @@
  * This sample demonstrates how to The List VirtualNetworkGatewayConnections operation retrieves all the virtual network gateways connections created.
  *
  * @summary The List VirtualNetworkGatewayConnections operation retrieves all the virtual network gateways connections created.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkGatewayConnectionsList.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualNetworkGatewayConnections.list
 async function listVirtualNetworkGatewayConnectionsinResourceGroup() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.virtualNetworkGatewayConnections.list(
     resourceGroupName
@@ -28,10 +30,5 @@ async function listVirtualNetworkGatewayConnectionsinResourceGroup() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await listVirtualNetworkGatewayConnectionsinResourceGroup();
-}
-main();
+
+listVirtualNetworkGatewayConnectionsinResourceGroup().catch(console.error);

@@ -12,25 +12,22 @@
  * This sample demonstrates how to Deletes the specified ipGroups.
  *
  * @summary Deletes the specified ipGroups.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/IpGroupsDelete.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//ipGroups.beginDeleteAndWait
 async function deleteIPGroups() {
+  const subscriptionId = "subId";
   const resourceGroupName = "myResourceGroup";
   const ipGroupsName = "ipGroups1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.ipGroups.beginDeleteAndWait(
     resourceGroupName,
     ipGroupsName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subId";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await deleteIPGroups();
-}
-main();
+
+deleteIPGroups().catch(console.error);

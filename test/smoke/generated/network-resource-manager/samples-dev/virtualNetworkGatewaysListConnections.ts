@@ -12,15 +12,17 @@
  * This sample demonstrates how to Gets all the connections in a virtual network gateway.
  *
  * @summary Gets all the connections in a virtual network gateway.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkGatewaysListConnections.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualNetworkGateways.listConnections
 async function virtualNetworkGatewaysListConnections() {
+  const subscriptionId = "subid";
   const resourceGroupName = "testrg";
   const virtualNetworkGatewayName = "test-vpn-gateway-1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.virtualNetworkGateways.listConnections(
     resourceGroupName,
@@ -30,10 +32,5 @@ async function virtualNetworkGatewaysListConnections() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await virtualNetworkGatewaysListConnections();
-}
-main();
+
+virtualNetworkGatewaysListConnections().catch(console.error);

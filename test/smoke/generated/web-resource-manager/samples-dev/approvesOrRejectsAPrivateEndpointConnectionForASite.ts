@@ -12,6 +12,7 @@
  * This sample demonstrates how to Description for Approves or rejects a private endpoint connection
  *
  * @summary Description for Approves or rejects a private endpoint connection
+ * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/ApproveRejectSitePrivateEndpointConnectionSlot.json
  */
 import {
   PrivateLinkConnectionApprovalRequestResource,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: WebSiteManagementClient;
-//webApps.beginApproveOrRejectPrivateEndpointConnectionSlotAndWait
 async function approvesOrRejectsAPrivateEndpointConnectionForASite() {
+  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const resourceGroupName = "rg";
   const name = "testSite";
   const privateEndpointConnectionName = "connection";
@@ -33,6 +33,8 @@ async function approvesOrRejectsAPrivateEndpointConnectionForASite() {
       status: "Approved"
     }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new WebSiteManagementClient(credential, subscriptionId);
   const result = await client.webApps.beginApproveOrRejectPrivateEndpointConnectionSlotAndWait(
     resourceGroupName,
     name,
@@ -42,10 +44,5 @@ async function approvesOrRejectsAPrivateEndpointConnectionForASite() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
-  client = new WebSiteManagementClient(credential, subscriptionId);
-  await approvesOrRejectsAPrivateEndpointConnectionForASite();
-}
-main();
+
+approvesOrRejectsAPrivateEndpointConnectionForASite().catch(console.error);

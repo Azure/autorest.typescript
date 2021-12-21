@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates a snapshot.
  *
  * @summary Creates or updates a snapshot.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/CreateASnapshotByImportingAnUnmanagedBlobFromADifferentSubscription.json
  */
 import {
   Snapshot,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//snapshots.beginCreateOrUpdateAndWait
 async function createASnapshotByImportingAnUnmanagedBlobFromADifferentSubscription() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const snapshotName = "mySnapshot1";
   const snapshot: Snapshot = {
@@ -34,6 +34,8 @@ async function createASnapshotByImportingAnUnmanagedBlobFromADifferentSubscripti
     },
     location: "West US"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.snapshots.beginCreateOrUpdateAndWait(
     resourceGroupName,
     snapshotName,
@@ -41,10 +43,7 @@ async function createASnapshotByImportingAnUnmanagedBlobFromADifferentSubscripti
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await createASnapshotByImportingAnUnmanagedBlobFromADifferentSubscription();
-}
-main();
+
+createASnapshotByImportingAnUnmanagedBlobFromADifferentSubscription().catch(
+  console.error
+);

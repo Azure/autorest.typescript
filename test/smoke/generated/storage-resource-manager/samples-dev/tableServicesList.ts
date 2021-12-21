@@ -12,25 +12,22 @@
  * This sample demonstrates how to List all table services for the storage account.
  *
  * @summary List all table services for the storage account.
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/TableServicesList.json
  */
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//tableServices.list
 async function tableServicesList() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "res9290";
   const accountName = "sto1590";
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.tableServices.list(
     resourceGroupName,
     accountName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await tableServicesList();
-}
-main();
+
+tableServicesList().catch(console.error);

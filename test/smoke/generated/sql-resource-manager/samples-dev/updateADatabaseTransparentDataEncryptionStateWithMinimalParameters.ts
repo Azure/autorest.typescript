@@ -12,7 +12,7 @@
  * This sample demonstrates how to Updates a logical database's transparent data encryption configuration.
  *
  * @summary Updates a logical database's transparent data encryption configuration.
- * x-ms-original-file:
+ * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-02-01-preview/examples/TransparentDataEncryptionUpdate.json
  */
 import {
   LogicalDatabaseTransparentDataEncryption,
@@ -20,7 +20,6 @@ import {
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: SqlManagementClient;
 async function updateADatabaseTransparentDataEncryptionStateWithMinimalParameters() {
   const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "securitytde-42-rg";

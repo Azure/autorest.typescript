@@ -12,6 +12,7 @@
  * This sample demonstrates how to List SAS credentials of a storage account.
  *
  * @summary List SAS credentials of a storage account.
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountListAccountSAS.json
  */
 import {
   AccountSasParameters,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//storageAccounts.listAccountSAS
 async function storageAccountListAccountSas() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "res7985";
   const accountName = "sto8588";
   const parameters: AccountSasParameters = {
@@ -33,6 +33,8 @@ async function storageAccountListAccountSas() {
     services: "b",
     sharedAccessStartTime: new Date("2017-05-24T10:42:03.1567373Z")
   };
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.storageAccounts.listAccountSAS(
     resourceGroupName,
     accountName,
@@ -40,10 +42,5 @@ async function storageAccountListAccountSas() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await storageAccountListAccountSas();
-}
-main();
+
+storageAccountListAccountSas().catch(console.error);

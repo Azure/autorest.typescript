@@ -12,14 +12,16 @@
  * This sample demonstrates how to Retrieves all the ExpressRouteCrossConnections in a resource group.
  *
  * @summary Retrieves all the ExpressRouteCrossConnections in a resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ExpressRouteCrossConnectionListByResourceGroup.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//expressRouteCrossConnections.listByResourceGroup
 async function expressRouteCrossConnectionListByResourceGroup() {
+  const subscriptionId = "subid";
   const resourceGroupName = "CrossConnection-SiliconValley";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.expressRouteCrossConnections.listByResourceGroup(
     resourceGroupName
@@ -28,10 +30,5 @@ async function expressRouteCrossConnectionListByResourceGroup() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await expressRouteCrossConnectionListByResourceGroup();
-}
-main();
+
+expressRouteCrossConnectionListByResourceGroup().catch(console.error);

@@ -12,16 +12,18 @@
  * This sample demonstrates how to The operation to delete the run command.
  *
  * @summary The operation to delete the run command.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/runCommands/DeleteRunCommand.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//virtualMachineRunCommands.beginDeleteAndWait
 async function deleteARunCommand() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const vmName = "myVM";
   const runCommandName = "myRunCommand";
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.virtualMachineRunCommands.beginDeleteAndWait(
     resourceGroupName,
     vmName,
@@ -29,10 +31,5 @@ async function deleteARunCommand() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await deleteARunCommand();
-}
-main();
+
+deleteARunCommand().catch(console.error);

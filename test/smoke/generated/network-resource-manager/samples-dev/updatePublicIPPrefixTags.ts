@@ -12,6 +12,7 @@
  * This sample demonstrates how to Updates public IP prefix tags.
  *
  * @summary Updates public IP prefix tags.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/PublicIpPrefixUpdateTags.json
  */
 import {
   TagsObject,
@@ -19,12 +20,13 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//publicIPPrefixes.updateTags
 async function updatePublicIPPrefixTags() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const publicIpPrefixName = "test-ipprefix";
   const parameters: TagsObject = { tags: { tag1: "value1", tag2: "value2" } };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.publicIPPrefixes.updateTags(
     resourceGroupName,
     publicIpPrefixName,
@@ -32,10 +34,5 @@ async function updatePublicIPPrefixTags() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await updatePublicIPPrefixTags();
-}
-main();
+
+updatePublicIPPrefixTags().catch(console.error);

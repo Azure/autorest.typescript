@@ -12,25 +12,22 @@
  * This sample demonstrates how to Gets a xml format representation for supported vpn devices.
  *
  * @summary Gets a xml format representation for supported vpn devices.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkGatewaySupportedVpnDevice.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualNetworkGateways.supportedVpnDevices
 async function listVirtualNetworkGatewaySupportedVpnDevices() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualNetworkGatewayName = "vpngw";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworkGateways.supportedVpnDevices(
     resourceGroupName,
     virtualNetworkGatewayName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await listVirtualNetworkGatewaySupportedVpnDevices();
-}
-main();
+
+listVirtualNetworkGatewaySupportedVpnDevices().catch(console.error);

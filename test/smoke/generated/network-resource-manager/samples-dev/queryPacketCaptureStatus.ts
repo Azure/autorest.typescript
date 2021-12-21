@@ -12,16 +12,18 @@
  * This sample demonstrates how to Query the status of a running packet capture session.
  *
  * @summary Query the status of a running packet capture session.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkWatcherPacketCaptureQueryStatus.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//packetCaptures.beginGetStatusAndWait
 async function queryPacketCaptureStatus() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const networkWatcherName = "nw1";
   const packetCaptureName = "pc1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.packetCaptures.beginGetStatusAndWait(
     resourceGroupName,
     networkWatcherName,
@@ -29,10 +31,5 @@ async function queryPacketCaptureStatus() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await queryPacketCaptureStatus();
-}
-main();
+
+queryPacketCaptureStatus().catch(console.error);

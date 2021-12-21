@@ -12,15 +12,17 @@
  * This sample demonstrates how to Gets all subnets in a virtual network.
  *
  * @summary Gets all subnets in a virtual network.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/SubnetList.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//subnets.list
 async function listSubnets() {
+  const subscriptionId = "subid";
   const resourceGroupName = "subnet-test";
   const virtualNetworkName = "vnetname";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.subnets.list(
     resourceGroupName,
@@ -30,10 +32,5 @@ async function listSubnets() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await listSubnets();
-}
-main();
+
+listSubnets().catch(console.error);

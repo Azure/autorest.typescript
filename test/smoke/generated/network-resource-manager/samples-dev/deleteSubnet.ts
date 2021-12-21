@@ -12,16 +12,18 @@
  * This sample demonstrates how to Deletes the specified subnet.
  *
  * @summary Deletes the specified subnet.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/SubnetDelete.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//subnets.beginDeleteAndWait
 async function deleteSubnet() {
+  const subscriptionId = "subid";
   const resourceGroupName = "subnet-test";
   const virtualNetworkName = "vnetname";
   const subnetName = "subnet1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.subnets.beginDeleteAndWait(
     resourceGroupName,
     virtualNetworkName,
@@ -29,10 +31,5 @@ async function deleteSubnet() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await deleteSubnet();
-}
-main();
+
+deleteSubnet().catch(console.error);

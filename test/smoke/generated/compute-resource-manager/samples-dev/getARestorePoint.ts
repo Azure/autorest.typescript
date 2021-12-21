@@ -12,16 +12,18 @@
  * This sample demonstrates how to The operation to get the restore point.
  *
  * @summary The operation to get the restore point.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/GetRestorePoint.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//restorePoints.get
 async function getARestorePoint() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const restorePointCollectionName = "rpcName";
   const restorePointName = "rpName";
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.restorePoints.get(
     resourceGroupName,
     restorePointCollectionName,
@@ -29,10 +31,5 @@ async function getARestorePoint() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await getARestorePoint();
-}
-main();
+
+getARestorePoint().catch(console.error);

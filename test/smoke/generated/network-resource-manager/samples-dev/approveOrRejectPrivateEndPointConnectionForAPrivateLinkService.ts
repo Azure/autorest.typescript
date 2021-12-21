@@ -12,6 +12,7 @@
  * This sample demonstrates how to Approve or reject private end point connection for a private link service in a subscription.
  *
  * @summary Approve or reject private end point connection for a private link service in a subscription.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/PrivateLinkServiceUpdatePrivateEndpointConnection.json
  */
 import {
   PrivateEndpointConnection,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//privateLinkServices.updatePrivateEndpointConnection
 async function approveOrRejectPrivateEndPointConnectionForAPrivateLinkService() {
+  const subscriptionId = "subId";
   const resourceGroupName = "rg1";
   const serviceName = "testPls";
   const peConnectionName = "testPlePeConnection";
@@ -36,6 +36,8 @@ async function approveOrRejectPrivateEndPointConnectionForAPrivateLinkService() 
       status: "Approved"
     }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.privateLinkServices.updatePrivateEndpointConnection(
     resourceGroupName,
     serviceName,
@@ -44,10 +46,7 @@ async function approveOrRejectPrivateEndPointConnectionForAPrivateLinkService() 
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subId";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await approveOrRejectPrivateEndPointConnectionForAPrivateLinkService();
-}
-main();
+
+approveOrRejectPrivateEndPointConnectionForAPrivateLinkService().catch(
+  console.error
+);

@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates a static or dynamic public IP address.
  *
  * @summary Creates or updates a static or dynamic public IP address.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/PublicIpAddressCreateDefaults.json
  */
 import {
   PublicIPAddress,
@@ -19,12 +20,13 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//publicIPAddresses.beginCreateOrUpdateAndWait
 async function createPublicIPAddressDefaults() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const publicIpAddressName = "test-ip";
   const parameters: PublicIPAddress = { location: "eastus" };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.publicIPAddresses.beginCreateOrUpdateAndWait(
     resourceGroupName,
     publicIpAddressName,
@@ -32,10 +34,5 @@ async function createPublicIPAddressDefaults() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await createPublicIPAddressDefaults();
-}
-main();
+
+createPublicIPAddressDefaults().catch(console.error);

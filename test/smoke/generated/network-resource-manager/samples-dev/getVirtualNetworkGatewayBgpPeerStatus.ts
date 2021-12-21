@@ -12,25 +12,22 @@
  * This sample demonstrates how to The GetBgpPeerStatus operation retrieves the status of all BGP peers.
  *
  * @summary The GetBgpPeerStatus operation retrieves the status of all BGP peers.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkGatewayGetBGPPeerStatus.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualNetworkGateways.beginGetBgpPeerStatusAndWait
 async function getVirtualNetworkGatewayBgpPeerStatus() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualNetworkGatewayName = "vpngw";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworkGateways.beginGetBgpPeerStatusAndWait(
     resourceGroupName,
     virtualNetworkGatewayName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getVirtualNetworkGatewayBgpPeerStatus();
-}
-main();
+
+getVirtualNetworkGatewayBgpPeerStatus().catch(console.error);

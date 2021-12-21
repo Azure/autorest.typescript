@@ -12,6 +12,7 @@
  * This sample demonstrates how to Deletes role instances in a cloud service.
  *
  * @summary Deletes role instances in a cloud service.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-03-01/examples/DeleteCloudServiceRoleInstances.json
  */
 import {
   RoleInstances,
@@ -19,15 +20,16 @@ import {
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//cloudServices.beginDeleteInstancesAndWait
 async function deleteCloudServiceRoleInstances() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "ConstosoRG";
   const cloudServiceName = "{cs-name}";
   const parameters: RoleInstances = {
     roleInstances: ["ContosoFrontend_IN_0", "ContosoBackend_IN_1"]
   };
   const options = { parameters: parameters };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.cloudServices.beginDeleteInstancesAndWait(
     resourceGroupName,
     cloudServiceName,
@@ -35,10 +37,5 @@ async function deleteCloudServiceRoleInstances() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await deleteCloudServiceRoleInstances();
-}
-main();
+
+deleteCloudServiceRoleInstances().catch(console.error);

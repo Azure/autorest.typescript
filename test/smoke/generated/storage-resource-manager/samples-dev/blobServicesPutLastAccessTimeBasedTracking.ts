@@ -12,6 +12,7 @@
  * This sample demonstrates how to Sets the properties of a storage account’s Blob service, including properties for Storage Analytics and CORS (Cross-Origin Resource Sharing) rules.
  *
  * @summary Sets the properties of a storage account’s Blob service, including properties for Storage Analytics and CORS (Cross-Origin Resource Sharing) rules.
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/BlobServicesPutLastAccessTimeBasedTracking.json
  */
 import {
   BlobServiceProperties,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//blobServices.setServiceProperties
 async function blobServicesPutLastAccessTimeBasedTracking() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "res4410";
   const accountName = "sto8607";
   const parameters: BlobServiceProperties = {
@@ -32,6 +32,8 @@ async function blobServicesPutLastAccessTimeBasedTracking() {
       trackingGranularityInDays: 1
     }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.blobServices.setServiceProperties(
     resourceGroupName,
     accountName,
@@ -39,10 +41,5 @@ async function blobServicesPutLastAccessTimeBasedTracking() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await blobServicesPutLastAccessTimeBasedTracking();
-}
-main();
+
+blobServicesPutLastAccessTimeBasedTracking().catch(console.error);

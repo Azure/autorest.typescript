@@ -12,16 +12,18 @@
  * This sample demonstrates how to Deletes the specified private dns zone group.
  *
  * @summary Deletes the specified private dns zone group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/PrivateEndpointDnsZoneGroupDelete.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//privateDnsZoneGroups.beginDeleteAndWait
 async function deletePrivateDnsZoneGroup() {
+  const subscriptionId = "subId";
   const resourceGroupName = "rg1";
   const privateEndpointName = "testPe";
   const privateDnsZoneGroupName = "testPdnsgroup";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.privateDnsZoneGroups.beginDeleteAndWait(
     resourceGroupName,
     privateEndpointName,
@@ -29,10 +31,5 @@ async function deletePrivateDnsZoneGroup() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subId";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await deletePrivateDnsZoneGroup();
-}
-main();
+
+deletePrivateDnsZoneGroup().catch(console.error);

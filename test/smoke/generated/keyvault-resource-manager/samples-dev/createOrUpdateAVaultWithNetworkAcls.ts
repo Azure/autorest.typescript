@@ -12,6 +12,7 @@
  * This sample demonstrates how to Create or update a key vault in the specified subscription.
  *
  * @summary Create or update a key vault in the specified subscription.
+ * x-ms-original-file: specification/keyvault/resource-manager/Microsoft.KeyVault/preview/2021-06-01-preview/examples/createVaultWithNetworkAcls.json
  */
 import {
   VaultCreateOrUpdateParameters,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/keyvault-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: KeyVaultManagementClient;
-//vaults.beginCreateOrUpdateAndWait
 async function createOrUpdateAVaultWithNetworkAcls() {
+  const subscriptionId = "00000000-0000-0000-0000-000000000000";
   const resourceGroupName = "sample-resource-group";
   const vaultName = "sample-vault";
   const parameters: VaultCreateOrUpdateParameters = {
@@ -45,6 +45,8 @@ async function createOrUpdateAVaultWithNetworkAcls() {
       tenantId: "00000000-0000-0000-0000-000000000000"
     }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new KeyVaultManagementClient(credential, subscriptionId);
   const result = await client.vaults.beginCreateOrUpdateAndWait(
     resourceGroupName,
     vaultName,
@@ -52,10 +54,5 @@ async function createOrUpdateAVaultWithNetworkAcls() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-0000-0000-0000-000000000000";
-  client = new KeyVaultManagementClient(credential, subscriptionId);
-  await createOrUpdateAVaultWithNetworkAcls();
-}
-main();
+
+createOrUpdateAVaultWithNetworkAcls().catch(console.error);

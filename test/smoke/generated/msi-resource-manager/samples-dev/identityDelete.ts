@@ -12,25 +12,22 @@
  * This sample demonstrates how to Deletes the identity.
  *
  * @summary Deletes the identity.
+ * x-ms-original-file: specification/msi/resource-manager/Microsoft.ManagedIdentity/stable/2018-11-30/examples/IdentityDelete.json
  */
 import { ManagedServiceIdentityClient } from "@msinternal/msi-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ManagedServiceIdentityClient;
-//userAssignedIdentities.delete
 async function identityDelete() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rgName";
   const resourceName = "resourceName";
+  const credential = new DefaultAzureCredential();
+  const client = new ManagedServiceIdentityClient(credential, subscriptionId);
   const result = await client.userAssignedIdentities.delete(
     resourceGroupName,
     resourceName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new ManagedServiceIdentityClient(credential, subscriptionId);
-  await identityDelete();
-}
-main();
+
+identityDelete().catch(console.error);

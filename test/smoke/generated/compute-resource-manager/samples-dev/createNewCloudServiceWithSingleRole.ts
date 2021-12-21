@@ -12,6 +12,7 @@
  * This sample demonstrates how to Create or update a cloud service. Please note some properties can be set only during cloud service creation.
  *
  * @summary Create or update a cloud service. Please note some properties can be set only during cloud service creation.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-03-01/examples/CreateCloudServiceWithSingleRole.json
  */
 import {
   CloudService,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//cloudServices.beginCreateOrUpdateAndWait
 async function createNewCloudServiceWithSingleRole() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "ConstosoRG";
   const cloudServiceName = "{cs-name}";
   const parameters: CloudService = {
@@ -61,6 +61,8 @@ async function createNewCloudServiceWithSingleRole() {
     }
   };
   const options = { parameters: parameters };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.cloudServices.beginCreateOrUpdateAndWait(
     resourceGroupName,
     cloudServiceName,
@@ -68,10 +70,5 @@ async function createNewCloudServiceWithSingleRole() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await createNewCloudServiceWithSingleRole();
-}
-main();
+
+createNewCloudServiceWithSingleRole().catch(console.error);

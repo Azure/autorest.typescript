@@ -12,15 +12,17 @@
  * This sample demonstrates how to Gets all network interfaces in a cloud service.
  *
  * @summary Gets all network interfaces in a cloud service.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/CloudServiceNetworkInterfaceList.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//networkInterfaces.listCloudServiceNetworkInterfaces
 async function listCloudServiceNetworkInterfaces() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const cloudServiceName = "cs1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.networkInterfaces.listCloudServiceNetworkInterfaces(
     resourceGroupName,
@@ -30,10 +32,5 @@ async function listCloudServiceNetworkInterfaces() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await listCloudServiceNetworkInterfaces();
-}
-main();
+
+listCloudServiceNetworkInterfaces().catch(console.error);

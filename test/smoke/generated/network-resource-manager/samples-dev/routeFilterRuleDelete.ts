@@ -12,16 +12,18 @@
  * This sample demonstrates how to Deletes the specified rule from a route filter.
  *
  * @summary Deletes the specified rule from a route filter.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/RouteFilterRuleDelete.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//routeFilterRules.beginDeleteAndWait
 async function routeFilterRuleDelete() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const routeFilterName = "filterName";
   const ruleName = "ruleName";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.routeFilterRules.beginDeleteAndWait(
     resourceGroupName,
     routeFilterName,
@@ -29,10 +31,5 @@ async function routeFilterRuleDelete() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await routeFilterRuleDelete();
-}
-main();
+
+routeFilterRuleDelete().catch(console.error);

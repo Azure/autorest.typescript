@@ -12,16 +12,18 @@
  * This sample demonstrates how to Gets the specified private endpoint connection associated with the managed HSM Pool.
  *
  * @summary Gets the specified private endpoint connection associated with the managed HSM Pool.
+ * x-ms-original-file: specification/keyvault/resource-manager/Microsoft.KeyVault/preview/2021-06-01-preview/examples/ManagedHsm_getPrivateEndpointConnection.json
  */
 import { KeyVaultManagementClient } from "@msinternal/keyvault-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: KeyVaultManagementClient;
-//mhsmPrivateEndpointConnections.get
 async function managedHsmGetPrivateEndpointConnection() {
+  const subscriptionId = "00000000-0000-0000-0000-000000000000";
   const resourceGroupName = "sample-group";
   const name = "sample-mhsm";
   const privateEndpointConnectionName = "sample-pec";
+  const credential = new DefaultAzureCredential();
+  const client = new KeyVaultManagementClient(credential, subscriptionId);
   const result = await client.mhsmPrivateEndpointConnections.get(
     resourceGroupName,
     name,
@@ -29,10 +31,5 @@ async function managedHsmGetPrivateEndpointConnection() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-0000-0000-0000-000000000000";
-  client = new KeyVaultManagementClient(credential, subscriptionId);
-  await managedHsmGetPrivateEndpointConnection();
-}
-main();
+
+managedHsmGetPrivateEndpointConnection().catch(console.error);

@@ -12,12 +12,11 @@
  * This sample demonstrates how to Deletes a server communication link.
  *
  * @summary Deletes a server communication link.
- * x-ms-original-file:
+ * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/stable/2014-04-01/examples/ServerCommunicationLinkDelete.json
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: SqlManagementClient;
 async function deleteAServerCommunicationLink() {
   const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "sqlcrudtest-7398";

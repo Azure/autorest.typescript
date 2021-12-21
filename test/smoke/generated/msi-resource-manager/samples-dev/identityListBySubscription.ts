@@ -12,23 +12,20 @@
  * This sample demonstrates how to Lists all the userAssignedIdentities available under the specified subscription.
  *
  * @summary Lists all the userAssignedIdentities available under the specified subscription.
+ * x-ms-original-file: specification/msi/resource-manager/Microsoft.ManagedIdentity/stable/2018-11-30/examples/IdentityListBySubscription.json
  */
 import { ManagedServiceIdentityClient } from "@msinternal/msi-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ManagedServiceIdentityClient;
-//userAssignedIdentities.listBySubscription
 async function identityListBySubscription() {
+  const subscriptionId = "subid";
+  const credential = new DefaultAzureCredential();
+  const client = new ManagedServiceIdentityClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.userAssignedIdentities.listBySubscription()) {
     resArray.push(item);
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new ManagedServiceIdentityClient(credential, subscriptionId);
-  await identityListBySubscription();
-}
-main();
+
+identityListBySubscription().catch(console.error);

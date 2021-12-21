@@ -12,6 +12,7 @@
  * This sample demonstrates how to Generates VPN profile for P2S client of the P2SVpnGateway in the specified resource group.
  *
  * @summary Generates VPN profile for P2S client of the P2SVpnGateway in the specified resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/P2SVpnGatewayGenerateVpnProfile.json
  */
 import {
   P2SVpnProfileParameters,
@@ -19,14 +20,15 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//p2SVpnGateways.beginGenerateVpnProfileAndWait
 async function generateP2SVpnGatewayVpnprofile() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const gatewayName = "p2sVpnGateway1";
   const parameters: P2SVpnProfileParameters = {
     authenticationMethod: "EAPTLS"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.p2SVpnGateways.beginGenerateVpnProfileAndWait(
     resourceGroupName,
     gatewayName,
@@ -34,10 +36,5 @@ async function generateP2SVpnGatewayVpnprofile() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await generateP2SVpnGatewayVpnprofile();
-}
-main();
+
+generateP2SVpnGatewayVpnprofile().catch(console.error);

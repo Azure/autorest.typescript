@@ -12,25 +12,22 @@
  * This sample demonstrates how to Abort live Migration of storage account to enable Hns
  *
  * @summary Abort live Migration of storage account to enable Hns
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountAbortHierarchicalNamespaceMigration.json
  */
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//storageAccounts.beginAbortHierarchicalNamespaceMigrationAndWait
 async function storageAccountAbortHierarchicalNamespaceMigration() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "res4228";
   const accountName = "sto2434";
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.storageAccounts.beginAbortHierarchicalNamespaceMigrationAndWait(
     resourceGroupName,
     accountName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await storageAccountAbortHierarchicalNamespaceMigration();
-}
-main();
+
+storageAccountAbortHierarchicalNamespaceMigration().catch(console.error);

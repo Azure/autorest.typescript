@@ -12,14 +12,16 @@
  * This sample demonstrates how to Gets all IpAllocations in a resource group.
  *
  * @summary Gets all IpAllocations in a resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/IpAllocationListByResourceGroup.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//ipAllocations.listByResourceGroup
 async function listIPAllocationsInResourceGroup() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.ipAllocations.listByResourceGroup(
     resourceGroupName
@@ -28,10 +30,5 @@ async function listIPAllocationsInResourceGroup() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await listIPAllocationsInResourceGroup();
-}
-main();
+
+listIPAllocationsInResourceGroup().catch(console.error);

@@ -12,22 +12,19 @@
  * This sample demonstrates how to List all file services in storage accounts
  *
  * @summary List all file services in storage accounts
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/FileServicesList.json
  */
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//fileServices.list
 async function listFileServices() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "res9290";
   const accountName = "sto1590";
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.fileServices.list(resourceGroupName, accountName);
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await listFileServices();
-}
-main();
+
+listFileServices().catch(console.error);

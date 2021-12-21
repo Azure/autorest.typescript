@@ -12,15 +12,17 @@
  * This sample demonstrates how to Returns all of the resource types that can be linked to a Private Endpoint in this subscription in this region.
  *
  * @summary Returns all of the resource types that can be linked to a Private Endpoint in this subscription in this region.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/AvailablePrivateEndpointTypesResourceGroupGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//availablePrivateEndpointTypes.listByResourceGroup
 async function getAvailablePrivateEndpointTypesInTheResourceGroup() {
+  const subscriptionId = "subId";
   const location = "regionName";
   const resourceGroupName = "rg1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.availablePrivateEndpointTypes.listByResourceGroup(
     location,
@@ -30,10 +32,5 @@ async function getAvailablePrivateEndpointTypesInTheResourceGroup() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subId";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getAvailablePrivateEndpointTypesInTheResourceGroup();
-}
-main();
+
+getAvailablePrivateEndpointTypesInTheResourceGroup().catch(console.error);

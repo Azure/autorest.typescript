@@ -12,6 +12,7 @@
  * This sample demonstrates how to Updates (patches) a disk encryption set.
  *
  * @summary Updates (patches) a disk encryption set.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/UpdateADiskEncryptionSet.json
  */
 import {
   DiskEncryptionSetUpdate,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//diskEncryptionSets.beginUpdateAndWait
 async function updateADiskEncryptionSet() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const diskEncryptionSetName = "myDiskEncryptionSet";
   const diskEncryptionSet: DiskEncryptionSetUpdate = {
@@ -36,6 +36,8 @@ async function updateADiskEncryptionSet() {
     encryptionType: "EncryptionAtRestWithCustomerKey",
     tags: { department: "Development", project: "Encryption" }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.diskEncryptionSets.beginUpdateAndWait(
     resourceGroupName,
     diskEncryptionSetName,
@@ -43,10 +45,5 @@ async function updateADiskEncryptionSet() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await updateADiskEncryptionSet();
-}
-main();
+
+updateADiskEncryptionSet().catch(console.error);

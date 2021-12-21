@@ -12,25 +12,22 @@
  * This sample demonstrates how to Deletes the specified ExpressRoutePort resource.
  *
  * @summary Deletes the specified ExpressRoutePort resource.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ExpressRoutePortDelete.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//expressRoutePorts.beginDeleteAndWait
 async function expressRoutePortDelete() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const expressRoutePortName = "portName";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.expressRoutePorts.beginDeleteAndWait(
     resourceGroupName,
     expressRoutePortName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await expressRoutePortDelete();
-}
-main();
+
+expressRoutePortDelete().catch(console.error);

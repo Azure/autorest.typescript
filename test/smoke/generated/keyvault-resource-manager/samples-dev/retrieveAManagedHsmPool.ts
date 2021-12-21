@@ -12,22 +12,19 @@
  * This sample demonstrates how to Gets the specified managed HSM Pool.
  *
  * @summary Gets the specified managed HSM Pool.
+ * x-ms-original-file: specification/keyvault/resource-manager/Microsoft.KeyVault/preview/2021-06-01-preview/examples/ManagedHsm_Get.json
  */
 import { KeyVaultManagementClient } from "@msinternal/keyvault-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: KeyVaultManagementClient;
-//managedHsms.get
 async function retrieveAManagedHsmPool() {
+  const subscriptionId = "00000000-0000-0000-0000-000000000000";
   const resourceGroupName = "hsm-group";
   const name = "hsm1";
+  const credential = new DefaultAzureCredential();
+  const client = new KeyVaultManagementClient(credential, subscriptionId);
   const result = await client.managedHsms.get(resourceGroupName, name);
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-0000-0000-0000-000000000000";
-  client = new KeyVaultManagementClient(credential, subscriptionId);
-  await retrieveAManagedHsmPool();
-}
-main();
+
+retrieveAManagedHsmPool().catch(console.error);

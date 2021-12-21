@@ -12,6 +12,7 @@
  * This sample demonstrates how to Update an identity in the specified subscription and resource group.
  *
  * @summary Update an identity in the specified subscription and resource group.
+ * x-ms-original-file: specification/msi/resource-manager/Microsoft.ManagedIdentity/stable/2018-11-30/examples/IdentityUpdate.json
  */
 import {
   IdentityUpdate,
@@ -19,15 +20,16 @@ import {
 } from "@msinternal/msi-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ManagedServiceIdentityClient;
-//userAssignedIdentities.update
 async function identityUpdate() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rgName";
   const resourceName = "resourceName";
   const parameters: IdentityUpdate = {
     location: "eastus",
     tags: { key1: "value1", key2: "value2" }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new ManagedServiceIdentityClient(credential, subscriptionId);
   const result = await client.userAssignedIdentities.update(
     resourceGroupName,
     resourceName,
@@ -35,10 +37,5 @@ async function identityUpdate() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new ManagedServiceIdentityClient(credential, subscriptionId);
-  await identityUpdate();
-}
-main();
+
+identityUpdate().catch(console.error);

@@ -12,6 +12,7 @@
  * This sample demonstrates how to Starts packet capture on virtual network gateway in the specified resource group.
  *
  * @summary Starts packet capture on virtual network gateway in the specified resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkGatewayStartPacketCaptureFilterData.json
  */
 import {
   VpnPacketCaptureStartParameters,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualNetworkGateways.beginStartPacketCaptureAndWait
 async function startPacketCaptureOnVirtualNetworkGatewayWithFilter() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualNetworkGatewayName = "vpngw";
   const parameters: VpnPacketCaptureStartParameters = {
@@ -29,6 +29,8 @@ async function startPacketCaptureOnVirtualNetworkGatewayWithFilter() {
       "{'TracingFlags': 11,'MaxPacketBufferSize': 120,'MaxFileSize': 200,'Filters': [{'SourceSubnets': ['20.1.1.0/24'],'DestinationSubnets': ['10.1.1.0/24'],'SourcePort': [500],'DestinationPort': [4500],'Protocol': 6,'TcpFlags': 16,'CaptureSingleDirectionTrafficOnly': true}]}"
   };
   const options = { parameters: parameters };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworkGateways.beginStartPacketCaptureAndWait(
     resourceGroupName,
     virtualNetworkGatewayName,
@@ -36,10 +38,5 @@ async function startPacketCaptureOnVirtualNetworkGatewayWithFilter() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await startPacketCaptureOnVirtualNetworkGatewayWithFilter();
-}
-main();
+
+startPacketCaptureOnVirtualNetworkGatewayWithFilter().catch(console.error);

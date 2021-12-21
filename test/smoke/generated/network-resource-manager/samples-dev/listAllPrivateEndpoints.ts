@@ -12,23 +12,20 @@
  * This sample demonstrates how to Gets all private endpoints in a subscription.
  *
  * @summary Gets all private endpoints in a subscription.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/PrivateEndpointListAll.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//privateEndpoints.listBySubscription
 async function listAllPrivateEndpoints() {
+  const subscriptionId = "subId";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.privateEndpoints.listBySubscription()) {
     resArray.push(item);
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subId";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await listAllPrivateEndpoints();
-}
-main();
+
+listAllPrivateEndpoints().catch(console.error);

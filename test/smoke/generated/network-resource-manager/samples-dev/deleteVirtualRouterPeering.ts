@@ -12,16 +12,18 @@
  * This sample demonstrates how to Deletes the specified peering from a Virtual Router.
  *
  * @summary Deletes the specified peering from a Virtual Router.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualRouterPeeringDelete.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualRouterPeerings.beginDeleteAndWait
 async function deleteVirtualRouterPeering() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualRouterName = "virtualRouter";
   const peeringName = "peering1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualRouterPeerings.beginDeleteAndWait(
     resourceGroupName,
     virtualRouterName,
@@ -29,10 +31,5 @@ async function deleteVirtualRouterPeering() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await deleteVirtualRouterPeering();
-}
-main();
+
+deleteVirtualRouterPeering().catch(console.error);

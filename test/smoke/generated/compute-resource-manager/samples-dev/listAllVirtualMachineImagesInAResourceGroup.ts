@@ -12,24 +12,21 @@
  * This sample demonstrates how to Gets the list of images under a resource group.
  *
  * @summary Gets the list of images under a resource group.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/ListImagesInAResourceGroup.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//images.listByResourceGroup
 async function listAllVirtualMachineImagesInAResourceGroup() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.images.listByResourceGroup(resourceGroupName)) {
     resArray.push(item);
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await listAllVirtualMachineImagesInAResourceGroup();
-}
-main();
+
+listAllVirtualMachineImagesInAResourceGroup().catch(console.error);

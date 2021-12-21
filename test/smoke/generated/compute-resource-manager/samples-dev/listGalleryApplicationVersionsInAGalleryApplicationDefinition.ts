@@ -12,16 +12,18 @@
  * This sample demonstrates how to List gallery Application Versions in a gallery Application Definition.
  *
  * @summary List gallery Application Versions in a gallery Application Definition.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/ListGalleryApplicationVersionsInAGalleryApplication.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//galleryApplicationVersions.listByGalleryApplication
 async function listGalleryApplicationVersionsInAGalleryApplicationDefinition() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const galleryName = "myGalleryName";
   const galleryApplicationName = "myGalleryApplicationName";
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.galleryApplicationVersions.listByGalleryApplication(
     resourceGroupName,
@@ -32,10 +34,7 @@ async function listGalleryApplicationVersionsInAGalleryApplicationDefinition() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await listGalleryApplicationVersionsInAGalleryApplicationDefinition();
-}
-main();
+
+listGalleryApplicationVersionsInAGalleryApplicationDefinition().catch(
+  console.error
+);

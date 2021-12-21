@@ -12,6 +12,7 @@
  * This sample demonstrates how to Regenerates one of the access keys or Kerberos keys for the specified storage account.
  *
  * @summary Regenerates one of the access keys or Kerberos keys for the specified storage account.
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountRegenerateKerbKey.json
  */
 import {
   StorageAccountRegenerateKeyParameters,
@@ -19,14 +20,15 @@ import {
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//storageAccounts.regenerateKey
 async function storageAccountRegenerateKerbKey() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "res4167";
   const accountName = "sto3539";
   const regenerateKey: StorageAccountRegenerateKeyParameters = {
     keyName: "kerb1"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.storageAccounts.regenerateKey(
     resourceGroupName,
     accountName,
@@ -34,10 +36,5 @@ async function storageAccountRegenerateKerbKey() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await storageAccountRegenerateKerbKey();
-}
-main();
+
+storageAccountRegenerateKerbKey().catch(console.error);

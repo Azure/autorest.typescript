@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates a network interface.
  *
  * @summary Creates or updates a network interface.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkInterfaceCreateGatewayLoadBalancerConsumer.json
  */
 import {
   NetworkInterface,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//networkInterfaces.beginCreateOrUpdateAndWait
 async function createNetworkInterfaceWithGatewayLoadBalancerConsumerConfigured() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const networkInterfaceName = "test-nic";
   const parameters: NetworkInterface = {
@@ -45,6 +45,8 @@ async function createNetworkInterfaceWithGatewayLoadBalancerConsumerConfigured()
     ],
     location: "eastus"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.networkInterfaces.beginCreateOrUpdateAndWait(
     resourceGroupName,
     networkInterfaceName,
@@ -52,10 +54,7 @@ async function createNetworkInterfaceWithGatewayLoadBalancerConsumerConfigured()
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await createNetworkInterfaceWithGatewayLoadBalancerConsumerConfigured();
-}
-main();
+
+createNetworkInterfaceWithGatewayLoadBalancerConsumerConfigured().catch(
+  console.error
+);

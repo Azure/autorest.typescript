@@ -12,16 +12,18 @@
  * This sample demonstrates how to Deletes the specified load balancer backend address pool.
  *
  * @summary Deletes the specified load balancer backend address pool.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/LoadBalancerBackendAddressPoolDelete.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//loadBalancerBackendAddressPools.beginDeleteAndWait
 async function backendAddressPoolDelete() {
+  const subscriptionId = "subid";
   const resourceGroupName = "testrg";
   const loadBalancerName = "lb";
   const backendAddressPoolName = "backend";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.loadBalancerBackendAddressPools.beginDeleteAndWait(
     resourceGroupName,
     loadBalancerName,
@@ -29,10 +31,5 @@ async function backendAddressPoolDelete() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await backendAddressPoolDelete();
-}
-main();
+
+backendAddressPoolDelete().catch(console.error);

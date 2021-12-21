@@ -12,6 +12,7 @@
  * This sample demonstrates how to Create or update an image.
  *
  * @summary Create or update an image.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateAnImageFromABlob.json
  */
 import {
   Image,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//images.beginCreateOrUpdateAndWait
 async function createAVirtualMachineImageFromABlob() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const imageName = "myImage";
   const parameters: Image = {
@@ -36,6 +36,8 @@ async function createAVirtualMachineImageFromABlob() {
       zoneResilient: true
     }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.images.beginCreateOrUpdateAndWait(
     resourceGroupName,
     imageName,
@@ -43,10 +45,5 @@ async function createAVirtualMachineImageFromABlob() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await createAVirtualMachineImageFromABlob();
-}
-main();
+
+createAVirtualMachineImageFromABlob().catch(console.error);

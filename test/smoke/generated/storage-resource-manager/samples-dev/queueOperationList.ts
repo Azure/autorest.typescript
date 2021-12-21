@@ -12,25 +12,22 @@
  * This sample demonstrates how to Gets a list of all the queues under the specified storage account
  *
  * @summary Gets a list of all the queues under the specified storage account
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/QueueOperationList.json
  */
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//queue.list
 async function queueOperationList() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "res9290";
   const accountName = "sto328";
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.queue.list(resourceGroupName, accountName)) {
     resArray.push(item);
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await queueOperationList();
-}
-main();
+
+queueOperationList().catch(console.error);

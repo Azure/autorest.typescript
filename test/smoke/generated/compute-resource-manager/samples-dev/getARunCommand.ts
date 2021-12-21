@@ -12,16 +12,18 @@
  * This sample demonstrates how to The operation to get the run command.
  *
  * @summary The operation to get the run command.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/runCommands/GetRunCommand.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//virtualMachineRunCommands.getByVirtualMachine
 async function getARunCommand() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const vmName = "myVM";
   const runCommandName = "myRunCommand";
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.virtualMachineRunCommands.getByVirtualMachine(
     resourceGroupName,
     vmName,
@@ -29,10 +31,5 @@ async function getARunCommand() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await getARunCommand();
-}
-main();
+
+getARunCommand().catch(console.error);

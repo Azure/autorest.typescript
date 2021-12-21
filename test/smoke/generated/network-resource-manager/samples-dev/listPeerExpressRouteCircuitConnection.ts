@@ -12,16 +12,18 @@
  * This sample demonstrates how to Gets all global reach peer connections associated with a private peering in an express route circuit.
  *
  * @summary Gets all global reach peer connections associated with a private peering in an express route circuit.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/PeerExpressRouteCircuitConnectionList.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//peerExpressRouteCircuitConnections.list
 async function listPeerExpressRouteCircuitConnection() {
+  const subscriptionId = "subid1";
   const resourceGroupName = "rg1";
   const circuitName = "ExpressRouteARMCircuitA";
   const peeringName = "AzurePrivatePeering";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.peerExpressRouteCircuitConnections.list(
     resourceGroupName,
@@ -32,10 +34,5 @@ async function listPeerExpressRouteCircuitConnection() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid1";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await listPeerExpressRouteCircuitConnection();
-}
-main();
+
+listPeerExpressRouteCircuitConnection().catch(console.error);

@@ -12,23 +12,20 @@
  * This sample demonstrates how to Lists all the disk access resources under a subscription.
  *
  * @summary Lists all the disk access resources under a subscription.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/ListDiskAccessesInASubscription.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//diskAccesses.list
 async function listAllDiskAccessResourcesInASubscription() {
+  const subscriptionId = "{subscription-id}";
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.diskAccesses.list()) {
     resArray.push(item);
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await listAllDiskAccessResourcesInASubscription();
-}
-main();
+
+listAllDiskAccessResourcesInASubscription().catch(console.error);

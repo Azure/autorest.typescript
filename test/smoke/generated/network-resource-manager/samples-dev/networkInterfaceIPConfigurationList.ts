@@ -12,15 +12,17 @@
  * This sample demonstrates how to Get all ip configurations in a network interface.
  *
  * @summary Get all ip configurations in a network interface.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkInterfaceIPConfigurationList.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//networkInterfaceIPConfigurations.list
 async function networkInterfaceIPConfigurationList() {
+  const subscriptionId = "subid";
   const resourceGroupName = "testrg";
   const networkInterfaceName = "nic1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.networkInterfaceIPConfigurations.list(
     resourceGroupName,
@@ -30,10 +32,5 @@ async function networkInterfaceIPConfigurationList() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await networkInterfaceIPConfigurationList();
-}
-main();
+
+networkInterfaceIPConfigurationList().catch(console.error);

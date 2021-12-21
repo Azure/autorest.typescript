@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates a peering in the specified express route circuits.
  *
  * @summary Creates or updates a peering in the specified express route circuits.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ExpressRouteCircuitPeeringCreate.json
  */
 import {
   ExpressRouteCircuitPeering,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//expressRouteCircuitPeerings.beginCreateOrUpdateAndWait
 async function createExpressRouteCircuitPeerings() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const circuitName = "circuitName";
   const peeringName = "AzurePrivatePeering";
@@ -31,6 +31,8 @@ async function createExpressRouteCircuitPeerings() {
     secondaryPeerAddressPrefix: "192.168.18.252/30",
     vlanId: 200
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.expressRouteCircuitPeerings.beginCreateOrUpdateAndWait(
     resourceGroupName,
     circuitName,
@@ -39,10 +41,5 @@ async function createExpressRouteCircuitPeerings() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await createExpressRouteCircuitPeerings();
-}
-main();
+
+createExpressRouteCircuitPeerings().catch(console.error);

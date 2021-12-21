@@ -12,16 +12,18 @@
  * This sample demonstrates how to Retrieves a list of routes the virtual hub bgp connection has learned.
  *
  * @summary Retrieves a list of routes the virtual hub bgp connection has learned.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualRouterPeerListLearnedRoute.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualHubBgpConnections.beginListLearnedRoutesAndWait
 async function virtualRouterPeerListLearnedRoutes() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const hubName = "virtualRouter1";
   const connectionName = "peer1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualHubBgpConnections.beginListLearnedRoutesAndWait(
     resourceGroupName,
     hubName,
@@ -29,10 +31,5 @@ async function virtualRouterPeerListLearnedRoutes() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await virtualRouterPeerListLearnedRoutes();
-}
-main();
+
+virtualRouterPeerListLearnedRoutes().catch(console.error);

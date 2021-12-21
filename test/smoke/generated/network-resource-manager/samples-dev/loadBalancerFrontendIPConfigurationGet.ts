@@ -12,16 +12,18 @@
  * This sample demonstrates how to Gets load balancer frontend IP configuration.
  *
  * @summary Gets load balancer frontend IP configuration.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/LoadBalancerFrontendIPConfigurationGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//loadBalancerFrontendIPConfigurations.get
 async function loadBalancerFrontendIPConfigurationGet() {
+  const subscriptionId = "subid";
   const resourceGroupName = "testrg";
   const loadBalancerName = "lb";
   const frontendIPConfigurationName = "frontend";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.loadBalancerFrontendIPConfigurations.get(
     resourceGroupName,
     loadBalancerName,
@@ -29,10 +31,5 @@ async function loadBalancerFrontendIPConfigurationGet() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await loadBalancerFrontendIPConfigurationGet();
-}
-main();
+
+loadBalancerFrontendIPConfigurationGet().catch(console.error);

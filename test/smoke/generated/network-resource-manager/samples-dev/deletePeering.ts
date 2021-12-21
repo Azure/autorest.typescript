@@ -12,16 +12,18 @@
  * This sample demonstrates how to Deletes the specified virtual network peering.
  *
  * @summary Deletes the specified virtual network peering.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkPeeringDelete.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualNetworkPeerings.beginDeleteAndWait
 async function deletePeering() {
+  const subscriptionId = "subid";
   const resourceGroupName = "peerTest";
   const virtualNetworkName = "vnet1";
   const virtualNetworkPeeringName = "peer";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworkPeerings.beginDeleteAndWait(
     resourceGroupName,
     virtualNetworkName,
@@ -29,10 +31,5 @@ async function deletePeering() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await deletePeering();
-}
-main();
+
+deletePeering().catch(console.error);

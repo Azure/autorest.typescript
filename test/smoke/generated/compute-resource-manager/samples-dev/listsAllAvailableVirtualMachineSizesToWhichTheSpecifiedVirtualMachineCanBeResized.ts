@@ -12,15 +12,17 @@
  * This sample demonstrates how to Lists all available virtual machine sizes to which the specified virtual machine can be resized.
  *
  * @summary Lists all available virtual machine sizes to which the specified virtual machine can be resized.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/ListAvailableVmSizes_VirtualMachines.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//virtualMachines.listAvailableSizes
 async function listsAllAvailableVirtualMachineSizesToWhichTheSpecifiedVirtualMachineCanBeResized() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const vmName = "myVmName";
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.virtualMachines.listAvailableSizes(
     resourceGroupName,
@@ -30,10 +32,7 @@ async function listsAllAvailableVirtualMachineSizesToWhichTheSpecifiedVirtualMac
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await listsAllAvailableVirtualMachineSizesToWhichTheSpecifiedVirtualMachineCanBeResized();
-}
-main();
+
+listsAllAvailableVirtualMachineSizesToWhichTheSpecifiedVirtualMachineCanBeResized().catch(
+  console.error
+);

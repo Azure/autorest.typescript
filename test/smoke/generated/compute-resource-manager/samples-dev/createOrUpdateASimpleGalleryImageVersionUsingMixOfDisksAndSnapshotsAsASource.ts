@@ -12,6 +12,7 @@
  * This sample demonstrates how to Create or update a gallery image version.
  *
  * @summary Create or update a gallery image version.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/CreateOrUpdateASimpleGalleryImageVersionWithSnapshotsAsSource.json
  */
 import {
   GalleryImageVersion,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//galleryImageVersions.beginCreateOrUpdateAndWait
 async function createOrUpdateASimpleGalleryImageVersionUsingMixOfDisksAndSnapshotsAsASource() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const galleryName = "myGalleryName";
   const galleryImageName = "myGalleryImageName";
@@ -87,6 +87,8 @@ async function createOrUpdateASimpleGalleryImageVersionUsingMixOfDisksAndSnapsho
       }
     }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.galleryImageVersions.beginCreateOrUpdateAndWait(
     resourceGroupName,
     galleryName,
@@ -96,10 +98,7 @@ async function createOrUpdateASimpleGalleryImageVersionUsingMixOfDisksAndSnapsho
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await createOrUpdateASimpleGalleryImageVersionUsingMixOfDisksAndSnapshotsAsASource();
-}
-main();
+
+createOrUpdateASimpleGalleryImageVersionUsingMixOfDisksAndSnapshotsAsASource().catch(
+  console.error
+);

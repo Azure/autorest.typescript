@@ -12,15 +12,17 @@
  * This sample demonstrates how to Lists all of the capacity reservation groups in the subscription. Use the nextLink property in the response to get the next page of capacity reservation groups.
  *
  * @summary Lists all of the capacity reservation groups in the subscription. Use the nextLink property in the response to get the next page of capacity reservation groups.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/ListCapacityReservationGroupsInSubscription.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//capacityReservationGroups.listBySubscription
 async function listCapacityReservationGroupsInSubscription() {
+  const subscriptionId = "{subscription-id}";
   const expand = "virtualMachines/$ref";
   const options = { expand: expand };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.capacityReservationGroups.listBySubscription(
     options
@@ -29,10 +31,5 @@ async function listCapacityReservationGroupsInSubscription() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await listCapacityReservationGroupsInSubscription();
-}
-main();
+
+listCapacityReservationGroupsInSubscription().catch(console.error);

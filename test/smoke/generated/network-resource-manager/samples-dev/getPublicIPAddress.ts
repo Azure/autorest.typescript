@@ -12,25 +12,22 @@
  * This sample demonstrates how to Gets the specified public IP address in a specified resource group.
  *
  * @summary Gets the specified public IP address in a specified resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/PublicIpAddressGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//publicIPAddresses.get
 async function getPublicIPAddress() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const publicIpAddressName = "testDNS-ip";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.publicIPAddresses.get(
     resourceGroupName,
     publicIpAddressName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getPublicIPAddress();
-}
-main();
+
+getPublicIPAddress().catch(console.error);

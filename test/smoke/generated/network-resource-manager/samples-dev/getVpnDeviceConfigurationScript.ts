@@ -12,6 +12,7 @@
  * This sample demonstrates how to Gets a xml format representation for vpn device configuration script.
  *
  * @summary Gets a xml format representation for vpn device configuration script.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkGatewayVpnDeviceConfigurationScript.json
  */
 import {
   VpnDeviceScriptParameters,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualNetworkGateways.vpnDeviceConfigurationScript
 async function getVpnDeviceConfigurationScript() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualNetworkGatewayConnectionName = "vpngw";
   const parameters: VpnDeviceScriptParameters = {
@@ -29,6 +29,8 @@ async function getVpnDeviceConfigurationScript() {
     firmwareVersion: "IOS 15.1 (Preview)",
     vendor: "Cisco"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworkGateways.vpnDeviceConfigurationScript(
     resourceGroupName,
     virtualNetworkGatewayConnectionName,
@@ -36,10 +38,5 @@ async function getVpnDeviceConfigurationScript() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getVpnDeviceConfigurationScript();
-}
-main();
+
+getVpnDeviceConfigurationScript().catch(console.error);

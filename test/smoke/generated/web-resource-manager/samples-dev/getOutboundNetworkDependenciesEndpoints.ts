@@ -12,15 +12,17 @@
  * This sample demonstrates how to Description for Get the network endpoints of all outbound dependencies of an App Service Environment.
  *
  * @summary Description for Get the network endpoints of all outbound dependencies of an App Service Environment.
+ * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/GetOutboundNetworkDependenciesEndpoints.json
  */
 import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: WebSiteManagementClient;
-//appServiceEnvironments.listOutboundNetworkDependenciesEndpoints
 async function getOutboundNetworkDependenciesEndpoints() {
+  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const resourceGroupName = "Sample-WestUSResourceGroup";
   const name = "SampleAse";
+  const credential = new DefaultAzureCredential();
+  const client = new WebSiteManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.appServiceEnvironments.listOutboundNetworkDependenciesEndpoints(
     resourceGroupName,
@@ -30,10 +32,5 @@ async function getOutboundNetworkDependenciesEndpoints() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
-  client = new WebSiteManagementClient(credential, subscriptionId);
-  await getOutboundNetworkDependenciesEndpoints();
-}
-main();
+
+getOutboundNetworkDependenciesEndpoints().catch(console.error);

@@ -12,6 +12,7 @@
  * This sample demonstrates how to The operation to update the extension.
  *
  * @summary The operation to update the extension.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/UpdateVMExtensionWithSuppressFailureEnabled.json
  */
 import {
   VirtualMachineExtensionUpdate,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//virtualMachineExtensions.beginUpdateAndWait
 async function updateVMExtension() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const vmName = "myVM";
   const vmExtensionName = "myVMExtension";
@@ -33,6 +33,8 @@ async function updateVMExtension() {
     suppressFailures: true,
     typeHandlerVersion: "1.2"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.virtualMachineExtensions.beginUpdateAndWait(
     resourceGroupName,
     vmName,
@@ -41,10 +43,5 @@ async function updateVMExtension() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await updateVMExtension();
-}
-main();
+
+updateVMExtension().catch(console.error);

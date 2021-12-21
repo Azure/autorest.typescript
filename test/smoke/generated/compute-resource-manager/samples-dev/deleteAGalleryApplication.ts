@@ -12,16 +12,18 @@
  * This sample demonstrates how to Delete a gallery Application.
  *
  * @summary Delete a gallery Application.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/DeleteAGalleryApplication.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//galleryApplications.beginDeleteAndWait
 async function deleteAGalleryApplication() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const galleryName = "myGalleryName";
   const galleryApplicationName = "myGalleryApplicationName";
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.galleryApplications.beginDeleteAndWait(
     resourceGroupName,
     galleryName,
@@ -29,10 +31,5 @@ async function deleteAGalleryApplication() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await deleteAGalleryApplication();
-}
-main();
+
+deleteAGalleryApplication().catch(console.error);

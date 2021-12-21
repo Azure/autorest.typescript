@@ -12,7 +12,7 @@
  * This sample demonstrates how to Creates or updates an extended database's blob auditing policy.
  *
  * @summary Creates or updates an extended database's blob auditing policy.
- * x-ms-original-file:
+ * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ExtendedDatabaseAzureMonitorAuditingCreateMin.json
  */
 import {
   ExtendedDatabaseBlobAuditingPolicy,
@@ -20,7 +20,6 @@ import {
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: SqlManagementClient;
 async function createOrUpdateAnExtendedDatabaseAzureMonitorAuditingPolicyWithMinimalParameters() {
   const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "blobauditingtest-4799";

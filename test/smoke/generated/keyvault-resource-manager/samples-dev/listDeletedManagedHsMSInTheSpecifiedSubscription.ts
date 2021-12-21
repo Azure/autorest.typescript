@@ -12,23 +12,20 @@
  * This sample demonstrates how to The List operation gets information about the deleted managed HSMs associated with the subscription.
  *
  * @summary The List operation gets information about the deleted managed HSMs associated with the subscription.
+ * x-ms-original-file: specification/keyvault/resource-manager/Microsoft.KeyVault/preview/2021-06-01-preview/examples/DeletedManagedHsm_List.json
  */
 import { KeyVaultManagementClient } from "@msinternal/keyvault-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: KeyVaultManagementClient;
-//managedHsms.listDeleted
 async function listDeletedManagedHsMSInTheSpecifiedSubscription() {
+  const subscriptionId = "00000000-0000-0000-0000-000000000000";
+  const credential = new DefaultAzureCredential();
+  const client = new KeyVaultManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.managedHsms.listDeleted()) {
     resArray.push(item);
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-0000-0000-0000-000000000000";
-  client = new KeyVaultManagementClient(credential, subscriptionId);
-  await listDeletedManagedHsMSInTheSpecifiedSubscription();
-}
-main();
+
+listDeletedManagedHsMSInTheSpecifiedSubscription().catch(console.error);

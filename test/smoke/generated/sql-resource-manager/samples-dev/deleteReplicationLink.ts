@@ -12,7 +12,7 @@
  * This sample demonstrates how to Deletes a database replication link in forced or friendly way.
  *
  * @summary Deletes a database replication link in forced or friendly way.
- * x-ms-original-file:
+ * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/stable/2014-04-01-legacy/examples/ReplicationLinkUnlink.json
  */
 import {
   UnlinkParameters,
@@ -20,7 +20,6 @@ import {
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: SqlManagementClient;
 async function deleteReplicationLink() {
   const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "sqlcrudtest-8931";

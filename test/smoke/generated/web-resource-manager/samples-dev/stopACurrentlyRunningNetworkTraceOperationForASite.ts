@@ -12,22 +12,19 @@
  * This sample demonstrates how to Description for Stop ongoing capturing network packets for the site.
  *
  * @summary Description for Stop ongoing capturing network packets for the site.
+ * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/StopWebSiteNetworkTrace.json
  */
 import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: WebSiteManagementClient;
-//webApps.stopNetworkTrace
 async function stopACurrentlyRunningNetworkTraceOperationForASite() {
+  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const resourceGroupName = "testrg123";
   const name = "SampleApp";
+  const credential = new DefaultAzureCredential();
+  const client = new WebSiteManagementClient(credential, subscriptionId);
   const result = await client.webApps.stopNetworkTrace(resourceGroupName, name);
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
-  client = new WebSiteManagementClient(credential, subscriptionId);
-  await stopACurrentlyRunningNetworkTraceOperationForASite();
-}
-main();
+
+stopACurrentlyRunningNetworkTraceOperationForASite().catch(console.error);

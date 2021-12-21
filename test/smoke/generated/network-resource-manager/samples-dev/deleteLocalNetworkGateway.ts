@@ -12,25 +12,22 @@
  * This sample demonstrates how to Deletes the specified local network gateway.
  *
  * @summary Deletes the specified local network gateway.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/LocalNetworkGatewayDelete.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//localNetworkGateways.beginDeleteAndWait
 async function deleteLocalNetworkGateway() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const localNetworkGatewayName = "localgw";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.localNetworkGateways.beginDeleteAndWait(
     resourceGroupName,
     localNetworkGatewayName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await deleteLocalNetworkGateway();
-}
-main();
+
+deleteLocalNetworkGateway().catch(console.error);

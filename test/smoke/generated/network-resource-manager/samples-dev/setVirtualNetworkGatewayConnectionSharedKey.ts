@@ -12,6 +12,7 @@
  * This sample demonstrates how to The Put VirtualNetworkGatewayConnectionSharedKey operation sets the virtual network gateway connection shared key for passed virtual network gateway connection in the specified resource group through Network resource provider.
  *
  * @summary The Put VirtualNetworkGatewayConnectionSharedKey operation sets the virtual network gateway connection shared key for passed virtual network gateway connection in the specified resource group through Network resource provider.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkGatewayConnectionSetSharedKey.json
  */
 import {
   ConnectionSharedKey,
@@ -19,12 +20,13 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualNetworkGatewayConnections.beginSetSharedKeyAndWait
 async function setVirtualNetworkGatewayConnectionSharedKey() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualNetworkGatewayConnectionName = "connS2S";
   const parameters: ConnectionSharedKey = { value: "AzureAbc123" };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworkGatewayConnections.beginSetSharedKeyAndWait(
     resourceGroupName,
     virtualNetworkGatewayConnectionName,
@@ -32,10 +34,5 @@ async function setVirtualNetworkGatewayConnectionSharedKey() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await setVirtualNetworkGatewayConnectionSharedKey();
-}
-main();
+
+setVirtualNetworkGatewayConnectionSharedKey().catch(console.error);

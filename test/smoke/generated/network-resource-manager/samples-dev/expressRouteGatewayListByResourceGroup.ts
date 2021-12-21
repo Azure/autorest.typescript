@@ -12,23 +12,20 @@
  * This sample demonstrates how to Lists ExpressRoute gateways in a given resource group.
  *
  * @summary Lists ExpressRoute gateways in a given resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ExpressRouteGatewayListByResourceGroup.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//expressRouteGateways.listByResourceGroup
 async function expressRouteGatewayListByResourceGroup() {
+  const subscriptionId = "subid";
   const resourceGroupName = "resourceGroupName";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.expressRouteGateways.listByResourceGroup(
     resourceGroupName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await expressRouteGatewayListByResourceGroup();
-}
-main();
+
+expressRouteGatewayListByResourceGroup().catch(console.error);

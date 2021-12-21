@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates an ipGroups in a specified resource group.
  *
  * @summary Creates or updates an ipGroups in a specified resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/IpGroupsCreate.json
  */
 import {
   IpGroup,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//ipGroups.beginCreateOrUpdateAndWait
 async function createOrUpdateIPGroups() {
+  const subscriptionId = "subId";
   const resourceGroupName = "myResourceGroup";
   const ipGroupsName = "ipGroups1";
   const parameters: IpGroup = {
@@ -29,6 +29,8 @@ async function createOrUpdateIPGroups() {
     location: "West US",
     tags: { key1: "value1" }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.ipGroups.beginCreateOrUpdateAndWait(
     resourceGroupName,
     ipGroupsName,
@@ -36,10 +38,5 @@ async function createOrUpdateIPGroups() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subId";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await createOrUpdateIPGroups();
-}
-main();
+
+createOrUpdateIPGroups().catch(console.error);

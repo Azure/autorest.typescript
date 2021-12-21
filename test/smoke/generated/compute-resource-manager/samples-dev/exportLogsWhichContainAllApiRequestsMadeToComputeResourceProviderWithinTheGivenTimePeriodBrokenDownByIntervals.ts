@@ -12,6 +12,7 @@
  * This sample demonstrates how to Export logs that show Api requests made by this subscription in the given time window to show throttling activities.
  *
  * @summary Export logs that show Api requests made by this subscription in the given time window to show throttling activities.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/LogAnalyticsRequestRateByInterval.json
  */
 import {
   RequestRateByIntervalInput,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//logAnalytics.beginExportRequestRateByIntervalAndWait
 async function exportLogsWhichContainAllApiRequestsMadeToComputeResourceProviderWithinTheGivenTimePeriodBrokenDownByIntervals() {
+  const subscriptionId = "{subscription-id}";
   const location = "westus";
   const parameters: RequestRateByIntervalInput = {
     blobContainerSasUri: "https://somesasuri",
@@ -30,16 +30,15 @@ async function exportLogsWhichContainAllApiRequestsMadeToComputeResourceProvider
     intervalLength: "FiveMins",
     toTime: new Date("2018-01-23T01:54:06.862601Z")
   };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.logAnalytics.beginExportRequestRateByIntervalAndWait(
     location,
     parameters
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await exportLogsWhichContainAllApiRequestsMadeToComputeResourceProviderWithinTheGivenTimePeriodBrokenDownByIntervals();
-}
-main();
+
+exportLogsWhichContainAllApiRequestsMadeToComputeResourceProviderWithinTheGivenTimePeriodBrokenDownByIntervals().catch(
+  console.error
+);

@@ -12,15 +12,17 @@
  * This sample demonstrates how to Lists usage stats.
  *
  * @summary Lists usage stats.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkListUsage.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualNetworks.listUsage
 async function vnetGetUsage() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualNetworkName = "vnetName";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.virtualNetworks.listUsage(
     resourceGroupName,
@@ -30,10 +32,5 @@ async function vnetGetUsage() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await vnetGetUsage();
-}
-main();
+
+vnetGetUsage().catch(console.error);

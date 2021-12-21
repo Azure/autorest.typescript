@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates a Tap configuration in the specified NetworkInterface.
  *
  * @summary Creates or updates a Tap configuration in the specified NetworkInterface.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkInterfaceTapConfigurationCreate.json
  */
 import {
   NetworkInterfaceTapConfiguration,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//networkInterfaceTapConfigurations.beginCreateOrUpdateAndWait
 async function createNetworkInterfaceTapConfigurations() {
+  const subscriptionId = "subid";
   const resourceGroupName = "testrg";
   const networkInterfaceName = "mynic";
   const tapConfigurationName = "tapconfiguration1";
@@ -31,6 +31,8 @@ async function createNetworkInterfaceTapConfigurations() {
         "/subscriptions/subid/resourceGroups/testrg/providers/Microsoft.Network/virtualNetworkTaps/testvtap"
     }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.networkInterfaceTapConfigurations.beginCreateOrUpdateAndWait(
     resourceGroupName,
     networkInterfaceName,
@@ -39,10 +41,5 @@ async function createNetworkInterfaceTapConfigurations() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await createNetworkInterfaceTapConfigurations();
-}
-main();
+
+createNetworkInterfaceTapConfigurations().catch(console.error);

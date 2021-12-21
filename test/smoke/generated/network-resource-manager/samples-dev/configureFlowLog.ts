@@ -12,6 +12,7 @@
  * This sample demonstrates how to Configures flow log and traffic analytics (optional) on a specified resource.
  *
  * @summary Configures flow log and traffic analytics (optional) on a specified resource.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkWatcherFlowLogConfigure.json
  */
 import {
   FlowLogInformation,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//networkWatchers.beginSetFlowLogConfigurationAndWait
 async function configureFlowLog() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const networkWatcherName = "nw1";
   const parameters: FlowLogInformation = {
@@ -31,6 +31,8 @@ async function configureFlowLog() {
     targetResourceId:
       "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/networkSecurityGroups/nsg1"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.networkWatchers.beginSetFlowLogConfigurationAndWait(
     resourceGroupName,
     networkWatcherName,
@@ -38,10 +40,5 @@ async function configureFlowLog() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await configureFlowLog();
-}
-main();
+
+configureFlowLog().catch(console.error);

@@ -12,23 +12,20 @@
  * This sample demonstrates how to Gets all DDoS protection plans in a subscription.
  *
  * @summary Gets all DDoS protection plans in a subscription.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/DdosProtectionPlanListAll.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//ddosProtectionPlans.list
 async function listAllDDoSProtectionPlans() {
+  const subscriptionId = "subid";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.ddosProtectionPlans.list()) {
     resArray.push(item);
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await listAllDDoSProtectionPlans();
-}
-main();
+
+listAllDDoSProtectionPlans().catch(console.error);

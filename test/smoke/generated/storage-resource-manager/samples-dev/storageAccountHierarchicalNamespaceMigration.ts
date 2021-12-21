@@ -12,16 +12,18 @@
  * This sample demonstrates how to Live Migration of storage account to enable Hns
  *
  * @summary Live Migration of storage account to enable Hns
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountHierarchicalNamespaceMigration.json
  */
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//storageAccounts.beginHierarchicalNamespaceMigrationAndWait
 async function storageAccountHierarchicalNamespaceMigration() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "res4228";
   const accountName = "sto2434";
   const requestType = "HnsOnValidationRequest";
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.storageAccounts.beginHierarchicalNamespaceMigrationAndWait(
     resourceGroupName,
     accountName,
@@ -29,10 +31,5 @@ async function storageAccountHierarchicalNamespaceMigration() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await storageAccountHierarchicalNamespaceMigration();
-}
-main();
+
+storageAccountHierarchicalNamespaceMigration().catch(console.error);

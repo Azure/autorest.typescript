@@ -12,25 +12,22 @@
  * This sample demonstrates how to Revoke user delegation keys.
  *
  * @summary Revoke user delegation keys.
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountRevokeUserDelegationKeys.json
  */
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//storageAccounts.revokeUserDelegationKeys
 async function storageAccountRevokeUserDelegationKeys() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "res4167";
   const accountName = "sto3539";
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.storageAccounts.revokeUserDelegationKeys(
     resourceGroupName,
     accountName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await storageAccountRevokeUserDelegationKeys();
-}
-main();
+
+storageAccountRevokeUserDelegationKeys().catch(console.error);

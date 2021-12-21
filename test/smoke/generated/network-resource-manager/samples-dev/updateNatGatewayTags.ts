@@ -12,6 +12,7 @@
  * This sample demonstrates how to Updates nat gateway tags.
  *
  * @summary Updates nat gateway tags.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NatGatewayUpdateTags.json
  */
 import {
   TagsObject,
@@ -19,12 +20,13 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//natGateways.updateTags
 async function updateNatGatewayTags() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const natGatewayName = "test-natGateway";
   const parameters: TagsObject = { tags: { tag1: "value1", tag2: "value2" } };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.natGateways.updateTags(
     resourceGroupName,
     natGatewayName,
@@ -32,10 +34,5 @@ async function updateNatGatewayTags() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await updateNatGatewayTags();
-}
-main();
+
+updateNatGatewayTags().catch(console.error);

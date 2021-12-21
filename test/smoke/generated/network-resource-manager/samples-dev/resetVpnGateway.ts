@@ -12,25 +12,22 @@
  * This sample demonstrates how to Resets the primary of the vpn gateway in the specified resource group.
  *
  * @summary Resets the primary of the vpn gateway in the specified resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VpnGatewayReset.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//vpnGateways.beginResetAndWait
 async function resetVpnGateway() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const gatewayName = "vpngw";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.vpnGateways.beginResetAndWait(
     resourceGroupName,
     gatewayName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await resetVpnGateway();
-}
-main();
+
+resetVpnGateway().catch(console.error);

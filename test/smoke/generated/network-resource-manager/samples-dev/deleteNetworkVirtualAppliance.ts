@@ -12,25 +12,22 @@
  * This sample demonstrates how to Deletes the specified Network Virtual Appliance.
  *
  * @summary Deletes the specified Network Virtual Appliance.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkVirtualApplianceDelete.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//networkVirtualAppliances.beginDeleteAndWait
 async function deleteNetworkVirtualAppliance() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const networkVirtualApplianceName = "nva";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.networkVirtualAppliances.beginDeleteAndWait(
     resourceGroupName,
     networkVirtualApplianceName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await deleteNetworkVirtualAppliance();
-}
-main();
+
+deleteNetworkVirtualAppliance().catch(console.error);

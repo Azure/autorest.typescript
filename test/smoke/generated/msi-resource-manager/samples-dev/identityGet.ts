@@ -12,25 +12,22 @@
  * This sample demonstrates how to Gets the identity.
  *
  * @summary Gets the identity.
+ * x-ms-original-file: specification/msi/resource-manager/Microsoft.ManagedIdentity/stable/2018-11-30/examples/IdentityGet.json
  */
 import { ManagedServiceIdentityClient } from "@msinternal/msi-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ManagedServiceIdentityClient;
-//userAssignedIdentities.get
 async function identityGet() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rgName";
   const resourceName = "resourceName";
+  const credential = new DefaultAzureCredential();
+  const client = new ManagedServiceIdentityClient(credential, subscriptionId);
   const result = await client.userAssignedIdentities.get(
     resourceGroupName,
     resourceName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new ManagedServiceIdentityClient(credential, subscriptionId);
-  await identityGet();
-}
-main();
+
+identityGet().catch(console.error);

@@ -12,16 +12,18 @@
  * This sample demonstrates how to Gets a connection monitor by name.
  *
  * @summary Gets a connection monitor by name.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkWatcherConnectionMonitorGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//connectionMonitors.get
 async function getConnectionMonitor() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const networkWatcherName = "nw1";
   const connectionMonitorName = "cm1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.connectionMonitors.get(
     resourceGroupName,
     networkWatcherName,
@@ -29,10 +31,5 @@ async function getConnectionMonitor() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getConnectionMonitor();
-}
-main();
+
+getConnectionMonitor().catch(console.error);

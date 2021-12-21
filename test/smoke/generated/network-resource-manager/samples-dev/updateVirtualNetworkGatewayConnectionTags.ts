@@ -12,6 +12,7 @@
  * This sample demonstrates how to Updates a virtual network gateway connection tags.
  *
  * @summary Updates a virtual network gateway connection tags.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkGatewayConnectionUpdateTags.json
  */
 import {
   TagsObject,
@@ -19,12 +20,13 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualNetworkGatewayConnections.beginUpdateTagsAndWait
 async function updateVirtualNetworkGatewayConnectionTags() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualNetworkGatewayConnectionName = "test";
   const parameters: TagsObject = { tags: { tag1: "value1", tag2: "value2" } };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworkGatewayConnections.beginUpdateTagsAndWait(
     resourceGroupName,
     virtualNetworkGatewayConnectionName,
@@ -32,10 +34,5 @@ async function updateVirtualNetworkGatewayConnectionTags() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await updateVirtualNetworkGatewayConnectionTags();
-}
-main();
+
+updateVirtualNetworkGatewayConnectionTags().catch(console.error);

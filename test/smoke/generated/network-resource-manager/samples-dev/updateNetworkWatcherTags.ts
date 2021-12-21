@@ -12,6 +12,7 @@
  * This sample demonstrates how to Updates a network watcher tags.
  *
  * @summary Updates a network watcher tags.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkWatcherUpdateTags.json
  */
 import {
   TagsObject,
@@ -19,12 +20,13 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//networkWatchers.updateTags
 async function updateNetworkWatcherTags() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const networkWatcherName = "nw1";
   const parameters: TagsObject = { tags: { tag1: "value1", tag2: "value2" } };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.networkWatchers.updateTags(
     resourceGroupName,
     networkWatcherName,
@@ -32,10 +34,5 @@ async function updateNetworkWatcherTags() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await updateNetworkWatcherTags();
-}
-main();
+
+updateNetworkWatcherTags().catch(console.error);

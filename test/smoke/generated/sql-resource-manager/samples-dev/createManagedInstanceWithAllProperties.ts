@@ -12,7 +12,7 @@
  * This sample demonstrates how to Creates or updates a managed instance.
  *
  * @summary Creates or updates a managed instance.
- * x-ms-original-file:
+ * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ManagedInstanceCreateMax.json
  */
 import {
   ManagedInstance,
@@ -20,7 +20,6 @@ import {
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: SqlManagementClient;
 async function createManagedInstanceWithAllProperties() {
   const subscriptionId = "20D7082A-0FC7-4468-82BD-542694D5042B";
   const resourceGroupName = "testrg";

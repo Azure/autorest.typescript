@@ -12,25 +12,22 @@
  * This sample demonstrates how to Deletes the specified virtual network.
  *
  * @summary Deletes the specified virtual network.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkDelete.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualNetworks.beginDeleteAndWait
 async function deleteVirtualNetwork() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualNetworkName = "test-vnet";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworks.beginDeleteAndWait(
     resourceGroupName,
     virtualNetworkName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await deleteVirtualNetwork();
-}
-main();
+
+deleteVirtualNetwork().catch(console.error);

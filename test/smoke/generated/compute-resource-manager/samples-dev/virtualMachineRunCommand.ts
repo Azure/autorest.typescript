@@ -12,6 +12,7 @@
  * This sample demonstrates how to Run command on the VM.
  *
  * @summary Run command on the VM.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/runCommands/VirtualMachineRunCommand.json
  */
 import {
   RunCommandInput,
@@ -19,12 +20,13 @@ import {
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//virtualMachines.beginRunCommandAndWait
 async function virtualMachineRunCommand() {
+  const subscriptionId = "24fb23e3-6ba3-41f0-9b6e-e41131d5d61e";
   const resourceGroupName = "crptestar98131";
   const vmName = "vm3036";
   const parameters: RunCommandInput = { commandId: "RunPowerShellScript" };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.virtualMachines.beginRunCommandAndWait(
     resourceGroupName,
     vmName,
@@ -32,10 +34,5 @@ async function virtualMachineRunCommand() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "24fb23e3-6ba3-41f0-9b6e-e41131d5d61e";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await virtualMachineRunCommand();
-}
-main();
+
+virtualMachineRunCommand().catch(console.error);

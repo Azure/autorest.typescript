@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates a load balancer backend address pool.
  *
  * @summary Creates or updates a load balancer backend address pool.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/LBBackendAddressPoolWithBackendAddressesPut.json
  */
 import {
   BackendAddressPool,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//loadBalancerBackendAddressPools.beginCreateOrUpdateAndWait
 async function updateLoadBalancerBackendPoolWithBackendAddressesContainingVirtualNetworkAndIPAddress() {
+  const subscriptionId = "subid";
   const resourceGroupName = "testrg";
   const loadBalancerName = "lb";
   const backendAddressPoolName = "backend";
@@ -45,6 +45,8 @@ async function updateLoadBalancerBackendPoolWithBackendAddressesContainingVirtua
       }
     ]
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.loadBalancerBackendAddressPools.beginCreateOrUpdateAndWait(
     resourceGroupName,
     loadBalancerName,
@@ -53,10 +55,7 @@ async function updateLoadBalancerBackendPoolWithBackendAddressesContainingVirtua
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await updateLoadBalancerBackendPoolWithBackendAddressesContainingVirtualNetworkAndIPAddress();
-}
-main();
+
+updateLoadBalancerBackendPoolWithBackendAddressesContainingVirtualNetworkAndIPAddress().catch(
+  console.error
+);

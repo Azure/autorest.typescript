@@ -12,25 +12,22 @@
  * This sample demonstrates how to Gets the connection health of P2S clients of the virtual wan P2SVpnGateway in the specified resource group.
  *
  * @summary Gets the connection health of P2S clients of the virtual wan P2SVpnGateway in the specified resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/P2SVpnGatewayGetConnectionHealth.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//p2SVpnGateways.beginGetP2SVpnConnectionHealthAndWait
 async function p2SVpnGatewayGetConnectionHealth() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const gatewayName = "p2sVpnGateway1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.p2SVpnGateways.beginGetP2SVpnConnectionHealthAndWait(
     resourceGroupName,
     gatewayName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await p2SVpnGatewayGetConnectionHealth();
-}
-main();
+
+p2SVpnGatewayGetConnectionHealth().catch(console.error);

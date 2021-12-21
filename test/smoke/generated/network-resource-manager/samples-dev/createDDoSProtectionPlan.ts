@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates a DDoS protection plan.
  *
  * @summary Creates or updates a DDoS protection plan.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/DdosProtectionPlanCreate.json
  */
 import {
   DdosProtectionPlan,
@@ -19,12 +20,13 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//ddosProtectionPlans.beginCreateOrUpdateAndWait
 async function createDDoSProtectionPlan() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const ddosProtectionPlanName = "test-plan";
   const parameters: DdosProtectionPlan = { location: "westus" };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.ddosProtectionPlans.beginCreateOrUpdateAndWait(
     resourceGroupName,
     ddosProtectionPlanName,
@@ -32,10 +34,5 @@ async function createDDoSProtectionPlan() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await createDDoSProtectionPlan();
-}
-main();
+
+createDDoSProtectionPlan().catch(console.error);

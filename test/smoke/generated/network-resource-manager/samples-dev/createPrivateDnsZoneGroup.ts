@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates a private dns zone group in the specified private endpoint.
  *
  * @summary Creates or updates a private dns zone group in the specified private endpoint.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/PrivateEndpointDnsZoneGroupCreate.json
  */
 import {
   PrivateDnsZoneGroup,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//privateDnsZoneGroups.beginCreateOrUpdateAndWait
 async function createPrivateDnsZoneGroup() {
+  const subscriptionId = "subId";
   const resourceGroupName = "rg1";
   const privateEndpointName = "testPe";
   const privateDnsZoneGroupName = "testPdnsgroup";
@@ -33,6 +33,8 @@ async function createPrivateDnsZoneGroup() {
       }
     ]
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.privateDnsZoneGroups.beginCreateOrUpdateAndWait(
     resourceGroupName,
     privateEndpointName,
@@ -41,10 +43,5 @@ async function createPrivateDnsZoneGroup() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subId";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await createPrivateDnsZoneGroup();
-}
-main();
+
+createPrivateDnsZoneGroup().catch(console.error);

@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates the specified Firewall Policy.
  *
  * @summary Creates or updates the specified Firewall Policy.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/FirewallPolicyPut.json
  */
 import {
   FirewallPolicy,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//firewallPolicies.beginCreateOrUpdateAndWait
 async function createFirewallPolicy() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const firewallPolicyName = "firewallPolicy";
   const parameters: FirewallPolicy = {
@@ -97,6 +97,8 @@ async function createFirewallPolicy() {
       }
     }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.firewallPolicies.beginCreateOrUpdateAndWait(
     resourceGroupName,
     firewallPolicyName,
@@ -104,10 +106,5 @@ async function createFirewallPolicy() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await createFirewallPolicy();
-}
-main();
+
+createFirewallPolicy().catch(console.error);

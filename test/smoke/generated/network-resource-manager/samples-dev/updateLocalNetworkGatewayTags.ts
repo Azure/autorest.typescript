@@ -12,6 +12,7 @@
  * This sample demonstrates how to Updates a local network gateway tags.
  *
  * @summary Updates a local network gateway tags.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/LocalNetworkGatewayUpdateTags.json
  */
 import {
   TagsObject,
@@ -19,12 +20,13 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//localNetworkGateways.updateTags
 async function updateLocalNetworkGatewayTags() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const localNetworkGatewayName = "lgw";
   const parameters: TagsObject = { tags: { tag1: "value1", tag2: "value2" } };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.localNetworkGateways.updateTags(
     resourceGroupName,
     localNetworkGatewayName,
@@ -32,10 +34,5 @@ async function updateLocalNetworkGatewayTags() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await updateLocalNetworkGatewayTags();
-}
-main();
+
+updateLocalNetworkGatewayTags().catch(console.error);

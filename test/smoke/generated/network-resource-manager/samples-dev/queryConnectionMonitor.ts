@@ -12,16 +12,18 @@
  * This sample demonstrates how to Query a snapshot of the most recent connection states.
  *
  * @summary Query a snapshot of the most recent connection states.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkWatcherConnectionMonitorQuery.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//connectionMonitors.beginQueryAndWait
 async function queryConnectionMonitor() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const networkWatcherName = "nw1";
   const connectionMonitorName = "cm1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.connectionMonitors.beginQueryAndWait(
     resourceGroupName,
     networkWatcherName,
@@ -29,10 +31,5 @@ async function queryConnectionMonitor() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await queryConnectionMonitor();
-}
-main();
+
+queryConnectionMonitor().catch(console.error);

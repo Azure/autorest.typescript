@@ -12,6 +12,7 @@
  * This sample demonstrates how to Update a gallery image definition.
  *
  * @summary Update a gallery image definition.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/UpdateASimpleGalleryImage.json
  */
 import {
   GalleryImageUpdate,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//galleryImages.beginUpdateAndWait
 async function updateASimpleGalleryImage() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const galleryName = "myGalleryName";
   const galleryImageName = "myGalleryImageName";
@@ -35,6 +35,8 @@ async function updateASimpleGalleryImage() {
     osState: "Generalized",
     osType: "Windows"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.galleryImages.beginUpdateAndWait(
     resourceGroupName,
     galleryName,
@@ -43,10 +45,5 @@ async function updateASimpleGalleryImage() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await updateASimpleGalleryImage();
-}
-main();
+
+updateASimpleGalleryImage().catch(console.error);

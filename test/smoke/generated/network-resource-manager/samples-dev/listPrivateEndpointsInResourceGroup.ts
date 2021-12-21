@@ -12,15 +12,17 @@
  * This sample demonstrates how to Gets all private dns zone groups in a private endpoint.
  *
  * @summary Gets all private dns zone groups in a private endpoint.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/PrivateEndpointDnsZoneGroupList.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//privateDnsZoneGroups.list
 async function listPrivateEndpointsInResourceGroup() {
+  const subscriptionId = "subId";
   const privateEndpointName = "testPe";
   const resourceGroupName = "rg1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.privateDnsZoneGroups.list(
     privateEndpointName,
@@ -30,10 +32,5 @@ async function listPrivateEndpointsInResourceGroup() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subId";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await listPrivateEndpointsInResourceGroup();
-}
-main();
+
+listPrivateEndpointsInResourceGroup().catch(console.error);

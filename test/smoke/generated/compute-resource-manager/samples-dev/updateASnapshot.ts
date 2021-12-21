@@ -12,6 +12,7 @@
  * This sample demonstrates how to Updates (patches) a snapshot.
  *
  * @summary Updates (patches) a snapshot.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/UpdateASnapshot.json
  */
 import {
   SnapshotUpdate,
@@ -19,15 +20,16 @@ import {
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//snapshots.beginUpdateAndWait
 async function updateASnapshot() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const snapshotName = "mySnapshot";
   const snapshot: SnapshotUpdate = {
     diskSizeGB: 20,
     tags: { department: "Development", project: "UpdateSnapshots" }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.snapshots.beginUpdateAndWait(
     resourceGroupName,
     snapshotName,
@@ -35,10 +37,5 @@ async function updateASnapshot() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await updateASnapshot();
-}
-main();
+
+updateASnapshot().catch(console.error);

@@ -12,15 +12,17 @@
  * This sample demonstrates how to Gets all routes in a route table.
  *
  * @summary Gets all routes in a route table.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/RouteTableRouteList.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//routes.list
 async function listRoutes() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const routeTableName = "testrt";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.routes.list(
     resourceGroupName,
@@ -30,10 +32,5 @@ async function listRoutes() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await listRoutes();
-}
-main();
+
+listRoutes().catch(console.error);

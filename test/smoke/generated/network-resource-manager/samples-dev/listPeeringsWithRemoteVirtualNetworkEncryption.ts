@@ -12,15 +12,17 @@
  * This sample demonstrates how to Gets all virtual network peerings in a virtual network.
  *
  * @summary Gets all virtual network peerings in a virtual network.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkPeeringListWithRemoteVirtualNetworkEncryption.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualNetworkPeerings.list
 async function listPeeringsWithRemoteVirtualNetworkEncryption() {
+  const subscriptionId = "subid";
   const resourceGroupName = "peerTest";
   const virtualNetworkName = "vnet1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.virtualNetworkPeerings.list(
     resourceGroupName,
@@ -30,10 +32,5 @@ async function listPeeringsWithRemoteVirtualNetworkEncryption() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await listPeeringsWithRemoteVirtualNetworkEncryption();
-}
-main();
+
+listPeeringsWithRemoteVirtualNetworkEncryption().catch(console.error);

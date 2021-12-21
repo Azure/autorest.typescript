@@ -12,6 +12,7 @@
  * This sample demonstrates how to Updates VpnServerConfiguration tags.
  *
  * @summary Updates VpnServerConfiguration tags.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VpnServerConfigurationUpdateTags.json
  */
 import {
   TagsObject,
@@ -19,14 +20,15 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//vpnServerConfigurations.updateTags
 async function vpnServerConfigurationUpdate() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const vpnServerConfigurationName = "vpnServerConfiguration1";
   const vpnServerConfigurationParameters: TagsObject = {
     tags: { key1: "value1", key2: "value2" }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.vpnServerConfigurations.updateTags(
     resourceGroupName,
     vpnServerConfigurationName,
@@ -34,10 +36,5 @@ async function vpnServerConfigurationUpdate() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await vpnServerConfigurationUpdate();
-}
-main();
+
+vpnServerConfigurationUpdate().catch(console.error);

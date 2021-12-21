@@ -12,6 +12,7 @@
  * This sample demonstrates how to Clears legal hold tags. Clearing the same or non-existent tag results in an idempotent operation. ClearLegalHold clears out only the specified tags in the request.
  *
  * @summary Clears legal hold tags. Clearing the same or non-existent tag results in an idempotent operation. ClearLegalHold clears out only the specified tags in the request.
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/BlobContainersClearLegalHold.json
  */
 import {
   LegalHold,
@@ -19,13 +20,14 @@ import {
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//blobContainers.clearLegalHold
 async function clearLegalHoldContainers() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "res4303";
   const accountName = "sto7280";
   const containerName = "container8723";
   const legalHold: LegalHold = { tags: ["tag1", "tag2", "tag3"] };
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.blobContainers.clearLegalHold(
     resourceGroupName,
     accountName,
@@ -34,10 +36,5 @@ async function clearLegalHoldContainers() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await clearLegalHoldContainers();
-}
-main();
+
+clearLegalHoldContainers().catch(console.error);

@@ -12,6 +12,7 @@
  * This sample demonstrates how to Updates an VirtualNetworkTap tags.
  *
  * @summary Updates an VirtualNetworkTap tags.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkTapUpdateTags.json
  */
 import {
   TagsObject,
@@ -19,14 +20,15 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualNetworkTaps.updateTags
 async function updateVirtualNetworkTapTags() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const tapName = "test-vtap";
   const tapParameters: TagsObject = {
     tags: { tag1: "value1", tag2: "value2" }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworkTaps.updateTags(
     resourceGroupName,
     tapName,
@@ -34,10 +36,5 @@ async function updateVirtualNetworkTapTags() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await updateVirtualNetworkTapTags();
-}
-main();
+
+updateVirtualNetworkTapTags().catch(console.error);

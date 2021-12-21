@@ -12,14 +12,16 @@
  * This sample demonstrates how to The List operation gets information about the managed HSM Pools associated with the subscription and within the specified resource group.
  *
  * @summary The List operation gets information about the managed HSM Pools associated with the subscription and within the specified resource group.
+ * x-ms-original-file: specification/keyvault/resource-manager/Microsoft.KeyVault/preview/2021-06-01-preview/examples/ManagedHsm_ListByResourceGroup.json
  */
 import { KeyVaultManagementClient } from "@msinternal/keyvault-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: KeyVaultManagementClient;
-//managedHsms.listByResourceGroup
 async function listManagedHsmPoolsInAResourceGroup() {
+  const subscriptionId = "00000000-0000-0000-0000-000000000000";
   const resourceGroupName = "hsm-group";
+  const credential = new DefaultAzureCredential();
+  const client = new KeyVaultManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.managedHsms.listByResourceGroup(
     resourceGroupName
@@ -28,10 +30,5 @@ async function listManagedHsmPoolsInAResourceGroup() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-0000-0000-0000-000000000000";
-  client = new KeyVaultManagementClient(credential, subscriptionId);
-  await listManagedHsmPoolsInAResourceGroup();
-}
-main();
+
+listManagedHsmPoolsInAResourceGroup().catch(console.error);

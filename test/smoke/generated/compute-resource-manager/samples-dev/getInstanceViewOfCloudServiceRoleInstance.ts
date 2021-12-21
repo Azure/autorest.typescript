@@ -12,16 +12,18 @@
  * This sample demonstrates how to Retrieves information about the run-time state of a role instance in a cloud service.
  *
  * @summary Retrieves information about the run-time state of a role instance in a cloud service.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-03-01/examples/GetInstanceViewOfCloudServiceRoleInstance.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//cloudServiceRoleInstances.getInstanceView
 async function getInstanceViewOfCloudServiceRoleInstance() {
+  const subscriptionId = "{subscription-id}";
   const roleInstanceName = "{roleInstance-name}";
   const resourceGroupName = "ConstosoRG";
   const cloudServiceName = "{cs-name}";
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.cloudServiceRoleInstances.getInstanceView(
     roleInstanceName,
     resourceGroupName,
@@ -29,10 +31,5 @@ async function getInstanceViewOfCloudServiceRoleInstance() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await getInstanceViewOfCloudServiceRoleInstance();
-}
-main();
+
+getInstanceViewOfCloudServiceRoleInstance().catch(console.error);

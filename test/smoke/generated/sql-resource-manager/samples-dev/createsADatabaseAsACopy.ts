@@ -12,7 +12,7 @@
  * This sample demonstrates how to Creates a new database or updates an existing database.
  *
  * @summary Creates a new database or updates an existing database.
- * x-ms-original-file:
+ * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/CreateDatabaseCopyMode.json
  */
 import {
   Database,
@@ -20,7 +20,6 @@ import {
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: SqlManagementClient;
 async function createsADatabaseAsACopy() {
   const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "Default-SQL-SouthEastAsia";

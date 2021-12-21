@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates an application security group.
  *
  * @summary Creates or updates an application security group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ApplicationSecurityGroupCreate.json
  */
 import {
   ApplicationSecurityGroup,
@@ -19,12 +20,13 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//applicationSecurityGroups.beginCreateOrUpdateAndWait
 async function createApplicationSecurityGroup() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const applicationSecurityGroupName = "test-asg";
   const parameters: ApplicationSecurityGroup = { location: "westus" };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.applicationSecurityGroups.beginCreateOrUpdateAndWait(
     resourceGroupName,
     applicationSecurityGroupName,
@@ -32,10 +34,5 @@ async function createApplicationSecurityGroup() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await createApplicationSecurityGroup();
-}
-main();
+
+createApplicationSecurityGroup().catch(console.error);

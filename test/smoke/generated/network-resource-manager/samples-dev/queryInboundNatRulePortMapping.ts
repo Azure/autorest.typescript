@@ -12,6 +12,7 @@
  * This sample demonstrates how to List of inbound NAT rule port mappings.
  *
  * @summary List of inbound NAT rule port mappings.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/QueryInboundNatRulePortMapping.json
  */
 import {
   QueryInboundNatRulePortMappingRequest,
@@ -19,15 +20,16 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//loadBalancers.beginListInboundNatRulePortMappingsAndWait
 async function queryInboundNatRulePortMapping() {
+  const subscriptionId = "subid";
   const groupName = "rg1";
   const loadBalancerName = "lb1";
   const backendPoolName = "bp1";
   const parameters: QueryInboundNatRulePortMappingRequest = {
     ipAddress: "10.0.0.4"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.loadBalancers.beginListInboundNatRulePortMappingsAndWait(
     groupName,
     loadBalancerName,
@@ -36,10 +38,5 @@ async function queryInboundNatRulePortMapping() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await queryInboundNatRulePortMapping();
-}
-main();
+
+queryInboundNatRulePortMapping().catch(console.error);

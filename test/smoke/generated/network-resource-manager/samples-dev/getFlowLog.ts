@@ -12,16 +12,18 @@
  * This sample demonstrates how to Gets a flow log resource by name.
  *
  * @summary Gets a flow log resource by name.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkWatcherFlowLogGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//flowLogs.get
 async function getFlowLog() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const networkWatcherName = "nw1";
   const flowLogName = "flowLog1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.flowLogs.get(
     resourceGroupName,
     networkWatcherName,
@@ -29,10 +31,5 @@ async function getFlowLog() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getFlowLog();
-}
-main();
+
+getFlowLog().catch(console.error);

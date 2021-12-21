@@ -12,25 +12,22 @@
  * This sample demonstrates how to Deletes the specified Bastion Host.
  *
  * @summary Deletes the specified Bastion Host.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/BastionHostDelete.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//bastionHosts.beginDeleteAndWait
 async function deleteBastionHost() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const bastionHostName = "bastionhosttenant";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.bastionHosts.beginDeleteAndWait(
     resourceGroupName,
     bastionHostName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await deleteBastionHost();
-}
-main();
+
+deleteBastionHost().catch(console.error);

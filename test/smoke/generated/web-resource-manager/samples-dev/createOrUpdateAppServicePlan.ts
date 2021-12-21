@@ -12,6 +12,7 @@
  * This sample demonstrates how to Description for Creates or updates an App Service Plan.
  *
  * @summary Description for Creates or updates an App Service Plan.
+ * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/CreateOrUpdateAppServicePlan.json
  */
 import {
   AppServicePlan,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: WebSiteManagementClient;
-//appServicePlans.beginCreateOrUpdateAndWait
 async function createOrUpdateAppServicePlan() {
+  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const resourceGroupName = "testrg123";
   const name = "testsf6141";
   const appServicePlan: AppServicePlan = {
@@ -29,6 +29,8 @@ async function createOrUpdateAppServicePlan() {
     location: "East US",
     sku: { name: "P1", capacity: 1, family: "P", size: "P1", tier: "Premium" }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new WebSiteManagementClient(credential, subscriptionId);
   const result = await client.appServicePlans.beginCreateOrUpdateAndWait(
     resourceGroupName,
     name,
@@ -36,10 +38,5 @@ async function createOrUpdateAppServicePlan() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
-  client = new WebSiteManagementClient(credential, subscriptionId);
-  await createOrUpdateAppServicePlan();
-}
-main();
+
+createOrUpdateAppServicePlan().catch(console.error);

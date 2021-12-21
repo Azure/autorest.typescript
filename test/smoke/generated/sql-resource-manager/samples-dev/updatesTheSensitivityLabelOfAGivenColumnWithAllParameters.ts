@@ -12,7 +12,7 @@
  * This sample demonstrates how to Creates or updates the sensitivity label of a given column
  *
  * @summary Creates or updates the sensitivity label of a given column
- * x-ms-original-file:
+ * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ColumnSensitivityLabelCreateMax.json
  */
 import {
   SensitivityLabel,
@@ -20,7 +20,6 @@ import {
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: SqlManagementClient;
 async function updatesTheSensitivityLabelOfAGivenColumnWithAllParameters() {
   const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "myRG";

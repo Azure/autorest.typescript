@@ -12,25 +12,22 @@
  * This sample demonstrates how to Deletes the specified network security group.
  *
  * @summary Deletes the specified network security group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkSecurityGroupDelete.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//networkSecurityGroups.beginDeleteAndWait
 async function deleteNetworkSecurityGroup() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const networkSecurityGroupName = "testnsg";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.networkSecurityGroups.beginDeleteAndWait(
     resourceGroupName,
     networkSecurityGroupName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await deleteNetworkSecurityGroup();
-}
-main();
+
+deleteNetworkSecurityGroup().catch(console.error);

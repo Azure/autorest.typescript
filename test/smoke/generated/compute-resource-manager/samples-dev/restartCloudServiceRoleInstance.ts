@@ -12,16 +12,18 @@
  * This sample demonstrates how to The Reboot Role Instance asynchronous operation requests a reboot of a role instance in the cloud service.
  *
  * @summary The Reboot Role Instance asynchronous operation requests a reboot of a role instance in the cloud service.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-03-01/examples/RestartCloudServiceRoleInstance.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//cloudServiceRoleInstances.beginRestartAndWait
 async function restartCloudServiceRoleInstance() {
+  const subscriptionId = "{subscription-id}";
   const roleInstanceName = "{roleInstance-name}";
   const resourceGroupName = "ConstosoRG";
   const cloudServiceName = "{cs-name}";
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.cloudServiceRoleInstances.beginRestartAndWait(
     roleInstanceName,
     resourceGroupName,
@@ -29,10 +31,5 @@ async function restartCloudServiceRoleInstance() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await restartCloudServiceRoleInstance();
-}
-main();
+
+restartCloudServiceRoleInstance().catch(console.error);

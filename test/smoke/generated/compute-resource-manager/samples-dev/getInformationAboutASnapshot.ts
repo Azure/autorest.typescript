@@ -12,22 +12,19 @@
  * This sample demonstrates how to Gets information about a snapshot.
  *
  * @summary Gets information about a snapshot.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/GetInformationAboutASnapshot.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//snapshots.get
 async function getInformationAboutASnapshot() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const snapshotName = "mySnapshot";
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.snapshots.get(resourceGroupName, snapshotName);
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await getInformationAboutASnapshot();
-}
-main();
+
+getInformationAboutASnapshot().catch(console.error);

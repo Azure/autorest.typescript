@@ -12,16 +12,18 @@
  * This sample demonstrates how to Deletes the specified peering from the specified express route circuit.
  *
  * @summary Deletes the specified peering from the specified express route circuit.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ExpressRouteCircuitPeeringDelete.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//expressRouteCircuitPeerings.beginDeleteAndWait
 async function deleteExpressRouteCircuitPeerings() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const circuitName = "circuitName";
   const peeringName = "peeringName";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.expressRouteCircuitPeerings.beginDeleteAndWait(
     resourceGroupName,
     circuitName,
@@ -29,10 +31,5 @@ async function deleteExpressRouteCircuitPeerings() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await deleteExpressRouteCircuitPeerings();
-}
-main();
+
+deleteExpressRouteCircuitPeerings().catch(console.error);

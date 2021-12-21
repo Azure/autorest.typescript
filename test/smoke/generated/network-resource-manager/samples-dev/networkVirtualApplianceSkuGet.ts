@@ -12,21 +12,18 @@
  * This sample demonstrates how to Retrieves a single available sku for network virtual appliance.
  *
  * @summary Retrieves a single available sku for network virtual appliance.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkVirtualApplianceSkuGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualApplianceSkus.get
 async function networkVirtualApplianceSkuGet() {
+  const subscriptionId = "subid";
   const skuName = "ciscoSdwan";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualApplianceSkus.get(skuName);
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await networkVirtualApplianceSkuGet();
-}
-main();
+
+networkVirtualApplianceSkuGet().catch(console.error);

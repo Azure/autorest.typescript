@@ -12,12 +12,11 @@
  * This sample demonstrates how to Gets a list of all managed instances in an instance pool.
  *
  * @summary Gets a list of all managed instances in an instance pool.
- * x-ms-original-file:
+ * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ManagedInstanceListByInstancePool.json
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: SqlManagementClient;
 async function listManagedInstancesByInstancePool() {
   const subscriptionId = "20D7082A-0FC7-4468-82BD-542694D5042B";
   const resourceGroupName = "Test1";

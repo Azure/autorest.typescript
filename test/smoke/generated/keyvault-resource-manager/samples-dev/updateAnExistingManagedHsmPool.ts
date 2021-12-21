@@ -12,6 +12,7 @@
  * This sample demonstrates how to Update a managed HSM Pool in the specified subscription.
  *
  * @summary Update a managed HSM Pool in the specified subscription.
+ * x-ms-original-file: specification/keyvault/resource-manager/Microsoft.KeyVault/preview/2021-06-01-preview/examples/ManagedHsm_Update.json
  */
 import {
   ManagedHsm,
@@ -19,14 +20,15 @@ import {
 } from "@msinternal/keyvault-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: KeyVaultManagementClient;
-//managedHsms.beginUpdateAndWait
 async function updateAnExistingManagedHsmPool() {
+  const subscriptionId = "00000000-0000-0000-0000-000000000000";
   const resourceGroupName = "hsm-group";
   const name = "hsm1";
   const parameters: ManagedHsm = {
     tags: { dept: "hsm", environment: "dogfood", slice: "A" }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new KeyVaultManagementClient(credential, subscriptionId);
   const result = await client.managedHsms.beginUpdateAndWait(
     resourceGroupName,
     name,
@@ -34,10 +36,5 @@ async function updateAnExistingManagedHsmPool() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-0000-0000-0000-000000000000";
-  client = new KeyVaultManagementClient(credential, subscriptionId);
-  await updateAnExistingManagedHsmPool();
-}
-main();
+
+updateAnExistingManagedHsmPool().catch(console.error);

@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates the specified ExpressRoutePort resource.
  *
  * @summary Creates or updates the specified ExpressRoutePort resource.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ExpressRoutePortCreate.json
  */
 import {
   ExpressRoutePort,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//expressRoutePorts.beginCreateOrUpdateAndWait
 async function expressRoutePortCreate() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const expressRoutePortName = "portName";
   const parameters: ExpressRoutePort = {
@@ -30,6 +30,8 @@ async function expressRoutePortCreate() {
     location: "westus",
     peeringLocation: "peeringLocationName"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.expressRoutePorts.beginCreateOrUpdateAndWait(
     resourceGroupName,
     expressRoutePortName,
@@ -37,10 +39,5 @@ async function expressRoutePortCreate() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await expressRoutePortCreate();
-}
-main();
+
+expressRoutePortCreate().catch(console.error);

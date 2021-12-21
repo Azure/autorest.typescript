@@ -12,24 +12,21 @@
  * This sample demonstrates how to Gets all the express route circuits in a resource group.
  *
  * @summary Gets all the express route circuits in a resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ExpressRouteCircuitListByResourceGroup.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//expressRouteCircuits.list
 async function listExpressRouteCircuitsInAResourceGroup() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.expressRouteCircuits.list(resourceGroupName)) {
     resArray.push(item);
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await listExpressRouteCircuitsInAResourceGroup();
-}
-main();
+
+listExpressRouteCircuitsInAResourceGroup().catch(console.error);

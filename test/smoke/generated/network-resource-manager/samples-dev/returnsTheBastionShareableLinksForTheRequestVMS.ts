@@ -12,6 +12,7 @@
  * This sample demonstrates how to Return the Bastion Shareable Links for all the VMs specified in the request.
  *
  * @summary Return the Bastion Shareable Links for all the VMs specified in the request.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/BastionShareableLinkGet.json
  */
 import {
   BastionShareableLinkListRequest,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//networkManagementClient.listBastionShareableLink
 async function returnsTheBastionShareableLinksForTheRequestVMS() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const bastionHostName = "bastionhosttenant";
   const bslRequest: BastionShareableLinkListRequest = {
@@ -40,6 +40,8 @@ async function returnsTheBastionShareableLinksForTheRequestVMS() {
       }
     ]
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.listBastionShareableLink(
     resourceGroupName,
@@ -50,10 +52,5 @@ async function returnsTheBastionShareableLinksForTheRequestVMS() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await returnsTheBastionShareableLinksForTheRequestVMS();
-}
-main();
+
+returnsTheBastionShareableLinksForTheRequestVMS().catch(console.error);

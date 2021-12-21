@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates a VirtualHubIpConfiguration resource if it doesn't exist else updates the existing VirtualHubIpConfiguration.
  *
  * @summary Creates a VirtualHubIpConfiguration resource if it doesn't exist else updates the existing VirtualHubIpConfiguration.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualHubIpConfigurationPut.json
  */
 import {
   HubIpConfiguration,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualHubIpConfiguration.beginCreateOrUpdateAndWait
 async function virtualHubIPConfigurationPut() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualHubName = "hub1";
   const ipConfigName = "ipconfig1";
@@ -31,6 +31,8 @@ async function virtualHubIPConfigurationPut() {
         "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworks/vnet1/subnets/subnet1"
     }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualHubIpConfiguration.beginCreateOrUpdateAndWait(
     resourceGroupName,
     virtualHubName,
@@ -39,10 +41,5 @@ async function virtualHubIPConfigurationPut() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await virtualHubIPConfigurationPut();
-}
-main();
+
+virtualHubIPConfigurationPut().catch(console.error);

@@ -12,21 +12,18 @@
  * This sample demonstrates how to Gets the specified Azure Web Category.
  *
  * @summary Gets the specified Azure Web Category.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/AzureWebCategoryGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//webCategories.get
 async function getAzureWebCategoryByName() {
+  const subscriptionId = "4de8428a-4a92-4cea-90ff-b47128b8cab8";
   const name = "Arts";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.webCategories.get(name);
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "4de8428a-4a92-4cea-90ff-b47128b8cab8";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getAzureWebCategoryByName();
-}
-main();
+
+getAzureWebCategoryByName().catch(console.error);

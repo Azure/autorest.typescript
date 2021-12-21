@@ -12,6 +12,7 @@
  * This sample demonstrates how to Description for Verifies if this VNET is compatible with an App Service Environment by analyzing the Network Security Group rules.
  *
  * @summary Description for Verifies if this VNET is compatible with an App Service Environment by analyzing the Network Security Group rules.
+ * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/VerifyHostingEnvironmentVnet.json
  */
 import {
   VnetParameters,
@@ -19,21 +20,17 @@ import {
 } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: WebSiteManagementClient;
-//webSiteManagementClient.verifyHostingEnvironmentVnet
 async function verifyHostingEnvironmentVnet() {
+  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const parameters: VnetParameters = {
     vnetName: "vNet123",
     vnetResourceGroup: "vNet123rg",
     vnetSubnetName: "vNet123SubNet"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new WebSiteManagementClient(credential, subscriptionId);
   const result = await client.verifyHostingEnvironmentVnet(parameters);
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
-  client = new WebSiteManagementClient(credential, subscriptionId);
-  await verifyHostingEnvironmentVnet();
-}
-main();
+
+verifyHostingEnvironmentVnet().catch(console.error);

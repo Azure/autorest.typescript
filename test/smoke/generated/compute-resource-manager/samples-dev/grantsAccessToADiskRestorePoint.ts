@@ -12,6 +12,7 @@
  * This sample demonstrates how to Grants access to a diskRestorePoint.
  *
  * @summary Grants access to a diskRestorePoint.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/BeginGetAccessDiskRestorePoint.json
  */
 import {
   GrantAccessData,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//diskRestorePointOperations.beginGrantAccessAndWait
 async function grantsAccessToADiskRestorePoint() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const restorePointCollectionName = "rpc";
   const vmRestorePointName = "vmrp";
@@ -31,6 +31,8 @@ async function grantsAccessToADiskRestorePoint() {
     access: "Read",
     durationInSeconds: 300
   };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.diskRestorePointOperations.beginGrantAccessAndWait(
     resourceGroupName,
     restorePointCollectionName,
@@ -40,10 +42,5 @@ async function grantsAccessToADiskRestorePoint() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await grantsAccessToADiskRestorePoint();
-}
-main();
+
+grantsAccessToADiskRestorePoint().catch(console.error);

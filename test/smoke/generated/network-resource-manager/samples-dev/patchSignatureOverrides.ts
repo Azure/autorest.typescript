@@ -12,6 +12,7 @@
  * This sample demonstrates how to Will update the status of policy's signature overrides for IDPS
  *
  * @summary Will update the status of policy's signature overrides for IDPS
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/FirewallPolicySignatureOverridesPatch.json
  */
 import {
   SignaturesOverrides,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//firewallPolicyIdpsSignaturesOverrides.patch
 async function patchSignatureOverrides() {
+  const subscriptionId = "e747cc13-97d4-4a79-b463-42d7f4e558f2";
   const resourceGroupName = "rg1";
   const firewallPolicyName = "firewallPolicy";
   const parameters: SignaturesOverrides = {
@@ -31,6 +31,8 @@ async function patchSignatureOverrides() {
       "/subscriptions/e747cc13-97d4-4a79-b463-42d7f4e558f2/resourceGroups/rg1/providers/Microsoft.Network/firewallPolicies/firewallPolicy/signatureOverrides/default",
     properties: { signatures: { "2000105": "Off", "2000106": "Deny" } }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.firewallPolicyIdpsSignaturesOverrides.patch(
     resourceGroupName,
     firewallPolicyName,
@@ -38,10 +40,5 @@ async function patchSignatureOverrides() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "e747cc13-97d4-4a79-b463-42d7f4e558f2";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await patchSignatureOverrides();
-}
-main();
+
+patchSignatureOverrides().catch(console.error);

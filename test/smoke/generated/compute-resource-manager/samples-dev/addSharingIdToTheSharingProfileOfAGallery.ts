@@ -12,6 +12,7 @@
  * This sample demonstrates how to Update sharing profile of a gallery.
  *
  * @summary Update sharing profile of a gallery.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/AddToSharingProfileInAGallery.json
  */
 import {
   SharingUpdate,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//gallerySharingProfile.beginUpdateAndWait
 async function addSharingIdToTheSharingProfileOfAGallery() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const galleryName = "myGalleryName";
   const sharingUpdate: SharingUpdate = {
@@ -37,6 +37,8 @@ async function addSharingIdToTheSharingProfileOfAGallery() {
     ],
     operationType: "Add"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.gallerySharingProfile.beginUpdateAndWait(
     resourceGroupName,
     galleryName,
@@ -44,10 +46,5 @@ async function addSharingIdToTheSharingProfileOfAGallery() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await addSharingIdToTheSharingProfileOfAGallery();
-}
-main();
+
+addSharingIdToTheSharingProfileOfAGallery().catch(console.error);

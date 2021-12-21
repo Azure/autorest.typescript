@@ -12,6 +12,7 @@
  * This sample demonstrates how to The operation to create or update the run command.
  *
  * @summary The operation to create or update the run command.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/runCommands/CreateOrUpdateRunCommand.json
  */
 import {
   VirtualMachineRunCommand,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//virtualMachineRunCommands.beginCreateOrUpdateAndWait
 async function createOrUpdateARunCommand() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const vmName = "myVM";
   const runCommandName = "myRunCommand";
@@ -37,6 +37,8 @@ async function createOrUpdateARunCommand() {
     source: { script: "Write-Host Hello World!" },
     timeoutInSeconds: 3600
   };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.virtualMachineRunCommands.beginCreateOrUpdateAndWait(
     resourceGroupName,
     vmName,
@@ -45,10 +47,5 @@ async function createOrUpdateARunCommand() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await createOrUpdateARunCommand();
-}
-main();
+
+createOrUpdateARunCommand().catch(console.error);

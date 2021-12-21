@@ -12,16 +12,18 @@
  * This sample demonstrates how to Gets the specified route from a route table.
  *
  * @summary Gets the specified route from a route table.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/RouteTableRouteGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//routes.get
 async function getRoute() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const routeTableName = "testrt";
   const routeName = "route1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.routes.get(
     resourceGroupName,
     routeTableName,
@@ -29,10 +31,5 @@ async function getRoute() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getRoute();
-}
-main();
+
+getRoute().catch(console.error);

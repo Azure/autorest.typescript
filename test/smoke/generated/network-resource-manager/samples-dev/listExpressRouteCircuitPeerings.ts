@@ -12,15 +12,17 @@
  * This sample demonstrates how to Gets all peerings in a specified express route circuit.
  *
  * @summary Gets all peerings in a specified express route circuit.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ExpressRouteCircuitPeeringList.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//expressRouteCircuitPeerings.list
 async function listExpressRouteCircuitPeerings() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const circuitName = "circuitName";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.expressRouteCircuitPeerings.list(
     resourceGroupName,
@@ -30,10 +32,5 @@ async function listExpressRouteCircuitPeerings() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await listExpressRouteCircuitPeerings();
-}
-main();
+
+listExpressRouteCircuitPeerings().catch(console.error);

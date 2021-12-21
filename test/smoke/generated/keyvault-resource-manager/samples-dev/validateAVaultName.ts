@@ -12,6 +12,7 @@
  * This sample demonstrates how to Checks that the vault name is valid and is not already in use.
  *
  * @summary Checks that the vault name is valid and is not already in use.
+ * x-ms-original-file: specification/keyvault/resource-manager/Microsoft.KeyVault/preview/2021-06-01-preview/examples/checkVaultNameAvailability.json
  */
 import {
   VaultCheckNameAvailabilityParameters,
@@ -19,20 +20,16 @@ import {
 } from "@msinternal/keyvault-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: KeyVaultManagementClient;
-//vaults.checkNameAvailability
 async function validateAVaultName() {
+  const subscriptionId = "00000000-0000-0000-0000-000000000000";
   const vaultName: VaultCheckNameAvailabilityParameters = {
     name: "sample-vault",
     type: "Microsoft.KeyVault/vaults"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new KeyVaultManagementClient(credential, subscriptionId);
   const result = await client.vaults.checkNameAvailability(vaultName);
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-0000-0000-0000-000000000000";
-  client = new KeyVaultManagementClient(credential, subscriptionId);
-  await validateAVaultName();
-}
-main();
+
+validateAVaultName().catch(console.error);

@@ -12,7 +12,7 @@
  * This sample demonstrates how to Perform a database extension operation, like polybase import
  *
  * @summary Perform a database extension operation, like polybase import
- * x-ms-original-file:
+ * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-02-01-preview/examples/CreateOrUpdateDatabaseExtensions.json
  */
 import {
   DatabaseExtensions,
@@ -20,7 +20,6 @@ import {
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: SqlManagementClient;
 async function createOrUpdateDatabaseExtensions() {
   const subscriptionId = "a1c0814d-3c18-4e1e-a247-c128c12b1677";
   const resourceGroupName = "rg_20cbe0f0-c2d9-4522-9177-5469aad53029";

@@ -12,25 +12,22 @@
  * This sample demonstrates how to Gets information about the specified DDoS protection plan.
  *
  * @summary Gets information about the specified DDoS protection plan.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/DdosProtectionPlanGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//ddosProtectionPlans.get
 async function getDDoSProtectionPlan() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const ddosProtectionPlanName = "test-plan";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.ddosProtectionPlans.get(
     resourceGroupName,
     ddosProtectionPlanName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getDDoSProtectionPlan();
-}
-main();
+
+getDDoSProtectionPlan().catch(console.error);

@@ -12,6 +12,7 @@
  * This sample demonstrates how to Generates VPN client package for P2S client of the virtual network gateway in the specified resource group.
  *
  * @summary Generates VPN client package for P2S client of the virtual network gateway in the specified resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkGatewayGenerateVpnClientPackage.json
  */
 import {
   VpnClientParameters,
@@ -19,12 +20,13 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualNetworkGateways.beginGeneratevpnclientpackageAndWait
 async function generateVpnClientPackage() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualNetworkGatewayName = "vpngw";
   const parameters: VpnClientParameters = {};
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworkGateways.beginGeneratevpnclientpackageAndWait(
     resourceGroupName,
     virtualNetworkGatewayName,
@@ -32,10 +34,5 @@ async function generateVpnClientPackage() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await generateVpnClientPackage();
-}
-main();
+
+generateVpnClientPackage().catch(console.error);

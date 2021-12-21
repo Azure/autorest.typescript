@@ -12,15 +12,17 @@
  * This sample demonstrates how to Retrieve the ExpressRouteLink sub-resources of the specified ExpressRoutePort resource.
  *
  * @summary Retrieve the ExpressRouteLink sub-resources of the specified ExpressRoutePort resource.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ExpressRouteLinkList.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//expressRouteLinks.list
 async function expressRouteLinkGet() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const expressRoutePortName = "portName";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.expressRouteLinks.list(
     resourceGroupName,
@@ -30,10 +32,5 @@ async function expressRouteLinkGet() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await expressRouteLinkGet();
-}
-main();
+
+expressRouteLinkGet().catch(console.error);

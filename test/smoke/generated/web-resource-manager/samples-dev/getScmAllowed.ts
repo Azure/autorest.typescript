@@ -12,16 +12,18 @@
  * This sample demonstrates how to Description for Returns whether Scm basic auth is allowed on the site or not.
  *
  * @summary Description for Returns whether Scm basic auth is allowed on the site or not.
+ * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/GetPublishingCredentialsPolicySlot.json
  */
 import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: WebSiteManagementClient;
-//webApps.getScmAllowedSlot
 async function getScmAllowed() {
+  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const resourceGroupName = "rg";
   const name = "testSite";
   const slot = "stage";
+  const credential = new DefaultAzureCredential();
+  const client = new WebSiteManagementClient(credential, subscriptionId);
   const result = await client.webApps.getScmAllowedSlot(
     resourceGroupName,
     name,
@@ -29,10 +31,5 @@ async function getScmAllowed() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
-  client = new WebSiteManagementClient(credential, subscriptionId);
-  await getScmAllowed();
-}
-main();
+
+getScmAllowed().catch(console.error);

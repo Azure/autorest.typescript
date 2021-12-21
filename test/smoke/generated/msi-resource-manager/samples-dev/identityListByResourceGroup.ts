@@ -12,14 +12,16 @@
  * This sample demonstrates how to Lists all the userAssignedIdentities available under the specified ResourceGroup.
  *
  * @summary Lists all the userAssignedIdentities available under the specified ResourceGroup.
+ * x-ms-original-file: specification/msi/resource-manager/Microsoft.ManagedIdentity/stable/2018-11-30/examples/IdentityListByResourceGroup.json
  */
 import { ManagedServiceIdentityClient } from "@msinternal/msi-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ManagedServiceIdentityClient;
-//userAssignedIdentities.listByResourceGroup
 async function identityListByResourceGroup() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rgName";
+  const credential = new DefaultAzureCredential();
+  const client = new ManagedServiceIdentityClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.userAssignedIdentities.listByResourceGroup(
     resourceGroupName
@@ -28,10 +30,5 @@ async function identityListByResourceGroup() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new ManagedServiceIdentityClient(credential, subscriptionId);
-  await identityListByResourceGroup();
-}
-main();
+
+identityListByResourceGroup().catch(console.error);

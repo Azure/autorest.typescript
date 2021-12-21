@@ -12,16 +12,18 @@
  * This sample demonstrates how to Gets the specified load balancer inbound NAT rule.
  *
  * @summary Gets the specified load balancer inbound NAT rule.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/InboundNatRuleGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//inboundNatRules.get
 async function inboundNatRuleGet() {
+  const subscriptionId = "subid";
   const resourceGroupName = "testrg";
   const loadBalancerName = "lb1";
   const inboundNatRuleName = "natRule1.1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.inboundNatRules.get(
     resourceGroupName,
     loadBalancerName,
@@ -29,10 +31,5 @@ async function inboundNatRuleGet() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await inboundNatRuleGet();
-}
-main();
+
+inboundNatRuleGet().catch(console.error);

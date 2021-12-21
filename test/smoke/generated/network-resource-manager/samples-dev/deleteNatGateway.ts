@@ -12,25 +12,22 @@
  * This sample demonstrates how to Deletes the specified nat gateway.
  *
  * @summary Deletes the specified nat gateway.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NatGatewayDelete.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//natGateways.beginDeleteAndWait
 async function deleteNatGateway() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const natGatewayName = "test-natGateway";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.natGateways.beginDeleteAndWait(
     resourceGroupName,
     natGatewayName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await deleteNatGateway();
-}
-main();
+
+deleteNatGateway().catch(console.error);

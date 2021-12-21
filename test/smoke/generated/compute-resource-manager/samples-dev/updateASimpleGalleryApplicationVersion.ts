@@ -12,6 +12,7 @@
  * This sample demonstrates how to Update a gallery Application Version.
  *
  * @summary Update a gallery Application Version.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/UpdateASimpleGalleryApplicationVersion.json
  */
 import {
   GalleryApplicationVersionUpdate,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//galleryApplicationVersions.beginUpdateAndWait
 async function updateASimpleGalleryApplicationVersion() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const galleryName = "myGalleryName";
   const galleryApplicationName = "myGalleryApplicationName";
@@ -49,6 +49,8 @@ async function updateASimpleGalleryApplicationVersion() {
       ]
     }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.galleryApplicationVersions.beginUpdateAndWait(
     resourceGroupName,
     galleryName,
@@ -58,10 +60,5 @@ async function updateASimpleGalleryApplicationVersion() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await updateASimpleGalleryApplicationVersion();
-}
-main();
+
+updateASimpleGalleryApplicationVersion().catch(console.error);

@@ -12,6 +12,7 @@
  * This sample demonstrates how to Generate a letter of authorization for the requested ExpressRoutePort resource.
  *
  * @summary Generate a letter of authorization for the requested ExpressRoutePort resource.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/GenerateExpressRoutePortsLOA.json
  */
 import {
   GenerateExpressRoutePortsLOARequest,
@@ -19,14 +20,15 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//expressRoutePorts.generateLOA
 async function generateExpressRoutePortLoa() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const expressRoutePortName = "portName";
   const request: GenerateExpressRoutePortsLOARequest = {
     customerName: "customerName"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.expressRoutePorts.generateLOA(
     resourceGroupName,
     expressRoutePortName,
@@ -34,10 +36,5 @@ async function generateExpressRoutePortLoa() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await generateExpressRoutePortLoa();
-}
-main();
+
+generateExpressRoutePortLoa().catch(console.error);

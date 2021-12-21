@@ -12,25 +12,22 @@
  * This sample demonstrates how to Gets information about a disk access resource.
  *
  * @summary Gets information about a disk access resource.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/GetInformationAboutADiskAccess.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//diskAccesses.get
 async function getInformationAboutADiskAccessResource() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const diskAccessName = "myDiskAccess";
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.diskAccesses.get(
     resourceGroupName,
     diskAccessName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await getInformationAboutADiskAccessResource();
-}
-main();
+
+getInformationAboutADiskAccessResource().catch(console.error);

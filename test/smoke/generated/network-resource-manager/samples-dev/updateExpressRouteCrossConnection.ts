@@ -12,6 +12,7 @@
  * This sample demonstrates how to Update the specified ExpressRouteCrossConnection.
  *
  * @summary Update the specified ExpressRouteCrossConnection.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ExpressRouteCrossConnectionUpdate.json
  */
 import {
   ExpressRouteCrossConnection,
@@ -19,14 +20,15 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//expressRouteCrossConnections.beginCreateOrUpdateAndWait
 async function updateExpressRouteCrossConnection() {
+  const subscriptionId = "subid";
   const resourceGroupName = "CrossConnection-SiliconValley";
   const crossConnectionName = "<circuitServiceKey>";
   const parameters: ExpressRouteCrossConnection = {
     serviceProviderProvisioningState: "NotProvisioned"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.expressRouteCrossConnections.beginCreateOrUpdateAndWait(
     resourceGroupName,
     crossConnectionName,
@@ -34,10 +36,5 @@ async function updateExpressRouteCrossConnection() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await updateExpressRouteCrossConnection();
-}
-main();
+
+updateExpressRouteCrossConnection().catch(console.error);

@@ -12,23 +12,20 @@
  * This sample demonstrates how to Description for Gets all available operations for the Microsoft.Web resource provider. Also exposes resource metric definitions
  *
  * @summary Description for Gets all available operations for the Microsoft.Web resource provider. Also exposes resource metric definitions
+ * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/ListOperations.json
  */
 import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: WebSiteManagementClient;
-//provider.listOperations
 async function listOperations() {
+  const subscriptionId = "00000000-0000-0000-0000-000000000000";
+  const credential = new DefaultAzureCredential();
+  const client = new WebSiteManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.provider.listOperations()) {
     resArray.push(item);
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-0000-0000-0000-000000000000";
-  client = new WebSiteManagementClient(credential, subscriptionId);
-  await listOperations();
-}
-main();
+
+listOperations().catch(console.error);

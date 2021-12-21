@@ -12,6 +12,7 @@
  * This sample demonstrates how to Checks that the storage account name is valid and is not already in use.
  *
  * @summary Checks that the storage account name is valid and is not already in use.
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountCheckNameAvailability.json
  */
 import {
   StorageAccountCheckNameAvailabilityParameters,
@@ -19,22 +20,18 @@ import {
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//storageAccounts.checkNameAvailability
 async function storageAccountCheckNameAvailability() {
+  const subscriptionId = "{subscription-id}";
   const accountName: StorageAccountCheckNameAvailabilityParameters = {
     name: "sto3363",
     type: "Microsoft.Storage/storageAccounts"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.storageAccounts.checkNameAvailability(
     accountName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await storageAccountCheckNameAvailability();
-}
-main();
+
+storageAccountCheckNameAvailability().catch(console.error);

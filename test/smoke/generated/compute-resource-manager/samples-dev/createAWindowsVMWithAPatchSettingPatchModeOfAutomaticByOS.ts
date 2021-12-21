@@ -12,6 +12,7 @@
  * This sample demonstrates how to The operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
  *
  * @summary The operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateAWindowsVmWithPatchSettingModeOfAutomaticByOS.json
  */
 import {
   VirtualMachine,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//virtualMachines.beginCreateOrUpdateAndWait
 async function createAWindowsVMWithAPatchSettingPatchModeOfAutomaticByOS() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const vmName = "myVM";
   const parameters: VirtualMachine = {
@@ -61,6 +61,8 @@ async function createAWindowsVMWithAPatchSettingPatchModeOfAutomaticByOS() {
       }
     }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.virtualMachines.beginCreateOrUpdateAndWait(
     resourceGroupName,
     vmName,
@@ -68,10 +70,7 @@ async function createAWindowsVMWithAPatchSettingPatchModeOfAutomaticByOS() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await createAWindowsVMWithAPatchSettingPatchModeOfAutomaticByOS();
-}
-main();
+
+createAWindowsVMWithAPatchSettingPatchModeOfAutomaticByOS().catch(
+  console.error
+);

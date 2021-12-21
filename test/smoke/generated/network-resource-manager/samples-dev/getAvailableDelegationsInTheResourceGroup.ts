@@ -12,15 +12,17 @@
  * This sample demonstrates how to Gets all of the available subnet delegations for this resource group in this region.
  *
  * @summary Gets all of the available subnet delegations for this resource group in this region.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/AvailableDelegationsResourceGroupGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//availableResourceGroupDelegations.list
 async function getAvailableDelegationsInTheResourceGroup() {
+  const subscriptionId = "subId";
   const location = "westcentralus";
   const resourceGroupName = "rg1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.availableResourceGroupDelegations.list(
     location,
@@ -30,10 +32,5 @@ async function getAvailableDelegationsInTheResourceGroup() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subId";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getAvailableDelegationsInTheResourceGroup();
-}
-main();
+
+getAvailableDelegationsInTheResourceGroup().catch(console.error);

@@ -12,15 +12,17 @@
  * This sample demonstrates how to List gallery image definitions in a gallery.
  *
  * @summary List gallery image definitions in a gallery.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/ListGalleryImagesInAGallery.json
  */
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//galleryImages.listByGallery
 async function listGalleryImagesInAGallery() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const galleryName = "myGalleryName";
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.galleryImages.listByGallery(
     resourceGroupName,
@@ -30,10 +32,5 @@ async function listGalleryImagesInAGallery() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await listGalleryImagesInAGallery();
-}
-main();
+
+listGalleryImagesInAGallery().catch(console.error);

@@ -12,15 +12,17 @@
  * This sample demonstrates how to Retrieves the details of all VirtualHubIpConfigurations.
  *
  * @summary Retrieves the details of all VirtualHubIpConfigurations.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualHubIpConfigurationList.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//virtualHubIpConfiguration.list
 async function virtualHubRouteTableV2List() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualHubName = "hub1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.virtualHubIpConfiguration.list(
     resourceGroupName,
@@ -30,10 +32,5 @@ async function virtualHubRouteTableV2List() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await virtualHubRouteTableV2List();
-}
-main();
+
+virtualHubRouteTableV2List().catch(console.error);

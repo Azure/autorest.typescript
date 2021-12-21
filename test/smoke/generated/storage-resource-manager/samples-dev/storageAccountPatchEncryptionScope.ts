@@ -12,6 +12,7 @@
  * This sample demonstrates how to Update encryption scope properties as specified in the request body. Update fails if the specified encryption scope does not already exist.
  *
  * @summary Update encryption scope properties as specified in the request body. Update fails if the specified encryption scope does not already exist.
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountPatchEncryptionScope.json
  */
 import {
   EncryptionScope,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//encryptionScopes.patch
 async function storageAccountPatchEncryptionScope() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "resource-group-name";
   const accountName = "{storage-account-name}";
   const encryptionScopeName = "{encryption-scope-name}";
@@ -32,6 +32,8 @@ async function storageAccountPatchEncryptionScope() {
     },
     source: "Microsoft.KeyVault"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.encryptionScopes.patch(
     resourceGroupName,
     accountName,
@@ -40,10 +42,5 @@ async function storageAccountPatchEncryptionScope() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await storageAccountPatchEncryptionScope();
-}
-main();
+
+storageAccountPatchEncryptionScope().catch(console.error);

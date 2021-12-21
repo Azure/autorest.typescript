@@ -12,19 +12,21 @@
  * This sample demonstrates how to Get the specified public IP address in a virtual machine scale set.
  *
  * @summary Get the specified public IP address in a virtual machine scale set.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VmssPublicIpGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//publicIPAddresses.getVirtualMachineScaleSetPublicIPAddress
 async function getVmssPublicIP() {
+  const subscriptionId = "subid";
   const resourceGroupName = "vmss-tester";
   const virtualMachineScaleSetName = "vmss1";
   const virtualmachineIndex = "1";
   const networkInterfaceName = "nic1";
   const ipConfigurationName = "ip1";
   const publicIpAddressName = "pub1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.publicIPAddresses.getVirtualMachineScaleSetPublicIPAddress(
     resourceGroupName,
     virtualMachineScaleSetName,
@@ -35,10 +37,5 @@ async function getVmssPublicIP() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getVmssPublicIP();
-}
-main();
+
+getVmssPublicIP().catch(console.error);

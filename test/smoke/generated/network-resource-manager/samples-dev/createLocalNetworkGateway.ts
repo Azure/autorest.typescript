@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates a local network gateway in the specified resource group.
  *
  * @summary Creates or updates a local network gateway in the specified resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/LocalNetworkGatewayCreate.json
  */
 import {
   LocalNetworkGateway,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//localNetworkGateways.beginCreateOrUpdateAndWait
 async function createLocalNetworkGateway() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const localNetworkGatewayName = "localgw";
   const parameters: LocalNetworkGateway = {
@@ -30,6 +30,8 @@ async function createLocalNetworkGateway() {
     localNetworkAddressSpace: { addressPrefixes: ["10.1.0.0/16"] },
     location: "Central US"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.localNetworkGateways.beginCreateOrUpdateAndWait(
     resourceGroupName,
     localNetworkGatewayName,
@@ -37,10 +39,5 @@ async function createLocalNetworkGateway() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await createLocalNetworkGateway();
-}
-main();
+
+createLocalNetworkGateway().catch(console.error);

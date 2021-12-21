@@ -12,6 +12,7 @@
  * This sample demonstrates how to Approve or reject a private endpoint connection under disk access resource, this can't be used to create a new private endpoint connection.
  *
  * @summary Approve or reject a private endpoint connection under disk access resource, this can't be used to create a new private endpoint connection.
+ * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/ApprovePrivateEndpointConnection.json
  */
 import {
   PrivateEndpointConnection,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: ComputeManagementClient;
-//diskAccesses.beginUpdateAPrivateEndpointConnectionAndWait
 async function approveAPrivateEndpointConnectionUnderADiskAccessResource() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const diskAccessName = "myDiskAccess";
   const privateEndpointConnectionName = "myPrivateEndpointConnection";
@@ -31,6 +31,8 @@ async function approveAPrivateEndpointConnectionUnderADiskAccessResource() {
       status: "Approved"
     }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.diskAccesses.beginUpdateAPrivateEndpointConnectionAndWait(
     resourceGroupName,
     diskAccessName,
@@ -39,10 +41,7 @@ async function approveAPrivateEndpointConnectionUnderADiskAccessResource() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new ComputeManagementClient(credential, subscriptionId);
-  await approveAPrivateEndpointConnectionUnderADiskAccessResource();
-}
-main();
+
+approveAPrivateEndpointConnectionUnderADiskAccessResource().catch(
+  console.error
+);

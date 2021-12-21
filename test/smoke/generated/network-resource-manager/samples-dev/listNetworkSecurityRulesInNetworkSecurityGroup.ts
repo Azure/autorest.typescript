@@ -12,15 +12,17 @@
  * This sample demonstrates how to Gets all security rules in a network security group.
  *
  * @summary Gets all security rules in a network security group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkSecurityGroupRuleList.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//securityRules.list
 async function listNetworkSecurityRulesInNetworkSecurityGroup() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const networkSecurityGroupName = "testnsg";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.securityRules.list(
     resourceGroupName,
@@ -30,10 +32,5 @@ async function listNetworkSecurityRulesInNetworkSecurityGroup() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await listNetworkSecurityRulesInNetworkSecurityGroup();
-}
-main();
+
+listNetworkSecurityRulesInNetworkSecurityGroup().catch(console.error);

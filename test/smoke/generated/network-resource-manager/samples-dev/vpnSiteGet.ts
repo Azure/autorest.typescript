@@ -12,16 +12,18 @@
  * This sample demonstrates how to Retrieves the details of a VPN site link.
  *
  * @summary Retrieves the details of a VPN site link.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VpnSiteLinkGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//vpnSiteLinks.get
 async function vpnSiteGet() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const vpnSiteName = "vpnSite1";
   const vpnSiteLinkName = "vpnSiteLink1";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.vpnSiteLinks.get(
     resourceGroupName,
     vpnSiteName,
@@ -29,10 +31,5 @@ async function vpnSiteGet() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await vpnSiteGet();
-}
-main();
+
+vpnSiteGet().catch(console.error);

@@ -12,15 +12,17 @@
  * This sample demonstrates how to Lists all private link resources on an application gateway.
  *
  * @summary Lists all private link resources on an application gateway.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ApplicationGatewayPrivateLinkResourceList.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//applicationGatewayPrivateLinkResources.list
 async function listsAllPrivateLinkResourcesOnApplicationGateway() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const applicationGatewayName = "appgw";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.applicationGatewayPrivateLinkResources.list(
     resourceGroupName,
@@ -30,10 +32,5 @@ async function listsAllPrivateLinkResourcesOnApplicationGateway() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await listsAllPrivateLinkResourcesOnApplicationGateway();
-}
-main();
+
+listsAllPrivateLinkResourcesOnApplicationGateway().catch(console.error);

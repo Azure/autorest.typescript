@@ -12,17 +12,19 @@
  * This sample demonstrates how to Sets the ImmutabilityPolicy to Locked state. The only action allowed on a Locked policy is ExtendImmutabilityPolicy action. ETag in If-Match is required for this operation.
  *
  * @summary Sets the ImmutabilityPolicy to Locked state. The only action allowed on a Locked policy is ExtendImmutabilityPolicy action. ETag in If-Match is required for this operation.
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/BlobContainersLockImmutabilityPolicy.json
  */
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//blobContainers.lockImmutabilityPolicy
 async function lockImmutabilityPolicy() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "res2702";
   const accountName = "sto5009";
   const containerName = "container1631";
   const ifMatch = '"8d59f825b721dd3"';
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.blobContainers.lockImmutabilityPolicy(
     resourceGroupName,
     accountName,
@@ -31,10 +33,5 @@ async function lockImmutabilityPolicy() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await lockImmutabilityPolicy();
-}
-main();
+
+lockImmutabilityPolicy().catch(console.error);

@@ -12,14 +12,16 @@
  * This sample demonstrates how to Description for Get available Function app frameworks and their versions for location
  *
  * @summary Description for Get available Function app frameworks and their versions for location
+ * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/GetFunctionAppStacksForLocation.json
  */
 import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: WebSiteManagementClient;
-//provider.listFunctionAppStacksForLocation
 async function getLocationsFunctionAppStacks() {
+  const subscriptionId = "00000000-0000-0000-0000-000000000000";
   const location = "westus";
+  const credential = new DefaultAzureCredential();
+  const client = new WebSiteManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.provider.listFunctionAppStacksForLocation(
     location
@@ -28,10 +30,5 @@ async function getLocationsFunctionAppStacks() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-0000-0000-0000-000000000000";
-  client = new WebSiteManagementClient(credential, subscriptionId);
-  await getLocationsFunctionAppStacks();
-}
-main();
+
+getLocationsFunctionAppStacks().catch(console.error);

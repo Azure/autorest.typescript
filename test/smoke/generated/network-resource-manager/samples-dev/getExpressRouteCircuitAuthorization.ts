@@ -12,16 +12,18 @@
  * This sample demonstrates how to Gets the specified authorization from the specified express route circuit.
  *
  * @summary Gets the specified authorization from the specified express route circuit.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ExpressRouteCircuitAuthorizationGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//expressRouteCircuitAuthorizations.get
 async function getExpressRouteCircuitAuthorization() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const circuitName = "circuitName";
   const authorizationName = "authorizationName";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.expressRouteCircuitAuthorizations.get(
     resourceGroupName,
     circuitName,
@@ -29,10 +31,5 @@ async function getExpressRouteCircuitAuthorization() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getExpressRouteCircuitAuthorization();
-}
-main();
+
+getExpressRouteCircuitAuthorization().catch(console.error);

@@ -12,6 +12,7 @@
  * This sample demonstrates how to Retrieves the current filter values for the signatures overrides
  *
  * @summary Retrieves the current filter values for the signatures overrides
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/FirewallPolicyQuerySignatureOverridesFilterValues.json
  */
 import {
   SignatureOverridesFilterValuesQuery,
@@ -19,14 +20,15 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//firewallPolicyIdpsSignaturesFilterValues.list
 async function querySignatureOverrides() {
+  const subscriptionId = "e747cc13-97d4-4a79-b463-42d7f4e558f2";
   const resourceGroupName = "rg1";
   const firewallPolicyName = "firewallPolicy";
   const parameters: SignatureOverridesFilterValuesQuery = {
     filterName: "severity"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.firewallPolicyIdpsSignaturesFilterValues.list(
     resourceGroupName,
     firewallPolicyName,
@@ -34,10 +36,5 @@ async function querySignatureOverrides() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "e747cc13-97d4-4a79-b463-42d7f4e558f2";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await querySignatureOverrides();
-}
-main();
+
+querySignatureOverrides().catch(console.error);

@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates a network security group in the specified resource group.
  *
  * @summary Creates or updates a network security group in the specified resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkSecurityGroupCreate.json
  */
 import {
   NetworkSecurityGroup,
@@ -19,12 +20,13 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//networkSecurityGroups.beginCreateOrUpdateAndWait
 async function createNetworkSecurityGroup() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const networkSecurityGroupName = "testnsg";
   const parameters: NetworkSecurityGroup = { location: "eastus" };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.networkSecurityGroups.beginCreateOrUpdateAndWait(
     resourceGroupName,
     networkSecurityGroupName,
@@ -32,10 +34,5 @@ async function createNetworkSecurityGroup() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await createNetworkSecurityGroup();
-}
-main();
+
+createNetworkSecurityGroup().catch(console.error);

@@ -12,25 +12,22 @@
  * This sample demonstrates how to Gets the specified IpAllocation by resource group.
  *
  * @summary Gets the specified IpAllocation by resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/IpAllocationGet.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//ipAllocations.get
 async function getIPAllocation() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const ipAllocationName = "test-ipallocation";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.ipAllocations.get(
     resourceGroupName,
     ipAllocationName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getIPAllocation();
-}
-main();
+
+getIPAllocation().catch(console.error);

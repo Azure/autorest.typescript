@@ -12,25 +12,22 @@
  * This sample demonstrates how to Starts packet capture on vpn gateway in the specified resource group.
  *
  * @summary Starts packet capture on vpn gateway in the specified resource group.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VpnGatewayStartPacketCapture.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//vpnGateways.beginStartPacketCaptureAndWait
 async function startPacketCaptureOnVpnGatewayWithoutFilter() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const gatewayName = "vpngw";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.vpnGateways.beginStartPacketCaptureAndWait(
     resourceGroupName,
     gatewayName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await startPacketCaptureOnVpnGatewayWithoutFilter();
-}
-main();
+
+startPacketCaptureOnVpnGatewayWithoutFilter().catch(console.error);

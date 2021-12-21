@@ -12,23 +12,20 @@
  * This sample demonstrates how to Lists all the VpnServerConfigurations in a subscription.
  *
  * @summary Lists all the VpnServerConfigurations in a subscription.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VpnServerConfigurationList.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//vpnServerConfigurations.list
 async function vpnServerConfigurationList() {
+  const subscriptionId = "subid";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.vpnServerConfigurations.list()) {
     resArray.push(item);
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await vpnServerConfigurationList();
-}
-main();
+
+vpnServerConfigurationList().catch(console.error);

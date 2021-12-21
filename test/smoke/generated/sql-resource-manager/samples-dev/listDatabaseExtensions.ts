@@ -12,12 +12,11 @@
  * This sample demonstrates how to List database extension. This will return an empty list as it is not supported.
  *
  * @summary List database extension. This will return an empty list as it is not supported.
- * x-ms-original-file:
+ * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-02-01-preview/examples/ListDatabaseExtensions.json
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: SqlManagementClient;
 async function listDatabaseExtensions() {
   const subscriptionId = "7b2515fe-f230-4017-8cf0-695163acab85";
   const resourceGroupName = "rg_4007c5a9-b3b0-41e1-bd46-9eef38768a4a";

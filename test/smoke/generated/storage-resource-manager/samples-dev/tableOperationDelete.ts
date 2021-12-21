@@ -12,16 +12,18 @@
  * This sample demonstrates how to Deletes the table with the specified table name, under the specified account if it exists.
  *
  * @summary Deletes the table with the specified table name, under the specified account if it exists.
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/TableOperationDelete.json
  */
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//tableOperations.delete
 async function tableOperationDelete() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "res3376";
   const accountName = "sto328";
   const tableName = "table6185";
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.tableOperations.delete(
     resourceGroupName,
     accountName,
@@ -29,10 +31,5 @@ async function tableOperationDelete() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await tableOperationDelete();
-}
-main();
+
+tableOperationDelete().catch(console.error);

@@ -12,6 +12,7 @@
  * This sample demonstrates how to Updates an express route cross connection tags.
  *
  * @summary Updates an express route cross connection tags.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ExpressRouteCrossConnectionUpdateTags.json
  */
 import {
   TagsObject,
@@ -19,14 +20,15 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//expressRouteCrossConnections.updateTags
 async function updateExpressRouteCrossConnectionTags() {
+  const subscriptionId = "subid";
   const resourceGroupName = "CrossConnection-SiliconValley";
   const crossConnectionName = "<circuitServiceKey>";
   const crossConnectionParameters: TagsObject = {
     tags: { tag1: "value1", tag2: "value2" }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.expressRouteCrossConnections.updateTags(
     resourceGroupName,
     crossConnectionName,
@@ -34,10 +36,5 @@ async function updateExpressRouteCrossConnectionTags() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await updateExpressRouteCrossConnectionTags();
-}
-main();
+
+updateExpressRouteCrossConnectionTags().catch(console.error);

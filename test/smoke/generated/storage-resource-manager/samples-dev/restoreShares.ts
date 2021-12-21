@@ -12,6 +12,7 @@
  * This sample demonstrates how to Restore a file share within a valid retention days if share soft delete is enabled
  *
  * @summary Restore a file share within a valid retention days if share soft delete is enabled
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/FileSharesRestore.json
  */
 import {
   DeletedShare,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//fileShares.restore
 async function restoreShares() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "res3376";
   const accountName = "sto328";
   const shareName = "share1249";
@@ -29,6 +29,8 @@ async function restoreShares() {
     deletedShareName: "share1249",
     deletedShareVersion: "1234567890"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.fileShares.restore(
     resourceGroupName,
     accountName,
@@ -37,10 +39,5 @@ async function restoreShares() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await restoreShares();
-}
-main();
+
+restoreShares().catch(console.error);

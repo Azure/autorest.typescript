@@ -12,15 +12,17 @@
  * This sample demonstrates how to Gets associated load balancer network interfaces.
  *
  * @summary Gets associated load balancer network interfaces.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/LoadBalancerNetworkInterfaceListSimple.json
  */
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//loadBalancerNetworkInterfaces.list
 async function loadBalancerNetworkInterfaceListSimple() {
+  const subscriptionId = "subid";
   const resourceGroupName = "testrg";
   const loadBalancerName = "lb";
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.loadBalancerNetworkInterfaces.list(
     resourceGroupName,
@@ -30,10 +32,5 @@ async function loadBalancerNetworkInterfaceListSimple() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await loadBalancerNetworkInterfaceListSimple();
-}
-main();
+
+loadBalancerNetworkInterfaceListSimple().catch(console.error);

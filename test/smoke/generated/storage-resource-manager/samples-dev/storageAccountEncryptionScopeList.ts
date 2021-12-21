@@ -12,15 +12,17 @@
  * This sample demonstrates how to Lists all the encryption scopes available under the specified storage account.
  *
  * @summary Lists all the encryption scopes available under the specified storage account.
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountEncryptionScopeList.json
  */
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//encryptionScopes.list
 async function storageAccountEncryptionScopeList() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "resource-group-name";
   const accountName = "{storage-account-name}";
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.encryptionScopes.list(
     resourceGroupName,
@@ -30,10 +32,5 @@ async function storageAccountEncryptionScopeList() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await storageAccountEncryptionScopeList();
-}
-main();
+
+storageAccountEncryptionScopeList().catch(console.error);

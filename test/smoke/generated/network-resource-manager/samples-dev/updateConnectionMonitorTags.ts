@@ -12,6 +12,7 @@
  * This sample demonstrates how to Update tags of the specified connection monitor.
  *
  * @summary Update tags of the specified connection monitor.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkWatcherConnectionMonitorUpdateTags.json
  */
 import {
   TagsObject,
@@ -19,13 +20,14 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//connectionMonitors.updateTags
 async function updateConnectionMonitorTags() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const networkWatcherName = "nw1";
   const connectionMonitorName = "cm1";
   const parameters: TagsObject = { tags: { tag1: "value1", tag2: "value2" } };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.connectionMonitors.updateTags(
     resourceGroupName,
     networkWatcherName,
@@ -34,10 +36,5 @@ async function updateConnectionMonitorTags() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await updateConnectionMonitorTags();
-}
-main();
+
+updateConnectionMonitorTags().catch(console.error);

@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates a network profile.
  *
  * @summary Creates or updates a network profile.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkProfileCreateConfigOnly.json
  */
 import {
   NetworkProfile,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//networkProfiles.createOrUpdate
 async function createNetworkProfileDefaults() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const networkProfileName = "networkProfile1";
   const parameters: NetworkProfile = {
@@ -41,6 +41,8 @@ async function createNetworkProfileDefaults() {
     ],
     location: "westus"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.networkProfiles.createOrUpdate(
     resourceGroupName,
     networkProfileName,
@@ -48,10 +50,5 @@ async function createNetworkProfileDefaults() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await createNetworkProfileDefaults();
-}
-main();
+
+createNetworkProfileDefaults().catch(console.error);

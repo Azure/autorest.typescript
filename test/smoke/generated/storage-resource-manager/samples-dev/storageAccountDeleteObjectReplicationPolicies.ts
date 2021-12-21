@@ -12,16 +12,18 @@
  * This sample demonstrates how to Deletes the object replication policy associated with the specified storage account.
  *
  * @summary Deletes the object replication policy associated with the specified storage account.
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountDeleteObjectReplicationPolicy.json
  */
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//objectReplicationPoliciesOperations.delete
 async function storageAccountDeleteObjectReplicationPolicies() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "res6977";
   const accountName = "sto2527";
   const objectReplicationPolicyId = "{objectReplicationPolicy-Id}";
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.objectReplicationPoliciesOperations.delete(
     resourceGroupName,
     accountName,
@@ -29,10 +31,5 @@ async function storageAccountDeleteObjectReplicationPolicies() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await storageAccountDeleteObjectReplicationPolicies();
-}
-main();
+
+storageAccountDeleteObjectReplicationPolicies().catch(console.error);

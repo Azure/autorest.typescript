@@ -12,6 +12,7 @@
  * This sample demonstrates how to Initiate troubleshooting on a specified resource.
  *
  * @summary Initiate troubleshooting on a specified resource.
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkWatcherTroubleshootGet.json
  */
 import {
   TroubleshootingParameters,
@@ -19,9 +20,8 @@ import {
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: NetworkManagementClient;
-//networkWatchers.beginGetTroubleshootingAndWait
 async function getTroubleshooting() {
+  const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const networkWatcherName = "nw1";
   const parameters: TroubleshootingParameters = {
@@ -31,6 +31,8 @@ async function getTroubleshooting() {
     targetResourceId:
       "/subscriptions/subid/resourceGroups/rg2/providers/Microsoft.Compute/virtualMachines/vm1"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.networkWatchers.beginGetTroubleshootingAndWait(
     resourceGroupName,
     networkWatcherName,
@@ -38,10 +40,5 @@ async function getTroubleshooting() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "subid";
-  client = new NetworkManagementClient(credential, subscriptionId);
-  await getTroubleshooting();
-}
-main();
+
+getTroubleshooting().catch(console.error);

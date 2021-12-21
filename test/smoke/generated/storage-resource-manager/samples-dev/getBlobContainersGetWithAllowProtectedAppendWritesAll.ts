@@ -12,16 +12,18 @@
  * This sample demonstrates how to Gets properties of a specified container.
  *
  * @summary Gets properties of a specified container.
+ * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/BlobContainersGetWithAllowProtectedAppendWritesAll.json
  */
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: StorageManagementClient;
-//blobContainers.get
 async function getBlobContainersGetWithAllowProtectedAppendWritesAll() {
+  const subscriptionId = "{subscription-id}";
   const resourceGroupName = "res9871";
   const accountName = "sto6217";
   const containerName = "container1634";
+  const credential = new DefaultAzureCredential();
+  const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.blobContainers.get(
     resourceGroupName,
     accountName,
@@ -29,10 +31,5 @@ async function getBlobContainersGetWithAllowProtectedAppendWritesAll() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "{subscription-id}";
-  client = new StorageManagementClient(credential, subscriptionId);
-  await getBlobContainersGetWithAllowProtectedAppendWritesAll();
-}
-main();
+
+getBlobContainersGetWithAllowProtectedAppendWritesAll().catch(console.error);
