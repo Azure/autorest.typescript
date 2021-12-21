@@ -12,19 +12,22 @@
  * This sample demonstrates how to Enables sensitivity recommendations on a given column (recommendations are enabled by default on all columns)
  *
  * @summary Enables sensitivity recommendations on a given column (recommendations are enabled by default on all columns)
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//managedDatabaseSensitivityLabels.enableRecommendation
 async function enablesTheSensitivityRecommendationsOnAGivenColumn() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "myRG";
   const managedInstanceName = "myManagedInstanceName";
   const databaseName = "myDatabase";
   const schemaName = "dbo";
   const tableName = "myTable";
   const columnName = "myColumn";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.managedDatabaseSensitivityLabels.enableRecommendation(
     resourceGroupName,
     managedInstanceName,
@@ -35,10 +38,5 @@ async function enablesTheSensitivityRecommendationsOnAGivenColumn() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await enablesTheSensitivityRecommendationsOnAGivenColumn();
-}
-main();
+
+enablesTheSensitivityRecommendationsOnAGivenColumn().catch(console.error);

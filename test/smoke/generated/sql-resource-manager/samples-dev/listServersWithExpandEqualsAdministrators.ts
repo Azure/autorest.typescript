@@ -12,23 +12,21 @@
  * This sample demonstrates how to Gets a list of all servers in the subscription.
  *
  * @summary Gets a list of all servers in the subscription.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//servers.list
 async function listServersWithExpandEqualsAdministrators() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.servers.list()) {
     resArray.push(item);
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await listServersWithExpandEqualsAdministrators();
-}
-main();
+
+listServersWithExpandEqualsAdministrators().catch(console.error);

@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates a job credential.
  *
  * @summary Creates or updates a job credential.
+ * x-ms-original-file:
  */
 import {
   JobCredential,
@@ -20,8 +21,8 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//jobCredentials.createOrUpdate
 async function createOrUpdateACredential() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "group1";
   const serverName = "server1";
   const jobAgentName = "agent1";
@@ -30,6 +31,8 @@ async function createOrUpdateACredential() {
     password: "<password>",
     username: "myuser"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.jobCredentials.createOrUpdate(
     resourceGroupName,
     serverName,
@@ -39,10 +42,5 @@ async function createOrUpdateACredential() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await createOrUpdateACredential();
-}
-main();
+
+createOrUpdateACredential().catch(console.error);

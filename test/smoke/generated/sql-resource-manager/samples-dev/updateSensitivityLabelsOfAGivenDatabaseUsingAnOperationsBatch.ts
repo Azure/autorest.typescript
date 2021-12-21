@@ -12,6 +12,7 @@
  * This sample demonstrates how to Update sensitivity labels of a given database using an operations batch.
  *
  * @summary Update sensitivity labels of a given database using an operations batch.
+ * x-ms-original-file:
  */
 import {
   SensitivityLabelUpdateList,
@@ -20,8 +21,8 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//sensitivityLabels.update
 async function updateSensitivityLabelsOfAGivenDatabaseUsingAnOperationsBatch() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "myRG";
   const serverName = "myServer";
   const databaseName = "myDatabase";
@@ -56,6 +57,8 @@ async function updateSensitivityLabelsOfAGivenDatabaseUsingAnOperationsBatch() {
       { schema: "dbo", column: "Column3", op: "remove", table: "Table1" }
     ]
   };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.sensitivityLabels.update(
     resourceGroupName,
     serverName,
@@ -64,10 +67,7 @@ async function updateSensitivityLabelsOfAGivenDatabaseUsingAnOperationsBatch() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await updateSensitivityLabelsOfAGivenDatabaseUsingAnOperationsBatch();
-}
-main();
+
+updateSensitivityLabelsOfAGivenDatabaseUsingAnOperationsBatch().catch(
+  console.error
+);

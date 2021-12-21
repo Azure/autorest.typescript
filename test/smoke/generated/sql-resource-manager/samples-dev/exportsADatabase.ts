@@ -12,6 +12,7 @@
  * This sample demonstrates how to Exports a database.
  *
  * @summary Exports a database.
+ * x-ms-original-file:
  */
 import {
   ExportDatabaseDefinition,
@@ -20,8 +21,8 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//databases.beginExportAndWait
 async function exportsADatabase() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "Default-SQL-SouthEastAsia";
   const serverName = "testsvr";
   const databaseName = "testdb";
@@ -34,6 +35,8 @@ async function exportsADatabase() {
     storageKeyType: "StorageAccessKey",
     storageUri: "https://test.blob.core.windows.net/test.bacpac"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.databases.beginExportAndWait(
     resourceGroupName,
     serverName,
@@ -42,10 +45,5 @@ async function exportsADatabase() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await exportsADatabase();
-}
-main();
+
+exportsADatabase().catch(console.error);

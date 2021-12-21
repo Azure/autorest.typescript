@@ -12,6 +12,7 @@
  * This sample demonstrates how to Updates a database's short term retention policy.
  *
  * @summary Updates a database's short term retention policy.
+ * x-ms-original-file:
  */
 import {
   BackupShortTermRetentionPolicy,
@@ -20,8 +21,8 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//backupShortTermRetentionPolicies.beginUpdateAndWait
 async function updateTheShortTermRetentionPolicyForTheDatabase() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "resourceGroup";
   const serverName = "testsvr";
   const databaseName = "testdb";
@@ -30,6 +31,8 @@ async function updateTheShortTermRetentionPolicyForTheDatabase() {
     diffBackupIntervalInHours: 24,
     retentionDays: 7
   };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.backupShortTermRetentionPolicies.beginUpdateAndWait(
     resourceGroupName,
     serverName,
@@ -39,10 +42,5 @@ async function updateTheShortTermRetentionPolicyForTheDatabase() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await updateTheShortTermRetentionPolicyForTheDatabase();
-}
-main();
+
+updateTheShortTermRetentionPolicyForTheDatabase().catch(console.error);

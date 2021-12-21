@@ -12,19 +12,22 @@
  * This sample demonstrates how to Get managed database column
  *
  * @summary Get managed database column
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//managedDatabaseColumns.get
 async function getManagedDatabaseColumn() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "myRG";
   const managedInstanceName = "myManagedInstanceName";
   const databaseName = "myDatabase";
   const schemaName = "dbo";
   const tableName = "table1";
   const columnName = "column1";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.managedDatabaseColumns.get(
     resourceGroupName,
     managedInstanceName,
@@ -35,10 +38,5 @@ async function getManagedDatabaseColumn() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await getManagedDatabaseColumn();
-}
-main();
+
+getManagedDatabaseColumn().catch(console.error);

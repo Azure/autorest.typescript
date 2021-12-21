@@ -12,18 +12,21 @@
  * This sample demonstrates how to Updates a database advisor.
  *
  * @summary Updates a database advisor.
+ * x-ms-original-file:
  */
 import { Advisor, SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//databaseAdvisors.update
 async function updateDatabaseAdvisor() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "workloadinsight-demos";
   const serverName = "misosisvr";
   const databaseName = "IndexAdvisor_test_3";
   const advisorName = "CreateIndex";
   const parameters: Advisor = { autoExecuteStatus: "Disabled" };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.databaseAdvisors.update(
     resourceGroupName,
     serverName,
@@ -33,10 +36,5 @@ async function updateDatabaseAdvisor() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await updateDatabaseAdvisor();
-}
-main();
+
+updateDatabaseAdvisor().catch(console.error);

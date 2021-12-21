@@ -12,15 +12,18 @@
  * This sample demonstrates how to Gets a server trust groups by instance name.
  *
  * @summary Gets a server trust groups by instance name.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//serverTrustGroups.listByInstance
 async function listServerTrustGroupsByManagedInstance() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "Default-SQL-SouthEastAsia";
   const managedInstanceName = "managedInstance-1";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.serverTrustGroups.listByInstance(
     resourceGroupName,
@@ -30,10 +33,5 @@ async function listServerTrustGroupsByManagedInstance() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await listServerTrustGroupsByManagedInstance();
-}
-main();
+
+listServerTrustGroupsByManagedInstance().catch(console.error);

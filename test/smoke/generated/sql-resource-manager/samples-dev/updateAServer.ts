@@ -12,6 +12,7 @@
  * This sample demonstrates how to Updates a server.
  *
  * @summary Updates a server.
+ * x-ms-original-file:
  */
 import {
   ServerUpdate,
@@ -20,8 +21,8 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//servers.beginUpdateAndWait
 async function updateAServer() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "sqlcrudtest-7398";
   const serverName = "sqlcrudtest-4645";
   const parameters: ServerUpdate = {
@@ -30,6 +31,8 @@ async function updateAServer() {
     publicNetworkAccess: "Disabled",
     restrictOutboundNetworkAccess: "Enabled"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.servers.beginUpdateAndWait(
     resourceGroupName,
     serverName,
@@ -37,10 +40,5 @@ async function updateAServer() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await updateAServer();
-}
-main();
+
+updateAServer().catch(console.error);

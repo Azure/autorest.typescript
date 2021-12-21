@@ -12,15 +12,18 @@
  * This sample demonstrates how to Gets a list of all managed instances in an instance pool.
  *
  * @summary Gets a list of all managed instances in an instance pool.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//managedInstances.listByInstancePool
 async function listManagedInstancesByInstancePoolWithExpandAdministratorsOrActivedirectory() {
+  const subscriptionId = "20D7082A-0FC7-4468-82BD-542694D5042B";
   const resourceGroupName = "Test1";
   const instancePoolName = "pool1";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.managedInstances.listByInstancePool(
     resourceGroupName,
@@ -30,10 +33,7 @@ async function listManagedInstancesByInstancePoolWithExpandAdministratorsOrActiv
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "20D7082A-0FC7-4468-82BD-542694D5042B";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await listManagedInstancesByInstancePoolWithExpandAdministratorsOrActivedirectory();
-}
-main();
+
+listManagedInstancesByInstancePoolWithExpandAdministratorsOrActivedirectory().catch(
+  console.error
+);

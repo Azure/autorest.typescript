@@ -12,14 +12,17 @@
  * This sample demonstrates how to Gets a list of managed instances in a resource group.
  *
  * @summary Gets a list of managed instances in a resource group.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//managedInstances.listByResourceGroup
 async function listManagedInstancesByResourceGroup() {
+  const subscriptionId = "20D7082A-0FC7-4468-82BD-542694D5042B";
   const resourceGroupName = "Test1";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.managedInstances.listByResourceGroup(
     resourceGroupName
@@ -28,10 +31,5 @@ async function listManagedInstancesByResourceGroup() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "20D7082A-0FC7-4468-82BD-542694D5042B";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await listManagedInstancesByResourceGroup();
-}
-main();
+
+listManagedInstancesByResourceGroup().catch(console.error);

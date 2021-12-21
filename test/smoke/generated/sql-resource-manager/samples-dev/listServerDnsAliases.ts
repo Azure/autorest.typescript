@@ -12,15 +12,18 @@
  * This sample demonstrates how to Gets a list of server DNS aliases for a server.
  *
  * @summary Gets a list of server DNS aliases for a server.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//serverDnsAliases.listByServer
 async function listServerDnsAliases() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "Default";
   const serverName = "dns-alias-server";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.serverDnsAliases.listByServer(
     resourceGroupName,
@@ -30,10 +33,5 @@ async function listServerDnsAliases() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await listServerDnsAliases();
-}
-main();
+
+listServerDnsAliases().catch(console.error);

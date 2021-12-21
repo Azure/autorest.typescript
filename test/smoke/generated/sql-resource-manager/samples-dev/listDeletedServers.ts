@@ -12,24 +12,22 @@
  * This sample demonstrates how to Gets a list of deleted servers for a location.
  *
  * @summary Gets a list of deleted servers for a location.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//deletedServers.listByLocation
 async function listDeletedServers() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const locationName = "japaneast";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.deletedServers.listByLocation(locationName)) {
     resArray.push(item);
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await listDeletedServers();
-}
-main();
+
+listDeletedServers().catch(console.error);

@@ -12,16 +12,19 @@
  * This sample demonstrates how to Lists auditing settings of a database.
  *
  * @summary Lists auditing settings of a database.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//databaseBlobAuditingPolicies.listByDatabase
 async function listAuditSettingsOfADatabase() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "blobauditingtest-6852";
   const serverName = "blobauditingtest-2080";
   const databaseName = "testdb";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.databaseBlobAuditingPolicies.listByDatabase(
     resourceGroupName,
@@ -32,10 +35,5 @@ async function listAuditSettingsOfADatabase() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await listAuditSettingsOfADatabase();
-}
-main();
+
+listAuditSettingsOfADatabase().catch(console.error);

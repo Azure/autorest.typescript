@@ -12,17 +12,20 @@
  * This sample demonstrates how to Deletes a workload group.
  *
  * @summary Deletes a workload group.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//workloadGroups.beginDeleteAndWait
 async function deleteAWorkloadGroup() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "Default-SQL-SouthEastAsia";
   const serverName = "testsvr";
   const databaseName = "testdb";
   const workloadGroupName = "wlm_workloadgroup";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.workloadGroups.beginDeleteAndWait(
     resourceGroupName,
     serverName,
@@ -31,10 +34,5 @@ async function deleteAWorkloadGroup() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await deleteAWorkloadGroup();
-}
-main();
+
+deleteAWorkloadGroup().catch(console.error);

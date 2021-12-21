@@ -12,6 +12,7 @@
  * This sample demonstrates how to Updates a failover group.
  *
  * @summary Updates a failover group.
+ * x-ms-original-file:
  */
 import {
   FailoverGroupUpdate,
@@ -20,8 +21,8 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//failoverGroups.beginUpdateAndWait
 async function updateFailoverGroup() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "Default";
   const serverName = "failover-group-primary-server";
   const failoverGroupName = "failover-group-test-1";
@@ -34,6 +35,8 @@ async function updateFailoverGroup() {
       failoverWithDataLossGracePeriodMinutes: 120
     }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.failoverGroups.beginUpdateAndWait(
     resourceGroupName,
     serverName,
@@ -42,10 +45,5 @@ async function updateFailoverGroup() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await updateFailoverGroup();
-}
-main();
+
+updateFailoverGroup().catch(console.error);

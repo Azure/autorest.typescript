@@ -12,17 +12,20 @@
  * This sample demonstrates how to Gets all instance pool usage metrics
  *
  * @summary Gets all instance pool usage metrics
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//usages.listByInstancePool
 async function listInstancePoolUsagesExpandedWithChildren() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "group1";
   const instancePoolName = "testIP";
   const expandChildren = true;
   const options = { expandChildren: expandChildren };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.usages.listByInstancePool(
     resourceGroupName,
@@ -33,10 +36,5 @@ async function listInstancePoolUsagesExpandedWithChildren() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await listInstancePoolUsagesExpandedWithChildren();
-}
-main();
+
+listInstancePoolUsagesExpandedWithChildren().catch(console.error);

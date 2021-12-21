@@ -12,6 +12,7 @@
  * This sample demonstrates how to Approve or reject a private endpoint connection with a given name.
  *
  * @summary Approve or reject a private endpoint connection with a given name.
+ * x-ms-original-file:
  */
 import {
   PrivateEndpointConnection,
@@ -20,8 +21,8 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//privateEndpointConnections.beginCreateOrUpdateAndWait
 async function approveOrRejectAPrivateEndpointConnectionWithAGivenName() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "Default";
   const serverName = "test-svr";
   const privateEndpointConnectionName = "private-endpoint-connection-name";
@@ -31,6 +32,8 @@ async function approveOrRejectAPrivateEndpointConnectionWithAGivenName() {
       status: "Approved"
     }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.privateEndpointConnections.beginCreateOrUpdateAndWait(
     resourceGroupName,
     serverName,
@@ -39,10 +42,5 @@ async function approveOrRejectAPrivateEndpointConnectionWithAGivenName() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await approveOrRejectAPrivateEndpointConnectionWithAGivenName();
-}
-main();
+
+approveOrRejectAPrivateEndpointConnectionWithAGivenName().catch(console.error);

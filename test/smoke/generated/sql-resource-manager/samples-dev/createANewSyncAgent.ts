@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates a sync agent.
  *
  * @summary Creates or updates a sync agent.
+ * x-ms-original-file:
  */
 import {
   SyncAgent,
@@ -20,8 +21,8 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//syncAgents.beginCreateOrUpdateAndWait
 async function createANewSyncAgent() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "syncagentcrud-65440";
   const serverName = "syncagentcrud-8475";
   const syncAgentName = "syncagentcrud-3187";
@@ -29,6 +30,8 @@ async function createANewSyncAgent() {
     syncDatabaseId:
       "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Default-SQL-Onebox/providers/Microsoft.Sql/servers/syncagentcrud-8475/databases/sync"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.syncAgents.beginCreateOrUpdateAndWait(
     resourceGroupName,
     serverName,
@@ -37,10 +40,5 @@ async function createANewSyncAgent() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await createANewSyncAgent();
-}
-main();
+
+createANewSyncAgent().catch(console.error);

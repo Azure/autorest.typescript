@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates a sync group.
  *
  * @summary Creates or updates a sync group.
+ * x-ms-original-file:
  */
 import {
   SyncGroup,
@@ -20,8 +21,8 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//syncGroups.beginCreateOrUpdateAndWait
 async function createASyncGroup() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "syncgroupcrud-65440";
   const serverName = "syncgroupcrud-8475";
   const databaseName = "syncgroupcrud-4328";
@@ -34,6 +35,8 @@ async function createASyncGroup() {
       "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/syncgroupcrud-3521/providers/Microsoft.Sql/servers/syncgroupcrud-8475/databases/syncgroupcrud-4328",
     usePrivateLinkConnection: true
   };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.syncGroups.beginCreateOrUpdateAndWait(
     resourceGroupName,
     serverName,
@@ -43,10 +46,5 @@ async function createASyncGroup() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await createASyncGroup();
-}
-main();
+
+createASyncGroup().catch(console.error);

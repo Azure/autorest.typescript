@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates the sensitivity label of a given column
  *
  * @summary Creates or updates the sensitivity label of a given column
+ * x-ms-original-file:
  */
 import {
   SensitivityLabel,
@@ -20,8 +21,8 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//sensitivityLabels.createOrUpdate
 async function updatesTheSensitivityLabelOfAGivenColumnWithAllParameters() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "myRG";
   const serverName = "myServer";
   const databaseName = "myDatabase";
@@ -35,6 +36,8 @@ async function updatesTheSensitivityLabelOfAGivenColumnWithAllParameters() {
     labelName: "PII",
     rank: "Low"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.sensitivityLabels.createOrUpdate(
     resourceGroupName,
     serverName,
@@ -46,10 +49,7 @@ async function updatesTheSensitivityLabelOfAGivenColumnWithAllParameters() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await updatesTheSensitivityLabelOfAGivenColumnWithAllParameters();
-}
-main();
+
+updatesTheSensitivityLabelOfAGivenColumnWithAllParameters().catch(
+  console.error
+);

@@ -12,6 +12,7 @@
  * This sample demonstrates how to Update recommended sensitivity labels states of a given database using an operations batch.
  *
  * @summary Update recommended sensitivity labels states of a given database using an operations batch.
+ * x-ms-original-file:
  */
 import {
   RecommendedSensitivityLabelUpdateList,
@@ -20,8 +21,8 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//recommendedSensitivityLabels.update
 async function updateRecommendedSensitivityLabelsOfAGivenDatabaseUsingAnOperationsBatch() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "myRG";
   const serverName = "myServer";
   const databaseName = "myDatabase";
@@ -32,6 +33,8 @@ async function updateRecommendedSensitivityLabelsOfAGivenDatabaseUsingAnOperatio
       { schema: "dbo", column: "column3", op: "disable", table: "table1" }
     ]
   };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.recommendedSensitivityLabels.update(
     resourceGroupName,
     serverName,
@@ -40,10 +43,7 @@ async function updateRecommendedSensitivityLabelsOfAGivenDatabaseUsingAnOperatio
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await updateRecommendedSensitivityLabelsOfAGivenDatabaseUsingAnOperationsBatch();
-}
-main();
+
+updateRecommendedSensitivityLabelsOfAGivenDatabaseUsingAnOperationsBatch().catch(
+  console.error
+);

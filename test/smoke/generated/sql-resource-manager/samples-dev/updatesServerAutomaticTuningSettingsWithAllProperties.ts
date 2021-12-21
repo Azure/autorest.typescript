@@ -12,6 +12,7 @@
  * This sample demonstrates how to Update automatic tuning options on server.
  *
  * @summary Update automatic tuning options on server.
+ * x-ms-original-file:
  */
 import {
   ServerAutomaticTuning,
@@ -20,8 +21,8 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//serverAutomaticTuningOperations.update
 async function updatesServerAutomaticTuningSettingsWithAllProperties() {
+  const subscriptionId = "c3aa9078-0000-0000-0000-e36f151182d7";
   const resourceGroupName = "default-sql-onebox";
   const serverName = "testsvr11";
   const parameters: ServerAutomaticTuning = {
@@ -32,6 +33,8 @@ async function updatesServerAutomaticTuningSettingsWithAllProperties() {
       forceLastGoodPlan: { desiredState: "Default" }
     }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.serverAutomaticTuningOperations.update(
     resourceGroupName,
     serverName,
@@ -39,10 +42,5 @@ async function updatesServerAutomaticTuningSettingsWithAllProperties() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "c3aa9078-0000-0000-0000-e36f151182d7";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await updatesServerAutomaticTuningSettingsWithAllProperties();
-}
-main();
+
+updatesServerAutomaticTuningSettingsWithAllProperties().catch(console.error);

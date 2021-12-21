@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates a server key.
  *
  * @summary Creates or updates a server key.
+ * x-ms-original-file:
  */
 import {
   ServerKey,
@@ -20,8 +21,8 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//serverKeys.beginCreateOrUpdateAndWait
 async function createsOrUpdatesAServerKey() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "sqlcrudtest-7398";
   const serverName = "sqlcrudtest-4645";
   const keyName = "someVault_someKey_01234567890123456789012345678901";
@@ -30,6 +31,8 @@ async function createsOrUpdatesAServerKey() {
     uri:
       "https://someVault.vault.azure.net/keys/someKey/01234567890123456789012345678901"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.serverKeys.beginCreateOrUpdateAndWait(
     resourceGroupName,
     serverName,
@@ -38,10 +41,5 @@ async function createsOrUpdatesAServerKey() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await createsOrUpdatesAServerKey();
-}
-main();
+
+createsOrUpdatesAServerKey().catch(console.error);

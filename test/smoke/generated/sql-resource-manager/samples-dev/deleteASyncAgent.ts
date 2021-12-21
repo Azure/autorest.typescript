@@ -12,16 +12,19 @@
  * This sample demonstrates how to Deletes a sync agent.
  *
  * @summary Deletes a sync agent.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//syncAgents.beginDeleteAndWait
 async function deleteASyncAgent() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "syncagentcrud-65440";
   const serverName = "syncagentcrud-8475";
   const syncAgentName = "syncagentcrud-3187";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.syncAgents.beginDeleteAndWait(
     resourceGroupName,
     serverName,
@@ -29,10 +32,5 @@ async function deleteASyncAgent() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await deleteASyncAgent();
-}
-main();
+
+deleteASyncAgent().catch(console.error);

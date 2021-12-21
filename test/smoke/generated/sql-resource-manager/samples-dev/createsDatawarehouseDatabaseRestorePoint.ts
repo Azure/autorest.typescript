@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates a restore point for a data warehouse.
  *
  * @summary Creates a restore point for a data warehouse.
+ * x-ms-original-file:
  */
 import {
   CreateDatabaseRestorePointDefinition,
@@ -20,14 +21,16 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//restorePoints.beginCreateAndWait
 async function createsDatawarehouseDatabaseRestorePoint() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "Default-SQL-SouthEastAsia";
   const serverName = "testserver";
   const databaseName = "testDatabase";
   const parameters: CreateDatabaseRestorePointDefinition = {
     restorePointLabel: "mylabel"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.restorePoints.beginCreateAndWait(
     resourceGroupName,
     serverName,
@@ -36,10 +39,5 @@ async function createsDatawarehouseDatabaseRestorePoint() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await createsDatawarehouseDatabaseRestorePoint();
-}
-main();
+
+createsDatawarehouseDatabaseRestorePoint().catch(console.error);

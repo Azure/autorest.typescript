@@ -12,25 +12,23 @@
  * This sample demonstrates how to Retrieves server automatic tuning options.
  *
  * @summary Retrieves server automatic tuning options.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//serverAutomaticTuningOperations.get
 async function getAServerAutomaticTuningSettings() {
+  const subscriptionId = "c3aa9078-0000-0000-0000-e36f151182d7";
   const resourceGroupName = "default-sql-onebox";
   const serverName = "testsvr11";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.serverAutomaticTuningOperations.get(
     resourceGroupName,
     serverName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "c3aa9078-0000-0000-0000-e36f151182d7";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await getAServerAutomaticTuningSettings();
-}
-main();
+
+getAServerAutomaticTuningSettings().catch(console.error);

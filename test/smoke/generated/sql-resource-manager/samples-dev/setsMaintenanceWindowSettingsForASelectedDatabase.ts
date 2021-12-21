@@ -12,6 +12,7 @@
  * This sample demonstrates how to Sets maintenance windows settings for a database.
  *
  * @summary Sets maintenance windows settings for a database.
+ * x-ms-original-file:
  */
 import {
   MaintenanceWindows,
@@ -20,8 +21,8 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//maintenanceWindowsOperations.createOrUpdate
 async function setsMaintenanceWindowSettingsForASelectedDatabase() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "Default-SQL-SouthEastAsia";
   const serverName = "testsvr";
   const databaseName = "testdwdb";
@@ -31,6 +32,8 @@ async function setsMaintenanceWindowSettingsForASelectedDatabase() {
       { dayOfWeek: "Saturday", duration: "PT60M", startTime: "00:00:00" }
     ]
   };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.maintenanceWindowsOperations.createOrUpdate(
     resourceGroupName,
     serverName,
@@ -40,10 +43,5 @@ async function setsMaintenanceWindowSettingsForASelectedDatabase() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await setsMaintenanceWindowSettingsForASelectedDatabase();
-}
-main();
+
+setsMaintenanceWindowSettingsForASelectedDatabase().catch(console.error);

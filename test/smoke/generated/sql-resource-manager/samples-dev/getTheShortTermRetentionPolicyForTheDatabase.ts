@@ -12,16 +12,19 @@
  * This sample demonstrates how to Gets a database's short term retention policy.
  *
  * @summary Gets a database's short term retention policy.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//backupShortTermRetentionPolicies.listByDatabase
 async function getTheShortTermRetentionPolicyForTheDatabase() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "Default-SQL-SouthEastAsia";
   const serverName = "testsvr";
   const databaseName = "testdb";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.backupShortTermRetentionPolicies.listByDatabase(
     resourceGroupName,
@@ -32,10 +35,5 @@ async function getTheShortTermRetentionPolicyForTheDatabase() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await getTheShortTermRetentionPolicyForTheDatabase();
-}
-main();
+
+getTheShortTermRetentionPolicyForTheDatabase().catch(console.error);

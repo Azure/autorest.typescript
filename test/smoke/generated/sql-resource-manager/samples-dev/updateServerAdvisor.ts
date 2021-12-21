@@ -12,17 +12,20 @@
  * This sample demonstrates how to Updates a server advisor.
  *
  * @summary Updates a server advisor.
+ * x-ms-original-file:
  */
 import { Advisor, SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//serverAdvisors.update
 async function updateServerAdvisor() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "workloadinsight-demos";
   const serverName = "misosisvr";
   const advisorName = "CreateIndex";
   const parameters: Advisor = { autoExecuteStatus: "Disabled" };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.serverAdvisors.update(
     resourceGroupName,
     serverName,
@@ -31,10 +34,5 @@ async function updateServerAdvisor() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await updateServerAdvisor();
-}
-main();
+
+updateServerAdvisor().catch(console.error);

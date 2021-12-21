@@ -12,16 +12,19 @@
  * This sample demonstrates how to Gets a managed instance key.
  *
  * @summary Gets a managed instance key.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//managedInstanceKeys.get
 async function getTheManagedInstanceKey() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "sqlcrudtest-7398";
   const managedInstanceName = "sqlcrudtest-4645";
   const keyName = "someVault_someKey_01234567890123456789012345678901";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.managedInstanceKeys.get(
     resourceGroupName,
     managedInstanceName,
@@ -29,10 +32,5 @@ async function getTheManagedInstanceKey() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await getTheManagedInstanceKey();
-}
-main();
+
+getTheManagedInstanceKey().catch(console.error);

@@ -12,6 +12,7 @@
  * This sample demonstrates how to Updates a job agent.
  *
  * @summary Updates a job agent.
+ * x-ms-original-file:
  */
 import {
   JobAgentUpdate,
@@ -20,12 +21,14 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//jobAgents.beginUpdateAndWait
 async function updateAJobAgentTags() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "group1";
   const serverName = "server1";
   const jobAgentName = "agent1";
   const parameters: JobAgentUpdate = { tags: { mytag1: "myvalue1" } };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.jobAgents.beginUpdateAndWait(
     resourceGroupName,
     serverName,
@@ -34,10 +37,5 @@ async function updateAJobAgentTags() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await updateAJobAgentTags();
-}
-main();
+
+updateAJobAgentTags().catch(console.error);

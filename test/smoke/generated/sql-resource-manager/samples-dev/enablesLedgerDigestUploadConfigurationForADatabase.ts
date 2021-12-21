@@ -12,6 +12,7 @@
  * This sample demonstrates how to Enables upload ledger digests to an Azure Storage account or an Azure Confidential Ledger instance.
  *
  * @summary Enables upload ledger digests to an Azure Storage account or an Azure Confidential Ledger instance.
+ * x-ms-original-file:
  */
 import {
   LedgerDigestUploads,
@@ -20,8 +21,8 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//ledgerDigestUploadsOperations.beginCreateOrUpdateAndWait
 async function enablesLedgerDigestUploadConfigurationForADatabase() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "ledgertestrg";
   const serverName = "ledgertestserver";
   const databaseName = "testdb";
@@ -29,6 +30,8 @@ async function enablesLedgerDigestUploadConfigurationForADatabase() {
   const parameters: LedgerDigestUploads = {
     digestStorageEndpoint: "https://MyAccount.blob.core.windows.net"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.ledgerDigestUploadsOperations.beginCreateOrUpdateAndWait(
     resourceGroupName,
     serverName,
@@ -38,10 +41,5 @@ async function enablesLedgerDigestUploadConfigurationForADatabase() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await enablesLedgerDigestUploadConfigurationForADatabase();
-}
-main();
+
+enablesLedgerDigestUploadConfigurationForADatabase().catch(console.error);

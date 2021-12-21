@@ -12,6 +12,7 @@
  * This sample demonstrates how to Replaces all firewall rules on the server.
  *
  * @summary Replaces all firewall rules on the server.
+ * x-ms-original-file:
  */
 import {
   FirewallRuleList,
@@ -20,8 +21,8 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//firewallRules.replace
 async function replaceFirewallRules() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "firewallrulecrudtest-12";
   const serverName = "firewallrulecrudtest-6285";
   const parameters: FirewallRuleList = {
@@ -33,6 +34,8 @@ async function replaceFirewallRules() {
       }
     ]
   };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.firewallRules.replace(
     resourceGroupName,
     serverName,
@@ -40,10 +43,5 @@ async function replaceFirewallRules() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await replaceFirewallRules();
-}
-main();
+
+replaceFirewallRules().catch(console.error);

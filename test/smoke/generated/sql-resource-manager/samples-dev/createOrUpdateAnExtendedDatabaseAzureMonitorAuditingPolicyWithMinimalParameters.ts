@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates an extended database's blob auditing policy.
  *
  * @summary Creates or updates an extended database's blob auditing policy.
+ * x-ms-original-file:
  */
 import {
   ExtendedDatabaseBlobAuditingPolicy,
@@ -20,8 +21,8 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//extendedDatabaseBlobAuditingPolicies.createOrUpdate
 async function createOrUpdateAnExtendedDatabaseAzureMonitorAuditingPolicyWithMinimalParameters() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "blobauditingtest-4799";
   const serverName = "blobauditingtest-6440";
   const databaseName = "testdb";
@@ -29,6 +30,8 @@ async function createOrUpdateAnExtendedDatabaseAzureMonitorAuditingPolicyWithMin
     isAzureMonitorTargetEnabled: true,
     state: "Enabled"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.extendedDatabaseBlobAuditingPolicies.createOrUpdate(
     resourceGroupName,
     serverName,
@@ -37,10 +40,7 @@ async function createOrUpdateAnExtendedDatabaseAzureMonitorAuditingPolicyWithMin
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await createOrUpdateAnExtendedDatabaseAzureMonitorAuditingPolicyWithMinimalParameters();
-}
-main();
+
+createOrUpdateAnExtendedDatabaseAzureMonitorAuditingPolicyWithMinimalParameters().catch(
+  console.error
+);

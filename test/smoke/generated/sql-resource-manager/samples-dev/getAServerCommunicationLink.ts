@@ -12,16 +12,19 @@
  * This sample demonstrates how to Returns a server communication link.
  *
  * @summary Returns a server communication link.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//serverCommunicationLinks.get
 async function getAServerCommunicationLink() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "sqlcrudtest-7398";
   const serverName = "sqlcrudtest-4645";
   const communicationLinkName = "link1";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.serverCommunicationLinks.get(
     resourceGroupName,
     serverName,
@@ -29,10 +32,5 @@ async function getAServerCommunicationLink() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await getAServerCommunicationLink();
-}
-main();
+
+getAServerCommunicationLink().catch(console.error);

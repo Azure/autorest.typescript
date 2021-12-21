@@ -12,16 +12,19 @@
  * This sample demonstrates how to Deletes a private endpoint connection with a given name.
  *
  * @summary Deletes a private endpoint connection with a given name.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//privateEndpointConnections.beginDeleteAndWait
 async function deletesAPrivateEndpointConnectionWithAGivenName() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "Default";
   const serverName = "test-svr";
   const privateEndpointConnectionName = "private-endpoint-connection-name";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.privateEndpointConnections.beginDeleteAndWait(
     resourceGroupName,
     serverName,
@@ -29,10 +32,5 @@ async function deletesAPrivateEndpointConnectionWithAGivenName() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await deletesAPrivateEndpointConnectionWithAGivenName();
-}
-main();
+
+deletesAPrivateEndpointConnectionWithAGivenName().catch(console.error);

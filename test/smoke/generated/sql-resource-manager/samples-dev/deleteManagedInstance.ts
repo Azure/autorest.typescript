@@ -12,25 +12,23 @@
  * This sample demonstrates how to Deletes a managed instance.
  *
  * @summary Deletes a managed instance.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//managedInstances.beginDeleteAndWait
 async function deleteManagedInstance() {
+  const subscriptionId = "20D7082A-0FC7-4468-82BD-542694D5042B";
   const resourceGroupName = "testrg";
   const managedInstanceName = "testinstance";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.managedInstances.beginDeleteAndWait(
     resourceGroupName,
     managedInstanceName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "20D7082A-0FC7-4468-82BD-542694D5042B";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await deleteManagedInstance();
-}
-main();
+
+deleteManagedInstance().catch(console.error);

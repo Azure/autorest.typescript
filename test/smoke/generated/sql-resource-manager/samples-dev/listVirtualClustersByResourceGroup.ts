@@ -12,14 +12,17 @@
  * This sample demonstrates how to Gets a list of virtual clusters in a resource group.
  *
  * @summary Gets a list of virtual clusters in a resource group.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//virtualClusters.listByResourceGroup
 async function listVirtualClustersByResourceGroup() {
+  const subscriptionId = "20d7082a-0fc7-4468-82bd-542694d5042b";
   const resourceGroupName = "testrg";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.virtualClusters.listByResourceGroup(
     resourceGroupName
@@ -28,10 +31,5 @@ async function listVirtualClustersByResourceGroup() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "20d7082a-0fc7-4468-82bd-542694d5042b";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await listVirtualClustersByResourceGroup();
-}
-main();
+
+listVirtualClustersByResourceGroup().catch(console.error);

@@ -12,6 +12,7 @@
  * This sample demonstrates how to Updates a logical database's transparent data encryption configuration.
  *
  * @summary Updates a logical database's transparent data encryption configuration.
+ * x-ms-original-file:
  */
 import {
   LogicalDatabaseTransparentDataEncryption,
@@ -20,8 +21,8 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//transparentDataEncryptions.createOrUpdate
 async function updateADatabaseTransparentDataEncryptionStateWithMinimalParameters() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "securitytde-42-rg";
   const serverName = "securitytde-42";
   const databaseName = "testdb";
@@ -29,6 +30,8 @@ async function updateADatabaseTransparentDataEncryptionStateWithMinimalParameter
   const parameters: LogicalDatabaseTransparentDataEncryption = {
     state: "Enabled"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.transparentDataEncryptions.createOrUpdate(
     resourceGroupName,
     serverName,
@@ -38,10 +41,7 @@ async function updateADatabaseTransparentDataEncryptionStateWithMinimalParameter
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await updateADatabaseTransparentDataEncryptionStateWithMinimalParameters();
-}
-main();
+
+updateADatabaseTransparentDataEncryptionStateWithMinimalParameters().catch(
+  console.error
+);

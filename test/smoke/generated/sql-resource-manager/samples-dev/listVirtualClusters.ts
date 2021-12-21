@@ -12,23 +12,21 @@
  * This sample demonstrates how to Gets a list of all virtualClusters in the subscription.
  *
  * @summary Gets a list of all virtualClusters in the subscription.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//virtualClusters.list
 async function listVirtualClusters() {
+  const subscriptionId = "20d7082a-0fc7-4468-82bd-542694d5042b";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.virtualClusters.list()) {
     resArray.push(item);
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "20d7082a-0fc7-4468-82bd-542694d5042b";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await listVirtualClusters();
-}
-main();
+
+listVirtualClusters().catch(console.error);

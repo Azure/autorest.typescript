@@ -12,16 +12,19 @@
  * This sample demonstrates how to Gets a recoverable database, which is a resource representing a database's geo backup
  *
  * @summary Gets a recoverable database, which is a resource representing a database's geo backup
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//recoverableDatabases.get
 async function getARecoverableDatabase() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "recoverabledatabasetest-6852";
   const serverName = "recoverabledatabasetest-2080";
   const databaseName = "recoverabledatabasetest-9187";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.recoverableDatabases.get(
     resourceGroupName,
     serverName,
@@ -29,10 +32,5 @@ async function getARecoverableDatabase() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await getARecoverableDatabase();
-}
-main();
+
+getARecoverableDatabase().catch(console.error);

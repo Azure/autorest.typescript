@@ -12,13 +12,14 @@
  * This sample demonstrates how to Creates or updates a job step. This will implicitly create a new job version.
  *
  * @summary Creates or updates a job step. This will implicitly create a new job version.
+ * x-ms-original-file:
  */
 import { JobStep, SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//jobSteps.createOrUpdate
 async function createOrUpdateAJobStepWithAllPropertiesSpecified() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "group1";
   const serverName = "server1";
   const jobAgentName = "agent1";
@@ -50,6 +51,8 @@ async function createOrUpdateAJobStepWithAllPropertiesSpecified() {
     targetGroup:
       "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/group1/providers/Microsoft.Sql/servers/server1/jobAgents/agent1/targetGroups/targetGroup1"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.jobSteps.createOrUpdate(
     resourceGroupName,
     serverName,
@@ -60,10 +63,5 @@ async function createOrUpdateAJobStepWithAllPropertiesSpecified() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await createOrUpdateAJobStepWithAllPropertiesSpecified();
-}
-main();
+
+createOrUpdateAJobStepWithAllPropertiesSpecified().catch(console.error);

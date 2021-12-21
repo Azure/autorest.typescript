@@ -55,7 +55,7 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 ```yaml
 version: 3.6.6
 use-extension:
-  "@autorest/modelerfour": "4.21.4"
+  "@autorest/modelerfour": "4.21.1"
 
 modelerfour:
   # this runs a pre-namer step to clean up names
@@ -99,6 +99,9 @@ try-require:
 
 testmodeler:
   split-parents-value: false
+
+modelerfour:
+  include-x-ms-examples-original-file: true
 
 pipeline:
   test-modeler:

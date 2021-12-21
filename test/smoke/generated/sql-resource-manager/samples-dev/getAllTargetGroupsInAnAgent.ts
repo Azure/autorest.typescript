@@ -12,16 +12,19 @@
  * This sample demonstrates how to Gets all target groups in an agent.
  *
  * @summary Gets all target groups in an agent.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//jobTargetGroups.listByAgent
 async function getAllTargetGroupsInAnAgent() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "group1";
   const serverName = "server1";
   const jobAgentName = "agent1";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.jobTargetGroups.listByAgent(
     resourceGroupName,
@@ -32,10 +35,5 @@ async function getAllTargetGroupsInAnAgent() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await getAllTargetGroupsInAnAgent();
-}
-main();
+
+getAllTargetGroupsInAnAgent().catch(console.error);

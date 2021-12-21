@@ -12,23 +12,23 @@
  * This sample demonstrates how to Gets a list of all managed instances in the subscription.
  *
  * @summary Gets a list of all managed instances in the subscription.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//managedInstances.list
 async function listManagedInstancesWithExpandAdministratorsOrActivedirectory() {
+  const subscriptionId = "20D7082A-0FC7-4468-82BD-542694D5042B";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.managedInstances.list()) {
     resArray.push(item);
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "20D7082A-0FC7-4468-82BD-542694D5042B";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await listManagedInstancesWithExpandAdministratorsOrActivedirectory();
-}
-main();
+
+listManagedInstancesWithExpandAdministratorsOrActivedirectory().catch(
+  console.error
+);

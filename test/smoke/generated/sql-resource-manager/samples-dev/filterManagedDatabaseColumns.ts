@@ -12,13 +12,14 @@
  * This sample demonstrates how to List managed database columns
  *
  * @summary List managed database columns
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//managedDatabaseColumns.listByDatabase
 async function filterManagedDatabaseColumns() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "myRG";
   const managedInstanceName = "serverName";
   const databaseName = "myDatabase";
@@ -32,6 +33,8 @@ async function filterManagedDatabaseColumns() {
     column: column,
     orderBy: orderBy
   };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.managedDatabaseColumns.listByDatabase(
     resourceGroupName,
@@ -43,10 +46,5 @@ async function filterManagedDatabaseColumns() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await filterManagedDatabaseColumns();
-}
-main();
+
+filterManagedDatabaseColumns().catch(console.error);

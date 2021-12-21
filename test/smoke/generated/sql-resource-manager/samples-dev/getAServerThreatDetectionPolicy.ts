@@ -12,16 +12,19 @@
  * This sample demonstrates how to Get a server's security alert policy.
  *
  * @summary Get a server's security alert policy.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//serverSecurityAlertPolicies.get
 async function getAServerThreatDetectionPolicy() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "securityalert-4799";
   const serverName = "securityalert-6440";
   const securityAlertPolicyName = "Default";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.serverSecurityAlertPolicies.get(
     resourceGroupName,
     serverName,
@@ -29,10 +32,5 @@ async function getAServerThreatDetectionPolicy() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await getAServerThreatDetectionPolicy();
-}
-main();
+
+getAServerThreatDetectionPolicy().catch(console.error);

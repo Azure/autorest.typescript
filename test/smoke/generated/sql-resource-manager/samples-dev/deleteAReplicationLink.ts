@@ -12,17 +12,20 @@
  * This sample demonstrates how to Deletes a database replication link. Cannot be done during failover.
  *
  * @summary Deletes a database replication link. Cannot be done during failover.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//replicationLinks.delete
 async function deleteAReplicationLink() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "sqlcrudtest-4799";
   const serverName = "sqlcrudtest-6440";
   const databaseName = "testdb";
   const linkId = "5b301b68-03f6-4b26-b0f4-73ebb8634238";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.replicationLinks.delete(
     resourceGroupName,
     serverName,
@@ -31,10 +34,5 @@ async function deleteAReplicationLink() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await deleteAReplicationLink();
-}
-main();
+
+deleteAReplicationLink().catch(console.error);

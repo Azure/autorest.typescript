@@ -12,17 +12,20 @@
  * This sample demonstrates how to Gets a managed database's long term retention policy.
  *
  * @summary Gets a managed database's long term retention policy.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//managedInstanceLongTermRetentionPolicies.get
 async function getTheLongTermRetentionPolicyForTheManagedDatabase() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "testResourceGroup";
   const managedInstanceName = "testInstance";
   const databaseName = "testDatabase";
   const policyName = "default";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.managedInstanceLongTermRetentionPolicies.get(
     resourceGroupName,
     managedInstanceName,
@@ -31,10 +34,5 @@ async function getTheLongTermRetentionPolicyForTheManagedDatabase() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await getTheLongTermRetentionPolicyForTheManagedDatabase();
-}
-main();
+
+getTheLongTermRetentionPolicyForTheManagedDatabase().catch(console.error);

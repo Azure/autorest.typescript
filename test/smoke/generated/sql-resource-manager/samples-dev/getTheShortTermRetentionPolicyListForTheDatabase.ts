@@ -12,16 +12,19 @@
  * This sample demonstrates how to Gets a dropped database's short term retention policy list.
  *
  * @summary Gets a dropped database's short term retention policy list.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//managedRestorableDroppedDatabaseBackupShortTermRetentionPolicies.listByRestorableDroppedDatabase
 async function getTheShortTermRetentionPolicyListForTheDatabase() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "Default-SQL-SouthEastAsia";
   const managedInstanceName = "testsvr";
   const restorableDroppedDatabaseId = "testdb,131403269876900000";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.managedRestorableDroppedDatabaseBackupShortTermRetentionPolicies.listByRestorableDroppedDatabase(
     resourceGroupName,
@@ -32,10 +35,5 @@ async function getTheShortTermRetentionPolicyListForTheDatabase() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await getTheShortTermRetentionPolicyListForTheDatabase();
-}
-main();
+
+getTheShortTermRetentionPolicyListForTheDatabase().catch(console.error);

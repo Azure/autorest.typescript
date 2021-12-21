@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates a managed instance.
  *
  * @summary Creates or updates a managed instance.
+ * x-ms-original-file:
  */
 import {
   ManagedInstance,
@@ -20,8 +21,8 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//managedInstances.beginCreateOrUpdateAndWait
 async function createManagedInstanceWithAllProperties() {
+  const subscriptionId = "20D7082A-0FC7-4468-82BD-542694D5042B";
   const resourceGroupName = "testrg";
   const managedInstanceName = "testinstance";
   const parameters: ManagedInstance = {
@@ -56,6 +57,8 @@ async function createManagedInstanceWithAllProperties() {
     timezoneId: "UTC",
     vCores: 8
   };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.managedInstances.beginCreateOrUpdateAndWait(
     resourceGroupName,
     managedInstanceName,
@@ -63,10 +66,5 @@ async function createManagedInstanceWithAllProperties() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "20D7082A-0FC7-4468-82BD-542694D5042B";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await createManagedInstanceWithAllProperties();
-}
-main();
+
+createManagedInstanceWithAllProperties().catch(console.error);

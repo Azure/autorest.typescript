@@ -12,6 +12,7 @@
  * This sample demonstrates how to Copy an existing long term retention backup to a different server.
  *
  * @summary Copy an existing long term retention backup to a different server.
+ * x-ms-original-file:
  */
 import {
   CopyLongTermRetentionBackupParameters,
@@ -20,8 +21,8 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//longTermRetentionBackups.beginCopyByResourceGroupAndWait
 async function copyTheLongTermRetentionBackup() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "testResourceGroup";
   const locationName = "japaneast";
   const longTermRetentionServerName = "testserver";
@@ -33,6 +34,8 @@ async function copyTheLongTermRetentionBackup() {
     targetServerResourceId:
       "/subscriptions/00000000-1111-2222-3333-444444444444/providers/Microsoft.Sql/resourceGroups/resourceGroup/servers/testserver2"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.longTermRetentionBackups.beginCopyByResourceGroupAndWait(
     resourceGroupName,
     locationName,
@@ -43,10 +46,5 @@ async function copyTheLongTermRetentionBackup() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await copyTheLongTermRetentionBackup();
-}
-main();
+
+copyTheLongTermRetentionBackup().catch(console.error);

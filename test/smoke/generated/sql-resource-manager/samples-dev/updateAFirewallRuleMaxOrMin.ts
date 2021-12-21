@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates a firewall rule.
  *
  * @summary Creates or updates a firewall rule.
+ * x-ms-original-file:
  */
 import {
   FirewallRule,
@@ -20,8 +21,8 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//firewallRules.createOrUpdate
 async function updateAFirewallRuleMaxOrMin() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "firewallrulecrudtest-12";
   const serverName = "firewallrulecrudtest-6285";
   const firewallRuleName = "firewallrulecrudtest-3927";
@@ -29,6 +30,8 @@ async function updateAFirewallRuleMaxOrMin() {
     endIpAddress: "0.0.0.1",
     startIpAddress: "0.0.0.1"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.firewallRules.createOrUpdate(
     resourceGroupName,
     serverName,
@@ -37,10 +40,5 @@ async function updateAFirewallRuleMaxOrMin() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await updateAFirewallRuleMaxOrMin();
-}
-main();
+
+updateAFirewallRuleMaxOrMin().catch(console.error);

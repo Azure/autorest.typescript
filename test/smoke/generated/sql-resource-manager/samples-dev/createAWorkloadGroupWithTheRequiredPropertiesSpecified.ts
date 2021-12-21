@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates a workload group.
  *
  * @summary Creates or updates a workload group.
+ * x-ms-original-file:
  */
 import {
   WorkloadGroup,
@@ -20,8 +21,8 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//workloadGroups.beginCreateOrUpdateAndWait
 async function createAWorkloadGroupWithTheRequiredPropertiesSpecified() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "Default-SQL-SouthEastAsia";
   const serverName = "testsvr";
   const databaseName = "testdb";
@@ -31,6 +32,8 @@ async function createAWorkloadGroupWithTheRequiredPropertiesSpecified() {
     minResourcePercent: 0,
     minResourcePercentPerRequest: 3
   };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.workloadGroups.beginCreateOrUpdateAndWait(
     resourceGroupName,
     serverName,
@@ -40,10 +43,5 @@ async function createAWorkloadGroupWithTheRequiredPropertiesSpecified() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await createAWorkloadGroupWithTheRequiredPropertiesSpecified();
-}
-main();
+
+createAWorkloadGroupWithTheRequiredPropertiesSpecified().catch(console.error);

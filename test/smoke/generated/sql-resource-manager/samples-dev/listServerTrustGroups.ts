@@ -12,15 +12,18 @@
  * This sample demonstrates how to Lists a server trust group.
  *
  * @summary Lists a server trust group.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//serverTrustGroups.listByLocation
 async function listServerTrustGroups() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "Default";
   const locationName = "Japan East";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.serverTrustGroups.listByLocation(
     resourceGroupName,
@@ -30,10 +33,5 @@ async function listServerTrustGroups() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await listServerTrustGroups();
-}
-main();
+
+listServerTrustGroups().catch(console.error);

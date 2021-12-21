@@ -12,6 +12,7 @@
  * This sample demonstrates how to Updates an elastic pool.
  *
  * @summary Updates an elastic pool.
+ * x-ms-original-file:
  */
 import {
   ElasticPoolUpdate,
@@ -20,12 +21,14 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//elasticPools.beginUpdateAndWait
 async function updateAnElasticPoolWithMinimumParameters() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "sqlcrudtest-2369";
   const serverName = "sqlcrudtest-8069";
   const elasticPoolName = "sqlcrudtest-8102";
   const parameters: ElasticPoolUpdate = {};
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.elasticPools.beginUpdateAndWait(
     resourceGroupName,
     serverName,
@@ -34,10 +37,5 @@ async function updateAnElasticPoolWithMinimumParameters() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await updateAnElasticPoolWithMinimumParameters();
-}
-main();
+
+updateAnElasticPoolWithMinimumParameters().catch(console.error);

@@ -12,17 +12,20 @@
  * This sample demonstrates how to Gets a restore point.
  *
  * @summary Gets a restore point.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//restorePoints.get
 async function getsADatabaseRestorePoint() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "Default-SQL-SouthEastAsia";
   const serverName = "testserver";
   const databaseName = "testDatabase";
   const restorePointName = "131546477590000000";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.restorePoints.get(
     resourceGroupName,
     serverName,
@@ -31,10 +34,5 @@ async function getsADatabaseRestorePoint() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await getsADatabaseRestorePoint();
-}
-main();
+
+getsADatabaseRestorePoint().catch(console.error);

@@ -12,18 +12,21 @@
  * This sample demonstrates how to Deletes a sync member.
  *
  * @summary Deletes a sync member.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//syncMembers.beginDeleteAndWait
 async function deleteASyncMember() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "syncgroupcrud-65440";
   const serverName = "syncgroupcrud-8475";
   const databaseName = "syncgroupcrud-4328";
   const syncGroupName = "syncgroupcrud-3187";
   const syncMemberName = "syncgroupcrud-4879";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.syncMembers.beginDeleteAndWait(
     resourceGroupName,
     serverName,
@@ -33,10 +36,5 @@ async function deleteASyncMember() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await deleteASyncMember();
-}
-main();
+
+deleteASyncMember().catch(console.error);

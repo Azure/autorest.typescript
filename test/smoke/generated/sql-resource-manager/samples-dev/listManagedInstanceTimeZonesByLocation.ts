@@ -12,24 +12,22 @@
  * This sample demonstrates how to Gets a list of managed instance time zones by location.
  *
  * @summary Gets a list of managed instance time zones by location.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//timeZones.listByLocation
 async function listManagedInstanceTimeZonesByLocation() {
+  const subscriptionId = "37d5e605-6142-4d79-b564-28b6dbfeec0f";
   const locationName = "canadaeast";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.timeZones.listByLocation(locationName)) {
     resArray.push(item);
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "37d5e605-6142-4d79-b564-28b6dbfeec0f";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await listManagedInstanceTimeZonesByLocation();
-}
-main();
+
+listManagedInstanceTimeZonesByLocation().catch(console.error);

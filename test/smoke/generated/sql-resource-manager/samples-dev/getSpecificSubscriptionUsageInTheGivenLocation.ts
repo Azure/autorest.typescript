@@ -12,22 +12,20 @@
  * This sample demonstrates how to Gets a subscription usage metric.
  *
  * @summary Gets a subscription usage metric.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//subscriptionUsages.get
 async function getSpecificSubscriptionUsageInTheGivenLocation() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const locationName = "WestUS";
   const usageName = "ServerQuota";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.subscriptionUsages.get(locationName, usageName);
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await getSpecificSubscriptionUsageInTheGivenLocation();
-}
-main();
+
+getSpecificSubscriptionUsageInTheGivenLocation().catch(console.error);

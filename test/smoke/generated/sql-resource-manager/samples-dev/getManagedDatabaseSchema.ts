@@ -12,17 +12,20 @@
  * This sample demonstrates how to Get managed database schema
  *
  * @summary Get managed database schema
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//managedDatabaseSchemas.get
 async function getManagedDatabaseSchema() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "myRG";
   const managedInstanceName = "myManagedInstanceName";
   const databaseName = "myDatabase";
   const schemaName = "dbo";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.managedDatabaseSchemas.get(
     resourceGroupName,
     managedInstanceName,
@@ -31,10 +34,5 @@ async function getManagedDatabaseSchema() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await getManagedDatabaseSchema();
-}
-main();
+
+getManagedDatabaseSchema().catch(console.error);

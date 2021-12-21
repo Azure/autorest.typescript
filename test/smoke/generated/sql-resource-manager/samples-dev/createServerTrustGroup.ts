@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates a server trust group.
  *
  * @summary Creates or updates a server trust group.
+ * x-ms-original-file:
  */
 import {
   ServerTrustGroup,
@@ -20,8 +21,8 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//serverTrustGroups.beginCreateOrUpdateAndWait
 async function createServerTrustGroup() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "Default";
   const locationName = "Japan East";
   const serverTrustGroupName = "server-trust-group-test";
@@ -38,6 +39,8 @@ async function createServerTrustGroup() {
     ],
     trustScopes: ["GlobalTransactions", "ServiceBroker"]
   };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.serverTrustGroups.beginCreateOrUpdateAndWait(
     resourceGroupName,
     locationName,
@@ -46,10 +49,5 @@ async function createServerTrustGroup() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await createServerTrustGroup();
-}
-main();
+
+createServerTrustGroup().catch(console.error);

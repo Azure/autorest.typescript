@@ -12,6 +12,7 @@
  * This sample demonstrates how to Updates a database recommended action.
  *
  * @summary Updates a database recommended action.
+ * x-ms-original-file:
  */
 import {
   RecommendedAction,
@@ -20,14 +21,16 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//databaseRecommendedActions.update
 async function updateDatabaseRecommendedAction() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "workloadinsight-demos";
   const serverName = "misosisvr";
   const databaseName = "IndexAdvisor_test_3";
   const advisorName = "CreateIndex";
   const recommendedActionName = "IR_[CRM]_[DataPoints]_4821CD2F9510D98184BB";
   const parameters: RecommendedAction = { state: { currentValue: "Pending" } };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.databaseRecommendedActions.update(
     resourceGroupName,
     serverName,
@@ -38,10 +41,5 @@ async function updateDatabaseRecommendedAction() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await updateDatabaseRecommendedAction();
-}
-main();
+
+updateDatabaseRecommendedAction().catch(console.error);

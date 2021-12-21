@@ -12,16 +12,19 @@
  * This sample demonstrates how to Gets a firewall rule.
  *
  * @summary Gets a firewall rule.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//firewallRules.get
 async function getFirewallRule() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "firewallrulecrudtest-12";
   const serverName = "firewallrulecrudtest-6285";
   const firewallRuleName = "firewallrulecrudtest-2304";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.firewallRules.get(
     resourceGroupName,
     serverName,
@@ -29,10 +32,5 @@ async function getFirewallRule() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await getFirewallRule();
-}
-main();
+
+getFirewallRule().catch(console.error);

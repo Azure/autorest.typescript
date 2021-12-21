@@ -12,15 +12,18 @@
  * This sample demonstrates how to Gets a list of server Azure Active Directory only authentications.
  *
  * @summary Gets a list of server Azure Active Directory only authentications.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//serverAzureADOnlyAuthentications.listByServer
 async function getsAListOfAzureActiveDirectoryOnlyAuthenticationObject() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "sqlcrudtest-4799";
   const serverName = "sqlcrudtest-6440";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.serverAzureADOnlyAuthentications.listByServer(
     resourceGroupName,
@@ -30,10 +33,5 @@ async function getsAListOfAzureActiveDirectoryOnlyAuthenticationObject() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await getsAListOfAzureActiveDirectoryOnlyAuthenticationObject();
-}
-main();
+
+getsAListOfAzureActiveDirectoryOnlyAuthenticationObject().catch(console.error);

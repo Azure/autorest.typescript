@@ -12,17 +12,20 @@
  * This sample demonstrates how to Gets a managed database's security alert policy.
  *
  * @summary Gets a managed database's security alert policy.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//managedDatabaseSecurityAlertPolicies.get
 async function getADatabaseThreatDetectionPolicy() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "securityalert-6852";
   const managedInstanceName = "securityalert-2080";
   const databaseName = "testdb";
   const securityAlertPolicyName = "Default";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.managedDatabaseSecurityAlertPolicies.get(
     resourceGroupName,
     managedInstanceName,
@@ -31,10 +34,5 @@ async function getADatabaseThreatDetectionPolicy() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await getADatabaseThreatDetectionPolicy();
-}
-main();
+
+getADatabaseThreatDetectionPolicy().catch(console.error);

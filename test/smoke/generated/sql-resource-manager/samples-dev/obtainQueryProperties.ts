@@ -12,17 +12,20 @@
  * This sample demonstrates how to Get query by query id.
  *
  * @summary Get query by query id.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//managedDatabaseQueries.get
 async function obtainQueryProperties() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "sqlcrudtest-7398";
   const managedInstanceName = "sqlcrudtest-4645";
   const databaseName = "database_1";
   const queryId = "42";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.managedDatabaseQueries.get(
     resourceGroupName,
     managedInstanceName,
@@ -31,10 +34,5 @@ async function obtainQueryProperties() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await obtainQueryProperties();
-}
-main();
+
+obtainQueryProperties().catch(console.error);

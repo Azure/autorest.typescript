@@ -5,6 +5,7 @@
  * This sample demonstrates how to {{operationDescription}}
  *
  * @summary {{operationDescription}}
+ * x-ms-original-file: {{originalFileLocation}}
  */
 import {
 {{#if hasBody }}
@@ -14,12 +15,15 @@ import {
 } from "{{clientPackageName}}";
 import { DefaultAzureCredential } from "@azure/identity";
 
-let client: {{clientClassName}};
-//{{operationGroupName}}.{{operationName}}
 async function {{sampleFunctionName}}() {
+  {{#each clientParamAssignments}}
+  {{this}}
+  {{/each}}
   {{#each methodParamAssignments}}
   {{this}}
   {{/each}}
+  const credential = new DefaultAzureCredential();
+  const client = new {{clientClassName}}({{clientParameterNames}});
   {{#if isPaging}}
   const resArray = new Array();
   for await (let item of client{{#unless isTopLevel}}.{{operationGroupName}}{{/unless}}.{{operationName}}({{methodParameterNames}})){
@@ -36,12 +40,5 @@ async function {{sampleFunctionName}}() {
   
   {{/if}}
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  {{#each clientParamAssignments}}
-  {{this}}
-  {{/each}}
-  client = new {{clientClassName}}({{clientParameterNames}});
-  await {{sampleFunctionName}}();
-}
-main();
+
+{{sampleFunctionName}}().catch(console.error);

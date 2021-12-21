@@ -12,17 +12,20 @@
  * This sample demonstrates how to Deletes a job credential.
  *
  * @summary Deletes a job credential.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//jobCredentials.delete
 async function deleteACredential() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "group1";
   const serverName = "server1";
   const jobAgentName = "agent1";
   const credentialName = "cred1";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.jobCredentials.delete(
     resourceGroupName,
     serverName,
@@ -31,10 +34,5 @@ async function deleteACredential() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await deleteACredential();
-}
-main();
+
+deleteACredential().catch(console.error);

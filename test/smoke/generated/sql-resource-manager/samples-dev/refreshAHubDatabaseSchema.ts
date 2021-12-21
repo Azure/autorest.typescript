@@ -12,17 +12,20 @@
  * This sample demonstrates how to Refreshes a hub database schema.
  *
  * @summary Refreshes a hub database schema.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//syncGroups.beginRefreshHubSchemaAndWait
 async function refreshAHubDatabaseSchema() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "syncgroupcrud-65440";
   const serverName = "syncgroupcrud-8475";
   const databaseName = "syncgroupcrud-4328";
   const syncGroupName = "syncgroupcrud-3187";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.syncGroups.beginRefreshHubSchemaAndWait(
     resourceGroupName,
     serverName,
@@ -31,10 +34,5 @@ async function refreshAHubDatabaseSchema() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await refreshAHubDatabaseSchema();
-}
-main();
+
+refreshAHubDatabaseSchema().catch(console.error);

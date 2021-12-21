@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates a TDE certificate for a given server.
  *
  * @summary Creates a TDE certificate for a given server.
+ * x-ms-original-file:
  */
 import {
   TdeCertificate,
@@ -20,11 +21,13 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//tdeCertificates.beginCreateAndWait
 async function uploadATdeCertificate() {
+  const subscriptionId = "00000000-0000-0000-0000-000000000001";
   const resourceGroupName = "testtdecert";
   const serverName = "testtdecert";
   const parameters: TdeCertificate = { privateBlob: "MIIXXXXXXXX" };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.tdeCertificates.beginCreateAndWait(
     resourceGroupName,
     serverName,
@@ -32,10 +35,5 @@ async function uploadATdeCertificate() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-0000-0000-0000-000000000001";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await uploadATdeCertificate();
-}
-main();
+
+uploadATdeCertificate().catch(console.error);

@@ -12,13 +12,14 @@
  * This sample demonstrates how to Gets the sensitivity label of a given column
  *
  * @summary Gets the sensitivity label of a given column
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//sensitivityLabels.get
 async function getsTheSensitivityLabelOfAGivenColumn() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "myRG";
   const serverName = "myServer";
   const databaseName = "myDatabase";
@@ -26,6 +27,8 @@ async function getsTheSensitivityLabelOfAGivenColumn() {
   const tableName = "myTable";
   const columnName = "myColumn";
   const sensitivityLabelSource = "current";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.sensitivityLabels.get(
     resourceGroupName,
     serverName,
@@ -37,10 +40,5 @@ async function getsTheSensitivityLabelOfAGivenColumn() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await getsTheSensitivityLabelOfAGivenColumn();
-}
-main();
+
+getsTheSensitivityLabelOfAGivenColumn().catch(console.error);

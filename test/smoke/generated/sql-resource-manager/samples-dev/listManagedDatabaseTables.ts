@@ -12,17 +12,20 @@
  * This sample demonstrates how to List managed database tables
  *
  * @summary List managed database tables
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//managedDatabaseTables.listBySchema
 async function listManagedDatabaseTables() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "myRG";
   const managedInstanceName = "myManagedInstanceName";
   const databaseName = "myDatabase";
   const schemaName = "dbo";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.managedDatabaseTables.listBySchema(
     resourceGroupName,
@@ -34,10 +37,5 @@ async function listManagedDatabaseTables() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await listManagedDatabaseTables();
-}
-main();
+
+listManagedDatabaseTables().catch(console.error);

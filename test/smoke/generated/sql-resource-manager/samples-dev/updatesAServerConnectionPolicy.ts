@@ -12,6 +12,7 @@
  * This sample demonstrates how to Updates a server connection policy
  *
  * @summary Updates a server connection policy
+ * x-ms-original-file:
  */
 import {
   ServerConnectionPolicy,
@@ -20,12 +21,14 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//serverConnectionPolicies.beginCreateOrUpdateAndWait
 async function updatesAServerConnectionPolicy() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "testrg";
   const serverName = "testserver";
   const connectionPolicyName = "default";
   const parameters: ServerConnectionPolicy = { connectionType: "Redirect" };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.serverConnectionPolicies.beginCreateOrUpdateAndWait(
     resourceGroupName,
     serverName,
@@ -34,10 +37,5 @@ async function updatesAServerConnectionPolicy() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await updatesAServerConnectionPolicy();
-}
-main();
+
+updatesAServerConnectionPolicy().catch(console.error);

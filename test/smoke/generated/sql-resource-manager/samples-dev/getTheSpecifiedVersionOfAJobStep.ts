@@ -12,19 +12,22 @@
  * This sample demonstrates how to Gets the specified version of a job step.
  *
  * @summary Gets the specified version of a job step.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//jobSteps.getByVersion
 async function getTheSpecifiedVersionOfAJobStep() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "group1";
   const serverName = "server1";
   const jobAgentName = "agent1";
   const jobName = "job1";
   const jobVersion = 1;
   const stepName = "step1";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.jobSteps.getByVersion(
     resourceGroupName,
     serverName,
@@ -35,10 +38,5 @@ async function getTheSpecifiedVersionOfAJobStep() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await getTheSpecifiedVersionOfAJobStep();
-}
-main();
+
+getTheSpecifiedVersionOfAJobStep().catch(console.error);

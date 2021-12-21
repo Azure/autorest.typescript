@@ -12,6 +12,7 @@
  * This sample demonstrates how to Updates a managed instance.
  *
  * @summary Updates a managed instance.
+ * x-ms-original-file:
  */
 import {
   ManagedInstanceUpdate,
@@ -20,11 +21,13 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//managedInstances.beginUpdateAndWait
 async function updateManagedInstanceWithMinimalProperties() {
+  const subscriptionId = "20D7082A-0FC7-4468-82BD-542694D5042B";
   const resourceGroupName = "testrg";
   const managedInstanceName = "testinstance";
   const parameters: ManagedInstanceUpdate = { tags: { tagKey1: "TagValue1" } };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.managedInstances.beginUpdateAndWait(
     resourceGroupName,
     managedInstanceName,
@@ -32,10 +35,5 @@ async function updateManagedInstanceWithMinimalProperties() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "20D7082A-0FC7-4468-82BD-542694D5042B";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await updateManagedInstanceWithMinimalProperties();
-}
-main();
+
+updateManagedInstanceWithMinimalProperties().catch(console.error);

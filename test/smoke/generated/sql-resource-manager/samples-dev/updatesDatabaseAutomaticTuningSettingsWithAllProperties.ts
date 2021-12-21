@@ -12,6 +12,7 @@
  * This sample demonstrates how to Update automatic tuning properties for target database.
  *
  * @summary Update automatic tuning properties for target database.
+ * x-ms-original-file:
  */
 import {
   DatabaseAutomaticTuning,
@@ -20,8 +21,8 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//databaseAutomaticTuningOperations.update
 async function updatesDatabaseAutomaticTuningSettingsWithAllProperties() {
+  const subscriptionId = "c3aa9078-0000-0000-0000-e36f151182d7";
   const resourceGroupName = "default-sql-onebox";
   const serverName = "testsvr11";
   const databaseName = "db1";
@@ -33,6 +34,8 @@ async function updatesDatabaseAutomaticTuningSettingsWithAllProperties() {
       forceLastGoodPlan: { desiredState: "Default" }
     }
   };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.databaseAutomaticTuningOperations.update(
     resourceGroupName,
     serverName,
@@ -41,10 +44,5 @@ async function updatesDatabaseAutomaticTuningSettingsWithAllProperties() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "c3aa9078-0000-0000-0000-e36f151182d7";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await updatesDatabaseAutomaticTuningSettingsWithAllProperties();
-}
-main();
+
+updatesDatabaseAutomaticTuningSettingsWithAllProperties().catch(console.error);

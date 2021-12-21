@@ -12,16 +12,19 @@
  * This sample demonstrates how to Gets a managed instance encryption protector.
  *
  * @summary Gets a managed instance encryption protector.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//managedInstanceEncryptionProtectors.get
 async function getTheEncryptionProtector() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "sqlcrudtest-7398";
   const managedInstanceName = "sqlcrudtest-4645";
   const encryptionProtectorName = "current";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.managedInstanceEncryptionProtectors.get(
     resourceGroupName,
     managedInstanceName,
@@ -29,10 +32,5 @@ async function getTheEncryptionProtector() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await getTheEncryptionProtector();
-}
-main();
+
+getTheEncryptionProtector().catch(console.error);

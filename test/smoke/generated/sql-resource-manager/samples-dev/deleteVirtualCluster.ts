@@ -12,25 +12,23 @@
  * This sample demonstrates how to Deletes a virtual cluster.
  *
  * @summary Deletes a virtual cluster.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//virtualClusters.beginDeleteAndWait
 async function deleteVirtualCluster() {
+  const subscriptionId = "20d7082a-0fc7-4468-82bd-542694d5042b";
   const resourceGroupName = "testrg";
   const virtualClusterName = "vc-subnet1-f769ed71-b3ad-491a-a9d5-26eeceaa6be2";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.virtualClusters.beginDeleteAndWait(
     resourceGroupName,
     virtualClusterName
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "20d7082a-0fc7-4468-82bd-542694d5042b";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await deleteVirtualCluster();
-}
-main();
+
+deleteVirtualCluster().catch(console.error);

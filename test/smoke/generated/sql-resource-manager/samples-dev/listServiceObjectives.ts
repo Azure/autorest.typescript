@@ -12,15 +12,18 @@
  * This sample demonstrates how to Returns database service objectives.
  *
  * @summary Returns database service objectives.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//serviceObjectives.listByServer
 async function listServiceObjectives() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "group1";
   const serverName = "sqlcrudtest";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.serviceObjectives.listByServer(
     resourceGroupName,
@@ -30,10 +33,5 @@ async function listServiceObjectives() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await listServiceObjectives();
-}
-main();
+
+listServiceObjectives().catch(console.error);

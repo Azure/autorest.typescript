@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates a database's blob auditing policy.
  *
  * @summary Creates or updates a database's blob auditing policy.
+ * x-ms-original-file:
  */
 import {
   DatabaseBlobAuditingPolicy,
@@ -20,8 +21,8 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//databaseBlobAuditingPolicies.createOrUpdate
 async function createOrUpdateADatabaseBlobAuditingPolicyWithAllParameters() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "blobauditingtest-4799";
   const serverName = "blobauditingtest-6440";
   const databaseName = "testdb";
@@ -41,6 +42,8 @@ async function createOrUpdateADatabaseBlobAuditingPolicyWithAllParameters() {
     storageAccountSubscriptionId: "00000000-1234-0000-5678-000000000000",
     storageEndpoint: "https://mystorage.blob.core.windows.net"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.databaseBlobAuditingPolicies.createOrUpdate(
     resourceGroupName,
     serverName,
@@ -49,10 +52,7 @@ async function createOrUpdateADatabaseBlobAuditingPolicyWithAllParameters() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await createOrUpdateADatabaseBlobAuditingPolicyWithAllParameters();
-}
-main();
+
+createOrUpdateADatabaseBlobAuditingPolicyWithAllParameters().catch(
+  console.error
+);

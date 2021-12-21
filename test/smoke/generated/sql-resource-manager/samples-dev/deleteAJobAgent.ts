@@ -12,16 +12,19 @@
  * This sample demonstrates how to Deletes a job agent.
  *
  * @summary Deletes a job agent.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//jobAgents.beginDeleteAndWait
 async function deleteAJobAgent() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "group1";
   const serverName = "server1";
   const jobAgentName = "agent1";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.jobAgents.beginDeleteAndWait(
     resourceGroupName,
     serverName,
@@ -29,10 +32,5 @@ async function deleteAJobAgent() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await deleteAJobAgent();
-}
-main();
+
+deleteAJobAgent().catch(console.error);

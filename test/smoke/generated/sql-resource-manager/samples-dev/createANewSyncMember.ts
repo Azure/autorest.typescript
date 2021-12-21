@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates a sync member.
  *
  * @summary Creates or updates a sync member.
+ * x-ms-original-file:
  */
 import {
   SyncMember,
@@ -20,8 +21,8 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//syncMembers.beginCreateOrUpdateAndWait
 async function createANewSyncMember() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "syncgroupcrud-65440";
   const serverName = "syncgroupcrud-8475";
   const databaseName = "syncgroupcrud-4328";
@@ -37,6 +38,8 @@ async function createANewSyncMember() {
     usePrivateLinkConnection: true,
     userName: "myUser"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.syncMembers.beginCreateOrUpdateAndWait(
     resourceGroupName,
     serverName,
@@ -47,10 +50,5 @@ async function createANewSyncMember() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await createANewSyncMember();
-}
-main();
+
+createANewSyncMember().catch(console.error);

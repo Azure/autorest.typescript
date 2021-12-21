@@ -12,17 +12,20 @@
  * This sample demonstrates how to Deletes a restore point.
  *
  * @summary Deletes a restore point.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//restorePoints.delete
 async function deletesARestorePoint() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "Default-SQL-SouthEastAsia";
   const serverName = "testserver";
   const databaseName = "testDatabase";
   const restorePointName = "131546477590000000";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.restorePoints.delete(
     resourceGroupName,
     serverName,
@@ -31,10 +34,5 @@ async function deletesARestorePoint() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await deletesARestorePoint();
-}
-main();
+
+deletesARestorePoint().catch(console.error);

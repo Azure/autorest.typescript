@@ -12,18 +12,21 @@
  * This sample demonstrates how to Gets a list of database advisors.
  *
  * @summary Gets a list of database advisors.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//databaseAdvisors.listByDatabase
 async function listOfDatabaseRecommendedActionsForAllAdvisors() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "workloadinsight-demos";
   const serverName = "misosisvr";
   const databaseName = "IndexAdvisor_test_3";
   const expand = "recommendedActions";
   const options = { expand: expand };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.databaseAdvisors.listByDatabase(
     resourceGroupName,
     serverName,
@@ -32,10 +35,5 @@ async function listOfDatabaseRecommendedActionsForAllAdvisors() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await listOfDatabaseRecommendedActionsForAllAdvisors();
-}
-main();
+
+listOfDatabaseRecommendedActionsForAllAdvisors().catch(console.error);

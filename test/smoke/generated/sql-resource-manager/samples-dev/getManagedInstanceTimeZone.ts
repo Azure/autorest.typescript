@@ -12,22 +12,20 @@
  * This sample demonstrates how to Gets a managed instance time zone.
  *
  * @summary Gets a managed instance time zone.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//timeZones.get
 async function getManagedInstanceTimeZone() {
+  const subscriptionId = "37d5e605-6142-4d79-b564-28b6dbfeec0f";
   const locationName = "canadaeast";
   const timeZoneId = "Haiti Standard Time";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.timeZones.get(locationName, timeZoneId);
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "37d5e605-6142-4d79-b564-28b6dbfeec0f";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await getManagedInstanceTimeZone();
-}
-main();
+
+getManagedInstanceTimeZone().catch(console.error);

@@ -12,16 +12,19 @@
  * This sample demonstrates how to Gets a database's automatic tuning.
  *
  * @summary Gets a database's automatic tuning.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//databaseAutomaticTuningOperations.get
 async function getADatabaseAutomaticTuningSettings() {
+  const subscriptionId = "c3aa9078-0000-0000-0000-e36f151182d7";
   const resourceGroupName = "default-sql-onebox";
   const serverName = "testsvr11";
   const databaseName = "db1";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.databaseAutomaticTuningOperations.get(
     resourceGroupName,
     serverName,
@@ -29,10 +32,5 @@ async function getADatabaseAutomaticTuningSettings() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "c3aa9078-0000-0000-0000-e36f151182d7";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await getADatabaseAutomaticTuningSettings();
-}
-main();
+
+getADatabaseAutomaticTuningSettings().catch(console.error);

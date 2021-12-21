@@ -12,16 +12,19 @@
  * This sample demonstrates how to Gets database usages.
  *
  * @summary Gets database usages.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//databaseUsages.listByDatabase
 async function getsDatabaseUsages() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "Default-SQL-SouthEastAsia";
   const serverName = "testsvr";
   const databaseName = "testdb";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.databaseUsages.listByDatabase(
     resourceGroupName,
@@ -32,10 +35,5 @@ async function getsDatabaseUsages() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await getsDatabaseUsages();
-}
-main();
+
+getsDatabaseUsages().catch(console.error);

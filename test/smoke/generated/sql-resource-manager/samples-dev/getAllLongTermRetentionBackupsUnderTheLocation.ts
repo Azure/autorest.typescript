@@ -12,15 +12,18 @@
  * This sample demonstrates how to Lists the long term retention backups for managed databases in a given location.
  *
  * @summary Lists the long term retention backups for managed databases in a given location.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//longTermRetentionManagedInstanceBackups.listByResourceGroupLocation
 async function getAllLongTermRetentionBackupsUnderTheLocation() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "testResourceGroup";
   const locationName = "japaneast";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.longTermRetentionManagedInstanceBackups.listByResourceGroupLocation(
     resourceGroupName,
@@ -30,10 +33,5 @@ async function getAllLongTermRetentionBackupsUnderTheLocation() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await getAllLongTermRetentionBackupsUnderTheLocation();
-}
-main();
+
+getAllLongTermRetentionBackupsUnderTheLocation().catch(console.error);

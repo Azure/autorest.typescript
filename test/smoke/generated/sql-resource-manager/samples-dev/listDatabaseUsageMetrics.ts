@@ -12,16 +12,19 @@
  * This sample demonstrates how to Returns elastic pool metric definitions.
  *
  * @summary Returns elastic pool metric definitions.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//elasticPools.listMetricDefinitions
 async function listDatabaseUsageMetrics() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "sqlcrudtest-6730";
   const serverName = "sqlcrudtest-9007";
   const elasticPoolName = "3481";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.elasticPools.listMetricDefinitions(
     resourceGroupName,
@@ -32,10 +35,5 @@ async function listDatabaseUsageMetrics() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await listDatabaseUsageMetrics();
-}
-main();
+
+listDatabaseUsageMetrics().catch(console.error);

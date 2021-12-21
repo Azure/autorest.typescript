@@ -12,16 +12,19 @@
  * This sample demonstrates how to Deletes the virtual network rule with the given name.
  *
  * @summary Deletes the virtual network rule with the given name.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//virtualNetworkRules.beginDeleteAndWait
 async function deleteAVirtualNetworkRule() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "Default";
   const serverName = "vnet-test-svr";
   const virtualNetworkRuleName = "vnet-firewall-rule";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworkRules.beginDeleteAndWait(
     resourceGroupName,
     serverName,
@@ -29,10 +32,5 @@ async function deleteAVirtualNetworkRule() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await deleteAVirtualNetworkRule();
-}
-main();
+
+deleteAVirtualNetworkRule().catch(console.error);

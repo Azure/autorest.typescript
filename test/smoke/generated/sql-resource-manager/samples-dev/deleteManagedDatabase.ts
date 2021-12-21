@@ -12,16 +12,19 @@
  * This sample demonstrates how to Deletes a managed database.
  *
  * @summary Deletes a managed database.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//managedDatabases.beginDeleteAndWait
 async function deleteManagedDatabase() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "Default-SQL-SouthEastAsia";
   const managedInstanceName = "managedInstance";
   const databaseName = "testdb";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.managedDatabases.beginDeleteAndWait(
     resourceGroupName,
     managedInstanceName,
@@ -29,10 +32,5 @@ async function deleteManagedDatabase() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await deleteManagedDatabase();
-}
-main();
+
+deleteManagedDatabase().catch(console.error);

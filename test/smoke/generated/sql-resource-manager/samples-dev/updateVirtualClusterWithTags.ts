@@ -12,6 +12,7 @@
  * This sample demonstrates how to Updates a virtual cluster.
  *
  * @summary Updates a virtual cluster.
+ * x-ms-original-file:
  */
 import {
   VirtualClusterUpdate,
@@ -20,14 +21,16 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//virtualClusters.beginUpdateAndWait
 async function updateVirtualClusterWithTags() {
+  const subscriptionId = "20d7082a-0fc7-4468-82bd-542694d5042b";
   const resourceGroupName = "testrg";
   const virtualClusterName = "vc-subnet1-f769ed71-b3ad-491a-a9d5-26eeceaa6be2";
   const parameters: VirtualClusterUpdate = {
     maintenanceConfigurationId:
       "/subscriptions/ab0e51c0-83c0-4380-8ae9-025516df392f/resourceGroups/Federation/providers/Microsoft.Maintenance/maintenanceConfigurations/MiPolicy1"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.virtualClusters.beginUpdateAndWait(
     resourceGroupName,
     virtualClusterName,
@@ -35,10 +38,5 @@ async function updateVirtualClusterWithTags() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "20d7082a-0fc7-4468-82bd-542694d5042b";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await updateVirtualClusterWithTags();
-}
-main();
+
+updateVirtualClusterWithTags().catch(console.error);

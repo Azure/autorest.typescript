@@ -12,17 +12,20 @@
  * This sample demonstrates how to Gets a replication link.
  *
  * @summary Gets a replication link.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//replicationLinks.get
 async function getsTheReplicationLink() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "Default";
   const serverName = "sourcesvr";
   const databaseName = "gamma-db";
   const linkId = "4891ca10-ebd0-47d7-9182-c722651780fb";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.replicationLinks.get(
     resourceGroupName,
     serverName,
@@ -31,10 +34,5 @@ async function getsTheReplicationLink() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await getsTheReplicationLink();
-}
-main();
+
+getsTheReplicationLink().catch(console.error);

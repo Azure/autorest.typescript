@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates an existing Azure Active Directory administrator.
  *
  * @summary Creates or updates an existing Azure Active Directory administrator.
+ * x-ms-original-file:
  */
 import {
   ServerAzureADAdministrator,
@@ -20,8 +21,8 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//serverAzureADAdministrators.beginCreateOrUpdateAndWait
 async function createsOrUpdatesAnExistingAzureActiveDirectoryAdministrator() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "sqlcrudtest-4799";
   const serverName = "sqlcrudtest-6440";
   const administratorName = "ActiveDirectory";
@@ -31,6 +32,8 @@ async function createsOrUpdatesAnExistingAzureActiveDirectoryAdministrator() {
     sid: "c6b82b90-a647-49cb-8a62-0d2d3cb7ac7c",
     tenantId: "c6b82b90-a647-49cb-8a62-0d2d3cb7ac7c"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.serverAzureADAdministrators.beginCreateOrUpdateAndWait(
     resourceGroupName,
     serverName,
@@ -39,10 +42,7 @@ async function createsOrUpdatesAnExistingAzureActiveDirectoryAdministrator() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await createsOrUpdatesAnExistingAzureActiveDirectoryAdministrator();
-}
-main();
+
+createsOrUpdatesAnExistingAzureActiveDirectoryAdministrator().catch(
+  console.error
+);

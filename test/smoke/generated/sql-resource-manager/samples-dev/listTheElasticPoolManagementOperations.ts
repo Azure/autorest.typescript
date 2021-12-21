@@ -12,16 +12,19 @@
  * This sample demonstrates how to Gets a list of operations performed on the elastic pool.
  *
  * @summary Gets a list of operations performed on the elastic pool.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//elasticPoolOperations.listByElasticPool
 async function listTheElasticPoolManagementOperations() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "sqlcrudtestgroup";
   const serverName = "sqlcrudtestserver";
   const elasticPoolName = "testpool";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.elasticPoolOperations.listByElasticPool(
     resourceGroupName,
@@ -32,10 +35,5 @@ async function listTheElasticPoolManagementOperations() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await listTheElasticPoolManagementOperations();
-}
-main();
+
+listTheElasticPoolManagementOperations().catch(console.error);

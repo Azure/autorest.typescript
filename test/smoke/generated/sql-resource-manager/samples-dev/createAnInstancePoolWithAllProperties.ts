@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates an instance pool.
  *
  * @summary Creates or updates an instance pool.
+ * x-ms-original-file:
  */
 import {
   InstancePool,
@@ -20,8 +21,8 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//instancePools.beginCreateOrUpdateAndWait
 async function createAnInstancePoolWithAllProperties() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "group1";
   const instancePoolName = "testIP";
   const parameters: InstancePool = {
@@ -33,6 +34,8 @@ async function createAnInstancePoolWithAllProperties() {
     tags: { a: "b" },
     vCores: 8
   };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.instancePools.beginCreateOrUpdateAndWait(
     resourceGroupName,
     instancePoolName,
@@ -40,10 +43,5 @@ async function createAnInstancePoolWithAllProperties() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await createAnInstancePoolWithAllProperties();
-}
-main();
+
+createAnInstancePoolWithAllProperties().catch(console.error);

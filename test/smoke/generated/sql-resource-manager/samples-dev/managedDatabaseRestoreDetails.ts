@@ -12,17 +12,20 @@
  * This sample demonstrates how to Gets managed database restore details.
  *
  * @summary Gets managed database restore details.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//managedDatabaseRestoreDetails.get
 async function managedDatabaseRestoreDetails() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "Default-SQL-SouthEastAsia";
   const managedInstanceName = "managedInstance";
   const databaseName = "testdb";
   const restoreDetailsName = "Default";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.managedDatabaseRestoreDetails.get(
     resourceGroupName,
     managedInstanceName,
@@ -31,10 +34,5 @@ async function managedDatabaseRestoreDetails() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await managedDatabaseRestoreDetails();
-}
-main();
+
+managedDatabaseRestoreDetails().catch(console.error);

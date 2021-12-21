@@ -12,6 +12,7 @@
  * This sample demonstrates how to Sets a managed database's long term retention policy.
  *
  * @summary Sets a managed database's long term retention policy.
+ * x-ms-original-file:
  */
 import {
   ManagedInstanceLongTermRetentionPolicy,
@@ -20,8 +21,8 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//managedInstanceLongTermRetentionPolicies.beginCreateOrUpdateAndWait
 async function createOrUpdateTheLtrPolicyForTheManagedDatabase() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "testResourceGroup";
   const managedInstanceName = "testInstance";
   const databaseName = "testDatabase";
@@ -32,6 +33,8 @@ async function createOrUpdateTheLtrPolicyForTheManagedDatabase() {
     weeklyRetention: "P1M",
     yearlyRetention: "P5Y"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.managedInstanceLongTermRetentionPolicies.beginCreateOrUpdateAndWait(
     resourceGroupName,
     managedInstanceName,
@@ -41,10 +44,5 @@ async function createOrUpdateTheLtrPolicyForTheManagedDatabase() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await createOrUpdateTheLtrPolicyForTheManagedDatabase();
-}
-main();
+
+createOrUpdateTheLtrPolicyForTheManagedDatabase().catch(console.error);

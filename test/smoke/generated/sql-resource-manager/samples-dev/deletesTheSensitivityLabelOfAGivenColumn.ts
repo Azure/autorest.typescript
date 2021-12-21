@@ -12,19 +12,22 @@
  * This sample demonstrates how to Deletes the sensitivity label of a given column
  *
  * @summary Deletes the sensitivity label of a given column
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//sensitivityLabels.delete
 async function deletesTheSensitivityLabelOfAGivenColumn() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "myRG";
   const serverName = "myServer";
   const databaseName = "myDatabase";
   const schemaName = "dbo";
   const tableName = "myTable";
   const columnName = "myColumn";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.sensitivityLabels.delete(
     resourceGroupName,
     serverName,
@@ -35,10 +38,5 @@ async function deletesTheSensitivityLabelOfAGivenColumn() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await deletesTheSensitivityLabelOfAGivenColumn();
-}
-main();
+
+deletesTheSensitivityLabelOfAGivenColumn().catch(console.error);

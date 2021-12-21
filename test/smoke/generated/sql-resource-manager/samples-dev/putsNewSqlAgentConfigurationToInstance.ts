@@ -12,6 +12,7 @@
  * This sample demonstrates how to Puts new sql agent configuration to instance.
  *
  * @summary Puts new sql agent configuration to instance.
+ * x-ms-original-file:
  */
 import {
   SqlAgentConfiguration,
@@ -20,11 +21,13 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//sqlAgent.createOrUpdate
 async function putsNewSqlAgentConfigurationToInstance() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "sqlcrudtest-7398";
   const managedInstanceName = "sqlcrudtest-4645";
   const parameters: SqlAgentConfiguration = { state: "Enabled" };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.sqlAgent.createOrUpdate(
     resourceGroupName,
     managedInstanceName,
@@ -32,10 +35,5 @@ async function putsNewSqlAgentConfigurationToInstance() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await putsNewSqlAgentConfigurationToInstance();
-}
-main();
+
+putsNewSqlAgentConfigurationToInstance().catch(console.error);

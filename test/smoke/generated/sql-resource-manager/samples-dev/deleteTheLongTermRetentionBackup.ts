@@ -12,18 +12,21 @@
  * This sample demonstrates how to Deletes a long term retention backup.
  *
  * @summary Deletes a long term retention backup.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//longTermRetentionManagedInstanceBackups.beginDeleteByResourceGroupAndWait
 async function deleteTheLongTermRetentionBackup() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "testResourceGroup";
   const locationName = "japaneast";
   const managedInstanceName = "testInstance";
   const databaseName = "testDatabase";
   const backupName = "55555555-6666-7777-8888-999999999999;131637960820000000";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.longTermRetentionManagedInstanceBackups.beginDeleteByResourceGroupAndWait(
     resourceGroupName,
     locationName,
@@ -33,10 +36,5 @@ async function deleteTheLongTermRetentionBackup() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await deleteTheLongTermRetentionBackup();
-}
-main();
+
+deleteTheLongTermRetentionBackup().catch(console.error);

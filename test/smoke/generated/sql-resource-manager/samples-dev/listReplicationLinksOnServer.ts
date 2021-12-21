@@ -12,15 +12,18 @@
  * This sample demonstrates how to Gets a list of replication links.
  *
  * @summary Gets a list of replication links.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//replicationLinks.listByServer
 async function listReplicationLinksOnServer() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "Default";
   const serverName = "sourcesvr";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.replicationLinks.listByServer(
     resourceGroupName,
@@ -30,10 +33,5 @@ async function listReplicationLinksOnServer() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await listReplicationLinksOnServer();
-}
-main();
+
+listReplicationLinksOnServer().catch(console.error);

@@ -12,6 +12,7 @@
  * This sample demonstrates how to Updates an existing long term retention backup.
  *
  * @summary Updates an existing long term retention backup.
+ * x-ms-original-file:
  */
 import {
   UpdateLongTermRetentionBackupParameters,
@@ -20,8 +21,8 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//longTermRetentionBackups.beginUpdateByResourceGroupAndWait
 async function updateTheLongTermRetentionBackup() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "testResourceGroup";
   const locationName = "japaneast";
   const longTermRetentionServerName = "testserver";
@@ -30,6 +31,8 @@ async function updateTheLongTermRetentionBackup() {
   const parameters: UpdateLongTermRetentionBackupParameters = {
     requestedBackupStorageRedundancy: "Geo"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.longTermRetentionBackups.beginUpdateByResourceGroupAndWait(
     resourceGroupName,
     locationName,
@@ -40,10 +43,5 @@ async function updateTheLongTermRetentionBackup() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await updateTheLongTermRetentionBackup();
-}
-main();
+
+updateTheLongTermRetentionBackup().catch(console.error);

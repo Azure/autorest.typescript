@@ -12,13 +12,14 @@
  * This sample demonstrates how to List database columns
  *
  * @summary List database columns
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//databaseColumns.listByDatabase
 async function filterDatabaseColumns() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "myRG";
   const serverName = "serverName";
   const databaseName = "myDatabase";
@@ -32,6 +33,8 @@ async function filterDatabaseColumns() {
     column: column,
     orderBy: orderBy
   };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.databaseColumns.listByDatabase(
     resourceGroupName,
@@ -43,10 +46,5 @@ async function filterDatabaseColumns() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await filterDatabaseColumns();
-}
-main();
+
+filterDatabaseColumns().catch(console.error);

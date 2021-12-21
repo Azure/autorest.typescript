@@ -12,17 +12,20 @@
  * This sample demonstrates how to Gets a collection of hub database schemas.
  *
  * @summary Gets a collection of hub database schemas.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//syncGroups.listHubSchemas
 async function getAHubDatabaseSchema() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "syncgroupcrud-65440";
   const serverName = "syncgroupcrud-8475";
   const databaseName = "syncgroupcrud-4328";
   const syncGroupName = "syncgroupcrud-3187";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.syncGroups.listHubSchemas(
     resourceGroupName,
@@ -34,10 +37,5 @@ async function getAHubDatabaseSchema() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await getAHubDatabaseSchema();
-}
-main();
+
+getAHubDatabaseSchema().catch(console.error);

@@ -12,16 +12,19 @@
  * This sample demonstrates how to Gets a restorable dropped managed database.
  *
  * @summary Gets a restorable dropped managed database.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//restorableDroppedManagedDatabases.get
 async function getsARestorableDroppedManagedDatabase() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "Test1";
   const managedInstanceName = "managedInstance";
   const restorableDroppedDatabaseId = "testdb,131403269876900000";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.restorableDroppedManagedDatabases.get(
     resourceGroupName,
     managedInstanceName,
@@ -29,10 +32,5 @@ async function getsARestorableDroppedManagedDatabase() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await getsARestorableDroppedManagedDatabase();
-}
-main();
+
+getsARestorableDroppedManagedDatabase().catch(console.error);

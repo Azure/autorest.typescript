@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates an existing virtual network rule.
  *
  * @summary Creates or updates an existing virtual network rule.
+ * x-ms-original-file:
  */
 import {
   VirtualNetworkRule,
@@ -20,8 +21,8 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//virtualNetworkRules.beginCreateOrUpdateAndWait
 async function createOrUpdateAVirtualNetworkRule() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "Default";
   const serverName = "vnet-test-svr";
   const virtualNetworkRuleName = "vnet-firewall-rule";
@@ -30,6 +31,8 @@ async function createOrUpdateAVirtualNetworkRule() {
     virtualNetworkSubnetId:
       "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Default/providers/Microsoft.Network/virtualNetworks/testvnet/subnets/testsubnet"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworkRules.beginCreateOrUpdateAndWait(
     resourceGroupName,
     serverName,
@@ -38,10 +41,5 @@ async function createOrUpdateAVirtualNetworkRule() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await createOrUpdateAVirtualNetworkRule();
-}
-main();
+
+createOrUpdateAVirtualNetworkRule().catch(console.error);

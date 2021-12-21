@@ -12,18 +12,21 @@
  * This sample demonstrates how to Gets a job version.
  *
  * @summary Gets a job version.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//jobVersions.get
 async function getAVersionOfAJob() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "group1";
   const serverName = "server1";
   const jobAgentName = "agent1";
   const jobName = "job1";
   const jobVersion = 1;
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.jobVersions.get(
     resourceGroupName,
     serverName,
@@ -33,10 +36,5 @@ async function getAVersionOfAJob() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await getAVersionOfAJob();
-}
-main();
+
+getAVersionOfAJob().catch(console.error);

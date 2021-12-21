@@ -81,11 +81,9 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
             methodParamAssignments: [],
             clientParamAssignments: [],
             isTopLevel: ogDetails.isTopLevel,
-            isPaging: opDetails.pagination !== undefined
+            isPaging: opDetails.pagination !== undefined,
+            originalFileLocation: example.originalFile
           };
-          if (sample.sampleFunctionName === 'virtualWanCreate') {
-            opDetails;
-          }
           const clientParameterNames = ["credential"];
           const requiredParams = clientDetails.parameters.filter(
             param =>

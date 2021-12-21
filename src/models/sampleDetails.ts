@@ -14,4 +14,5 @@ export interface SampleDetails {
     clientParamAssignments: string[],
     isTopLevel: boolean,
     isPaging: boolean,
+    originalFileLocation?: string
 }

@@ -12,16 +12,19 @@
  * This sample demonstrates how to Deletes a server trust group.
  *
  * @summary Deletes a server trust group.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//serverTrustGroups.beginDeleteAndWait
 async function dropServerTrustGroup() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "Default";
   const locationName = "Japan East";
   const serverTrustGroupName = "server-trust-group-test";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.serverTrustGroups.beginDeleteAndWait(
     resourceGroupName,
     locationName,
@@ -29,10 +32,5 @@ async function dropServerTrustGroup() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await dropServerTrustGroup();
-}
-main();
+
+dropServerTrustGroup().catch(console.error);

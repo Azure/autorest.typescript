@@ -12,6 +12,7 @@
  * This sample demonstrates how to Updates an existing encryption protector.
  *
  * @summary Updates an existing encryption protector.
+ * x-ms-original-file:
  */
 import {
   ManagedInstanceEncryptionProtector,
@@ -20,8 +21,8 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//managedInstanceEncryptionProtectors.beginCreateOrUpdateAndWait
 async function updateTheEncryptionProtectorToServiceManaged() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "sqlcrudtest-7398";
   const managedInstanceName = "sqlcrudtest-4645";
   const encryptionProtectorName = "current";
@@ -29,6 +30,8 @@ async function updateTheEncryptionProtectorToServiceManaged() {
     serverKeyName: "ServiceManaged",
     serverKeyType: "ServiceManaged"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.managedInstanceEncryptionProtectors.beginCreateOrUpdateAndWait(
     resourceGroupName,
     managedInstanceName,
@@ -37,10 +40,5 @@ async function updateTheEncryptionProtectorToServiceManaged() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await updateTheEncryptionProtectorToServiceManaged();
-}
-main();
+
+updateTheEncryptionProtectorToServiceManaged().catch(console.error);

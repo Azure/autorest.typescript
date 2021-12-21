@@ -12,6 +12,7 @@
  * This sample demonstrates how to Creates or updates a server's DevOps audit settings.
  *
  * @summary Creates or updates a server's DevOps audit settings.
+ * x-ms-original-file:
  */
 import {
   ServerDevOpsAuditingSettings,
@@ -20,8 +21,8 @@ import {
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//serverDevOpsAuditSettings.beginCreateOrUpdateAndWait
 async function updateAServerDevOpsAuditSettingsWithMinimalInput() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "devAuditTestRG";
   const serverName = "devOpsAuditTestSvr";
   const devOpsAuditingSettingsName = "default";
@@ -31,6 +32,8 @@ async function updateAServerDevOpsAuditSettingsWithMinimalInput() {
       "sdlfkjabc+sdlfkjsdlkfsjdfLDKFTERLKFDFKLjsdfksjdflsdkfD2342309432849328476458/3RSD==",
     storageEndpoint: "https://mystorage.blob.core.windows.net"
   };
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.serverDevOpsAuditSettings.beginCreateOrUpdateAndWait(
     resourceGroupName,
     serverName,
@@ -39,10 +42,5 @@ async function updateAServerDevOpsAuditSettingsWithMinimalInput() {
   );
   console.log(result);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await updateAServerDevOpsAuditSettingsWithMinimalInput();
-}
-main();
+
+updateAServerDevOpsAuditSettingsWithMinimalInput().catch(console.error);

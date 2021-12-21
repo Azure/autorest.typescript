@@ -12,17 +12,20 @@
  * This sample demonstrates how to List database tables
  *
  * @summary List database tables
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//databaseTables.listBySchema
 async function listDatabaseTables() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "myRG";
   const serverName = "serverName";
   const databaseName = "myDatabase";
   const schemaName = "dbo";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.databaseTables.listBySchema(
     resourceGroupName,
@@ -34,10 +37,5 @@ async function listDatabaseTables() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await listDatabaseTables();
-}
-main();
+
+listDatabaseTables().catch(console.error);

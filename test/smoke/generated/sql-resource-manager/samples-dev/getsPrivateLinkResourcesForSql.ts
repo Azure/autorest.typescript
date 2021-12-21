@@ -12,15 +12,18 @@
  * This sample demonstrates how to Gets the private link resources for SQL server.
  *
  * @summary Gets the private link resources for SQL server.
+ * x-ms-original-file:
  */
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 let client: SqlManagementClient;
-//privateLinkResources.listByServer
 async function getsPrivateLinkResourcesForSql() {
+  const subscriptionId = "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = "Default";
   const serverName = "test-svr";
+  const credential = new DefaultAzureCredential();
+  const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.privateLinkResources.listByServer(
     resourceGroupName,
@@ -30,10 +33,5 @@ async function getsPrivateLinkResourcesForSql() {
   }
   console.log(resArray);
 }
-async function main() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  client = new SqlManagementClient(credential, subscriptionId);
-  await getsPrivateLinkResourcesForSql();
-}
-main();
+
+getsPrivateLinkResourcesForSql().catch(console.error);
