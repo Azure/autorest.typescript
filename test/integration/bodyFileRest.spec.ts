@@ -1,5 +1,5 @@
 import { assert } from "chai";
-import BodyFile, { BodyFileRestClient } from "./generated/bodyFileRest/src";
+import { BodyFileRestClient, BodyFile } from "./generated/bodyFileRest/src";
 
 describe("BodyFile Client", () => {
   let client: BodyFileRestClient;

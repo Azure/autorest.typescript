@@ -1,4 +1,5 @@
-import MediaTypes, {
+import {
+  MediaTypes,
   MediaTypesRestClient
 } from "./generated/mediaTypesRest/src";
 

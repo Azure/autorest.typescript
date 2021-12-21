@@ -1,5 +1,6 @@
 import { assert } from "chai";
-import PagingClient, {
+import {
+  Paging,
   ProductOutput,
   PagingRestClient,
   paginate,
@@ -10,7 +11,7 @@ describe("Integration tests for Paging Rest Client", () => {
   let client: PagingRestClient;
 
   beforeEach(() => {
-    client = PagingClient({
+    client = Paging({
       allowInsecureConnection: true,
       retryOptions: { retryDelayInMs: 0 }
     });
@@ -267,7 +268,7 @@ describe("Integration tests for Paging Rest Client", () => {
       }
       assert.equal(items.length, 10);
     });
-  });
+  }).timeout(10000);
 
   describe("#getWithQueryParams", () => {
     it("should return a ProductResult", async () => {

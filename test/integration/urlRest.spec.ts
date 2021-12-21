@@ -1,5 +1,6 @@
 import { assert } from "chai";
-import UrlRestClient, {
+import {
+  UrlRestClient,
   UrlRestClientRestClient
 } from "./generated/urlRest/src";
 import { UriColor } from "./generated/url/src";
