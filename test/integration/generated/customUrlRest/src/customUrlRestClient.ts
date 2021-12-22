@@ -10,7 +10,6 @@ import "@azure/core-auth";
 export interface PathsOperations {
   /** Get a 200 to test a valid base uri */
   getEmpty(
-    accountName: string,
     options?: GetEmptyParameters
   ): Promise<GetEmpty200Response | GetEmptydefaultResponse>;
 }
@@ -24,7 +23,7 @@ export interface GetEmpty {
 
 export interface Routes {
   /** Resource for '/customuri' has methods for the following verbs: get */
-  (path: "/customuri", accountName: string): GetEmpty;
+  (path: "/customuri"): GetEmpty;
 }
 
 export type CustomUrlRestClientRestClient = Client & {
@@ -42,8 +41,8 @@ export default function CustomUrlRestClient(
   return {
     ...client,
     paths: {
-      getEmpty: (accountName, options) => {
-        return client.path("/customuri", accountName).get(options);
+      getEmpty: (options) => {
+        return client.path("/customuri").get(options);
       }
     }
   };

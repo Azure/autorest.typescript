@@ -3,7 +3,8 @@ import {
   Operation,
   Parameter,
   SchemaContext,
-  Request as OperationRequest
+  Request as OperationRequest,
+  ParameterLocation
 } from "@autorest/codemodel";
 import {
   InterfaceDeclarationStructure,
@@ -74,6 +75,15 @@ export function generateParameterInterfaces(
 
       const request = operation.requests ? operation.requests[i] : undefined;
 
+      const pathParameterDefinitions = buildPathParameterDefinitions(
+        operationName,
+        parameters,
+        model,
+        parametersFile,
+        internalReferences,
+        i
+      )
+
       const headerParameterDefinitions = buildHeaderParameterDefinitions(
         operationName,
         parameters,
@@ -102,6 +112,7 @@ export function generateParameterInterfaces(
       parametersFile.addInterfaces([
         ...(bodyParameterDefinition ?? []),
         ...(queryParameterDefinitions ?? []),
+        ...(pathParameterDefinitions ? [pathParameterDefinitions]: []),
         ...(headerParameterDefinitions ? [headerParameterDefinitions] : []),
         ...(contentTypeParameterDefinition
           ? [contentTypeParameterDefinition]
@@ -233,6 +244,81 @@ function buildHeaderParameterDefinitions(
   };
 }
 
+function getPathInterfaceDefinition(
+  parameters: Parameter[],
+  baseName: string,
+  model: CodeModel
+): undefined | InterfaceDeclarationStructure {
+  // Check if there are any path parameters
+  const pathParameters = parameters.filter(
+    p => p.protocol.http?.in === ParameterLocation.Uri && model.globalParameters?.indexOf(p) === -1
+  );
+  if (!pathParameters.length) {
+    return undefined;
+  }
+  const pathInterfaceName = `${baseName}PathParameters`;
+  return {
+    kind: StructureKind.Interface,
+    isExported: true,
+    name: pathInterfaceName,
+    properties: pathParameters.map((h: Parameter) => {
+      const description = getLanguageMetadata(h.language).description;
+      return {
+        name: `"${getLanguageMetadata(h.language).serializedName}"`,
+        ...(description && { docs: [{ description }] }),
+        type: primitiveSchemaToType(h.schema, [
+          SchemaContext.Input,
+          SchemaContext.Exception
+        ]),
+        hasQuestionToken: !h.required
+      };
+    })
+  };
+}
+
+function buildPathParameterDefinitions(
+  operationName: string,
+  parameters: Parameter[],
+  model: CodeModel,
+  parametersFile: SourceFile,
+  internalReferences: Set<string>,
+  requestIndex: number
+): InterfaceDeclarationStructure | undefined {
+  const pathParameters = parameters.filter(
+    p => p.protocol.http?.in === ParameterLocation.Uri && model.globalParameters?.indexOf(p) === -1
+  );
+  if (!pathParameters.length) {
+    return undefined;
+  }
+
+  const nameSuffix = requestIndex > 0 ? `${requestIndex}` : "";
+  const pathParameterInterfaceName = `${operationName}PathParam${nameSuffix}`;
+
+  const pathInterface = getPathInterfaceDefinition(
+    pathParameters,
+    operationName,
+    model
+  );
+
+  if (pathInterface) {
+    parametersFile.addInterface(pathInterface);
+  }
+
+  internalReferences.add(pathParameterInterfaceName);
+
+  return {
+    isExported: true,
+    kind: StructureKind.Interface,
+    name: pathParameterInterfaceName,
+    properties: [
+      {
+        name: "pathParameters",
+        type: `${operationName}PathParameters`,
+        kind: StructureKind.PropertySignature
+      }
+    ]
+  };  
+}
 /**
  * Gets the interface definition for an operation bodyParameters
  */

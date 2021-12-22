@@ -55,7 +55,7 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
         .description;
       const pathParameters: PathParameter[] =
         operation.parameters
-          ?.filter(p => (p.protocol.http?.in === ParameterLocation.Path || p.protocol.http?.in === ParameterLocation.Uri && model.globalParameters?.indexOf(p) === -1))
+          ?.filter(p => p.protocol.http?.in === ParameterLocation.Path)
           .map(p => {
             const languageMetadata = getLanguageMetadata(p.language);
             return {

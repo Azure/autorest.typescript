@@ -3,4 +3,13 @@
 
 import { RequestParameters } from "@azure-rest/core-client";
 
-export type GetEmptyParameters = RequestParameters;
+export interface GetEmptyPathParameters {
+  /** Account Name */
+  accountName: string;
+}
+
+export interface GetEmptyPathParam {
+  pathParameters: GetEmptyPathParameters;
+}
+
+export type GetEmptyParameters = GetEmptyPathParam & RequestParameters;

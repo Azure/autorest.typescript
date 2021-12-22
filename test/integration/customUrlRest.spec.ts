@@ -10,7 +10,11 @@ describe("CustomRest Endpoint", () => {
   });
 
   it("should return 200", async () => {
-    const result = await client.path("/customuri", 'local').get();
+    const result = await client.path("/customuri").get({
+      pathParameters: {
+        accountName: "local"
+      }
+    });
     assert.strictEqual(result.status, '200');
   });
 });
