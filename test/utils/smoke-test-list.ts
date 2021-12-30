@@ -35,7 +35,7 @@ const getArmReadmes = (): SpecDefinition[] => {
       "..",
       "./.tmp/specs/specification/resources/resource-manager/readme.md",
     ),
-    params: [`--tag=${tag}`, AutorestParams.GenerateTest],
+    params: [`--tag=${tag}`],
     outputFolderName: `arm-${tag}`,
     buildTag: "ci_1"
   }));
@@ -157,7 +157,7 @@ export const readmes: SpecDefinition[] = [
       "./.tmp/specs/specification/agrifood/data-plane/readme.md"
     ),
     branch: "3ac6ce225efe665e6c74abe48016dcb2a236d609",
-    params: [AutorestParams.RestClient, AutorestParams.GenerateTest, AutorestParams.GenerateSamples],
+    params: [AutorestParams.RestClient, AutorestParams.GenerateTest],
     buildTag: "ci_rlc"
   }
   // {
