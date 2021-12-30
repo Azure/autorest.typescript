@@ -38,7 +38,7 @@ const restLevelTsConfig = {
 };
 
 export function generateTsConfig(project: Project) {
-  const { generateMetadata, restLevelClient, generateTest, packageDetails } = getAutorestOptions();
+  const { generateMetadata, restLevelClient, generateTest, packageDetails, generateSample } = getAutorestOptions();
 
   if (!generateMetadata) {
     return;
@@ -46,10 +46,14 @@ export function generateTsConfig(project: Project) {
 
   const clientPackageName = packageDetails.name;
   if (generateTest) {
-    highLevelTsConfig.include.push("./test/**/*.ts", "samples-dev/**/*.ts");
-    highLevelTsConfig.compilerOptions["paths"] = {};
-    highLevelTsConfig.compilerOptions["paths"][clientPackageName] = ["./src/index"];
+    highLevelTsConfig.include.push("./test/**/*.ts");
     restLevelTsConfig.include.push("./test/**/*.ts");
+  }
+
+  if (generateSample) {
+    highLevelTsConfig.include.push("samples-dev/**/*.ts");
+    highLevelTsConfig.compilerOptions["paths"] = {};
+    highLevelTsConfig.compilerOptions["paths"][clientPackageName] = ["./src/index"];  
   }
 
   const tsConfigContents = restLevelClient

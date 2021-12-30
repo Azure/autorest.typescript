@@ -179,6 +179,7 @@ function regularAutorestPackage(
     addCredentials,
     azureOutputDirectory,
     generateTest,
+    generateSample
   } = getAutorestOptions();
   const { model } = getSession();
   const hasLro = hasPollingOperations(model);
@@ -310,6 +311,8 @@ function regularAutorestPackage(
       "npm run integration-test:node && npm run integration-test:browser";
     packageInfo.scripts["integration-test:node"] =
       "mocha -r esm --require ts-node/register --timeout 1200000 --full-trace test/*.ts --reporter ../../../common/tools/mocha-multi-reporter.js";
+  }
+  if (generateSample) {
     packageInfo["//sampleConfiguration"] = {
       "productName": description,
       "productSlugs": [

@@ -13,7 +13,8 @@ export interface SpecDefinition {
 export enum AutorestParams {
   ModelDedup = "--modelerfour.lenient-model-deduplication",
   RestClient = "--rest-level-client=true",
-  GenerateTest = "--generate-test=true"
+  GenerateTest = "--generate-test=true",
+  GenerateSamples = "--generate-samples=true",
 }
 
 const getArmReadmes = (): SpecDefinition[] => {
@@ -34,7 +35,7 @@ const getArmReadmes = (): SpecDefinition[] => {
       "..",
       "./.tmp/specs/specification/resources/resource-manager/readme.md",
     ),
-    params: [`--tag=${tag}`],
+    params: [`--tag=${tag}`, AutorestParams.GenerateTest],
     outputFolderName: `arm-${tag}`,
     buildTag: "ci_1"
   }));
@@ -50,7 +51,7 @@ export const readmes: SpecDefinition[] = [
       "./.tmp/specs/specification/sql/resource-manager/readme.md",
     ),
     branch: "925e8285703ddd461588d8f5fbf14bd97c286fab",
-    params: [AutorestParams.GenerateTest, AutorestParams.ModelDedup],
+    params: [AutorestParams.GenerateTest, AutorestParams.ModelDedup, AutorestParams.GenerateSamples],
     buildTag: "ci_1"
   },
   {
@@ -60,7 +61,7 @@ export const readmes: SpecDefinition[] = [
       "..",
       "./.tmp/specs/specification/web/resource-manager/readme.md"
     ),
-    params: [AutorestParams.GenerateTest],
+    params: [AutorestParams.GenerateTest, AutorestParams.GenerateSamples],
     branch: "925e8285703ddd461588d8f5fbf14bd97c286fab",
     buildTag: "ci_2"
   },
@@ -100,7 +101,7 @@ export const readmes: SpecDefinition[] = [
       "..",
       "./.tmp/specs/specification/compute/resource-manager/readme.md"
     ),
-    params: [AutorestParams.GenerateTest, AutorestParams.ModelDedup],
+    params: [AutorestParams.GenerateTest, AutorestParams.ModelDedup, AutorestParams.GenerateSamples],
     branch: "925e8285703ddd461588d8f5fbf14bd97c286fab",
     buildTag: "ci_2"
   },
@@ -111,7 +112,7 @@ export const readmes: SpecDefinition[] = [
       "..",
       "./.tmp/specs/specification/network/resource-manager/readme.md"
     ),
-    params: [AutorestParams.GenerateTest],
+    params: [AutorestParams.GenerateTest, AutorestParams.GenerateSamples],
     branch: "925e8285703ddd461588d8f5fbf14bd97c286fab",
     buildTag: "ci_3"
   },
@@ -122,7 +123,7 @@ export const readmes: SpecDefinition[] = [
       "..",
       "./.tmp/specs/specification/keyvault/resource-manager/readme.md"
     ),
-    params: [AutorestParams.GenerateTest],
+    params: [AutorestParams.GenerateTest, AutorestParams.GenerateSamples],
     branch: "925e8285703ddd461588d8f5fbf14bd97c286fab",
     buildTag: "ci_3"
   },
@@ -133,7 +134,7 @@ export const readmes: SpecDefinition[] = [
       "..",
       "./.tmp/specs/specification/storage/resource-manager/readme.md"
     ),
-    params: [AutorestParams.ModelDedup, AutorestParams.GenerateTest],
+    params: [AutorestParams.ModelDedup, AutorestParams.GenerateTest, AutorestParams.GenerateSamples],
     branch: "925e8285703ddd461588d8f5fbf14bd97c286fab",
     buildTag: "ci_3"
   },
@@ -144,7 +145,7 @@ export const readmes: SpecDefinition[] = [
       "..",
       "./.tmp/specs/specification/msi/resource-manager/readme.md"
     ),
-    params: [AutorestParams.GenerateTest],
+    params: [AutorestParams.GenerateTest, AutorestParams.GenerateSamples],
     branch: "925e8285703ddd461588d8f5fbf14bd97c286fab",
     buildTag: "ci_3"
   },
@@ -156,7 +157,7 @@ export const readmes: SpecDefinition[] = [
       "./.tmp/specs/specification/agrifood/data-plane/readme.md"
     ),
     branch: "3ac6ce225efe665e6c74abe48016dcb2a236d609",
-    params: [AutorestParams.RestClient, AutorestParams.GenerateTest],
+    params: [AutorestParams.RestClient, AutorestParams.GenerateTest, AutorestParams.GenerateSamples],
     buildTag: "ci_rlc"
   }
   // {
