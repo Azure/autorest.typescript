@@ -8,5 +8,4 @@
 
 export * from "./models";
 export { SealedChoiceClient } from "./sealedChoiceClient";
-export { SealedChoiceClientContext } from "./sealedChoiceClientContext";
 export * from "./operationsInterfaces";

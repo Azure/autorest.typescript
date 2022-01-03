@@ -51,9 +51,7 @@ export default function BodyFormData(
 ): BodyFormDataRestClient {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
 
-  return getClient(
-    baseUrl,
+  const client = getClient(baseUrl, options) as BodyFormDataRestClient;
 
-    options
-  ) as BodyFormDataRestClient;
+  return client;
 }

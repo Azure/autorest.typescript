@@ -2,7 +2,7 @@ import { OperationResults } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { HealthCareApisClientContext } from "../healthCareApisClientContext";
+import { HealthCareApisClient } from "../healthCareApisClient";
 import {
   OperationResultsGetOptionalParams,
   OperationResultsGetResponse
@@ -10,13 +10,13 @@ import {
 
 /** Class containing OperationResults operations. */
 export class OperationResultsImpl implements OperationResults {
-  private readonly client: HealthCareApisClientContext;
+  private readonly client: HealthCareApisClient;
 
   /**
    * Initialize a new instance of the class OperationResults class.
    * @param client Reference to the service client
    */
-  constructor(client: HealthCareApisClientContext) {
+  constructor(client: HealthCareApisClient) {
     this.client = client;
   }
 

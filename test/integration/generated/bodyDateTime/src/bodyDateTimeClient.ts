@@ -6,18 +6,45 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreClient from "@azure/core-client";
 import { DatetimeImpl } from "./operations";
 import { Datetime } from "./operationsInterfaces";
-import { BodyDateTimeClientContext } from "./bodyDateTimeClientContext";
 import { BodyDateTimeClientOptionalParams } from "./models";
 
-export class BodyDateTimeClient extends BodyDateTimeClientContext {
+export class BodyDateTimeClient extends coreClient.ServiceClient {
+  $host: string;
+
   /**
    * Initializes a new instance of the BodyDateTimeClient class.
    * @param options The parameter options
    */
   constructor(options?: BodyDateTimeClientOptionalParams) {
-    super(options);
+    // Initializing default values for options
+    if (!options) {
+      options = {};
+    }
+    const defaults: BodyDateTimeClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8"
+    };
+
+    const packageDetails = `azsdk-js-body-datetime/1.0.0-preview1`;
+    const userAgentPrefix =
+      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
+        : `${packageDetails}`;
+
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      userAgentOptions: {
+        userAgentPrefix
+      },
+      baseUri: options.endpoint || "http://localhost:3000"
+    };
+    super(optionsWithDefaults);
+
+    // Assigning values to Constant parameters
+    this.$host = options.$host || "http://localhost:3000";
     this.datetime = new DatetimeImpl(this);
   }
 

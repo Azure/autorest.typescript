@@ -12,7 +12,7 @@ import * as coreClient from "@azure/core-client";
 import * as coreTracing from "@azure/core-tracing";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyComplexWithTracingContext } from "../bodyComplexWithTracingContext";
+import { BodyComplexWithTracing } from "../bodyComplexWithTracing";
 import {
   BasicGetValidOptionalParams,
   BasicGetValidResponse,
@@ -30,13 +30,13 @@ import {
 
 /** Class containing Basic operations. */
 export class BasicImpl implements Basic {
-  private readonly client: BodyComplexWithTracingContext;
+  private readonly client: BodyComplexWithTracing;
 
   /**
    * Initialize a new instance of the class Basic class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyComplexWithTracingContext) {
+  constructor(client: BodyComplexWithTracing) {
     this.client = client;
   }
 

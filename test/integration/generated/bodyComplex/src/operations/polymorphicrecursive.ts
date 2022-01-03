@@ -10,7 +10,7 @@ import { Polymorphicrecursive } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyComplexClientContext } from "../bodyComplexClientContext";
+import { BodyComplexClient } from "../bodyComplexClient";
 import {
   PolymorphicrecursiveGetValidOptionalParams,
   PolymorphicrecursiveGetValidResponse,
@@ -20,13 +20,13 @@ import {
 
 /** Class containing Polymorphicrecursive operations. */
 export class PolymorphicrecursiveImpl implements Polymorphicrecursive {
-  private readonly client: BodyComplexClientContext;
+  private readonly client: BodyComplexClient;
 
   /**
    * Initialize a new instance of the class Polymorphicrecursive class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyComplexClientContext) {
+  constructor(client: BodyComplexClient) {
     this.client = client;
   }
 

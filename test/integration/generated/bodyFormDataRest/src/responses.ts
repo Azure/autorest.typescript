@@ -7,7 +7,8 @@ import { ErrorModelOutput } from "./outputModels";
 /** Upload file */
 export interface UploadFile200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
+  /** Value may contain any sequence of octets */
+  body: Uint8Array;
 }
 
 /** Upload file */
@@ -19,7 +20,8 @@ export interface UploadFiledefaultResponse extends HttpResponse {
 /** Upload file */
 export interface UploadFileViaBody200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
+  /** Value may contain any sequence of octets */
+  body: Uint8Array;
 }
 
 /** Upload file */
@@ -31,7 +33,8 @@ export interface UploadFileViaBodydefaultResponse extends HttpResponse {
 /** Upload multiple files */
 export interface UploadFiles200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
+  /** Value may contain any sequence of octets */
+  body: Uint8Array;
 }
 
 /** Upload multiple files */

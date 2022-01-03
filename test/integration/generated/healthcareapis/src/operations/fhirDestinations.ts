@@ -3,7 +3,7 @@ import { FhirDestinations } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { HealthCareApisClientContext } from "../healthCareApisClientContext";
+import { HealthCareApisClient } from "../healthCareApisClient";
 import {
   IotFhirDestination,
   FhirDestinationsListByIotConnectorNextOptionalParams,
@@ -15,13 +15,13 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing FhirDestinations operations. */
 export class FhirDestinationsImpl implements FhirDestinations {
-  private readonly client: HealthCareApisClientContext;
+  private readonly client: HealthCareApisClient;
 
   /**
    * Initialize a new instance of the class FhirDestinations class.
    * @param client Reference to the service client
    */
-  constructor(client: HealthCareApisClientContext) {
+  constructor(client: HealthCareApisClient) {
     this.client = client;
   }
 

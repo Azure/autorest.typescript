@@ -8,5 +8,4 @@
 
 export * from "./models";
 export { UserAgentCoreV1Client } from "./userAgentCoreV1Client";
-export { UserAgentCoreV1ClientContext } from "./userAgentCoreV1ClientContext";
 export * from "./operationsInterfaces";

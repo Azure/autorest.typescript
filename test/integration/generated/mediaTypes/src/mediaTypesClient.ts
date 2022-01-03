@@ -10,7 +10,6 @@ import * as coreClient from "@azure/core-client";
 import * as coreRestPipeline from "@azure/core-rest-pipeline";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
-import { MediaTypesClientContext } from "./mediaTypesClientContext";
 import {
   MediaTypesClientOptionalParams,
   ContentType,
@@ -32,13 +31,40 @@ import {
   PutTextAndJsonBodyResponse
 } from "./models";
 
-export class MediaTypesClient extends MediaTypesClientContext {
+export class MediaTypesClient extends coreClient.ServiceClient {
+  $host: string;
+
   /**
    * Initializes a new instance of the MediaTypesClient class.
    * @param options The parameter options
    */
   constructor(options?: MediaTypesClientOptionalParams) {
-    super(options);
+    // Initializing default values for options
+    if (!options) {
+      options = {};
+    }
+    const defaults: MediaTypesClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8"
+    };
+
+    const packageDetails = `azsdk-js-media-types-service/1.0.0-preview1`;
+    const userAgentPrefix =
+      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
+        : `${packageDetails}`;
+
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      userAgentOptions: {
+        userAgentPrefix
+      },
+      baseUri: options.endpoint || "http://localhost:3000"
+    };
+    super(optionsWithDefaults);
+
+    // Assigning values to Constant parameters
+    this.$host = options.$host || "http://localhost:3000";
   }
 
   /**

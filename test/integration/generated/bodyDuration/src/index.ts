@@ -8,5 +8,4 @@
 
 export * from "./models";
 export { BodyDurationClient } from "./bodyDurationClient";
-export { BodyDurationClientContext } from "./bodyDurationClientContext";
 export * from "./operationsInterfaces";
