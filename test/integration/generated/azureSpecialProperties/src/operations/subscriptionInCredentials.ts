@@ -10,7 +10,7 @@ import { SubscriptionInCredentials } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { AzureSpecialPropertiesClient } from "../azureSpecialPropertiesClient";
+import { AzureSpecialPropertiesClientContext } from "../azureSpecialPropertiesClientContext";
 import {
   SubscriptionInCredentialsPostMethodGlobalValidOptionalParams,
   SubscriptionInCredentialsPostMethodGlobalNullOptionalParams,
@@ -22,13 +22,13 @@ import {
 /** Class containing SubscriptionInCredentials operations. */
 export class SubscriptionInCredentialsImpl
   implements SubscriptionInCredentials {
-  private readonly client: AzureSpecialPropertiesClient;
+  private readonly client: AzureSpecialPropertiesClientContext;
 
   /**
    * Initialize a new instance of the class SubscriptionInCredentials class.
    * @param client Reference to the service client
    */
-  constructor(client: AzureSpecialPropertiesClient) {
+  constructor(client: AzureSpecialPropertiesClientContext) {
     this.client = client;
   }
 

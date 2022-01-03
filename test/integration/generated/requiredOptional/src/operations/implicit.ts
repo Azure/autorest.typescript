@@ -10,7 +10,7 @@ import { Implicit } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { RequiredOptionalClient } from "../requiredOptionalClient";
+import { RequiredOptionalClientContext } from "../requiredOptionalClientContext";
 import {
   ImplicitGetRequiredPathOptionalParams,
   ImplicitPutOptionalQueryOptionalParams,
@@ -24,13 +24,13 @@ import {
 
 /** Class containing Implicit operations. */
 export class ImplicitImpl implements Implicit {
-  private readonly client: RequiredOptionalClient;
+  private readonly client: RequiredOptionalClientContext;
 
   /**
    * Initialize a new instance of the class Implicit class.
    * @param client Reference to the service client
    */
-  constructor(client: RequiredOptionalClient) {
+  constructor(client: RequiredOptionalClientContext) {
     this.client = client;
   }
 

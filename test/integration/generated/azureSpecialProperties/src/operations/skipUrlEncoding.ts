@@ -10,7 +10,7 @@ import { SkipUrlEncoding } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { AzureSpecialPropertiesClient } from "../azureSpecialPropertiesClient";
+import { AzureSpecialPropertiesClientContext } from "../azureSpecialPropertiesClientContext";
 import {
   SkipUrlEncodingGetMethodPathValidOptionalParams,
   SkipUrlEncodingGetPathValidOptionalParams,
@@ -23,13 +23,13 @@ import {
 
 /** Class containing SkipUrlEncoding operations. */
 export class SkipUrlEncodingImpl implements SkipUrlEncoding {
-  private readonly client: AzureSpecialPropertiesClient;
+  private readonly client: AzureSpecialPropertiesClientContext;
 
   /**
    * Initialize a new instance of the class SkipUrlEncoding class.
    * @param client Reference to the service client
    */
-  constructor(client: AzureSpecialPropertiesClient) {
+  constructor(client: AzureSpecialPropertiesClientContext) {
     this.client = client;
   }
 

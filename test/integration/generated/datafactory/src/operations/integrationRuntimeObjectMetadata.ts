@@ -2,7 +2,7 @@ import { IntegrationRuntimeObjectMetadata } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { DataFactoryClient } from "../dataFactoryClient";
+import { DataFactoryClientContext } from "../dataFactoryClientContext";
 import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
@@ -15,13 +15,13 @@ import {
 /** Class containing IntegrationRuntimeObjectMetadata operations. */
 export class IntegrationRuntimeObjectMetadataImpl
   implements IntegrationRuntimeObjectMetadata {
-  private readonly client: DataFactoryClient;
+  private readonly client: DataFactoryClientContext;
 
   /**
    * Initialize a new instance of the class IntegrationRuntimeObjectMetadata class.
    * @param client Reference to the service client
    */
-  constructor(client: DataFactoryClient) {
+  constructor(client: DataFactoryClientContext) {
     this.client = client;
   }
 

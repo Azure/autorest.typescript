@@ -9,18 +9,18 @@
 import { Get } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Parameters from "../models/parameters";
-import { UrlClient } from "../urlClient";
+import { UrlClientContext } from "../urlClientContext";
 import { GetUrlOptionalParams, GetUrlResponse } from "../models";
 
 /** Class containing Get operations. */
 export class GetImpl implements Get {
-  private readonly client: UrlClient;
+  private readonly client: UrlClientContext;
 
   /**
    * Initialize a new instance of the class Get class.
    * @param client Reference to the service client
    */
-  constructor(client: UrlClient) {
+  constructor(client: UrlClientContext) {
     this.client = client;
   }
 

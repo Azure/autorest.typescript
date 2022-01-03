@@ -8,4 +8,5 @@
 
 export * from "./models";
 export { HttpInfrastructureClient } from "./httpInfrastructureClient";
+export { HttpInfrastructureClientContext } from "./httpInfrastructureClientContext";
 export * from "./operationsInterfaces";

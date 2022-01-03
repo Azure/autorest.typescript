@@ -8,3 +8,4 @@
 
 export * from "./models";
 export { MediaTypesWithTracingClient } from "./mediaTypesWithTracingClient";
+export { MediaTypesWithTracingClientContext } from "./mediaTypesWithTracingClientContext";

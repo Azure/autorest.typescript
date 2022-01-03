@@ -8,3 +8,4 @@
 
 export * from "./models";
 export { MediaTypesClient } from "./mediaTypesClient";
+export { MediaTypesClientContext } from "./mediaTypesClientContext";

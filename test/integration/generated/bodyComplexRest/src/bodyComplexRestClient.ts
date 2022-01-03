@@ -644,7 +644,9 @@ export default function BodyComplexRestClient(
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
   options.apiVersion = options.apiVersion ?? "2016-02-29";
 
-  const client = getClient(baseUrl, options) as BodyComplexRestClientRestClient;
+  return getClient(
+    baseUrl,
 
-  return client;
+    options
+  ) as BodyComplexRestClientRestClient;
 }

@@ -12,6 +12,7 @@ import * as coreTracing from "@azure/core-tracing";
 import { createSpan } from "./tracing";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
+import { MediaTypesWithTracingClientContext } from "./mediaTypesWithTracingClientContext";
 import {
   MediaTypesWithTracingClientOptionalParams,
   ContentType,
@@ -33,40 +34,13 @@ import {
   PutTextAndJsonBodyResponse
 } from "./models";
 
-export class MediaTypesWithTracingClient extends coreClient.ServiceClient {
-  $host: string;
-
+export class MediaTypesWithTracingClient extends MediaTypesWithTracingClientContext {
   /**
    * Initializes a new instance of the MediaTypesWithTracingClient class.
    * @param options The parameter options
    */
   constructor(options?: MediaTypesWithTracingClientOptionalParams) {
-    // Initializing default values for options
-    if (!options) {
-      options = {};
-    }
-    const defaults: MediaTypesWithTracingClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
-    };
-
-    const packageDetails = `azsdk-js-media-types-service-tracing/1.0.0-preview1`;
-    const userAgentPrefix =
-      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
-        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
-        : `${packageDetails}`;
-
-    const optionsWithDefaults = {
-      ...defaults,
-      ...options,
-      userAgentOptions: {
-        userAgentPrefix
-      },
-      baseUri: options.endpoint || "http://localhost:3000"
-    };
-    super(optionsWithDefaults);
-
-    // Assigning values to Constant parameters
-    this.$host = options.$host || "http://localhost:3000";
+    super(options);
   }
 
   /**

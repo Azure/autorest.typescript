@@ -10,7 +10,7 @@ import { Authentication } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { SealedChoiceClient } from "../sealedChoiceClient";
+import { SealedChoiceClientContext } from "../sealedChoiceClientContext";
 import {
   TokenGrantType,
   AuthenticationExchangeAcrRefreshTokenForAcrAccessTokenOptionalParams
@@ -18,13 +18,13 @@ import {
 
 /** Class containing Authentication operations. */
 export class AuthenticationImpl implements Authentication {
-  private readonly client: SealedChoiceClient;
+  private readonly client: SealedChoiceClientContext;
 
   /**
    * Initialize a new instance of the class Authentication class.
    * @param client Reference to the service client
    */
-  constructor(client: SealedChoiceClient) {
+  constructor(client: SealedChoiceClientContext) {
     this.client = client;
   }
 

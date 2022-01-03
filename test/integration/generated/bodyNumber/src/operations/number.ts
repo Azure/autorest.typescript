@@ -10,7 +10,7 @@ import { NumberOperations } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyNumberClient } from "../bodyNumberClient";
+import { BodyNumberClientContext } from "../bodyNumberClientContext";
 import {
   NumberGetNullOptionalParams,
   NumberGetNullResponse,
@@ -54,13 +54,13 @@ import {
 
 /** Class containing NumberOperations operations. */
 export class NumberOperationsImpl implements NumberOperations {
-  private readonly client: BodyNumberClient;
+  private readonly client: BodyNumberClientContext;
 
   /**
    * Initialize a new instance of the class NumberOperations class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyNumberClient) {
+  constructor(client: BodyNumberClientContext) {
     this.client = client;
   }
 

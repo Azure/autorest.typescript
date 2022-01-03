@@ -8,4 +8,5 @@
 
 export * from "./models";
 export { BodyFormDataClient } from "./bodyFormDataClient";
+export { BodyFormDataClientContext } from "./bodyFormDataClientContext";
 export * from "./operationsInterfaces";

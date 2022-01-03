@@ -8,3 +8,4 @@
 
 export * from "./models";
 export { MediaTypesV3LROClient } from "./mediaTypesV3LROClient";
+export { MediaTypesV3LROClientContext } from "./mediaTypesV3LROClientContext";

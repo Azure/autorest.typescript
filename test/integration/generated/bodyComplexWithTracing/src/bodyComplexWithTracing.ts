@@ -6,7 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
 import {
   BasicImpl,
   PrimitiveImpl,
@@ -29,44 +28,16 @@ import {
   Readonlyproperty,
   Flattencomplex
 } from "./operationsInterfaces";
+import { BodyComplexWithTracingContext } from "./bodyComplexWithTracingContext";
 import { BodyComplexWithTracingOptionalParams } from "./models";
 
-export class BodyComplexWithTracing extends coreClient.ServiceClient {
-  $host: string;
-  apiVersion: string;
-
+export class BodyComplexWithTracing extends BodyComplexWithTracingContext {
   /**
    * Initializes a new instance of the BodyComplexWithTracing class.
    * @param options The parameter options
    */
   constructor(options?: BodyComplexWithTracingOptionalParams) {
-    // Initializing default values for options
-    if (!options) {
-      options = {};
-    }
-    const defaults: BodyComplexWithTracingOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
-    };
-
-    const packageDetails = `azsdk-js-body-complex-tracing/1.0.0-preview1`;
-    const userAgentPrefix =
-      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
-        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
-        : `${packageDetails}`;
-
-    const optionsWithDefaults = {
-      ...defaults,
-      ...options,
-      userAgentOptions: {
-        userAgentPrefix
-      },
-      baseUri: options.endpoint || "http://localhost:3000"
-    };
-    super(optionsWithDefaults);
-
-    // Assigning values to Constant parameters
-    this.$host = options.$host || "http://localhost:3000";
-    this.apiVersion = options.apiVersion || "2016-02-29";
+    super(options);
     this.basic = new BasicImpl(this);
     this.primitive = new PrimitiveImpl(this);
     this.array = new ArrayImpl(this);

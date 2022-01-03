@@ -3,7 +3,7 @@ import { LinkedServices } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { DataFactoryClient } from "../dataFactoryClient";
+import { DataFactoryClientContext } from "../dataFactoryClientContext";
 import {
   LinkedServiceResource,
   LinkedServicesListByFactoryNextOptionalParams,
@@ -20,13 +20,13 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing LinkedServices operations. */
 export class LinkedServicesImpl implements LinkedServices {
-  private readonly client: DataFactoryClient;
+  private readonly client: DataFactoryClientContext;
 
   /**
    * Initialize a new instance of the class LinkedServices class.
    * @param client Reference to the service client
    */
-  constructor(client: DataFactoryClient) {
+  constructor(client: DataFactoryClientContext) {
     this.client = client;
   }
 

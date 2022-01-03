@@ -11,6 +11,7 @@ import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "./lroImpl";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
+import { LroParametrizedEndpointsClientContext } from "./lroParametrizedEndpointsClientContext";
 import {
   LroParametrizedEndpointsClientOptionalParams,
   PollWithParameterizedEndpointsOptionalParams,
@@ -19,40 +20,13 @@ import {
   PollWithConstantParameterizedEndpointsResponse
 } from "./models";
 
-export class LroParametrizedEndpointsClient extends coreClient.ServiceClient {
-  host: string;
-
+export class LroParametrizedEndpointsClient extends LroParametrizedEndpointsClientContext {
   /**
    * Initializes a new instance of the LroParametrizedEndpointsClient class.
    * @param options The parameter options
    */
   constructor(options?: LroParametrizedEndpointsClientOptionalParams) {
-    // Initializing default values for options
-    if (!options) {
-      options = {};
-    }
-    const defaults: LroParametrizedEndpointsClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
-    };
-
-    const packageDetails = `azsdk-js-lro-parameterized-endpoints/1.0.0-preview1`;
-    const userAgentPrefix =
-      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
-        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
-        : `${packageDetails}`;
-
-    const optionsWithDefaults = {
-      ...defaults,
-      ...options,
-      userAgentOptions: {
-        userAgentPrefix
-      },
-      baseUri: options.endpoint || "http://{accountName}{host}"
-    };
-    super(optionsWithDefaults);
-
-    // Assigning values to Constant parameters
-    this.host = options.host || "host";
+    super(options);
   }
 
   /**

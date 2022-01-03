@@ -10,18 +10,18 @@ import { Paths } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { CustomUrlClient } from "../customUrlClient";
+import { CustomUrlClientContext } from "../customUrlClientContext";
 import { PathsGetEmptyOptionalParams } from "../models";
 
 /** Class containing Paths operations. */
 export class PathsImpl implements Paths {
-  private readonly client: CustomUrlClient;
+  private readonly client: CustomUrlClientContext;
 
   /**
    * Initialize a new instance of the class Paths class.
    * @param client Reference to the service client
    */
-  constructor(client: CustomUrlClient) {
+  constructor(client: CustomUrlClientContext) {
     this.client = client;
   }
 

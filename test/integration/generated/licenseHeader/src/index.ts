@@ -8,3 +8,4 @@
 
 export * from "./models";
 export { LicenseHeaderClient } from "./licenseHeaderClient";
+export { LicenseHeaderClientContext } from "./licenseHeaderClientContext";

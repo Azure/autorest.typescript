@@ -3,7 +3,7 @@ import { DataFlowDebugSession } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { DataFactoryClient } from "../dataFactoryClient";
+import { DataFactoryClientContext } from "../dataFactoryClientContext";
 import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
@@ -28,13 +28,13 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing DataFlowDebugSession operations. */
 export class DataFlowDebugSessionImpl implements DataFlowDebugSession {
-  private readonly client: DataFactoryClient;
+  private readonly client: DataFactoryClientContext;
 
   /**
    * Initialize a new instance of the class DataFlowDebugSession class.
    * @param client Reference to the service client
    */
-  constructor(client: DataFactoryClient) {
+  constructor(client: DataFactoryClientContext) {
     this.client = client;
   }
 

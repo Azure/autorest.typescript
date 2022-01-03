@@ -3,7 +3,7 @@ import { DomainServiceOperations } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { DomainServicesClient } from "../domainServicesClient";
+import { DomainServicesClientContext } from "../domainServicesClientContext";
 import {
   OperationEntity,
   DomainServiceOperationsListNextOptionalParams,
@@ -15,13 +15,13 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing DomainServiceOperations operations. */
 export class DomainServiceOperationsImpl implements DomainServiceOperations {
-  private readonly client: DomainServicesClient;
+  private readonly client: DomainServicesClientContext;
 
   /**
    * Initialize a new instance of the class DomainServiceOperations class.
    * @param client Reference to the service client
    */
-  constructor(client: DomainServicesClient) {
+  constructor(client: DomainServicesClientContext) {
     this.client = client;
   }
 

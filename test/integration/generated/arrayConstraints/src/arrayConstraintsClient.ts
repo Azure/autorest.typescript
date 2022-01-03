@@ -9,9 +9,10 @@
 import * as coreClient from "@azure/core-client";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
+import { ArrayConstraintsClientContext } from "./arrayConstraintsClientContext";
 import {
-  Enum0,
   ArrayConstraintsClientOptionalParams,
+  Enum0,
   Product,
   PostValueOptionalParams,
   PostValueResponse,
@@ -19,10 +20,7 @@ import {
   ApiV1ValueGetResponse
 } from "./models";
 
-export class ArrayConstraintsClient extends coreClient.ServiceClient {
-  $host: string;
-  apiVersion: Enum0;
-
+export class ArrayConstraintsClient extends ArrayConstraintsClientContext {
   /**
    * Initializes a new instance of the ArrayConstraintsClient class.
    * @param $host server parameter
@@ -34,39 +32,7 @@ export class ArrayConstraintsClient extends coreClient.ServiceClient {
     apiVersion: Enum0,
     options?: ArrayConstraintsClientOptionalParams
   ) {
-    if ($host === undefined) {
-      throw new Error("'$host' cannot be null");
-    }
-    if (apiVersion === undefined) {
-      throw new Error("'apiVersion' cannot be null");
-    }
-
-    // Initializing default values for options
-    if (!options) {
-      options = {};
-    }
-    const defaults: ArrayConstraintsClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
-    };
-
-    const packageDetails = `azsdk-js-array-constraints-client/1.0.0-preview1`;
-    const userAgentPrefix =
-      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
-        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
-        : `${packageDetails}`;
-
-    const optionsWithDefaults = {
-      ...defaults,
-      ...options,
-      userAgentOptions: {
-        userAgentPrefix
-      },
-      baseUri: options.endpoint || "{$host}"
-    };
-    super(optionsWithDefaults);
-    // Parameter assignments
-    this.$host = $host;
-    this.apiVersion = apiVersion;
+    super($host, apiVersion, options);
   }
 
   /**

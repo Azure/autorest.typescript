@@ -10,7 +10,7 @@ import { Time } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyTimeClient } from "../bodyTimeClient";
+import { BodyTimeClientContext } from "../bodyTimeClientContext";
 import {
   TimeGetOptionalParams,
   TimeGetResponse,
@@ -20,13 +20,13 @@ import {
 
 /** Class containing Time operations. */
 export class TimeImpl implements Time {
-  private readonly client: BodyTimeClient;
+  private readonly client: BodyTimeClientContext;
 
   /**
    * Initialize a new instance of the class Time class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyTimeClient) {
+  constructor(client: BodyTimeClientContext) {
     this.client = client;
   }
 

@@ -8,4 +8,5 @@
 
 export * from "./models";
 export { UrlMultiClient } from "./urlMultiClient";
+export { UrlMultiClientContext } from "./urlMultiClientContext";
 export * from "./operationsInterfaces";

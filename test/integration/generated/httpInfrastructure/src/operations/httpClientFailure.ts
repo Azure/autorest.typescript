@@ -10,7 +10,7 @@ import { HttpClientFailure } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { HttpInfrastructureClient } from "../httpInfrastructureClient";
+import { HttpInfrastructureClientContext } from "../httpInfrastructureClientContext";
 import {
   HttpClientFailureHead400OptionalParams,
   HttpClientFailureGet400OptionalParams,
@@ -42,13 +42,13 @@ import {
 
 /** Class containing HttpClientFailure operations. */
 export class HttpClientFailureImpl implements HttpClientFailure {
-  private readonly client: HttpInfrastructureClient;
+  private readonly client: HttpInfrastructureClientContext;
 
   /**
    * Initialize a new instance of the class HttpClientFailure class.
    * @param client Reference to the service client
    */
-  constructor(client: HttpInfrastructureClient) {
+  constructor(client: HttpInfrastructureClientContext) {
     this.client = client;
   }
 

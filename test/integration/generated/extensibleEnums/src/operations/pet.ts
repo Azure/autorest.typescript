@@ -10,7 +10,7 @@ import { Pet } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { ExtensibleEnumsClient } from "../extensibleEnumsClient";
+import { ExtensibleEnumsClientContext } from "../extensibleEnumsClientContext";
 import {
   PetGetByPetIdOptionalParams,
   PetGetByPetIdResponse,
@@ -20,13 +20,13 @@ import {
 
 /** Class containing Pet operations. */
 export class PetImpl implements Pet {
-  private readonly client: ExtensibleEnumsClient;
+  private readonly client: ExtensibleEnumsClientContext;
 
   /**
    * Initialize a new instance of the class Pet class.
    * @param client Reference to the service client
    */
-  constructor(client: ExtensibleEnumsClient) {
+  constructor(client: ExtensibleEnumsClientContext) {
     this.client = client;
   }
 

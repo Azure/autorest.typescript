@@ -10,7 +10,7 @@ import { ApiVersionLocal } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { AzureSpecialPropertiesClient } from "../azureSpecialPropertiesClient";
+import { AzureSpecialPropertiesClientContext } from "../azureSpecialPropertiesClientContext";
 import {
   ApiVersionLocalGetMethodLocalValidOptionalParams,
   ApiVersionLocalGetMethodLocalNullOptionalParams,
@@ -20,13 +20,13 @@ import {
 
 /** Class containing ApiVersionLocal operations. */
 export class ApiVersionLocalImpl implements ApiVersionLocal {
-  private readonly client: AzureSpecialPropertiesClient;
+  private readonly client: AzureSpecialPropertiesClientContext;
 
   /**
    * Initialize a new instance of the class ApiVersionLocal class.
    * @param client Reference to the service client
    */
-  constructor(client: AzureSpecialPropertiesClient) {
+  constructor(client: AzureSpecialPropertiesClientContext) {
     this.client = client;
   }
 

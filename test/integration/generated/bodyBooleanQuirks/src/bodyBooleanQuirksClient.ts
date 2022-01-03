@@ -6,45 +6,18 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
 import { BoolImpl } from "./operations";
 import { Bool } from "./operationsInterfaces";
+import { BodyBooleanQuirksClientContext } from "./bodyBooleanQuirksClientContext";
 import { BodyBooleanQuirksClientOptionalParams } from "./models";
 
-export class BodyBooleanQuirksClient extends coreClient.ServiceClient {
-  $host: string;
-
+export class BodyBooleanQuirksClient extends BodyBooleanQuirksClientContext {
   /**
    * Initializes a new instance of the BodyBooleanQuirksClient class.
    * @param options The parameter options
    */
   constructor(options?: BodyBooleanQuirksClientOptionalParams) {
-    // Initializing default values for options
-    if (!options) {
-      options = {};
-    }
-    const defaults: BodyBooleanQuirksClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
-    };
-
-    const packageDetails = `azsdk-js-body-boolean-quirks/1.0.0-preview1`;
-    const userAgentPrefix =
-      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
-        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
-        : `${packageDetails}`;
-
-    const optionsWithDefaults = {
-      ...defaults,
-      ...options,
-      userAgentOptions: {
-        userAgentPrefix
-      },
-      baseUri: options.endpoint || "http://localhost:3000"
-    };
-    super(optionsWithDefaults);
-
-    // Assigning values to Constant parameters
-    this.$host = options.$host || "http://localhost:3000";
+    super(options);
     this.bool = new BoolImpl(this);
   }
 

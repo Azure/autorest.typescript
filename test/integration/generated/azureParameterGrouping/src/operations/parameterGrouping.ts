@@ -10,7 +10,7 @@ import { ParameterGrouping } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { AzureParameterGroupingClient } from "../azureParameterGroupingClient";
+import { AzureParameterGroupingClientContext } from "../azureParameterGroupingClientContext";
 import {
   ParameterGroupingPostRequiredParameters,
   ParameterGroupingPostRequiredOptionalParams,
@@ -22,13 +22,13 @@ import {
 
 /** Class containing ParameterGrouping operations. */
 export class ParameterGroupingImpl implements ParameterGrouping {
-  private readonly client: AzureParameterGroupingClient;
+  private readonly client: AzureParameterGroupingClientContext;
 
   /**
    * Initialize a new instance of the class ParameterGrouping class.
    * @param client Reference to the service client
    */
-  constructor(client: AzureParameterGroupingClient) {
+  constructor(client: AzureParameterGroupingClientContext) {
     this.client = client;
   }
 

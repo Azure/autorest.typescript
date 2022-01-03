@@ -3,7 +3,7 @@ import { Datasets } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { DataFactoryClient } from "../dataFactoryClient";
+import { DataFactoryClientContext } from "../dataFactoryClientContext";
 import {
   DatasetResource,
   DatasetsListByFactoryNextOptionalParams,
@@ -20,13 +20,13 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing Datasets operations. */
 export class DatasetsImpl implements Datasets {
-  private readonly client: DataFactoryClient;
+  private readonly client: DataFactoryClientContext;
 
   /**
    * Initialize a new instance of the class Datasets class.
    * @param client Reference to the service client
    */
-  constructor(client: DataFactoryClient) {
+  constructor(client: DataFactoryClientContext) {
     this.client = client;
   }
 

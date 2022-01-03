@@ -8,4 +8,5 @@
 
 export * from "./models";
 export { BodyFileClient } from "./bodyFileClient";
+export { BodyFileClientContext } from "./bodyFileClientContext";
 export * from "./operationsInterfaces";

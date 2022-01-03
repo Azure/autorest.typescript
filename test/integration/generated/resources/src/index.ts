@@ -8,4 +8,5 @@
 
 export * from "./models";
 export { ResourcesClient } from "./resourcesClient";
+export { ResourcesClientContext } from "./resourcesClientContext";
 export * from "./operationsInterfaces";

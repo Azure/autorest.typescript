@@ -33,40 +33,6 @@ import {
 import { getClient, ClientOptions, Client } from "@azure-rest/core-client";
 import "@azure/core-auth";
 
-/** Contains operations for Client operations */
-export interface ClientOperations {
-  /** Get a horse with name 'Fred' and isAShowHorse true */
-  getHorse(
-    options?: GetHorseParameters
-  ): Promise<GetHorse200Response | GetHorsedefaultResponse>;
-  /** Put a horse with name 'General' and isAShowHorse false */
-  putHorse(options: PutHorseParameters): Promise<PutHorse200Response>;
-  /** Get a pet with name 'Peanut' */
-  getPet(
-    options?: GetPetParameters
-  ): Promise<GetPet200Response | GetPetdefaultResponse>;
-  /** Put a pet with name 'Butter' */
-  putPet(options: PutPetParameters): Promise<PutPet200Response>;
-  /** Get a feline where meows and hisses are true */
-  getFeline(
-    options?: GetFelineParameters
-  ): Promise<GetFeline200Response | GetFelinedefaultResponse>;
-  /** Put a feline who hisses and doesn't meow */
-  putFeline(options: PutFelineParameters): Promise<PutFeline200Response>;
-  /** Get a cat with name 'Whiskers' where likesMilk, meows, and hisses is true */
-  getCat(
-    options?: GetCatParameters
-  ): Promise<GetCat200Response | GetCatdefaultResponse>;
-  /** Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true */
-  putCat(options: PutCatParameters): Promise<PutCat200Response>;
-  /** Get a kitten with name 'Gatito' where likesMilk and meows is true, and hisses and eatsMiceYet is false */
-  getKitten(
-    options?: GetKittenParameters
-  ): Promise<GetKitten200Response | GetKittendefaultResponse>;
-  /** Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is true */
-  putKitten(options: PutKittenParameters): Promise<PutKitten200Response>;
-}
-
 export interface GetHorse {
   /** Get a horse with name 'Fred' and isAShowHorse true */
   get(
@@ -127,51 +93,16 @@ export interface Routes {
 
 export type MultipleInheritanceRestClientRestClient = Client & {
   path: Routes;
-} & ClientOperations;
+};
 
 export default function MultipleInheritanceRestClient(
   options: ClientOptions = {}
 ): MultipleInheritanceRestClientRestClient {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
 
-  const client = getClient(
+  return getClient(
     baseUrl,
+
     options
   ) as MultipleInheritanceRestClientRestClient;
-
-  return {
-    ...client,
-    ...{
-      getHorse: (options) => {
-        return client.path("/multipleInheritance/horse").get(options);
-      },
-      putHorse: (options) => {
-        return client.path("/multipleInheritance/horse").put(options);
-      },
-      getPet: (options) => {
-        return client.path("/multipleInheritance/pet").get(options);
-      },
-      putPet: (options) => {
-        return client.path("/multipleInheritance/pet").put(options);
-      },
-      getFeline: (options) => {
-        return client.path("/multipleInheritance/feline").get(options);
-      },
-      putFeline: (options) => {
-        return client.path("/multipleInheritance/feline").put(options);
-      },
-      getCat: (options) => {
-        return client.path("/multipleInheritance/cat").get(options);
-      },
-      putCat: (options) => {
-        return client.path("/multipleInheritance/cat").put(options);
-      },
-      getKitten: (options) => {
-        return client.path("/multipleInheritance/kitten").get(options);
-      },
-      putKitten: (options) => {
-        return client.path("/multipleInheritance/kitten").put(options);
-      }
-    }
-  };
 }

@@ -2,18 +2,18 @@ import { Documents } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { OptionalNullClient } from "../optionalNullClient";
+import { OptionalNullClientContext } from "../optionalNullClientContext";
 import { DocumentsSearchGetOptionalParams } from "../models";
 
 /** Class containing Documents operations. */
 export class DocumentsImpl implements Documents {
-  private readonly client: OptionalNullClient;
+  private readonly client: OptionalNullClientContext;
 
   /**
    * Initialize a new instance of the class Documents class.
    * @param client Reference to the service client
    */
-  constructor(client: OptionalNullClient) {
+  constructor(client: OptionalNullClientContext) {
     this.client = client;
   }
 

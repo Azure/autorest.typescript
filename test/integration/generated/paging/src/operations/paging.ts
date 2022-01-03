@@ -13,7 +13,7 @@ import * as coreClient from "@azure/core-client";
 import * as coreTracing from "@azure/core-tracing";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { PagingClient } from "../pagingClient";
+import { PagingClientContext } from "../pagingClientContext";
 import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
@@ -91,13 +91,13 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing Paging operations. */
 export class PagingImpl implements Paging {
-  private readonly client: PagingClient;
+  private readonly client: PagingClientContext;
 
   /**
    * Initialize a new instance of the class Paging class.
    * @param client Reference to the service client
    */
-  constructor(client: PagingClient) {
+  constructor(client: PagingClientContext) {
     this.client = client;
   }
 

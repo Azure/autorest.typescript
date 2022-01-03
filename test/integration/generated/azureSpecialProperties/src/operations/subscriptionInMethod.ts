@@ -10,7 +10,7 @@ import { SubscriptionInMethod } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { AzureSpecialPropertiesClient } from "../azureSpecialPropertiesClient";
+import { AzureSpecialPropertiesClientContext } from "../azureSpecialPropertiesClientContext";
 import {
   SubscriptionInMethodPostMethodLocalValidOptionalParams,
   SubscriptionInMethodPostMethodLocalNullOptionalParams,
@@ -20,13 +20,13 @@ import {
 
 /** Class containing SubscriptionInMethod operations. */
 export class SubscriptionInMethodImpl implements SubscriptionInMethod {
-  private readonly client: AzureSpecialPropertiesClient;
+  private readonly client: AzureSpecialPropertiesClientContext;
 
   /**
    * Initialize a new instance of the class SubscriptionInMethod class.
    * @param client Reference to the service client
    */
-  constructor(client: AzureSpecialPropertiesClient) {
+  constructor(client: AzureSpecialPropertiesClientContext) {
     this.client = client;
   }
 

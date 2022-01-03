@@ -6,45 +6,18 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
 import { DictionaryImpl } from "./operations";
 import { Dictionary } from "./operationsInterfaces";
+import { BodyDictionaryClientContext } from "./bodyDictionaryClientContext";
 import { BodyDictionaryClientOptionalParams } from "./models";
 
-export class BodyDictionaryClient extends coreClient.ServiceClient {
-  $host: string;
-
+export class BodyDictionaryClient extends BodyDictionaryClientContext {
   /**
    * Initializes a new instance of the BodyDictionaryClient class.
    * @param options The parameter options
    */
   constructor(options?: BodyDictionaryClientOptionalParams) {
-    // Initializing default values for options
-    if (!options) {
-      options = {};
-    }
-    const defaults: BodyDictionaryClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
-    };
-
-    const packageDetails = `azsdk-js-body-dictionary/1.0.0-preview1`;
-    const userAgentPrefix =
-      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
-        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
-        : `${packageDetails}`;
-
-    const optionsWithDefaults = {
-      ...defaults,
-      ...options,
-      userAgentOptions: {
-        userAgentPrefix
-      },
-      baseUri: options.endpoint || "http://localhost:3000"
-    };
-    super(optionsWithDefaults);
-
-    // Assigning values to Constant parameters
-    this.$host = options.$host || "http://localhost:3000";
+    super(options);
     this.dictionary = new DictionaryImpl(this);
   }
 

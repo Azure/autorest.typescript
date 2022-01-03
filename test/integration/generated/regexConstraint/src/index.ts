@@ -8,3 +8,4 @@
 
 export * from "./models";
 export { RegexConstraint } from "./regexConstraint";
+export { RegexConstraintContext } from "./regexConstraintContext";

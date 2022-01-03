@@ -10,7 +10,7 @@ import { ResourceGroups } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { ResourcesClient } from "../resourcesClient";
+import { ResourcesClientContext } from "../resourcesClientContext";
 import {
   ResourceGroupsCheckExistenceOptionalParams,
   ResourceGroupsCheckExistenceResponse
@@ -18,13 +18,13 @@ import {
 
 /** Class containing ResourceGroups operations. */
 export class ResourceGroupsImpl implements ResourceGroups {
-  private readonly client: ResourcesClient;
+  private readonly client: ResourcesClientContext;
 
   /**
    * Initialize a new instance of the class ResourceGroups class.
    * @param client Reference to the service client
    */
-  constructor(client: ResourcesClient) {
+  constructor(client: ResourcesClientContext) {
     this.client = client;
   }
 

@@ -4,18 +4,12 @@
 import { RequestParameters } from "@azure-rest/core-client";
 
 export interface UploadFileBodyParam {
-  body: UploadFileFormBody;
-}
-
-export interface UploadFileFormBody {
   /**
    * File to upload.
    *
    * Value may contain any sequence of octets
    */
-  fileContent: string | Uint8Array;
-  /** File name to upload. Name has to be spelled exactly as written here. */
-  fileName: string;
+  body: string;
 }
 
 export interface UploadFileMediaTypesParam {
@@ -33,7 +27,7 @@ export interface UploadFileViaBodyBodyParam {
    *
    * Value may contain any sequence of octets
    */
-  body: string | Uint8Array;
+  body: string;
 }
 
 export interface UploadFileViaBodyMediaTypesParam {
@@ -46,12 +40,8 @@ export type UploadFileViaBodyParameters = UploadFileViaBodyMediaTypesParam &
   RequestParameters;
 
 export interface UploadFilesBodyParam {
-  body: UploadFilesFormBody;
-}
-
-export interface UploadFilesFormBody {
   /** Files to upload. */
-  fileContent: Array<string | Uint8Array>;
+  body: Array<string>;
 }
 
 export interface UploadFilesMediaTypesParam {

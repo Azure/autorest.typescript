@@ -7,8 +7,7 @@ import { ErrorModelOutput } from "./outputModels";
 /** Get file */
 export interface GetFile200Response extends HttpResponse {
   status: "200";
-  /** Value may contain any sequence of octets */
-  body: Uint8Array;
+  body: Record<string, unknown>;
 }
 
 /** Get file */
@@ -20,8 +19,7 @@ export interface GetFiledefaultResponse extends HttpResponse {
 /** Get a large file */
 export interface GetFileLarge200Response extends HttpResponse {
   status: "200";
-  /** Value may contain any sequence of octets */
-  body: Uint8Array;
+  body: Record<string, unknown>;
 }
 
 /** Get a large file */
@@ -33,8 +31,7 @@ export interface GetFileLargedefaultResponse extends HttpResponse {
 /** Get empty file */
 export interface GetEmptyFile200Response extends HttpResponse {
   status: "200";
-  /** Value may contain any sequence of octets */
-  body: Uint8Array;
+  body: Record<string, unknown>;
 }
 
 /** Get empty file */

@@ -10,7 +10,7 @@ import { Dictionary } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyComplexClient } from "../bodyComplexClient";
+import { BodyComplexClientContext } from "../bodyComplexClientContext";
 import {
   DictionaryGetValidOptionalParams,
   DictionaryGetValidResponse,
@@ -27,13 +27,13 @@ import {
 
 /** Class containing Dictionary operations. */
 export class DictionaryImpl implements Dictionary {
-  private readonly client: BodyComplexClient;
+  private readonly client: BodyComplexClientContext;
 
   /**
    * Initialize a new instance of the class Dictionary class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyComplexClient) {
+  constructor(client: BodyComplexClientContext) {
     this.client = client;
   }
 

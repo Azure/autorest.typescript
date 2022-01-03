@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
 import * as coreAuth from "@azure/core-auth";
+import { IoTSpacesClientContext } from "./ioTSpacesClientContext";
 import { IoTSpacesClientOptionalParams } from "./models";
 
-export class IoTSpacesClient extends coreClient.ServiceClient {
+export class IoTSpacesClient extends IoTSpacesClientContext {
   /**
    * Initializes a new instance of the IoTSpacesClient class.
    * @param credentials Subscription credentials which uniquely identify client subscription.
@@ -20,33 +20,6 @@ export class IoTSpacesClient extends coreClient.ServiceClient {
     credentials: coreAuth.TokenCredential,
     options?: IoTSpacesClientOptionalParams
   ) {
-    if (credentials === undefined) {
-      throw new Error("'credentials' cannot be null");
-    }
-
-    // Initializing default values for options
-    if (!options) {
-      options = {};
-    }
-    const defaults: IoTSpacesClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8",
-      credential: credentials
-    };
-
-    const packageDetails = `azsdk-js-iotspaces/1.0.0-preview1`;
-    const userAgentPrefix =
-      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
-        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
-        : `${packageDetails}`;
-
-    const optionsWithDefaults = {
-      ...defaults,
-      ...options,
-      userAgentOptions: {
-        userAgentPrefix
-      },
-      baseUri: options.endpoint
-    };
-    super(optionsWithDefaults);
+    super(credentials, options);
   }
 }

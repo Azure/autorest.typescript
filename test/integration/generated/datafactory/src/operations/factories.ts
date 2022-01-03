@@ -3,7 +3,7 @@ import { Factories } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { DataFactoryClient } from "../dataFactoryClient";
+import { DataFactoryClientContext } from "../dataFactoryClientContext";
 import {
   Factory,
   FactoriesListNextOptionalParams,
@@ -36,13 +36,13 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing Factories operations. */
 export class FactoriesImpl implements Factories {
-  private readonly client: DataFactoryClient;
+  private readonly client: DataFactoryClientContext;
 
   /**
    * Initialize a new instance of the class Factories class.
    * @param client Reference to the service client
    */
-  constructor(client: DataFactoryClient) {
+  constructor(client: DataFactoryClientContext) {
     this.client = client;
   }
 

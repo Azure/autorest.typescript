@@ -9,6 +9,7 @@
 import * as coreClient from "@azure/core-client";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
+import { ValidationClientContext } from "./validationClientContext";
 import {
   ValidationClientOptionalParams,
   ValidationOfMethodParametersOptionalParams,
@@ -20,11 +21,7 @@ import {
   PostWithConstantInBodyResponse
 } from "./models";
 
-export class ValidationClient extends coreClient.ServiceClient {
-  $host: string;
-  subscriptionId: string;
-  apiVersion: string;
-
+export class ValidationClient extends ValidationClientContext {
   /**
    * Initializes a new instance of the ValidationClient class.
    * @param subscriptionId Subscription ID.
@@ -34,39 +31,7 @@ export class ValidationClient extends coreClient.ServiceClient {
     subscriptionId: string,
     options?: ValidationClientOptionalParams
   ) {
-    if (subscriptionId === undefined) {
-      throw new Error("'subscriptionId' cannot be null");
-    }
-
-    // Initializing default values for options
-    if (!options) {
-      options = {};
-    }
-    const defaults: ValidationClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
-    };
-
-    const packageDetails = `azsdk-js-validation/1.0.0-preview1`;
-    const userAgentPrefix =
-      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
-        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
-        : `${packageDetails}`;
-
-    const optionsWithDefaults = {
-      ...defaults,
-      ...options,
-      userAgentOptions: {
-        userAgentPrefix
-      },
-      baseUri: options.endpoint || "http://localhost:3000"
-    };
-    super(optionsWithDefaults);
-    // Parameter assignments
-    this.subscriptionId = subscriptionId;
-
-    // Assigning values to Constant parameters
-    this.$host = options.$host || "http://localhost:3000";
-    this.apiVersion = options.apiVersion || "1.0.0";
+    super(subscriptionId, options);
   }
 
   /**

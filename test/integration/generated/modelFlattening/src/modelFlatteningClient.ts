@@ -9,6 +9,7 @@
 import * as coreClient from "@azure/core-client";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
+import { ModelFlatteningClientContext } from "./modelFlatteningClientContext";
 import {
   ModelFlatteningClientOptionalParams,
   PutArrayOptionalParams,
@@ -32,40 +33,13 @@ import {
   PutSimpleProductWithGroupingResponse
 } from "./models";
 
-export class ModelFlatteningClient extends coreClient.ServiceClient {
-  $host: string;
-
+export class ModelFlatteningClient extends ModelFlatteningClientContext {
   /**
    * Initializes a new instance of the ModelFlatteningClient class.
    * @param options The parameter options
    */
   constructor(options?: ModelFlatteningClientOptionalParams) {
-    // Initializing default values for options
-    if (!options) {
-      options = {};
-    }
-    const defaults: ModelFlatteningClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
-    };
-
-    const packageDetails = `azsdk-js-model-flattening/1.0.0-preview1`;
-    const userAgentPrefix =
-      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
-        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
-        : `${packageDetails}`;
-
-    const optionsWithDefaults = {
-      ...defaults,
-      ...options,
-      userAgentOptions: {
-        userAgentPrefix
-      },
-      baseUri: options.endpoint || "http://localhost:3000"
-    };
-    super(optionsWithDefaults);
-
-    // Assigning values to Constant parameters
-    this.$host = options.$host || "http://localhost:3000";
+    super(options);
   }
 
   /**

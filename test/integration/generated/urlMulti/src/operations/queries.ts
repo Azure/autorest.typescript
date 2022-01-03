@@ -10,7 +10,7 @@ import { Queries } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { UrlMultiClient } from "../urlMultiClient";
+import { UrlMultiClientContext } from "../urlMultiClientContext";
 import {
   QueriesArrayStringMultiNullOptionalParams,
   QueriesArrayStringMultiEmptyOptionalParams,
@@ -19,13 +19,13 @@ import {
 
 /** Class containing Queries operations. */
 export class QueriesImpl implements Queries {
-  private readonly client: UrlMultiClient;
+  private readonly client: UrlMultiClientContext;
 
   /**
    * Initialize a new instance of the class Queries class.
    * @param client Reference to the service client
    */
-  constructor(client: UrlMultiClient) {
+  constructor(client: UrlMultiClientContext) {
     this.client = client;
   }
 

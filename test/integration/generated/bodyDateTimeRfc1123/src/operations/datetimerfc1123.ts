@@ -10,7 +10,7 @@ import { Datetimerfc1123 } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyDateTimeRfc1123Client } from "../bodyDateTimeRfc1123Client";
+import { BodyDateTimeRfc1123ClientContext } from "../bodyDateTimeRfc1123ClientContext";
 import {
   Datetimerfc1123GetNullOptionalParams,
   Datetimerfc1123GetNullResponse,
@@ -32,13 +32,13 @@ import {
 
 /** Class containing Datetimerfc1123 operations. */
 export class Datetimerfc1123Impl implements Datetimerfc1123 {
-  private readonly client: BodyDateTimeRfc1123Client;
+  private readonly client: BodyDateTimeRfc1123ClientContext;
 
   /**
    * Initialize a new instance of the class Datetimerfc1123 class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyDateTimeRfc1123Client) {
+  constructor(client: BodyDateTimeRfc1123ClientContext) {
     this.client = client;
   }
 

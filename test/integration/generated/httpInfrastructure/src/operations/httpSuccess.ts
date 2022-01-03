@@ -10,7 +10,7 @@ import { HttpSuccess } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { HttpInfrastructureClient } from "../httpInfrastructureClient";
+import { HttpInfrastructureClientContext } from "../httpInfrastructureClientContext";
 import {
   HttpSuccessHead200OptionalParams,
   HttpSuccessGet200OptionalParams,
@@ -37,13 +37,13 @@ import {
 
 /** Class containing HttpSuccess operations. */
 export class HttpSuccessImpl implements HttpSuccess {
-  private readonly client: HttpInfrastructureClient;
+  private readonly client: HttpInfrastructureClientContext;
 
   /**
    * Initialize a new instance of the class HttpSuccess class.
    * @param client Reference to the service client
    */
-  constructor(client: HttpInfrastructureClient) {
+  constructor(client: HttpInfrastructureClientContext) {
     this.client = client;
   }
 

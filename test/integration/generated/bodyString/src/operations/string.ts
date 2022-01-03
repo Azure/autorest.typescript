@@ -10,7 +10,7 @@ import { StringOperations } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyStringClient } from "../bodyStringClient";
+import { BodyStringClientContext } from "../bodyStringClientContext";
 import {
   StringGetNullOptionalParams,
   StringGetNullResponse,
@@ -37,13 +37,13 @@ import {
 
 /** Class containing StringOperations operations. */
 export class StringOperationsImpl implements StringOperations {
-  private readonly client: BodyStringClient;
+  private readonly client: BodyStringClientContext;
 
   /**
    * Initialize a new instance of the class StringOperations class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyStringClient) {
+  constructor(client: BodyStringClientContext) {
     this.client = client;
   }
 

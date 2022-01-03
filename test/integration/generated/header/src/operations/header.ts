@@ -10,7 +10,7 @@ import { Header } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { HeaderClient } from "../headerClient";
+import { HeaderClientContext } from "../headerClientContext";
 import {
   HeaderParamExistingKeyOptionalParams,
   HeaderResponseExistingKeyOptionalParams,
@@ -59,13 +59,13 @@ import {
 
 /** Class containing Header operations. */
 export class HeaderImpl implements Header {
-  private readonly client: HeaderClient;
+  private readonly client: HeaderClientContext;
 
   /**
    * Initialize a new instance of the class Header class.
    * @param client Reference to the service client
    */
-  constructor(client: HeaderClient) {
+  constructor(client: HeaderClientContext) {
     this.client = client;
   }
 

@@ -10,7 +10,7 @@ import { Files } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyFileClient } from "../bodyFileClient";
+import { BodyFileClientContext } from "../bodyFileClientContext";
 import {
   FilesGetFileOptionalParams,
   FilesGetFileResponse,
@@ -22,13 +22,13 @@ import {
 
 /** Class containing Files operations. */
 export class FilesImpl implements Files {
-  private readonly client: BodyFileClient;
+  private readonly client: BodyFileClientContext;
 
   /**
    * Initialize a new instance of the class Files class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyFileClient) {
+  constructor(client: BodyFileClientContext) {
     this.client = client;
   }
 

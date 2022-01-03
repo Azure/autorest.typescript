@@ -8,4 +8,5 @@
 
 export * from "./models";
 export { NonStringEnumClient } from "./nonStringEnumClient";
+export { NonStringEnumClientContext } from "./nonStringEnumClientContext";
 export * from "./operationsInterfaces";

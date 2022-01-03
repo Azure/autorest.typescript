@@ -10,6 +10,7 @@ import * as coreClient from "@azure/core-client";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
+import { AppConfigurationClientContext } from "./appConfigurationClientContext";
 import {
   AppConfigurationClientOptionalParams,
   Key,
@@ -55,11 +56,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** @internal */
-export class AppConfigurationClient extends coreClient.ServiceClient {
-  endpoint: string;
-  syncToken?: string;
-  apiVersion: string;
-
+export class AppConfigurationClient extends AppConfigurationClientContext {
   /**
    * Initializes a new instance of the AppConfigurationClient class.
    * @param endpoint The endpoint of the App Configuration instance to send requests to.
@@ -69,38 +66,7 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
     endpoint: string,
     options?: AppConfigurationClientOptionalParams
   ) {
-    if (endpoint === undefined) {
-      throw new Error("'endpoint' cannot be null");
-    }
-
-    // Initializing default values for options
-    if (!options) {
-      options = {};
-    }
-    const defaults: AppConfigurationClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
-    };
-
-    const packageDetails = `azsdk-js-appconfiguration/1.0.0-preview1`;
-    const userAgentPrefix =
-      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
-        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
-        : `${packageDetails}`;
-
-    const optionsWithDefaults = {
-      ...defaults,
-      ...options,
-      userAgentOptions: {
-        userAgentPrefix
-      },
-      baseUri: options.endpoint || "{endpoint}"
-    };
-    super(optionsWithDefaults);
-    // Parameter assignments
-    this.endpoint = endpoint;
-
-    // Assigning values to Constant parameters
-    this.apiVersion = options.apiVersion || "1.0";
+    super(endpoint, options);
   }
 
   /**

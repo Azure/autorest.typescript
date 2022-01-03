@@ -2,7 +2,7 @@ import { File } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { StorageFileShareClient } from "../storageFileShareClient";
+import { StorageFileShareClientContext } from "../storageFileShareClientContext";
 import {
   FileUploadRangeFromURLOptionalParams,
   FileUploadRangeFromURLResponse
@@ -10,13 +10,13 @@ import {
 
 /** Class containing File operations. */
 export class FileImpl implements File {
-  private readonly client: StorageFileShareClient;
+  private readonly client: StorageFileShareClientContext;
 
   /**
    * Initialize a new instance of the class File class.
    * @param client Reference to the service client
    */
-  constructor(client: StorageFileShareClient) {
+  constructor(client: StorageFileShareClientContext) {
     this.client = client;
   }
 

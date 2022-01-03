@@ -2,7 +2,7 @@ import { PrivateLinkResources } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { HealthCareApisClient } from "../healthCareApisClient";
+import { HealthCareApisClientContext } from "../healthCareApisClientContext";
 import {
   PrivateLinkResourcesListByServiceOptionalParams,
   PrivateLinkResourcesListByServiceResponse,
@@ -12,13 +12,13 @@ import {
 
 /** Class containing PrivateLinkResources operations. */
 export class PrivateLinkResourcesImpl implements PrivateLinkResources {
-  private readonly client: HealthCareApisClient;
+  private readonly client: HealthCareApisClientContext;
 
   /**
    * Initialize a new instance of the class PrivateLinkResources class.
    * @param client Reference to the service client
    */
-  constructor(client: HealthCareApisClient) {
+  constructor(client: HealthCareApisClientContext) {
     this.client = client;
   }
 

@@ -9,4 +9,5 @@
 /// <reference lib="esnext.asynciterable" />
 export * from "./models";
 export { PagingClient } from "./pagingClient";
+export { PagingClientContext } from "./pagingClientContext";
 export * from "./operationsInterfaces";

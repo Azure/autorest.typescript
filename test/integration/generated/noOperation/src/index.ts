@@ -8,3 +8,4 @@
 
 export * from "./models";
 export { NoOperationsClient } from "./noOperationsClient";
+export { NoOperationsClientContext } from "./noOperationsClientContext";

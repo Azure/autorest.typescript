@@ -2,7 +2,7 @@ import { PipelineRuns } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { DataFactoryClient } from "../dataFactoryClient";
+import { DataFactoryClientContext } from "../dataFactoryClientContext";
 import {
   RunFilterParameters,
   PipelineRunsQueryByFactoryOptionalParams,
@@ -14,13 +14,13 @@ import {
 
 /** Class containing PipelineRuns operations. */
 export class PipelineRunsImpl implements PipelineRuns {
-  private readonly client: DataFactoryClient;
+  private readonly client: DataFactoryClientContext;
 
   /**
    * Initialize a new instance of the class PipelineRuns class.
    * @param client Reference to the service client
    */
-  constructor(client: DataFactoryClient) {
+  constructor(client: DataFactoryClientContext) {
     this.client = client;
   }
 

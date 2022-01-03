@@ -8,3 +8,4 @@
 
 export * from "./models";
 export { ModelFlatteningClient } from "./modelFlatteningClient";
+export { ModelFlatteningClientContext } from "./modelFlatteningClientContext";

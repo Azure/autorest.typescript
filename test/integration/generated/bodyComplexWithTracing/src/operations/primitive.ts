@@ -12,7 +12,7 @@ import * as coreClient from "@azure/core-client";
 import * as coreTracing from "@azure/core-tracing";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyComplexWithTracing } from "../bodyComplexWithTracing";
+import { BodyComplexWithTracingContext } from "../bodyComplexWithTracingContext";
 import {
   PrimitiveGetIntOptionalParams,
   PrimitiveGetIntResponse,
@@ -62,13 +62,13 @@ import {
 
 /** Class containing Primitive operations. */
 export class PrimitiveImpl implements Primitive {
-  private readonly client: BodyComplexWithTracing;
+  private readonly client: BodyComplexWithTracingContext;
 
   /**
    * Initialize a new instance of the class Primitive class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyComplexWithTracing) {
+  constructor(client: BodyComplexWithTracingContext) {
     this.client = client;
   }
 

@@ -8,4 +8,5 @@
 
 export * from "./models";
 export { UuidClient } from "./uuidClient";
+export { UuidClientContext } from "./uuidClientContext";
 export * from "./operationsInterfaces";

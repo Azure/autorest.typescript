@@ -10,7 +10,7 @@ import { LRORetrys } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { LROClient } from "../lROClient";
+import { LROClientContext } from "../lROClientContext";
 import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
@@ -32,13 +32,13 @@ import {
 
 /** Class containing LRORetrys operations. */
 export class LRORetrysImpl implements LRORetrys {
-  private readonly client: LROClient;
+  private readonly client: LROClientContext;
 
   /**
    * Initialize a new instance of the class LRORetrys class.
    * @param client Reference to the service client
    */
-  constructor(client: LROClient) {
+  constructor(client: LROClientContext) {
     this.client = client;
   }
 

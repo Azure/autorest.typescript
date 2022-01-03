@@ -10,7 +10,7 @@ import { Paths } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { UrlClient } from "../urlClient";
+import { UrlClientContext } from "../urlClientContext";
 import {
   PathsGetBooleanTrueOptionalParams,
   PathsGetBooleanFalseOptionalParams,
@@ -44,13 +44,13 @@ import {
 
 /** Class containing Paths operations. */
 export class PathsImpl implements Paths {
-  private readonly client: UrlClient;
+  private readonly client: UrlClientContext;
 
   /**
    * Initialize a new instance of the class Paths class.
    * @param client Reference to the service client
    */
-  constructor(client: UrlClient) {
+  constructor(client: UrlClientContext) {
     this.client = client;
   }
 

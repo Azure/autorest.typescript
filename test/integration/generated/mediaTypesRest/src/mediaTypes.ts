@@ -107,7 +107,9 @@ export default function MediaTypes(
 ): MediaTypesRestClient {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
 
-  const client = getClient(baseUrl, options) as MediaTypesRestClient;
+  return getClient(
+    baseUrl,
 
-  return client;
+    options
+  ) as MediaTypesRestClient;
 }

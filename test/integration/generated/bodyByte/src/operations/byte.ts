@@ -10,7 +10,7 @@ import { Byte } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyByteClient } from "../bodyByteClient";
+import { BodyByteClientContext } from "../bodyByteClientContext";
 import {
   ByteGetNullOptionalParams,
   ByteGetNullResponse,
@@ -25,13 +25,13 @@ import {
 
 /** Class containing Byte operations. */
 export class ByteImpl implements Byte {
-  private readonly client: BodyByteClient;
+  private readonly client: BodyByteClientContext;
 
   /**
    * Initialize a new instance of the class Byte class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyByteClient) {
+  constructor(client: BodyByteClientContext) {
     this.client = client;
   }
 

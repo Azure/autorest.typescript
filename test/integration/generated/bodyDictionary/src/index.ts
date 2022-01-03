@@ -8,4 +8,5 @@
 
 export * from "./models";
 export { BodyDictionaryClient } from "./bodyDictionaryClient";
+export { BodyDictionaryClientContext } from "./bodyDictionaryClientContext";
 export * from "./operationsInterfaces";

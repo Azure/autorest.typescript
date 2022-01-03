@@ -10,7 +10,7 @@ import { Basic } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyComplexClient } from "../bodyComplexClient";
+import { BodyComplexClientContext } from "../bodyComplexClientContext";
 import {
   BasicGetValidOptionalParams,
   BasicGetValidResponse,
@@ -28,13 +28,13 @@ import {
 
 /** Class containing Basic operations. */
 export class BasicImpl implements Basic {
-  private readonly client: BodyComplexClient;
+  private readonly client: BodyComplexClientContext;
 
   /**
    * Initialize a new instance of the class Basic class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyComplexClient) {
+  constructor(client: BodyComplexClientContext) {
     this.client = client;
   }
 

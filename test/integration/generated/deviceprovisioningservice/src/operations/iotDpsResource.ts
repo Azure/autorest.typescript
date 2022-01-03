@@ -3,7 +3,7 @@ import { IotDpsResource } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { DeviceProvisioningClient } from "../deviceProvisioningClient";
+import { DeviceProvisioningClientContext } from "../deviceProvisioningClientContext";
 import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
@@ -59,13 +59,13 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing IotDpsResource operations. */
 export class IotDpsResourceImpl implements IotDpsResource {
-  private readonly client: DeviceProvisioningClient;
+  private readonly client: DeviceProvisioningClientContext;
 
   /**
    * Initialize a new instance of the class IotDpsResource class.
    * @param client Reference to the service client
    */
-  constructor(client: DeviceProvisioningClient) {
+  constructor(client: DeviceProvisioningClientContext) {
     this.client = client;
   }
 

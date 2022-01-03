@@ -9,3 +9,4 @@
 /// <reference lib="esnext.asynciterable" />
 export * from "./models";
 export { AppConfigurationClient } from "./appConfigurationClient";
+export { AppConfigurationClientContext } from "./appConfigurationClientContext";

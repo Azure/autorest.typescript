@@ -9,6 +9,7 @@
 import * as coreClient from "@azure/core-client";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
+import { GeneratedClientContext } from "./generatedClientContext";
 import {
   GeneratedClientOptionalParams,
   LanguageBatchInput,
@@ -17,10 +18,7 @@ import {
 } from "./models";
 
 /** @internal */
-export class GeneratedClient extends coreClient.ServiceClient {
-  endpoint: string;
-  apiVersion: string;
-
+export class GeneratedClient extends GeneratedClientContext {
   /**
    * Initializes a new instance of the GeneratedClient class.
    * @param endpoint Supported Cognitive Services endpoints (protocol and hostname, for example:
@@ -28,38 +26,7 @@ export class GeneratedClient extends coreClient.ServiceClient {
    * @param options The parameter options
    */
   constructor(endpoint: string, options?: GeneratedClientOptionalParams) {
-    if (endpoint === undefined) {
-      throw new Error("'endpoint' cannot be null");
-    }
-
-    // Initializing default values for options
-    if (!options) {
-      options = {};
-    }
-    const defaults: GeneratedClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
-    };
-
-    const packageDetails = `azsdk-js-constantParam/1.0.0-preview1`;
-    const userAgentPrefix =
-      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
-        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
-        : `${packageDetails}`;
-
-    const optionsWithDefaults = {
-      ...defaults,
-      ...options,
-      userAgentOptions: {
-        userAgentPrefix
-      },
-      baseUri: options.endpoint || "{Endpoint}/text/analytics/{ApiVersion}"
-    };
-    super(optionsWithDefaults);
-    // Parameter assignments
-    this.endpoint = endpoint;
-
-    // Assigning values to Constant parameters
-    this.apiVersion = options.apiVersion || "v3.1";
+    super(endpoint, options);
   }
 
   /**

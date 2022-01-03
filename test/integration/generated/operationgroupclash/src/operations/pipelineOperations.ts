@@ -2,7 +2,7 @@ import { PipelineOperations } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { OperationGroupClashClient } from "../operationGroupClashClient";
+import { OperationGroupClashClientContext } from "../operationGroupClashClientContext";
 import {
   PipelineApiV1ValueGetOptionalParams,
   PipelineApiV1ValueGetResponse
@@ -10,13 +10,13 @@ import {
 
 /** Class containing PipelineOperations operations. */
 export class PipelineOperationsImpl implements PipelineOperations {
-  private readonly client: OperationGroupClashClient;
+  private readonly client: OperationGroupClashClientContext;
 
   /**
    * Initialize a new instance of the class PipelineOperations class.
    * @param client Reference to the service client
    */
-  constructor(client: OperationGroupClashClient) {
+  constructor(client: OperationGroupClashClientContext) {
     this.client = client;
   }
 

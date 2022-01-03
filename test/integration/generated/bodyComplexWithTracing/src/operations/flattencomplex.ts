@@ -12,7 +12,7 @@ import * as coreClient from "@azure/core-client";
 import * as coreTracing from "@azure/core-tracing";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyComplexWithTracing } from "../bodyComplexWithTracing";
+import { BodyComplexWithTracingContext } from "../bodyComplexWithTracingContext";
 import {
   FlattencomplexGetValidOptionalParams,
   FlattencomplexGetValidResponse
@@ -20,13 +20,13 @@ import {
 
 /** Class containing Flattencomplex operations. */
 export class FlattencomplexImpl implements Flattencomplex {
-  private readonly client: BodyComplexWithTracing;
+  private readonly client: BodyComplexWithTracingContext;
 
   /**
    * Initialize a new instance of the class Flattencomplex class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyComplexWithTracing) {
+  constructor(client: BodyComplexWithTracingContext) {
     this.client = client;
   }
 

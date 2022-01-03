@@ -8,3 +8,4 @@
 
 export * from "./models";
 export { ReportClient } from "./reportClient";
+export { ReportClientContext } from "./reportClientContext";

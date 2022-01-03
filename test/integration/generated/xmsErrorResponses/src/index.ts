@@ -8,4 +8,5 @@
 
 export * from "./models";
 export { XmsErrorResponsesClient } from "./xmsErrorResponsesClient";
+export { XmsErrorResponsesClientContext } from "./xmsErrorResponsesClientContext";
 export * from "./operationsInterfaces";

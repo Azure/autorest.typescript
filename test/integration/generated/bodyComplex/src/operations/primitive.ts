@@ -10,7 +10,7 @@ import { Primitive } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyComplexClient } from "../bodyComplexClient";
+import { BodyComplexClientContext } from "../bodyComplexClientContext";
 import {
   PrimitiveGetIntOptionalParams,
   PrimitiveGetIntResponse,
@@ -60,13 +60,13 @@ import {
 
 /** Class containing Primitive operations. */
 export class PrimitiveImpl implements Primitive {
-  private readonly client: BodyComplexClient;
+  private readonly client: BodyComplexClientContext;
 
   /**
    * Initialize a new instance of the class Primitive class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyComplexClient) {
+  constructor(client: BodyComplexClientContext) {
     this.client = client;
   }
 

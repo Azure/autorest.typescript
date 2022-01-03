@@ -10,7 +10,7 @@ import { Polymorphism } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyComplexClient } from "../bodyComplexClient";
+import { BodyComplexClientContext } from "../bodyComplexClientContext";
 import {
   PolymorphismGetValidOptionalParams,
   PolymorphismGetValidResponse,
@@ -33,13 +33,13 @@ import {
 
 /** Class containing Polymorphism operations. */
 export class PolymorphismImpl implements Polymorphism {
-  private readonly client: BodyComplexClient;
+  private readonly client: BodyComplexClientContext;
 
   /**
    * Initialize a new instance of the class Polymorphism class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyComplexClient) {
+  constructor(client: BodyComplexClientContext) {
     this.client = client;
   }
 

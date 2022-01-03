@@ -8,4 +8,5 @@
 
 export * from "./models";
 export { BodyDateTimeRfc1123Client } from "./bodyDateTimeRfc1123Client";
+export { BodyDateTimeRfc1123ClientContext } from "./bodyDateTimeRfc1123ClientContext";
 export * from "./operationsInterfaces";

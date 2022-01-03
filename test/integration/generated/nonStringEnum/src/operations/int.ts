@@ -9,7 +9,7 @@
 import { Int } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Parameters from "../models/parameters";
-import { NonStringEnumClient } from "../nonStringEnumClient";
+import { NonStringEnumClientContext } from "../nonStringEnumClientContext";
 import {
   IntPutOptionalParams,
   IntPutResponse,
@@ -19,13 +19,13 @@ import {
 
 /** Class containing Int operations. */
 export class IntImpl implements Int {
-  private readonly client: NonStringEnumClient;
+  private readonly client: NonStringEnumClientContext;
 
   /**
    * Initialize a new instance of the class Int class.
    * @param client Reference to the service client
    */
-  constructor(client: NonStringEnumClient) {
+  constructor(client: NonStringEnumClientContext) {
     this.client = client;
   }
 

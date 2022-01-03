@@ -10,7 +10,7 @@ import { Paging } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { PagingNoIteratorsClient } from "../pagingNoIteratorsClient";
+import { PagingNoIteratorsClientContext } from "../pagingNoIteratorsClientContext";
 import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
@@ -86,13 +86,13 @@ import {
 
 /** Class containing Paging operations. */
 export class PagingImpl implements Paging {
-  private readonly client: PagingNoIteratorsClient;
+  private readonly client: PagingNoIteratorsClientContext;
 
   /**
    * Initialize a new instance of the class Paging class.
    * @param client Reference to the service client
    */
-  constructor(client: PagingNoIteratorsClient) {
+  constructor(client: PagingNoIteratorsClientContext) {
     this.client = client;
   }
 

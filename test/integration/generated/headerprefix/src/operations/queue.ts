@@ -2,7 +2,7 @@ import { Queue } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { HeaderPrefixClient } from "../headerPrefixClient";
+import { HeaderPrefixClientContext } from "../headerPrefixClientContext";
 import {
   QueueGetPropertiesOptionalParams,
   QueueGetPropertiesResponse
@@ -10,13 +10,13 @@ import {
 
 /** Class containing Queue operations. */
 export class QueueImpl implements Queue {
-  private readonly client: HeaderPrefixClient;
+  private readonly client: HeaderPrefixClientContext;
 
   /**
    * Initialize a new instance of the class Queue class.
    * @param client Reference to the service client
    */
-  constructor(client: HeaderPrefixClient) {
+  constructor(client: HeaderPrefixClientContext) {
     this.client = client;
   }
 

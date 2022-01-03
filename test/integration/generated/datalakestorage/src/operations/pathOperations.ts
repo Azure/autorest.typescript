@@ -11,7 +11,7 @@ import * as coreClient from "@azure/core-client";
 import * as coreRestPipeline from "@azure/core-rest-pipeline";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { DataLakeStorageClient } from "../dataLakeStorageClient";
+import { DataLakeStorageClientContext } from "../dataLakeStorageClientContext";
 import {
   PathCreateOptionalParams,
   PathCreateResponse,
@@ -32,13 +32,13 @@ import {
 
 /** Class containing PathOperations operations. */
 export class PathOperationsImpl implements PathOperations {
-  private readonly client: DataLakeStorageClient;
+  private readonly client: DataLakeStorageClientContext;
 
   /**
    * Initialize a new instance of the class PathOperations class.
    * @param client Reference to the service client
    */
-  constructor(client: DataLakeStorageClient) {
+  constructor(client: DataLakeStorageClientContext) {
     this.client = client;
   }
 

@@ -2,7 +2,7 @@ import { DpsCertificate } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { DeviceProvisioningClient } from "../deviceProvisioningClient";
+import { DeviceProvisioningClientContext } from "../deviceProvisioningClientContext";
 import {
   DpsCertificateGetOptionalParams,
   DpsCertificateGetResponse,
@@ -21,13 +21,13 @@ import {
 
 /** Class containing DpsCertificate operations. */
 export class DpsCertificateImpl implements DpsCertificate {
-  private readonly client: DeviceProvisioningClient;
+  private readonly client: DeviceProvisioningClientContext;
 
   /**
    * Initialize a new instance of the class DpsCertificate class.
    * @param client Reference to the service client
    */
-  constructor(client: DeviceProvisioningClient) {
+  constructor(client: DeviceProvisioningClientContext) {
     this.client = client;
   }
 

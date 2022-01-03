@@ -6,45 +6,18 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
 import { NumberOperationsImpl } from "./operations";
 import { NumberOperations } from "./operationsInterfaces";
+import { BodyNumberClientContext } from "./bodyNumberClientContext";
 import { BodyNumberClientOptionalParams } from "./models";
 
-export class BodyNumberClient extends coreClient.ServiceClient {
-  $host: string;
-
+export class BodyNumberClient extends BodyNumberClientContext {
   /**
    * Initializes a new instance of the BodyNumberClient class.
    * @param options The parameter options
    */
   constructor(options?: BodyNumberClientOptionalParams) {
-    // Initializing default values for options
-    if (!options) {
-      options = {};
-    }
-    const defaults: BodyNumberClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
-    };
-
-    const packageDetails = `azsdk-js-body-number/1.0.0-preview1`;
-    const userAgentPrefix =
-      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
-        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
-        : `${packageDetails}`;
-
-    const optionsWithDefaults = {
-      ...defaults,
-      ...options,
-      userAgentOptions: {
-        userAgentPrefix
-      },
-      baseUri: options.endpoint || "http://localhost:3000"
-    };
-    super(optionsWithDefaults);
-
-    // Assigning values to Constant parameters
-    this.$host = options.$host || "http://localhost:3000";
+    super(options);
     this.number = new NumberOperationsImpl(this);
   }
 

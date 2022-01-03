@@ -8,3 +8,4 @@
 
 export * from "./models";
 export { ODataDiscriminatorClient } from "./oDataDiscriminatorClient";
+export { ODataDiscriminatorClientContext } from "./oDataDiscriminatorClientContext";

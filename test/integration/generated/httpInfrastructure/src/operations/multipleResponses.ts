@@ -10,7 +10,7 @@ import { MultipleResponses } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { HttpInfrastructureClient } from "../httpInfrastructureClient";
+import { HttpInfrastructureClientContext } from "../httpInfrastructureClientContext";
 import {
   MultipleResponsesGet200Model204NoModelDefaultError200ValidOptionalParams,
   MultipleResponsesGet200Model204NoModelDefaultError200ValidResponse,
@@ -71,13 +71,13 @@ import {
 
 /** Class containing MultipleResponses operations. */
 export class MultipleResponsesImpl implements MultipleResponses {
-  private readonly client: HttpInfrastructureClient;
+  private readonly client: HttpInfrastructureClientContext;
 
   /**
    * Initialize a new instance of the class MultipleResponses class.
    * @param client Reference to the service client
    */
-  constructor(client: HttpInfrastructureClient) {
+  constructor(client: HttpInfrastructureClientContext) {
     this.client = client;
   }
 

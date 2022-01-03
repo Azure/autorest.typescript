@@ -8,3 +8,4 @@
 
 export * from "./models";
 export { ObjectTypeClient } from "./objectTypeClient";
+export { ObjectTypeClientContext } from "./objectTypeClientContext";

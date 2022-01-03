@@ -2,7 +2,7 @@ import { IotConnectorFhirDestination } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { HealthCareApisClient } from "../healthCareApisClient";
+import { HealthCareApisClientContext } from "../healthCareApisClientContext";
 import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
@@ -17,13 +17,13 @@ import {
 /** Class containing IotConnectorFhirDestination operations. */
 export class IotConnectorFhirDestinationImpl
   implements IotConnectorFhirDestination {
-  private readonly client: HealthCareApisClient;
+  private readonly client: HealthCareApisClientContext;
 
   /**
    * Initialize a new instance of the class IotConnectorFhirDestination class.
    * @param client Reference to the service client
    */
-  constructor(client: HealthCareApisClient) {
+  constructor(client: HealthCareApisClientContext) {
     this.client = client;
   }
 

@@ -10,7 +10,7 @@ import { Int } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyIntegerClient } from "../bodyIntegerClient";
+import { BodyIntegerClientContext } from "../bodyIntegerClientContext";
 import {
   IntGetNullOptionalParams,
   IntGetNullResponse,
@@ -39,13 +39,13 @@ import {
 
 /** Class containing Int operations. */
 export class IntImpl implements Int {
-  private readonly client: BodyIntegerClient;
+  private readonly client: BodyIntegerClientContext;
 
   /**
    * Initialize a new instance of the class Int class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyIntegerClient) {
+  constructor(client: BodyIntegerClientContext) {
     this.client = client;
   }
 

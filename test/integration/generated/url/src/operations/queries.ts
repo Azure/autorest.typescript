@@ -10,7 +10,7 @@ import { Queries } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { UrlClient } from "../urlClient";
+import { UrlClientContext } from "../urlClientContext";
 import {
   QueriesGetBooleanTrueOptionalParams,
   QueriesGetBooleanFalseOptionalParams,
@@ -51,13 +51,13 @@ import {
 
 /** Class containing Queries operations. */
 export class QueriesImpl implements Queries {
-  private readonly client: UrlClient;
+  private readonly client: UrlClientContext;
 
   /**
    * Initialize a new instance of the class Queries class.
    * @param client Reference to the service client
    */
-  constructor(client: UrlClient) {
+  constructor(client: UrlClientContext) {
     this.client = client;
   }
 
