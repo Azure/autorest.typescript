@@ -23,7 +23,7 @@ export interface PostParametersBodyParam {
    *
    * Value may contain any sequence of octets
    */
-  body: string;
+  body: string | Uint8Array;
 }
 
 export interface PostParametersMediaTypesParam {
