@@ -17,4 +17,13 @@ describe("CustomRest Endpoint", () => {
     });
     assert.strictEqual(result.status, '200');
   });
+
+  it("should return 200 for RLC shortcut", async () => {
+    const result = await client.paths.getEmpty({
+      pathParameters: {
+        accountName: "local"
+      }
+    });
+    assert.strictEqual(result.status, '200');
+  });
 });
