@@ -18,26 +18,18 @@ import { generatePollingHelper } from "./generatePollingHelper";
 import { generateTopLevelIndexFile } from './generateTopLevelIndexFile';
 import { hasPagingOperations } from "../utils/extractPaginationDetails";
 import { hasPollingOperations } from "./helpers/hasPollingOperations";
-import { NameType, normalizeName } from "../utils/nameUtils";
 import { generateKarmaConfigFile } from "../generators/static/karmaConfigFileGenerator";
 import { generateEnvFile } from "../generators/test/envFileGenerator";
 import { generateEnvBrowserFile } from "../generators/test/envBrowserFileGenerator";
 import { generateRecordedClientFile } from "../generators/test/recordedClientFileGenerator";
 import { generateSampleTestFile } from "../generators/test/sampleTestGenerator";
 
-const batchOutputFolder: [string, string, string][] = [];
 /**
  * Generates a Rest Level Client library
  */
 export async function generateRestLevelClient() {
   const host = getHost();
   const { model } = getSession();
-  const { batch, srcPath } = getAutorestOptions();
-  if (srcPath) {
-    const clientName = model.language.default.name;
-    const moduleName = normalizeName(clientName, NameType.File);
-    batchOutputFolder.push([srcPath, clientName, moduleName]);
-  }
 
   const project = new Project({
     useInMemoryFileSystem: true,
@@ -73,9 +65,7 @@ export async function generateRestLevelClient() {
   generateClient(model, project);
   generateIndexFile(project);
   
-  if (batch && batch.length > 1 && batchOutputFolder.length === batch.length) {
-    generateTopLevelIndexFile(batchOutputFolder, project);
-  }
+  generateTopLevelIndexFile(model, project);
 
   // Save the source files to the virtual filesystem
   project.saveSync();
