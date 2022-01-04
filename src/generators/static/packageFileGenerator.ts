@@ -312,7 +312,7 @@ function regularAutorestPackage(
     packageInfo.scripts["integration-test:node"] =
       "mocha -r esm --require ts-node/register --timeout 1200000 --full-trace test/*.ts --reporter ../../../common/tools/mocha-multi-reporter.js";
   }
-  if (generateSample) {
+  if (generateSample && clientDetails.samples && clientDetails.samples.length > 0) {
     packageInfo["//sampleConfiguration"] = {
       "productName": description,
       "productSlugs": [
