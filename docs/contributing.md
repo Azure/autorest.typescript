@@ -186,3 +186,5 @@ Our generated SDKs take dependency on various packages which you can see in the 
 
 - Update the version of the dependency you are looking for in the methods `restLevelPackage` and/or `regularAutorestPackage` in the [`packageFileGenerator.ts`](https://github.com/Azure/autorest.typescript/blob/main/src/generators/static/packageFileGenerator.ts) file.
 - Run `npm run build && npm run generate-swaggers && npm run smoke-tests` to update the generated files in the repo and run smoke tests before creating the PR.
+
+For example, see the [PR 1271](https://github.com/Azure/autorest.typescript/pull/1271) that updates the version of `prettier` that the generated SDKs depend on.
