@@ -179,3 +179,10 @@ To debug code generation the flag &#x2013;typescript.debugger can be used
 - Make sure to re-build autorest.typescript after any changes you want to test
 
       npm run build
+
+### How to update dependencies in generated package.json files?
+
+Our generated SDKs take dependency on various packages which you can see in the generated package.json files. These will need to be upgraded from time to time to stay on the latest major version so that we get bug fixes automatically due to semver.
+
+- Update the version of the dependency you are looking for in the methods `restLevelPackage` and/or `regularAutorestPackage` in the [`packageFileGenerator.ts`](https://github.com/Azure/autorest.typescript/blob/main/src/generators/static/packageFileGenerator.ts) file.
+- Run `npm run build && npm run generate-swaggers && npm run smoke-tests` to update the generated files in the repo and run smoke tests before creating the PR.
