@@ -288,6 +288,12 @@ function regularAutorestPackage(
       docs: "echo skipped"
     },
     sideEffects: false,
+    "//metadata":{
+      constantPaths: [{
+        path: `src/${clientDetails.name}.ts`,
+        prefix: "packageDetails",
+      }],
+    },
     autoPublish: true
   };
   if (generateTest) {
