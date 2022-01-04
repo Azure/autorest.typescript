@@ -14,7 +14,7 @@ export enum AutorestParams {
   ModelDedup = "--modelerfour.lenient-model-deduplication",
   RestClient = "--rest-level-client=true",
   GenerateTest = "--generate-test=true",
-  GenerateSamples = "--generate-samples=true",
+  GenerateSamples = "--generate-sample=true",
 }
 
 const getArmReadmes = (): SpecDefinition[] => {
