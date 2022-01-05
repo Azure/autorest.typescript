@@ -20,6 +20,8 @@ import {
   P2SVpnGatewaysUpdateTagsOptionalParams,
   P2SVpnGatewaysUpdateTagsResponse,
   P2SVpnGatewaysDeleteOptionalParams,
+  P2SVpnGatewaysResetOptionalParams,
+  P2SVpnGatewaysResetResponse,
   P2SVpnProfileParameters,
   P2SVpnGatewaysGenerateVpnProfileOptionalParams,
   P2SVpnGatewaysGenerateVpnProfileResponse,
@@ -102,7 +104,25 @@ export interface P2SVpnGateways {
    * @param p2SVpnGatewayParameters Parameters supplied to update a virtual wan p2s vpn gateway tags.
    * @param options The options parameters.
    */
-  updateTags(
+  beginUpdateTags(
+    resourceGroupName: string,
+    gatewayName: string,
+    p2SVpnGatewayParameters: TagsObject,
+    options?: P2SVpnGatewaysUpdateTagsOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<P2SVpnGatewaysUpdateTagsResponse>,
+      P2SVpnGatewaysUpdateTagsResponse
+    >
+  >;
+  /**
+   * Updates virtual wan p2s vpn gateway tags.
+   * @param resourceGroupName The resource group name of the P2SVpnGateway.
+   * @param gatewayName The name of the gateway.
+   * @param p2SVpnGatewayParameters Parameters supplied to update a virtual wan p2s vpn gateway tags.
+   * @param options The options parameters.
+   */
+  beginUpdateTagsAndWait(
     resourceGroupName: string,
     gatewayName: string,
     p2SVpnGatewayParameters: TagsObject,
@@ -130,6 +150,33 @@ export interface P2SVpnGateways {
     gatewayName: string,
     options?: P2SVpnGatewaysDeleteOptionalParams
   ): Promise<void>;
+  /**
+   * Resets the primary of the p2s vpn gateway in the specified resource group.
+   * @param resourceGroupName The resource group name of the P2SVpnGateway.
+   * @param gatewayName The name of the gateway.
+   * @param options The options parameters.
+   */
+  beginReset(
+    resourceGroupName: string,
+    gatewayName: string,
+    options?: P2SVpnGatewaysResetOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<P2SVpnGatewaysResetResponse>,
+      P2SVpnGatewaysResetResponse
+    >
+  >;
+  /**
+   * Resets the primary of the p2s vpn gateway in the specified resource group.
+   * @param resourceGroupName The resource group name of the P2SVpnGateway.
+   * @param gatewayName The name of the gateway.
+   * @param options The options parameters.
+   */
+  beginResetAndWait(
+    resourceGroupName: string,
+    gatewayName: string,
+    options?: P2SVpnGatewaysResetOptionalParams
+  ): Promise<P2SVpnGatewaysResetResponse>;
   /**
    * Generates VPN profile for P2S client of the P2SVpnGateway in the specified resource group.
    * @param resourceGroupName The name of the resource group.

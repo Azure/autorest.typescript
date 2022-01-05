@@ -49,7 +49,7 @@ export interface Snapshots {
    * Creates or updates a snapshot.
    * @param resourceGroupName The name of the resource group.
    * @param snapshotName The name of the snapshot that is being created. The name can't be changed after
-   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name
+   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The max name
    *                     length is 80 characters.
    * @param snapshot Snapshot object supplied in the body of the Put disk operation.
    * @param options The options parameters.
@@ -69,7 +69,7 @@ export interface Snapshots {
    * Creates or updates a snapshot.
    * @param resourceGroupName The name of the resource group.
    * @param snapshotName The name of the snapshot that is being created. The name can't be changed after
-   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name
+   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The max name
    *                     length is 80 characters.
    * @param snapshot Snapshot object supplied in the body of the Put disk operation.
    * @param options The options parameters.
@@ -84,7 +84,7 @@ export interface Snapshots {
    * Updates (patches) a snapshot.
    * @param resourceGroupName The name of the resource group.
    * @param snapshotName The name of the snapshot that is being created. The name can't be changed after
-   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name
+   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The max name
    *                     length is 80 characters.
    * @param snapshot Snapshot object supplied in the body of the Patch snapshot operation.
    * @param options The options parameters.
@@ -104,7 +104,7 @@ export interface Snapshots {
    * Updates (patches) a snapshot.
    * @param resourceGroupName The name of the resource group.
    * @param snapshotName The name of the snapshot that is being created. The name can't be changed after
-   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name
+   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The max name
    *                     length is 80 characters.
    * @param snapshot Snapshot object supplied in the body of the Patch snapshot operation.
    * @param options The options parameters.
@@ -119,7 +119,7 @@ export interface Snapshots {
    * Gets information about a snapshot.
    * @param resourceGroupName The name of the resource group.
    * @param snapshotName The name of the snapshot that is being created. The name can't be changed after
-   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name
+   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The max name
    *                     length is 80 characters.
    * @param options The options parameters.
    */
@@ -132,7 +132,7 @@ export interface Snapshots {
    * Deletes a snapshot.
    * @param resourceGroupName The name of the resource group.
    * @param snapshotName The name of the snapshot that is being created. The name can't be changed after
-   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name
+   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The max name
    *                     length is 80 characters.
    * @param options The options parameters.
    */
@@ -145,7 +145,7 @@ export interface Snapshots {
    * Deletes a snapshot.
    * @param resourceGroupName The name of the resource group.
    * @param snapshotName The name of the snapshot that is being created. The name can't be changed after
-   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name
+   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The max name
    *                     length is 80 characters.
    * @param options The options parameters.
    */
@@ -158,7 +158,7 @@ export interface Snapshots {
    * Grants access to a snapshot.
    * @param resourceGroupName The name of the resource group.
    * @param snapshotName The name of the snapshot that is being created. The name can't be changed after
-   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name
+   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The max name
    *                     length is 80 characters.
    * @param grantAccessData Access data object supplied in the body of the get snapshot access operation.
    * @param options The options parameters.
@@ -178,7 +178,7 @@ export interface Snapshots {
    * Grants access to a snapshot.
    * @param resourceGroupName The name of the resource group.
    * @param snapshotName The name of the snapshot that is being created. The name can't be changed after
-   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name
+   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The max name
    *                     length is 80 characters.
    * @param grantAccessData Access data object supplied in the body of the get snapshot access operation.
    * @param options The options parameters.
@@ -193,7 +193,7 @@ export interface Snapshots {
    * Revokes access to a snapshot.
    * @param resourceGroupName The name of the resource group.
    * @param snapshotName The name of the snapshot that is being created. The name can't be changed after
-   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name
+   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The max name
    *                     length is 80 characters.
    * @param options The options parameters.
    */
@@ -206,7 +206,7 @@ export interface Snapshots {
    * Revokes access to a snapshot.
    * @param resourceGroupName The name of the resource group.
    * @param snapshotName The name of the snapshot that is being created. The name can't be changed after
-   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name
+   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The max name
    *                     length is 80 characters.
    * @param options The options parameters.
    */

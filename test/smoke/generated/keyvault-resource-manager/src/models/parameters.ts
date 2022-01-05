@@ -12,11 +12,16 @@ import {
   OperationQueryParameter
 } from "@azure/core-client";
 import {
+  KeyCreateParameters as KeyCreateParametersMapper,
   VaultCreateOrUpdateParameters as VaultCreateOrUpdateParametersMapper,
   VaultPatchParameters as VaultPatchParametersMapper,
   VaultAccessPolicyParameters as VaultAccessPolicyParametersMapper,
   VaultCheckNameAvailabilityParameters as VaultCheckNameAvailabilityParametersMapper,
-  PrivateEndpointConnection as PrivateEndpointConnectionMapper
+  PrivateEndpointConnection as PrivateEndpointConnectionMapper,
+  ManagedHsm as ManagedHsmMapper,
+  MhsmPrivateEndpointConnection as MhsmPrivateEndpointConnectionMapper,
+  SecretCreateOrUpdateParameters as SecretCreateOrUpdateParametersMapper,
+  SecretPatchParameters as SecretPatchParametersMapper
 } from "../models/mappers";
 
 export const contentType: OperationParameter = {
@@ -33,7 +38,7 @@ export const contentType: OperationParameter = {
 
 export const parameters: OperationParameter = {
   parameterPath: "parameters",
-  mapper: VaultCreateOrUpdateParametersMapper
+  mapper: KeyCreateParametersMapper
 };
 
 export const accept: OperationParameter = {
@@ -58,6 +63,17 @@ export const $host: OperationURLParameter = {
     }
   },
   skipEncoding: true
+};
+
+export const subscriptionId: OperationURLParameter = {
+  parameterPath: "subscriptionId",
+  mapper: {
+    serializedName: "subscriptionId",
+    required: true,
+    type: {
+      name: "String"
+    }
+  }
 };
 
 export const resourceGroupName: OperationURLParameter = {
@@ -85,10 +101,24 @@ export const vaultName: OperationURLParameter = {
   }
 };
 
+export const keyName: OperationURLParameter = {
+  parameterPath: "keyName",
+  mapper: {
+    constraints: {
+      Pattern: new RegExp("^[a-zA-Z0-9-]{1,127}$")
+    },
+    serializedName: "keyName",
+    required: true,
+    type: {
+      name: "String"
+    }
+  }
+};
+
 export const apiVersion: OperationQueryParameter = {
   parameterPath: "apiVersion",
   mapper: {
-    defaultValue: "2019-09-01",
+    defaultValue: "2021-06-01-preview",
     isConstant: true,
     serializedName: "api-version",
     type: {
@@ -97,10 +127,13 @@ export const apiVersion: OperationQueryParameter = {
   }
 };
 
-export const subscriptionId: OperationURLParameter = {
-  parameterPath: "subscriptionId",
+export const keyVersion: OperationURLParameter = {
+  parameterPath: "keyVersion",
   mapper: {
-    serializedName: "subscriptionId",
+    constraints: {
+      Pattern: new RegExp("^[a-fA-F0-9]{32}$")
+    },
+    serializedName: "keyVersion",
     required: true,
     type: {
       name: "String"
@@ -108,7 +141,24 @@ export const subscriptionId: OperationURLParameter = {
   }
 };
 
+export const nextLink: OperationURLParameter = {
+  parameterPath: "nextLink",
+  mapper: {
+    serializedName: "nextLink",
+    required: true,
+    type: {
+      name: "String"
+    }
+  },
+  skipEncoding: true
+};
+
 export const parameters1: OperationParameter = {
+  parameterPath: "parameters",
+  mapper: VaultCreateOrUpdateParametersMapper
+};
+
+export const parameters2: OperationParameter = {
   parameterPath: "parameters",
   mapper: VaultPatchParametersMapper
 };
@@ -124,7 +174,7 @@ export const vaultName1: OperationURLParameter = {
   }
 };
 
-export const parameters2: OperationParameter = {
+export const parameters3: OperationParameter = {
   parameterPath: "parameters",
   mapper: VaultAccessPolicyParametersMapper
 };
@@ -174,21 +224,21 @@ export const filter: OperationQueryParameter = {
   }
 };
 
-export const vaultName2: OperationParameter = {
-  parameterPath: "vaultName",
-  mapper: VaultCheckNameAvailabilityParametersMapper
-};
-
-export const nextLink: OperationURLParameter = {
-  parameterPath: "nextLink",
+export const apiVersion1: OperationQueryParameter = {
+  parameterPath: "apiVersion",
   mapper: {
-    serializedName: "nextLink",
-    required: true,
+    defaultValue: "2015-11-01",
+    isConstant: true,
+    serializedName: "api-version",
     type: {
       name: "String"
     }
-  },
-  skipEncoding: true
+  }
+};
+
+export const vaultName2: OperationParameter = {
+  parameterPath: "vaultName",
+  mapper: VaultCheckNameAvailabilityParametersMapper
 };
 
 export const privateEndpointConnectionName: OperationURLParameter = {
@@ -205,4 +255,60 @@ export const privateEndpointConnectionName: OperationURLParameter = {
 export const properties: OperationParameter = {
   parameterPath: "properties",
   mapper: PrivateEndpointConnectionMapper
+};
+
+export const parameters4: OperationParameter = {
+  parameterPath: "parameters",
+  mapper: ManagedHsmMapper
+};
+
+export const name: OperationURLParameter = {
+  parameterPath: "name",
+  mapper: {
+    serializedName: "name",
+    required: true,
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const properties1: OperationParameter = {
+  parameterPath: "properties",
+  mapper: MhsmPrivateEndpointConnectionMapper
+};
+
+export const parameters5: OperationParameter = {
+  parameterPath: "parameters",
+  mapper: SecretCreateOrUpdateParametersMapper
+};
+
+export const secretName: OperationURLParameter = {
+  parameterPath: "secretName",
+  mapper: {
+    constraints: {
+      Pattern: new RegExp("^[a-zA-Z0-9-]{1,127}$")
+    },
+    serializedName: "secretName",
+    required: true,
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const parameters6: OperationParameter = {
+  parameterPath: "parameters",
+  mapper: SecretPatchParametersMapper
+};
+
+export const secretName1: OperationURLParameter = {
+  parameterPath: "secretName",
+  mapper: {
+    serializedName: "secretName",
+    required: true,
+    type: {
+      name: "String"
+    }
+  }
 };

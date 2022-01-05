@@ -10,10 +10,14 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   PublicIPAddress,
+  PublicIPAddressesListCloudServicePublicIPAddressesOptionalParams,
+  PublicIPAddressesListCloudServiceRoleInstancePublicIPAddressesOptionalParams,
   PublicIPAddressesListAllOptionalParams,
   PublicIPAddressesListOptionalParams,
   PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesOptionalParams,
   PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesOptionalParams,
+  PublicIPAddressesGetCloudServicePublicIPAddressOptionalParams,
+  PublicIPAddressesGetCloudServicePublicIPAddressResponse,
   PublicIPAddressesDeleteOptionalParams,
   PublicIPAddressesGetOptionalParams,
   PublicIPAddressesGetResponse,
@@ -29,6 +33,35 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a PublicIPAddresses. */
 export interface PublicIPAddresses {
+  /**
+   * Gets information about all public IP addresses on a cloud service level.
+   * @param resourceGroupName The name of the resource group.
+   * @param cloudServiceName The name of the cloud service.
+   * @param options The options parameters.
+   */
+  listCloudServicePublicIPAddresses(
+    resourceGroupName: string,
+    cloudServiceName: string,
+    options?: PublicIPAddressesListCloudServicePublicIPAddressesOptionalParams
+  ): PagedAsyncIterableIterator<PublicIPAddress>;
+  /**
+   * Gets information about all public IP addresses in a role instance IP configuration in a cloud
+   * service.
+   * @param resourceGroupName The name of the resource group.
+   * @param cloudServiceName The name of the cloud service.
+   * @param roleInstanceName The name of role instance.
+   * @param networkInterfaceName The network interface name.
+   * @param ipConfigurationName The IP configuration name.
+   * @param options The options parameters.
+   */
+  listCloudServiceRoleInstancePublicIPAddresses(
+    resourceGroupName: string,
+    cloudServiceName: string,
+    roleInstanceName: string,
+    networkInterfaceName: string,
+    ipConfigurationName: string,
+    options?: PublicIPAddressesListCloudServiceRoleInstancePublicIPAddressesOptionalParams
+  ): PagedAsyncIterableIterator<PublicIPAddress>;
   /**
    * Gets all the public IP addresses in a subscription.
    * @param options The options parameters.
@@ -75,9 +108,28 @@ export interface PublicIPAddresses {
     options?: PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesOptionalParams
   ): PagedAsyncIterableIterator<PublicIPAddress>;
   /**
+   * Get the specified public IP address in a cloud service.
+   * @param resourceGroupName The name of the resource group.
+   * @param cloudServiceName The name of the cloud service.
+   * @param roleInstanceName The role instance name.
+   * @param networkInterfaceName The name of the network interface.
+   * @param ipConfigurationName The name of the IP configuration.
+   * @param publicIpAddressName The name of the public IP Address.
+   * @param options The options parameters.
+   */
+  getCloudServicePublicIPAddress(
+    resourceGroupName: string,
+    cloudServiceName: string,
+    roleInstanceName: string,
+    networkInterfaceName: string,
+    ipConfigurationName: string,
+    publicIpAddressName: string,
+    options?: PublicIPAddressesGetCloudServicePublicIPAddressOptionalParams
+  ): Promise<PublicIPAddressesGetCloudServicePublicIPAddressResponse>;
+  /**
    * Deletes the specified public IP address.
    * @param resourceGroupName The name of the resource group.
-   * @param publicIpAddressName The name of the subnet.
+   * @param publicIpAddressName The name of the public IP address.
    * @param options The options parameters.
    */
   beginDelete(
@@ -88,7 +140,7 @@ export interface PublicIPAddresses {
   /**
    * Deletes the specified public IP address.
    * @param resourceGroupName The name of the resource group.
-   * @param publicIpAddressName The name of the subnet.
+   * @param publicIpAddressName The name of the public IP address.
    * @param options The options parameters.
    */
   beginDeleteAndWait(
@@ -99,7 +151,7 @@ export interface PublicIPAddresses {
   /**
    * Gets the specified public IP address in a specified resource group.
    * @param resourceGroupName The name of the resource group.
-   * @param publicIpAddressName The name of the subnet.
+   * @param publicIpAddressName The name of the public IP address.
    * @param options The options parameters.
    */
   get(

@@ -8,10 +8,10 @@
 
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
-  VirtualMachineExtension,
+  VirtualMachineScaleSetVMExtension,
   VirtualMachineScaleSetVMExtensionsCreateOrUpdateOptionalParams,
   VirtualMachineScaleSetVMExtensionsCreateOrUpdateResponse,
-  VirtualMachineExtensionUpdate,
+  VirtualMachineScaleSetVMExtensionUpdate,
   VirtualMachineScaleSetVMExtensionsUpdateOptionalParams,
   VirtualMachineScaleSetVMExtensionsUpdateResponse,
   VirtualMachineScaleSetVMExtensionsDeleteOptionalParams,
@@ -37,7 +37,7 @@ export interface VirtualMachineScaleSetVMExtensions {
     vmScaleSetName: string,
     instanceId: string,
     vmExtensionName: string,
-    extensionParameters: VirtualMachineExtension,
+    extensionParameters: VirtualMachineScaleSetVMExtension,
     options?: VirtualMachineScaleSetVMExtensionsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
@@ -61,7 +61,7 @@ export interface VirtualMachineScaleSetVMExtensions {
     vmScaleSetName: string,
     instanceId: string,
     vmExtensionName: string,
-    extensionParameters: VirtualMachineExtension,
+    extensionParameters: VirtualMachineScaleSetVMExtension,
     options?: VirtualMachineScaleSetVMExtensionsCreateOrUpdateOptionalParams
   ): Promise<VirtualMachineScaleSetVMExtensionsCreateOrUpdateResponse>;
   /**
@@ -78,7 +78,7 @@ export interface VirtualMachineScaleSetVMExtensions {
     vmScaleSetName: string,
     instanceId: string,
     vmExtensionName: string,
-    extensionParameters: VirtualMachineExtensionUpdate,
+    extensionParameters: VirtualMachineScaleSetVMExtensionUpdate,
     options?: VirtualMachineScaleSetVMExtensionsUpdateOptionalParams
   ): Promise<
     PollerLike<
@@ -100,7 +100,7 @@ export interface VirtualMachineScaleSetVMExtensions {
     vmScaleSetName: string,
     instanceId: string,
     vmExtensionName: string,
-    extensionParameters: VirtualMachineExtensionUpdate,
+    extensionParameters: VirtualMachineScaleSetVMExtensionUpdate,
     options?: VirtualMachineScaleSetVMExtensionsUpdateOptionalParams
   ): Promise<VirtualMachineScaleSetVMExtensionsUpdateResponse>;
   /**

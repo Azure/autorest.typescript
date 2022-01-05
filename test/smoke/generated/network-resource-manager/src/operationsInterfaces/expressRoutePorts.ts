@@ -19,7 +19,10 @@ import {
   ExpressRoutePortsCreateOrUpdateResponse,
   TagsObject,
   ExpressRoutePortsUpdateTagsOptionalParams,
-  ExpressRoutePortsUpdateTagsResponse
+  ExpressRoutePortsUpdateTagsResponse,
+  GenerateExpressRoutePortsLOARequest,
+  ExpressRoutePortsGenerateLOAOptionalParams,
+  ExpressRoutePortsGenerateLOAResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -118,4 +121,17 @@ export interface ExpressRoutePorts {
     parameters: TagsObject,
     options?: ExpressRoutePortsUpdateTagsOptionalParams
   ): Promise<ExpressRoutePortsUpdateTagsResponse>;
+  /**
+   * Generate a letter of authorization for the requested ExpressRoutePort resource.
+   * @param resourceGroupName The name of the resource group.
+   * @param expressRoutePortName The name of ExpressRoutePort.
+   * @param request Request parameters supplied to generate a letter of authorization.
+   * @param options The options parameters.
+   */
+  generateLOA(
+    resourceGroupName: string,
+    expressRoutePortName: string,
+    request: GenerateExpressRoutePortsLOARequest,
+    options?: ExpressRoutePortsGenerateLOAOptionalParams
+  ): Promise<ExpressRoutePortsGenerateLOAResponse>;
 }

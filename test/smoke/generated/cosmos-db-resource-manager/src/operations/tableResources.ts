@@ -28,7 +28,11 @@ import {
   TableResourcesGetTableThroughputResponse,
   ThroughputSettingsUpdateParameters,
   TableResourcesUpdateTableThroughputOptionalParams,
-  TableResourcesUpdateTableThroughputResponse
+  TableResourcesUpdateTableThroughputResponse,
+  TableResourcesMigrateTableToAutoscaleOptionalParams,
+  TableResourcesMigrateTableToAutoscaleResponse,
+  TableResourcesMigrateTableToManualThroughputOptionalParams,
+  TableResourcesMigrateTableToManualThroughputResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -448,6 +452,186 @@ export class TableResourcesImpl implements TableResources {
     );
     return poller.pollUntilDone();
   }
+
+  /**
+   * Migrate an Azure Cosmos DB Table from manual throughput to autoscale
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param tableName Cosmos DB table name.
+   * @param options The options parameters.
+   */
+  async beginMigrateTableToAutoscale(
+    resourceGroupName: string,
+    accountName: string,
+    tableName: string,
+    options?: TableResourcesMigrateTableToAutoscaleOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<TableResourcesMigrateTableToAutoscaleResponse>,
+      TableResourcesMigrateTableToAutoscaleResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<TableResourcesMigrateTableToAutoscaleResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { resourceGroupName, accountName, tableName, options },
+      migrateTableToAutoscaleOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs
+    });
+  }
+
+  /**
+   * Migrate an Azure Cosmos DB Table from manual throughput to autoscale
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param tableName Cosmos DB table name.
+   * @param options The options parameters.
+   */
+  async beginMigrateTableToAutoscaleAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    tableName: string,
+    options?: TableResourcesMigrateTableToAutoscaleOptionalParams
+  ): Promise<TableResourcesMigrateTableToAutoscaleResponse> {
+    const poller = await this.beginMigrateTableToAutoscale(
+      resourceGroupName,
+      accountName,
+      tableName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
+   * Migrate an Azure Cosmos DB Table from autoscale to manual throughput
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param tableName Cosmos DB table name.
+   * @param options The options parameters.
+   */
+  async beginMigrateTableToManualThroughput(
+    resourceGroupName: string,
+    accountName: string,
+    tableName: string,
+    options?: TableResourcesMigrateTableToManualThroughputOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<TableResourcesMigrateTableToManualThroughputResponse>,
+      TableResourcesMigrateTableToManualThroughputResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<TableResourcesMigrateTableToManualThroughputResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { resourceGroupName, accountName, tableName, options },
+      migrateTableToManualThroughputOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs
+    });
+  }
+
+  /**
+   * Migrate an Azure Cosmos DB Table from autoscale to manual throughput
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param tableName Cosmos DB table name.
+   * @param options The options parameters.
+   */
+  async beginMigrateTableToManualThroughputAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    tableName: string,
+    options?: TableResourcesMigrateTableToManualThroughputOptionalParams
+  ): Promise<TableResourcesMigrateTableToManualThroughputResponse> {
+    const poller = await this.beginMigrateTableToManualThroughput(
+      resourceGroupName,
+      accountName,
+      tableName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
@@ -586,5 +770,69 @@ const updateTableThroughputOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
+  serializer
+};
+const migrateTableToAutoscaleOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/tables/{tableName}/throughputSettings/default/migrateToAutoscale",
+  httpMethod: "POST",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    201: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    202: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    204: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.accountName,
+    Parameters.tableName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const migrateTableToManualThroughputOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/tables/{tableName}/throughputSettings/default/migrateToManualThroughput",
+  httpMethod: "POST",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    201: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    202: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    204: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.accountName,
+    Parameters.tableName
+  ],
+  headerParameters: [Parameters.accept],
   serializer
 };

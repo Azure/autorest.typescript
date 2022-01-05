@@ -1,0 +1,44 @@
+
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+/**
+ * This sample demonstrates how to {{operationDescription}}
+ *
+ * @summary {{operationDescription}}
+ * x-ms-original-file: {{originalFileLocation}}
+ */
+import {
+{{#if hasBody }}
+  {{bodySchemaName}},
+{{/if}}
+  {{clientClassName}},
+} from "{{clientPackageName}}";
+import { DefaultAzureCredential } from "@azure/identity";
+
+async function {{sampleFunctionName}}() {
+  {{#each clientParamAssignments}}
+  {{this}}
+  {{/each}}
+  {{#each methodParamAssignments}}
+  {{this}}
+  {{/each}}
+  const credential = new DefaultAzureCredential();
+  const client = new {{clientClassName}}({{clientParameterNames}});
+  {{#if isPaging}}
+  const resArray = new Array();
+  for await (let item of client{{#unless isTopLevel}}.{{operationGroupName}}{{/unless}}.{{operationName}}({{methodParameterNames}})){
+    resArray.push(item);
+  }
+  console.log(resArray);
+  {{else}}  
+  const result = await client
+    {{#unless isTopLevel}}
+    .{{operationGroupName}}
+    {{/unless}}
+    .{{operationName}}({{methodParameterNames}});
+  console.log(result);
+  
+  {{/if}}
+}
+
+{{sampleFunctionName}}().catch(console.error);

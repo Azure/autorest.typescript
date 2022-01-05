@@ -37,8 +37,15 @@ import {
   VirtualMachinesStartOptionalParams,
   VirtualMachinesRedeployOptionalParams,
   VirtualMachinesReimageOptionalParams,
+  VirtualMachinesRetrieveBootDiagnosticsDataOptionalParams,
+  VirtualMachinesRetrieveBootDiagnosticsDataResponse,
   VirtualMachinesPerformMaintenanceOptionalParams,
   VirtualMachinesSimulateEvictionOptionalParams,
+  VirtualMachinesAssessPatchesOptionalParams,
+  VirtualMachinesAssessPatchesResponse,
+  VirtualMachineInstallPatchesParameters,
+  VirtualMachinesInstallPatchesOptionalParams,
+  VirtualMachinesInstallPatchesResponse,
   RunCommandInput,
   VirtualMachinesRunCommandOptionalParams,
   VirtualMachinesRunCommandResponse
@@ -278,9 +285,9 @@ export interface VirtualMachines {
    * Sets the OS state of the virtual machine to generalized. It is recommended to sysprep the virtual
    * machine before performing this operation. <br>For Windows, please refer to [Create a managed image
    * of a generalized VM in
-   * Azure](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/capture-image-resource).<br>For
+   * Azure](https://docs.microsoft.com/azure/virtual-machines/windows/capture-image-resource).<br>For
    * Linux, please refer to [How to create an image of a virtual machine or
-   * VHD](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/capture-image).
+   * VHD](https://docs.microsoft.com/azure/virtual-machines/linux/capture-image).
    * @param resourceGroupName The name of the resource group.
    * @param vmName The name of the virtual machine.
    * @param options The options parameters.
@@ -425,6 +432,17 @@ export interface VirtualMachines {
     options?: VirtualMachinesReimageOptionalParams
   ): Promise<void>;
   /**
+   * The operation to retrieve SAS URIs for a virtual machine's boot diagnostic logs.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmName The name of the virtual machine.
+   * @param options The options parameters.
+   */
+  retrieveBootDiagnosticsData(
+    resourceGroupName: string,
+    vmName: string,
+    options?: VirtualMachinesRetrieveBootDiagnosticsDataOptionalParams
+  ): Promise<VirtualMachinesRetrieveBootDiagnosticsDataResponse>;
+  /**
    * The operation to perform maintenance on a virtual machine.
    * @param resourceGroupName The name of the resource group.
    * @param vmName The name of the virtual machine.
@@ -447,8 +465,7 @@ export interface VirtualMachines {
     options?: VirtualMachinesPerformMaintenanceOptionalParams
   ): Promise<void>;
   /**
-   * The operation to simulate the eviction of spot virtual machine. The eviction will occur within 30
-   * minutes of calling the API
+   * The operation to simulate the eviction of spot virtual machine.
    * @param resourceGroupName The name of the resource group.
    * @param vmName The name of the virtual machine.
    * @param options The options parameters.
@@ -458,6 +475,64 @@ export interface VirtualMachines {
     vmName: string,
     options?: VirtualMachinesSimulateEvictionOptionalParams
   ): Promise<void>;
+  /**
+   * Assess patches on the VM.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmName The name of the virtual machine.
+   * @param options The options parameters.
+   */
+  beginAssessPatches(
+    resourceGroupName: string,
+    vmName: string,
+    options?: VirtualMachinesAssessPatchesOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<VirtualMachinesAssessPatchesResponse>,
+      VirtualMachinesAssessPatchesResponse
+    >
+  >;
+  /**
+   * Assess patches on the VM.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmName The name of the virtual machine.
+   * @param options The options parameters.
+   */
+  beginAssessPatchesAndWait(
+    resourceGroupName: string,
+    vmName: string,
+    options?: VirtualMachinesAssessPatchesOptionalParams
+  ): Promise<VirtualMachinesAssessPatchesResponse>;
+  /**
+   * Installs patches on the VM.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmName The name of the virtual machine.
+   * @param installPatchesInput Input for InstallPatches as directly received by the API
+   * @param options The options parameters.
+   */
+  beginInstallPatches(
+    resourceGroupName: string,
+    vmName: string,
+    installPatchesInput: VirtualMachineInstallPatchesParameters,
+    options?: VirtualMachinesInstallPatchesOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<VirtualMachinesInstallPatchesResponse>,
+      VirtualMachinesInstallPatchesResponse
+    >
+  >;
+  /**
+   * Installs patches on the VM.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmName The name of the virtual machine.
+   * @param installPatchesInput Input for InstallPatches as directly received by the API
+   * @param options The options parameters.
+   */
+  beginInstallPatchesAndWait(
+    resourceGroupName: string,
+    vmName: string,
+    installPatchesInput: VirtualMachineInstallPatchesParameters,
+    options?: VirtualMachinesInstallPatchesOptionalParams
+  ): Promise<VirtualMachinesInstallPatchesResponse>;
   /**
    * Run command on the VM.
    * @param resourceGroupName The name of the resource group.

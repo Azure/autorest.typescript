@@ -30,6 +30,9 @@ import {
   ExpressRoutePortsUpdateTagsResponse,
   ExpressRoutePortsListByResourceGroupResponse,
   ExpressRoutePortsListResponse,
+  GenerateExpressRoutePortsLOARequest,
+  ExpressRoutePortsGenerateLOAOptionalParams,
+  ExpressRoutePortsGenerateLOAResponse,
   ExpressRoutePortsListByResourceGroupNextResponse,
   ExpressRoutePortsListNextResponse
 } from "../models";
@@ -376,6 +379,25 @@ export class ExpressRoutePortsImpl implements ExpressRoutePorts {
   }
 
   /**
+   * Generate a letter of authorization for the requested ExpressRoutePort resource.
+   * @param resourceGroupName The name of the resource group.
+   * @param expressRoutePortName The name of ExpressRoutePort.
+   * @param request Request parameters supplied to generate a letter of authorization.
+   * @param options The options parameters.
+   */
+  generateLOA(
+    resourceGroupName: string,
+    expressRoutePortName: string,
+    request: GenerateExpressRoutePortsLOARequest,
+    options?: ExpressRoutePortsGenerateLOAOptionalParams
+  ): Promise<ExpressRoutePortsGenerateLOAResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, expressRoutePortName, request, options },
+      generateLOAOperationSpec
+    );
+  }
+
+  /**
    * ListByResourceGroupNext
    * @param resourceGroupName The name of the resource group.
    * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
@@ -476,7 +498,7 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.parameters9,
+  requestBody: Parameters.parameters14,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -548,6 +570,30 @@ const listOperationSpec: coreClient.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.accept],
+  serializer
+};
+const generateLOAOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/expressRoutePorts/{expressRoutePortName}/generateLoa",
+  httpMethod: "POST",
+  responses: {
+    200: {
+      bodyMapper: Mappers.GenerateExpressRoutePortsLOAResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  requestBody: Parameters.request,
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.expressRoutePortName
+  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {

@@ -12,6 +12,8 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { WebSiteManagementClient } from "../webSiteManagementClient";
+import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
+import { LroImpl } from "../lroImpl";
 import {
   StaticSiteARMResource,
   StaticSitesListNextOptionalParams,
@@ -27,11 +29,22 @@ import {
   StaticSiteFunctionOverviewARMResource,
   StaticSitesListStaticSiteBuildFunctionsNextOptionalParams,
   StaticSitesListStaticSiteBuildFunctionsOptionalParams,
+  StaticSiteUserProvidedFunctionAppARMResource,
+  StaticSitesGetUserProvidedFunctionAppsForStaticSiteBuildNextOptionalParams,
+  StaticSitesGetUserProvidedFunctionAppsForStaticSiteBuildOptionalParams,
   StaticSiteCustomDomainOverviewARMResource,
   StaticSitesListStaticSiteCustomDomainsNextOptionalParams,
   StaticSitesListStaticSiteCustomDomainsOptionalParams,
   StaticSitesListStaticSiteFunctionsNextOptionalParams,
   StaticSitesListStaticSiteFunctionsOptionalParams,
+  RemotePrivateEndpointConnectionARMResource,
+  StaticSitesGetPrivateEndpointConnectionListNextOptionalParams,
+  StaticSitesGetPrivateEndpointConnectionListOptionalParams,
+  StaticSitesGetUserProvidedFunctionAppsForStaticSiteNextOptionalParams,
+  StaticSitesGetUserProvidedFunctionAppsForStaticSiteOptionalParams,
+  StaticSitesWorkflowPreviewRequest,
+  StaticSitesPreviewWorkflowOptionalParams,
+  StaticSitesPreviewWorkflowResponse,
   StaticSitesListResponse,
   StaticSitesGetStaticSitesByResourceGroupResponse,
   StaticSitesGetStaticSiteOptionalParams,
@@ -51,36 +64,77 @@ import {
   StaticSitesGetStaticSiteBuildResponse,
   StaticSitesDeleteStaticSiteBuildOptionalParams,
   StringDictionary,
+  StaticSitesCreateOrUpdateStaticSiteBuildAppSettingsOptionalParams,
+  StaticSitesCreateOrUpdateStaticSiteBuildAppSettingsResponse,
   StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettingsOptionalParams,
   StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettingsResponse,
   StaticSitesListStaticSiteBuildFunctionsResponse,
+  StaticSitesListStaticSiteBuildAppSettingsOptionalParams,
+  StaticSitesListStaticSiteBuildAppSettingsResponse,
   StaticSitesListStaticSiteBuildFunctionAppSettingsOptionalParams,
   StaticSitesListStaticSiteBuildFunctionAppSettingsResponse,
+  StaticSitesGetUserProvidedFunctionAppsForStaticSiteBuildResponse,
+  StaticSitesGetUserProvidedFunctionAppForStaticSiteBuildOptionalParams,
+  StaticSitesGetUserProvidedFunctionAppForStaticSiteBuildResponse,
+  StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildOptionalParams,
+  StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildResponse,
+  StaticSitesDetachUserProvidedFunctionAppFromStaticSiteBuildOptionalParams,
+  StaticSiteZipDeploymentARMResource,
+  StaticSitesCreateZipDeploymentForStaticSiteBuildOptionalParams,
+  StaticSitesCreateOrUpdateStaticSiteAppSettingsOptionalParams,
+  StaticSitesCreateOrUpdateStaticSiteAppSettingsResponse,
   StaticSitesCreateOrUpdateStaticSiteFunctionAppSettingsOptionalParams,
   StaticSitesCreateOrUpdateStaticSiteFunctionAppSettingsResponse,
   StaticSiteUserInvitationRequestResource,
   StaticSitesCreateUserRolesInvitationLinkOptionalParams,
   StaticSitesCreateUserRolesInvitationLinkResponse,
   StaticSitesListStaticSiteCustomDomainsResponse,
+  StaticSitesGetStaticSiteCustomDomainOptionalParams,
+  StaticSitesGetStaticSiteCustomDomainResponse,
+  StaticSiteCustomDomainRequestPropertiesARMResource,
   StaticSitesCreateOrUpdateStaticSiteCustomDomainOptionalParams,
   StaticSitesCreateOrUpdateStaticSiteCustomDomainResponse,
   StaticSitesDeleteStaticSiteCustomDomainOptionalParams,
   StaticSitesValidateCustomDomainCanBeAddedToStaticSiteOptionalParams,
   StaticSitesDetachStaticSiteOptionalParams,
   StaticSitesListStaticSiteFunctionsResponse,
+  StaticSitesListStaticSiteAppSettingsOptionalParams,
+  StaticSitesListStaticSiteAppSettingsResponse,
+  StaticSitesListStaticSiteConfiguredRolesOptionalParams,
+  StaticSitesListStaticSiteConfiguredRolesResponse,
   StaticSitesListStaticSiteFunctionAppSettingsOptionalParams,
   StaticSitesListStaticSiteFunctionAppSettingsResponse,
   StaticSitesListStaticSiteSecretsOptionalParams,
   StaticSitesListStaticSiteSecretsResponse,
+  StaticSitesGetPrivateEndpointConnectionListResponse,
+  StaticSitesGetPrivateEndpointConnectionOptionalParams,
+  StaticSitesGetPrivateEndpointConnectionResponse,
+  PrivateLinkConnectionApprovalRequestResource,
+  StaticSitesApproveOrRejectPrivateEndpointConnectionOptionalParams,
+  StaticSitesApproveOrRejectPrivateEndpointConnectionResponse,
+  StaticSitesDeletePrivateEndpointConnectionOptionalParams,
+  StaticSitesDeletePrivateEndpointConnectionResponse,
+  StaticSitesGetPrivateLinkResourcesOptionalParams,
+  StaticSitesGetPrivateLinkResourcesResponse,
   StaticSiteResetPropertiesARMResource,
   StaticSitesResetStaticSiteApiKeyOptionalParams,
+  StaticSitesGetUserProvidedFunctionAppsForStaticSiteResponse,
+  StaticSitesGetUserProvidedFunctionAppForStaticSiteOptionalParams,
+  StaticSitesGetUserProvidedFunctionAppForStaticSiteResponse,
+  StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteOptionalParams,
+  StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteResponse,
+  StaticSitesDetachUserProvidedFunctionAppFromStaticSiteOptionalParams,
+  StaticSitesCreateZipDeploymentForStaticSiteOptionalParams,
   StaticSitesListNextResponse,
   StaticSitesGetStaticSitesByResourceGroupNextResponse,
   StaticSitesListStaticSiteUsersNextResponse,
   StaticSitesGetStaticSiteBuildsNextResponse,
   StaticSitesListStaticSiteBuildFunctionsNextResponse,
+  StaticSitesGetUserProvidedFunctionAppsForStaticSiteBuildNextResponse,
   StaticSitesListStaticSiteCustomDomainsNextResponse,
-  StaticSitesListStaticSiteFunctionsNextResponse
+  StaticSitesListStaticSiteFunctionsNextResponse,
+  StaticSitesGetPrivateEndpointConnectionListNextResponse,
+  StaticSitesGetUserProvidedFunctionAppsForStaticSiteNextResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -355,19 +409,19 @@ export class StaticSitesImpl implements StaticSites {
    * Description for Gets the functions of a particular static site build.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the static site.
-   * @param prId The stage site identifier.
+   * @param environmentName The stage site identifier.
    * @param options The options parameters.
    */
   public listStaticSiteBuildFunctions(
     resourceGroupName: string,
     name: string,
-    prId: string,
+    environmentName: string,
     options?: StaticSitesListStaticSiteBuildFunctionsOptionalParams
   ): PagedAsyncIterableIterator<StaticSiteFunctionOverviewARMResource> {
     const iter = this.listStaticSiteBuildFunctionsPagingAll(
       resourceGroupName,
       name,
-      prId,
+      environmentName,
       options
     );
     return {
@@ -381,7 +435,7 @@ export class StaticSitesImpl implements StaticSites {
         return this.listStaticSiteBuildFunctionsPagingPage(
           resourceGroupName,
           name,
-          prId,
+          environmentName,
           options
         );
       }
@@ -391,13 +445,13 @@ export class StaticSitesImpl implements StaticSites {
   private async *listStaticSiteBuildFunctionsPagingPage(
     resourceGroupName: string,
     name: string,
-    prId: string,
+    environmentName: string,
     options?: StaticSitesListStaticSiteBuildFunctionsOptionalParams
   ): AsyncIterableIterator<StaticSiteFunctionOverviewARMResource[]> {
     let result = await this._listStaticSiteBuildFunctions(
       resourceGroupName,
       name,
-      prId,
+      environmentName,
       options
     );
     yield result.value || [];
@@ -406,7 +460,7 @@ export class StaticSitesImpl implements StaticSites {
       result = await this._listStaticSiteBuildFunctionsNext(
         resourceGroupName,
         name,
-        prId,
+        environmentName,
         continuationToken,
         options
       );
@@ -418,13 +472,94 @@ export class StaticSitesImpl implements StaticSites {
   private async *listStaticSiteBuildFunctionsPagingAll(
     resourceGroupName: string,
     name: string,
-    prId: string,
+    environmentName: string,
     options?: StaticSitesListStaticSiteBuildFunctionsOptionalParams
   ): AsyncIterableIterator<StaticSiteFunctionOverviewARMResource> {
     for await (const page of this.listStaticSiteBuildFunctionsPagingPage(
       resourceGroupName,
       name,
-      prId,
+      environmentName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Gets the details of the user provided function apps registered with a static site
+   * build
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site.
+   * @param environmentName The stage site identifier.
+   * @param options The options parameters.
+   */
+  public listUserProvidedFunctionAppsForStaticSiteBuild(
+    resourceGroupName: string,
+    name: string,
+    environmentName: string,
+    options?: StaticSitesGetUserProvidedFunctionAppsForStaticSiteBuildOptionalParams
+  ): PagedAsyncIterableIterator<StaticSiteUserProvidedFunctionAppARMResource> {
+    const iter = this.getUserProvidedFunctionAppsForStaticSiteBuildPagingAll(
+      resourceGroupName,
+      name,
+      environmentName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.getUserProvidedFunctionAppsForStaticSiteBuildPagingPage(
+          resourceGroupName,
+          name,
+          environmentName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *getUserProvidedFunctionAppsForStaticSiteBuildPagingPage(
+    resourceGroupName: string,
+    name: string,
+    environmentName: string,
+    options?: StaticSitesGetUserProvidedFunctionAppsForStaticSiteBuildOptionalParams
+  ): AsyncIterableIterator<StaticSiteUserProvidedFunctionAppARMResource[]> {
+    let result = await this._getUserProvidedFunctionAppsForStaticSiteBuild(
+      resourceGroupName,
+      name,
+      environmentName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._getUserProvidedFunctionAppsForStaticSiteBuildNext(
+        resourceGroupName,
+        name,
+        environmentName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *getUserProvidedFunctionAppsForStaticSiteBuildPagingAll(
+    resourceGroupName: string,
+    name: string,
+    environmentName: string,
+    options?: StaticSitesGetUserProvidedFunctionAppsForStaticSiteBuildOptionalParams
+  ): AsyncIterableIterator<StaticSiteUserProvidedFunctionAppARMResource> {
+    for await (const page of this.getUserProvidedFunctionAppsForStaticSiteBuildPagingPage(
+      resourceGroupName,
+      name,
+      environmentName,
       options
     )) {
       yield* page;
@@ -574,6 +709,166 @@ export class StaticSitesImpl implements StaticSites {
   }
 
   /**
+   * Description for Gets the list of private endpoint connections associated with a static site
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site.
+   * @param options The options parameters.
+   */
+  public listPrivateEndpointConnectionList(
+    resourceGroupName: string,
+    name: string,
+    options?: StaticSitesGetPrivateEndpointConnectionListOptionalParams
+  ): PagedAsyncIterableIterator<RemotePrivateEndpointConnectionARMResource> {
+    const iter = this.getPrivateEndpointConnectionListPagingAll(
+      resourceGroupName,
+      name,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.getPrivateEndpointConnectionListPagingPage(
+          resourceGroupName,
+          name,
+          options
+        );
+      }
+    };
+  }
+
+  private async *getPrivateEndpointConnectionListPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: StaticSitesGetPrivateEndpointConnectionListOptionalParams
+  ): AsyncIterableIterator<RemotePrivateEndpointConnectionARMResource[]> {
+    let result = await this._getPrivateEndpointConnectionList(
+      resourceGroupName,
+      name,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._getPrivateEndpointConnectionListNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *getPrivateEndpointConnectionListPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: StaticSitesGetPrivateEndpointConnectionListOptionalParams
+  ): AsyncIterableIterator<RemotePrivateEndpointConnectionARMResource> {
+    for await (const page of this.getPrivateEndpointConnectionListPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Gets the details of the user provided function apps registered with a static site
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site.
+   * @param options The options parameters.
+   */
+  public listUserProvidedFunctionAppsForStaticSite(
+    resourceGroupName: string,
+    name: string,
+    options?: StaticSitesGetUserProvidedFunctionAppsForStaticSiteOptionalParams
+  ): PagedAsyncIterableIterator<StaticSiteUserProvidedFunctionAppARMResource> {
+    const iter = this.getUserProvidedFunctionAppsForStaticSitePagingAll(
+      resourceGroupName,
+      name,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.getUserProvidedFunctionAppsForStaticSitePagingPage(
+          resourceGroupName,
+          name,
+          options
+        );
+      }
+    };
+  }
+
+  private async *getUserProvidedFunctionAppsForStaticSitePagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: StaticSitesGetUserProvidedFunctionAppsForStaticSiteOptionalParams
+  ): AsyncIterableIterator<StaticSiteUserProvidedFunctionAppARMResource[]> {
+    let result = await this._getUserProvidedFunctionAppsForStaticSite(
+      resourceGroupName,
+      name,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._getUserProvidedFunctionAppsForStaticSiteNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *getUserProvidedFunctionAppsForStaticSitePagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: StaticSitesGetUserProvidedFunctionAppsForStaticSiteOptionalParams
+  ): AsyncIterableIterator<StaticSiteUserProvidedFunctionAppARMResource> {
+    for await (const page of this.getUserProvidedFunctionAppsForStaticSitePagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Generates a preview workflow file for the static site
+   * @param location Location where you plan to create the static site.
+   * @param staticSitesWorkflowPreviewRequest A JSON representation of the
+   *                                          StaticSitesWorkflowPreviewRequest properties. See example.
+   * @param options The options parameters.
+   */
+  previewWorkflow(
+    location: string,
+    staticSitesWorkflowPreviewRequest: StaticSitesWorkflowPreviewRequest,
+    options?: StaticSitesPreviewWorkflowOptionalParams
+  ): Promise<StaticSitesPreviewWorkflowResponse> {
+    return this.client.sendOperationRequest(
+      { location, staticSitesWorkflowPreviewRequest, options },
+      previewWorkflowOperationSpec
+    );
+  }
+
+  /**
    * Description for Get all Static Sites for a subscription.
    * @param options The options parameters.
    */
@@ -623,16 +918,88 @@ export class StaticSitesImpl implements StaticSites {
    * @param staticSiteEnvelope A JSON representation of the staticsite properties. See example.
    * @param options The options parameters.
    */
-  createOrUpdateStaticSite(
+  async beginCreateOrUpdateStaticSite(
+    resourceGroupName: string,
+    name: string,
+    staticSiteEnvelope: StaticSiteARMResource,
+    options?: StaticSitesCreateOrUpdateStaticSiteOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<StaticSitesCreateOrUpdateStaticSiteResponse>,
+      StaticSitesCreateOrUpdateStaticSiteResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<StaticSitesCreateOrUpdateStaticSiteResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { resourceGroupName, name, staticSiteEnvelope, options },
+      createOrUpdateStaticSiteOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs
+    });
+  }
+
+  /**
+   * Description for Creates a new static site in an existing resource group, or updates an existing
+   * static site.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site to create or update.
+   * @param staticSiteEnvelope A JSON representation of the staticsite properties. See example.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateStaticSiteAndWait(
     resourceGroupName: string,
     name: string,
     staticSiteEnvelope: StaticSiteARMResource,
     options?: StaticSitesCreateOrUpdateStaticSiteOptionalParams
   ): Promise<StaticSitesCreateOrUpdateStaticSiteResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, name, staticSiteEnvelope, options },
-      createOrUpdateStaticSiteOperationSpec
+    const poller = await this.beginCreateOrUpdateStaticSite(
+      resourceGroupName,
+      name,
+      staticSiteEnvelope,
+      options
     );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -641,15 +1008,78 @@ export class StaticSitesImpl implements StaticSites {
    * @param name Name of the static site to delete.
    * @param options The options parameters.
    */
-  deleteStaticSite(
+  async beginDeleteStaticSite(
+    resourceGroupName: string,
+    name: string,
+    options?: StaticSitesDeleteStaticSiteOptionalParams
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { resourceGroupName, name, options },
+      deleteStaticSiteOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs
+    });
+  }
+
+  /**
+   * Description for Deletes a static site.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site to delete.
+   * @param options The options parameters.
+   */
+  async beginDeleteStaticSiteAndWait(
     resourceGroupName: string,
     name: string,
     options?: StaticSitesDeleteStaticSiteOptionalParams
   ): Promise<void> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, name, options },
-      deleteStaticSiteOperationSpec
+    const poller = await this.beginDeleteStaticSite(
+      resourceGroupName,
+      name,
+      options
     );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -763,17 +1193,17 @@ export class StaticSitesImpl implements StaticSites {
    * Description for Gets the details of a static site build.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the static site.
-   * @param prId The stage site identifier.
+   * @param environmentName The stage site identifier.
    * @param options The options parameters.
    */
   getStaticSiteBuild(
     resourceGroupName: string,
     name: string,
-    prId: string,
+    environmentName: string,
     options?: StaticSitesGetStaticSiteBuildOptionalParams
   ): Promise<StaticSitesGetStaticSiteBuildResponse> {
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, prId, options },
+      { resourceGroupName, name, environmentName, options },
       getStaticSiteBuildOperationSpec
     );
   }
@@ -782,18 +1212,105 @@ export class StaticSitesImpl implements StaticSites {
    * Description for Deletes a static site build.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the static site.
-   * @param prId The stage site identifier.
+   * @param environmentName The stage site identifier.
    * @param options The options parameters.
    */
-  deleteStaticSiteBuild(
+  async beginDeleteStaticSiteBuild(
     resourceGroupName: string,
     name: string,
-    prId: string,
+    environmentName: string,
+    options?: StaticSitesDeleteStaticSiteBuildOptionalParams
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { resourceGroupName, name, environmentName, options },
+      deleteStaticSiteBuildOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs
+    });
+  }
+
+  /**
+   * Description for Deletes a static site build.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site.
+   * @param environmentName The stage site identifier.
+   * @param options The options parameters.
+   */
+  async beginDeleteStaticSiteBuildAndWait(
+    resourceGroupName: string,
+    name: string,
+    environmentName: string,
     options?: StaticSitesDeleteStaticSiteBuildOptionalParams
   ): Promise<void> {
+    const poller = await this.beginDeleteStaticSiteBuild(
+      resourceGroupName,
+      name,
+      environmentName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
+   * Description for Creates or updates the app settings of a static site build.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site.
+   * @param environmentName The stage site identifier.
+   * @param appSettings The dictionary containing the static site app settings to update.
+   * @param options The options parameters.
+   */
+  createOrUpdateStaticSiteBuildAppSettings(
+    resourceGroupName: string,
+    name: string,
+    environmentName: string,
+    appSettings: StringDictionary,
+    options?: StaticSitesCreateOrUpdateStaticSiteBuildAppSettingsOptionalParams
+  ): Promise<StaticSitesCreateOrUpdateStaticSiteBuildAppSettingsResponse> {
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, prId, options },
-      deleteStaticSiteBuildOperationSpec
+      { resourceGroupName, name, environmentName, appSettings, options },
+      createOrUpdateStaticSiteBuildAppSettingsOperationSpec
     );
   }
 
@@ -801,21 +1318,21 @@ export class StaticSitesImpl implements StaticSites {
    * Description for Creates or updates the function app settings of a static site build.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the static site.
-   * @param prId The stage site identifier.
-   * @param appSettings String dictionary resource.
+   * @param environmentName The stage site identifier.
+   * @param appSettings The dictionary containing the static site function app settings to update.
    * @param options The options parameters.
    */
   createOrUpdateStaticSiteBuildFunctionAppSettings(
     resourceGroupName: string,
     name: string,
-    prId: string,
+    environmentName: string,
     appSettings: StringDictionary,
     options?: StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettingsOptionalParams
   ): Promise<
     StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettingsResponse
   > {
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, prId, appSettings, options },
+      { resourceGroupName, name, environmentName, appSettings, options },
       createOrUpdateStaticSiteBuildFunctionAppSettingsOperationSpec
     );
   }
@@ -824,37 +1341,349 @@ export class StaticSitesImpl implements StaticSites {
    * Description for Gets the functions of a particular static site build.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the static site.
-   * @param prId The stage site identifier.
+   * @param environmentName The stage site identifier.
    * @param options The options parameters.
    */
   private _listStaticSiteBuildFunctions(
     resourceGroupName: string,
     name: string,
-    prId: string,
+    environmentName: string,
     options?: StaticSitesListStaticSiteBuildFunctionsOptionalParams
   ): Promise<StaticSitesListStaticSiteBuildFunctionsResponse> {
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, prId, options },
+      { resourceGroupName, name, environmentName, options },
       listStaticSiteBuildFunctionsOperationSpec
     );
   }
 
   /**
-   * Description for Gets the application settings of a static site.
+   * Description for Gets the application settings of a static site build.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the static site.
-   * @param prId The stage site identifier.
+   * @param environmentName The stage site identifier.
+   * @param options The options parameters.
+   */
+  listStaticSiteBuildAppSettings(
+    resourceGroupName: string,
+    name: string,
+    environmentName: string,
+    options?: StaticSitesListStaticSiteBuildAppSettingsOptionalParams
+  ): Promise<StaticSitesListStaticSiteBuildAppSettingsResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, environmentName, options },
+      listStaticSiteBuildAppSettingsOperationSpec
+    );
+  }
+
+  /**
+   * Description for Gets the application settings of a static site build.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site.
+   * @param environmentName The stage site identifier.
    * @param options The options parameters.
    */
   listStaticSiteBuildFunctionAppSettings(
     resourceGroupName: string,
     name: string,
-    prId: string,
+    environmentName: string,
     options?: StaticSitesListStaticSiteBuildFunctionAppSettingsOptionalParams
   ): Promise<StaticSitesListStaticSiteBuildFunctionAppSettingsResponse> {
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, prId, options },
+      { resourceGroupName, name, environmentName, options },
       listStaticSiteBuildFunctionAppSettingsOperationSpec
+    );
+  }
+
+  /**
+   * Description for Gets the details of the user provided function apps registered with a static site
+   * build
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site.
+   * @param environmentName The stage site identifier.
+   * @param options The options parameters.
+   */
+  private _getUserProvidedFunctionAppsForStaticSiteBuild(
+    resourceGroupName: string,
+    name: string,
+    environmentName: string,
+    options?: StaticSitesGetUserProvidedFunctionAppsForStaticSiteBuildOptionalParams
+  ): Promise<StaticSitesGetUserProvidedFunctionAppsForStaticSiteBuildResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, environmentName, options },
+      getUserProvidedFunctionAppsForStaticSiteBuildOperationSpec
+    );
+  }
+
+  /**
+   * Description for Gets the details of the user provided function app registered with a static site
+   * build
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site.
+   * @param environmentName The stage site identifier.
+   * @param functionAppName Name of the function app registered with the static site build.
+   * @param options The options parameters.
+   */
+  getUserProvidedFunctionAppForStaticSiteBuild(
+    resourceGroupName: string,
+    name: string,
+    environmentName: string,
+    functionAppName: string,
+    options?: StaticSitesGetUserProvidedFunctionAppForStaticSiteBuildOptionalParams
+  ): Promise<StaticSitesGetUserProvidedFunctionAppForStaticSiteBuildResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, environmentName, functionAppName, options },
+      getUserProvidedFunctionAppForStaticSiteBuildOperationSpec
+    );
+  }
+
+  /**
+   * Description for Register a user provided function app with a static site build
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site.
+   * @param environmentName The stage site identifier.
+   * @param functionAppName Name of the function app to register with the static site build.
+   * @param staticSiteUserProvidedFunctionEnvelope A JSON representation of the user provided function
+   *                                               app properties. See example.
+   * @param options The options parameters.
+   */
+  async beginRegisterUserProvidedFunctionAppWithStaticSiteBuild(
+    resourceGroupName: string,
+    name: string,
+    environmentName: string,
+    functionAppName: string,
+    staticSiteUserProvidedFunctionEnvelope: StaticSiteUserProvidedFunctionAppARMResource,
+    options?: StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<
+        StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildResponse
+      >,
+      StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      {
+        resourceGroupName,
+        name,
+        environmentName,
+        functionAppName,
+        staticSiteUserProvidedFunctionEnvelope,
+        options
+      },
+      registerUserProvidedFunctionAppWithStaticSiteBuildOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs
+    });
+  }
+
+  /**
+   * Description for Register a user provided function app with a static site build
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site.
+   * @param environmentName The stage site identifier.
+   * @param functionAppName Name of the function app to register with the static site build.
+   * @param staticSiteUserProvidedFunctionEnvelope A JSON representation of the user provided function
+   *                                               app properties. See example.
+   * @param options The options parameters.
+   */
+  async beginRegisterUserProvidedFunctionAppWithStaticSiteBuildAndWait(
+    resourceGroupName: string,
+    name: string,
+    environmentName: string,
+    functionAppName: string,
+    staticSiteUserProvidedFunctionEnvelope: StaticSiteUserProvidedFunctionAppARMResource,
+    options?: StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildOptionalParams
+  ): Promise<
+    StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildResponse
+  > {
+    const poller = await this.beginRegisterUserProvidedFunctionAppWithStaticSiteBuild(
+      resourceGroupName,
+      name,
+      environmentName,
+      functionAppName,
+      staticSiteUserProvidedFunctionEnvelope,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
+   * Description for Detach the user provided function app from the static site build
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site.
+   * @param environmentName The stage site identifier.
+   * @param functionAppName Name of the function app registered with the static site build.
+   * @param options The options parameters.
+   */
+  detachUserProvidedFunctionAppFromStaticSiteBuild(
+    resourceGroupName: string,
+    name: string,
+    environmentName: string,
+    functionAppName: string,
+    options?: StaticSitesDetachUserProvidedFunctionAppFromStaticSiteBuildOptionalParams
+  ): Promise<void> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, environmentName, functionAppName, options },
+      detachUserProvidedFunctionAppFromStaticSiteBuildOperationSpec
+    );
+  }
+
+  /**
+   * Description for Deploys zipped content to a specific environment of a static site.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site.
+   * @param environmentName Name of the environment.
+   * @param staticSiteZipDeploymentEnvelope A JSON representation of the StaticSiteZipDeployment
+   *                                        properties. See example.
+   * @param options The options parameters.
+   */
+  async beginCreateZipDeploymentForStaticSiteBuild(
+    resourceGroupName: string,
+    name: string,
+    environmentName: string,
+    staticSiteZipDeploymentEnvelope: StaticSiteZipDeploymentARMResource,
+    options?: StaticSitesCreateZipDeploymentForStaticSiteBuildOptionalParams
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      {
+        resourceGroupName,
+        name,
+        environmentName,
+        staticSiteZipDeploymentEnvelope,
+        options
+      },
+      createZipDeploymentForStaticSiteBuildOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs
+    });
+  }
+
+  /**
+   * Description for Deploys zipped content to a specific environment of a static site.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site.
+   * @param environmentName Name of the environment.
+   * @param staticSiteZipDeploymentEnvelope A JSON representation of the StaticSiteZipDeployment
+   *                                        properties. See example.
+   * @param options The options parameters.
+   */
+  async beginCreateZipDeploymentForStaticSiteBuildAndWait(
+    resourceGroupName: string,
+    name: string,
+    environmentName: string,
+    staticSiteZipDeploymentEnvelope: StaticSiteZipDeploymentARMResource,
+    options?: StaticSitesCreateZipDeploymentForStaticSiteBuildOptionalParams
+  ): Promise<void> {
+    const poller = await this.beginCreateZipDeploymentForStaticSiteBuild(
+      resourceGroupName,
+      name,
+      environmentName,
+      staticSiteZipDeploymentEnvelope,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
+   * Description for Creates or updates the app settings of a static site.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site.
+   * @param appSettings The dictionary containing the static site app settings to update.
+   * @param options The options parameters.
+   */
+  createOrUpdateStaticSiteAppSettings(
+    resourceGroupName: string,
+    name: string,
+    appSettings: StringDictionary,
+    options?: StaticSitesCreateOrUpdateStaticSiteAppSettingsOptionalParams
+  ): Promise<StaticSitesCreateOrUpdateStaticSiteAppSettingsResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, appSettings, options },
+      createOrUpdateStaticSiteAppSettingsOperationSpec
     );
   }
 
@@ -862,7 +1691,7 @@ export class StaticSitesImpl implements StaticSites {
    * Description for Creates or updates the function app settings of a static site.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the static site.
-   * @param appSettings String dictionary resource.
+   * @param appSettings The dictionary containing the static site function app settings to update.
    * @param options The options parameters.
    */
   createOrUpdateStaticSiteFunctionAppSettings(
@@ -919,23 +1748,129 @@ export class StaticSitesImpl implements StaticSites {
   }
 
   /**
+   * Description for Gets an existing custom domain for a particular static site.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site resource to search in.
+   * @param domainName The custom domain name.
+   * @param options The options parameters.
+   */
+  getStaticSiteCustomDomain(
+    resourceGroupName: string,
+    name: string,
+    domainName: string,
+    options?: StaticSitesGetStaticSiteCustomDomainOptionalParams
+  ): Promise<StaticSitesGetStaticSiteCustomDomainResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, domainName, options },
+      getStaticSiteCustomDomainOperationSpec
+    );
+  }
+
+  /**
    * Description for Creates a new static site custom domain in an existing resource group and static
    * site.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the static site.
    * @param domainName The custom domain to create.
+   * @param staticSiteCustomDomainRequestPropertiesEnvelope A JSON representation of the static site
+   *                                                        custom domain request properties. See example.
    * @param options The options parameters.
    */
-  createOrUpdateStaticSiteCustomDomain(
+  async beginCreateOrUpdateStaticSiteCustomDomain(
     resourceGroupName: string,
     name: string,
     domainName: string,
+    staticSiteCustomDomainRequestPropertiesEnvelope: StaticSiteCustomDomainRequestPropertiesARMResource,
     options?: StaticSitesCreateOrUpdateStaticSiteCustomDomainOptionalParams
-  ): Promise<StaticSitesCreateOrUpdateStaticSiteCustomDomainResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, name, domainName, options },
+  ): Promise<
+    PollerLike<
+      PollOperationState<
+        StaticSitesCreateOrUpdateStaticSiteCustomDomainResponse
+      >,
+      StaticSitesCreateOrUpdateStaticSiteCustomDomainResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<StaticSitesCreateOrUpdateStaticSiteCustomDomainResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      {
+        resourceGroupName,
+        name,
+        domainName,
+        staticSiteCustomDomainRequestPropertiesEnvelope,
+        options
+      },
       createOrUpdateStaticSiteCustomDomainOperationSpec
     );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs
+    });
+  }
+
+  /**
+   * Description for Creates a new static site custom domain in an existing resource group and static
+   * site.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site.
+   * @param domainName The custom domain to create.
+   * @param staticSiteCustomDomainRequestPropertiesEnvelope A JSON representation of the static site
+   *                                                        custom domain request properties. See example.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateStaticSiteCustomDomainAndWait(
+    resourceGroupName: string,
+    name: string,
+    domainName: string,
+    staticSiteCustomDomainRequestPropertiesEnvelope: StaticSiteCustomDomainRequestPropertiesARMResource,
+    options?: StaticSitesCreateOrUpdateStaticSiteCustomDomainOptionalParams
+  ): Promise<StaticSitesCreateOrUpdateStaticSiteCustomDomainResponse> {
+    const poller = await this.beginCreateOrUpdateStaticSiteCustomDomain(
+      resourceGroupName,
+      name,
+      domainName,
+      staticSiteCustomDomainRequestPropertiesEnvelope,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -945,16 +1880,82 @@ export class StaticSitesImpl implements StaticSites {
    * @param domainName The custom domain to delete.
    * @param options The options parameters.
    */
-  deleteStaticSiteCustomDomain(
+  async beginDeleteStaticSiteCustomDomain(
+    resourceGroupName: string,
+    name: string,
+    domainName: string,
+    options?: StaticSitesDeleteStaticSiteCustomDomainOptionalParams
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { resourceGroupName, name, domainName, options },
+      deleteStaticSiteCustomDomainOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs
+    });
+  }
+
+  /**
+   * Description for Deletes a custom domain.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site.
+   * @param domainName The custom domain to delete.
+   * @param options The options parameters.
+   */
+  async beginDeleteStaticSiteCustomDomainAndWait(
     resourceGroupName: string,
     name: string,
     domainName: string,
     options?: StaticSitesDeleteStaticSiteCustomDomainOptionalParams
   ): Promise<void> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, name, domainName, options },
-      deleteStaticSiteCustomDomainOperationSpec
+    const poller = await this.beginDeleteStaticSiteCustomDomain(
+      resourceGroupName,
+      name,
+      domainName,
+      options
     );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -962,18 +1963,97 @@ export class StaticSitesImpl implements StaticSites {
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the static site.
    * @param domainName The custom domain to validate.
+   * @param staticSiteCustomDomainRequestPropertiesEnvelope A JSON representation of the static site
+   *                                                        custom domain request properties. See example.
    * @param options The options parameters.
    */
-  validateCustomDomainCanBeAddedToStaticSite(
+  async beginValidateCustomDomainCanBeAddedToStaticSite(
     resourceGroupName: string,
     name: string,
     domainName: string,
+    staticSiteCustomDomainRequestPropertiesEnvelope: StaticSiteCustomDomainRequestPropertiesARMResource,
     options?: StaticSitesValidateCustomDomainCanBeAddedToStaticSiteOptionalParams
-  ): Promise<void> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, name, domainName, options },
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      {
+        resourceGroupName,
+        name,
+        domainName,
+        staticSiteCustomDomainRequestPropertiesEnvelope,
+        options
+      },
       validateCustomDomainCanBeAddedToStaticSiteOperationSpec
     );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs
+    });
+  }
+
+  /**
+   * Description for Validates a particular custom domain can be added to a static site.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site.
+   * @param domainName The custom domain to validate.
+   * @param staticSiteCustomDomainRequestPropertiesEnvelope A JSON representation of the static site
+   *                                                        custom domain request properties. See example.
+   * @param options The options parameters.
+   */
+  async beginValidateCustomDomainCanBeAddedToStaticSiteAndWait(
+    resourceGroupName: string,
+    name: string,
+    domainName: string,
+    staticSiteCustomDomainRequestPropertiesEnvelope: StaticSiteCustomDomainRequestPropertiesARMResource,
+    options?: StaticSitesValidateCustomDomainCanBeAddedToStaticSiteOptionalParams
+  ): Promise<void> {
+    const poller = await this.beginValidateCustomDomainCanBeAddedToStaticSite(
+      resourceGroupName,
+      name,
+      domainName,
+      staticSiteCustomDomainRequestPropertiesEnvelope,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -982,15 +2062,78 @@ export class StaticSitesImpl implements StaticSites {
    * @param name Name of the static site to detach.
    * @param options The options parameters.
    */
-  detachStaticSite(
+  async beginDetachStaticSite(
+    resourceGroupName: string,
+    name: string,
+    options?: StaticSitesDetachStaticSiteOptionalParams
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { resourceGroupName, name, options },
+      detachStaticSiteOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs
+    });
+  }
+
+  /**
+   * Description for Detaches a static site.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site to detach.
+   * @param options The options parameters.
+   */
+  async beginDetachStaticSiteAndWait(
     resourceGroupName: string,
     name: string,
     options?: StaticSitesDetachStaticSiteOptionalParams
   ): Promise<void> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, name, options },
-      detachStaticSiteOperationSpec
+    const poller = await this.beginDetachStaticSite(
+      resourceGroupName,
+      name,
+      options
     );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -1007,6 +2150,40 @@ export class StaticSitesImpl implements StaticSites {
     return this.client.sendOperationRequest(
       { resourceGroupName, name, options },
       listStaticSiteFunctionsOperationSpec
+    );
+  }
+
+  /**
+   * Description for Gets the application settings of a static site.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site.
+   * @param options The options parameters.
+   */
+  listStaticSiteAppSettings(
+    resourceGroupName: string,
+    name: string,
+    options?: StaticSitesListStaticSiteAppSettingsOptionalParams
+  ): Promise<StaticSitesListStaticSiteAppSettingsResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, options },
+      listStaticSiteAppSettingsOperationSpec
+    );
+  }
+
+  /**
+   * Description for Lists the roles configured for the static site.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site.
+   * @param options The options parameters.
+   */
+  listStaticSiteConfiguredRoles(
+    resourceGroupName: string,
+    name: string,
+    options?: StaticSitesListStaticSiteConfiguredRolesOptionalParams
+  ): Promise<StaticSitesListStaticSiteConfiguredRolesResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, options },
+      listStaticSiteConfiguredRolesOperationSpec
     );
   }
 
@@ -1045,6 +2222,252 @@ export class StaticSitesImpl implements StaticSites {
   }
 
   /**
+   * Description for Gets the list of private endpoint connections associated with a static site
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site.
+   * @param options The options parameters.
+   */
+  private _getPrivateEndpointConnectionList(
+    resourceGroupName: string,
+    name: string,
+    options?: StaticSitesGetPrivateEndpointConnectionListOptionalParams
+  ): Promise<StaticSitesGetPrivateEndpointConnectionListResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, options },
+      getPrivateEndpointConnectionListOperationSpec
+    );
+  }
+
+  /**
+   * Description for Gets a private endpoint connection
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site.
+   * @param privateEndpointConnectionName Name of the private endpoint connection.
+   * @param options The options parameters.
+   */
+  getPrivateEndpointConnection(
+    resourceGroupName: string,
+    name: string,
+    privateEndpointConnectionName: string,
+    options?: StaticSitesGetPrivateEndpointConnectionOptionalParams
+  ): Promise<StaticSitesGetPrivateEndpointConnectionResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, privateEndpointConnectionName, options },
+      getPrivateEndpointConnectionOperationSpec
+    );
+  }
+
+  /**
+   * Description for Approves or rejects a private endpoint connection
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site.
+   * @param privateEndpointConnectionName Name of the private endpoint connection.
+   * @param privateEndpointWrapper Request body.
+   * @param options The options parameters.
+   */
+  async beginApproveOrRejectPrivateEndpointConnection(
+    resourceGroupName: string,
+    name: string,
+    privateEndpointConnectionName: string,
+    privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource,
+    options?: StaticSitesApproveOrRejectPrivateEndpointConnectionOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<
+        StaticSitesApproveOrRejectPrivateEndpointConnectionResponse
+      >,
+      StaticSitesApproveOrRejectPrivateEndpointConnectionResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<StaticSitesApproveOrRejectPrivateEndpointConnectionResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      {
+        resourceGroupName,
+        name,
+        privateEndpointConnectionName,
+        privateEndpointWrapper,
+        options
+      },
+      approveOrRejectPrivateEndpointConnectionOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs
+    });
+  }
+
+  /**
+   * Description for Approves or rejects a private endpoint connection
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site.
+   * @param privateEndpointConnectionName Name of the private endpoint connection.
+   * @param privateEndpointWrapper Request body.
+   * @param options The options parameters.
+   */
+  async beginApproveOrRejectPrivateEndpointConnectionAndWait(
+    resourceGroupName: string,
+    name: string,
+    privateEndpointConnectionName: string,
+    privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource,
+    options?: StaticSitesApproveOrRejectPrivateEndpointConnectionOptionalParams
+  ): Promise<StaticSitesApproveOrRejectPrivateEndpointConnectionResponse> {
+    const poller = await this.beginApproveOrRejectPrivateEndpointConnection(
+      resourceGroupName,
+      name,
+      privateEndpointConnectionName,
+      privateEndpointWrapper,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
+   * Description for Deletes a private endpoint connection
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site.
+   * @param privateEndpointConnectionName Name of the private endpoint connection.
+   * @param options The options parameters.
+   */
+  async beginDeletePrivateEndpointConnection(
+    resourceGroupName: string,
+    name: string,
+    privateEndpointConnectionName: string,
+    options?: StaticSitesDeletePrivateEndpointConnectionOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<StaticSitesDeletePrivateEndpointConnectionResponse>,
+      StaticSitesDeletePrivateEndpointConnectionResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<StaticSitesDeletePrivateEndpointConnectionResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { resourceGroupName, name, privateEndpointConnectionName, options },
+      deletePrivateEndpointConnectionOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs
+    });
+  }
+
+  /**
+   * Description for Deletes a private endpoint connection
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site.
+   * @param privateEndpointConnectionName Name of the private endpoint connection.
+   * @param options The options parameters.
+   */
+  async beginDeletePrivateEndpointConnectionAndWait(
+    resourceGroupName: string,
+    name: string,
+    privateEndpointConnectionName: string,
+    options?: StaticSitesDeletePrivateEndpointConnectionOptionalParams
+  ): Promise<StaticSitesDeletePrivateEndpointConnectionResponse> {
+    const poller = await this.beginDeletePrivateEndpointConnection(
+      resourceGroupName,
+      name,
+      privateEndpointConnectionName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
+   * Description for Gets the private link resources
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the site.
+   * @param options The options parameters.
+   */
+  getPrivateLinkResources(
+    resourceGroupName: string,
+    name: string,
+    options?: StaticSitesGetPrivateLinkResourcesOptionalParams
+  ): Promise<StaticSitesGetPrivateLinkResourcesResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, options },
+      getPrivateLinkResourcesOperationSpec
+    );
+  }
+
+  /**
    * Description for Resets the api key for an existing static site.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the static site.
@@ -1061,6 +2484,253 @@ export class StaticSitesImpl implements StaticSites {
       { resourceGroupName, name, resetPropertiesEnvelope, options },
       resetStaticSiteApiKeyOperationSpec
     );
+  }
+
+  /**
+   * Description for Gets the details of the user provided function apps registered with a static site
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site.
+   * @param options The options parameters.
+   */
+  private _getUserProvidedFunctionAppsForStaticSite(
+    resourceGroupName: string,
+    name: string,
+    options?: StaticSitesGetUserProvidedFunctionAppsForStaticSiteOptionalParams
+  ): Promise<StaticSitesGetUserProvidedFunctionAppsForStaticSiteResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, options },
+      getUserProvidedFunctionAppsForStaticSiteOperationSpec
+    );
+  }
+
+  /**
+   * Description for Gets the details of the user provided function app registered with a static site
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site.
+   * @param functionAppName Name of the function app registered with the static site.
+   * @param options The options parameters.
+   */
+  getUserProvidedFunctionAppForStaticSite(
+    resourceGroupName: string,
+    name: string,
+    functionAppName: string,
+    options?: StaticSitesGetUserProvidedFunctionAppForStaticSiteOptionalParams
+  ): Promise<StaticSitesGetUserProvidedFunctionAppForStaticSiteResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, functionAppName, options },
+      getUserProvidedFunctionAppForStaticSiteOperationSpec
+    );
+  }
+
+  /**
+   * Description for Register a user provided function app with a static site
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site.
+   * @param functionAppName Name of the function app to register with the static site.
+   * @param staticSiteUserProvidedFunctionEnvelope A JSON representation of the user provided function
+   *                                               app properties. See example.
+   * @param options The options parameters.
+   */
+  async beginRegisterUserProvidedFunctionAppWithStaticSite(
+    resourceGroupName: string,
+    name: string,
+    functionAppName: string,
+    staticSiteUserProvidedFunctionEnvelope: StaticSiteUserProvidedFunctionAppARMResource,
+    options?: StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<
+        StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteResponse
+      >,
+      StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      {
+        resourceGroupName,
+        name,
+        functionAppName,
+        staticSiteUserProvidedFunctionEnvelope,
+        options
+      },
+      registerUserProvidedFunctionAppWithStaticSiteOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs
+    });
+  }
+
+  /**
+   * Description for Register a user provided function app with a static site
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site.
+   * @param functionAppName Name of the function app to register with the static site.
+   * @param staticSiteUserProvidedFunctionEnvelope A JSON representation of the user provided function
+   *                                               app properties. See example.
+   * @param options The options parameters.
+   */
+  async beginRegisterUserProvidedFunctionAppWithStaticSiteAndWait(
+    resourceGroupName: string,
+    name: string,
+    functionAppName: string,
+    staticSiteUserProvidedFunctionEnvelope: StaticSiteUserProvidedFunctionAppARMResource,
+    options?: StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteOptionalParams
+  ): Promise<StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteResponse> {
+    const poller = await this.beginRegisterUserProvidedFunctionAppWithStaticSite(
+      resourceGroupName,
+      name,
+      functionAppName,
+      staticSiteUserProvidedFunctionEnvelope,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
+   * Description for Detach the user provided function app from the static site
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site.
+   * @param functionAppName Name of the function app registered with the static site.
+   * @param options The options parameters.
+   */
+  detachUserProvidedFunctionAppFromStaticSite(
+    resourceGroupName: string,
+    name: string,
+    functionAppName: string,
+    options?: StaticSitesDetachUserProvidedFunctionAppFromStaticSiteOptionalParams
+  ): Promise<void> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, functionAppName, options },
+      detachUserProvidedFunctionAppFromStaticSiteOperationSpec
+    );
+  }
+
+  /**
+   * Description for Deploys zipped content to a static site.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site.
+   * @param staticSiteZipDeploymentEnvelope A JSON representation of the StaticSiteZipDeployment
+   *                                        properties. See example.
+   * @param options The options parameters.
+   */
+  async beginCreateZipDeploymentForStaticSite(
+    resourceGroupName: string,
+    name: string,
+    staticSiteZipDeploymentEnvelope: StaticSiteZipDeploymentARMResource,
+    options?: StaticSitesCreateZipDeploymentForStaticSiteOptionalParams
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { resourceGroupName, name, staticSiteZipDeploymentEnvelope, options },
+      createZipDeploymentForStaticSiteOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs
+    });
+  }
+
+  /**
+   * Description for Deploys zipped content to a static site.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site.
+   * @param staticSiteZipDeploymentEnvelope A JSON representation of the StaticSiteZipDeployment
+   *                                        properties. See example.
+   * @param options The options parameters.
+   */
+  async beginCreateZipDeploymentForStaticSiteAndWait(
+    resourceGroupName: string,
+    name: string,
+    staticSiteZipDeploymentEnvelope: StaticSiteZipDeploymentARMResource,
+    options?: StaticSitesCreateZipDeploymentForStaticSiteOptionalParams
+  ): Promise<void> {
+    const poller = await this.beginCreateZipDeploymentForStaticSite(
+      resourceGroupName,
+      name,
+      staticSiteZipDeploymentEnvelope,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -1140,7 +2810,7 @@ export class StaticSitesImpl implements StaticSites {
    * ListStaticSiteBuildFunctionsNext
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the static site.
-   * @param prId The stage site identifier.
+   * @param environmentName The stage site identifier.
    * @param nextLink The nextLink from the previous successful call to the ListStaticSiteBuildFunctions
    *                 method.
    * @param options The options parameters.
@@ -1148,13 +2818,37 @@ export class StaticSitesImpl implements StaticSites {
   private _listStaticSiteBuildFunctionsNext(
     resourceGroupName: string,
     name: string,
-    prId: string,
+    environmentName: string,
     nextLink: string,
     options?: StaticSitesListStaticSiteBuildFunctionsNextOptionalParams
   ): Promise<StaticSitesListStaticSiteBuildFunctionsNextResponse> {
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, prId, nextLink, options },
+      { resourceGroupName, name, environmentName, nextLink, options },
       listStaticSiteBuildFunctionsNextOperationSpec
+    );
+  }
+
+  /**
+   * GetUserProvidedFunctionAppsForStaticSiteBuildNext
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site.
+   * @param environmentName The stage site identifier.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 GetUserProvidedFunctionAppsForStaticSiteBuild method.
+   * @param options The options parameters.
+   */
+  private _getUserProvidedFunctionAppsForStaticSiteBuildNext(
+    resourceGroupName: string,
+    name: string,
+    environmentName: string,
+    nextLink: string,
+    options?: StaticSitesGetUserProvidedFunctionAppsForStaticSiteBuildNextOptionalParams
+  ): Promise<
+    StaticSitesGetUserProvidedFunctionAppsForStaticSiteBuildNextResponse
+  > {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, environmentName, nextLink, options },
+      getUserProvidedFunctionAppsForStaticSiteBuildNextOperationSpec
     );
   }
 
@@ -1197,10 +2891,73 @@ export class StaticSitesImpl implements StaticSites {
       listStaticSiteFunctionsNextOperationSpec
     );
   }
+
+  /**
+   * GetPrivateEndpointConnectionListNext
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 GetPrivateEndpointConnectionList method.
+   * @param options The options parameters.
+   */
+  private _getPrivateEndpointConnectionListNext(
+    resourceGroupName: string,
+    name: string,
+    nextLink: string,
+    options?: StaticSitesGetPrivateEndpointConnectionListNextOptionalParams
+  ): Promise<StaticSitesGetPrivateEndpointConnectionListNextResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, nextLink, options },
+      getPrivateEndpointConnectionListNextOperationSpec
+    );
+  }
+
+  /**
+   * GetUserProvidedFunctionAppsForStaticSiteNext
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the static site.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 GetUserProvidedFunctionAppsForStaticSite method.
+   * @param options The options parameters.
+   */
+  private _getUserProvidedFunctionAppsForStaticSiteNext(
+    resourceGroupName: string,
+    name: string,
+    nextLink: string,
+    options?: StaticSitesGetUserProvidedFunctionAppsForStaticSiteNextOptionalParams
+  ): Promise<StaticSitesGetUserProvidedFunctionAppsForStaticSiteNextResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, nextLink, options },
+      getUserProvidedFunctionAppsForStaticSiteNextOperationSpec
+    );
+  }
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
+const previewWorkflowOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/providers/Microsoft.Web/locations/{location}/previewStaticSiteWorkflowFile",
+  httpMethod: "POST",
+  responses: {
+    200: {
+      bodyMapper: Mappers.StaticSitesWorkflowPreview
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  requestBody: Parameters.staticSitesWorkflowPreviewRequest,
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.location
+  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
+  serializer
+};
 const listOperationSpec: coreClient.OperationSpec = {
   path: "/subscriptions/{subscriptionId}/providers/Microsoft.Web/staticSites",
   httpMethod: "GET",
@@ -1268,7 +3025,13 @@ const createOrUpdateStaticSiteOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.StaticSiteARMResource
     },
+    201: {
+      bodyMapper: Mappers.StaticSiteARMResource
+    },
     202: {
+      bodyMapper: Mappers.StaticSiteARMResource
+    },
+    204: {
       bodyMapper: Mappers.StaticSiteARMResource
     },
     default: {
@@ -1293,7 +3056,9 @@ const deleteStaticSiteOperationSpec: coreClient.OperationSpec = {
   httpMethod: "DELETE",
   responses: {
     200: {},
+    201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -1430,7 +3195,7 @@ const getStaticSiteBuildsOperationSpec: coreClient.OperationSpec = {
 };
 const getStaticSiteBuildOperationSpec: coreClient.OperationSpec = {
   path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/builds/{prId}",
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/builds/{environmentName}",
   httpMethod: "GET",
   responses: {
     200: {
@@ -1446,18 +3211,20 @@ const getStaticSiteBuildOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.name,
-    Parameters.prId
+    Parameters.environmentName1
   ],
   headerParameters: [Parameters.accept],
   serializer
 };
 const deleteStaticSiteBuildOperationSpec: coreClient.OperationSpec = {
   path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/builds/{prId}",
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/builds/{environmentName}",
   httpMethod: "DELETE",
   responses: {
     200: {},
+    201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -1468,20 +3235,17 @@ const deleteStaticSiteBuildOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.name,
-    Parameters.prId
+    Parameters.environmentName1
   ],
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateStaticSiteBuildFunctionAppSettingsOperationSpec: coreClient.OperationSpec = {
+const createOrUpdateStaticSiteBuildAppSettingsOperationSpec: coreClient.OperationSpec = {
   path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/builds/{prId}/config/functionappsettings",
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/builds/{environmentName}/config/appsettings",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.StringDictionary
-    },
-    202: {
       bodyMapper: Mappers.StringDictionary
     },
     default: {
@@ -1495,7 +3259,32 @@ const createOrUpdateStaticSiteBuildFunctionAppSettingsOperationSpec: coreClient.
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.name,
-    Parameters.prId
+    Parameters.environmentName1
+  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
+  serializer
+};
+const createOrUpdateStaticSiteBuildFunctionAppSettingsOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/builds/{environmentName}/config/functionappsettings",
+  httpMethod: "PUT",
+  responses: {
+    200: {
+      bodyMapper: Mappers.StringDictionary
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  requestBody: Parameters.appSettings,
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.environmentName1
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
@@ -1503,7 +3292,7 @@ const createOrUpdateStaticSiteBuildFunctionAppSettingsOperationSpec: coreClient.
 };
 const listStaticSiteBuildFunctionsOperationSpec: coreClient.OperationSpec = {
   path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/builds/{prId}/functions",
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/builds/{environmentName}/functions",
   httpMethod: "GET",
   responses: {
     200: {
@@ -1519,20 +3308,17 @@ const listStaticSiteBuildFunctionsOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.name,
-    Parameters.prId
+    Parameters.environmentName1
   ],
   headerParameters: [Parameters.accept],
   serializer
 };
-const listStaticSiteBuildFunctionAppSettingsOperationSpec: coreClient.OperationSpec = {
+const listStaticSiteBuildAppSettingsOperationSpec: coreClient.OperationSpec = {
   path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/builds/{prId}/listFunctionAppSettings",
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/builds/{environmentName}/listAppSettings",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.StringDictionary
-    },
-    202: {
       bodyMapper: Mappers.StringDictionary
     },
     default: {
@@ -1545,9 +3331,187 @@ const listStaticSiteBuildFunctionAppSettingsOperationSpec: coreClient.OperationS
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.name,
-    Parameters.prId
+    Parameters.environmentName1
   ],
   headerParameters: [Parameters.accept],
+  serializer
+};
+const listStaticSiteBuildFunctionAppSettingsOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/builds/{environmentName}/listFunctionAppSettings",
+  httpMethod: "POST",
+  responses: {
+    200: {
+      bodyMapper: Mappers.StringDictionary
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.environmentName1
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const getUserProvidedFunctionAppsForStaticSiteBuildOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/builds/{environmentName}/userProvidedFunctionApps",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.StaticSiteUserProvidedFunctionAppsCollection
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.environmentName1
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const getUserProvidedFunctionAppForStaticSiteBuildOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/builds/{environmentName}/userProvidedFunctionApps/{functionAppName}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.StaticSiteUserProvidedFunctionAppARMResource
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.environmentName1,
+    Parameters.functionAppName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const registerUserProvidedFunctionAppWithStaticSiteBuildOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/builds/{environmentName}/userProvidedFunctionApps/{functionAppName}",
+  httpMethod: "PUT",
+  responses: {
+    200: {
+      bodyMapper: Mappers.StaticSiteUserProvidedFunctionAppARMResource
+    },
+    201: {
+      bodyMapper: Mappers.StaticSiteUserProvidedFunctionAppARMResource
+    },
+    202: {
+      bodyMapper: Mappers.StaticSiteUserProvidedFunctionAppARMResource
+    },
+    204: {
+      bodyMapper: Mappers.StaticSiteUserProvidedFunctionAppARMResource
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  requestBody: Parameters.staticSiteUserProvidedFunctionEnvelope,
+  queryParameters: [Parameters.apiVersion, Parameters.isForced],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.environmentName1,
+    Parameters.functionAppName
+  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
+  serializer
+};
+const detachUserProvidedFunctionAppFromStaticSiteBuildOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/builds/{environmentName}/userProvidedFunctionApps/{functionAppName}",
+  httpMethod: "DELETE",
+  responses: {
+    200: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.environmentName1,
+    Parameters.functionAppName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const createZipDeploymentForStaticSiteBuildOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/builds/{environmentName}/zipdeploy",
+  httpMethod: "POST",
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  requestBody: Parameters.staticSiteZipDeploymentEnvelope,
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.environmentName1
+  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
+  serializer
+};
+const createOrUpdateStaticSiteAppSettingsOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/config/appsettings",
+  httpMethod: "PUT",
+  responses: {
+    200: {
+      bodyMapper: Mappers.StringDictionary
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  requestBody: Parameters.appSettings,
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name
+  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const createOrUpdateStaticSiteFunctionAppSettingsOperationSpec: coreClient.OperationSpec = {
@@ -1556,9 +3520,6 @@ const createOrUpdateStaticSiteFunctionAppSettingsOperationSpec: coreClient.Opera
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.StringDictionary
-    },
-    202: {
       bodyMapper: Mappers.StringDictionary
     },
     default: {
@@ -1623,15 +3584,12 @@ const listStaticSiteCustomDomainsOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateStaticSiteCustomDomainOperationSpec: coreClient.OperationSpec = {
+const getStaticSiteCustomDomainOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/customDomains/{domainName}",
-  httpMethod: "PUT",
+  httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.StaticSiteCustomDomainOverviewARMResource
-    },
-    202: {
       bodyMapper: Mappers.StaticSiteCustomDomainOverviewARMResource
     },
     default: {
@@ -1649,13 +3607,49 @@ const createOrUpdateStaticSiteCustomDomainOperationSpec: coreClient.OperationSpe
   headerParameters: [Parameters.accept],
   serializer
 };
+const createOrUpdateStaticSiteCustomDomainOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/customDomains/{domainName}",
+  httpMethod: "PUT",
+  responses: {
+    200: {
+      bodyMapper: Mappers.StaticSiteCustomDomainOverviewARMResource
+    },
+    201: {
+      bodyMapper: Mappers.StaticSiteCustomDomainOverviewARMResource
+    },
+    202: {
+      bodyMapper: Mappers.StaticSiteCustomDomainOverviewARMResource
+    },
+    204: {
+      bodyMapper: Mappers.StaticSiteCustomDomainOverviewARMResource
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  requestBody: Parameters.staticSiteCustomDomainRequestPropertiesEnvelope,
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.domainName
+  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
+  serializer
+};
 const deleteStaticSiteCustomDomainOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/customDomains/{domainName}",
   httpMethod: "DELETE",
   responses: {
     200: {},
+    201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -1677,11 +3671,14 @@ const validateCustomDomainCanBeAddedToStaticSiteOperationSpec: coreClient.Operat
   httpMethod: "POST",
   responses: {
     200: {},
+    201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
+  requestBody: Parameters.staticSiteCustomDomainRequestPropertiesEnvelope,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1690,7 +3687,8 @@ const validateCustomDomainCanBeAddedToStaticSiteOperationSpec: coreClient.Operat
     Parameters.name,
     Parameters.domainName
   ],
-  headerParameters: [Parameters.accept],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const detachStaticSiteOperationSpec: coreClient.OperationSpec = {
@@ -1699,7 +3697,9 @@ const detachStaticSiteOperationSpec: coreClient.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {},
+    201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -1736,15 +3736,56 @@ const listStaticSiteFunctionsOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
+const listStaticSiteAppSettingsOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/listAppSettings",
+  httpMethod: "POST",
+  responses: {
+    200: {
+      bodyMapper: Mappers.StringDictionary
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listStaticSiteConfiguredRolesOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/listConfiguredRoles",
+  httpMethod: "POST",
+  responses: {
+    200: {
+      bodyMapper: Mappers.StringList
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
 const listStaticSiteFunctionAppSettingsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/listFunctionAppSettings",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.StringDictionary
-    },
-    202: {
       bodyMapper: Mappers.StringDictionary
     },
     default: {
@@ -1783,6 +3824,147 @@ const listStaticSiteSecretsOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
+const getPrivateEndpointConnectionListOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/privateEndpointConnections",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PrivateEndpointConnectionCollection
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const getPrivateEndpointConnectionOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/privateEndpointConnections/{privateEndpointConnectionName}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.RemotePrivateEndpointConnectionARMResource
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.privateEndpointConnectionName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const approveOrRejectPrivateEndpointConnectionOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/privateEndpointConnections/{privateEndpointConnectionName}",
+  httpMethod: "PUT",
+  responses: {
+    200: {
+      bodyMapper: Mappers.RemotePrivateEndpointConnectionARMResource
+    },
+    201: {
+      bodyMapper: Mappers.RemotePrivateEndpointConnectionARMResource
+    },
+    202: {
+      bodyMapper: Mappers.RemotePrivateEndpointConnectionARMResource
+    },
+    204: {
+      bodyMapper: Mappers.RemotePrivateEndpointConnectionARMResource
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  requestBody: Parameters.privateEndpointWrapper,
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.privateEndpointConnectionName
+  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
+  serializer
+};
+const deletePrivateEndpointConnectionOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/privateEndpointConnections/{privateEndpointConnectionName}",
+  httpMethod: "DELETE",
+  responses: {
+    200: {
+      bodyMapper: {
+        type: { name: "Dictionary", value: { type: { name: "any" } } }
+      }
+    },
+    201: {
+      bodyMapper: {
+        type: { name: "Dictionary", value: { type: { name: "any" } } }
+      }
+    },
+    202: {
+      bodyMapper: {
+        type: { name: "Dictionary", value: { type: { name: "any" } } }
+      }
+    },
+    204: {
+      bodyMapper: {
+        type: { name: "Dictionary", value: { type: { name: "any" } } }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.privateEndpointConnectionName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const getPrivateLinkResourcesOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/privateLinkResources",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PrivateLinkResourcesWrapper
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
 const resetStaticSiteApiKeyOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/resetapikey",
@@ -1794,6 +3976,132 @@ const resetStaticSiteApiKeyOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.resetPropertiesEnvelope,
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name
+  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
+  serializer
+};
+const getUserProvidedFunctionAppsForStaticSiteOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/userProvidedFunctionApps",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.StaticSiteUserProvidedFunctionAppsCollection
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const getUserProvidedFunctionAppForStaticSiteOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/userProvidedFunctionApps/{functionAppName}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.StaticSiteUserProvidedFunctionAppARMResource
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.functionAppName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const registerUserProvidedFunctionAppWithStaticSiteOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/userProvidedFunctionApps/{functionAppName}",
+  httpMethod: "PUT",
+  responses: {
+    200: {
+      bodyMapper: Mappers.StaticSiteUserProvidedFunctionAppARMResource
+    },
+    201: {
+      bodyMapper: Mappers.StaticSiteUserProvidedFunctionAppARMResource
+    },
+    202: {
+      bodyMapper: Mappers.StaticSiteUserProvidedFunctionAppARMResource
+    },
+    204: {
+      bodyMapper: Mappers.StaticSiteUserProvidedFunctionAppARMResource
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  requestBody: Parameters.staticSiteUserProvidedFunctionEnvelope,
+  queryParameters: [Parameters.apiVersion, Parameters.isForced],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.functionAppName
+  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
+  serializer
+};
+const detachUserProvidedFunctionAppFromStaticSiteOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/userProvidedFunctionApps/{functionAppName}",
+  httpMethod: "DELETE",
+  responses: {
+    200: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.functionAppName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const createZipDeploymentForStaticSiteOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/zipdeploy",
+  httpMethod: "POST",
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  requestBody: Parameters.staticSiteZipDeploymentEnvelope,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1909,7 +4217,30 @@ const listStaticSiteBuildFunctionsNextOperationSpec: coreClient.OperationSpec = 
     Parameters.resourceGroupName,
     Parameters.name,
     Parameters.nextLink,
-    Parameters.prId
+    Parameters.environmentName1
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const getUserProvidedFunctionAppsForStaticSiteBuildNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.StaticSiteUserProvidedFunctionAppsCollection
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.nextLink,
+    Parameters.environmentName1
   ],
   headerParameters: [Parameters.accept],
   serializer
@@ -1942,6 +4273,50 @@ const listStaticSiteFunctionsNextOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.StaticSiteFunctionOverviewCollection
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const getPrivateEndpointConnectionListNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PrivateEndpointConnectionCollection
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const getUserProvidedFunctionAppsForStaticSiteNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.StaticSiteUserProvidedFunctionAppsCollection
     },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse

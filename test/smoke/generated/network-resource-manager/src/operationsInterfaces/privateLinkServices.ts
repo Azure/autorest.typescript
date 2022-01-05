@@ -211,7 +211,25 @@ export interface PrivateLinkServices {
    * @param parameters The request body of CheckPrivateLinkService API call.
    * @param options The options parameters.
    */
-  checkPrivateLinkServiceVisibility(
+  beginCheckPrivateLinkServiceVisibility(
+    location: string,
+    parameters: CheckPrivateLinkServiceVisibilityRequest,
+    options?: PrivateLinkServicesCheckPrivateLinkServiceVisibilityOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<
+        PrivateLinkServicesCheckPrivateLinkServiceVisibilityResponse
+      >,
+      PrivateLinkServicesCheckPrivateLinkServiceVisibilityResponse
+    >
+  >;
+  /**
+   * Checks whether the subscription is visible to private link service.
+   * @param location The location of the domain name.
+   * @param parameters The request body of CheckPrivateLinkService API call.
+   * @param options The options parameters.
+   */
+  beginCheckPrivateLinkServiceVisibilityAndWait(
     location: string,
     parameters: CheckPrivateLinkServiceVisibilityRequest,
     options?: PrivateLinkServicesCheckPrivateLinkServiceVisibilityOptionalParams
@@ -223,7 +241,27 @@ export interface PrivateLinkServices {
    * @param parameters The request body of CheckPrivateLinkService API call.
    * @param options The options parameters.
    */
-  checkPrivateLinkServiceVisibilityByResourceGroup(
+  beginCheckPrivateLinkServiceVisibilityByResourceGroup(
+    location: string,
+    resourceGroupName: string,
+    parameters: CheckPrivateLinkServiceVisibilityRequest,
+    options?: PrivateLinkServicesCheckPrivateLinkServiceVisibilityByResourceGroupOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<
+        PrivateLinkServicesCheckPrivateLinkServiceVisibilityByResourceGroupResponse
+      >,
+      PrivateLinkServicesCheckPrivateLinkServiceVisibilityByResourceGroupResponse
+    >
+  >;
+  /**
+   * Checks whether the subscription is visible to private link service in the specified resource group.
+   * @param location The location of the domain name.
+   * @param resourceGroupName The name of the resource group.
+   * @param parameters The request body of CheckPrivateLinkService API call.
+   * @param options The options parameters.
+   */
+  beginCheckPrivateLinkServiceVisibilityByResourceGroupAndWait(
     location: string,
     resourceGroupName: string,
     parameters: CheckPrivateLinkServiceVisibilityRequest,

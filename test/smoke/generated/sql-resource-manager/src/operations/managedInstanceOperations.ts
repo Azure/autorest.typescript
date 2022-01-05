@@ -16,10 +16,10 @@ import {
   ManagedInstanceOperation,
   ManagedInstanceOperationsListByManagedInstanceNextOptionalParams,
   ManagedInstanceOperationsListByManagedInstanceOptionalParams,
-  ManagedInstanceOperationsCancelOptionalParams,
   ManagedInstanceOperationsListByManagedInstanceResponse,
   ManagedInstanceOperationsGetOptionalParams,
   ManagedInstanceOperationsGetResponse,
+  ManagedInstanceOperationsCancelOptionalParams,
   ManagedInstanceOperationsListByManagedInstanceNextResponse
 } from "../models";
 
@@ -110,26 +110,6 @@ export class ManagedInstanceOperationsImpl
   }
 
   /**
-   * Cancels the asynchronous operation on the managed instance.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param operationId
-   * @param options The options parameters.
-   */
-  cancel(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    operationId: string,
-    options?: ManagedInstanceOperationsCancelOptionalParams
-  ): Promise<void> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, managedInstanceName, operationId, options },
-      cancelOperationSpec
-    );
-  }
-
-  /**
    * Gets a list of operations performed on the managed instance.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -168,6 +148,26 @@ export class ManagedInstanceOperationsImpl
   }
 
   /**
+   * Cancels the asynchronous operation on the managed instance.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param operationId
+   * @param options The options parameters.
+   */
+  cancel(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    operationId: string,
+    options?: ManagedInstanceOperationsCancelOptionalParams
+  ): Promise<void> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, managedInstanceName, operationId, options },
+      cancelOperationSpec
+    );
+  }
+
+  /**
    * ListByManagedInstanceNext
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -190,21 +190,6 @@ export class ManagedInstanceOperationsImpl
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const cancelOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/operations/{operationId}/cancel",
-  httpMethod: "POST",
-  responses: { 200: {}, default: {} },
-  queryParameters: [Parameters.apiVersion5],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.managedInstanceName,
-    Parameters.operationId
-  ],
-  serializer
-};
 const listByManagedInstanceOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/operations",
@@ -215,7 +200,7 @@ const listByManagedInstanceOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion5],
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -235,15 +220,30 @@ const getOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion5],
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.managedInstanceName,
-    Parameters.operationId
+    Parameters.operationId,
+    Parameters.managedInstanceName
   ],
   headerParameters: [Parameters.accept],
+  serializer
+};
+const cancelOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/operations/{operationId}/cancel",
+  httpMethod: "POST",
+  responses: { 200: {}, default: {} },
+  queryParameters: [Parameters.apiVersion2],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.operationId,
+    Parameters.managedInstanceName
+  ],
   serializer
 };
 const listByManagedInstanceNextOperationSpec: coreClient.OperationSpec = {
@@ -255,7 +255,7 @@ const listByManagedInstanceNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion5],
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,

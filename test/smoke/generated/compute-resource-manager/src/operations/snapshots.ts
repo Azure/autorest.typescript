@@ -150,7 +150,7 @@ export class SnapshotsImpl implements Snapshots {
    * Creates or updates a snapshot.
    * @param resourceGroupName The name of the resource group.
    * @param snapshotName The name of the snapshot that is being created. The name can't be changed after
-   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name
+   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The max name
    *                     length is 80 characters.
    * @param snapshot Snapshot object supplied in the body of the Put disk operation.
    * @param options The options parameters.
@@ -220,7 +220,7 @@ export class SnapshotsImpl implements Snapshots {
    * Creates or updates a snapshot.
    * @param resourceGroupName The name of the resource group.
    * @param snapshotName The name of the snapshot that is being created. The name can't be changed after
-   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name
+   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The max name
    *                     length is 80 characters.
    * @param snapshot Snapshot object supplied in the body of the Put disk operation.
    * @param options The options parameters.
@@ -244,7 +244,7 @@ export class SnapshotsImpl implements Snapshots {
    * Updates (patches) a snapshot.
    * @param resourceGroupName The name of the resource group.
    * @param snapshotName The name of the snapshot that is being created. The name can't be changed after
-   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name
+   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The max name
    *                     length is 80 characters.
    * @param snapshot Snapshot object supplied in the body of the Patch snapshot operation.
    * @param options The options parameters.
@@ -314,7 +314,7 @@ export class SnapshotsImpl implements Snapshots {
    * Updates (patches) a snapshot.
    * @param resourceGroupName The name of the resource group.
    * @param snapshotName The name of the snapshot that is being created. The name can't be changed after
-   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name
+   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The max name
    *                     length is 80 characters.
    * @param snapshot Snapshot object supplied in the body of the Patch snapshot operation.
    * @param options The options parameters.
@@ -338,7 +338,7 @@ export class SnapshotsImpl implements Snapshots {
    * Gets information about a snapshot.
    * @param resourceGroupName The name of the resource group.
    * @param snapshotName The name of the snapshot that is being created. The name can't be changed after
-   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name
+   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The max name
    *                     length is 80 characters.
    * @param options The options parameters.
    */
@@ -357,7 +357,7 @@ export class SnapshotsImpl implements Snapshots {
    * Deletes a snapshot.
    * @param resourceGroupName The name of the resource group.
    * @param snapshotName The name of the snapshot that is being created. The name can't be changed after
-   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name
+   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The max name
    *                     length is 80 characters.
    * @param options The options parameters.
    */
@@ -420,7 +420,7 @@ export class SnapshotsImpl implements Snapshots {
    * Deletes a snapshot.
    * @param resourceGroupName The name of the resource group.
    * @param snapshotName The name of the snapshot that is being created. The name can't be changed after
-   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name
+   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The max name
    *                     length is 80 characters.
    * @param options The options parameters.
    */
@@ -466,7 +466,7 @@ export class SnapshotsImpl implements Snapshots {
    * Grants access to a snapshot.
    * @param resourceGroupName The name of the resource group.
    * @param snapshotName The name of the snapshot that is being created. The name can't be changed after
-   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name
+   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The max name
    *                     length is 80 characters.
    * @param grantAccessData Access data object supplied in the body of the get snapshot access operation.
    * @param options The options parameters.
@@ -537,7 +537,7 @@ export class SnapshotsImpl implements Snapshots {
    * Grants access to a snapshot.
    * @param resourceGroupName The name of the resource group.
    * @param snapshotName The name of the snapshot that is being created. The name can't be changed after
-   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name
+   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The max name
    *                     length is 80 characters.
    * @param grantAccessData Access data object supplied in the body of the get snapshot access operation.
    * @param options The options parameters.
@@ -561,7 +561,7 @@ export class SnapshotsImpl implements Snapshots {
    * Revokes access to a snapshot.
    * @param resourceGroupName The name of the resource group.
    * @param snapshotName The name of the snapshot that is being created. The name can't be changed after
-   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name
+   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The max name
    *                     length is 80 characters.
    * @param options The options parameters.
    */
@@ -625,7 +625,7 @@ export class SnapshotsImpl implements Snapshots {
    * Revokes access to a snapshot.
    * @param resourceGroupName The name of the resource group.
    * @param snapshotName The name of the snapshot that is being created. The name can't be changed after
-   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name
+   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The max name
    *                     length is 80 characters.
    * @param options The options parameters.
    */
@@ -696,7 +696,7 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.snapshot,
-  queryParameters: [Parameters.apiVersion2],
+  queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -726,7 +726,7 @@ const updateOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.snapshot1,
-  queryParameters: [Parameters.apiVersion2],
+  queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -746,7 +746,7 @@ const getOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.Snapshot
     }
   },
-  queryParameters: [Parameters.apiVersion2],
+  queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -761,7 +761,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/snapshots/{snapshotName}",
   httpMethod: "DELETE",
   responses: { 200: {}, 201: {}, 202: {}, 204: {} },
-  queryParameters: [Parameters.apiVersion2],
+  queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -779,7 +779,7 @@ const listByResourceGroupOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.SnapshotList
     }
   },
-  queryParameters: [Parameters.apiVersion2],
+  queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -796,7 +796,7 @@ const listOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.SnapshotList
     }
   },
-  queryParameters: [Parameters.apiVersion2],
+  queryParameters: [Parameters.apiVersion1],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.accept],
   serializer
@@ -820,7 +820,7 @@ const grantAccessOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.grantAccessData,
-  queryParameters: [Parameters.apiVersion2],
+  queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -836,7 +836,7 @@ const revokeAccessOperationSpec: coreClient.OperationSpec = {
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/snapshots/{snapshotName}/endGetAccess",
   httpMethod: "POST",
   responses: { 200: {}, 201: {}, 202: {}, 204: {} },
-  queryParameters: [Parameters.apiVersion2],
+  queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -853,7 +853,7 @@ const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.SnapshotList
     }
   },
-  queryParameters: [Parameters.apiVersion2],
+  queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -871,7 +871,7 @@ const listNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.SnapshotList
     }
   },
-  queryParameters: [Parameters.apiVersion2],
+  queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,

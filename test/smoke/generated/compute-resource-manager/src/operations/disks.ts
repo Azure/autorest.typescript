@@ -150,7 +150,7 @@ export class DisksImpl implements Disks {
    * Creates or updates a disk.
    * @param resourceGroupName The name of the resource group.
    * @param diskName The name of the managed disk that is being created. The name can't be changed after
-   *                 the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name
+   *                 the disk is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The maximum name
    *                 length is 80 characters.
    * @param disk Disk object supplied in the body of the Put disk operation.
    * @param options The options parameters.
@@ -220,7 +220,7 @@ export class DisksImpl implements Disks {
    * Creates or updates a disk.
    * @param resourceGroupName The name of the resource group.
    * @param diskName The name of the managed disk that is being created. The name can't be changed after
-   *                 the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name
+   *                 the disk is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The maximum name
    *                 length is 80 characters.
    * @param disk Disk object supplied in the body of the Put disk operation.
    * @param options The options parameters.
@@ -244,7 +244,7 @@ export class DisksImpl implements Disks {
    * Updates (patches) a disk.
    * @param resourceGroupName The name of the resource group.
    * @param diskName The name of the managed disk that is being created. The name can't be changed after
-   *                 the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name
+   *                 the disk is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The maximum name
    *                 length is 80 characters.
    * @param disk Disk object supplied in the body of the Patch disk operation.
    * @param options The options parameters.
@@ -311,7 +311,7 @@ export class DisksImpl implements Disks {
    * Updates (patches) a disk.
    * @param resourceGroupName The name of the resource group.
    * @param diskName The name of the managed disk that is being created. The name can't be changed after
-   *                 the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name
+   *                 the disk is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The maximum name
    *                 length is 80 characters.
    * @param disk Disk object supplied in the body of the Patch disk operation.
    * @param options The options parameters.
@@ -335,7 +335,7 @@ export class DisksImpl implements Disks {
    * Gets information about a disk.
    * @param resourceGroupName The name of the resource group.
    * @param diskName The name of the managed disk that is being created. The name can't be changed after
-   *                 the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name
+   *                 the disk is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The maximum name
    *                 length is 80 characters.
    * @param options The options parameters.
    */
@@ -354,7 +354,7 @@ export class DisksImpl implements Disks {
    * Deletes a disk.
    * @param resourceGroupName The name of the resource group.
    * @param diskName The name of the managed disk that is being created. The name can't be changed after
-   *                 the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name
+   *                 the disk is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The maximum name
    *                 length is 80 characters.
    * @param options The options parameters.
    */
@@ -417,7 +417,7 @@ export class DisksImpl implements Disks {
    * Deletes a disk.
    * @param resourceGroupName The name of the resource group.
    * @param diskName The name of the managed disk that is being created. The name can't be changed after
-   *                 the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name
+   *                 the disk is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The maximum name
    *                 length is 80 characters.
    * @param options The options parameters.
    */
@@ -457,7 +457,7 @@ export class DisksImpl implements Disks {
    * Grants access to a disk.
    * @param resourceGroupName The name of the resource group.
    * @param diskName The name of the managed disk that is being created. The name can't be changed after
-   *                 the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name
+   *                 the disk is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The maximum name
    *                 length is 80 characters.
    * @param grantAccessData Access data object supplied in the body of the get disk access operation.
    * @param options The options parameters.
@@ -528,7 +528,7 @@ export class DisksImpl implements Disks {
    * Grants access to a disk.
    * @param resourceGroupName The name of the resource group.
    * @param diskName The name of the managed disk that is being created. The name can't be changed after
-   *                 the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name
+   *                 the disk is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The maximum name
    *                 length is 80 characters.
    * @param grantAccessData Access data object supplied in the body of the get disk access operation.
    * @param options The options parameters.
@@ -552,7 +552,7 @@ export class DisksImpl implements Disks {
    * Revokes access to a disk.
    * @param resourceGroupName The name of the resource group.
    * @param diskName The name of the managed disk that is being created. The name can't be changed after
-   *                 the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name
+   *                 the disk is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The maximum name
    *                 length is 80 characters.
    * @param options The options parameters.
    */
@@ -616,7 +616,7 @@ export class DisksImpl implements Disks {
    * Revokes access to a disk.
    * @param resourceGroupName The name of the resource group.
    * @param diskName The name of the managed disk that is being created. The name can't be changed after
-   *                 the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name
+   *                 the disk is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The maximum name
    *                 length is 80 characters.
    * @param options The options parameters.
    */
@@ -687,7 +687,7 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.disk,
-  queryParameters: [Parameters.apiVersion2],
+  queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -717,7 +717,7 @@ const updateOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.disk1,
-  queryParameters: [Parameters.apiVersion2],
+  queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -737,7 +737,7 @@ const getOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.Disk
     }
   },
-  queryParameters: [Parameters.apiVersion2],
+  queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -752,7 +752,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/disks/{diskName}",
   httpMethod: "DELETE",
   responses: { 200: {}, 201: {}, 202: {}, 204: {} },
-  queryParameters: [Parameters.apiVersion2],
+  queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -770,7 +770,7 @@ const listByResourceGroupOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.DiskList
     }
   },
-  queryParameters: [Parameters.apiVersion2],
+  queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -787,7 +787,7 @@ const listOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.DiskList
     }
   },
-  queryParameters: [Parameters.apiVersion2],
+  queryParameters: [Parameters.apiVersion1],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.accept],
   serializer
@@ -811,7 +811,7 @@ const grantAccessOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.grantAccessData,
-  queryParameters: [Parameters.apiVersion2],
+  queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -827,7 +827,7 @@ const revokeAccessOperationSpec: coreClient.OperationSpec = {
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/disks/{diskName}/endGetAccess",
   httpMethod: "POST",
   responses: { 200: {}, 201: {}, 202: {}, 204: {} },
-  queryParameters: [Parameters.apiVersion2],
+  queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -844,7 +844,7 @@ const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.DiskList
     }
   },
-  queryParameters: [Parameters.apiVersion2],
+  queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -862,7 +862,7 @@ const listNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.DiskList
     }
   },
-  queryParameters: [Parameters.apiVersion2],
+  queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,

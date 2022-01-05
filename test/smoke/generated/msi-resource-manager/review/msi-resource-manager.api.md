@@ -105,7 +105,7 @@ export type OperationsListResponse = OperationListResult;
 // @public
 export type ProxyResource = Resource & {};
 
-// @public (undocumented)
+// @public
 export interface Resource {
     readonly id?: string;
     readonly name?: string;

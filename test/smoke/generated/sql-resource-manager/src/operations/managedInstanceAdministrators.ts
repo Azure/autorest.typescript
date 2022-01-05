@@ -19,6 +19,7 @@ import {
   ManagedInstanceAdministratorsListByInstanceNextOptionalParams,
   ManagedInstanceAdministratorsListByInstanceOptionalParams,
   ManagedInstanceAdministratorsListByInstanceResponse,
+  AdministratorName,
   ManagedInstanceAdministratorsGetOptionalParams,
   ManagedInstanceAdministratorsGetResponse,
   ManagedInstanceAdministratorsCreateOrUpdateOptionalParams,
@@ -136,15 +137,17 @@ export class ManagedInstanceAdministratorsImpl
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param managedInstanceName The name of the managed instance.
+   * @param administratorName
    * @param options The options parameters.
    */
   get(
     resourceGroupName: string,
     managedInstanceName: string,
+    administratorName: AdministratorName,
     options?: ManagedInstanceAdministratorsGetOptionalParams
   ): Promise<ManagedInstanceAdministratorsGetResponse> {
     return this.client.sendOperationRequest(
-      { resourceGroupName, managedInstanceName, options },
+      { resourceGroupName, managedInstanceName, administratorName, options },
       getOperationSpec
     );
   }
@@ -154,12 +157,14 @@ export class ManagedInstanceAdministratorsImpl
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param managedInstanceName The name of the managed instance.
+   * @param administratorName
    * @param parameters The requested administrator parameters.
    * @param options The options parameters.
    */
   async beginCreateOrUpdate(
     resourceGroupName: string,
     managedInstanceName: string,
+    administratorName: AdministratorName,
     parameters: ManagedInstanceAdministrator,
     options?: ManagedInstanceAdministratorsCreateOrUpdateOptionalParams
   ): Promise<
@@ -209,7 +214,13 @@ export class ManagedInstanceAdministratorsImpl
 
     const lro = new LroImpl(
       sendOperation,
-      { resourceGroupName, managedInstanceName, parameters, options },
+      {
+        resourceGroupName,
+        managedInstanceName,
+        administratorName,
+        parameters,
+        options
+      },
       createOrUpdateOperationSpec
     );
     return new LroEngine(lro, {
@@ -223,18 +234,21 @@ export class ManagedInstanceAdministratorsImpl
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param managedInstanceName The name of the managed instance.
+   * @param administratorName
    * @param parameters The requested administrator parameters.
    * @param options The options parameters.
    */
   async beginCreateOrUpdateAndWait(
     resourceGroupName: string,
     managedInstanceName: string,
+    administratorName: AdministratorName,
     parameters: ManagedInstanceAdministrator,
     options?: ManagedInstanceAdministratorsCreateOrUpdateOptionalParams
   ): Promise<ManagedInstanceAdministratorsCreateOrUpdateResponse> {
     const poller = await this.beginCreateOrUpdate(
       resourceGroupName,
       managedInstanceName,
+      administratorName,
       parameters,
       options
     );
@@ -246,11 +260,13 @@ export class ManagedInstanceAdministratorsImpl
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param managedInstanceName The name of the managed instance.
+   * @param administratorName
    * @param options The options parameters.
    */
   async beginDelete(
     resourceGroupName: string,
     managedInstanceName: string,
+    administratorName: AdministratorName,
     options?: ManagedInstanceAdministratorsDeleteOptionalParams
   ): Promise<PollerLike<PollOperationState<void>, void>> {
     const directSendOperation = async (
@@ -294,7 +310,7 @@ export class ManagedInstanceAdministratorsImpl
 
     const lro = new LroImpl(
       sendOperation,
-      { resourceGroupName, managedInstanceName, options },
+      { resourceGroupName, managedInstanceName, administratorName, options },
       deleteOperationSpec
     );
     return new LroEngine(lro, {
@@ -308,16 +324,19 @@ export class ManagedInstanceAdministratorsImpl
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param managedInstanceName The name of the managed instance.
+   * @param administratorName
    * @param options The options parameters.
    */
   async beginDeleteAndWait(
     resourceGroupName: string,
     managedInstanceName: string,
+    administratorName: AdministratorName,
     options?: ManagedInstanceAdministratorsDeleteOptionalParams
   ): Promise<void> {
     const poller = await this.beginDelete(
       resourceGroupName,
       managedInstanceName,
+      administratorName,
       options
     );
     return poller.pollUntilDone();
@@ -356,7 +375,7 @@ const listByInstanceOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion4],
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -376,7 +395,7 @@ const getOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion4],
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -406,8 +425,8 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  requestBody: Parameters.parameters48,
-  queryParameters: [Parameters.apiVersion4],
+  requestBody: Parameters.parameters47,
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -424,7 +443,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/administrators/{administratorName}",
   httpMethod: "DELETE",
   responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
-  queryParameters: [Parameters.apiVersion4],
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -443,7 +462,7 @@ const listByInstanceNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion4],
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,

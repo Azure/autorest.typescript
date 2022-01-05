@@ -10,12 +10,16 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   NetworkInterface,
+  NetworkInterfacesListCloudServiceRoleInstanceNetworkInterfacesOptionalParams,
+  NetworkInterfacesListCloudServiceNetworkInterfacesOptionalParams,
   NetworkInterfacesListAllOptionalParams,
   NetworkInterfacesListOptionalParams,
   NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesOptionalParams,
   NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesOptionalParams,
   NetworkInterfaceIPConfiguration,
   NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsOptionalParams,
+  NetworkInterfacesGetCloudServiceNetworkInterfaceOptionalParams,
+  NetworkInterfacesGetCloudServiceNetworkInterfaceResponse,
   NetworkInterfacesDeleteOptionalParams,
   NetworkInterfacesGetOptionalParams,
   NetworkInterfacesGetResponse,
@@ -37,6 +41,30 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a NetworkInterfaces. */
 export interface NetworkInterfaces {
+  /**
+   * Gets information about all network interfaces in a role instance in a cloud service.
+   * @param resourceGroupName The name of the resource group.
+   * @param cloudServiceName The name of the cloud service.
+   * @param roleInstanceName The name of role instance.
+   * @param options The options parameters.
+   */
+  listCloudServiceRoleInstanceNetworkInterfaces(
+    resourceGroupName: string,
+    cloudServiceName: string,
+    roleInstanceName: string,
+    options?: NetworkInterfacesListCloudServiceRoleInstanceNetworkInterfacesOptionalParams
+  ): PagedAsyncIterableIterator<NetworkInterface>;
+  /**
+   * Gets all network interfaces in a cloud service.
+   * @param resourceGroupName The name of the resource group.
+   * @param cloudServiceName The name of the cloud service.
+   * @param options The options parameters.
+   */
+  listCloudServiceNetworkInterfaces(
+    resourceGroupName: string,
+    cloudServiceName: string,
+    options?: NetworkInterfacesListCloudServiceNetworkInterfacesOptionalParams
+  ): PagedAsyncIterableIterator<NetworkInterface>;
   /**
    * Gets all network interfaces in a subscription.
    * @param options The options parameters.
@@ -92,6 +120,21 @@ export interface NetworkInterfaces {
     networkInterfaceName: string,
     options?: NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsOptionalParams
   ): PagedAsyncIterableIterator<NetworkInterfaceIPConfiguration>;
+  /**
+   * Get the specified network interface in a cloud service.
+   * @param resourceGroupName The name of the resource group.
+   * @param cloudServiceName The name of the cloud service.
+   * @param roleInstanceName The name of role instance.
+   * @param networkInterfaceName The name of the network interface.
+   * @param options The options parameters.
+   */
+  getCloudServiceNetworkInterface(
+    resourceGroupName: string,
+    cloudServiceName: string,
+    roleInstanceName: string,
+    networkInterfaceName: string,
+    options?: NetworkInterfacesGetCloudServiceNetworkInterfaceOptionalParams
+  ): Promise<NetworkInterfacesGetCloudServiceNetworkInterfaceResponse>;
   /**
    * Deletes the specified network interface.
    * @param resourceGroupName The name of the resource group.

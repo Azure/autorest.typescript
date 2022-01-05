@@ -491,6 +491,7 @@ export async function transformOperationGroup(
   return {
     name: operationGroupClassName,
     key: operationGroup.$key,
+    originalKey: operationGroup.$key,
     operations,
     isTopLevel,
     mediaTypes

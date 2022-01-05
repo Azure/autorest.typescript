@@ -30,6 +30,8 @@ import {
   P2SVpnGatewaysDeleteOptionalParams,
   P2SVpnGatewaysListByResourceGroupResponse,
   P2SVpnGatewaysListResponse,
+  P2SVpnGatewaysResetOptionalParams,
+  P2SVpnGatewaysResetResponse,
   P2SVpnProfileParameters,
   P2SVpnGatewaysGenerateVpnProfileOptionalParams,
   P2SVpnGatewaysGenerateVpnProfileResponse,
@@ -269,16 +271,88 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
    * @param p2SVpnGatewayParameters Parameters supplied to update a virtual wan p2s vpn gateway tags.
    * @param options The options parameters.
    */
-  updateTags(
+  async beginUpdateTags(
+    resourceGroupName: string,
+    gatewayName: string,
+    p2SVpnGatewayParameters: TagsObject,
+    options?: P2SVpnGatewaysUpdateTagsOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<P2SVpnGatewaysUpdateTagsResponse>,
+      P2SVpnGatewaysUpdateTagsResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<P2SVpnGatewaysUpdateTagsResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { resourceGroupName, gatewayName, p2SVpnGatewayParameters, options },
+      updateTagsOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs,
+      lroResourceLocationConfig: "azure-async-operation"
+    });
+  }
+
+  /**
+   * Updates virtual wan p2s vpn gateway tags.
+   * @param resourceGroupName The resource group name of the P2SVpnGateway.
+   * @param gatewayName The name of the gateway.
+   * @param p2SVpnGatewayParameters Parameters supplied to update a virtual wan p2s vpn gateway tags.
+   * @param options The options parameters.
+   */
+  async beginUpdateTagsAndWait(
     resourceGroupName: string,
     gatewayName: string,
     p2SVpnGatewayParameters: TagsObject,
     options?: P2SVpnGatewaysUpdateTagsOptionalParams
   ): Promise<P2SVpnGatewaysUpdateTagsResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, gatewayName, p2SVpnGatewayParameters, options },
-      updateTagsOperationSpec
+    const poller = await this.beginUpdateTags(
+      resourceGroupName,
+      gatewayName,
+      p2SVpnGatewayParameters,
+      options
     );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -385,6 +459,92 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
     options?: P2SVpnGatewaysListOptionalParams
   ): Promise<P2SVpnGatewaysListResponse> {
     return this.client.sendOperationRequest({ options }, listOperationSpec);
+  }
+
+  /**
+   * Resets the primary of the p2s vpn gateway in the specified resource group.
+   * @param resourceGroupName The resource group name of the P2SVpnGateway.
+   * @param gatewayName The name of the gateway.
+   * @param options The options parameters.
+   */
+  async beginReset(
+    resourceGroupName: string,
+    gatewayName: string,
+    options?: P2SVpnGatewaysResetOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<P2SVpnGatewaysResetResponse>,
+      P2SVpnGatewaysResetResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<P2SVpnGatewaysResetResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { resourceGroupName, gatewayName, options },
+      resetOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs,
+      lroResourceLocationConfig: "location"
+    });
+  }
+
+  /**
+   * Resets the primary of the p2s vpn gateway in the specified resource group.
+   * @param resourceGroupName The resource group name of the P2SVpnGateway.
+   * @param gatewayName The name of the gateway.
+   * @param options The options parameters.
+   */
+  async beginResetAndWait(
+    resourceGroupName: string,
+    gatewayName: string,
+    options?: P2SVpnGatewaysResetOptionalParams
+  ): Promise<P2SVpnGatewaysResetResponse> {
+    const poller = await this.beginReset(
+      resourceGroupName,
+      gatewayName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -845,6 +1005,15 @@ const updateTagsOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.P2SVpnGateway
     },
+    201: {
+      bodyMapper: Mappers.P2SVpnGateway
+    },
+    202: {
+      bodyMapper: Mappers.P2SVpnGateway
+    },
+    204: {
+      bodyMapper: Mappers.P2SVpnGateway
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -922,6 +1091,37 @@ const listOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
+const resetOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/p2svpnGateways/{gatewayName}/reset",
+  httpMethod: "POST",
+  responses: {
+    200: {
+      bodyMapper: Mappers.P2SVpnGateway
+    },
+    201: {
+      bodyMapper: Mappers.P2SVpnGateway
+    },
+    202: {
+      bodyMapper: Mappers.P2SVpnGateway
+    },
+    204: {
+      bodyMapper: Mappers.P2SVpnGateway
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.gatewayName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
 const generateVpnProfileOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/p2svpnGateways/{gatewayName}/generatevpnprofile",
@@ -943,7 +1143,7 @@ const generateVpnProfileOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.parameters60,
+  requestBody: Parameters.parameters74,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1007,7 +1207,7 @@ const getP2SVpnConnectionHealthDetailedOperationSpec: coreClient.OperationSpec =
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.request2,
+  requestBody: Parameters.request3,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1032,7 +1232,7 @@ const disconnectP2SVpnConnectionsOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.request,
+  requestBody: Parameters.request1,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

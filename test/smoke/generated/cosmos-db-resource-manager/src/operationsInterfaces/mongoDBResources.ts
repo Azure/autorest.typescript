@@ -24,6 +24,10 @@ import {
   ThroughputSettingsUpdateParameters,
   MongoDBResourcesUpdateMongoDBDatabaseThroughputOptionalParams,
   MongoDBResourcesUpdateMongoDBDatabaseThroughputResponse,
+  MongoDBResourcesMigrateMongoDBDatabaseToAutoscaleOptionalParams,
+  MongoDBResourcesMigrateMongoDBDatabaseToAutoscaleResponse,
+  MongoDBResourcesMigrateMongoDBDatabaseToManualThroughputOptionalParams,
+  MongoDBResourcesMigrateMongoDBDatabaseToManualThroughputResponse,
   MongoDBResourcesGetMongoDBCollectionOptionalParams,
   MongoDBResourcesGetMongoDBCollectionResponse,
   MongoDBCollectionCreateUpdateParameters,
@@ -33,7 +37,14 @@ import {
   MongoDBResourcesGetMongoDBCollectionThroughputOptionalParams,
   MongoDBResourcesGetMongoDBCollectionThroughputResponse,
   MongoDBResourcesUpdateMongoDBCollectionThroughputOptionalParams,
-  MongoDBResourcesUpdateMongoDBCollectionThroughputResponse
+  MongoDBResourcesUpdateMongoDBCollectionThroughputResponse,
+  MongoDBResourcesMigrateMongoDBCollectionToAutoscaleOptionalParams,
+  MongoDBResourcesMigrateMongoDBCollectionToAutoscaleResponse,
+  MongoDBResourcesMigrateMongoDBCollectionToManualThroughputOptionalParams,
+  MongoDBResourcesMigrateMongoDBCollectionToManualThroughputResponse,
+  ContinuousBackupRestoreLocation,
+  MongoDBResourcesRetrieveContinuousBackupInformationOptionalParams,
+  MongoDBResourcesRetrieveContinuousBackupInformationResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -194,6 +205,72 @@ export interface MongoDBResources {
     options?: MongoDBResourcesUpdateMongoDBDatabaseThroughputOptionalParams
   ): Promise<MongoDBResourcesUpdateMongoDBDatabaseThroughputResponse>;
   /**
+   * Migrate an Azure Cosmos DB MongoDB database from manual throughput to autoscale
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param options The options parameters.
+   */
+  beginMigrateMongoDBDatabaseToAutoscale(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    options?: MongoDBResourcesMigrateMongoDBDatabaseToAutoscaleOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<
+        MongoDBResourcesMigrateMongoDBDatabaseToAutoscaleResponse
+      >,
+      MongoDBResourcesMigrateMongoDBDatabaseToAutoscaleResponse
+    >
+  >;
+  /**
+   * Migrate an Azure Cosmos DB MongoDB database from manual throughput to autoscale
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param options The options parameters.
+   */
+  beginMigrateMongoDBDatabaseToAutoscaleAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    options?: MongoDBResourcesMigrateMongoDBDatabaseToAutoscaleOptionalParams
+  ): Promise<MongoDBResourcesMigrateMongoDBDatabaseToAutoscaleResponse>;
+  /**
+   * Migrate an Azure Cosmos DB MongoDB database from autoscale to manual throughput
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param options The options parameters.
+   */
+  beginMigrateMongoDBDatabaseToManualThroughput(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    options?: MongoDBResourcesMigrateMongoDBDatabaseToManualThroughputOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<
+        MongoDBResourcesMigrateMongoDBDatabaseToManualThroughputResponse
+      >,
+      MongoDBResourcesMigrateMongoDBDatabaseToManualThroughputResponse
+    >
+  >;
+  /**
+   * Migrate an Azure Cosmos DB MongoDB database from autoscale to manual throughput
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param options The options parameters.
+   */
+  beginMigrateMongoDBDatabaseToManualThroughputAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    options?: MongoDBResourcesMigrateMongoDBDatabaseToManualThroughputOptionalParams
+  ): Promise<MongoDBResourcesMigrateMongoDBDatabaseToManualThroughputResponse>;
+  /**
    * Gets the MongoDB collection under an existing Azure Cosmos DB database account.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param accountName Cosmos DB database account name.
@@ -338,4 +415,121 @@ export interface MongoDBResources {
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
     options?: MongoDBResourcesUpdateMongoDBCollectionThroughputOptionalParams
   ): Promise<MongoDBResourcesUpdateMongoDBCollectionThroughputResponse>;
+  /**
+   * Migrate an Azure Cosmos DB MongoDB collection from manual throughput to autoscale
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param collectionName Cosmos DB collection name.
+   * @param options The options parameters.
+   */
+  beginMigrateMongoDBCollectionToAutoscale(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    collectionName: string,
+    options?: MongoDBResourcesMigrateMongoDBCollectionToAutoscaleOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<
+        MongoDBResourcesMigrateMongoDBCollectionToAutoscaleResponse
+      >,
+      MongoDBResourcesMigrateMongoDBCollectionToAutoscaleResponse
+    >
+  >;
+  /**
+   * Migrate an Azure Cosmos DB MongoDB collection from manual throughput to autoscale
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param collectionName Cosmos DB collection name.
+   * @param options The options parameters.
+   */
+  beginMigrateMongoDBCollectionToAutoscaleAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    collectionName: string,
+    options?: MongoDBResourcesMigrateMongoDBCollectionToAutoscaleOptionalParams
+  ): Promise<MongoDBResourcesMigrateMongoDBCollectionToAutoscaleResponse>;
+  /**
+   * Migrate an Azure Cosmos DB MongoDB collection from autoscale to manual throughput
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param collectionName Cosmos DB collection name.
+   * @param options The options parameters.
+   */
+  beginMigrateMongoDBCollectionToManualThroughput(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    collectionName: string,
+    options?: MongoDBResourcesMigrateMongoDBCollectionToManualThroughputOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<
+        MongoDBResourcesMigrateMongoDBCollectionToManualThroughputResponse
+      >,
+      MongoDBResourcesMigrateMongoDBCollectionToManualThroughputResponse
+    >
+  >;
+  /**
+   * Migrate an Azure Cosmos DB MongoDB collection from autoscale to manual throughput
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param collectionName Cosmos DB collection name.
+   * @param options The options parameters.
+   */
+  beginMigrateMongoDBCollectionToManualThroughputAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    collectionName: string,
+    options?: MongoDBResourcesMigrateMongoDBCollectionToManualThroughputOptionalParams
+  ): Promise<
+    MongoDBResourcesMigrateMongoDBCollectionToManualThroughputResponse
+  >;
+  /**
+   * Retrieves continuous backup information for a Mongodb collection.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param collectionName Cosmos DB collection name.
+   * @param location The name of the continuous backup restore location.
+   * @param options The options parameters.
+   */
+  beginRetrieveContinuousBackupInformation(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    collectionName: string,
+    location: ContinuousBackupRestoreLocation,
+    options?: MongoDBResourcesRetrieveContinuousBackupInformationOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<
+        MongoDBResourcesRetrieveContinuousBackupInformationResponse
+      >,
+      MongoDBResourcesRetrieveContinuousBackupInformationResponse
+    >
+  >;
+  /**
+   * Retrieves continuous backup information for a Mongodb collection.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param collectionName Cosmos DB collection name.
+   * @param location The name of the continuous backup restore location.
+   * @param options The options parameters.
+   */
+  beginRetrieveContinuousBackupInformationAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    collectionName: string,
+    location: ContinuousBackupRestoreLocation,
+    options?: MongoDBResourcesRetrieveContinuousBackupInformationOptionalParams
+  ): Promise<MongoDBResourcesRetrieveContinuousBackupInformationResponse>;
 }
