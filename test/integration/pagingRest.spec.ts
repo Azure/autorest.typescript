@@ -1,6 +1,5 @@
 import { assert } from "chai";
-import {
-  Paging,
+import Paging, {
   ProductOutput,
   PagingRestClient,
   paginate,

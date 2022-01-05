@@ -1,6 +1,5 @@
 import { assert } from "chai";
-import {
-  BodyStringRest,
+import BodyStringRest, {
   BodyStringRestRestClient
 } from "./generated/bodyStringRest/src";
 

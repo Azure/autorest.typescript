@@ -51,7 +51,7 @@ export function generateClient(model: CodeModel, project: Project) {
       ? []
       : [{ name: "credentials", type: credentialTypes.join(" | ") }])
   ];
-  const clientIterfaceName = `${clientName}RestClient`;
+  const clientInterfaceName = `${clientName}RestClient`;
 
   clientFile.addFunction({
     isExported: true,
@@ -60,8 +60,9 @@ export function generateClient(model: CodeModel, project: Project) {
       ...commonClientParams,
       { name: "options", type: "ClientOptions = {}" }
     ],
-    returnType: clientIterfaceName,
-    statements: getClientFactoryBody(clientIterfaceName, pathDictionary)
+    returnType: clientInterfaceName,
+    isDefaultExport: true,
+    statements: getClientFactoryBody(clientInterfaceName, pathDictionary)
   });
 
   clientFile.addImportDeclarations([

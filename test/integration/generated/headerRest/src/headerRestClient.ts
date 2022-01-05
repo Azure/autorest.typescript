@@ -5,7 +5,7 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import "@azure/core-auth";
 import { HeaderRestClientRestClient } from "./clientDefinitions";
 
-export function HeaderRestClient(
+export default function HeaderRestClient(
   options: ClientOptions = {}
 ): HeaderRestClientRestClient {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";

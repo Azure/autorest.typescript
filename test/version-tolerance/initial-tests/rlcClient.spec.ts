@@ -1,4 +1,4 @@
-import { LLCClient, LLCClientRestClient } from "../generated/llc-initial/src";
+import LLCClient, { LLCClientRestClient } from "../generated/llc-initial/src";
 import { assert } from "chai";
 
 const phase = "initial";

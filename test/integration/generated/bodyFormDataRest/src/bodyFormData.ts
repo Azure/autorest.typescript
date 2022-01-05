@@ -5,7 +5,7 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import "@azure/core-auth";
 import { BodyFormDataRestClient } from "./clientDefinitions";
 
-export function BodyFormData(
+export default function BodyFormData(
   options: ClientOptions = {}
 ): BodyFormDataRestClient {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";

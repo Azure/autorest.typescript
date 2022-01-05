@@ -1,6 +1,5 @@
 import { assert } from "chai";
-import {
-  BodyComplexRestClient,
+import BodyComplexRestClient, {
   BodyComplexRestClientRestClient,
   DotSalmonOutput,
   Fish,

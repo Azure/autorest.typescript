@@ -1,5 +1,4 @@
-import {
-  BodyFormData,
+import BodyFormData, {
   BodyFormDataRestClient
 } from "./generated/bodyFormDataRest/src";
 import { assert } from "chai";

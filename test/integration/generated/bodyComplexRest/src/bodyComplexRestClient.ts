@@ -5,7 +5,7 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import "@azure/core-auth";
 import { BodyComplexRestClientRestClient } from "./clientDefinitions";
 
-export function BodyComplexRestClient(
+export default function BodyComplexRestClient(
   options: ClientOptions = {}
 ): BodyComplexRestClientRestClient {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";

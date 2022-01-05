@@ -477,7 +477,8 @@ export interface AttachmentsListByFarmerIdQueryParamProperties {
 }
 
 // @public (undocumented)
-export function AzureAgriFoodPlatformDataPlaneService(Endpoint: string, credentials: TokenCredential, options?: ClientOptions): AzureAgriFoodPlatformDataPlaneServiceRestClient;
+function AzureAgriFoodPlatformDataPlaneService(Endpoint: string, credentials: TokenCredential, options?: ClientOptions): AzureAgriFoodPlatformDataPlaneServiceRestClient;
+export default AzureAgriFoodPlatformDataPlaneService;
 
 // @public (undocumented)
 export type AzureAgriFoodPlatformDataPlaneServiceRestClient = Client & {

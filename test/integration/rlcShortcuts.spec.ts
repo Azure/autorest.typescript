@@ -1,6 +1,6 @@
 import { assert } from "chai";
-import { MultipleInheritanceRestClient } from "./generated/multipleInheritanceRest/src";
-import { UrlRestClient } from "./generated/urlRest/src";
+import MultipleInheritanceRestClient from "./generated/multipleInheritanceRest/src";
+import UrlRestClient from "./generated/urlRest/src";
 
 describe("Rest Client Shortcut methods", () => {
   it("should have a client level get method", async () => {

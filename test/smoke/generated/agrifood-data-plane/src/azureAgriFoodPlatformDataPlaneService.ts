@@ -5,7 +5,7 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { TokenCredential } from "@azure/core-auth";
 import { AzureAgriFoodPlatformDataPlaneServiceRestClient } from "./clientDefinitions";
 
-export function AzureAgriFoodPlatformDataPlaneService(
+export default function AzureAgriFoodPlatformDataPlaneService(
   Endpoint: string,
   credentials: TokenCredential,
   options: ClientOptions = {}

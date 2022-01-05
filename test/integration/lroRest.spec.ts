@@ -1,5 +1,4 @@
-import {
-  LRORestClient,
+import LRORestClient, {
   LRORestClientRestClient,
   getLongRunningPoller,
   Product

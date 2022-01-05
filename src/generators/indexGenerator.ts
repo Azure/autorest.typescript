@@ -25,12 +25,14 @@ export function generateIndexFile(
     }
     generateHLCIndex(clientDetails, indexFile);
   } else if (!batch || batch?.length === 1) {
+    // if we are generate single client package for RLC
     generateRLCIndex(indexFile);
   } else {
     generateRLCIndexForMultiClient(indexFile);
   }
 }
 
+// to generate a index.ts for each single module inside the multi client RLC package
 function generateRLCIndexForMultiClient(file: SourceFile) {
   const { model } = getSession();
   const clientName = model.language.default.name;
@@ -100,9 +102,14 @@ function generateRLCIndex(file: SourceFile) {
   const clientName = model.language.default.name;
   const moduleName = normalizeName(clientName, NameType.File);
 
+  file.addImportDeclaration({
+    moduleSpecifier: `./${moduleName}`,
+    defaultImport: clientName
+  });
+
   file.addExportDeclarations([
     {
-      moduleSpecifier: `./${moduleName}`
+      moduleSpecifier: `./${moduleName}`,
     },
     {
       moduleSpecifier: "./parameters"
@@ -146,10 +153,10 @@ function generateRLCIndex(file: SourceFile) {
       }
     ]);
   }
-
-  file.addExportDeclaration({
-    moduleSpecifier: `./${moduleName}`,
-    namedExports: [`${clientName}`],
+  
+  file.addExportAssignment({
+    expression: clientName,
+    isExportEquals: false
   });
 }
 
