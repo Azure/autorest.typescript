@@ -71,6 +71,13 @@ modelerfour:
   # Enable older inconsistent behavior that an enum with a single value would become a constant by default.
   seal-single-value-enum-by-default: true
 
+typescript-scope/emitter:
+  input-artifact: typescript-files
+
+output-artifact: typescript-files
+```
+
+```yaml !$(generate-test)
 pipeline:
   typescript: # <- name of plugin
     input: modelerfour/identity
@@ -80,10 +87,37 @@ pipeline:
     input: typescript
     scope: typescript-scope/emitter
 
-typescript-scope/emitter:
-  input-artifact: typescript-files
+```
 
-output-artifact: typescript-files
+```yaml $(generate-test)
+use-extension:
+  "@autorest/testmodeler": "1.0.4"
+
+try-require:
+    - ./readme.test.md
+    - ./readme.tests.md
+
+testmodeler:
+  split-parents-value: false
+
+include-x-ms-examples-original-file: true
+modelerfour:
+  include-x-ms-examples-original-file: true
+
+pipeline:
+  test-modeler:
+    input: modelerfour/identity
+    # scope : output-scope
+  test-modeler/identity:
+    input: test-modeler
+  typescript:
+    input: test-modeler/identity
+    output-artifact: typescript-files
+
+  typescript/emitter:
+    input: typescript
+    scope: typescript-scope/emitter
+
 ```
 
 ### REST Client Generator overrides

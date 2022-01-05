@@ -21,6 +21,9 @@ import {
   ExpressRouteGateway,
   ExpressRouteGatewaysCreateOrUpdateOptionalParams,
   ExpressRouteGatewaysCreateOrUpdateResponse,
+  TagsObject,
+  ExpressRouteGatewaysUpdateTagsOptionalParams,
+  ExpressRouteGatewaysUpdateTagsResponse,
   ExpressRouteGatewaysGetOptionalParams,
   ExpressRouteGatewaysGetResponse,
   ExpressRouteGatewaysDeleteOptionalParams
@@ -159,6 +162,104 @@ export class ExpressRouteGatewaysImpl implements ExpressRouteGateways {
       resourceGroupName,
       expressRouteGatewayName,
       putExpressRouteGatewayParameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
+   * Updates express route gateway tags.
+   * @param resourceGroupName The resource group name of the ExpressRouteGateway.
+   * @param expressRouteGatewayName The name of the gateway.
+   * @param expressRouteGatewayParameters Parameters supplied to update a virtual wan express route
+   *                                      gateway tags.
+   * @param options The options parameters.
+   */
+  async beginUpdateTags(
+    resourceGroupName: string,
+    expressRouteGatewayName: string,
+    expressRouteGatewayParameters: TagsObject,
+    options?: ExpressRouteGatewaysUpdateTagsOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<ExpressRouteGatewaysUpdateTagsResponse>,
+      ExpressRouteGatewaysUpdateTagsResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<ExpressRouteGatewaysUpdateTagsResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      {
+        resourceGroupName,
+        expressRouteGatewayName,
+        expressRouteGatewayParameters,
+        options
+      },
+      updateTagsOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs,
+      lroResourceLocationConfig: "azure-async-operation"
+    });
+  }
+
+  /**
+   * Updates express route gateway tags.
+   * @param resourceGroupName The resource group name of the ExpressRouteGateway.
+   * @param expressRouteGatewayName The name of the gateway.
+   * @param expressRouteGatewayParameters Parameters supplied to update a virtual wan express route
+   *                                      gateway tags.
+   * @param options The options parameters.
+   */
+  async beginUpdateTagsAndWait(
+    resourceGroupName: string,
+    expressRouteGatewayName: string,
+    expressRouteGatewayParameters: TagsObject,
+    options?: ExpressRouteGatewaysUpdateTagsOptionalParams
+  ): Promise<ExpressRouteGatewaysUpdateTagsResponse> {
+    const poller = await this.beginUpdateTags(
+      resourceGroupName,
+      expressRouteGatewayName,
+      expressRouteGatewayParameters,
       options
     );
     return poller.pollUntilDone();
@@ -327,6 +428,39 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.putExpressRouteGatewayParameters,
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.expressRouteGatewayName
+  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
+  serializer
+};
+const updateTagsOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/expressRouteGateways/{expressRouteGatewayName}",
+  httpMethod: "PATCH",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ExpressRouteGateway
+    },
+    201: {
+      bodyMapper: Mappers.ExpressRouteGateway
+    },
+    202: {
+      bodyMapper: Mappers.ExpressRouteGateway
+    },
+    204: {
+      bodyMapper: Mappers.ExpressRouteGateway
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  requestBody: Parameters.expressRouteGatewayParameters,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

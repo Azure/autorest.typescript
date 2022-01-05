@@ -21,6 +21,7 @@ interface SwaggerConfig {
   headAsBoolean?: boolean;
   isTestPackage?: boolean;
   generateTest?: boolean;
+  generateSample?: boolean;
 }
 
 const package_version = "1.0.0-preview1";
@@ -36,7 +37,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     allowInsecureConnection: true,
     addCredentials: false,
     isTestPackage: true,
-    generateTest: true
+    generateTest: true,
+    generateSample: true
   },
   arrayConstraints: {
     swaggerOrConfig: "test/integration/swaggers/arrayConstraints.md",

@@ -367,7 +367,7 @@ const listByInstanceOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion1, Parameters.filter1],
+  queryParameters: [Parameters.apiVersion2, Parameters.filter1],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -387,13 +387,13 @@ const getOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion1],
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.keyName,
-    Parameters.managedInstanceName
+    Parameters.managedInstanceName,
+    Parameters.keyName
   ],
   headerParameters: [Parameters.accept],
   serializer
@@ -417,14 +417,14 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  requestBody: Parameters.parameters52,
-  queryParameters: [Parameters.apiVersion1],
+  requestBody: Parameters.parameters50,
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.keyName,
-    Parameters.managedInstanceName
+    Parameters.managedInstanceName,
+    Parameters.keyName
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
@@ -435,13 +435,13 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/keys/{keyName}",
   httpMethod: "DELETE",
   responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
-  queryParameters: [Parameters.apiVersion1],
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.keyName,
-    Parameters.managedInstanceName
+    Parameters.managedInstanceName,
+    Parameters.keyName
   ],
   serializer
 };
@@ -454,7 +454,7 @@ const listByInstanceNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion1, Parameters.filter1],
+  queryParameters: [Parameters.apiVersion2, Parameters.filter1],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,

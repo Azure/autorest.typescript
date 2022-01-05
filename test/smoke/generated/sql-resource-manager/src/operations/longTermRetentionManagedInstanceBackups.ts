@@ -1044,14 +1044,14 @@ const getOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion2],
+  queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.databaseName,
     Parameters.locationName,
-    Parameters.backupName,
-    Parameters.managedInstanceName
+    Parameters.managedInstanceName,
+    Parameters.backupName
   ],
   headerParameters: [Parameters.accept],
   serializer
@@ -1061,14 +1061,14 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     "/subscriptions/{subscriptionId}/providers/Microsoft.Sql/locations/{locationName}/longTermRetentionManagedInstances/{managedInstanceName}/longTermRetentionDatabases/{databaseName}/longTermRetentionManagedInstanceBackups/{backupName}",
   httpMethod: "DELETE",
   responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
-  queryParameters: [Parameters.apiVersion2],
+  queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.databaseName,
     Parameters.locationName,
-    Parameters.backupName,
-    Parameters.managedInstanceName
+    Parameters.managedInstanceName,
+    Parameters.backupName
   ],
   serializer
 };
@@ -1083,9 +1083,9 @@ const listByDatabaseOperationSpec: coreClient.OperationSpec = {
     default: {}
   },
   queryParameters: [
-    Parameters.apiVersion2,
+    Parameters.apiVersion1,
     Parameters.onlyLatestPerDatabase,
-    Parameters.databaseState1
+    Parameters.databaseState
   ],
   urlParameters: [
     Parameters.$host,
@@ -1108,9 +1108,9 @@ const listByInstanceOperationSpec: coreClient.OperationSpec = {
     default: {}
   },
   queryParameters: [
-    Parameters.apiVersion2,
+    Parameters.apiVersion1,
     Parameters.onlyLatestPerDatabase,
-    Parameters.databaseState1
+    Parameters.databaseState
   ],
   urlParameters: [
     Parameters.$host,
@@ -1132,9 +1132,9 @@ const listByLocationOperationSpec: coreClient.OperationSpec = {
     default: {}
   },
   queryParameters: [
-    Parameters.apiVersion2,
+    Parameters.apiVersion1,
     Parameters.onlyLatestPerDatabase,
-    Parameters.databaseState1
+    Parameters.databaseState
   ],
   urlParameters: [
     Parameters.$host,
@@ -1154,15 +1154,15 @@ const getByResourceGroupOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion2],
+  queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.databaseName,
     Parameters.locationName,
-    Parameters.backupName,
-    Parameters.managedInstanceName
+    Parameters.managedInstanceName,
+    Parameters.backupName
   ],
   headerParameters: [Parameters.accept],
   serializer
@@ -1172,15 +1172,15 @@ const deleteByResourceGroupOperationSpec: coreClient.OperationSpec = {
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/locations/{locationName}/longTermRetentionManagedInstances/{managedInstanceName}/longTermRetentionDatabases/{databaseName}/longTermRetentionManagedInstanceBackups/{backupName}",
   httpMethod: "DELETE",
   responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
-  queryParameters: [Parameters.apiVersion2],
+  queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.databaseName,
     Parameters.locationName,
-    Parameters.backupName,
-    Parameters.managedInstanceName
+    Parameters.managedInstanceName,
+    Parameters.backupName
   ],
   serializer
 };
@@ -1195,9 +1195,9 @@ const listByResourceGroupDatabaseOperationSpec: coreClient.OperationSpec = {
     default: {}
   },
   queryParameters: [
-    Parameters.apiVersion2,
+    Parameters.apiVersion1,
     Parameters.onlyLatestPerDatabase,
-    Parameters.databaseState1
+    Parameters.databaseState
   ],
   urlParameters: [
     Parameters.$host,
@@ -1221,9 +1221,9 @@ const listByResourceGroupInstanceOperationSpec: coreClient.OperationSpec = {
     default: {}
   },
   queryParameters: [
-    Parameters.apiVersion2,
+    Parameters.apiVersion1,
     Parameters.onlyLatestPerDatabase,
-    Parameters.databaseState1
+    Parameters.databaseState
   ],
   urlParameters: [
     Parameters.$host,
@@ -1246,9 +1246,9 @@ const listByResourceGroupLocationOperationSpec: coreClient.OperationSpec = {
     default: {}
   },
   queryParameters: [
-    Parameters.apiVersion2,
+    Parameters.apiVersion1,
     Parameters.onlyLatestPerDatabase,
-    Parameters.databaseState1
+    Parameters.databaseState
   ],
   urlParameters: [
     Parameters.$host,
@@ -1269,9 +1269,9 @@ const listByDatabaseNextOperationSpec: coreClient.OperationSpec = {
     default: {}
   },
   queryParameters: [
-    Parameters.apiVersion2,
+    Parameters.apiVersion1,
     Parameters.onlyLatestPerDatabase,
-    Parameters.databaseState1
+    Parameters.databaseState
   ],
   urlParameters: [
     Parameters.$host,
@@ -1294,9 +1294,9 @@ const listByInstanceNextOperationSpec: coreClient.OperationSpec = {
     default: {}
   },
   queryParameters: [
-    Parameters.apiVersion2,
+    Parameters.apiVersion1,
     Parameters.onlyLatestPerDatabase,
-    Parameters.databaseState1
+    Parameters.databaseState
   ],
   urlParameters: [
     Parameters.$host,
@@ -1318,9 +1318,9 @@ const listByLocationNextOperationSpec: coreClient.OperationSpec = {
     default: {}
   },
   queryParameters: [
-    Parameters.apiVersion2,
+    Parameters.apiVersion1,
     Parameters.onlyLatestPerDatabase,
-    Parameters.databaseState1
+    Parameters.databaseState
   ],
   urlParameters: [
     Parameters.$host,
@@ -1341,9 +1341,9 @@ const listByResourceGroupDatabaseNextOperationSpec: coreClient.OperationSpec = {
     default: {}
   },
   queryParameters: [
-    Parameters.apiVersion2,
+    Parameters.apiVersion1,
     Parameters.onlyLatestPerDatabase,
-    Parameters.databaseState1
+    Parameters.databaseState
   ],
   urlParameters: [
     Parameters.$host,
@@ -1367,9 +1367,9 @@ const listByResourceGroupInstanceNextOperationSpec: coreClient.OperationSpec = {
     default: {}
   },
   queryParameters: [
-    Parameters.apiVersion2,
+    Parameters.apiVersion1,
     Parameters.onlyLatestPerDatabase,
-    Parameters.databaseState1
+    Parameters.databaseState
   ],
   urlParameters: [
     Parameters.$host,
@@ -1392,9 +1392,9 @@ const listByResourceGroupLocationNextOperationSpec: coreClient.OperationSpec = {
     default: {}
   },
   queryParameters: [
-    Parameters.apiVersion2,
+    Parameters.apiVersion1,
     Parameters.onlyLatestPerDatabase,
-    Parameters.databaseState1
+    Parameters.databaseState
   ],
   urlParameters: [
     Parameters.$host,

@@ -103,6 +103,7 @@ export interface OperationSpecDetails {
 export interface OperationGroupDetails {
   key: string;
   name: string;
+  originalKey: string;
   operations: OperationDetails[];
   mediaTypes: Set<KnownMediaType>;
   isTopLevel: boolean;

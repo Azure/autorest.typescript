@@ -18,11 +18,15 @@ import {
   ManagedInstance,
   ManagedInstancesListByInstancePoolNextOptionalParams,
   ManagedInstancesListByInstancePoolOptionalParams,
-  ManagedInstancesListByResourceGroupNextOptionalParams,
-  ManagedInstancesListByResourceGroupOptionalParams,
   ManagedInstancesListNextOptionalParams,
   ManagedInstancesListOptionalParams,
+  ManagedInstancesListByResourceGroupNextOptionalParams,
+  ManagedInstancesListByResourceGroupOptionalParams,
+  TopQueries,
+  ManagedInstancesListByManagedInstanceNextOptionalParams,
+  ManagedInstancesListByManagedInstanceOptionalParams,
   ManagedInstancesListByInstancePoolResponse,
+  ManagedInstancesListResponse,
   ManagedInstancesListByResourceGroupResponse,
   ManagedInstancesGetOptionalParams,
   ManagedInstancesGetResponse,
@@ -32,10 +36,12 @@ import {
   ManagedInstanceUpdate,
   ManagedInstancesUpdateOptionalParams,
   ManagedInstancesUpdateResponse,
-  ManagedInstancesListResponse,
+  ManagedInstancesListByManagedInstanceResponse,
+  ManagedInstancesFailoverOptionalParams,
   ManagedInstancesListByInstancePoolNextResponse,
+  ManagedInstancesListNextResponse,
   ManagedInstancesListByResourceGroupNextResponse,
-  ManagedInstancesListNextResponse
+  ManagedInstancesListByManagedInstanceNextResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -124,6 +130,48 @@ export class ManagedInstancesImpl implements ManagedInstances {
   }
 
   /**
+   * Gets a list of all managed instances in the subscription.
+   * @param options The options parameters.
+   */
+  public list(
+    options?: ManagedInstancesListOptionalParams
+  ): PagedAsyncIterableIterator<ManagedInstance> {
+    const iter = this.listPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listPagingPage(options);
+      }
+    };
+  }
+
+  private async *listPagingPage(
+    options?: ManagedInstancesListOptionalParams
+  ): AsyncIterableIterator<ManagedInstance[]> {
+    let result = await this._list(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listPagingAll(
+    options?: ManagedInstancesListOptionalParams
+  ): AsyncIterableIterator<ManagedInstance> {
+    for await (const page of this.listPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
    * Gets a list of managed instances in a resource group.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -178,13 +226,22 @@ export class ManagedInstancesImpl implements ManagedInstances {
   }
 
   /**
-   * Gets a list of all managed instances in the subscription.
+   * Get top resource consuming queries of a managed instance.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
    * @param options The options parameters.
    */
-  public list(
-    options?: ManagedInstancesListOptionalParams
-  ): PagedAsyncIterableIterator<ManagedInstance> {
-    const iter = this.listPagingAll(options);
+  public listByManagedInstance(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    options?: ManagedInstancesListByManagedInstanceOptionalParams
+  ): PagedAsyncIterableIterator<TopQueries> {
+    const iter = this.listByManagedInstancePagingAll(
+      resourceGroupName,
+      managedInstanceName,
+      options
+    );
     return {
       next() {
         return iter.next();
@@ -193,28 +250,49 @@ export class ManagedInstancesImpl implements ManagedInstances {
         return this;
       },
       byPage: () => {
-        return this.listPagingPage(options);
+        return this.listByManagedInstancePagingPage(
+          resourceGroupName,
+          managedInstanceName,
+          options
+        );
       }
     };
   }
 
-  private async *listPagingPage(
-    options?: ManagedInstancesListOptionalParams
-  ): AsyncIterableIterator<ManagedInstance[]> {
-    let result = await this._list(options);
+  private async *listByManagedInstancePagingPage(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    options?: ManagedInstancesListByManagedInstanceOptionalParams
+  ): AsyncIterableIterator<TopQueries[]> {
+    let result = await this._listByManagedInstance(
+      resourceGroupName,
+      managedInstanceName,
+      options
+    );
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listNext(continuationToken, options);
+      result = await this._listByManagedInstanceNext(
+        resourceGroupName,
+        managedInstanceName,
+        continuationToken,
+        options
+      );
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listPagingAll(
-    options?: ManagedInstancesListOptionalParams
-  ): AsyncIterableIterator<ManagedInstance> {
-    for await (const page of this.listPagingPage(options)) {
+  private async *listByManagedInstancePagingAll(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    options?: ManagedInstancesListByManagedInstanceOptionalParams
+  ): AsyncIterableIterator<TopQueries> {
+    for await (const page of this.listByManagedInstancePagingPage(
+      resourceGroupName,
+      managedInstanceName,
+      options
+    )) {
       yield* page;
     }
   }
@@ -235,6 +313,16 @@ export class ManagedInstancesImpl implements ManagedInstances {
       { resourceGroupName, instancePoolName, options },
       listByInstancePoolOperationSpec
     );
+  }
+
+  /**
+   * Gets a list of all managed instances in the subscription.
+   * @param options The options parameters.
+   */
+  private _list(
+    options?: ManagedInstancesListOptionalParams
+  ): Promise<ManagedInstancesListResponse> {
+    return this.client.sendOperationRequest({ options }, listOperationSpec);
   }
 
   /**
@@ -538,13 +626,103 @@ export class ManagedInstancesImpl implements ManagedInstances {
   }
 
   /**
-   * Gets a list of all managed instances in the subscription.
+   * Get top resource consuming queries of a managed instance.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
    * @param options The options parameters.
    */
-  private _list(
-    options?: ManagedInstancesListOptionalParams
-  ): Promise<ManagedInstancesListResponse> {
-    return this.client.sendOperationRequest({ options }, listOperationSpec);
+  private _listByManagedInstance(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    options?: ManagedInstancesListByManagedInstanceOptionalParams
+  ): Promise<ManagedInstancesListByManagedInstanceResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, managedInstanceName, options },
+      listByManagedInstanceOperationSpec
+    );
+  }
+
+  /**
+   * Failovers a managed instance.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance to failover.
+   * @param options The options parameters.
+   */
+  async beginFailover(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    options?: ManagedInstancesFailoverOptionalParams
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { resourceGroupName, managedInstanceName, options },
+      failoverOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs
+    });
+  }
+
+  /**
+   * Failovers a managed instance.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance to failover.
+   * @param options The options parameters.
+   */
+  async beginFailoverAndWait(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    options?: ManagedInstancesFailoverOptionalParams
+  ): Promise<void> {
+    const poller = await this.beginFailover(
+      resourceGroupName,
+      managedInstanceName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -568,6 +746,21 @@ export class ManagedInstancesImpl implements ManagedInstances {
   }
 
   /**
+   * ListNext
+   * @param nextLink The nextLink from the previous successful call to the List method.
+   * @param options The options parameters.
+   */
+  private _listNext(
+    nextLink: string,
+    options?: ManagedInstancesListNextOptionalParams
+  ): Promise<ManagedInstancesListNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      listNextOperationSpec
+    );
+  }
+
+  /**
    * ListByResourceGroupNext
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -586,17 +779,22 @@ export class ManagedInstancesImpl implements ManagedInstances {
   }
 
   /**
-   * ListNext
-   * @param nextLink The nextLink from the previous successful call to the List method.
+   * ListByManagedInstanceNext
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param nextLink The nextLink from the previous successful call to the ListByManagedInstance method.
    * @param options The options parameters.
    */
-  private _listNext(
+  private _listByManagedInstanceNext(
+    resourceGroupName: string,
+    managedInstanceName: string,
     nextLink: string,
-    options?: ManagedInstancesListNextOptionalParams
-  ): Promise<ManagedInstancesListNextResponse> {
+    options?: ManagedInstancesListByManagedInstanceNextOptionalParams
+  ): Promise<ManagedInstancesListByManagedInstanceNextResponse> {
     return this.client.sendOperationRequest(
-      { nextLink, options },
-      listNextOperationSpec
+      { resourceGroupName, managedInstanceName, nextLink, options },
+      listByManagedInstanceNextOperationSpec
     );
   }
 }
@@ -613,13 +811,28 @@ const listByInstancePoolOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion2],
+  queryParameters: [Parameters.apiVersion1, Parameters.expand],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.instancePoolName
   ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/providers/Microsoft.Sql/managedInstances",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ManagedInstanceListResult
+    },
+    default: {}
+  },
+  queryParameters: [Parameters.apiVersion1, Parameters.expand],
+  urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -633,7 +846,7 @@ const listByResourceGroupOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion2],
+  queryParameters: [Parameters.apiVersion1, Parameters.expand],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -652,7 +865,7 @@ const getOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion2],
+  queryParameters: [Parameters.apiVersion1, Parameters.expand],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -681,8 +894,8 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  requestBody: Parameters.parameters58,
-  queryParameters: [Parameters.apiVersion2],
+  requestBody: Parameters.parameters86,
+  queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -698,7 +911,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}",
   httpMethod: "DELETE",
   responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
-  queryParameters: [Parameters.apiVersion2],
+  queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -726,8 +939,8 @@ const updateOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  requestBody: Parameters.parameters59,
-  queryParameters: [Parameters.apiVersion2],
+  requestBody: Parameters.parameters87,
+  queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -738,19 +951,47 @@ const updateOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listOperationSpec: coreClient.OperationSpec = {
+const listByManagedInstanceOperationSpec: coreClient.OperationSpec = {
   path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Sql/managedInstances",
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/topqueries",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ManagedInstanceListResult
+      bodyMapper: Mappers.TopQueriesListResult
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [Parameters.$host, Parameters.subscriptionId],
+  queryParameters: [
+    Parameters.apiVersion1,
+    Parameters.startTime,
+    Parameters.endTime,
+    Parameters.interval,
+    Parameters.numberOfQueries,
+    Parameters.databases,
+    Parameters.aggregationFunction,
+    Parameters.observationMetric
+  ],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.managedInstanceName
+  ],
   headerParameters: [Parameters.accept],
+  serializer
+};
+const failoverOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/failover",
+  httpMethod: "POST",
+  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
+  queryParameters: [Parameters.apiVersion1, Parameters.replicaType],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.managedInstanceName
+  ],
   serializer
 };
 const listByInstancePoolNextOperationSpec: coreClient.OperationSpec = {
@@ -762,32 +1003,13 @@ const listByInstancePoolNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion2],
+  queryParameters: [Parameters.apiVersion1, Parameters.expand],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.nextLink,
     Parameters.instancePoolName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ManagedInstanceListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.nextLink
   ],
   headerParameters: [Parameters.accept],
   serializer
@@ -801,11 +1023,59 @@ const listNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion2],
+  queryParameters: [Parameters.apiVersion1, Parameters.expand],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ManagedInstanceListResult
+    },
+    default: {}
+  },
+  queryParameters: [Parameters.apiVersion1, Parameters.expand],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listByManagedInstanceNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.TopQueriesListResult
+    },
+    default: {}
+  },
+  queryParameters: [
+    Parameters.apiVersion1,
+    Parameters.startTime,
+    Parameters.endTime,
+    Parameters.interval,
+    Parameters.numberOfQueries,
+    Parameters.databases,
+    Parameters.aggregationFunction,
+    Parameters.observationMetric
+  ],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.nextLink,
+    Parameters.managedInstanceName
   ],
   headerParameters: [Parameters.accept],
   serializer

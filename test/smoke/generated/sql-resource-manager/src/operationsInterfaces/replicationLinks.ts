@@ -11,24 +11,25 @@ import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ReplicationLink,
   ReplicationLinksListByDatabaseOptionalParams,
+  ReplicationLinksListByServerOptionalParams,
   ReplicationLinksDeleteOptionalParams,
-  ReplicationLinksGetOptionalParams,
-  ReplicationLinksGetResponse,
   ReplicationLinksFailoverOptionalParams,
   ReplicationLinksFailoverAllowDataLossOptionalParams,
   UnlinkParameters,
-  ReplicationLinksUnlinkOptionalParams
+  ReplicationLinksUnlinkOptionalParams,
+  ReplicationLinksGetOptionalParams,
+  ReplicationLinksGetResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a ReplicationLinks. */
 export interface ReplicationLinks {
   /**
-   * Lists a database's replication links.
+   * Gets a list of replication links on database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
-   * @param databaseName The name of the database to retrieve links for.
+   * @param databaseName The name of the database.
    * @param options The options parameters.
    */
   listByDatabase(
@@ -36,6 +37,18 @@ export interface ReplicationLinks {
     serverName: string,
     databaseName: string,
     options?: ReplicationLinksListByDatabaseOptionalParams
+  ): PagedAsyncIterableIterator<ReplicationLink>;
+  /**
+   * Gets a list of replication links.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param options The options parameters.
+   */
+  listByServer(
+    resourceGroupName: string,
+    serverName: string,
+    options?: ReplicationLinksListByServerOptionalParams
   ): PagedAsyncIterableIterator<ReplicationLink>;
   /**
    * Deletes a database replication link. Cannot be done during failover.
@@ -53,22 +66,6 @@ export interface ReplicationLinks {
     linkId: string,
     options?: ReplicationLinksDeleteOptionalParams
   ): Promise<void>;
-  /**
-   * Gets a database replication link.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database to get the link for.
-   * @param linkId The replication link ID to be retrieved.
-   * @param options The options parameters.
-   */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    linkId: string,
-    options?: ReplicationLinksGetOptionalParams
-  ): Promise<ReplicationLinksGetResponse>;
   /**
    * Sets which replica database is primary by failing over from the current primary replica database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -171,4 +168,20 @@ export interface ReplicationLinks {
     parameters: UnlinkParameters,
     options?: ReplicationLinksUnlinkOptionalParams
   ): Promise<void>;
+  /**
+   * Gets a replication link.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database.
+   * @param linkId The name of the replication link.
+   * @param options The options parameters.
+   */
+  get(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    linkId: string,
+    options?: ReplicationLinksGetOptionalParams
+  ): Promise<ReplicationLinksGetResponse>;
 }

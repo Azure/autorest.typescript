@@ -24,6 +24,10 @@ import {
   ThroughputSettingsUpdateParameters,
   GremlinResourcesUpdateGremlinDatabaseThroughputOptionalParams,
   GremlinResourcesUpdateGremlinDatabaseThroughputResponse,
+  GremlinResourcesMigrateGremlinDatabaseToAutoscaleOptionalParams,
+  GremlinResourcesMigrateGremlinDatabaseToAutoscaleResponse,
+  GremlinResourcesMigrateGremlinDatabaseToManualThroughputOptionalParams,
+  GremlinResourcesMigrateGremlinDatabaseToManualThroughputResponse,
   GremlinResourcesGetGremlinGraphOptionalParams,
   GremlinResourcesGetGremlinGraphResponse,
   GremlinGraphCreateUpdateParameters,
@@ -33,7 +37,11 @@ import {
   GremlinResourcesGetGremlinGraphThroughputOptionalParams,
   GremlinResourcesGetGremlinGraphThroughputResponse,
   GremlinResourcesUpdateGremlinGraphThroughputOptionalParams,
-  GremlinResourcesUpdateGremlinGraphThroughputResponse
+  GremlinResourcesUpdateGremlinGraphThroughputResponse,
+  GremlinResourcesMigrateGremlinGraphToAutoscaleOptionalParams,
+  GremlinResourcesMigrateGremlinGraphToAutoscaleResponse,
+  GremlinResourcesMigrateGremlinGraphToManualThroughputOptionalParams,
+  GremlinResourcesMigrateGremlinGraphToManualThroughputResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -194,6 +202,72 @@ export interface GremlinResources {
     options?: GremlinResourcesUpdateGremlinDatabaseThroughputOptionalParams
   ): Promise<GremlinResourcesUpdateGremlinDatabaseThroughputResponse>;
   /**
+   * Migrate an Azure Cosmos DB Gremlin database from manual throughput to autoscale
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param options The options parameters.
+   */
+  beginMigrateGremlinDatabaseToAutoscale(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    options?: GremlinResourcesMigrateGremlinDatabaseToAutoscaleOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<
+        GremlinResourcesMigrateGremlinDatabaseToAutoscaleResponse
+      >,
+      GremlinResourcesMigrateGremlinDatabaseToAutoscaleResponse
+    >
+  >;
+  /**
+   * Migrate an Azure Cosmos DB Gremlin database from manual throughput to autoscale
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param options The options parameters.
+   */
+  beginMigrateGremlinDatabaseToAutoscaleAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    options?: GremlinResourcesMigrateGremlinDatabaseToAutoscaleOptionalParams
+  ): Promise<GremlinResourcesMigrateGremlinDatabaseToAutoscaleResponse>;
+  /**
+   * Migrate an Azure Cosmos DB Gremlin database from autoscale to manual throughput
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param options The options parameters.
+   */
+  beginMigrateGremlinDatabaseToManualThroughput(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    options?: GremlinResourcesMigrateGremlinDatabaseToManualThroughputOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<
+        GremlinResourcesMigrateGremlinDatabaseToManualThroughputResponse
+      >,
+      GremlinResourcesMigrateGremlinDatabaseToManualThroughputResponse
+    >
+  >;
+  /**
+   * Migrate an Azure Cosmos DB Gremlin database from autoscale to manual throughput
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param options The options parameters.
+   */
+  beginMigrateGremlinDatabaseToManualThroughputAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    options?: GremlinResourcesMigrateGremlinDatabaseToManualThroughputOptionalParams
+  ): Promise<GremlinResourcesMigrateGremlinDatabaseToManualThroughputResponse>;
+  /**
    * Gets the Gremlin graph under an existing Azure Cosmos DB database account.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param accountName Cosmos DB database account name.
@@ -334,4 +408,78 @@ export interface GremlinResources {
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
     options?: GremlinResourcesUpdateGremlinGraphThroughputOptionalParams
   ): Promise<GremlinResourcesUpdateGremlinGraphThroughputResponse>;
+  /**
+   * Migrate an Azure Cosmos DB Gremlin graph from manual throughput to autoscale
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param graphName Cosmos DB graph name.
+   * @param options The options parameters.
+   */
+  beginMigrateGremlinGraphToAutoscale(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    graphName: string,
+    options?: GremlinResourcesMigrateGremlinGraphToAutoscaleOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<
+        GremlinResourcesMigrateGremlinGraphToAutoscaleResponse
+      >,
+      GremlinResourcesMigrateGremlinGraphToAutoscaleResponse
+    >
+  >;
+  /**
+   * Migrate an Azure Cosmos DB Gremlin graph from manual throughput to autoscale
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param graphName Cosmos DB graph name.
+   * @param options The options parameters.
+   */
+  beginMigrateGremlinGraphToAutoscaleAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    graphName: string,
+    options?: GremlinResourcesMigrateGremlinGraphToAutoscaleOptionalParams
+  ): Promise<GremlinResourcesMigrateGremlinGraphToAutoscaleResponse>;
+  /**
+   * Migrate an Azure Cosmos DB Gremlin graph from autoscale to manual throughput
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param graphName Cosmos DB graph name.
+   * @param options The options parameters.
+   */
+  beginMigrateGremlinGraphToManualThroughput(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    graphName: string,
+    options?: GremlinResourcesMigrateGremlinGraphToManualThroughputOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<
+        GremlinResourcesMigrateGremlinGraphToManualThroughputResponse
+      >,
+      GremlinResourcesMigrateGremlinGraphToManualThroughputResponse
+    >
+  >;
+  /**
+   * Migrate an Azure Cosmos DB Gremlin graph from autoscale to manual throughput
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param graphName Cosmos DB graph name.
+   * @param options The options parameters.
+   */
+  beginMigrateGremlinGraphToManualThroughputAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    graphName: string,
+    options?: GremlinResourcesMigrateGremlinGraphToManualThroughputOptionalParams
+  ): Promise<GremlinResourcesMigrateGremlinGraphToManualThroughputResponse>;
 }

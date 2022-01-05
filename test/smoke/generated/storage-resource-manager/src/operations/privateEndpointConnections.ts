@@ -116,7 +116,7 @@ export class PrivateEndpointConnectionsImpl
    *                    account names must be between 3 and 24 characters in length and use numbers and lower-case letters
    *                    only.
    * @param privateEndpointConnectionName The name of the private endpoint connection associated with the
-   *                                      Storage Account
+   *                                      Azure resource
    * @param options The options parameters.
    */
   get(
@@ -144,7 +144,7 @@ export class PrivateEndpointConnectionsImpl
    *                    account names must be between 3 and 24 characters in length and use numbers and lower-case letters
    *                    only.
    * @param privateEndpointConnectionName The name of the private endpoint connection associated with the
-   *                                      Storage Account
+   *                                      Azure resource
    * @param properties The private endpoint connection properties.
    * @param options The options parameters.
    */
@@ -175,7 +175,7 @@ export class PrivateEndpointConnectionsImpl
    *                    account names must be between 3 and 24 characters in length and use numbers and lower-case letters
    *                    only.
    * @param privateEndpointConnectionName The name of the private endpoint connection associated with the
-   *                                      Storage Account
+   *                                      Azure resource
    * @param options The options parameters.
    */
   delete(
@@ -252,7 +252,7 @@ const putOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorResponse
     }
   },
-  requestBody: Parameters.properties1,
+  requestBody: Parameters.properties2,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

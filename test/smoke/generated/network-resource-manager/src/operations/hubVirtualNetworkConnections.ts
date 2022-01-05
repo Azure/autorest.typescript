@@ -12,10 +12,15 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
+import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
+import { LroImpl } from "../lroImpl";
 import {
   HubVirtualNetworkConnection,
   HubVirtualNetworkConnectionsListNextOptionalParams,
   HubVirtualNetworkConnectionsListOptionalParams,
+  HubVirtualNetworkConnectionsCreateOrUpdateOptionalParams,
+  HubVirtualNetworkConnectionsCreateOrUpdateResponse,
+  HubVirtualNetworkConnectionsDeleteOptionalParams,
   HubVirtualNetworkConnectionsGetOptionalParams,
   HubVirtualNetworkConnectionsGetResponse,
   HubVirtualNetworkConnectionsListResponse,
@@ -96,6 +101,196 @@ export class HubVirtualNetworkConnectionsImpl
   }
 
   /**
+   * Creates a hub virtual network connection if it doesn't exist else updates the existing one.
+   * @param resourceGroupName The resource group name of the HubVirtualNetworkConnection.
+   * @param virtualHubName The name of the VirtualHub.
+   * @param connectionName The name of the HubVirtualNetworkConnection.
+   * @param hubVirtualNetworkConnectionParameters Parameters supplied to create or update a hub virtual
+   *                                              network connection.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdate(
+    resourceGroupName: string,
+    virtualHubName: string,
+    connectionName: string,
+    hubVirtualNetworkConnectionParameters: HubVirtualNetworkConnection,
+    options?: HubVirtualNetworkConnectionsCreateOrUpdateOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<HubVirtualNetworkConnectionsCreateOrUpdateResponse>,
+      HubVirtualNetworkConnectionsCreateOrUpdateResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<HubVirtualNetworkConnectionsCreateOrUpdateResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      {
+        resourceGroupName,
+        virtualHubName,
+        connectionName,
+        hubVirtualNetworkConnectionParameters,
+        options
+      },
+      createOrUpdateOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs,
+      lroResourceLocationConfig: "azure-async-operation"
+    });
+  }
+
+  /**
+   * Creates a hub virtual network connection if it doesn't exist else updates the existing one.
+   * @param resourceGroupName The resource group name of the HubVirtualNetworkConnection.
+   * @param virtualHubName The name of the VirtualHub.
+   * @param connectionName The name of the HubVirtualNetworkConnection.
+   * @param hubVirtualNetworkConnectionParameters Parameters supplied to create or update a hub virtual
+   *                                              network connection.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    virtualHubName: string,
+    connectionName: string,
+    hubVirtualNetworkConnectionParameters: HubVirtualNetworkConnection,
+    options?: HubVirtualNetworkConnectionsCreateOrUpdateOptionalParams
+  ): Promise<HubVirtualNetworkConnectionsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      virtualHubName,
+      connectionName,
+      hubVirtualNetworkConnectionParameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
+   * Deletes a HubVirtualNetworkConnection.
+   * @param resourceGroupName The resource group name of the VirtualHub.
+   * @param virtualHubName The name of the VirtualHub.
+   * @param connectionName The name of the HubVirtualNetworkConnection.
+   * @param options The options parameters.
+   */
+  async beginDelete(
+    resourceGroupName: string,
+    virtualHubName: string,
+    connectionName: string,
+    options?: HubVirtualNetworkConnectionsDeleteOptionalParams
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { resourceGroupName, virtualHubName, connectionName, options },
+      deleteOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs,
+      lroResourceLocationConfig: "location"
+    });
+  }
+
+  /**
+   * Deletes a HubVirtualNetworkConnection.
+   * @param resourceGroupName The resource group name of the VirtualHub.
+   * @param virtualHubName The name of the VirtualHub.
+   * @param connectionName The name of the HubVirtualNetworkConnection.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    virtualHubName: string,
+    connectionName: string,
+    options?: HubVirtualNetworkConnectionsDeleteOptionalParams
+  ): Promise<void> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      virtualHubName,
+      connectionName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Retrieves the details of a HubVirtualNetworkConnection.
    * @param resourceGroupName The resource group name of the VirtualHub.
    * @param virtualHubName The name of the VirtualHub.
@@ -153,6 +348,64 @@ export class HubVirtualNetworkConnectionsImpl
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
+const createOrUpdateOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualHubs/{virtualHubName}/hubVirtualNetworkConnections/{connectionName}",
+  httpMethod: "PUT",
+  responses: {
+    200: {
+      bodyMapper: Mappers.HubVirtualNetworkConnection
+    },
+    201: {
+      bodyMapper: Mappers.HubVirtualNetworkConnection
+    },
+    202: {
+      bodyMapper: Mappers.HubVirtualNetworkConnection
+    },
+    204: {
+      bodyMapper: Mappers.HubVirtualNetworkConnection
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  requestBody: Parameters.hubVirtualNetworkConnectionParameters,
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.connectionName,
+    Parameters.virtualHubName
+  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
+  serializer
+};
+const deleteOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualHubs/{virtualHubName}/hubVirtualNetworkConnections/{connectionName}",
+  httpMethod: "DELETE",
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.connectionName,
+    Parameters.virtualHubName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
 const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualHubs/{virtualHubName}/hubVirtualNetworkConnections/{connectionName}",

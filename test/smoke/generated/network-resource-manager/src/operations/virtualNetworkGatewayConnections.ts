@@ -40,6 +40,9 @@ import {
   VpnPacketCaptureStopParameters,
   VirtualNetworkGatewayConnectionsStopPacketCaptureOptionalParams,
   VirtualNetworkGatewayConnectionsStopPacketCaptureResponse,
+  VirtualNetworkGatewayConnectionsGetIkeSasOptionalParams,
+  VirtualNetworkGatewayConnectionsGetIkeSasResponse,
+  VirtualNetworkGatewayConnectionsResetConnectionOptionalParams,
   VirtualNetworkGatewayConnectionsListNextResponse
 } from "../models";
 
@@ -833,6 +836,175 @@ export class VirtualNetworkGatewayConnectionsImpl
   }
 
   /**
+   * Lists IKE Security Associations for the virtual network gateway connection in the specified resource
+   * group.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkGatewayConnectionName The name of the virtual network gateway Connection.
+   * @param options The options parameters.
+   */
+  async beginGetIkeSas(
+    resourceGroupName: string,
+    virtualNetworkGatewayConnectionName: string,
+    options?: VirtualNetworkGatewayConnectionsGetIkeSasOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<VirtualNetworkGatewayConnectionsGetIkeSasResponse>,
+      VirtualNetworkGatewayConnectionsGetIkeSasResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<VirtualNetworkGatewayConnectionsGetIkeSasResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { resourceGroupName, virtualNetworkGatewayConnectionName, options },
+      getIkeSasOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs,
+      lroResourceLocationConfig: "location"
+    });
+  }
+
+  /**
+   * Lists IKE Security Associations for the virtual network gateway connection in the specified resource
+   * group.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkGatewayConnectionName The name of the virtual network gateway Connection.
+   * @param options The options parameters.
+   */
+  async beginGetIkeSasAndWait(
+    resourceGroupName: string,
+    virtualNetworkGatewayConnectionName: string,
+    options?: VirtualNetworkGatewayConnectionsGetIkeSasOptionalParams
+  ): Promise<VirtualNetworkGatewayConnectionsGetIkeSasResponse> {
+    const poller = await this.beginGetIkeSas(
+      resourceGroupName,
+      virtualNetworkGatewayConnectionName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
+   * Resets the virtual network gateway connection specified.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkGatewayConnectionName The name of the virtual network gateway Connection.
+   * @param options The options parameters.
+   */
+  async beginResetConnection(
+    resourceGroupName: string,
+    virtualNetworkGatewayConnectionName: string,
+    options?: VirtualNetworkGatewayConnectionsResetConnectionOptionalParams
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { resourceGroupName, virtualNetworkGatewayConnectionName, options },
+      resetConnectionOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs,
+      lroResourceLocationConfig: "location"
+    });
+  }
+
+  /**
+   * Resets the virtual network gateway connection specified.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkGatewayConnectionName The name of the virtual network gateway Connection.
+   * @param options The options parameters.
+   */
+  async beginResetConnectionAndWait(
+    resourceGroupName: string,
+    virtualNetworkGatewayConnectionName: string,
+    options?: VirtualNetworkGatewayConnectionsResetConnectionOptionalParams
+  ): Promise<void> {
+    const poller = await this.beginResetConnection(
+      resourceGroupName,
+      virtualNetworkGatewayConnectionName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * ListNext
    * @param resourceGroupName The name of the resource group.
    * @param nextLink The nextLink from the previous successful call to the List method.
@@ -873,7 +1045,7 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.parameters53,
+  requestBody: Parameters.parameters63,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -984,7 +1156,7 @@ const setSharedKeyOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.parameters54,
+  requestBody: Parameters.parameters64,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1060,7 +1232,7 @@ const resetSharedKeyOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.parameters55,
+  requestBody: Parameters.parameters65,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1093,7 +1265,7 @@ const startPacketCaptureOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: Parameters.parameters51,
+  requestBody: Parameters.parameters61,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1126,7 +1298,7 @@ const stopPacketCaptureOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: Parameters.parameters52,
+  requestBody: Parameters.parameters62,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1136,6 +1308,60 @@ const stopPacketCaptureOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
+  serializer
+};
+const getIkeSasOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/connections/{virtualNetworkGatewayConnectionName}/getikesas",
+  httpMethod: "POST",
+  responses: {
+    200: {
+      bodyMapper: { type: { name: "String" } }
+    },
+    201: {
+      bodyMapper: { type: { name: "String" } }
+    },
+    202: {
+      bodyMapper: { type: { name: "String" } }
+    },
+    204: {
+      bodyMapper: { type: { name: "String" } }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.virtualNetworkGatewayConnectionName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const resetConnectionOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/connections/{virtualNetworkGatewayConnectionName}/resetconnection",
+  httpMethod: "POST",
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.ErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.virtualNetworkGatewayConnectionName
+  ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listNextOperationSpec: coreClient.OperationSpec = {

@@ -16,6 +16,8 @@ import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
   VirtualMachineScaleSet,
+  VirtualMachineScaleSetsListByLocationNextOptionalParams,
+  VirtualMachineScaleSetsListByLocationOptionalParams,
   VirtualMachineScaleSetsListNextOptionalParams,
   VirtualMachineScaleSetsListOptionalParams,
   VirtualMachineScaleSetsListAllNextOptionalParams,
@@ -26,6 +28,7 @@ import {
   UpgradeOperationHistoricalStatusInfo,
   VirtualMachineScaleSetsGetOSUpgradeHistoryNextOptionalParams,
   VirtualMachineScaleSetsGetOSUpgradeHistoryOptionalParams,
+  VirtualMachineScaleSetsListByLocationResponse,
   VirtualMachineScaleSetsCreateOrUpdateOptionalParams,
   VirtualMachineScaleSetsCreateOrUpdateResponse,
   VirtualMachineScaleSetUpdate,
@@ -57,6 +60,7 @@ import {
   VirtualMachineScaleSetsConvertToSinglePlacementGroupOptionalParams,
   OrchestrationServiceStateInput,
   VirtualMachineScaleSetsSetOrchestrationServiceStateOptionalParams,
+  VirtualMachineScaleSetsListByLocationNextResponse,
   VirtualMachineScaleSetsListNextResponse,
   VirtualMachineScaleSetsListAllNextResponse,
   VirtualMachineScaleSetsListSkusNextResponse,
@@ -74,6 +78,56 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
    */
   constructor(client: ComputeManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * Gets all the VM scale sets under the specified subscription for the specified location.
+   * @param location The location for which VM scale sets under the subscription are queried.
+   * @param options The options parameters.
+   */
+  public listByLocation(
+    location: string,
+    options?: VirtualMachineScaleSetsListByLocationOptionalParams
+  ): PagedAsyncIterableIterator<VirtualMachineScaleSet> {
+    const iter = this.listByLocationPagingAll(location, options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listByLocationPagingPage(location, options);
+      }
+    };
+  }
+
+  private async *listByLocationPagingPage(
+    location: string,
+    options?: VirtualMachineScaleSetsListByLocationOptionalParams
+  ): AsyncIterableIterator<VirtualMachineScaleSet[]> {
+    let result = await this._listByLocation(location, options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByLocationNext(
+        location,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listByLocationPagingAll(
+    location: string,
+    options?: VirtualMachineScaleSetsListByLocationOptionalParams
+  ): AsyncIterableIterator<VirtualMachineScaleSet> {
+    for await (const page of this.listByLocationPagingPage(location, options)) {
+      yield* page;
+    }
   }
 
   /**
@@ -311,6 +365,21 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
     )) {
       yield* page;
     }
+  }
+
+  /**
+   * Gets all the VM scale sets under the specified subscription for the specified location.
+   * @param location The location for which VM scale sets under the subscription are queried.
+   * @param options The options parameters.
+   */
+  private _listByLocation(
+    location: string,
+    options?: VirtualMachineScaleSetsListByLocationOptionalParams
+  ): Promise<VirtualMachineScaleSetsListByLocationResponse> {
+    return this.client.sendOperationRequest(
+      { location, options },
+      listByLocationOperationSpec
+    );
   }
 
   /**
@@ -1168,7 +1237,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
    * Perform maintenance on one or more virtual machines in a VM scale set. Operation on instances which
    * are not eligible for perform maintenance will be failed. Please refer to best practices for more
    * details:
-   * https://docs.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-maintenance-notifications
+   * https://docs.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-maintenance-notifications
    * @param resourceGroupName The name of the resource group.
    * @param vmScaleSetName The name of the VM scale set.
    * @param options The options parameters.
@@ -1232,7 +1301,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
    * Perform maintenance on one or more virtual machines in a VM scale set. Operation on instances which
    * are not eligible for perform maintenance will be failed. Please refer to best practices for more
    * details:
-   * https://docs.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-maintenance-notifications
+   * https://docs.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-maintenance-notifications
    * @param resourceGroupName The name of the resource group.
    * @param vmScaleSetName The name of the VM scale set.
    * @param options The options parameters.
@@ -1628,6 +1697,23 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
   }
 
   /**
+   * ListByLocationNext
+   * @param location The location for which VM scale sets under the subscription are queried.
+   * @param nextLink The nextLink from the previous successful call to the ListByLocation method.
+   * @param options The options parameters.
+   */
+  private _listByLocationNext(
+    location: string,
+    nextLink: string,
+    options?: VirtualMachineScaleSetsListByLocationNextOptionalParams
+  ): Promise<VirtualMachineScaleSetsListByLocationNextResponse> {
+    return this.client.sendOperationRequest(
+      { location, nextLink, options },
+      listByLocationNextOperationSpec
+    );
+  }
+
+  /**
    * ListNext
    * @param resourceGroupName The name of the resource group.
    * @param nextLink The nextLink from the previous successful call to the List method.
@@ -1700,6 +1786,27 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
+const listByLocationOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/virtualMachineScaleSets",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.VirtualMachineScaleSetListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.location1
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
 const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}",
@@ -1718,7 +1825,7 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.VirtualMachineScaleSet
     }
   },
-  requestBody: Parameters.parameters17,
+  requestBody: Parameters.parameters15,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1748,7 +1855,7 @@ const updateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.VirtualMachineScaleSet
     }
   },
-  requestBody: Parameters.parameters18,
+  requestBody: Parameters.parameters16,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1765,7 +1872,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}",
   httpMethod: "DELETE",
   responses: { 200: {}, 201: {}, 202: {}, 204: {} },
-  queryParameters: [Parameters.apiVersion],
+  queryParameters: [Parameters.apiVersion, Parameters.forceDeletion],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -1783,7 +1890,7 @@ const getOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.VirtualMachineScaleSet
     }
   },
-  queryParameters: [Parameters.apiVersion],
+  queryParameters: [Parameters.apiVersion, Parameters.expand2],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -1816,7 +1923,7 @@ const deleteInstancesOperationSpec: coreClient.OperationSpec = {
   httpMethod: "POST",
   responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   requestBody: Parameters.vmInstanceIDs1,
-  queryParameters: [Parameters.apiVersion],
+  queryParameters: [Parameters.apiVersion, Parameters.forceDeletion],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -2076,7 +2183,8 @@ const convertToSinglePlacementGroupOperationSpec: coreClient.OperationSpec = {
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/convertToSinglePlacementGroup",
   httpMethod: "POST",
   responses: { 200: {} },
-  requestBody: Parameters.parameters19,
+  requestBody: Parameters.parameters17,
+  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -2092,7 +2200,7 @@ const setOrchestrationServiceStateOperationSpec: coreClient.OperationSpec = {
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/setOrchestrationServiceState",
   httpMethod: "POST",
   responses: { 200: {}, 201: {}, 202: {}, 204: {} },
-  requestBody: Parameters.parameters20,
+  requestBody: Parameters.parameters18,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -2102,6 +2210,27 @@ const setOrchestrationServiceStateOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
+  serializer
+};
+const listByLocationNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.VirtualMachineScaleSetListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.nextLink,
+    Parameters.location1
+  ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listNextOperationSpec: coreClient.OperationSpec = {

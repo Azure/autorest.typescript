@@ -12,6 +12,8 @@ import {
   VirtualCluster,
   VirtualClustersListOptionalParams,
   VirtualClustersListByResourceGroupOptionalParams,
+  VirtualClustersUpdateDnsServersOptionalParams,
+  VirtualClustersUpdateDnsServersResponse,
   VirtualClustersGetOptionalParams,
   VirtualClustersGetResponse,
   VirtualClustersDeleteOptionalParams,
@@ -40,6 +42,18 @@ export interface VirtualClusters {
     resourceGroupName: string,
     options?: VirtualClustersListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<VirtualCluster>;
+  /**
+   * Synchronizes the DNS server settings used by the managed instances inside the given virtual cluster.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param virtualClusterName The name of the virtual cluster.
+   * @param options The options parameters.
+   */
+  updateDnsServers(
+    resourceGroupName: string,
+    virtualClusterName: string,
+    options?: VirtualClustersUpdateDnsServersOptionalParams
+  ): Promise<VirtualClustersUpdateDnsServersResponse>;
   /**
    * Gets a virtual cluster.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -81,7 +95,7 @@ export interface VirtualClusters {
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param virtualClusterName The name of the virtual cluster.
-   * @param parameters The requested managed instance resource state.
+   * @param parameters The requested virtual cluster resource state.
    * @param options The options parameters.
    */
   beginUpdate(
@@ -100,7 +114,7 @@ export interface VirtualClusters {
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param virtualClusterName The name of the virtual cluster.
-   * @param parameters The requested managed instance resource state.
+   * @param parameters The requested virtual cluster resource state.
    * @param options The options parameters.
    */
   beginUpdateAndWait(

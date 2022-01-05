@@ -12,10 +12,15 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
+import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
+import { LroImpl } from "../lroImpl";
 import {
   VpnSiteLinkConnection,
   VpnLinkConnectionsListByVpnConnectionNextOptionalParams,
   VpnLinkConnectionsListByVpnConnectionOptionalParams,
+  VpnLinkConnectionsResetConnectionOptionalParams,
+  VpnLinkConnectionsGetIkeSasOptionalParams,
+  VpnLinkConnectionsGetIkeSasResponse,
   VpnLinkConnectionsListByVpnConnectionResponse,
   VpnLinkConnectionsListByVpnConnectionNextResponse
 } from "../models";
@@ -35,7 +40,7 @@ export class VpnLinkConnectionsImpl implements VpnLinkConnections {
 
   /**
    * Retrieves all vpn site link connections for a particular virtual wan vpn gateway vpn connection.
-   * @param resourceGroupName The resource group name of the VpnGateway.
+   * @param resourceGroupName The resource group name of the vpn gateway.
    * @param gatewayName The name of the gateway.
    * @param connectionName The name of the vpn connection.
    * @param options The options parameters.
@@ -114,8 +119,207 @@ export class VpnLinkConnectionsImpl implements VpnLinkConnections {
   }
 
   /**
+   * Resets the VpnLink connection specified.
+   * @param resourceGroupName The name of the resource group.
+   * @param gatewayName The name of the gateway.
+   * @param connectionName The name of the vpn connection.
+   * @param linkConnectionName The name of the vpn link connection.
+   * @param options The options parameters.
+   */
+  async beginResetConnection(
+    resourceGroupName: string,
+    gatewayName: string,
+    connectionName: string,
+    linkConnectionName: string,
+    options?: VpnLinkConnectionsResetConnectionOptionalParams
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      {
+        resourceGroupName,
+        gatewayName,
+        connectionName,
+        linkConnectionName,
+        options
+      },
+      resetConnectionOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs,
+      lroResourceLocationConfig: "location"
+    });
+  }
+
+  /**
+   * Resets the VpnLink connection specified.
+   * @param resourceGroupName The name of the resource group.
+   * @param gatewayName The name of the gateway.
+   * @param connectionName The name of the vpn connection.
+   * @param linkConnectionName The name of the vpn link connection.
+   * @param options The options parameters.
+   */
+  async beginResetConnectionAndWait(
+    resourceGroupName: string,
+    gatewayName: string,
+    connectionName: string,
+    linkConnectionName: string,
+    options?: VpnLinkConnectionsResetConnectionOptionalParams
+  ): Promise<void> {
+    const poller = await this.beginResetConnection(
+      resourceGroupName,
+      gatewayName,
+      connectionName,
+      linkConnectionName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
+   * Lists IKE Security Associations for Vpn Site Link Connection in the specified resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param gatewayName The name of the gateway.
+   * @param connectionName The name of the vpn connection.
+   * @param linkConnectionName The name of the vpn link connection.
+   * @param options The options parameters.
+   */
+  async beginGetIkeSas(
+    resourceGroupName: string,
+    gatewayName: string,
+    connectionName: string,
+    linkConnectionName: string,
+    options?: VpnLinkConnectionsGetIkeSasOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<VpnLinkConnectionsGetIkeSasResponse>,
+      VpnLinkConnectionsGetIkeSasResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<VpnLinkConnectionsGetIkeSasResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      {
+        resourceGroupName,
+        gatewayName,
+        connectionName,
+        linkConnectionName,
+        options
+      },
+      getIkeSasOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs,
+      lroResourceLocationConfig: "location"
+    });
+  }
+
+  /**
+   * Lists IKE Security Associations for Vpn Site Link Connection in the specified resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param gatewayName The name of the gateway.
+   * @param connectionName The name of the vpn connection.
+   * @param linkConnectionName The name of the vpn link connection.
+   * @param options The options parameters.
+   */
+  async beginGetIkeSasAndWait(
+    resourceGroupName: string,
+    gatewayName: string,
+    connectionName: string,
+    linkConnectionName: string,
+    options?: VpnLinkConnectionsGetIkeSasOptionalParams
+  ): Promise<VpnLinkConnectionsGetIkeSasResponse> {
+    const poller = await this.beginGetIkeSas(
+      resourceGroupName,
+      gatewayName,
+      connectionName,
+      linkConnectionName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Retrieves all vpn site link connections for a particular virtual wan vpn gateway vpn connection.
-   * @param resourceGroupName The resource group name of the VpnGateway.
+   * @param resourceGroupName The resource group name of the vpn gateway.
    * @param gatewayName The name of the gateway.
    * @param connectionName The name of the vpn connection.
    * @param options The options parameters.
@@ -134,7 +338,7 @@ export class VpnLinkConnectionsImpl implements VpnLinkConnections {
 
   /**
    * ListByVpnConnectionNext
-   * @param resourceGroupName The resource group name of the VpnGateway.
+   * @param resourceGroupName The resource group name of the vpn gateway.
    * @param gatewayName The name of the gateway.
    * @param connectionName The name of the vpn connection.
    * @param nextLink The nextLink from the previous successful call to the ListByVpnConnection method.
@@ -156,6 +360,64 @@ export class VpnLinkConnectionsImpl implements VpnLinkConnections {
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
+const resetConnectionOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/vpnGateways/{gatewayName}/vpnConnections/{connectionName}/vpnLinkConnections/{linkConnectionName}/resetconnection",
+  httpMethod: "POST",
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.ErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.connectionName,
+    Parameters.gatewayName,
+    Parameters.linkConnectionName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const getIkeSasOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/vpnGateways/{gatewayName}/vpnConnections/{connectionName}/vpnLinkConnections/{linkConnectionName}/getikesas",
+  httpMethod: "POST",
+  responses: {
+    200: {
+      bodyMapper: { type: { name: "String" } }
+    },
+    201: {
+      bodyMapper: { type: { name: "String" } }
+    },
+    202: {
+      bodyMapper: { type: { name: "String" } }
+    },
+    204: {
+      bodyMapper: { type: { name: "String" } }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.connectionName,
+    Parameters.gatewayName,
+    Parameters.linkConnectionName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
 const listByVpnConnectionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/vpnGateways/{gatewayName}/vpnConnections/{connectionName}/vpnLinkConnections",

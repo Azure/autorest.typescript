@@ -31,7 +31,10 @@ import {
   VirtualNetworkGatewayConnectionsStartPacketCaptureResponse,
   VpnPacketCaptureStopParameters,
   VirtualNetworkGatewayConnectionsStopPacketCaptureOptionalParams,
-  VirtualNetworkGatewayConnectionsStopPacketCaptureResponse
+  VirtualNetworkGatewayConnectionsStopPacketCaptureResponse,
+  VirtualNetworkGatewayConnectionsGetIkeSasOptionalParams,
+  VirtualNetworkGatewayConnectionsGetIkeSasResponse,
+  VirtualNetworkGatewayConnectionsResetConnectionOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -300,4 +303,55 @@ export interface VirtualNetworkGatewayConnections {
     parameters: VpnPacketCaptureStopParameters,
     options?: VirtualNetworkGatewayConnectionsStopPacketCaptureOptionalParams
   ): Promise<VirtualNetworkGatewayConnectionsStopPacketCaptureResponse>;
+  /**
+   * Lists IKE Security Associations for the virtual network gateway connection in the specified resource
+   * group.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkGatewayConnectionName The name of the virtual network gateway Connection.
+   * @param options The options parameters.
+   */
+  beginGetIkeSas(
+    resourceGroupName: string,
+    virtualNetworkGatewayConnectionName: string,
+    options?: VirtualNetworkGatewayConnectionsGetIkeSasOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<VirtualNetworkGatewayConnectionsGetIkeSasResponse>,
+      VirtualNetworkGatewayConnectionsGetIkeSasResponse
+    >
+  >;
+  /**
+   * Lists IKE Security Associations for the virtual network gateway connection in the specified resource
+   * group.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkGatewayConnectionName The name of the virtual network gateway Connection.
+   * @param options The options parameters.
+   */
+  beginGetIkeSasAndWait(
+    resourceGroupName: string,
+    virtualNetworkGatewayConnectionName: string,
+    options?: VirtualNetworkGatewayConnectionsGetIkeSasOptionalParams
+  ): Promise<VirtualNetworkGatewayConnectionsGetIkeSasResponse>;
+  /**
+   * Resets the virtual network gateway connection specified.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkGatewayConnectionName The name of the virtual network gateway Connection.
+   * @param options The options parameters.
+   */
+  beginResetConnection(
+    resourceGroupName: string,
+    virtualNetworkGatewayConnectionName: string,
+    options?: VirtualNetworkGatewayConnectionsResetConnectionOptionalParams
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  /**
+   * Resets the virtual network gateway connection specified.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkGatewayConnectionName The name of the virtual network gateway Connection.
+   * @param options The options parameters.
+   */
+  beginResetConnectionAndWait(
+    resourceGroupName: string,
+    virtualNetworkGatewayConnectionName: string,
+    options?: VirtualNetworkGatewayConnectionsResetConnectionOptionalParams
+  ): Promise<void>;
 }

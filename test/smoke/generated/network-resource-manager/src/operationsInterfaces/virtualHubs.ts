@@ -19,7 +19,8 @@ import {
   TagsObject,
   VirtualHubsUpdateTagsOptionalParams,
   VirtualHubsUpdateTagsResponse,
-  VirtualHubsDeleteOptionalParams
+  VirtualHubsDeleteOptionalParams,
+  VirtualHubsGetEffectiveVirtualHubRoutesOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -117,5 +118,27 @@ export interface VirtualHubs {
     resourceGroupName: string,
     virtualHubName: string,
     options?: VirtualHubsDeleteOptionalParams
+  ): Promise<void>;
+  /**
+   * Gets the effective routes configured for the Virtual Hub resource or the specified resource .
+   * @param resourceGroupName The resource group name of the VirtualHub.
+   * @param virtualHubName The name of the VirtualHub.
+   * @param options The options parameters.
+   */
+  beginGetEffectiveVirtualHubRoutes(
+    resourceGroupName: string,
+    virtualHubName: string,
+    options?: VirtualHubsGetEffectiveVirtualHubRoutesOptionalParams
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  /**
+   * Gets the effective routes configured for the Virtual Hub resource or the specified resource .
+   * @param resourceGroupName The resource group name of the VirtualHub.
+   * @param virtualHubName The name of the VirtualHub.
+   * @param options The options parameters.
+   */
+  beginGetEffectiveVirtualHubRoutesAndWait(
+    resourceGroupName: string,
+    virtualHubName: string,
+    options?: VirtualHubsGetEffectiveVirtualHubRoutesOptionalParams
   ): Promise<void>;
 }

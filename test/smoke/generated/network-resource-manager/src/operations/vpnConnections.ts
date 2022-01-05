@@ -23,6 +23,10 @@ import {
   VpnConnectionsCreateOrUpdateOptionalParams,
   VpnConnectionsCreateOrUpdateResponse,
   VpnConnectionsDeleteOptionalParams,
+  VpnConnectionsStartPacketCaptureOptionalParams,
+  VpnConnectionsStartPacketCaptureResponse,
+  VpnConnectionsStopPacketCaptureOptionalParams,
+  VpnConnectionsStopPacketCaptureResponse,
   VpnConnectionsListByVpnGatewayResponse,
   VpnConnectionsListByVpnGatewayNextResponse
 } from "../models";
@@ -321,6 +325,188 @@ export class VpnConnectionsImpl implements VpnConnections {
   }
 
   /**
+   * Starts packet capture on Vpn connection in the specified resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param gatewayName The name of the gateway.
+   * @param vpnConnectionName The name of the vpn connection.
+   * @param options The options parameters.
+   */
+  async beginStartPacketCapture(
+    resourceGroupName: string,
+    gatewayName: string,
+    vpnConnectionName: string,
+    options?: VpnConnectionsStartPacketCaptureOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<VpnConnectionsStartPacketCaptureResponse>,
+      VpnConnectionsStartPacketCaptureResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<VpnConnectionsStartPacketCaptureResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { resourceGroupName, gatewayName, vpnConnectionName, options },
+      startPacketCaptureOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs,
+      lroResourceLocationConfig: "location"
+    });
+  }
+
+  /**
+   * Starts packet capture on Vpn connection in the specified resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param gatewayName The name of the gateway.
+   * @param vpnConnectionName The name of the vpn connection.
+   * @param options The options parameters.
+   */
+  async beginStartPacketCaptureAndWait(
+    resourceGroupName: string,
+    gatewayName: string,
+    vpnConnectionName: string,
+    options?: VpnConnectionsStartPacketCaptureOptionalParams
+  ): Promise<VpnConnectionsStartPacketCaptureResponse> {
+    const poller = await this.beginStartPacketCapture(
+      resourceGroupName,
+      gatewayName,
+      vpnConnectionName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
+   * Stops packet capture on Vpn connection in the specified resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param gatewayName The name of the gateway.
+   * @param vpnConnectionName The name of the vpn connection.
+   * @param options The options parameters.
+   */
+  async beginStopPacketCapture(
+    resourceGroupName: string,
+    gatewayName: string,
+    vpnConnectionName: string,
+    options?: VpnConnectionsStopPacketCaptureOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<VpnConnectionsStopPacketCaptureResponse>,
+      VpnConnectionsStopPacketCaptureResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<VpnConnectionsStopPacketCaptureResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { resourceGroupName, gatewayName, vpnConnectionName, options },
+      stopPacketCaptureOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs,
+      lroResourceLocationConfig: "location"
+    });
+  }
+
+  /**
+   * Stops packet capture on Vpn connection in the specified resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param gatewayName The name of the gateway.
+   * @param vpnConnectionName The name of the vpn connection.
+   * @param options The options parameters.
+   */
+  async beginStopPacketCaptureAndWait(
+    resourceGroupName: string,
+    gatewayName: string,
+    vpnConnectionName: string,
+    options?: VpnConnectionsStopPacketCaptureOptionalParams
+  ): Promise<VpnConnectionsStopPacketCaptureResponse> {
+    const poller = await this.beginStopPacketCapture(
+      resourceGroupName,
+      gatewayName,
+      vpnConnectionName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Retrieves all vpn connections for a particular virtual wan vpn gateway.
    * @param resourceGroupName The resource group name of the VpnGateway.
    * @param gatewayName The name of the gateway.
@@ -438,6 +624,74 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     Parameters.gatewayName
   ],
   headerParameters: [Parameters.accept],
+  serializer
+};
+const startPacketCaptureOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/vpnGateways/{gatewayName}/vpnConnections/{vpnConnectionName}/startpacketcapture",
+  httpMethod: "POST",
+  responses: {
+    200: {
+      bodyMapper: { type: { name: "String" } }
+    },
+    201: {
+      bodyMapper: { type: { name: "String" } }
+    },
+    202: {
+      bodyMapper: { type: { name: "String" } }
+    },
+    204: {
+      bodyMapper: { type: { name: "String" } }
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  requestBody: Parameters.parameters72,
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.gatewayName,
+    Parameters.vpnConnectionName
+  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
+  serializer
+};
+const stopPacketCaptureOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/vpnGateways/{gatewayName}/vpnConnections/{vpnConnectionName}/stoppacketcapture",
+  httpMethod: "POST",
+  responses: {
+    200: {
+      bodyMapper: { type: { name: "String" } }
+    },
+    201: {
+      bodyMapper: { type: { name: "String" } }
+    },
+    202: {
+      bodyMapper: { type: { name: "String" } }
+    },
+    204: {
+      bodyMapper: { type: { name: "String" } }
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  requestBody: Parameters.parameters73,
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.gatewayName,
+    Parameters.vpnConnectionName
+  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listByVpnGatewayOperationSpec: coreClient.OperationSpec = {

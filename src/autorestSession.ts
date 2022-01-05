@@ -32,6 +32,7 @@ export interface AutorestOptions {
   headAsBoolean?: boolean;
   isTestPackage?: boolean;
   generateTest?: boolean;
+  generateSample?: boolean;
 }
 
 let host: AutorestExtensionHost;

@@ -18,13 +18,13 @@ import {
   EncryptionProtector,
   EncryptionProtectorsListByServerNextOptionalParams,
   EncryptionProtectorsListByServerOptionalParams,
-  EncryptionProtectorName,
-  EncryptionProtectorsRevalidateOptionalParams,
   EncryptionProtectorsListByServerResponse,
+  EncryptionProtectorName,
   EncryptionProtectorsGetOptionalParams,
   EncryptionProtectorsGetResponse,
   EncryptionProtectorsCreateOrUpdateOptionalParams,
   EncryptionProtectorsCreateOrUpdateResponse,
+  EncryptionProtectorsRevalidateOptionalParams,
   EncryptionProtectorsListByServerNextResponse
 } from "../models";
 
@@ -111,93 +111,6 @@ export class EncryptionProtectorsImpl implements EncryptionProtectors {
     )) {
       yield* page;
     }
-  }
-
-  /**
-   * Revalidates an existing encryption protector.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param encryptionProtectorName The name of the encryption protector to be updated.
-   * @param options The options parameters.
-   */
-  async beginRevalidate(
-    resourceGroupName: string,
-    serverName: string,
-    encryptionProtectorName: EncryptionProtectorName,
-    options?: EncryptionProtectorsRevalidateOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<void> => {
-      return this.client.sendOperationRequest(args, spec);
-    };
-    const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return {
-        flatResponse,
-        rawResponse: {
-          statusCode: currentRawResponse!.status,
-          body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
-      };
-    };
-
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, serverName, encryptionProtectorName, options },
-      revalidateOperationSpec
-    );
-    return new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
-    });
-  }
-
-  /**
-   * Revalidates an existing encryption protector.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param encryptionProtectorName The name of the encryption protector to be updated.
-   * @param options The options parameters.
-   */
-  async beginRevalidateAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    encryptionProtectorName: EncryptionProtectorName,
-    options?: EncryptionProtectorsRevalidateOptionalParams
-  ): Promise<void> {
-    const poller = await this.beginRevalidate(
-      resourceGroupName,
-      serverName,
-      encryptionProtectorName,
-      options
-    );
-    return poller.pollUntilDone();
   }
 
   /**
@@ -342,6 +255,93 @@ export class EncryptionProtectorsImpl implements EncryptionProtectors {
   }
 
   /**
+   * Revalidates an existing encryption protector.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param encryptionProtectorName The name of the encryption protector to be updated.
+   * @param options The options parameters.
+   */
+  async beginRevalidate(
+    resourceGroupName: string,
+    serverName: string,
+    encryptionProtectorName: EncryptionProtectorName,
+    options?: EncryptionProtectorsRevalidateOptionalParams
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { resourceGroupName, serverName, encryptionProtectorName, options },
+      revalidateOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs
+    });
+  }
+
+  /**
+   * Revalidates an existing encryption protector.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param encryptionProtectorName The name of the encryption protector to be updated.
+   * @param options The options parameters.
+   */
+  async beginRevalidateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    encryptionProtectorName: EncryptionProtectorName,
+    options?: EncryptionProtectorsRevalidateOptionalParams
+  ): Promise<void> {
+    const poller = await this.beginRevalidate(
+      resourceGroupName,
+      serverName,
+      encryptionProtectorName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * ListByServerNext
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -364,21 +364,6 @@ export class EncryptionProtectorsImpl implements EncryptionProtectors {
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const revalidateOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/encryptionProtector/{encryptionProtectorName}/revalidate",
-  httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
-  queryParameters: [Parameters.apiVersion3],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.encryptionProtectorName
-  ],
-  serializer
-};
 const listByServerOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/encryptionProtector",
@@ -389,7 +374,7 @@ const listByServerOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion3],
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -409,7 +394,7 @@ const getOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion3],
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -439,8 +424,8 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  requestBody: Parameters.parameters18,
-  queryParameters: [Parameters.apiVersion3],
+  requestBody: Parameters.parameters22,
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -452,6 +437,21 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
+const revalidateOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/encryptionProtector/{encryptionProtectorName}/revalidate",
+  httpMethod: "POST",
+  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
+  queryParameters: [Parameters.apiVersion2],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.serverName,
+    Parameters.encryptionProtectorName
+  ],
+  serializer
+};
 const listByServerNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
@@ -461,7 +461,7 @@ const listByServerNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion3],
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,

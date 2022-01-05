@@ -14,13 +14,18 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import {
   FirewallRule,
+  FirewallRulesListByServerNextOptionalParams,
   FirewallRulesListByServerOptionalParams,
+  FirewallRulesGetOptionalParams,
+  FirewallRulesGetResponse,
   FirewallRulesCreateOrUpdateOptionalParams,
   FirewallRulesCreateOrUpdateResponse,
   FirewallRulesDeleteOptionalParams,
-  FirewallRulesGetOptionalParams,
-  FirewallRulesGetResponse,
-  FirewallRulesListByServerResponse
+  FirewallRulesListByServerResponse,
+  FirewallRuleList,
+  FirewallRulesReplaceOptionalParams,
+  FirewallRulesReplaceResponse,
+  FirewallRulesListByServerNextResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -37,7 +42,7 @@ export class FirewallRulesImpl implements FirewallRules {
   }
 
   /**
-   * Returns a list of firewall rules.
+   * Gets a list of firewall rules.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
@@ -81,6 +86,17 @@ export class FirewallRulesImpl implements FirewallRules {
       options
     );
     yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByServerNext(
+        resourceGroupName,
+        serverName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
   }
 
   private async *listByServerPagingAll(
@@ -95,6 +111,26 @@ export class FirewallRulesImpl implements FirewallRules {
     )) {
       yield* page;
     }
+  }
+
+  /**
+   * Gets a firewall rule.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param firewallRuleName The name of the firewall rule.
+   * @param options The options parameters.
+   */
+  get(
+    resourceGroupName: string,
+    serverName: string,
+    firewallRuleName: string,
+    options?: FirewallRulesGetOptionalParams
+  ): Promise<FirewallRulesGetResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, serverName, firewallRuleName, options },
+      getOperationSpec
+    );
   }
 
   /**
@@ -140,27 +176,7 @@ export class FirewallRulesImpl implements FirewallRules {
   }
 
   /**
-   * Gets a firewall rule.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param firewallRuleName The name of the firewall rule.
-   * @param options The options parameters.
-   */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    firewallRuleName: string,
-    options?: FirewallRulesGetOptionalParams
-  ): Promise<FirewallRulesGetResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, firewallRuleName, options },
-      getOperationSpec
-    );
-  }
-
-  /**
-   * Returns a list of firewall rules.
+   * Gets a list of firewall rules.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
@@ -176,10 +192,71 @@ export class FirewallRulesImpl implements FirewallRules {
       listByServerOperationSpec
     );
   }
+
+  /**
+   * Replaces all firewall rules on the server.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param parameters A list of server firewall rules.
+   * @param options The options parameters.
+   */
+  replace(
+    resourceGroupName: string,
+    serverName: string,
+    parameters: FirewallRuleList,
+    options?: FirewallRulesReplaceOptionalParams
+  ): Promise<FirewallRulesReplaceResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, serverName, parameters, options },
+      replaceOperationSpec
+    );
+  }
+
+  /**
+   * ListByServerNext
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param nextLink The nextLink from the previous successful call to the ListByServer method.
+   * @param options The options parameters.
+   */
+  private _listByServerNext(
+    resourceGroupName: string,
+    serverName: string,
+    nextLink: string,
+    options?: FirewallRulesListByServerNextOptionalParams
+  ): Promise<FirewallRulesListByServerNextResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, serverName, nextLink, options },
+      listByServerNextOperationSpec
+    );
+  }
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
+const getOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/firewallRules/{firewallRuleName}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.FirewallRule
+    },
+    default: {}
+  },
+  queryParameters: [Parameters.apiVersion2],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.serverName,
+    Parameters.firewallRuleName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
 const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/firewallRules/{firewallRuleName}",
@@ -190,10 +267,11 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     },
     201: {
       bodyMapper: Mappers.FirewallRule
-    }
+    },
+    default: {}
   },
-  requestBody: Parameters.parameters4,
-  queryParameters: [Parameters.apiVersion],
+  requestBody: Parameters.parameters25,
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -209,8 +287,8 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/firewallRules/{firewallRuleName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 204: {} },
-  queryParameters: [Parameters.apiVersion],
+  responses: { 200: {}, 204: {}, default: {} },
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -218,26 +296,6 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     Parameters.serverName,
     Parameters.firewallRuleName
   ],
-  serializer
-};
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/firewallRules/{firewallRuleName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.FirewallRule
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.firewallRuleName
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };
 const listByServerOperationSpec: coreClient.OperationSpec = {
@@ -247,14 +305,58 @@ const listByServerOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.FirewallRuleListResult
-    }
+    },
+    default: {}
   },
-  queryParameters: [Parameters.apiVersion],
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const replaceOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/firewallRules",
+  httpMethod: "PUT",
+  responses: {
+    200: {
+      bodyMapper: Mappers.FirewallRule
+    },
+    202: {},
+    default: {}
+  },
+  requestBody: Parameters.parameters26,
+  queryParameters: [Parameters.apiVersion2],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.serverName
+  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
+  serializer
+};
+const listByServerNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.FirewallRuleListResult
+    },
+    default: {}
+  },
+  queryParameters: [Parameters.apiVersion2],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.serverName,
+    Parameters.nextLink
   ],
   headerParameters: [Parameters.accept],
   serializer

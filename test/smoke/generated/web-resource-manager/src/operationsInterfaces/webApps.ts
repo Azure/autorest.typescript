@@ -14,8 +14,13 @@ import {
   WebAppsListByResourceGroupOptionalParams,
   BackupItem,
   WebAppsListBackupsOptionalParams,
+  CsmPublishingCredentialsPoliciesEntity,
+  WebAppsListBasicPublishingCredentialsPoliciesOptionalParams,
   SiteConfigResource,
   WebAppsListConfigurationsOptionalParams,
+  ApiKVReference,
+  WebAppsGetAppSettingsKeyVaultReferencesOptionalParams,
+  WebAppsGetSiteConnectionStringKeyVaultReferencesOptionalParams,
   SiteConfigurationSnapshotInfo,
   WebAppsListConfigurationSnapshotInfoOptionalParams,
   ContinuousWebJob,
@@ -28,7 +33,7 @@ import {
   WebAppsListFunctionsOptionalParams,
   HostNameBinding,
   WebAppsListHostNameBindingsOptionalParams,
-  SiteInstance,
+  WebSiteInstanceStatus,
   WebAppsListInstanceIdentifiersOptionalParams,
   ProcessInfo,
   WebAppsListInstanceProcessesOptionalParams,
@@ -39,6 +44,8 @@ import {
   WebAppsListSiteBackupsOptionalParams,
   PerfMonResponse,
   WebAppsListPerfMonCountersOptionalParams,
+  RemotePrivateEndpointConnectionARMResource,
+  WebAppsGetPrivateEndpointConnectionListOptionalParams,
   WebAppsListProcessesOptionalParams,
   WebAppsListProcessModulesOptionalParams,
   WebAppsListProcessThreadsOptionalParams,
@@ -48,7 +55,10 @@ import {
   WebAppsListSiteExtensionsOptionalParams,
   WebAppsListSlotsOptionalParams,
   WebAppsListBackupsSlotOptionalParams,
+  WebAppsListBasicPublishingCredentialsPoliciesSlotOptionalParams,
   WebAppsListConfigurationsSlotOptionalParams,
+  WebAppsGetAppSettingsKeyVaultReferencesSlotOptionalParams,
+  WebAppsGetSiteConnectionStringKeyVaultReferencesSlotOptionalParams,
   WebAppsListConfigurationSnapshotInfoSlotOptionalParams,
   WebAppsListContinuousWebJobsSlotOptionalParams,
   WebAppsListDeploymentsSlotOptionalParams,
@@ -61,6 +71,7 @@ import {
   WebAppsListInstanceProcessThreadsSlotOptionalParams,
   WebAppsListSiteBackupsSlotOptionalParams,
   WebAppsListPerfMonCountersSlotOptionalParams,
+  WebAppsGetPrivateEndpointConnectionListSlotOptionalParams,
   WebAppsListProcessesSlotOptionalParams,
   WebAppsListProcessModulesSlotOptionalParams,
   WebAppsListProcessThreadsSlotOptionalParams,
@@ -108,6 +119,14 @@ import {
   WebAppsListBackupStatusSecretsResponse,
   RestoreRequest,
   WebAppsRestoreOptionalParams,
+  WebAppsGetFtpAllowedOptionalParams,
+  WebAppsGetFtpAllowedResponse,
+  WebAppsUpdateFtpAllowedOptionalParams,
+  WebAppsUpdateFtpAllowedResponse,
+  WebAppsGetScmAllowedOptionalParams,
+  WebAppsGetScmAllowedResponse,
+  WebAppsUpdateScmAllowedOptionalParams,
+  WebAppsUpdateScmAllowedResponse,
   StringDictionary,
   WebAppsUpdateApplicationSettingsOptionalParams,
   WebAppsUpdateApplicationSettingsResponse,
@@ -118,6 +137,11 @@ import {
   WebAppsUpdateAuthSettingsResponse,
   WebAppsGetAuthSettingsOptionalParams,
   WebAppsGetAuthSettingsResponse,
+  SiteAuthSettingsV2,
+  WebAppsUpdateAuthSettingsV2OptionalParams,
+  WebAppsUpdateAuthSettingsV2Response,
+  WebAppsGetAuthSettingsV2OptionalParams,
+  WebAppsGetAuthSettingsV2Response,
   AzureStoragePropertyDictionaryResource,
   WebAppsUpdateAzureStorageAccountsOptionalParams,
   WebAppsUpdateAzureStorageAccountsResponse,
@@ -128,10 +152,10 @@ import {
   WebAppsDeleteBackupConfigurationOptionalParams,
   WebAppsGetBackupConfigurationOptionalParams,
   WebAppsGetBackupConfigurationResponse,
-  WebAppsGetAppSettingsKeyVaultReferencesOptionalParams,
-  WebAppsGetAppSettingsKeyVaultReferencesResponse,
   WebAppsGetAppSettingKeyVaultReferenceOptionalParams,
   WebAppsGetAppSettingKeyVaultReferenceResponse,
+  WebAppsGetSiteConnectionStringKeyVaultReferenceOptionalParams,
+  WebAppsGetSiteConnectionStringKeyVaultReferenceResponse,
   ConnectionStringDictionary,
   WebAppsUpdateConnectionStringsOptionalParams,
   WebAppsUpdateConnectionStringsResponse,
@@ -276,11 +300,11 @@ import {
   WebAppsGetSwiftVirtualNetworkConnectionOptionalParams,
   WebAppsGetSwiftVirtualNetworkConnectionResponse,
   SwiftVirtualNetwork,
-  WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionOptionalParams,
-  WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionResponse,
+  WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionWithCheckOptionalParams,
+  WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionWithCheckResponse,
   WebAppsDeleteSwiftVirtualNetworkOptionalParams,
-  WebAppsUpdateSwiftVirtualNetworkConnectionOptionalParams,
-  WebAppsUpdateSwiftVirtualNetworkConnectionResponse,
+  WebAppsUpdateSwiftVirtualNetworkConnectionWithCheckOptionalParams,
+  WebAppsUpdateSwiftVirtualNetworkConnectionWithCheckResponse,
   WebAppsListNetworkFeaturesOptionalParams,
   WebAppsListNetworkFeaturesResponse,
   WebAppsGetNetworkTraceOperationOptionalParams,
@@ -315,6 +339,15 @@ import {
   PrivateAccess,
   WebAppsPutPrivateAccessVnetOptionalParams,
   WebAppsPutPrivateAccessVnetResponse,
+  WebAppsGetPrivateEndpointConnectionOptionalParams,
+  WebAppsGetPrivateEndpointConnectionResponse,
+  PrivateLinkConnectionApprovalRequestResource,
+  WebAppsApproveOrRejectPrivateEndpointConnectionOptionalParams,
+  WebAppsApproveOrRejectPrivateEndpointConnectionResponse,
+  WebAppsDeletePrivateEndpointConnectionOptionalParams,
+  WebAppsDeletePrivateEndpointConnectionResponse,
+  WebAppsGetPrivateLinkResourcesOptionalParams,
+  WebAppsGetPrivateLinkResourcesResponse,
   WebAppsGetProcessOptionalParams,
   WebAppsGetProcessResponse,
   WebAppsDeleteProcessOptionalParams,
@@ -342,8 +375,6 @@ import {
   WebAppsInstallSiteExtensionOptionalParams,
   WebAppsInstallSiteExtensionResponse,
   WebAppsDeleteSiteExtensionOptionalParams,
-  CsmCopySlotEntity,
-  WebAppsCopyProductionSlotOptionalParams,
   WebAppsGetSlotOptionalParams,
   WebAppsGetSlotResponse,
   WebAppsCreateOrUpdateSlotOptionalParams,
@@ -362,6 +393,14 @@ import {
   WebAppsListBackupStatusSecretsSlotOptionalParams,
   WebAppsListBackupStatusSecretsSlotResponse,
   WebAppsRestoreSlotOptionalParams,
+  WebAppsGetFtpAllowedSlotOptionalParams,
+  WebAppsGetFtpAllowedSlotResponse,
+  WebAppsUpdateFtpAllowedSlotOptionalParams,
+  WebAppsUpdateFtpAllowedSlotResponse,
+  WebAppsGetScmAllowedSlotOptionalParams,
+  WebAppsGetScmAllowedSlotResponse,
+  WebAppsUpdateScmAllowedSlotOptionalParams,
+  WebAppsUpdateScmAllowedSlotResponse,
   WebAppsUpdateApplicationSettingsSlotOptionalParams,
   WebAppsUpdateApplicationSettingsSlotResponse,
   WebAppsListApplicationSettingsSlotOptionalParams,
@@ -370,6 +409,10 @@ import {
   WebAppsUpdateAuthSettingsSlotResponse,
   WebAppsGetAuthSettingsSlotOptionalParams,
   WebAppsGetAuthSettingsSlotResponse,
+  WebAppsUpdateAuthSettingsV2SlotOptionalParams,
+  WebAppsUpdateAuthSettingsV2SlotResponse,
+  WebAppsGetAuthSettingsV2SlotOptionalParams,
+  WebAppsGetAuthSettingsV2SlotResponse,
   WebAppsUpdateAzureStorageAccountsSlotOptionalParams,
   WebAppsUpdateAzureStorageAccountsSlotResponse,
   WebAppsListAzureStorageAccountsSlotOptionalParams,
@@ -379,6 +422,10 @@ import {
   WebAppsDeleteBackupConfigurationSlotOptionalParams,
   WebAppsGetBackupConfigurationSlotOptionalParams,
   WebAppsGetBackupConfigurationSlotResponse,
+  WebAppsGetAppSettingKeyVaultReferenceSlotOptionalParams,
+  WebAppsGetAppSettingKeyVaultReferenceSlotResponse,
+  WebAppsGetSiteConnectionStringKeyVaultReferenceSlotOptionalParams,
+  WebAppsGetSiteConnectionStringKeyVaultReferenceSlotResponse,
   WebAppsUpdateConnectionStringsSlotOptionalParams,
   WebAppsUpdateConnectionStringsSlotResponse,
   WebAppsListConnectionStringsSlotOptionalParams,
@@ -504,11 +551,11 @@ import {
   WebAppsGetMigrateMySqlStatusSlotResponse,
   WebAppsGetSwiftVirtualNetworkConnectionSlotOptionalParams,
   WebAppsGetSwiftVirtualNetworkConnectionSlotResponse,
-  WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionSlotOptionalParams,
-  WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionSlotResponse,
+  WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionWithCheckSlotOptionalParams,
+  WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionWithCheckSlotResponse,
   WebAppsDeleteSwiftVirtualNetworkSlotOptionalParams,
-  WebAppsUpdateSwiftVirtualNetworkConnectionSlotOptionalParams,
-  WebAppsUpdateSwiftVirtualNetworkConnectionSlotResponse,
+  WebAppsUpdateSwiftVirtualNetworkConnectionWithCheckSlotOptionalParams,
+  WebAppsUpdateSwiftVirtualNetworkConnectionWithCheckSlotResponse,
   WebAppsListNetworkFeaturesSlotOptionalParams,
   WebAppsListNetworkFeaturesSlotResponse,
   WebAppsGetNetworkTraceOperationSlotOptionalParams,
@@ -540,15 +587,14 @@ import {
   WebAppsGetPrivateAccessSlotResponse,
   WebAppsPutPrivateAccessVnetSlotOptionalParams,
   WebAppsPutPrivateAccessVnetSlotResponse,
-  WebAppsGetPrivateEndpointConnectionOptionalParams,
-  WebAppsGetPrivateEndpointConnectionResponse,
-  PrivateLinkConnectionApprovalRequestResource,
-  WebAppsApproveOrRejectPrivateEndpointConnectionOptionalParams,
-  WebAppsApproveOrRejectPrivateEndpointConnectionResponse,
-  WebAppsDeletePrivateEndpointConnectionOptionalParams,
-  WebAppsDeletePrivateEndpointConnectionResponse,
-  WebAppsGetPrivateLinkResourcesOptionalParams,
-  WebAppsGetPrivateLinkResourcesResponse,
+  WebAppsGetPrivateEndpointConnectionSlotOptionalParams,
+  WebAppsGetPrivateEndpointConnectionSlotResponse,
+  WebAppsApproveOrRejectPrivateEndpointConnectionSlotOptionalParams,
+  WebAppsApproveOrRejectPrivateEndpointConnectionSlotResponse,
+  WebAppsDeletePrivateEndpointConnectionSlotOptionalParams,
+  WebAppsDeletePrivateEndpointConnectionSlotResponse,
+  WebAppsGetPrivateLinkResourcesSlotOptionalParams,
+  WebAppsGetPrivateLinkResourcesSlotResponse,
   WebAppsGetProcessSlotOptionalParams,
   WebAppsGetProcessSlotResponse,
   WebAppsDeleteProcessSlotOptionalParams,
@@ -573,7 +619,6 @@ import {
   WebAppsInstallSiteExtensionSlotOptionalParams,
   WebAppsInstallSiteExtensionSlotResponse,
   WebAppsDeleteSiteExtensionSlotOptionalParams,
-  WebAppsCopySlotOptionalParams,
   WebAppsSwapSlotOptionalParams,
   WebAppsGetSourceControlSlotOptionalParams,
   WebAppsGetSourceControlSlotResponse,
@@ -600,7 +645,7 @@ import {
   WebAppsListVnetConnectionsSlotResponse,
   WebAppsGetVnetConnectionSlotOptionalParams,
   WebAppsGetVnetConnectionSlotResponse,
-  VnetInfo,
+  VnetInfoResource,
   WebAppsCreateOrUpdateVnetConnectionSlotOptionalParams,
   WebAppsCreateOrUpdateVnetConnectionSlotResponse,
   WebAppsDeleteVnetConnectionSlotOptionalParams,
@@ -684,6 +729,18 @@ export interface WebApps {
     options?: WebAppsListBackupsOptionalParams
   ): PagedAsyncIterableIterator<BackupItem>;
   /**
+   * Description for Returns whether Scm basic auth is allowed and whether Ftp is allowed for a given
+   * site.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param options The options parameters.
+   */
+  listBasicPublishingCredentialsPolicies(
+    resourceGroupName: string,
+    name: string,
+    options?: WebAppsListBasicPublishingCredentialsPoliciesOptionalParams
+  ): PagedAsyncIterableIterator<CsmPublishingCredentialsPoliciesEntity>;
+  /**
    * Description for List the configurations of an app
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
@@ -694,6 +751,28 @@ export interface WebApps {
     name: string,
     options?: WebAppsListConfigurationsOptionalParams
   ): PagedAsyncIterableIterator<SiteConfigResource>;
+  /**
+   * Description for Gets the config reference app settings and status of an app
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param options The options parameters.
+   */
+  listAppSettingsKeyVaultReferences(
+    resourceGroupName: string,
+    name: string,
+    options?: WebAppsGetAppSettingsKeyVaultReferencesOptionalParams
+  ): PagedAsyncIterableIterator<ApiKVReference>;
+  /**
+   * Description for Gets the config reference app settings and status of an app
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param options The options parameters.
+   */
+  listSiteConnectionStringKeyVaultReferences(
+    resourceGroupName: string,
+    name: string,
+    options?: WebAppsGetSiteConnectionStringKeyVaultReferencesOptionalParams
+  ): PagedAsyncIterableIterator<ApiKVReference>;
   /**
    * Description for Gets a list of web app configuration snapshots identifiers. Each element of the list
    * contains a timestamp and the ID of the snapshot.
@@ -771,7 +850,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     options?: WebAppsListInstanceIdentifiersOptionalParams
-  ): PagedAsyncIterableIterator<SiteInstance>;
+  ): PagedAsyncIterableIterator<WebSiteInstanceStatus>;
   /**
    * Description for Get list of processes for a web site, or a deployment slot, or for a specific
    * scaled-out instance in a web site.
@@ -843,6 +922,17 @@ export interface WebApps {
     name: string,
     options?: WebAppsListPerfMonCountersOptionalParams
   ): PagedAsyncIterableIterator<PerfMonResponse>;
+  /**
+   * Description for Gets the list of private endpoint connections associated with a site
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the site.
+   * @param options The options parameters.
+   */
+  listPrivateEndpointConnectionList(
+    resourceGroupName: string,
+    name: string,
+    options?: WebAppsGetPrivateEndpointConnectionListOptionalParams
+  ): PagedAsyncIterableIterator<RemotePrivateEndpointConnectionARMResource>;
   /**
    * Description for Get list of processes for a web site, or a deployment slot, or for a specific
    * scaled-out instance in a web site.
@@ -931,6 +1021,20 @@ export interface WebApps {
     options?: WebAppsListBackupsSlotOptionalParams
   ): PagedAsyncIterableIterator<BackupItem>;
   /**
+   * Description for Returns whether Scm basic auth is allowed and whether Ftp is allowed for a given
+   * site.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slot
+   * @param options The options parameters.
+   */
+  listBasicPublishingCredentialsPoliciesSlot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: WebAppsListBasicPublishingCredentialsPoliciesSlotOptionalParams
+  ): PagedAsyncIterableIterator<CsmPublishingCredentialsPoliciesEntity>;
+  /**
    * Description for List the configurations of an app
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
@@ -944,6 +1048,32 @@ export interface WebApps {
     slot: string,
     options?: WebAppsListConfigurationsSlotOptionalParams
   ): PagedAsyncIterableIterator<SiteConfigResource>;
+  /**
+   * Description for Gets the config reference app settings and status of an app
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slot
+   * @param options The options parameters.
+   */
+  listAppSettingsKeyVaultReferencesSlot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: WebAppsGetAppSettingsKeyVaultReferencesSlotOptionalParams
+  ): PagedAsyncIterableIterator<ApiKVReference>;
+  /**
+   * Description for Gets the config reference app settings and status of an app
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slot
+   * @param options The options parameters.
+   */
+  listSiteConnectionStringKeyVaultReferencesSlot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: WebAppsGetSiteConnectionStringKeyVaultReferencesSlotOptionalParams
+  ): PagedAsyncIterableIterator<ApiKVReference>;
   /**
    * Description for Gets a list of web app configuration snapshots identifiers. Each element of the list
    * contains a timestamp and the ID of the snapshot.
@@ -1041,7 +1171,7 @@ export interface WebApps {
     name: string,
     slot: string,
     options?: WebAppsListInstanceIdentifiersSlotOptionalParams
-  ): PagedAsyncIterableIterator<SiteInstance>;
+  ): PagedAsyncIterableIterator<WebSiteInstanceStatus>;
   /**
    * Description for Get list of processes for a web site, or a deployment slot, or for a specific
    * scaled-out instance in a web site.
@@ -1127,6 +1257,19 @@ export interface WebApps {
     slot: string,
     options?: WebAppsListPerfMonCountersSlotOptionalParams
   ): PagedAsyncIterableIterator<PerfMonResponse>;
+  /**
+   * Description for Gets the list of private endpoint connections associated with a site
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the site.
+   * @param slot Name of the site deployment slot.
+   * @param options The options parameters.
+   */
+  listPrivateEndpointConnectionListSlot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: WebAppsGetPrivateEndpointConnectionListSlotOptionalParams
+  ): PagedAsyncIterableIterator<RemotePrivateEndpointConnectionARMResource>;
   /**
    * Description for Get list of processes for a web site, or a deployment slot, or for a specific
    * scaled-out instance in a web site.
@@ -1569,6 +1712,54 @@ export interface WebApps {
     options?: WebAppsRestoreOptionalParams
   ): Promise<void>;
   /**
+   * Description for Returns whether FTP is allowed on the site or not.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param options The options parameters.
+   */
+  getFtpAllowed(
+    resourceGroupName: string,
+    name: string,
+    options?: WebAppsGetFtpAllowedOptionalParams
+  ): Promise<WebAppsGetFtpAllowedResponse>;
+  /**
+   * Description for Updates whether FTP is allowed on the site or not.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param csmPublishingAccessPoliciesEntity Publishing Credentials Policies parameters.
+   * @param options The options parameters.
+   */
+  updateFtpAllowed(
+    resourceGroupName: string,
+    name: string,
+    csmPublishingAccessPoliciesEntity: CsmPublishingCredentialsPoliciesEntity,
+    options?: WebAppsUpdateFtpAllowedOptionalParams
+  ): Promise<WebAppsUpdateFtpAllowedResponse>;
+  /**
+   * Description for Returns whether Scm basic auth is allowed on the site or not.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param options The options parameters.
+   */
+  getScmAllowed(
+    resourceGroupName: string,
+    name: string,
+    options?: WebAppsGetScmAllowedOptionalParams
+  ): Promise<WebAppsGetScmAllowedResponse>;
+  /**
+   * Description for Updates whether user publishing credentials are allowed on the site or not.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param csmPublishingAccessPoliciesEntity Publishing Credentials Policies parameters.
+   * @param options The options parameters.
+   */
+  updateScmAllowed(
+    resourceGroupName: string,
+    name: string,
+    csmPublishingAccessPoliciesEntity: CsmPublishingCredentialsPoliciesEntity,
+    options?: WebAppsUpdateScmAllowedOptionalParams
+  ): Promise<WebAppsUpdateScmAllowedResponse>;
+  /**
    * Description for Replaces the application settings of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
@@ -1616,6 +1807,30 @@ export interface WebApps {
     name: string,
     options?: WebAppsGetAuthSettingsOptionalParams
   ): Promise<WebAppsGetAuthSettingsResponse>;
+  /**
+   * Description for Updates site's Authentication / Authorization settings for apps via the V2 format
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of web app.
+   * @param siteAuthSettingsV2 Auth settings associated with web app.
+   * @param options The options parameters.
+   */
+  updateAuthSettingsV2(
+    resourceGroupName: string,
+    name: string,
+    siteAuthSettingsV2: SiteAuthSettingsV2,
+    options?: WebAppsUpdateAuthSettingsV2OptionalParams
+  ): Promise<WebAppsUpdateAuthSettingsV2Response>;
+  /**
+   * Description for Gets site's Authentication / Authorization settings for apps via the V2 format
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param options The options parameters.
+   */
+  getAuthSettingsV2(
+    resourceGroupName: string,
+    name: string,
+    options?: WebAppsGetAuthSettingsV2OptionalParams
+  ): Promise<WebAppsGetAuthSettingsV2Response>;
   /**
    * Description for Updates the Azure storage account configurations of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -1676,17 +1891,6 @@ export interface WebApps {
     options?: WebAppsGetBackupConfigurationOptionalParams
   ): Promise<WebAppsGetBackupConfigurationResponse>;
   /**
-   * Description for Gets the config reference app settings and status of an app
-   * @param resourceGroupName Name of the resource group to which the resource belongs.
-   * @param name Name of the app.
-   * @param options The options parameters.
-   */
-  getAppSettingsKeyVaultReferences(
-    resourceGroupName: string,
-    name: string,
-    options?: WebAppsGetAppSettingsKeyVaultReferencesOptionalParams
-  ): Promise<WebAppsGetAppSettingsKeyVaultReferencesResponse>;
-  /**
    * Description for Gets the config reference and status of an app
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
@@ -1699,6 +1903,19 @@ export interface WebApps {
     appSettingKey: string,
     options?: WebAppsGetAppSettingKeyVaultReferenceOptionalParams
   ): Promise<WebAppsGetAppSettingKeyVaultReferenceResponse>;
+  /**
+   * Description for Gets the config reference and status of an app
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param connectionStringKey
+   * @param options The options parameters.
+   */
+  getSiteConnectionStringKeyVaultReference(
+    resourceGroupName: string,
+    name: string,
+    connectionStringKey: string,
+    options?: WebAppsGetSiteConnectionStringKeyVaultReferenceOptionalParams
+  ): Promise<WebAppsGetSiteConnectionStringKeyVaultReferenceResponse>;
   /**
    * Description for Replaces the connection strings of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -2811,12 +3028,14 @@ export interface WebApps {
    * @param connectionEnvelope Properties of the Virtual Network connection. See example.
    * @param options The options parameters.
    */
-  createOrUpdateSwiftVirtualNetworkConnection(
+  createOrUpdateSwiftVirtualNetworkConnectionWithCheck(
     resourceGroupName: string,
     name: string,
     connectionEnvelope: SwiftVirtualNetwork,
-    options?: WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionOptionalParams
-  ): Promise<WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionResponse>;
+    options?: WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionWithCheckOptionalParams
+  ): Promise<
+    WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionWithCheckResponse
+  >;
   /**
    * Description for Deletes a Swift Virtual Network connection from an app (or deployment slot).
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -2838,17 +3057,17 @@ export interface WebApps {
    * @param connectionEnvelope Properties of the Virtual Network connection. See example.
    * @param options The options parameters.
    */
-  updateSwiftVirtualNetworkConnection(
+  updateSwiftVirtualNetworkConnectionWithCheck(
     resourceGroupName: string,
     name: string,
     connectionEnvelope: SwiftVirtualNetwork,
-    options?: WebAppsUpdateSwiftVirtualNetworkConnectionOptionalParams
-  ): Promise<WebAppsUpdateSwiftVirtualNetworkConnectionResponse>;
+    options?: WebAppsUpdateSwiftVirtualNetworkConnectionWithCheckOptionalParams
+  ): Promise<WebAppsUpdateSwiftVirtualNetworkConnectionWithCheckResponse>;
   /**
    * Description for Gets all network features used by the app (or deployment slot, if specified).
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
-   * @param view The type of view. This can either be "summary" or "detailed".
+   * @param view The type of view. Only "summary" is supported at this time.
    * @param options The options parameters.
    */
   listNetworkFeatures(
@@ -3077,6 +3296,98 @@ export interface WebApps {
     access: PrivateAccess,
     options?: WebAppsPutPrivateAccessVnetOptionalParams
   ): Promise<WebAppsPutPrivateAccessVnetResponse>;
+  /**
+   * Description for Gets a private endpoint connection
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the site.
+   * @param privateEndpointConnectionName Name of the private endpoint connection.
+   * @param options The options parameters.
+   */
+  getPrivateEndpointConnection(
+    resourceGroupName: string,
+    name: string,
+    privateEndpointConnectionName: string,
+    options?: WebAppsGetPrivateEndpointConnectionOptionalParams
+  ): Promise<WebAppsGetPrivateEndpointConnectionResponse>;
+  /**
+   * Description for Approves or rejects a private endpoint connection
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the site.
+   * @param privateEndpointConnectionName
+   * @param privateEndpointWrapper Private Endpoint Connection Approval ARM resource.
+   * @param options The options parameters.
+   */
+  beginApproveOrRejectPrivateEndpointConnection(
+    resourceGroupName: string,
+    name: string,
+    privateEndpointConnectionName: string,
+    privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource,
+    options?: WebAppsApproveOrRejectPrivateEndpointConnectionOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<
+        WebAppsApproveOrRejectPrivateEndpointConnectionResponse
+      >,
+      WebAppsApproveOrRejectPrivateEndpointConnectionResponse
+    >
+  >;
+  /**
+   * Description for Approves or rejects a private endpoint connection
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the site.
+   * @param privateEndpointConnectionName
+   * @param privateEndpointWrapper Private Endpoint Connection Approval ARM resource.
+   * @param options The options parameters.
+   */
+  beginApproveOrRejectPrivateEndpointConnectionAndWait(
+    resourceGroupName: string,
+    name: string,
+    privateEndpointConnectionName: string,
+    privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource,
+    options?: WebAppsApproveOrRejectPrivateEndpointConnectionOptionalParams
+  ): Promise<WebAppsApproveOrRejectPrivateEndpointConnectionResponse>;
+  /**
+   * Description for Deletes a private endpoint connection
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the site.
+   * @param privateEndpointConnectionName
+   * @param options The options parameters.
+   */
+  beginDeletePrivateEndpointConnection(
+    resourceGroupName: string,
+    name: string,
+    privateEndpointConnectionName: string,
+    options?: WebAppsDeletePrivateEndpointConnectionOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<WebAppsDeletePrivateEndpointConnectionResponse>,
+      WebAppsDeletePrivateEndpointConnectionResponse
+    >
+  >;
+  /**
+   * Description for Deletes a private endpoint connection
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the site.
+   * @param privateEndpointConnectionName
+   * @param options The options parameters.
+   */
+  beginDeletePrivateEndpointConnectionAndWait(
+    resourceGroupName: string,
+    name: string,
+    privateEndpointConnectionName: string,
+    options?: WebAppsDeletePrivateEndpointConnectionOptionalParams
+  ): Promise<WebAppsDeletePrivateEndpointConnectionResponse>;
+  /**
+   * Description for Gets the private link resources
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the site.
+   * @param options The options parameters.
+   */
+  getPrivateLinkResources(
+    resourceGroupName: string,
+    name: string,
+    options?: WebAppsGetPrivateLinkResourcesOptionalParams
+  ): Promise<WebAppsGetPrivateLinkResourcesResponse>;
   /**
    * Description for Get process information by its ID for a specific scaled-out instance in a web site.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -3350,34 +3661,6 @@ export interface WebApps {
     options?: WebAppsDeleteSiteExtensionOptionalParams
   ): Promise<void>;
   /**
-   * Description for Copies a deployment slot to another deployment slot of an app.
-   * @param resourceGroupName Name of the resource group to which the resource belongs.
-   * @param name Name of the app.
-   * @param copySlotEntity JSON object that contains the target slot name and site config properties to
-   *                       override the source slot config. See example.
-   * @param options The options parameters.
-   */
-  beginCopyProductionSlot(
-    resourceGroupName: string,
-    name: string,
-    copySlotEntity: CsmCopySlotEntity,
-    options?: WebAppsCopyProductionSlotOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
-  /**
-   * Description for Copies a deployment slot to another deployment slot of an app.
-   * @param resourceGroupName Name of the resource group to which the resource belongs.
-   * @param name Name of the app.
-   * @param copySlotEntity JSON object that contains the target slot name and site config properties to
-   *                       override the source slot config. See example.
-   * @param options The options parameters.
-   */
-  beginCopyProductionSlotAndWait(
-    resourceGroupName: string,
-    name: string,
-    copySlotEntity: CsmCopySlotEntity,
-    options?: WebAppsCopyProductionSlotOptionalParams
-  ): Promise<void>;
-  /**
    * Description for Gets the details of a web, mobile, or API app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
@@ -3596,6 +3879,62 @@ export interface WebApps {
     options?: WebAppsRestoreSlotOptionalParams
   ): Promise<void>;
   /**
+   * Description for Returns whether FTP is allowed on the site or not.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slot
+   * @param options The options parameters.
+   */
+  getFtpAllowedSlot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: WebAppsGetFtpAllowedSlotOptionalParams
+  ): Promise<WebAppsGetFtpAllowedSlotResponse>;
+  /**
+   * Description for Updates whether FTP is allowed on the site or not.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slot
+   * @param csmPublishingAccessPoliciesEntity Publishing Credentials Policies parameters.
+   * @param options The options parameters.
+   */
+  updateFtpAllowedSlot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    csmPublishingAccessPoliciesEntity: CsmPublishingCredentialsPoliciesEntity,
+    options?: WebAppsUpdateFtpAllowedSlotOptionalParams
+  ): Promise<WebAppsUpdateFtpAllowedSlotResponse>;
+  /**
+   * Description for Returns whether Scm basic auth is allowed on the site or not.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slot
+   * @param options The options parameters.
+   */
+  getScmAllowedSlot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: WebAppsGetScmAllowedSlotOptionalParams
+  ): Promise<WebAppsGetScmAllowedSlotResponse>;
+  /**
+   * Description for Updates whether user publishing credentials are allowed on the site or not.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slot
+   * @param csmPublishingAccessPoliciesEntity Publishing Credentials Policies parameters.
+   * @param options The options parameters.
+   */
+  updateScmAllowedSlot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    csmPublishingAccessPoliciesEntity: CsmPublishingCredentialsPoliciesEntity,
+    options?: WebAppsUpdateScmAllowedSlotOptionalParams
+  ): Promise<WebAppsUpdateScmAllowedSlotResponse>;
+  /**
    * Description for Replaces the application settings of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
@@ -3654,6 +3993,35 @@ export interface WebApps {
     slot: string,
     options?: WebAppsGetAuthSettingsSlotOptionalParams
   ): Promise<WebAppsGetAuthSettingsSlotResponse>;
+  /**
+   * Description for Updates site's Authentication / Authorization settings for apps via the V2 format
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of web app.
+   * @param slot Name of web app slot. If not specified then will default to production slot.
+   * @param siteAuthSettingsV2 Auth settings associated with web app.
+   * @param options The options parameters.
+   */
+  updateAuthSettingsV2Slot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    siteAuthSettingsV2: SiteAuthSettingsV2,
+    options?: WebAppsUpdateAuthSettingsV2SlotOptionalParams
+  ): Promise<WebAppsUpdateAuthSettingsV2SlotResponse>;
+  /**
+   * Description for Gets site's Authentication / Authorization settings for apps via the V2 format
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slot Name of the deployment slot. If a slot is not specified, the API will get the settings
+   *             for the production slot.
+   * @param options The options parameters.
+   */
+  getAuthSettingsV2Slot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: WebAppsGetAuthSettingsV2SlotOptionalParams
+  ): Promise<WebAppsGetAuthSettingsV2SlotResponse>;
   /**
    * Description for Updates the Azure storage account configurations of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -3728,6 +4096,36 @@ export interface WebApps {
     slot: string,
     options?: WebAppsGetBackupConfigurationSlotOptionalParams
   ): Promise<WebAppsGetBackupConfigurationSlotResponse>;
+  /**
+   * Description for Gets the config reference and status of an app
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param appSettingKey App Setting key name.
+   * @param slot
+   * @param options The options parameters.
+   */
+  getAppSettingKeyVaultReferenceSlot(
+    resourceGroupName: string,
+    name: string,
+    appSettingKey: string,
+    slot: string,
+    options?: WebAppsGetAppSettingKeyVaultReferenceSlotOptionalParams
+  ): Promise<WebAppsGetAppSettingKeyVaultReferenceSlotResponse>;
+  /**
+   * Description for Gets the config reference and status of an app
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param connectionStringKey
+   * @param slot
+   * @param options The options parameters.
+   */
+  getSiteConnectionStringKeyVaultReferenceSlot(
+    resourceGroupName: string,
+    name: string,
+    connectionStringKey: string,
+    slot: string,
+    options?: WebAppsGetSiteConnectionStringKeyVaultReferenceSlotOptionalParams
+  ): Promise<WebAppsGetSiteConnectionStringKeyVaultReferenceSlotResponse>;
   /**
    * Description for Replaces the connection strings of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -4939,13 +5337,15 @@ export interface WebApps {
    * @param connectionEnvelope Properties of the Virtual Network connection. See example.
    * @param options The options parameters.
    */
-  createOrUpdateSwiftVirtualNetworkConnectionSlot(
+  createOrUpdateSwiftVirtualNetworkConnectionWithCheckSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
     connectionEnvelope: SwiftVirtualNetwork,
-    options?: WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionSlotOptionalParams
-  ): Promise<WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionSlotResponse>;
+    options?: WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionWithCheckSlotOptionalParams
+  ): Promise<
+    WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionWithCheckSlotResponse
+  >;
   /**
    * Description for Deletes a Swift Virtual Network connection from an app (or deployment slot).
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -4972,18 +5372,18 @@ export interface WebApps {
    * @param connectionEnvelope Properties of the Virtual Network connection. See example.
    * @param options The options parameters.
    */
-  updateSwiftVirtualNetworkConnectionSlot(
+  updateSwiftVirtualNetworkConnectionWithCheckSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
     connectionEnvelope: SwiftVirtualNetwork,
-    options?: WebAppsUpdateSwiftVirtualNetworkConnectionSlotOptionalParams
-  ): Promise<WebAppsUpdateSwiftVirtualNetworkConnectionSlotResponse>;
+    options?: WebAppsUpdateSwiftVirtualNetworkConnectionWithCheckSlotOptionalParams
+  ): Promise<WebAppsUpdateSwiftVirtualNetworkConnectionWithCheckSlotResponse>;
   /**
    * Description for Gets all network features used by the app (or deployment slot, if specified).
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
-   * @param view The type of view. This can either be "summary" or "detailed".
+   * @param view The type of view. Only "summary" is supported at this time.
    * @param slot Name of the deployment slot. If a slot is not specified, the API will get network
    *             features for the production slot.
    * @param options The options parameters.
@@ -5263,35 +5663,39 @@ export interface WebApps {
    * Description for Gets a private endpoint connection
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the site.
-   * @param privateEndpointConnectionName
+   * @param privateEndpointConnectionName Name of the private endpoint connection.
+   * @param slot Name of the site deployment slot.
    * @param options The options parameters.
    */
-  getPrivateEndpointConnection(
+  getPrivateEndpointConnectionSlot(
     resourceGroupName: string,
     name: string,
     privateEndpointConnectionName: string,
-    options?: WebAppsGetPrivateEndpointConnectionOptionalParams
-  ): Promise<WebAppsGetPrivateEndpointConnectionResponse>;
+    slot: string,
+    options?: WebAppsGetPrivateEndpointConnectionSlotOptionalParams
+  ): Promise<WebAppsGetPrivateEndpointConnectionSlotResponse>;
   /**
    * Description for Approves or rejects a private endpoint connection
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the site.
    * @param privateEndpointConnectionName
+   * @param slot
    * @param privateEndpointWrapper Private Endpoint Connection Approval ARM resource.
    * @param options The options parameters.
    */
-  beginApproveOrRejectPrivateEndpointConnection(
+  beginApproveOrRejectPrivateEndpointConnectionSlot(
     resourceGroupName: string,
     name: string,
     privateEndpointConnectionName: string,
+    slot: string,
     privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource,
-    options?: WebAppsApproveOrRejectPrivateEndpointConnectionOptionalParams
+    options?: WebAppsApproveOrRejectPrivateEndpointConnectionSlotOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
-        WebAppsApproveOrRejectPrivateEndpointConnectionResponse
+        WebAppsApproveOrRejectPrivateEndpointConnectionSlotResponse
       >,
-      WebAppsApproveOrRejectPrivateEndpointConnectionResponse
+      WebAppsApproveOrRejectPrivateEndpointConnectionSlotResponse
     >
   >;
   /**
@@ -5299,32 +5703,36 @@ export interface WebApps {
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the site.
    * @param privateEndpointConnectionName
+   * @param slot
    * @param privateEndpointWrapper Private Endpoint Connection Approval ARM resource.
    * @param options The options parameters.
    */
-  beginApproveOrRejectPrivateEndpointConnectionAndWait(
+  beginApproveOrRejectPrivateEndpointConnectionSlotAndWait(
     resourceGroupName: string,
     name: string,
     privateEndpointConnectionName: string,
+    slot: string,
     privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource,
-    options?: WebAppsApproveOrRejectPrivateEndpointConnectionOptionalParams
-  ): Promise<WebAppsApproveOrRejectPrivateEndpointConnectionResponse>;
+    options?: WebAppsApproveOrRejectPrivateEndpointConnectionSlotOptionalParams
+  ): Promise<WebAppsApproveOrRejectPrivateEndpointConnectionSlotResponse>;
   /**
    * Description for Deletes a private endpoint connection
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the site.
    * @param privateEndpointConnectionName
+   * @param slot
    * @param options The options parameters.
    */
-  beginDeletePrivateEndpointConnection(
+  beginDeletePrivateEndpointConnectionSlot(
     resourceGroupName: string,
     name: string,
     privateEndpointConnectionName: string,
-    options?: WebAppsDeletePrivateEndpointConnectionOptionalParams
+    slot: string,
+    options?: WebAppsDeletePrivateEndpointConnectionSlotOptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<WebAppsDeletePrivateEndpointConnectionResponse>,
-      WebAppsDeletePrivateEndpointConnectionResponse
+      PollOperationState<WebAppsDeletePrivateEndpointConnectionSlotResponse>,
+      WebAppsDeletePrivateEndpointConnectionSlotResponse
     >
   >;
   /**
@@ -5332,25 +5740,29 @@ export interface WebApps {
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the site.
    * @param privateEndpointConnectionName
+   * @param slot
    * @param options The options parameters.
    */
-  beginDeletePrivateEndpointConnectionAndWait(
+  beginDeletePrivateEndpointConnectionSlotAndWait(
     resourceGroupName: string,
     name: string,
     privateEndpointConnectionName: string,
-    options?: WebAppsDeletePrivateEndpointConnectionOptionalParams
-  ): Promise<WebAppsDeletePrivateEndpointConnectionResponse>;
+    slot: string,
+    options?: WebAppsDeletePrivateEndpointConnectionSlotOptionalParams
+  ): Promise<WebAppsDeletePrivateEndpointConnectionSlotResponse>;
   /**
    * Description for Gets the private link resources
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the site.
+   * @param slot
    * @param options The options parameters.
    */
-  getPrivateLinkResources(
+  getPrivateLinkResourcesSlot(
     resourceGroupName: string,
     name: string,
-    options?: WebAppsGetPrivateLinkResourcesOptionalParams
-  ): Promise<WebAppsGetPrivateLinkResourcesResponse>;
+    slot: string,
+    options?: WebAppsGetPrivateLinkResourcesSlotOptionalParams
+  ): Promise<WebAppsGetPrivateLinkResourcesSlotResponse>;
   /**
    * Description for Get process information by its ID for a specific scaled-out instance in a web site.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -5680,40 +6092,6 @@ export interface WebApps {
     options?: WebAppsDeleteSiteExtensionSlotOptionalParams
   ): Promise<void>;
   /**
-   * Description for Copies a deployment slot to another deployment slot of an app.
-   * @param resourceGroupName Name of the resource group to which the resource belongs.
-   * @param name Name of the app.
-   * @param slot Name of the source slot. If a slot is not specified, the production slot is used as the
-   *             source slot.
-   * @param copySlotEntity JSON object that contains the target slot name and site config properties to
-   *                       override the source slot config. See example.
-   * @param options The options parameters.
-   */
-  beginCopySlot(
-    resourceGroupName: string,
-    name: string,
-    slot: string,
-    copySlotEntity: CsmCopySlotEntity,
-    options?: WebAppsCopySlotOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
-  /**
-   * Description for Copies a deployment slot to another deployment slot of an app.
-   * @param resourceGroupName Name of the resource group to which the resource belongs.
-   * @param name Name of the app.
-   * @param slot Name of the source slot. If a slot is not specified, the production slot is used as the
-   *             source slot.
-   * @param copySlotEntity JSON object that contains the target slot name and site config properties to
-   *                       override the source slot config. See example.
-   * @param options The options parameters.
-   */
-  beginCopySlotAndWait(
-    resourceGroupName: string,
-    name: string,
-    slot: string,
-    copySlotEntity: CsmCopySlotEntity,
-    options?: WebAppsCopySlotOptionalParams
-  ): Promise<void>;
-  /**
    * Description for Swaps two deployment slots of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
@@ -6036,7 +6414,7 @@ export interface WebApps {
     name: string,
     vnetName: string,
     slot: string,
-    connectionEnvelope: VnetInfo,
+    connectionEnvelope: VnetInfoResource,
     options?: WebAppsCreateOrUpdateVnetConnectionSlotOptionalParams
   ): Promise<WebAppsCreateOrUpdateVnetConnectionSlotResponse>;
   /**
@@ -6071,7 +6449,7 @@ export interface WebApps {
     name: string,
     vnetName: string,
     slot: string,
-    connectionEnvelope: VnetInfo,
+    connectionEnvelope: VnetInfoResource,
     options?: WebAppsUpdateVnetConnectionSlotOptionalParams
   ): Promise<WebAppsUpdateVnetConnectionSlotResponse>;
   /**
@@ -6413,7 +6791,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     vnetName: string,
-    connectionEnvelope: VnetInfo,
+    connectionEnvelope: VnetInfoResource,
     options?: WebAppsCreateOrUpdateVnetConnectionOptionalParams
   ): Promise<WebAppsCreateOrUpdateVnetConnectionResponse>;
   /**
@@ -6442,7 +6820,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     vnetName: string,
-    connectionEnvelope: VnetInfo,
+    connectionEnvelope: VnetInfoResource,
     options?: WebAppsUpdateVnetConnectionOptionalParams
   ): Promise<WebAppsUpdateVnetConnectionResponse>;
   /**

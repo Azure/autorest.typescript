@@ -63,9 +63,9 @@ const listByVaultOperationSpec: coreClient.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.vaultName,
-    Parameters.subscriptionId
+    Parameters.vaultName
   ],
   headerParameters: [Parameters.accept],
   serializer

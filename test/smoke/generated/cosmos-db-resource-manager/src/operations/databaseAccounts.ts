@@ -1137,8 +1137,7 @@ const getOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.DatabaseAccountGetResults
-    },
-    404: {}
+    }
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [

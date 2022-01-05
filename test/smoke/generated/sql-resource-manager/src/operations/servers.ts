@@ -30,6 +30,9 @@ import {
   ServersUpdateOptionalParams,
   ServersUpdateResponse,
   ServersListResponse,
+  ImportNewDatabaseDefinition,
+  ServersImportDatabaseOptionalParams,
+  ServersImportDatabaseResponse,
   CheckNameAvailabilityRequest,
   ServersCheckNameAvailabilityOptionalParams,
   ServersCheckNameAvailabilityResponse,
@@ -454,6 +457,98 @@ export class ServersImpl implements Servers {
   }
 
   /**
+   * Imports a bacpac into a new database.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param parameters The database import request parameters.
+   * @param options The options parameters.
+   */
+  async beginImportDatabase(
+    resourceGroupName: string,
+    serverName: string,
+    parameters: ImportNewDatabaseDefinition,
+    options?: ServersImportDatabaseOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<ServersImportDatabaseResponse>,
+      ServersImportDatabaseResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<ServersImportDatabaseResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { resourceGroupName, serverName, parameters, options },
+      importDatabaseOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs
+    });
+  }
+
+  /**
+   * Imports a bacpac into a new database.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param parameters The database import request parameters.
+   * @param options The options parameters.
+   */
+  async beginImportDatabaseAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    parameters: ImportNewDatabaseDefinition,
+    options?: ServersImportDatabaseOptionalParams
+  ): Promise<ServersImportDatabaseResponse> {
+    const poller = await this.beginImportDatabase(
+      resourceGroupName,
+      serverName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Determines whether a resource can be created with the specified name.
    * @param parameters The name availability request parameters.
    * @param options The options parameters.
@@ -514,7 +609,7 @@ const listByResourceGroupOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion5],
+  queryParameters: [Parameters.apiVersion3, Parameters.expand],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -533,7 +628,7 @@ const getOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion5],
+  queryParameters: [Parameters.apiVersion3, Parameters.expand],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -562,8 +657,8 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  requestBody: Parameters.parameters61,
-  queryParameters: [Parameters.apiVersion5],
+  requestBody: Parameters.parameters80,
+  queryParameters: [Parameters.apiVersion3],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -579,7 +674,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}",
   httpMethod: "DELETE",
   responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
-  queryParameters: [Parameters.apiVersion5],
+  queryParameters: [Parameters.apiVersion3],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -607,8 +702,8 @@ const updateOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  requestBody: Parameters.parameters62,
-  queryParameters: [Parameters.apiVersion5],
+  requestBody: Parameters.parameters81,
+  queryParameters: [Parameters.apiVersion3],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -628,9 +723,40 @@ const listOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion5],
+  queryParameters: [Parameters.apiVersion3, Parameters.expand],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.accept],
+  serializer
+};
+const importDatabaseOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/import",
+  httpMethod: "POST",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ImportExportOperationResult
+    },
+    201: {
+      bodyMapper: Mappers.ImportExportOperationResult
+    },
+    202: {
+      bodyMapper: Mappers.ImportExportOperationResult
+    },
+    204: {
+      bodyMapper: Mappers.ImportExportOperationResult
+    },
+    default: {}
+  },
+  requestBody: Parameters.parameters82,
+  queryParameters: [Parameters.apiVersion3],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.serverName
+  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const checkNameAvailabilityOperationSpec: coreClient.OperationSpec = {
@@ -643,8 +769,8 @@ const checkNameAvailabilityOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  requestBody: Parameters.parameters63,
-  queryParameters: [Parameters.apiVersion5],
+  requestBody: Parameters.parameters83,
+  queryParameters: [Parameters.apiVersion3],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
@@ -659,7 +785,7 @@ const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion5],
+  queryParameters: [Parameters.apiVersion3, Parameters.expand],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -678,7 +804,7 @@ const listNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion5],
+  queryParameters: [Parameters.apiVersion3, Parameters.expand],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,

@@ -12,8 +12,10 @@ import {
   OperationsImpl,
   SkusImpl,
   StorageAccountsImpl,
+  DeletedAccountsImpl,
   UsagesImpl,
   ManagementPoliciesImpl,
+  BlobInventoryPoliciesImpl,
   PrivateEndpointConnectionsImpl,
   PrivateLinkResourcesImpl,
   ObjectReplicationPoliciesOperationsImpl,
@@ -21,14 +23,20 @@ import {
   BlobServicesImpl,
   BlobContainersImpl,
   FileServicesImpl,
-  FileSharesImpl
+  FileSharesImpl,
+  QueueServicesImpl,
+  QueueImpl,
+  TableServicesImpl,
+  TableOperationsImpl
 } from "./operations";
 import {
   Operations,
   Skus,
   StorageAccounts,
+  DeletedAccounts,
   Usages,
   ManagementPolicies,
+  BlobInventoryPolicies,
   PrivateEndpointConnections,
   PrivateLinkResources,
   ObjectReplicationPoliciesOperations,
@@ -36,7 +44,11 @@ import {
   BlobServices,
   BlobContainers,
   FileServices,
-  FileShares
+  FileShares,
+  QueueServices,
+  Queue,
+  TableServices,
+  TableOperations
 } from "./operationsInterfaces";
 import { StorageManagementClientOptionalParams } from "./models";
 
@@ -92,12 +104,14 @@ export class StorageManagementClient extends coreClient.ServiceClient {
 
     // Assigning values to Constant parameters
     this.$host = options.$host || "https://management.azure.com";
-    this.apiVersion = options.apiVersion || "2019-06-01";
+    this.apiVersion = options.apiVersion || "2021-06-01";
     this.operations = new OperationsImpl(this);
     this.skus = new SkusImpl(this);
     this.storageAccounts = new StorageAccountsImpl(this);
+    this.deletedAccounts = new DeletedAccountsImpl(this);
     this.usages = new UsagesImpl(this);
     this.managementPolicies = new ManagementPoliciesImpl(this);
+    this.blobInventoryPolicies = new BlobInventoryPoliciesImpl(this);
     this.privateEndpointConnections = new PrivateEndpointConnectionsImpl(this);
     this.privateLinkResources = new PrivateLinkResourcesImpl(this);
     this.objectReplicationPoliciesOperations = new ObjectReplicationPoliciesOperationsImpl(
@@ -108,13 +122,19 @@ export class StorageManagementClient extends coreClient.ServiceClient {
     this.blobContainers = new BlobContainersImpl(this);
     this.fileServices = new FileServicesImpl(this);
     this.fileShares = new FileSharesImpl(this);
+    this.queueServices = new QueueServicesImpl(this);
+    this.queue = new QueueImpl(this);
+    this.tableServices = new TableServicesImpl(this);
+    this.tableOperations = new TableOperationsImpl(this);
   }
 
   operations: Operations;
   skus: Skus;
   storageAccounts: StorageAccounts;
+  deletedAccounts: DeletedAccounts;
   usages: Usages;
   managementPolicies: ManagementPolicies;
+  blobInventoryPolicies: BlobInventoryPolicies;
   privateEndpointConnections: PrivateEndpointConnections;
   privateLinkResources: PrivateLinkResources;
   objectReplicationPoliciesOperations: ObjectReplicationPoliciesOperations;
@@ -123,4 +143,8 @@ export class StorageManagementClient extends coreClient.ServiceClient {
   blobContainers: BlobContainers;
   fileServices: FileServices;
   fileShares: FileShares;
+  queueServices: QueueServices;
+  queue: Queue;
+  tableServices: TableServices;
+  tableOperations: TableOperations;
 }

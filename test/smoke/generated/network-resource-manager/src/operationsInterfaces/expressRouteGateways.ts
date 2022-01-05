@@ -15,6 +15,9 @@ import {
   ExpressRouteGateway,
   ExpressRouteGatewaysCreateOrUpdateOptionalParams,
   ExpressRouteGatewaysCreateOrUpdateResponse,
+  TagsObject,
+  ExpressRouteGatewaysUpdateTagsOptionalParams,
+  ExpressRouteGatewaysUpdateTagsResponse,
   ExpressRouteGatewaysGetOptionalParams,
   ExpressRouteGatewaysGetResponse,
   ExpressRouteGatewaysDeleteOptionalParams
@@ -71,6 +74,39 @@ export interface ExpressRouteGateways {
     putExpressRouteGatewayParameters: ExpressRouteGateway,
     options?: ExpressRouteGatewaysCreateOrUpdateOptionalParams
   ): Promise<ExpressRouteGatewaysCreateOrUpdateResponse>;
+  /**
+   * Updates express route gateway tags.
+   * @param resourceGroupName The resource group name of the ExpressRouteGateway.
+   * @param expressRouteGatewayName The name of the gateway.
+   * @param expressRouteGatewayParameters Parameters supplied to update a virtual wan express route
+   *                                      gateway tags.
+   * @param options The options parameters.
+   */
+  beginUpdateTags(
+    resourceGroupName: string,
+    expressRouteGatewayName: string,
+    expressRouteGatewayParameters: TagsObject,
+    options?: ExpressRouteGatewaysUpdateTagsOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<ExpressRouteGatewaysUpdateTagsResponse>,
+      ExpressRouteGatewaysUpdateTagsResponse
+    >
+  >;
+  /**
+   * Updates express route gateway tags.
+   * @param resourceGroupName The resource group name of the ExpressRouteGateway.
+   * @param expressRouteGatewayName The name of the gateway.
+   * @param expressRouteGatewayParameters Parameters supplied to update a virtual wan express route
+   *                                      gateway tags.
+   * @param options The options parameters.
+   */
+  beginUpdateTagsAndWait(
+    resourceGroupName: string,
+    expressRouteGatewayName: string,
+    expressRouteGatewayParameters: TagsObject,
+    options?: ExpressRouteGatewaysUpdateTagsOptionalParams
+  ): Promise<ExpressRouteGatewaysUpdateTagsResponse>;
   /**
    * Fetches the details of a ExpressRoute gateway in a resource group.
    * @param resourceGroupName The name of the resource group.
