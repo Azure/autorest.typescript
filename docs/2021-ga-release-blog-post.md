@@ -17,7 +17,7 @@ These libraries follow the new [Azure Library guidelines](https://azure.github.i
 
 ## Key concepts
 
-While a detailed list and usage of the new features can be found in the migration guide and the quick start guide can be used for first time users, below is an overview of the major changes in the new libraries
+While a detailed list and usage of the new features can be found in the [migration guide](https://aka.ms/js-track2-migration-guide) and the [quick start guide](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/next-generation-quickstart.md) can be used for first time users, below is an overview of the major changes in the new libraries
 
 ### Authentication
 
@@ -74,3 +74,4 @@ We hope these changes make management of your Azure resources much easier with t
 2. [Autorest Typescript SDK Generator](https://www.npmjs.com/package/@autorest/typescript)
 3. [Migration Guide for SDKs](https://aka.ms/js-track2-migration-guide)
 4. [Migration Guide for `@azure/identity`](https://github.com/Azure/ms-rest-nodeauth/blob/master/migrate-to-identity-v2.md)
+5. [Quick Start Guide](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/next-generation-quickstart.md)
