@@ -34,7 +34,7 @@ To help with code readability, better handling of deferred and asynchronous comp
 
 ### PagedAsyncIterableIterator interface
 
-The results of List operations could be iterated by using the `PagedAsyncIterableIterator` interface. This will enhance the user experience that a new request need not be created to access the next page.
+List operations now return a `PagedAsyncIterableIterator` interface that can be used to iterate over the results. This is a better user experience than before where a new method call had to made to access the next page. ```
 
 ### ES6 Support
 
