@@ -1,23 +1,23 @@
-# Introducing the new Azure SDK Management Libraries for Javascript
+# Introducing the new Azure SDK Management Libraries for JavaScript
 
 We're excited to announce the new GA release for JavaScript libraries that enable you to provision and manage Azure resources via the Azure Resource Manager. These libraries have several new features that help developers to have a great experience in using the Azure Services. Some of the important libraries that have been released are:
 
-1. [Compute](https://www.npmjs.com/package/@azure/arm-compute)
-2. [Network](https://www.npmjs.com/package/@azure/arm-network)
-3. [Storage](https://www.npmjs.com/package/@azure/arm-storage)
-4. [Sql](https://www.npmjs.com/package/@azure/arm-sql)
-5. [Resources](https://www.npmjs.com/package/@azure/arm-resources)
-6. [Policy](https://www.npmjs.com/package/@azure/arm-policy)
-7. [Managed applications](https://www.npmjs.com/package/@azure/arm-managedapplications)
-8. [Links](https://www.npmjs.com/package/@azure/arm-links)
-9. [Locks](https://www.npmjs.com/package/@azure/arm-locks)
-10. [Features](https://www.npmjs.com/package/@azure/arm-features)
+1. [@azure/arm-compute](https://www.npmjs.com/package/@azure/arm-compute)
+2. [@azure/arm-network](https://www.npmjs.com/package/@azure/arm-network)
+3. [@azure/arm-storage](https://www.npmjs.com/package/@azure/arm-storage)
+4. [@azure/arm-sql](https://www.npmjs.com/package/@azure/arm-sql)
+5. [@azure/arm-resources](https://www.npmjs.com/package/@azure/arm-resources)
+6. [@azure/arm-policy](https://www.npmjs.com/package/@azure/arm-policy)
+7. [@azure/arm-managedapplications](https://www.npmjs.com/package/@azure/arm-managedapplications)
+8. [@azure/arm-links](https://www.npmjs.com/package/@azure/arm-links)
+9. [@azure/arm-locks](https://www.npmjs.com/package/@azure/arm-locks)
+10. [@azure/arm-features](https://www.npmjs.com/package/@azure/arm-features)
 
-These libraries follow the new [Azure SDK guidelines](https://azure.github.io/azure-sdk/general_introduction.html) that were written to provide an improved and consistent development experience across Azure services. The [TypeScript & JavaScript specific guidelines](https://azure.github.io/azure-sdk/typescript_introduction.html) that are also followed ensure that these libraries have a natural and idiomatic feel to the JavaScript and TypeScript ecosystem. These libraries have been generated using the new [Autorest Typescript SDK Generator](https://www.npmjs.com/package/@autorest/typescript). They provide new authentication mechanisms, better paging and long running operations experience.. We encourage you to try out the libraries and provide your feedback.
+These libraries follow the new [Azure Library guidelines](https://azure.github.io/azure-sdk/general_introduction.html) that were written to provide an improved and consistent development experience across Azure services. The [TypeScript & JavaScript specific guidelines](https://azure.github.io/azure-sdk/typescript_introduction.html) that are also followed ensure that these libraries have a natural and idiomatic feel to the JavaScript and TypeScript ecosystem. These libraries have been generated using the new [Autorest Typescript Library Generator](https://www.npmjs.com/package/@autorest/typescript). They provide new authentication mechanisms, better paging and long running operations experience.. We encourage you to try out the libraries and provide your feedback.
 
 ## Key concepts
 
-The new libraries have the following changes:
+While a detailed list and usage of the new features can be found in the migration guide and the quick start guide can be used for first time users, below is an overview of the major changes in the new libraries
 
 ### Authentication
 
@@ -26,7 +26,7 @@ Previously, the Azure management libraries required credential objects created v
 - For the different authentication scenarios, see the [Azure Identity examples](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md)
 - Refer to the [migration guide to @azure/identity](https://github.com/Azure/ms-rest-nodeauth/blob/master/migrate-to-identity-v2.md) to update your existing application.
 
-### Promises
+### Promises vs callbacks
 
 To help with code readability, better handling of deferred and asynchronous computations and better error handling, our new guidelines encourage the use of promises over callbacks. Therefore, the overloads that took callbacks have been dropped in favor of promises.
 
@@ -42,15 +42,13 @@ The SDKs have been changed to support ECMAScript 2015 (ES6) and beyond
 
 The structure of LRO Operations has been modified. The `LROPoller` return object has been modified to `PollerLike` object. The [Long Running Operations](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/MIGRATION-guide-for-next-generation-management-libraries.md#long-running-operations) section in the migration guide will give you more details on it.
 
-A detailed list and usage of these features could be found in the [migration guide](https://aka.ms/js-track2-migration-guide) A [Quick Start](https://aka.ms/js-track2-quickstart) helps to get started with the new libraries.
-
 ## What's next
 
 In the future, we are planning to release the following:
 
-1. Improved documentation on the usage of the SDKs
+1. Improved documentation on the usage of the Libraries
 2. More azure services will be covered and released with the new features
-3. Detailed end-to-end examples for the SDKs including the new features introduced with these releases.
+3. Detailed end-to-end examples for the Libraries including the new features introduced with these releases.
 
 ## Feedback
 
@@ -58,21 +56,21 @@ We encourage you to try out the libraries and provide your feedback by filing an
 
 ## Conclusion
 
-We hope these changes make management of your Azure resources much easier with the Javascript SDK.
+We hope these changes make management of your Azure resources much easier with the JavaScript Libraries.
 
 ## Reference Links
 
 1. List of libraries released
-   1. [Compute](https://www.npmjs.com/package/@azure/arm-compute)
-   2. [Network](https://www.npmjs.com/package/@azure/arm-network)
-   3. [Storage](https://www.npmjs.com/package/@azure/arm-storage)
-   4. [Sql](https://www.npmjs.com/package/@azure/arm-sql)
-   5. [Resources](https://www.npmjs.com/package/@azure/arm-resources)
-   6. [Policy](https://www.npmjs.com/package/@azure/arm-policy)
-   7. [Managed applications](https://www.npmjs.com/package/@azure/arm-managedapplications)
-   8. [Links](https://www.npmjs.com/package/@azure/arm-links)
-   9. [Locks](https://www.npmjs.com/package/@azure/arm-locks)
-   10. [Features](https://www.npmjs.com/package/@azure/arm-features)
+   1. [@azure/arm-compute](https://www.npmjs.com/package/@azure/arm-compute)
+   2. [@azure/arm-network](https://www.npmjs.com/package/@azure/arm-network)
+   3. [@azure/arm-storage](https://www.npmjs.com/package/@azure/arm-storage)
+   4. [@azure/arm-sql](https://www.npmjs.com/package/@azure/arm-sql)
+   5. [@azure/arm-resources](https://www.npmjs.com/package/@azure/arm-resources)
+   6. [@azure/arm-policy](https://www.npmjs.com/package/@azure/arm-policy)
+   7. [@azure/arm-managedapplications](https://www.npmjs.com/package/@azure/arm-managedapplications)
+   8. [@azure/arm-links](https://www.npmjs.com/package/@azure/arm-links)
+   9. [@azure/arm-locks](https://www.npmjs.com/package/@azure/arm-locks)
+   10. [@azure/arm-features](https://www.npmjs.com/package/@azure/arm-features)
 2. [Autorest Typescript SDK Generator](https://www.npmjs.com/package/@autorest/typescript)
 3. [Migration Guide for SDKs](https://aka.ms/js-track2-migration-guide)
 4. [Migration Guide for `@azure/identity`](https://github.com/Azure/ms-rest-nodeauth/blob/master/migrate-to-identity-v2.md)
