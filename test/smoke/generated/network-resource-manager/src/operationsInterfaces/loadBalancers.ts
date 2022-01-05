@@ -19,7 +19,12 @@ import {
   LoadBalancersCreateOrUpdateResponse,
   TagsObject,
   LoadBalancersUpdateTagsOptionalParams,
-  LoadBalancersUpdateTagsResponse
+  LoadBalancersUpdateTagsResponse,
+  LoadBalancerVipSwapRequest,
+  LoadBalancersSwapPublicIpAddressesOptionalParams,
+  QueryInboundNatRulePortMappingRequest,
+  LoadBalancersListInboundNatRulePortMappingsOptionalParams,
+  LoadBalancersListInboundNatRulePortMappingsResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -118,4 +123,61 @@ export interface LoadBalancers {
     parameters: TagsObject,
     options?: LoadBalancersUpdateTagsOptionalParams
   ): Promise<LoadBalancersUpdateTagsResponse>;
+  /**
+   * Swaps VIPs between two load balancers.
+   * @param location The region where load balancers are located at.
+   * @param parameters Parameters that define which VIPs should be swapped.
+   * @param options The options parameters.
+   */
+  beginSwapPublicIpAddresses(
+    location: string,
+    parameters: LoadBalancerVipSwapRequest,
+    options?: LoadBalancersSwapPublicIpAddressesOptionalParams
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  /**
+   * Swaps VIPs between two load balancers.
+   * @param location The region where load balancers are located at.
+   * @param parameters Parameters that define which VIPs should be swapped.
+   * @param options The options parameters.
+   */
+  beginSwapPublicIpAddressesAndWait(
+    location: string,
+    parameters: LoadBalancerVipSwapRequest,
+    options?: LoadBalancersSwapPublicIpAddressesOptionalParams
+  ): Promise<void>;
+  /**
+   * List of inbound NAT rule port mappings.
+   * @param groupName The name of the resource group.
+   * @param loadBalancerName The name of the load balancer.
+   * @param backendPoolName The name of the load balancer backend address pool.
+   * @param parameters Query inbound NAT rule port mapping request.
+   * @param options The options parameters.
+   */
+  beginListInboundNatRulePortMappings(
+    groupName: string,
+    loadBalancerName: string,
+    backendPoolName: string,
+    parameters: QueryInboundNatRulePortMappingRequest,
+    options?: LoadBalancersListInboundNatRulePortMappingsOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<LoadBalancersListInboundNatRulePortMappingsResponse>,
+      LoadBalancersListInboundNatRulePortMappingsResponse
+    >
+  >;
+  /**
+   * List of inbound NAT rule port mappings.
+   * @param groupName The name of the resource group.
+   * @param loadBalancerName The name of the load balancer.
+   * @param backendPoolName The name of the load balancer backend address pool.
+   * @param parameters Query inbound NAT rule port mapping request.
+   * @param options The options parameters.
+   */
+  beginListInboundNatRulePortMappingsAndWait(
+    groupName: string,
+    loadBalancerName: string,
+    backendPoolName: string,
+    parameters: QueryInboundNatRulePortMappingRequest,
+    options?: LoadBalancersListInboundNatRulePortMappingsOptionalParams
+  ): Promise<LoadBalancersListInboundNatRulePortMappingsResponse>;
 }

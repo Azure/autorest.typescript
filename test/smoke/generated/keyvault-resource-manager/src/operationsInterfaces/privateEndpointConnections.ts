@@ -6,19 +6,34 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
+  PrivateEndpointConnection,
+  PrivateEndpointConnectionsListByResourceOptionalParams,
   PrivateEndpointConnectionsGetOptionalParams,
   PrivateEndpointConnectionsGetResponse,
-  PrivateEndpointConnection,
   PrivateEndpointConnectionsPutOptionalParams,
   PrivateEndpointConnectionsPutResponse,
   PrivateEndpointConnectionsDeleteOptionalParams,
   PrivateEndpointConnectionsDeleteResponse
 } from "../models";
 
+/// <reference lib="esnext.asynciterable" />
 /** Interface representing a PrivateEndpointConnections. */
 export interface PrivateEndpointConnections {
+  /**
+   * The List operation gets information about the private endpoint connections associated with the
+   * vault.
+   * @param resourceGroupName Name of the resource group that contains the key vault.
+   * @param vaultName The name of the key vault.
+   * @param options The options parameters.
+   */
+  listByResource(
+    resourceGroupName: string,
+    vaultName: string,
+    options?: PrivateEndpointConnectionsListByResourceOptionalParams
+  ): PagedAsyncIterableIterator<PrivateEndpointConnection>;
   /**
    * Gets the specified private endpoint connection associated with the key vault.
    * @param resourceGroupName Name of the resource group that contains the key vault.

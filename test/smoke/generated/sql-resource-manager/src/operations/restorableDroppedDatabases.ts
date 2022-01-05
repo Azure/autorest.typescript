@@ -14,10 +14,12 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import {
   RestorableDroppedDatabase,
+  RestorableDroppedDatabasesListByServerNextOptionalParams,
   RestorableDroppedDatabasesListByServerOptionalParams,
+  RestorableDroppedDatabasesListByServerResponse,
   RestorableDroppedDatabasesGetOptionalParams,
   RestorableDroppedDatabasesGetResponse,
-  RestorableDroppedDatabasesListByServerResponse
+  RestorableDroppedDatabasesListByServerNextResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -35,7 +37,7 @@ export class RestorableDroppedDatabasesImpl
   }
 
   /**
-   * Gets a list of deleted databases that can be restored
+   * Gets a list of restorable dropped databases.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
@@ -79,6 +81,17 @@ export class RestorableDroppedDatabasesImpl
       options
     );
     yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listByServerNext(
+        resourceGroupName,
+        serverName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
   }
 
   private async *listByServerPagingAll(
@@ -96,28 +109,7 @@ export class RestorableDroppedDatabasesImpl
   }
 
   /**
-   * Gets a deleted database that can be restored
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param restorableDroppededDatabaseId The id of the deleted database in the form of
-   *                                      databaseName,deletionTimeInFileTimeFormat
-   * @param options The options parameters.
-   */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    restorableDroppededDatabaseId: string,
-    options?: RestorableDroppedDatabasesGetOptionalParams
-  ): Promise<RestorableDroppedDatabasesGetResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, restorableDroppededDatabaseId, options },
-      getOperationSpec
-    );
-  }
-
-  /**
-   * Gets a list of deleted databases that can be restored
+   * Gets a list of restorable dropped databases.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
@@ -133,30 +125,50 @@ export class RestorableDroppedDatabasesImpl
       listByServerOperationSpec
     );
   }
+
+  /**
+   * Gets a restorable dropped database.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param restorableDroppedDatabaseId
+   * @param options The options parameters.
+   */
+  get(
+    resourceGroupName: string,
+    serverName: string,
+    restorableDroppedDatabaseId: string,
+    options?: RestorableDroppedDatabasesGetOptionalParams
+  ): Promise<RestorableDroppedDatabasesGetResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, serverName, restorableDroppedDatabaseId, options },
+      getOperationSpec
+    );
+  }
+
+  /**
+   * ListByServerNext
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param nextLink The nextLink from the previous successful call to the ListByServer method.
+   * @param options The options parameters.
+   */
+  private _listByServerNext(
+    resourceGroupName: string,
+    serverName: string,
+    nextLink: string,
+    options?: RestorableDroppedDatabasesListByServerNextOptionalParams
+  ): Promise<RestorableDroppedDatabasesListByServerNextResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, serverName, nextLink, options },
+      listByServerNextOperationSpec
+    );
+  }
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/restorableDroppedDatabases/{restorableDroppededDatabaseId}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.RestorableDroppedDatabase
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.restorableDroppededDatabaseId
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
 const listByServerOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/restorableDroppedDatabases",
@@ -164,14 +176,56 @@ const listByServerOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.RestorableDroppedDatabaseListResult
-    }
+    },
+    default: {}
   },
-  queryParameters: [Parameters.apiVersion],
+  queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const getOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/restorableDroppedDatabases/{restorableDroppedDatabaseId}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.RestorableDroppedDatabase
+    },
+    default: {}
+  },
+  queryParameters: [Parameters.apiVersion1],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.serverName,
+    Parameters.restorableDroppedDatabaseId
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listByServerNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.RestorableDroppedDatabaseListResult
+    },
+    default: {}
+  },
+  queryParameters: [Parameters.apiVersion1],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.serverName,
+    Parameters.nextLink
   ],
   headerParameters: [Parameters.accept],
   serializer

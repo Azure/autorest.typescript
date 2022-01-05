@@ -29,9 +29,9 @@ import {
   ManagedDatabaseUpdate,
   ManagedDatabasesUpdateOptionalParams,
   ManagedDatabasesUpdateResponse,
-  ManagedDatabasesListInaccessibleByInstanceResponse,
   CompleteDatabaseRestoreDefinition,
   ManagedDatabasesCompleteRestoreOptionalParams,
+  ManagedDatabasesListInaccessibleByInstanceResponse,
   ManagedDatabasesListByInstanceNextResponse,
   ManagedDatabasesListInaccessibleByInstanceNextResponse
 } from "../models";
@@ -525,24 +525,6 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
   }
 
   /**
-   * Gets a list of inaccessible managed databases in a managed instance
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param options The options parameters.
-   */
-  private _listInaccessibleByInstance(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    options?: ManagedDatabasesListInaccessibleByInstanceOptionalParams
-  ): Promise<ManagedDatabasesListInaccessibleByInstanceResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, managedInstanceName, options },
-      listInaccessibleByInstanceOperationSpec
-    );
-  }
-
-  /**
    * Completes the restore operation on a managed database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -641,6 +623,24 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
   }
 
   /**
+   * Gets a list of inaccessible managed databases in a managed instance
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param options The options parameters.
+   */
+  private _listInaccessibleByInstance(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    options?: ManagedDatabasesListInaccessibleByInstanceOptionalParams
+  ): Promise<ManagedDatabasesListInaccessibleByInstanceResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, managedInstanceName, options },
+      listInaccessibleByInstanceOperationSpec
+    );
+  }
+
+  /**
    * ListByInstanceNext
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -694,7 +694,7 @@ const listByInstanceOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion5],
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -714,7 +714,7 @@ const getOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion5],
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -744,8 +744,8 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  requestBody: Parameters.parameters67,
-  queryParameters: [Parameters.apiVersion5],
+  requestBody: Parameters.parameters39,
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -762,7 +762,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/databases/{databaseName}",
   httpMethod: "DELETE",
   responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
-  queryParameters: [Parameters.apiVersion5],
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -791,8 +791,8 @@ const updateOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  requestBody: Parameters.parameters68,
-  queryParameters: [Parameters.apiVersion5],
+  requestBody: Parameters.parameters40,
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -801,6 +801,24 @@ const updateOperationSpec: coreClient.OperationSpec = {
     Parameters.managedInstanceName
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
+  serializer
+};
+const completeRestoreOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/databases/{databaseName}/completeRestore",
+  httpMethod: "POST",
+  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
+  requestBody: Parameters.parameters41,
+  queryParameters: [Parameters.apiVersion2],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.databaseName,
+    Parameters.managedInstanceName
+  ],
+  headerParameters: [Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -814,7 +832,7 @@ const listInaccessibleByInstanceOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion5],
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -822,24 +840,6 @@ const listInaccessibleByInstanceOperationSpec: coreClient.OperationSpec = {
     Parameters.managedInstanceName
   ],
   headerParameters: [Parameters.accept],
-  serializer
-};
-const completeRestoreOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/databases/{databaseName}/completeRestore",
-  httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
-  requestBody: Parameters.parameters69,
-  queryParameters: [Parameters.apiVersion5],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.databaseName,
-    Parameters.managedInstanceName
-  ],
-  headerParameters: [Parameters.contentType],
-  mediaType: "json",
   serializer
 };
 const listByInstanceNextOperationSpec: coreClient.OperationSpec = {
@@ -851,7 +851,7 @@ const listByInstanceNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion5],
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -871,7 +871,7 @@ const listInaccessibleByInstanceNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion5],
+  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,

@@ -24,7 +24,7 @@ import {
   AnalysisDefinition,
   DiagnosticsListSiteAnalysesNextOptionalParams,
   DiagnosticsListSiteAnalysesOptionalParams,
-  DetectorDefinition,
+  DetectorDefinitionResource,
   DiagnosticsListSiteDetectorsNextOptionalParams,
   DiagnosticsListSiteDetectorsOptionalParams,
   DiagnosticsListSiteDetectorResponsesSlotNextOptionalParams,
@@ -399,7 +399,7 @@ export class DiagnosticsImpl implements Diagnostics {
     siteName: string,
     diagnosticCategory: string,
     options?: DiagnosticsListSiteDetectorsOptionalParams
-  ): PagedAsyncIterableIterator<DetectorDefinition> {
+  ): PagedAsyncIterableIterator<DetectorDefinitionResource> {
     const iter = this.listSiteDetectorsPagingAll(
       resourceGroupName,
       siteName,
@@ -429,7 +429,7 @@ export class DiagnosticsImpl implements Diagnostics {
     siteName: string,
     diagnosticCategory: string,
     options?: DiagnosticsListSiteDetectorsOptionalParams
-  ): AsyncIterableIterator<DetectorDefinition[]> {
+  ): AsyncIterableIterator<DetectorDefinitionResource[]> {
     let result = await this._listSiteDetectors(
       resourceGroupName,
       siteName,
@@ -456,7 +456,7 @@ export class DiagnosticsImpl implements Diagnostics {
     siteName: string,
     diagnosticCategory: string,
     options?: DiagnosticsListSiteDetectorsOptionalParams
-  ): AsyncIterableIterator<DetectorDefinition> {
+  ): AsyncIterableIterator<DetectorDefinitionResource> {
     for await (const page of this.listSiteDetectorsPagingPage(
       resourceGroupName,
       siteName,
@@ -730,7 +730,7 @@ export class DiagnosticsImpl implements Diagnostics {
     diagnosticCategory: string,
     slot: string,
     options?: DiagnosticsListSiteDetectorsSlotOptionalParams
-  ): PagedAsyncIterableIterator<DetectorDefinition> {
+  ): PagedAsyncIterableIterator<DetectorDefinitionResource> {
     const iter = this.listSiteDetectorsSlotPagingAll(
       resourceGroupName,
       siteName,
@@ -763,7 +763,7 @@ export class DiagnosticsImpl implements Diagnostics {
     diagnosticCategory: string,
     slot: string,
     options?: DiagnosticsListSiteDetectorsSlotOptionalParams
-  ): AsyncIterableIterator<DetectorDefinition[]> {
+  ): AsyncIterableIterator<DetectorDefinitionResource[]> {
     let result = await this._listSiteDetectorsSlot(
       resourceGroupName,
       siteName,
@@ -793,7 +793,7 @@ export class DiagnosticsImpl implements Diagnostics {
     diagnosticCategory: string,
     slot: string,
     options?: DiagnosticsListSiteDetectorsSlotOptionalParams
-  ): AsyncIterableIterator<DetectorDefinition> {
+  ): AsyncIterableIterator<DetectorDefinitionResource> {
     for await (const page of this.listSiteDetectorsSlotPagingPage(
       resourceGroupName,
       siteName,
@@ -1760,7 +1760,7 @@ const getSiteDetectorOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DetectorDefinition
+      bodyMapper: Mappers.DetectorDefinitionResource
     },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
@@ -2015,7 +2015,7 @@ const getSiteDetectorSlotOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DetectorDefinition
+      bodyMapper: Mappers.DetectorDefinitionResource
     },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse

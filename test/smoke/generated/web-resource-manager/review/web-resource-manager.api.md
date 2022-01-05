@@ -21,9 +21,6 @@ export interface AbnormalTimePeriod {
 }
 
 // @public
-export type AccessControlEntryAction = "Permit" | "Deny";
-
-// @public
 export interface Address {
     address1: string;
     address2?: string;
@@ -40,6 +37,17 @@ export type AddressResponse = ProxyOnlyResource & {
     outboundIpAddresses?: string[];
     vipMappings?: VirtualIPMapping[];
 };
+
+// @public
+export interface AllowedAudiencesValidation {
+    allowedAudiences?: string[];
+}
+
+// @public
+export interface AllowedPrincipals {
+    groups?: string[];
+    identities?: string[];
+}
 
 // @public
 export interface AnalysisData {
@@ -61,29 +69,46 @@ export interface ApiDefinitionInfo {
 }
 
 // @public
-export interface ApiKVReference {
-    // (undocumented)
-    details?: string;
-    identityType?: ManagedServiceIdentityType;
-    // (undocumented)
-    location?: "ApplicationSetting";
-    // (undocumented)
+export type ApiKVReference = ProxyOnlyResource & {
     reference?: string;
-    // (undocumented)
-    secretName?: string;
-    // (undocumented)
-    secretVersion?: string;
-    // (undocumented)
-    source?: "KeyVault";
-    // (undocumented)
     status?: ResolveStatus;
-    // (undocumented)
     vaultName?: string;
+    secretName?: string;
+    secretVersion?: string;
+    identityType?: ManagedServiceIdentity;
+    details?: string;
+    source?: "KeyVault";
+    activeVersion?: string;
+};
+
+// @public (undocumented)
+export interface ApiKVReferenceCollection {
+    readonly nextLink?: string;
+    value: ApiKVReference[];
 }
 
 // @public
 export interface ApiManagementConfig {
     id?: string;
+}
+
+// @public
+export interface AppInsightsWebAppStackSettings {
+    readonly isDefaultOff?: boolean;
+    readonly isSupported?: boolean;
+}
+
+// @public
+export interface Apple {
+    enabled?: boolean;
+    login?: LoginScopes;
+    registration?: AppleRegistration;
+}
+
+// @public
+export interface AppleRegistration {
+    clientId?: string;
+    clientSecretSettingName?: string;
 }
 
 // @public
@@ -98,6 +123,7 @@ export interface ApplicationStack {
     dependency?: string;
     display?: string;
     frameworks?: ApplicationStack[];
+    isDeprecated?: ApplicationStack[];
     majorVersions?: StackMajorVersion[];
     name?: string;
 }
@@ -115,7 +141,22 @@ export type ApplicationStackResource = ProxyOnlyResource & {
     dependency?: string;
     majorVersions?: StackMajorVersion[];
     frameworks?: ApplicationStack[];
+    isDeprecated?: ApplicationStack[];
 };
+
+// @public (undocumented)
+export interface AppLogsConfiguration {
+    // (undocumented)
+    destination?: string;
+    // (undocumented)
+    logAnalyticsConfiguration?: LogAnalyticsConfiguration;
+}
+
+// @public
+export interface AppRegistration {
+    appId?: string;
+    appSecretSettingName?: string;
+}
 
 // @public
 export interface AppServiceCertificate {
@@ -153,6 +194,7 @@ export type AppServiceCertificateOrder = Resource & {
     readonly isPrivateKeyExternal?: boolean;
     readonly appServiceCertificateNotRenewableReasons?: AppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewableReasonsItem[];
     readonly nextAutoRenewalTimeStamp?: Date;
+    readonly contact?: CertificateOrderContact;
 };
 
 // @public
@@ -184,6 +226,7 @@ export type AppServiceCertificateOrderPatchResource = ProxyOnlyResource & {
     readonly isPrivateKeyExternal?: boolean;
     readonly appServiceCertificateNotRenewableReasons?: AppServiceCertificateOrderPatchResourcePropertiesAppServiceCertificateNotRenewableReasonsItem[];
     readonly nextAutoRenewalTimeStamp?: Date;
+    readonly contact?: CertificateOrderContact;
 };
 
 // @public
@@ -375,45 +418,22 @@ export type AppServiceCertificateResource = Resource & {
 
 // @public
 export interface AppServiceEnvironment {
-    readonly allowedMultiSizes?: string;
-    readonly allowedWorkerSizes?: string;
-    apiManagementAccountId?: string;
     clusterSettings?: NameValuePair[];
-    readonly databaseEdition?: string;
-    readonly databaseServiceObjective?: string;
-    readonly defaultFrontEndScaleFactor?: number;
+    dedicatedHostCount?: number;
     dnsSuffix?: string;
-    dynamicCacheEnabled?: boolean;
-    readonly environmentCapacities?: StampCapacity[];
-    readonly environmentIsHealthy?: boolean;
-    readonly environmentStatus?: string;
     frontEndScaleFactor?: number;
-    hasLinuxWorkers?: boolean;
-    internalLoadBalancingMode?: InternalLoadBalancingMode;
+    readonly hasLinuxWorkers?: boolean;
+    internalLoadBalancingMode?: LoadBalancingMode;
     ipsslAddressCount?: number;
-    readonly lastAction?: string;
-    readonly lastActionResult?: string;
-    location: string;
     readonly maximumNumberOfMachines?: number;
-    multiRoleCount?: number;
+    readonly multiRoleCount?: number;
     multiSize?: string;
-    name: string;
-    networkAccessControlList?: NetworkAccessControlEntry[];
     readonly provisioningState?: ProvisioningState;
-    readonly resourceGroup?: string;
-    sslCertKeyVaultId?: string;
-    sslCertKeyVaultSecretName?: string;
     readonly status?: HostingEnvironmentStatus;
-    readonly subscriptionId?: string;
-    suspended?: boolean;
-    readonly upgradeDomains?: number;
+    readonly suspended?: boolean;
     userWhitelistedIpRanges?: string[];
-    readonly vipMappings?: VirtualIPMapping[];
     virtualNetwork: VirtualNetworkProfile;
-    vnetName?: string;
-    vnetResourceGroupName?: string;
-    vnetSubnetName?: string;
-    workerPools: WorkerPool[];
+    zoneRedundant?: boolean;
 }
 
 // @public
@@ -424,92 +444,48 @@ export interface AppServiceEnvironmentCollection {
 
 // @public
 export type AppServiceEnvironmentPatchResource = ProxyOnlyResource & {
-    namePropertiesName?: string;
-    location?: string;
     readonly provisioningState?: ProvisioningState;
     readonly status?: HostingEnvironmentStatus;
-    vnetName?: string;
-    vnetResourceGroupName?: string;
-    vnetSubnetName?: string;
     virtualNetwork?: VirtualNetworkProfile;
-    internalLoadBalancingMode?: InternalLoadBalancingMode;
+    internalLoadBalancingMode?: LoadBalancingMode;
     multiSize?: string;
-    multiRoleCount?: number;
-    workerPools?: WorkerPool[];
+    readonly multiRoleCount?: number;
     ipsslAddressCount?: number;
-    readonly databaseEdition?: string;
-    readonly databaseServiceObjective?: string;
-    readonly upgradeDomains?: number;
-    readonly subscriptionId?: string;
     dnsSuffix?: string;
-    readonly lastAction?: string;
-    readonly lastActionResult?: string;
-    readonly allowedMultiSizes?: string;
-    readonly allowedWorkerSizes?: string;
     readonly maximumNumberOfMachines?: number;
-    readonly vipMappings?: VirtualIPMapping[];
-    readonly environmentCapacities?: StampCapacity[];
-    networkAccessControlList?: NetworkAccessControlEntry[];
-    readonly environmentIsHealthy?: boolean;
-    readonly environmentStatus?: string;
-    readonly resourceGroup?: string;
     frontEndScaleFactor?: number;
-    readonly defaultFrontEndScaleFactor?: number;
-    apiManagementAccountId?: string;
-    suspended?: boolean;
-    dynamicCacheEnabled?: boolean;
+    readonly suspended?: boolean;
     clusterSettings?: NameValuePair[];
     userWhitelistedIpRanges?: string[];
-    hasLinuxWorkers?: boolean;
-    sslCertKeyVaultId?: string;
-    sslCertKeyVaultSecretName?: string;
+    readonly hasLinuxWorkers?: boolean;
+    dedicatedHostCount?: number;
+    zoneRedundant?: boolean;
 };
 
 // @public
 export type AppServiceEnvironmentResource = Resource & {
-    namePropertiesName?: string;
-    locationPropertiesLocation?: string;
     readonly provisioningState?: ProvisioningState;
     readonly status?: HostingEnvironmentStatus;
-    vnetName?: string;
-    vnetResourceGroupName?: string;
-    vnetSubnetName?: string;
     virtualNetwork?: VirtualNetworkProfile;
-    internalLoadBalancingMode?: InternalLoadBalancingMode;
+    internalLoadBalancingMode?: LoadBalancingMode;
     multiSize?: string;
-    multiRoleCount?: number;
-    workerPools?: WorkerPool[];
+    readonly multiRoleCount?: number;
     ipsslAddressCount?: number;
-    readonly databaseEdition?: string;
-    readonly databaseServiceObjective?: string;
-    readonly upgradeDomains?: number;
-    readonly subscriptionId?: string;
     dnsSuffix?: string;
-    readonly lastAction?: string;
-    readonly lastActionResult?: string;
-    readonly allowedMultiSizes?: string;
-    readonly allowedWorkerSizes?: string;
     readonly maximumNumberOfMachines?: number;
-    readonly vipMappings?: VirtualIPMapping[];
-    readonly environmentCapacities?: StampCapacity[];
-    networkAccessControlList?: NetworkAccessControlEntry[];
-    readonly environmentIsHealthy?: boolean;
-    readonly environmentStatus?: string;
-    readonly resourceGroup?: string;
     frontEndScaleFactor?: number;
-    readonly defaultFrontEndScaleFactor?: number;
-    apiManagementAccountId?: string;
-    suspended?: boolean;
-    dynamicCacheEnabled?: boolean;
+    readonly suspended?: boolean;
     clusterSettings?: NameValuePair[];
     userWhitelistedIpRanges?: string[];
-    hasLinuxWorkers?: boolean;
-    sslCertKeyVaultId?: string;
-    sslCertKeyVaultSecretName?: string;
+    readonly hasLinuxWorkers?: boolean;
+    dedicatedHostCount?: number;
+    zoneRedundant?: boolean;
 };
 
 // @public
 export interface AppServiceEnvironments {
+    beginApproveOrRejectPrivateEndpointConnection(resourceGroupName: string, name: string, privateEndpointConnectionName: string, privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource, options?: AppServiceEnvironmentsApproveOrRejectPrivateEndpointConnectionOptionalParams): Promise<PollerLike<PollOperationState<AppServiceEnvironmentsApproveOrRejectPrivateEndpointConnectionResponse>, AppServiceEnvironmentsApproveOrRejectPrivateEndpointConnectionResponse>>;
+    beginApproveOrRejectPrivateEndpointConnectionAndWait(resourceGroupName: string, name: string, privateEndpointConnectionName: string, privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource, options?: AppServiceEnvironmentsApproveOrRejectPrivateEndpointConnectionOptionalParams): Promise<AppServiceEnvironmentsApproveOrRejectPrivateEndpointConnectionResponse>;
     beginCreateOrUpdate(resourceGroupName: string, name: string, hostingEnvironmentEnvelope: AppServiceEnvironmentResource, options?: AppServiceEnvironmentsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<AppServiceEnvironmentsCreateOrUpdateResponse>, AppServiceEnvironmentsCreateOrUpdateResponse>>;
     beginCreateOrUpdateAndWait(resourceGroupName: string, name: string, hostingEnvironmentEnvelope: AppServiceEnvironmentResource, options?: AppServiceEnvironmentsCreateOrUpdateOptionalParams): Promise<AppServiceEnvironmentsCreateOrUpdateResponse>;
     beginCreateOrUpdateMultiRolePool(resourceGroupName: string, name: string, multiRolePoolEnvelope: WorkerPoolResource, options?: AppServiceEnvironmentsCreateOrUpdateMultiRolePoolOptionalParams): Promise<PollerLike<PollOperationState<AppServiceEnvironmentsCreateOrUpdateMultiRolePoolResponse>, AppServiceEnvironmentsCreateOrUpdateMultiRolePoolResponse>>;
@@ -518,12 +494,17 @@ export interface AppServiceEnvironments {
     beginCreateOrUpdateWorkerPoolAndWait(resourceGroupName: string, name: string, workerPoolName: string, workerPoolEnvelope: WorkerPoolResource, options?: AppServiceEnvironmentsCreateOrUpdateWorkerPoolOptionalParams): Promise<AppServiceEnvironmentsCreateOrUpdateWorkerPoolResponse>;
     beginDelete(resourceGroupName: string, name: string, options?: AppServiceEnvironmentsDeleteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
     beginDeleteAndWait(resourceGroupName: string, name: string, options?: AppServiceEnvironmentsDeleteOptionalParams): Promise<void>;
+    beginDeletePrivateEndpointConnection(resourceGroupName: string, name: string, privateEndpointConnectionName: string, options?: AppServiceEnvironmentsDeletePrivateEndpointConnectionOptionalParams): Promise<PollerLike<PollOperationState<AppServiceEnvironmentsDeletePrivateEndpointConnectionResponse>, AppServiceEnvironmentsDeletePrivateEndpointConnectionResponse>>;
+    beginDeletePrivateEndpointConnectionAndWait(resourceGroupName: string, name: string, privateEndpointConnectionName: string, options?: AppServiceEnvironmentsDeletePrivateEndpointConnectionOptionalParams): Promise<AppServiceEnvironmentsDeletePrivateEndpointConnectionResponse>;
     beginListChangeVnetAndWait(resourceGroupName: string, name: string, vnetInfo: VirtualNetworkProfile, options?: AppServiceEnvironmentsChangeVnetOptionalParams): PagedAsyncIterableIterator<Site>;
     beginListResumeAndWait(resourceGroupName: string, name: string, options?: AppServiceEnvironmentsResumeOptionalParams): PagedAsyncIterableIterator<Site>;
     beginListSuspendAndWait(resourceGroupName: string, name: string, options?: AppServiceEnvironmentsSuspendOptionalParams): PagedAsyncIterableIterator<Site>;
     get(resourceGroupName: string, name: string, options?: AppServiceEnvironmentsGetOptionalParams): Promise<AppServiceEnvironmentsGetResponse>;
+    getAseV3NetworkingConfiguration(resourceGroupName: string, name: string, options?: AppServiceEnvironmentsGetAseV3NetworkingConfigurationOptionalParams): Promise<AppServiceEnvironmentsGetAseV3NetworkingConfigurationResponse>;
     getDiagnosticsItem(resourceGroupName: string, name: string, diagnosticsName: string, options?: AppServiceEnvironmentsGetDiagnosticsItemOptionalParams): Promise<AppServiceEnvironmentsGetDiagnosticsItemResponse>;
     getMultiRolePool(resourceGroupName: string, name: string, options?: AppServiceEnvironmentsGetMultiRolePoolOptionalParams): Promise<AppServiceEnvironmentsGetMultiRolePoolResponse>;
+    getPrivateEndpointConnection(resourceGroupName: string, name: string, privateEndpointConnectionName: string, options?: AppServiceEnvironmentsGetPrivateEndpointConnectionOptionalParams): Promise<AppServiceEnvironmentsGetPrivateEndpointConnectionResponse>;
+    getPrivateLinkResources(resourceGroupName: string, name: string, options?: AppServiceEnvironmentsGetPrivateLinkResourcesOptionalParams): Promise<AppServiceEnvironmentsGetPrivateLinkResourcesResponse>;
     getVipInfo(resourceGroupName: string, name: string, options?: AppServiceEnvironmentsGetVipInfoOptionalParams): Promise<AppServiceEnvironmentsGetVipInfoResponse>;
     getWorkerPool(resourceGroupName: string, name: string, workerPoolName: string, options?: AppServiceEnvironmentsGetWorkerPoolOptionalParams): Promise<AppServiceEnvironmentsGetWorkerPoolResponse>;
     list(options?: AppServiceEnvironmentsListOptionalParams): PagedAsyncIterableIterator<AppServiceEnvironmentResource>;
@@ -539,6 +520,7 @@ export interface AppServiceEnvironments {
     listMultiRoleUsages(resourceGroupName: string, name: string, options?: AppServiceEnvironmentsListMultiRoleUsagesOptionalParams): PagedAsyncIterableIterator<Usage>;
     listOperations(resourceGroupName: string, name: string, options?: AppServiceEnvironmentsListOperationsOptionalParams): Promise<AppServiceEnvironmentsListOperationsResponse>;
     listOutboundNetworkDependenciesEndpoints(resourceGroupName: string, name: string, options?: AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsOptionalParams): PagedAsyncIterableIterator<OutboundEnvironmentEndpoint>;
+    listPrivateEndpointConnectionList(resourceGroupName: string, name: string, options?: AppServiceEnvironmentsGetPrivateEndpointConnectionListOptionalParams): PagedAsyncIterableIterator<RemotePrivateEndpointConnectionARMResource>;
     listUsages(resourceGroupName: string, name: string, options?: AppServiceEnvironmentsListUsagesOptionalParams): PagedAsyncIterableIterator<CsmUsageQuota>;
     listWebApps(resourceGroupName: string, name: string, options?: AppServiceEnvironmentsListWebAppsOptionalParams): PagedAsyncIterableIterator<Site>;
     listWebWorkerMetricDefinitions(resourceGroupName: string, name: string, workerPoolName: string, options?: AppServiceEnvironmentsListWebWorkerMetricDefinitionsOptionalParams): PagedAsyncIterableIterator<ResourceMetricDefinition>;
@@ -548,9 +530,19 @@ export interface AppServiceEnvironments {
     listWorkerPoolSkus(resourceGroupName: string, name: string, workerPoolName: string, options?: AppServiceEnvironmentsListWorkerPoolSkusOptionalParams): PagedAsyncIterableIterator<SkuInfo>;
     reboot(resourceGroupName: string, name: string, options?: AppServiceEnvironmentsRebootOptionalParams): Promise<void>;
     update(resourceGroupName: string, name: string, hostingEnvironmentEnvelope: AppServiceEnvironmentPatchResource, options?: AppServiceEnvironmentsUpdateOptionalParams): Promise<AppServiceEnvironmentsUpdateResponse>;
+    updateAseNetworkingConfiguration(resourceGroupName: string, name: string, aseNetworkingConfiguration: AseV3NetworkingConfiguration, options?: AppServiceEnvironmentsUpdateAseNetworkingConfigurationOptionalParams): Promise<AppServiceEnvironmentsUpdateAseNetworkingConfigurationResponse>;
     updateMultiRolePool(resourceGroupName: string, name: string, multiRolePoolEnvelope: WorkerPoolResource, options?: AppServiceEnvironmentsUpdateMultiRolePoolOptionalParams): Promise<AppServiceEnvironmentsUpdateMultiRolePoolResponse>;
     updateWorkerPool(resourceGroupName: string, name: string, workerPoolName: string, workerPoolEnvelope: WorkerPoolResource, options?: AppServiceEnvironmentsUpdateWorkerPoolOptionalParams): Promise<AppServiceEnvironmentsUpdateWorkerPoolResponse>;
 }
+
+// @public
+export interface AppServiceEnvironmentsApproveOrRejectPrivateEndpointConnectionOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export type AppServiceEnvironmentsApproveOrRejectPrivateEndpointConnectionResponse = RemotePrivateEndpointConnectionARMResource;
 
 // @public
 export interface AppServiceEnvironmentsChangeVnetNextOptionalParams extends coreClient.OperationOptions {
@@ -603,6 +595,22 @@ export interface AppServiceEnvironmentsDeleteOptionalParams extends coreClient.O
 }
 
 // @public
+export interface AppServiceEnvironmentsDeletePrivateEndpointConnectionOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export type AppServiceEnvironmentsDeletePrivateEndpointConnectionResponse = Record<string, unknown>;
+
+// @public
+export interface AppServiceEnvironmentsGetAseV3NetworkingConfigurationOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type AppServiceEnvironmentsGetAseV3NetworkingConfigurationResponse = AseV3NetworkingConfiguration;
+
+// @public
 export interface AppServiceEnvironmentsGetDiagnosticsItemOptionalParams extends coreClient.OperationOptions {
 }
 
@@ -647,6 +655,34 @@ export interface AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsOp
 
 // @public
 export type AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsResponse = OutboundEnvironmentEndpointCollection;
+
+// @public
+export interface AppServiceEnvironmentsGetPrivateEndpointConnectionListNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type AppServiceEnvironmentsGetPrivateEndpointConnectionListNextResponse = PrivateEndpointConnectionCollection;
+
+// @public
+export interface AppServiceEnvironmentsGetPrivateEndpointConnectionListOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type AppServiceEnvironmentsGetPrivateEndpointConnectionListResponse = PrivateEndpointConnectionCollection;
+
+// @public
+export interface AppServiceEnvironmentsGetPrivateEndpointConnectionOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type AppServiceEnvironmentsGetPrivateEndpointConnectionResponse = RemotePrivateEndpointConnectionARMResource;
+
+// @public
+export interface AppServiceEnvironmentsGetPrivateLinkResourcesOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type AppServiceEnvironmentsGetPrivateLinkResourcesResponse = PrivateLinkResourcesWrapper;
 
 // @public
 export type AppServiceEnvironmentsGetResponse = AppServiceEnvironmentResource;
@@ -944,6 +980,13 @@ export interface AppServiceEnvironmentsSuspendOptionalParams extends coreClient.
 export type AppServiceEnvironmentsSuspendResponse = WebAppCollection;
 
 // @public
+export interface AppServiceEnvironmentsUpdateAseNetworkingConfigurationOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type AppServiceEnvironmentsUpdateAseNetworkingConfigurationResponse = AseV3NetworkingConfiguration;
+
+// @public
 export interface AppServiceEnvironmentsUpdateMultiRolePoolOptionalParams extends coreClient.OperationOptions {
 }
 
@@ -965,8 +1008,24 @@ export interface AppServiceEnvironmentsUpdateWorkerPoolOptionalParams extends co
 export type AppServiceEnvironmentsUpdateWorkerPoolResponse = WorkerPoolResource;
 
 // @public
+export interface AppserviceGithubToken {
+    accessToken?: string;
+    errorMessage?: string;
+    gotToken?: boolean;
+    scope?: string;
+    tokenType?: string;
+}
+
+// @public
+export interface AppserviceGithubTokenRequest {
+    code: string;
+    state: string;
+}
+
+// @public
 export type AppServicePlan = Resource & {
     sku?: SkuDescription;
+    extendedLocation?: ExtendedLocation;
     workerTierName?: string;
     readonly status?: StatusOptions;
     readonly subscription?: string;
@@ -974,6 +1033,7 @@ export type AppServicePlan = Resource & {
     readonly maximumNumberOfWorkers?: number;
     readonly geoRegion?: string;
     perSiteScaling?: boolean;
+    elasticScaleEnabled?: boolean;
     maximumElasticWorkerCount?: number;
     readonly numberOfSites?: number;
     isSpot?: boolean;
@@ -986,6 +1046,8 @@ export type AppServicePlan = Resource & {
     targetWorkerCount?: number;
     targetWorkerSizeId?: number;
     readonly provisioningState?: ProvisioningState;
+    kubeEnvironmentProfile?: KubeEnvironmentProfile;
+    zoneRedundant?: boolean;
 };
 
 // @public
@@ -1003,6 +1065,7 @@ export type AppServicePlanPatchResource = ProxyOnlyResource & {
     readonly maximumNumberOfWorkers?: number;
     readonly geoRegion?: string;
     perSiteScaling?: boolean;
+    elasticScaleEnabled?: boolean;
     maximumElasticWorkerCount?: number;
     readonly numberOfSites?: number;
     isSpot?: boolean;
@@ -1015,6 +1078,8 @@ export type AppServicePlanPatchResource = ProxyOnlyResource & {
     targetWorkerCount?: number;
     targetWorkerSizeId?: number;
     readonly provisioningState?: ProvisioningState;
+    kubeEnvironmentProfile?: KubeEnvironmentProfile;
+    zoneRedundant?: boolean;
 };
 
 // @public
@@ -1120,7 +1185,7 @@ export interface AppServicePlansGetVnetFromServerFarmOptionalParams extends core
 }
 
 // @public
-export type AppServicePlansGetVnetFromServerFarmResponse = VnetInfo;
+export type AppServicePlansGetVnetFromServerFarmResponse = VnetInfoResource;
 
 // @public
 export interface AppServicePlansGetVnetGatewayOptionalParams extends coreClient.OperationOptions {
@@ -1215,7 +1280,7 @@ export interface AppServicePlansListVnetsOptionalParams extends coreClient.Opera
 }
 
 // @public
-export type AppServicePlansListVnetsResponse = VnetInfo[];
+export type AppServicePlansListVnetsResponse = VnetInfoResource[];
 
 // @public
 export interface AppServicePlansListWebAppsByHybridConnectionNextOptionalParams extends coreClient.OperationOptions {
@@ -1281,9 +1346,52 @@ export interface AppServicePlansUpdateVnetRouteOptionalParams extends coreClient
 // @public
 export type AppServicePlansUpdateVnetRouteResponse = VnetRoute;
 
+// @public (undocumented)
+export interface ArcConfiguration {
+    // (undocumented)
+    artifactsStorageType?: StorageType;
+    // (undocumented)
+    artifactStorageAccessMode?: string;
+    // (undocumented)
+    artifactStorageClassName?: string;
+    // (undocumented)
+    artifactStorageMountPath?: string;
+    // (undocumented)
+    artifactStorageNodeName?: string;
+    // (undocumented)
+    frontEndServiceConfiguration?: FrontEndConfiguration;
+    // (undocumented)
+    kubeConfig?: string;
+}
+
 // @public
 export interface ArmIdWrapper {
     readonly id?: string;
+}
+
+// @public
+export interface ArmPlan {
+    name?: string;
+    product?: string;
+    promotionCode?: string;
+    publisher?: string;
+    version?: string;
+}
+
+// @public
+export type AseV3NetworkingConfiguration = ProxyOnlyResource & {
+    readonly windowsOutboundIpAddresses?: string[];
+    readonly linuxOutboundIpAddresses?: string[];
+    readonly externalInboundIpAddresses?: string[];
+    readonly internalInboundIpAddresses?: string[];
+    allowNewPrivateEndpointConnections?: boolean;
+};
+
+// @public
+export interface AuthPlatform {
+    configFilePath?: string;
+    enabled?: boolean;
+    runtimeVersion?: string;
 }
 
 // @public
@@ -1313,7 +1421,41 @@ export interface AutoHealTriggers {
     privateBytesInKB?: number;
     requests?: RequestsBasedTrigger;
     slowRequests?: SlowRequestsBasedTrigger;
+    slowRequestsWithPath?: SlowRequestsBasedTrigger[];
     statusCodes?: StatusCodesBasedTrigger[];
+    statusCodesRange?: StatusCodesRangeBasedTrigger[];
+}
+
+// @public
+export interface AzureActiveDirectory {
+    enabled?: boolean;
+    isAutoProvisioned?: boolean;
+    login?: AzureActiveDirectoryLogin;
+    registration?: AzureActiveDirectoryRegistration;
+    validation?: AzureActiveDirectoryValidation;
+}
+
+// @public
+export interface AzureActiveDirectoryLogin {
+    disableWWWAuthenticate?: boolean;
+    loginParameters?: string[];
+}
+
+// @public
+export interface AzureActiveDirectoryRegistration {
+    clientId?: string;
+    clientSecretCertificateIssuer?: string;
+    clientSecretCertificateSubjectAlternativeName?: string;
+    clientSecretCertificateThumbprint?: string;
+    clientSecretSettingName?: string;
+    openIdIssuer?: string;
+}
+
+// @public
+export interface AzureActiveDirectoryValidation {
+    allowedAudiences?: string[];
+    defaultAuthorizationPolicy?: DefaultAuthorizationPolicy;
+    jwtClaimChecks?: JwtClaimChecks;
 }
 
 // @public
@@ -1334,6 +1476,17 @@ export interface AzureBlobStorageHttpLogsConfig {
 export type AzureResourceType = "Website" | "TrafficManager";
 
 // @public
+export interface AzureStaticWebApps {
+    enabled?: boolean;
+    registration?: AzureStaticWebAppsRegistration;
+}
+
+// @public
+export interface AzureStaticWebAppsRegistration {
+    clientId?: string;
+}
+
+// @public
 export interface AzureStorageInfoValue {
     accessKey?: string;
     accountName?: string;
@@ -1351,7 +1504,7 @@ export type AzureStoragePropertyDictionaryResource = ProxyOnlyResource & {
 };
 
 // @public
-export type AzureStorageState = "Ok" | "InvalidCredentials" | "InvalidShare";
+export type AzureStorageState = "Ok" | "InvalidCredentials" | "InvalidShare" | "NotValidated";
 
 // @public
 export type AzureStorageType = "AzureFiles" | "AzureBlob";
@@ -1419,6 +1572,7 @@ export type BillingMeter = ProxyOnlyResource & {
     friendlyName?: string;
     resourceType?: string;
     osType?: string;
+    multiplier?: number;
 };
 
 // @public
@@ -1428,10 +1582,15 @@ export interface BillingMeterCollection {
 }
 
 // @public
+export interface BlobStorageTokenStore {
+    sasUrlSettingName?: string;
+}
+
+// @public
 export type BuildStatus = string;
 
 // @public
-export type BuiltInAuthenticationProvider = "AzureActiveDirectory" | "Facebook" | "Google" | "MicrosoftAccount" | "Twitter";
+export type BuiltInAuthenticationProvider = "AzureActiveDirectory" | "Facebook" | "Google" | "MicrosoftAccount" | "Twitter" | "Github";
 
 // @public
 export interface Capability {
@@ -1442,6 +1601,7 @@ export interface Capability {
 
 // @public
 export type Certificate = Resource & {
+    password?: string;
     readonly friendlyName?: string;
     readonly subjectName?: string;
     hostNames?: string[];
@@ -1451,7 +1611,6 @@ export type Certificate = Resource & {
     readonly issuer?: string;
     readonly issueDate?: Date;
     readonly expirationDate?: Date;
-    password?: string;
     readonly thumbprint?: string;
     readonly valid?: boolean;
     readonly cerBlob?: Uint8Array;
@@ -1462,6 +1621,7 @@ export type Certificate = Resource & {
     readonly keyVaultSecretStatus?: KeyVaultSecretStatus;
     serverFarmId?: string;
     canonicalName?: string;
+    domainValidationMethod?: string;
 };
 
 // @public
@@ -1498,11 +1658,54 @@ export type CertificateOrderAction = ProxyOnlyResource & {
 // @public
 export type CertificateOrderActionType = "CertificateIssued" | "CertificateOrderCanceled" | "CertificateOrderCreated" | "CertificateRevoked" | "DomainValidationComplete" | "FraudDetected" | "OrgNameChange" | "OrgValidationComplete" | "SanDrop" | "FraudCleared" | "CertificateExpired" | "CertificateExpirationWarning" | "FraudDocumentationRequired" | "Unknown";
 
+// @public (undocumented)
+export interface CertificateOrderContact {
+    // (undocumented)
+    email?: string;
+    // (undocumented)
+    nameFirst?: string;
+    // (undocumented)
+    nameLast?: string;
+    // (undocumented)
+    phone?: string;
+}
+
+// @public
+export interface CertificateOrdersDiagnostics {
+    getAppServiceCertificateOrderDetectorResponse(resourceGroupName: string, certificateOrderName: string, detectorName: string, options?: CertificateOrdersDiagnosticsGetAppServiceCertificateOrderDetectorResponseOptionalParams): Promise<CertificateOrdersDiagnosticsGetAppServiceCertificateOrderDetectorResponseResponse>;
+    listAppServiceCertificateOrderDetectorResponse(resourceGroupName: string, certificateOrderName: string, options?: CertificateOrdersDiagnosticsListAppServiceCertificateOrderDetectorResponseOptionalParams): PagedAsyncIterableIterator<DetectorResponse>;
+}
+
+// @public
+export interface CertificateOrdersDiagnosticsGetAppServiceCertificateOrderDetectorResponseOptionalParams extends coreClient.OperationOptions {
+    endTime?: Date;
+    startTime?: Date;
+    timeGrain?: string;
+}
+
+// @public
+export type CertificateOrdersDiagnosticsGetAppServiceCertificateOrderDetectorResponseResponse = DetectorResponse;
+
+// @public
+export interface CertificateOrdersDiagnosticsListAppServiceCertificateOrderDetectorResponseNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type CertificateOrdersDiagnosticsListAppServiceCertificateOrderDetectorResponseNextResponse = DetectorResponseCollection;
+
+// @public
+export interface CertificateOrdersDiagnosticsListAppServiceCertificateOrderDetectorResponseOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type CertificateOrdersDiagnosticsListAppServiceCertificateOrderDetectorResponseResponse = DetectorResponseCollection;
+
 // @public
 export type CertificateOrderStatus = "Pendingissuance" | "Issued" | "Revoked" | "Canceled" | "Denied" | "Pendingrevocation" | "PendingRekey" | "Unused" | "Expired" | "NotSubmitted";
 
 // @public
 export type CertificatePatchResource = ProxyOnlyResource & {
+    password?: string;
     readonly friendlyName?: string;
     readonly subjectName?: string;
     hostNames?: string[];
@@ -1512,7 +1715,6 @@ export type CertificatePatchResource = ProxyOnlyResource & {
     readonly issuer?: string;
     readonly issueDate?: Date;
     readonly expirationDate?: Date;
-    password?: string;
     readonly thumbprint?: string;
     readonly valid?: boolean;
     readonly cerBlob?: Uint8Array;
@@ -1523,6 +1725,7 @@ export type CertificatePatchResource = ProxyOnlyResource & {
     readonly keyVaultSecretStatus?: KeyVaultSecretStatus;
     serverFarmId?: string;
     canonicalName?: string;
+    domainValidationMethod?: string;
 };
 
 // @public
@@ -1591,6 +1794,7 @@ export type CertificatesListByResourceGroupResponse = CertificateCollection;
 
 // @public
 export interface CertificatesListNextOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
 }
 
 // @public
@@ -1598,6 +1802,7 @@ export type CertificatesListNextResponse = CertificateCollection;
 
 // @public
 export interface CertificatesListOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
 }
 
 // @public
@@ -1625,6 +1830,15 @@ export type CheckNameAvailabilityResponse = ResourceNameAvailability;
 export type CheckNameResourceTypes = string;
 
 // @public
+export type ClientCertMode = "Required" | "Optional" | "OptionalInteractiveUser";
+
+// @public
+export interface ClientRegistration {
+    clientId?: string;
+    clientSecretSettingName?: string;
+}
+
+// @public
 export type CloneAbilityResult = "Cloneable" | "PartiallyCloneable" | "NotCloneable";
 
 // @public
@@ -1642,12 +1856,6 @@ export interface CloningInfo {
     sourceWebAppLocation?: string;
     trafficManagerProfileId?: string;
     trafficManagerProfileName?: string;
-}
-
-// @public (undocumented)
-export interface Components1Jq1T4ISchemasManagedserviceidentityPropertiesUserassignedidentitiesAdditionalproperties {
-    readonly clientId?: string;
-    readonly principalId?: string;
 }
 
 // @public
@@ -1799,15 +2007,18 @@ export interface ContinuousWebJobCollection {
 export type ContinuousWebJobStatus = "Initializing" | "Starting" | "Running" | "PendingRestart" | "Stopped";
 
 // @public
-export interface CorsSettings {
-    allowedOrigins?: string[];
-    supportCredentials?: boolean;
+export interface CookieExpiration {
+    convention?: CookieExpirationConvention;
+    timeToExpiration?: string;
 }
 
 // @public
-export interface CsmCopySlotEntity {
-    siteConfig: SiteConfig;
-    targetSlot: string;
+export type CookieExpirationConvention = "FixedTime" | "IdentityProviderDerived";
+
+// @public
+export interface CorsSettings {
+    allowedOrigins?: string[];
+    supportCredentials?: boolean;
 }
 
 // @public
@@ -1827,6 +2038,8 @@ export interface CsmOperationCollection {
 // @public
 export interface CsmOperationDescription {
     display?: CsmOperationDisplay;
+    // (undocumented)
+    isDataAction?: boolean;
     // (undocumented)
     name?: string;
     // (undocumented)
@@ -1850,6 +2063,11 @@ export interface CsmOperationDisplay {
     // (undocumented)
     resource?: string;
 }
+
+// @public
+export type CsmPublishingCredentialsPoliciesEntity = ProxyOnlyResource & {
+    allow?: boolean;
+};
 
 // @public
 export interface CsmPublishingProfileOptions {
@@ -1879,6 +2097,9 @@ export interface CsmUsageQuotaCollection {
 }
 
 // @public
+export type CustomDomainStatus = string;
+
+// @public
 export type CustomHostnameAnalysisResult = ProxyOnlyResource & {
     readonly isHostnameAlreadyVerified?: boolean;
     readonly customDomainVerificationTest?: DnsVerificationTestResult;
@@ -1897,6 +2118,13 @@ export type CustomHostnameAnalysisResult = ProxyOnlyResource & {
 export type CustomHostNameDnsRecordType = "CName" | "A";
 
 // @public
+export interface CustomOpenIdConnectProvider {
+    enabled?: boolean;
+    login?: OpenIdConnectLogin;
+    registration?: OpenIdConnectRegistration;
+}
+
+// @public
 export interface DatabaseBackupSetting {
     connectionString?: string;
     connectionStringName?: string;
@@ -1907,6 +2135,13 @@ export interface DatabaseBackupSetting {
 
 // @public
 export type DatabaseType = string;
+
+// @public
+export interface DataProviderMetadata {
+    readonly propertyBag?: KeyValuePairStringObject[];
+    // (undocumented)
+    providerName?: string;
+}
 
 // @public
 export interface DataSource {
@@ -1926,6 +2161,12 @@ export interface DataTableResponseObject {
     columns?: DataTableResponseColumn[];
     rows?: string[][];
     tableName?: string;
+}
+
+// @public
+export interface DefaultAuthorizationPolicy {
+    allowedApplications?: string[];
+    allowedPrincipals?: AllowedPrincipals;
 }
 
 // @public
@@ -2057,7 +2298,15 @@ export interface DetectorAbnormalTimePeriod {
 }
 
 // @public
-export type DetectorDefinition = ProxyOnlyResource & {
+export interface DetectorDefinition {
+    readonly description?: string;
+    readonly displayName?: string;
+    readonly isEnabled?: boolean;
+    readonly rank?: number;
+}
+
+// @public
+export type DetectorDefinitionResource = ProxyOnlyResource & {
     readonly displayName?: string;
     readonly description?: string;
     readonly rank?: number;
@@ -2066,16 +2315,24 @@ export type DetectorDefinition = ProxyOnlyResource & {
 
 // @public
 export interface DetectorInfo {
+    readonly analysisType?: string[];
+    readonly author?: string;
     readonly category?: string;
     readonly description?: string;
-    readonly subCategory?: string;
-    readonly supportTopicId?: string;
+    readonly id?: string;
+    readonly name?: string;
+    readonly score?: number;
+    readonly supportTopicList?: SupportTopic[];
+    readonly type?: DetectorType;
 }
 
 // @public
 export type DetectorResponse = ProxyOnlyResource & {
     metadata?: DetectorInfo;
     dataset?: DiagnosticData[];
+    status?: Status;
+    dataProvidersMetadata?: DataProviderMetadata[];
+    suggestedUtterances?: QueryUtterancesResults;
 };
 
 // @public
@@ -2083,6 +2340,9 @@ export interface DetectorResponseCollection {
     readonly nextLink?: string;
     value: DetectorResponse[];
 }
+
+// @public
+export type DetectorType = "Detector" | "Analysis" | "CategoryOverview";
 
 // @public
 export type DiagnosticAnalysis = ProxyOnlyResource & {
@@ -2119,7 +2379,7 @@ export interface DiagnosticData {
 // @public
 export interface DiagnosticDetectorCollection {
     readonly nextLink?: string;
-    value: DetectorDefinition[];
+    value: DetectorDefinitionResource[];
 }
 
 // @public
@@ -2174,8 +2434,8 @@ export interface Diagnostics {
     listSiteAnalysesSlot(resourceGroupName: string, siteName: string, diagnosticCategory: string, slot: string, options?: DiagnosticsListSiteAnalysesSlotOptionalParams): PagedAsyncIterableIterator<AnalysisDefinition>;
     listSiteDetectorResponses(resourceGroupName: string, siteName: string, options?: DiagnosticsListSiteDetectorResponsesOptionalParams): PagedAsyncIterableIterator<DetectorResponse>;
     listSiteDetectorResponsesSlot(resourceGroupName: string, siteName: string, slot: string, options?: DiagnosticsListSiteDetectorResponsesSlotOptionalParams): PagedAsyncIterableIterator<DetectorResponse>;
-    listSiteDetectors(resourceGroupName: string, siteName: string, diagnosticCategory: string, options?: DiagnosticsListSiteDetectorsOptionalParams): PagedAsyncIterableIterator<DetectorDefinition>;
-    listSiteDetectorsSlot(resourceGroupName: string, siteName: string, diagnosticCategory: string, slot: string, options?: DiagnosticsListSiteDetectorsSlotOptionalParams): PagedAsyncIterableIterator<DetectorDefinition>;
+    listSiteDetectors(resourceGroupName: string, siteName: string, diagnosticCategory: string, options?: DiagnosticsListSiteDetectorsOptionalParams): PagedAsyncIterableIterator<DetectorDefinitionResource>;
+    listSiteDetectorsSlot(resourceGroupName: string, siteName: string, diagnosticCategory: string, slot: string, options?: DiagnosticsListSiteDetectorsSlotOptionalParams): PagedAsyncIterableIterator<DetectorDefinitionResource>;
     listSiteDiagnosticCategories(resourceGroupName: string, siteName: string, options?: DiagnosticsListSiteDiagnosticCategoriesOptionalParams): PagedAsyncIterableIterator<DiagnosticCategory>;
     listSiteDiagnosticCategoriesSlot(resourceGroupName: string, siteName: string, slot: string, options?: DiagnosticsListSiteDiagnosticCategoriesSlotOptionalParams): PagedAsyncIterableIterator<DiagnosticCategory>;
 }
@@ -2249,7 +2509,7 @@ export interface DiagnosticsGetSiteDetectorOptionalParams extends coreClient.Ope
 }
 
 // @public
-export type DiagnosticsGetSiteDetectorResponse = DetectorDefinition;
+export type DiagnosticsGetSiteDetectorResponse = DetectorDefinitionResource;
 
 // @public
 export interface DiagnosticsGetSiteDetectorResponseOptionalParams extends coreClient.OperationOptions {
@@ -2276,7 +2536,7 @@ export interface DiagnosticsGetSiteDetectorSlotOptionalParams extends coreClient
 }
 
 // @public
-export type DiagnosticsGetSiteDetectorSlotResponse = DetectorDefinition;
+export type DiagnosticsGetSiteDetectorSlotResponse = DetectorDefinitionResource;
 
 // @public
 export interface DiagnosticsGetSiteDiagnosticCategoryOptionalParams extends coreClient.OperationOptions {
@@ -2726,24 +2986,52 @@ export interface EndpointDetail {
 }
 
 // @public
-export type Enum4 = string;
+export type Enum10 = string;
 
 // @public
-export type Enum5 = string;
+export type Enum11 = string;
+
+// @public
+export type Enum12 = string;
+
+// @public
+export type Enum13 = string;
+
+// @public
+export type Enum14 = string;
+
+// @public
+export type Enum15 = string;
 
 // @public
 export interface ErrorEntity {
     code?: string;
+    details?: ErrorEntity[];
     extendedCode?: string;
     innerErrors?: ErrorEntity[];
     message?: string;
     messageTemplate?: string;
     parameters?: string[];
+    target?: string;
 }
 
 // @public
 export interface Experiments {
     rampUpRules?: RampUpRule[];
+}
+
+// @public
+export interface ExtendedLocation {
+    name?: string;
+    readonly type?: string;
+}
+
+// @public
+export interface Facebook {
+    enabled?: boolean;
+    graphApiVersion?: string;
+    login?: LoginScopes;
+    registration?: AppRegistration;
 }
 
 // @public
@@ -2759,10 +3047,89 @@ export interface FileSystemHttpLogsConfig {
 }
 
 // @public
+export interface FileSystemTokenStore {
+    directory?: string;
+}
+
+// @public
+export interface ForwardProxy {
+    convention?: ForwardProxyConvention;
+    customHostHeaderName?: string;
+    customProtoHeaderName?: string;
+}
+
+// @public
+export type ForwardProxyConvention = "NoProxy" | "Standard" | "Custom";
+
+// @public
 export type FrequencyUnit = "Day" | "Hour";
+
+// @public (undocumented)
+export interface FrontEndConfiguration {
+    // (undocumented)
+    kind?: FrontEndServiceType;
+}
+
+// @public
+export type FrontEndServiceType = "NodePort" | "LoadBalancer";
 
 // @public
 export type FtpsState = string;
+
+// @public
+export interface FunctionAppMajorVersion {
+    readonly displayText?: string;
+    readonly minorVersions?: FunctionAppMinorVersion[];
+    readonly value?: string;
+}
+
+// @public
+export interface FunctionAppMinorVersion {
+    readonly displayText?: string;
+    readonly stackSettings?: FunctionAppRuntimes;
+    readonly value?: string;
+}
+
+// @public
+export interface FunctionAppRuntimes {
+    readonly linuxRuntimeSettings?: FunctionAppRuntimeSettings;
+    readonly windowsRuntimeSettings?: FunctionAppRuntimeSettings;
+}
+
+// @public
+export interface FunctionAppRuntimeSettings {
+    readonly appInsightsSettings?: AppInsightsWebAppStackSettings;
+    readonly appSettingsDictionary?: {
+        [propertyName: string]: string;
+    };
+    readonly endOfLifeDate?: Date;
+    readonly gitHubActionSettings?: GitHubActionWebAppStackSettings;
+    readonly isAutoUpdate?: boolean;
+    readonly isDefault?: boolean;
+    readonly isDeprecated?: boolean;
+    readonly isEarlyAccess?: boolean;
+    readonly isHidden?: boolean;
+    readonly isPreview?: boolean;
+    readonly remoteDebuggingSupported?: boolean;
+    readonly runtimeVersion?: string;
+    readonly siteConfigPropertiesDictionary?: SiteConfigPropertiesDictionary;
+    readonly supportedFunctionsExtensionVersions?: string[];
+}
+
+// @public
+export type FunctionAppStack = ProxyOnlyResource & {
+    readonly location?: string;
+    readonly displayText?: string;
+    readonly value?: string;
+    readonly majorVersions?: FunctionAppMajorVersion[];
+    readonly preferredOs?: StackPreferredOs;
+};
+
+// @public
+export interface FunctionAppStackCollection {
+    readonly nextLink?: string;
+    value: FunctionAppStack[];
+}
 
 // @public
 export type FunctionEnvelope = ProxyOnlyResource & {
@@ -2790,10 +3157,10 @@ export interface FunctionEnvelopeCollection {
 }
 
 // @public
-export type FunctionSecrets = ProxyOnlyResource & {
+export interface FunctionSecrets {
     key?: string;
     triggerUrl?: string;
-};
+}
 
 // @public
 export type GeoRegion = ProxyOnlyResource & {
@@ -2830,6 +3197,48 @@ export interface GetSubscriptionDeploymentLocationsOptionalParams extends coreCl
 export type GetSubscriptionDeploymentLocationsResponse = DeploymentLocations;
 
 // @public
+export interface GitHub {
+    enabled?: boolean;
+    login?: LoginScopes;
+    registration?: ClientRegistration;
+}
+
+// @public
+export interface GitHubActionCodeConfiguration {
+    runtimeStack?: string;
+    runtimeVersion?: string;
+}
+
+// @public
+export interface GitHubActionConfiguration {
+    codeConfiguration?: GitHubActionCodeConfiguration;
+    containerConfiguration?: GitHubActionContainerConfiguration;
+    generateWorkflowFile?: boolean;
+    isLinux?: boolean;
+}
+
+// @public
+export interface GitHubActionContainerConfiguration {
+    imageName?: string;
+    password?: string;
+    serverUrl?: string;
+    username?: string;
+}
+
+// @public
+export interface GitHubActionWebAppStackSettings {
+    readonly isSupported?: boolean;
+    readonly supportedVersion?: string;
+}
+
+// @public
+export interface Global {
+    getDeletedWebApp(deletedSiteId: string, options?: GlobalGetDeletedWebAppOptionalParams): Promise<GlobalGetDeletedWebAppResponse>;
+    getDeletedWebAppSnapshots(deletedSiteId: string, options?: GlobalGetDeletedWebAppSnapshotsOptionalParams): Promise<GlobalGetDeletedWebAppSnapshotsResponse>;
+    getSubscriptionOperationWithAsyncResponse(location: string, operationId: string, options?: GlobalGetSubscriptionOperationWithAsyncResponseOptionalParams): Promise<void>;
+}
+
+// @public
 export interface GlobalCsmSkuDescription {
     capabilities?: Capability[];
     capacity?: SkuCapacity;
@@ -2838,6 +3247,40 @@ export interface GlobalCsmSkuDescription {
     name?: string;
     size?: string;
     tier?: string;
+}
+
+// @public
+export interface GlobalGetDeletedWebAppOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type GlobalGetDeletedWebAppResponse = DeletedSite;
+
+// @public
+export interface GlobalGetDeletedWebAppSnapshotsOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type GlobalGetDeletedWebAppSnapshotsResponse = Snapshot[];
+
+// @public
+export interface GlobalGetSubscriptionOperationWithAsyncResponseOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export interface GlobalValidation {
+    excludedPaths?: string[];
+    redirectToProvider?: string;
+    requireAuthentication?: boolean;
+    unauthenticatedClientAction?: UnauthenticatedClientActionV2;
+}
+
+// @public
+export interface Google {
+    enabled?: boolean;
+    login?: LoginScopes;
+    registration?: ClientRegistration;
+    validation?: AllowedAudiencesValidation;
 }
 
 // @public
@@ -2932,6 +3375,18 @@ export interface HttpLogsConfig {
 }
 
 // @public
+export interface HttpSettings {
+    forwardProxy?: ForwardProxy;
+    requireHttps?: boolean;
+    routes?: HttpSettingsRoutes;
+}
+
+// @public
+export interface HttpSettingsRoutes {
+    apiPrefix?: string;
+}
+
+// @public
 export type HybridConnection = ProxyOnlyResource & {
     serviceBusNamespace?: string;
     relayName?: string;
@@ -2973,6 +3428,21 @@ export interface IdentifierCollection {
 }
 
 // @public
+export interface IdentityProviders {
+    apple?: Apple;
+    azureActiveDirectory?: AzureActiveDirectory;
+    azureStaticWebApps?: AzureStaticWebApps;
+    customOpenIdConnectProviders?: {
+        [propertyName: string]: CustomOpenIdConnectProvider;
+    };
+    facebook?: Facebook;
+    gitHub?: GitHub;
+    google?: Google;
+    legacyMicrosoftAccount?: LegacyMicrosoftAccount;
+    twitter?: Twitter;
+}
+
+// @public
 export type InAvailabilityReasonType = string;
 
 // @public
@@ -2989,15 +3459,18 @@ export interface InboundEnvironmentEndpointCollection {
 }
 
 // @public
-export type InternalLoadBalancingMode = "None" | "Web" | "Publishing";
+export type InsightStatus = "Critical" | "Warning" | "Info" | "Success" | "None";
 
 // @public
-export type IpFilterTag = "Default" | "XffProxy";
+export type IpFilterTag = string;
 
 // @public
 export interface IpSecurityRestriction {
     action?: string;
     description?: string;
+    headers?: {
+        [propertyName: string]: string[];
+    };
     ipAddress?: string;
     name?: string;
     priority?: number;
@@ -3012,30 +3485,22 @@ export interface IpSecurityRestriction {
 export type IssueType = "ServiceIncident" | "AppDeployment" | "AppCrash" | "RuntimeIssueDetected" | "AseDeployment" | "UserIssue" | "PlatformIssue" | "Other";
 
 // @public
+export interface JwtClaimChecks {
+    allowedClientApplications?: string[];
+    allowedGroups?: string[];
+}
+
+// @public
 export interface KeyInfo {
     name?: string;
     value?: string;
 }
 
-// @public
-export type KeyVaultReferenceCollection = ProxyOnlyResource & {
-    keyToReferenceStatuses?: {
-        [propertyName: string]: ApiKVReference;
-    };
-};
-
-// @public
-export type KeyVaultReferenceResource = ProxyOnlyResource & {
-    reference?: string;
-    status?: ResolveStatus;
-    vaultName?: string;
-    secretName?: string;
-    secretVersion?: string;
-    identityType?: ManagedServiceIdentityType;
-    details?: string;
-    source?: "KeyVault";
-    location?: "ApplicationSetting";
-};
+// @public (undocumented)
+export interface KeyValuePairStringObject {
+    readonly key?: string;
+    readonly value?: Record<string, unknown>;
+}
 
 // @public
 export type KeyVaultSecretStatus = "Initialized" | "WaitingOnCertificateOrder" | "Succeeded" | "CertificateOrderFailed" | "OperationNotPermittedOnKeyVault" | "AzureServiceUnauthorizedToAccessKeyVault" | "KeyVaultDoesNotExist" | "KeyVaultSecretDoesNotExist" | "UnknownError" | "ExternalPrivateKey" | "Unknown";
@@ -3099,6 +3564,22 @@ export enum KnownCheckNameResourceTypes {
 }
 
 // @public
+export enum KnownCustomDomainStatus {
+    // (undocumented)
+    Adding = "Adding",
+    // (undocumented)
+    Deleting = "Deleting",
+    // (undocumented)
+    Failed = "Failed",
+    // (undocumented)
+    Ready = "Ready",
+    // (undocumented)
+    RetrievingValidationToken = "RetrievingValidationToken",
+    // (undocumented)
+    Validating = "Validating"
+}
+
+// @public
 export enum KnownDatabaseType {
     // (undocumented)
     LocalMySql = "LocalMySql",
@@ -3131,7 +3612,9 @@ export enum KnownDomainPropertiesDomainNotRenewableReasonsItem {
 }
 
 // @public
-export enum KnownEnum4 {
+export enum KnownEnum10 {
+    // (undocumented)
+    All = "All",
     // (undocumented)
     Linux = "Linux",
     // (undocumented)
@@ -3143,7 +3626,49 @@ export enum KnownEnum4 {
 }
 
 // @public
-export enum KnownEnum5 {
+export enum KnownEnum11 {
+    // (undocumented)
+    All = "All",
+    // (undocumented)
+    Linux = "Linux",
+    // (undocumented)
+    Windows = "Windows"
+}
+
+// @public
+export enum KnownEnum12 {
+    // (undocumented)
+    All = "All",
+    // (undocumented)
+    Linux = "Linux",
+    // (undocumented)
+    Windows = "Windows"
+}
+
+// @public
+export enum KnownEnum13 {
+    // (undocumented)
+    All = "All",
+    // (undocumented)
+    Linux = "Linux",
+    // (undocumented)
+    Windows = "Windows"
+}
+
+// @public
+export enum KnownEnum14 {
+    // (undocumented)
+    All = "All",
+    // (undocumented)
+    Linux = "Linux",
+    // (undocumented)
+    Windows = "Windows"
+}
+
+// @public
+export enum KnownEnum15 {
+    // (undocumented)
+    All = "All",
     // (undocumented)
     Linux = "Linux",
     // (undocumented)
@@ -3170,6 +3695,28 @@ export enum KnownInAvailabilityReasonType {
     AlreadyExists = "AlreadyExists",
     // (undocumented)
     Invalid = "Invalid"
+}
+
+// @public
+export enum KnownIpFilterTag {
+    // (undocumented)
+    Default = "Default",
+    // (undocumented)
+    ServiceTag = "ServiceTag",
+    // (undocumented)
+    XffProxy = "XffProxy"
+}
+
+// @public
+export enum KnownLoadBalancingMode {
+    // (undocumented)
+    None = "None",
+    // (undocumented)
+    Publishing = "Publishing",
+    // (undocumented)
+    Web = "Web",
+    // (undocumented)
+    WebPublishing = "Web, Publishing"
 }
 
 // @public
@@ -3249,9 +3796,15 @@ export enum KnownSkuName {
     // (undocumented)
     Isolated = "Isolated",
     // (undocumented)
+    IsolatedV2 = "IsolatedV2",
+    // (undocumented)
     Premium = "Premium",
     // (undocumented)
+    PremiumContainer = "PremiumContainer",
+    // (undocumented)
     PremiumV2 = "PremiumV2",
+    // (undocumented)
+    PremiumV3 = "PremiumV3",
     // (undocumented)
     Shared = "Shared",
     // (undocumented)
@@ -3279,9 +3832,141 @@ export enum KnownTriggerTypes {
 // @public
 export enum KnownValidateResourceTypes {
     // (undocumented)
+    MicrosoftWebHostingEnvironments = "Microsoft.Web/hostingEnvironments",
+    // (undocumented)
     ServerFarm = "ServerFarm",
     // (undocumented)
     Site = "Site"
+}
+
+// @public
+export type KubeEnvironment = Resource & {
+    extendedLocation?: ExtendedLocation;
+    readonly provisioningState?: KubeEnvironmentProvisioningState;
+    readonly deploymentErrors?: string;
+    internalLoadBalancerEnabled?: boolean;
+    readonly defaultDomain?: string;
+    staticIp?: string;
+    arcConfiguration?: ArcConfiguration;
+    appLogsConfiguration?: AppLogsConfiguration;
+    aksResourceID?: string;
+};
+
+// @public
+export interface KubeEnvironmentCollection {
+    readonly nextLink?: string;
+    value: KubeEnvironment[];
+}
+
+// @public
+export type KubeEnvironmentPatchResource = ProxyOnlyResource & {
+    readonly provisioningState?: KubeEnvironmentProvisioningState;
+    readonly deploymentErrors?: string;
+    internalLoadBalancerEnabled?: boolean;
+    readonly defaultDomain?: string;
+    staticIp?: string;
+    arcConfiguration?: ArcConfiguration;
+    appLogsConfiguration?: AppLogsConfiguration;
+    aksResourceID?: string;
+};
+
+// @public
+export interface KubeEnvironmentProfile {
+    id?: string;
+    readonly name?: string;
+    readonly type?: string;
+}
+
+// @public
+export type KubeEnvironmentProvisioningState = "Succeeded" | "Failed" | "Canceled" | "Waiting" | "InitializationInProgress" | "InfrastructureSetupInProgress" | "InfrastructureSetupComplete" | "ScheduledForDelete" | "UpgradeRequested" | "UpgradeFailed";
+
+// @public
+export interface KubeEnvironments {
+    beginCreateOrUpdate(resourceGroupName: string, name: string, kubeEnvironmentEnvelope: KubeEnvironment, options?: KubeEnvironmentsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<KubeEnvironmentsCreateOrUpdateResponse>, KubeEnvironmentsCreateOrUpdateResponse>>;
+    beginCreateOrUpdateAndWait(resourceGroupName: string, name: string, kubeEnvironmentEnvelope: KubeEnvironment, options?: KubeEnvironmentsCreateOrUpdateOptionalParams): Promise<KubeEnvironmentsCreateOrUpdateResponse>;
+    beginDelete(resourceGroupName: string, name: string, options?: KubeEnvironmentsDeleteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteAndWait(resourceGroupName: string, name: string, options?: KubeEnvironmentsDeleteOptionalParams): Promise<void>;
+    get(resourceGroupName: string, name: string, options?: KubeEnvironmentsGetOptionalParams): Promise<KubeEnvironmentsGetResponse>;
+    listByResourceGroup(resourceGroupName: string, options?: KubeEnvironmentsListByResourceGroupOptionalParams): PagedAsyncIterableIterator<KubeEnvironment>;
+    listBySubscription(options?: KubeEnvironmentsListBySubscriptionOptionalParams): PagedAsyncIterableIterator<KubeEnvironment>;
+    update(resourceGroupName: string, name: string, kubeEnvironmentEnvelope: KubeEnvironmentPatchResource, options?: KubeEnvironmentsUpdateOptionalParams): Promise<KubeEnvironmentsUpdateResponse>;
+}
+
+// @public
+export interface KubeEnvironmentsCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export type KubeEnvironmentsCreateOrUpdateResponse = KubeEnvironment;
+
+// @public
+export interface KubeEnvironmentsDeleteOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface KubeEnvironmentsGetOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type KubeEnvironmentsGetResponse = KubeEnvironment;
+
+// @public
+export interface KubeEnvironmentsListByResourceGroupNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type KubeEnvironmentsListByResourceGroupNextResponse = KubeEnvironmentCollection;
+
+// @public
+export interface KubeEnvironmentsListByResourceGroupOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type KubeEnvironmentsListByResourceGroupResponse = KubeEnvironmentCollection;
+
+// @public
+export interface KubeEnvironmentsListBySubscriptionNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type KubeEnvironmentsListBySubscriptionNextResponse = KubeEnvironmentCollection;
+
+// @public
+export interface KubeEnvironmentsListBySubscriptionOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type KubeEnvironmentsListBySubscriptionResponse = KubeEnvironmentCollection;
+
+// @public
+export interface KubeEnvironmentsUpdateOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type KubeEnvironmentsUpdateResponse = KubeEnvironment;
+
+// @public
+export interface LegacyMicrosoftAccount {
+    enabled?: boolean;
+    login?: LoginScopes;
+    registration?: ClientRegistration;
+    validation?: AllowedAudiencesValidation;
+}
+
+// @public
+export interface LinuxJavaContainerSettings {
+    readonly endOfLifeDate?: Date;
+    readonly isAutoUpdate?: boolean;
+    readonly isDeprecated?: boolean;
+    readonly isEarlyAccess?: boolean;
+    readonly isHidden?: boolean;
+    readonly isPreview?: boolean;
+    readonly java11Runtime?: string;
+    readonly java8Runtime?: string;
 }
 
 // @public
@@ -3374,9 +4059,40 @@ export interface ListSourceControlsOptionalParams extends coreClient.OperationOp
 export type ListSourceControlsResponse = SourceControlCollection;
 
 // @public
+export type LoadBalancingMode = string;
+
+// @public
 export interface LocalizableString {
     localizedValue?: string;
     value?: string;
+}
+
+// @public (undocumented)
+export interface LogAnalyticsConfiguration {
+    // (undocumented)
+    customerId?: string;
+    // (undocumented)
+    sharedKey?: string;
+}
+
+// @public
+export interface Login {
+    allowedExternalRedirectUrls?: string[];
+    cookieExpiration?: CookieExpiration;
+    nonce?: Nonce;
+    preserveUrlFragmentsForLogins?: boolean;
+    routes?: LoginRoutes;
+    tokenStore?: TokenStore;
+}
+
+// @public
+export interface LoginRoutes {
+    logoutEndpoint?: string;
+}
+
+// @public
+export interface LoginScopes {
+    scopes?: string[];
 }
 
 // @public
@@ -3388,6 +4104,8 @@ export interface LogSpecification {
     blobDuration?: string;
     // (undocumented)
     displayName?: string;
+    // (undocumented)
+    logFilterPattern?: string;
     // (undocumented)
     name?: string;
 }
@@ -3401,12 +4119,12 @@ export interface ManagedServiceIdentity {
     readonly tenantId?: string;
     type?: ManagedServiceIdentityType;
     userAssignedIdentities?: {
-        [propertyName: string]: Components1Jq1T4ISchemasManagedserviceidentityPropertiesUserassignedidentitiesAdditionalproperties;
+        [propertyName: string]: UserAssignedIdentity;
     };
 }
 
 // @public
-export type ManagedServiceIdentityType = "None" | "SystemAssigned" | "UserAssigned";
+export type ManagedServiceIdentityType = "SystemAssigned" | "UserAssigned" | "SystemAssigned, UserAssigned" | "None";
 
 // @public
 export interface MetricAvailability {
@@ -3444,6 +4162,8 @@ export interface MetricSpecification {
     sourceMdmAccount?: string;
     // (undocumented)
     sourceMdmNamespace?: string;
+    // (undocumented)
+    supportedAggregationTypes?: string[];
     // (undocumented)
     supportedTimeGrainTypes?: string[];
     // (undocumented)
@@ -3530,14 +4250,6 @@ export interface NameValuePair {
 }
 
 // @public
-export interface NetworkAccessControlEntry {
-    action?: AccessControlEntryAction;
-    description?: string;
-    order?: number;
-    remoteSubnet?: string;
-}
-
-// @public
 export type NetworkFeatures = ProxyOnlyResource & {
     readonly virtualNetworkName?: string;
     readonly virtualNetworkConnection?: VnetInfo;
@@ -3553,7 +4265,41 @@ export interface NetworkTrace {
 }
 
 // @public
+export interface Nonce {
+    nonceExpirationInterval?: string;
+    validateNonce?: boolean;
+}
+
+// @public
 export type NotificationLevel = "Critical" | "Warning" | "Information" | "NonUrgentSuggestion";
+
+// @public
+export interface OpenIdConnectClientCredential {
+    clientSecretSettingName?: string;
+    method?: "ClientSecretPost";
+}
+
+// @public
+export interface OpenIdConnectConfig {
+    authorizationEndpoint?: string;
+    certificationUri?: string;
+    issuer?: string;
+    tokenEndpoint?: string;
+    wellKnownOpenIdConfiguration?: string;
+}
+
+// @public
+export interface OpenIdConnectLogin {
+    nameClaimType?: string;
+    scopes?: string[];
+}
+
+// @public
+export interface OpenIdConnectRegistration {
+    clientCredential?: OpenIdConnectClientCredential;
+    clientId?: string;
+    openIdConnectConfiguration?: OpenIdConnectConfig;
+}
 
 // @public
 export interface Operation {
@@ -3669,12 +4415,11 @@ export interface PrivateAccessVirtualNetwork {
     subnets?: PrivateAccessSubnet[];
 }
 
-// @public
-export type PrivateEndpointConnectionResource = ProxyOnlyResource & {
-    readonly provisioningState?: string;
-    privateEndpoint?: ArmIdWrapper;
-    privateLinkServiceConnectionState?: PrivateLinkConnectionState;
-};
+// @public (undocumented)
+export interface PrivateEndpointConnectionCollection {
+    readonly nextLink?: string;
+    value: RemotePrivateEndpointConnectionARMResource[];
+}
 
 // @public
 export type PrivateLinkConnectionApprovalRequestResource = ProxyOnlyResource & {
@@ -3806,13 +4551,17 @@ export interface ProcessThreadInfoCollection {
 export interface Provider {
     listAvailableStacks(options?: ProviderGetAvailableStacksOptionalParams): PagedAsyncIterableIterator<ApplicationStackResource>;
     listAvailableStacksOnPrem(options?: ProviderGetAvailableStacksOnPremOptionalParams): PagedAsyncIterableIterator<ApplicationStackResource>;
+    listFunctionAppStacks(options?: ProviderGetFunctionAppStacksOptionalParams): PagedAsyncIterableIterator<FunctionAppStack>;
+    listFunctionAppStacksForLocation(location: string, options?: ProviderGetFunctionAppStacksForLocationOptionalParams): PagedAsyncIterableIterator<FunctionAppStack>;
     listOperations(options?: ProviderListOperationsOptionalParams): PagedAsyncIterableIterator<CsmOperationDescription>;
+    listWebAppStacks(options?: ProviderGetWebAppStacksOptionalParams): PagedAsyncIterableIterator<WebAppStack>;
+    listWebAppStacksForLocation(location: string, options?: ProviderGetWebAppStacksForLocationOptionalParams): PagedAsyncIterableIterator<WebAppStack>;
 }
 
 // @public
 export interface ProviderGetAvailableStacksNextOptionalParams extends coreClient.OperationOptions {
     // (undocumented)
-    osTypeSelected?: Enum4;
+    osTypeSelected?: Enum10;
 }
 
 // @public
@@ -3821,7 +4570,7 @@ export type ProviderGetAvailableStacksNextResponse = ApplicationStackCollection;
 // @public
 export interface ProviderGetAvailableStacksOnPremNextOptionalParams extends coreClient.OperationOptions {
     // (undocumented)
-    osTypeSelected?: Enum5;
+    osTypeSelected?: Enum15;
 }
 
 // @public
@@ -3830,7 +4579,7 @@ export type ProviderGetAvailableStacksOnPremNextResponse = ApplicationStackColle
 // @public
 export interface ProviderGetAvailableStacksOnPremOptionalParams extends coreClient.OperationOptions {
     // (undocumented)
-    osTypeSelected?: Enum5;
+    osTypeSelected?: Enum15;
 }
 
 // @public
@@ -3839,11 +4588,75 @@ export type ProviderGetAvailableStacksOnPremResponse = ApplicationStackCollectio
 // @public
 export interface ProviderGetAvailableStacksOptionalParams extends coreClient.OperationOptions {
     // (undocumented)
-    osTypeSelected?: Enum4;
+    osTypeSelected?: Enum10;
 }
 
 // @public
 export type ProviderGetAvailableStacksResponse = ApplicationStackCollection;
+
+// @public
+export interface ProviderGetFunctionAppStacksForLocationNextOptionalParams extends coreClient.OperationOptions {
+    stackOsType?: Enum12;
+}
+
+// @public
+export type ProviderGetFunctionAppStacksForLocationNextResponse = FunctionAppStackCollection;
+
+// @public
+export interface ProviderGetFunctionAppStacksForLocationOptionalParams extends coreClient.OperationOptions {
+    stackOsType?: Enum12;
+}
+
+// @public
+export type ProviderGetFunctionAppStacksForLocationResponse = FunctionAppStackCollection;
+
+// @public
+export interface ProviderGetFunctionAppStacksNextOptionalParams extends coreClient.OperationOptions {
+    stackOsType?: Enum11;
+}
+
+// @public
+export type ProviderGetFunctionAppStacksNextResponse = FunctionAppStackCollection;
+
+// @public
+export interface ProviderGetFunctionAppStacksOptionalParams extends coreClient.OperationOptions {
+    stackOsType?: Enum11;
+}
+
+// @public
+export type ProviderGetFunctionAppStacksResponse = FunctionAppStackCollection;
+
+// @public
+export interface ProviderGetWebAppStacksForLocationNextOptionalParams extends coreClient.OperationOptions {
+    stackOsType?: Enum13;
+}
+
+// @public
+export type ProviderGetWebAppStacksForLocationNextResponse = WebAppStackCollection;
+
+// @public
+export interface ProviderGetWebAppStacksForLocationOptionalParams extends coreClient.OperationOptions {
+    stackOsType?: Enum13;
+}
+
+// @public
+export type ProviderGetWebAppStacksForLocationResponse = WebAppStackCollection;
+
+// @public
+export interface ProviderGetWebAppStacksNextOptionalParams extends coreClient.OperationOptions {
+    stackOsType?: Enum14;
+}
+
+// @public
+export type ProviderGetWebAppStacksNextResponse = WebAppStackCollection;
+
+// @public
+export interface ProviderGetWebAppStacksOptionalParams extends coreClient.OperationOptions {
+    stackOsType?: Enum14;
+}
+
+// @public
+export type ProviderGetWebAppStacksResponse = WebAppStackCollection;
 
 // @public
 export interface ProviderListOperationsNextOptionalParams extends coreClient.OperationOptions {
@@ -3887,6 +4700,12 @@ export interface PublicCertificateCollection {
 export type PublicCertificateLocation = "CurrentUserMy" | "LocalMachineMy" | "Unknown";
 
 // @public
+export interface PublishingCredentialsPoliciesCollection {
+    readonly nextLink?: string;
+    value: CsmPublishingCredentialsPoliciesEntity[];
+}
+
+// @public
 export type PublishingProfileFormat = string;
 
 // @public
@@ -3896,6 +4715,18 @@ export type PushSettings = ProxyOnlyResource & {
     tagsRequiringAuth?: string;
     dynamicTagsJson?: string;
 };
+
+// @public
+export interface QueryUtterancesResult {
+    sampleUtterance?: SampleUtterance;
+    score?: number;
+}
+
+// @public
+export interface QueryUtterancesResults {
+    query?: string;
+    results?: QueryUtterancesResult[];
+}
 
 // @public
 export interface RampUpRule {
@@ -4141,6 +4972,22 @@ export type RelayServiceConnectionEntity = ProxyOnlyResource & {
 };
 
 // @public
+export type RemotePrivateEndpointConnection = ProxyOnlyResource & {
+    readonly provisioningState?: string;
+    privateEndpoint?: ArmIdWrapper;
+    privateLinkServiceConnectionState?: PrivateLinkConnectionState;
+    ipAddresses?: string[];
+};
+
+// @public
+export type RemotePrivateEndpointConnectionARMResource = ProxyOnlyResource & {
+    readonly provisioningState?: string;
+    privateEndpoint?: ArmIdWrapper;
+    privateLinkServiceConnectionState?: PrivateLinkConnectionState;
+    ipAddresses?: string[];
+};
+
+// @public
 export interface Rendering {
     description?: string;
     title?: string;
@@ -4148,7 +4995,7 @@ export interface Rendering {
 }
 
 // @public
-export type RenderingType = "NoGraph" | "Table" | "TimeSeries" | "TimeSeriesPerInstance";
+export type RenderingType = "NoGraph" | "Table" | "TimeSeries" | "TimeSeriesPerInstance" | "PieChart" | "DataSummary" | "Email" | "Insights" | "DynamicInsight" | "Markdown" | "Detector" | "DropDown" | "Card" | "Solution" | "Guage" | "Form" | "ChangeSets" | "ChangeAnalysisOnboarding" | "ChangesView" | "AppInsight" | "DependencyGraph" | "DownTime" | "SummaryCard" | "SearchComponent" | "AppInsightEnablement";
 
 // @public
 export type RenewCertificateOrderRequest = ProxyOnlyResource & {
@@ -4164,7 +5011,7 @@ export interface RequestsBasedTrigger {
 }
 
 // @public
-export type ResolveStatus = "Initialized" | "Resolved" | "InvalidSyntax" | "MSINotEnabled" | "VaultNotFound" | "SecretNotFound" | "SecretVersionNotFound" | "AccessToKeyVaultDenied" | "OtherReasons";
+export type ResolveStatus = "Initialized" | "Resolved" | "InvalidSyntax" | "MSINotEnabled" | "VaultNotFound" | "SecretNotFound" | "SecretVersionNotFound" | "AccessToKeyVaultDenied" | "OtherReasons" | "FetchTimedOut" | "UnauthorizedClient";
 
 // @public
 export interface Resource {
@@ -4316,6 +5163,24 @@ export interface ResourceNameAvailabilityRequest {
 // @public
 export type ResourceScopeType = string;
 
+// @public
+export interface ResponseMessageEnvelopeRemotePrivateEndpointConnection {
+    error?: ErrorEntity;
+    id?: string;
+    identity?: ManagedServiceIdentity;
+    location?: string;
+    name?: string;
+    plan?: ArmPlan;
+    properties?: RemotePrivateEndpointConnection;
+    sku?: SkuDescription;
+    status?: string;
+    tags?: {
+        [propertyName: string]: string;
+    };
+    type?: string;
+    zones?: string[];
+}
+
 // @public (undocumented)
 export interface ResponseMetaData {
     dataSource?: DataSource;
@@ -4340,6 +5205,13 @@ export type RestoreRequest = ProxyOnlyResource & {
 export type RouteType = string;
 
 // @public
+export interface SampleUtterance {
+    links?: string[];
+    qid?: string;
+    text?: string;
+}
+
+// @public
 export type ScmType = string;
 
 // @public
@@ -4353,6 +5225,7 @@ export interface ServiceSpecification {
 // @public
 export type Site = Resource & {
     identity?: ManagedServiceIdentity;
+    extendedLocation?: ExtendedLocation;
     readonly state?: string;
     readonly hostNames?: string[];
     readonly repositorySiteName?: string;
@@ -4373,8 +5246,10 @@ export type Site = Resource & {
     hostingEnvironmentProfile?: HostingEnvironmentProfile;
     clientAffinityEnabled?: boolean;
     clientCertEnabled?: boolean;
+    clientCertMode?: ClientCertMode;
     clientCertExclusionPaths?: string;
     hostNamesDisabled?: boolean;
+    customDomainVerificationId?: string;
     readonly outboundIpAddresses?: string;
     readonly possibleOutboundIpAddresses?: string;
     containerSize?: number;
@@ -4389,6 +5264,9 @@ export type Site = Resource & {
     httpsOnly?: boolean;
     redundancyMode?: RedundancyMode;
     readonly inProgressOperationId?: string;
+    storageAccountRequired?: boolean;
+    keyVaultReferenceIdentity?: string;
+    virtualNetworkSubnetId?: string;
 };
 
 // @public
@@ -4402,22 +5280,44 @@ export type SiteAuthSettings = ProxyOnlyResource & {
     tokenRefreshExtensionHours?: number;
     clientId?: string;
     clientSecret?: string;
+    clientSecretSettingName?: string;
     clientSecretCertificateThumbprint?: string;
     issuer?: string;
     validateIssuer?: boolean;
     allowedAudiences?: string[];
     additionalLoginParams?: string[];
+    aadClaimsAuthorization?: string;
     googleClientId?: string;
     googleClientSecret?: string;
+    googleClientSecretSettingName?: string;
     googleOAuthScopes?: string[];
     facebookAppId?: string;
     facebookAppSecret?: string;
+    facebookAppSecretSettingName?: string;
     facebookOAuthScopes?: string[];
+    gitHubClientId?: string;
+    gitHubClientSecret?: string;
+    gitHubClientSecretSettingName?: string;
+    gitHubOAuthScopes?: string[];
     twitterConsumerKey?: string;
     twitterConsumerSecret?: string;
+    twitterConsumerSecretSettingName?: string;
     microsoftAccountClientId?: string;
     microsoftAccountClientSecret?: string;
+    microsoftAccountClientSecretSettingName?: string;
     microsoftAccountOAuthScopes?: string[];
+    isAuthFromFile?: string;
+    authFilePath?: string;
+    configVersion?: string;
+};
+
+// @public
+export type SiteAuthSettingsV2 = ProxyOnlyResource & {
+    platform?: AuthPlatform;
+    globalValidation?: GlobalValidation;
+    identityProviders?: IdentityProviders;
+    login?: Login;
+    httpSettings?: HttpSettings;
 };
 
 // @public
@@ -4439,6 +5339,8 @@ export interface SiteCloneabilityCriterion {
 
 // @public
 export interface SiteConfig {
+    acrUseManagedIdentityCreds?: boolean;
+    acrUserManagedIdentityID?: string;
     alwaysOn?: boolean;
     apiDefinition?: ApiDefinitionInfo;
     apiManagementConfig?: ApiManagementConfig;
@@ -4447,6 +5349,9 @@ export interface SiteConfig {
     autoHealEnabled?: boolean;
     autoHealRules?: AutoHealRules;
     autoSwapSlotName?: string;
+    azureStorageAccounts?: {
+        [propertyName: string]: AzureStorageInfoValue;
+    };
     connectionStrings?: ConnStringInfo[];
     cors?: CorsSettings;
     defaultDocuments?: string[];
@@ -4454,6 +5359,8 @@ export interface SiteConfig {
     documentRoot?: string;
     experiments?: Experiments;
     ftpsState?: FtpsState;
+    functionAppScaleLimit?: number;
+    functionsRuntimeScaleMonitoringEnabled?: boolean;
     handlerMappings?: HandlerMapping[];
     healthCheckPath?: string;
     http20Enabled?: boolean;
@@ -4462,6 +5369,7 @@ export interface SiteConfig {
     javaContainer?: string;
     javaContainerVersion?: string;
     javaVersion?: string;
+    keyVaultReferenceIdentity?: string;
     limits?: SiteLimits;
     linuxFxVersion?: string;
     loadBalancing?: SiteLoadBalancing;
@@ -4470,6 +5378,7 @@ export interface SiteConfig {
     readonly machineKey?: SiteMachineKey;
     managedPipelineMode?: ManagedPipelineMode;
     managedServiceIdentityId?: number;
+    minimumElasticInstanceCount?: number;
     minTlsVersion?: SupportedTlsVersions;
     netFrameworkVersion?: string;
     nodeVersion?: string;
@@ -4477,6 +5386,7 @@ export interface SiteConfig {
     phpVersion?: string;
     powerShellVersion?: string;
     preWarmedInstanceCount?: number;
+    publicNetworkAccess?: string;
     publishingUsername?: string;
     push?: PushSettings;
     pythonVersion?: string;
@@ -4486,14 +5396,26 @@ export interface SiteConfig {
     requestTracingExpirationTime?: Date;
     scmIpSecurityRestrictions?: IpSecurityRestriction[];
     scmIpSecurityRestrictionsUseMain?: boolean;
+    scmMinTlsVersion?: SupportedTlsVersions;
     scmType?: ScmType;
     tracingOptions?: string;
     use32BitWorkerProcess?: boolean;
     virtualApplications?: VirtualApplication[];
     vnetName?: string;
+    vnetPrivatePortsCount?: number;
+    vnetRouteAllEnabled?: boolean;
+    websiteTimeZone?: string;
     webSocketsEnabled?: boolean;
     windowsFxVersion?: string;
     xManagedServiceIdentityId?: number;
+}
+
+// @public
+export interface SiteConfigPropertiesDictionary {
+    readonly javaVersion?: string;
+    readonly linuxFxVersion?: string;
+    readonly powerShellVersion?: string;
+    readonly use32BitWorkerProcess?: boolean;
 }
 
 // @public
@@ -4512,6 +5434,8 @@ export type SiteConfigResource = ProxyOnlyResource & {
     remoteDebuggingEnabled?: boolean;
     remoteDebuggingVersion?: string;
     httpLoggingEnabled?: boolean;
+    acrUseManagedIdentityCreds?: boolean;
+    acrUserManagedIdentityID?: string;
     logsDirectorySizeLimit?: number;
     detailedErrorLoggingEnabled?: boolean;
     publishingUsername?: string;
@@ -4537,6 +5461,8 @@ export type SiteConfigResource = ProxyOnlyResource & {
     autoHealRules?: AutoHealRules;
     tracingOptions?: string;
     vnetName?: string;
+    vnetRouteAllEnabled?: boolean;
+    vnetPrivatePortsCount?: number;
     cors?: CorsSettings;
     push?: PushSettings;
     apiDefinition?: ApiDefinitionInfo;
@@ -4545,14 +5471,24 @@ export type SiteConfigResource = ProxyOnlyResource & {
     localMySqlEnabled?: boolean;
     managedServiceIdentityId?: number;
     xManagedServiceIdentityId?: number;
+    keyVaultReferenceIdentity?: string;
     ipSecurityRestrictions?: IpSecurityRestriction[];
     scmIpSecurityRestrictions?: IpSecurityRestriction[];
     scmIpSecurityRestrictionsUseMain?: boolean;
     http20Enabled?: boolean;
     minTlsVersion?: SupportedTlsVersions;
+    scmMinTlsVersion?: SupportedTlsVersions;
     ftpsState?: FtpsState;
     preWarmedInstanceCount?: number;
+    functionAppScaleLimit?: number;
     healthCheckPath?: string;
+    functionsRuntimeScaleMonitoringEnabled?: boolean;
+    websiteTimeZone?: string;
+    minimumElasticInstanceCount?: number;
+    azureStorageAccounts?: {
+        [propertyName: string]: AzureStorageInfoValue;
+    };
+    publicNetworkAccess?: string;
 };
 
 // @public
@@ -4607,11 +5543,6 @@ export interface SiteExtensionInfoCollection {
 export type SiteExtensionType = "Gallery" | "WebRoot";
 
 // @public
-export type SiteInstance = ProxyOnlyResource & {
-    readonly siteInstanceName?: string;
-};
-
-// @public
 export interface SiteLimits {
     maxDiskSizeInMb?: number;
     maxMemoryInMb?: number;
@@ -4619,7 +5550,7 @@ export interface SiteLimits {
 }
 
 // @public
-export type SiteLoadBalancing = "WeightedRoundRobin" | "LeastRequests" | "LeastResponseTime" | "WeightedTotalTraffic" | "RequestHash";
+export type SiteLoadBalancing = "WeightedRoundRobin" | "LeastRequests" | "LeastResponseTime" | "WeightedTotalTraffic" | "RequestHash" | "PerSiteRoundRobin";
 
 // @public
 export type SiteLogsConfig = ProxyOnlyResource & {
@@ -4660,8 +5591,10 @@ export type SitePatchResource = ProxyOnlyResource & {
     hostingEnvironmentProfile?: HostingEnvironmentProfile;
     clientAffinityEnabled?: boolean;
     clientCertEnabled?: boolean;
+    clientCertMode?: ClientCertMode;
     clientCertExclusionPaths?: string;
     hostNamesDisabled?: boolean;
+    customDomainVerificationId?: string;
     readonly outboundIpAddresses?: string;
     readonly possibleOutboundIpAddresses?: string;
     containerSize?: number;
@@ -4676,6 +5609,9 @@ export type SitePatchResource = ProxyOnlyResource & {
     httpsOnly?: boolean;
     redundancyMode?: RedundancyMode;
     readonly inProgressOperationId?: string;
+    storageAccountRequired?: boolean;
+    keyVaultReferenceIdentity?: string;
+    virtualNetworkSubnetId?: string;
 };
 
 // @public
@@ -4705,13 +5641,16 @@ export type SiteSourceControl = ProxyOnlyResource & {
     repoUrl?: string;
     branch?: string;
     isManualIntegration?: boolean;
+    isGitHubAction?: boolean;
     deploymentRollbackEnabled?: boolean;
     isMercurial?: boolean;
+    gitHubActionConfiguration?: GitHubActionConfiguration;
 };
 
 // @public
 export interface SkuCapacity {
     default?: number;
+    elasticMaximum?: number;
     maximum?: number;
     minimum?: number;
     scaleType?: string;
@@ -4785,6 +5724,7 @@ export interface SlotSwapStatus {
 // @public
 export interface SlowRequestsBasedTrigger {
     count?: number;
+    path?: string;
     timeInterval?: string;
     timeTaken?: string;
 }
@@ -4850,6 +5790,9 @@ export type SslState = "Disabled" | "SniEnabled" | "IpBasedEnabled";
 // @public
 export interface StackMajorVersion {
     applicationInsights?: boolean;
+    appSettingsDictionary?: {
+        [propertyName: string]: Record<string, unknown>;
+    };
     displayVersion?: string;
     isDefault?: boolean;
     isDeprecated?: boolean;
@@ -4857,6 +5800,9 @@ export interface StackMajorVersion {
     isPreview?: boolean;
     minorVersions?: StackMinorVersion[];
     runtimeVersion?: string;
+    siteConfigPropertiesDictionary?: {
+        [propertyName: string]: Record<string, unknown>;
+    };
 }
 
 // @public
@@ -4866,6 +5812,12 @@ export interface StackMinorVersion {
     isRemoteDebuggingEnabled?: boolean;
     runtimeVersion?: string;
 }
+
+// @public
+export type StackPreferredOs = "Windows" | "Linux";
+
+// @public
+export type StagingEnvironmentPolicy = "Enabled" | "Disabled";
 
 // @public
 export interface StampCapacity {
@@ -4891,12 +5843,21 @@ export interface StampCapacityCollection {
 // @public
 export type StaticSiteARMResource = Resource & {
     sku?: SkuDescription;
+    identity?: ManagedServiceIdentity;
     readonly defaultHostname?: string;
     repositoryUrl?: string;
     branch?: string;
     readonly customDomains?: string[];
     repositoryToken?: string;
     buildProperties?: StaticSiteBuildProperties;
+    readonly privateEndpointConnections?: ResponseMessageEnvelopeRemotePrivateEndpointConnection[];
+    stagingEnvironmentPolicy?: StagingEnvironmentPolicy;
+    allowConfigFileUpdates?: boolean;
+    templateProperties?: StaticSiteTemplateOptions;
+    readonly contentDistributionEndpoint?: string;
+    readonly keyVaultReferenceIdentity?: string;
+    readonly userProvidedFunctionApps?: StaticSiteUserProvidedFunctionApp[];
+    readonly provider?: string;
 };
 
 // @public
@@ -4908,6 +5869,7 @@ export type StaticSiteBuildARMResource = ProxyOnlyResource & {
     readonly createdTimeUtc?: Date;
     readonly lastUpdatedOn?: Date;
     readonly status?: BuildStatus;
+    readonly userProvidedFunctionApps?: StaticSiteUserProvidedFunctionApp[];
 };
 
 // @public
@@ -4918,9 +5880,14 @@ export interface StaticSiteBuildCollection {
 
 // @public
 export interface StaticSiteBuildProperties {
+    apiBuildCommand?: string;
     apiLocation?: string;
     appArtifactLocation?: string;
+    appBuildCommand?: string;
     appLocation?: string;
+    githubActionSecretNameOverride?: string;
+    outputLocation?: string;
+    skipGithubActionWorkflowGeneration?: boolean;
 }
 
 // @public
@@ -4933,6 +5900,9 @@ export interface StaticSiteCollection {
 export type StaticSiteCustomDomainOverviewARMResource = ProxyOnlyResource & {
     readonly domainName?: string;
     readonly createdOn?: Date;
+    readonly status?: CustomDomainStatus;
+    readonly validationToken?: string;
+    readonly errorMessage?: string;
 };
 
 // @public
@@ -4940,6 +5910,11 @@ export interface StaticSiteCustomDomainOverviewCollection {
     readonly nextLink?: string;
     value: StaticSiteCustomDomainOverviewARMResource[];
 }
+
+// @public
+export type StaticSiteCustomDomainRequestPropertiesARMResource = ProxyOnlyResource & {
+    validationMethod?: string;
+};
 
 // @public
 export type StaticSiteFunctionOverviewARMResource = ProxyOnlyResource & {
@@ -4961,6 +5936,14 @@ export type StaticSitePatchResource = ProxyOnlyResource & {
     readonly customDomains?: string[];
     repositoryToken?: string;
     buildProperties?: StaticSiteBuildProperties;
+    readonly privateEndpointConnections?: ResponseMessageEnvelopeRemotePrivateEndpointConnection[];
+    stagingEnvironmentPolicy?: StagingEnvironmentPolicy;
+    allowConfigFileUpdates?: boolean;
+    templateProperties?: StaticSiteTemplateOptions;
+    readonly contentDistributionEndpoint?: string;
+    readonly keyVaultReferenceIdentity?: string;
+    readonly userProvidedFunctionApps?: StaticSiteUserProvidedFunctionApp[];
+    readonly provider?: string;
 };
 
 // @public
@@ -4971,33 +5954,91 @@ export type StaticSiteResetPropertiesARMResource = ProxyOnlyResource & {
 
 // @public
 export interface StaticSites {
-    createOrUpdateStaticSite(resourceGroupName: string, name: string, staticSiteEnvelope: StaticSiteARMResource, options?: StaticSitesCreateOrUpdateStaticSiteOptionalParams): Promise<StaticSitesCreateOrUpdateStaticSiteResponse>;
-    createOrUpdateStaticSiteBuildFunctionAppSettings(resourceGroupName: string, name: string, prId: string, appSettings: StringDictionary, options?: StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettingsOptionalParams): Promise<StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettingsResponse>;
-    createOrUpdateStaticSiteCustomDomain(resourceGroupName: string, name: string, domainName: string, options?: StaticSitesCreateOrUpdateStaticSiteCustomDomainOptionalParams): Promise<StaticSitesCreateOrUpdateStaticSiteCustomDomainResponse>;
+    beginApproveOrRejectPrivateEndpointConnection(resourceGroupName: string, name: string, privateEndpointConnectionName: string, privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource, options?: StaticSitesApproveOrRejectPrivateEndpointConnectionOptionalParams): Promise<PollerLike<PollOperationState<StaticSitesApproveOrRejectPrivateEndpointConnectionResponse>, StaticSitesApproveOrRejectPrivateEndpointConnectionResponse>>;
+    beginApproveOrRejectPrivateEndpointConnectionAndWait(resourceGroupName: string, name: string, privateEndpointConnectionName: string, privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource, options?: StaticSitesApproveOrRejectPrivateEndpointConnectionOptionalParams): Promise<StaticSitesApproveOrRejectPrivateEndpointConnectionResponse>;
+    beginCreateOrUpdateStaticSite(resourceGroupName: string, name: string, staticSiteEnvelope: StaticSiteARMResource, options?: StaticSitesCreateOrUpdateStaticSiteOptionalParams): Promise<PollerLike<PollOperationState<StaticSitesCreateOrUpdateStaticSiteResponse>, StaticSitesCreateOrUpdateStaticSiteResponse>>;
+    beginCreateOrUpdateStaticSiteAndWait(resourceGroupName: string, name: string, staticSiteEnvelope: StaticSiteARMResource, options?: StaticSitesCreateOrUpdateStaticSiteOptionalParams): Promise<StaticSitesCreateOrUpdateStaticSiteResponse>;
+    beginCreateOrUpdateStaticSiteCustomDomain(resourceGroupName: string, name: string, domainName: string, staticSiteCustomDomainRequestPropertiesEnvelope: StaticSiteCustomDomainRequestPropertiesARMResource, options?: StaticSitesCreateOrUpdateStaticSiteCustomDomainOptionalParams): Promise<PollerLike<PollOperationState<StaticSitesCreateOrUpdateStaticSiteCustomDomainResponse>, StaticSitesCreateOrUpdateStaticSiteCustomDomainResponse>>;
+    beginCreateOrUpdateStaticSiteCustomDomainAndWait(resourceGroupName: string, name: string, domainName: string, staticSiteCustomDomainRequestPropertiesEnvelope: StaticSiteCustomDomainRequestPropertiesARMResource, options?: StaticSitesCreateOrUpdateStaticSiteCustomDomainOptionalParams): Promise<StaticSitesCreateOrUpdateStaticSiteCustomDomainResponse>;
+    beginCreateZipDeploymentForStaticSite(resourceGroupName: string, name: string, staticSiteZipDeploymentEnvelope: StaticSiteZipDeploymentARMResource, options?: StaticSitesCreateZipDeploymentForStaticSiteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginCreateZipDeploymentForStaticSiteAndWait(resourceGroupName: string, name: string, staticSiteZipDeploymentEnvelope: StaticSiteZipDeploymentARMResource, options?: StaticSitesCreateZipDeploymentForStaticSiteOptionalParams): Promise<void>;
+    beginCreateZipDeploymentForStaticSiteBuild(resourceGroupName: string, name: string, environmentName: string, staticSiteZipDeploymentEnvelope: StaticSiteZipDeploymentARMResource, options?: StaticSitesCreateZipDeploymentForStaticSiteBuildOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginCreateZipDeploymentForStaticSiteBuildAndWait(resourceGroupName: string, name: string, environmentName: string, staticSiteZipDeploymentEnvelope: StaticSiteZipDeploymentARMResource, options?: StaticSitesCreateZipDeploymentForStaticSiteBuildOptionalParams): Promise<void>;
+    beginDeletePrivateEndpointConnection(resourceGroupName: string, name: string, privateEndpointConnectionName: string, options?: StaticSitesDeletePrivateEndpointConnectionOptionalParams): Promise<PollerLike<PollOperationState<StaticSitesDeletePrivateEndpointConnectionResponse>, StaticSitesDeletePrivateEndpointConnectionResponse>>;
+    beginDeletePrivateEndpointConnectionAndWait(resourceGroupName: string, name: string, privateEndpointConnectionName: string, options?: StaticSitesDeletePrivateEndpointConnectionOptionalParams): Promise<StaticSitesDeletePrivateEndpointConnectionResponse>;
+    beginDeleteStaticSite(resourceGroupName: string, name: string, options?: StaticSitesDeleteStaticSiteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteStaticSiteAndWait(resourceGroupName: string, name: string, options?: StaticSitesDeleteStaticSiteOptionalParams): Promise<void>;
+    beginDeleteStaticSiteBuild(resourceGroupName: string, name: string, environmentName: string, options?: StaticSitesDeleteStaticSiteBuildOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteStaticSiteBuildAndWait(resourceGroupName: string, name: string, environmentName: string, options?: StaticSitesDeleteStaticSiteBuildOptionalParams): Promise<void>;
+    beginDeleteStaticSiteCustomDomain(resourceGroupName: string, name: string, domainName: string, options?: StaticSitesDeleteStaticSiteCustomDomainOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteStaticSiteCustomDomainAndWait(resourceGroupName: string, name: string, domainName: string, options?: StaticSitesDeleteStaticSiteCustomDomainOptionalParams): Promise<void>;
+    beginDetachStaticSite(resourceGroupName: string, name: string, options?: StaticSitesDetachStaticSiteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDetachStaticSiteAndWait(resourceGroupName: string, name: string, options?: StaticSitesDetachStaticSiteOptionalParams): Promise<void>;
+    beginRegisterUserProvidedFunctionAppWithStaticSite(resourceGroupName: string, name: string, functionAppName: string, staticSiteUserProvidedFunctionEnvelope: StaticSiteUserProvidedFunctionAppARMResource, options?: StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteOptionalParams): Promise<PollerLike<PollOperationState<StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteResponse>, StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteResponse>>;
+    beginRegisterUserProvidedFunctionAppWithStaticSiteAndWait(resourceGroupName: string, name: string, functionAppName: string, staticSiteUserProvidedFunctionEnvelope: StaticSiteUserProvidedFunctionAppARMResource, options?: StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteOptionalParams): Promise<StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteResponse>;
+    beginRegisterUserProvidedFunctionAppWithStaticSiteBuild(resourceGroupName: string, name: string, environmentName: string, functionAppName: string, staticSiteUserProvidedFunctionEnvelope: StaticSiteUserProvidedFunctionAppARMResource, options?: StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildOptionalParams): Promise<PollerLike<PollOperationState<StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildResponse>, StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildResponse>>;
+    beginRegisterUserProvidedFunctionAppWithStaticSiteBuildAndWait(resourceGroupName: string, name: string, environmentName: string, functionAppName: string, staticSiteUserProvidedFunctionEnvelope: StaticSiteUserProvidedFunctionAppARMResource, options?: StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildOptionalParams): Promise<StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildResponse>;
+    beginValidateCustomDomainCanBeAddedToStaticSite(resourceGroupName: string, name: string, domainName: string, staticSiteCustomDomainRequestPropertiesEnvelope: StaticSiteCustomDomainRequestPropertiesARMResource, options?: StaticSitesValidateCustomDomainCanBeAddedToStaticSiteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginValidateCustomDomainCanBeAddedToStaticSiteAndWait(resourceGroupName: string, name: string, domainName: string, staticSiteCustomDomainRequestPropertiesEnvelope: StaticSiteCustomDomainRequestPropertiesARMResource, options?: StaticSitesValidateCustomDomainCanBeAddedToStaticSiteOptionalParams): Promise<void>;
+    createOrUpdateStaticSiteAppSettings(resourceGroupName: string, name: string, appSettings: StringDictionary, options?: StaticSitesCreateOrUpdateStaticSiteAppSettingsOptionalParams): Promise<StaticSitesCreateOrUpdateStaticSiteAppSettingsResponse>;
+    createOrUpdateStaticSiteBuildAppSettings(resourceGroupName: string, name: string, environmentName: string, appSettings: StringDictionary, options?: StaticSitesCreateOrUpdateStaticSiteBuildAppSettingsOptionalParams): Promise<StaticSitesCreateOrUpdateStaticSiteBuildAppSettingsResponse>;
+    createOrUpdateStaticSiteBuildFunctionAppSettings(resourceGroupName: string, name: string, environmentName: string, appSettings: StringDictionary, options?: StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettingsOptionalParams): Promise<StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettingsResponse>;
     createOrUpdateStaticSiteFunctionAppSettings(resourceGroupName: string, name: string, appSettings: StringDictionary, options?: StaticSitesCreateOrUpdateStaticSiteFunctionAppSettingsOptionalParams): Promise<StaticSitesCreateOrUpdateStaticSiteFunctionAppSettingsResponse>;
     createUserRolesInvitationLink(resourceGroupName: string, name: string, staticSiteUserRolesInvitationEnvelope: StaticSiteUserInvitationRequestResource, options?: StaticSitesCreateUserRolesInvitationLinkOptionalParams): Promise<StaticSitesCreateUserRolesInvitationLinkResponse>;
-    deleteStaticSite(resourceGroupName: string, name: string, options?: StaticSitesDeleteStaticSiteOptionalParams): Promise<void>;
-    deleteStaticSiteBuild(resourceGroupName: string, name: string, prId: string, options?: StaticSitesDeleteStaticSiteBuildOptionalParams): Promise<void>;
-    deleteStaticSiteCustomDomain(resourceGroupName: string, name: string, domainName: string, options?: StaticSitesDeleteStaticSiteCustomDomainOptionalParams): Promise<void>;
     deleteStaticSiteUser(resourceGroupName: string, name: string, authprovider: string, userid: string, options?: StaticSitesDeleteStaticSiteUserOptionalParams): Promise<void>;
-    detachStaticSite(resourceGroupName: string, name: string, options?: StaticSitesDetachStaticSiteOptionalParams): Promise<void>;
+    detachUserProvidedFunctionAppFromStaticSite(resourceGroupName: string, name: string, functionAppName: string, options?: StaticSitesDetachUserProvidedFunctionAppFromStaticSiteOptionalParams): Promise<void>;
+    detachUserProvidedFunctionAppFromStaticSiteBuild(resourceGroupName: string, name: string, environmentName: string, functionAppName: string, options?: StaticSitesDetachUserProvidedFunctionAppFromStaticSiteBuildOptionalParams): Promise<void>;
+    getPrivateEndpointConnection(resourceGroupName: string, name: string, privateEndpointConnectionName: string, options?: StaticSitesGetPrivateEndpointConnectionOptionalParams): Promise<StaticSitesGetPrivateEndpointConnectionResponse>;
+    getPrivateLinkResources(resourceGroupName: string, name: string, options?: StaticSitesGetPrivateLinkResourcesOptionalParams): Promise<StaticSitesGetPrivateLinkResourcesResponse>;
     getStaticSite(resourceGroupName: string, name: string, options?: StaticSitesGetStaticSiteOptionalParams): Promise<StaticSitesGetStaticSiteResponse>;
-    getStaticSiteBuild(resourceGroupName: string, name: string, prId: string, options?: StaticSitesGetStaticSiteBuildOptionalParams): Promise<StaticSitesGetStaticSiteBuildResponse>;
+    getStaticSiteBuild(resourceGroupName: string, name: string, environmentName: string, options?: StaticSitesGetStaticSiteBuildOptionalParams): Promise<StaticSitesGetStaticSiteBuildResponse>;
+    getStaticSiteCustomDomain(resourceGroupName: string, name: string, domainName: string, options?: StaticSitesGetStaticSiteCustomDomainOptionalParams): Promise<StaticSitesGetStaticSiteCustomDomainResponse>;
+    getUserProvidedFunctionAppForStaticSite(resourceGroupName: string, name: string, functionAppName: string, options?: StaticSitesGetUserProvidedFunctionAppForStaticSiteOptionalParams): Promise<StaticSitesGetUserProvidedFunctionAppForStaticSiteResponse>;
+    getUserProvidedFunctionAppForStaticSiteBuild(resourceGroupName: string, name: string, environmentName: string, functionAppName: string, options?: StaticSitesGetUserProvidedFunctionAppForStaticSiteBuildOptionalParams): Promise<StaticSitesGetUserProvidedFunctionAppForStaticSiteBuildResponse>;
     list(options?: StaticSitesListOptionalParams): PagedAsyncIterableIterator<StaticSiteARMResource>;
-    listStaticSiteBuildFunctionAppSettings(resourceGroupName: string, name: string, prId: string, options?: StaticSitesListStaticSiteBuildFunctionAppSettingsOptionalParams): Promise<StaticSitesListStaticSiteBuildFunctionAppSettingsResponse>;
-    listStaticSiteBuildFunctions(resourceGroupName: string, name: string, prId: string, options?: StaticSitesListStaticSiteBuildFunctionsOptionalParams): PagedAsyncIterableIterator<StaticSiteFunctionOverviewARMResource>;
+    listPrivateEndpointConnectionList(resourceGroupName: string, name: string, options?: StaticSitesGetPrivateEndpointConnectionListOptionalParams): PagedAsyncIterableIterator<RemotePrivateEndpointConnectionARMResource>;
+    listStaticSiteAppSettings(resourceGroupName: string, name: string, options?: StaticSitesListStaticSiteAppSettingsOptionalParams): Promise<StaticSitesListStaticSiteAppSettingsResponse>;
+    listStaticSiteBuildAppSettings(resourceGroupName: string, name: string, environmentName: string, options?: StaticSitesListStaticSiteBuildAppSettingsOptionalParams): Promise<StaticSitesListStaticSiteBuildAppSettingsResponse>;
+    listStaticSiteBuildFunctionAppSettings(resourceGroupName: string, name: string, environmentName: string, options?: StaticSitesListStaticSiteBuildFunctionAppSettingsOptionalParams): Promise<StaticSitesListStaticSiteBuildFunctionAppSettingsResponse>;
+    listStaticSiteBuildFunctions(resourceGroupName: string, name: string, environmentName: string, options?: StaticSitesListStaticSiteBuildFunctionsOptionalParams): PagedAsyncIterableIterator<StaticSiteFunctionOverviewARMResource>;
     listStaticSiteBuilds(resourceGroupName: string, name: string, options?: StaticSitesGetStaticSiteBuildsOptionalParams): PagedAsyncIterableIterator<StaticSiteBuildARMResource>;
+    listStaticSiteConfiguredRoles(resourceGroupName: string, name: string, options?: StaticSitesListStaticSiteConfiguredRolesOptionalParams): Promise<StaticSitesListStaticSiteConfiguredRolesResponse>;
     listStaticSiteCustomDomains(resourceGroupName: string, name: string, options?: StaticSitesListStaticSiteCustomDomainsOptionalParams): PagedAsyncIterableIterator<StaticSiteCustomDomainOverviewARMResource>;
     listStaticSiteFunctionAppSettings(resourceGroupName: string, name: string, options?: StaticSitesListStaticSiteFunctionAppSettingsOptionalParams): Promise<StaticSitesListStaticSiteFunctionAppSettingsResponse>;
     listStaticSiteFunctions(resourceGroupName: string, name: string, options?: StaticSitesListStaticSiteFunctionsOptionalParams): PagedAsyncIterableIterator<StaticSiteFunctionOverviewARMResource>;
     listStaticSitesByResourceGroup(resourceGroupName: string, options?: StaticSitesGetStaticSitesByResourceGroupOptionalParams): PagedAsyncIterableIterator<StaticSiteARMResource>;
     listStaticSiteSecrets(resourceGroupName: string, name: string, options?: StaticSitesListStaticSiteSecretsOptionalParams): Promise<StaticSitesListStaticSiteSecretsResponse>;
     listStaticSiteUsers(resourceGroupName: string, name: string, authprovider: string, options?: StaticSitesListStaticSiteUsersOptionalParams): PagedAsyncIterableIterator<StaticSiteUserARMResource>;
+    listUserProvidedFunctionAppsForStaticSite(resourceGroupName: string, name: string, options?: StaticSitesGetUserProvidedFunctionAppsForStaticSiteOptionalParams): PagedAsyncIterableIterator<StaticSiteUserProvidedFunctionAppARMResource>;
+    listUserProvidedFunctionAppsForStaticSiteBuild(resourceGroupName: string, name: string, environmentName: string, options?: StaticSitesGetUserProvidedFunctionAppsForStaticSiteBuildOptionalParams): PagedAsyncIterableIterator<StaticSiteUserProvidedFunctionAppARMResource>;
+    previewWorkflow(location: string, staticSitesWorkflowPreviewRequest: StaticSitesWorkflowPreviewRequest, options?: StaticSitesPreviewWorkflowOptionalParams): Promise<StaticSitesPreviewWorkflowResponse>;
     resetStaticSiteApiKey(resourceGroupName: string, name: string, resetPropertiesEnvelope: StaticSiteResetPropertiesARMResource, options?: StaticSitesResetStaticSiteApiKeyOptionalParams): Promise<void>;
     updateStaticSite(resourceGroupName: string, name: string, staticSiteEnvelope: StaticSitePatchResource, options?: StaticSitesUpdateStaticSiteOptionalParams): Promise<StaticSitesUpdateStaticSiteResponse>;
     updateStaticSiteUser(resourceGroupName: string, name: string, authprovider: string, userid: string, staticSiteUserEnvelope: StaticSiteUserARMResource, options?: StaticSitesUpdateStaticSiteUserOptionalParams): Promise<StaticSitesUpdateStaticSiteUserResponse>;
-    validateCustomDomainCanBeAddedToStaticSite(resourceGroupName: string, name: string, domainName: string, options?: StaticSitesValidateCustomDomainCanBeAddedToStaticSiteOptionalParams): Promise<void>;
 }
+
+// @public
+export interface StaticSitesApproveOrRejectPrivateEndpointConnectionOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export type StaticSitesApproveOrRejectPrivateEndpointConnectionResponse = RemotePrivateEndpointConnectionARMResource;
+
+// @public
+export interface StaticSitesCreateOrUpdateStaticSiteAppSettingsOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type StaticSitesCreateOrUpdateStaticSiteAppSettingsResponse = StringDictionary;
+
+// @public
+export interface StaticSitesCreateOrUpdateStaticSiteBuildAppSettingsOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type StaticSitesCreateOrUpdateStaticSiteBuildAppSettingsResponse = StringDictionary;
 
 // @public
 export interface StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettingsOptionalParams extends coreClient.OperationOptions {
@@ -5008,6 +6049,8 @@ export type StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettingsResponse 
 
 // @public
 export interface StaticSitesCreateOrUpdateStaticSiteCustomDomainOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -5022,6 +6065,8 @@ export type StaticSitesCreateOrUpdateStaticSiteFunctionAppSettingsResponse = Str
 
 // @public
 export interface StaticSitesCreateOrUpdateStaticSiteOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -5035,15 +6080,42 @@ export interface StaticSitesCreateUserRolesInvitationLinkOptionalParams extends 
 export type StaticSitesCreateUserRolesInvitationLinkResponse = StaticSiteUserInvitationResponseResource;
 
 // @public
+export interface StaticSitesCreateZipDeploymentForStaticSiteBuildOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface StaticSitesCreateZipDeploymentForStaticSiteOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface StaticSitesDeletePrivateEndpointConnectionOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export type StaticSitesDeletePrivateEndpointConnectionResponse = Record<string, unknown>;
+
+// @public
 export interface StaticSitesDeleteStaticSiteBuildOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
 export interface StaticSitesDeleteStaticSiteCustomDomainOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
 export interface StaticSitesDeleteStaticSiteOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -5052,7 +6124,45 @@ export interface StaticSitesDeleteStaticSiteUserOptionalParams extends coreClien
 
 // @public
 export interface StaticSitesDetachStaticSiteOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
+
+// @public
+export interface StaticSitesDetachUserProvidedFunctionAppFromStaticSiteBuildOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export interface StaticSitesDetachUserProvidedFunctionAppFromStaticSiteOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export interface StaticSitesGetPrivateEndpointConnectionListNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type StaticSitesGetPrivateEndpointConnectionListNextResponse = PrivateEndpointConnectionCollection;
+
+// @public
+export interface StaticSitesGetPrivateEndpointConnectionListOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type StaticSitesGetPrivateEndpointConnectionListResponse = PrivateEndpointConnectionCollection;
+
+// @public
+export interface StaticSitesGetPrivateEndpointConnectionOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type StaticSitesGetPrivateEndpointConnectionResponse = RemotePrivateEndpointConnectionARMResource;
+
+// @public
+export interface StaticSitesGetPrivateLinkResourcesOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type StaticSitesGetPrivateLinkResourcesResponse = PrivateLinkResourcesWrapper;
 
 // @public
 export interface StaticSitesGetStaticSiteBuildOptionalParams extends coreClient.OperationOptions {
@@ -5076,6 +6186,13 @@ export interface StaticSitesGetStaticSiteBuildsOptionalParams extends coreClient
 export type StaticSitesGetStaticSiteBuildsResponse = StaticSiteBuildCollection;
 
 // @public
+export interface StaticSitesGetStaticSiteCustomDomainOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type StaticSitesGetStaticSiteCustomDomainResponse = StaticSiteCustomDomainOverviewARMResource;
+
+// @public
 export interface StaticSitesGetStaticSiteOptionalParams extends coreClient.OperationOptions {
 }
 
@@ -5097,6 +6214,48 @@ export interface StaticSitesGetStaticSitesByResourceGroupOptionalParams extends 
 export type StaticSitesGetStaticSitesByResourceGroupResponse = StaticSiteCollection;
 
 // @public
+export interface StaticSitesGetUserProvidedFunctionAppForStaticSiteBuildOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type StaticSitesGetUserProvidedFunctionAppForStaticSiteBuildResponse = StaticSiteUserProvidedFunctionAppARMResource;
+
+// @public
+export interface StaticSitesGetUserProvidedFunctionAppForStaticSiteOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type StaticSitesGetUserProvidedFunctionAppForStaticSiteResponse = StaticSiteUserProvidedFunctionAppARMResource;
+
+// @public
+export interface StaticSitesGetUserProvidedFunctionAppsForStaticSiteBuildNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type StaticSitesGetUserProvidedFunctionAppsForStaticSiteBuildNextResponse = StaticSiteUserProvidedFunctionAppsCollection;
+
+// @public
+export interface StaticSitesGetUserProvidedFunctionAppsForStaticSiteBuildOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type StaticSitesGetUserProvidedFunctionAppsForStaticSiteBuildResponse = StaticSiteUserProvidedFunctionAppsCollection;
+
+// @public
+export interface StaticSitesGetUserProvidedFunctionAppsForStaticSiteNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type StaticSitesGetUserProvidedFunctionAppsForStaticSiteNextResponse = StaticSiteUserProvidedFunctionAppsCollection;
+
+// @public
+export interface StaticSitesGetUserProvidedFunctionAppsForStaticSiteOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type StaticSitesGetUserProvidedFunctionAppsForStaticSiteResponse = StaticSiteUserProvidedFunctionAppsCollection;
+
+// @public
 export interface StaticSitesListNextOptionalParams extends coreClient.OperationOptions {
 }
 
@@ -5109,6 +6268,20 @@ export interface StaticSitesListOptionalParams extends coreClient.OperationOptio
 
 // @public
 export type StaticSitesListResponse = StaticSiteCollection;
+
+// @public
+export interface StaticSitesListStaticSiteAppSettingsOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type StaticSitesListStaticSiteAppSettingsResponse = StringDictionary;
+
+// @public
+export interface StaticSitesListStaticSiteBuildAppSettingsOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type StaticSitesListStaticSiteBuildAppSettingsResponse = StringDictionary;
 
 // @public
 export interface StaticSitesListStaticSiteBuildFunctionAppSettingsOptionalParams extends coreClient.OperationOptions {
@@ -5130,6 +6303,13 @@ export interface StaticSitesListStaticSiteBuildFunctionsOptionalParams extends c
 
 // @public
 export type StaticSitesListStaticSiteBuildFunctionsResponse = StaticSiteFunctionOverviewCollection;
+
+// @public
+export interface StaticSitesListStaticSiteConfiguredRolesOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type StaticSitesListStaticSiteConfiguredRolesResponse = StringList;
 
 // @public
 export interface StaticSitesListStaticSiteCustomDomainsNextOptionalParams extends coreClient.OperationOptions {
@@ -5188,6 +6368,33 @@ export interface StaticSitesListStaticSiteUsersOptionalParams extends coreClient
 export type StaticSitesListStaticSiteUsersResponse = StaticSiteUserCollection;
 
 // @public
+export interface StaticSitesPreviewWorkflowOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type StaticSitesPreviewWorkflowResponse = StaticSitesWorkflowPreview;
+
+// @public
+export interface StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildOptionalParams extends coreClient.OperationOptions {
+    isForced?: boolean;
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export type StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildResponse = StaticSiteUserProvidedFunctionAppARMResource;
+
+// @public
+export interface StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteOptionalParams extends coreClient.OperationOptions {
+    isForced?: boolean;
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export type StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteResponse = StaticSiteUserProvidedFunctionAppARMResource;
+
+// @public
 export interface StaticSitesResetStaticSiteApiKeyOptionalParams extends coreClient.OperationOptions {
 }
 
@@ -5207,6 +6414,30 @@ export type StaticSitesUpdateStaticSiteUserResponse = StaticSiteUserARMResource;
 
 // @public
 export interface StaticSitesValidateCustomDomainCanBeAddedToStaticSiteOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export type StaticSitesWorkflowPreview = ProxyOnlyResource & {
+    readonly path?: string;
+    readonly contents?: string;
+};
+
+// @public
+export type StaticSitesWorkflowPreviewRequest = ProxyOnlyResource & {
+    repositoryUrl?: string;
+    branch?: string;
+    buildProperties?: StaticSiteBuildProperties;
+};
+
+// @public
+export interface StaticSiteTemplateOptions {
+    description?: string;
+    isPrivate?: boolean;
+    owner?: string;
+    repositoryName?: string;
+    templateRepositoryUrl?: string;
 }
 
 // @public
@@ -5239,12 +6470,57 @@ export type StaticSiteUserInvitationResponseResource = ProxyOnlyResource & {
 };
 
 // @public
+export type StaticSiteUserProvidedFunctionApp = ProxyOnlyResource & {
+    functionAppResourceId?: string;
+    functionAppRegion?: string;
+    readonly createdOn?: Date;
+};
+
+// @public
+export type StaticSiteUserProvidedFunctionAppARMResource = ProxyOnlyResource & {
+    functionAppResourceId?: string;
+    functionAppRegion?: string;
+    readonly createdOn?: Date;
+};
+
+// @public
+export interface StaticSiteUserProvidedFunctionAppsCollection {
+    readonly nextLink?: string;
+    value: StaticSiteUserProvidedFunctionAppARMResource[];
+}
+
+// @public
+export type StaticSiteZipDeploymentARMResource = ProxyOnlyResource & {
+    appZipUrl?: string;
+    apiZipUrl?: string;
+    deploymentTitle?: string;
+    provider?: string;
+    functionLanguage?: string;
+};
+
+// @public
+export interface Status {
+    message?: string;
+    statusId?: InsightStatus;
+}
+
+// @public
 export interface StatusCodesBasedTrigger {
     count?: number;
+    path?: string;
     status?: number;
     subStatus?: number;
     timeInterval?: string;
     win32Status?: number;
+}
+
+// @public
+export interface StatusCodesRangeBasedTrigger {
+    count?: number;
+    // (undocumented)
+    path?: string;
+    statusCodes?: string;
+    timeInterval?: string;
 }
 
 // @public
@@ -5264,6 +6540,9 @@ export type StorageMigrationResponse = ProxyOnlyResource & {
 };
 
 // @public
+export type StorageType = "LocalNode" | "NetworkFileSystem";
+
+// @public
 export type StringDictionary = ProxyOnlyResource & {
     properties?: {
         [propertyName: string]: string;
@@ -5271,7 +6550,18 @@ export type StringDictionary = ProxyOnlyResource & {
 };
 
 // @public
+export type StringList = ProxyOnlyResource & {
+    properties?: string[];
+};
+
+// @public
 export type SupportedTlsVersions = string;
+
+// @public
+export interface SupportTopic {
+    readonly id?: string;
+    readonly pesId?: string;
+}
 
 // @public
 export type SwiftVirtualNetwork = ProxyOnlyResource & {
@@ -5291,6 +6581,14 @@ export interface TldLegalAgreement {
 export interface TldLegalAgreementCollection {
     readonly nextLink?: string;
     value: TldLegalAgreement[];
+}
+
+// @public
+export interface TokenStore {
+    azureBlobStorage?: BlobStorageTokenStore;
+    enabled?: boolean;
+    fileSystem?: FileSystemTokenStore;
+    tokenRefreshExtensionHours?: number;
 }
 
 // @public
@@ -5364,19 +6662,19 @@ export interface TriggeredJobHistoryCollection {
 }
 
 // @public
-export type TriggeredJobRun = ProxyOnlyResource & {
+export interface TriggeredJobRun {
+    duration?: string;
+    endTime?: Date;
+    errorUrl?: string;
+    jobName?: string;
+    outputUrl?: string;
+    startTime?: Date;
+    status?: TriggeredWebJobStatus;
+    trigger?: string;
+    url?: string;
     webJobId?: string;
     webJobName?: string;
-    status?: TriggeredWebJobStatus;
-    startTime?: Date;
-    endTime?: Date;
-    duration?: string;
-    outputUrl?: string;
-    errorUrl?: string;
-    url?: string;
-    jobName?: string;
-    trigger?: string;
-};
+}
 
 // @public
 export type TriggeredWebJob = ProxyOnlyResource & {
@@ -5407,7 +6705,22 @@ export type TriggeredWebJobStatus = "Success" | "Failed" | "Error";
 export type TriggerTypes = string;
 
 // @public
+export interface Twitter {
+    enabled?: boolean;
+    registration?: TwitterRegistration;
+}
+
+// @public
+export interface TwitterRegistration {
+    consumerKey?: string;
+    consumerSecretSettingName?: string;
+}
+
+// @public
 export type UnauthenticatedClientAction = "RedirectToLoginPage" | "AllowAnonymous";
+
+// @public
+export type UnauthenticatedClientActionV2 = "RedirectToLoginPage" | "AllowAnonymous" | "Return401" | "Return403";
 
 // @public
 export interface UpdatePublishingUserOptionalParams extends coreClient.OperationOptions {
@@ -5454,6 +6767,12 @@ export type User = ProxyOnlyResource & {
 };
 
 // @public
+export interface UserAssignedIdentity {
+    readonly clientId?: string;
+    readonly principalId?: string;
+}
+
+// @public
 export interface ValidateMoveOptionalParams extends coreClient.OperationOptions {
 }
 
@@ -5466,6 +6785,7 @@ export interface ValidateOptionalParams extends coreClient.OperationOptions {
 
 // @public
 export interface ValidateRequest {
+    appServiceEnvironment?: AppServiceEnvironment;
     capacity?: number;
     containerImagePlatform?: string;
     containerImageRepository?: string;
@@ -5531,7 +6851,7 @@ export interface VirtualIPMapping {
 
 // @public
 export interface VirtualNetworkProfile {
-    id?: string;
+    id: string;
     readonly name?: string;
     subnet?: string;
     readonly type?: string;
@@ -5544,7 +6864,18 @@ export type VnetGateway = ProxyOnlyResource & {
 };
 
 // @public
-export type VnetInfo = ProxyOnlyResource & {
+export interface VnetInfo {
+    certBlob?: string;
+    readonly certThumbprint?: string;
+    dnsServers?: string;
+    isSwift?: boolean;
+    readonly resyncRequired?: boolean;
+    readonly routes?: VnetRoute[];
+    vnetResourceId?: string;
+}
+
+// @public
+export type VnetInfoResource = ProxyOnlyResource & {
     vnetResourceId?: string;
     readonly certThumbprint?: string;
     certBlob?: string;
@@ -5559,6 +6890,7 @@ export type VnetParameters = ProxyOnlyResource & {
     vnetResourceGroup?: string;
     vnetName?: string;
     vnetSubnetName?: string;
+    subnetResourceId?: string;
 };
 
 // @public
@@ -5570,8 +6902,10 @@ export type VnetRoute = ProxyOnlyResource & {
 
 // @public
 export type VnetValidationFailureDetails = ProxyOnlyResource & {
+    message?: string;
     failed?: boolean;
     failedTests?: VnetValidationTestFailure[];
+    warnings?: VnetValidationTestFailure[];
 };
 
 // @public
@@ -5587,9 +6921,45 @@ export interface WebAppCollection {
 }
 
 // @public
-export interface WebAppInstanceCollection {
+export interface WebAppInstanceStatusCollection {
     readonly nextLink?: string;
-    value: SiteInstance[];
+    value: WebSiteInstanceStatus[];
+}
+
+// @public
+export interface WebAppMajorVersion {
+    readonly displayText?: string;
+    readonly minorVersions?: WebAppMinorVersion[];
+    readonly value?: string;
+}
+
+// @public
+export interface WebAppMinorVersion {
+    readonly displayText?: string;
+    readonly stackSettings?: WebAppRuntimes;
+    readonly value?: string;
+}
+
+// @public
+export interface WebAppRuntimes {
+    readonly linuxContainerSettings?: LinuxJavaContainerSettings;
+    readonly linuxRuntimeSettings?: WebAppRuntimeSettings;
+    readonly windowsContainerSettings?: WindowsJavaContainerSettings;
+    readonly windowsRuntimeSettings?: WebAppRuntimeSettings;
+}
+
+// @public
+export interface WebAppRuntimeSettings {
+    readonly appInsightsSettings?: AppInsightsWebAppStackSettings;
+    readonly endOfLifeDate?: Date;
+    readonly gitHubActionSettings?: GitHubActionWebAppStackSettings;
+    readonly isAutoUpdate?: boolean;
+    readonly isDeprecated?: boolean;
+    readonly isEarlyAccess?: boolean;
+    readonly isHidden?: boolean;
+    readonly isPreview?: boolean;
+    readonly remoteDebuggingSupported?: boolean;
+    readonly runtimeVersion?: string;
 }
 
 // @public
@@ -5604,10 +6974,8 @@ export interface WebApps {
     backupSlot(resourceGroupName: string, name: string, slot: string, request: BackupRequest, options?: WebAppsBackupSlotOptionalParams): Promise<WebAppsBackupSlotResponse>;
     beginApproveOrRejectPrivateEndpointConnection(resourceGroupName: string, name: string, privateEndpointConnectionName: string, privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource, options?: WebAppsApproveOrRejectPrivateEndpointConnectionOptionalParams): Promise<PollerLike<PollOperationState<WebAppsApproveOrRejectPrivateEndpointConnectionResponse>, WebAppsApproveOrRejectPrivateEndpointConnectionResponse>>;
     beginApproveOrRejectPrivateEndpointConnectionAndWait(resourceGroupName: string, name: string, privateEndpointConnectionName: string, privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource, options?: WebAppsApproveOrRejectPrivateEndpointConnectionOptionalParams): Promise<WebAppsApproveOrRejectPrivateEndpointConnectionResponse>;
-    beginCopyProductionSlot(resourceGroupName: string, name: string, copySlotEntity: CsmCopySlotEntity, options?: WebAppsCopyProductionSlotOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
-    beginCopyProductionSlotAndWait(resourceGroupName: string, name: string, copySlotEntity: CsmCopySlotEntity, options?: WebAppsCopyProductionSlotOptionalParams): Promise<void>;
-    beginCopySlot(resourceGroupName: string, name: string, slot: string, copySlotEntity: CsmCopySlotEntity, options?: WebAppsCopySlotOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
-    beginCopySlotAndWait(resourceGroupName: string, name: string, slot: string, copySlotEntity: CsmCopySlotEntity, options?: WebAppsCopySlotOptionalParams): Promise<void>;
+    beginApproveOrRejectPrivateEndpointConnectionSlot(resourceGroupName: string, name: string, privateEndpointConnectionName: string, slot: string, privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource, options?: WebAppsApproveOrRejectPrivateEndpointConnectionSlotOptionalParams): Promise<PollerLike<PollOperationState<WebAppsApproveOrRejectPrivateEndpointConnectionSlotResponse>, WebAppsApproveOrRejectPrivateEndpointConnectionSlotResponse>>;
+    beginApproveOrRejectPrivateEndpointConnectionSlotAndWait(resourceGroupName: string, name: string, privateEndpointConnectionName: string, slot: string, privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource, options?: WebAppsApproveOrRejectPrivateEndpointConnectionSlotOptionalParams): Promise<WebAppsApproveOrRejectPrivateEndpointConnectionSlotResponse>;
     beginCreateFunction(resourceGroupName: string, name: string, functionName: string, functionEnvelope: FunctionEnvelope, options?: WebAppsCreateFunctionOptionalParams): Promise<PollerLike<PollOperationState<WebAppsCreateFunctionResponse>, WebAppsCreateFunctionResponse>>;
     beginCreateFunctionAndWait(resourceGroupName: string, name: string, functionName: string, functionEnvelope: FunctionEnvelope, options?: WebAppsCreateFunctionOptionalParams): Promise<WebAppsCreateFunctionResponse>;
     beginCreateInstanceFunctionSlot(resourceGroupName: string, name: string, functionName: string, slot: string, functionEnvelope: FunctionEnvelope, options?: WebAppsCreateInstanceFunctionSlotOptionalParams): Promise<PollerLike<PollOperationState<WebAppsCreateInstanceFunctionSlotResponse>, WebAppsCreateInstanceFunctionSlotResponse>>;
@@ -5630,6 +6998,8 @@ export interface WebApps {
     beginCreateOrUpdateSourceControlSlotAndWait(resourceGroupName: string, name: string, slot: string, siteSourceControl: SiteSourceControl, options?: WebAppsCreateOrUpdateSourceControlSlotOptionalParams): Promise<WebAppsCreateOrUpdateSourceControlSlotResponse>;
     beginDeletePrivateEndpointConnection(resourceGroupName: string, name: string, privateEndpointConnectionName: string, options?: WebAppsDeletePrivateEndpointConnectionOptionalParams): Promise<PollerLike<PollOperationState<WebAppsDeletePrivateEndpointConnectionResponse>, WebAppsDeletePrivateEndpointConnectionResponse>>;
     beginDeletePrivateEndpointConnectionAndWait(resourceGroupName: string, name: string, privateEndpointConnectionName: string, options?: WebAppsDeletePrivateEndpointConnectionOptionalParams): Promise<WebAppsDeletePrivateEndpointConnectionResponse>;
+    beginDeletePrivateEndpointConnectionSlot(resourceGroupName: string, name: string, privateEndpointConnectionName: string, slot: string, options?: WebAppsDeletePrivateEndpointConnectionSlotOptionalParams): Promise<PollerLike<PollOperationState<WebAppsDeletePrivateEndpointConnectionSlotResponse>, WebAppsDeletePrivateEndpointConnectionSlotResponse>>;
+    beginDeletePrivateEndpointConnectionSlotAndWait(resourceGroupName: string, name: string, privateEndpointConnectionName: string, slot: string, options?: WebAppsDeletePrivateEndpointConnectionSlotOptionalParams): Promise<WebAppsDeletePrivateEndpointConnectionSlotResponse>;
     beginInstallSiteExtension(resourceGroupName: string, name: string, siteExtensionId: string, options?: WebAppsInstallSiteExtensionOptionalParams): Promise<PollerLike<PollOperationState<WebAppsInstallSiteExtensionResponse>, WebAppsInstallSiteExtensionResponse>>;
     beginInstallSiteExtensionAndWait(resourceGroupName: string, name: string, siteExtensionId: string, options?: WebAppsInstallSiteExtensionOptionalParams): Promise<WebAppsInstallSiteExtensionResponse>;
     beginInstallSiteExtensionSlot(resourceGroupName: string, name: string, siteExtensionId: string, slot: string, options?: WebAppsInstallSiteExtensionSlotOptionalParams): Promise<PollerLike<PollOperationState<WebAppsInstallSiteExtensionSlotResponse>, WebAppsInstallSiteExtensionSlotResponse>>;
@@ -5688,12 +7058,12 @@ export interface WebApps {
     createOrUpdatePublicCertificateSlot(resourceGroupName: string, name: string, publicCertificateName: string, slot: string, publicCertificate: PublicCertificate, options?: WebAppsCreateOrUpdatePublicCertificateSlotOptionalParams): Promise<WebAppsCreateOrUpdatePublicCertificateSlotResponse>;
     createOrUpdateRelayServiceConnection(resourceGroupName: string, name: string, entityName: string, connectionEnvelope: RelayServiceConnectionEntity, options?: WebAppsCreateOrUpdateRelayServiceConnectionOptionalParams): Promise<WebAppsCreateOrUpdateRelayServiceConnectionResponse>;
     createOrUpdateRelayServiceConnectionSlot(resourceGroupName: string, name: string, entityName: string, slot: string, connectionEnvelope: RelayServiceConnectionEntity, options?: WebAppsCreateOrUpdateRelayServiceConnectionSlotOptionalParams): Promise<WebAppsCreateOrUpdateRelayServiceConnectionSlotResponse>;
-    createOrUpdateSwiftVirtualNetworkConnection(resourceGroupName: string, name: string, connectionEnvelope: SwiftVirtualNetwork, options?: WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionOptionalParams): Promise<WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionResponse>;
-    createOrUpdateSwiftVirtualNetworkConnectionSlot(resourceGroupName: string, name: string, slot: string, connectionEnvelope: SwiftVirtualNetwork, options?: WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionSlotOptionalParams): Promise<WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionSlotResponse>;
-    createOrUpdateVnetConnection(resourceGroupName: string, name: string, vnetName: string, connectionEnvelope: VnetInfo, options?: WebAppsCreateOrUpdateVnetConnectionOptionalParams): Promise<WebAppsCreateOrUpdateVnetConnectionResponse>;
+    createOrUpdateSwiftVirtualNetworkConnectionWithCheck(resourceGroupName: string, name: string, connectionEnvelope: SwiftVirtualNetwork, options?: WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionWithCheckOptionalParams): Promise<WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionWithCheckResponse>;
+    createOrUpdateSwiftVirtualNetworkConnectionWithCheckSlot(resourceGroupName: string, name: string, slot: string, connectionEnvelope: SwiftVirtualNetwork, options?: WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionWithCheckSlotOptionalParams): Promise<WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionWithCheckSlotResponse>;
+    createOrUpdateVnetConnection(resourceGroupName: string, name: string, vnetName: string, connectionEnvelope: VnetInfoResource, options?: WebAppsCreateOrUpdateVnetConnectionOptionalParams): Promise<WebAppsCreateOrUpdateVnetConnectionResponse>;
     createOrUpdateVnetConnectionGateway(resourceGroupName: string, name: string, vnetName: string, gatewayName: string, connectionEnvelope: VnetGateway, options?: WebAppsCreateOrUpdateVnetConnectionGatewayOptionalParams): Promise<WebAppsCreateOrUpdateVnetConnectionGatewayResponse>;
     createOrUpdateVnetConnectionGatewaySlot(resourceGroupName: string, name: string, vnetName: string, gatewayName: string, slot: string, connectionEnvelope: VnetGateway, options?: WebAppsCreateOrUpdateVnetConnectionGatewaySlotOptionalParams): Promise<WebAppsCreateOrUpdateVnetConnectionGatewaySlotResponse>;
-    createOrUpdateVnetConnectionSlot(resourceGroupName: string, name: string, vnetName: string, slot: string, connectionEnvelope: VnetInfo, options?: WebAppsCreateOrUpdateVnetConnectionSlotOptionalParams): Promise<WebAppsCreateOrUpdateVnetConnectionSlotResponse>;
+    createOrUpdateVnetConnectionSlot(resourceGroupName: string, name: string, vnetName: string, slot: string, connectionEnvelope: VnetInfoResource, options?: WebAppsCreateOrUpdateVnetConnectionSlotOptionalParams): Promise<WebAppsCreateOrUpdateVnetConnectionSlotResponse>;
     delete(resourceGroupName: string, name: string, options?: WebAppsDeleteOptionalParams): Promise<void>;
     deleteBackup(resourceGroupName: string, name: string, backupId: string, options?: WebAppsDeleteBackupOptionalParams): Promise<void>;
     deleteBackupConfiguration(resourceGroupName: string, name: string, options?: WebAppsDeleteBackupConfigurationOptionalParams): Promise<void>;
@@ -5742,9 +7112,11 @@ export interface WebApps {
     generateNewSitePublishingPasswordSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsGenerateNewSitePublishingPasswordSlotOptionalParams): Promise<void>;
     get(resourceGroupName: string, name: string, options?: WebAppsGetOptionalParams): Promise<WebAppsGetResponse>;
     getAppSettingKeyVaultReference(resourceGroupName: string, name: string, appSettingKey: string, options?: WebAppsGetAppSettingKeyVaultReferenceOptionalParams): Promise<WebAppsGetAppSettingKeyVaultReferenceResponse>;
-    getAppSettingsKeyVaultReferences(resourceGroupName: string, name: string, options?: WebAppsGetAppSettingsKeyVaultReferencesOptionalParams): Promise<WebAppsGetAppSettingsKeyVaultReferencesResponse>;
+    getAppSettingKeyVaultReferenceSlot(resourceGroupName: string, name: string, appSettingKey: string, slot: string, options?: WebAppsGetAppSettingKeyVaultReferenceSlotOptionalParams): Promise<WebAppsGetAppSettingKeyVaultReferenceSlotResponse>;
     getAuthSettings(resourceGroupName: string, name: string, options?: WebAppsGetAuthSettingsOptionalParams): Promise<WebAppsGetAuthSettingsResponse>;
     getAuthSettingsSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsGetAuthSettingsSlotOptionalParams): Promise<WebAppsGetAuthSettingsSlotResponse>;
+    getAuthSettingsV2(resourceGroupName: string, name: string, options?: WebAppsGetAuthSettingsV2OptionalParams): Promise<WebAppsGetAuthSettingsV2Response>;
+    getAuthSettingsV2Slot(resourceGroupName: string, name: string, slot: string, options?: WebAppsGetAuthSettingsV2SlotOptionalParams): Promise<WebAppsGetAuthSettingsV2SlotResponse>;
     getBackupConfiguration(resourceGroupName: string, name: string, options?: WebAppsGetBackupConfigurationOptionalParams): Promise<WebAppsGetBackupConfigurationResponse>;
     getBackupConfigurationSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsGetBackupConfigurationSlotOptionalParams): Promise<WebAppsGetBackupConfigurationSlotResponse>;
     getBackupStatus(resourceGroupName: string, name: string, backupId: string, options?: WebAppsGetBackupStatusOptionalParams): Promise<WebAppsGetBackupStatusResponse>;
@@ -5763,6 +7135,8 @@ export interface WebApps {
     getDiagnosticLogsConfigurationSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsGetDiagnosticLogsConfigurationSlotOptionalParams): Promise<WebAppsGetDiagnosticLogsConfigurationSlotResponse>;
     getDomainOwnershipIdentifier(resourceGroupName: string, name: string, domainOwnershipIdentifierName: string, options?: WebAppsGetDomainOwnershipIdentifierOptionalParams): Promise<WebAppsGetDomainOwnershipIdentifierResponse>;
     getDomainOwnershipIdentifierSlot(resourceGroupName: string, name: string, domainOwnershipIdentifierName: string, slot: string, options?: WebAppsGetDomainOwnershipIdentifierSlotOptionalParams): Promise<WebAppsGetDomainOwnershipIdentifierSlotResponse>;
+    getFtpAllowed(resourceGroupName: string, name: string, options?: WebAppsGetFtpAllowedOptionalParams): Promise<WebAppsGetFtpAllowedResponse>;
+    getFtpAllowedSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsGetFtpAllowedSlotOptionalParams): Promise<WebAppsGetFtpAllowedSlotResponse>;
     getFunction(resourceGroupName: string, name: string, functionName: string, options?: WebAppsGetFunctionOptionalParams): Promise<WebAppsGetFunctionResponse>;
     getFunctionsAdminToken(resourceGroupName: string, name: string, options?: WebAppsGetFunctionsAdminTokenOptionalParams): Promise<WebAppsGetFunctionsAdminTokenResponse>;
     getFunctionsAdminTokenSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsGetFunctionsAdminTokenSlotOptionalParams): Promise<WebAppsGetFunctionsAdminTokenSlotResponse>;
@@ -5802,7 +7176,9 @@ export interface WebApps {
     getPrivateAccess(resourceGroupName: string, name: string, options?: WebAppsGetPrivateAccessOptionalParams): Promise<WebAppsGetPrivateAccessResponse>;
     getPrivateAccessSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsGetPrivateAccessSlotOptionalParams): Promise<WebAppsGetPrivateAccessSlotResponse>;
     getPrivateEndpointConnection(resourceGroupName: string, name: string, privateEndpointConnectionName: string, options?: WebAppsGetPrivateEndpointConnectionOptionalParams): Promise<WebAppsGetPrivateEndpointConnectionResponse>;
+    getPrivateEndpointConnectionSlot(resourceGroupName: string, name: string, privateEndpointConnectionName: string, slot: string, options?: WebAppsGetPrivateEndpointConnectionSlotOptionalParams): Promise<WebAppsGetPrivateEndpointConnectionSlotResponse>;
     getPrivateLinkResources(resourceGroupName: string, name: string, options?: WebAppsGetPrivateLinkResourcesOptionalParams): Promise<WebAppsGetPrivateLinkResourcesResponse>;
+    getPrivateLinkResourcesSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsGetPrivateLinkResourcesSlotOptionalParams): Promise<WebAppsGetPrivateLinkResourcesSlotResponse>;
     getProcess(resourceGroupName: string, name: string, processId: string, options?: WebAppsGetProcessOptionalParams): Promise<WebAppsGetProcessResponse>;
     getProcessDump(resourceGroupName: string, name: string, processId: string, options?: WebAppsGetProcessDumpOptionalParams): Promise<WebAppsGetProcessDumpResponse>;
     getProcessDumpSlot(resourceGroupName: string, name: string, processId: string, slot: string, options?: WebAppsGetProcessDumpSlotOptionalParams): Promise<WebAppsGetProcessDumpSlotResponse>;
@@ -5813,6 +7189,10 @@ export interface WebApps {
     getPublicCertificateSlot(resourceGroupName: string, name: string, slot: string, publicCertificateName: string, options?: WebAppsGetPublicCertificateSlotOptionalParams): Promise<WebAppsGetPublicCertificateSlotResponse>;
     getRelayServiceConnection(resourceGroupName: string, name: string, entityName: string, options?: WebAppsGetRelayServiceConnectionOptionalParams): Promise<WebAppsGetRelayServiceConnectionResponse>;
     getRelayServiceConnectionSlot(resourceGroupName: string, name: string, entityName: string, slot: string, options?: WebAppsGetRelayServiceConnectionSlotOptionalParams): Promise<WebAppsGetRelayServiceConnectionSlotResponse>;
+    getScmAllowed(resourceGroupName: string, name: string, options?: WebAppsGetScmAllowedOptionalParams): Promise<WebAppsGetScmAllowedResponse>;
+    getScmAllowedSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsGetScmAllowedSlotOptionalParams): Promise<WebAppsGetScmAllowedSlotResponse>;
+    getSiteConnectionStringKeyVaultReference(resourceGroupName: string, name: string, connectionStringKey: string, options?: WebAppsGetSiteConnectionStringKeyVaultReferenceOptionalParams): Promise<WebAppsGetSiteConnectionStringKeyVaultReferenceResponse>;
+    getSiteConnectionStringKeyVaultReferenceSlot(resourceGroupName: string, name: string, connectionStringKey: string, slot: string, options?: WebAppsGetSiteConnectionStringKeyVaultReferenceSlotOptionalParams): Promise<WebAppsGetSiteConnectionStringKeyVaultReferenceSlotResponse>;
     getSiteExtension(resourceGroupName: string, name: string, siteExtensionId: string, options?: WebAppsGetSiteExtensionOptionalParams): Promise<WebAppsGetSiteExtensionResponse>;
     getSiteExtensionSlot(resourceGroupName: string, name: string, siteExtensionId: string, slot: string, options?: WebAppsGetSiteExtensionSlotOptionalParams): Promise<WebAppsGetSiteExtensionSlotResponse>;
     getSitePhpErrorLogFlag(resourceGroupName: string, name: string, options?: WebAppsGetSitePhpErrorLogFlagOptionalParams): Promise<WebAppsGetSitePhpErrorLogFlagResponse>;
@@ -5839,12 +7219,16 @@ export interface WebApps {
     list(options?: WebAppsListOptionalParams): PagedAsyncIterableIterator<Site>;
     listApplicationSettings(resourceGroupName: string, name: string, options?: WebAppsListApplicationSettingsOptionalParams): Promise<WebAppsListApplicationSettingsResponse>;
     listApplicationSettingsSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsListApplicationSettingsSlotOptionalParams): Promise<WebAppsListApplicationSettingsSlotResponse>;
+    listAppSettingsKeyVaultReferences(resourceGroupName: string, name: string, options?: WebAppsGetAppSettingsKeyVaultReferencesOptionalParams): PagedAsyncIterableIterator<ApiKVReference>;
+    listAppSettingsKeyVaultReferencesSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsGetAppSettingsKeyVaultReferencesSlotOptionalParams): PagedAsyncIterableIterator<ApiKVReference>;
     listAzureStorageAccounts(resourceGroupName: string, name: string, options?: WebAppsListAzureStorageAccountsOptionalParams): Promise<WebAppsListAzureStorageAccountsResponse>;
     listAzureStorageAccountsSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsListAzureStorageAccountsSlotOptionalParams): Promise<WebAppsListAzureStorageAccountsSlotResponse>;
     listBackups(resourceGroupName: string, name: string, options?: WebAppsListBackupsOptionalParams): PagedAsyncIterableIterator<BackupItem>;
     listBackupsSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsListBackupsSlotOptionalParams): PagedAsyncIterableIterator<BackupItem>;
     listBackupStatusSecrets(resourceGroupName: string, name: string, backupId: string, request: BackupRequest, options?: WebAppsListBackupStatusSecretsOptionalParams): Promise<WebAppsListBackupStatusSecretsResponse>;
     listBackupStatusSecretsSlot(resourceGroupName: string, name: string, backupId: string, slot: string, request: BackupRequest, options?: WebAppsListBackupStatusSecretsSlotOptionalParams): Promise<WebAppsListBackupStatusSecretsSlotResponse>;
+    listBasicPublishingCredentialsPolicies(resourceGroupName: string, name: string, options?: WebAppsListBasicPublishingCredentialsPoliciesOptionalParams): PagedAsyncIterableIterator<CsmPublishingCredentialsPoliciesEntity>;
+    listBasicPublishingCredentialsPoliciesSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsListBasicPublishingCredentialsPoliciesSlotOptionalParams): PagedAsyncIterableIterator<CsmPublishingCredentialsPoliciesEntity>;
     listByResourceGroup(resourceGroupName: string, options?: WebAppsListByResourceGroupOptionalParams): PagedAsyncIterableIterator<Site>;
     listConfigurations(resourceGroupName: string, name: string, options?: WebAppsListConfigurationsOptionalParams): PagedAsyncIterableIterator<SiteConfigResource>;
     listConfigurationSnapshotInfo(resourceGroupName: string, name: string, options?: WebAppsListConfigurationSnapshotInfoOptionalParams): PagedAsyncIterableIterator<SiteConfigurationSnapshotInfo>;
@@ -5872,8 +7256,8 @@ export interface WebApps {
     listHybridConnections(resourceGroupName: string, name: string, options?: WebAppsListHybridConnectionsOptionalParams): Promise<WebAppsListHybridConnectionsResponse>;
     listHybridConnectionsSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsListHybridConnectionsSlotOptionalParams): Promise<WebAppsListHybridConnectionsSlotResponse>;
     listInstanceFunctionsSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsListInstanceFunctionsSlotOptionalParams): PagedAsyncIterableIterator<FunctionEnvelope>;
-    listInstanceIdentifiers(resourceGroupName: string, name: string, options?: WebAppsListInstanceIdentifiersOptionalParams): PagedAsyncIterableIterator<SiteInstance>;
-    listInstanceIdentifiersSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsListInstanceIdentifiersSlotOptionalParams): PagedAsyncIterableIterator<SiteInstance>;
+    listInstanceIdentifiers(resourceGroupName: string, name: string, options?: WebAppsListInstanceIdentifiersOptionalParams): PagedAsyncIterableIterator<WebSiteInstanceStatus>;
+    listInstanceIdentifiersSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsListInstanceIdentifiersSlotOptionalParams): PagedAsyncIterableIterator<WebSiteInstanceStatus>;
     listInstanceProcesses(resourceGroupName: string, name: string, instanceId: string, options?: WebAppsListInstanceProcessesOptionalParams): PagedAsyncIterableIterator<ProcessInfo>;
     listInstanceProcessesSlot(resourceGroupName: string, name: string, slot: string, instanceId: string, options?: WebAppsListInstanceProcessesSlotOptionalParams): PagedAsyncIterableIterator<ProcessInfo>;
     listInstanceProcessModules(resourceGroupName: string, name: string, processId: string, instanceId: string, options?: WebAppsListInstanceProcessModulesOptionalParams): PagedAsyncIterableIterator<ProcessModuleInfo>;
@@ -5888,6 +7272,8 @@ export interface WebApps {
     listPerfMonCountersSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsListPerfMonCountersSlotOptionalParams): PagedAsyncIterableIterator<PerfMonResponse>;
     listPremierAddOns(resourceGroupName: string, name: string, options?: WebAppsListPremierAddOnsOptionalParams): Promise<WebAppsListPremierAddOnsResponse>;
     listPremierAddOnsSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsListPremierAddOnsSlotOptionalParams): Promise<WebAppsListPremierAddOnsSlotResponse>;
+    listPrivateEndpointConnectionList(resourceGroupName: string, name: string, options?: WebAppsGetPrivateEndpointConnectionListOptionalParams): PagedAsyncIterableIterator<RemotePrivateEndpointConnectionARMResource>;
+    listPrivateEndpointConnectionListSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsGetPrivateEndpointConnectionListSlotOptionalParams): PagedAsyncIterableIterator<RemotePrivateEndpointConnectionARMResource>;
     listProcesses(resourceGroupName: string, name: string, options?: WebAppsListProcessesOptionalParams): PagedAsyncIterableIterator<ProcessInfo>;
     listProcessesSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsListProcessesSlotOptionalParams): PagedAsyncIterableIterator<ProcessInfo>;
     listProcessModules(resourceGroupName: string, name: string, processId: string, options?: WebAppsListProcessModulesOptionalParams): PagedAsyncIterableIterator<ProcessModuleInfo>;
@@ -5902,6 +7288,8 @@ export interface WebApps {
     listRelayServiceConnectionsSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsListRelayServiceConnectionsSlotOptionalParams): Promise<WebAppsListRelayServiceConnectionsSlotResponse>;
     listSiteBackups(resourceGroupName: string, name: string, options?: WebAppsListSiteBackupsOptionalParams): PagedAsyncIterableIterator<BackupItem>;
     listSiteBackupsSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsListSiteBackupsSlotOptionalParams): PagedAsyncIterableIterator<BackupItem>;
+    listSiteConnectionStringKeyVaultReferences(resourceGroupName: string, name: string, options?: WebAppsGetSiteConnectionStringKeyVaultReferencesOptionalParams): PagedAsyncIterableIterator<ApiKVReference>;
+    listSiteConnectionStringKeyVaultReferencesSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsGetSiteConnectionStringKeyVaultReferencesSlotOptionalParams): PagedAsyncIterableIterator<ApiKVReference>;
     listSiteExtensions(resourceGroupName: string, name: string, options?: WebAppsListSiteExtensionsOptionalParams): PagedAsyncIterableIterator<SiteExtensionInfo>;
     listSiteExtensionsSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsListSiteExtensionsSlotOptionalParams): PagedAsyncIterableIterator<SiteExtensionInfo>;
     listSitePushSettings(resourceGroupName: string, name: string, options?: WebAppsListSitePushSettingsOptionalParams): Promise<WebAppsListSitePushSettingsResponse>;
@@ -5963,6 +7351,8 @@ export interface WebApps {
     updateApplicationSettingsSlot(resourceGroupName: string, name: string, slot: string, appSettings: StringDictionary, options?: WebAppsUpdateApplicationSettingsSlotOptionalParams): Promise<WebAppsUpdateApplicationSettingsSlotResponse>;
     updateAuthSettings(resourceGroupName: string, name: string, siteAuthSettings: SiteAuthSettings, options?: WebAppsUpdateAuthSettingsOptionalParams): Promise<WebAppsUpdateAuthSettingsResponse>;
     updateAuthSettingsSlot(resourceGroupName: string, name: string, slot: string, siteAuthSettings: SiteAuthSettings, options?: WebAppsUpdateAuthSettingsSlotOptionalParams): Promise<WebAppsUpdateAuthSettingsSlotResponse>;
+    updateAuthSettingsV2(resourceGroupName: string, name: string, siteAuthSettingsV2: SiteAuthSettingsV2, options?: WebAppsUpdateAuthSettingsV2OptionalParams): Promise<WebAppsUpdateAuthSettingsV2Response>;
+    updateAuthSettingsV2Slot(resourceGroupName: string, name: string, slot: string, siteAuthSettingsV2: SiteAuthSettingsV2, options?: WebAppsUpdateAuthSettingsV2SlotOptionalParams): Promise<WebAppsUpdateAuthSettingsV2SlotResponse>;
     updateAzureStorageAccounts(resourceGroupName: string, name: string, azureStorageAccounts: AzureStoragePropertyDictionaryResource, options?: WebAppsUpdateAzureStorageAccountsOptionalParams): Promise<WebAppsUpdateAzureStorageAccountsResponse>;
     updateAzureStorageAccountsSlot(resourceGroupName: string, name: string, slot: string, azureStorageAccounts: AzureStoragePropertyDictionaryResource, options?: WebAppsUpdateAzureStorageAccountsSlotOptionalParams): Promise<WebAppsUpdateAzureStorageAccountsSlotResponse>;
     updateBackupConfiguration(resourceGroupName: string, name: string, request: BackupRequest, options?: WebAppsUpdateBackupConfigurationOptionalParams): Promise<WebAppsUpdateBackupConfigurationResponse>;
@@ -5975,6 +7365,8 @@ export interface WebApps {
     updateDiagnosticLogsConfigSlot(resourceGroupName: string, name: string, slot: string, siteLogsConfig: SiteLogsConfig, options?: WebAppsUpdateDiagnosticLogsConfigSlotOptionalParams): Promise<WebAppsUpdateDiagnosticLogsConfigSlotResponse>;
     updateDomainOwnershipIdentifier(resourceGroupName: string, name: string, domainOwnershipIdentifierName: string, domainOwnershipIdentifier: Identifier, options?: WebAppsUpdateDomainOwnershipIdentifierOptionalParams): Promise<WebAppsUpdateDomainOwnershipIdentifierResponse>;
     updateDomainOwnershipIdentifierSlot(resourceGroupName: string, name: string, domainOwnershipIdentifierName: string, slot: string, domainOwnershipIdentifier: Identifier, options?: WebAppsUpdateDomainOwnershipIdentifierSlotOptionalParams): Promise<WebAppsUpdateDomainOwnershipIdentifierSlotResponse>;
+    updateFtpAllowed(resourceGroupName: string, name: string, csmPublishingAccessPoliciesEntity: CsmPublishingCredentialsPoliciesEntity, options?: WebAppsUpdateFtpAllowedOptionalParams): Promise<WebAppsUpdateFtpAllowedResponse>;
+    updateFtpAllowedSlot(resourceGroupName: string, name: string, slot: string, csmPublishingAccessPoliciesEntity: CsmPublishingCredentialsPoliciesEntity, options?: WebAppsUpdateFtpAllowedSlotOptionalParams): Promise<WebAppsUpdateFtpAllowedSlotResponse>;
     updateHybridConnection(resourceGroupName: string, name: string, namespaceName: string, relayName: string, connectionEnvelope: HybridConnection, options?: WebAppsUpdateHybridConnectionOptionalParams): Promise<WebAppsUpdateHybridConnectionResponse>;
     updateHybridConnectionSlot(resourceGroupName: string, name: string, namespaceName: string, relayName: string, slot: string, connectionEnvelope: HybridConnection, options?: WebAppsUpdateHybridConnectionSlotOptionalParams): Promise<WebAppsUpdateHybridConnectionSlotResponse>;
     updateMetadata(resourceGroupName: string, name: string, metadata: StringDictionary, options?: WebAppsUpdateMetadataOptionalParams): Promise<WebAppsUpdateMetadataResponse>;
@@ -5983,18 +7375,20 @@ export interface WebApps {
     updatePremierAddOnSlot(resourceGroupName: string, name: string, premierAddOnName: string, slot: string, premierAddOn: PremierAddOnPatchResource, options?: WebAppsUpdatePremierAddOnSlotOptionalParams): Promise<WebAppsUpdatePremierAddOnSlotResponse>;
     updateRelayServiceConnection(resourceGroupName: string, name: string, entityName: string, connectionEnvelope: RelayServiceConnectionEntity, options?: WebAppsUpdateRelayServiceConnectionOptionalParams): Promise<WebAppsUpdateRelayServiceConnectionResponse>;
     updateRelayServiceConnectionSlot(resourceGroupName: string, name: string, entityName: string, slot: string, connectionEnvelope: RelayServiceConnectionEntity, options?: WebAppsUpdateRelayServiceConnectionSlotOptionalParams): Promise<WebAppsUpdateRelayServiceConnectionSlotResponse>;
+    updateScmAllowed(resourceGroupName: string, name: string, csmPublishingAccessPoliciesEntity: CsmPublishingCredentialsPoliciesEntity, options?: WebAppsUpdateScmAllowedOptionalParams): Promise<WebAppsUpdateScmAllowedResponse>;
+    updateScmAllowedSlot(resourceGroupName: string, name: string, slot: string, csmPublishingAccessPoliciesEntity: CsmPublishingCredentialsPoliciesEntity, options?: WebAppsUpdateScmAllowedSlotOptionalParams): Promise<WebAppsUpdateScmAllowedSlotResponse>;
     updateSitePushSettings(resourceGroupName: string, name: string, pushSettings: PushSettings, options?: WebAppsUpdateSitePushSettingsOptionalParams): Promise<WebAppsUpdateSitePushSettingsResponse>;
     updateSitePushSettingsSlot(resourceGroupName: string, name: string, slot: string, pushSettings: PushSettings, options?: WebAppsUpdateSitePushSettingsSlotOptionalParams): Promise<WebAppsUpdateSitePushSettingsSlotResponse>;
     updateSlot(resourceGroupName: string, name: string, slot: string, siteEnvelope: SitePatchResource, options?: WebAppsUpdateSlotOptionalParams): Promise<WebAppsUpdateSlotResponse>;
     updateSlotConfigurationNames(resourceGroupName: string, name: string, slotConfigNames: SlotConfigNamesResource, options?: WebAppsUpdateSlotConfigurationNamesOptionalParams): Promise<WebAppsUpdateSlotConfigurationNamesResponse>;
     updateSourceControl(resourceGroupName: string, name: string, siteSourceControl: SiteSourceControl, options?: WebAppsUpdateSourceControlOptionalParams): Promise<WebAppsUpdateSourceControlResponse>;
     updateSourceControlSlot(resourceGroupName: string, name: string, slot: string, siteSourceControl: SiteSourceControl, options?: WebAppsUpdateSourceControlSlotOptionalParams): Promise<WebAppsUpdateSourceControlSlotResponse>;
-    updateSwiftVirtualNetworkConnection(resourceGroupName: string, name: string, connectionEnvelope: SwiftVirtualNetwork, options?: WebAppsUpdateSwiftVirtualNetworkConnectionOptionalParams): Promise<WebAppsUpdateSwiftVirtualNetworkConnectionResponse>;
-    updateSwiftVirtualNetworkConnectionSlot(resourceGroupName: string, name: string, slot: string, connectionEnvelope: SwiftVirtualNetwork, options?: WebAppsUpdateSwiftVirtualNetworkConnectionSlotOptionalParams): Promise<WebAppsUpdateSwiftVirtualNetworkConnectionSlotResponse>;
-    updateVnetConnection(resourceGroupName: string, name: string, vnetName: string, connectionEnvelope: VnetInfo, options?: WebAppsUpdateVnetConnectionOptionalParams): Promise<WebAppsUpdateVnetConnectionResponse>;
+    updateSwiftVirtualNetworkConnectionWithCheck(resourceGroupName: string, name: string, connectionEnvelope: SwiftVirtualNetwork, options?: WebAppsUpdateSwiftVirtualNetworkConnectionWithCheckOptionalParams): Promise<WebAppsUpdateSwiftVirtualNetworkConnectionWithCheckResponse>;
+    updateSwiftVirtualNetworkConnectionWithCheckSlot(resourceGroupName: string, name: string, slot: string, connectionEnvelope: SwiftVirtualNetwork, options?: WebAppsUpdateSwiftVirtualNetworkConnectionWithCheckSlotOptionalParams): Promise<WebAppsUpdateSwiftVirtualNetworkConnectionWithCheckSlotResponse>;
+    updateVnetConnection(resourceGroupName: string, name: string, vnetName: string, connectionEnvelope: VnetInfoResource, options?: WebAppsUpdateVnetConnectionOptionalParams): Promise<WebAppsUpdateVnetConnectionResponse>;
     updateVnetConnectionGateway(resourceGroupName: string, name: string, vnetName: string, gatewayName: string, connectionEnvelope: VnetGateway, options?: WebAppsUpdateVnetConnectionGatewayOptionalParams): Promise<WebAppsUpdateVnetConnectionGatewayResponse>;
     updateVnetConnectionGatewaySlot(resourceGroupName: string, name: string, vnetName: string, gatewayName: string, slot: string, connectionEnvelope: VnetGateway, options?: WebAppsUpdateVnetConnectionGatewaySlotOptionalParams): Promise<WebAppsUpdateVnetConnectionGatewaySlotResponse>;
-    updateVnetConnectionSlot(resourceGroupName: string, name: string, vnetName: string, slot: string, connectionEnvelope: VnetInfo, options?: WebAppsUpdateVnetConnectionSlotOptionalParams): Promise<WebAppsUpdateVnetConnectionSlotResponse>;
+    updateVnetConnectionSlot(resourceGroupName: string, name: string, vnetName: string, slot: string, connectionEnvelope: VnetInfoResource, options?: WebAppsUpdateVnetConnectionSlotOptionalParams): Promise<WebAppsUpdateVnetConnectionSlotResponse>;
 }
 
 // @public
@@ -6042,7 +7436,16 @@ export interface WebAppsApproveOrRejectPrivateEndpointConnectionOptionalParams e
 }
 
 // @public
-export type WebAppsApproveOrRejectPrivateEndpointConnectionResponse = PrivateEndpointConnectionResource;
+export type WebAppsApproveOrRejectPrivateEndpointConnectionResponse = RemotePrivateEndpointConnectionARMResource;
+
+// @public
+export interface WebAppsApproveOrRejectPrivateEndpointConnectionSlotOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export type WebAppsApproveOrRejectPrivateEndpointConnectionSlotResponse = RemotePrivateEndpointConnectionARMResource;
 
 // @public
 export interface WebAppsBackupOptionalParams extends coreClient.OperationOptions {
@@ -6057,18 +7460,6 @@ export interface WebAppsBackupSlotOptionalParams extends coreClient.OperationOpt
 
 // @public
 export type WebAppsBackupSlotResponse = BackupItem;
-
-// @public
-export interface WebAppsCopyProductionSlotOptionalParams extends coreClient.OperationOptions {
-    resumeFrom?: string;
-    updateIntervalInMs?: number;
-}
-
-// @public
-export interface WebAppsCopySlotOptionalParams extends coreClient.OperationOptions {
-    resumeFrom?: string;
-    updateIntervalInMs?: number;
-}
 
 // @public
 export interface WebAppsCreateDeploymentOptionalParams extends coreClient.OperationOptions {
@@ -6287,18 +7678,18 @@ export interface WebAppsCreateOrUpdateSourceControlSlotOptionalParams extends co
 export type WebAppsCreateOrUpdateSourceControlSlotResponse = SiteSourceControl;
 
 // @public
-export interface WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionOptionalParams extends coreClient.OperationOptions {
+export interface WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionWithCheckOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionResponse = SwiftVirtualNetwork;
+export type WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionWithCheckResponse = SwiftVirtualNetwork;
 
 // @public
-export interface WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionSlotOptionalParams extends coreClient.OperationOptions {
+export interface WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionWithCheckSlotOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionSlotResponse = SwiftVirtualNetwork;
+export type WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionWithCheckSlotResponse = SwiftVirtualNetwork;
 
 // @public
 export interface WebAppsCreateOrUpdateVnetConnectionGatewayOptionalParams extends coreClient.OperationOptions {
@@ -6319,14 +7710,14 @@ export interface WebAppsCreateOrUpdateVnetConnectionOptionalParams extends coreC
 }
 
 // @public
-export type WebAppsCreateOrUpdateVnetConnectionResponse = VnetInfo;
+export type WebAppsCreateOrUpdateVnetConnectionResponse = VnetInfoResource;
 
 // @public
 export interface WebAppsCreateOrUpdateVnetConnectionSlotOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type WebAppsCreateOrUpdateVnetConnectionSlotResponse = VnetInfo;
+export type WebAppsCreateOrUpdateVnetConnectionSlotResponse = VnetInfoResource;
 
 // @public
 export interface WebAppsDeleteBackupConfigurationOptionalParams extends coreClient.OperationOptions {
@@ -6440,6 +7831,15 @@ export interface WebAppsDeletePrivateEndpointConnectionOptionalParams extends co
 export type WebAppsDeletePrivateEndpointConnectionResponse = Record<string, unknown>;
 
 // @public
+export interface WebAppsDeletePrivateEndpointConnectionSlotOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export type WebAppsDeletePrivateEndpointConnectionSlotResponse = Record<string, unknown>;
+
+// @public
 export interface WebAppsDeleteProcessOptionalParams extends coreClient.OperationOptions {
 }
 
@@ -6479,10 +7879,14 @@ export interface WebAppsDeleteSlotOptionalParams extends coreClient.OperationOpt
 
 // @public
 export interface WebAppsDeleteSourceControlOptionalParams extends coreClient.OperationOptions {
+    // (undocumented)
+    additionalFlags?: string;
 }
 
 // @public
 export interface WebAppsDeleteSourceControlSlotOptionalParams extends coreClient.OperationOptions {
+    // (undocumented)
+    additionalFlags?: string;
 }
 
 // @public
@@ -6536,14 +7940,42 @@ export interface WebAppsGetAppSettingKeyVaultReferenceOptionalParams extends cor
 }
 
 // @public
-export type WebAppsGetAppSettingKeyVaultReferenceResponse = KeyVaultReferenceResource;
+export type WebAppsGetAppSettingKeyVaultReferenceResponse = ApiKVReference;
+
+// @public
+export interface WebAppsGetAppSettingKeyVaultReferenceSlotOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type WebAppsGetAppSettingKeyVaultReferenceSlotResponse = ApiKVReference;
+
+// @public
+export interface WebAppsGetAppSettingsKeyVaultReferencesNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type WebAppsGetAppSettingsKeyVaultReferencesNextResponse = ApiKVReferenceCollection;
 
 // @public
 export interface WebAppsGetAppSettingsKeyVaultReferencesOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type WebAppsGetAppSettingsKeyVaultReferencesResponse = KeyVaultReferenceCollection;
+export type WebAppsGetAppSettingsKeyVaultReferencesResponse = ApiKVReferenceCollection;
+
+// @public
+export interface WebAppsGetAppSettingsKeyVaultReferencesSlotNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type WebAppsGetAppSettingsKeyVaultReferencesSlotNextResponse = ApiKVReferenceCollection;
+
+// @public
+export interface WebAppsGetAppSettingsKeyVaultReferencesSlotOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type WebAppsGetAppSettingsKeyVaultReferencesSlotResponse = ApiKVReferenceCollection;
 
 // @public
 export interface WebAppsGetAuthSettingsOptionalParams extends coreClient.OperationOptions {
@@ -6558,6 +7990,20 @@ export interface WebAppsGetAuthSettingsSlotOptionalParams extends coreClient.Ope
 
 // @public
 export type WebAppsGetAuthSettingsSlotResponse = SiteAuthSettings;
+
+// @public
+export interface WebAppsGetAuthSettingsV2OptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type WebAppsGetAuthSettingsV2Response = SiteAuthSettingsV2;
+
+// @public
+export interface WebAppsGetAuthSettingsV2SlotOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type WebAppsGetAuthSettingsV2SlotResponse = SiteAuthSettingsV2;
 
 // @public
 export interface WebAppsGetBackupConfigurationOptionalParams extends coreClient.OperationOptions {
@@ -6690,6 +8136,20 @@ export interface WebAppsGetDomainOwnershipIdentifierSlotOptionalParams extends c
 
 // @public
 export type WebAppsGetDomainOwnershipIdentifierSlotResponse = Identifier;
+
+// @public
+export interface WebAppsGetFtpAllowedOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type WebAppsGetFtpAllowedResponse = CsmPublishingCredentialsPoliciesEntity;
+
+// @public
+export interface WebAppsGetFtpAllowedSlotOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type WebAppsGetFtpAllowedSlotResponse = CsmPublishingCredentialsPoliciesEntity;
 
 // @public
 export interface WebAppsGetFunctionOptionalParams extends coreClient.OperationOptions {
@@ -6972,11 +8432,46 @@ export interface WebAppsGetPrivateAccessSlotOptionalParams extends coreClient.Op
 export type WebAppsGetPrivateAccessSlotResponse = PrivateAccess;
 
 // @public
+export interface WebAppsGetPrivateEndpointConnectionListNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type WebAppsGetPrivateEndpointConnectionListNextResponse = PrivateEndpointConnectionCollection;
+
+// @public
+export interface WebAppsGetPrivateEndpointConnectionListOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type WebAppsGetPrivateEndpointConnectionListResponse = PrivateEndpointConnectionCollection;
+
+// @public
+export interface WebAppsGetPrivateEndpointConnectionListSlotNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type WebAppsGetPrivateEndpointConnectionListSlotNextResponse = PrivateEndpointConnectionCollection;
+
+// @public
+export interface WebAppsGetPrivateEndpointConnectionListSlotOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type WebAppsGetPrivateEndpointConnectionListSlotResponse = PrivateEndpointConnectionCollection;
+
+// @public
 export interface WebAppsGetPrivateEndpointConnectionOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type WebAppsGetPrivateEndpointConnectionResponse = PrivateEndpointConnectionResource;
+export type WebAppsGetPrivateEndpointConnectionResponse = RemotePrivateEndpointConnectionARMResource;
+
+// @public
+export interface WebAppsGetPrivateEndpointConnectionSlotOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type WebAppsGetPrivateEndpointConnectionSlotResponse = RemotePrivateEndpointConnectionARMResource;
 
 // @public
 export interface WebAppsGetPrivateLinkResourcesOptionalParams extends coreClient.OperationOptions {
@@ -6984,6 +8479,13 @@ export interface WebAppsGetPrivateLinkResourcesOptionalParams extends coreClient
 
 // @public
 export type WebAppsGetPrivateLinkResourcesResponse = PrivateLinkResourcesWrapper;
+
+// @public
+export interface WebAppsGetPrivateLinkResourcesSlotOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type WebAppsGetPrivateLinkResourcesSlotResponse = PrivateLinkResourcesWrapper;
 
 // @public
 export interface WebAppsGetProcessDumpOptionalParams extends coreClient.OperationOptions {
@@ -7063,6 +8565,62 @@ export type WebAppsGetRelayServiceConnectionSlotResponse = RelayServiceConnectio
 
 // @public
 export type WebAppsGetResponse = Site;
+
+// @public
+export interface WebAppsGetScmAllowedOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type WebAppsGetScmAllowedResponse = CsmPublishingCredentialsPoliciesEntity;
+
+// @public
+export interface WebAppsGetScmAllowedSlotOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type WebAppsGetScmAllowedSlotResponse = CsmPublishingCredentialsPoliciesEntity;
+
+// @public
+export interface WebAppsGetSiteConnectionStringKeyVaultReferenceOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type WebAppsGetSiteConnectionStringKeyVaultReferenceResponse = ApiKVReference;
+
+// @public
+export interface WebAppsGetSiteConnectionStringKeyVaultReferenceSlotOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type WebAppsGetSiteConnectionStringKeyVaultReferenceSlotResponse = ApiKVReference;
+
+// @public
+export interface WebAppsGetSiteConnectionStringKeyVaultReferencesNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type WebAppsGetSiteConnectionStringKeyVaultReferencesNextResponse = ApiKVReferenceCollection;
+
+// @public
+export interface WebAppsGetSiteConnectionStringKeyVaultReferencesOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type WebAppsGetSiteConnectionStringKeyVaultReferencesResponse = ApiKVReferenceCollection;
+
+// @public
+export interface WebAppsGetSiteConnectionStringKeyVaultReferencesSlotNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type WebAppsGetSiteConnectionStringKeyVaultReferencesSlotNextResponse = ApiKVReferenceCollection;
+
+// @public
+export interface WebAppsGetSiteConnectionStringKeyVaultReferencesSlotOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type WebAppsGetSiteConnectionStringKeyVaultReferencesSlotResponse = ApiKVReferenceCollection;
 
 // @public
 export interface WebAppsGetSiteExtensionOptionalParams extends coreClient.OperationOptions {
@@ -7174,14 +8732,14 @@ export interface WebAppsGetVnetConnectionOptionalParams extends coreClient.Opera
 }
 
 // @public
-export type WebAppsGetVnetConnectionResponse = VnetInfo;
+export type WebAppsGetVnetConnectionResponse = VnetInfoResource;
 
 // @public
 export interface WebAppsGetVnetConnectionSlotOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type WebAppsGetVnetConnectionSlotResponse = VnetInfo;
+export type WebAppsGetVnetConnectionSlotResponse = VnetInfoResource;
 
 // @public
 export interface WebAppsGetWebJobOptionalParams extends coreClient.OperationOptions {
@@ -7318,6 +8876,34 @@ export interface WebAppsListBackupStatusSecretsSlotOptionalParams extends coreCl
 
 // @public
 export type WebAppsListBackupStatusSecretsSlotResponse = BackupItem;
+
+// @public
+export interface WebAppsListBasicPublishingCredentialsPoliciesNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type WebAppsListBasicPublishingCredentialsPoliciesNextResponse = PublishingCredentialsPoliciesCollection;
+
+// @public
+export interface WebAppsListBasicPublishingCredentialsPoliciesOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type WebAppsListBasicPublishingCredentialsPoliciesResponse = PublishingCredentialsPoliciesCollection;
+
+// @public
+export interface WebAppsListBasicPublishingCredentialsPoliciesSlotNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type WebAppsListBasicPublishingCredentialsPoliciesSlotNextResponse = PublishingCredentialsPoliciesCollection;
+
+// @public
+export interface WebAppsListBasicPublishingCredentialsPoliciesSlotOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type WebAppsListBasicPublishingCredentialsPoliciesSlotResponse = PublishingCredentialsPoliciesCollection;
 
 // @public
 export interface WebAppsListByResourceGroupNextOptionalParams extends coreClient.OperationOptions {
@@ -7620,28 +9206,28 @@ export interface WebAppsListInstanceIdentifiersNextOptionalParams extends coreCl
 }
 
 // @public
-export type WebAppsListInstanceIdentifiersNextResponse = WebAppInstanceCollection;
+export type WebAppsListInstanceIdentifiersNextResponse = WebAppInstanceStatusCollection;
 
 // @public
 export interface WebAppsListInstanceIdentifiersOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type WebAppsListInstanceIdentifiersResponse = WebAppInstanceCollection;
+export type WebAppsListInstanceIdentifiersResponse = WebAppInstanceStatusCollection;
 
 // @public
 export interface WebAppsListInstanceIdentifiersSlotNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type WebAppsListInstanceIdentifiersSlotNextResponse = WebAppInstanceCollection;
+export type WebAppsListInstanceIdentifiersSlotNextResponse = WebAppInstanceStatusCollection;
 
 // @public
 export interface WebAppsListInstanceIdentifiersSlotOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type WebAppsListInstanceIdentifiersSlotResponse = WebAppInstanceCollection;
+export type WebAppsListInstanceIdentifiersSlotResponse = WebAppInstanceStatusCollection;
 
 // @public
 export interface WebAppsListInstanceProcessesNextOptionalParams extends coreClient.OperationOptions {
@@ -8269,14 +9855,14 @@ export interface WebAppsListVnetConnectionsOptionalParams extends coreClient.Ope
 }
 
 // @public
-export type WebAppsListVnetConnectionsResponse = VnetInfo[];
+export type WebAppsListVnetConnectionsResponse = VnetInfoResource[];
 
 // @public
 export interface WebAppsListVnetConnectionsSlotOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type WebAppsListVnetConnectionsSlotResponse = VnetInfo[];
+export type WebAppsListVnetConnectionsSlotResponse = VnetInfoResource[];
 
 // @public
 export interface WebAppsListWebJobsNextOptionalParams extends coreClient.OperationOptions {
@@ -8579,6 +10165,21 @@ export interface WebAppsSyncRepositorySlotOptionalParams extends coreClient.Oper
 }
 
 // @public
+export type WebAppStack = ProxyOnlyResource & {
+    readonly location?: string;
+    readonly displayText?: string;
+    readonly value?: string;
+    readonly majorVersions?: WebAppMajorVersion[];
+    readonly preferredOs?: StackPreferredOs;
+};
+
+// @public
+export interface WebAppStackCollection {
+    readonly nextLink?: string;
+    value: WebAppStack[];
+}
+
+// @public
 export interface WebAppsUpdateApplicationSettingsOptionalParams extends coreClient.OperationOptions {
 }
 
@@ -8605,6 +10206,20 @@ export interface WebAppsUpdateAuthSettingsSlotOptionalParams extends coreClient.
 
 // @public
 export type WebAppsUpdateAuthSettingsSlotResponse = SiteAuthSettings;
+
+// @public
+export interface WebAppsUpdateAuthSettingsV2OptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type WebAppsUpdateAuthSettingsV2Response = SiteAuthSettingsV2;
+
+// @public
+export interface WebAppsUpdateAuthSettingsV2SlotOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type WebAppsUpdateAuthSettingsV2SlotResponse = SiteAuthSettingsV2;
 
 // @public
 export interface WebAppsUpdateAzureStorageAccountsOptionalParams extends coreClient.OperationOptions {
@@ -8691,6 +10306,20 @@ export interface WebAppsUpdateDomainOwnershipIdentifierSlotOptionalParams extend
 export type WebAppsUpdateDomainOwnershipIdentifierSlotResponse = Identifier;
 
 // @public
+export interface WebAppsUpdateFtpAllowedOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type WebAppsUpdateFtpAllowedResponse = CsmPublishingCredentialsPoliciesEntity;
+
+// @public
+export interface WebAppsUpdateFtpAllowedSlotOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type WebAppsUpdateFtpAllowedSlotResponse = CsmPublishingCredentialsPoliciesEntity;
+
+// @public
 export interface WebAppsUpdateHybridConnectionOptionalParams extends coreClient.OperationOptions {
 }
 
@@ -8754,6 +10383,20 @@ export type WebAppsUpdateRelayServiceConnectionSlotResponse = RelayServiceConnec
 export type WebAppsUpdateResponse = Site;
 
 // @public
+export interface WebAppsUpdateScmAllowedOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type WebAppsUpdateScmAllowedResponse = CsmPublishingCredentialsPoliciesEntity;
+
+// @public
+export interface WebAppsUpdateScmAllowedSlotOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type WebAppsUpdateScmAllowedSlotResponse = CsmPublishingCredentialsPoliciesEntity;
+
+// @public
 export interface WebAppsUpdateSitePushSettingsOptionalParams extends coreClient.OperationOptions {
 }
 
@@ -8796,18 +10439,18 @@ export interface WebAppsUpdateSourceControlSlotOptionalParams extends coreClient
 export type WebAppsUpdateSourceControlSlotResponse = SiteSourceControl;
 
 // @public
-export interface WebAppsUpdateSwiftVirtualNetworkConnectionOptionalParams extends coreClient.OperationOptions {
+export interface WebAppsUpdateSwiftVirtualNetworkConnectionWithCheckOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type WebAppsUpdateSwiftVirtualNetworkConnectionResponse = SwiftVirtualNetwork;
+export type WebAppsUpdateSwiftVirtualNetworkConnectionWithCheckResponse = SwiftVirtualNetwork;
 
 // @public
-export interface WebAppsUpdateSwiftVirtualNetworkConnectionSlotOptionalParams extends coreClient.OperationOptions {
+export interface WebAppsUpdateSwiftVirtualNetworkConnectionWithCheckSlotOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type WebAppsUpdateSwiftVirtualNetworkConnectionSlotResponse = SwiftVirtualNetwork;
+export type WebAppsUpdateSwiftVirtualNetworkConnectionWithCheckSlotResponse = SwiftVirtualNetwork;
 
 // @public
 export interface WebAppsUpdateVnetConnectionGatewayOptionalParams extends coreClient.OperationOptions {
@@ -8828,14 +10471,14 @@ export interface WebAppsUpdateVnetConnectionOptionalParams extends coreClient.Op
 }
 
 // @public
-export type WebAppsUpdateVnetConnectionResponse = VnetInfo;
+export type WebAppsUpdateVnetConnectionResponse = VnetInfoResource;
 
 // @public
 export interface WebAppsUpdateVnetConnectionSlotOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type WebAppsUpdateVnetConnectionSlotResponse = VnetInfo;
+export type WebAppsUpdateVnetConnectionSlotResponse = VnetInfoResource;
 
 // @public
 export type WebJob = ProxyOnlyResource & {
@@ -8865,6 +10508,7 @@ export type WebSiteInstanceStatus = ProxyOnlyResource & {
     statusUrl?: string;
     detectorUrl?: string;
     consoleUrl?: string;
+    healthCheckUrl?: string;
     containers?: {
         [propertyName: string]: ContainerInfo;
     };
@@ -8884,6 +10528,8 @@ export class WebSiteManagementClient extends coreClient.ServiceClient {
     // (undocumented)
     appServicePlans: AppServicePlans;
     // (undocumented)
+    certificateOrdersDiagnostics: CertificateOrdersDiagnostics;
+    // (undocumented)
     certificateRegistrationProvider: CertificateRegistrationProvider;
     // (undocumented)
     certificates: Certificates;
@@ -8899,6 +10545,10 @@ export class WebSiteManagementClient extends coreClient.ServiceClient {
     getPublishingUser(options?: GetPublishingUserOptionalParams): Promise<GetPublishingUserResponse>;
     getSourceControl(sourceControlType: string, options?: GetSourceControlOptionalParams): Promise<GetSourceControlResponse>;
     getSubscriptionDeploymentLocations(options?: GetSubscriptionDeploymentLocationsOptionalParams): Promise<GetSubscriptionDeploymentLocationsResponse>;
+    // (undocumented)
+    global: Global;
+    // (undocumented)
+    kubeEnvironments: KubeEnvironments;
     listBillingMeters(options?: ListBillingMetersOptionalParams): PagedAsyncIterableIterator<BillingMeter>;
     listGeoRegions(options?: ListGeoRegionsOptionalParams): PagedAsyncIterableIterator<GeoRegion>;
     listPremierAddOnOffers(options?: ListPremierAddOnOffersOptionalParams): PagedAsyncIterableIterator<PremierAddOnOffer>;
@@ -8935,12 +10585,15 @@ export interface WebSiteManagementClientOptionalParams extends coreClient.Servic
 }
 
 // @public
-export interface WorkerPool {
-    computeMode?: ComputeModeOptions;
-    readonly instanceNames?: string[];
-    workerCount?: number;
-    workerSize?: string;
-    workerSizeId?: number;
+export interface WindowsJavaContainerSettings {
+    readonly endOfLifeDate?: Date;
+    readonly isAutoUpdate?: boolean;
+    readonly isDeprecated?: boolean;
+    readonly isEarlyAccess?: boolean;
+    readonly isHidden?: boolean;
+    readonly isPreview?: boolean;
+    readonly javaContainer?: string;
+    readonly javaContainerVersion?: string;
 }
 
 // @public
@@ -8960,7 +10613,7 @@ export type WorkerPoolResource = ProxyOnlyResource & {
 };
 
 // @public
-export type WorkerSizeOptions = "Small" | "Medium" | "Large" | "D1" | "D2" | "D3" | "NestedSmall" | "Default";
+export type WorkerSizeOptions = "Small" | "Medium" | "Large" | "D1" | "D2" | "D3" | "SmallV3" | "MediumV3" | "LargeV3" | "NestedSmall" | "NestedSmallLinux" | "Default";
 
 // (No @packageDocumentation comment for this package)
 

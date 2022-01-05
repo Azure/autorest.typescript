@@ -1216,7 +1216,9 @@ const getOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.AppServicePlan
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -1580,7 +1582,9 @@ const listVnetsOperationSpec: coreClient.OperationSpec = {
       bodyMapper: {
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "VnetInfo" } }
+          element: {
+            type: { name: "Composite", className: "VnetInfoResource" }
+          }
         }
       }
     },
@@ -1604,9 +1608,11 @@ const getVnetFromServerFarmOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.VnetInfo
+      bodyMapper: Mappers.VnetInfoResource
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -1658,7 +1664,7 @@ const updateVnetGatewayOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  requestBody: Parameters.connectionEnvelope4,
+  requestBody: Parameters.connectionEnvelope,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1713,7 +1719,9 @@ const getRouteForVnetOperationSpec: coreClient.OperationSpec = {
         }
       }
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -1738,8 +1746,12 @@ const createOrUpdateVnetRouteOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.VnetRoute
     },
-    400: {},
-    404: {},
+    400: {
+      isError: true
+    },
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -1764,7 +1776,9 @@ const deleteVnetRouteOperationSpec: coreClient.OperationSpec = {
   httpMethod: "DELETE",
   responses: {
     200: {},
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -1789,8 +1803,12 @@ const updateVnetRouteOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.VnetRoute
     },
-    400: {},
-    404: {},
+    400: {
+      isError: true
+    },
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }

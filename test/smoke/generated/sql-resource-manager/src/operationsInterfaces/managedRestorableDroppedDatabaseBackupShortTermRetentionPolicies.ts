@@ -56,13 +56,13 @@ export interface ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicie
     ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesGetResponse
   >;
   /**
-   * Sets a database's long term retention policy.
+   * Sets a database's short term retention policy.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param managedInstanceName The name of the managed instance.
    * @param restorableDroppedDatabaseId
    * @param policyName The policy name. Should always be "default".
-   * @param parameters The long term retention policy info.
+   * @param parameters The short term retention policy info.
    * @param options The options parameters.
    */
   beginCreateOrUpdate(
@@ -81,13 +81,13 @@ export interface ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicie
     >
   >;
   /**
-   * Sets a database's long term retention policy.
+   * Sets a database's short term retention policy.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param managedInstanceName The name of the managed instance.
    * @param restorableDroppedDatabaseId
    * @param policyName The policy name. Should always be "default".
-   * @param parameters The long term retention policy info.
+   * @param parameters The short term retention policy info.
    * @param options The options parameters.
    */
   beginCreateOrUpdateAndWait(
@@ -101,13 +101,13 @@ export interface ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicie
     ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesCreateOrUpdateResponse
   >;
   /**
-   * Sets a database's long term retention policy.
+   * Sets a database's short term retention policy.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param managedInstanceName The name of the managed instance.
    * @param restorableDroppedDatabaseId
    * @param policyName The policy name. Should always be "default".
-   * @param parameters The long term retention policy info.
+   * @param parameters The short term retention policy info.
    * @param options The options parameters.
    */
   beginUpdate(
@@ -126,13 +126,13 @@ export interface ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicie
     >
   >;
   /**
-   * Sets a database's long term retention policy.
+   * Sets a database's short term retention policy.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param managedInstanceName The name of the managed instance.
    * @param restorableDroppedDatabaseId
    * @param policyName The policy name. Should always be "default".
-   * @param parameters The long term retention policy info.
+   * @param parameters The short term retention policy info.
    * @param options The options parameters.
    */
   beginUpdateAndWait(

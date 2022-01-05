@@ -16,9 +16,7 @@ import {
   ServerAzureADAdministratorsGetResponse,
   ServerAzureADAdministratorsCreateOrUpdateOptionalParams,
   ServerAzureADAdministratorsCreateOrUpdateResponse,
-  ServerAzureADAdministratorsDeleteOptionalParams,
-  ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationOptionalParams,
-  ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationResponse
+  ServerAzureADAdministratorsDeleteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -55,9 +53,8 @@ export interface ServerAzureADAdministrators {
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
-   * @param administratorName
-   * @param parameters The required parameters for creating or updating an Active Directory
-   *                   Administrator.
+   * @param administratorName The name of server active directory administrator.
+   * @param parameters The requested Azure Active Directory administrator Resource state.
    * @param options The options parameters.
    */
   beginCreateOrUpdate(
@@ -77,9 +74,8 @@ export interface ServerAzureADAdministrators {
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
-   * @param administratorName
-   * @param parameters The required parameters for creating or updating an Active Directory
-   *                   Administrator.
+   * @param administratorName The name of server active directory administrator.
+   * @param parameters The requested Azure Active Directory administrator Resource state.
    * @param options The options parameters.
    */
   beginCreateOrUpdateAndWait(
@@ -117,37 +113,4 @@ export interface ServerAzureADAdministrators {
     administratorName: AdministratorName,
     options?: ServerAzureADAdministratorsDeleteOptionalParams
   ): Promise<void>;
-  /**
-   * Disables Azure Active Directory only authentication on logical Server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
-   */
-  beginDisableAzureADOnlyAuthentication(
-    resourceGroupName: string,
-    serverName: string,
-    options?: ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationOptionalParams
-  ): Promise<
-    PollerLike<
-      PollOperationState<
-        ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationResponse
-      >,
-      ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationResponse
-    >
-  >;
-  /**
-   * Disables Azure Active Directory only authentication on logical Server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
-   */
-  beginDisableAzureADOnlyAuthenticationAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    options?: ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationOptionalParams
-  ): Promise<
-    ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationResponse
-  >;
 }

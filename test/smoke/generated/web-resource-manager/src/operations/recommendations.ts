@@ -175,7 +175,7 @@ export class RecommendationsImpl implements Recommendations {
   }
 
   /**
-   * Description for Get all recommendations for an app.
+   * Description for Get all recommendations for a hosting environment.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param hostingEnvironmentName Name of the app.
    * @param options The options parameters.
@@ -443,7 +443,7 @@ export class RecommendationsImpl implements Recommendations {
   }
 
   /**
-   * Description for Get all recommendations for an app.
+   * Description for Get all recommendations for a hosting environment.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param hostingEnvironmentName Name of the app.
    * @param options The options parameters.
@@ -762,8 +762,8 @@ const listOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [
     Parameters.apiVersion,
-    Parameters.featured,
-    Parameters.filter
+    Parameters.filter,
+    Parameters.featured
   ],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.accept],
@@ -839,8 +839,8 @@ const listRecommendedRulesForHostingEnvironmentOperationSpec: coreClient.Operati
   },
   queryParameters: [
     Parameters.apiVersion,
-    Parameters.featured,
-    Parameters.filter
+    Parameters.filter,
+    Parameters.featured
   ],
   urlParameters: [
     Parameters.$host,
@@ -979,8 +979,8 @@ const listRecommendedRulesForWebAppOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [
     Parameters.apiVersion,
-    Parameters.featured,
-    Parameters.filter
+    Parameters.filter,
+    Parameters.featured
   ],
   urlParameters: [
     Parameters.$host,
@@ -1092,8 +1092,8 @@ const listNextOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [
     Parameters.apiVersion,
-    Parameters.featured,
-    Parameters.filter
+    Parameters.filter,
+    Parameters.featured
   ],
   urlParameters: [
     Parameters.$host,
@@ -1142,8 +1142,8 @@ const listRecommendedRulesForHostingEnvironmentNextOperationSpec: coreClient.Ope
   },
   queryParameters: [
     Parameters.apiVersion,
-    Parameters.featured,
-    Parameters.filter
+    Parameters.filter,
+    Parameters.featured
   ],
   urlParameters: [
     Parameters.$host,
@@ -1194,8 +1194,8 @@ const listRecommendedRulesForWebAppNextOperationSpec: coreClient.OperationSpec =
   },
   queryParameters: [
     Parameters.apiVersion,
-    Parameters.featured,
-    Parameters.filter
+    Parameters.filter,
+    Parameters.featured
   ],
   urlParameters: [
     Parameters.$host,

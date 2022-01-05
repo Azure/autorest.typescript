@@ -11,6 +11,7 @@ import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ManagedInstanceAdministrator,
   ManagedInstanceAdministratorsListByInstanceOptionalParams,
+  AdministratorName,
   ManagedInstanceAdministratorsGetOptionalParams,
   ManagedInstanceAdministratorsGetResponse,
   ManagedInstanceAdministratorsCreateOrUpdateOptionalParams,
@@ -38,11 +39,13 @@ export interface ManagedInstanceAdministrators {
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param managedInstanceName The name of the managed instance.
+   * @param administratorName
    * @param options The options parameters.
    */
   get(
     resourceGroupName: string,
     managedInstanceName: string,
+    administratorName: AdministratorName,
     options?: ManagedInstanceAdministratorsGetOptionalParams
   ): Promise<ManagedInstanceAdministratorsGetResponse>;
   /**
@@ -50,12 +53,14 @@ export interface ManagedInstanceAdministrators {
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param managedInstanceName The name of the managed instance.
+   * @param administratorName
    * @param parameters The requested administrator parameters.
    * @param options The options parameters.
    */
   beginCreateOrUpdate(
     resourceGroupName: string,
     managedInstanceName: string,
+    administratorName: AdministratorName,
     parameters: ManagedInstanceAdministrator,
     options?: ManagedInstanceAdministratorsCreateOrUpdateOptionalParams
   ): Promise<
@@ -69,12 +74,14 @@ export interface ManagedInstanceAdministrators {
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param managedInstanceName The name of the managed instance.
+   * @param administratorName
    * @param parameters The requested administrator parameters.
    * @param options The options parameters.
    */
   beginCreateOrUpdateAndWait(
     resourceGroupName: string,
     managedInstanceName: string,
+    administratorName: AdministratorName,
     parameters: ManagedInstanceAdministrator,
     options?: ManagedInstanceAdministratorsCreateOrUpdateOptionalParams
   ): Promise<ManagedInstanceAdministratorsCreateOrUpdateResponse>;
@@ -83,11 +90,13 @@ export interface ManagedInstanceAdministrators {
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param managedInstanceName The name of the managed instance.
+   * @param administratorName
    * @param options The options parameters.
    */
   beginDelete(
     resourceGroupName: string,
     managedInstanceName: string,
+    administratorName: AdministratorName,
     options?: ManagedInstanceAdministratorsDeleteOptionalParams
   ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
@@ -95,11 +104,13 @@ export interface ManagedInstanceAdministrators {
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param managedInstanceName The name of the managed instance.
+   * @param administratorName
    * @param options The options parameters.
    */
   beginDeleteAndWait(
     resourceGroupName: string,
     managedInstanceName: string,
+    administratorName: AdministratorName,
     options?: ManagedInstanceAdministratorsDeleteOptionalParams
   ): Promise<void>;
 }

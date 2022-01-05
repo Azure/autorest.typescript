@@ -16,16 +16,7 @@ import {
   Database,
   DatabasesListByServerOptionalParams,
   DatabasesListByElasticPoolOptionalParams,
-  ImportRequest,
-  DatabasesImportOptionalParams,
-  DatabasesImportResponse,
-  ImportExtensionRequest,
-  ExtensionName,
-  DatabasesCreateImportOperationOptionalParams,
-  DatabasesCreateImportOperationResponse,
-  ExportRequest,
-  DatabasesExportOptionalParams,
-  DatabasesExportResponse,
+  DatabasesListInaccessibleByServerOptionalParams,
   DatabasesGetOptionalParams,
   DatabasesGetResponse,
   DatabasesCreateOrUpdateOptionalParams,
@@ -34,6 +25,7 @@ import {
   DatabaseUpdate,
   DatabasesUpdateOptionalParams,
   DatabasesUpdateResponse,
+  DatabasesFailoverOptionalParams,
   DatabasesPauseOptionalParams,
   DatabasesPauseResponse,
   DatabasesResumeOptionalParams,
@@ -41,7 +33,12 @@ import {
   DatabasesUpgradeDataWarehouseOptionalParams,
   ResourceMoveDefinition,
   DatabasesRenameOptionalParams,
-  DatabasesFailoverOptionalParams
+  ImportExistingDatabaseDefinition,
+  DatabasesImportOptionalParams,
+  DatabasesImportResponse,
+  ExportDatabaseDefinition,
+  DatabasesExportOptionalParams,
+  DatabasesExportResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -104,118 +101,17 @@ export interface Databases {
     options?: DatabasesListByElasticPoolOptionalParams
   ): PagedAsyncIterableIterator<Database>;
   /**
-   * Imports a bacpac into a new database.
+   * Gets a list of inaccessible databases in a logical server
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
-   * @param parameters The required parameters for importing a Bacpac into a database.
    * @param options The options parameters.
    */
-  beginImport(
+  listInaccessibleByServer(
     resourceGroupName: string,
     serverName: string,
-    parameters: ImportRequest,
-    options?: DatabasesImportOptionalParams
-  ): Promise<
-    PollerLike<
-      PollOperationState<DatabasesImportResponse>,
-      DatabasesImportResponse
-    >
-  >;
-  /**
-   * Imports a bacpac into a new database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param parameters The required parameters for importing a Bacpac into a database.
-   * @param options The options parameters.
-   */
-  beginImportAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    parameters: ImportRequest,
-    options?: DatabasesImportOptionalParams
-  ): Promise<DatabasesImportResponse>;
-  /**
-   * Creates an import operation that imports a bacpac into an existing database. The existing database
-   * must be empty.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database to import into
-   * @param extensionName The name of the operation to perform
-   * @param parameters The required parameters for importing a Bacpac into a database.
-   * @param options The options parameters.
-   */
-  beginCreateImportOperation(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    extensionName: ExtensionName,
-    parameters: ImportExtensionRequest,
-    options?: DatabasesCreateImportOperationOptionalParams
-  ): Promise<
-    PollerLike<
-      PollOperationState<DatabasesCreateImportOperationResponse>,
-      DatabasesCreateImportOperationResponse
-    >
-  >;
-  /**
-   * Creates an import operation that imports a bacpac into an existing database. The existing database
-   * must be empty.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database to import into
-   * @param extensionName The name of the operation to perform
-   * @param parameters The required parameters for importing a Bacpac into a database.
-   * @param options The options parameters.
-   */
-  beginCreateImportOperationAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    extensionName: ExtensionName,
-    parameters: ImportExtensionRequest,
-    options?: DatabasesCreateImportOperationOptionalParams
-  ): Promise<DatabasesCreateImportOperationResponse>;
-  /**
-   * Exports a database to a bacpac.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database to be exported.
-   * @param parameters The required parameters for exporting a database.
-   * @param options The options parameters.
-   */
-  beginExport(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    parameters: ExportRequest,
-    options?: DatabasesExportOptionalParams
-  ): Promise<
-    PollerLike<
-      PollOperationState<DatabasesExportResponse>,
-      DatabasesExportResponse
-    >
-  >;
-  /**
-   * Exports a database to a bacpac.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database to be exported.
-   * @param parameters The required parameters for exporting a database.
-   * @param options The options parameters.
-   */
-  beginExportAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    parameters: ExportRequest,
-    options?: DatabasesExportOptionalParams
-  ): Promise<DatabasesExportResponse>;
+    options?: DatabasesListInaccessibleByServerOptionalParams
+  ): PagedAsyncIterableIterator<Database>;
   /**
    * Gets a database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -333,6 +229,34 @@ export interface Databases {
     options?: DatabasesUpdateOptionalParams
   ): Promise<DatabasesUpdateResponse>;
   /**
+   * Failovers a database.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database to failover.
+   * @param options The options parameters.
+   */
+  beginFailover(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    options?: DatabasesFailoverOptionalParams
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  /**
+   * Failovers a database.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database to failover.
+   * @param options The options parameters.
+   */
+  beginFailoverAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    options?: DatabasesFailoverOptionalParams
+  ): Promise<void>;
+  /**
    * Pauses a database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -443,31 +367,77 @@ export interface Databases {
     options?: DatabasesRenameOptionalParams
   ): Promise<void>;
   /**
-   * Failovers a database.
+   * Imports a bacpac into a new database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
-   * @param databaseName The name of the database to failover.
+   * @param databaseName The name of the database.
+   * @param parameters The database import request parameters.
    * @param options The options parameters.
    */
-  beginFailover(
+  beginImport(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: DatabasesFailoverOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+    parameters: ImportExistingDatabaseDefinition,
+    options?: DatabasesImportOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<DatabasesImportResponse>,
+      DatabasesImportResponse
+    >
+  >;
   /**
-   * Failovers a database.
+   * Imports a bacpac into a new database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
-   * @param databaseName The name of the database to failover.
+   * @param databaseName The name of the database.
+   * @param parameters The database import request parameters.
    * @param options The options parameters.
    */
-  beginFailoverAndWait(
+  beginImportAndWait(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: DatabasesFailoverOptionalParams
-  ): Promise<void>;
+    parameters: ImportExistingDatabaseDefinition,
+    options?: DatabasesImportOptionalParams
+  ): Promise<DatabasesImportResponse>;
+  /**
+   * Exports a database.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database.
+   * @param parameters The database export request parameters.
+   * @param options The options parameters.
+   */
+  beginExport(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    parameters: ExportDatabaseDefinition,
+    options?: DatabasesExportOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<DatabasesExportResponse>,
+      DatabasesExportResponse
+    >
+  >;
+  /**
+   * Exports a database.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database.
+   * @param parameters The database export request parameters.
+   * @param options The options parameters.
+   */
+  beginExportAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    parameters: ExportDatabaseDefinition,
+    options?: DatabasesExportOptionalParams
+  ): Promise<DatabasesExportResponse>;
 }

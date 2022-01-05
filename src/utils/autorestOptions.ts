@@ -34,6 +34,7 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
   const isTestPackage = await getIsTestPackage(host);
   const generateTest = await getGenerateTest(host);
   const batch = await getBatch(host);
+  const generateSample = await getGenerateSample(host);
 
   return {
     azureArm,
@@ -59,7 +60,8 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
     headAsBoolean,
     isTestPackage,
     generateTest,
-    batch
+    batch,
+    generateSample
   };
 }
 
@@ -85,6 +87,11 @@ async function getIsTestPackage(host: AutorestExtensionHost): Promise<boolean> {
 async function getGenerateTest(host: AutorestExtensionHost): Promise<boolean> {
   const generateTest = await host.getValue("generate-test");
   return generateTest === null ? false : Boolean(generateTest);
+}
+
+async function getGenerateSample(host: AutorestExtensionHost): Promise<boolean> {
+  const generateSample = await host.getValue("generate-sample");
+  return generateSample === null ? false : Boolean(generateSample);
 }
 
 async function getSkipEnumValidation(

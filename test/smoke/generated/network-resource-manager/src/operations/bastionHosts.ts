@@ -25,6 +25,9 @@ import {
   BastionHostsGetResponse,
   BastionHostsCreateOrUpdateOptionalParams,
   BastionHostsCreateOrUpdateResponse,
+  TagsObject,
+  BastionHostsUpdateTagsOptionalParams,
+  BastionHostsUpdateTagsResponse,
   BastionHostsListResponse,
   BastionHostsListByResourceGroupResponse,
   BastionHostsListNextResponse,
@@ -329,6 +332,97 @@ export class BastionHostsImpl implements BastionHosts {
   }
 
   /**
+   * Updates Tags for BastionHost resource
+   * @param resourceGroupName The name of the resource group.
+   * @param bastionHostName The name of the Bastion Host.
+   * @param parameters Parameters supplied to update BastionHost tags.
+   * @param options The options parameters.
+   */
+  async beginUpdateTags(
+    resourceGroupName: string,
+    bastionHostName: string,
+    parameters: TagsObject,
+    options?: BastionHostsUpdateTagsOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<BastionHostsUpdateTagsResponse>,
+      BastionHostsUpdateTagsResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<BastionHostsUpdateTagsResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { resourceGroupName, bastionHostName, parameters, options },
+      updateTagsOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs,
+      lroResourceLocationConfig: "azure-async-operation"
+    });
+  }
+
+  /**
+   * Updates Tags for BastionHost resource
+   * @param resourceGroupName The name of the resource group.
+   * @param bastionHostName The name of the Bastion Host.
+   * @param parameters Parameters supplied to update BastionHost tags.
+   * @param options The options parameters.
+   */
+  async beginUpdateTagsAndWait(
+    resourceGroupName: string,
+    bastionHostName: string,
+    parameters: TagsObject,
+    options?: BastionHostsUpdateTagsOptionalParams
+  ): Promise<BastionHostsUpdateTagsResponse> {
+    const poller = await this.beginUpdateTags(
+      resourceGroupName,
+      bastionHostName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Lists all Bastion Hosts in a subscription.
    * @param options The options parameters.
    */
@@ -454,7 +548,40 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.parameters4,
+  requestBody: Parameters.parameters5,
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.bastionHostName
+  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
+  serializer
+};
+const updateTagsOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/bastionHosts/{bastionHostName}",
+  httpMethod: "PATCH",
+  responses: {
+    200: {
+      bodyMapper: Mappers.BastionHost
+    },
+    201: {
+      bodyMapper: Mappers.BastionHost
+    },
+    202: {
+      bodyMapper: Mappers.BastionHost
+    },
+    204: {
+      bodyMapper: Mappers.BastionHost
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  requestBody: Parameters.parameters1,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

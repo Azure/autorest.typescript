@@ -311,7 +311,7 @@ describe("Integration tests for Url", () => {
       await client.queries.stringNull({ stringQuery: null as any });
       await client.queries.arrayStringCsvNull({ arrayQuery: null as any });
       assert.ok("Calls succeeded");
-    }).timeout(5000);
+    });
   });
 });
 

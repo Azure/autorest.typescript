@@ -16,6 +16,10 @@ import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
   PublicIPAddress,
+  PublicIPAddressesListCloudServicePublicIPAddressesNextOptionalParams,
+  PublicIPAddressesListCloudServicePublicIPAddressesOptionalParams,
+  PublicIPAddressesListCloudServiceRoleInstancePublicIPAddressesNextOptionalParams,
+  PublicIPAddressesListCloudServiceRoleInstancePublicIPAddressesOptionalParams,
   PublicIPAddressesListAllNextOptionalParams,
   PublicIPAddressesListAllOptionalParams,
   PublicIPAddressesListNextOptionalParams,
@@ -24,6 +28,10 @@ import {
   PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesOptionalParams,
   PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesNextOptionalParams,
   PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesOptionalParams,
+  PublicIPAddressesListCloudServicePublicIPAddressesResponse,
+  PublicIPAddressesListCloudServiceRoleInstancePublicIPAddressesResponse,
+  PublicIPAddressesGetCloudServicePublicIPAddressOptionalParams,
+  PublicIPAddressesGetCloudServicePublicIPAddressResponse,
   PublicIPAddressesDeleteOptionalParams,
   PublicIPAddressesGetOptionalParams,
   PublicIPAddressesGetResponse,
@@ -38,6 +46,8 @@ import {
   PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesResponse,
   PublicIPAddressesGetVirtualMachineScaleSetPublicIPAddressOptionalParams,
   PublicIPAddressesGetVirtualMachineScaleSetPublicIPAddressResponse,
+  PublicIPAddressesListCloudServicePublicIPAddressesNextResponse,
+  PublicIPAddressesListCloudServiceRoleInstancePublicIPAddressesNextResponse,
   PublicIPAddressesListAllNextResponse,
   PublicIPAddressesListNextResponse,
   PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesNextResponse,
@@ -55,6 +65,176 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
    */
   constructor(client: NetworkManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * Gets information about all public IP addresses on a cloud service level.
+   * @param resourceGroupName The name of the resource group.
+   * @param cloudServiceName The name of the cloud service.
+   * @param options The options parameters.
+   */
+  public listCloudServicePublicIPAddresses(
+    resourceGroupName: string,
+    cloudServiceName: string,
+    options?: PublicIPAddressesListCloudServicePublicIPAddressesOptionalParams
+  ): PagedAsyncIterableIterator<PublicIPAddress> {
+    const iter = this.listCloudServicePublicIPAddressesPagingAll(
+      resourceGroupName,
+      cloudServiceName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listCloudServicePublicIPAddressesPagingPage(
+          resourceGroupName,
+          cloudServiceName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listCloudServicePublicIPAddressesPagingPage(
+    resourceGroupName: string,
+    cloudServiceName: string,
+    options?: PublicIPAddressesListCloudServicePublicIPAddressesOptionalParams
+  ): AsyncIterableIterator<PublicIPAddress[]> {
+    let result = await this._listCloudServicePublicIPAddresses(
+      resourceGroupName,
+      cloudServiceName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listCloudServicePublicIPAddressesNext(
+        resourceGroupName,
+        cloudServiceName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listCloudServicePublicIPAddressesPagingAll(
+    resourceGroupName: string,
+    cloudServiceName: string,
+    options?: PublicIPAddressesListCloudServicePublicIPAddressesOptionalParams
+  ): AsyncIterableIterator<PublicIPAddress> {
+    for await (const page of this.listCloudServicePublicIPAddressesPagingPage(
+      resourceGroupName,
+      cloudServiceName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets information about all public IP addresses in a role instance IP configuration in a cloud
+   * service.
+   * @param resourceGroupName The name of the resource group.
+   * @param cloudServiceName The name of the cloud service.
+   * @param roleInstanceName The name of role instance.
+   * @param networkInterfaceName The network interface name.
+   * @param ipConfigurationName The IP configuration name.
+   * @param options The options parameters.
+   */
+  public listCloudServiceRoleInstancePublicIPAddresses(
+    resourceGroupName: string,
+    cloudServiceName: string,
+    roleInstanceName: string,
+    networkInterfaceName: string,
+    ipConfigurationName: string,
+    options?: PublicIPAddressesListCloudServiceRoleInstancePublicIPAddressesOptionalParams
+  ): PagedAsyncIterableIterator<PublicIPAddress> {
+    const iter = this.listCloudServiceRoleInstancePublicIPAddressesPagingAll(
+      resourceGroupName,
+      cloudServiceName,
+      roleInstanceName,
+      networkInterfaceName,
+      ipConfigurationName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listCloudServiceRoleInstancePublicIPAddressesPagingPage(
+          resourceGroupName,
+          cloudServiceName,
+          roleInstanceName,
+          networkInterfaceName,
+          ipConfigurationName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listCloudServiceRoleInstancePublicIPAddressesPagingPage(
+    resourceGroupName: string,
+    cloudServiceName: string,
+    roleInstanceName: string,
+    networkInterfaceName: string,
+    ipConfigurationName: string,
+    options?: PublicIPAddressesListCloudServiceRoleInstancePublicIPAddressesOptionalParams
+  ): AsyncIterableIterator<PublicIPAddress[]> {
+    let result = await this._listCloudServiceRoleInstancePublicIPAddresses(
+      resourceGroupName,
+      cloudServiceName,
+      roleInstanceName,
+      networkInterfaceName,
+      ipConfigurationName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listCloudServiceRoleInstancePublicIPAddressesNext(
+        resourceGroupName,
+        cloudServiceName,
+        roleInstanceName,
+        networkInterfaceName,
+        ipConfigurationName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listCloudServiceRoleInstancePublicIPAddressesPagingAll(
+    resourceGroupName: string,
+    cloudServiceName: string,
+    roleInstanceName: string,
+    networkInterfaceName: string,
+    ipConfigurationName: string,
+    options?: PublicIPAddressesListCloudServiceRoleInstancePublicIPAddressesOptionalParams
+  ): AsyncIterableIterator<PublicIPAddress> {
+    for await (const page of this.listCloudServiceRoleInstancePublicIPAddressesPagingPage(
+      resourceGroupName,
+      cloudServiceName,
+      roleInstanceName,
+      networkInterfaceName,
+      ipConfigurationName,
+      options
+    )) {
+      yield* page;
+    }
   }
 
   /**
@@ -320,9 +500,92 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
   }
 
   /**
+   * Gets information about all public IP addresses on a cloud service level.
+   * @param resourceGroupName The name of the resource group.
+   * @param cloudServiceName The name of the cloud service.
+   * @param options The options parameters.
+   */
+  private _listCloudServicePublicIPAddresses(
+    resourceGroupName: string,
+    cloudServiceName: string,
+    options?: PublicIPAddressesListCloudServicePublicIPAddressesOptionalParams
+  ): Promise<PublicIPAddressesListCloudServicePublicIPAddressesResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, cloudServiceName, options },
+      listCloudServicePublicIPAddressesOperationSpec
+    );
+  }
+
+  /**
+   * Gets information about all public IP addresses in a role instance IP configuration in a cloud
+   * service.
+   * @param resourceGroupName The name of the resource group.
+   * @param cloudServiceName The name of the cloud service.
+   * @param roleInstanceName The name of role instance.
+   * @param networkInterfaceName The network interface name.
+   * @param ipConfigurationName The IP configuration name.
+   * @param options The options parameters.
+   */
+  private _listCloudServiceRoleInstancePublicIPAddresses(
+    resourceGroupName: string,
+    cloudServiceName: string,
+    roleInstanceName: string,
+    networkInterfaceName: string,
+    ipConfigurationName: string,
+    options?: PublicIPAddressesListCloudServiceRoleInstancePublicIPAddressesOptionalParams
+  ): Promise<
+    PublicIPAddressesListCloudServiceRoleInstancePublicIPAddressesResponse
+  > {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        cloudServiceName,
+        roleInstanceName,
+        networkInterfaceName,
+        ipConfigurationName,
+        options
+      },
+      listCloudServiceRoleInstancePublicIPAddressesOperationSpec
+    );
+  }
+
+  /**
+   * Get the specified public IP address in a cloud service.
+   * @param resourceGroupName The name of the resource group.
+   * @param cloudServiceName The name of the cloud service.
+   * @param roleInstanceName The role instance name.
+   * @param networkInterfaceName The name of the network interface.
+   * @param ipConfigurationName The name of the IP configuration.
+   * @param publicIpAddressName The name of the public IP Address.
+   * @param options The options parameters.
+   */
+  getCloudServicePublicIPAddress(
+    resourceGroupName: string,
+    cloudServiceName: string,
+    roleInstanceName: string,
+    networkInterfaceName: string,
+    ipConfigurationName: string,
+    publicIpAddressName: string,
+    options?: PublicIPAddressesGetCloudServicePublicIPAddressOptionalParams
+  ): Promise<PublicIPAddressesGetCloudServicePublicIPAddressResponse> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        cloudServiceName,
+        roleInstanceName,
+        networkInterfaceName,
+        ipConfigurationName,
+        publicIpAddressName,
+        options
+      },
+      getCloudServicePublicIPAddressOperationSpec
+    );
+  }
+
+  /**
    * Deletes the specified public IP address.
    * @param resourceGroupName The name of the resource group.
-   * @param publicIpAddressName The name of the subnet.
+   * @param publicIpAddressName The name of the public IP address.
    * @param options The options parameters.
    */
   async beginDelete(
@@ -384,7 +647,7 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
   /**
    * Deletes the specified public IP address.
    * @param resourceGroupName The name of the resource group.
-   * @param publicIpAddressName The name of the subnet.
+   * @param publicIpAddressName The name of the public IP address.
    * @param options The options parameters.
    */
   async beginDeleteAndWait(
@@ -403,7 +666,7 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
   /**
    * Gets the specified public IP address in a specified resource group.
    * @param resourceGroupName The name of the resource group.
-   * @param publicIpAddressName The name of the subnet.
+   * @param publicIpAddressName The name of the public IP address.
    * @param options The options parameters.
    */
   get(
@@ -640,6 +903,62 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
   }
 
   /**
+   * ListCloudServicePublicIPAddressesNext
+   * @param resourceGroupName The name of the resource group.
+   * @param cloudServiceName The name of the cloud service.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListCloudServicePublicIPAddresses method.
+   * @param options The options parameters.
+   */
+  private _listCloudServicePublicIPAddressesNext(
+    resourceGroupName: string,
+    cloudServiceName: string,
+    nextLink: string,
+    options?: PublicIPAddressesListCloudServicePublicIPAddressesNextOptionalParams
+  ): Promise<PublicIPAddressesListCloudServicePublicIPAddressesNextResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, cloudServiceName, nextLink, options },
+      listCloudServicePublicIPAddressesNextOperationSpec
+    );
+  }
+
+  /**
+   * ListCloudServiceRoleInstancePublicIPAddressesNext
+   * @param resourceGroupName The name of the resource group.
+   * @param cloudServiceName The name of the cloud service.
+   * @param roleInstanceName The name of role instance.
+   * @param networkInterfaceName The network interface name.
+   * @param ipConfigurationName The IP configuration name.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListCloudServiceRoleInstancePublicIPAddresses method.
+   * @param options The options parameters.
+   */
+  private _listCloudServiceRoleInstancePublicIPAddressesNext(
+    resourceGroupName: string,
+    cloudServiceName: string,
+    roleInstanceName: string,
+    networkInterfaceName: string,
+    ipConfigurationName: string,
+    nextLink: string,
+    options?: PublicIPAddressesListCloudServiceRoleInstancePublicIPAddressesNextOptionalParams
+  ): Promise<
+    PublicIPAddressesListCloudServiceRoleInstancePublicIPAddressesNextResponse
+  > {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        cloudServiceName,
+        roleInstanceName,
+        networkInterfaceName,
+        ipConfigurationName,
+        nextLink,
+        options
+      },
+      listCloudServiceRoleInstancePublicIPAddressesNextOperationSpec
+    );
+  }
+
+  /**
    * ListAllNext
    * @param nextLink The nextLink from the previous successful call to the ListAll method.
    * @param options The options parameters.
@@ -732,6 +1051,79 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
+const listCloudServicePublicIPAddressesOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/cloudServices/{cloudServiceName}/publicipaddresses",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PublicIPAddressListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.cloudServiceName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listCloudServiceRoleInstancePublicIPAddressesOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/cloudServices/{cloudServiceName}/roleInstances/{roleInstanceName}/networkInterfaces/{networkInterfaceName}/ipconfigurations/{ipConfigurationName}/publicipaddresses",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PublicIPAddressListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.cloudServiceName,
+    Parameters.roleInstanceName,
+    Parameters.networkInterfaceName,
+    Parameters.ipConfigurationName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const getCloudServicePublicIPAddressOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/cloudServices/{cloudServiceName}/roleInstances/{roleInstanceName}/networkInterfaces/{networkInterfaceName}/ipconfigurations/{ipConfigurationName}/publicipaddresses/{publicIpAddressName}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PublicIPAddress
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.expand],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.cloudServiceName,
+    Parameters.roleInstanceName,
+    Parameters.networkInterfaceName,
+    Parameters.ipConfigurationName,
+    Parameters.publicIpAddressName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
 const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/publicIPAddresses/{publicIpAddressName}",
@@ -798,7 +1190,7 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.parameters42,
+  requestBody: Parameters.parameters7,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -941,6 +1333,53 @@ const getVirtualMachineScaleSetPublicIPAddressOperationSpec: coreClient.Operatio
     Parameters.virtualmachineIndex,
     Parameters.ipConfigurationName,
     Parameters.publicIpAddressName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listCloudServicePublicIPAddressesNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PublicIPAddressListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.nextLink,
+    Parameters.cloudServiceName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listCloudServiceRoleInstancePublicIPAddressesNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PublicIPAddressListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.nextLink,
+    Parameters.cloudServiceName,
+    Parameters.roleInstanceName,
+    Parameters.networkInterfaceName,
+    Parameters.ipConfigurationName
   ],
   headerParameters: [Parameters.accept],
   serializer

@@ -21,7 +21,11 @@ import {
   TableResourcesGetTableThroughputResponse,
   ThroughputSettingsUpdateParameters,
   TableResourcesUpdateTableThroughputOptionalParams,
-  TableResourcesUpdateTableThroughputResponse
+  TableResourcesUpdateTableThroughputResponse,
+  TableResourcesMigrateTableToAutoscaleOptionalParams,
+  TableResourcesMigrateTableToAutoscaleResponse,
+  TableResourcesMigrateTableToManualThroughputOptionalParams,
+  TableResourcesMigrateTableToManualThroughputResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -163,4 +167,66 @@ export interface TableResources {
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
     options?: TableResourcesUpdateTableThroughputOptionalParams
   ): Promise<TableResourcesUpdateTableThroughputResponse>;
+  /**
+   * Migrate an Azure Cosmos DB Table from manual throughput to autoscale
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param tableName Cosmos DB table name.
+   * @param options The options parameters.
+   */
+  beginMigrateTableToAutoscale(
+    resourceGroupName: string,
+    accountName: string,
+    tableName: string,
+    options?: TableResourcesMigrateTableToAutoscaleOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<TableResourcesMigrateTableToAutoscaleResponse>,
+      TableResourcesMigrateTableToAutoscaleResponse
+    >
+  >;
+  /**
+   * Migrate an Azure Cosmos DB Table from manual throughput to autoscale
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param tableName Cosmos DB table name.
+   * @param options The options parameters.
+   */
+  beginMigrateTableToAutoscaleAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    tableName: string,
+    options?: TableResourcesMigrateTableToAutoscaleOptionalParams
+  ): Promise<TableResourcesMigrateTableToAutoscaleResponse>;
+  /**
+   * Migrate an Azure Cosmos DB Table from autoscale to manual throughput
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param tableName Cosmos DB table name.
+   * @param options The options parameters.
+   */
+  beginMigrateTableToManualThroughput(
+    resourceGroupName: string,
+    accountName: string,
+    tableName: string,
+    options?: TableResourcesMigrateTableToManualThroughputOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<TableResourcesMigrateTableToManualThroughputResponse>,
+      TableResourcesMigrateTableToManualThroughputResponse
+    >
+  >;
+  /**
+   * Migrate an Azure Cosmos DB Table from autoscale to manual throughput
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param tableName Cosmos DB table name.
+   * @param options The options parameters.
+   */
+  beginMigrateTableToManualThroughputAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    tableName: string,
+    options?: TableResourcesMigrateTableToManualThroughputOptionalParams
+  ): Promise<TableResourcesMigrateTableToManualThroughputResponse>;
 }

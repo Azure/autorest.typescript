@@ -12,6 +12,7 @@ import {
   initializeSession,
   getAutorestOptions
 } from "./autorestSession";
+import { serialize } from "@azure-tools/codegen";
 
 export async function processRequest(host: AutorestExtensionHost) {
   await initializeSession(host);

@@ -25,6 +25,10 @@ import {
   SqlResourcesListSqlUserDefinedFunctionsOptionalParams,
   SqlTriggerGetResults,
   SqlResourcesListSqlTriggersOptionalParams,
+  SqlRoleDefinitionGetResults,
+  SqlResourcesListSqlRoleDefinitionsOptionalParams,
+  SqlRoleAssignmentGetResults,
+  SqlResourcesListSqlRoleAssignmentsOptionalParams,
   SqlResourcesListSqlDatabasesResponse,
   SqlResourcesGetSqlDatabaseOptionalParams,
   SqlResourcesGetSqlDatabaseResponse,
@@ -37,6 +41,10 @@ import {
   ThroughputSettingsUpdateParameters,
   SqlResourcesUpdateSqlDatabaseThroughputOptionalParams,
   SqlResourcesUpdateSqlDatabaseThroughputResponse,
+  SqlResourcesMigrateSqlDatabaseToAutoscaleOptionalParams,
+  SqlResourcesMigrateSqlDatabaseToAutoscaleResponse,
+  SqlResourcesMigrateSqlDatabaseToManualThroughputOptionalParams,
+  SqlResourcesMigrateSqlDatabaseToManualThroughputResponse,
   SqlResourcesListSqlContainersResponse,
   SqlResourcesGetSqlContainerOptionalParams,
   SqlResourcesGetSqlContainerResponse,
@@ -48,6 +56,10 @@ import {
   SqlResourcesGetSqlContainerThroughputResponse,
   SqlResourcesUpdateSqlContainerThroughputOptionalParams,
   SqlResourcesUpdateSqlContainerThroughputResponse,
+  SqlResourcesMigrateSqlContainerToAutoscaleOptionalParams,
+  SqlResourcesMigrateSqlContainerToAutoscaleResponse,
+  SqlResourcesMigrateSqlContainerToManualThroughputOptionalParams,
+  SqlResourcesMigrateSqlContainerToManualThroughputResponse,
   SqlResourcesListSqlStoredProceduresResponse,
   SqlResourcesGetSqlStoredProcedureOptionalParams,
   SqlResourcesGetSqlStoredProcedureResponse,
@@ -68,7 +80,24 @@ import {
   SqlTriggerCreateUpdateParameters,
   SqlResourcesCreateUpdateSqlTriggerOptionalParams,
   SqlResourcesCreateUpdateSqlTriggerResponse,
-  SqlResourcesDeleteSqlTriggerOptionalParams
+  SqlResourcesDeleteSqlTriggerOptionalParams,
+  SqlResourcesGetSqlRoleDefinitionOptionalParams,
+  SqlResourcesGetSqlRoleDefinitionResponse,
+  SqlRoleDefinitionCreateUpdateParameters,
+  SqlResourcesCreateUpdateSqlRoleDefinitionOptionalParams,
+  SqlResourcesCreateUpdateSqlRoleDefinitionResponse,
+  SqlResourcesDeleteSqlRoleDefinitionOptionalParams,
+  SqlResourcesListSqlRoleDefinitionsResponse,
+  SqlResourcesGetSqlRoleAssignmentOptionalParams,
+  SqlResourcesGetSqlRoleAssignmentResponse,
+  SqlRoleAssignmentCreateUpdateParameters,
+  SqlResourcesCreateUpdateSqlRoleAssignmentOptionalParams,
+  SqlResourcesCreateUpdateSqlRoleAssignmentResponse,
+  SqlResourcesDeleteSqlRoleAssignmentOptionalParams,
+  SqlResourcesListSqlRoleAssignmentsResponse,
+  ContinuousBackupRestoreLocation,
+  SqlResourcesRetrieveContinuousBackupInformationOptionalParams,
+  SqlResourcesRetrieveContinuousBackupInformationResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -441,6 +470,126 @@ export class SqlResourcesImpl implements SqlResources {
   }
 
   /**
+   * Retrieves the list of all Azure Cosmos DB SQL Role Definitions.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param options The options parameters.
+   */
+  public listSqlRoleDefinitions(
+    resourceGroupName: string,
+    accountName: string,
+    options?: SqlResourcesListSqlRoleDefinitionsOptionalParams
+  ): PagedAsyncIterableIterator<SqlRoleDefinitionGetResults> {
+    const iter = this.listSqlRoleDefinitionsPagingAll(
+      resourceGroupName,
+      accountName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listSqlRoleDefinitionsPagingPage(
+          resourceGroupName,
+          accountName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listSqlRoleDefinitionsPagingPage(
+    resourceGroupName: string,
+    accountName: string,
+    options?: SqlResourcesListSqlRoleDefinitionsOptionalParams
+  ): AsyncIterableIterator<SqlRoleDefinitionGetResults[]> {
+    let result = await this._listSqlRoleDefinitions(
+      resourceGroupName,
+      accountName,
+      options
+    );
+    yield result.value || [];
+  }
+
+  private async *listSqlRoleDefinitionsPagingAll(
+    resourceGroupName: string,
+    accountName: string,
+    options?: SqlResourcesListSqlRoleDefinitionsOptionalParams
+  ): AsyncIterableIterator<SqlRoleDefinitionGetResults> {
+    for await (const page of this.listSqlRoleDefinitionsPagingPage(
+      resourceGroupName,
+      accountName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Retrieves the list of all Azure Cosmos DB SQL Role Assignments.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param options The options parameters.
+   */
+  public listSqlRoleAssignments(
+    resourceGroupName: string,
+    accountName: string,
+    options?: SqlResourcesListSqlRoleAssignmentsOptionalParams
+  ): PagedAsyncIterableIterator<SqlRoleAssignmentGetResults> {
+    const iter = this.listSqlRoleAssignmentsPagingAll(
+      resourceGroupName,
+      accountName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listSqlRoleAssignmentsPagingPage(
+          resourceGroupName,
+          accountName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listSqlRoleAssignmentsPagingPage(
+    resourceGroupName: string,
+    accountName: string,
+    options?: SqlResourcesListSqlRoleAssignmentsOptionalParams
+  ): AsyncIterableIterator<SqlRoleAssignmentGetResults[]> {
+    let result = await this._listSqlRoleAssignments(
+      resourceGroupName,
+      accountName,
+      options
+    );
+    yield result.value || [];
+  }
+
+  private async *listSqlRoleAssignmentsPagingAll(
+    resourceGroupName: string,
+    accountName: string,
+    options?: SqlResourcesListSqlRoleAssignmentsOptionalParams
+  ): AsyncIterableIterator<SqlRoleAssignmentGetResults> {
+    for await (const page of this.listSqlRoleAssignmentsPagingPage(
+      resourceGroupName,
+      accountName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
    * Lists the SQL databases under an existing Azure Cosmos DB database account.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param accountName Cosmos DB database account name.
@@ -780,6 +929,188 @@ export class SqlResourcesImpl implements SqlResources {
       accountName,
       databaseName,
       updateThroughputParameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
+   * Migrate an Azure Cosmos DB SQL database from manual throughput to autoscale
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param options The options parameters.
+   */
+  async beginMigrateSqlDatabaseToAutoscale(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    options?: SqlResourcesMigrateSqlDatabaseToAutoscaleOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<SqlResourcesMigrateSqlDatabaseToAutoscaleResponse>,
+      SqlResourcesMigrateSqlDatabaseToAutoscaleResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<SqlResourcesMigrateSqlDatabaseToAutoscaleResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { resourceGroupName, accountName, databaseName, options },
+      migrateSqlDatabaseToAutoscaleOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs
+    });
+  }
+
+  /**
+   * Migrate an Azure Cosmos DB SQL database from manual throughput to autoscale
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param options The options parameters.
+   */
+  async beginMigrateSqlDatabaseToAutoscaleAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    options?: SqlResourcesMigrateSqlDatabaseToAutoscaleOptionalParams
+  ): Promise<SqlResourcesMigrateSqlDatabaseToAutoscaleResponse> {
+    const poller = await this.beginMigrateSqlDatabaseToAutoscale(
+      resourceGroupName,
+      accountName,
+      databaseName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
+   * Migrate an Azure Cosmos DB SQL database from autoscale to manual throughput
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param options The options parameters.
+   */
+  async beginMigrateSqlDatabaseToManualThroughput(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    options?: SqlResourcesMigrateSqlDatabaseToManualThroughputOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<
+        SqlResourcesMigrateSqlDatabaseToManualThroughputResponse
+      >,
+      SqlResourcesMigrateSqlDatabaseToManualThroughputResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<SqlResourcesMigrateSqlDatabaseToManualThroughputResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { resourceGroupName, accountName, databaseName, options },
+      migrateSqlDatabaseToManualThroughputOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs
+    });
+  }
+
+  /**
+   * Migrate an Azure Cosmos DB SQL database from autoscale to manual throughput
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param options The options parameters.
+   */
+  async beginMigrateSqlDatabaseToManualThroughputAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    options?: SqlResourcesMigrateSqlDatabaseToManualThroughputOptionalParams
+  ): Promise<SqlResourcesMigrateSqlDatabaseToManualThroughputResponse> {
+    const poller = await this.beginMigrateSqlDatabaseToManualThroughput(
+      resourceGroupName,
+      accountName,
+      databaseName,
       options
     );
     return poller.pollUntilDone();
@@ -1147,6 +1478,198 @@ export class SqlResourcesImpl implements SqlResources {
       databaseName,
       containerName,
       updateThroughputParameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
+   * Migrate an Azure Cosmos DB SQL container from manual throughput to autoscale
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param containerName Cosmos DB container name.
+   * @param options The options parameters.
+   */
+  async beginMigrateSqlContainerToAutoscale(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    containerName: string,
+    options?: SqlResourcesMigrateSqlContainerToAutoscaleOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<SqlResourcesMigrateSqlContainerToAutoscaleResponse>,
+      SqlResourcesMigrateSqlContainerToAutoscaleResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<SqlResourcesMigrateSqlContainerToAutoscaleResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { resourceGroupName, accountName, databaseName, containerName, options },
+      migrateSqlContainerToAutoscaleOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs
+    });
+  }
+
+  /**
+   * Migrate an Azure Cosmos DB SQL container from manual throughput to autoscale
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param containerName Cosmos DB container name.
+   * @param options The options parameters.
+   */
+  async beginMigrateSqlContainerToAutoscaleAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    containerName: string,
+    options?: SqlResourcesMigrateSqlContainerToAutoscaleOptionalParams
+  ): Promise<SqlResourcesMigrateSqlContainerToAutoscaleResponse> {
+    const poller = await this.beginMigrateSqlContainerToAutoscale(
+      resourceGroupName,
+      accountName,
+      databaseName,
+      containerName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
+   * Migrate an Azure Cosmos DB SQL container from autoscale to manual throughput
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param containerName Cosmos DB container name.
+   * @param options The options parameters.
+   */
+  async beginMigrateSqlContainerToManualThroughput(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    containerName: string,
+    options?: SqlResourcesMigrateSqlContainerToManualThroughputOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<
+        SqlResourcesMigrateSqlContainerToManualThroughputResponse
+      >,
+      SqlResourcesMigrateSqlContainerToManualThroughputResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<SqlResourcesMigrateSqlContainerToManualThroughputResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { resourceGroupName, accountName, databaseName, containerName, options },
+      migrateSqlContainerToManualThroughputOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs
+    });
+  }
+
+  /**
+   * Migrate an Azure Cosmos DB SQL container from autoscale to manual throughput
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param containerName Cosmos DB container name.
+   * @param options The options parameters.
+   */
+  async beginMigrateSqlContainerToManualThroughputAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    containerName: string,
+    options?: SqlResourcesMigrateSqlContainerToManualThroughputOptionalParams
+  ): Promise<SqlResourcesMigrateSqlContainerToManualThroughputResponse> {
+    const poller = await this.beginMigrateSqlContainerToManualThroughput(
+      resourceGroupName,
+      accountName,
+      databaseName,
+      containerName,
       options
     );
     return poller.pollUntilDone();
@@ -1955,6 +2478,564 @@ export class SqlResourcesImpl implements SqlResources {
     );
     return poller.pollUntilDone();
   }
+
+  /**
+   * Retrieves the properties of an existing Azure Cosmos DB SQL Role Definition with the given Id.
+   * @param roleDefinitionId The GUID for the Role Definition.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param options The options parameters.
+   */
+  getSqlRoleDefinition(
+    roleDefinitionId: string,
+    resourceGroupName: string,
+    accountName: string,
+    options?: SqlResourcesGetSqlRoleDefinitionOptionalParams
+  ): Promise<SqlResourcesGetSqlRoleDefinitionResponse> {
+    return this.client.sendOperationRequest(
+      { roleDefinitionId, resourceGroupName, accountName, options },
+      getSqlRoleDefinitionOperationSpec
+    );
+  }
+
+  /**
+   * Creates or updates an Azure Cosmos DB SQL Role Definition.
+   * @param roleDefinitionId The GUID for the Role Definition.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param createUpdateSqlRoleDefinitionParameters The properties required to create or update a Role
+   *                                                Definition.
+   * @param options The options parameters.
+   */
+  async beginCreateUpdateSqlRoleDefinition(
+    roleDefinitionId: string,
+    resourceGroupName: string,
+    accountName: string,
+    createUpdateSqlRoleDefinitionParameters: SqlRoleDefinitionCreateUpdateParameters,
+    options?: SqlResourcesCreateUpdateSqlRoleDefinitionOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<SqlResourcesCreateUpdateSqlRoleDefinitionResponse>,
+      SqlResourcesCreateUpdateSqlRoleDefinitionResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<SqlResourcesCreateUpdateSqlRoleDefinitionResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      {
+        roleDefinitionId,
+        resourceGroupName,
+        accountName,
+        createUpdateSqlRoleDefinitionParameters,
+        options
+      },
+      createUpdateSqlRoleDefinitionOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs
+    });
+  }
+
+  /**
+   * Creates or updates an Azure Cosmos DB SQL Role Definition.
+   * @param roleDefinitionId The GUID for the Role Definition.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param createUpdateSqlRoleDefinitionParameters The properties required to create or update a Role
+   *                                                Definition.
+   * @param options The options parameters.
+   */
+  async beginCreateUpdateSqlRoleDefinitionAndWait(
+    roleDefinitionId: string,
+    resourceGroupName: string,
+    accountName: string,
+    createUpdateSqlRoleDefinitionParameters: SqlRoleDefinitionCreateUpdateParameters,
+    options?: SqlResourcesCreateUpdateSqlRoleDefinitionOptionalParams
+  ): Promise<SqlResourcesCreateUpdateSqlRoleDefinitionResponse> {
+    const poller = await this.beginCreateUpdateSqlRoleDefinition(
+      roleDefinitionId,
+      resourceGroupName,
+      accountName,
+      createUpdateSqlRoleDefinitionParameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
+   * Deletes an existing Azure Cosmos DB SQL Role Definition.
+   * @param roleDefinitionId The GUID for the Role Definition.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param options The options parameters.
+   */
+  async beginDeleteSqlRoleDefinition(
+    roleDefinitionId: string,
+    resourceGroupName: string,
+    accountName: string,
+    options?: SqlResourcesDeleteSqlRoleDefinitionOptionalParams
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { roleDefinitionId, resourceGroupName, accountName, options },
+      deleteSqlRoleDefinitionOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs
+    });
+  }
+
+  /**
+   * Deletes an existing Azure Cosmos DB SQL Role Definition.
+   * @param roleDefinitionId The GUID for the Role Definition.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param options The options parameters.
+   */
+  async beginDeleteSqlRoleDefinitionAndWait(
+    roleDefinitionId: string,
+    resourceGroupName: string,
+    accountName: string,
+    options?: SqlResourcesDeleteSqlRoleDefinitionOptionalParams
+  ): Promise<void> {
+    const poller = await this.beginDeleteSqlRoleDefinition(
+      roleDefinitionId,
+      resourceGroupName,
+      accountName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
+   * Retrieves the list of all Azure Cosmos DB SQL Role Definitions.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param options The options parameters.
+   */
+  private _listSqlRoleDefinitions(
+    resourceGroupName: string,
+    accountName: string,
+    options?: SqlResourcesListSqlRoleDefinitionsOptionalParams
+  ): Promise<SqlResourcesListSqlRoleDefinitionsResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, accountName, options },
+      listSqlRoleDefinitionsOperationSpec
+    );
+  }
+
+  /**
+   * Retrieves the properties of an existing Azure Cosmos DB SQL Role Assignment with the given Id.
+   * @param roleAssignmentId The GUID for the Role Assignment.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param options The options parameters.
+   */
+  getSqlRoleAssignment(
+    roleAssignmentId: string,
+    resourceGroupName: string,
+    accountName: string,
+    options?: SqlResourcesGetSqlRoleAssignmentOptionalParams
+  ): Promise<SqlResourcesGetSqlRoleAssignmentResponse> {
+    return this.client.sendOperationRequest(
+      { roleAssignmentId, resourceGroupName, accountName, options },
+      getSqlRoleAssignmentOperationSpec
+    );
+  }
+
+  /**
+   * Creates or updates an Azure Cosmos DB SQL Role Assignment.
+   * @param roleAssignmentId The GUID for the Role Assignment.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param createUpdateSqlRoleAssignmentParameters The properties required to create or update a Role
+   *                                                Assignment.
+   * @param options The options parameters.
+   */
+  async beginCreateUpdateSqlRoleAssignment(
+    roleAssignmentId: string,
+    resourceGroupName: string,
+    accountName: string,
+    createUpdateSqlRoleAssignmentParameters: SqlRoleAssignmentCreateUpdateParameters,
+    options?: SqlResourcesCreateUpdateSqlRoleAssignmentOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<SqlResourcesCreateUpdateSqlRoleAssignmentResponse>,
+      SqlResourcesCreateUpdateSqlRoleAssignmentResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<SqlResourcesCreateUpdateSqlRoleAssignmentResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      {
+        roleAssignmentId,
+        resourceGroupName,
+        accountName,
+        createUpdateSqlRoleAssignmentParameters,
+        options
+      },
+      createUpdateSqlRoleAssignmentOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs
+    });
+  }
+
+  /**
+   * Creates or updates an Azure Cosmos DB SQL Role Assignment.
+   * @param roleAssignmentId The GUID for the Role Assignment.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param createUpdateSqlRoleAssignmentParameters The properties required to create or update a Role
+   *                                                Assignment.
+   * @param options The options parameters.
+   */
+  async beginCreateUpdateSqlRoleAssignmentAndWait(
+    roleAssignmentId: string,
+    resourceGroupName: string,
+    accountName: string,
+    createUpdateSqlRoleAssignmentParameters: SqlRoleAssignmentCreateUpdateParameters,
+    options?: SqlResourcesCreateUpdateSqlRoleAssignmentOptionalParams
+  ): Promise<SqlResourcesCreateUpdateSqlRoleAssignmentResponse> {
+    const poller = await this.beginCreateUpdateSqlRoleAssignment(
+      roleAssignmentId,
+      resourceGroupName,
+      accountName,
+      createUpdateSqlRoleAssignmentParameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
+   * Deletes an existing Azure Cosmos DB SQL Role Assignment.
+   * @param roleAssignmentId The GUID for the Role Assignment.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param options The options parameters.
+   */
+  async beginDeleteSqlRoleAssignment(
+    roleAssignmentId: string,
+    resourceGroupName: string,
+    accountName: string,
+    options?: SqlResourcesDeleteSqlRoleAssignmentOptionalParams
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { roleAssignmentId, resourceGroupName, accountName, options },
+      deleteSqlRoleAssignmentOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs
+    });
+  }
+
+  /**
+   * Deletes an existing Azure Cosmos DB SQL Role Assignment.
+   * @param roleAssignmentId The GUID for the Role Assignment.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param options The options parameters.
+   */
+  async beginDeleteSqlRoleAssignmentAndWait(
+    roleAssignmentId: string,
+    resourceGroupName: string,
+    accountName: string,
+    options?: SqlResourcesDeleteSqlRoleAssignmentOptionalParams
+  ): Promise<void> {
+    const poller = await this.beginDeleteSqlRoleAssignment(
+      roleAssignmentId,
+      resourceGroupName,
+      accountName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
+   * Retrieves the list of all Azure Cosmos DB SQL Role Assignments.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param options The options parameters.
+   */
+  private _listSqlRoleAssignments(
+    resourceGroupName: string,
+    accountName: string,
+    options?: SqlResourcesListSqlRoleAssignmentsOptionalParams
+  ): Promise<SqlResourcesListSqlRoleAssignmentsResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, accountName, options },
+      listSqlRoleAssignmentsOperationSpec
+    );
+  }
+
+  /**
+   * Retrieves continuous backup information for a container resource.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param containerName Cosmos DB container name.
+   * @param location The name of the continuous backup restore location.
+   * @param options The options parameters.
+   */
+  async beginRetrieveContinuousBackupInformation(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    containerName: string,
+    location: ContinuousBackupRestoreLocation,
+    options?: SqlResourcesRetrieveContinuousBackupInformationOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<
+        SqlResourcesRetrieveContinuousBackupInformationResponse
+      >,
+      SqlResourcesRetrieveContinuousBackupInformationResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<SqlResourcesRetrieveContinuousBackupInformationResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      {
+        resourceGroupName,
+        accountName,
+        databaseName,
+        containerName,
+        location,
+        options
+      },
+      retrieveContinuousBackupInformationOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs,
+      lroResourceLocationConfig: "location"
+    });
+  }
+
+  /**
+   * Retrieves continuous backup information for a container resource.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param containerName Cosmos DB container name.
+   * @param location The name of the continuous backup restore location.
+   * @param options The options parameters.
+   */
+  async beginRetrieveContinuousBackupInformationAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    containerName: string,
+    location: ContinuousBackupRestoreLocation,
+    options?: SqlResourcesRetrieveContinuousBackupInformationOptionalParams
+  ): Promise<SqlResourcesRetrieveContinuousBackupInformationResponse> {
+    const poller = await this.beginRetrieveContinuousBackupInformation(
+      resourceGroupName,
+      accountName,
+      databaseName,
+      containerName,
+      location,
+      options
+    );
+    return poller.pollUntilDone();
+  }
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
@@ -2093,6 +3174,70 @@ const updateSqlDatabaseThroughputOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
+  serializer
+};
+const migrateSqlDatabaseToAutoscaleOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/throughputSettings/default/migrateToAutoscale",
+  httpMethod: "POST",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    201: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    202: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    204: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.accountName,
+    Parameters.databaseName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const migrateSqlDatabaseToManualThroughputOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/throughputSettings/default/migrateToManualThroughput",
+  httpMethod: "POST",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    201: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    202: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    204: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.accountName,
+    Parameters.databaseName
+  ],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const listSqlContainersOperationSpec: coreClient.OperationSpec = {
@@ -2237,6 +3382,72 @@ const updateSqlContainerThroughputOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
+const migrateSqlContainerToAutoscaleOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/throughputSettings/default/migrateToAutoscale",
+  httpMethod: "POST",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    201: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    202: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    204: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.accountName,
+    Parameters.databaseName,
+    Parameters.containerName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const migrateSqlContainerToManualThroughputOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/throughputSettings/default/migrateToManualThroughput",
+  httpMethod: "POST",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    201: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    202: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    204: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.accountName,
+    Parameters.databaseName,
+    Parameters.containerName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
 const listSqlStoredProceduresOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/storedProcedures",
@@ -2244,6 +3455,9 @@ const listSqlStoredProceduresOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.SqlStoredProcedureListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   queryParameters: [Parameters.apiVersion],
@@ -2514,5 +3728,246 @@ const deleteSqlTriggerOperationSpec: coreClient.OperationSpec = {
     Parameters.containerName,
     Parameters.triggerName
   ],
+  serializer
+};
+const getSqlRoleDefinitionOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlRoleDefinitions/{roleDefinitionId}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.SqlRoleDefinitionGetResults
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.accountName,
+    Parameters.roleDefinitionId
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const createUpdateSqlRoleDefinitionOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlRoleDefinitions/{roleDefinitionId}",
+  httpMethod: "PUT",
+  responses: {
+    200: {
+      bodyMapper: Mappers.SqlRoleDefinitionGetResults
+    },
+    201: {
+      bodyMapper: Mappers.SqlRoleDefinitionGetResults
+    },
+    202: {
+      bodyMapper: Mappers.SqlRoleDefinitionGetResults
+    },
+    204: {
+      bodyMapper: Mappers.SqlRoleDefinitionGetResults
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  requestBody: Parameters.createUpdateSqlRoleDefinitionParameters,
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.accountName,
+    Parameters.roleDefinitionId
+  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
+  serializer
+};
+const deleteSqlRoleDefinitionOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlRoleDefinitions/{roleDefinitionId}",
+  httpMethod: "DELETE",
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.accountName,
+    Parameters.roleDefinitionId
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listSqlRoleDefinitionsOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlRoleDefinitions",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.SqlRoleDefinitionListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.accountName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const getSqlRoleAssignmentOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlRoleAssignments/{roleAssignmentId}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.SqlRoleAssignmentGetResults
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.accountName,
+    Parameters.roleAssignmentId
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const createUpdateSqlRoleAssignmentOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlRoleAssignments/{roleAssignmentId}",
+  httpMethod: "PUT",
+  responses: {
+    200: {
+      bodyMapper: Mappers.SqlRoleAssignmentGetResults
+    },
+    201: {
+      bodyMapper: Mappers.SqlRoleAssignmentGetResults
+    },
+    202: {
+      bodyMapper: Mappers.SqlRoleAssignmentGetResults
+    },
+    204: {
+      bodyMapper: Mappers.SqlRoleAssignmentGetResults
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  requestBody: Parameters.createUpdateSqlRoleAssignmentParameters,
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.accountName,
+    Parameters.roleAssignmentId
+  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
+  serializer
+};
+const deleteSqlRoleAssignmentOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlRoleAssignments/{roleAssignmentId}",
+  httpMethod: "DELETE",
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.accountName,
+    Parameters.roleAssignmentId
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listSqlRoleAssignmentsOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlRoleAssignments",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.SqlRoleAssignmentListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.accountName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const retrieveContinuousBackupInformationOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/retrieveContinuousBackupInformation",
+  httpMethod: "POST",
+  responses: {
+    200: {
+      bodyMapper: Mappers.BackupInformation
+    },
+    201: {
+      bodyMapper: Mappers.BackupInformation
+    },
+    202: {
+      bodyMapper: Mappers.BackupInformation
+    },
+    204: {
+      bodyMapper: Mappers.BackupInformation
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  requestBody: Parameters.location,
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.accountName,
+    Parameters.databaseName,
+    Parameters.containerName
+  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
   serializer
 };

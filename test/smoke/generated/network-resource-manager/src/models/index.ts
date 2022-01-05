@@ -8,15 +8,15 @@
 
 import * as coreClient from "@azure/core-client";
 
+export type FirewallPolicyRuleCollectionUnion =
+  | FirewallPolicyRuleCollection
+  | FirewallPolicyNatRuleCollection
+  | FirewallPolicyFilterRuleCollection;
 export type FirewallPolicyRuleUnion =
   | FirewallPolicyRule
-  | FirewallPolicyNatRule
-  | FirewallPolicyFilterRule;
-export type FirewallPolicyRuleConditionUnion =
-  | FirewallPolicyRuleCondition
-  | ApplicationRuleCondition
-  | NatRuleCondition
-  | NetworkRuleCondition;
+  | ApplicationRule
+  | NatRule
+  | NetworkRule;
 
 /** An error response from the service. */
 export interface CloudError {
@@ -94,6 +94,14 @@ export interface Resource {
   tags?: { [propertyName: string]: string };
 }
 
+/** ExtendedLocation complex type. */
+export interface ExtendedLocation {
+  /** The name of the extended location. */
+  name?: string;
+  /** The type of the extended location. */
+  type?: ExtendedLocationTypes;
+}
+
 /** A collection of information about the state of the connection between service consumer and provider. */
 export interface PrivateLinkServiceConnectionState {
   /** Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service. */
@@ -110,6 +118,28 @@ export interface CustomDnsConfigPropertiesFormat {
   fqdn?: string;
   /** A list of private ip addresses of the private endpoint. */
   ipAddresses?: string[];
+}
+
+/** An IP Configuration of the private endpoint. */
+export interface PrivateEndpointIPConfiguration {
+  /** The name of the resource that is unique within a resource group. */
+  name?: string;
+  /**
+   * The resource type.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly type?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly etag?: string;
+  /** The ID of a group obtained from the remote resource that this private endpoint should connect to. */
+  groupId?: string;
+  /** The member name of a group obtained from the remote resource that this private endpoint should connect to. */
+  memberName?: string;
+  /** A private ip address obtained from the private endpoint's subnet. */
+  privateIPAddress?: string;
 }
 
 /** DNS settings of a network interface. */
@@ -133,6 +163,12 @@ export interface NetworkInterfaceDnsSettings {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly internalDomainNameSuffix?: string;
+}
+
+/** The base resource set for visibility and auto-approval. */
+export interface ResourceSet {
+  /** The list of subscriptions. */
+  subscriptions?: string[];
 }
 
 /** Parameters that define the retention policy for flow log. */
@@ -188,6 +224,8 @@ export interface ServiceEndpointPropertiesFormat {
 export interface PublicIPAddressSku {
   /** Name of a public IP address SKU. */
   name?: PublicIPAddressSkuName;
+  /** Tier of a public IP address SKU. */
+  tier?: PublicIPAddressSkuTier;
 }
 
 /** Contains FQDN of the DNS record associated with the public IP address. */
@@ -218,39 +256,56 @@ export interface IpTag {
   tag?: string;
 }
 
+/** SKU of nat gateway. */
+export interface NatGatewaySku {
+  /** Name of Nat Gateway SKU. */
+  name?: NatGatewaySkuName;
+}
+
+/** Gateway load balancer tunnel interface of a load balancer backend address pool. */
+export interface GatewayLoadBalancerTunnelInterface {
+  /** Port of gateway load balancer tunnel interface. */
+  port?: number;
+  /** Identifier of gateway load balancer tunnel interface. */
+  identifier?: number;
+  /** Protocol of gateway load balancer tunnel interface. */
+  protocol?: GatewayLoadBalancerTunnelProtocol;
+  /** Traffic type of gateway load balancer tunnel interface. */
+  type?: GatewayLoadBalancerTunnelInterfaceType;
+}
+
 /** Load balancer backend addresses. */
 export interface LoadBalancerBackendAddress {
   /** Name of the backend address. */
   name?: string;
   /** Reference to an existing virtual network. */
-  virtualNetwork?: VirtualNetwork;
+  virtualNetwork?: SubResource;
+  /** Reference to an existing subnet. */
+  subnet?: SubResource;
   /** IP Address belonging to the referenced virtual network. */
   ipAddress?: string;
-  /** Reference to IP address defined in network interfaces. */
-  networkInterfaceIPConfiguration?: NetworkInterfaceIPConfiguration;
-}
-
-/** AddressSpace contains an array of IP address ranges that can be used by subnets of the virtual network. */
-export interface AddressSpace {
-  /** A list of address blocks reserved for this virtual network in CIDR notation. */
-  addressPrefixes?: string[];
-}
-
-/** DhcpOptions contains an array of DNS servers available to VMs deployed in the virtual network. Standard DHCP option for a subnet overrides VNET DHCP options. */
-export interface DhcpOptions {
-  /** The list of DNS servers IP addresses. */
-  dnsServers?: string[];
-}
-
-/** Bgp Communities sent over ExpressRoute with each route corresponding to a prefix in this VNET. */
-export interface VirtualNetworkBgpCommunities {
-  /** The BGP community associated with the virtual network. */
-  virtualNetworkCommunity: string;
   /**
-   * The BGP community associated with the region of the virtual network.
+   * Reference to IP address defined in network interfaces.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
-  readonly regionalCommunity?: string;
+  readonly networkInterfaceIPConfiguration?: SubResource;
+  /** Reference to the frontend ip address configuration defined in regional loadbalancer. */
+  loadBalancerFrontendIPConfiguration?: SubResource;
+  /**
+   * Collection of inbound NAT rule port mappings.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly inboundNatRulesPortMapping?: NatRulePortMapping[];
+}
+
+/** Individual port mappings for inbound NAT rule created for backend pool. */
+export interface NatRulePortMapping {
+  /** Name of inbound NAT rule. */
+  inboundNatRuleName?: string;
+  /** Frontend port. */
+  frontendPort?: number;
+  /** Backend port. */
+  backendPort?: number;
 }
 
 /** PrivateLinkConnection properties for the network interface. */
@@ -296,6 +351,12 @@ export interface ApplicationGatewayCustomError {
   customErrorPageUrl?: string;
 }
 
+/** Application gateway client authentication configuration. */
+export interface ApplicationGatewayClientAuthConfiguration {
+  /** Verify client certificate issuer name on the application gateway. */
+  verifyClientCertIssuerDN?: boolean;
+}
+
 /** Rewrite rule of an application gateway. */
 export interface ApplicationGatewayRewriteRule {
   /** Name of the rewrite rule that is unique within an Application Gateway. */
@@ -314,7 +375,7 @@ export interface ApplicationGatewayRewriteRuleCondition {
   variable?: string;
   /** The pattern, either fixed string or regular expression, that evaluates the truthfulness of the condition. */
   pattern?: string;
-  /** Setting this paramter to truth value with force the pattern to do a case in-sensitive comparison. */
+  /** Setting this parameter to truth value with force the pattern to do a case in-sensitive comparison. */
   ignoreCase?: boolean;
   /** Setting this value as truth will force to check the negation of the condition given by the user. */
   negate?: boolean;
@@ -396,6 +457,14 @@ export interface ApplicationGatewayAutoscaleConfiguration {
   minCapacity: number;
   /** Upper bound on number of Application Gateway capacity. */
   maxCapacity?: number;
+}
+
+/** Application Gateway global configuration. */
+export interface ApplicationGatewayGlobalConfiguration {
+  /** Enable request buffering. */
+  enableRequestBuffering?: boolean;
+  /** Enable response buffering. */
+  enableResponseBuffering?: boolean;
 }
 
 /** Identity for the resource. */
@@ -505,6 +574,22 @@ export interface ApplicationGatewayBackendHealthOnDemand {
   backendAddressPool?: ApplicationGatewayBackendAddressPool;
   /** Application gateway BackendHealthHttp settings. */
   backendHealthHttpSettings?: ApplicationGatewayBackendHealthHttpSettings;
+}
+
+/** Response for ListApplicationGatewayPrivateLinkResources API service call. Gets all private link resources for an application gateway. */
+export interface ApplicationGatewayPrivateLinkResourceListResult {
+  /** List of private link resources of an application gateway. */
+  value?: ApplicationGatewayPrivateLinkResource[];
+  /** URL to get the next set of results. */
+  nextLink?: string;
+}
+
+/** Response for ListApplicationGatewayPrivateEndpointConnection API service call. Gets all private endpoint connections for an application gateway. */
+export interface ApplicationGatewayPrivateEndpointConnectionListResult {
+  /** List of private endpoint connections on an application gateway. */
+  value?: ApplicationGatewayPrivateEndpointConnection[];
+  /** URL to get the next set of results. */
+  nextLink?: string;
 }
 
 /** Common error representation. */
@@ -708,10 +793,18 @@ export interface AzureFirewallNetworkRule {
 
 /** IP addresses associated with azure firewall. */
 export interface HubIPAddresses {
-  /** List of Public IP addresses associated with azure firewall. */
-  publicIPAddresses?: AzureFirewallPublicIPAddress[];
+  /** Public IP addresses associated with azure firewall. */
+  publicIPs?: HubPublicIPAddresses;
   /** Private IP Address associated with azure firewall. */
   privateIPAddress?: string;
+}
+
+/** Public IP addresses associated with azure firewall. */
+export interface HubPublicIPAddresses {
+  /** The list of Public IP addresses associated with azure firewall or IP addresses to be retained. */
+  addresses?: AzureFirewallPublicIPAddress[];
+  /** The number of Public IP addresses associated with azure firewall. */
+  count?: number;
 }
 
 /** Public IP Address associated with azure firewall. */
@@ -756,6 +849,46 @@ export interface AzureFirewallFqdnTagListResult {
   value?: AzureFirewallFqdnTag[];
   /** URL to get the next set of results. */
   nextLink?: string;
+}
+
+/** Azure Web Category Resource. */
+export interface AzureWebCategory {
+  /** Resource ID. */
+  id?: string;
+  /**
+   * Resource name.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly name?: string;
+  /**
+   * Resource type.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly type?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly etag?: string;
+  /**
+   * The name of the group that the category belongs to.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly group?: string;
+}
+
+/** Response for ListAzureWebCategories API service call. */
+export interface AzureWebCategoryListResult {
+  /** List of Azure Web Categories for a given Subscription. */
+  value?: AzureWebCategory[];
+  /** URL to get the next set of results. */
+  nextLink?: string;
+}
+
+/** The sku of this Bastion Host. */
+export interface Sku {
+  /** The name of this Bastion Host. */
+  name?: BastionHostSkuName;
 }
 
 /** Response for ListBastionHosts API service call. */
@@ -907,6 +1040,33 @@ export interface DnsNameAvailabilityResult {
   available?: boolean;
 }
 
+/** Response for the ListNetworkInterface API service call. */
+export interface NetworkInterfaceListResult {
+  /** A list of network interfaces in a resource group. */
+  value?: NetworkInterface[];
+  /**
+   * The URL to get the next set of results.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly nextLink?: string;
+}
+
+/** Response for ListPublicIpAddresses API service call. */
+export interface PublicIPAddressListResult {
+  /** A list of public IP addresses that exists in a resource group. */
+  value?: PublicIPAddress[];
+  /** The URL to get the next set of results. */
+  nextLink?: string;
+}
+
+/** Response for ListCustomIpPrefixes API service call. */
+export interface CustomIpPrefixListResult {
+  /** A list of Custom IP prefixes that exists in a resource group. */
+  value?: CustomIpPrefix[];
+  /** The URL to get the next set of results. */
+  nextLink?: string;
+}
+
 /** DDoS custom policy properties. */
 export interface ProtocolCustomSettingsFormat {
   /** The protocol for which the DDoS protection policy is being customized. */
@@ -966,6 +1126,49 @@ export interface DdosProtectionPlan {
 export interface DdosProtectionPlanListResult {
   /** A list of DDoS protection plans. */
   value?: DdosProtectionPlan[];
+  /**
+   * The URL to get the next set of results.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly nextLink?: string;
+}
+
+/** Qos Traffic Profiler IP Range properties. */
+export interface QosIpRange {
+  /** Start IP Address. */
+  startIP?: string;
+  /** End IP Address. */
+  endIP?: string;
+}
+
+/** Qos Traffic Profiler Port range properties. */
+export interface QosPortRange {
+  /** Qos Port Range start. */
+  start?: number;
+  /** Qos Port Range end. */
+  end?: number;
+}
+
+/** Quality of Service defines the traffic configuration between endpoints. Mandatory to have one marking. */
+export interface QosDefinition {
+  /** List of markings to be used in the configuration. */
+  markings?: number[];
+  /** Source IP ranges. */
+  sourceIpRanges?: QosIpRange[];
+  /** Destination IP ranges. */
+  destinationIpRanges?: QosIpRange[];
+  /** Sources port ranges. */
+  sourcePortRanges?: QosPortRange[];
+  /** Destination port ranges. */
+  destinationPortRanges?: QosPortRange[];
+  /** RNM supported protocol types. */
+  protocol?: ProtocolType;
+}
+
+/** Response for the DscpConfigurationList API service call. */
+export interface DscpConfigurationListResult {
+  /** A list of dscp configurations in a resource group. */
+  value?: DscpConfiguration[];
   /**
    * The URL to get the next set of results.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -1267,6 +1470,8 @@ export interface ExpressRouteLinkMacSecConfig {
   cakSecretIdentifier?: string;
   /** Mac security cipher. */
   cipher?: ExpressRouteLinkMacSecCipher;
+  /** Sci mode enabled/disabled. */
+  sciState?: ExpressRouteLinkMacSecSciState;
 }
 
 /** Response for ListExpressRoutePorts API service call. */
@@ -1285,6 +1490,18 @@ export interface ExpressRouteLinkListResult {
   nextLink?: string;
 }
 
+/** The customer name to be printed on a letter of authorization. */
+export interface GenerateExpressRoutePortsLOARequest {
+  /** The customer name. */
+  customerName: string;
+}
+
+/** Response for GenerateExpressRoutePortsLOA API service call. */
+export interface GenerateExpressRoutePortsLOAResult {
+  /** The content as a base64 encoded string. */
+  encodedContent?: string;
+}
+
 /** ThreatIntel Whitelist for Firewall Policy. */
 export interface FirewallPolicyThreatIntelWhitelist {
   /** List of IP addresses for the ThreatIntel Whitelist. */
@@ -1293,30 +1510,130 @@ export interface FirewallPolicyThreatIntelWhitelist {
   fqdns?: string[];
 }
 
+/** Firewall Policy Insights. */
+export interface FirewallPolicyInsights {
+  /** A flag to indicate if the insights are enabled on the policy. */
+  isEnabled?: boolean;
+  /** Number of days the insights should be enabled on the policy. */
+  retentionDays?: number;
+  /** Workspaces needed to configure the Firewall Policy Insights. */
+  logAnalyticsResources?: FirewallPolicyLogAnalyticsResources;
+}
+
+/** Log Analytics Resources for Firewall Policy Insights. */
+export interface FirewallPolicyLogAnalyticsResources {
+  /** List of workspaces for Firewall Policy Insights. */
+  workspaces?: FirewallPolicyLogAnalyticsWorkspace[];
+  /** The default workspace Id for Firewall Policy Insights. */
+  defaultWorkspaceId?: SubResource;
+}
+
+/** Log Analytics Workspace for Firewall Policy Insights. */
+export interface FirewallPolicyLogAnalyticsWorkspace {
+  /** Region to configure the Workspace. */
+  region?: string;
+  /** The workspace Id for Firewall Policy Insights. */
+  workspaceId?: SubResource;
+}
+
+/** The private IP addresses/IP ranges to which traffic will not be SNAT. */
+export interface FirewallPolicySnat {
+  /** List of private IP addresses/IP address ranges to not be SNAT. */
+  privateRanges?: string[];
+}
+
+/** SQL Settings in Firewall Policy. */
+export interface FirewallPolicySQL {
+  /** A flag to indicate if SQL Redirect traffic filtering is enabled. Turning on the flag requires no rule using port 11000-11999. */
+  allowSqlRedirect?: boolean;
+}
+
+/** DNS Proxy Settings in Firewall Policy. */
+export interface DnsSettings {
+  /** List of Custom DNS Servers. */
+  servers?: string[];
+  /** Enable DNS Proxy on Firewalls attached to the Firewall Policy. */
+  enableProxy?: boolean;
+  /** FQDNs in Network Rules are supported when set to true. */
+  requireProxyForNetworkRules?: boolean;
+}
+
+/** Explicit Proxy Settings in Firewall Policy. */
+export interface ExplicitProxySettings {
+  /** When set to true, explicit proxy mode is enabled. */
+  enableExplicitProxy?: boolean;
+  /** Port number for explicit proxy http protocol, cannot be greater than 64000. */
+  httpPort?: number;
+  /** Port number for explicit proxy https protocol, cannot be greater than 64000. */
+  httpsPort?: number;
+  /** Port number for firewall to serve PAC file. */
+  pacFilePort?: number;
+  /** SAS URL for PAC file. */
+  pacFile?: string;
+}
+
+/** Configuration for intrusion detection mode and rules. */
+export interface FirewallPolicyIntrusionDetection {
+  /** Intrusion detection general state. */
+  mode?: FirewallPolicyIntrusionDetectionStateType;
+  /** Intrusion detection configuration properties. */
+  configuration?: FirewallPolicyIntrusionDetectionConfiguration;
+}
+
+/** The operation for configuring intrusion detection. */
+export interface FirewallPolicyIntrusionDetectionConfiguration {
+  /** List of specific signatures states. */
+  signatureOverrides?: FirewallPolicyIntrusionDetectionSignatureSpecification[];
+  /** List of rules for traffic to bypass. */
+  bypassTrafficSettings?: FirewallPolicyIntrusionDetectionBypassTrafficSpecifications[];
+}
+
+/** Intrusion detection signatures specification states. */
+export interface FirewallPolicyIntrusionDetectionSignatureSpecification {
+  /** Signature id. */
+  id?: string;
+  /** The signature state. */
+  mode?: FirewallPolicyIntrusionDetectionStateType;
+}
+
+/** Intrusion detection bypass traffic specification. */
+export interface FirewallPolicyIntrusionDetectionBypassTrafficSpecifications {
+  /** Name of the bypass traffic rule. */
+  name?: string;
+  /** Description of the bypass traffic rule. */
+  description?: string;
+  /** The rule bypass protocol. */
+  protocol?: FirewallPolicyIntrusionDetectionProtocol;
+  /** List of source IP addresses or ranges for this rule. */
+  sourceAddresses?: string[];
+  /** List of destination IP addresses or ranges for this rule. */
+  destinationAddresses?: string[];
+  /** List of destination ports or ranges. */
+  destinationPorts?: string[];
+  /** List of source IpGroups for this rule. */
+  sourceIpGroups?: string[];
+  /** List of destination IpGroups for this rule. */
+  destinationIpGroups?: string[];
+}
+
 /** Configuration needed to perform TLS termination & initiation. */
 export interface FirewallPolicyTransportSecurity {
   /** The CA used for intermediate CA generation. */
   certificateAuthority?: FirewallPolicyCertificateAuthority;
-  /** List of domains which are excluded from TLS termination. */
-  excludedDomains?: string[];
-  /** Certificates which are to be trusted by the firewall. */
-  trustedRootCertificates?: FirewallPolicyTrustedRootCertificate[];
 }
 
 /** Trusted Root certificates properties for tls. */
 export interface FirewallPolicyCertificateAuthority {
-  /** Name of the CA certificate. */
-  name?: string;
   /** Secret Id of (base-64 encoded unencrypted pfx) 'Secret' or 'Certificate' object stored in KeyVault. */
   keyVaultSecretId?: string;
+  /** Name of the CA certificate. */
+  name?: string;
 }
 
-/** Trusted Root certificates of a firewall policy. */
-export interface FirewallPolicyTrustedRootCertificate {
-  /** Name of the trusted root certificate that is unique within a firewall policy. */
-  name?: string;
-  /** Secret Id of (base-64 encoded unencrypted pfx) the public certificate data stored in KeyVault. */
-  keyVaultSecretId?: string;
+/** SKU of Firewall policy. */
+export interface FirewallPolicySku {
+  /** Tier of Firewall Policy. */
+  tier?: FirewallPolicySkuTier;
 }
 
 /** Response for ListFirewallPolicies API service call. */
@@ -1327,22 +1644,123 @@ export interface FirewallPolicyListResult {
   nextLink?: string;
 }
 
-/** Properties of the rule. */
-export interface FirewallPolicyRule {
+/** Properties of the rule collection. */
+export interface FirewallPolicyRuleCollection {
   /** Polymorphic discriminator, which specifies the different types this object can be */
-  ruleType: "FirewallPolicyNatRule" | "FirewallPolicyFilterRule";
-  /** The name of the rule. */
+  ruleCollectionType:
+    | "FirewallPolicyNatRuleCollection"
+    | "FirewallPolicyFilterRuleCollection";
+  /** The name of the rule collection. */
   name?: string;
-  /** Priority of the Firewall Policy Rule resource. */
+  /** Priority of the Firewall Policy Rule Collection resource. */
   priority?: number;
 }
 
-/** Response for ListFirewallPolicyRuleGroups API service call. */
-export interface FirewallPolicyRuleGroupListResult {
-  /** List of FirewallPolicyRuleGroups in a FirewallPolicy. */
-  value?: FirewallPolicyRuleGroup[];
+/** Response for ListFirewallPolicyRuleCollectionGroups API service call. */
+export interface FirewallPolicyRuleCollectionGroupListResult {
+  /** List of FirewallPolicyRuleCollectionGroups in a FirewallPolicy. */
+  value?: FirewallPolicyRuleCollectionGroup[];
   /** URL to get the next set of results. */
   nextLink?: string;
+}
+
+/** Will describe the query to run against the IDPS signatures DB */
+export interface IdpsQueryObject {
+  /** Contain all filters names and values */
+  filters?: FilterItems[];
+  /** Search term in all columns */
+  search?: string;
+  /** Column to sort response by */
+  orderBy?: OrderBy;
+  /** The number of the results to return in each page */
+  resultsPerPage?: number;
+  /** The number of records matching the filter to skip */
+  skip?: number;
+}
+
+/** Will contain the filter name and values to operate on */
+export interface FilterItems {
+  /** The name of the field we would like to filter */
+  field?: string;
+  /** List of values to filter the current field by */
+  values?: string[];
+}
+
+/** Describes a column to sort */
+export interface OrderBy {
+  /** Describes the actual column name to sort by */
+  field?: string;
+  /** Describes if results should be in ascending/descending order */
+  order?: OrderByOrder;
+}
+
+/** Query result */
+export interface QueryResults {
+  /** Number of total records matching the query. */
+  matchingRecordsCount?: number;
+  /** Array containing the results of the query */
+  signatures?: SingleQueryResult[];
+}
+
+export interface SingleQueryResult {
+  /** The ID of the signature */
+  signatureId?: number;
+  /** The current mode enforced, 0 - Disabled, 1 - Alert, 2 -Deny */
+  mode?: SingleQueryResultMode;
+  /** Describes the severity of signature: 1 - Low, 2 - Medium, 3 - High */
+  severity?: SingleQueryResultSeverity;
+  /** Describes in which direction signature is being enforced: 0 - Inbound, 1 - OutBound, 2 - Bidirectional */
+  direction?: SingleQueryResultDirection;
+  /** Describes the groups the signature belongs to */
+  group?: string;
+  /** Describes what is the signature enforces */
+  description?: string;
+  /** Describes the protocol the signatures is being enforced in */
+  protocol?: string;
+  /** Describes the list of source ports related to this signature */
+  sourcePorts?: string[];
+  /** Describes the list of destination ports related to this signature */
+  destinationPorts?: string[];
+  /** Describes the last updated time of the signature (provided from 3rd party vendor) */
+  lastUpdated?: string;
+  /** Describes if this override is inherited from base policy or not */
+  inheritedFromParentPolicy?: boolean;
+}
+
+/** Contains all specific policy signatures overrides for the IDPS */
+export interface SignaturesOverrides {
+  /** Contains the name of the resource (default) */
+  name?: string;
+  /** Will contain the resource id of the signature override resource */
+  id?: string;
+  /** Will contain the type of the resource: Microsoft.Network/firewallPolicies/intrusionDetectionSignaturesOverrides */
+  type?: string;
+  /** Will contain the properties of the resource (the actual signature overrides) */
+  properties?: SignaturesOverridesProperties;
+}
+
+/** Will contain the properties of the resource (the actual signature overrides) */
+export interface SignaturesOverridesProperties {
+  /** Dictionary of <string> */
+  signatures?: { [propertyName: string]: string };
+}
+
+/** Describes the filter values possibles for a given column */
+export interface SignatureOverridesFilterValuesQuery {
+  /** Describes the name of the column which values will be returned */
+  filterName?: string;
+}
+
+/** Describes the list of all possible values for a specific filter value */
+export interface SignatureOverridesFilterValuesResponse {
+  /** Describes the possible values */
+  filterValues?: string[];
+}
+
+/** Describes an object containing an array with a single item */
+export interface SignaturesOverridesList {
+  /** Describes a list consisting exactly one item describing the policy's signature override status */
+  value?: SignaturesOverrides[];
 }
 
 /** Response for the ListIpAllocations API service call. */
@@ -1365,6 +1783,8 @@ export interface IpGroupListResult {
 export interface LoadBalancerSku {
   /** Name of a load balancer SKU. */
   name?: LoadBalancerSkuName;
+  /** Tier of a load balancer SKU. */
+  tier?: LoadBalancerSkuTier;
 }
 
 /** Response for ListLoadBalancers API service call. */
@@ -1402,7 +1822,7 @@ export interface LoadBalancerFrontendIPConfigurationListResult {
 
 /** Response for ListInboundNatRule API service call. */
 export interface InboundNatRuleListResult {
-  /** A list of inbound nat rules in a load balancer. */
+  /** A list of inbound NAT rules in a load balancer. */
   value?: InboundNatRule[];
   /**
    * The URL to get the next set of results.
@@ -1433,17 +1853,6 @@ export interface LoadBalancerOutboundRuleListResult {
   readonly nextLink?: string;
 }
 
-/** Response for the ListNetworkInterface API service call. */
-export interface NetworkInterfaceListResult {
-  /** A list of network interfaces in a resource group. */
-  value?: NetworkInterface[];
-  /**
-   * The URL to get the next set of results.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly nextLink?: string;
-}
-
 /** Response for ListProbe API service call. */
 export interface LoadBalancerProbeListResult {
   /** A list of probes in a load balancer. */
@@ -1455,10 +1864,56 @@ export interface LoadBalancerProbeListResult {
   readonly nextLink?: string;
 }
 
-/** SKU of nat gateway. */
-export interface NatGatewaySku {
-  /** Name of Nat Gateway SKU. */
-  name?: NatGatewaySkuName;
+/** The request for a VIP swap. */
+export interface LoadBalancerVipSwapRequest {
+  /** A list of frontend IP configuration resources that should swap VIPs. */
+  frontendIPConfigurations?: LoadBalancerVipSwapRequestFrontendIPConfiguration[];
+}
+
+/** VIP swap request's frontend IP configuration object. */
+export interface LoadBalancerVipSwapRequestFrontendIPConfiguration {
+  /** The ID of frontend IP configuration resource. */
+  id?: string;
+  /** A reference to public IP address resource. */
+  publicIPAddress?: SubResource;
+}
+
+/** The request for a QueryInboundNatRulePortMapping API. Either IpConfiguration or IpAddress should be set */
+export interface QueryInboundNatRulePortMappingRequest {
+  /** NetworkInterfaceIPConfiguration set in load balancer backend address. */
+  ipConfiguration?: SubResource;
+  /** IP address set in load balancer backend address. */
+  ipAddress?: string;
+}
+
+/** The response for a QueryInboundNatRulePortMapping API. */
+export interface BackendAddressInboundNatRulePortMappings {
+  /** Collection of inbound NAT rule port mappings. */
+  inboundNatRulePortMappings?: InboundNatRulePortMapping[];
+}
+
+/** Individual port mappings for inbound NAT rule created for backend pool. */
+export interface InboundNatRulePortMapping {
+  /**
+   * Name of inbound NAT rule.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly inboundNatRuleName?: string;
+  /**
+   * The reference to the transport protocol used by the inbound NAT rule.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly protocol?: TransportProtocol;
+  /**
+   * Frontend port.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly frontendPort?: number;
+  /**
+   * Backend port.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly backendPort?: number;
 }
 
 /** Response for ListNatGateways API service call. */
@@ -1523,6 +1978,8 @@ export interface EffectiveNetworkSecurityGroup {
 
 /** The effective network security group association. */
 export interface EffectiveNetworkSecurityGroupAssociation {
+  /** The ID of the Azure network manager if assigned. */
+  networkManager?: SubResource;
   /** The ID of the subnet if assigned. */
   subnet?: SubResource;
   /** The ID of the network interface if assigned. */
@@ -1641,6 +2098,16 @@ export interface SecurityRuleListResult {
   nextLink?: string;
 }
 
+/** Network Virtual Appliance Sku Properties. */
+export interface VirtualApplianceSkuProperties {
+  /** Virtual Appliance Vendor. */
+  vendor?: string;
+  /** Virtual Appliance Scale Unit. */
+  bundledScaleUnit?: string;
+  /** Virtual Appliance Version. */
+  marketPlaceVersion?: string;
+}
+
 /** Network Virtual Appliance NIC properties. */
 export interface VirtualApplianceNicProperties {
   /**
@@ -1660,22 +2127,68 @@ export interface VirtualApplianceNicProperties {
   readonly privateIpAddress?: string;
 }
 
-/** Network Virtual Appliance Sku Properties. */
-export interface VirtualApplianceSkuProperties {
-  /** Virtual Appliance Vendor. */
-  vendor?: string;
-  /** Virtual Appliance Scale Unit. */
-  bundledScaleUnit?: string;
-  /** Virtual Appliance Version. */
-  marketPlaceVersion?: string;
-}
-
 /** Response for ListNetworkVirtualAppliances API service call. */
 export interface NetworkVirtualApplianceListResult {
   /** List of Network Virtual Appliances. */
   value?: NetworkVirtualAppliance[];
   /** URL to get the next set of results. */
   nextLink?: string;
+}
+
+/** Network Virtual Appliance Sku Properties. */
+export interface Office365PolicyProperties {
+  /** Office 365 breakout categories. */
+  breakOutCategories?: BreakOutCategoryPolicies;
+}
+
+/** Network Virtual Appliance Sku Properties. */
+export interface BreakOutCategoryPolicies {
+  /** Flag to control breakout of o365 allow category. */
+  allow?: boolean;
+  /** Flag to control breakout of o365 optimize category. */
+  optimize?: boolean;
+  /** Flag to control breakout of o365 default category. */
+  default?: boolean;
+}
+
+/** Response for ListNetworkVirtualApplianceSites API service call. */
+export interface NetworkVirtualApplianceSiteListResult {
+  /** List of Network Virtual Appliance sites. */
+  value?: VirtualApplianceSite[];
+  /** URL to get the next set of results. */
+  nextLink?: string;
+}
+
+/** Response for ListNetworkVirtualApplianceSkus API service call. */
+export interface NetworkVirtualApplianceSkuListResult {
+  /** List of Network Virtual Appliance Skus that are available. */
+  value?: NetworkVirtualApplianceSku[];
+  /** URL to get the next set of results. */
+  nextLink?: string;
+}
+
+/** List of available Sku and instances. */
+export interface NetworkVirtualApplianceSkuInstances {
+  /**
+   * Scale Unit.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly scaleUnit?: string;
+  /**
+   * Instance Count.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly instanceCount?: number;
+}
+
+/** Properties of the Inbound Security Rules resource. */
+export interface InboundSecurityRules {
+  /** Protocol. This should be either TCP or UDP. */
+  protocol?: InboundSecurityRulesProtocol;
+  /** The CIDR or source IP range. Only /30, /31 and /32 Ip ranges are allowed. */
+  sourceAddressPrefix?: string;
+  /** NVA port ranges to be opened up. One needs to provide specific ports. */
+  destinationPortRange?: number;
 }
 
 /** The error object. */
@@ -2160,10 +2673,69 @@ export interface ConnectivityHop {
    */
   readonly nextHopIds?: string[];
   /**
+   * List of previous hop identifiers.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly previousHopIds?: string[];
+  /**
+   * List of hop links.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly links?: HopLink[];
+  /**
+   * List of previous hop links.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly previousLinks?: HopLink[];
+  /**
    * List of issues.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly issues?: ConnectivityIssue[];
+}
+
+/** Hop link. */
+export interface HopLink {
+  /**
+   * The ID of the next hop.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly nextHopId?: string;
+  /**
+   * Link type.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly linkType?: string;
+  /**
+   * List of issues.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly issues?: ConnectivityIssue[];
+  /**
+   * Provides additional context on links.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly context?: { [propertyName: string]: string };
+  /**
+   * Resource ID.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly resourceId?: string;
+  /**
+   * Minimum roundtrip time in milliseconds.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly roundTripTimeMin?: number;
+  /**
+   * Average roundtrip time in milliseconds.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly roundTripTimeAvg?: number;
+  /**
+   * Maximum roundtrip time in milliseconds.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly roundTripTimeMax?: number;
 }
 
 /** Information about an issue encountered in the process of checking for connectivity. */
@@ -2449,12 +3021,18 @@ export interface ConnectionMonitorDestination {
 export interface ConnectionMonitorEndpoint {
   /** The name of the connection monitor endpoint. */
   name: string;
+  /** The endpoint type. */
+  type?: EndpointType;
   /** Resource ID of the connection monitor endpoint. */
   resourceId?: string;
   /** Address of the connection monitor endpoint (IP or domain name). */
   address?: string;
   /** Filter for sub-items within the endpoint. */
   filter?: ConnectionMonitorEndpointFilter;
+  /** Endpoint scope. */
+  scope?: ConnectionMonitorEndpointScope;
+  /** Test coverage for the endpoint. */
+  coverageLevel?: CoverageLevel;
 }
 
 /** Describes the connection monitor endpoint filter. */
@@ -2470,6 +3048,20 @@ export interface ConnectionMonitorEndpointFilterItem {
   /** The type of item included in the filter. Currently only 'AgentAddress' is supported. */
   type?: ConnectionMonitorEndpointFilterItemType;
   /** The address of the filter item. */
+  address?: string;
+}
+
+/** Describes the connection monitor endpoint scope. */
+export interface ConnectionMonitorEndpointScope {
+  /** List of items which needs to be included to the endpoint scope. */
+  include?: ConnectionMonitorEndpointScopeItem[];
+  /** List of items which needs to be excluded from the endpoint scope. */
+  exclude?: ConnectionMonitorEndpointScopeItem[];
+}
+
+/** Describes the connection monitor endpoint scope item. */
+export interface ConnectionMonitorEndpointScopeItem {
+  /** The address of the endpoint item. Supported types are IPv4/IPv6 subnet mask or IPv4/IPv6 IP address. */
   address?: string;
 }
 
@@ -2515,6 +3107,8 @@ export interface ConnectionMonitorTcpConfiguration {
   port?: number;
   /** Value indicating whether path evaluation with trace route should be disabled. */
   disableTraceRoute?: boolean;
+  /** Destination port behavior. */
+  destinationPortBehavior?: DestinationPortBehavior;
 }
 
 /** Describes the ICMP configuration. */
@@ -2811,6 +3405,8 @@ export interface AvailablePrivateEndpointType {
   type?: string;
   /** The name of the service and resource. */
   resourceName?: string;
+  /** Display name of the resource. */
+  displayName?: string;
 }
 
 /** PrivateDnsZoneConfig resource. */
@@ -2854,12 +3450,6 @@ export interface PrivateDnsZoneGroupListResult {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
-}
-
-/** The base resource set for visibility and auto-approval. */
-export interface ResourceSet {
-  /** The list of subscriptions. */
-  subscriptions?: string[];
 }
 
 /** Response for the ListPrivateLinkService API service call. */
@@ -2913,18 +3503,12 @@ export interface AutoApprovedPrivateLinkService {
   privateLinkService?: string;
 }
 
-/** Response for ListPublicIpAddresses API service call. */
-export interface PublicIPAddressListResult {
-  /** A list of public IP addresses that exists in a resource group. */
-  value?: PublicIPAddress[];
-  /** The URL to get the next set of results. */
-  nextLink?: string;
-}
-
 /** SKU of a public IP prefix. */
 export interface PublicIPPrefixSku {
   /** Name of a public IP prefix SKU. */
   name?: PublicIPPrefixSkuName;
+  /** Tier of a public IP prefix SKU. */
+  tier?: PublicIPPrefixSkuTier;
 }
 
 /** Reference to a public IP address. */
@@ -3056,6 +3640,11 @@ export interface ServiceTagsListResult {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly values?: ServiceTagInformation[];
+  /**
+   * The URL to get next page of service tag information resources.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly nextLink?: string;
 }
 
 /** The service tag information. */
@@ -3075,6 +3664,11 @@ export interface ServiceTagInformation {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly id?: string;
+  /**
+   * The iteration number of service tag object for region.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly serviceTagChangeNumber?: string;
 }
 
 /** Properties of the service tag information. */
@@ -3099,6 +3693,22 @@ export interface ServiceTagInformationPropertiesFormat {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly addressPrefixes?: string[];
+  /**
+   * The state of the service tag.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly state?: string;
+}
+
+/** Response for Get ServiceTagInformation API service call. Retrieves the list of service tag information resources. */
+export interface ServiceTagInformationListResult {
+  /** The list of service tag information resources. */
+  value?: ServiceTagInformation[];
+  /**
+   * The URL to get the next set of results.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly nextLink?: string;
 }
 
 /** The list usages operation response. */
@@ -3132,6 +3742,37 @@ export interface UsageName {
   value?: string;
   /** A localized string describing the resource name. */
   localizedValue?: string;
+}
+
+/** AddressSpace contains an array of IP address ranges that can be used by subnets of the virtual network. */
+export interface AddressSpace {
+  /** A list of address blocks reserved for this virtual network in CIDR notation. */
+  addressPrefixes?: string[];
+}
+
+/** DhcpOptions contains an array of DNS servers available to VMs deployed in the virtual network. Standard DHCP option for a subnet overrides VNET DHCP options. */
+export interface DhcpOptions {
+  /** The list of DNS servers IP addresses. */
+  dnsServers?: string[];
+}
+
+/** Bgp Communities sent over ExpressRoute with each route corresponding to a prefix in this VNET. */
+export interface VirtualNetworkBgpCommunities {
+  /** The BGP community associated with the virtual network. */
+  virtualNetworkCommunity: string;
+  /**
+   * The BGP community associated with the region of the virtual network.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly regionalCommunity?: string;
+}
+
+/** Indicates if encryption is enabled on virtual network and if VM without encryption is allowed in encrypted VNet. */
+export interface VirtualNetworkEncryption {
+  /** Indicates if encryption is enabled on the virtual network. */
+  enabled: boolean;
+  /** If the encrypted VNet allows VM that does not support encryption */
+  enforcement?: VirtualNetworkEncryptionEnforcement;
 }
 
 /** Response for the ListVirtualNetworks API service call. */
@@ -3208,6 +3849,8 @@ export interface IPAddressAvailabilityResult {
   available?: boolean;
   /** Contains other available private IP addresses if the asked for address is taken. */
   availableIPAddresses?: string[];
+  /** Private IP address platform reserved. */
+  isPlatformReserved?: boolean;
 }
 
 /** Response for the virtual networks GetUsage API service call. */
@@ -3287,6 +3930,8 @@ export interface VpnClientConfiguration {
   vpnClientRevokedCertificates?: VpnClientRevokedCertificate[];
   /** VpnClientProtocols for Virtual network gateway. */
   vpnClientProtocols?: VpnClientProtocol[];
+  /** VPN authentication types for the virtual network gateway.. */
+  vpnAuthenticationTypes?: VpnAuthenticationType[];
   /** VpnClientIpsecPolicies for virtual network gateway P2S client. */
   vpnClientIpsecPolicies?: IpsecPolicy[];
   /** The radius server address property of the VirtualNetworkGateway resource for vpn client connection. */
@@ -3361,6 +4006,14 @@ export interface IPConfigurationBgpPeeringAddress {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly tunnelIpAddresses?: string[];
+}
+
+/** Vpn NatRule mapping. */
+export interface VpnNatRuleMapping {
+  /** Address space for Vpn NatRule mapping. */
+  addressSpace?: string;
+  /** Port range for Vpn NatRule mapping. */
+  portRange?: string;
 }
 
 /** Response for the ListVirtualNetworkGateways API service call. */
@@ -3681,6 +4334,14 @@ export interface P2SVpnConnectionRequest {
   vpnConnectionIds?: string[];
 }
 
+/** Result of the request to list all nat rules to a virtual network gateway. It contains a list of Nat rules and a URL nextLink to get the next set of results. */
+export interface ListVirtualNetworkGatewayNatRulesResult {
+  /** List of Nat Rules. */
+  value?: VirtualNetworkGatewayNatRule[];
+  /** URL to get the next set of operation list results if there are any. */
+  nextLink?: string;
+}
+
 /** Response for ListVirtualNetworkTap API service call. */
 export interface VirtualNetworkTapListResult {
   /** A list of VirtualNetworkTaps in a resource group. */
@@ -3737,6 +4398,22 @@ export interface VpnLinkBgpSettings {
   asn?: number;
   /** The BGP peering address and BGP identifier of this BGP speaker. */
   bgpPeeringAddress?: string;
+}
+
+/** The Office365 breakout policy. */
+export interface O365PolicyProperties {
+  /** Office365 breakout categories. */
+  breakOutCategories?: O365BreakOutCategoryPolicies;
+}
+
+/** Office365 breakout categories. */
+export interface O365BreakOutCategoryPolicies {
+  /** Flag to control allow category. */
+  allow?: boolean;
+  /** Flag to control optimize category. */
+  optimize?: boolean;
+  /** Flag to control default category. */
+  default?: boolean;
 }
 
 /** Result of the request to list VpnSites. It contains a list of VpnSites and a URL nextLink to get the next set of results. */
@@ -3846,6 +4523,11 @@ export interface PropagatedRouteTable {
 export interface VnetRoute {
   /** List of all Static Routes. */
   staticRoutes?: StaticRoute[];
+  /**
+   * The list of references to HubBgpConnection objects.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly bgpConnections?: SubResource[];
 }
 
 /** List of all Static Routes. */
@@ -3926,12 +4608,50 @@ export interface ListHubVirtualNetworkConnectionsResult {
   nextLink?: string;
 }
 
+/** IP Configuration of a VPN Gateway Resource. */
+export interface VpnGatewayIpConfiguration {
+  /** The identifier of the IP configuration for a VPN Gateway. */
+  id?: string;
+  /** The public IP address of this IP configuration. */
+  publicIpAddress?: string;
+  /** The private IP address of this IP configuration. */
+  privateIpAddress?: string;
+}
+
+/** Start packet capture parameters. */
+export interface VpnGatewayPacketCaptureStartParameters {
+  /** Start Packet capture parameters on vpn gateway. */
+  filterData?: string;
+}
+
+/** Stop packet capture parameters. */
+export interface VpnGatewayPacketCaptureStopParameters {
+  /** SAS url for packet capture on vpn gateway. */
+  sasUrl?: string;
+}
+
 /** Result of the request to list VpnGateways. It contains a list of VpnGateways and a URL nextLink to get the next set of results. */
 export interface ListVpnGatewaysResult {
   /** List of VpnGateways. */
   value?: VpnGateway[];
   /** URL to get the next set of operation list results if there are any. */
   nextLink?: string;
+}
+
+/** Vpn Connection packet capture parameters supplied to start packet capture on gateway connection. */
+export interface VpnConnectionPacketCaptureStartParameters {
+  /** Start Packet capture parameters on vpn connection. */
+  filterData?: string;
+  /** List of site link connection names. */
+  linkConnectionNames?: string[];
+}
+
+/** Vpn Connection packet capture parameters supplied to stop packet capture on gateway connection. */
+export interface VpnConnectionPacketCaptureStopParameters {
+  /** SAS url for packet capture on vpn connection. */
+  sasUrl?: string;
+  /** List of site link connection names. */
+  linkConnectionNames?: string[];
 }
 
 /** Result of the request to list all vpn connections to a virtual wan vpn gateway. It contains a list of Vpn Connections and a URL nextLink to get the next set of results. */
@@ -3946,6 +4666,14 @@ export interface ListVpnConnectionsResult {
 export interface ListVpnSiteLinkConnectionsResult {
   /** List of VpnSiteLinkConnections. */
   value?: VpnSiteLinkConnection[];
+  /** URL to get the next set of operation list results if there are any. */
+  nextLink?: string;
+}
+
+/** Result of the request to list all nat rules to a virtual wan vpn gateway. It contains a list of Nat rules and a URL nextLink to get the next set of results. */
+export interface ListVpnGatewayNatRulesResult {
+  /** List of Nat Rules. */
+  value?: VpnGatewayNatRule[];
   /** URL to get the next set of operation list results if there are any. */
   nextLink?: string;
 }
@@ -4044,6 +4772,67 @@ export interface ExpressRouteConnectionList {
   value?: ExpressRouteConnection[];
 }
 
+/** VirtualHubBgpConnections list. */
+export interface ListVirtualHubBgpConnectionResults {
+  /** The list of VirtualHubBgpConnections. */
+  value?: BgpConnection[];
+  /** URL to get the next set of results. */
+  nextLink?: string;
+}
+
+/** List of virtual router peer routes. */
+export interface PeerRouteList {
+  /** List of peer routes. */
+  value?: PeerRoute[];
+}
+
+/** Peer routing details. */
+export interface PeerRoute {
+  /**
+   * The peer's local address.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly localAddress?: string;
+  /**
+   * The route's network prefix.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly network?: string;
+  /**
+   * The route's next hop.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly nextHop?: string;
+  /**
+   * The peer this route was learned from.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly sourcePeer?: string;
+  /**
+   * The source this route was learned from.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly origin?: string;
+  /**
+   * The route's AS path sequence.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly asPath?: string;
+  /**
+   * The route's weight.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly weight?: number;
+}
+
+/** VirtualHubIpConfigurations list. */
+export interface ListVirtualHubIpConfigurationResults {
+  /** The list of VirtualHubIpConfigurations. */
+  value?: HubIpConfiguration[];
+  /** URL to get the next set of results. */
+  nextLink?: string;
+}
+
 /** RouteTable route. */
 export interface HubRoute {
   /** The name of the Route that is unique within a RouteTable. This name can be used to access this route. */
@@ -4062,6 +4851,32 @@ export interface HubRoute {
 export interface ListHubRouteTablesResult {
   /** List of RouteTables. */
   value?: HubRouteTable[];
+  /** URL to get the next set of operation list results if there are any. */
+  nextLink?: string;
+}
+
+/** The parameters specifying the resource whose effective routes are being requested. */
+export interface EffectiveRoutesParameters {
+  /** The resource whose effective routes are being requested. */
+  resourceId?: string;
+  /** The type of the specified resource like RouteTable, ExpressRouteConnection, HubVirtualNetworkConnection, VpnConnection and P2SConnection. */
+  virtualWanResourceType?: string;
+}
+
+/** The routing policy object used in a RoutingIntent resource. */
+export interface RoutingPolicy {
+  /** The unique name for the routing policy. */
+  name: string;
+  /** List of all destinations which this routing policy is applicable to (for example: Internet, PrivateTraffic). */
+  destinations: string[];
+  /** The next hop resource id on which this routing policy is applicable to. */
+  nextHop: string;
+}
+
+/** List of the routing intent result and a URL nextLink to get the next set of results. */
+export interface ListRoutingIntentResult {
+  /** List of RoutingIntent resource. */
+  value?: RoutingIntent[];
   /** URL to get the next set of operation list results if there are any. */
   nextLink?: string;
 }
@@ -4151,6 +4966,32 @@ export interface OwaspCrsExclusionEntry {
   selectorMatchOperator: OwaspCrsExclusionEntrySelectorMatchOperator;
   /** When matchVariable is a collection, operator used to specify which elements in the collection this exclusion applies to. */
   selector: string;
+  /** The managed rule sets that are associated with the exclusion. */
+  exclusionManagedRuleSets?: ExclusionManagedRuleSet[];
+}
+
+/** Defines a managed rule set for Exclusions. */
+export interface ExclusionManagedRuleSet {
+  /** Defines the rule set type to use. */
+  ruleSetType: string;
+  /** Defines the version of the rule set to use. */
+  ruleSetVersion: string;
+  /** Defines the rule groups to apply to the rule set. */
+  ruleGroups?: ExclusionManagedRuleGroup[];
+}
+
+/** Defines a managed rule group to use for exclusion. */
+export interface ExclusionManagedRuleGroup {
+  /** The managed rule group for exclusion. */
+  ruleGroupName: string;
+  /** List of rules that will be excluded. If none specified, all rules in the group will be excluded. */
+  rules?: ExclusionManagedRule[];
+}
+
+/** Defines a managed rule to use for exclusion. */
+export interface ExclusionManagedRule {
+  /** Identifier for the managed rule. */
+  ruleId: string;
 }
 
 /** Defines a managed rule set. */
@@ -4179,35 +5020,32 @@ export interface ManagedRuleOverride {
   state?: ManagedRuleEnabledState;
 }
 
-/** Properties of the FirewallPolicyNatRuleAction. */
-export interface FirewallPolicyNatRuleAction {
+/** Properties of the FirewallPolicyNatRuleCollectionAction. */
+export interface FirewallPolicyNatRuleCollectionAction {
   /** The type of action. */
-  type?: FirewallPolicyNatRuleActionType;
+  type?: FirewallPolicyNatRuleCollectionActionType;
 }
 
 /** Properties of a rule. */
-export interface FirewallPolicyRuleCondition {
+export interface FirewallPolicyRule {
   /** Polymorphic discriminator, which specifies the different types this object can be */
-  ruleConditionType:
-    | "ApplicationRuleCondition"
-    | "NatRuleCondition"
-    | "NetworkRuleCondition";
-  /** Name of the rule condition. */
+  ruleType: "ApplicationRule" | "NatRule" | "NetworkRule";
+  /** Name of the rule. */
   name?: string;
-  /** Description of the rule condition. */
+  /** Description of the rule. */
   description?: string;
 }
 
-/** Properties of the FirewallPolicyFilterRuleAction. */
-export interface FirewallPolicyFilterRuleAction {
+/** Properties of the FirewallPolicyFilterRuleCollectionAction. */
+export interface FirewallPolicyFilterRuleCollectionAction {
   /** The type of action. */
-  type?: FirewallPolicyFilterRuleActionType;
+  type?: FirewallPolicyFilterRuleCollectionActionType;
 }
 
 /** Properties of the application rule protocol. */
-export interface FirewallPolicyRuleConditionApplicationProtocol {
+export interface FirewallPolicyRuleApplicationProtocol {
   /** Protocol type. */
-  protocolType?: FirewallPolicyRuleConditionApplicationProtocolType;
+  protocolType?: FirewallPolicyRuleApplicationProtocolType;
   /** Port number for the protocol, cannot be greater than 64000. */
   port?: number;
 }
@@ -4227,6 +5065,26 @@ export interface VpnSiteId {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly vpnSite?: string;
+}
+
+/** EffectiveRoutes List. */
+export interface VirtualHubEffectiveRouteList {
+  /** The list of effective routes configured on the virtual hub or the specified resource. */
+  value?: VirtualHubEffectiveRoute[];
+}
+
+/** The effective route configured on the virtual hub or specified resource. */
+export interface VirtualHubEffectiveRoute {
+  /** The list of address prefixes. */
+  addressPrefixes?: string[];
+  /** The list of next hops. */
+  nextHops?: string[];
+  /** The type of the next hop. */
+  nextHopType?: string;
+  /** The ASPath of this route. */
+  asPath?: string;
+  /** The origin of this route. */
+  routeOrigin?: string;
 }
 
 /** IP configuration of an application gateway. Currently 1 public and 1 private IP configuration is allowed. */
@@ -4300,6 +5158,39 @@ export type ApplicationGatewayTrustedRootCertificate = SubResource & {
   readonly provisioningState?: ProvisioningState;
 };
 
+/** Trusted client certificates of an application gateway. */
+export type ApplicationGatewayTrustedClientCertificate = SubResource & {
+  /** Name of the trusted client certificate that is unique within an Application Gateway. */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly etag?: string;
+  /**
+   * Type of the resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly type?: string;
+  /** Certificate public data. */
+  data?: string;
+  /**
+   * Validated certificate data.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly validatedCertData?: string;
+  /**
+   * Distinguished name of client certificate issuer.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly clientCertIssuerDN?: string;
+  /**
+   * The provisioning state of the trusted client certificate resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
 /** SSL certificates of an application gateway. */
 export type ApplicationGatewaySslCertificate = SubResource & {
   /** Name of the SSL certificate that is unique within an Application Gateway. */
@@ -4354,6 +5245,8 @@ export type ApplicationGatewayFrontendIPConfiguration = SubResource & {
   subnet?: SubResource;
   /** Reference to the PublicIP resource. */
   publicIPAddress?: SubResource;
+  /** Reference to the application gateway private link configuration. */
+  privateLinkConfiguration?: SubResource;
   /**
    * The provisioning state of the frontend IP configuration resource.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -4457,6 +5350,8 @@ export type SecurityRule = SubResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
+  /** The type of the resource. */
+  type?: string;
   /** A description for this rule. Restricted to 140 chars. */
   description?: string;
   /** Network protocol this rule applies to. */
@@ -4523,6 +5418,70 @@ export type PrivateLinkServiceConnection = SubResource & {
   privateLinkServiceConnectionState?: PrivateLinkServiceConnectionState;
 };
 
+/** The private link service ip configuration. */
+export type PrivateLinkServiceIpConfiguration = SubResource & {
+  /** The name of private link service ip configuration. */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly etag?: string;
+  /**
+   * The resource type.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly type?: string;
+  /** The private IP address of the IP configuration. */
+  privateIPAddress?: string;
+  /** The private IP address allocation method. */
+  privateIPAllocationMethod?: IPAllocationMethod;
+  /** The reference to the subnet resource. */
+  subnet?: Subnet;
+  /** Whether the ip configuration is primary or not. */
+  primary?: boolean;
+  /**
+   * The provisioning state of the private link service IP configuration resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /** Whether the specific IP configuration is IPv4 or IPv6. Default is IPv4. */
+  privateIPAddressVersion?: IPVersion;
+};
+
+/** PrivateEndpointConnection resource. */
+export type PrivateEndpointConnection = SubResource & {
+  /** The name of the resource that is unique within a resource group. This name can be used to access the resource. */
+  name?: string;
+  /**
+   * The resource type.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly type?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly etag?: string;
+  /**
+   * The resource of private end point.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly privateEndpoint?: PrivateEndpoint;
+  /** A collection of information about the state of the connection between service consumer and provider. */
+  privateLinkServiceConnectionState?: PrivateLinkServiceConnectionState;
+  /**
+   * The provisioning state of the private endpoint connection resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * The consumer link id.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly linkIdentifier?: string;
+};
+
 /** Route resource. */
 export type Route = SubResource & {
   /** The name of the resource that is unique within a resource group. This name can be used to access the resource. */
@@ -4532,6 +5491,8 @@ export type Route = SubResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
+  /** The type of the resource. */
+  type?: string;
   /** The destination CIDR to which the route applies. */
   addressPrefix?: string;
   /** The type of Azure hop the packet should be sent to. */
@@ -4543,6 +5504,8 @@ export type Route = SubResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
+  /** A value indicating whether this route overrides overlapping BGP routes regardless of LPM. */
+  hasBgpOverride?: boolean;
 };
 
 /** Service Endpoint policy definitions. */
@@ -4554,6 +5517,8 @@ export type ServiceEndpointPolicyDefinition = SubResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
+  /** The type of the resource. */
+  type?: string;
   /** A description for this rule. Restricted to 140 chars. */
   description?: string;
   /** Service endpoint name. */
@@ -4677,6 +5642,8 @@ export type Delegation = SubResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
+  /** Resource type. */
+  type?: string;
   /** The name of the service to whom the subnet should be delegated (e.g. Microsoft.Sql/servers). */
   serviceName?: string;
   /**
@@ -4700,6 +5667,8 @@ export type Subnet = SubResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
+  /** Resource type. */
+  type?: string;
   /** The address prefix for the subnet. */
   addressPrefix?: string;
   /** List of address prefixes for the subnet. */
@@ -4754,9 +5723,11 @@ export type Subnet = SubResource & {
    */
   readonly provisioningState?: ProvisioningState;
   /** Enable or Disable apply network policies on private end point in the subnet. */
-  privateEndpointNetworkPolicies?: string;
+  privateEndpointNetworkPolicies?: VirtualNetworkPrivateEndpointNetworkPolicies;
   /** Enable or Disable apply network policies on private link service in the subnet. */
-  privateLinkServiceNetworkPolicies?: string;
+  privateLinkServiceNetworkPolicies?: VirtualNetworkPrivateLinkServiceNetworkPolicies;
+  /** Application gateway IP configurations of virtual network resource. */
+  applicationGatewayIpConfigurations?: ApplicationGatewayIPConfiguration[];
 };
 
 /** Frontend IP address of the load balancer. */
@@ -4807,38 +5778,10 @@ export type FrontendIPConfiguration = SubResource & {
   publicIPAddress?: PublicIPAddress;
   /** The reference to the Public IP Prefix resource. */
   publicIPPrefix?: SubResource;
+  /** The reference to gateway load balancer frontend IP. */
+  gatewayLoadBalancer?: SubResource;
   /**
    * The provisioning state of the frontend IP configuration resource.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/** Peerings in a virtual network resource. */
-export type VirtualNetworkPeering = SubResource & {
-  /** The name of the resource that is unique within a resource group. This name can be used to access the resource. */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly etag?: string;
-  /** Whether the VMs in the local virtual network space would be able to access the VMs in remote virtual network space. */
-  allowVirtualNetworkAccess?: boolean;
-  /** Whether the forwarded traffic from the VMs in the local virtual network will be allowed/disallowed in remote virtual network. */
-  allowForwardedTraffic?: boolean;
-  /** If gateway links can be used in remote virtual networking to link to this virtual network. */
-  allowGatewayTransit?: boolean;
-  /** If remote gateways can be used on this virtual network. If the flag is set to true, and allowGatewayTransit on remote peering is also true, virtual network will use gateways of remote virtual network for transit. Only one peering can have this flag set to true. This flag cannot be set if virtual network already has a gateway. */
-  useRemoteGateways?: boolean;
-  /** The reference to the remote virtual network. The remote virtual network can be in the same or different region (preview). See here to register for the preview and learn more (https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-create-peering). */
-  remoteVirtualNetwork?: SubResource;
-  /** The reference to the remote virtual network address space. */
-  remoteAddressSpace?: AddressSpace;
-  /** The status of the virtual network peering. */
-  peeringState?: VirtualNetworkPeeringState;
-  /**
-   * The provisioning state of the virtual network peering resource.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -4858,13 +5801,17 @@ export type BackendAddressPool = SubResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
+  /** The location of the backend address pool. */
+  location?: string;
+  /** An array of gateway load balancer tunnel interfaces. */
+  tunnelInterfaces?: GatewayLoadBalancerTunnelInterface[];
+  /** An array of backend addresses. */
+  loadBalancerBackendAddresses?: LoadBalancerBackendAddress[];
   /**
    * An array of references to IP addresses defined in network interfaces.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly backendIPConfigurations?: NetworkInterfaceIPConfiguration[];
-  /** An array of backend addresses. */
-  loadBalancerBackendAddresses?: LoadBalancerBackendAddress[];
   /**
    * An array of references to load balancing rules that use this backend address pool.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -4880,6 +5827,11 @@ export type BackendAddressPool = SubResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly outboundRules?: SubResource[];
+  /**
+   * An array of references to inbound NAT rules that use this backend address pool.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly inboundNatRules?: SubResource[];
   /**
    * The provisioning state of the backend address pool resource.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -4920,6 +5872,12 @@ export type InboundNatRule = SubResource & {
   enableFloatingIP?: boolean;
   /** Receive bidirectional TCP Reset on TCP flow idle timeout or unexpected connection termination. This element is only used when the protocol is set to TCP. */
   enableTcpReset?: boolean;
+  /** The port range start for the external endpoint. This property is used together with BackendAddressPool and FrontendPortRangeEnd. Individual inbound NAT rule port mappings will be created for each backend address from BackendAddressPool. Acceptable values range from 1 to 65534. */
+  frontendPortRangeStart?: number;
+  /** The port range end for the external endpoint. This property is used together with BackendAddressPool and FrontendPortRangeStart. Individual inbound NAT rule port mappings will be created for each backend address from BackendAddressPool. Acceptable values range from 1 to 65534. */
+  frontendPortRangeEnd?: number;
+  /** A reference to backendAddressPool resource. */
+  backendAddressPool?: SubResource;
   /**
    * The provisioning state of the inbound NAT rule resource.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -4936,6 +5894,10 @@ export type NetworkInterfaceIPConfiguration = SubResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
+  /** Resource type. */
+  type?: string;
+  /** The reference to gateway load balancer frontend IP. */
+  gatewayLoadBalancer?: SubResource;
   /** The reference to Virtual Network Taps. */
   virtualNetworkTaps?: VirtualNetworkTap[];
   /** The reference to ApplicationGatewayBackendAddressPool resource. */
@@ -5069,6 +6031,8 @@ export type ApplicationGatewayHttpListener = SubResource & {
   hostName?: string;
   /** SSL certificate resource of an application gateway. */
   sslCertificate?: SubResource;
+  /** SSL profile resource of the application gateway. */
+  sslProfile?: SubResource;
   /** Applicable only if protocol is https. Enables SNI for multi-hosting. */
   requireServerNameIndication?: boolean;
   /**
@@ -5082,6 +6046,33 @@ export type ApplicationGatewayHttpListener = SubResource & {
   firewallPolicy?: SubResource;
   /** List of Host names for HTTP Listener that allows special wildcard characters as well. */
   hostNames?: string[];
+};
+
+/** SSL profile of an application gateway. */
+export type ApplicationGatewaySslProfile = SubResource & {
+  /** Name of the SSL profile that is unique within an Application Gateway. */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly etag?: string;
+  /**
+   * Type of the resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly type?: string;
+  /** Array of references to application gateway trusted client certificates. */
+  trustedClientCertificates?: SubResource[];
+  /** SSL policy of the application gateway resource. */
+  sslPolicy?: ApplicationGatewaySslPolicy;
+  /** Client authentication configuration of the application gateway resource. */
+  clientAuthConfiguration?: ApplicationGatewayClientAuthConfiguration;
+  /**
+   * The provisioning state of the HTTP listener resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly provisioningState?: ProvisioningState;
 };
 
 /** Path rule of URL path map of an application gateway. */
@@ -5108,6 +6099,8 @@ export type ApplicationGatewayPathRule = SubResource & {
   redirectConfiguration?: SubResource;
   /** Rewrite rule set resource of URL path map path rule. */
   rewriteRuleSet?: SubResource;
+  /** Load Distribution Policy resource of URL path map path rule. */
+  loadDistributionPolicy?: SubResource;
   /**
    * The provisioning state of the path rule resource.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -5139,6 +6132,8 @@ export type ApplicationGatewayUrlPathMap = SubResource & {
   defaultRewriteRuleSet?: SubResource;
   /** Default redirect configuration resource of URL path map. */
   defaultRedirectConfiguration?: SubResource;
+  /** Default Load Distribution Policy resource of URL path map. */
+  defaultLoadDistributionPolicy?: SubResource;
   /** Path rule of URL path map resource. */
   pathRules?: ApplicationGatewayPathRule[];
   /**
@@ -5178,6 +6173,8 @@ export type ApplicationGatewayRequestRoutingRule = SubResource & {
   rewriteRuleSet?: SubResource;
   /** Redirect configuration resource of the application gateway. */
   redirectConfiguration?: SubResource;
+  /** Load Distribution Policy resource of the application gateway. */
+  loadDistributionPolicy?: SubResource;
   /**
    * The provisioning state of the request routing rule resource.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -5233,6 +6230,164 @@ export type ApplicationGatewayRedirectConfiguration = SubResource & {
   urlPathMaps?: SubResource[];
   /** Path rules specifying redirect configuration. */
   pathRules?: SubResource[];
+};
+
+/** The application gateway private link ip configuration. */
+export type ApplicationGatewayPrivateLinkIpConfiguration = SubResource & {
+  /** The name of application gateway private link ip configuration. */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly etag?: string;
+  /**
+   * The resource type.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly type?: string;
+  /** The private IP address of the IP configuration. */
+  privateIPAddress?: string;
+  /** The private IP address allocation method. */
+  privateIPAllocationMethod?: IPAllocationMethod;
+  /** Reference to the subnet resource. */
+  subnet?: SubResource;
+  /** Whether the ip configuration is primary or not. */
+  primary?: boolean;
+  /**
+   * The provisioning state of the application gateway private link IP configuration.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/** Private Link Configuration on an application gateway. */
+export type ApplicationGatewayPrivateLinkConfiguration = SubResource & {
+  /** Name of the private link configuration that is unique within an Application Gateway. */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly etag?: string;
+  /**
+   * Type of the resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly type?: string;
+  /** An array of application gateway private link ip configurations. */
+  ipConfigurations?: ApplicationGatewayPrivateLinkIpConfiguration[];
+  /**
+   * The provisioning state of the application gateway private link configuration.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/** Private Endpoint connection on an application gateway. */
+export type ApplicationGatewayPrivateEndpointConnection = SubResource & {
+  /** Name of the private endpoint connection on an application gateway. */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly etag?: string;
+  /**
+   * Type of the resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly type?: string;
+  /**
+   * The resource of private end point.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly privateEndpoint?: PrivateEndpoint;
+  /** A collection of information about the state of the connection between service consumer and provider. */
+  privateLinkServiceConnectionState?: PrivateLinkServiceConnectionState;
+  /**
+   * The provisioning state of the application gateway private endpoint connection resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * The consumer link id.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly linkIdentifier?: string;
+};
+
+/** Load Distribution Target of an application gateway. */
+export type ApplicationGatewayLoadDistributionTarget = SubResource & {
+  /** Name of the load distribution policy that is unique within an Application Gateway. */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly etag?: string;
+  /**
+   * Type of the resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly type?: string;
+  /** Weight per server. Range between 1 and 100. */
+  weightPerServer?: number;
+  /** Backend address pool resource of the application gateway. */
+  backendAddressPool?: SubResource;
+};
+
+/** Load Distribution Policy of an application gateway. */
+export type ApplicationGatewayLoadDistributionPolicy = SubResource & {
+  /** Name of the load distribution policy that is unique within an Application Gateway. */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly etag?: string;
+  /**
+   * Type of the resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly type?: string;
+  /** Load Distribution Targets resource of an application gateway. */
+  loadDistributionTargets?: ApplicationGatewayLoadDistributionTarget[];
+  /** Load Distribution Targets resource of an application gateway. */
+  loadDistributionAlgorithm?: ApplicationGatewayLoadDistributionAlgorithm;
+  /**
+   * The provisioning state of the Load Distribution Policy resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/** PrivateLink Resource of an application gateway. */
+export type ApplicationGatewayPrivateLinkResource = SubResource & {
+  /** Name of the private link resource that is unique within an Application Gateway. */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly etag?: string;
+  /**
+   * Type of the resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly type?: string;
+  /**
+   * Group identifier of private link resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly groupId?: string;
+  /**
+   * Required member names of private link resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly requiredMembers?: string[];
+  /** Required DNS zone names of the the private link resource. */
+  requiredZoneNames?: string[];
 };
 
 /** An Ssl predefined policy. */
@@ -5645,8 +6800,8 @@ export type ExpressRouteLink = SubResource & {
   macSecConfig?: ExpressRouteLinkMacSecConfig;
 };
 
-/** Rule Group resource. */
-export type FirewallPolicyRuleGroup = SubResource & {
+/** Rule Collection Group resource. */
+export type FirewallPolicyRuleCollectionGroup = SubResource & {
   /** The name of the resource that is unique within a resource group. This name can be used to access the resource. */
   name?: string;
   /**
@@ -5659,12 +6814,12 @@ export type FirewallPolicyRuleGroup = SubResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly type?: string;
-  /** Priority of the Firewall Policy Rule Group resource. */
+  /** Priority of the Firewall Policy Rule Collection Group resource. */
   priority?: number;
-  /** Group of Firewall Policy rules. */
-  rules?: FirewallPolicyRuleUnion[];
+  /** Group of Firewall Policy rule collections. */
+  ruleCollections?: FirewallPolicyRuleCollectionUnion[];
   /**
-   * The provisioning state of the firewall policy rule group resource.
+   * The provisioning state of the firewall policy rule collection group resource.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -5688,6 +6843,8 @@ export type LoadBalancingRule = SubResource & {
   frontendIPConfiguration?: SubResource;
   /** A reference to a pool of DIPs. Inbound traffic is randomly load balanced across IPs in the backend IPs. */
   backendAddressPool?: SubResource;
+  /** An array of references to pool of DIPs. */
+  backendAddressPools?: SubResource[];
   /** The reference to the load balancer probe used by the load balancing rule. */
   probe?: SubResource;
   /** The reference to the transport protocol used by the load balancing rule. */
@@ -5880,6 +7037,54 @@ export type ContainerNetworkInterface = SubResource & {
   readonly provisioningState?: ProvisioningState;
 };
 
+/** Virtual Appliance Site resource. */
+export type VirtualApplianceSite = SubResource & {
+  /** Name of the virtual appliance site. */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly etag?: string;
+  /**
+   * Site type.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly type?: string;
+  /** Address Prefix. */
+  addressPrefix?: string;
+  /** Office 365 Policy. */
+  o365Policy?: Office365PolicyProperties;
+  /**
+   * The provisioning state of the resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/** NVA Inbound Security Rule resource. */
+export type InboundSecurityRule = SubResource & {
+  /** Name of security rule collection. */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly etag?: string;
+  /**
+   * NVA inbound security rule type.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly type?: string;
+  /** List of allowed rules. */
+  rules?: InboundSecurityRules[];
+  /**
+   * The provisioning state of the resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
 /** Private dns zone group resource. */
 export type PrivateDnsZoneGroup = SubResource & {
   /** Name of the resource that is unique within a resource group. This name can be used to access the resource. */
@@ -5896,70 +7101,6 @@ export type PrivateDnsZoneGroup = SubResource & {
   readonly provisioningState?: ProvisioningState;
   /** A collection of private dns zone configurations of the private dns zone group. */
   privateDnsZoneConfigs?: PrivateDnsZoneConfig[];
-};
-
-/** The private link service ip configuration. */
-export type PrivateLinkServiceIpConfiguration = SubResource & {
-  /** The name of private link service ip configuration. */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly etag?: string;
-  /**
-   * The resource type.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly type?: string;
-  /** The private IP address of the IP configuration. */
-  privateIPAddress?: string;
-  /** The private IP address allocation method. */
-  privateIPAllocationMethod?: IPAllocationMethod;
-  /** The reference to the subnet resource. */
-  subnet?: Subnet;
-  /** Whether the ip configuration is primary or not. */
-  primary?: boolean;
-  /**
-   * The provisioning state of the private link service IP configuration resource.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /** Whether the specific IP configuration is IPv4 or IPv6. Default is IPv4. */
-  privateIPAddressVersion?: IPVersion;
-};
-
-/** PrivateEndpointConnection resource. */
-export type PrivateEndpointConnection = SubResource & {
-  /** The name of the resource that is unique within a resource group. This name can be used to access the resource. */
-  name?: string;
-  /**
-   * The resource type.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly type?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly etag?: string;
-  /**
-   * The resource of private end point.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly privateEndpoint?: PrivateEndpoint;
-  /** A collection of information about the state of the connection between service consumer and provider. */
-  privateLinkServiceConnectionState?: PrivateLinkServiceConnectionState;
-  /**
-   * The provisioning state of the private endpoint connection resource.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * The consumer link id.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly linkIdentifier?: string;
 };
 
 /** Route Filter Rule Resource. */
@@ -5984,6 +7125,56 @@ export type RouteFilterRule = SubResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
+};
+
+/** Peerings in a virtual network resource. */
+export type VirtualNetworkPeering = SubResource & {
+  /** The name of the resource that is unique within a resource group. This name can be used to access the resource. */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly etag?: string;
+  /** Resource type. */
+  type?: string;
+  /** Whether the VMs in the local virtual network space would be able to access the VMs in remote virtual network space. */
+  allowVirtualNetworkAccess?: boolean;
+  /** Whether the forwarded traffic from the VMs in the local virtual network will be allowed/disallowed in remote virtual network. */
+  allowForwardedTraffic?: boolean;
+  /** If gateway links can be used in remote virtual networking to link to this virtual network. */
+  allowGatewayTransit?: boolean;
+  /** If remote gateways can be used on this virtual network. If the flag is set to true, and allowGatewayTransit on remote peering is also true, virtual network will use gateways of remote virtual network for transit. Only one peering can have this flag set to true. This flag cannot be set if virtual network already has a gateway. */
+  useRemoteGateways?: boolean;
+  /** The reference to the remote virtual network. The remote virtual network can be in the same or different region (preview). See here to register for the preview and learn more (https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-create-peering). */
+  remoteVirtualNetwork?: SubResource;
+  /** The reference to the address space peered with the remote virtual network. */
+  remoteAddressSpace?: AddressSpace;
+  /** The reference to the current address space of the remote virtual network. */
+  remoteVirtualNetworkAddressSpace?: AddressSpace;
+  /** The reference to the remote virtual network's Bgp Communities. */
+  remoteBgpCommunities?: VirtualNetworkBgpCommunities;
+  /**
+   * The reference to the remote virtual network's encryption
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly remoteVirtualNetworkEncryption?: VirtualNetworkEncryption;
+  /** The status of the virtual network peering. */
+  peeringState?: VirtualNetworkPeeringState;
+  /** The peering sync status of the virtual network peering. */
+  peeringSyncLevel?: VirtualNetworkPeeringLevel;
+  /**
+   * The provisioning state of the virtual network peering resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /** If we need to verify the provisioning state of the remote gateway. */
+  doNotVerifyRemoteGateways?: boolean;
+  /**
+   * The resourceGuid property of the Virtual Network peering resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly resourceGuid?: string;
 };
 
 /** IP configuration for virtual network gateway. */
@@ -6047,6 +7238,37 @@ export type VpnClientRevokedCertificate = SubResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
+};
+
+/** VirtualNetworkGatewayNatRule Resource. */
+export type VirtualNetworkGatewayNatRule = SubResource & {
+  /** The name of the resource that is unique within a resource group. This name can be used to access the resource. */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly etag?: string;
+  /**
+   * Resource type.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly type?: string;
+  /**
+   * The provisioning state of the NAT Rule resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /** The type of NAT rule for VPN NAT. */
+  typePropertiesType?: VpnNatRuleType;
+  /** The Source NAT direction of a VPN NAT. */
+  mode?: VpnNatRuleMode;
+  /** The private IP address internal mapping for NAT. */
+  internalMappings?: VpnNatRuleMapping[];
+  /** The private IP address external mapping for NAT. */
+  externalMappings?: VpnNatRuleMapping[];
+  /** The IP Configuration ID this NAT rule applies to. */
+  ipConfigurationId?: string;
 };
 
 /** Response for GetConnectionSharedKey API service call. */
@@ -6122,34 +7344,10 @@ export type P2SConnectionConfiguration = SubResource & {
   vpnClientAddressPool?: AddressSpace;
   /** The Routing Configuration indicating the associated and propagated route tables on this connection. */
   routingConfiguration?: RoutingConfiguration;
+  /** Flag indicating whether the enable internet security flag is turned on for the P2S Connections or not. */
+  enableInternetSecurity?: boolean;
   /**
    * The provisioning state of the P2SConnectionConfiguration resource.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/** HubVirtualNetworkConnection Resource. */
-export type HubVirtualNetworkConnection = SubResource & {
-  /** The name of the resource that is unique within a resource group. This name can be used to access the resource. */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly etag?: string;
-  /** Reference to the remote virtual network. */
-  remoteVirtualNetwork?: SubResource;
-  /** VirtualHub to RemoteVnet transit to enabled or not. */
-  allowHubToRemoteVnetTransit?: boolean;
-  /** Allow RemoteVnet to use Virtual Hub's gateways. */
-  allowRemoteVnetToUseHubVnetGateways?: boolean;
-  /** Enable internet security. */
-  enableInternetSecurity?: boolean;
-  /** The Routing Configuration indicating the associated and propagated route tables on this connection. */
-  routingConfiguration?: RoutingConfiguration;
-  /**
-   * The provisioning state of the hub virtual network connection resource.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -6175,6 +7373,32 @@ export type VirtualHubRouteTableV2 = SubResource & {
   readonly provisioningState?: ProvisioningState;
 };
 
+/** HubVirtualNetworkConnection Resource. */
+export type HubVirtualNetworkConnection = SubResource & {
+  /** The name of the resource that is unique within a resource group. This name can be used to access the resource. */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly etag?: string;
+  /** Reference to the remote virtual network. */
+  remoteVirtualNetwork?: SubResource;
+  /** Deprecated: VirtualHub to RemoteVnet transit to enabled or not. */
+  allowHubToRemoteVnetTransit?: boolean;
+  /** Deprecated: Allow RemoteVnet to use Virtual Hub's gateways. */
+  allowRemoteVnetToUseHubVnetGateways?: boolean;
+  /** Enable internet security. */
+  enableInternetSecurity?: boolean;
+  /** The Routing Configuration indicating the associated and propagated route tables on this connection. */
+  routingConfiguration?: RoutingConfiguration;
+  /**
+   * The provisioning state of the hub virtual network connection resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
 /** VpnSiteLinkConnection Resource. */
 export type VpnSiteLinkConnection = SubResource & {
   /** The name of the resource that is unique within a resource group. This name can be used to access the resource. */
@@ -6193,6 +7417,8 @@ export type VpnSiteLinkConnection = SubResource & {
   vpnSiteLink?: SubResource;
   /** Routing weight for vpn connection. */
   routingWeight?: number;
+  /** Vpn link connection mode. */
+  vpnLinkConnectionMode?: VpnLinkConnectionMode;
   /**
    * The connection status.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -6229,6 +7455,10 @@ export type VpnSiteLinkConnection = SubResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
+  /** List of ingress NatRules. */
+  ingressNatRules?: SubResource[];
+  /** List of egress NatRules. */
+  egressNatRules?: SubResource[];
 };
 
 /** VpnConnection Resource. */
@@ -6244,7 +7474,7 @@ export type VpnConnection = SubResource & {
   remoteVpnSite?: SubResource;
   /** Routing weight for vpn connection. */
   routingWeight?: number;
-  /** The dead peer detection timeout for a vpn connection in seconds. */
+  /** DPD timeout in seconds for vpn connection. */
   dpdTimeoutSeconds?: number;
   /**
    * The connection status.
@@ -6273,6 +7503,8 @@ export type VpnConnection = SubResource & {
   usePolicyBasedTrafficSelectors?: boolean;
   /** The IPSec Policies to be considered by this connection. */
   ipsecPolicies?: IpsecPolicy[];
+  /** The Traffic Selector Policies to be considered by this connection. */
+  trafficSelectorPolicies?: TrafficSelectorPolicy[];
   /** EnableBgp flag. */
   enableRateLimiting?: boolean;
   /** Enable internet security. */
@@ -6288,6 +7520,47 @@ export type VpnConnection = SubResource & {
   vpnLinkConnections?: VpnSiteLinkConnection[];
   /** The Routing Configuration indicating the associated and propagated route tables on this connection. */
   routingConfiguration?: RoutingConfiguration;
+};
+
+/** VpnGatewayNatRule Resource. */
+export type VpnGatewayNatRule = SubResource & {
+  /** The name of the resource that is unique within a resource group. This name can be used to access the resource. */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly etag?: string;
+  /**
+   * Resource type.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly type?: string;
+  /**
+   * The provisioning state of the NAT Rule resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /** The type of NAT rule for VPN NAT. */
+  typePropertiesType?: VpnNatRuleType;
+  /** The Source NAT direction of a VPN NAT. */
+  mode?: VpnNatRuleMode;
+  /** The private IP address internal mapping for NAT. */
+  internalMappings?: VpnNatRuleMapping[];
+  /** The private IP address external mapping for NAT. */
+  externalMappings?: VpnNatRuleMapping[];
+  /** The IP Configuration ID this NAT rule applies to. */
+  ipConfigurationId?: string;
+  /**
+   * List of egress VpnSiteLinkConnections.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly egressVpnSiteLinkConnections?: SubResource[];
+  /**
+   * List of ingress VpnSiteLinkConnections.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly ingressVpnSiteLinkConnections?: SubResource[];
 };
 
 /** ExpressRouteConnection resource. */
@@ -6307,8 +7580,71 @@ export type ExpressRouteConnection = SubResource & {
   routingWeight?: number;
   /** Enable internet security. */
   enableInternetSecurity?: boolean;
+  /** Enable FastPath to vWan Firewall hub. */
+  expressRouteGatewayBypass?: boolean;
   /** The Routing Configuration indicating the associated and propagated route tables on this connection. */
   routingConfiguration?: RoutingConfiguration;
+};
+
+/** Virtual Appliance Site resource. */
+export type BgpConnection = SubResource & {
+  /** Name of the connection. */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly etag?: string;
+  /**
+   * Connection type.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly type?: string;
+  /** Peer ASN. */
+  peerAsn?: number;
+  /** Peer IP. */
+  peerIp?: string;
+  /** The reference to the HubVirtualNetworkConnection resource. */
+  hubVirtualNetworkConnection?: SubResource;
+  /**
+   * The provisioning state of the resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * The current state of the VirtualHub to Peer.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly connectionState?: HubBgpConnectionStatus;
+};
+
+/** IpConfigurations. */
+export type HubIpConfiguration = SubResource & {
+  /** Name of the Ip Configuration. */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly etag?: string;
+  /**
+   * Ipconfiguration type.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly type?: string;
+  /** The private IP address of the IP configuration. */
+  privateIPAddress?: string;
+  /** The private IP address allocation method. */
+  privateIPAllocationMethod?: IPAllocationMethod;
+  /** The reference to the subnet resource. */
+  subnet?: Subnet;
+  /** The reference to the public IP resource. */
+  publicIPAddress?: PublicIPAddress;
+  /**
+   * The provisioning state of the IP configuration resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly provisioningState?: ProvisioningState;
 };
 
 /** RouteTable resource in a virtual hub. */
@@ -6333,14 +7669,37 @@ export type HubRouteTable = SubResource & {
    * List of all connections associated with this route table.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
-  readonly associatedConnections?: SubResource[];
+  readonly associatedConnections?: string[];
   /**
    * List of all connections that advertise to this route table.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
-  readonly propagatingConnections?: SubResource[];
+  readonly propagatingConnections?: string[];
   /**
    * The provisioning state of the RouteTable resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/** The routing intent child resource of a Virtual hub. */
+export type RoutingIntent = SubResource & {
+  /** The name of the resource that is unique within a resource group. This name can be used to access the resource. */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly etag?: string;
+  /**
+   * Resource type.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly type?: string;
+  /** List of routing policies. */
+  routingPolicies?: RoutingPolicy[];
+  /**
+   * The provisioning state of the RoutingIntent resource.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -6430,6 +7789,8 @@ export type ApplicationSecurityGroup = Resource & {
 
 /** Private endpoint resource. */
 export type PrivateEndpoint = Resource & {
+  /** The extended location of the load balancer. */
+  extendedLocation?: ExtendedLocation;
   /**
    * A unique read-only string that changes whenever the resource is updated.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -6453,10 +7814,61 @@ export type PrivateEndpoint = Resource & {
   manualPrivateLinkServiceConnections?: PrivateLinkServiceConnection[];
   /** An array of custom dns configurations. */
   customDnsConfigs?: CustomDnsConfigPropertiesFormat[];
+  /** Application security groups in which the private endpoint IP configuration is included. */
+  applicationSecurityGroups?: ApplicationSecurityGroup[];
+  /** A list of IP configurations of the private endpoint. This will be used to map to the First Party Service's endpoints. */
+  ipConfigurations?: PrivateEndpointIPConfiguration[];
+  /** The custom name of the network interface attached to the private endpoint. */
+  customNetworkInterfaceName?: string;
+};
+
+/** Private link service resource. */
+export type PrivateLinkService = Resource & {
+  /** The extended location of the load balancer. */
+  extendedLocation?: ExtendedLocation;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly etag?: string;
+  /** An array of references to the load balancer IP configurations. */
+  loadBalancerFrontendIpConfigurations?: FrontendIPConfiguration[];
+  /** An array of private link service IP configurations. */
+  ipConfigurations?: PrivateLinkServiceIpConfiguration[];
+  /**
+   * An array of references to the network interfaces created for this private link service.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly networkInterfaces?: NetworkInterface[];
+  /**
+   * The provisioning state of the private link service resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * An array of list about connections to the private endpoint.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly privateEndpointConnections?: PrivateEndpointConnection[];
+  /** The visibility list of the private link service. */
+  visibility?: PrivateLinkServicePropertiesVisibility;
+  /** The auto-approval list of the private link service. */
+  autoApproval?: PrivateLinkServicePropertiesAutoApproval;
+  /** The list of Fqdn. */
+  fqdns?: string[];
+  /**
+   * The alias of the private link service.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly alias?: string;
+  /** Whether the private link service is enabled for proxy protocol or not. */
+  enableProxyProtocol?: boolean;
 };
 
 /** A network interface in a resource group. */
 export type NetworkInterface = Resource & {
+  /** The extended location of the network interface. */
+  extendedLocation?: ExtendedLocation;
   /**
    * A unique read-only string that changes whenever the resource is updated.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -6493,6 +7905,11 @@ export type NetworkInterface = Resource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly primary?: boolean;
+  /**
+   * Whether the virtual machine this nic is attached to supports encryption.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly vnetEncryptionSupported?: boolean;
   /** If the network interface is accelerated networking enabled. */
   enableAcceleratedNetworking?: boolean;
   /** Indicates whether IP forwarding is enabled on this network interface. */
@@ -6503,6 +7920,11 @@ export type NetworkInterface = Resource & {
    */
   readonly hostedWorkloads?: string[];
   /**
+   * A reference to the dscp configuration to which the network interface is linked.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly dscpConfiguration?: SubResource;
+  /**
    * The resource GUID property of the network interface resource.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
@@ -6512,6 +7934,14 @@ export type NetworkInterface = Resource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
+  /** WorkloadType of the NetworkInterface for BareMetal resources */
+  workloadType?: string;
+  /** Type of Network Interface resource. */
+  nicType?: NetworkInterfaceNicType;
+  /** Privatelinkservice of the network interface resource. */
+  privateLinkService?: PrivateLinkService;
+  /** Migration phase of Network Interface resource. */
+  migrationPhase?: NetworkInterfaceMigrationPhase;
 };
 
 /** A flow log resource. */
@@ -6607,6 +8037,11 @@ export type RouteTable = Resource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
+  /**
+   * The resource GUID property of the route table.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly resourceGuid?: string;
 };
 
 /** Service End point policy resource. */
@@ -6616,6 +8051,11 @@ export type ServiceEndpointPolicy = Resource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
+  /**
+   * Kind of service endpoint policy. This is metadata used for the Azure portal experience.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly kind?: string;
   /** A collection of service endpoint policy definitions of the service endpoint policy. */
   serviceEndpointPolicyDefinitions?: ServiceEndpointPolicyDefinition[];
   /**
@@ -6633,10 +8073,50 @@ export type ServiceEndpointPolicy = Resource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
+  /** The alias indicating if the policy belongs to a service */
+  serviceAlias?: string;
+  /** A collection of contextual service endpoint policy. */
+  contextualServiceEndpointPolicies?: string[];
+};
+
+/** Nat Gateway resource. */
+export type NatGateway = Resource & {
+  /** The nat gateway SKU. */
+  sku?: NatGatewaySku;
+  /** A list of availability zones denoting the zone in which Nat Gateway should be deployed. */
+  zones?: string[];
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly etag?: string;
+  /** The idle timeout of the nat gateway. */
+  idleTimeoutInMinutes?: number;
+  /** An array of public ip addresses associated with the nat gateway resource. */
+  publicIpAddresses?: SubResource[];
+  /** An array of public ip prefixes associated with the nat gateway resource. */
+  publicIpPrefixes?: SubResource[];
+  /**
+   * An array of references to the subnets using this nat gateway resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly subnets?: SubResource[];
+  /**
+   * The resource GUID property of the NAT gateway resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly resourceGuid?: string;
+  /**
+   * The provisioning state of the NAT gateway resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly provisioningState?: ProvisioningState;
 };
 
 /** Public IP address resource. */
 export type PublicIPAddress = Resource & {
+  /** The extended location of the public ip address. */
+  extendedLocation?: ExtendedLocation;
   /** The public IP address SKU. */
   sku?: PublicIPAddressSku;
   /**
@@ -6677,6 +8157,16 @@ export type PublicIPAddress = Resource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
+  /** The service public IP address of the public IP address resource. */
+  servicePublicIPAddress?: PublicIPAddress;
+  /** The NatGateway for the Public IP address. */
+  natGateway?: NatGateway;
+  /** Migration phase of Public IP Address. */
+  migrationPhase?: PublicIPAddressMigrationPhase;
+  /** The linked public IP address of the public IP address resource. */
+  linkedPublicIPAddress?: PublicIPAddress;
+  /** Specify what happens to the public IP address when the VM using it is deleted */
+  deleteOption?: DeleteOptions;
 };
 
 /** Virtual Network Tap resource. */
@@ -6709,43 +8199,6 @@ export type VirtualNetworkTap = Resource & {
   destinationPort?: number;
 };
 
-/** Virtual Network resource. */
-export type VirtualNetwork = Resource & {
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly etag?: string;
-  /** The AddressSpace that contains an array of IP address ranges that can be used by subnets. */
-  addressSpace?: AddressSpace;
-  /** The dhcpOptions that contains an array of DNS servers available to VMs deployed in the virtual network. */
-  dhcpOptions?: DhcpOptions;
-  /** A list of subnets in a Virtual Network. */
-  subnets?: Subnet[];
-  /** A list of peerings in a Virtual Network. */
-  virtualNetworkPeerings?: VirtualNetworkPeering[];
-  /**
-   * The resourceGuid property of the Virtual Network resource.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly resourceGuid?: string;
-  /**
-   * The provisioning state of the virtual network resource.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /** Indicates if DDoS protection is enabled for all the protected resources in the virtual network. It requires a DDoS protection plan associated with the resource. */
-  enableDdosProtection?: boolean;
-  /** Indicates if VM protection is enabled for all the subnets in the virtual network. */
-  enableVmProtection?: boolean;
-  /** The DDoS protection plan associated with the virtual network. */
-  ddosProtectionPlan?: SubResource;
-  /** Bgp Communities sent over ExpressRoute with each route corresponding to a prefix in this VNET. */
-  bgpCommunities?: VirtualNetworkBgpCommunities;
-  /** Array of IpAllocation which reference this VNET. */
-  ipAllocations?: SubResource[];
-};
-
 /** Application gateway resource. */
 export type ApplicationGateway = Resource & {
   /**
@@ -6772,6 +8225,8 @@ export type ApplicationGateway = Resource & {
   authenticationCertificates?: ApplicationGatewayAuthenticationCertificate[];
   /** Trusted Root certificates of the application gateway resource. For default limits, see [Application Gateway limits](https://docs.microsoft.com/azure/azure-subscription-service-limits#application-gateway-limits). */
   trustedRootCertificates?: ApplicationGatewayTrustedRootCertificate[];
+  /** Trusted client certificates of the application gateway resource. For default limits, see [Application Gateway limits](https://docs.microsoft.com/azure/azure-subscription-service-limits#application-gateway-limits). */
+  trustedClientCertificates?: ApplicationGatewayTrustedClientCertificate[];
   /** SSL certificates of the application gateway resource. For default limits, see [Application Gateway limits](https://docs.microsoft.com/azure/azure-subscription-service-limits#application-gateway-limits). */
   sslCertificates?: ApplicationGatewaySslCertificate[];
   /** Frontend IP addresses of the application gateway resource. For default limits, see [Application Gateway limits](https://docs.microsoft.com/azure/azure-subscription-service-limits#application-gateway-limits). */
@@ -6786,6 +8241,8 @@ export type ApplicationGateway = Resource & {
   backendHttpSettingsCollection?: ApplicationGatewayBackendHttpSettings[];
   /** Http listeners of the application gateway resource. For default limits, see [Application Gateway limits](https://docs.microsoft.com/azure/azure-subscription-service-limits#application-gateway-limits). */
   httpListeners?: ApplicationGatewayHttpListener[];
+  /** SSL profiles of the application gateway resource. For default limits, see [Application Gateway limits](https://docs.microsoft.com/azure/azure-subscription-service-limits#application-gateway-limits). */
+  sslProfiles?: ApplicationGatewaySslProfile[];
   /** URL path map of the application gateway resource. For default limits, see [Application Gateway limits](https://docs.microsoft.com/azure/azure-subscription-service-limits#application-gateway-limits). */
   urlPathMaps?: ApplicationGatewayUrlPathMap[];
   /** Request routing rules of the application gateway resource. */
@@ -6804,6 +8261,13 @@ export type ApplicationGateway = Resource & {
   enableFips?: boolean;
   /** Autoscale Configuration. */
   autoscaleConfiguration?: ApplicationGatewayAutoscaleConfiguration;
+  /** PrivateLink configurations on application gateway. */
+  privateLinkConfigurations?: ApplicationGatewayPrivateLinkConfiguration[];
+  /**
+   * Private Endpoint connections on application gateway.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly privateEndpointConnections?: ApplicationGatewayPrivateEndpointConnection[];
   /**
    * The resource GUID property of the application gateway resource.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -6818,6 +8282,10 @@ export type ApplicationGateway = Resource & {
   customErrorConfigurations?: ApplicationGatewayCustomError[];
   /** If true, associates a firewall policy with an application gateway regardless whether the policy differs from the WAF Config. */
   forceFirewallPolicyAssociation?: boolean;
+  /** Load distribution policies of the application gateway resource. */
+  loadDistributionPolicies?: ApplicationGatewayLoadDistributionPolicy[];
+  /** Global Configuration. */
+  globalConfiguration?: ApplicationGatewayGlobalConfiguration;
 };
 
 /** A web application firewall rule set. */
@@ -6877,11 +8345,8 @@ export type AzureFirewall = Resource & {
   virtualHub?: SubResource;
   /** The firewallPolicy associated with this azure firewall. */
   firewallPolicy?: SubResource;
-  /**
-   * IP addresses associated with AzureFirewall.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly hubIpAddresses?: HubIPAddresses;
+  /** IP addresses associated with AzureFirewall. */
+  hubIPAddresses?: HubIPAddresses;
   /**
    * IpGroups associated with AzureFirewall.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -6919,6 +8384,8 @@ export type BastionHost = Resource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
+  /** The sku of this Bastion Host. */
+  sku?: Sku;
   /** IP configuration of the Bastion Host resource. */
   ipConfigurations?: BastionHostIPConfiguration[];
   /** FQDN for the endpoint on which bastion host is accessible. */
@@ -6928,10 +8395,70 @@ export type BastionHost = Resource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
+  /** The scale units for the Bastion Host resource. */
+  scaleUnits?: number;
+  /** Enable/Disable Copy/Paste feature of the Bastion Host resource. */
+  disableCopyPaste?: boolean;
+  /** Enable/Disable File Copy feature of the Bastion Host resource. */
+  enableFileCopy?: boolean;
+  /** Enable/Disable IP Connect feature of the Bastion Host resource. */
+  enableIpConnect?: boolean;
+  /** Enable/Disable Shareable Link of the Bastion Host resource. */
+  enableShareableLink?: boolean;
+  /** Enable/Disable Tunneling feature of the Bastion Host resource. */
+  enableTunneling?: boolean;
 };
 
 /** Describes a Virtual Machine. */
 export type Vm = Resource & {};
+
+/** Custom IP prefix resource. */
+export type CustomIpPrefix = Resource & {
+  /** The extended location of the custom IP prefix. */
+  extendedLocation?: ExtendedLocation;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly etag?: string;
+  /** A list of availability zones denoting the IP allocated for the resource needs to come from. */
+  zones?: string[];
+  /** The prefix range in CIDR notation. Should include the start address and the prefix length. */
+  cidr?: string;
+  /** Signed message for WAN validation. */
+  signedMessage?: string;
+  /** Authorization message for WAN validation. */
+  authorizationMessage?: string;
+  /** The Parent CustomIpPrefix for IPv6 /64 CustomIpPrefix. */
+  customIpPrefixParent?: SubResource;
+  /**
+   * The list of all Children for IPv6 /48 CustomIpPrefix.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly childCustomIpPrefixes?: SubResource[];
+  /** The commissioned state of the Custom IP Prefix. */
+  commissionedState?: CommissionedState;
+  /**
+   * The list of all referenced PublicIpPrefixes.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly publicIpPrefixes?: SubResource[];
+  /**
+   * The resource GUID property of the custom IP prefix resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly resourceGuid?: string;
+  /**
+   * The reason why resource is in failed state.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly failedReason?: string;
+  /**
+   * The provisioning state of the custom IP prefix resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
 
 /** A DDoS custom policy in a resource group. */
 export type DdosCustomPolicy = Resource & {
@@ -6957,6 +8484,49 @@ export type DdosCustomPolicy = Resource & {
   readonly publicIPAddresses?: SubResource[];
   /** The protocol-specific DDoS policy customization parameters. */
   protocolCustomSettings?: ProtocolCustomSettingsFormat[];
+};
+
+/** Differentiated Services Code Point configuration for any given network interface */
+export type DscpConfiguration = Resource & {
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly etag?: string;
+  /** List of markings to be used in the configuration. */
+  markings?: number[];
+  /** Source IP ranges. */
+  sourceIpRanges?: QosIpRange[];
+  /** Destination IP ranges. */
+  destinationIpRanges?: QosIpRange[];
+  /** Sources port ranges. */
+  sourcePortRanges?: QosPortRange[];
+  /** Destination port ranges. */
+  destinationPortRanges?: QosPortRange[];
+  /** RNM supported protocol types. */
+  protocol?: ProtocolType;
+  /** QoS object definitions */
+  qosDefinitionCollection?: QosDefinition[];
+  /**
+   * Qos Collection ID generated by RNM.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly qosCollectionId?: string;
+  /**
+   * Associated Network Interfaces to the DSCP Configuration.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly associatedNetworkInterfaces?: NetworkInterface[];
+  /**
+   * The resource GUID property of the DSCP Configuration resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly resourceGuid?: string;
+  /**
+   * The provisioning state of the DSCP Configuration resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly provisioningState?: ProvisioningState;
 };
 
 /** ExpressRouteCircuit resource. */
@@ -7039,10 +8609,16 @@ export type ExpressRouteCrossConnection = Resource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly sTag?: number;
-  /** The peering location of the ExpressRoute circuit. */
-  peeringLocation?: string;
-  /** The circuit bandwidth In Mbps. */
-  bandwidthInMbps?: number;
+  /**
+   * The peering location of the ExpressRoute circuit.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly peeringLocation?: string;
+  /**
+   * The circuit bandwidth In Mbps.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly bandwidthInMbps?: number;
   /** The ExpressRouteCircuit. */
   expressRouteCircuit?: ExpressRouteCircuitReference;
   /** The provisioning state of the circuit in the connectivity provider system. */
@@ -7143,10 +8719,10 @@ export type FirewallPolicy = Resource & {
   /** The identity of the firewall policy. */
   identity?: ManagedServiceIdentity;
   /**
-   * List of references to FirewallPolicyRuleGroups.
+   * List of references to FirewallPolicyRuleCollectionGroups.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
-  readonly ruleGroups?: SubResource[];
+  readonly ruleCollectionGroups?: SubResource[];
   /**
    * The provisioning state of the firewall policy resource.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -7168,10 +8744,22 @@ export type FirewallPolicy = Resource & {
   threatIntelMode?: AzureFirewallThreatIntelMode;
   /** ThreatIntel Whitelist for Firewall Policy. */
   threatIntelWhitelist?: FirewallPolicyThreatIntelWhitelist;
-  /** The operation mode for Intrusion system. */
-  intrusionSystemMode?: FirewallPolicyIntrusionSystemMode;
+  /** Insights on Firewall Policy. */
+  insights?: FirewallPolicyInsights;
+  /** The private IP addresses/IP ranges to which traffic will not be SNAT. */
+  snat?: FirewallPolicySnat;
+  /** SQL Settings definition. */
+  sql?: FirewallPolicySQL;
+  /** DNS Proxy Settings definition. */
+  dnsSettings?: DnsSettings;
+  /** Explicit Proxy Settings definition. */
+  explicitProxySettings?: ExplicitProxySettings;
+  /** The configuration for Intrusion detection. */
+  intrusionDetection?: FirewallPolicyIntrusionDetection;
   /** TLS Configuration definition. */
   transportSecurity?: FirewallPolicyTransportSecurity;
+  /** The Firewall Policy SKU. */
+  sku?: FirewallPolicySku;
 };
 
 /** IpAllocation resource. */
@@ -7220,14 +8808,21 @@ export type IpGroup = Resource & {
   /** IpAddresses/IpAddressPrefixes in the IpGroups resource. */
   ipAddresses?: string[];
   /**
-   * List of references to Azure resources that this IpGroups is associated with.
+   * List of references to Firewall resources that this IpGroups is associated with.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly firewalls?: SubResource[];
+  /**
+   * List of references to Firewall Policies resources that this IpGroups is associated with.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly firewallPolicies?: SubResource[];
 };
 
 /** LoadBalancer resource. */
 export type LoadBalancer = Resource & {
+  /** The extended location of the load balancer. */
+  extendedLocation?: ExtendedLocation;
   /** The load balancer SKU. */
   sku?: LoadBalancerSku;
   /**
@@ -7245,7 +8840,7 @@ export type LoadBalancer = Resource & {
   probes?: Probe[];
   /** Collection of inbound NAT Rules used by a load balancer. Defining inbound NAT rules on your load balancer is mutually exclusive with defining an inbound NAT pool. Inbound NAT pools are referenced from virtual machine scale sets. NICs that are associated with individual virtual machines cannot reference an Inbound NAT pool. They have to reference individual inbound NAT rules. */
   inboundNatRules?: InboundNatRule[];
-  /** Defines an external port range for inbound NAT to a single backend port on NICs associated with a load balancer. Inbound NAT rules are created automatically for each NIC associated with the Load Balancer using an external port from this range. Defining an Inbound NAT pool on your Load Balancer is mutually exclusive with defining inbound Nat rules. Inbound NAT pools are referenced from virtual machine scale sets. NICs that are associated with individual virtual machines cannot reference an inbound NAT pool. They have to reference individual inbound NAT rules. */
+  /** Defines an external port range for inbound NAT to a single backend port on NICs associated with a load balancer. Inbound NAT rules are created automatically for each NIC associated with the Load Balancer using an external port from this range. Defining an Inbound NAT pool on your Load Balancer is mutually exclusive with defining inbound NAT rules. Inbound NAT pools are referenced from virtual machine scale sets. NICs that are associated with individual virtual machines cannot reference an inbound NAT pool. They have to reference individual inbound NAT rules. */
   inboundNatPools?: InboundNatPool[];
   /** The outbound rules. */
   outboundRules?: OutboundRule[];
@@ -7256,40 +8851,6 @@ export type LoadBalancer = Resource & {
   readonly resourceGuid?: string;
   /**
    * The provisioning state of the load balancer resource.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/** Nat Gateway resource. */
-export type NatGateway = Resource & {
-  /** The nat gateway SKU. */
-  sku?: NatGatewaySku;
-  /** A list of availability zones denoting the zone in which Nat Gateway should be deployed. */
-  zones?: string[];
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly etag?: string;
-  /** The idle timeout of the nat gateway. */
-  idleTimeoutInMinutes?: number;
-  /** An array of public ip addresses associated with the nat gateway resource. */
-  publicIpAddresses?: SubResource[];
-  /** An array of public ip prefixes associated with the nat gateway resource. */
-  publicIpPrefixes?: SubResource[];
-  /**
-   * An array of references to the subnets using this nat gateway resource.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly subnets?: SubResource[];
-  /**
-   * The resource GUID property of the NAT gateway resource.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly resourceGuid?: string;
-  /**
-   * The provisioning state of the NAT gateway resource.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
@@ -7325,31 +8886,71 @@ export type NetworkProfile = Resource & {
 export type NetworkVirtualAppliance = Resource & {
   /** The service principal that has read access to cloud-init and config blob. */
   identity?: ManagedServiceIdentity;
-  /** Network Virtual Appliance SKU. */
-  sku?: VirtualApplianceSkuProperties;
   /**
    * A unique read-only string that changes whenever the resource is updated.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
-  /** BootStrapConfigurationBlob storage URLs. */
-  bootStrapConfigurationBlob?: string[];
+  /** Network Virtual Appliance SKU. */
+  nvaSku?: VirtualApplianceSkuProperties;
+  /**
+   * Address Prefix.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly addressPrefix?: string;
+  /** BootStrapConfigurationBlobs storage URLs. */
+  bootStrapConfigurationBlobs?: string[];
   /** The Virtual Hub where Network Virtual Appliance is being deployed. */
   virtualHub?: SubResource;
   /** CloudInitConfigurationBlob storage URLs. */
-  cloudInitConfigurationBlob?: string[];
+  cloudInitConfigurationBlobs?: string[];
+  /** CloudInitConfiguration string in plain text. */
+  cloudInitConfiguration?: string;
   /** VirtualAppliance ASN. */
   virtualApplianceAsn?: number;
+  /** Public key for SSH login. */
+  sshPublicKey?: string;
   /**
    * List of Virtual Appliance Network Interfaces.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly virtualApplianceNics?: VirtualApplianceNicProperties[];
   /**
+   * List of references to VirtualApplianceSite.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly virtualApplianceSites?: SubResource[];
+  /**
+   * List of references to InboundSecurityRules.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly inboundSecurityRules?: SubResource[];
+  /**
    * The provisioning state of the resource.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
+};
+
+/** Definition of the NetworkVirtualApplianceSkus resource. */
+export type NetworkVirtualApplianceSku = Resource & {
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly etag?: string;
+  /**
+   * Network Virtual Appliance Sku vendor.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly vendor?: string;
+  /**
+   * Available Network Virtual Appliance versions.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly availableVersions?: string[];
+  /** The list of scale units available. */
+  availableScaleUnits?: NetworkVirtualApplianceSkuInstances[];
 };
 
 /** Network watcher in a resource group. */
@@ -7366,49 +8967,10 @@ export type NetworkWatcher = Resource & {
   readonly provisioningState?: ProvisioningState;
 };
 
-/** Private link service resource. */
-export type PrivateLinkService = Resource & {
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly etag?: string;
-  /** An array of references to the load balancer IP configurations. */
-  loadBalancerFrontendIpConfigurations?: FrontendIPConfiguration[];
-  /** An array of private link service IP configurations. */
-  ipConfigurations?: PrivateLinkServiceIpConfiguration[];
-  /**
-   * An array of references to the network interfaces created for this private link service.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly networkInterfaces?: NetworkInterface[];
-  /**
-   * The provisioning state of the private link service resource.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * An array of list about connections to the private endpoint.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly privateEndpointConnections?: PrivateEndpointConnection[];
-  /** The visibility list of the private link service. */
-  visibility?: PrivateLinkServicePropertiesVisibility;
-  /** The auto-approval list of the private link service. */
-  autoApproval?: PrivateLinkServicePropertiesAutoApproval;
-  /** The list of Fqdn. */
-  fqdns?: string[];
-  /**
-   * The alias of the private link service.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly alias?: string;
-  /** Whether the private link service is enabled for proxy protocol or not. */
-  enableProxyProtocol?: boolean;
-};
-
 /** Public IP prefix resource. */
 export type PublicIPPrefix = Resource & {
+  /** The extended location of the public ip address. */
+  extendedLocation?: ExtendedLocation;
   /** The public IP prefix SKU. */
   sku?: PublicIPPrefixSku;
   /**
@@ -7439,6 +9001,8 @@ export type PublicIPPrefix = Resource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly loadBalancerFrontendIpConfiguration?: SubResource;
+  /** The customIpPrefix that this prefix is associated with. */
+  customIPPrefix?: SubResource;
   /**
    * The resource GUID property of the public IP prefix resource.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -7449,6 +9013,8 @@ export type PublicIPPrefix = Resource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: ProvisioningState;
+  /** NatGateway of Public IP Prefix. */
+  natGateway?: NatGateway;
 };
 
 /** Route Filter Resource. */
@@ -7508,6 +9074,49 @@ export type BgpServiceCommunity = Resource & {
   bgpCommunities?: BGPCommunity[];
 };
 
+/** Virtual Network resource. */
+export type VirtualNetwork = Resource & {
+  /** The extended location of the virtual network. */
+  extendedLocation?: ExtendedLocation;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly etag?: string;
+  /** The AddressSpace that contains an array of IP address ranges that can be used by subnets. */
+  addressSpace?: AddressSpace;
+  /** The dhcpOptions that contains an array of DNS servers available to VMs deployed in the virtual network. */
+  dhcpOptions?: DhcpOptions;
+  /** The FlowTimeout value (in minutes) for the Virtual Network */
+  flowTimeoutInMinutes?: number;
+  /** A list of subnets in a Virtual Network. */
+  subnets?: Subnet[];
+  /** A list of peerings in a Virtual Network. */
+  virtualNetworkPeerings?: VirtualNetworkPeering[];
+  /**
+   * The resourceGuid property of the Virtual Network resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly resourceGuid?: string;
+  /**
+   * The provisioning state of the virtual network resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /** Indicates if DDoS protection is enabled for all the protected resources in the virtual network. It requires a DDoS protection plan associated with the resource. */
+  enableDdosProtection?: boolean;
+  /** Indicates if VM protection is enabled for all the subnets in the virtual network. */
+  enableVmProtection?: boolean;
+  /** The DDoS protection plan associated with the virtual network. */
+  ddosProtectionPlan?: SubResource;
+  /** Bgp Communities sent over ExpressRoute with each route corresponding to a prefix in this VNET. */
+  bgpCommunities?: VirtualNetworkBgpCommunities;
+  /** Indicates if encryption is enabled on virtual network and if VM without encryption is allowed in encrypted VNet. */
+  encryption?: VirtualNetworkEncryption;
+  /** Array of IpAllocation which reference this VNET. */
+  ipAllocations?: SubResource[];
+};
+
 /** Network Intent Policy resource. */
 export type NetworkIntentPolicy = Resource & {
   /**
@@ -7519,6 +9128,8 @@ export type NetworkIntentPolicy = Resource & {
 
 /** A common class for general resource information. */
 export type VirtualNetworkGateway = Resource & {
+  /** The extended location of type local virtual network gateway. */
+  extendedLocation?: ExtendedLocation;
   /**
    * A unique read-only string that changes whenever the resource is updated.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -7538,6 +9149,8 @@ export type VirtualNetworkGateway = Resource & {
   enablePrivateIpAddress?: boolean;
   /** ActiveActive flag. */
   active?: boolean;
+  /** disableIPSecReplayProtection flag. */
+  disableIPSecReplayProtection?: boolean;
   /** The reference to the LocalNetworkGateway resource which represents local network site having default routes. Assign Null value in case of removing existing default site setting. */
   gatewayDefaultSite?: SubResource;
   /** The reference to the VirtualNetworkGatewaySku resource which represents the SKU selected for Virtual network gateway. */
@@ -7565,6 +9178,12 @@ export type VirtualNetworkGateway = Resource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly inboundDnsForwardingEndpoint?: string;
+  /** Customer vnet resource id. VirtualNetworkGateway of type local gateway is associated with the customer vnet. */
+  vNetExtendedLocationResourceId?: string;
+  /** NatRules for virtual network gateway. */
+  natRules?: VirtualNetworkGatewayNatRule[];
+  /** EnableBgpRouteTranslationForNat flag. */
+  enableBgpRouteTranslationForNat?: boolean;
 };
 
 /** A common class for general resource information. */
@@ -7588,6 +9207,8 @@ export type VirtualNetworkGatewayConnectionListEntity = Resource & {
   connectionProtocol?: VirtualNetworkGatewayConnectionProtocol;
   /** The routing weight. */
   routingWeight?: number;
+  /** The connection mode for this connection. */
+  connectionMode?: VirtualNetworkGatewayConnectionMode;
   /** The IPSec shared key. */
   sharedKey?: string;
   /**
@@ -7676,6 +9297,10 @@ export type VirtualNetworkGatewayConnection = Resource & {
   virtualNetworkGateway2?: VirtualNetworkGateway;
   /** The reference to local network gateway resource. */
   localNetworkGateway2?: LocalNetworkGateway;
+  /** List of ingress NatRules. */
+  ingressNatRules?: SubResource[];
+  /** List of egress NatRules. */
+  egressNatRules?: SubResource[];
   /** Gateway connection type. */
   connectionType: VirtualNetworkGatewayConnectionType;
   /** Connection protocol used for this connection. */
@@ -7684,6 +9309,8 @@ export type VirtualNetworkGatewayConnection = Resource & {
   routingWeight?: number;
   /** The dead peer detection timeout of this connection in seconds. */
   dpdTimeoutSeconds?: number;
+  /** The connection mode for this connection. */
+  connectionMode?: VirtualNetworkGatewayConnectionMode;
   /** The IPSec shared key. */
   sharedKey?: string;
   /**
@@ -7824,6 +9451,8 @@ export type VpnSite = Resource & {
   isSecuritySite?: boolean;
   /** List of all vpn site links. */
   vpnSiteLinks?: VpnSiteLink[];
+  /** Office365 Policy. */
+  o365Policy?: O365PolicyProperties;
 };
 
 /** P2SVpnGateway Resource. */
@@ -7851,6 +9480,10 @@ export type P2SVpnGateway = Resource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly vpnClientConnectionHealth?: VpnClientConnectionHealth;
+  /** List of all customer specified DNS servers IP addresses. */
+  customDnsServers?: string[];
+  /** Enable Routing Preference property for the Public IP Interface of the P2SVpnGateway. */
+  isRoutingPreferenceInternet?: boolean;
 };
 
 /** VpnServerConfiguration Resource. */
@@ -7908,6 +9541,11 @@ export type VirtualHub = Resource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
+  /**
+   * Kind of service virtual hub. This is metadata used for the Azure portal experience for Route Server.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly kind?: string;
   /** The VirtualWAN to which the VirtualHub belongs. */
   virtualWan?: SubResource;
   /** The VpnGateway associated with this VirtualHub. */
@@ -7920,8 +9558,6 @@ export type VirtualHub = Resource & {
   azureFirewall?: SubResource;
   /** The securityPartnerProvider associated with this VirtualHub. */
   securityPartnerProvider?: SubResource;
-  /** List of all vnet connections with this VirtualHub. */
-  virtualNetworkConnections?: HubVirtualNetworkConnection[];
   /** Address-prefix for this VirtualHub. */
   addressPrefix?: string;
   /** The routeTable associated with this virtual hub. */
@@ -7937,6 +9573,29 @@ export type VirtualHub = Resource & {
   virtualHubRouteTableV2S?: VirtualHubRouteTableV2[];
   /** The sku of this VirtualHub. */
   sku?: string;
+  /**
+   * The routing state.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly routingState?: RoutingState;
+  /**
+   * List of references to Bgp Connections.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly bgpConnections?: SubResource[];
+  /**
+   * List of references to IpConfigurations.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly ipConfigurations?: SubResource[];
+  /** VirtualRouter ASN. */
+  virtualRouterAsn?: number;
+  /** VirtualRouter IPs. */
+  virtualRouterIps?: string[];
+  /** Flag to control transit for VirtualRouter hub. */
+  allowBranchToBranchTraffic?: boolean;
+  /** The preferred gateway to route on-prem traffic */
+  preferredRoutingGateway?: PreferredRoutingGateway;
 };
 
 /** VpnGateway Resource. */
@@ -7959,6 +9618,17 @@ export type VpnGateway = Resource & {
   readonly provisioningState?: ProvisioningState;
   /** The scale unit for this vpn gateway. */
   vpnGatewayScaleUnit?: number;
+  /**
+   * List of all IPs configured on the gateway.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly ipConfigurations?: VpnGatewayIpConfiguration[];
+  /** Enable BGP routes translation for NAT on this VpnGateway. */
+  enableBgpRouteTranslationForNat?: boolean;
+  /** Enable Routing Preference property for the Public IP Interface of the VpnGateway. */
+  isRoutingPreferenceInternet?: boolean;
+  /** List of all the nat Rules associated with the gateway. */
+  natRules?: VpnGatewayNatRule[];
 };
 
 /** ExpressRoute gateway resource. */
@@ -8024,28 +9694,30 @@ export type WebApplicationFirewallPolicy = Resource & {
   readonly pathBasedRules?: SubResource[];
 };
 
-/** Firewall Policy NAT Rule. */
-export type FirewallPolicyNatRule = FirewallPolicyRule & {
+/** The visibility list of the private link service. */
+export type PrivateLinkServicePropertiesVisibility = ResourceSet & {};
+
+/** The auto-approval list of the private link service. */
+export type PrivateLinkServicePropertiesAutoApproval = ResourceSet & {};
+
+/** Firewall Policy NAT Rule Collection. */
+export type FirewallPolicyNatRuleCollection = FirewallPolicyRuleCollection & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
-  ruleType: "FirewallPolicyNatRule";
-  /** The action type of a Nat rule. */
-  action?: FirewallPolicyNatRuleAction;
-  /** The translated address for this NAT rule. */
-  translatedAddress?: string;
-  /** The translated port for this NAT rule. */
-  translatedPort?: string;
-  /** The match conditions for incoming traffic. */
-  ruleCondition?: FirewallPolicyRuleConditionUnion;
+  ruleCollectionType: "FirewallPolicyNatRuleCollection";
+  /** The action type of a Nat rule collection. */
+  action?: FirewallPolicyNatRuleCollectionAction;
+  /** List of rules included in a rule collection. */
+  rules?: FirewallPolicyRuleUnion[];
 };
 
-/** Firewall Policy Filter Rule. */
-export type FirewallPolicyFilterRule = FirewallPolicyRule & {
+/** Firewall Policy Filter Rule Collection. */
+export type FirewallPolicyFilterRuleCollection = FirewallPolicyRuleCollection & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
-  ruleType: "FirewallPolicyFilterRule";
-  /** The action type of a Filter rule. */
-  action?: FirewallPolicyFilterRuleAction;
-  /** Collection of rule conditions used by a rule. */
-  ruleConditions?: FirewallPolicyRuleConditionUnion[];
+  ruleCollectionType: "FirewallPolicyFilterRuleCollection";
+  /** The action type of a Filter rule collection. */
+  action?: FirewallPolicyFilterRuleCollectionAction;
+  /** List of rules included in a rule collection. */
+  rules?: FirewallPolicyRuleUnion[];
 };
 
 /** The properties of a packet capture session. */
@@ -8081,56 +9753,58 @@ export type ConnectionMonitorResultProperties = ConnectionMonitorParameters & {
   readonly connectionMonitorType?: ConnectionMonitorType;
 };
 
-/** The visibility list of the private link service. */
-export type PrivateLinkServicePropertiesVisibility = ResourceSet & {};
-
-/** The auto-approval list of the private link service. */
-export type PrivateLinkServicePropertiesAutoApproval = ResourceSet & {};
-
-/** Rule condition of type application. */
-export type ApplicationRuleCondition = FirewallPolicyRuleCondition & {
+/** Rule of type application. */
+export type ApplicationRule = FirewallPolicyRule & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
-  ruleConditionType: "ApplicationRuleCondition";
+  ruleType: "ApplicationRule";
   /** List of source IP addresses for this rule. */
   sourceAddresses?: string[];
   /** List of destination IP addresses or Service Tags. */
   destinationAddresses?: string[];
   /** Array of Application Protocols. */
-  protocols?: FirewallPolicyRuleConditionApplicationProtocol[];
+  protocols?: FirewallPolicyRuleApplicationProtocol[];
+  /** List of FQDNs for this rule. */
+  targetFqdns?: string[];
   /** List of Urls for this rule condition. */
   targetUrls?: string[];
-  /** List of FQDNs for this rule condition. */
-  targetFqdns?: string[];
-  /** List of FQDN Tags for this rule condition. */
+  /** List of FQDN Tags for this rule. */
   fqdnTags?: string[];
   /** List of source IpGroups for this rule. */
   sourceIpGroups?: string[];
+  /** Terminate TLS connections for this rule. */
+  terminateTLS?: boolean;
+  /** List of destination azure web categories. */
+  webCategories?: string[];
 };
 
-/** Rule condition of type nat. */
-export type NatRuleCondition = FirewallPolicyRuleCondition & {
+/** Rule of type nat. */
+export type NatRule = FirewallPolicyRule & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
-  ruleConditionType: "NatRuleCondition";
-  /** Array of FirewallPolicyRuleConditionNetworkProtocols. */
-  ipProtocols?: FirewallPolicyRuleConditionNetworkProtocol[];
+  ruleType: "NatRule";
+  /** Array of FirewallPolicyRuleNetworkProtocols. */
+  ipProtocols?: FirewallPolicyRuleNetworkProtocol[];
   /** List of source IP addresses for this rule. */
   sourceAddresses?: string[];
   /** List of destination IP addresses or Service Tags. */
   destinationAddresses?: string[];
   /** List of destination ports. */
   destinationPorts?: string[];
+  /** The translated address for this NAT rule. */
+  translatedAddress?: string;
+  /** The translated port for this NAT rule. */
+  translatedPort?: string;
   /** List of source IpGroups for this rule. */
   sourceIpGroups?: string[];
-  /** Terminate TLS connections for this rule. */
-  terminateTLS?: boolean;
+  /** The translated FQDN for this NAT rule. */
+  translatedFqdn?: string;
 };
 
-/** Rule condition of type network. */
-export type NetworkRuleCondition = FirewallPolicyRuleCondition & {
+/** Rule of type network. */
+export type NetworkRule = FirewallPolicyRule & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
-  ruleConditionType: "NetworkRuleCondition";
-  /** Array of FirewallPolicyRuleConditionNetworkProtocols. */
-  ipProtocols?: FirewallPolicyRuleConditionNetworkProtocol[];
+  ruleType: "NetworkRule";
+  /** Array of FirewallPolicyRuleNetworkProtocols. */
+  ipProtocols?: FirewallPolicyRuleNetworkProtocol[];
   /** List of source IP addresses for this rule. */
   sourceAddresses?: string[];
   /** List of destination IP addresses or Service Tags. */
@@ -8141,6 +9815,8 @@ export type NetworkRuleCondition = FirewallPolicyRuleCondition & {
   sourceIpGroups?: string[];
   /** List of destination IpGroups for this rule. */
   destinationIpGroups?: string[];
+  /** List of destination FQDNs. */
+  destinationFqdns?: string[];
 };
 
 /** Known values of {@link ApplicationGatewaySkuName} that the service accepts. */
@@ -8453,6 +10129,58 @@ export enum KnownSecurityRuleDirection {
  */
 export type SecurityRuleDirection = string;
 
+/** Known values of {@link ExtendedLocationTypes} that the service accepts. */
+export enum KnownExtendedLocationTypes {
+  EdgeZone = "EdgeZone"
+}
+
+/**
+ * Defines values for ExtendedLocationTypes. \
+ * {@link KnownExtendedLocationTypes} can be used interchangeably with ExtendedLocationTypes,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **EdgeZone**
+ */
+export type ExtendedLocationTypes = string;
+
+/** Known values of {@link NetworkInterfaceNicType} that the service accepts. */
+export enum KnownNetworkInterfaceNicType {
+  Standard = "Standard",
+  Elastic = "Elastic"
+}
+
+/**
+ * Defines values for NetworkInterfaceNicType. \
+ * {@link KnownNetworkInterfaceNicType} can be used interchangeably with NetworkInterfaceNicType,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Standard** \
+ * **Elastic**
+ */
+export type NetworkInterfaceNicType = string;
+
+/** Known values of {@link NetworkInterfaceMigrationPhase} that the service accepts. */
+export enum KnownNetworkInterfaceMigrationPhase {
+  None = "None",
+  Prepare = "Prepare",
+  Commit = "Commit",
+  Abort = "Abort",
+  Committed = "Committed"
+}
+
+/**
+ * Defines values for NetworkInterfaceMigrationPhase. \
+ * {@link KnownNetworkInterfaceMigrationPhase} can be used interchangeably with NetworkInterfaceMigrationPhase,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **None** \
+ * **Prepare** \
+ * **Commit** \
+ * **Abort** \
+ * **Committed**
+ */
+export type NetworkInterfaceMigrationPhase = string;
+
 /** Known values of {@link FlowLogFormatType} that the service accepts. */
 export enum KnownFlowLogFormatType {
   Json = "JSON"
@@ -8505,6 +10233,22 @@ export enum KnownPublicIPAddressSkuName {
  */
 export type PublicIPAddressSkuName = string;
 
+/** Known values of {@link PublicIPAddressSkuTier} that the service accepts. */
+export enum KnownPublicIPAddressSkuTier {
+  Regional = "Regional",
+  Global = "Global"
+}
+
+/**
+ * Defines values for PublicIPAddressSkuTier. \
+ * {@link KnownPublicIPAddressSkuTier} can be used interchangeably with PublicIPAddressSkuTier,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Regional** \
+ * **Global**
+ */
+export type PublicIPAddressSkuTier = string;
+
 /** Known values of {@link DdosSettingsProtectionCoverage} that the service accepts. */
 export enum KnownDdosSettingsProtectionCoverage {
   Basic = "Basic",
@@ -8521,23 +10265,125 @@ export enum KnownDdosSettingsProtectionCoverage {
  */
 export type DdosSettingsProtectionCoverage = string;
 
-/** Known values of {@link VirtualNetworkPeeringState} that the service accepts. */
-export enum KnownVirtualNetworkPeeringState {
-  Initiated = "Initiated",
-  Connected = "Connected",
-  Disconnected = "Disconnected"
+/** Known values of {@link NatGatewaySkuName} that the service accepts. */
+export enum KnownNatGatewaySkuName {
+  Standard = "Standard"
 }
 
 /**
- * Defines values for VirtualNetworkPeeringState. \
- * {@link KnownVirtualNetworkPeeringState} can be used interchangeably with VirtualNetworkPeeringState,
+ * Defines values for NatGatewaySkuName. \
+ * {@link KnownNatGatewaySkuName} can be used interchangeably with NatGatewaySkuName,
  *  this enum contains the known values that the service supports.
  * ### Known values supported by the service
- * **Initiated** \
- * **Connected** \
- * **Disconnected**
+ * **Standard**
  */
-export type VirtualNetworkPeeringState = string;
+export type NatGatewaySkuName = string;
+
+/** Known values of {@link PublicIPAddressMigrationPhase} that the service accepts. */
+export enum KnownPublicIPAddressMigrationPhase {
+  None = "None",
+  Prepare = "Prepare",
+  Commit = "Commit",
+  Abort = "Abort",
+  Committed = "Committed"
+}
+
+/**
+ * Defines values for PublicIPAddressMigrationPhase. \
+ * {@link KnownPublicIPAddressMigrationPhase} can be used interchangeably with PublicIPAddressMigrationPhase,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **None** \
+ * **Prepare** \
+ * **Commit** \
+ * **Abort** \
+ * **Committed**
+ */
+export type PublicIPAddressMigrationPhase = string;
+
+/** Known values of {@link DeleteOptions} that the service accepts. */
+export enum KnownDeleteOptions {
+  Delete = "Delete",
+  Detach = "Detach"
+}
+
+/**
+ * Defines values for DeleteOptions. \
+ * {@link KnownDeleteOptions} can be used interchangeably with DeleteOptions,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Delete** \
+ * **Detach**
+ */
+export type DeleteOptions = string;
+
+/** Known values of {@link VirtualNetworkPrivateEndpointNetworkPolicies} that the service accepts. */
+export enum KnownVirtualNetworkPrivateEndpointNetworkPolicies {
+  Enabled = "Enabled",
+  Disabled = "Disabled"
+}
+
+/**
+ * Defines values for VirtualNetworkPrivateEndpointNetworkPolicies. \
+ * {@link KnownVirtualNetworkPrivateEndpointNetworkPolicies} can be used interchangeably with VirtualNetworkPrivateEndpointNetworkPolicies,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Enabled** \
+ * **Disabled**
+ */
+export type VirtualNetworkPrivateEndpointNetworkPolicies = string;
+
+/** Known values of {@link VirtualNetworkPrivateLinkServiceNetworkPolicies} that the service accepts. */
+export enum KnownVirtualNetworkPrivateLinkServiceNetworkPolicies {
+  Enabled = "Enabled",
+  Disabled = "Disabled"
+}
+
+/**
+ * Defines values for VirtualNetworkPrivateLinkServiceNetworkPolicies. \
+ * {@link KnownVirtualNetworkPrivateLinkServiceNetworkPolicies} can be used interchangeably with VirtualNetworkPrivateLinkServiceNetworkPolicies,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Enabled** \
+ * **Disabled**
+ */
+export type VirtualNetworkPrivateLinkServiceNetworkPolicies = string;
+
+/** Known values of {@link GatewayLoadBalancerTunnelProtocol} that the service accepts. */
+export enum KnownGatewayLoadBalancerTunnelProtocol {
+  None = "None",
+  Native = "Native",
+  Vxlan = "VXLAN"
+}
+
+/**
+ * Defines values for GatewayLoadBalancerTunnelProtocol. \
+ * {@link KnownGatewayLoadBalancerTunnelProtocol} can be used interchangeably with GatewayLoadBalancerTunnelProtocol,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **None** \
+ * **Native** \
+ * **VXLAN**
+ */
+export type GatewayLoadBalancerTunnelProtocol = string;
+
+/** Known values of {@link GatewayLoadBalancerTunnelInterfaceType} that the service accepts. */
+export enum KnownGatewayLoadBalancerTunnelInterfaceType {
+  None = "None",
+  Internal = "Internal",
+  External = "External"
+}
+
+/**
+ * Defines values for GatewayLoadBalancerTunnelInterfaceType. \
+ * {@link KnownGatewayLoadBalancerTunnelInterfaceType} can be used interchangeably with GatewayLoadBalancerTunnelInterfaceType,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **None** \
+ * **Internal** \
+ * **External**
+ */
+export type GatewayLoadBalancerTunnelInterfaceType = string;
 
 /** Known values of {@link TransportProtocol} that the service accepts. */
 export enum KnownTransportProtocol {
@@ -8640,6 +10486,24 @@ export enum KnownApplicationGatewayFirewallMode {
  * **Prevention**
  */
 export type ApplicationGatewayFirewallMode = string;
+
+/** Known values of {@link ApplicationGatewayLoadDistributionAlgorithm} that the service accepts. */
+export enum KnownApplicationGatewayLoadDistributionAlgorithm {
+  RoundRobin = "RoundRobin",
+  LeastConnections = "LeastConnections",
+  IpHash = "IpHash"
+}
+
+/**
+ * Defines values for ApplicationGatewayLoadDistributionAlgorithm. \
+ * {@link KnownApplicationGatewayLoadDistributionAlgorithm} can be used interchangeably with ApplicationGatewayLoadDistributionAlgorithm,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **RoundRobin** \
+ * **LeastConnections** \
+ * **IpHash**
+ */
+export type ApplicationGatewayLoadDistributionAlgorithm = string;
 
 /** Known values of {@link ApplicationGatewayBackendHealthServerHealth} that the service accepts. */
 export enum KnownApplicationGatewayBackendHealthServerHealth {
@@ -8770,7 +10634,8 @@ export type AzureFirewallSkuName = string;
 /** Known values of {@link AzureFirewallSkuTier} that the service accepts. */
 export enum KnownAzureFirewallSkuTier {
   Standard = "Standard",
-  Premium = "Premium"
+  Premium = "Premium",
+  Basic = "Basic"
 }
 
 /**
@@ -8779,9 +10644,26 @@ export enum KnownAzureFirewallSkuTier {
  *  this enum contains the known values that the service supports.
  * ### Known values supported by the service
  * **Standard** \
- * **Premium**
+ * **Premium** \
+ * **Basic**
  */
 export type AzureFirewallSkuTier = string;
+
+/** Known values of {@link BastionHostSkuName} that the service accepts. */
+export enum KnownBastionHostSkuName {
+  Basic = "Basic",
+  Standard = "Standard"
+}
+
+/**
+ * Defines values for BastionHostSkuName. \
+ * {@link KnownBastionHostSkuName} can be used interchangeably with BastionHostSkuName,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Basic** \
+ * **Standard**
+ */
+export type BastionHostSkuName = string;
 
 /** Known values of {@link BastionConnectProtocol} that the service accepts. */
 export enum KnownBastionConnectProtocol {
@@ -8798,6 +10680,30 @@ export enum KnownBastionConnectProtocol {
  * **RDP**
  */
 export type BastionConnectProtocol = string;
+
+/** Known values of {@link CommissionedState} that the service accepts. */
+export enum KnownCommissionedState {
+  Provisioning = "Provisioning",
+  Provisioned = "Provisioned",
+  Commissioning = "Commissioning",
+  Commissioned = "Commissioned",
+  Decommissioning = "Decommissioning",
+  Deprovisioning = "Deprovisioning"
+}
+
+/**
+ * Defines values for CommissionedState. \
+ * {@link KnownCommissionedState} can be used interchangeably with CommissionedState,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Provisioning** \
+ * **Provisioned** \
+ * **Commissioning** \
+ * **Commissioned** \
+ * **Decommissioning** \
+ * **Deprovisioning**
+ */
+export type CommissionedState = string;
 
 /** Known values of {@link DdosCustomPolicyProtocol} that the service accepts. */
 export enum KnownDdosCustomPolicyProtocol {
@@ -8836,6 +10742,36 @@ export enum KnownDdosCustomPolicyTriggerSensitivityOverride {
  * **High**
  */
 export type DdosCustomPolicyTriggerSensitivityOverride = string;
+
+/** Known values of {@link ProtocolType} that the service accepts. */
+export enum KnownProtocolType {
+  DoNotUse = "DoNotUse",
+  Icmp = "Icmp",
+  Tcp = "Tcp",
+  Udp = "Udp",
+  Gre = "Gre",
+  Esp = "Esp",
+  Ah = "Ah",
+  Vxlan = "Vxlan",
+  All = "All"
+}
+
+/**
+ * Defines values for ProtocolType. \
+ * {@link KnownProtocolType} can be used interchangeably with ProtocolType,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **DoNotUse** \
+ * **Icmp** \
+ * **Tcp** \
+ * **Udp** \
+ * **Gre** \
+ * **Esp** \
+ * **Ah** \
+ * **Vxlan** \
+ * **All**
+ */
+export type ProtocolType = string;
 
 /** Known values of {@link AuthorizationUseStatus} that the service accepts. */
 export enum KnownAuthorizationUseStatus {
@@ -9047,8 +10983,10 @@ export type ExpressRouteLinkAdminState = string;
 
 /** Known values of {@link ExpressRouteLinkMacSecCipher} that the service accepts. */
 export enum KnownExpressRouteLinkMacSecCipher {
-  GcmAes128 = "gcm-aes-128",
-  GcmAes256 = "gcm-aes-256"
+  GcmAes256 = "GcmAes256",
+  GcmAes128 = "GcmAes128",
+  GcmAesXpn128 = "GcmAesXpn128",
+  GcmAesXpn256 = "GcmAesXpn256"
 }
 
 /**
@@ -9056,42 +10994,170 @@ export enum KnownExpressRouteLinkMacSecCipher {
  * {@link KnownExpressRouteLinkMacSecCipher} can be used interchangeably with ExpressRouteLinkMacSecCipher,
  *  this enum contains the known values that the service supports.
  * ### Known values supported by the service
- * **gcm-aes-128** \
- * **gcm-aes-256**
+ * **GcmAes256** \
+ * **GcmAes128** \
+ * **GcmAesXpn128** \
+ * **GcmAesXpn256**
  */
 export type ExpressRouteLinkMacSecCipher = string;
 
-/** Known values of {@link FirewallPolicyIntrusionSystemMode} that the service accepts. */
-export enum KnownFirewallPolicyIntrusionSystemMode {
-  Enabled = "Enabled",
-  Disabled = "Disabled"
+/** Known values of {@link ExpressRouteLinkMacSecSciState} that the service accepts. */
+export enum KnownExpressRouteLinkMacSecSciState {
+  Disabled = "Disabled",
+  Enabled = "Enabled"
 }
 
 /**
- * Defines values for FirewallPolicyIntrusionSystemMode. \
- * {@link KnownFirewallPolicyIntrusionSystemMode} can be used interchangeably with FirewallPolicyIntrusionSystemMode,
+ * Defines values for ExpressRouteLinkMacSecSciState. \
+ * {@link KnownExpressRouteLinkMacSecSciState} can be used interchangeably with ExpressRouteLinkMacSecSciState,
  *  this enum contains the known values that the service supports.
  * ### Known values supported by the service
- * **Enabled** \
- * **Disabled**
+ * **Disabled** \
+ * **Enabled**
  */
-export type FirewallPolicyIntrusionSystemMode = string;
+export type ExpressRouteLinkMacSecSciState = string;
 
-/** Known values of {@link FirewallPolicyRuleType} that the service accepts. */
-export enum KnownFirewallPolicyRuleType {
-  FirewallPolicyNatRule = "FirewallPolicyNatRule",
-  FirewallPolicyFilterRule = "FirewallPolicyFilterRule"
+/** Known values of {@link FirewallPolicyIntrusionDetectionStateType} that the service accepts. */
+export enum KnownFirewallPolicyIntrusionDetectionStateType {
+  Off = "Off",
+  Alert = "Alert",
+  Deny = "Deny"
 }
 
 /**
- * Defines values for FirewallPolicyRuleType. \
- * {@link KnownFirewallPolicyRuleType} can be used interchangeably with FirewallPolicyRuleType,
+ * Defines values for FirewallPolicyIntrusionDetectionStateType. \
+ * {@link KnownFirewallPolicyIntrusionDetectionStateType} can be used interchangeably with FirewallPolicyIntrusionDetectionStateType,
  *  this enum contains the known values that the service supports.
  * ### Known values supported by the service
- * **FirewallPolicyNatRule** \
- * **FirewallPolicyFilterRule**
+ * **Off** \
+ * **Alert** \
+ * **Deny**
  */
-export type FirewallPolicyRuleType = string;
+export type FirewallPolicyIntrusionDetectionStateType = string;
+
+/** Known values of {@link FirewallPolicyIntrusionDetectionProtocol} that the service accepts. */
+export enum KnownFirewallPolicyIntrusionDetectionProtocol {
+  TCP = "TCP",
+  UDP = "UDP",
+  Icmp = "ICMP",
+  ANY = "ANY"
+}
+
+/**
+ * Defines values for FirewallPolicyIntrusionDetectionProtocol. \
+ * {@link KnownFirewallPolicyIntrusionDetectionProtocol} can be used interchangeably with FirewallPolicyIntrusionDetectionProtocol,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **TCP** \
+ * **UDP** \
+ * **ICMP** \
+ * **ANY**
+ */
+export type FirewallPolicyIntrusionDetectionProtocol = string;
+
+/** Known values of {@link FirewallPolicySkuTier} that the service accepts. */
+export enum KnownFirewallPolicySkuTier {
+  Standard = "Standard",
+  Premium = "Premium",
+  Basic = "Basic"
+}
+
+/**
+ * Defines values for FirewallPolicySkuTier. \
+ * {@link KnownFirewallPolicySkuTier} can be used interchangeably with FirewallPolicySkuTier,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Standard** \
+ * **Premium** \
+ * **Basic**
+ */
+export type FirewallPolicySkuTier = string;
+
+/** Known values of {@link FirewallPolicyRuleCollectionType} that the service accepts. */
+export enum KnownFirewallPolicyRuleCollectionType {
+  FirewallPolicyNatRuleCollection = "FirewallPolicyNatRuleCollection",
+  FirewallPolicyFilterRuleCollection = "FirewallPolicyFilterRuleCollection"
+}
+
+/**
+ * Defines values for FirewallPolicyRuleCollectionType. \
+ * {@link KnownFirewallPolicyRuleCollectionType} can be used interchangeably with FirewallPolicyRuleCollectionType,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **FirewallPolicyNatRuleCollection** \
+ * **FirewallPolicyFilterRuleCollection**
+ */
+export type FirewallPolicyRuleCollectionType = string;
+
+/** Known values of {@link OrderByOrder} that the service accepts. */
+export enum KnownOrderByOrder {
+  Ascending = "Ascending",
+  Descending = "Descending"
+}
+
+/**
+ * Defines values for OrderByOrder. \
+ * {@link KnownOrderByOrder} can be used interchangeably with OrderByOrder,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Ascending** \
+ * **Descending**
+ */
+export type OrderByOrder = string;
+
+/** Known values of {@link SingleQueryResultMode} that the service accepts. */
+export enum KnownSingleQueryResultMode {
+  Zero = 0,
+  One = 1,
+  Two = 2
+}
+
+/**
+ * Defines values for SingleQueryResultMode. \
+ * {@link KnownSingleQueryResultMode} can be used interchangeably with SingleQueryResultMode,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **0** \
+ * **1** \
+ * **2**
+ */
+export type SingleQueryResultMode = number;
+
+/** Known values of {@link SingleQueryResultSeverity} that the service accepts. */
+export enum KnownSingleQueryResultSeverity {
+  One = 1,
+  Two = 2,
+  Three = 3
+}
+
+/**
+ * Defines values for SingleQueryResultSeverity. \
+ * {@link KnownSingleQueryResultSeverity} can be used interchangeably with SingleQueryResultSeverity,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **1** \
+ * **2** \
+ * **3**
+ */
+export type SingleQueryResultSeverity = number;
+
+/** Known values of {@link SingleQueryResultDirection} that the service accepts. */
+export enum KnownSingleQueryResultDirection {
+  Zero = 0,
+  One = 1,
+  Two = 2
+}
+
+/**
+ * Defines values for SingleQueryResultDirection. \
+ * {@link KnownSingleQueryResultDirection} can be used interchangeably with SingleQueryResultDirection,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **0** \
+ * **1** \
+ * **2**
+ */
+export type SingleQueryResultDirection = number;
 
 /** Known values of {@link IpAllocationType} that the service accepts. */
 export enum KnownIpAllocationType {
@@ -9112,7 +11178,8 @@ export type IpAllocationType = string;
 /** Known values of {@link LoadBalancerSkuName} that the service accepts. */
 export enum KnownLoadBalancerSkuName {
   Basic = "Basic",
-  Standard = "Standard"
+  Standard = "Standard",
+  Gateway = "Gateway"
 }
 
 /**
@@ -9121,9 +11188,26 @@ export enum KnownLoadBalancerSkuName {
  *  this enum contains the known values that the service supports.
  * ### Known values supported by the service
  * **Basic** \
- * **Standard**
+ * **Standard** \
+ * **Gateway**
  */
 export type LoadBalancerSkuName = string;
+
+/** Known values of {@link LoadBalancerSkuTier} that the service accepts. */
+export enum KnownLoadBalancerSkuTier {
+  Regional = "Regional",
+  Global = "Global"
+}
+
+/**
+ * Defines values for LoadBalancerSkuTier. \
+ * {@link KnownLoadBalancerSkuTier} can be used interchangeably with LoadBalancerSkuTier,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Regional** \
+ * **Global**
+ */
+export type LoadBalancerSkuTier = string;
 
 /** Known values of {@link LoadDistribution} that the service accepts. */
 export enum KnownLoadDistribution {
@@ -9179,20 +11263,6 @@ export enum KnownLoadBalancerOutboundRuleProtocol {
  */
 export type LoadBalancerOutboundRuleProtocol = string;
 
-/** Known values of {@link NatGatewaySkuName} that the service accepts. */
-export enum KnownNatGatewaySkuName {
-  Standard = "Standard"
-}
-
-/**
- * Defines values for NatGatewaySkuName. \
- * {@link KnownNatGatewaySkuName} can be used interchangeably with NatGatewaySkuName,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Standard**
- */
-export type NatGatewaySkuName = string;
-
 /** Known values of {@link EffectiveRouteSource} that the service accepts. */
 export enum KnownEffectiveRouteSource {
   Unknown = "Unknown",
@@ -9246,6 +11316,22 @@ export enum KnownEffectiveSecurityRuleProtocol {
  * **All**
  */
 export type EffectiveSecurityRuleProtocol = string;
+
+/** Known values of {@link InboundSecurityRulesProtocol} that the service accepts. */
+export enum KnownInboundSecurityRulesProtocol {
+  TCP = "TCP",
+  UDP = "UDP"
+}
+
+/**
+ * Defines values for InboundSecurityRulesProtocol. \
+ * {@link KnownInboundSecurityRulesProtocol} can be used interchangeably with InboundSecurityRulesProtocol,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **TCP** \
+ * **UDP**
+ */
+export type InboundSecurityRulesProtocol = string;
 
 /** Known values of {@link AssociationType} that the service accepts. */
 export enum KnownAssociationType {
@@ -9533,6 +11619,30 @@ export enum KnownVerbosityLevel {
  */
 export type VerbosityLevel = string;
 
+/** Known values of {@link EndpointType} that the service accepts. */
+export enum KnownEndpointType {
+  AzureVM = "AzureVM",
+  AzureVNet = "AzureVNet",
+  AzureSubnet = "AzureSubnet",
+  ExternalAddress = "ExternalAddress",
+  MMAWorkspaceMachine = "MMAWorkspaceMachine",
+  MMAWorkspaceNetwork = "MMAWorkspaceNetwork"
+}
+
+/**
+ * Defines values for EndpointType. \
+ * {@link KnownEndpointType} can be used interchangeably with EndpointType,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **AzureVM** \
+ * **AzureVNet** \
+ * **AzureSubnet** \
+ * **ExternalAddress** \
+ * **MMAWorkspaceMachine** \
+ * **MMAWorkspaceNetwork**
+ */
+export type EndpointType = string;
+
 /** Known values of {@link ConnectionMonitorEndpointFilterType} that the service accepts. */
 export enum KnownConnectionMonitorEndpointFilterType {
   Include = "Include"
@@ -9560,6 +11670,30 @@ export enum KnownConnectionMonitorEndpointFilterItemType {
  * **AgentAddress**
  */
 export type ConnectionMonitorEndpointFilterItemType = string;
+
+/** Known values of {@link CoverageLevel} that the service accepts. */
+export enum KnownCoverageLevel {
+  Default = "Default",
+  Low = "Low",
+  BelowAverage = "BelowAverage",
+  Average = "Average",
+  AboveAverage = "AboveAverage",
+  Full = "Full"
+}
+
+/**
+ * Defines values for CoverageLevel. \
+ * {@link KnownCoverageLevel} can be used interchangeably with CoverageLevel,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Default** \
+ * **Low** \
+ * **BelowAverage** \
+ * **Average** \
+ * **AboveAverage** \
+ * **Full**
+ */
+export type CoverageLevel = string;
 
 /** Known values of {@link ConnectionMonitorTestConfigurationProtocol} that the service accepts. */
 export enum KnownConnectionMonitorTestConfigurationProtocol {
@@ -9610,6 +11744,22 @@ export enum KnownHttpConfigurationMethod {
  * **Post**
  */
 export type HttpConfigurationMethod = string;
+
+/** Known values of {@link DestinationPortBehavior} that the service accepts. */
+export enum KnownDestinationPortBehavior {
+  None = "None",
+  ListenIfAvailable = "ListenIfAvailable"
+}
+
+/**
+ * Defines values for DestinationPortBehavior. \
+ * {@link KnownDestinationPortBehavior} can be used interchangeably with DestinationPortBehavior,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **None** \
+ * **ListenIfAvailable**
+ */
+export type DestinationPortBehavior = string;
 
 /** Known values of {@link OutputType} that the service accepts. */
 export enum KnownOutputType {
@@ -9709,6 +11859,22 @@ export enum KnownPublicIPPrefixSkuName {
  */
 export type PublicIPPrefixSkuName = string;
 
+/** Known values of {@link PublicIPPrefixSkuTier} that the service accepts. */
+export enum KnownPublicIPPrefixSkuTier {
+  Regional = "Regional",
+  Global = "Global"
+}
+
+/**
+ * Defines values for PublicIPPrefixSkuTier. \
+ * {@link KnownPublicIPPrefixSkuTier} can be used interchangeably with PublicIPPrefixSkuTier,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Regional** \
+ * **Global**
+ */
+export type PublicIPPrefixSkuTier = string;
+
 /** Known values of {@link RouteFilterRuleType} that the service accepts. */
 export enum KnownRouteFilterRuleType {
   Community = "Community"
@@ -9775,10 +11941,79 @@ export enum KnownUsageUnit {
  */
 export type UsageUnit = string;
 
+/** Known values of {@link VirtualNetworkEncryptionEnforcement} that the service accepts. */
+export enum KnownVirtualNetworkEncryptionEnforcement {
+  DropUnencrypted = "DropUnencrypted",
+  AllowUnencrypted = "AllowUnencrypted"
+}
+
+/**
+ * Defines values for VirtualNetworkEncryptionEnforcement. \
+ * {@link KnownVirtualNetworkEncryptionEnforcement} can be used interchangeably with VirtualNetworkEncryptionEnforcement,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **DropUnencrypted** \
+ * **AllowUnencrypted**
+ */
+export type VirtualNetworkEncryptionEnforcement = string;
+
+/** Known values of {@link VirtualNetworkPeeringState} that the service accepts. */
+export enum KnownVirtualNetworkPeeringState {
+  Initiated = "Initiated",
+  Connected = "Connected",
+  Disconnected = "Disconnected"
+}
+
+/**
+ * Defines values for VirtualNetworkPeeringState. \
+ * {@link KnownVirtualNetworkPeeringState} can be used interchangeably with VirtualNetworkPeeringState,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Initiated** \
+ * **Connected** \
+ * **Disconnected**
+ */
+export type VirtualNetworkPeeringState = string;
+
+/** Known values of {@link VirtualNetworkPeeringLevel} that the service accepts. */
+export enum KnownVirtualNetworkPeeringLevel {
+  FullyInSync = "FullyInSync",
+  RemoteNotInSync = "RemoteNotInSync",
+  LocalNotInSync = "LocalNotInSync",
+  LocalAndRemoteNotInSync = "LocalAndRemoteNotInSync"
+}
+
+/**
+ * Defines values for VirtualNetworkPeeringLevel. \
+ * {@link KnownVirtualNetworkPeeringLevel} can be used interchangeably with VirtualNetworkPeeringLevel,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **FullyInSync** \
+ * **RemoteNotInSync** \
+ * **LocalNotInSync** \
+ * **LocalAndRemoteNotInSync**
+ */
+export type VirtualNetworkPeeringLevel = string;
+
+/** Known values of {@link SyncRemoteAddressSpace} that the service accepts. */
+export enum KnownSyncRemoteAddressSpace {
+  True = "true"
+}
+
+/**
+ * Defines values for SyncRemoteAddressSpace. \
+ * {@link KnownSyncRemoteAddressSpace} can be used interchangeably with SyncRemoteAddressSpace,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **true**
+ */
+export type SyncRemoteAddressSpace = string;
+
 /** Known values of {@link VirtualNetworkGatewayType} that the service accepts. */
 export enum KnownVirtualNetworkGatewayType {
   Vpn = "Vpn",
-  ExpressRoute = "ExpressRoute"
+  ExpressRoute = "ExpressRoute",
+  LocalGateway = "LocalGateway"
 }
 
 /**
@@ -9787,7 +12022,8 @@ export enum KnownVirtualNetworkGatewayType {
  *  this enum contains the known values that the service supports.
  * ### Known values supported by the service
  * **Vpn** \
- * **ExpressRoute**
+ * **ExpressRoute** \
+ * **LocalGateway**
  */
 export type VirtualNetworkGatewayType = string;
 
@@ -9934,6 +12170,24 @@ export enum KnownVpnClientProtocol {
  * **OpenVPN**
  */
 export type VpnClientProtocol = string;
+
+/** Known values of {@link VpnAuthenticationType} that the service accepts. */
+export enum KnownVpnAuthenticationType {
+  Certificate = "Certificate",
+  Radius = "Radius",
+  AAD = "AAD"
+}
+
+/**
+ * Defines values for VpnAuthenticationType. \
+ * {@link KnownVpnAuthenticationType} can be used interchangeably with VpnAuthenticationType,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Certificate** \
+ * **Radius** \
+ * **AAD**
+ */
+export type VpnAuthenticationType = string;
 
 /** Known values of {@link IpsecEncryption} that the service accepts. */
 export enum KnownIpsecEncryption {
@@ -10097,6 +12351,38 @@ export enum KnownPfsGroup {
  */
 export type PfsGroup = string;
 
+/** Known values of {@link VpnNatRuleType} that the service accepts. */
+export enum KnownVpnNatRuleType {
+  Static = "Static",
+  Dynamic = "Dynamic"
+}
+
+/**
+ * Defines values for VpnNatRuleType. \
+ * {@link KnownVpnNatRuleType} can be used interchangeably with VpnNatRuleType,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Static** \
+ * **Dynamic**
+ */
+export type VpnNatRuleType = string;
+
+/** Known values of {@link VpnNatRuleMode} that the service accepts. */
+export enum KnownVpnNatRuleMode {
+  EgressSnat = "EgressSnat",
+  IngressSnat = "IngressSnat"
+}
+
+/**
+ * Defines values for VpnNatRuleMode. \
+ * {@link KnownVpnNatRuleMode} can be used interchangeably with VpnNatRuleMode,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **EgressSnat** \
+ * **IngressSnat**
+ */
+export type VpnNatRuleMode = string;
+
 /** Known values of {@link VirtualNetworkGatewayConnectionType} that the service accepts. */
 export enum KnownVirtualNetworkGatewayConnectionType {
   IPsec = "IPsec",
@@ -10132,6 +12418,24 @@ export enum KnownVirtualNetworkGatewayConnectionProtocol {
  * **IKEv1**
  */
 export type VirtualNetworkGatewayConnectionProtocol = string;
+
+/** Known values of {@link VirtualNetworkGatewayConnectionMode} that the service accepts. */
+export enum KnownVirtualNetworkGatewayConnectionMode {
+  Default = "Default",
+  ResponderOnly = "ResponderOnly",
+  InitiatorOnly = "InitiatorOnly"
+}
+
+/**
+ * Defines values for VirtualNetworkGatewayConnectionMode. \
+ * {@link KnownVirtualNetworkGatewayConnectionMode} can be used interchangeably with VirtualNetworkGatewayConnectionMode,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Default** \
+ * **ResponderOnly** \
+ * **InitiatorOnly**
+ */
+export type VirtualNetworkGatewayConnectionMode = string;
 
 /** Known values of {@link VirtualNetworkGatewayConnectionStatus} that the service accepts. */
 export enum KnownVirtualNetworkGatewayConnectionStatus {
@@ -10259,23 +12563,43 @@ export enum KnownVpnGatewayTunnelingProtocol {
  */
 export type VpnGatewayTunnelingProtocol = string;
 
-/** Known values of {@link VpnAuthenticationType} that the service accepts. */
-export enum KnownVpnAuthenticationType {
-  Certificate = "Certificate",
-  Radius = "Radius",
-  AAD = "AAD"
+/** Known values of {@link RoutingState} that the service accepts. */
+export enum KnownRoutingState {
+  None = "None",
+  Provisioned = "Provisioned",
+  Provisioning = "Provisioning",
+  Failed = "Failed"
 }
 
 /**
- * Defines values for VpnAuthenticationType. \
- * {@link KnownVpnAuthenticationType} can be used interchangeably with VpnAuthenticationType,
+ * Defines values for RoutingState. \
+ * {@link KnownRoutingState} can be used interchangeably with RoutingState,
  *  this enum contains the known values that the service supports.
  * ### Known values supported by the service
- * **Certificate** \
- * **Radius** \
- * **AAD**
+ * **None** \
+ * **Provisioned** \
+ * **Provisioning** \
+ * **Failed**
  */
-export type VpnAuthenticationType = string;
+export type RoutingState = string;
+
+/** Known values of {@link PreferredRoutingGateway} that the service accepts. */
+export enum KnownPreferredRoutingGateway {
+  ExpressRoute = "ExpressRoute",
+  VpnGateway = "VpnGateway",
+  None = "None"
+}
+
+/**
+ * Defines values for PreferredRoutingGateway. \
+ * {@link KnownPreferredRoutingGateway} can be used interchangeably with PreferredRoutingGateway,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **ExpressRoute** \
+ * **VpnGateway** \
+ * **None**
+ */
+export type PreferredRoutingGateway = string;
 
 /** Known values of {@link VpnConnectionStatus} that the service accepts. */
 export enum KnownVpnConnectionStatus {
@@ -10296,6 +12620,44 @@ export enum KnownVpnConnectionStatus {
  * **NotConnected**
  */
 export type VpnConnectionStatus = string;
+
+/** Known values of {@link VpnLinkConnectionMode} that the service accepts. */
+export enum KnownVpnLinkConnectionMode {
+  Default = "Default",
+  ResponderOnly = "ResponderOnly",
+  InitiatorOnly = "InitiatorOnly"
+}
+
+/**
+ * Defines values for VpnLinkConnectionMode. \
+ * {@link KnownVpnLinkConnectionMode} can be used interchangeably with VpnLinkConnectionMode,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Default** \
+ * **ResponderOnly** \
+ * **InitiatorOnly**
+ */
+export type VpnLinkConnectionMode = string;
+
+/** Known values of {@link HubBgpConnectionStatus} that the service accepts. */
+export enum KnownHubBgpConnectionStatus {
+  Unknown = "Unknown",
+  Connecting = "Connecting",
+  Connected = "Connected",
+  NotConnected = "NotConnected"
+}
+
+/**
+ * Defines values for HubBgpConnectionStatus. \
+ * {@link KnownHubBgpConnectionStatus} can be used interchangeably with HubBgpConnectionStatus,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Unknown** \
+ * **Connecting** \
+ * **Connected** \
+ * **NotConnected**
+ */
+export type HubBgpConnectionStatus = string;
 
 /** Known values of {@link WebApplicationFirewallEnabledState} that the service accepts. */
 export enum KnownWebApplicationFirewallEnabledState {
@@ -10477,7 +12839,13 @@ export type WebApplicationFirewallPolicyResourceState = string;
 export enum KnownOwaspCrsExclusionEntryMatchVariable {
   RequestHeaderNames = "RequestHeaderNames",
   RequestCookieNames = "RequestCookieNames",
-  RequestArgNames = "RequestArgNames"
+  RequestArgNames = "RequestArgNames",
+  RequestHeaderKeys = "RequestHeaderKeys",
+  RequestHeaderValues = "RequestHeaderValues",
+  RequestCookieKeys = "RequestCookieKeys",
+  RequestCookieValues = "RequestCookieValues",
+  RequestArgKeys = "RequestArgKeys",
+  RequestArgValues = "RequestArgValues"
 }
 
 /**
@@ -10487,7 +12855,13 @@ export enum KnownOwaspCrsExclusionEntryMatchVariable {
  * ### Known values supported by the service
  * **RequestHeaderNames** \
  * **RequestCookieNames** \
- * **RequestArgNames**
+ * **RequestArgNames** \
+ * **RequestHeaderKeys** \
+ * **RequestHeaderValues** \
+ * **RequestCookieKeys** \
+ * **RequestCookieValues** \
+ * **RequestArgKeys** \
+ * **RequestArgValues**
  */
 export type OwaspCrsExclusionEntryMatchVariable = string;
 
@@ -10527,72 +12901,72 @@ export enum KnownManagedRuleEnabledState {
  */
 export type ManagedRuleEnabledState = string;
 
-/** Known values of {@link FirewallPolicyNatRuleActionType} that the service accepts. */
-export enum KnownFirewallPolicyNatRuleActionType {
+/** Known values of {@link FirewallPolicyNatRuleCollectionActionType} that the service accepts. */
+export enum KnownFirewallPolicyNatRuleCollectionActionType {
   Dnat = "DNAT"
 }
 
 /**
- * Defines values for FirewallPolicyNatRuleActionType. \
- * {@link KnownFirewallPolicyNatRuleActionType} can be used interchangeably with FirewallPolicyNatRuleActionType,
+ * Defines values for FirewallPolicyNatRuleCollectionActionType. \
+ * {@link KnownFirewallPolicyNatRuleCollectionActionType} can be used interchangeably with FirewallPolicyNatRuleCollectionActionType,
  *  this enum contains the known values that the service supports.
  * ### Known values supported by the service
  * **DNAT**
  */
-export type FirewallPolicyNatRuleActionType = string;
+export type FirewallPolicyNatRuleCollectionActionType = string;
 
-/** Known values of {@link FirewallPolicyRuleConditionType} that the service accepts. */
-export enum KnownFirewallPolicyRuleConditionType {
-  ApplicationRuleCondition = "ApplicationRuleCondition",
-  NetworkRuleCondition = "NetworkRuleCondition",
-  NatRuleCondition = "NatRuleCondition"
+/** Known values of {@link FirewallPolicyRuleType} that the service accepts. */
+export enum KnownFirewallPolicyRuleType {
+  ApplicationRule = "ApplicationRule",
+  NetworkRule = "NetworkRule",
+  NatRule = "NatRule"
 }
 
 /**
- * Defines values for FirewallPolicyRuleConditionType. \
- * {@link KnownFirewallPolicyRuleConditionType} can be used interchangeably with FirewallPolicyRuleConditionType,
+ * Defines values for FirewallPolicyRuleType. \
+ * {@link KnownFirewallPolicyRuleType} can be used interchangeably with FirewallPolicyRuleType,
  *  this enum contains the known values that the service supports.
  * ### Known values supported by the service
- * **ApplicationRuleCondition** \
- * **NetworkRuleCondition** \
- * **NatRuleCondition**
+ * **ApplicationRule** \
+ * **NetworkRule** \
+ * **NatRule**
  */
-export type FirewallPolicyRuleConditionType = string;
+export type FirewallPolicyRuleType = string;
 
-/** Known values of {@link FirewallPolicyFilterRuleActionType} that the service accepts. */
-export enum KnownFirewallPolicyFilterRuleActionType {
+/** Known values of {@link FirewallPolicyFilterRuleCollectionActionType} that the service accepts. */
+export enum KnownFirewallPolicyFilterRuleCollectionActionType {
   Allow = "Allow",
   Deny = "Deny"
 }
 
 /**
- * Defines values for FirewallPolicyFilterRuleActionType. \
- * {@link KnownFirewallPolicyFilterRuleActionType} can be used interchangeably with FirewallPolicyFilterRuleActionType,
+ * Defines values for FirewallPolicyFilterRuleCollectionActionType. \
+ * {@link KnownFirewallPolicyFilterRuleCollectionActionType} can be used interchangeably with FirewallPolicyFilterRuleCollectionActionType,
  *  this enum contains the known values that the service supports.
  * ### Known values supported by the service
  * **Allow** \
  * **Deny**
  */
-export type FirewallPolicyFilterRuleActionType = string;
+export type FirewallPolicyFilterRuleCollectionActionType = string;
 
-/** Known values of {@link FirewallPolicyRuleConditionApplicationProtocolType} that the service accepts. */
-export enum KnownFirewallPolicyRuleConditionApplicationProtocolType {
+/** Known values of {@link FirewallPolicyRuleApplicationProtocolType} that the service accepts. */
+export enum KnownFirewallPolicyRuleApplicationProtocolType {
   Http = "Http",
   Https = "Https"
 }
 
 /**
- * Defines values for FirewallPolicyRuleConditionApplicationProtocolType. \
- * {@link KnownFirewallPolicyRuleConditionApplicationProtocolType} can be used interchangeably with FirewallPolicyRuleConditionApplicationProtocolType,
+ * Defines values for FirewallPolicyRuleApplicationProtocolType. \
+ * {@link KnownFirewallPolicyRuleApplicationProtocolType} can be used interchangeably with FirewallPolicyRuleApplicationProtocolType,
  *  this enum contains the known values that the service supports.
  * ### Known values supported by the service
  * **Http** \
  * **Https**
  */
-export type FirewallPolicyRuleConditionApplicationProtocolType = string;
+export type FirewallPolicyRuleApplicationProtocolType = string;
 
-/** Known values of {@link FirewallPolicyRuleConditionNetworkProtocol} that the service accepts. */
-export enum KnownFirewallPolicyRuleConditionNetworkProtocol {
+/** Known values of {@link FirewallPolicyRuleNetworkProtocol} that the service accepts. */
+export enum KnownFirewallPolicyRuleNetworkProtocol {
   TCP = "TCP",
   UDP = "UDP",
   Any = "Any",
@@ -10600,8 +12974,8 @@ export enum KnownFirewallPolicyRuleConditionNetworkProtocol {
 }
 
 /**
- * Defines values for FirewallPolicyRuleConditionNetworkProtocol. \
- * {@link KnownFirewallPolicyRuleConditionNetworkProtocol} can be used interchangeably with FirewallPolicyRuleConditionNetworkProtocol,
+ * Defines values for FirewallPolicyRuleNetworkProtocol. \
+ * {@link KnownFirewallPolicyRuleNetworkProtocol} can be used interchangeably with FirewallPolicyRuleNetworkProtocol,
  *  this enum contains the known values that the service supports.
  * ### Known values supported by the service
  * **TCP** \
@@ -10609,7 +12983,7 @@ export enum KnownFirewallPolicyRuleConditionNetworkProtocol {
  * **Any** \
  * **ICMP**
  */
-export type FirewallPolicyRuleConditionNetworkProtocol = string;
+export type FirewallPolicyRuleNetworkProtocol = string;
 
 /** Known values of {@link NetworkOperationStatus} that the service accepts. */
 export enum KnownNetworkOperationStatus {
@@ -10850,6 +13224,62 @@ export interface ApplicationGatewaysListAvailableSslPredefinedPoliciesNextOption
 export type ApplicationGatewaysListAvailableSslPredefinedPoliciesNextResponse = ApplicationGatewayAvailableSslPredefinedPolicies;
 
 /** Optional parameters. */
+export interface ApplicationGatewayPrivateLinkResourcesListOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the list operation. */
+export type ApplicationGatewayPrivateLinkResourcesListResponse = ApplicationGatewayPrivateLinkResourceListResult;
+
+/** Optional parameters. */
+export interface ApplicationGatewayPrivateLinkResourcesListNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listNext operation. */
+export type ApplicationGatewayPrivateLinkResourcesListNextResponse = ApplicationGatewayPrivateLinkResourceListResult;
+
+/** Optional parameters. */
+export interface ApplicationGatewayPrivateEndpointConnectionsDeleteOptionalParams
+  extends coreClient.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface ApplicationGatewayPrivateEndpointConnectionsUpdateOptionalParams
+  extends coreClient.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Contains response data for the update operation. */
+export type ApplicationGatewayPrivateEndpointConnectionsUpdateResponse = ApplicationGatewayPrivateEndpointConnection;
+
+/** Optional parameters. */
+export interface ApplicationGatewayPrivateEndpointConnectionsGetOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the get operation. */
+export type ApplicationGatewayPrivateEndpointConnectionsGetResponse = ApplicationGatewayPrivateEndpointConnection;
+
+/** Optional parameters. */
+export interface ApplicationGatewayPrivateEndpointConnectionsListOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the list operation. */
+export type ApplicationGatewayPrivateEndpointConnectionsListResponse = ApplicationGatewayPrivateEndpointConnectionListResult;
+
+/** Optional parameters. */
+export interface ApplicationGatewayPrivateEndpointConnectionsListNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listNext operation. */
+export type ApplicationGatewayPrivateEndpointConnectionsListNextResponse = ApplicationGatewayPrivateEndpointConnectionListResult;
+
+/** Optional parameters. */
 export interface ApplicationSecurityGroupsDeleteOptionalParams
   extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
@@ -11051,6 +13481,30 @@ export interface AzureFirewallFqdnTagsListAllNextOptionalParams
 export type AzureFirewallFqdnTagsListAllNextResponse = AzureFirewallFqdnTagListResult;
 
 /** Optional parameters. */
+export interface WebCategoriesGetOptionalParams
+  extends coreClient.OperationOptions {
+  /** Expands resourceIds back referenced by the azureWebCategory resource. */
+  expand?: string;
+}
+
+/** Contains response data for the get operation. */
+export type WebCategoriesGetResponse = AzureWebCategory;
+
+/** Optional parameters. */
+export interface WebCategoriesListBySubscriptionOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listBySubscription operation. */
+export type WebCategoriesListBySubscriptionResponse = AzureWebCategoryListResult;
+
+/** Optional parameters. */
+export interface WebCategoriesListBySubscriptionNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listBySubscriptionNext operation. */
+export type WebCategoriesListBySubscriptionNextResponse = AzureWebCategoryListResult;
+
+/** Optional parameters. */
 export interface BastionHostsDeleteOptionalParams
   extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
@@ -11077,6 +13531,18 @@ export interface BastionHostsCreateOrUpdateOptionalParams
 
 /** Contains response data for the createOrUpdate operation. */
 export type BastionHostsCreateOrUpdateResponse = BastionHost;
+
+/** Optional parameters. */
+export interface BastionHostsUpdateTagsOptionalParams
+  extends coreClient.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Contains response data for the updateTags operation. */
+export type BastionHostsUpdateTagsResponse = BastionHost;
 
 /** Optional parameters. */
 export interface BastionHostsListOptionalParams
@@ -11208,6 +13674,410 @@ export interface DisconnectActiveSessionsNextOptionalParams
 export type DisconnectActiveSessionsNextResponse = BastionSessionDeleteResult;
 
 /** Optional parameters. */
+export interface NetworkInterfacesListCloudServiceRoleInstanceNetworkInterfacesOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listCloudServiceRoleInstanceNetworkInterfaces operation. */
+export type NetworkInterfacesListCloudServiceRoleInstanceNetworkInterfacesResponse = NetworkInterfaceListResult;
+
+/** Optional parameters. */
+export interface NetworkInterfacesListCloudServiceNetworkInterfacesOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listCloudServiceNetworkInterfaces operation. */
+export type NetworkInterfacesListCloudServiceNetworkInterfacesResponse = NetworkInterfaceListResult;
+
+/** Optional parameters. */
+export interface NetworkInterfacesGetCloudServiceNetworkInterfaceOptionalParams
+  extends coreClient.OperationOptions {
+  /** Expands referenced resources. */
+  expand?: string;
+}
+
+/** Contains response data for the getCloudServiceNetworkInterface operation. */
+export type NetworkInterfacesGetCloudServiceNetworkInterfaceResponse = NetworkInterface;
+
+/** Optional parameters. */
+export interface NetworkInterfacesDeleteOptionalParams
+  extends coreClient.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface NetworkInterfacesGetOptionalParams
+  extends coreClient.OperationOptions {
+  /** Expands referenced resources. */
+  expand?: string;
+}
+
+/** Contains response data for the get operation. */
+export type NetworkInterfacesGetResponse = NetworkInterface;
+
+/** Optional parameters. */
+export interface NetworkInterfacesCreateOrUpdateOptionalParams
+  extends coreClient.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Contains response data for the createOrUpdate operation. */
+export type NetworkInterfacesCreateOrUpdateResponse = NetworkInterface;
+
+/** Optional parameters. */
+export interface NetworkInterfacesUpdateTagsOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the updateTags operation. */
+export type NetworkInterfacesUpdateTagsResponse = NetworkInterface;
+
+/** Optional parameters. */
+export interface NetworkInterfacesListAllOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listAll operation. */
+export type NetworkInterfacesListAllResponse = NetworkInterfaceListResult;
+
+/** Optional parameters. */
+export interface NetworkInterfacesListOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the list operation. */
+export type NetworkInterfacesListResponse = NetworkInterfaceListResult;
+
+/** Optional parameters. */
+export interface NetworkInterfacesGetEffectiveRouteTableOptionalParams
+  extends coreClient.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Contains response data for the getEffectiveRouteTable operation. */
+export type NetworkInterfacesGetEffectiveRouteTableResponse = EffectiveRouteListResult;
+
+/** Optional parameters. */
+export interface NetworkInterfacesListEffectiveNetworkSecurityGroupsOptionalParams
+  extends coreClient.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Contains response data for the listEffectiveNetworkSecurityGroups operation. */
+export type NetworkInterfacesListEffectiveNetworkSecurityGroupsResponse = EffectiveNetworkSecurityGroupListResult;
+
+/** Optional parameters. */
+export interface NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listVirtualMachineScaleSetVMNetworkInterfaces operation. */
+export type NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesResponse = NetworkInterfaceListResult;
+
+/** Optional parameters. */
+export interface NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listVirtualMachineScaleSetNetworkInterfaces operation. */
+export type NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesResponse = NetworkInterfaceListResult;
+
+/** Optional parameters. */
+export interface NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceOptionalParams
+  extends coreClient.OperationOptions {
+  /** Expands referenced resources. */
+  expand?: string;
+}
+
+/** Contains response data for the getVirtualMachineScaleSetNetworkInterface operation. */
+export type NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceResponse = NetworkInterface;
+
+/** Optional parameters. */
+export interface NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsOptionalParams
+  extends coreClient.OperationOptions {
+  /** Expands referenced resources. */
+  expand?: string;
+}
+
+/** Contains response data for the listVirtualMachineScaleSetIpConfigurations operation. */
+export type NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsResponse = NetworkInterfaceIPConfigurationListResult;
+
+/** Optional parameters. */
+export interface NetworkInterfacesGetVirtualMachineScaleSetIpConfigurationOptionalParams
+  extends coreClient.OperationOptions {
+  /** Expands referenced resources. */
+  expand?: string;
+}
+
+/** Contains response data for the getVirtualMachineScaleSetIpConfiguration operation. */
+export type NetworkInterfacesGetVirtualMachineScaleSetIpConfigurationResponse = NetworkInterfaceIPConfiguration;
+
+/** Optional parameters. */
+export interface NetworkInterfacesListCloudServiceRoleInstanceNetworkInterfacesNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listCloudServiceRoleInstanceNetworkInterfacesNext operation. */
+export type NetworkInterfacesListCloudServiceRoleInstanceNetworkInterfacesNextResponse = NetworkInterfaceListResult;
+
+/** Optional parameters. */
+export interface NetworkInterfacesListCloudServiceNetworkInterfacesNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listCloudServiceNetworkInterfacesNext operation. */
+export type NetworkInterfacesListCloudServiceNetworkInterfacesNextResponse = NetworkInterfaceListResult;
+
+/** Optional parameters. */
+export interface NetworkInterfacesListAllNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listAllNext operation. */
+export type NetworkInterfacesListAllNextResponse = NetworkInterfaceListResult;
+
+/** Optional parameters. */
+export interface NetworkInterfacesListNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listNext operation. */
+export type NetworkInterfacesListNextResponse = NetworkInterfaceListResult;
+
+/** Optional parameters. */
+export interface NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listVirtualMachineScaleSetVMNetworkInterfacesNext operation. */
+export type NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesNextResponse = NetworkInterfaceListResult;
+
+/** Optional parameters. */
+export interface NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listVirtualMachineScaleSetNetworkInterfacesNext operation. */
+export type NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesNextResponse = NetworkInterfaceListResult;
+
+/** Optional parameters. */
+export interface NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsNextOptionalParams
+  extends coreClient.OperationOptions {
+  /** Expands referenced resources. */
+  expand?: string;
+}
+
+/** Contains response data for the listVirtualMachineScaleSetIpConfigurationsNext operation. */
+export type NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsNextResponse = NetworkInterfaceIPConfigurationListResult;
+
+/** Optional parameters. */
+export interface PublicIPAddressesListCloudServicePublicIPAddressesOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listCloudServicePublicIPAddresses operation. */
+export type PublicIPAddressesListCloudServicePublicIPAddressesResponse = PublicIPAddressListResult;
+
+/** Optional parameters. */
+export interface PublicIPAddressesListCloudServiceRoleInstancePublicIPAddressesOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listCloudServiceRoleInstancePublicIPAddresses operation. */
+export type PublicIPAddressesListCloudServiceRoleInstancePublicIPAddressesResponse = PublicIPAddressListResult;
+
+/** Optional parameters. */
+export interface PublicIPAddressesGetCloudServicePublicIPAddressOptionalParams
+  extends coreClient.OperationOptions {
+  /** Expands referenced resources. */
+  expand?: string;
+}
+
+/** Contains response data for the getCloudServicePublicIPAddress operation. */
+export type PublicIPAddressesGetCloudServicePublicIPAddressResponse = PublicIPAddress;
+
+/** Optional parameters. */
+export interface PublicIPAddressesDeleteOptionalParams
+  extends coreClient.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface PublicIPAddressesGetOptionalParams
+  extends coreClient.OperationOptions {
+  /** Expands referenced resources. */
+  expand?: string;
+}
+
+/** Contains response data for the get operation. */
+export type PublicIPAddressesGetResponse = PublicIPAddress;
+
+/** Optional parameters. */
+export interface PublicIPAddressesCreateOrUpdateOptionalParams
+  extends coreClient.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Contains response data for the createOrUpdate operation. */
+export type PublicIPAddressesCreateOrUpdateResponse = PublicIPAddress;
+
+/** Optional parameters. */
+export interface PublicIPAddressesUpdateTagsOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the updateTags operation. */
+export type PublicIPAddressesUpdateTagsResponse = PublicIPAddress;
+
+/** Optional parameters. */
+export interface PublicIPAddressesListAllOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listAll operation. */
+export type PublicIPAddressesListAllResponse = PublicIPAddressListResult;
+
+/** Optional parameters. */
+export interface PublicIPAddressesListOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the list operation. */
+export type PublicIPAddressesListResponse = PublicIPAddressListResult;
+
+/** Optional parameters. */
+export interface PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listVirtualMachineScaleSetPublicIPAddresses operation. */
+export type PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesResponse = PublicIPAddressListResult;
+
+/** Optional parameters. */
+export interface PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listVirtualMachineScaleSetVMPublicIPAddresses operation. */
+export type PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesResponse = PublicIPAddressListResult;
+
+/** Optional parameters. */
+export interface PublicIPAddressesGetVirtualMachineScaleSetPublicIPAddressOptionalParams
+  extends coreClient.OperationOptions {
+  /** Expands referenced resources. */
+  expand?: string;
+}
+
+/** Contains response data for the getVirtualMachineScaleSetPublicIPAddress operation. */
+export type PublicIPAddressesGetVirtualMachineScaleSetPublicIPAddressResponse = PublicIPAddress;
+
+/** Optional parameters. */
+export interface PublicIPAddressesListCloudServicePublicIPAddressesNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listCloudServicePublicIPAddressesNext operation. */
+export type PublicIPAddressesListCloudServicePublicIPAddressesNextResponse = PublicIPAddressListResult;
+
+/** Optional parameters. */
+export interface PublicIPAddressesListCloudServiceRoleInstancePublicIPAddressesNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listCloudServiceRoleInstancePublicIPAddressesNext operation. */
+export type PublicIPAddressesListCloudServiceRoleInstancePublicIPAddressesNextResponse = PublicIPAddressListResult;
+
+/** Optional parameters. */
+export interface PublicIPAddressesListAllNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listAllNext operation. */
+export type PublicIPAddressesListAllNextResponse = PublicIPAddressListResult;
+
+/** Optional parameters. */
+export interface PublicIPAddressesListNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listNext operation. */
+export type PublicIPAddressesListNextResponse = PublicIPAddressListResult;
+
+/** Optional parameters. */
+export interface PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listVirtualMachineScaleSetPublicIPAddressesNext operation. */
+export type PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesNextResponse = PublicIPAddressListResult;
+
+/** Optional parameters. */
+export interface PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listVirtualMachineScaleSetVMPublicIPAddressesNext operation. */
+export type PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesNextResponse = PublicIPAddressListResult;
+
+/** Optional parameters. */
+export interface CustomIPPrefixesDeleteOptionalParams
+  extends coreClient.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface CustomIPPrefixesGetOptionalParams
+  extends coreClient.OperationOptions {
+  /** Expands referenced resources. */
+  expand?: string;
+}
+
+/** Contains response data for the get operation. */
+export type CustomIPPrefixesGetResponse = CustomIpPrefix;
+
+/** Optional parameters. */
+export interface CustomIPPrefixesCreateOrUpdateOptionalParams
+  extends coreClient.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Contains response data for the createOrUpdate operation. */
+export type CustomIPPrefixesCreateOrUpdateResponse = CustomIpPrefix;
+
+/** Optional parameters. */
+export interface CustomIPPrefixesUpdateTagsOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the updateTags operation. */
+export type CustomIPPrefixesUpdateTagsResponse = CustomIpPrefix;
+
+/** Optional parameters. */
+export interface CustomIPPrefixesListAllOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listAll operation. */
+export type CustomIPPrefixesListAllResponse = CustomIpPrefixListResult;
+
+/** Optional parameters. */
+export interface CustomIPPrefixesListOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the list operation. */
+export type CustomIPPrefixesListResponse = CustomIpPrefixListResult;
+
+/** Optional parameters. */
+export interface CustomIPPrefixesListAllNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listAllNext operation. */
+export type CustomIPPrefixesListAllNextResponse = CustomIpPrefixListResult;
+
+/** Optional parameters. */
+export interface CustomIPPrefixesListNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listNext operation. */
+export type CustomIPPrefixesListNextResponse = CustomIpPrefixListResult;
+
+/** Optional parameters. */
 export interface DdosCustomPoliciesDeleteOptionalParams
   extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
@@ -11304,6 +14174,62 @@ export interface DdosProtectionPlansListByResourceGroupNextOptionalParams
 
 /** Contains response data for the listByResourceGroupNext operation. */
 export type DdosProtectionPlansListByResourceGroupNextResponse = DdosProtectionPlanListResult;
+
+/** Optional parameters. */
+export interface DscpConfigurationCreateOrUpdateOptionalParams
+  extends coreClient.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Contains response data for the createOrUpdate operation. */
+export type DscpConfigurationCreateOrUpdateResponse = DscpConfiguration;
+
+/** Optional parameters. */
+export interface DscpConfigurationDeleteOptionalParams
+  extends coreClient.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface DscpConfigurationGetOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the get operation. */
+export type DscpConfigurationGetResponse = DscpConfiguration;
+
+/** Optional parameters. */
+export interface DscpConfigurationListOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the list operation. */
+export type DscpConfigurationListResponse = DscpConfigurationListResult;
+
+/** Optional parameters. */
+export interface DscpConfigurationListAllOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listAll operation. */
+export type DscpConfigurationListAllResponse = DscpConfigurationListResult;
+
+/** Optional parameters. */
+export interface DscpConfigurationListNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listNext operation. */
+export type DscpConfigurationListNextResponse = DscpConfigurationListResult;
+
+/** Optional parameters. */
+export interface DscpConfigurationListAllNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listAllNext operation. */
+export type DscpConfigurationListAllNextResponse = DscpConfigurationListResult;
 
 /** Optional parameters. */
 export interface AvailableEndpointServicesListOptionalParams
@@ -11796,6 +14722,13 @@ export interface ExpressRoutePortsListOptionalParams
 export type ExpressRoutePortsListResponse = ExpressRoutePortListResult;
 
 /** Optional parameters. */
+export interface ExpressRoutePortsGenerateLOAOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the generateLOA operation. */
+export type ExpressRoutePortsGenerateLOAResponse = GenerateExpressRoutePortsLOAResult;
+
+/** Optional parameters. */
 export interface ExpressRoutePortsListByResourceGroupNextOptionalParams
   extends coreClient.OperationOptions {}
 
@@ -11890,7 +14823,7 @@ export interface FirewallPoliciesListAllNextOptionalParams
 export type FirewallPoliciesListAllNextResponse = FirewallPolicyListResult;
 
 /** Optional parameters. */
-export interface FirewallPolicyRuleGroupsDeleteOptionalParams
+export interface FirewallPolicyRuleCollectionGroupsDeleteOptionalParams
   extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
@@ -11899,14 +14832,14 @@ export interface FirewallPolicyRuleGroupsDeleteOptionalParams
 }
 
 /** Optional parameters. */
-export interface FirewallPolicyRuleGroupsGetOptionalParams
+export interface FirewallPolicyRuleCollectionGroupsGetOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type FirewallPolicyRuleGroupsGetResponse = FirewallPolicyRuleGroup;
+export type FirewallPolicyRuleCollectionGroupsGetResponse = FirewallPolicyRuleCollectionGroup;
 
 /** Optional parameters. */
-export interface FirewallPolicyRuleGroupsCreateOrUpdateOptionalParams
+export interface FirewallPolicyRuleCollectionGroupsCreateOrUpdateOptionalParams
   extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
@@ -11915,21 +14848,63 @@ export interface FirewallPolicyRuleGroupsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type FirewallPolicyRuleGroupsCreateOrUpdateResponse = FirewallPolicyRuleGroup;
+export type FirewallPolicyRuleCollectionGroupsCreateOrUpdateResponse = FirewallPolicyRuleCollectionGroup;
 
 /** Optional parameters. */
-export interface FirewallPolicyRuleGroupsListOptionalParams
+export interface FirewallPolicyRuleCollectionGroupsListOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type FirewallPolicyRuleGroupsListResponse = FirewallPolicyRuleGroupListResult;
+export type FirewallPolicyRuleCollectionGroupsListResponse = FirewallPolicyRuleCollectionGroupListResult;
 
 /** Optional parameters. */
-export interface FirewallPolicyRuleGroupsListNextOptionalParams
+export interface FirewallPolicyRuleCollectionGroupsListNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type FirewallPolicyRuleGroupsListNextResponse = FirewallPolicyRuleGroupListResult;
+export type FirewallPolicyRuleCollectionGroupsListNextResponse = FirewallPolicyRuleCollectionGroupListResult;
+
+/** Optional parameters. */
+export interface FirewallPolicyIdpsSignaturesListOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the list operation. */
+export type FirewallPolicyIdpsSignaturesListResponse = QueryResults;
+
+/** Optional parameters. */
+export interface FirewallPolicyIdpsSignaturesOverridesPatchOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the patch operation. */
+export type FirewallPolicyIdpsSignaturesOverridesPatchResponse = SignaturesOverrides;
+
+/** Optional parameters. */
+export interface FirewallPolicyIdpsSignaturesOverridesPutOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the put operation. */
+export type FirewallPolicyIdpsSignaturesOverridesPutResponse = SignaturesOverrides;
+
+/** Optional parameters. */
+export interface FirewallPolicyIdpsSignaturesOverridesGetOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the get operation. */
+export type FirewallPolicyIdpsSignaturesOverridesGetResponse = SignaturesOverrides;
+
+/** Optional parameters. */
+export interface FirewallPolicyIdpsSignaturesOverridesListOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the list operation. */
+export type FirewallPolicyIdpsSignaturesOverridesListResponse = SignaturesOverridesList;
+
+/** Optional parameters. */
+export interface FirewallPolicyIdpsSignaturesFilterValuesListOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the list operation. */
+export type FirewallPolicyIdpsSignaturesFilterValuesListResponse = SignatureOverridesFilterValuesResponse;
 
 /** Optional parameters. */
 export interface IpAllocationsDeleteOptionalParams
@@ -12113,6 +15088,27 @@ export interface LoadBalancersListOptionalParams
 
 /** Contains response data for the list operation. */
 export type LoadBalancersListResponse = LoadBalancerListResult;
+
+/** Optional parameters. */
+export interface LoadBalancersSwapPublicIpAddressesOptionalParams
+  extends coreClient.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface LoadBalancersListInboundNatRulePortMappingsOptionalParams
+  extends coreClient.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Contains response data for the listInboundNatRulePortMappings operation. */
+export type LoadBalancersListInboundNatRulePortMappingsResponse = BackendAddressInboundNatRulePortMappings;
 
 /** Optional parameters. */
 export interface LoadBalancersListAllNextOptionalParams
@@ -12378,164 +15374,6 @@ export interface NatGatewaysListNextOptionalParams
 
 /** Contains response data for the listNext operation. */
 export type NatGatewaysListNextResponse = NatGatewayListResult;
-
-/** Optional parameters. */
-export interface NetworkInterfacesDeleteOptionalParams
-  extends coreClient.OperationOptions {
-  /** Delay to wait until next poll, in milliseconds. */
-  updateIntervalInMs?: number;
-  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
-  resumeFrom?: string;
-}
-
-/** Optional parameters. */
-export interface NetworkInterfacesGetOptionalParams
-  extends coreClient.OperationOptions {
-  /** Expands referenced resources. */
-  expand?: string;
-}
-
-/** Contains response data for the get operation. */
-export type NetworkInterfacesGetResponse = NetworkInterface;
-
-/** Optional parameters. */
-export interface NetworkInterfacesCreateOrUpdateOptionalParams
-  extends coreClient.OperationOptions {
-  /** Delay to wait until next poll, in milliseconds. */
-  updateIntervalInMs?: number;
-  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
-  resumeFrom?: string;
-}
-
-/** Contains response data for the createOrUpdate operation. */
-export type NetworkInterfacesCreateOrUpdateResponse = NetworkInterface;
-
-/** Optional parameters. */
-export interface NetworkInterfacesUpdateTagsOptionalParams
-  extends coreClient.OperationOptions {}
-
-/** Contains response data for the updateTags operation. */
-export type NetworkInterfacesUpdateTagsResponse = NetworkInterface;
-
-/** Optional parameters. */
-export interface NetworkInterfacesListAllOptionalParams
-  extends coreClient.OperationOptions {}
-
-/** Contains response data for the listAll operation. */
-export type NetworkInterfacesListAllResponse = NetworkInterfaceListResult;
-
-/** Optional parameters. */
-export interface NetworkInterfacesListOptionalParams
-  extends coreClient.OperationOptions {}
-
-/** Contains response data for the list operation. */
-export type NetworkInterfacesListResponse = NetworkInterfaceListResult;
-
-/** Optional parameters. */
-export interface NetworkInterfacesGetEffectiveRouteTableOptionalParams
-  extends coreClient.OperationOptions {
-  /** Delay to wait until next poll, in milliseconds. */
-  updateIntervalInMs?: number;
-  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
-  resumeFrom?: string;
-}
-
-/** Contains response data for the getEffectiveRouteTable operation. */
-export type NetworkInterfacesGetEffectiveRouteTableResponse = EffectiveRouteListResult;
-
-/** Optional parameters. */
-export interface NetworkInterfacesListEffectiveNetworkSecurityGroupsOptionalParams
-  extends coreClient.OperationOptions {
-  /** Delay to wait until next poll, in milliseconds. */
-  updateIntervalInMs?: number;
-  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
-  resumeFrom?: string;
-}
-
-/** Contains response data for the listEffectiveNetworkSecurityGroups operation. */
-export type NetworkInterfacesListEffectiveNetworkSecurityGroupsResponse = EffectiveNetworkSecurityGroupListResult;
-
-/** Optional parameters. */
-export interface NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesOptionalParams
-  extends coreClient.OperationOptions {}
-
-/** Contains response data for the listVirtualMachineScaleSetVMNetworkInterfaces operation. */
-export type NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesResponse = NetworkInterfaceListResult;
-
-/** Optional parameters. */
-export interface NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesOptionalParams
-  extends coreClient.OperationOptions {}
-
-/** Contains response data for the listVirtualMachineScaleSetNetworkInterfaces operation. */
-export type NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesResponse = NetworkInterfaceListResult;
-
-/** Optional parameters. */
-export interface NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceOptionalParams
-  extends coreClient.OperationOptions {
-  /** Expands referenced resources. */
-  expand?: string;
-}
-
-/** Contains response data for the getVirtualMachineScaleSetNetworkInterface operation. */
-export type NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceResponse = NetworkInterface;
-
-/** Optional parameters. */
-export interface NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsOptionalParams
-  extends coreClient.OperationOptions {
-  /** Expands referenced resources. */
-  expand?: string;
-}
-
-/** Contains response data for the listVirtualMachineScaleSetIpConfigurations operation. */
-export type NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsResponse = NetworkInterfaceIPConfigurationListResult;
-
-/** Optional parameters. */
-export interface NetworkInterfacesGetVirtualMachineScaleSetIpConfigurationOptionalParams
-  extends coreClient.OperationOptions {
-  /** Expands referenced resources. */
-  expand?: string;
-}
-
-/** Contains response data for the getVirtualMachineScaleSetIpConfiguration operation. */
-export type NetworkInterfacesGetVirtualMachineScaleSetIpConfigurationResponse = NetworkInterfaceIPConfiguration;
-
-/** Optional parameters. */
-export interface NetworkInterfacesListAllNextOptionalParams
-  extends coreClient.OperationOptions {}
-
-/** Contains response data for the listAllNext operation. */
-export type NetworkInterfacesListAllNextResponse = NetworkInterfaceListResult;
-
-/** Optional parameters. */
-export interface NetworkInterfacesListNextOptionalParams
-  extends coreClient.OperationOptions {}
-
-/** Contains response data for the listNext operation. */
-export type NetworkInterfacesListNextResponse = NetworkInterfaceListResult;
-
-/** Optional parameters. */
-export interface NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesNextOptionalParams
-  extends coreClient.OperationOptions {}
-
-/** Contains response data for the listVirtualMachineScaleSetVMNetworkInterfacesNext operation. */
-export type NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesNextResponse = NetworkInterfaceListResult;
-
-/** Optional parameters. */
-export interface NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesNextOptionalParams
-  extends coreClient.OperationOptions {}
-
-/** Contains response data for the listVirtualMachineScaleSetNetworkInterfacesNext operation. */
-export type NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesNextResponse = NetworkInterfaceListResult;
-
-/** Optional parameters. */
-export interface NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Expands referenced resources. */
-  expand?: string;
-}
-
-/** Contains response data for the listVirtualMachineScaleSetIpConfigurationsNext operation. */
-export type NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsNextResponse = NetworkInterfaceIPConfigurationListResult;
 
 /** Optional parameters. */
 export interface NetworkInterfaceIPConfigurationsListOptionalParams
@@ -12871,6 +15709,81 @@ export interface NetworkVirtualAppliancesListNextOptionalParams
 export type NetworkVirtualAppliancesListNextResponse = NetworkVirtualApplianceListResult;
 
 /** Optional parameters. */
+export interface VirtualApplianceSitesDeleteOptionalParams
+  extends coreClient.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface VirtualApplianceSitesGetOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the get operation. */
+export type VirtualApplianceSitesGetResponse = VirtualApplianceSite;
+
+/** Optional parameters. */
+export interface VirtualApplianceSitesCreateOrUpdateOptionalParams
+  extends coreClient.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Contains response data for the createOrUpdate operation. */
+export type VirtualApplianceSitesCreateOrUpdateResponse = VirtualApplianceSite;
+
+/** Optional parameters. */
+export interface VirtualApplianceSitesListOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the list operation. */
+export type VirtualApplianceSitesListResponse = NetworkVirtualApplianceSiteListResult;
+
+/** Optional parameters. */
+export interface VirtualApplianceSitesListNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listNext operation. */
+export type VirtualApplianceSitesListNextResponse = NetworkVirtualApplianceSiteListResult;
+
+/** Optional parameters. */
+export interface VirtualApplianceSkusListOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the list operation. */
+export type VirtualApplianceSkusListResponse = NetworkVirtualApplianceSkuListResult;
+
+/** Optional parameters. */
+export interface VirtualApplianceSkusGetOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the get operation. */
+export type VirtualApplianceSkusGetResponse = NetworkVirtualApplianceSku;
+
+/** Optional parameters. */
+export interface VirtualApplianceSkusListNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listNext operation. */
+export type VirtualApplianceSkusListNextResponse = NetworkVirtualApplianceSkuListResult;
+
+/** Optional parameters. */
+export interface InboundSecurityRuleCreateOrUpdateOptionalParams
+  extends coreClient.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Contains response data for the createOrUpdate operation. */
+export type InboundSecurityRuleCreateOrUpdateResponse = InboundSecurityRule;
+
+/** Optional parameters. */
 export interface NetworkWatchersCreateOrUpdateOptionalParams
   extends coreClient.OperationOptions {}
 
@@ -13112,6 +16025,8 @@ export type PacketCapturesListResponse = PacketCaptureListResult;
 /** Optional parameters. */
 export interface ConnectionMonitorsCreateOrUpdateOptionalParams
   extends coreClient.OperationOptions {
+  /** Value indicating whether connection monitor V1 should be migrated to V2 format. */
+  migrate?: string;
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -13192,6 +16107,13 @@ export interface FlowLogsCreateOrUpdateOptionalParams
 
 /** Contains response data for the createOrUpdate operation. */
 export type FlowLogsCreateOrUpdateResponse = FlowLog;
+
+/** Optional parameters. */
+export interface FlowLogsUpdateTagsOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the updateTags operation. */
+export type FlowLogsUpdateTagsResponse = FlowLog;
 
 /** Optional parameters. */
 export interface FlowLogsGetOptionalParams
@@ -13446,14 +16368,24 @@ export type PrivateLinkServicesListPrivateEndpointConnectionsResponse = PrivateE
 
 /** Optional parameters. */
 export interface PrivateLinkServicesCheckPrivateLinkServiceVisibilityOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreClient.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Contains response data for the checkPrivateLinkServiceVisibility operation. */
 export type PrivateLinkServicesCheckPrivateLinkServiceVisibilityResponse = PrivateLinkServiceVisibility;
 
 /** Optional parameters. */
 export interface PrivateLinkServicesCheckPrivateLinkServiceVisibilityByResourceGroupOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreClient.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Contains response data for the checkPrivateLinkServiceVisibilityByResourceGroup operation. */
 export type PrivateLinkServicesCheckPrivateLinkServiceVisibilityByResourceGroupResponse = PrivateLinkServiceVisibility;
@@ -13506,110 +16438,6 @@ export interface PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourc
 
 /** Contains response data for the listAutoApprovedPrivateLinkServicesByResourceGroupNext operation. */
 export type PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourceGroupNextResponse = AutoApprovedPrivateLinkServicesResult;
-
-/** Optional parameters. */
-export interface PublicIPAddressesDeleteOptionalParams
-  extends coreClient.OperationOptions {
-  /** Delay to wait until next poll, in milliseconds. */
-  updateIntervalInMs?: number;
-  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
-  resumeFrom?: string;
-}
-
-/** Optional parameters. */
-export interface PublicIPAddressesGetOptionalParams
-  extends coreClient.OperationOptions {
-  /** Expands referenced resources. */
-  expand?: string;
-}
-
-/** Contains response data for the get operation. */
-export type PublicIPAddressesGetResponse = PublicIPAddress;
-
-/** Optional parameters. */
-export interface PublicIPAddressesCreateOrUpdateOptionalParams
-  extends coreClient.OperationOptions {
-  /** Delay to wait until next poll, in milliseconds. */
-  updateIntervalInMs?: number;
-  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
-  resumeFrom?: string;
-}
-
-/** Contains response data for the createOrUpdate operation. */
-export type PublicIPAddressesCreateOrUpdateResponse = PublicIPAddress;
-
-/** Optional parameters. */
-export interface PublicIPAddressesUpdateTagsOptionalParams
-  extends coreClient.OperationOptions {}
-
-/** Contains response data for the updateTags operation. */
-export type PublicIPAddressesUpdateTagsResponse = PublicIPAddress;
-
-/** Optional parameters. */
-export interface PublicIPAddressesListAllOptionalParams
-  extends coreClient.OperationOptions {}
-
-/** Contains response data for the listAll operation. */
-export type PublicIPAddressesListAllResponse = PublicIPAddressListResult;
-
-/** Optional parameters. */
-export interface PublicIPAddressesListOptionalParams
-  extends coreClient.OperationOptions {}
-
-/** Contains response data for the list operation. */
-export type PublicIPAddressesListResponse = PublicIPAddressListResult;
-
-/** Optional parameters. */
-export interface PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesOptionalParams
-  extends coreClient.OperationOptions {}
-
-/** Contains response data for the listVirtualMachineScaleSetPublicIPAddresses operation. */
-export type PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesResponse = PublicIPAddressListResult;
-
-/** Optional parameters. */
-export interface PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesOptionalParams
-  extends coreClient.OperationOptions {}
-
-/** Contains response data for the listVirtualMachineScaleSetVMPublicIPAddresses operation. */
-export type PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesResponse = PublicIPAddressListResult;
-
-/** Optional parameters. */
-export interface PublicIPAddressesGetVirtualMachineScaleSetPublicIPAddressOptionalParams
-  extends coreClient.OperationOptions {
-  /** Expands referenced resources. */
-  expand?: string;
-}
-
-/** Contains response data for the getVirtualMachineScaleSetPublicIPAddress operation. */
-export type PublicIPAddressesGetVirtualMachineScaleSetPublicIPAddressResponse = PublicIPAddress;
-
-/** Optional parameters. */
-export interface PublicIPAddressesListAllNextOptionalParams
-  extends coreClient.OperationOptions {}
-
-/** Contains response data for the listAllNext operation. */
-export type PublicIPAddressesListAllNextResponse = PublicIPAddressListResult;
-
-/** Optional parameters. */
-export interface PublicIPAddressesListNextOptionalParams
-  extends coreClient.OperationOptions {}
-
-/** Contains response data for the listNext operation. */
-export type PublicIPAddressesListNextResponse = PublicIPAddressListResult;
-
-/** Optional parameters. */
-export interface PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesNextOptionalParams
-  extends coreClient.OperationOptions {}
-
-/** Contains response data for the listVirtualMachineScaleSetPublicIPAddressesNext operation. */
-export type PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesNextResponse = PublicIPAddressListResult;
-
-/** Optional parameters. */
-export interface PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesNextOptionalParams
-  extends coreClient.OperationOptions {}
-
-/** Contains response data for the listVirtualMachineScaleSetVMPublicIPAddressesNext operation. */
-export type PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesNextResponse = PublicIPAddressListResult;
 
 /** Optional parameters. */
 export interface PublicIPPrefixesDeleteOptionalParams
@@ -14084,6 +16912,30 @@ export interface ServiceTagsListOptionalParams
 export type ServiceTagsListResponse = ServiceTagsListResult;
 
 /** Optional parameters. */
+export interface ServiceTagInformationListOptionalParams
+  extends coreClient.OperationOptions {
+  /** Do not return address prefixes for the tag(s). */
+  noAddressPrefixes?: boolean;
+  /** Return tag information for a particular tag. */
+  tagName?: string;
+}
+
+/** Contains response data for the list operation. */
+export type ServiceTagInformationListResponse = ServiceTagInformationListResult;
+
+/** Optional parameters. */
+export interface ServiceTagInformationListNextOptionalParams
+  extends coreClient.OperationOptions {
+  /** Do not return address prefixes for the tag(s). */
+  noAddressPrefixes?: boolean;
+  /** Return tag information for a particular tag. */
+  tagName?: string;
+}
+
+/** Contains response data for the listNext operation. */
+export type ServiceTagInformationListNextResponse = ServiceTagInformationListResult;
+
+/** Optional parameters. */
 export interface UsagesListOptionalParams extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
@@ -14278,6 +17130,8 @@ export type VirtualNetworkPeeringsGetResponse = VirtualNetworkPeering;
 /** Optional parameters. */
 export interface VirtualNetworkPeeringsCreateOrUpdateOptionalParams
   extends coreClient.OperationOptions {
+  /** Parameter indicates the intention to sync the peering with the current address space on the remote vNet after it's updated. */
+  syncRemoteAddressSpace?: SyncRemoteAddressSpace;
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -14683,6 +17537,30 @@ export type VirtualNetworkGatewayConnectionsStopPacketCaptureResponse = {
 };
 
 /** Optional parameters. */
+export interface VirtualNetworkGatewayConnectionsGetIkeSasOptionalParams
+  extends coreClient.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Contains response data for the getIkeSas operation. */
+export type VirtualNetworkGatewayConnectionsGetIkeSasResponse = {
+  /** The parsed response body. */
+  body: string;
+};
+
+/** Optional parameters. */
+export interface VirtualNetworkGatewayConnectionsResetConnectionOptionalParams
+  extends coreClient.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
 export interface VirtualNetworkGatewayConnectionsListNextOptionalParams
   extends coreClient.OperationOptions {}
 
@@ -14737,6 +17615,48 @@ export interface LocalNetworkGatewaysListNextOptionalParams
 
 /** Contains response data for the listNext operation. */
 export type LocalNetworkGatewaysListNextResponse = LocalNetworkGatewayListResult;
+
+/** Optional parameters. */
+export interface VirtualNetworkGatewayNatRulesGetOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the get operation. */
+export type VirtualNetworkGatewayNatRulesGetResponse = VirtualNetworkGatewayNatRule;
+
+/** Optional parameters. */
+export interface VirtualNetworkGatewayNatRulesCreateOrUpdateOptionalParams
+  extends coreClient.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Contains response data for the createOrUpdate operation. */
+export type VirtualNetworkGatewayNatRulesCreateOrUpdateResponse = VirtualNetworkGatewayNatRule;
+
+/** Optional parameters. */
+export interface VirtualNetworkGatewayNatRulesDeleteOptionalParams
+  extends coreClient.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface VirtualNetworkGatewayNatRulesListByVirtualNetworkGatewayOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listByVirtualNetworkGateway operation. */
+export type VirtualNetworkGatewayNatRulesListByVirtualNetworkGatewayResponse = ListVirtualNetworkGatewayNatRulesResult;
+
+/** Optional parameters. */
+export interface VirtualNetworkGatewayNatRulesListByVirtualNetworkGatewayNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listByVirtualNetworkGatewayNext operation. */
+export type VirtualNetworkGatewayNatRulesListByVirtualNetworkGatewayNextResponse = ListVirtualNetworkGatewayNatRulesResult;
 
 /** Optional parameters. */
 export interface VirtualNetworkTapsDeleteOptionalParams
@@ -15171,6 +18091,17 @@ export interface VirtualHubsListOptionalParams
 export type VirtualHubsListResponse = ListVirtualHubsResult;
 
 /** Optional parameters. */
+export interface VirtualHubsGetEffectiveVirtualHubRoutesOptionalParams
+  extends coreClient.OperationOptions {
+  /** Parameters supplied to get the effective routes for a specific resource. */
+  effectiveRoutesParameters?: EffectiveRoutesParameters;
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
 export interface VirtualHubsListByResourceGroupNextOptionalParams
   extends coreClient.OperationOptions {}
 
@@ -15183,6 +18114,27 @@ export interface VirtualHubsListNextOptionalParams
 
 /** Contains response data for the listNext operation. */
 export type VirtualHubsListNextResponse = ListVirtualHubsResult;
+
+/** Optional parameters. */
+export interface HubVirtualNetworkConnectionsCreateOrUpdateOptionalParams
+  extends coreClient.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Contains response data for the createOrUpdate operation. */
+export type HubVirtualNetworkConnectionsCreateOrUpdateResponse = HubVirtualNetworkConnection;
+
+/** Optional parameters. */
+export interface HubVirtualNetworkConnectionsDeleteOptionalParams
+  extends coreClient.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Optional parameters. */
 export interface HubVirtualNetworkConnectionsGetOptionalParams
@@ -15226,7 +18178,12 @@ export type VpnGatewaysCreateOrUpdateResponse = VpnGateway;
 
 /** Optional parameters. */
 export interface VpnGatewaysUpdateTagsOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreClient.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Contains response data for the updateTags operation. */
 export type VpnGatewaysUpdateTagsResponse = VpnGateway;
@@ -15251,6 +18208,40 @@ export interface VpnGatewaysResetOptionalParams
 
 /** Contains response data for the reset operation. */
 export type VpnGatewaysResetResponse = VpnGateway;
+
+/** Optional parameters. */
+export interface VpnGatewaysStartPacketCaptureOptionalParams
+  extends coreClient.OperationOptions {
+  /** Vpn gateway packet capture parameters supplied to start packet capture on vpn gateway. */
+  parameters?: VpnGatewayPacketCaptureStartParameters;
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Contains response data for the startPacketCapture operation. */
+export type VpnGatewaysStartPacketCaptureResponse = {
+  /** The parsed response body. */
+  body: string;
+};
+
+/** Optional parameters. */
+export interface VpnGatewaysStopPacketCaptureOptionalParams
+  extends coreClient.OperationOptions {
+  /** Vpn gateway packet capture parameters supplied to stop packet capture on vpn gateway. */
+  parameters?: VpnGatewayPacketCaptureStopParameters;
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Contains response data for the stopPacketCapture operation. */
+export type VpnGatewaysStopPacketCaptureResponse = {
+  /** The parsed response body. */
+  body: string;
+};
 
 /** Optional parameters. */
 export interface VpnGatewaysListByResourceGroupOptionalParams
@@ -15281,6 +18272,44 @@ export interface VpnGatewaysListNextOptionalParams
 export type VpnGatewaysListNextResponse = ListVpnGatewaysResult;
 
 /** Optional parameters. */
+export interface VpnLinkConnectionsResetConnectionOptionalParams
+  extends coreClient.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface VpnLinkConnectionsGetIkeSasOptionalParams
+  extends coreClient.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Contains response data for the getIkeSas operation. */
+export type VpnLinkConnectionsGetIkeSasResponse = {
+  /** The parsed response body. */
+  body: string;
+};
+
+/** Optional parameters. */
+export interface VpnLinkConnectionsListByVpnConnectionOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listByVpnConnection operation. */
+export type VpnLinkConnectionsListByVpnConnectionResponse = ListVpnSiteLinkConnectionsResult;
+
+/** Optional parameters. */
+export interface VpnLinkConnectionsListByVpnConnectionNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listByVpnConnectionNext operation. */
+export type VpnLinkConnectionsListByVpnConnectionNextResponse = ListVpnSiteLinkConnectionsResult;
+
+/** Optional parameters. */
 export interface VpnConnectionsGetOptionalParams
   extends coreClient.OperationOptions {}
 
@@ -15309,6 +18338,40 @@ export interface VpnConnectionsDeleteOptionalParams
 }
 
 /** Optional parameters. */
+export interface VpnConnectionsStartPacketCaptureOptionalParams
+  extends coreClient.OperationOptions {
+  /** Vpn Connection packet capture parameters supplied to start packet capture on gateway connection. */
+  parameters?: VpnConnectionPacketCaptureStartParameters;
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Contains response data for the startPacketCapture operation. */
+export type VpnConnectionsStartPacketCaptureResponse = {
+  /** The parsed response body. */
+  body: string;
+};
+
+/** Optional parameters. */
+export interface VpnConnectionsStopPacketCaptureOptionalParams
+  extends coreClient.OperationOptions {
+  /** Vpn Connection packet capture parameters supplied to stop packet capture on gateway connection. */
+  parameters?: VpnConnectionPacketCaptureStopParameters;
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Contains response data for the stopPacketCapture operation. */
+export type VpnConnectionsStopPacketCaptureResponse = {
+  /** The parsed response body. */
+  body: string;
+};
+
+/** Optional parameters. */
 export interface VpnConnectionsListByVpnGatewayOptionalParams
   extends coreClient.OperationOptions {}
 
@@ -15330,18 +18393,46 @@ export interface VpnSiteLinkConnectionsGetOptionalParams
 export type VpnSiteLinkConnectionsGetResponse = VpnSiteLinkConnection;
 
 /** Optional parameters. */
-export interface VpnLinkConnectionsListByVpnConnectionOptionalParams
+export interface NatRulesGetOptionalParams
   extends coreClient.OperationOptions {}
 
-/** Contains response data for the listByVpnConnection operation. */
-export type VpnLinkConnectionsListByVpnConnectionResponse = ListVpnSiteLinkConnectionsResult;
+/** Contains response data for the get operation. */
+export type NatRulesGetResponse = VpnGatewayNatRule;
 
 /** Optional parameters. */
-export interface VpnLinkConnectionsListByVpnConnectionNextOptionalParams
+export interface NatRulesCreateOrUpdateOptionalParams
+  extends coreClient.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Contains response data for the createOrUpdate operation. */
+export type NatRulesCreateOrUpdateResponse = VpnGatewayNatRule;
+
+/** Optional parameters. */
+export interface NatRulesDeleteOptionalParams
+  extends coreClient.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface NatRulesListByVpnGatewayOptionalParams
   extends coreClient.OperationOptions {}
 
-/** Contains response data for the listByVpnConnectionNext operation. */
-export type VpnLinkConnectionsListByVpnConnectionNextResponse = ListVpnSiteLinkConnectionsResult;
+/** Contains response data for the listByVpnGateway operation. */
+export type NatRulesListByVpnGatewayResponse = ListVpnGatewayNatRulesResult;
+
+/** Optional parameters. */
+export interface NatRulesListByVpnGatewayNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listByVpnGatewayNext operation. */
+export type NatRulesListByVpnGatewayNextResponse = ListVpnGatewayNatRulesResult;
 
 /** Optional parameters. */
 export interface P2SVpnGatewaysGetOptionalParams
@@ -15364,7 +18455,12 @@ export type P2SVpnGatewaysCreateOrUpdateResponse = P2SVpnGateway;
 
 /** Optional parameters. */
 export interface P2SVpnGatewaysUpdateTagsOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreClient.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Contains response data for the updateTags operation. */
 export type P2SVpnGatewaysUpdateTagsResponse = P2SVpnGateway;
@@ -15391,6 +18487,18 @@ export interface P2SVpnGatewaysListOptionalParams
 
 /** Contains response data for the list operation. */
 export type P2SVpnGatewaysListResponse = ListP2SVpnGatewaysResult;
+
+/** Optional parameters. */
+export interface P2SVpnGatewaysResetOptionalParams
+  extends coreClient.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Contains response data for the reset operation. */
+export type P2SVpnGatewaysResetResponse = P2SVpnGateway;
 
 /** Optional parameters. */
 export interface P2SVpnGatewaysGenerateVpnProfileOptionalParams
@@ -15532,6 +18640,18 @@ export interface ExpressRouteGatewaysCreateOrUpdateOptionalParams
 export type ExpressRouteGatewaysCreateOrUpdateResponse = ExpressRouteGateway;
 
 /** Optional parameters. */
+export interface ExpressRouteGatewaysUpdateTagsOptionalParams
+  extends coreClient.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Contains response data for the updateTags operation. */
+export type ExpressRouteGatewaysUpdateTagsResponse = ExpressRouteGateway;
+
+/** Optional parameters. */
 export interface ExpressRouteGatewaysGetOptionalParams
   extends coreClient.OperationOptions {}
 
@@ -15583,6 +18703,114 @@ export interface ExpressRouteConnectionsListOptionalParams
 export type ExpressRouteConnectionsListResponse = ExpressRouteConnectionList;
 
 /** Optional parameters. */
+export interface VirtualHubBgpConnectionGetOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the get operation. */
+export type VirtualHubBgpConnectionGetResponse = BgpConnection;
+
+/** Optional parameters. */
+export interface VirtualHubBgpConnectionCreateOrUpdateOptionalParams
+  extends coreClient.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Contains response data for the createOrUpdate operation. */
+export type VirtualHubBgpConnectionCreateOrUpdateResponse = BgpConnection;
+
+/** Optional parameters. */
+export interface VirtualHubBgpConnectionDeleteOptionalParams
+  extends coreClient.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface VirtualHubBgpConnectionsListOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the list operation. */
+export type VirtualHubBgpConnectionsListResponse = ListVirtualHubBgpConnectionResults;
+
+/** Optional parameters. */
+export interface VirtualHubBgpConnectionsListLearnedRoutesOptionalParams
+  extends coreClient.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Contains response data for the listLearnedRoutes operation. */
+export type VirtualHubBgpConnectionsListLearnedRoutesResponse = PeerRouteList;
+
+/** Optional parameters. */
+export interface VirtualHubBgpConnectionsListAdvertisedRoutesOptionalParams
+  extends coreClient.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Contains response data for the listAdvertisedRoutes operation. */
+export type VirtualHubBgpConnectionsListAdvertisedRoutesResponse = PeerRouteList;
+
+/** Optional parameters. */
+export interface VirtualHubBgpConnectionsListNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listNext operation. */
+export type VirtualHubBgpConnectionsListNextResponse = ListVirtualHubBgpConnectionResults;
+
+/** Optional parameters. */
+export interface VirtualHubIpConfigurationGetOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the get operation. */
+export type VirtualHubIpConfigurationGetResponse = HubIpConfiguration;
+
+/** Optional parameters. */
+export interface VirtualHubIpConfigurationCreateOrUpdateOptionalParams
+  extends coreClient.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Contains response data for the createOrUpdate operation. */
+export type VirtualHubIpConfigurationCreateOrUpdateResponse = HubIpConfiguration;
+
+/** Optional parameters. */
+export interface VirtualHubIpConfigurationDeleteOptionalParams
+  extends coreClient.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface VirtualHubIpConfigurationListOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the list operation. */
+export type VirtualHubIpConfigurationListResponse = ListVirtualHubIpConfigurationResults;
+
+/** Optional parameters. */
+export interface VirtualHubIpConfigurationListNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listNext operation. */
+export type VirtualHubIpConfigurationListNextResponse = ListVirtualHubIpConfigurationResults;
+
+/** Optional parameters. */
 export interface HubRouteTablesCreateOrUpdateOptionalParams
   extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
@@ -15623,6 +18851,48 @@ export interface HubRouteTablesListNextOptionalParams
 
 /** Contains response data for the listNext operation. */
 export type HubRouteTablesListNextResponse = ListHubRouteTablesResult;
+
+/** Optional parameters. */
+export interface RoutingIntentCreateOrUpdateOptionalParams
+  extends coreClient.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Contains response data for the createOrUpdate operation. */
+export type RoutingIntentCreateOrUpdateResponse = RoutingIntent;
+
+/** Optional parameters. */
+export interface RoutingIntentGetOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the get operation. */
+export type RoutingIntentGetResponse = RoutingIntent;
+
+/** Optional parameters. */
+export interface RoutingIntentDeleteOptionalParams
+  extends coreClient.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface RoutingIntentListOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the list operation. */
+export type RoutingIntentListResponse = ListRoutingIntentResult;
+
+/** Optional parameters. */
+export interface RoutingIntentListNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the listNext operation. */
+export type RoutingIntentListNextResponse = ListRoutingIntentResult;
 
 /** Optional parameters. */
 export interface WebApplicationFirewallPoliciesListOptionalParams

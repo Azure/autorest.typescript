@@ -6,7 +6,12 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+export * from "./keys";
 export * from "./vaults";
 export * from "./privateEndpointConnections";
 export * from "./privateLinkResources";
+export * from "./managedHsms";
+export * from "./mhsmPrivateEndpointConnections";
+export * from "./mhsmPrivateLinkResources";
 export * from "./operations";
+export * from "./secrets";

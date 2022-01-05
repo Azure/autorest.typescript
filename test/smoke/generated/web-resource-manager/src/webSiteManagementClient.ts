@@ -11,37 +11,43 @@ import * as coreAuth from "@azure/core-auth";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import {
   AppServiceCertificateOrdersImpl,
+  CertificateOrdersDiagnosticsImpl,
   CertificateRegistrationProviderImpl,
   DomainsImpl,
   TopLevelDomainsImpl,
   DomainRegistrationProviderImpl,
+  AppServiceEnvironmentsImpl,
+  AppServicePlansImpl,
   CertificatesImpl,
   DeletedWebAppsImpl,
   DiagnosticsImpl,
+  GlobalImpl,
+  KubeEnvironmentsImpl,
   ProviderImpl,
   RecommendationsImpl,
-  WebAppsImpl,
+  ResourceHealthMetadataOperationsImpl,
   StaticSitesImpl,
-  AppServiceEnvironmentsImpl,
-  AppServicePlansImpl,
-  ResourceHealthMetadataOperationsImpl
+  WebAppsImpl
 } from "./operations";
 import {
   AppServiceCertificateOrders,
+  CertificateOrdersDiagnostics,
   CertificateRegistrationProvider,
   Domains,
   TopLevelDomains,
   DomainRegistrationProvider,
+  AppServiceEnvironments,
+  AppServicePlans,
   Certificates,
   DeletedWebApps,
   Diagnostics,
+  Global,
+  KubeEnvironments,
   Provider,
   Recommendations,
-  WebApps,
+  ResourceHealthMetadataOperations,
   StaticSites,
-  AppServiceEnvironments,
-  AppServicePlans,
-  ResourceHealthMetadataOperations
+  WebApps
 } from "./operationsInterfaces";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
@@ -154,8 +160,11 @@ export class WebSiteManagementClient extends coreClient.ServiceClient {
 
     // Assigning values to Constant parameters
     this.$host = options.$host || "https://management.azure.com";
-    this.apiVersion = options.apiVersion || "2019-08-01";
+    this.apiVersion = options.apiVersion || "2021-02-01";
     this.appServiceCertificateOrders = new AppServiceCertificateOrdersImpl(
+      this
+    );
+    this.certificateOrdersDiagnostics = new CertificateOrdersDiagnosticsImpl(
       this
     );
     this.certificateRegistrationProvider = new CertificateRegistrationProviderImpl(
@@ -164,18 +173,20 @@ export class WebSiteManagementClient extends coreClient.ServiceClient {
     this.domains = new DomainsImpl(this);
     this.topLevelDomains = new TopLevelDomainsImpl(this);
     this.domainRegistrationProvider = new DomainRegistrationProviderImpl(this);
+    this.appServiceEnvironments = new AppServiceEnvironmentsImpl(this);
+    this.appServicePlans = new AppServicePlansImpl(this);
     this.certificates = new CertificatesImpl(this);
     this.deletedWebApps = new DeletedWebAppsImpl(this);
     this.diagnostics = new DiagnosticsImpl(this);
+    this.global = new GlobalImpl(this);
+    this.kubeEnvironments = new KubeEnvironmentsImpl(this);
     this.provider = new ProviderImpl(this);
     this.recommendations = new RecommendationsImpl(this);
-    this.webApps = new WebAppsImpl(this);
-    this.staticSites = new StaticSitesImpl(this);
-    this.appServiceEnvironments = new AppServiceEnvironmentsImpl(this);
-    this.appServicePlans = new AppServicePlansImpl(this);
     this.resourceHealthMetadataOperations = new ResourceHealthMetadataOperationsImpl(
       this
     );
+    this.staticSites = new StaticSitesImpl(this);
+    this.webApps = new WebAppsImpl(this);
   }
 
   /**
@@ -719,20 +730,23 @@ export class WebSiteManagementClient extends coreClient.ServiceClient {
   }
 
   appServiceCertificateOrders: AppServiceCertificateOrders;
+  certificateOrdersDiagnostics: CertificateOrdersDiagnostics;
   certificateRegistrationProvider: CertificateRegistrationProvider;
   domains: Domains;
   topLevelDomains: TopLevelDomains;
   domainRegistrationProvider: DomainRegistrationProvider;
+  appServiceEnvironments: AppServiceEnvironments;
+  appServicePlans: AppServicePlans;
   certificates: Certificates;
   deletedWebApps: DeletedWebApps;
   diagnostics: Diagnostics;
+  global: Global;
+  kubeEnvironments: KubeEnvironments;
   provider: Provider;
   recommendations: Recommendations;
-  webApps: WebApps;
-  staticSites: StaticSites;
-  appServiceEnvironments: AppServiceEnvironments;
-  appServicePlans: AppServicePlans;
   resourceHealthMetadataOperations: ResourceHealthMetadataOperations;
+  staticSites: StaticSites;
+  webApps: WebApps;
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);

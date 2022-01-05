@@ -20,6 +20,7 @@ import {
   ServiceSasParameters as ServiceSasParametersMapper,
   BlobRestoreParameters as BlobRestoreParametersMapper,
   ManagementPolicy as ManagementPolicyMapper,
+  BlobInventoryPolicy as BlobInventoryPolicyMapper,
   PrivateEndpointConnection as PrivateEndpointConnectionMapper,
   ObjectReplicationPolicy as ObjectReplicationPolicyMapper,
   EncryptionScope as EncryptionScopeMapper,
@@ -30,7 +31,11 @@ import {
   LeaseContainerRequest as LeaseContainerRequestMapper,
   FileServiceProperties as FileServicePropertiesMapper,
   FileShare as FileShareMapper,
-  DeletedShare as DeletedShareMapper
+  DeletedShare as DeletedShareMapper,
+  LeaseShareRequest as LeaseShareRequestMapper,
+  QueueServiceProperties as QueueServicePropertiesMapper,
+  StorageQueue as StorageQueueMapper,
+  TableServiceProperties as TableServicePropertiesMapper
 } from "../models/mappers";
 
 export const accept: OperationParameter = {
@@ -60,7 +65,7 @@ export const $host: OperationURLParameter = {
 export const apiVersion: OperationQueryParameter = {
   parameterPath: "apiVersion",
   mapper: {
-    defaultValue: "2019-06-01",
+    defaultValue: "2021-06-01",
     isConstant: true,
     serializedName: "api-version",
     type: {
@@ -179,6 +184,17 @@ export const parameters3: OperationParameter = {
   mapper: ServiceSasParametersMapper
 };
 
+export const requestType: OperationQueryParameter = {
+  parameterPath: "requestType",
+  mapper: {
+    serializedName: "requestType",
+    required: true,
+    type: {
+      name: "String"
+    }
+  }
+};
+
 export const parameters4: OperationParameter = {
   parameterPath: "parameters",
   mapper: BlobRestoreParametersMapper
@@ -194,6 +210,21 @@ export const nextLink: OperationURLParameter = {
     }
   },
   skipEncoding: true
+};
+
+export const deletedAccountName: OperationURLParameter = {
+  parameterPath: "deletedAccountName",
+  mapper: {
+    constraints: {
+      MaxLength: 24,
+      MinLength: 3
+    },
+    serializedName: "deletedAccountName",
+    required: true,
+    type: {
+      name: "String"
+    }
+  }
 };
 
 export const location: OperationURLParameter = {
@@ -223,6 +254,22 @@ export const properties: OperationParameter = {
   mapper: ManagementPolicyMapper
 };
 
+export const blobInventoryPolicyName: OperationURLParameter = {
+  parameterPath: "blobInventoryPolicyName",
+  mapper: {
+    serializedName: "blobInventoryPolicyName",
+    required: true,
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const properties1: OperationParameter = {
+  parameterPath: "properties",
+  mapper: BlobInventoryPolicyMapper
+};
+
 export const privateEndpointConnectionName: OperationURLParameter = {
   parameterPath: "privateEndpointConnectionName",
   mapper: {
@@ -234,7 +281,7 @@ export const privateEndpointConnectionName: OperationURLParameter = {
   }
 };
 
-export const properties1: OperationParameter = {
+export const properties2: OperationParameter = {
   parameterPath: "properties",
   mapper: PrivateEndpointConnectionMapper
 };
@@ -253,7 +300,7 @@ export const objectReplicationPolicyId: OperationURLParameter = {
   }
 };
 
-export const properties2: OperationParameter = {
+export const properties3: OperationParameter = {
   parameterPath: "properties",
   mapper: ObjectReplicationPolicyMapper
 };
@@ -309,6 +356,16 @@ export const filter: OperationQueryParameter = {
   parameterPath: ["options", "filter"],
   mapper: {
     serializedName: "$filter",
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const include: OperationQueryParameter = {
+  parameterPath: ["options", "include"],
+  mapper: {
+    serializedName: "$include",
     type: {
       name: "String"
     }
@@ -403,8 +460,6 @@ export const fileServicesName: OperationURLParameter = {
 export const expand2: OperationQueryParameter = {
   parameterPath: ["options", "expand"],
   mapper: {
-    defaultValue: "deleted",
-    isConstant: true,
     serializedName: "$expand",
     type: {
       name: "String"
@@ -432,12 +487,20 @@ export const shareName: OperationURLParameter = {
   }
 };
 
-export const expand3: OperationQueryParameter = {
-  parameterPath: ["options", "expand"],
+export const xMsSnapshot: OperationParameter = {
+  parameterPath: ["options", "xMsSnapshot"],
   mapper: {
-    defaultValue: "stats",
-    isConstant: true,
-    serializedName: "$expand",
+    serializedName: "x-ms-snapshot",
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const include1: OperationQueryParameter = {
+  parameterPath: ["options", "include"],
+  mapper: {
+    serializedName: "$include",
     type: {
       name: "String"
     }
@@ -447,4 +510,80 @@ export const expand3: OperationQueryParameter = {
 export const deletedShare: OperationParameter = {
   parameterPath: "deletedShare",
   mapper: DeletedShareMapper
+};
+
+export const parameters9: OperationParameter = {
+  parameterPath: ["options", "parameters"],
+  mapper: LeaseShareRequestMapper
+};
+
+export const parameters10: OperationParameter = {
+  parameterPath: "parameters",
+  mapper: QueueServicePropertiesMapper
+};
+
+export const queueServiceName: OperationURLParameter = {
+  parameterPath: "queueServiceName",
+  mapper: {
+    defaultValue: "default",
+    isConstant: true,
+    serializedName: "queueServiceName",
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const queue: OperationParameter = {
+  parameterPath: "queue",
+  mapper: StorageQueueMapper
+};
+
+export const queueName: OperationURLParameter = {
+  parameterPath: "queueName",
+  mapper: {
+    constraints: {
+      Pattern: new RegExp("^[a-z0-9]([a-z0-9]|(-(?!-))){1,61}[a-z0-9]$"),
+      MaxLength: 63,
+      MinLength: 3
+    },
+    serializedName: "queueName",
+    required: true,
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const parameters11: OperationParameter = {
+  parameterPath: "parameters",
+  mapper: TableServicePropertiesMapper
+};
+
+export const tableServiceName: OperationURLParameter = {
+  parameterPath: "tableServiceName",
+  mapper: {
+    defaultValue: "default",
+    isConstant: true,
+    serializedName: "tableServiceName",
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const tableName: OperationURLParameter = {
+  parameterPath: "tableName",
+  mapper: {
+    constraints: {
+      Pattern: new RegExp("^[A-Za-z][A-Za-z0-9]{2,62}$"),
+      MaxLength: 63,
+      MinLength: 3
+    },
+    serializedName: "tableName",
+    required: true,
+    type: {
+      name: "String"
+    }
+  }
 };

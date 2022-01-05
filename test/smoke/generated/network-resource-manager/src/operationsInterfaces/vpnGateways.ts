@@ -21,7 +21,11 @@ import {
   VpnGatewaysUpdateTagsResponse,
   VpnGatewaysDeleteOptionalParams,
   VpnGatewaysResetOptionalParams,
-  VpnGatewaysResetResponse
+  VpnGatewaysResetResponse,
+  VpnGatewaysStartPacketCaptureOptionalParams,
+  VpnGatewaysStartPacketCaptureResponse,
+  VpnGatewaysStopPacketCaptureOptionalParams,
+  VpnGatewaysStopPacketCaptureResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -92,7 +96,25 @@ export interface VpnGateways {
    * @param vpnGatewayParameters Parameters supplied to update a virtual wan vpn gateway tags.
    * @param options The options parameters.
    */
-  updateTags(
+  beginUpdateTags(
+    resourceGroupName: string,
+    gatewayName: string,
+    vpnGatewayParameters: TagsObject,
+    options?: VpnGatewaysUpdateTagsOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<VpnGatewaysUpdateTagsResponse>,
+      VpnGatewaysUpdateTagsResponse
+    >
+  >;
+  /**
+   * Updates virtual wan vpn gateway tags.
+   * @param resourceGroupName The resource group name of the VpnGateway.
+   * @param gatewayName The name of the gateway.
+   * @param vpnGatewayParameters Parameters supplied to update a virtual wan vpn gateway tags.
+   * @param options The options parameters.
+   */
+  beginUpdateTagsAndWait(
     resourceGroupName: string,
     gatewayName: string,
     vpnGatewayParameters: TagsObject,
@@ -147,4 +169,58 @@ export interface VpnGateways {
     gatewayName: string,
     options?: VpnGatewaysResetOptionalParams
   ): Promise<VpnGatewaysResetResponse>;
+  /**
+   * Starts packet capture on vpn gateway in the specified resource group.
+   * @param resourceGroupName The resource group name of the VpnGateway.
+   * @param gatewayName The name of the gateway.
+   * @param options The options parameters.
+   */
+  beginStartPacketCapture(
+    resourceGroupName: string,
+    gatewayName: string,
+    options?: VpnGatewaysStartPacketCaptureOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<VpnGatewaysStartPacketCaptureResponse>,
+      VpnGatewaysStartPacketCaptureResponse
+    >
+  >;
+  /**
+   * Starts packet capture on vpn gateway in the specified resource group.
+   * @param resourceGroupName The resource group name of the VpnGateway.
+   * @param gatewayName The name of the gateway.
+   * @param options The options parameters.
+   */
+  beginStartPacketCaptureAndWait(
+    resourceGroupName: string,
+    gatewayName: string,
+    options?: VpnGatewaysStartPacketCaptureOptionalParams
+  ): Promise<VpnGatewaysStartPacketCaptureResponse>;
+  /**
+   * Stops packet capture on vpn gateway in the specified resource group.
+   * @param resourceGroupName The resource group name of the VpnGateway.
+   * @param gatewayName The name of the gateway.
+   * @param options The options parameters.
+   */
+  beginStopPacketCapture(
+    resourceGroupName: string,
+    gatewayName: string,
+    options?: VpnGatewaysStopPacketCaptureOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<VpnGatewaysStopPacketCaptureResponse>,
+      VpnGatewaysStopPacketCaptureResponse
+    >
+  >;
+  /**
+   * Stops packet capture on vpn gateway in the specified resource group.
+   * @param resourceGroupName The resource group name of the VpnGateway.
+   * @param gatewayName The name of the gateway.
+   * @param options The options parameters.
+   */
+  beginStopPacketCaptureAndWait(
+    resourceGroupName: string,
+    gatewayName: string,
+    options?: VpnGatewaysStopPacketCaptureOptionalParams
+  ): Promise<VpnGatewaysStopPacketCaptureResponse>;
 }
