@@ -82,5 +82,10 @@
     "docs": "echo skipped"
   },
   "sideEffects": false,
+  "//metadata": {
+    "constantPaths": [
+      { "path": "src/MediaTypesV3LROClient.ts", "prefix": "packageDetails" }
+    ]
+  },
   "autoPublish": true
 }

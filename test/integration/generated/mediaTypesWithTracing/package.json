@@ -82,5 +82,13 @@
     "docs": "echo skipped"
   },
   "sideEffects": false,
+  "//metadata": {
+    "constantPaths": [
+      {
+        "path": "src/MediaTypesWithTracingClient.ts",
+        "prefix": "packageDetails"
+      }
+    ]
+  },
   "autoPublish": true
 }
