@@ -13,7 +13,7 @@ We're excited to announce the new GA release for Javascript SDKs. These SDKs hav
 9. [Locks](https://www.npmjs.com/package/@azure/arm-locks)
 10. [Features](https://www.npmjs.com/package/@azure/arm-features)
 
-Each of these SDKs follows the new [Azure SDK guidelines](https://azure.github.io/azure-sdk/typescript_introduction.html). All these SDKs have been generated using the latest version of the new [Autorest Typescript SDK Generator](https://www.npmjs.com/package/@autorest/typescript). These libraries provide new authentication mechanisms, uses Promises, etc. We encourage you to try out the libraries and provide your feedback.
+These libraries follow the new [Azure SDK guidelines](https://azure.github.io/azure-sdk/general_introduction.html) that were written to provide an improved and consistent development experience across Azure services. The [TypeScript & JavaScript specific guidelines](https://azure.github.io/azure-sdk/typescript_introduction.html) that are also followed ensure that these libraries have a natural and idiomatic feel to the JavaScript and TypeScript ecosystem. These libraries have been generated using the new [Autorest Typescript SDK Generator](https://www.npmjs.com/package/@autorest/typescript). They provide new authentication mechanisms, better paging and long running operations experience.. We encourage you to try out the libraries and provide your feedback.
 
 ## Key concepts
 
