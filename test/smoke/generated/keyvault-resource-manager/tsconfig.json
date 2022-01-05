@@ -12,9 +12,8 @@
     "lib": ["es6", "dom"],
     "declaration": true,
     "outDir": "./dist-esm",
-    "importHelpers": true,
-    "paths": { "@msinternal/keyvault-resource-manager": ["./src/index"] }
+    "importHelpers": true
   },
-  "include": ["./src/**/*.ts", "./test/**/*.ts", "samples-dev/**/*.ts"],
+  "include": ["./src/**/*.ts", "./test/**/*.ts"],
   "exclude": ["node_modules"]
 }
