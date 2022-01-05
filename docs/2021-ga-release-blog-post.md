@@ -32,7 +32,7 @@ To help with code readability, better handling of deferred and asynchronous comp
 
 ### PagedAsyncIterableIterator interface
 
-List operations now return a `PagedAsyncIterableIterator` interface that can be used to iterate over the results. This is a better user experience than before where a new method call had to made to access the next page. ```
+List operations now return a `PagedAsyncIterableIterator` interface that can be used to iterate over the results. This is a better user experience than before where a new method call had to made to access the next page. The [List Operations](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/MIGRATION-guide-for-next-generation-management-libraries.md#list-operations) section in the migration guide will give you more details on it.
 
 ### ES6 Support
 
