@@ -1,6 +1,6 @@
 # Introducing the new Azure SDK Management Libraries for Javascript
 
-We're excited to announce the new GA release for Javascript SDKs. These SDKs have several new features that help our customers to have a great experience in using the Azure Services. Some of the important SDKs that have been released are:
+We're excited to announce the new GA release for JavaScript libraries that enable you to provision and manage Azure resources via the Azure Resource Manager. These libraries have several new features that help developers to have a great experience in using the Azure Services. Some of the important libraries that have been released are:
 
 1. [Compute](https://www.npmjs.com/package/@azure/arm-compute)
 2. [Network](https://www.npmjs.com/package/@azure/arm-network)
