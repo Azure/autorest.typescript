@@ -30,7 +30,7 @@ Previously, the Azure management libraries required credential objects created v
 
 ### Promises
 
-As Promises simplify deferred and asynchronous computations, The support for overloads that took callbacks has been dropped in favor Promises.
+To help with code readability, better handling of deferred and asynchronous computations and better error handling, our new guidelines encourage the use of promises over callbacks. Therefore, the overloads that took callbacks have been dropped in favor of promises.
 
 ### PagedAsyncIterableIterator interface
 
