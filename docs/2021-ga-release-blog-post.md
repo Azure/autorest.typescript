@@ -56,7 +56,7 @@ In the future, we are planning to release the following:
 
 ## Feedback
 
-We encourage you to try out the libraries and provide your feedback. If there are any issues, Please file an issue with the [Javascript Repository](https://github.com/Azure/azure-sdk-for-js/issues/new/choose)
+We encourage you to try out the libraries and provide your feedback by filing an issue at [Azure/azure-sdk-for-js](https://github.com/Azure/azure-sdk-for-js/issues/new/choose)
 
 ## Conclusion
 
