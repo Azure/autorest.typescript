@@ -21,8 +21,6 @@ The new libraries have the following changes:
 
 ### Authentication
 
-The packages `@azure/ms-rest-nodeauth` or `@azure/ms-rest-browserauth` are replaced with a new package `@azure/identity` instead.
-
 Previously, the Azure management libraries required credential objects created via the packages `@azure/ms-rest-nodeauth` or `@azure/ms-rest-browserauth` that used ADAL which reaches end of support in Jun 2022. The new Azure management libraries require credential objects from the new `@azure/identity` package that makes use of the [MSAL](https://docs.microsoft.com/azure/active-directory/develop/msal-overview) and have many more authentication options to support newer scenarios.
 
 - For the different authentication scenarios, see the [Azure Identity examples](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md)
