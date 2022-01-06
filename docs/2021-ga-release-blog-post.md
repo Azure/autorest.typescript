@@ -40,7 +40,7 @@ The SDKs have been changed to support ECMAScript 2015 (ES6) and beyond
 
 ### Long Running Operations
 
-The structure of LRO Operations has been modified. The `LROPoller` return object has been modified to `PollerLike` object. The [Long Running Operations](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/MIGRATION-guide-for-next-generation-management-libraries.md#long-running-operations) section in the migration guide will give you more details on it.
+The LROPoller return object has been modified to PollerLike object. The `LROPoller` return object has been modified to `PollerLike` object. The [Long Running Operations](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/MIGRATION-guide-for-next-generation-management-libraries.md#long-running-operations) section in the migration guide will give you more details on it.
 
 ## What's next
 
