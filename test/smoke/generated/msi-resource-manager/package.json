@@ -96,6 +96,14 @@
     "docs": "echo skipped"
   },
   "sideEffects": false,
+  "//metadata": {
+    "constantPaths": [
+      {
+        "path": "src/ManagedServiceIdentityClient.ts",
+        "prefix": "packageDetails"
+      }
+    ]
+  },
   "autoPublish": true,
   "//sampleConfiguration": {
     "productName": "",

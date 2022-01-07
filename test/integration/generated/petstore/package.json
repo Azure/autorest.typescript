@@ -80,5 +80,8 @@
     "docs": "echo skipped"
   },
   "sideEffects": false,
+  "//metadata": {
+    "constantPaths": [{ "path": "src/PetStore.ts", "prefix": "packageDetails" }]
+  },
   "autoPublish": true
 }

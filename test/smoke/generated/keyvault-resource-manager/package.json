@@ -98,6 +98,14 @@
     "docs": "echo skipped"
   },
   "sideEffects": false,
+  "//metadata": {
+    "constantPaths": [
+      {
+        "path": "src/KeyVaultManagementClient.ts",
+        "prefix": "packageDetails"
+      }
+    ]
+  },
   "autoPublish": true,
   "//sampleConfiguration": {
     "productName": "",

@@ -80,5 +80,13 @@
     "docs": "echo skipped"
   },
   "sideEffects": false,
+  "//metadata": {
+    "constantPaths": [
+      {
+        "path": "src/SubscriptionIdApiVersionClient.ts",
+        "prefix": "packageDetails"
+      }
+    ]
+  },
   "autoPublish": true
 }

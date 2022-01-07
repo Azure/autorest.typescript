@@ -83,5 +83,10 @@
     "docs": "echo skipped"
   },
   "sideEffects": false,
+  "//metadata": {
+    "constantPaths": [
+      { "path": "src/DeviceProvisioningClient.ts", "prefix": "packageDetails" }
+    ]
+  },
   "autoPublish": true
 }

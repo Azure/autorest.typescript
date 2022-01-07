@@ -94,5 +94,13 @@
     "docs": "echo skipped"
   },
   "sideEffects": false,
+  "//metadata": {
+    "constantPaths": [
+      {
+        "path": "src/ApplicationClient.ts",
+        "prefix": "packageDetails"
+      }
+    ]
+  },
   "autoPublish": true
 }

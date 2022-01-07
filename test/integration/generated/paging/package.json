@@ -85,5 +85,10 @@
     "docs": "echo skipped"
   },
   "sideEffects": false,
+  "//metadata": {
+    "constantPaths": [
+      { "path": "src/PagingClient.ts", "prefix": "packageDetails" }
+    ]
+  },
   "autoPublish": true
 }

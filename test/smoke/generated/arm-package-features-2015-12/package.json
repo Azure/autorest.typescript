@@ -92,5 +92,13 @@
     "docs": "echo skipped"
   },
   "sideEffects": false,
+  "//metadata": {
+    "constantPaths": [
+      {
+        "path": "src/FeatureClient.ts",
+        "prefix": "packageDetails"
+      }
+    ]
+  },
   "autoPublish": true
 }
