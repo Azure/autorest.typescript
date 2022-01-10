@@ -11,7 +11,8 @@ export function generateTopLevelIndexFile(model: CodeModel, project: Project) {
     if (srcPath) {
         const clientName = model.language.default.name;
         const moduleName = normalizeName(clientName, NameType.File);
-        batchOutputFolder.push([srcPath, clientName, moduleName]);
+        const relativePath = srcPath.replace('/src', '');
+        batchOutputFolder.push([relativePath, clientName, moduleName]);
     }
     
     if (batch && batch.length > 1 && batchOutputFolder.length === batch.length) {

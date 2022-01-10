@@ -5,7 +5,7 @@ import { readmes, SpecDefinition } from "./smoke-test-list";
 import { command } from "yargs";
 import { SPECS_PATH, DEFAULT_SPEC_BRANCH } from "./constants";
 import { onExit } from "./childProcessOnExit";
-import { appendFileSync } from "fs";
+import { appendFileSync, read } from "fs";
 import { runAutorest } from "./run";
 
 const SMOKE_PATH = joinPath(
@@ -52,6 +52,35 @@ const generateFromReadme = async ({
       },
       allowInsecureConnection: true,
       isTestPackage: true
+    },
+    false,
+    params
+  );
+  return output;
+};
+
+
+const generateFromLocal = async ({
+  path,
+  params,
+  outputFolderName
+}: SpecDefinition) => {
+
+  const readmeFilePaths = path.split('/');
+  const projectName = readmeFilePaths[readmeFilePaths.length - 1].replace(/\.md/, '');
+
+  const output = joinPath(SMOKE_PATH, projectName);
+  await runAutorest(
+    path,
+    {
+      srcPath: "",
+      licenseHeader: true,
+      outputPath: output,
+      packageDetails: {
+        name: `@msinternal/${projectName}`,
+        version: "",
+        nameWithoutScope: ""
+      }
     },
     false,
     params
@@ -156,7 +185,10 @@ const verifyLibrary = async (spec: SpecDefinition): Promise<SmokeResult> => {
   try {
     await checkoutBranch(spec.branch);
     await addTransformsToLibraries(spec);
-    const projectPath = await generateFromReadme(spec);
+    let projectPath = await generateFromReadme(spec);
+    if (!projectPath) {
+      projectPath = await generateFromLocal(spec);
+    }
     await buildGenerated(projectPath);
     await removeTransformsToLibraries(spec);
     success = true;

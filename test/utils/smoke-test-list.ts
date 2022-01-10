@@ -159,6 +159,15 @@ export const readmes: SpecDefinition[] = [
     branch: "3ac6ce225efe665e6c74abe48016dcb2a236d609",
     params: [AutorestParams.RestClient, AutorestParams.GenerateTest],
     buildTag: "ci_rlc"
+  },
+  {
+    path: joinPath(
+      `${__dirname}`,
+      "..",
+      "./smoke/swagger/purview-administration-rest.md"
+    ),
+    params: [AutorestParams.RestClient],
+    buildTag: "ci_rlc"
   }
   // {
   //   path:
