@@ -1,5 +1,5 @@
 import { assert } from "chai";
-import BodyComplex, {
+import BodyComplexRestClient, {
   BodyComplexRestClientRestClient,
   DotSalmonOutput,
   Fish,
@@ -15,7 +15,7 @@ describe("BodyComplex Rest Client", () => {
   let client: BodyComplexRestClientRestClient;
 
   beforeEach(() => {
-    client = BodyComplex({ allowInsecureConnection: true });
+    client = BodyComplexRestClient({ allowInsecureConnection: true });
   });
 
   describe("Swagger Complex Type BAT", function() {

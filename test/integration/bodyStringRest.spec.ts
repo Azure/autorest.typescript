@@ -1,5 +1,5 @@
 import { assert } from "chai";
-import BodyStringClient, {
+import BodyStringRest, {
   BodyStringRestRestClient
 } from "./generated/bodyStringRest/src";
 
@@ -7,7 +7,7 @@ describe(" BodyStringRest", () => {
   let client: BodyStringRestRestClient;
 
   beforeEach(() => {
-    client = BodyStringClient();
+    client = BodyStringRest();
   });
 
   describe("Acceptance tests", () => {

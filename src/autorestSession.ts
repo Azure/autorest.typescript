@@ -32,6 +32,7 @@ export interface AutorestOptions {
   headAsBoolean?: boolean;
   isTestPackage?: boolean;
   generateTest?: boolean;
+  batch?: [string, any][];
   generateSample?: boolean;
 }
 

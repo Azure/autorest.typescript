@@ -6,6 +6,7 @@ import MediaTypes from "./mediaTypes";
 export * from "./mediaTypes";
 export * from "./parameters";
 export * from "./responses";
+export * from "./clientDefinitions";
 export * from "./models";
 
 export default MediaTypes;

@@ -33,6 +33,7 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
   const headAsBoolean = await getHeadAsBoolean(host);
   const isTestPackage = await getIsTestPackage(host);
   const generateTest = await getGenerateTest(host);
+  const batch = await getBatch(host);
   const generateSample = await getGenerateSample(host);
 
   return {
@@ -59,6 +60,7 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
     headAsBoolean,
     isTestPackage,
     generateTest,
+    batch,
     generateSample
   };
 }
@@ -283,4 +285,11 @@ async function getAzureOutputDirectoryPath(
   return outputDirectoryRelativePath?.substr(0, 3) === "sdk"
     ? outputDirectoryRelativePath
     : undefined;
+}
+
+
+async function getBatch(host: AutorestExtensionHost): Promise<[string, any][] | undefined> {
+  const batch = await host.getValue<[string, any][]>('batch');
+  return batch;
+  
 }

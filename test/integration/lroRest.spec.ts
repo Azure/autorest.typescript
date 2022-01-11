@@ -1,4 +1,4 @@
-import LroClient, {
+import LRORestClient, {
   LRORestClientRestClient,
   getLongRunningPoller,
   Product
@@ -21,7 +21,7 @@ function createClient() {
     }
   };
 
-  const client = LroClient({
+  const client = LRORestClient({
     allowInsecureConnection: true,
     retryOptions: { retryDelayInMs: 0 }
   });
