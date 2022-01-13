@@ -23,7 +23,7 @@
   ],
   "license": "MIT",
   "main": "./dist/index.js",
-  "module": "./dist-esm/src/index.js",
+  "module": "./dist-esm/index.js",
   "types": "./types/arm-package-locks-2016-09.d.ts",
   "devDependencies": {
     "@microsoft/api-extractor": "^7.18.11",
@@ -36,11 +36,7 @@
     "rollup-plugin-sourcemaps": "^0.4.2",
     "typescript": "~4.2.0",
     "uglify-js": "^3.4.9",
-    "rimraf": "^3.0.0",
-    "@azure/identity": "^2.0.1",
-    "@azure-tools/test-recorder": "^1.0.0",
-    "mocha": "^7.1.1",
-    "cross-env": "^7.0.2"
+    "rimraf": "^3.0.0"
   },
   "homepage": "https://github.com/Azure/azure-sdk-for-js/tree/main/undefined",
   "repository": {
@@ -84,17 +80,25 @@
     "check-format": "echo skipped",
     "execute:samples": "echo skipped",
     "format": "echo skipped",
-    "test": "npm run integration-test",
+    "test": "echo skipped",
     "test:node": "echo skipped",
     "test:browser": "echo skipped",
-    "unit-test": "npm run unit-test:node && npm run unit-test:browser",
-    "unit-test:node": "cross-env TEST_MODE=playback npm run integration-test:node",
+    "unit-test": "echo skipped",
+    "unit-test:node": "echo skipped",
     "unit-test:browser": "echo skipped",
-    "integration-test": "npm run integration-test:node && npm run integration-test:browser",
-    "integration-test:node": "mocha -r esm --require ts-node/register --timeout 1200000 --full-trace test/*.ts --reporter ../../../common/tools/mocha-multi-reporter.js",
+    "integration-test": "echo skipped",
+    "integration-test:node": "echo skipped",
     "integration-test:browser": "echo skipped",
     "docs": "echo skipped"
   },
   "sideEffects": false,
+  "//metadata": {
+    "constantPaths": [
+      {
+        "path": "src/ManagementLockClient.ts",
+        "prefix": "packageDetails"
+      }
+    ]
+  },
   "autoPublish": true
 }

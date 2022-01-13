@@ -733,15 +733,86 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
    * @param parameters The request body of CheckPrivateLinkService API call.
    * @param options The options parameters.
    */
-  checkPrivateLinkServiceVisibility(
+  async beginCheckPrivateLinkServiceVisibility(
+    location: string,
+    parameters: CheckPrivateLinkServiceVisibilityRequest,
+    options?: PrivateLinkServicesCheckPrivateLinkServiceVisibilityOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<
+        PrivateLinkServicesCheckPrivateLinkServiceVisibilityResponse
+      >,
+      PrivateLinkServicesCheckPrivateLinkServiceVisibilityResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<PrivateLinkServicesCheckPrivateLinkServiceVisibilityResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { location, parameters, options },
+      checkPrivateLinkServiceVisibilityOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs,
+      lroResourceLocationConfig: "location"
+    });
+  }
+
+  /**
+   * Checks whether the subscription is visible to private link service.
+   * @param location The location of the domain name.
+   * @param parameters The request body of CheckPrivateLinkService API call.
+   * @param options The options parameters.
+   */
+  async beginCheckPrivateLinkServiceVisibilityAndWait(
     location: string,
     parameters: CheckPrivateLinkServiceVisibilityRequest,
     options?: PrivateLinkServicesCheckPrivateLinkServiceVisibilityOptionalParams
   ): Promise<PrivateLinkServicesCheckPrivateLinkServiceVisibilityResponse> {
-    return this.client.sendOperationRequest(
-      { location, parameters, options },
-      checkPrivateLinkServiceVisibilityOperationSpec
+    const poller = await this.beginCheckPrivateLinkServiceVisibility(
+      location,
+      parameters,
+      options
     );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -751,7 +822,78 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
    * @param parameters The request body of CheckPrivateLinkService API call.
    * @param options The options parameters.
    */
-  checkPrivateLinkServiceVisibilityByResourceGroup(
+  async beginCheckPrivateLinkServiceVisibilityByResourceGroup(
+    location: string,
+    resourceGroupName: string,
+    parameters: CheckPrivateLinkServiceVisibilityRequest,
+    options?: PrivateLinkServicesCheckPrivateLinkServiceVisibilityByResourceGroupOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<
+        PrivateLinkServicesCheckPrivateLinkServiceVisibilityByResourceGroupResponse
+      >,
+      PrivateLinkServicesCheckPrivateLinkServiceVisibilityByResourceGroupResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<PrivateLinkServicesCheckPrivateLinkServiceVisibilityByResourceGroupResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { location, resourceGroupName, parameters, options },
+      checkPrivateLinkServiceVisibilityByResourceGroupOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs,
+      lroResourceLocationConfig: "location"
+    });
+  }
+
+  /**
+   * Checks whether the subscription is visible to private link service in the specified resource group.
+   * @param location The location of the domain name.
+   * @param resourceGroupName The name of the resource group.
+   * @param parameters The request body of CheckPrivateLinkService API call.
+   * @param options The options parameters.
+   */
+  async beginCheckPrivateLinkServiceVisibilityByResourceGroupAndWait(
     location: string,
     resourceGroupName: string,
     parameters: CheckPrivateLinkServiceVisibilityRequest,
@@ -759,10 +901,13 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
   ): Promise<
     PrivateLinkServicesCheckPrivateLinkServiceVisibilityByResourceGroupResponse
   > {
-    return this.client.sendOperationRequest(
-      { location, resourceGroupName, parameters, options },
-      checkPrivateLinkServiceVisibilityByResourceGroupOperationSpec
+    const poller = await this.beginCheckPrivateLinkServiceVisibilityByResourceGroup(
+      location,
+      resourceGroupName,
+      parameters,
+      options
     );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -964,7 +1109,7 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: Parameters.parameters39,
+  requestBody: Parameters.parameters50,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1049,7 +1194,7 @@ const updatePrivateEndpointConnectionOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: Parameters.parameters40,
+  requestBody: Parameters.parameters51,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1116,11 +1261,20 @@ const checkPrivateLinkServiceVisibilityOperationSpec: coreClient.OperationSpec =
     200: {
       bodyMapper: Mappers.PrivateLinkServiceVisibility
     },
+    201: {
+      bodyMapper: Mappers.PrivateLinkServiceVisibility
+    },
+    202: {
+      bodyMapper: Mappers.PrivateLinkServiceVisibility
+    },
+    204: {
+      bodyMapper: Mappers.PrivateLinkServiceVisibility
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.parameters41,
+  requestBody: Parameters.parameters52,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1139,11 +1293,20 @@ const checkPrivateLinkServiceVisibilityByResourceGroupOperationSpec: coreClient.
     200: {
       bodyMapper: Mappers.PrivateLinkServiceVisibility
     },
+    201: {
+      bodyMapper: Mappers.PrivateLinkServiceVisibility
+    },
+    202: {
+      bodyMapper: Mappers.PrivateLinkServiceVisibility
+    },
+    204: {
+      bodyMapper: Mappers.PrivateLinkServiceVisibility
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.parameters41,
+  requestBody: Parameters.parameters52,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

@@ -1,5 +1,5 @@
 import { readFileSync } from "fs";
-import { getSession } from "../autorestSession";
+import { getAutorestOptions, getSession } from "../autorestSession";
 import { extractPaginationDetails } from "../utils/extractPaginationDetails";
 import * as path from "path";
 import * as hbs from "handlebars";
@@ -29,9 +29,10 @@ export function generatePagingHelper(project: Project) {
     return `"${value}"`;
   });
 
+  const { srcPath } = getAutorestOptions();
   const readmeFileContents = hbs.compile(file, { noEscape: true });
   project.createSourceFile(
-    "src/paginateHelper.ts",
+    path.join(srcPath, "paginateHelper.ts"),
     readmeFileContents(pagingInfo),
     {
       overwrite: true

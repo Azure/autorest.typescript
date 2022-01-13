@@ -6,6 +6,7 @@ import BodyComplexRestClient from "./bodyComplexRestClient";
 export * from "./bodyComplexRestClient";
 export * from "./parameters";
 export * from "./responses";
+export * from "./clientDefinitions";
 export * from "./models";
 export * from "./outputModels";
 

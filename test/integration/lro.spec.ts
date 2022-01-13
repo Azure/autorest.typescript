@@ -540,7 +540,7 @@ describe("Custom Headers", () => {
     await client.lROsCustomHeader.beginPost202Retry200AndWait(options);
     check200(lastResponse);
   });
-});
+}).timeout(5000);
 
 describe("LRO Sad scenarios", () => {
   let client: LROClient;

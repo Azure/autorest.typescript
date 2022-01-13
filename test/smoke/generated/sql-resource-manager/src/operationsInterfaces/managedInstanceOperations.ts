@@ -10,9 +10,9 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import {
   ManagedInstanceOperation,
   ManagedInstanceOperationsListByManagedInstanceOptionalParams,
-  ManagedInstanceOperationsCancelOptionalParams,
   ManagedInstanceOperationsGetOptionalParams,
-  ManagedInstanceOperationsGetResponse
+  ManagedInstanceOperationsGetResponse,
+  ManagedInstanceOperationsCancelOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -31,20 +31,6 @@ export interface ManagedInstanceOperations {
     options?: ManagedInstanceOperationsListByManagedInstanceOptionalParams
   ): PagedAsyncIterableIterator<ManagedInstanceOperation>;
   /**
-   * Cancels the asynchronous operation on the managed instance.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param operationId
-   * @param options The options parameters.
-   */
-  cancel(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    operationId: string,
-    options?: ManagedInstanceOperationsCancelOptionalParams
-  ): Promise<void>;
-  /**
    * Gets a management operation on a managed instance.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -58,4 +44,18 @@ export interface ManagedInstanceOperations {
     operationId: string,
     options?: ManagedInstanceOperationsGetOptionalParams
   ): Promise<ManagedInstanceOperationsGetResponse>;
+  /**
+   * Cancels the asynchronous operation on the managed instance.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param operationId
+   * @param options The options parameters.
+   */
+  cancel(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    operationId: string,
+    options?: ManagedInstanceOperationsCancelOptionalParams
+  ): Promise<void>;
 }

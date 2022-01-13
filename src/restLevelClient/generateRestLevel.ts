@@ -1,4 +1,4 @@
-import { getHost, getSession } from "../autorestSession";
+import { getAutorestOptions, getHost, getSession } from "../autorestSession";
 import { Project, IndentationText } from "ts-morph";
 import { generatePackageJson } from "../generators/static/packageFileGenerator";
 import { generateLicenseFile } from "../generators/static/licenseFileGenerator";
@@ -10,10 +10,12 @@ import { generateSchemaTypes } from "./generateSchemaTypes";
 import { format } from "prettier";
 import { prettierJSONOptions, prettierTypeScriptOptions } from "./config";
 import { generateParameterInterfaces } from "./generateParameterTypes";
-import { generatePathFirstClient } from "./generateClient";
+import { generatePathFirstClient } from "./generateClientDefinition";
+import { generateClient } from './generateClient';
 import { generateIndexFile } from "../generators/indexGenerator";
 import { generatePagingHelper } from "./generatePagingHelper";
 import { generatePollingHelper } from "./generatePollingHelper";
+import { generateTopLevelIndexFile } from './generateTopLevelIndexFile';
 import { hasPagingOperations } from "../utils/extractPaginationDetails";
 import { hasPollingOperations } from "./helpers/hasPollingOperations";
 import { generateKarmaConfigFile } from "../generators/static/karmaConfigFileGenerator";
@@ -21,6 +23,7 @@ import { generateEnvFile } from "../generators/test/envFileGenerator";
 import { generateEnvBrowserFile } from "../generators/test/envBrowserFileGenerator";
 import { generateRecordedClientFile } from "../generators/test/recordedClientFileGenerator";
 import { generateSampleTestFile } from "../generators/test/sampleTestGenerator";
+
 /**
  * Generates a Rest Level Client library
  */
@@ -59,7 +62,10 @@ export async function generateRestLevelClient() {
   generateSchemaTypes(model, project);
   generateParameterInterfaces(model, project);
   generatePathFirstClient(model, project);
+  generateClient(model, project);
   generateIndexFile(project);
+  
+  generateTopLevelIndexFile(model, project);
 
   // Save the source files to the virtual filesystem
   project.saveSync();

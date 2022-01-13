@@ -50,7 +50,7 @@ export interface Recommendations {
     options?: RecommendationsListHistoryForHostingEnvironmentOptionalParams
   ): PagedAsyncIterableIterator<Recommendation>;
   /**
-   * Description for Get all recommendations for an app.
+   * Description for Get all recommendations for a hosting environment.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param hostingEnvironmentName Name of the app.
    * @param options The options parameters.

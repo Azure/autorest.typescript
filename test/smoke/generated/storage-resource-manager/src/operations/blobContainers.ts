@@ -12,6 +12,8 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { StorageManagementClient } from "../storageManagementClient";
+import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
+import { LroImpl } from "../lroImpl";
 import {
   ListContainerItem,
   BlobContainersListNextOptionalParams,
@@ -42,6 +44,7 @@ import {
   BlobContainersExtendImmutabilityPolicyResponse,
   BlobContainersLeaseOptionalParams,
   BlobContainersLeaseResponse,
+  BlobContainersObjectLevelWormOptionalParams,
   BlobContainersListNextResponse
 } from "../models";
 
@@ -360,8 +363,8 @@ export class BlobContainersImpl implements BlobContainers {
   /**
    * Aborts an unlocked immutability policy. The response of delete has
    * immutabilityPeriodSinceCreationInDays set to 0. ETag in If-Match is required for this operation.
-   * Deleting a locked immutability policy is not allowed, only way is to delete the container after
-   * deleting all blobs inside the container.
+   * Deleting a locked immutability policy is not allowed, the only way is to delete the container after
+   * deleting all expired blobs inside the policy locked container.
    * @param resourceGroupName The name of the resource group within the user's subscription. The name is
    *                          case insensitive.
    * @param accountName The name of the storage account within the specified resource group. Storage
@@ -476,6 +479,110 @@ export class BlobContainersImpl implements BlobContainers {
   }
 
   /**
+   * This operation migrates a blob container from container level WORM to object level immutability
+   * enabled container. Prerequisites require a container level immutability policy either in locked or
+   * unlocked state, Account level versioning must be enabled and there should be no Legal hold on the
+   * container.
+   * @param resourceGroupName The name of the resource group within the user's subscription. The name is
+   *                          case insensitive.
+   * @param accountName The name of the storage account within the specified resource group. Storage
+   *                    account names must be between 3 and 24 characters in length and use numbers and lower-case letters
+   *                    only.
+   * @param containerName The name of the blob container within the specified storage account. Blob
+   *                      container names must be between 3 and 63 characters in length and use numbers, lower-case letters
+   *                      and dash (-) only. Every dash (-) character must be immediately preceded and followed by a letter or
+   *                      number.
+   * @param options The options parameters.
+   */
+  async beginObjectLevelWorm(
+    resourceGroupName: string,
+    accountName: string,
+    containerName: string,
+    options?: BlobContainersObjectLevelWormOptionalParams
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { resourceGroupName, accountName, containerName, options },
+      objectLevelWormOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs,
+      lroResourceLocationConfig: "location"
+    });
+  }
+
+  /**
+   * This operation migrates a blob container from container level WORM to object level immutability
+   * enabled container. Prerequisites require a container level immutability policy either in locked or
+   * unlocked state, Account level versioning must be enabled and there should be no Legal hold on the
+   * container.
+   * @param resourceGroupName The name of the resource group within the user's subscription. The name is
+   *                          case insensitive.
+   * @param accountName The name of the storage account within the specified resource group. Storage
+   *                    account names must be between 3 and 24 characters in length and use numbers and lower-case letters
+   *                    only.
+   * @param containerName The name of the blob container within the specified storage account. Blob
+   *                      container names must be between 3 and 63 characters in length and use numbers, lower-case letters
+   *                      and dash (-) only. Every dash (-) character must be immediately preceded and followed by a letter or
+   *                      number.
+   * @param options The options parameters.
+   */
+  async beginObjectLevelWormAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    containerName: string,
+    options?: BlobContainersObjectLevelWormOptionalParams
+  ): Promise<void> {
+    const poller = await this.beginObjectLevelWorm(
+      resourceGroupName,
+      accountName,
+      containerName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * ListNext
    * @param resourceGroupName The name of the resource group within the user's subscription. The name is
    *                          case insensitive.
@@ -512,7 +619,8 @@ const listOperationSpec: coreClient.OperationSpec = {
   queryParameters: [
     Parameters.apiVersion,
     Parameters.maxpagesize,
-    Parameters.filter
+    Parameters.filter,
+    Parameters.include
   ],
   urlParameters: [
     Parameters.$host,
@@ -792,6 +900,30 @@ const leaseOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
+const objectLevelWormOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/blobServices/default/containers/{containerName}/migrate",
+  httpMethod: "POST",
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.accountName1,
+    Parameters.containerName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
 const listNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
@@ -803,7 +935,8 @@ const listNextOperationSpec: coreClient.OperationSpec = {
   queryParameters: [
     Parameters.apiVersion,
     Parameters.maxpagesize,
-    Parameters.filter
+    Parameters.filter,
+    Parameters.include
   ],
   urlParameters: [
     Parameters.$host,

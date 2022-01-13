@@ -27,9 +27,19 @@ import {
   TableResourcesImpl,
   CassandraResourcesImpl,
   GremlinResourcesImpl,
+  LocationsImpl,
   NotebookWorkspacesImpl,
+  PrivateEndpointConnectionsImpl,
   PrivateLinkResourcesImpl,
-  PrivateEndpointConnectionsImpl
+  RestorableDatabaseAccountsImpl,
+  RestorableSqlDatabasesImpl,
+  RestorableSqlContainersImpl,
+  RestorableSqlResourcesImpl,
+  RestorableMongodbDatabasesImpl,
+  RestorableMongodbCollectionsImpl,
+  RestorableMongodbResourcesImpl,
+  CassandraClustersImpl,
+  CassandraDataCentersImpl
 } from "./operations";
 import {
   DatabaseAccounts,
@@ -50,15 +60,26 @@ import {
   TableResources,
   CassandraResources,
   GremlinResources,
+  Locations,
   NotebookWorkspaces,
+  PrivateEndpointConnections,
   PrivateLinkResources,
-  PrivateEndpointConnections
+  RestorableDatabaseAccounts,
+  RestorableSqlDatabases,
+  RestorableSqlContainers,
+  RestorableSqlResources,
+  RestorableMongodbDatabases,
+  RestorableMongodbCollections,
+  RestorableMongodbResources,
+  CassandraClusters,
+  CassandraDataCenters
 } from "./operationsInterfaces";
 import { CosmosDBManagementClientOptionalParams } from "./models";
 
 export class CosmosDBManagementClient extends coreClient.ServiceClient {
   $host: string;
   subscriptionId: string;
+  apiVersion: string;
 
   /**
    * Initializes a new instance of the CosmosDBManagementClient class.
@@ -107,6 +128,7 @@ export class CosmosDBManagementClient extends coreClient.ServiceClient {
 
     // Assigning values to Constant parameters
     this.$host = options.$host || "https://management.azure.com";
+    this.apiVersion = options.apiVersion || "2021-10-15";
     this.databaseAccounts = new DatabaseAccountsImpl(this);
     this.operations = new OperationsImpl(this);
     this.database = new DatabaseImpl(this);
@@ -125,9 +147,21 @@ export class CosmosDBManagementClient extends coreClient.ServiceClient {
     this.tableResources = new TableResourcesImpl(this);
     this.cassandraResources = new CassandraResourcesImpl(this);
     this.gremlinResources = new GremlinResourcesImpl(this);
+    this.locations = new LocationsImpl(this);
     this.notebookWorkspaces = new NotebookWorkspacesImpl(this);
-    this.privateLinkResources = new PrivateLinkResourcesImpl(this);
     this.privateEndpointConnections = new PrivateEndpointConnectionsImpl(this);
+    this.privateLinkResources = new PrivateLinkResourcesImpl(this);
+    this.restorableDatabaseAccounts = new RestorableDatabaseAccountsImpl(this);
+    this.restorableSqlDatabases = new RestorableSqlDatabasesImpl(this);
+    this.restorableSqlContainers = new RestorableSqlContainersImpl(this);
+    this.restorableSqlResources = new RestorableSqlResourcesImpl(this);
+    this.restorableMongodbDatabases = new RestorableMongodbDatabasesImpl(this);
+    this.restorableMongodbCollections = new RestorableMongodbCollectionsImpl(
+      this
+    );
+    this.restorableMongodbResources = new RestorableMongodbResourcesImpl(this);
+    this.cassandraClusters = new CassandraClustersImpl(this);
+    this.cassandraDataCenters = new CassandraDataCentersImpl(this);
   }
 
   databaseAccounts: DatabaseAccounts;
@@ -148,7 +182,17 @@ export class CosmosDBManagementClient extends coreClient.ServiceClient {
   tableResources: TableResources;
   cassandraResources: CassandraResources;
   gremlinResources: GremlinResources;
+  locations: Locations;
   notebookWorkspaces: NotebookWorkspaces;
-  privateLinkResources: PrivateLinkResources;
   privateEndpointConnections: PrivateEndpointConnections;
+  privateLinkResources: PrivateLinkResources;
+  restorableDatabaseAccounts: RestorableDatabaseAccounts;
+  restorableSqlDatabases: RestorableSqlDatabases;
+  restorableSqlContainers: RestorableSqlContainers;
+  restorableSqlResources: RestorableSqlResources;
+  restorableMongodbDatabases: RestorableMongodbDatabases;
+  restorableMongodbCollections: RestorableMongodbCollections;
+  restorableMongodbResources: RestorableMongodbResources;
+  cassandraClusters: CassandraClusters;
+  cassandraDataCenters: CassandraDataCenters;
 }

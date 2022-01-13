@@ -438,7 +438,7 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.virtualNetworkPeeringParameters,
-  queryParameters: [Parameters.apiVersion],
+  queryParameters: [Parameters.apiVersion, Parameters.syncRemoteAddressSpace],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,

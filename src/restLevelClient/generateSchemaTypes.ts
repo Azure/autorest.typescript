@@ -1,9 +1,11 @@
 import { CodeModel, SchemaContext } from "@autorest/codemodel";
 import { Project } from "ts-morph";
+import * as path from 'path';
 import {
   buildObjectInterfaces,
   buildPolymorphicAliases
 } from "./generateObjectTypes";
+import { getAutorestOptions } from "../autorestSession";
 
 /**
  * Generates types to represent schema definitions in the swagger
@@ -18,10 +20,10 @@ export function generateSchemaTypes(model: CodeModel, project: Project) {
   const objectTypeAliases = buildPolymorphicAliases(model, [
     SchemaContext.Input
   ]);
-
+  const { srcPath } = getAutorestOptions();
   if (objectTypeAliases.length || objectsDefinitions.length) {
     const inputModelsFile = project.createSourceFile(
-      `src/models.ts`,
+      path.join(srcPath, `models.ts`),
       undefined,
       {
         overwrite: true
@@ -42,7 +44,7 @@ export function generateSchemaTypes(model: CodeModel, project: Project) {
 
   if (outputObjectTypeAliases.length || outputObjectsDefinitions.length) {
     const outputModelsFile = project.createSourceFile(
-      `src/outputModels.ts`,
+      path.join(srcPath, `outputModels.ts`),
       undefined,
       {
         overwrite: true

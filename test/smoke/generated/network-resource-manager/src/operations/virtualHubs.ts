@@ -30,6 +30,7 @@ import {
   VirtualHubsDeleteOptionalParams,
   VirtualHubsListByResourceGroupResponse,
   VirtualHubsListResponse,
+  VirtualHubsGetEffectiveVirtualHubRoutesOptionalParams,
   VirtualHubsListByResourceGroupNextResponse,
   VirtualHubsListNextResponse
 } from "../models";
@@ -376,6 +377,87 @@ export class VirtualHubsImpl implements VirtualHubs {
   }
 
   /**
+   * Gets the effective routes configured for the Virtual Hub resource or the specified resource .
+   * @param resourceGroupName The resource group name of the VirtualHub.
+   * @param virtualHubName The name of the VirtualHub.
+   * @param options The options parameters.
+   */
+  async beginGetEffectiveVirtualHubRoutes(
+    resourceGroupName: string,
+    virtualHubName: string,
+    options?: VirtualHubsGetEffectiveVirtualHubRoutesOptionalParams
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { resourceGroupName, virtualHubName, options },
+      getEffectiveVirtualHubRoutesOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs,
+      lroResourceLocationConfig: "location"
+    });
+  }
+
+  /**
+   * Gets the effective routes configured for the Virtual Hub resource or the specified resource .
+   * @param resourceGroupName The resource group name of the VirtualHub.
+   * @param virtualHubName The name of the VirtualHub.
+   * @param options The options parameters.
+   */
+  async beginGetEffectiveVirtualHubRoutesAndWait(
+    resourceGroupName: string,
+    virtualHubName: string,
+    options?: VirtualHubsGetEffectiveVirtualHubRoutesOptionalParams
+  ): Promise<void> {
+    const poller = await this.beginGetEffectiveVirtualHubRoutes(
+      resourceGroupName,
+      virtualHubName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * ListByResourceGroupNext
    * @param resourceGroupName The resource group name of the VirtualHub.
    * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
@@ -548,6 +630,31 @@ const listOperationSpec: coreClient.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.accept],
+  serializer
+};
+const getEffectiveVirtualHubRoutesOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualHubs/{virtualHubName}/effectiveRoutes",
+  httpMethod: "POST",
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  requestBody: Parameters.effectiveRoutesParameters,
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.virtualHubName
+  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {

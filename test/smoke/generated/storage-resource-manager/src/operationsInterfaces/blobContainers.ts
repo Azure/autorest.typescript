@@ -7,6 +7,7 @@
  */
 
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ListContainerItem,
   BlobContainersListOptionalParams,
@@ -34,7 +35,8 @@ import {
   BlobContainersExtendImmutabilityPolicyOptionalParams,
   BlobContainersExtendImmutabilityPolicyResponse,
   BlobContainersLeaseOptionalParams,
-  BlobContainersLeaseResponse
+  BlobContainersLeaseResponse,
+  BlobContainersObjectLevelWormOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -225,8 +227,8 @@ export interface BlobContainers {
   /**
    * Aborts an unlocked immutability policy. The response of delete has
    * immutabilityPeriodSinceCreationInDays set to 0. ETag in If-Match is required for this operation.
-   * Deleting a locked immutability policy is not allowed, only way is to delete the container after
-   * deleting all blobs inside the container.
+   * Deleting a locked immutability policy is not allowed, the only way is to delete the container after
+   * deleting all expired blobs inside the policy locked container.
    * @param resourceGroupName The name of the resource group within the user's subscription. The name is
    *                          case insensitive.
    * @param accountName The name of the storage account within the specified resource group. Storage
@@ -316,4 +318,48 @@ export interface BlobContainers {
     containerName: string,
     options?: BlobContainersLeaseOptionalParams
   ): Promise<BlobContainersLeaseResponse>;
+  /**
+   * This operation migrates a blob container from container level WORM to object level immutability
+   * enabled container. Prerequisites require a container level immutability policy either in locked or
+   * unlocked state, Account level versioning must be enabled and there should be no Legal hold on the
+   * container.
+   * @param resourceGroupName The name of the resource group within the user's subscription. The name is
+   *                          case insensitive.
+   * @param accountName The name of the storage account within the specified resource group. Storage
+   *                    account names must be between 3 and 24 characters in length and use numbers and lower-case letters
+   *                    only.
+   * @param containerName The name of the blob container within the specified storage account. Blob
+   *                      container names must be between 3 and 63 characters in length and use numbers, lower-case letters
+   *                      and dash (-) only. Every dash (-) character must be immediately preceded and followed by a letter or
+   *                      number.
+   * @param options The options parameters.
+   */
+  beginObjectLevelWorm(
+    resourceGroupName: string,
+    accountName: string,
+    containerName: string,
+    options?: BlobContainersObjectLevelWormOptionalParams
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  /**
+   * This operation migrates a blob container from container level WORM to object level immutability
+   * enabled container. Prerequisites require a container level immutability policy either in locked or
+   * unlocked state, Account level versioning must be enabled and there should be no Legal hold on the
+   * container.
+   * @param resourceGroupName The name of the resource group within the user's subscription. The name is
+   *                          case insensitive.
+   * @param accountName The name of the storage account within the specified resource group. Storage
+   *                    account names must be between 3 and 24 characters in length and use numbers and lower-case letters
+   *                    only.
+   * @param containerName The name of the blob container within the specified storage account. Blob
+   *                      container names must be between 3 and 63 characters in length and use numbers, lower-case letters
+   *                      and dash (-) only. Every dash (-) character must be immediately preceded and followed by a letter or
+   *                      number.
+   * @param options The options parameters.
+   */
+  beginObjectLevelWormAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    containerName: string,
+    options?: BlobContainersObjectLevelWormOptionalParams
+  ): Promise<void>;
 }

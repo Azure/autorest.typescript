@@ -23,9 +23,17 @@ import {
   BackupItem,
   WebAppsListBackupsNextOptionalParams,
   WebAppsListBackupsOptionalParams,
+  CsmPublishingCredentialsPoliciesEntity,
+  WebAppsListBasicPublishingCredentialsPoliciesNextOptionalParams,
+  WebAppsListBasicPublishingCredentialsPoliciesOptionalParams,
   SiteConfigResource,
   WebAppsListConfigurationsNextOptionalParams,
   WebAppsListConfigurationsOptionalParams,
+  ApiKVReference,
+  WebAppsGetAppSettingsKeyVaultReferencesNextOptionalParams,
+  WebAppsGetAppSettingsKeyVaultReferencesOptionalParams,
+  WebAppsGetSiteConnectionStringKeyVaultReferencesNextOptionalParams,
+  WebAppsGetSiteConnectionStringKeyVaultReferencesOptionalParams,
   SiteConfigurationSnapshotInfo,
   WebAppsListConfigurationSnapshotInfoNextOptionalParams,
   WebAppsListConfigurationSnapshotInfoOptionalParams,
@@ -44,7 +52,7 @@ import {
   HostNameBinding,
   WebAppsListHostNameBindingsNextOptionalParams,
   WebAppsListHostNameBindingsOptionalParams,
-  SiteInstance,
+  WebSiteInstanceStatus,
   WebAppsListInstanceIdentifiersNextOptionalParams,
   WebAppsListInstanceIdentifiersOptionalParams,
   ProcessInfo,
@@ -61,6 +69,9 @@ import {
   PerfMonResponse,
   WebAppsListPerfMonCountersNextOptionalParams,
   WebAppsListPerfMonCountersOptionalParams,
+  RemotePrivateEndpointConnectionARMResource,
+  WebAppsGetPrivateEndpointConnectionListNextOptionalParams,
+  WebAppsGetPrivateEndpointConnectionListOptionalParams,
   WebAppsListProcessesNextOptionalParams,
   WebAppsListProcessesOptionalParams,
   WebAppsListProcessModulesNextOptionalParams,
@@ -77,8 +88,14 @@ import {
   WebAppsListSlotsOptionalParams,
   WebAppsListBackupsSlotNextOptionalParams,
   WebAppsListBackupsSlotOptionalParams,
+  WebAppsListBasicPublishingCredentialsPoliciesSlotNextOptionalParams,
+  WebAppsListBasicPublishingCredentialsPoliciesSlotOptionalParams,
   WebAppsListConfigurationsSlotNextOptionalParams,
   WebAppsListConfigurationsSlotOptionalParams,
+  WebAppsGetAppSettingsKeyVaultReferencesSlotNextOptionalParams,
+  WebAppsGetAppSettingsKeyVaultReferencesSlotOptionalParams,
+  WebAppsGetSiteConnectionStringKeyVaultReferencesSlotNextOptionalParams,
+  WebAppsGetSiteConnectionStringKeyVaultReferencesSlotOptionalParams,
   WebAppsListConfigurationSnapshotInfoSlotNextOptionalParams,
   WebAppsListConfigurationSnapshotInfoSlotOptionalParams,
   WebAppsListContinuousWebJobsSlotNextOptionalParams,
@@ -103,6 +120,8 @@ import {
   WebAppsListSiteBackupsSlotOptionalParams,
   WebAppsListPerfMonCountersSlotNextOptionalParams,
   WebAppsListPerfMonCountersSlotOptionalParams,
+  WebAppsGetPrivateEndpointConnectionListSlotNextOptionalParams,
+  WebAppsGetPrivateEndpointConnectionListSlotOptionalParams,
   WebAppsListProcessesSlotNextOptionalParams,
   WebAppsListProcessesSlotOptionalParams,
   WebAppsListProcessModulesSlotNextOptionalParams,
@@ -172,6 +191,15 @@ import {
   WebAppsListBackupStatusSecretsResponse,
   RestoreRequest,
   WebAppsRestoreOptionalParams,
+  WebAppsListBasicPublishingCredentialsPoliciesResponse,
+  WebAppsGetFtpAllowedOptionalParams,
+  WebAppsGetFtpAllowedResponse,
+  WebAppsUpdateFtpAllowedOptionalParams,
+  WebAppsUpdateFtpAllowedResponse,
+  WebAppsGetScmAllowedOptionalParams,
+  WebAppsGetScmAllowedResponse,
+  WebAppsUpdateScmAllowedOptionalParams,
+  WebAppsUpdateScmAllowedResponse,
   WebAppsListConfigurationsResponse,
   StringDictionary,
   WebAppsUpdateApplicationSettingsOptionalParams,
@@ -183,6 +211,11 @@ import {
   WebAppsUpdateAuthSettingsResponse,
   WebAppsGetAuthSettingsOptionalParams,
   WebAppsGetAuthSettingsResponse,
+  SiteAuthSettingsV2,
+  WebAppsUpdateAuthSettingsV2OptionalParams,
+  WebAppsUpdateAuthSettingsV2Response,
+  WebAppsGetAuthSettingsV2OptionalParams,
+  WebAppsGetAuthSettingsV2Response,
   AzureStoragePropertyDictionaryResource,
   WebAppsUpdateAzureStorageAccountsOptionalParams,
   WebAppsUpdateAzureStorageAccountsResponse,
@@ -193,10 +226,12 @@ import {
   WebAppsDeleteBackupConfigurationOptionalParams,
   WebAppsGetBackupConfigurationOptionalParams,
   WebAppsGetBackupConfigurationResponse,
-  WebAppsGetAppSettingsKeyVaultReferencesOptionalParams,
   WebAppsGetAppSettingsKeyVaultReferencesResponse,
   WebAppsGetAppSettingKeyVaultReferenceOptionalParams,
   WebAppsGetAppSettingKeyVaultReferenceResponse,
+  WebAppsGetSiteConnectionStringKeyVaultReferencesResponse,
+  WebAppsGetSiteConnectionStringKeyVaultReferenceOptionalParams,
+  WebAppsGetSiteConnectionStringKeyVaultReferenceResponse,
   ConnectionStringDictionary,
   WebAppsUpdateConnectionStringsOptionalParams,
   WebAppsUpdateConnectionStringsResponse,
@@ -352,11 +387,11 @@ import {
   WebAppsGetSwiftVirtualNetworkConnectionOptionalParams,
   WebAppsGetSwiftVirtualNetworkConnectionResponse,
   SwiftVirtualNetwork,
-  WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionOptionalParams,
-  WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionResponse,
+  WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionWithCheckOptionalParams,
+  WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionWithCheckResponse,
   WebAppsDeleteSwiftVirtualNetworkOptionalParams,
-  WebAppsUpdateSwiftVirtualNetworkConnectionOptionalParams,
-  WebAppsUpdateSwiftVirtualNetworkConnectionResponse,
+  WebAppsUpdateSwiftVirtualNetworkConnectionWithCheckOptionalParams,
+  WebAppsUpdateSwiftVirtualNetworkConnectionWithCheckResponse,
   WebAppsListNetworkFeaturesOptionalParams,
   WebAppsListNetworkFeaturesResponse,
   WebAppsGetNetworkTraceOperationOptionalParams,
@@ -392,6 +427,16 @@ import {
   PrivateAccess,
   WebAppsPutPrivateAccessVnetOptionalParams,
   WebAppsPutPrivateAccessVnetResponse,
+  WebAppsGetPrivateEndpointConnectionListResponse,
+  WebAppsGetPrivateEndpointConnectionOptionalParams,
+  WebAppsGetPrivateEndpointConnectionResponse,
+  PrivateLinkConnectionApprovalRequestResource,
+  WebAppsApproveOrRejectPrivateEndpointConnectionOptionalParams,
+  WebAppsApproveOrRejectPrivateEndpointConnectionResponse,
+  WebAppsDeletePrivateEndpointConnectionOptionalParams,
+  WebAppsDeletePrivateEndpointConnectionResponse,
+  WebAppsGetPrivateLinkResourcesOptionalParams,
+  WebAppsGetPrivateLinkResourcesResponse,
   WebAppsListProcessesResponse,
   WebAppsGetProcessOptionalParams,
   WebAppsGetProcessResponse,
@@ -424,8 +469,6 @@ import {
   WebAppsInstallSiteExtensionOptionalParams,
   WebAppsInstallSiteExtensionResponse,
   WebAppsDeleteSiteExtensionOptionalParams,
-  CsmCopySlotEntity,
-  WebAppsCopyProductionSlotOptionalParams,
   WebAppsListSlotsResponse,
   WebAppsGetSlotOptionalParams,
   WebAppsGetSlotResponse,
@@ -446,6 +489,15 @@ import {
   WebAppsListBackupStatusSecretsSlotOptionalParams,
   WebAppsListBackupStatusSecretsSlotResponse,
   WebAppsRestoreSlotOptionalParams,
+  WebAppsListBasicPublishingCredentialsPoliciesSlotResponse,
+  WebAppsGetFtpAllowedSlotOptionalParams,
+  WebAppsGetFtpAllowedSlotResponse,
+  WebAppsUpdateFtpAllowedSlotOptionalParams,
+  WebAppsUpdateFtpAllowedSlotResponse,
+  WebAppsGetScmAllowedSlotOptionalParams,
+  WebAppsGetScmAllowedSlotResponse,
+  WebAppsUpdateScmAllowedSlotOptionalParams,
+  WebAppsUpdateScmAllowedSlotResponse,
   WebAppsListConfigurationsSlotResponse,
   WebAppsUpdateApplicationSettingsSlotOptionalParams,
   WebAppsUpdateApplicationSettingsSlotResponse,
@@ -455,6 +507,10 @@ import {
   WebAppsUpdateAuthSettingsSlotResponse,
   WebAppsGetAuthSettingsSlotOptionalParams,
   WebAppsGetAuthSettingsSlotResponse,
+  WebAppsUpdateAuthSettingsV2SlotOptionalParams,
+  WebAppsUpdateAuthSettingsV2SlotResponse,
+  WebAppsGetAuthSettingsV2SlotOptionalParams,
+  WebAppsGetAuthSettingsV2SlotResponse,
   WebAppsUpdateAzureStorageAccountsSlotOptionalParams,
   WebAppsUpdateAzureStorageAccountsSlotResponse,
   WebAppsListAzureStorageAccountsSlotOptionalParams,
@@ -464,6 +520,12 @@ import {
   WebAppsDeleteBackupConfigurationSlotOptionalParams,
   WebAppsGetBackupConfigurationSlotOptionalParams,
   WebAppsGetBackupConfigurationSlotResponse,
+  WebAppsGetAppSettingsKeyVaultReferencesSlotResponse,
+  WebAppsGetAppSettingKeyVaultReferenceSlotOptionalParams,
+  WebAppsGetAppSettingKeyVaultReferenceSlotResponse,
+  WebAppsGetSiteConnectionStringKeyVaultReferencesSlotResponse,
+  WebAppsGetSiteConnectionStringKeyVaultReferenceSlotOptionalParams,
+  WebAppsGetSiteConnectionStringKeyVaultReferenceSlotResponse,
   WebAppsUpdateConnectionStringsSlotOptionalParams,
   WebAppsUpdateConnectionStringsSlotResponse,
   WebAppsListConnectionStringsSlotOptionalParams,
@@ -600,11 +662,11 @@ import {
   WebAppsGetMigrateMySqlStatusSlotResponse,
   WebAppsGetSwiftVirtualNetworkConnectionSlotOptionalParams,
   WebAppsGetSwiftVirtualNetworkConnectionSlotResponse,
-  WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionSlotOptionalParams,
-  WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionSlotResponse,
+  WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionWithCheckSlotOptionalParams,
+  WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionWithCheckSlotResponse,
   WebAppsDeleteSwiftVirtualNetworkSlotOptionalParams,
-  WebAppsUpdateSwiftVirtualNetworkConnectionSlotOptionalParams,
-  WebAppsUpdateSwiftVirtualNetworkConnectionSlotResponse,
+  WebAppsUpdateSwiftVirtualNetworkConnectionWithCheckSlotOptionalParams,
+  WebAppsUpdateSwiftVirtualNetworkConnectionWithCheckSlotResponse,
   WebAppsListNetworkFeaturesSlotOptionalParams,
   WebAppsListNetworkFeaturesSlotResponse,
   WebAppsGetNetworkTraceOperationSlotOptionalParams,
@@ -637,15 +699,15 @@ import {
   WebAppsGetPrivateAccessSlotResponse,
   WebAppsPutPrivateAccessVnetSlotOptionalParams,
   WebAppsPutPrivateAccessVnetSlotResponse,
-  WebAppsGetPrivateEndpointConnectionOptionalParams,
-  WebAppsGetPrivateEndpointConnectionResponse,
-  PrivateLinkConnectionApprovalRequestResource,
-  WebAppsApproveOrRejectPrivateEndpointConnectionOptionalParams,
-  WebAppsApproveOrRejectPrivateEndpointConnectionResponse,
-  WebAppsDeletePrivateEndpointConnectionOptionalParams,
-  WebAppsDeletePrivateEndpointConnectionResponse,
-  WebAppsGetPrivateLinkResourcesOptionalParams,
-  WebAppsGetPrivateLinkResourcesResponse,
+  WebAppsGetPrivateEndpointConnectionListSlotResponse,
+  WebAppsGetPrivateEndpointConnectionSlotOptionalParams,
+  WebAppsGetPrivateEndpointConnectionSlotResponse,
+  WebAppsApproveOrRejectPrivateEndpointConnectionSlotOptionalParams,
+  WebAppsApproveOrRejectPrivateEndpointConnectionSlotResponse,
+  WebAppsDeletePrivateEndpointConnectionSlotOptionalParams,
+  WebAppsDeletePrivateEndpointConnectionSlotResponse,
+  WebAppsGetPrivateLinkResourcesSlotOptionalParams,
+  WebAppsGetPrivateLinkResourcesSlotResponse,
   WebAppsListProcessesSlotResponse,
   WebAppsGetProcessSlotOptionalParams,
   WebAppsGetProcessSlotResponse,
@@ -675,7 +737,6 @@ import {
   WebAppsInstallSiteExtensionSlotOptionalParams,
   WebAppsInstallSiteExtensionSlotResponse,
   WebAppsDeleteSiteExtensionSlotOptionalParams,
-  WebAppsCopySlotOptionalParams,
   WebAppsListSlotDifferencesSlotResponse,
   WebAppsSwapSlotOptionalParams,
   WebAppsListSnapshotsSlotResponse,
@@ -708,7 +769,7 @@ import {
   WebAppsListVnetConnectionsSlotResponse,
   WebAppsGetVnetConnectionSlotOptionalParams,
   WebAppsGetVnetConnectionSlotResponse,
-  VnetInfo,
+  VnetInfoResource,
   WebAppsCreateOrUpdateVnetConnectionSlotOptionalParams,
   WebAppsCreateOrUpdateVnetConnectionSlotResponse,
   WebAppsDeleteVnetConnectionSlotOptionalParams,
@@ -772,7 +833,10 @@ import {
   WebAppsListNextResponse,
   WebAppsListByResourceGroupNextResponse,
   WebAppsListBackupsNextResponse,
+  WebAppsListBasicPublishingCredentialsPoliciesNextResponse,
   WebAppsListConfigurationsNextResponse,
+  WebAppsGetAppSettingsKeyVaultReferencesNextResponse,
+  WebAppsGetSiteConnectionStringKeyVaultReferencesNextResponse,
   WebAppsListConfigurationSnapshotInfoNextResponse,
   WebAppsListContinuousWebJobsNextResponse,
   WebAppsListDeploymentsNextResponse,
@@ -785,6 +849,7 @@ import {
   WebAppsListInstanceProcessThreadsNextResponse,
   WebAppsListSiteBackupsNextResponse,
   WebAppsListPerfMonCountersNextResponse,
+  WebAppsGetPrivateEndpointConnectionListNextResponse,
   WebAppsListProcessesNextResponse,
   WebAppsListProcessModulesNextResponse,
   WebAppsListProcessThreadsNextResponse,
@@ -792,7 +857,10 @@ import {
   WebAppsListSiteExtensionsNextResponse,
   WebAppsListSlotsNextResponse,
   WebAppsListBackupsSlotNextResponse,
+  WebAppsListBasicPublishingCredentialsPoliciesSlotNextResponse,
   WebAppsListConfigurationsSlotNextResponse,
+  WebAppsGetAppSettingsKeyVaultReferencesSlotNextResponse,
+  WebAppsGetSiteConnectionStringKeyVaultReferencesSlotNextResponse,
   WebAppsListConfigurationSnapshotInfoSlotNextResponse,
   WebAppsListContinuousWebJobsSlotNextResponse,
   WebAppsListDeploymentsSlotNextResponse,
@@ -805,6 +873,7 @@ import {
   WebAppsListInstanceProcessThreadsSlotNextResponse,
   WebAppsListSiteBackupsSlotNextResponse,
   WebAppsListPerfMonCountersSlotNextResponse,
+  WebAppsGetPrivateEndpointConnectionListSlotNextResponse,
   WebAppsListProcessesSlotNextResponse,
   WebAppsListProcessModulesSlotNextResponse,
   WebAppsListProcessThreadsSlotNextResponse,
@@ -994,6 +1063,78 @@ export class WebAppsImpl implements WebApps {
   }
 
   /**
+   * Description for Returns whether Scm basic auth is allowed and whether Ftp is allowed for a given
+   * site.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param options The options parameters.
+   */
+  public listBasicPublishingCredentialsPolicies(
+    resourceGroupName: string,
+    name: string,
+    options?: WebAppsListBasicPublishingCredentialsPoliciesOptionalParams
+  ): PagedAsyncIterableIterator<CsmPublishingCredentialsPoliciesEntity> {
+    const iter = this.listBasicPublishingCredentialsPoliciesPagingAll(
+      resourceGroupName,
+      name,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listBasicPublishingCredentialsPoliciesPagingPage(
+          resourceGroupName,
+          name,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listBasicPublishingCredentialsPoliciesPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: WebAppsListBasicPublishingCredentialsPoliciesOptionalParams
+  ): AsyncIterableIterator<CsmPublishingCredentialsPoliciesEntity[]> {
+    let result = await this._listBasicPublishingCredentialsPolicies(
+      resourceGroupName,
+      name,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listBasicPublishingCredentialsPoliciesNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listBasicPublishingCredentialsPoliciesPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: WebAppsListBasicPublishingCredentialsPoliciesOptionalParams
+  ): AsyncIterableIterator<CsmPublishingCredentialsPoliciesEntity> {
+    for await (const page of this.listBasicPublishingCredentialsPoliciesPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
    * Description for List the configurations of an app
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
@@ -1056,6 +1197,148 @@ export class WebAppsImpl implements WebApps {
     options?: WebAppsListConfigurationsOptionalParams
   ): AsyncIterableIterator<SiteConfigResource> {
     for await (const page of this.listConfigurationsPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Gets the config reference app settings and status of an app
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param options The options parameters.
+   */
+  public listAppSettingsKeyVaultReferences(
+    resourceGroupName: string,
+    name: string,
+    options?: WebAppsGetAppSettingsKeyVaultReferencesOptionalParams
+  ): PagedAsyncIterableIterator<ApiKVReference> {
+    const iter = this.getAppSettingsKeyVaultReferencesPagingAll(
+      resourceGroupName,
+      name,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.getAppSettingsKeyVaultReferencesPagingPage(
+          resourceGroupName,
+          name,
+          options
+        );
+      }
+    };
+  }
+
+  private async *getAppSettingsKeyVaultReferencesPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: WebAppsGetAppSettingsKeyVaultReferencesOptionalParams
+  ): AsyncIterableIterator<ApiKVReference[]> {
+    let result = await this._getAppSettingsKeyVaultReferences(
+      resourceGroupName,
+      name,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._getAppSettingsKeyVaultReferencesNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *getAppSettingsKeyVaultReferencesPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: WebAppsGetAppSettingsKeyVaultReferencesOptionalParams
+  ): AsyncIterableIterator<ApiKVReference> {
+    for await (const page of this.getAppSettingsKeyVaultReferencesPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Gets the config reference app settings and status of an app
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param options The options parameters.
+   */
+  public listSiteConnectionStringKeyVaultReferences(
+    resourceGroupName: string,
+    name: string,
+    options?: WebAppsGetSiteConnectionStringKeyVaultReferencesOptionalParams
+  ): PagedAsyncIterableIterator<ApiKVReference> {
+    const iter = this.getSiteConnectionStringKeyVaultReferencesPagingAll(
+      resourceGroupName,
+      name,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.getSiteConnectionStringKeyVaultReferencesPagingPage(
+          resourceGroupName,
+          name,
+          options
+        );
+      }
+    };
+  }
+
+  private async *getSiteConnectionStringKeyVaultReferencesPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: WebAppsGetSiteConnectionStringKeyVaultReferencesOptionalParams
+  ): AsyncIterableIterator<ApiKVReference[]> {
+    let result = await this._getSiteConnectionStringKeyVaultReferences(
+      resourceGroupName,
+      name,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._getSiteConnectionStringKeyVaultReferencesNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *getSiteConnectionStringKeyVaultReferencesPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: WebAppsGetSiteConnectionStringKeyVaultReferencesOptionalParams
+  ): AsyncIterableIterator<ApiKVReference> {
+    for await (const page of this.getSiteConnectionStringKeyVaultReferencesPagingPage(
       resourceGroupName,
       name,
       options
@@ -1481,7 +1764,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     options?: WebAppsListInstanceIdentifiersOptionalParams
-  ): PagedAsyncIterableIterator<SiteInstance> {
+  ): PagedAsyncIterableIterator<WebSiteInstanceStatus> {
     const iter = this.listInstanceIdentifiersPagingAll(
       resourceGroupName,
       name,
@@ -1508,7 +1791,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     options?: WebAppsListInstanceIdentifiersOptionalParams
-  ): AsyncIterableIterator<SiteInstance[]> {
+  ): AsyncIterableIterator<WebSiteInstanceStatus[]> {
     let result = await this._listInstanceIdentifiers(
       resourceGroupName,
       name,
@@ -1532,7 +1815,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     options?: WebAppsListInstanceIdentifiersOptionalParams
-  ): AsyncIterableIterator<SiteInstance> {
+  ): AsyncIterableIterator<WebSiteInstanceStatus> {
     for await (const page of this.listInstanceIdentifiersPagingPage(
       resourceGroupName,
       name,
@@ -1932,6 +2215,77 @@ export class WebAppsImpl implements WebApps {
     options?: WebAppsListPerfMonCountersOptionalParams
   ): AsyncIterableIterator<PerfMonResponse> {
     for await (const page of this.listPerfMonCountersPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Gets the list of private endpoint connections associated with a site
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the site.
+   * @param options The options parameters.
+   */
+  public listPrivateEndpointConnectionList(
+    resourceGroupName: string,
+    name: string,
+    options?: WebAppsGetPrivateEndpointConnectionListOptionalParams
+  ): PagedAsyncIterableIterator<RemotePrivateEndpointConnectionARMResource> {
+    const iter = this.getPrivateEndpointConnectionListPagingAll(
+      resourceGroupName,
+      name,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.getPrivateEndpointConnectionListPagingPage(
+          resourceGroupName,
+          name,
+          options
+        );
+      }
+    };
+  }
+
+  private async *getPrivateEndpointConnectionListPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: WebAppsGetPrivateEndpointConnectionListOptionalParams
+  ): AsyncIterableIterator<RemotePrivateEndpointConnectionARMResource[]> {
+    let result = await this._getPrivateEndpointConnectionList(
+      resourceGroupName,
+      name,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._getPrivateEndpointConnectionListNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *getPrivateEndpointConnectionListPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: WebAppsGetPrivateEndpointConnectionListOptionalParams
+  ): AsyncIterableIterator<RemotePrivateEndpointConnectionARMResource> {
+    for await (const page of this.getPrivateEndpointConnectionListPagingPage(
       resourceGroupName,
       name,
       options
@@ -2445,6 +2799,87 @@ export class WebAppsImpl implements WebApps {
   }
 
   /**
+   * Description for Returns whether Scm basic auth is allowed and whether Ftp is allowed for a given
+   * site.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slot
+   * @param options The options parameters.
+   */
+  public listBasicPublishingCredentialsPoliciesSlot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: WebAppsListBasicPublishingCredentialsPoliciesSlotOptionalParams
+  ): PagedAsyncIterableIterator<CsmPublishingCredentialsPoliciesEntity> {
+    const iter = this.listBasicPublishingCredentialsPoliciesSlotPagingAll(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listBasicPublishingCredentialsPoliciesSlotPagingPage(
+          resourceGroupName,
+          name,
+          slot,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listBasicPublishingCredentialsPoliciesSlotPagingPage(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: WebAppsListBasicPublishingCredentialsPoliciesSlotOptionalParams
+  ): AsyncIterableIterator<CsmPublishingCredentialsPoliciesEntity[]> {
+    let result = await this._listBasicPublishingCredentialsPoliciesSlot(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listBasicPublishingCredentialsPoliciesSlotNext(
+        resourceGroupName,
+        name,
+        slot,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listBasicPublishingCredentialsPoliciesSlotPagingAll(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: WebAppsListBasicPublishingCredentialsPoliciesSlotOptionalParams
+  ): AsyncIterableIterator<CsmPublishingCredentialsPoliciesEntity> {
+    for await (const page of this.listBasicPublishingCredentialsPoliciesSlotPagingPage(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
    * Description for List the configurations of an app
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
@@ -2516,6 +2951,166 @@ export class WebAppsImpl implements WebApps {
     options?: WebAppsListConfigurationsSlotOptionalParams
   ): AsyncIterableIterator<SiteConfigResource> {
     for await (const page of this.listConfigurationsSlotPagingPage(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Gets the config reference app settings and status of an app
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slot
+   * @param options The options parameters.
+   */
+  public listAppSettingsKeyVaultReferencesSlot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: WebAppsGetAppSettingsKeyVaultReferencesSlotOptionalParams
+  ): PagedAsyncIterableIterator<ApiKVReference> {
+    const iter = this.getAppSettingsKeyVaultReferencesSlotPagingAll(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.getAppSettingsKeyVaultReferencesSlotPagingPage(
+          resourceGroupName,
+          name,
+          slot,
+          options
+        );
+      }
+    };
+  }
+
+  private async *getAppSettingsKeyVaultReferencesSlotPagingPage(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: WebAppsGetAppSettingsKeyVaultReferencesSlotOptionalParams
+  ): AsyncIterableIterator<ApiKVReference[]> {
+    let result = await this._getAppSettingsKeyVaultReferencesSlot(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._getAppSettingsKeyVaultReferencesSlotNext(
+        resourceGroupName,
+        name,
+        slot,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *getAppSettingsKeyVaultReferencesSlotPagingAll(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: WebAppsGetAppSettingsKeyVaultReferencesSlotOptionalParams
+  ): AsyncIterableIterator<ApiKVReference> {
+    for await (const page of this.getAppSettingsKeyVaultReferencesSlotPagingPage(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Gets the config reference app settings and status of an app
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slot
+   * @param options The options parameters.
+   */
+  public listSiteConnectionStringKeyVaultReferencesSlot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: WebAppsGetSiteConnectionStringKeyVaultReferencesSlotOptionalParams
+  ): PagedAsyncIterableIterator<ApiKVReference> {
+    const iter = this.getSiteConnectionStringKeyVaultReferencesSlotPagingAll(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.getSiteConnectionStringKeyVaultReferencesSlotPagingPage(
+          resourceGroupName,
+          name,
+          slot,
+          options
+        );
+      }
+    };
+  }
+
+  private async *getSiteConnectionStringKeyVaultReferencesSlotPagingPage(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: WebAppsGetSiteConnectionStringKeyVaultReferencesSlotOptionalParams
+  ): AsyncIterableIterator<ApiKVReference[]> {
+    let result = await this._getSiteConnectionStringKeyVaultReferencesSlot(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._getSiteConnectionStringKeyVaultReferencesSlotNext(
+        resourceGroupName,
+        name,
+        slot,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *getSiteConnectionStringKeyVaultReferencesSlotPagingAll(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: WebAppsGetSiteConnectionStringKeyVaultReferencesSlotOptionalParams
+  ): AsyncIterableIterator<ApiKVReference> {
+    for await (const page of this.getSiteConnectionStringKeyVaultReferencesSlotPagingPage(
       resourceGroupName,
       name,
       slot,
@@ -3024,7 +3619,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     options?: WebAppsListInstanceIdentifiersSlotOptionalParams
-  ): PagedAsyncIterableIterator<SiteInstance> {
+  ): PagedAsyncIterableIterator<WebSiteInstanceStatus> {
     const iter = this.listInstanceIdentifiersSlotPagingAll(
       resourceGroupName,
       name,
@@ -3054,7 +3649,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     options?: WebAppsListInstanceIdentifiersSlotOptionalParams
-  ): AsyncIterableIterator<SiteInstance[]> {
+  ): AsyncIterableIterator<WebSiteInstanceStatus[]> {
     let result = await this._listInstanceIdentifiersSlot(
       resourceGroupName,
       name,
@@ -3081,7 +3676,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     options?: WebAppsListInstanceIdentifiersSlotOptionalParams
-  ): AsyncIterableIterator<SiteInstance> {
+  ): AsyncIterableIterator<WebSiteInstanceStatus> {
     for await (const page of this.listInstanceIdentifiersSlotPagingPage(
       resourceGroupName,
       name,
@@ -3538,6 +4133,86 @@ export class WebAppsImpl implements WebApps {
     options?: WebAppsListPerfMonCountersSlotOptionalParams
   ): AsyncIterableIterator<PerfMonResponse> {
     for await (const page of this.listPerfMonCountersSlotPagingPage(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Gets the list of private endpoint connections associated with a site
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the site.
+   * @param slot Name of the site deployment slot.
+   * @param options The options parameters.
+   */
+  public listPrivateEndpointConnectionListSlot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: WebAppsGetPrivateEndpointConnectionListSlotOptionalParams
+  ): PagedAsyncIterableIterator<RemotePrivateEndpointConnectionARMResource> {
+    const iter = this.getPrivateEndpointConnectionListSlotPagingAll(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.getPrivateEndpointConnectionListSlotPagingPage(
+          resourceGroupName,
+          name,
+          slot,
+          options
+        );
+      }
+    };
+  }
+
+  private async *getPrivateEndpointConnectionListSlotPagingPage(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: WebAppsGetPrivateEndpointConnectionListSlotOptionalParams
+  ): AsyncIterableIterator<RemotePrivateEndpointConnectionARMResource[]> {
+    let result = await this._getPrivateEndpointConnectionListSlot(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._getPrivateEndpointConnectionListSlotNext(
+        resourceGroupName,
+        name,
+        slot,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *getPrivateEndpointConnectionListSlotPagingAll(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: WebAppsGetPrivateEndpointConnectionListSlotOptionalParams
+  ): AsyncIterableIterator<RemotePrivateEndpointConnectionARMResource> {
+    for await (const page of this.getPrivateEndpointConnectionListSlotPagingPage(
       resourceGroupName,
       name,
       slot,
@@ -5434,6 +6109,96 @@ export class WebAppsImpl implements WebApps {
   }
 
   /**
+   * Description for Returns whether Scm basic auth is allowed and whether Ftp is allowed for a given
+   * site.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param options The options parameters.
+   */
+  private _listBasicPublishingCredentialsPolicies(
+    resourceGroupName: string,
+    name: string,
+    options?: WebAppsListBasicPublishingCredentialsPoliciesOptionalParams
+  ): Promise<WebAppsListBasicPublishingCredentialsPoliciesResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, options },
+      listBasicPublishingCredentialsPoliciesOperationSpec
+    );
+  }
+
+  /**
+   * Description for Returns whether FTP is allowed on the site or not.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param options The options parameters.
+   */
+  getFtpAllowed(
+    resourceGroupName: string,
+    name: string,
+    options?: WebAppsGetFtpAllowedOptionalParams
+  ): Promise<WebAppsGetFtpAllowedResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, options },
+      getFtpAllowedOperationSpec
+    );
+  }
+
+  /**
+   * Description for Updates whether FTP is allowed on the site or not.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param csmPublishingAccessPoliciesEntity Publishing Credentials Policies parameters.
+   * @param options The options parameters.
+   */
+  updateFtpAllowed(
+    resourceGroupName: string,
+    name: string,
+    csmPublishingAccessPoliciesEntity: CsmPublishingCredentialsPoliciesEntity,
+    options?: WebAppsUpdateFtpAllowedOptionalParams
+  ): Promise<WebAppsUpdateFtpAllowedResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, csmPublishingAccessPoliciesEntity, options },
+      updateFtpAllowedOperationSpec
+    );
+  }
+
+  /**
+   * Description for Returns whether Scm basic auth is allowed on the site or not.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param options The options parameters.
+   */
+  getScmAllowed(
+    resourceGroupName: string,
+    name: string,
+    options?: WebAppsGetScmAllowedOptionalParams
+  ): Promise<WebAppsGetScmAllowedResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, options },
+      getScmAllowedOperationSpec
+    );
+  }
+
+  /**
+   * Description for Updates whether user publishing credentials are allowed on the site or not.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param csmPublishingAccessPoliciesEntity Publishing Credentials Policies parameters.
+   * @param options The options parameters.
+   */
+  updateScmAllowed(
+    resourceGroupName: string,
+    name: string,
+    csmPublishingAccessPoliciesEntity: CsmPublishingCredentialsPoliciesEntity,
+    options?: WebAppsUpdateScmAllowedOptionalParams
+  ): Promise<WebAppsUpdateScmAllowedResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, csmPublishingAccessPoliciesEntity, options },
+      updateScmAllowedOperationSpec
+    );
+  }
+
+  /**
    * Description for List the configurations of an app
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
@@ -5519,6 +6284,42 @@ export class WebAppsImpl implements WebApps {
     return this.client.sendOperationRequest(
       { resourceGroupName, name, options },
       getAuthSettingsOperationSpec
+    );
+  }
+
+  /**
+   * Description for Updates site's Authentication / Authorization settings for apps via the V2 format
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of web app.
+   * @param siteAuthSettingsV2 Auth settings associated with web app.
+   * @param options The options parameters.
+   */
+  updateAuthSettingsV2(
+    resourceGroupName: string,
+    name: string,
+    siteAuthSettingsV2: SiteAuthSettingsV2,
+    options?: WebAppsUpdateAuthSettingsV2OptionalParams
+  ): Promise<WebAppsUpdateAuthSettingsV2Response> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, siteAuthSettingsV2, options },
+      updateAuthSettingsV2OperationSpec
+    );
+  }
+
+  /**
+   * Description for Gets site's Authentication / Authorization settings for apps via the V2 format
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param options The options parameters.
+   */
+  getAuthSettingsV2(
+    resourceGroupName: string,
+    name: string,
+    options?: WebAppsGetAuthSettingsV2OptionalParams
+  ): Promise<WebAppsGetAuthSettingsV2Response> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, options },
+      getAuthSettingsV2OperationSpec
     );
   }
 
@@ -5617,7 +6418,7 @@ export class WebAppsImpl implements WebApps {
    * @param name Name of the app.
    * @param options The options parameters.
    */
-  getAppSettingsKeyVaultReferences(
+  private _getAppSettingsKeyVaultReferences(
     resourceGroupName: string,
     name: string,
     options?: WebAppsGetAppSettingsKeyVaultReferencesOptionalParams
@@ -5644,6 +6445,42 @@ export class WebAppsImpl implements WebApps {
     return this.client.sendOperationRequest(
       { resourceGroupName, name, appSettingKey, options },
       getAppSettingKeyVaultReferenceOperationSpec
+    );
+  }
+
+  /**
+   * Description for Gets the config reference app settings and status of an app
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param options The options parameters.
+   */
+  private _getSiteConnectionStringKeyVaultReferences(
+    resourceGroupName: string,
+    name: string,
+    options?: WebAppsGetSiteConnectionStringKeyVaultReferencesOptionalParams
+  ): Promise<WebAppsGetSiteConnectionStringKeyVaultReferencesResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, options },
+      getSiteConnectionStringKeyVaultReferencesOperationSpec
+    );
+  }
+
+  /**
+   * Description for Gets the config reference and status of an app
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param connectionStringKey
+   * @param options The options parameters.
+   */
+  getSiteConnectionStringKeyVaultReference(
+    resourceGroupName: string,
+    name: string,
+    connectionStringKey: string,
+    options?: WebAppsGetSiteConnectionStringKeyVaultReferenceOptionalParams
+  ): Promise<WebAppsGetSiteConnectionStringKeyVaultReferenceResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, connectionStringKey, options },
+      getSiteConnectionStringKeyVaultReferenceOperationSpec
     );
   }
 
@@ -7753,15 +8590,17 @@ export class WebAppsImpl implements WebApps {
    * @param connectionEnvelope Properties of the Virtual Network connection. See example.
    * @param options The options parameters.
    */
-  createOrUpdateSwiftVirtualNetworkConnection(
+  createOrUpdateSwiftVirtualNetworkConnectionWithCheck(
     resourceGroupName: string,
     name: string,
     connectionEnvelope: SwiftVirtualNetwork,
-    options?: WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionOptionalParams
-  ): Promise<WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionResponse> {
+    options?: WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionWithCheckOptionalParams
+  ): Promise<
+    WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionWithCheckResponse
+  > {
     return this.client.sendOperationRequest(
       { resourceGroupName, name, connectionEnvelope, options },
-      createOrUpdateSwiftVirtualNetworkConnectionOperationSpec
+      createOrUpdateSwiftVirtualNetworkConnectionWithCheckOperationSpec
     );
   }
 
@@ -7792,15 +8631,15 @@ export class WebAppsImpl implements WebApps {
    * @param connectionEnvelope Properties of the Virtual Network connection. See example.
    * @param options The options parameters.
    */
-  updateSwiftVirtualNetworkConnection(
+  updateSwiftVirtualNetworkConnectionWithCheck(
     resourceGroupName: string,
     name: string,
     connectionEnvelope: SwiftVirtualNetwork,
-    options?: WebAppsUpdateSwiftVirtualNetworkConnectionOptionalParams
-  ): Promise<WebAppsUpdateSwiftVirtualNetworkConnectionResponse> {
+    options?: WebAppsUpdateSwiftVirtualNetworkConnectionWithCheckOptionalParams
+  ): Promise<WebAppsUpdateSwiftVirtualNetworkConnectionWithCheckResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, name, connectionEnvelope, options },
-      updateSwiftVirtualNetworkConnectionOperationSpec
+      updateSwiftVirtualNetworkConnectionWithCheckOperationSpec
     );
   }
 
@@ -7808,7 +8647,7 @@ export class WebAppsImpl implements WebApps {
    * Description for Gets all network features used by the app (or deployment slot, if specified).
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
-   * @param view The type of view. This can either be "summary" or "detailed".
+   * @param view The type of view. Only "summary" is supported at this time.
    * @param options The options parameters.
    */
   listNetworkFeatures(
@@ -8205,6 +9044,252 @@ export class WebAppsImpl implements WebApps {
     return this.client.sendOperationRequest(
       { resourceGroupName, name, access, options },
       putPrivateAccessVnetOperationSpec
+    );
+  }
+
+  /**
+   * Description for Gets the list of private endpoint connections associated with a site
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the site.
+   * @param options The options parameters.
+   */
+  private _getPrivateEndpointConnectionList(
+    resourceGroupName: string,
+    name: string,
+    options?: WebAppsGetPrivateEndpointConnectionListOptionalParams
+  ): Promise<WebAppsGetPrivateEndpointConnectionListResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, options },
+      getPrivateEndpointConnectionListOperationSpec
+    );
+  }
+
+  /**
+   * Description for Gets a private endpoint connection
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the site.
+   * @param privateEndpointConnectionName Name of the private endpoint connection.
+   * @param options The options parameters.
+   */
+  getPrivateEndpointConnection(
+    resourceGroupName: string,
+    name: string,
+    privateEndpointConnectionName: string,
+    options?: WebAppsGetPrivateEndpointConnectionOptionalParams
+  ): Promise<WebAppsGetPrivateEndpointConnectionResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, privateEndpointConnectionName, options },
+      getPrivateEndpointConnectionOperationSpec
+    );
+  }
+
+  /**
+   * Description for Approves or rejects a private endpoint connection
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the site.
+   * @param privateEndpointConnectionName
+   * @param privateEndpointWrapper Private Endpoint Connection Approval ARM resource.
+   * @param options The options parameters.
+   */
+  async beginApproveOrRejectPrivateEndpointConnection(
+    resourceGroupName: string,
+    name: string,
+    privateEndpointConnectionName: string,
+    privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource,
+    options?: WebAppsApproveOrRejectPrivateEndpointConnectionOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<
+        WebAppsApproveOrRejectPrivateEndpointConnectionResponse
+      >,
+      WebAppsApproveOrRejectPrivateEndpointConnectionResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<WebAppsApproveOrRejectPrivateEndpointConnectionResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      {
+        resourceGroupName,
+        name,
+        privateEndpointConnectionName,
+        privateEndpointWrapper,
+        options
+      },
+      approveOrRejectPrivateEndpointConnectionOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs
+    });
+  }
+
+  /**
+   * Description for Approves or rejects a private endpoint connection
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the site.
+   * @param privateEndpointConnectionName
+   * @param privateEndpointWrapper Private Endpoint Connection Approval ARM resource.
+   * @param options The options parameters.
+   */
+  async beginApproveOrRejectPrivateEndpointConnectionAndWait(
+    resourceGroupName: string,
+    name: string,
+    privateEndpointConnectionName: string,
+    privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource,
+    options?: WebAppsApproveOrRejectPrivateEndpointConnectionOptionalParams
+  ): Promise<WebAppsApproveOrRejectPrivateEndpointConnectionResponse> {
+    const poller = await this.beginApproveOrRejectPrivateEndpointConnection(
+      resourceGroupName,
+      name,
+      privateEndpointConnectionName,
+      privateEndpointWrapper,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
+   * Description for Deletes a private endpoint connection
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the site.
+   * @param privateEndpointConnectionName
+   * @param options The options parameters.
+   */
+  async beginDeletePrivateEndpointConnection(
+    resourceGroupName: string,
+    name: string,
+    privateEndpointConnectionName: string,
+    options?: WebAppsDeletePrivateEndpointConnectionOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<WebAppsDeletePrivateEndpointConnectionResponse>,
+      WebAppsDeletePrivateEndpointConnectionResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<WebAppsDeletePrivateEndpointConnectionResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { resourceGroupName, name, privateEndpointConnectionName, options },
+      deletePrivateEndpointConnectionOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs
+    });
+  }
+
+  /**
+   * Description for Deletes a private endpoint connection
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the site.
+   * @param privateEndpointConnectionName
+   * @param options The options parameters.
+   */
+  async beginDeletePrivateEndpointConnectionAndWait(
+    resourceGroupName: string,
+    name: string,
+    privateEndpointConnectionName: string,
+    options?: WebAppsDeletePrivateEndpointConnectionOptionalParams
+  ): Promise<WebAppsDeletePrivateEndpointConnectionResponse> {
+    const poller = await this.beginDeletePrivateEndpointConnection(
+      resourceGroupName,
+      name,
+      privateEndpointConnectionName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
+   * Description for Gets the private link resources
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the site.
+   * @param options The options parameters.
+   */
+  getPrivateLinkResources(
+    resourceGroupName: string,
+    name: string,
+    options?: WebAppsGetPrivateLinkResourcesOptionalParams
+  ): Promise<WebAppsGetPrivateLinkResourcesResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, options },
+      getPrivateLinkResourcesOperationSpec
     );
   }
 
@@ -8887,93 +9972,6 @@ export class WebAppsImpl implements WebApps {
   }
 
   /**
-   * Description for Copies a deployment slot to another deployment slot of an app.
-   * @param resourceGroupName Name of the resource group to which the resource belongs.
-   * @param name Name of the app.
-   * @param copySlotEntity JSON object that contains the target slot name and site config properties to
-   *                       override the source slot config. See example.
-   * @param options The options parameters.
-   */
-  async beginCopyProductionSlot(
-    resourceGroupName: string,
-    name: string,
-    copySlotEntity: CsmCopySlotEntity,
-    options?: WebAppsCopyProductionSlotOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<void> => {
-      return this.client.sendOperationRequest(args, spec);
-    };
-    const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return {
-        flatResponse,
-        rawResponse: {
-          statusCode: currentRawResponse!.status,
-          body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
-      };
-    };
-
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, name, copySlotEntity, options },
-      copyProductionSlotOperationSpec
-    );
-    return new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
-    });
-  }
-
-  /**
-   * Description for Copies a deployment slot to another deployment slot of an app.
-   * @param resourceGroupName Name of the resource group to which the resource belongs.
-   * @param name Name of the app.
-   * @param copySlotEntity JSON object that contains the target slot name and site config properties to
-   *                       override the source slot config. See example.
-   * @param options The options parameters.
-   */
-  async beginCopyProductionSlotAndWait(
-    resourceGroupName: string,
-    name: string,
-    copySlotEntity: CsmCopySlotEntity,
-    options?: WebAppsCopyProductionSlotOptionalParams
-  ): Promise<void> {
-    const poller = await this.beginCopyProductionSlot(
-      resourceGroupName,
-      name,
-      copySlotEntity,
-      options
-    );
-    return poller.pollUntilDone();
-  }
-
-  /**
    * Description for Gets an app's deployment slots.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
@@ -9404,6 +10402,118 @@ export class WebAppsImpl implements WebApps {
   }
 
   /**
+   * Description for Returns whether Scm basic auth is allowed and whether Ftp is allowed for a given
+   * site.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slot
+   * @param options The options parameters.
+   */
+  private _listBasicPublishingCredentialsPoliciesSlot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: WebAppsListBasicPublishingCredentialsPoliciesSlotOptionalParams
+  ): Promise<WebAppsListBasicPublishingCredentialsPoliciesSlotResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, slot, options },
+      listBasicPublishingCredentialsPoliciesSlotOperationSpec
+    );
+  }
+
+  /**
+   * Description for Returns whether FTP is allowed on the site or not.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slot
+   * @param options The options parameters.
+   */
+  getFtpAllowedSlot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: WebAppsGetFtpAllowedSlotOptionalParams
+  ): Promise<WebAppsGetFtpAllowedSlotResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, slot, options },
+      getFtpAllowedSlotOperationSpec
+    );
+  }
+
+  /**
+   * Description for Updates whether FTP is allowed on the site or not.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slot
+   * @param csmPublishingAccessPoliciesEntity Publishing Credentials Policies parameters.
+   * @param options The options parameters.
+   */
+  updateFtpAllowedSlot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    csmPublishingAccessPoliciesEntity: CsmPublishingCredentialsPoliciesEntity,
+    options?: WebAppsUpdateFtpAllowedSlotOptionalParams
+  ): Promise<WebAppsUpdateFtpAllowedSlotResponse> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        name,
+        slot,
+        csmPublishingAccessPoliciesEntity,
+        options
+      },
+      updateFtpAllowedSlotOperationSpec
+    );
+  }
+
+  /**
+   * Description for Returns whether Scm basic auth is allowed on the site or not.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slot
+   * @param options The options parameters.
+   */
+  getScmAllowedSlot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: WebAppsGetScmAllowedSlotOptionalParams
+  ): Promise<WebAppsGetScmAllowedSlotResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, slot, options },
+      getScmAllowedSlotOperationSpec
+    );
+  }
+
+  /**
+   * Description for Updates whether user publishing credentials are allowed on the site or not.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slot
+   * @param csmPublishingAccessPoliciesEntity Publishing Credentials Policies parameters.
+   * @param options The options parameters.
+   */
+  updateScmAllowedSlot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    csmPublishingAccessPoliciesEntity: CsmPublishingCredentialsPoliciesEntity,
+    options?: WebAppsUpdateScmAllowedSlotOptionalParams
+  ): Promise<WebAppsUpdateScmAllowedSlotResponse> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        name,
+        slot,
+        csmPublishingAccessPoliciesEntity,
+        options
+      },
+      updateScmAllowedSlotOperationSpec
+    );
+  }
+
+  /**
    * Description for List the configurations of an app
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
@@ -9503,6 +10613,47 @@ export class WebAppsImpl implements WebApps {
     return this.client.sendOperationRequest(
       { resourceGroupName, name, slot, options },
       getAuthSettingsSlotOperationSpec
+    );
+  }
+
+  /**
+   * Description for Updates site's Authentication / Authorization settings for apps via the V2 format
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of web app.
+   * @param slot Name of web app slot. If not specified then will default to production slot.
+   * @param siteAuthSettingsV2 Auth settings associated with web app.
+   * @param options The options parameters.
+   */
+  updateAuthSettingsV2Slot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    siteAuthSettingsV2: SiteAuthSettingsV2,
+    options?: WebAppsUpdateAuthSettingsV2SlotOptionalParams
+  ): Promise<WebAppsUpdateAuthSettingsV2SlotResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, slot, siteAuthSettingsV2, options },
+      updateAuthSettingsV2SlotOperationSpec
+    );
+  }
+
+  /**
+   * Description for Gets site's Authentication / Authorization settings for apps via the V2 format
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slot Name of the deployment slot. If a slot is not specified, the API will get the settings
+   *             for the production slot.
+   * @param options The options parameters.
+   */
+  getAuthSettingsV2Slot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: WebAppsGetAuthSettingsV2SlotOptionalParams
+  ): Promise<WebAppsGetAuthSettingsV2SlotResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, slot, options },
+      getAuthSettingsV2SlotOperationSpec
     );
   }
 
@@ -9607,6 +10758,86 @@ export class WebAppsImpl implements WebApps {
     return this.client.sendOperationRequest(
       { resourceGroupName, name, slot, options },
       getBackupConfigurationSlotOperationSpec
+    );
+  }
+
+  /**
+   * Description for Gets the config reference app settings and status of an app
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slot
+   * @param options The options parameters.
+   */
+  private _getAppSettingsKeyVaultReferencesSlot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: WebAppsGetAppSettingsKeyVaultReferencesSlotOptionalParams
+  ): Promise<WebAppsGetAppSettingsKeyVaultReferencesSlotResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, slot, options },
+      getAppSettingsKeyVaultReferencesSlotOperationSpec
+    );
+  }
+
+  /**
+   * Description for Gets the config reference and status of an app
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param appSettingKey App Setting key name.
+   * @param slot
+   * @param options The options parameters.
+   */
+  getAppSettingKeyVaultReferenceSlot(
+    resourceGroupName: string,
+    name: string,
+    appSettingKey: string,
+    slot: string,
+    options?: WebAppsGetAppSettingKeyVaultReferenceSlotOptionalParams
+  ): Promise<WebAppsGetAppSettingKeyVaultReferenceSlotResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, appSettingKey, slot, options },
+      getAppSettingKeyVaultReferenceSlotOperationSpec
+    );
+  }
+
+  /**
+   * Description for Gets the config reference app settings and status of an app
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slot
+   * @param options The options parameters.
+   */
+  private _getSiteConnectionStringKeyVaultReferencesSlot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: WebAppsGetSiteConnectionStringKeyVaultReferencesSlotOptionalParams
+  ): Promise<WebAppsGetSiteConnectionStringKeyVaultReferencesSlotResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, slot, options },
+      getSiteConnectionStringKeyVaultReferencesSlotOperationSpec
+    );
+  }
+
+  /**
+   * Description for Gets the config reference and status of an app
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param connectionStringKey
+   * @param slot
+   * @param options The options parameters.
+   */
+  getSiteConnectionStringKeyVaultReferenceSlot(
+    resourceGroupName: string,
+    name: string,
+    connectionStringKey: string,
+    slot: string,
+    options?: WebAppsGetSiteConnectionStringKeyVaultReferenceSlotOptionalParams
+  ): Promise<WebAppsGetSiteConnectionStringKeyVaultReferenceSlotResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, connectionStringKey, slot, options },
+      getSiteConnectionStringKeyVaultReferenceSlotOperationSpec
     );
   }
 
@@ -11753,16 +12984,18 @@ export class WebAppsImpl implements WebApps {
    * @param connectionEnvelope Properties of the Virtual Network connection. See example.
    * @param options The options parameters.
    */
-  createOrUpdateSwiftVirtualNetworkConnectionSlot(
+  createOrUpdateSwiftVirtualNetworkConnectionWithCheckSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
     connectionEnvelope: SwiftVirtualNetwork,
-    options?: WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionSlotOptionalParams
-  ): Promise<WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionSlotResponse> {
+    options?: WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionWithCheckSlotOptionalParams
+  ): Promise<
+    WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionWithCheckSlotResponse
+  > {
     return this.client.sendOperationRequest(
       { resourceGroupName, name, slot, connectionEnvelope, options },
-      createOrUpdateSwiftVirtualNetworkConnectionSlotOperationSpec
+      createOrUpdateSwiftVirtualNetworkConnectionWithCheckSlotOperationSpec
     );
   }
 
@@ -11798,16 +13031,16 @@ export class WebAppsImpl implements WebApps {
    * @param connectionEnvelope Properties of the Virtual Network connection. See example.
    * @param options The options parameters.
    */
-  updateSwiftVirtualNetworkConnectionSlot(
+  updateSwiftVirtualNetworkConnectionWithCheckSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
     connectionEnvelope: SwiftVirtualNetwork,
-    options?: WebAppsUpdateSwiftVirtualNetworkConnectionSlotOptionalParams
-  ): Promise<WebAppsUpdateSwiftVirtualNetworkConnectionSlotResponse> {
+    options?: WebAppsUpdateSwiftVirtualNetworkConnectionWithCheckSlotOptionalParams
+  ): Promise<WebAppsUpdateSwiftVirtualNetworkConnectionWithCheckSlotResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, name, slot, connectionEnvelope, options },
-      updateSwiftVirtualNetworkConnectionSlotOperationSpec
+      updateSwiftVirtualNetworkConnectionWithCheckSlotOperationSpec
     );
   }
 
@@ -11815,7 +13048,7 @@ export class WebAppsImpl implements WebApps {
    * Description for Gets all network features used by the app (or deployment slot, if specified).
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
-   * @param view The type of view. This can either be "summary" or "detailed".
+   * @param view The type of view. Only "summary" is supported at this time.
    * @param slot Name of the deployment slot. If a slot is not specified, the API will get network
    *             features for the production slot.
    * @param options The options parameters.
@@ -12280,21 +13513,42 @@ export class WebAppsImpl implements WebApps {
   }
 
   /**
+   * Description for Gets the list of private endpoint connections associated with a site
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the site.
+   * @param slot Name of the site deployment slot.
+   * @param options The options parameters.
+   */
+  private _getPrivateEndpointConnectionListSlot(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: WebAppsGetPrivateEndpointConnectionListSlotOptionalParams
+  ): Promise<WebAppsGetPrivateEndpointConnectionListSlotResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, slot, options },
+      getPrivateEndpointConnectionListSlotOperationSpec
+    );
+  }
+
+  /**
    * Description for Gets a private endpoint connection
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the site.
-   * @param privateEndpointConnectionName
+   * @param privateEndpointConnectionName Name of the private endpoint connection.
+   * @param slot Name of the site deployment slot.
    * @param options The options parameters.
    */
-  getPrivateEndpointConnection(
+  getPrivateEndpointConnectionSlot(
     resourceGroupName: string,
     name: string,
     privateEndpointConnectionName: string,
-    options?: WebAppsGetPrivateEndpointConnectionOptionalParams
-  ): Promise<WebAppsGetPrivateEndpointConnectionResponse> {
+    slot: string,
+    options?: WebAppsGetPrivateEndpointConnectionSlotOptionalParams
+  ): Promise<WebAppsGetPrivateEndpointConnectionSlotResponse> {
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, privateEndpointConnectionName, options },
-      getPrivateEndpointConnectionOperationSpec
+      { resourceGroupName, name, privateEndpointConnectionName, slot, options },
+      getPrivateEndpointConnectionSlotOperationSpec
     );
   }
 
@@ -12303,27 +13557,29 @@ export class WebAppsImpl implements WebApps {
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the site.
    * @param privateEndpointConnectionName
+   * @param slot
    * @param privateEndpointWrapper Private Endpoint Connection Approval ARM resource.
    * @param options The options parameters.
    */
-  async beginApproveOrRejectPrivateEndpointConnection(
+  async beginApproveOrRejectPrivateEndpointConnectionSlot(
     resourceGroupName: string,
     name: string,
     privateEndpointConnectionName: string,
+    slot: string,
     privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource,
-    options?: WebAppsApproveOrRejectPrivateEndpointConnectionOptionalParams
+    options?: WebAppsApproveOrRejectPrivateEndpointConnectionSlotOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
-        WebAppsApproveOrRejectPrivateEndpointConnectionResponse
+        WebAppsApproveOrRejectPrivateEndpointConnectionSlotResponse
       >,
-      WebAppsApproveOrRejectPrivateEndpointConnectionResponse
+      WebAppsApproveOrRejectPrivateEndpointConnectionSlotResponse
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<WebAppsApproveOrRejectPrivateEndpointConnectionResponse> => {
+    ): Promise<WebAppsApproveOrRejectPrivateEndpointConnectionSlotResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -12365,10 +13621,11 @@ export class WebAppsImpl implements WebApps {
         resourceGroupName,
         name,
         privateEndpointConnectionName,
+        slot,
         privateEndpointWrapper,
         options
       },
-      approveOrRejectPrivateEndpointConnectionOperationSpec
+      approveOrRejectPrivateEndpointConnectionSlotOperationSpec
     );
     return new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
@@ -12381,20 +13638,23 @@ export class WebAppsImpl implements WebApps {
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the site.
    * @param privateEndpointConnectionName
+   * @param slot
    * @param privateEndpointWrapper Private Endpoint Connection Approval ARM resource.
    * @param options The options parameters.
    */
-  async beginApproveOrRejectPrivateEndpointConnectionAndWait(
+  async beginApproveOrRejectPrivateEndpointConnectionSlotAndWait(
     resourceGroupName: string,
     name: string,
     privateEndpointConnectionName: string,
+    slot: string,
     privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource,
-    options?: WebAppsApproveOrRejectPrivateEndpointConnectionOptionalParams
-  ): Promise<WebAppsApproveOrRejectPrivateEndpointConnectionResponse> {
-    const poller = await this.beginApproveOrRejectPrivateEndpointConnection(
+    options?: WebAppsApproveOrRejectPrivateEndpointConnectionSlotOptionalParams
+  ): Promise<WebAppsApproveOrRejectPrivateEndpointConnectionSlotResponse> {
+    const poller = await this.beginApproveOrRejectPrivateEndpointConnectionSlot(
       resourceGroupName,
       name,
       privateEndpointConnectionName,
+      slot,
       privateEndpointWrapper,
       options
     );
@@ -12406,23 +13666,25 @@ export class WebAppsImpl implements WebApps {
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the site.
    * @param privateEndpointConnectionName
+   * @param slot
    * @param options The options parameters.
    */
-  async beginDeletePrivateEndpointConnection(
+  async beginDeletePrivateEndpointConnectionSlot(
     resourceGroupName: string,
     name: string,
     privateEndpointConnectionName: string,
-    options?: WebAppsDeletePrivateEndpointConnectionOptionalParams
+    slot: string,
+    options?: WebAppsDeletePrivateEndpointConnectionSlotOptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<WebAppsDeletePrivateEndpointConnectionResponse>,
-      WebAppsDeletePrivateEndpointConnectionResponse
+      PollOperationState<WebAppsDeletePrivateEndpointConnectionSlotResponse>,
+      WebAppsDeletePrivateEndpointConnectionSlotResponse
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<WebAppsDeletePrivateEndpointConnectionResponse> => {
+    ): Promise<WebAppsDeletePrivateEndpointConnectionSlotResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -12460,8 +13722,8 @@ export class WebAppsImpl implements WebApps {
 
     const lro = new LroImpl(
       sendOperation,
-      { resourceGroupName, name, privateEndpointConnectionName, options },
-      deletePrivateEndpointConnectionOperationSpec
+      { resourceGroupName, name, privateEndpointConnectionName, slot, options },
+      deletePrivateEndpointConnectionSlotOperationSpec
     );
     return new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
@@ -12474,18 +13736,21 @@ export class WebAppsImpl implements WebApps {
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the site.
    * @param privateEndpointConnectionName
+   * @param slot
    * @param options The options parameters.
    */
-  async beginDeletePrivateEndpointConnectionAndWait(
+  async beginDeletePrivateEndpointConnectionSlotAndWait(
     resourceGroupName: string,
     name: string,
     privateEndpointConnectionName: string,
-    options?: WebAppsDeletePrivateEndpointConnectionOptionalParams
-  ): Promise<WebAppsDeletePrivateEndpointConnectionResponse> {
-    const poller = await this.beginDeletePrivateEndpointConnection(
+    slot: string,
+    options?: WebAppsDeletePrivateEndpointConnectionSlotOptionalParams
+  ): Promise<WebAppsDeletePrivateEndpointConnectionSlotResponse> {
+    const poller = await this.beginDeletePrivateEndpointConnectionSlot(
       resourceGroupName,
       name,
       privateEndpointConnectionName,
+      slot,
       options
     );
     return poller.pollUntilDone();
@@ -12495,16 +13760,18 @@ export class WebAppsImpl implements WebApps {
    * Description for Gets the private link resources
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the site.
+   * @param slot
    * @param options The options parameters.
    */
-  getPrivateLinkResources(
+  getPrivateLinkResourcesSlot(
     resourceGroupName: string,
     name: string,
-    options?: WebAppsGetPrivateLinkResourcesOptionalParams
-  ): Promise<WebAppsGetPrivateLinkResourcesResponse> {
+    slot: string,
+    options?: WebAppsGetPrivateLinkResourcesSlotOptionalParams
+  ): Promise<WebAppsGetPrivateLinkResourcesSlotResponse> {
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, options },
-      getPrivateLinkResourcesOperationSpec
+      { resourceGroupName, name, slot, options },
+      getPrivateLinkResourcesSlotOperationSpec
     );
   }
 
@@ -13263,100 +14530,6 @@ export class WebAppsImpl implements WebApps {
   }
 
   /**
-   * Description for Copies a deployment slot to another deployment slot of an app.
-   * @param resourceGroupName Name of the resource group to which the resource belongs.
-   * @param name Name of the app.
-   * @param slot Name of the source slot. If a slot is not specified, the production slot is used as the
-   *             source slot.
-   * @param copySlotEntity JSON object that contains the target slot name and site config properties to
-   *                       override the source slot config. See example.
-   * @param options The options parameters.
-   */
-  async beginCopySlot(
-    resourceGroupName: string,
-    name: string,
-    slot: string,
-    copySlotEntity: CsmCopySlotEntity,
-    options?: WebAppsCopySlotOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<void> => {
-      return this.client.sendOperationRequest(args, spec);
-    };
-    const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return {
-        flatResponse,
-        rawResponse: {
-          statusCode: currentRawResponse!.status,
-          body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
-      };
-    };
-
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, name, slot, copySlotEntity, options },
-      copySlotOperationSpec
-    );
-    return new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
-    });
-  }
-
-  /**
-   * Description for Copies a deployment slot to another deployment slot of an app.
-   * @param resourceGroupName Name of the resource group to which the resource belongs.
-   * @param name Name of the app.
-   * @param slot Name of the source slot. If a slot is not specified, the production slot is used as the
-   *             source slot.
-   * @param copySlotEntity JSON object that contains the target slot name and site config properties to
-   *                       override the source slot config. See example.
-   * @param options The options parameters.
-   */
-  async beginCopySlotAndWait(
-    resourceGroupName: string,
-    name: string,
-    slot: string,
-    copySlotEntity: CsmCopySlotEntity,
-    options?: WebAppsCopySlotOptionalParams
-  ): Promise<void> {
-    const poller = await this.beginCopySlot(
-      resourceGroupName,
-      name,
-      slot,
-      copySlotEntity,
-      options
-    );
-    return poller.pollUntilDone();
-  }
-
-  /**
    * Description for Get the difference in configuration settings between two web app slots.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
@@ -14064,7 +15237,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     vnetName: string,
     slot: string,
-    connectionEnvelope: VnetInfo,
+    connectionEnvelope: VnetInfoResource,
     options?: WebAppsCreateOrUpdateVnetConnectionSlotOptionalParams
   ): Promise<WebAppsCreateOrUpdateVnetConnectionSlotResponse> {
     return this.client.sendOperationRequest(
@@ -14111,7 +15284,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     vnetName: string,
     slot: string,
-    connectionEnvelope: VnetInfo,
+    connectionEnvelope: VnetInfoResource,
     options?: WebAppsUpdateVnetConnectionSlotOptionalParams
   ): Promise<WebAppsUpdateVnetConnectionSlotResponse> {
     return this.client.sendOperationRequest(
@@ -14885,7 +16058,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     vnetName: string,
-    connectionEnvelope: VnetInfo,
+    connectionEnvelope: VnetInfoResource,
     options?: WebAppsCreateOrUpdateVnetConnectionOptionalParams
   ): Promise<WebAppsCreateOrUpdateVnetConnectionResponse> {
     return this.client.sendOperationRequest(
@@ -14926,7 +16099,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     vnetName: string,
-    connectionEnvelope: VnetInfo,
+    connectionEnvelope: VnetInfoResource,
     options?: WebAppsUpdateVnetConnectionOptionalParams
   ): Promise<WebAppsUpdateVnetConnectionResponse> {
     return this.client.sendOperationRequest(
@@ -15104,6 +16277,26 @@ export class WebAppsImpl implements WebApps {
   }
 
   /**
+   * ListBasicPublishingCredentialsPoliciesNext
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListBasicPublishingCredentialsPolicies method.
+   * @param options The options parameters.
+   */
+  private _listBasicPublishingCredentialsPoliciesNext(
+    resourceGroupName: string,
+    name: string,
+    nextLink: string,
+    options?: WebAppsListBasicPublishingCredentialsPoliciesNextOptionalParams
+  ): Promise<WebAppsListBasicPublishingCredentialsPoliciesNextResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, nextLink, options },
+      listBasicPublishingCredentialsPoliciesNextOperationSpec
+    );
+  }
+
+  /**
    * ListConfigurationsNext
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
@@ -15119,6 +16312,46 @@ export class WebAppsImpl implements WebApps {
     return this.client.sendOperationRequest(
       { resourceGroupName, name, nextLink, options },
       listConfigurationsNextOperationSpec
+    );
+  }
+
+  /**
+   * GetAppSettingsKeyVaultReferencesNext
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 GetAppSettingsKeyVaultReferences method.
+   * @param options The options parameters.
+   */
+  private _getAppSettingsKeyVaultReferencesNext(
+    resourceGroupName: string,
+    name: string,
+    nextLink: string,
+    options?: WebAppsGetAppSettingsKeyVaultReferencesNextOptionalParams
+  ): Promise<WebAppsGetAppSettingsKeyVaultReferencesNextResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, nextLink, options },
+      getAppSettingsKeyVaultReferencesNextOperationSpec
+    );
+  }
+
+  /**
+   * GetSiteConnectionStringKeyVaultReferencesNext
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 GetSiteConnectionStringKeyVaultReferences method.
+   * @param options The options parameters.
+   */
+  private _getSiteConnectionStringKeyVaultReferencesNext(
+    resourceGroupName: string,
+    name: string,
+    nextLink: string,
+    options?: WebAppsGetSiteConnectionStringKeyVaultReferencesNextOptionalParams
+  ): Promise<WebAppsGetSiteConnectionStringKeyVaultReferencesNextResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, nextLink, options },
+      getSiteConnectionStringKeyVaultReferencesNextOperationSpec
     );
   }
 
@@ -15369,6 +16602,26 @@ export class WebAppsImpl implements WebApps {
   }
 
   /**
+   * GetPrivateEndpointConnectionListNext
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the site.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 GetPrivateEndpointConnectionList method.
+   * @param options The options parameters.
+   */
+  private _getPrivateEndpointConnectionListNext(
+    resourceGroupName: string,
+    name: string,
+    nextLink: string,
+    options?: WebAppsGetPrivateEndpointConnectionListNextOptionalParams
+  ): Promise<WebAppsGetPrivateEndpointConnectionListNextResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, nextLink, options },
+      getPrivateEndpointConnectionListNextOperationSpec
+    );
+  }
+
+  /**
    * ListProcessesNext
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Site name.
@@ -15509,6 +16762,28 @@ export class WebAppsImpl implements WebApps {
   }
 
   /**
+   * ListBasicPublishingCredentialsPoliciesSlotNext
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slot
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListBasicPublishingCredentialsPoliciesSlot method.
+   * @param options The options parameters.
+   */
+  private _listBasicPublishingCredentialsPoliciesSlotNext(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    nextLink: string,
+    options?: WebAppsListBasicPublishingCredentialsPoliciesSlotNextOptionalParams
+  ): Promise<WebAppsListBasicPublishingCredentialsPoliciesSlotNextResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, slot, nextLink, options },
+      listBasicPublishingCredentialsPoliciesSlotNextOperationSpec
+    );
+  }
+
+  /**
    * ListConfigurationsSlotNext
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
@@ -15527,6 +16802,50 @@ export class WebAppsImpl implements WebApps {
     return this.client.sendOperationRequest(
       { resourceGroupName, name, slot, nextLink, options },
       listConfigurationsSlotNextOperationSpec
+    );
+  }
+
+  /**
+   * GetAppSettingsKeyVaultReferencesSlotNext
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slot
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 GetAppSettingsKeyVaultReferencesSlot method.
+   * @param options The options parameters.
+   */
+  private _getAppSettingsKeyVaultReferencesSlotNext(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    nextLink: string,
+    options?: WebAppsGetAppSettingsKeyVaultReferencesSlotNextOptionalParams
+  ): Promise<WebAppsGetAppSettingsKeyVaultReferencesSlotNextResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, slot, nextLink, options },
+      getAppSettingsKeyVaultReferencesSlotNextOperationSpec
+    );
+  }
+
+  /**
+   * GetSiteConnectionStringKeyVaultReferencesSlotNext
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slot
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 GetSiteConnectionStringKeyVaultReferencesSlot method.
+   * @param options The options parameters.
+   */
+  private _getSiteConnectionStringKeyVaultReferencesSlotNext(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    nextLink: string,
+    options?: WebAppsGetSiteConnectionStringKeyVaultReferencesSlotNextOptionalParams
+  ): Promise<WebAppsGetSiteConnectionStringKeyVaultReferencesSlotNextResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, slot, nextLink, options },
+      getSiteConnectionStringKeyVaultReferencesSlotNextOperationSpec
     );
   }
 
@@ -15828,6 +17147,28 @@ export class WebAppsImpl implements WebApps {
     return this.client.sendOperationRequest(
       { resourceGroupName, name, slot, nextLink, options },
       listPerfMonCountersSlotNextOperationSpec
+    );
+  }
+
+  /**
+   * GetPrivateEndpointConnectionListSlotNext
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the site.
+   * @param slot Name of the site deployment slot.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 GetPrivateEndpointConnectionListSlot method.
+   * @param options The options parameters.
+   */
+  private _getPrivateEndpointConnectionListSlotNext(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    nextLink: string,
+    options?: WebAppsGetPrivateEndpointConnectionListSlotNextOptionalParams
+  ): Promise<WebAppsGetPrivateEndpointConnectionListSlotNextResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, slot, nextLink, options },
+      getPrivateEndpointConnectionListSlotNextOperationSpec
     );
   }
 
@@ -16294,7 +17635,9 @@ const getOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.Site
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -16349,7 +17692,9 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     204: {},
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -16514,7 +17859,9 @@ const deleteBackupOperationSpec: coreClient.OperationSpec = {
   httpMethod: "DELETE",
   responses: {
     200: {},
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -16576,6 +17923,120 @@ const restoreOperationSpec: coreClient.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name,
     Parameters.backupId
+  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
+  serializer
+};
+const listBasicPublishingCredentialsPoliciesOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/basicPublishingCredentialsPolicies",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PublishingCredentialsPoliciesCollection
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const getFtpAllowedOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/basicPublishingCredentialsPolicies/ftp",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.CsmPublishingCredentialsPoliciesEntity
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const updateFtpAllowedOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/basicPublishingCredentialsPolicies/ftp",
+  httpMethod: "PUT",
+  responses: {
+    200: {
+      bodyMapper: Mappers.CsmPublishingCredentialsPoliciesEntity
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  requestBody: Parameters.csmPublishingAccessPoliciesEntity,
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name
+  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
+  serializer
+};
+const getScmAllowedOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/basicPublishingCredentialsPolicies/scm",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.CsmPublishingCredentialsPoliciesEntity
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const updateScmAllowedOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/basicPublishingCredentialsPolicies/scm",
+  httpMethod: "PUT",
+  responses: {
+    200: {
+      bodyMapper: Mappers.CsmPublishingCredentialsPoliciesEntity
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  requestBody: Parameters.csmPublishingAccessPoliciesEntity,
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
@@ -16680,6 +18141,52 @@ const getAuthSettingsOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.SiteAuthSettings
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const updateAuthSettingsV2OperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/authsettingsV2",
+  httpMethod: "PUT",
+  responses: {
+    200: {
+      bodyMapper: Mappers.SiteAuthSettingsV2
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  requestBody: Parameters.siteAuthSettingsV2,
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name
+  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
+  serializer
+};
+const getAuthSettingsV2OperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/authsettingsV2/list",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.SiteAuthSettingsV2
     },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
@@ -16813,7 +18320,7 @@ const getAppSettingsKeyVaultReferencesOperationSpec: coreClient.OperationSpec = 
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.KeyVaultReferenceCollection
+      bodyMapper: Mappers.ApiKVReferenceCollection
     },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
@@ -16835,7 +18342,7 @@ const getAppSettingKeyVaultReferenceOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.KeyVaultReferenceResource
+      bodyMapper: Mappers.ApiKVReference
     },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
@@ -16848,6 +18355,51 @@ const getAppSettingKeyVaultReferenceOperationSpec: coreClient.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name,
     Parameters.appSettingKey
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const getSiteConnectionStringKeyVaultReferencesOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/configreferences/connectionstrings",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ApiKVReferenceCollection
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const getSiteConnectionStringKeyVaultReferenceOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/configreferences/connectionstrings/{connectionStringKey}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ApiKVReference
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.connectionStringKey
   ],
   headerParameters: [Parameters.accept],
   serializer
@@ -17321,7 +18873,9 @@ const getContinuousWebJobOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.ContinuousWebJob
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -17365,7 +18919,9 @@ const startContinuousWebJobOperationSpec: coreClient.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {},
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -17387,7 +18943,9 @@ const stopContinuousWebJobOperationSpec: coreClient.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {},
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -17698,6 +19256,9 @@ const createMSDeployOperationOperationSpec: coreClient.OperationSpec = {
     204: {
       bodyMapper: Mappers.MSDeployStatus
     },
+    409: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -17722,7 +19283,9 @@ const getMSDeployLogOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.MSDeployLog
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -17745,7 +19308,9 @@ const listFunctionsOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.FunctionEnvelopeCollection
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -17790,7 +19355,9 @@ const getFunctionOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.FunctionEnvelope
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -17846,7 +19413,9 @@ const deleteFunctionOperationSpec: coreClient.OperationSpec = {
   httpMethod: "DELETE",
   responses: {
     204: {},
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -17897,7 +19466,9 @@ const deleteFunctionSecretOperationSpec: coreClient.OperationSpec = {
   httpMethod: "DELETE",
   responses: {
     204: {},
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -18057,7 +19628,9 @@ const deleteHostSecretOperationSpec: coreClient.OperationSpec = {
   httpMethod: "DELETE",
   responses: {
     204: {},
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -18202,7 +19775,7 @@ const createOrUpdateHybridConnectionOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  requestBody: Parameters.connectionEnvelope,
+  requestBody: Parameters.connectionEnvelope1,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -18222,7 +19795,9 @@ const deleteHybridConnectionOperationSpec: coreClient.OperationSpec = {
   httpMethod: "DELETE",
   responses: {
     200: {},
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -18251,7 +19826,7 @@ const updateHybridConnectionOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  requestBody: Parameters.connectionEnvelope,
+  requestBody: Parameters.connectionEnvelope1,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -18344,7 +19919,7 @@ const createOrUpdateRelayServiceConnectionOperationSpec: coreClient.OperationSpe
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  requestBody: Parameters.connectionEnvelope1,
+  requestBody: Parameters.connectionEnvelope2,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -18363,7 +19938,9 @@ const deleteRelayServiceConnectionOperationSpec: coreClient.OperationSpec = {
   httpMethod: "DELETE",
   responses: {
     200: {},
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -18391,7 +19968,7 @@ const updateRelayServiceConnectionOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  requestBody: Parameters.connectionEnvelope1,
+  requestBody: Parameters.connectionEnvelope2,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -18410,7 +19987,7 @@ const listInstanceIdentifiersOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.WebAppInstanceCollection
+      bodyMapper: Mappers.WebAppInstanceStatusCollection
     },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
@@ -18489,6 +20066,9 @@ const createInstanceMSDeployOperationOperationSpec: coreClient.OperationSpec = {
     204: {
       bodyMapper: Mappers.MSDeployStatus
     },
+    409: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -18514,7 +20094,9 @@ const getInstanceMSDeployLogOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.MSDeployLog
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -18538,7 +20120,9 @@ const listInstanceProcessesOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.ProcessInfoCollection
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -18562,7 +20146,9 @@ const getInstanceProcessOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.ProcessInfo
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -18585,7 +20171,9 @@ const deleteInstanceProcessOperationSpec: coreClient.OperationSpec = {
   httpMethod: "DELETE",
   responses: {
     204: {},
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -18610,7 +20198,9 @@ const getInstanceProcessDumpOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: { type: { name: "Stream" }, serializedName: "parsedResponse" }
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -18635,7 +20225,9 @@ const listInstanceProcessModulesOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.ProcessModuleInfoCollection
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -18660,7 +20252,9 @@ const getInstanceProcessModuleOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.ProcessModuleInfo
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -18686,7 +20280,9 @@ const listInstanceProcessThreadsOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.ProcessThreadInfoCollection
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -18879,7 +20475,7 @@ const getSwiftVirtualNetworkConnectionOperationSpec: coreClient.OperationSpec = 
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateSwiftVirtualNetworkConnectionOperationSpec: coreClient.OperationSpec = {
+const createOrUpdateSwiftVirtualNetworkConnectionWithCheckOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/networkConfig/virtualNetwork",
   httpMethod: "PUT",
@@ -18891,7 +20487,7 @@ const createOrUpdateSwiftVirtualNetworkConnectionOperationSpec: coreClient.Opera
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  requestBody: Parameters.connectionEnvelope2,
+  requestBody: Parameters.connectionEnvelope3,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -18909,7 +20505,9 @@ const deleteSwiftVirtualNetworkOperationSpec: coreClient.OperationSpec = {
   httpMethod: "DELETE",
   responses: {
     200: {},
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -18924,7 +20522,7 @@ const deleteSwiftVirtualNetworkOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateSwiftVirtualNetworkConnectionOperationSpec: coreClient.OperationSpec = {
+const updateSwiftVirtualNetworkConnectionWithCheckOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/networkConfig/virtualNetwork",
   httpMethod: "PATCH",
@@ -18936,7 +20534,7 @@ const updateSwiftVirtualNetworkConnectionOperationSpec: coreClient.OperationSpec
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  requestBody: Parameters.connectionEnvelope2,
+  requestBody: Parameters.connectionEnvelope3,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -18956,7 +20554,9 @@ const listNetworkFeaturesOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.NetworkFeatures
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -19431,6 +21031,147 @@ const putPrivateAccessVnetOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
+const getPrivateEndpointConnectionListOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/privateEndpointConnections",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PrivateEndpointConnectionCollection
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const getPrivateEndpointConnectionOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/privateEndpointConnections/{privateEndpointConnectionName}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.RemotePrivateEndpointConnectionARMResource
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.privateEndpointConnectionName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const approveOrRejectPrivateEndpointConnectionOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/privateEndpointConnections/{privateEndpointConnectionName}",
+  httpMethod: "PUT",
+  responses: {
+    200: {
+      bodyMapper: Mappers.RemotePrivateEndpointConnectionARMResource
+    },
+    201: {
+      bodyMapper: Mappers.RemotePrivateEndpointConnectionARMResource
+    },
+    202: {
+      bodyMapper: Mappers.RemotePrivateEndpointConnectionARMResource
+    },
+    204: {
+      bodyMapper: Mappers.RemotePrivateEndpointConnectionARMResource
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  requestBody: Parameters.privateEndpointWrapper,
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.privateEndpointConnectionName
+  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
+  serializer
+};
+const deletePrivateEndpointConnectionOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/privateEndpointConnections/{privateEndpointConnectionName}",
+  httpMethod: "DELETE",
+  responses: {
+    200: {
+      bodyMapper: {
+        type: { name: "Dictionary", value: { type: { name: "any" } } }
+      }
+    },
+    201: {
+      bodyMapper: {
+        type: { name: "Dictionary", value: { type: { name: "any" } } }
+      }
+    },
+    202: {
+      bodyMapper: {
+        type: { name: "Dictionary", value: { type: { name: "any" } } }
+      }
+    },
+    204: {
+      bodyMapper: {
+        type: { name: "Dictionary", value: { type: { name: "any" } } }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.privateEndpointConnectionName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const getPrivateLinkResourcesOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/privateLinkResources",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PrivateLinkResourcesWrapper
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
 const listProcessesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/processes",
@@ -19439,7 +21180,9 @@ const listProcessesOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.ProcessInfoCollection
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -19462,7 +21205,9 @@ const getProcessOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.ProcessInfo
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -19484,7 +21229,9 @@ const deleteProcessOperationSpec: coreClient.OperationSpec = {
   httpMethod: "DELETE",
   responses: {
     204: {},
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -19508,7 +21255,9 @@ const getProcessDumpOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: { type: { name: "Stream" }, serializedName: "parsedResponse" }
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -19532,7 +21281,9 @@ const listProcessModulesOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.ProcessModuleInfoCollection
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -19556,7 +21307,9 @@ const getProcessModuleOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.ProcessModuleInfo
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -19581,7 +21334,9 @@ const listProcessThreadsOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.ProcessThreadInfoCollection
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -19840,7 +21595,9 @@ const listSiteExtensionsOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.SiteExtensionInfoCollection
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -19863,7 +21620,9 @@ const getSiteExtensionOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.SiteExtensionInfo
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -19896,6 +21655,9 @@ const installSiteExtensionOperationSpec: coreClient.OperationSpec = {
     204: {
       bodyMapper: Mappers.SiteExtensionInfo
     },
+    429: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -19917,7 +21679,9 @@ const deleteSiteExtensionOperationSpec: coreClient.OperationSpec = {
   httpMethod: "DELETE",
   responses: {
     204: {},
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -19931,31 +21695,6 @@ const deleteSiteExtensionOperationSpec: coreClient.OperationSpec = {
     Parameters.siteExtensionId
   ],
   headerParameters: [Parameters.accept],
-  serializer
-};
-const copyProductionSlotOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slotcopy",
-  httpMethod: "POST",
-  responses: {
-    200: {},
-    201: {},
-    202: {},
-    204: {},
-    default: {
-      bodyMapper: Mappers.DefaultErrorResponse
-    }
-  },
-  requestBody: Parameters.copySlotEntity,
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.name
-  ],
-  headerParameters: [Parameters.accept, Parameters.contentType],
-  mediaType: "json",
   serializer
 };
 const listSlotsOperationSpec: coreClient.OperationSpec = {
@@ -19988,7 +21727,9 @@ const getSlotOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.Site
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -20045,7 +21786,9 @@ const deleteSlotOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     204: {},
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -20217,7 +21960,9 @@ const deleteBackupSlotOperationSpec: coreClient.OperationSpec = {
   httpMethod: "DELETE",
   responses: {
     200: {},
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -20282,6 +22027,125 @@ const restoreSlotOperationSpec: coreClient.OperationSpec = {
     Parameters.name,
     Parameters.slot,
     Parameters.backupId
+  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
+  serializer
+};
+const listBasicPublishingCredentialsPoliciesSlotOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/basicPublishingCredentialsPolicies",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PublishingCredentialsPoliciesCollection
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.slot
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const getFtpAllowedSlotOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/basicPublishingCredentialsPolicies/ftp",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.CsmPublishingCredentialsPoliciesEntity
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.slot
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const updateFtpAllowedSlotOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/basicPublishingCredentialsPolicies/ftp",
+  httpMethod: "PUT",
+  responses: {
+    200: {
+      bodyMapper: Mappers.CsmPublishingCredentialsPoliciesEntity
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  requestBody: Parameters.csmPublishingAccessPoliciesEntity,
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.slot
+  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
+  serializer
+};
+const getScmAllowedSlotOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/basicPublishingCredentialsPolicies/scm",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.CsmPublishingCredentialsPoliciesEntity
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.slot
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const updateScmAllowedSlotOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/basicPublishingCredentialsPolicies/scm",
+  httpMethod: "PUT",
+  responses: {
+    200: {
+      bodyMapper: Mappers.CsmPublishingCredentialsPoliciesEntity
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  requestBody: Parameters.csmPublishingAccessPoliciesEntity,
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.slot
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
@@ -20390,6 +22254,54 @@ const getAuthSettingsSlotOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.SiteAuthSettings
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.slot
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const updateAuthSettingsV2SlotOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/config/authsettingsV2",
+  httpMethod: "PUT",
+  responses: {
+    200: {
+      bodyMapper: Mappers.SiteAuthSettingsV2
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  requestBody: Parameters.siteAuthSettingsV2,
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.slot
+  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
+  serializer
+};
+const getAuthSettingsV2SlotOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/config/authsettingsV2/list",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.SiteAuthSettingsV2
     },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
@@ -20519,6 +22431,100 @@ const getBackupConfigurationSlotOperationSpec: coreClient.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.name,
     Parameters.slot
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const getAppSettingsKeyVaultReferencesSlotOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/config/configreferences/appsettings",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ApiKVReferenceCollection
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.slot
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const getAppSettingKeyVaultReferenceSlotOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/config/configreferences/appsettings/{appSettingKey}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ApiKVReference
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.slot,
+    Parameters.appSettingKey
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const getSiteConnectionStringKeyVaultReferencesSlotOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/config/configreferences/connectionstrings",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ApiKVReferenceCollection
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.slot
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const getSiteConnectionStringKeyVaultReferenceSlotOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/config/configreferences/connectionstrings/{connectionStringKey}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ApiKVReference
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.slot,
+    Parameters.connectionStringKey
   ],
   headerParameters: [Parameters.accept],
   serializer
@@ -20964,7 +22970,9 @@ const getContinuousWebJobSlotOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.ContinuousWebJob
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -21010,7 +23018,9 @@ const startContinuousWebJobSlotOperationSpec: coreClient.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {},
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -21033,7 +23043,9 @@ const stopContinuousWebJobSlotOperationSpec: coreClient.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {},
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -21357,6 +23369,9 @@ const createMSDeployOperationSlotOperationSpec: coreClient.OperationSpec = {
     204: {
       bodyMapper: Mappers.MSDeployStatus
     },
+    409: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -21382,7 +23397,9 @@ const getMSDeployLogSlotOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.MSDeployLog
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -21406,7 +23423,9 @@ const listInstanceFunctionsSlotOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.FunctionEnvelopeCollection
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -21453,7 +23472,9 @@ const getInstanceFunctionSlotOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.FunctionEnvelope
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -21511,7 +23532,9 @@ const deleteInstanceFunctionSlotOperationSpec: coreClient.OperationSpec = {
   httpMethod: "DELETE",
   responses: {
     204: {},
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -21564,7 +23587,9 @@ const deleteFunctionSecretSlotOperationSpec: coreClient.OperationSpec = {
   httpMethod: "DELETE",
   responses: {
     204: {},
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -21731,7 +23756,9 @@ const deleteHostSecretSlotOperationSpec: coreClient.OperationSpec = {
   httpMethod: "DELETE",
   responses: {
     204: {},
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -21863,9 +23890,9 @@ const getHybridConnectionSlotOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.name,
-    Parameters.slot,
     Parameters.namespaceName,
-    Parameters.relayName
+    Parameters.relayName,
+    Parameters.slot
   ],
   headerParameters: [Parameters.accept],
   serializer
@@ -21882,16 +23909,16 @@ const createOrUpdateHybridConnectionSlotOperationSpec: coreClient.OperationSpec 
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  requestBody: Parameters.connectionEnvelope,
+  requestBody: Parameters.connectionEnvelope1,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.name,
-    Parameters.slot,
     Parameters.namespaceName,
-    Parameters.relayName
+    Parameters.relayName,
+    Parameters.slot
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
@@ -21903,7 +23930,9 @@ const deleteHybridConnectionSlotOperationSpec: coreClient.OperationSpec = {
   httpMethod: "DELETE",
   responses: {
     200: {},
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -21914,9 +23943,9 @@ const deleteHybridConnectionSlotOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.name,
-    Parameters.slot,
     Parameters.namespaceName,
-    Parameters.relayName
+    Parameters.relayName,
+    Parameters.slot
   ],
   headerParameters: [Parameters.accept],
   serializer
@@ -21933,16 +23962,16 @@ const updateHybridConnectionSlotOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  requestBody: Parameters.connectionEnvelope,
+  requestBody: Parameters.connectionEnvelope1,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.name,
-    Parameters.slot,
     Parameters.namespaceName,
-    Parameters.relayName
+    Parameters.relayName,
+    Parameters.slot
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
@@ -22030,7 +24059,7 @@ const createOrUpdateRelayServiceConnectionSlotOperationSpec: coreClient.Operatio
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  requestBody: Parameters.connectionEnvelope1,
+  requestBody: Parameters.connectionEnvelope2,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -22050,7 +24079,9 @@ const deleteRelayServiceConnectionSlotOperationSpec: coreClient.OperationSpec = 
   httpMethod: "DELETE",
   responses: {
     200: {},
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -22079,7 +24110,7 @@ const updateRelayServiceConnectionSlotOperationSpec: coreClient.OperationSpec = 
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  requestBody: Parameters.connectionEnvelope1,
+  requestBody: Parameters.connectionEnvelope2,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -22099,7 +24130,7 @@ const listInstanceIdentifiersSlotOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.WebAppInstanceCollection
+      bodyMapper: Mappers.WebAppInstanceStatusCollection
     },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
@@ -22181,6 +24212,9 @@ const createInstanceMSDeployOperationSlotOperationSpec: coreClient.OperationSpec
     204: {
       bodyMapper: Mappers.MSDeployStatus
     },
+    409: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -22207,7 +24241,9 @@ const getInstanceMSDeployLogSlotOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.MSDeployLog
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -22232,7 +24268,9 @@ const listInstanceProcessesSlotOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.ProcessInfoCollection
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -22257,7 +24295,9 @@ const getInstanceProcessSlotOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.ProcessInfo
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -22281,7 +24321,9 @@ const deleteInstanceProcessSlotOperationSpec: coreClient.OperationSpec = {
   httpMethod: "DELETE",
   responses: {
     204: {},
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -22307,7 +24349,9 @@ const getInstanceProcessDumpSlotOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: { type: { name: "Stream" }, serializedName: "parsedResponse" }
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -22333,7 +24377,9 @@ const listInstanceProcessModulesSlotOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.ProcessModuleInfoCollection
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -22359,7 +24405,9 @@ const getInstanceProcessModuleSlotOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.ProcessModuleInfo
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -22386,7 +24434,9 @@ const listInstanceProcessThreadsSlotOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.ProcessThreadInfoCollection
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -22519,7 +24569,7 @@ const getSwiftVirtualNetworkConnectionSlotOperationSpec: coreClient.OperationSpe
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateSwiftVirtualNetworkConnectionSlotOperationSpec: coreClient.OperationSpec = {
+const createOrUpdateSwiftVirtualNetworkConnectionWithCheckSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/networkConfig/virtualNetwork",
   httpMethod: "PUT",
@@ -22531,7 +24581,7 @@ const createOrUpdateSwiftVirtualNetworkConnectionSlotOperationSpec: coreClient.O
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  requestBody: Parameters.connectionEnvelope2,
+  requestBody: Parameters.connectionEnvelope3,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -22550,7 +24600,9 @@ const deleteSwiftVirtualNetworkSlotOperationSpec: coreClient.OperationSpec = {
   httpMethod: "DELETE",
   responses: {
     200: {},
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -22566,7 +24618,7 @@ const deleteSwiftVirtualNetworkSlotOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateSwiftVirtualNetworkConnectionSlotOperationSpec: coreClient.OperationSpec = {
+const updateSwiftVirtualNetworkConnectionWithCheckSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/networkConfig/virtualNetwork",
   httpMethod: "PATCH",
@@ -22578,7 +24630,7 @@ const updateSwiftVirtualNetworkConnectionSlotOperationSpec: coreClient.Operation
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  requestBody: Parameters.connectionEnvelope2,
+  requestBody: Parameters.connectionEnvelope3,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -22599,7 +24651,9 @@ const listNetworkFeaturesSlotOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.NetworkFeatures
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -23092,13 +25146,13 @@ const putPrivateAccessVnetSlotOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getPrivateEndpointConnectionOperationSpec: coreClient.OperationSpec = {
+const getPrivateEndpointConnectionListSlotOperationSpec: coreClient.OperationSpec = {
   path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/privateEndpointConnections/{privateEndpointConnectionName}",
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/privateEndpointConnections",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.PrivateEndpointConnectionResource
+      bodyMapper: Mappers.PrivateEndpointConnectionCollection
     },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
@@ -23110,27 +25164,51 @@ const getPrivateEndpointConnectionOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.name,
-    Parameters.privateEndpointConnectionName
+    Parameters.slot
   ],
   headerParameters: [Parameters.accept],
   serializer
 };
-const approveOrRejectPrivateEndpointConnectionOperationSpec: coreClient.OperationSpec = {
+const getPrivateEndpointConnectionSlotOperationSpec: coreClient.OperationSpec = {
   path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/privateEndpointConnections/{privateEndpointConnectionName}",
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/privateEndpointConnections/{privateEndpointConnectionName}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.RemotePrivateEndpointConnectionARMResource
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.privateEndpointConnectionName,
+    Parameters.slot
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const approveOrRejectPrivateEndpointConnectionSlotOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/privateEndpointConnections/{privateEndpointConnectionName}",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.PrivateEndpointConnectionResource
+      bodyMapper: Mappers.RemotePrivateEndpointConnectionARMResource
     },
     201: {
-      bodyMapper: Mappers.PrivateEndpointConnectionResource
+      bodyMapper: Mappers.RemotePrivateEndpointConnectionARMResource
     },
     202: {
-      bodyMapper: Mappers.PrivateEndpointConnectionResource
+      bodyMapper: Mappers.RemotePrivateEndpointConnectionARMResource
     },
     204: {
-      bodyMapper: Mappers.PrivateEndpointConnectionResource
+      bodyMapper: Mappers.RemotePrivateEndpointConnectionARMResource
     },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
@@ -23143,15 +25221,16 @@ const approveOrRejectPrivateEndpointConnectionOperationSpec: coreClient.Operatio
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.name,
-    Parameters.privateEndpointConnectionName
+    Parameters.privateEndpointConnectionName,
+    Parameters.slot
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
-const deletePrivateEndpointConnectionOperationSpec: coreClient.OperationSpec = {
+const deletePrivateEndpointConnectionSlotOperationSpec: coreClient.OperationSpec = {
   path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/privateEndpointConnections/{privateEndpointConnectionName}",
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/privateEndpointConnections/{privateEndpointConnectionName}",
   httpMethod: "DELETE",
   responses: {
     200: {
@@ -23184,14 +25263,15 @@ const deletePrivateEndpointConnectionOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.name,
-    Parameters.privateEndpointConnectionName
+    Parameters.privateEndpointConnectionName,
+    Parameters.slot
   ],
   headerParameters: [Parameters.accept],
   serializer
 };
-const getPrivateLinkResourcesOperationSpec: coreClient.OperationSpec = {
+const getPrivateLinkResourcesSlotOperationSpec: coreClient.OperationSpec = {
   path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/privateLinkResources",
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/privateLinkResources",
   httpMethod: "GET",
   responses: {
     200: {
@@ -23206,7 +25286,8 @@ const getPrivateLinkResourcesOperationSpec: coreClient.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name
+    Parameters.name,
+    Parameters.slot
   ],
   headerParameters: [Parameters.accept],
   serializer
@@ -23219,7 +25300,9 @@ const listProcessesSlotOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.ProcessInfoCollection
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -23243,7 +25326,9 @@ const getProcessSlotOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.ProcessInfo
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -23266,7 +25351,9 @@ const deleteProcessSlotOperationSpec: coreClient.OperationSpec = {
   httpMethod: "DELETE",
   responses: {
     204: {},
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -23291,7 +25378,9 @@ const getProcessDumpSlotOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: { type: { name: "Stream" }, serializedName: "parsedResponse" }
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -23316,7 +25405,9 @@ const listProcessModulesSlotOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.ProcessModuleInfoCollection
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -23341,7 +25432,9 @@ const getProcessModuleSlotOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.ProcessModuleInfo
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -23367,7 +25460,9 @@ const listProcessThreadsSlotOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.ProcessThreadInfoCollection
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -23637,7 +25732,9 @@ const listSiteExtensionsSlotOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.SiteExtensionInfoCollection
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -23661,7 +25758,9 @@ const getSiteExtensionSlotOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.SiteExtensionInfo
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -23695,6 +25794,9 @@ const installSiteExtensionSlotOperationSpec: coreClient.OperationSpec = {
     204: {
       bodyMapper: Mappers.SiteExtensionInfo
     },
+    429: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -23717,7 +25819,9 @@ const deleteSiteExtensionSlotOperationSpec: coreClient.OperationSpec = {
   httpMethod: "DELETE",
   responses: {
     204: {},
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -23732,32 +25836,6 @@ const deleteSiteExtensionSlotOperationSpec: coreClient.OperationSpec = {
     Parameters.siteExtensionId
   ],
   headerParameters: [Parameters.accept],
-  serializer
-};
-const copySlotOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/slotcopy",
-  httpMethod: "POST",
-  responses: {
-    200: {},
-    201: {},
-    202: {},
-    204: {},
-    default: {
-      bodyMapper: Mappers.DefaultErrorResponse
-    }
-  },
-  requestBody: Parameters.copySlotEntity,
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.name,
-    Parameters.slot
-  ],
-  headerParameters: [Parameters.accept, Parameters.contentType],
-  mediaType: "json",
   serializer
 };
 const listSlotDifferencesSlotOperationSpec: coreClient.OperationSpec = {
@@ -23927,12 +26005,14 @@ const deleteSourceControlSlotOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     202: {},
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  queryParameters: [Parameters.apiVersion],
+  queryParameters: [Parameters.apiVersion, Parameters.additionalFlags],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -24168,7 +26248,9 @@ const getTriggeredWebJobSlotOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.TriggeredWebJob
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -24216,7 +26298,9 @@ const listTriggeredWebJobHistorySlotOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.TriggeredJobHistoryCollection
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -24241,7 +26325,9 @@ const getTriggeredWebJobHistorySlotOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.TriggeredJobHistory
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -24265,7 +26351,9 @@ const runTriggeredWebJobSlotOperationSpec: coreClient.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {},
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -24314,7 +26402,9 @@ const listVnetConnectionsSlotOperationSpec: coreClient.OperationSpec = {
       bodyMapper: {
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "VnetInfo" } }
+          element: {
+            type: { name: "Composite", className: "VnetInfoResource" }
+          }
         }
       }
     },
@@ -24339,7 +26429,7 @@ const getVnetConnectionSlotOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.VnetInfo
+      bodyMapper: Mappers.VnetInfoResource
     },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
@@ -24351,8 +26441,8 @@ const getVnetConnectionSlotOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.name,
-    Parameters.slot,
-    Parameters.vnetName
+    Parameters.vnetName,
+    Parameters.slot
   ],
   headerParameters: [Parameters.accept],
   serializer
@@ -24363,21 +26453,21 @@ const createOrUpdateVnetConnectionSlotOperationSpec: coreClient.OperationSpec = 
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.VnetInfo
+      bodyMapper: Mappers.VnetInfoResource
     },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  requestBody: Parameters.connectionEnvelope3,
+  requestBody: Parameters.connectionEnvelope4,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.name,
-    Parameters.slot,
-    Parameters.vnetName
+    Parameters.vnetName,
+    Parameters.slot
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
@@ -24389,7 +26479,9 @@ const deleteVnetConnectionSlotOperationSpec: coreClient.OperationSpec = {
   httpMethod: "DELETE",
   responses: {
     200: {},
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -24400,8 +26492,8 @@ const deleteVnetConnectionSlotOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.name,
-    Parameters.slot,
-    Parameters.vnetName
+    Parameters.vnetName,
+    Parameters.slot
   ],
   headerParameters: [Parameters.accept],
   serializer
@@ -24412,21 +26504,21 @@ const updateVnetConnectionSlotOperationSpec: coreClient.OperationSpec = {
   httpMethod: "PATCH",
   responses: {
     200: {
-      bodyMapper: Mappers.VnetInfo
+      bodyMapper: Mappers.VnetInfoResource
     },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  requestBody: Parameters.connectionEnvelope3,
+  requestBody: Parameters.connectionEnvelope4,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.name,
-    Parameters.slot,
-    Parameters.vnetName
+    Parameters.vnetName,
+    Parameters.slot
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
@@ -24440,7 +26532,9 @@ const getVnetConnectionGatewaySlotOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.VnetGateway
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -24451,9 +26545,9 @@ const getVnetConnectionGatewaySlotOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.name,
-    Parameters.slot,
     Parameters.vnetName,
-    Parameters.gatewayName
+    Parameters.gatewayName,
+    Parameters.slot
   ],
   headerParameters: [Parameters.accept],
   serializer
@@ -24470,16 +26564,16 @@ const createOrUpdateVnetConnectionGatewaySlotOperationSpec: coreClient.Operation
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  requestBody: Parameters.connectionEnvelope4,
+  requestBody: Parameters.connectionEnvelope,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.name,
-    Parameters.slot,
     Parameters.vnetName,
-    Parameters.gatewayName
+    Parameters.gatewayName,
+    Parameters.slot
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
@@ -24497,16 +26591,16 @@ const updateVnetConnectionGatewaySlotOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  requestBody: Parameters.connectionEnvelope4,
+  requestBody: Parameters.connectionEnvelope,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.name,
-    Parameters.slot,
     Parameters.vnetName,
-    Parameters.gatewayName
+    Parameters.gatewayName,
+    Parameters.slot
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
@@ -24720,12 +26814,14 @@ const deleteSourceControlOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     202: {},
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  queryParameters: [Parameters.apiVersion],
+  queryParameters: [Parameters.apiVersion, Parameters.additionalFlags],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -24952,7 +27048,9 @@ const getTriggeredWebJobOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.TriggeredWebJob
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -24998,7 +27096,9 @@ const listTriggeredWebJobHistoryOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.TriggeredJobHistoryCollection
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -25022,7 +27122,9 @@ const getTriggeredWebJobHistoryOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.TriggeredJobHistory
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -25045,7 +27147,9 @@ const runTriggeredWebJobOperationSpec: coreClient.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {},
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -25092,7 +27196,9 @@ const listVnetConnectionsOperationSpec: coreClient.OperationSpec = {
       bodyMapper: {
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "VnetInfo" } }
+          element: {
+            type: { name: "Composite", className: "VnetInfoResource" }
+          }
         }
       }
     },
@@ -25116,7 +27222,7 @@ const getVnetConnectionOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.VnetInfo
+      bodyMapper: Mappers.VnetInfoResource
     },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
@@ -25139,13 +27245,13 @@ const createOrUpdateVnetConnectionOperationSpec: coreClient.OperationSpec = {
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.VnetInfo
+      bodyMapper: Mappers.VnetInfoResource
     },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  requestBody: Parameters.connectionEnvelope3,
+  requestBody: Parameters.connectionEnvelope4,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -25164,7 +27270,9 @@ const deleteVnetConnectionOperationSpec: coreClient.OperationSpec = {
   httpMethod: "DELETE",
   responses: {
     200: {},
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -25186,13 +27294,13 @@ const updateVnetConnectionOperationSpec: coreClient.OperationSpec = {
   httpMethod: "PATCH",
   responses: {
     200: {
-      bodyMapper: Mappers.VnetInfo
+      bodyMapper: Mappers.VnetInfoResource
     },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  requestBody: Parameters.connectionEnvelope3,
+  requestBody: Parameters.connectionEnvelope4,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -25213,7 +27321,9 @@ const getVnetConnectionGatewayOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.VnetGateway
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -25242,7 +27352,7 @@ const createOrUpdateVnetConnectionGatewayOperationSpec: coreClient.OperationSpec
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  requestBody: Parameters.connectionEnvelope4,
+  requestBody: Parameters.connectionEnvelope,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -25268,7 +27378,7 @@ const updateVnetConnectionGatewayOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  requestBody: Parameters.connectionEnvelope4,
+  requestBody: Parameters.connectionEnvelope,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -25390,12 +27500,78 @@ const listBackupsNextOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
+const listBasicPublishingCredentialsPoliciesNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PublishingCredentialsPoliciesCollection
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
 const listConfigurationsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: Mappers.SiteConfigResourceCollection
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const getAppSettingsKeyVaultReferencesNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ApiKVReferenceCollection
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const getSiteConnectionStringKeyVaultReferencesNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ApiKVReferenceCollection
     },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
@@ -25507,7 +27683,9 @@ const listFunctionsNextOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.FunctionEnvelopeCollection
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -25550,7 +27728,7 @@ const listInstanceIdentifiersNextOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.WebAppInstanceCollection
+      bodyMapper: Mappers.WebAppInstanceStatusCollection
     },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
@@ -25574,7 +27752,9 @@ const listInstanceProcessesNextOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.ProcessInfoCollection
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -25598,7 +27778,9 @@ const listInstanceProcessModulesNextOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.ProcessModuleInfoCollection
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -25623,7 +27805,9 @@ const listInstanceProcessThreadsNextOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.ProcessThreadInfoCollection
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -25685,6 +27869,28 @@ const listPerfMonCountersNextOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
+const getPrivateEndpointConnectionListNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PrivateEndpointConnectionCollection
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
 const listProcessesNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
@@ -25692,7 +27898,9 @@ const listProcessesNextOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.ProcessInfoCollection
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -25715,7 +27923,9 @@ const listProcessModulesNextOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.ProcessModuleInfoCollection
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -25739,7 +27949,9 @@ const listProcessThreadsNextOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.ProcessThreadInfoCollection
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -25785,7 +27997,9 @@ const listSiteExtensionsNextOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.SiteExtensionInfoCollection
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -25846,12 +28060,81 @@ const listBackupsSlotNextOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
+const listBasicPublishingCredentialsPoliciesSlotNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PublishingCredentialsPoliciesCollection
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.nextLink,
+    Parameters.slot
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
 const listConfigurationsSlotNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: Mappers.SiteConfigResourceCollection
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.nextLink,
+    Parameters.slot
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const getAppSettingsKeyVaultReferencesSlotNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ApiKVReferenceCollection
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.nextLink,
+    Parameters.slot
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const getSiteConnectionStringKeyVaultReferencesSlotNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ApiKVReferenceCollection
     },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
@@ -25968,7 +28251,9 @@ const listInstanceFunctionsSlotNextOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.FunctionEnvelopeCollection
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -26013,7 +28298,7 @@ const listInstanceIdentifiersSlotNextOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.WebAppInstanceCollection
+      bodyMapper: Mappers.WebAppInstanceStatusCollection
     },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
@@ -26038,7 +28323,9 @@ const listInstanceProcessesSlotNextOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.ProcessInfoCollection
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -26063,7 +28350,9 @@ const listInstanceProcessModulesSlotNextOperationSpec: coreClient.OperationSpec 
     200: {
       bodyMapper: Mappers.ProcessModuleInfoCollection
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -26089,7 +28378,9 @@ const listInstanceProcessThreadsSlotNextOperationSpec: coreClient.OperationSpec 
     200: {
       bodyMapper: Mappers.ProcessThreadInfoCollection
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -26154,6 +28445,29 @@ const listPerfMonCountersSlotNextOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
+const getPrivateEndpointConnectionListSlotNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PrivateEndpointConnectionCollection
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.nextLink,
+    Parameters.slot
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
 const listProcessesSlotNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
@@ -26161,7 +28475,9 @@ const listProcessesSlotNextOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.ProcessInfoCollection
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -26185,7 +28501,9 @@ const listProcessModulesSlotNextOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.ProcessModuleInfoCollection
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -26210,7 +28528,9 @@ const listProcessThreadsSlotNextOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.ProcessThreadInfoCollection
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -26258,7 +28578,9 @@ const listSiteExtensionsSlotNextOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.SiteExtensionInfoCollection
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -26375,7 +28697,9 @@ const listTriggeredWebJobHistorySlotNextOperationSpec: coreClient.OperationSpec 
     200: {
       bodyMapper: Mappers.TriggeredJobHistoryCollection
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -26535,7 +28859,9 @@ const listTriggeredWebJobHistoryNextOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: Mappers.TriggeredJobHistoryCollection
     },
-    404: {},
+    404: {
+      isError: true
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }

@@ -18,7 +18,7 @@ import {
 /** Interface representing a RestorableDroppedDatabases. */
 export interface RestorableDroppedDatabases {
   /**
-   * Gets a list of deleted databases that can be restored
+   * Gets a list of restorable dropped databases.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
@@ -30,18 +30,17 @@ export interface RestorableDroppedDatabases {
     options?: RestorableDroppedDatabasesListByServerOptionalParams
   ): PagedAsyncIterableIterator<RestorableDroppedDatabase>;
   /**
-   * Gets a deleted database that can be restored
+   * Gets a restorable dropped database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
-   * @param restorableDroppededDatabaseId The id of the deleted database in the form of
-   *                                      databaseName,deletionTimeInFileTimeFormat
+   * @param restorableDroppedDatabaseId
    * @param options The options parameters.
    */
   get(
     resourceGroupName: string,
     serverName: string,
-    restorableDroppededDatabaseId: string,
+    restorableDroppedDatabaseId: string,
     options?: RestorableDroppedDatabasesGetOptionalParams
   ): Promise<RestorableDroppedDatabasesGetResponse>;
 }

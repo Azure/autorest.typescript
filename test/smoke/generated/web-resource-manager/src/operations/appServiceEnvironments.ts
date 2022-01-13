@@ -47,6 +47,9 @@ import {
   OutboundEnvironmentEndpoint,
   AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsNextOptionalParams,
   AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsOptionalParams,
+  RemotePrivateEndpointConnectionARMResource,
+  AppServiceEnvironmentsGetPrivateEndpointConnectionListNextOptionalParams,
+  AppServiceEnvironmentsGetPrivateEndpointConnectionListOptionalParams,
   AppServiceEnvironmentsResumeNextOptionalParams,
   AppServiceEnvironmentsResumeOptionalParams,
   AppServicePlan,
@@ -83,6 +86,11 @@ import {
   AppServiceEnvironmentsGetVipInfoOptionalParams,
   AppServiceEnvironmentsGetVipInfoResponse,
   AppServiceEnvironmentsChangeVnetResponse,
+  AppServiceEnvironmentsGetAseV3NetworkingConfigurationOptionalParams,
+  AppServiceEnvironmentsGetAseV3NetworkingConfigurationResponse,
+  AseV3NetworkingConfiguration,
+  AppServiceEnvironmentsUpdateAseNetworkingConfigurationOptionalParams,
+  AppServiceEnvironmentsUpdateAseNetworkingConfigurationResponse,
   AppServiceEnvironmentsListDiagnosticsOptionalParams,
   AppServiceEnvironmentsListDiagnosticsResponse,
   AppServiceEnvironmentsGetDiagnosticsItemOptionalParams,
@@ -102,6 +110,16 @@ import {
   AppServiceEnvironmentsListOperationsOptionalParams,
   AppServiceEnvironmentsListOperationsResponse,
   AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsResponse,
+  AppServiceEnvironmentsGetPrivateEndpointConnectionListResponse,
+  AppServiceEnvironmentsGetPrivateEndpointConnectionOptionalParams,
+  AppServiceEnvironmentsGetPrivateEndpointConnectionResponse,
+  PrivateLinkConnectionApprovalRequestResource,
+  AppServiceEnvironmentsApproveOrRejectPrivateEndpointConnectionOptionalParams,
+  AppServiceEnvironmentsApproveOrRejectPrivateEndpointConnectionResponse,
+  AppServiceEnvironmentsDeletePrivateEndpointConnectionOptionalParams,
+  AppServiceEnvironmentsDeletePrivateEndpointConnectionResponse,
+  AppServiceEnvironmentsGetPrivateLinkResourcesOptionalParams,
+  AppServiceEnvironmentsGetPrivateLinkResourcesResponse,
   AppServiceEnvironmentsRebootOptionalParams,
   AppServiceEnvironmentsResumeResponse,
   AppServiceEnvironmentsListAppServicePlansResponse,
@@ -130,6 +148,7 @@ import {
   AppServiceEnvironmentsListMultiRolePoolSkusNextResponse,
   AppServiceEnvironmentsListMultiRoleUsagesNextResponse,
   AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsNextResponse,
+  AppServiceEnvironmentsGetPrivateEndpointConnectionListNextResponse,
   AppServiceEnvironmentsResumeNextResponse,
   AppServiceEnvironmentsListAppServicePlansNextResponse,
   AppServiceEnvironmentsListWebAppsNextResponse,
@@ -890,6 +909,77 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     options?: AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsOptionalParams
   ): AsyncIterableIterator<OutboundEnvironmentEndpoint> {
     for await (const page of this.getOutboundNetworkDependenciesEndpointsPagingPage(
+      resourceGroupName,
+      name,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Description for Gets the list of private endpoints associated with a hosting environment
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param options The options parameters.
+   */
+  public listPrivateEndpointConnectionList(
+    resourceGroupName: string,
+    name: string,
+    options?: AppServiceEnvironmentsGetPrivateEndpointConnectionListOptionalParams
+  ): PagedAsyncIterableIterator<RemotePrivateEndpointConnectionARMResource> {
+    const iter = this.getPrivateEndpointConnectionListPagingAll(
+      resourceGroupName,
+      name,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.getPrivateEndpointConnectionListPagingPage(
+          resourceGroupName,
+          name,
+          options
+        );
+      }
+    };
+  }
+
+  private async *getPrivateEndpointConnectionListPagingPage(
+    resourceGroupName: string,
+    name: string,
+    options?: AppServiceEnvironmentsGetPrivateEndpointConnectionListOptionalParams
+  ): AsyncIterableIterator<RemotePrivateEndpointConnectionARMResource[]> {
+    let result = await this._getPrivateEndpointConnectionList(
+      resourceGroupName,
+      name,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._getPrivateEndpointConnectionListNext(
+        resourceGroupName,
+        name,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *getPrivateEndpointConnectionListPagingAll(
+    resourceGroupName: string,
+    name: string,
+    options?: AppServiceEnvironmentsGetPrivateEndpointConnectionListOptionalParams
+  ): AsyncIterableIterator<RemotePrivateEndpointConnectionARMResource> {
+    for await (const page of this.getPrivateEndpointConnectionListPagingPage(
       resourceGroupName,
       name,
       options
@@ -1930,6 +2020,42 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   }
 
   /**
+   * Description for Get networking configuration of an App Service Environment
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param options The options parameters.
+   */
+  getAseV3NetworkingConfiguration(
+    resourceGroupName: string,
+    name: string,
+    options?: AppServiceEnvironmentsGetAseV3NetworkingConfigurationOptionalParams
+  ): Promise<AppServiceEnvironmentsGetAseV3NetworkingConfigurationResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, options },
+      getAseV3NetworkingConfigurationOperationSpec
+    );
+  }
+
+  /**
+   * Description for Update networking configuration of an App Service Environment
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param aseNetworkingConfiguration Full view of networking configuration for an ASE.
+   * @param options The options parameters.
+   */
+  updateAseNetworkingConfiguration(
+    resourceGroupName: string,
+    name: string,
+    aseNetworkingConfiguration: AseV3NetworkingConfiguration,
+    options?: AppServiceEnvironmentsUpdateAseNetworkingConfigurationOptionalParams
+  ): Promise<AppServiceEnvironmentsUpdateAseNetworkingConfigurationResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, aseNetworkingConfiguration, options },
+      updateAseNetworkingConfigurationOperationSpec
+    );
+  }
+
+  /**
    * Description for Get diagnostic information for an App Service Environment.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the App Service Environment.
@@ -2236,6 +2362,256 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     return this.client.sendOperationRequest(
       { resourceGroupName, name, options },
       getOutboundNetworkDependenciesEndpointsOperationSpec
+    );
+  }
+
+  /**
+   * Description for Gets the list of private endpoints associated with a hosting environment
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param options The options parameters.
+   */
+  private _getPrivateEndpointConnectionList(
+    resourceGroupName: string,
+    name: string,
+    options?: AppServiceEnvironmentsGetPrivateEndpointConnectionListOptionalParams
+  ): Promise<AppServiceEnvironmentsGetPrivateEndpointConnectionListResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, options },
+      getPrivateEndpointConnectionListOperationSpec
+    );
+  }
+
+  /**
+   * Description for Gets a private endpoint connection
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param privateEndpointConnectionName Name of the private endpoint connection.
+   * @param options The options parameters.
+   */
+  getPrivateEndpointConnection(
+    resourceGroupName: string,
+    name: string,
+    privateEndpointConnectionName: string,
+    options?: AppServiceEnvironmentsGetPrivateEndpointConnectionOptionalParams
+  ): Promise<AppServiceEnvironmentsGetPrivateEndpointConnectionResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, privateEndpointConnectionName, options },
+      getPrivateEndpointConnectionOperationSpec
+    );
+  }
+
+  /**
+   * Description for Approves or rejects a private endpoint connection
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param privateEndpointConnectionName
+   * @param privateEndpointWrapper Private Endpoint Connection Approval ARM resource.
+   * @param options The options parameters.
+   */
+  async beginApproveOrRejectPrivateEndpointConnection(
+    resourceGroupName: string,
+    name: string,
+    privateEndpointConnectionName: string,
+    privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource,
+    options?: AppServiceEnvironmentsApproveOrRejectPrivateEndpointConnectionOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<
+        AppServiceEnvironmentsApproveOrRejectPrivateEndpointConnectionResponse
+      >,
+      AppServiceEnvironmentsApproveOrRejectPrivateEndpointConnectionResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<AppServiceEnvironmentsApproveOrRejectPrivateEndpointConnectionResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      {
+        resourceGroupName,
+        name,
+        privateEndpointConnectionName,
+        privateEndpointWrapper,
+        options
+      },
+      approveOrRejectPrivateEndpointConnectionOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs
+    });
+  }
+
+  /**
+   * Description for Approves or rejects a private endpoint connection
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param privateEndpointConnectionName
+   * @param privateEndpointWrapper Private Endpoint Connection Approval ARM resource.
+   * @param options The options parameters.
+   */
+  async beginApproveOrRejectPrivateEndpointConnectionAndWait(
+    resourceGroupName: string,
+    name: string,
+    privateEndpointConnectionName: string,
+    privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource,
+    options?: AppServiceEnvironmentsApproveOrRejectPrivateEndpointConnectionOptionalParams
+  ): Promise<
+    AppServiceEnvironmentsApproveOrRejectPrivateEndpointConnectionResponse
+  > {
+    const poller = await this.beginApproveOrRejectPrivateEndpointConnection(
+      resourceGroupName,
+      name,
+      privateEndpointConnectionName,
+      privateEndpointWrapper,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
+   * Description for Deletes a private endpoint connection
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param privateEndpointConnectionName
+   * @param options The options parameters.
+   */
+  async beginDeletePrivateEndpointConnection(
+    resourceGroupName: string,
+    name: string,
+    privateEndpointConnectionName: string,
+    options?: AppServiceEnvironmentsDeletePrivateEndpointConnectionOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<
+        AppServiceEnvironmentsDeletePrivateEndpointConnectionResponse
+      >,
+      AppServiceEnvironmentsDeletePrivateEndpointConnectionResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<AppServiceEnvironmentsDeletePrivateEndpointConnectionResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { resourceGroupName, name, privateEndpointConnectionName, options },
+      deletePrivateEndpointConnectionOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs
+    });
+  }
+
+  /**
+   * Description for Deletes a private endpoint connection
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param privateEndpointConnectionName
+   * @param options The options parameters.
+   */
+  async beginDeletePrivateEndpointConnectionAndWait(
+    resourceGroupName: string,
+    name: string,
+    privateEndpointConnectionName: string,
+    options?: AppServiceEnvironmentsDeletePrivateEndpointConnectionOptionalParams
+  ): Promise<AppServiceEnvironmentsDeletePrivateEndpointConnectionResponse> {
+    const poller = await this.beginDeletePrivateEndpointConnection(
+      resourceGroupName,
+      name,
+      privateEndpointConnectionName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
+   * Description for Gets the private link resources
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param options The options parameters.
+   */
+  getPrivateLinkResources(
+    resourceGroupName: string,
+    name: string,
+    options?: AppServiceEnvironmentsGetPrivateLinkResourcesOptionalParams
+  ): Promise<AppServiceEnvironmentsGetPrivateLinkResourcesResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, options },
+      getPrivateLinkResourcesOperationSpec
     );
   }
 
@@ -2892,6 +3268,28 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   }
 
   /**
+   * GetPrivateEndpointConnectionListNext
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 GetPrivateEndpointConnectionList method.
+   * @param options The options parameters.
+   */
+  private _getPrivateEndpointConnectionListNext(
+    resourceGroupName: string,
+    name: string,
+    nextLink: string,
+    options?: AppServiceEnvironmentsGetPrivateEndpointConnectionListNextOptionalParams
+  ): Promise<
+    AppServiceEnvironmentsGetPrivateEndpointConnectionListNextResponse
+  > {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, nextLink, options },
+      getPrivateEndpointConnectionListNextOperationSpec
+    );
+  }
+
+  /**
    * ResumeNext
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the App Service Environment.
@@ -3321,6 +3719,52 @@ const changeVnetOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
+const getAseV3NetworkingConfigurationOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/configurations/networking",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.AseV3NetworkingConfiguration
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const updateAseNetworkingConfigurationOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/configurations/networking",
+  httpMethod: "PUT",
+  responses: {
+    200: {
+      bodyMapper: Mappers.AseV3NetworkingConfiguration
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  requestBody: Parameters.aseNetworkingConfiguration,
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name
+  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
+  serializer
+};
 const listDiagnosticsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/diagnostics",
@@ -3625,6 +4069,147 @@ const getOutboundNetworkDependenciesEndpointsOperationSpec: coreClient.Operation
   responses: {
     200: {
       bodyMapper: Mappers.OutboundEnvironmentEndpointCollection
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const getPrivateEndpointConnectionListOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/privateEndpointConnections",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PrivateEndpointConnectionCollection
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const getPrivateEndpointConnectionOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/privateEndpointConnections/{privateEndpointConnectionName}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.RemotePrivateEndpointConnectionARMResource
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.privateEndpointConnectionName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const approveOrRejectPrivateEndpointConnectionOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/privateEndpointConnections/{privateEndpointConnectionName}",
+  httpMethod: "PUT",
+  responses: {
+    200: {
+      bodyMapper: Mappers.RemotePrivateEndpointConnectionARMResource
+    },
+    201: {
+      bodyMapper: Mappers.RemotePrivateEndpointConnectionARMResource
+    },
+    202: {
+      bodyMapper: Mappers.RemotePrivateEndpointConnectionARMResource
+    },
+    204: {
+      bodyMapper: Mappers.RemotePrivateEndpointConnectionARMResource
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  requestBody: Parameters.privateEndpointWrapper,
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.privateEndpointConnectionName
+  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
+  serializer
+};
+const deletePrivateEndpointConnectionOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/privateEndpointConnections/{privateEndpointConnectionName}",
+  httpMethod: "DELETE",
+  responses: {
+    200: {
+      bodyMapper: {
+        type: { name: "Dictionary", value: { type: { name: "any" } } }
+      }
+    },
+    201: {
+      bodyMapper: {
+        type: { name: "Dictionary", value: { type: { name: "any" } } }
+      }
+    },
+    202: {
+      bodyMapper: {
+        type: { name: "Dictionary", value: { type: { name: "any" } } }
+      }
+    },
+    204: {
+      bodyMapper: {
+        type: { name: "Dictionary", value: { type: { name: "any" } } }
+      }
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.privateEndpointConnectionName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const getPrivateLinkResourcesOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/privateLinkResources",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PrivateLinkResourcesWrapper
     },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
@@ -4216,6 +4801,28 @@ const getOutboundNetworkDependenciesEndpointsNextOperationSpec: coreClient.Opera
   responses: {
     200: {
       bodyMapper: Mappers.OutboundEnvironmentEndpointCollection
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.name,
+    Parameters.nextLink
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const getPrivateEndpointConnectionListNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PrivateEndpointConnectionCollection
     },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse

@@ -16,6 +16,10 @@ import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
   NetworkInterface,
+  NetworkInterfacesListCloudServiceRoleInstanceNetworkInterfacesNextOptionalParams,
+  NetworkInterfacesListCloudServiceRoleInstanceNetworkInterfacesOptionalParams,
+  NetworkInterfacesListCloudServiceNetworkInterfacesNextOptionalParams,
+  NetworkInterfacesListCloudServiceNetworkInterfacesOptionalParams,
   NetworkInterfacesListAllNextOptionalParams,
   NetworkInterfacesListAllOptionalParams,
   NetworkInterfacesListNextOptionalParams,
@@ -27,6 +31,10 @@ import {
   NetworkInterfaceIPConfiguration,
   NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsNextOptionalParams,
   NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsOptionalParams,
+  NetworkInterfacesListCloudServiceRoleInstanceNetworkInterfacesResponse,
+  NetworkInterfacesListCloudServiceNetworkInterfacesResponse,
+  NetworkInterfacesGetCloudServiceNetworkInterfaceOptionalParams,
+  NetworkInterfacesGetCloudServiceNetworkInterfaceResponse,
   NetworkInterfacesDeleteOptionalParams,
   NetworkInterfacesGetOptionalParams,
   NetworkInterfacesGetResponse,
@@ -48,6 +56,8 @@ import {
   NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsResponse,
   NetworkInterfacesGetVirtualMachineScaleSetIpConfigurationOptionalParams,
   NetworkInterfacesGetVirtualMachineScaleSetIpConfigurationResponse,
+  NetworkInterfacesListCloudServiceRoleInstanceNetworkInterfacesNextResponse,
+  NetworkInterfacesListCloudServiceNetworkInterfacesNextResponse,
   NetworkInterfacesListAllNextResponse,
   NetworkInterfacesListNextResponse,
   NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesNextResponse,
@@ -66,6 +76,157 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
    */
   constructor(client: NetworkManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * Gets information about all network interfaces in a role instance in a cloud service.
+   * @param resourceGroupName The name of the resource group.
+   * @param cloudServiceName The name of the cloud service.
+   * @param roleInstanceName The name of role instance.
+   * @param options The options parameters.
+   */
+  public listCloudServiceRoleInstanceNetworkInterfaces(
+    resourceGroupName: string,
+    cloudServiceName: string,
+    roleInstanceName: string,
+    options?: NetworkInterfacesListCloudServiceRoleInstanceNetworkInterfacesOptionalParams
+  ): PagedAsyncIterableIterator<NetworkInterface> {
+    const iter = this.listCloudServiceRoleInstanceNetworkInterfacesPagingAll(
+      resourceGroupName,
+      cloudServiceName,
+      roleInstanceName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listCloudServiceRoleInstanceNetworkInterfacesPagingPage(
+          resourceGroupName,
+          cloudServiceName,
+          roleInstanceName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listCloudServiceRoleInstanceNetworkInterfacesPagingPage(
+    resourceGroupName: string,
+    cloudServiceName: string,
+    roleInstanceName: string,
+    options?: NetworkInterfacesListCloudServiceRoleInstanceNetworkInterfacesOptionalParams
+  ): AsyncIterableIterator<NetworkInterface[]> {
+    let result = await this._listCloudServiceRoleInstanceNetworkInterfaces(
+      resourceGroupName,
+      cloudServiceName,
+      roleInstanceName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listCloudServiceRoleInstanceNetworkInterfacesNext(
+        resourceGroupName,
+        cloudServiceName,
+        roleInstanceName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listCloudServiceRoleInstanceNetworkInterfacesPagingAll(
+    resourceGroupName: string,
+    cloudServiceName: string,
+    roleInstanceName: string,
+    options?: NetworkInterfacesListCloudServiceRoleInstanceNetworkInterfacesOptionalParams
+  ): AsyncIterableIterator<NetworkInterface> {
+    for await (const page of this.listCloudServiceRoleInstanceNetworkInterfacesPagingPage(
+      resourceGroupName,
+      cloudServiceName,
+      roleInstanceName,
+      options
+    )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Gets all network interfaces in a cloud service.
+   * @param resourceGroupName The name of the resource group.
+   * @param cloudServiceName The name of the cloud service.
+   * @param options The options parameters.
+   */
+  public listCloudServiceNetworkInterfaces(
+    resourceGroupName: string,
+    cloudServiceName: string,
+    options?: NetworkInterfacesListCloudServiceNetworkInterfacesOptionalParams
+  ): PagedAsyncIterableIterator<NetworkInterface> {
+    const iter = this.listCloudServiceNetworkInterfacesPagingAll(
+      resourceGroupName,
+      cloudServiceName,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.listCloudServiceNetworkInterfacesPagingPage(
+          resourceGroupName,
+          cloudServiceName,
+          options
+        );
+      }
+    };
+  }
+
+  private async *listCloudServiceNetworkInterfacesPagingPage(
+    resourceGroupName: string,
+    cloudServiceName: string,
+    options?: NetworkInterfacesListCloudServiceNetworkInterfacesOptionalParams
+  ): AsyncIterableIterator<NetworkInterface[]> {
+    let result = await this._listCloudServiceNetworkInterfaces(
+      resourceGroupName,
+      cloudServiceName,
+      options
+    );
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._listCloudServiceNetworkInterfacesNext(
+        resourceGroupName,
+        cloudServiceName,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *listCloudServiceNetworkInterfacesPagingAll(
+    resourceGroupName: string,
+    cloudServiceName: string,
+    options?: NetworkInterfacesListCloudServiceNetworkInterfacesOptionalParams
+  ): AsyncIterableIterator<NetworkInterface> {
+    for await (const page of this.listCloudServiceNetworkInterfacesPagingPage(
+      resourceGroupName,
+      cloudServiceName,
+      options
+    )) {
+      yield* page;
+    }
   }
 
   /**
@@ -398,6 +559,71 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
     )) {
       yield* page;
     }
+  }
+
+  /**
+   * Gets information about all network interfaces in a role instance in a cloud service.
+   * @param resourceGroupName The name of the resource group.
+   * @param cloudServiceName The name of the cloud service.
+   * @param roleInstanceName The name of role instance.
+   * @param options The options parameters.
+   */
+  private _listCloudServiceRoleInstanceNetworkInterfaces(
+    resourceGroupName: string,
+    cloudServiceName: string,
+    roleInstanceName: string,
+    options?: NetworkInterfacesListCloudServiceRoleInstanceNetworkInterfacesOptionalParams
+  ): Promise<
+    NetworkInterfacesListCloudServiceRoleInstanceNetworkInterfacesResponse
+  > {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, cloudServiceName, roleInstanceName, options },
+      listCloudServiceRoleInstanceNetworkInterfacesOperationSpec
+    );
+  }
+
+  /**
+   * Gets all network interfaces in a cloud service.
+   * @param resourceGroupName The name of the resource group.
+   * @param cloudServiceName The name of the cloud service.
+   * @param options The options parameters.
+   */
+  private _listCloudServiceNetworkInterfaces(
+    resourceGroupName: string,
+    cloudServiceName: string,
+    options?: NetworkInterfacesListCloudServiceNetworkInterfacesOptionalParams
+  ): Promise<NetworkInterfacesListCloudServiceNetworkInterfacesResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, cloudServiceName, options },
+      listCloudServiceNetworkInterfacesOperationSpec
+    );
+  }
+
+  /**
+   * Get the specified network interface in a cloud service.
+   * @param resourceGroupName The name of the resource group.
+   * @param cloudServiceName The name of the cloud service.
+   * @param roleInstanceName The name of role instance.
+   * @param networkInterfaceName The name of the network interface.
+   * @param options The options parameters.
+   */
+  getCloudServiceNetworkInterface(
+    resourceGroupName: string,
+    cloudServiceName: string,
+    roleInstanceName: string,
+    networkInterfaceName: string,
+    options?: NetworkInterfacesGetCloudServiceNetworkInterfaceOptionalParams
+  ): Promise<NetworkInterfacesGetCloudServiceNetworkInterfaceResponse> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        cloudServiceName,
+        roleInstanceName,
+        networkInterfaceName,
+        options
+      },
+      getCloudServiceNetworkInterfaceOperationSpec
+    );
   }
 
   /**
@@ -943,6 +1169,56 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
   }
 
   /**
+   * ListCloudServiceRoleInstanceNetworkInterfacesNext
+   * @param resourceGroupName The name of the resource group.
+   * @param cloudServiceName The name of the cloud service.
+   * @param roleInstanceName The name of role instance.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListCloudServiceRoleInstanceNetworkInterfaces method.
+   * @param options The options parameters.
+   */
+  private _listCloudServiceRoleInstanceNetworkInterfacesNext(
+    resourceGroupName: string,
+    cloudServiceName: string,
+    roleInstanceName: string,
+    nextLink: string,
+    options?: NetworkInterfacesListCloudServiceRoleInstanceNetworkInterfacesNextOptionalParams
+  ): Promise<
+    NetworkInterfacesListCloudServiceRoleInstanceNetworkInterfacesNextResponse
+  > {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        cloudServiceName,
+        roleInstanceName,
+        nextLink,
+        options
+      },
+      listCloudServiceRoleInstanceNetworkInterfacesNextOperationSpec
+    );
+  }
+
+  /**
+   * ListCloudServiceNetworkInterfacesNext
+   * @param resourceGroupName The name of the resource group.
+   * @param cloudServiceName The name of the cloud service.
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 ListCloudServiceNetworkInterfaces method.
+   * @param options The options parameters.
+   */
+  private _listCloudServiceNetworkInterfacesNext(
+    resourceGroupName: string,
+    cloudServiceName: string,
+    nextLink: string,
+    options?: NetworkInterfacesListCloudServiceNetworkInterfacesNextOptionalParams
+  ): Promise<NetworkInterfacesListCloudServiceNetworkInterfacesNextResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, cloudServiceName, nextLink, options },
+      listCloudServiceNetworkInterfacesNextOperationSpec
+    );
+  }
+
+  /**
    * ListAllNext
    * @param nextLink The nextLink from the previous successful call to the ListAll method.
    * @param options The options parameters.
@@ -1062,6 +1338,75 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
+const listCloudServiceRoleInstanceNetworkInterfacesOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/cloudServices/{cloudServiceName}/roleInstances/{roleInstanceName}/networkInterfaces",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.NetworkInterfaceListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.cloudServiceName,
+    Parameters.roleInstanceName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listCloudServiceNetworkInterfacesOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/cloudServices/{cloudServiceName}/networkInterfaces",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.NetworkInterfaceListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.cloudServiceName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const getCloudServiceNetworkInterfaceOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/cloudServices/{cloudServiceName}/roleInstances/{roleInstanceName}/networkInterfaces/{networkInterfaceName}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.NetworkInterface
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion, Parameters.expand],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.cloudServiceName,
+    Parameters.roleInstanceName,
+    Parameters.networkInterfaceName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
 const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkInterfaces/{networkInterfaceName}",
@@ -1128,7 +1473,7 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.parameters17,
+  requestBody: Parameters.parameters6,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1378,6 +1723,51 @@ const getVirtualMachineScaleSetIpConfigurationOperationSpec: coreClient.Operatio
     Parameters.virtualMachineScaleSetName,
     Parameters.virtualmachineIndex,
     Parameters.ipConfigurationName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listCloudServiceRoleInstanceNetworkInterfacesNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.NetworkInterfaceListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.nextLink,
+    Parameters.cloudServiceName,
+    Parameters.roleInstanceName
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listCloudServiceNetworkInterfacesNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.NetworkInterfaceListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.nextLink,
+    Parameters.cloudServiceName
   ],
   headerParameters: [Parameters.accept],
   serializer

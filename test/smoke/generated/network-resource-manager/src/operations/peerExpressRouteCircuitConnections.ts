@@ -199,9 +199,9 @@ const getOperationSpec: coreClient.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
+    Parameters.connectionName,
     Parameters.circuitName,
-    Parameters.peeringName,
-    Parameters.connectionName
+    Parameters.peeringName
   ],
   headerParameters: [Parameters.accept],
   serializer

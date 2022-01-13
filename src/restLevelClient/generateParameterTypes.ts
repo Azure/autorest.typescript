@@ -13,12 +13,14 @@ import {
   SourceFile,
   StructureKind
 } from "ts-morph";
+import * as path from 'path';
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { NameType, normalizeName } from "../utils/nameUtils";
 import { getPropertySignature } from "./getPropertySignature";
 import { primitiveSchemaToType } from "./schemaHelpers";
 import { getOperationParameters } from "./helpers/operationHelpers";
 import { hasInputModels } from "./helpers/modelHelpers";
+import { getAutorestOptions } from "../autorestSession";
 
 /**
  * Generates the interfaces describing each operation parameters
@@ -27,8 +29,9 @@ export function generateParameterInterfaces(
   model: CodeModel,
   project: Project
 ) {
+  const { srcPath } = getAutorestOptions();
   const parametersFile = project.createSourceFile(
-    `src/parameters.ts`,
+    path.join(srcPath, `parameters.ts`),
     undefined,
     {
       overwrite: true

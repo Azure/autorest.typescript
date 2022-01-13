@@ -27,6 +27,8 @@ import {
   ManagedDatabaseSensitivityLabelsDisableRecommendationOptionalParams,
   ManagedDatabaseSensitivityLabelsEnableRecommendationOptionalParams,
   ManagedDatabaseSensitivityLabelsListCurrentByDatabaseResponse,
+  SensitivityLabelUpdateList,
+  ManagedDatabaseSensitivityLabelsUpdateOptionalParams,
   ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseResponse,
   ManagedDatabaseSensitivityLabelsListCurrentByDatabaseNextResponse,
   ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseNextResponse
@@ -406,6 +408,34 @@ export class ManagedDatabaseSensitivityLabelsImpl
   }
 
   /**
+   * Update sensitivity labels of a given database using an operations batch.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the database.
+   * @param parameters A list of sensitivity label update operations.
+   * @param options The options parameters.
+   */
+  update(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    databaseName: string,
+    parameters: SensitivityLabelUpdateList,
+    options?: ManagedDatabaseSensitivityLabelsUpdateOptionalParams
+  ): Promise<void> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        managedInstanceName,
+        databaseName,
+        parameters,
+        options
+      },
+      updateOperationSpec
+    );
+  }
+
+  /**
    * Gets the sensitivity labels of a given database
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -507,11 +537,11 @@ const getOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.databaseName,
-    Parameters.managedInstanceName,
     Parameters.schemaName,
     Parameters.tableName,
     Parameters.columnName,
-    Parameters.sensitivityLabelSource1
+    Parameters.managedInstanceName,
+    Parameters.sensitivityLabelSource
   ],
   headerParameters: [Parameters.accept],
   serializer
@@ -529,18 +559,18 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  requestBody: Parameters.parameters47,
+  requestBody: Parameters.parameters43,
   queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.databaseName,
-    Parameters.managedInstanceName,
     Parameters.schemaName,
     Parameters.tableName,
     Parameters.columnName,
-    Parameters.sensitivityLabelSource2
+    Parameters.managedInstanceName,
+    Parameters.sensitivityLabelSource1
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
@@ -557,11 +587,11 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.databaseName,
-    Parameters.managedInstanceName,
     Parameters.schemaName,
     Parameters.tableName,
     Parameters.columnName,
-    Parameters.sensitivityLabelSource2
+    Parameters.managedInstanceName,
+    Parameters.sensitivityLabelSource1
   ],
   serializer
 };
@@ -576,11 +606,11 @@ const disableRecommendationOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.databaseName,
-    Parameters.managedInstanceName,
     Parameters.schemaName,
     Parameters.tableName,
     Parameters.columnName,
-    Parameters.sensitivityLabelSource
+    Parameters.managedInstanceName,
+    Parameters.sensitivityLabelSource2
   ],
   serializer
 };
@@ -595,11 +625,11 @@ const enableRecommendationOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.databaseName,
-    Parameters.managedInstanceName,
     Parameters.schemaName,
     Parameters.tableName,
     Parameters.columnName,
-    Parameters.sensitivityLabelSource
+    Parameters.managedInstanceName,
+    Parameters.sensitivityLabelSource2
   ],
   serializer
 };
@@ -613,7 +643,12 @@ const listCurrentByDatabaseOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion2, Parameters.filter1],
+  queryParameters: [
+    Parameters.skipToken,
+    Parameters.apiVersion2,
+    Parameters.filter1,
+    Parameters.count
+  ],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -622,6 +657,24 @@ const listCurrentByDatabaseOperationSpec: coreClient.OperationSpec = {
     Parameters.managedInstanceName
   ],
   headerParameters: [Parameters.accept],
+  serializer
+};
+const updateOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/databases/{databaseName}/currentSensitivityLabels",
+  httpMethod: "PATCH",
+  responses: { 200: {}, default: {} },
+  requestBody: Parameters.parameters44,
+  queryParameters: [Parameters.apiVersion2],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.databaseName,
+    Parameters.managedInstanceName
+  ],
+  headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listRecommendedByDatabaseOperationSpec: coreClient.OperationSpec = {
@@ -635,10 +688,10 @@ const listRecommendedByDatabaseOperationSpec: coreClient.OperationSpec = {
     default: {}
   },
   queryParameters: [
+    Parameters.skipToken,
     Parameters.apiVersion2,
     Parameters.filter1,
-    Parameters.includeDisabledRecommendations,
-    Parameters.skipToken
+    Parameters.includeDisabledRecommendations
   ],
   urlParameters: [
     Parameters.$host,
@@ -659,7 +712,12 @@ const listCurrentByDatabaseNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion2, Parameters.filter1],
+  queryParameters: [
+    Parameters.skipToken,
+    Parameters.apiVersion2,
+    Parameters.filter1,
+    Parameters.count
+  ],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -681,10 +739,10 @@ const listRecommendedByDatabaseNextOperationSpec: coreClient.OperationSpec = {
     default: {}
   },
   queryParameters: [
+    Parameters.skipToken,
     Parameters.apiVersion2,
     Parameters.filter1,
-    Parameters.includeDisabledRecommendations,
-    Parameters.skipToken
+    Parameters.includeDisabledRecommendations
   ],
   urlParameters: [
     Parameters.$host,

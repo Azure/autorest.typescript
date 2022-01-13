@@ -12,11 +12,11 @@ import {
   EncryptionProtector,
   EncryptionProtectorsListByServerOptionalParams,
   EncryptionProtectorName,
-  EncryptionProtectorsRevalidateOptionalParams,
   EncryptionProtectorsGetOptionalParams,
   EncryptionProtectorsGetResponse,
   EncryptionProtectorsCreateOrUpdateOptionalParams,
-  EncryptionProtectorsCreateOrUpdateResponse
+  EncryptionProtectorsCreateOrUpdateResponse,
+  EncryptionProtectorsRevalidateOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -34,34 +34,6 @@ export interface EncryptionProtectors {
     serverName: string,
     options?: EncryptionProtectorsListByServerOptionalParams
   ): PagedAsyncIterableIterator<EncryptionProtector>;
-  /**
-   * Revalidates an existing encryption protector.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param encryptionProtectorName The name of the encryption protector to be updated.
-   * @param options The options parameters.
-   */
-  beginRevalidate(
-    resourceGroupName: string,
-    serverName: string,
-    encryptionProtectorName: EncryptionProtectorName,
-    options?: EncryptionProtectorsRevalidateOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
-  /**
-   * Revalidates an existing encryption protector.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param encryptionProtectorName The name of the encryption protector to be updated.
-   * @param options The options parameters.
-   */
-  beginRevalidateAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    encryptionProtectorName: EncryptionProtectorName,
-    options?: EncryptionProtectorsRevalidateOptionalParams
-  ): Promise<void>;
   /**
    * Gets a server encryption protector.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -113,4 +85,32 @@ export interface EncryptionProtectors {
     parameters: EncryptionProtector,
     options?: EncryptionProtectorsCreateOrUpdateOptionalParams
   ): Promise<EncryptionProtectorsCreateOrUpdateResponse>;
+  /**
+   * Revalidates an existing encryption protector.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param encryptionProtectorName The name of the encryption protector to be updated.
+   * @param options The options parameters.
+   */
+  beginRevalidate(
+    resourceGroupName: string,
+    serverName: string,
+    encryptionProtectorName: EncryptionProtectorName,
+    options?: EncryptionProtectorsRevalidateOptionalParams
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  /**
+   * Revalidates an existing encryption protector.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param encryptionProtectorName The name of the encryption protector to be updated.
+   * @param options The options parameters.
+   */
+  beginRevalidateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    encryptionProtectorName: EncryptionProtectorName,
+    options?: EncryptionProtectorsRevalidateOptionalParams
+  ): Promise<void>;
 }

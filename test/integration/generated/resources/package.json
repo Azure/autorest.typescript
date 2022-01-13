@@ -81,5 +81,10 @@
     "docs": "echo skipped"
   },
   "sideEffects": false,
+  "//metadata": {
+    "constantPaths": [
+      { "path": "src/ResourcesClient.ts", "prefix": "packageDetails" }
+    ]
+  },
   "autoPublish": true
 }

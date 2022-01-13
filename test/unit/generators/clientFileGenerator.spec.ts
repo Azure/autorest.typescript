@@ -24,14 +24,16 @@ describe("clientFileGenerator", () => {
         key: "paths",
         name: "Paths",
         operations: [],
-        mediaTypes
+        mediaTypes,
+        originalKey: "Paths"
       },
       {
         isTopLevel: false,
         key: "samples",
         name: "Samples",
         operations: [],
-        mediaTypes
+        mediaTypes,
+        originalKey: "Samples"
       }
     ];
     const inlineOperations: OperationGroupDetails[] = [
@@ -67,7 +69,8 @@ describe("clientFileGenerator", () => {
             mediaTypes,
             typeDetails
           }
-        ]
+        ],
+        originalKey: ""
       }
     ];
 

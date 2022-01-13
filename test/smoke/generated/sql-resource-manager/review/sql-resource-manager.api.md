@@ -23,7 +23,31 @@ export type AdministratorName = string;
 export type AdministratorType = string;
 
 // @public
-export type AuthenticationType = "SQL" | "ADPassword";
+export type Advisor = ProxyResource & {
+    readonly kind?: string;
+    readonly location?: string;
+    readonly advisorStatus?: AdvisorStatus;
+    autoExecuteStatus?: AutoExecuteStatus;
+    readonly autoExecuteStatusInheritedFrom?: AutoExecuteStatusInheritedFrom;
+    readonly recommendationsStatus?: string;
+    readonly lastChecked?: Date;
+    readonly recommendedActions?: RecommendedAction[];
+};
+
+// @public
+export type AdvisorStatus = "GA" | "PublicPreview" | "LimitedPublicPreview" | "PrivatePreview";
+
+// @public
+export type AggregationFunctionType = string;
+
+// @public
+export type AuthenticationName = string;
+
+// @public
+export type AutoExecuteStatus = "Enabled" | "Disabled" | "Default";
+
+// @public
+export type AutoExecuteStatusInheritedFrom = "Default" | "Subscription" | "Server" | "ElasticPool" | "Database";
 
 // @public
 export type AutomaticTuningDisabledReason = "Default" | "Disabled" | "AutoConfigured" | "InheritedFromServer" | "QueryStoreOff" | "QueryStoreReadOnly" | "NotSupported";
@@ -70,43 +94,10 @@ export interface AutoPauseDelayTimeRange {
 }
 
 // @public
-export interface BackupLongTermRetentionPolicies {
-    beginCreateOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, policyName: LongTermRetentionPolicyName, parameters: BackupLongTermRetentionPolicy, options?: BackupLongTermRetentionPoliciesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<BackupLongTermRetentionPoliciesCreateOrUpdateResponse>, BackupLongTermRetentionPoliciesCreateOrUpdateResponse>>;
-    beginCreateOrUpdateAndWait(resourceGroupName: string, serverName: string, databaseName: string, policyName: LongTermRetentionPolicyName, parameters: BackupLongTermRetentionPolicy, options?: BackupLongTermRetentionPoliciesCreateOrUpdateOptionalParams): Promise<BackupLongTermRetentionPoliciesCreateOrUpdateResponse>;
-    get(resourceGroupName: string, serverName: string, databaseName: string, policyName: LongTermRetentionPolicyName, options?: BackupLongTermRetentionPoliciesGetOptionalParams): Promise<BackupLongTermRetentionPoliciesGetResponse>;
-    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: BackupLongTermRetentionPoliciesListByDatabaseOptionalParams): Promise<BackupLongTermRetentionPoliciesListByDatabaseResponse>;
+export interface AzureADOnlyAuthListResult {
+    readonly nextLink?: string;
+    readonly value?: ServerAzureADOnlyAuthentication[];
 }
-
-// @public
-export interface BackupLongTermRetentionPoliciesCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
-    resumeFrom?: string;
-    updateIntervalInMs?: number;
-}
-
-// @public
-export type BackupLongTermRetentionPoliciesCreateOrUpdateResponse = BackupLongTermRetentionPolicy;
-
-// @public
-export interface BackupLongTermRetentionPoliciesGetOptionalParams extends coreClient.OperationOptions {
-}
-
-// @public
-export type BackupLongTermRetentionPoliciesGetResponse = BackupLongTermRetentionPolicy;
-
-// @public
-export interface BackupLongTermRetentionPoliciesListByDatabaseOptionalParams extends coreClient.OperationOptions {
-}
-
-// @public
-export type BackupLongTermRetentionPoliciesListByDatabaseResponse = BackupLongTermRetentionPolicy;
-
-// @public
-export type BackupLongTermRetentionPolicy = ProxyResource & {
-    weeklyRetention?: string;
-    monthlyRetention?: string;
-    yearlyRetention?: string;
-    weekOfYear?: number;
-};
 
 // @public
 export interface BackupShortTermRetentionPolicies {
@@ -160,6 +151,7 @@ export type BackupShortTermRetentionPoliciesUpdateResponse = BackupShortTermRete
 // @public
 export type BackupShortTermRetentionPolicy = ProxyResource & {
     retentionDays?: number;
+    diffBackupIntervalInHours?: DiffBackupIntervalInHours;
 };
 
 // @public
@@ -167,6 +159,9 @@ export interface BackupShortTermRetentionPolicyListResult {
     readonly nextLink?: string;
     readonly value?: BackupShortTermRetentionPolicy[];
 }
+
+// @public
+export type BackupStorageRedundancy = string;
 
 // @public
 export type BlobAuditingPolicyState = "Enabled" | "Disabled";
@@ -213,6 +208,9 @@ export interface CheckNameAvailabilityResponse {
 }
 
 // @public
+export type ColumnDataType = string;
+
+// @public
 export interface CompleteDatabaseRestoreDefinition {
     lastBackupName: string;
 }
@@ -221,9 +219,22 @@ export interface CompleteDatabaseRestoreDefinition {
 export type ConnectionPolicyName = string;
 
 // @public
+export interface CopyLongTermRetentionBackupParameters {
+    targetBackupStorageRedundancy?: BackupStorageRedundancy;
+    targetDatabaseName?: string;
+    targetResourceGroup?: string;
+    targetServerFullyQualifiedDomainName?: string;
+    targetServerResourceId?: string;
+    targetSubscriptionId?: string;
+}
+
+// @public
 export interface CreateDatabaseRestorePointDefinition {
     restorePointLabel: string;
 }
+
+// @public
+export type CreatedByType = string;
 
 // @public
 export type CreateMode = string;
@@ -233,6 +244,7 @@ export type Database = TrackedResource & {
     sku?: Sku;
     readonly kind?: string;
     readonly managedBy?: string;
+    identity?: DatabaseIdentity;
     createMode?: CreateMode;
     collation?: string;
     maxSizeBytes?: number;
@@ -258,13 +270,50 @@ export type Database = TrackedResource & {
     readonly maxLogSizeBytes?: number;
     readonly earliestRestoreDate?: Date;
     readScale?: DatabaseReadScale;
-    readReplicaCount?: number;
+    highAvailabilityReplicaCount?: number;
+    secondaryType?: SecondaryType;
     readonly currentSku?: Sku;
     autoPauseDelay?: number;
+    readonly currentBackupStorageRedundancy?: BackupStorageRedundancy;
+    requestedBackupStorageRedundancy?: BackupStorageRedundancy;
     minCapacity?: number;
     readonly pausedDate?: Date;
     readonly resumedDate?: Date;
+    maintenanceConfigurationId?: string;
+    isLedgerOn?: boolean;
+    readonly isInfraEncryptionEnabled?: boolean;
+    federatedClientId?: string;
+    primaryDelegatedIdentityClientId?: string;
 };
+
+// @public
+export interface DatabaseAdvisors {
+    get(resourceGroupName: string, serverName: string, databaseName: string, advisorName: string, options?: DatabaseAdvisorsGetOptionalParams): Promise<DatabaseAdvisorsGetResponse>;
+    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: DatabaseAdvisorsListByDatabaseOptionalParams): Promise<DatabaseAdvisorsListByDatabaseResponse>;
+    update(resourceGroupName: string, serverName: string, databaseName: string, advisorName: string, parameters: Advisor, options?: DatabaseAdvisorsUpdateOptionalParams): Promise<DatabaseAdvisorsUpdateResponse>;
+}
+
+// @public
+export interface DatabaseAdvisorsGetOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type DatabaseAdvisorsGetResponse = Advisor;
+
+// @public
+export interface DatabaseAdvisorsListByDatabaseOptionalParams extends coreClient.OperationOptions {
+    expand?: string;
+}
+
+// @public
+export type DatabaseAdvisorsListByDatabaseResponse = Advisor[];
+
+// @public
+export interface DatabaseAdvisorsUpdateOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type DatabaseAdvisorsUpdateResponse = Advisor;
 
 // @public
 export type DatabaseAutomaticTuning = ProxyResource & {
@@ -333,15 +382,15 @@ export type DatabaseBlobAuditingPoliciesListByDatabaseResponse = DatabaseBlobAud
 // @public
 export type DatabaseBlobAuditingPolicy = ProxyResource & {
     readonly kind?: string;
-    state?: BlobAuditingPolicyState;
-    storageEndpoint?: string;
-    storageAccountAccessKey?: string;
     retentionDays?: number;
     auditActionsAndGroups?: string[];
-    storageAccountSubscriptionId?: string;
     isStorageSecondaryKeyInUse?: boolean;
     isAzureMonitorTargetEnabled?: boolean;
     queueDelayMs?: number;
+    state?: BlobAuditingPolicyState;
+    storageEndpoint?: string;
+    storageAccountAccessKey?: string;
+    storageAccountSubscriptionId?: string;
 };
 
 // @public
@@ -351,7 +400,130 @@ export interface DatabaseBlobAuditingPolicyListResult {
 }
 
 // @public
-export type DatabaseEdition = string;
+export type DatabaseColumn = ProxyResource & {
+    columnType?: ColumnDataType;
+    temporalType?: TableTemporalType;
+    memoryOptimized?: boolean;
+    isComputed?: boolean;
+};
+
+// @public
+export interface DatabaseColumnListResult {
+    readonly nextLink?: string;
+    readonly value?: DatabaseColumn[];
+}
+
+// @public
+export interface DatabaseColumns {
+    get(resourceGroupName: string, serverName: string, databaseName: string, schemaName: string, tableName: string, columnName: string, options?: DatabaseColumnsGetOptionalParams): Promise<DatabaseColumnsGetResponse>;
+    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: DatabaseColumnsListByDatabaseOptionalParams): PagedAsyncIterableIterator<DatabaseColumn>;
+    listByTable(resourceGroupName: string, serverName: string, databaseName: string, schemaName: string, tableName: string, options?: DatabaseColumnsListByTableOptionalParams): PagedAsyncIterableIterator<DatabaseColumn>;
+}
+
+// @public
+export interface DatabaseColumnsGetOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type DatabaseColumnsGetResponse = DatabaseColumn;
+
+// @public
+export interface DatabaseColumnsListByDatabaseNextOptionalParams extends coreClient.OperationOptions {
+    column?: string[];
+    orderBy?: string[];
+    schema?: string[];
+    skiptoken?: string;
+    table?: string[];
+}
+
+// @public
+export type DatabaseColumnsListByDatabaseNextResponse = DatabaseColumnListResult;
+
+// @public
+export interface DatabaseColumnsListByDatabaseOptionalParams extends coreClient.OperationOptions {
+    column?: string[];
+    orderBy?: string[];
+    schema?: string[];
+    skiptoken?: string;
+    table?: string[];
+}
+
+// @public
+export type DatabaseColumnsListByDatabaseResponse = DatabaseColumnListResult;
+
+// @public
+export interface DatabaseColumnsListByTableNextOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type DatabaseColumnsListByTableNextResponse = DatabaseColumnListResult;
+
+// @public
+export interface DatabaseColumnsListByTableOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type DatabaseColumnsListByTableResponse = DatabaseColumnListResult;
+
+// @public
+export type DatabaseExtensions = ProxyResource & {
+    operationMode?: OperationMode;
+    storageKeyType?: StorageKeyType;
+    storageKey?: string;
+    storageUri?: string;
+};
+
+// @public
+export interface DatabaseExtensionsCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export type DatabaseExtensionsCreateOrUpdateResponse = ImportExportExtensionsOperationResult;
+
+// @public
+export interface DatabaseExtensionsGetOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export interface DatabaseExtensionsListByDatabaseNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type DatabaseExtensionsListByDatabaseNextResponse = ImportExportExtensionsOperationListResult;
+
+// @public
+export interface DatabaseExtensionsListByDatabaseOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type DatabaseExtensionsListByDatabaseResponse = ImportExportExtensionsOperationListResult;
+
+// @public
+export interface DatabaseExtensionsOperations {
+    beginCreateOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, extensionName: string, parameters: DatabaseExtensions, options?: DatabaseExtensionsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<DatabaseExtensionsCreateOrUpdateResponse>, DatabaseExtensionsCreateOrUpdateResponse>>;
+    beginCreateOrUpdateAndWait(resourceGroupName: string, serverName: string, databaseName: string, extensionName: string, parameters: DatabaseExtensions, options?: DatabaseExtensionsCreateOrUpdateOptionalParams): Promise<DatabaseExtensionsCreateOrUpdateResponse>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, extensionName: string, options?: DatabaseExtensionsGetOptionalParams): Promise<void>;
+    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: DatabaseExtensionsListByDatabaseOptionalParams): PagedAsyncIterableIterator<ImportExportExtensionsOperationResult>;
+}
+
+// @public
+export interface DatabaseIdentity {
+    delegatedResources?: {
+        [propertyName: string]: Delegation;
+    };
+    readonly tenantId?: string;
+    type?: DatabaseIdentityType;
+    userAssignedIdentities?: {
+        [propertyName: string]: DatabaseUserIdentity;
+    };
+}
+
+// @public
+export type DatabaseIdentityType = string;
 
 // @public
 export type DatabaseLicenseType = string;
@@ -414,19 +586,45 @@ export type DatabaseOperationsListByDatabaseResponse = DatabaseOperationListResu
 export type DatabaseReadScale = string;
 
 // @public
+export interface DatabaseRecommendedActions {
+    get(resourceGroupName: string, serverName: string, databaseName: string, advisorName: string, recommendedActionName: string, options?: DatabaseRecommendedActionsGetOptionalParams): Promise<DatabaseRecommendedActionsGetResponse>;
+    listByDatabaseAdvisor(resourceGroupName: string, serverName: string, databaseName: string, advisorName: string, options?: DatabaseRecommendedActionsListByDatabaseAdvisorOptionalParams): Promise<DatabaseRecommendedActionsListByDatabaseAdvisorResponse>;
+    update(resourceGroupName: string, serverName: string, databaseName: string, advisorName: string, recommendedActionName: string, parameters: RecommendedAction, options?: DatabaseRecommendedActionsUpdateOptionalParams): Promise<DatabaseRecommendedActionsUpdateResponse>;
+}
+
+// @public
+export interface DatabaseRecommendedActionsGetOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type DatabaseRecommendedActionsGetResponse = RecommendedAction;
+
+// @public
+export interface DatabaseRecommendedActionsListByDatabaseAdvisorOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type DatabaseRecommendedActionsListByDatabaseAdvisorResponse = RecommendedAction[];
+
+// @public
+export interface DatabaseRecommendedActionsUpdateOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type DatabaseRecommendedActionsUpdateResponse = RecommendedAction;
+
+// @public
 export interface Databases {
-    beginCreateImportOperation(resourceGroupName: string, serverName: string, databaseName: string, extensionName: ExtensionName, parameters: ImportExtensionRequest, options?: DatabasesCreateImportOperationOptionalParams): Promise<PollerLike<PollOperationState<DatabasesCreateImportOperationResponse>, DatabasesCreateImportOperationResponse>>;
-    beginCreateImportOperationAndWait(resourceGroupName: string, serverName: string, databaseName: string, extensionName: ExtensionName, parameters: ImportExtensionRequest, options?: DatabasesCreateImportOperationOptionalParams): Promise<DatabasesCreateImportOperationResponse>;
     beginCreateOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, parameters: Database, options?: DatabasesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<DatabasesCreateOrUpdateResponse>, DatabasesCreateOrUpdateResponse>>;
     beginCreateOrUpdateAndWait(resourceGroupName: string, serverName: string, databaseName: string, parameters: Database, options?: DatabasesCreateOrUpdateOptionalParams): Promise<DatabasesCreateOrUpdateResponse>;
     beginDelete(resourceGroupName: string, serverName: string, databaseName: string, options?: DatabasesDeleteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
     beginDeleteAndWait(resourceGroupName: string, serverName: string, databaseName: string, options?: DatabasesDeleteOptionalParams): Promise<void>;
-    beginExport(resourceGroupName: string, serverName: string, databaseName: string, parameters: ExportRequest, options?: DatabasesExportOptionalParams): Promise<PollerLike<PollOperationState<DatabasesExportResponse>, DatabasesExportResponse>>;
-    beginExportAndWait(resourceGroupName: string, serverName: string, databaseName: string, parameters: ExportRequest, options?: DatabasesExportOptionalParams): Promise<DatabasesExportResponse>;
+    beginExport(resourceGroupName: string, serverName: string, databaseName: string, parameters: ExportDatabaseDefinition, options?: DatabasesExportOptionalParams): Promise<PollerLike<PollOperationState<DatabasesExportResponse>, DatabasesExportResponse>>;
+    beginExportAndWait(resourceGroupName: string, serverName: string, databaseName: string, parameters: ExportDatabaseDefinition, options?: DatabasesExportOptionalParams): Promise<DatabasesExportResponse>;
     beginFailover(resourceGroupName: string, serverName: string, databaseName: string, options?: DatabasesFailoverOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
     beginFailoverAndWait(resourceGroupName: string, serverName: string, databaseName: string, options?: DatabasesFailoverOptionalParams): Promise<void>;
-    beginImport(resourceGroupName: string, serverName: string, parameters: ImportRequest, options?: DatabasesImportOptionalParams): Promise<PollerLike<PollOperationState<DatabasesImportResponse>, DatabasesImportResponse>>;
-    beginImportAndWait(resourceGroupName: string, serverName: string, parameters: ImportRequest, options?: DatabasesImportOptionalParams): Promise<DatabasesImportResponse>;
+    beginImport(resourceGroupName: string, serverName: string, databaseName: string, parameters: ImportExistingDatabaseDefinition, options?: DatabasesImportOptionalParams): Promise<PollerLike<PollOperationState<DatabasesImportResponse>, DatabasesImportResponse>>;
+    beginImportAndWait(resourceGroupName: string, serverName: string, databaseName: string, parameters: ImportExistingDatabaseDefinition, options?: DatabasesImportOptionalParams): Promise<DatabasesImportResponse>;
     beginPause(resourceGroupName: string, serverName: string, databaseName: string, options?: DatabasesPauseOptionalParams): Promise<PollerLike<PollOperationState<DatabasesPauseResponse>, DatabasesPauseResponse>>;
     beginPauseAndWait(resourceGroupName: string, serverName: string, databaseName: string, options?: DatabasesPauseOptionalParams): Promise<DatabasesPauseResponse>;
     beginResume(resourceGroupName: string, serverName: string, databaseName: string, options?: DatabasesResumeOptionalParams): Promise<PollerLike<PollOperationState<DatabasesResumeResponse>, DatabasesResumeResponse>>;
@@ -438,19 +636,49 @@ export interface Databases {
     get(resourceGroupName: string, serverName: string, databaseName: string, options?: DatabasesGetOptionalParams): Promise<DatabasesGetResponse>;
     listByElasticPool(resourceGroupName: string, serverName: string, elasticPoolName: string, options?: DatabasesListByElasticPoolOptionalParams): PagedAsyncIterableIterator<Database>;
     listByServer(resourceGroupName: string, serverName: string, options?: DatabasesListByServerOptionalParams): PagedAsyncIterableIterator<Database>;
+    listInaccessibleByServer(resourceGroupName: string, serverName: string, options?: DatabasesListInaccessibleByServerOptionalParams): PagedAsyncIterableIterator<Database>;
     listMetricDefinitions(resourceGroupName: string, serverName: string, databaseName: string, options?: DatabasesListMetricDefinitionsOptionalParams): PagedAsyncIterableIterator<MetricDefinition>;
     listMetrics(resourceGroupName: string, serverName: string, databaseName: string, filter: string, options?: DatabasesListMetricsOptionalParams): PagedAsyncIterableIterator<Metric>;
     rename(resourceGroupName: string, serverName: string, databaseName: string, parameters: ResourceMoveDefinition, options?: DatabasesRenameOptionalParams): Promise<void>;
 }
 
 // @public
-export interface DatabasesCreateImportOperationOptionalParams extends coreClient.OperationOptions {
-    resumeFrom?: string;
-    updateIntervalInMs?: number;
+export type DatabaseSchema = ProxyResource & {};
+
+// @public
+export interface DatabaseSchemaListResult {
+    readonly nextLink?: string;
+    readonly value?: DatabaseSchema[];
 }
 
 // @public
-export type DatabasesCreateImportOperationResponse = ImportExportResponse;
+export interface DatabaseSchemas {
+    get(resourceGroupName: string, serverName: string, databaseName: string, schemaName: string, options?: DatabaseSchemasGetOptionalParams): Promise<DatabaseSchemasGetResponse>;
+    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: DatabaseSchemasListByDatabaseOptionalParams): PagedAsyncIterableIterator<DatabaseSchema>;
+}
+
+// @public
+export interface DatabaseSchemasGetOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type DatabaseSchemasGetResponse = DatabaseSchema;
+
+// @public
+export interface DatabaseSchemasListByDatabaseNextOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type DatabaseSchemasListByDatabaseNextResponse = DatabaseSchemaListResult;
+
+// @public
+export interface DatabaseSchemasListByDatabaseOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type DatabaseSchemasListByDatabaseResponse = DatabaseSchemaListResult;
 
 // @public
 export interface DatabasesCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
@@ -468,17 +696,57 @@ export interface DatabasesDeleteOptionalParams extends coreClient.OperationOptio
 }
 
 // @public
+export interface DatabaseSecurityAlertListResult {
+    readonly nextLink?: string;
+    readonly value?: DatabaseSecurityAlertPolicy[];
+}
+
+// @public
+export interface DatabaseSecurityAlertPolicies {
+    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, securityAlertPolicyName: SecurityAlertPolicyName, parameters: DatabaseSecurityAlertPolicy, options?: DatabaseSecurityAlertPoliciesCreateOrUpdateOptionalParams): Promise<DatabaseSecurityAlertPoliciesCreateOrUpdateResponse>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, securityAlertPolicyName: SecurityAlertPolicyName, options?: DatabaseSecurityAlertPoliciesGetOptionalParams): Promise<DatabaseSecurityAlertPoliciesGetResponse>;
+    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: DatabaseSecurityAlertPoliciesListByDatabaseOptionalParams): PagedAsyncIterableIterator<DatabaseSecurityAlertPolicy>;
+}
+
+// @public
+export interface DatabaseSecurityAlertPoliciesCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type DatabaseSecurityAlertPoliciesCreateOrUpdateResponse = DatabaseSecurityAlertPolicy;
+
+// @public
+export interface DatabaseSecurityAlertPoliciesGetOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type DatabaseSecurityAlertPoliciesGetResponse = DatabaseSecurityAlertPolicy;
+
+// @public
+export interface DatabaseSecurityAlertPoliciesListByDatabaseNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type DatabaseSecurityAlertPoliciesListByDatabaseNextResponse = DatabaseSecurityAlertListResult;
+
+// @public
+export interface DatabaseSecurityAlertPoliciesListByDatabaseOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type DatabaseSecurityAlertPoliciesListByDatabaseResponse = DatabaseSecurityAlertListResult;
+
+// @public
 export type DatabaseSecurityAlertPolicy = ProxyResource & {
-    location?: string;
-    readonly kind?: string;
-    state?: SecurityAlertPolicyState;
-    disabledAlerts?: string;
-    emailAddresses?: string;
-    emailAccountAdmins?: SecurityAlertPolicyEmailAccountAdmins;
+    readonly systemData?: SystemData;
+    state?: SecurityAlertsPolicyState;
+    disabledAlerts?: string[];
+    emailAddresses?: string[];
+    emailAccountAdmins?: boolean;
     storageEndpoint?: string;
     storageAccountAccessKey?: string;
     retentionDays?: number;
-    useServerDefault?: SecurityAlertPolicyUseServerDefault;
+    readonly creationTime?: Date;
 };
 
 // @public
@@ -488,7 +756,7 @@ export interface DatabasesExportOptionalParams extends coreClient.OperationOptio
 }
 
 // @public
-export type DatabasesExportResponse = ImportExportResponse;
+export type DatabasesExportResponse = ImportExportOperationResult;
 
 // @public
 export interface DatabasesFailoverOptionalParams extends coreClient.OperationOptions {
@@ -511,7 +779,7 @@ export interface DatabasesImportOptionalParams extends coreClient.OperationOptio
 }
 
 // @public
-export type DatabasesImportResponse = ImportExportResponse;
+export type DatabasesImportResponse = ImportExportOperationResult;
 
 // @public
 export interface DatabasesListByElasticPoolNextOptionalParams extends coreClient.OperationOptions {
@@ -529,6 +797,8 @@ export type DatabasesListByElasticPoolResponse = DatabaseListResult;
 
 // @public
 export interface DatabasesListByServerNextOptionalParams extends coreClient.OperationOptions {
+    // (undocumented)
+    skipToken?: string;
 }
 
 // @public
@@ -536,10 +806,26 @@ export type DatabasesListByServerNextResponse = DatabaseListResult;
 
 // @public
 export interface DatabasesListByServerOptionalParams extends coreClient.OperationOptions {
+    // (undocumented)
+    skipToken?: string;
 }
 
 // @public
 export type DatabasesListByServerResponse = DatabaseListResult;
+
+// @public
+export interface DatabasesListInaccessibleByServerNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type DatabasesListInaccessibleByServerNextResponse = DatabaseListResult;
+
+// @public
+export interface DatabasesListInaccessibleByServerOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type DatabasesListInaccessibleByServerResponse = DatabaseListResult;
 
 // @public
 export interface DatabasesListMetricDefinitionsOptionalParams extends coreClient.OperationOptions {
@@ -599,24 +885,45 @@ export interface DatabasesUpgradeDataWarehouseOptionalParams extends coreClient.
 }
 
 // @public
-export interface DatabaseThreatDetectionPolicies {
-    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, securityAlertPolicyName: SecurityAlertPolicyName, parameters: DatabaseSecurityAlertPolicy, options?: DatabaseThreatDetectionPoliciesCreateOrUpdateOptionalParams): Promise<DatabaseThreatDetectionPoliciesCreateOrUpdateResponse>;
-    get(resourceGroupName: string, serverName: string, databaseName: string, securityAlertPolicyName: SecurityAlertPolicyName, options?: DatabaseThreatDetectionPoliciesGetOptionalParams): Promise<DatabaseThreatDetectionPoliciesGetResponse>;
+export type DatabaseTable = ProxyResource & {
+    temporalType?: TableTemporalType;
+    memoryOptimized?: boolean;
+};
+
+// @public
+export interface DatabaseTableListResult {
+    readonly nextLink?: string;
+    readonly value?: DatabaseTable[];
 }
 
 // @public
-export interface DatabaseThreatDetectionPoliciesCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
+export interface DatabaseTables {
+    get(resourceGroupName: string, serverName: string, databaseName: string, schemaName: string, tableName: string, options?: DatabaseTablesGetOptionalParams): Promise<DatabaseTablesGetResponse>;
+    listBySchema(resourceGroupName: string, serverName: string, databaseName: string, schemaName: string, options?: DatabaseTablesListBySchemaOptionalParams): PagedAsyncIterableIterator<DatabaseTable>;
 }
 
 // @public
-export type DatabaseThreatDetectionPoliciesCreateOrUpdateResponse = DatabaseSecurityAlertPolicy;
-
-// @public
-export interface DatabaseThreatDetectionPoliciesGetOptionalParams extends coreClient.OperationOptions {
+export interface DatabaseTablesGetOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type DatabaseThreatDetectionPoliciesGetResponse = DatabaseSecurityAlertPolicy;
+export type DatabaseTablesGetResponse = DatabaseTable;
+
+// @public
+export interface DatabaseTablesListBySchemaNextOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type DatabaseTablesListBySchemaNextResponse = DatabaseTableListResult;
+
+// @public
+export interface DatabaseTablesListBySchemaOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type DatabaseTablesListBySchemaResponse = DatabaseTableListResult;
 
 // @public
 export interface DatabaseUpdate {
@@ -625,6 +932,7 @@ export interface DatabaseUpdate {
     collation?: string;
     createMode?: CreateMode;
     readonly creationDate?: Date;
+    readonly currentBackupStorageRedundancy?: BackupStorageRedundancy;
     readonly currentServiceObjectiveName?: string;
     readonly currentSku?: Sku;
     readonly databaseId?: string;
@@ -632,21 +940,29 @@ export interface DatabaseUpdate {
     readonly earliestRestoreDate?: Date;
     elasticPoolId?: string;
     readonly failoverGroupId?: string;
+    federatedClientId?: string;
+    highAvailabilityReplicaCount?: number;
+    identity?: DatabaseIdentity;
+    readonly isInfraEncryptionEnabled?: boolean;
+    isLedgerOn?: boolean;
     licenseType?: DatabaseLicenseType;
     longTermRetentionBackupResourceId?: string;
+    maintenanceConfigurationId?: string;
     readonly maxLogSizeBytes?: number;
     maxSizeBytes?: number;
     minCapacity?: number;
     readonly pausedDate?: Date;
-    readReplicaCount?: number;
+    primaryDelegatedIdentityClientId?: string;
     readScale?: DatabaseReadScale;
     recoverableDatabaseId?: string;
     recoveryServicesRecoveryPointId?: string;
+    requestedBackupStorageRedundancy?: BackupStorageRedundancy;
     readonly requestedServiceObjectiveName?: string;
     restorableDroppedDatabaseId?: string;
     restorePointInTime?: Date;
     readonly resumedDate?: Date;
     sampleName?: SampleName;
+    secondaryType?: SecondaryType;
     sku?: Sku;
     sourceDatabaseDeletionDate?: Date;
     sourceDatabaseId?: string;
@@ -658,19 +974,17 @@ export interface DatabaseUpdate {
 }
 
 // @public
-export interface DatabaseUsage {
-    readonly currentValue?: number;
+export type DatabaseUsage = ProxyResource & {
     readonly displayName?: string;
+    readonly currentValue?: number;
     readonly limit?: number;
-    readonly name?: string;
-    readonly nextResetTime?: Date;
-    readonly resourceName?: string;
     readonly unit?: string;
-}
+};
 
 // @public
 export interface DatabaseUsageListResult {
-    value: DatabaseUsage[];
+    readonly nextLink?: string;
+    readonly value?: DatabaseUsage[];
 }
 
 // @public
@@ -679,11 +993,24 @@ export interface DatabaseUsages {
 }
 
 // @public
+export interface DatabaseUsagesListByDatabaseNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type DatabaseUsagesListByDatabaseNextResponse = DatabaseUsageListResult;
+
+// @public
 export interface DatabaseUsagesListByDatabaseOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
 export type DatabaseUsagesListByDatabaseResponse = DatabaseUsageListResult;
+
+// @public
+export interface DatabaseUserIdentity {
+    readonly clientId?: string;
+    readonly principalId?: string;
+}
 
 // @public
 export type DatabaseVulnerabilityAssessment = ProxyResource & {
@@ -905,6 +1232,129 @@ export type DataMaskingRuleState = "Disabled" | "Enabled";
 export type DataMaskingState = "Disabled" | "Enabled";
 
 // @public
+export type DataWarehouseUserActivities = ProxyResource & {
+    readonly activeQueriesCount?: number;
+};
+
+// @public
+export interface DataWarehouseUserActivitiesGetOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type DataWarehouseUserActivitiesGetResponse = DataWarehouseUserActivities;
+
+// @public
+export interface DataWarehouseUserActivitiesListByDatabaseNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type DataWarehouseUserActivitiesListByDatabaseNextResponse = DataWarehouseUserActivitiesListResult;
+
+// @public
+export interface DataWarehouseUserActivitiesListByDatabaseOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type DataWarehouseUserActivitiesListByDatabaseResponse = DataWarehouseUserActivitiesListResult;
+
+// @public
+export interface DataWarehouseUserActivitiesListResult {
+    readonly nextLink?: string;
+    readonly value?: DataWarehouseUserActivities[];
+}
+
+// @public
+export interface DataWarehouseUserActivitiesOperations {
+    get(resourceGroupName: string, serverName: string, databaseName: string, dataWarehouseUserActivityName: DataWarehouseUserActivityName, options?: DataWarehouseUserActivitiesGetOptionalParams): Promise<DataWarehouseUserActivitiesGetResponse>;
+    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: DataWarehouseUserActivitiesListByDatabaseOptionalParams): PagedAsyncIterableIterator<DataWarehouseUserActivities>;
+}
+
+// @public
+export type DataWarehouseUserActivityName = string;
+
+// @public
+export type DayOfWeek = string;
+
+// @public
+export interface Delegation {
+    resourceId?: string;
+    readonly tenantId?: string;
+}
+
+// @public
+export type DeletedServer = ProxyResource & {
+    readonly version?: string;
+    readonly deletionTime?: Date;
+    readonly originalId?: string;
+    readonly fullyQualifiedDomainName?: string;
+};
+
+// @public
+export interface DeletedServerListResult {
+    readonly nextLink?: string;
+    readonly value?: DeletedServer[];
+}
+
+// @public
+export interface DeletedServers {
+    beginRecover(locationName: string, deletedServerName: string, options?: DeletedServersRecoverOptionalParams): Promise<PollerLike<PollOperationState<DeletedServersRecoverResponse>, DeletedServersRecoverResponse>>;
+    beginRecoverAndWait(locationName: string, deletedServerName: string, options?: DeletedServersRecoverOptionalParams): Promise<DeletedServersRecoverResponse>;
+    get(locationName: string, deletedServerName: string, options?: DeletedServersGetOptionalParams): Promise<DeletedServersGetResponse>;
+    list(options?: DeletedServersListOptionalParams): PagedAsyncIterableIterator<DeletedServer>;
+    listByLocation(locationName: string, options?: DeletedServersListByLocationOptionalParams): PagedAsyncIterableIterator<DeletedServer>;
+}
+
+// @public
+export interface DeletedServersGetOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type DeletedServersGetResponse = DeletedServer;
+
+// @public
+export interface DeletedServersListByLocationNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type DeletedServersListByLocationNextResponse = DeletedServerListResult;
+
+// @public
+export interface DeletedServersListByLocationOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type DeletedServersListByLocationResponse = DeletedServerListResult;
+
+// @public
+export interface DeletedServersListNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type DeletedServersListNextResponse = DeletedServerListResult;
+
+// @public
+export interface DeletedServersListOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type DeletedServersListResponse = DeletedServerListResult;
+
+// @public
+export interface DeletedServersRecoverOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export type DeletedServersRecoverResponse = DeletedServer;
+
+// @public
+export type DiffBackupIntervalInHours = number;
+
+// @public
+export type DnsRefreshConfigurationPropertiesStatus = string;
+
+// @public
 export interface EditionCapability {
     readonly name?: string;
     readonly readScale?: ReadScaleCapability;
@@ -925,6 +1375,7 @@ export type ElasticPool = TrackedResource & {
     perDatabaseSettings?: ElasticPoolPerDatabaseSettings;
     zoneRedundant?: boolean;
     licenseType?: ElasticPoolLicenseType;
+    maintenanceConfigurationId?: string;
 };
 
 // @public
@@ -1005,9 +1456,6 @@ export type ElasticPoolDatabaseActivity = ProxyResource & {
 export interface ElasticPoolDatabaseActivityListResult {
     value: ElasticPoolDatabaseActivity[];
 }
-
-// @public
-export type ElasticPoolEdition = string;
 
 // @public
 export interface ElasticPoolEditionCapability {
@@ -1107,6 +1555,7 @@ export interface ElasticPoolPerformanceLevelCapability {
     readonly sku?: Sku;
     readonly status?: CapabilityStatus;
     readonly supportedLicenseTypes?: LicenseTypeCapability[];
+    readonly supportedMaintenanceConfigurations?: MaintenanceConfigurationCapability[];
     readonly supportedMaxSizes?: MaxSizeRangeCapability[];
     readonly supportedPerDatabaseMaxPerformanceLevels?: ElasticPoolPerDatabaseMaxPerformanceLevelCapability[];
     readonly supportedPerDatabaseMaxSizes?: MaxSizeRangeCapability[];
@@ -1202,6 +1651,7 @@ export type ElasticPoolsUpdateResponse = ElasticPool;
 // @public
 export interface ElasticPoolUpdate {
     licenseType?: ElasticPoolLicenseType;
+    maintenanceConfigurationId?: string;
     maxSizeBytes?: number;
     perDatabaseSettings?: ElasticPoolPerDatabaseSettings;
     sku?: Sku;
@@ -1220,6 +1670,7 @@ export type EncryptionProtector = ProxyResource & {
     serverKeyType?: ServerKeyType;
     readonly uri?: string;
     readonly thumbprint?: string;
+    autoRotationEnabled?: boolean;
 };
 
 // @public
@@ -1278,13 +1729,11 @@ export interface EncryptionProtectorsRevalidateOptionalParams extends coreClient
 }
 
 // @public
-export type Enum21 = string;
-
-// @public
-export interface ExportRequest {
+export interface ExportDatabaseDefinition {
     administratorLogin: string;
     administratorLoginPassword: string;
-    authenticationType?: AuthenticationType;
+    authenticationType?: string;
+    networkIsolation?: NetworkIsolationSettings;
     storageKey: string;
     storageKeyType: StorageKeyType;
     storageUri: string;
@@ -1328,15 +1777,15 @@ export type ExtendedDatabaseBlobAuditingPoliciesListByDatabaseResponse = Extende
 // @public
 export type ExtendedDatabaseBlobAuditingPolicy = ProxyResource & {
     predicateExpression?: string;
-    state?: BlobAuditingPolicyState;
-    storageEndpoint?: string;
-    storageAccountAccessKey?: string;
     retentionDays?: number;
     auditActionsAndGroups?: string[];
-    storageAccountSubscriptionId?: string;
     isStorageSecondaryKeyInUse?: boolean;
     isAzureMonitorTargetEnabled?: boolean;
     queueDelayMs?: number;
+    state?: BlobAuditingPolicyState;
+    storageEndpoint?: string;
+    storageAccountAccessKey?: string;
+    storageAccountSubscriptionId?: string;
 };
 
 // @public
@@ -1385,16 +1834,17 @@ export type ExtendedServerBlobAuditingPoliciesListByServerResponse = ExtendedSer
 
 // @public
 export type ExtendedServerBlobAuditingPolicy = ProxyResource & {
+    isDevopsAuditEnabled?: boolean;
     predicateExpression?: string;
-    state?: BlobAuditingPolicyState;
-    storageEndpoint?: string;
-    storageAccountAccessKey?: string;
     retentionDays?: number;
     auditActionsAndGroups?: string[];
-    storageAccountSubscriptionId?: string;
     isStorageSecondaryKeyInUse?: boolean;
     isAzureMonitorTargetEnabled?: boolean;
     queueDelayMs?: number;
+    state?: BlobAuditingPolicyState;
+    storageEndpoint?: string;
+    storageAccountAccessKey?: string;
+    storageAccountSubscriptionId?: string;
 };
 
 // @public
@@ -1402,9 +1852,6 @@ export interface ExtendedServerBlobAuditingPolicyListResult {
     readonly nextLink?: string;
     readonly value?: ExtendedServerBlobAuditingPolicy[];
 }
-
-// @public
-export type ExtensionName = string;
 
 // @public
 export type FailoverGroup = ProxyResource & {
@@ -1530,16 +1977,21 @@ export interface FailoverGroupUpdate {
 }
 
 // @public
-export type FirewallRule = ProxyResource & {
-    readonly kind?: string;
-    readonly location?: string;
+export type FirewallRule = ProxyResourceWithWritableName & {
     startIpAddress?: string;
     endIpAddress?: string;
 };
 
 // @public
+export interface FirewallRuleList {
+    // (undocumented)
+    values?: FirewallRule[];
+}
+
+// @public
 export interface FirewallRuleListResult {
-    value?: FirewallRule[];
+    readonly nextLink?: string;
+    readonly value?: FirewallRule[];
 }
 
 // @public
@@ -1548,6 +2000,7 @@ export interface FirewallRules {
     delete(resourceGroupName: string, serverName: string, firewallRuleName: string, options?: FirewallRulesDeleteOptionalParams): Promise<void>;
     get(resourceGroupName: string, serverName: string, firewallRuleName: string, options?: FirewallRulesGetOptionalParams): Promise<FirewallRulesGetResponse>;
     listByServer(resourceGroupName: string, serverName: string, options?: FirewallRulesListByServerOptionalParams): PagedAsyncIterableIterator<FirewallRule>;
+    replace(resourceGroupName: string, serverName: string, parameters: FirewallRuleList, options?: FirewallRulesReplaceOptionalParams): Promise<FirewallRulesReplaceResponse>;
 }
 
 // @public
@@ -1569,11 +2022,25 @@ export interface FirewallRulesGetOptionalParams extends coreClient.OperationOpti
 export type FirewallRulesGetResponse = FirewallRule;
 
 // @public
+export interface FirewallRulesListByServerNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type FirewallRulesListByServerNextResponse = FirewallRuleListResult;
+
+// @public
 export interface FirewallRulesListByServerOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
 export type FirewallRulesListByServerResponse = FirewallRuleListResult;
+
+// @public
+export interface FirewallRulesReplaceOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type FirewallRulesReplaceResponse = FirewallRule;
 
 // @public
 export interface GeoBackupPolicies {
@@ -1626,43 +2093,64 @@ export type GeoBackupPolicyState = "Disabled" | "Enabled";
 export type IdentityType = string;
 
 // @public
-export type ImportExportResponse = ProxyResource & {
-    readonly requestType?: string;
+export type ImplementationMethod = "TSql" | "AzurePowerShell";
+
+// @public
+export interface ImportExistingDatabaseDefinition {
+    administratorLogin: string;
+    administratorLoginPassword: string;
+    authenticationType?: string;
+    networkIsolation?: NetworkIsolationSettings;
+    storageKey: string;
+    storageKeyType: StorageKeyType;
+    storageUri: string;
+}
+
+// @public
+export interface ImportExportExtensionsOperationListResult {
+    readonly nextLink?: string;
+    readonly value?: ImportExportExtensionsOperationResult[];
+}
+
+// @public
+export type ImportExportExtensionsOperationResult = ProxyResource & {
     readonly requestId?: string;
+    readonly requestType?: string;
+    readonly lastModifiedTime?: string;
     readonly serverName?: string;
     readonly databaseName?: string;
     readonly status?: string;
-    readonly lastModifiedTime?: string;
-    readonly queuedTime?: string;
-    readonly blobUri?: string;
     readonly errorMessage?: string;
 };
 
 // @public
-export type ImportExtensionProperties = ExportRequest & {
-    operationMode: "Import";
+export type ImportExportOperationResult = ProxyResource & {
+    readonly requestId?: string;
+    readonly requestType?: string;
+    readonly queuedTime?: string;
+    readonly lastModifiedTime?: string;
+    readonly blobUri?: string;
+    readonly serverName?: string;
+    readonly databaseName?: string;
+    readonly status?: string;
+    readonly errorMessage?: string;
+    readonly privateEndpointConnections?: PrivateEndpointConnectionRequestStatus[];
 };
 
 // @public
-export interface ImportExtensionRequest {
-    administratorLogin?: string;
-    administratorLoginPassword?: string;
-    authenticationType?: AuthenticationType;
-    name?: string;
-    operationMode?: "Import";
-    storageKey?: string;
-    storageKeyType?: StorageKeyType;
-    storageUri?: string;
-    type?: string;
+export interface ImportNewDatabaseDefinition {
+    administratorLogin: string;
+    administratorLoginPassword: string;
+    authenticationType?: string;
+    databaseName?: string;
+    edition?: string;
+    maxSizeBytes?: string;
+    networkIsolation?: NetworkIsolationSettings;
+    serviceObjectiveName?: string;
+    storageKey: string;
+    storageKeyType: StorageKeyType;
+    storageUri: string;
 }
-
-// @public
-export type ImportRequest = ExportRequest & {
-    databaseName: string;
-    edition: DatabaseEdition;
-    serviceObjectiveName: ServiceObjectiveName;
-    maxSizeBytes: string;
-};
 
 // @public
 export type InstanceFailoverGroup = ProxyResource & {
@@ -1883,6 +2371,9 @@ export interface InstancePoolVcoresCapability {
     readonly storageLimit?: MaxSizeCapability;
     readonly value?: number;
 }
+
+// @public
+export type IsRetryable = "Yes" | "No";
 
 // @public
 export type Job = ProxyResource & {
@@ -2555,6 +3046,38 @@ export enum KnownAdministratorType {
 }
 
 // @public
+export enum KnownAggregationFunctionType {
+    // (undocumented)
+    Avg = "avg",
+    // (undocumented)
+    Max = "max",
+    // (undocumented)
+    Min = "min",
+    // (undocumented)
+    Stdev = "stdev",
+    // (undocumented)
+    Sum = "sum"
+}
+
+// @public
+export enum KnownAuthenticationName {
+    // (undocumented)
+    Default = "Default"
+}
+
+// @public
+export enum KnownBackupStorageRedundancy {
+    // (undocumented)
+    Geo = "Geo",
+    // (undocumented)
+    GeoZone = "GeoZone",
+    // (undocumented)
+    Local = "Local",
+    // (undocumented)
+    Zone = "Zone"
+}
+
+// @public
 export enum KnownCapabilityGroup {
     // (undocumented)
     SupportedEditions = "supportedEditions",
@@ -2577,9 +3100,93 @@ export enum KnownCatalogCollationType {
 }
 
 // @public
+export enum KnownColumnDataType {
+    // (undocumented)
+    Bigint = "bigint",
+    // (undocumented)
+    Binary = "binary",
+    // (undocumented)
+    Bit = "bit",
+    // (undocumented)
+    Char = "char",
+    // (undocumented)
+    Date = "date",
+    // (undocumented)
+    Datetime = "datetime",
+    // (undocumented)
+    Datetime2 = "datetime2",
+    // (undocumented)
+    Datetimeoffset = "datetimeoffset",
+    // (undocumented)
+    Decimal = "decimal",
+    // (undocumented)
+    Float = "float",
+    // (undocumented)
+    Geography = "geography",
+    // (undocumented)
+    Geometry = "geometry",
+    // (undocumented)
+    Hierarchyid = "hierarchyid",
+    // (undocumented)
+    Image = "image",
+    // (undocumented)
+    Int = "int",
+    // (undocumented)
+    Money = "money",
+    // (undocumented)
+    Nchar = "nchar",
+    // (undocumented)
+    Ntext = "ntext",
+    // (undocumented)
+    Numeric = "numeric",
+    // (undocumented)
+    Nvarchar = "nvarchar",
+    // (undocumented)
+    Real = "real",
+    // (undocumented)
+    Smalldatetime = "smalldatetime",
+    // (undocumented)
+    Smallint = "smallint",
+    // (undocumented)
+    Smallmoney = "smallmoney",
+    // (undocumented)
+    SqlVariant = "sql_variant",
+    // (undocumented)
+    Sysname = "sysname",
+    // (undocumented)
+    Text = "text",
+    // (undocumented)
+    Time = "time",
+    // (undocumented)
+    Timestamp = "timestamp",
+    // (undocumented)
+    Tinyint = "tinyint",
+    // (undocumented)
+    Uniqueidentifier = "uniqueidentifier",
+    // (undocumented)
+    Varbinary = "varbinary",
+    // (undocumented)
+    Varchar = "varchar",
+    // (undocumented)
+    Xml = "xml"
+}
+
+// @public
 export enum KnownConnectionPolicyName {
     // (undocumented)
     Default = "default"
+}
+
+// @public
+export enum KnownCreatedByType {
+    // (undocumented)
+    Application = "Application",
+    // (undocumented)
+    Key = "Key",
+    // (undocumented)
+    ManagedIdentity = "ManagedIdentity",
+    // (undocumented)
+    User = "User"
 }
 
 // @public
@@ -2607,35 +3214,11 @@ export enum KnownCreateMode {
 }
 
 // @public
-export enum KnownDatabaseEdition {
+export enum KnownDatabaseIdentityType {
     // (undocumented)
-    Basic = "Basic",
+    None = "None",
     // (undocumented)
-    Business = "Business",
-    // (undocumented)
-    BusinessCritical = "BusinessCritical",
-    // (undocumented)
-    DataWarehouse = "DataWarehouse",
-    // (undocumented)
-    Free = "Free",
-    // (undocumented)
-    GeneralPurpose = "GeneralPurpose",
-    // (undocumented)
-    Hyperscale = "Hyperscale",
-    // (undocumented)
-    Premium = "Premium",
-    // (undocumented)
-    PremiumRS = "PremiumRS",
-    // (undocumented)
-    Standard = "Standard",
-    // (undocumented)
-    Stretch = "Stretch",
-    // (undocumented)
-    System = "System",
-    // (undocumented)
-    System2 = "System2",
-    // (undocumented)
-    Web = "Web"
+    UserAssigned = "UserAssigned"
 }
 
 // @public
@@ -2707,21 +3290,53 @@ export enum KnownDatabaseStatus {
     // (undocumented)
     Standby = "Standby",
     // (undocumented)
+    Starting = "Starting",
+    // (undocumented)
+    Stopped = "Stopped",
+    // (undocumented)
+    Stopping = "Stopping",
+    // (undocumented)
     Suspect = "Suspect"
 }
 
 // @public
-export enum KnownElasticPoolEdition {
+export enum KnownDataWarehouseUserActivityName {
     // (undocumented)
-    Basic = "Basic",
+    Current = "current"
+}
+
+// @public
+export enum KnownDayOfWeek {
     // (undocumented)
-    BusinessCritical = "BusinessCritical",
+    Friday = "Friday",
     // (undocumented)
-    GeneralPurpose = "GeneralPurpose",
+    Monday = "Monday",
     // (undocumented)
-    Premium = "Premium",
+    Saturday = "Saturday",
     // (undocumented)
-    Standard = "Standard"
+    Sunday = "Sunday",
+    // (undocumented)
+    Thursday = "Thursday",
+    // (undocumented)
+    Tuesday = "Tuesday",
+    // (undocumented)
+    Wednesday = "Wednesday"
+}
+
+// @public
+export enum KnownDiffBackupIntervalInHours {
+    // (undocumented)
+    Twelve = 12,
+    // (undocumented)
+    TwentyFour = 24
+}
+
+// @public
+export enum KnownDnsRefreshConfigurationPropertiesStatus {
+    // (undocumented)
+    Failed = "Failed",
+    // (undocumented)
+    Succeeded = "Succeeded"
 }
 
 // @public
@@ -2749,24 +3364,6 @@ export enum KnownEncryptionProtectorName {
 }
 
 // @public
-export enum KnownEnum21 {
-    // (undocumented)
-    All = "All",
-    // (undocumented)
-    Error = "Error",
-    // (undocumented)
-    Success = "Success",
-    // (undocumented)
-    Warning = "Warning"
-}
-
-// @public
-export enum KnownExtensionName {
-    // (undocumented)
-    Import = "import"
-}
-
-// @public
 export enum KnownFailoverGroupReplicationRole {
     // (undocumented)
     Primary = "Primary",
@@ -2783,7 +3380,13 @@ export enum KnownGeoBackupPolicyName {
 // @public
 export enum KnownIdentityType {
     // (undocumented)
-    SystemAssigned = "SystemAssigned"
+    None = "None",
+    // (undocumented)
+    SystemAssigned = "SystemAssigned",
+    // (undocumented)
+    SystemAssignedUserAssigned = "SystemAssigned,UserAssigned",
+    // (undocumented)
+    UserAssigned = "UserAssigned"
 }
 
 // @public
@@ -2873,6 +3476,12 @@ export enum KnownJobTargetType {
 }
 
 // @public
+export enum KnownLedgerDigestUploadsName {
+    // (undocumented)
+    Current = "current"
+}
+
+// @public
 export enum KnownLogSizeUnit {
     // (undocumented)
     Gigabytes = "Gigabytes",
@@ -2884,16 +3493,6 @@ export enum KnownLogSizeUnit {
     Petabytes = "Petabytes",
     // (undocumented)
     Terabytes = "Terabytes"
-}
-
-// @public
-export enum KnownLongTermRetentionDatabaseState {
-    // (undocumented)
-    All = "All",
-    // (undocumented)
-    Deleted = "Deleted",
-    // (undocumented)
-    Live = "Live"
 }
 
 // @public
@@ -2955,6 +3554,40 @@ export enum KnownManagedInstanceLongTermRetentionPolicyName {
 }
 
 // @public
+export enum KnownManagedInstancePropertiesProvisioningState {
+    // (undocumented)
+    Accepted = "Accepted",
+    // (undocumented)
+    Canceled = "Canceled",
+    // (undocumented)
+    Created = "Created",
+    // (undocumented)
+    Creating = "Creating",
+    // (undocumented)
+    Deleted = "Deleted",
+    // (undocumented)
+    Deleting = "Deleting",
+    // (undocumented)
+    Failed = "Failed",
+    // (undocumented)
+    NotSpecified = "NotSpecified",
+    // (undocumented)
+    Registering = "Registering",
+    // (undocumented)
+    Running = "Running",
+    // (undocumented)
+    Succeeded = "Succeeded",
+    // (undocumented)
+    TimedOut = "TimedOut",
+    // (undocumented)
+    Unknown = "Unknown",
+    // (undocumented)
+    Unrecognized = "Unrecognized",
+    // (undocumented)
+    Updating = "Updating"
+}
+
+// @public
 export enum KnownManagedInstanceProxyOverride {
     // (undocumented)
     Default = "Default",
@@ -3007,6 +3640,26 @@ export enum KnownMaxSizeUnit {
 }
 
 // @public
+export enum KnownMetricType {
+    // (undocumented)
+    Cpu = "cpu",
+    // (undocumented)
+    Dtu = "dtu",
+    // (undocumented)
+    Duration = "duration",
+    // (undocumented)
+    Io = "io",
+    // (undocumented)
+    LogIo = "logIo"
+}
+
+// @public
+export enum KnownOperationMode {
+    // (undocumented)
+    PolybaseImport = "PolybaseImport"
+}
+
+// @public
 export enum KnownOperationOrigin {
     // (undocumented)
     System = "system",
@@ -3042,6 +3695,16 @@ export enum KnownPrimaryAggregationType {
     None = "None",
     // (undocumented)
     Total = "Total"
+}
+
+// @public
+export enum KnownPrincipalType {
+    // (undocumented)
+    Application = "Application",
+    // (undocumented)
+    Group = "Group",
+    // (undocumented)
+    User = "User"
 }
 
 // @public
@@ -3091,6 +3754,26 @@ export enum KnownProvisioningState {
 }
 
 // @public
+export enum KnownQueryMetricUnitType {
+    // (undocumented)
+    Count = "count",
+    // (undocumented)
+    KB = "KB",
+    // (undocumented)
+    Microseconds = "microseconds",
+    // (undocumented)
+    Percentage = "percentage"
+}
+
+// @public
+export enum KnownQueryTimeGrainType {
+    // (undocumented)
+    P1D = "P1D",
+    // (undocumented)
+    PT1H = "PT1H"
+}
+
+// @public
 export enum KnownReadOnlyEndpointFailoverPolicy {
     // (undocumented)
     Disabled = "Disabled",
@@ -3104,6 +3787,46 @@ export enum KnownReadWriteEndpointFailoverPolicy {
     Automatic = "Automatic",
     // (undocumented)
     Manual = "Manual"
+}
+
+// @public
+export enum KnownRecommendedActionCurrentState {
+    // (undocumented)
+    Active = "Active",
+    // (undocumented)
+    Error = "Error",
+    // (undocumented)
+    Executing = "Executing",
+    // (undocumented)
+    Expired = "Expired",
+    // (undocumented)
+    Ignored = "Ignored",
+    // (undocumented)
+    Monitoring = "Monitoring",
+    // (undocumented)
+    Pending = "Pending",
+    // (undocumented)
+    PendingRevert = "PendingRevert",
+    // (undocumented)
+    Resolved = "Resolved",
+    // (undocumented)
+    RevertCancelled = "RevertCancelled",
+    // (undocumented)
+    Reverted = "Reverted",
+    // (undocumented)
+    Reverting = "Reverting",
+    // (undocumented)
+    Success = "Success",
+    // (undocumented)
+    Verifying = "Verifying"
+}
+
+// @public
+export enum KnownReplicationLinkType {
+    // (undocumented)
+    GEO = "GEO",
+    // (undocumented)
+    Named = "NAMED"
 }
 
 // @public
@@ -3143,15 +3866,27 @@ export enum KnownSampleName {
 }
 
 // @public
-export enum KnownSecurityAlertPolicyName {
+export enum KnownSecondaryType {
     // (undocumented)
-    Default = "default"
+    Geo = "Geo",
+    // (undocumented)
+    Named = "Named"
 }
 
 // @public
-export enum KnownSecurityAlertPolicyNameAutoGenerated {
+export enum KnownSecurityAlertPolicyName {
     // (undocumented)
     Default = "Default"
+}
+
+// @public
+export enum KnownServerConnectionType {
+    // (undocumented)
+    Default = "Default",
+    // (undocumented)
+    Proxy = "Proxy",
+    // (undocumented)
+    Redirect = "Redirect"
 }
 
 // @public
@@ -3163,11 +3898,27 @@ export enum KnownServerKeyType {
 }
 
 // @public
-export enum KnownServerPublicNetworkAccess {
+export enum KnownServerNetworkAccessFlag {
     // (undocumented)
     Disabled = "Disabled",
     // (undocumented)
     Enabled = "Enabled"
+}
+
+// @public
+export enum KnownServerTrustGroupPropertiesTrustScopesItem {
+    // (undocumented)
+    GlobalTransactions = "GlobalTransactions",
+    // (undocumented)
+    ServiceBroker = "ServiceBroker"
+}
+
+// @public
+export enum KnownServerWorkspaceFeature {
+    // (undocumented)
+    Connected = "Connected",
+    // (undocumented)
+    Disconnected = "Disconnected"
 }
 
 // @public
@@ -3305,9 +4056,25 @@ export enum KnownServiceObjectiveName {
 }
 
 // @public
+export enum KnownServicePrincipalType {
+    // (undocumented)
+    None = "None",
+    // (undocumented)
+    SystemAssigned = "SystemAssigned"
+}
+
+// @public
 export enum KnownShortTermRetentionPolicyName {
     // (undocumented)
     Default = "default"
+}
+
+// @public
+export enum KnownSqlAgentConfigurationPropertiesState {
+    // (undocumented)
+    Disabled = "Disabled",
+    // (undocumented)
+    Enabled = "Enabled"
 }
 
 // @public
@@ -3318,6 +4085,14 @@ export enum KnownStorageCapabilityStorageAccountType {
     LRS = "LRS",
     // (undocumented)
     ZRS = "ZRS"
+}
+
+// @public
+export enum KnownStorageKeyType {
+    // (undocumented)
+    SharedAccessKey = "SharedAccessKey",
+    // (undocumented)
+    StorageAccessKey = "StorageAccessKey"
 }
 
 // @public
@@ -3375,6 +4150,18 @@ export enum KnownSyncGroupState {
 }
 
 // @public
+export enum KnownSyncGroupsType {
+    // (undocumented)
+    All = "All",
+    // (undocumented)
+    Error = "Error",
+    // (undocumented)
+    Success = "Success",
+    // (undocumented)
+    Warning = "Warning"
+}
+
+// @public
 export enum KnownSyncMemberDbType {
     // (undocumented)
     AzureSqlDatabase = "AzureSqlDatabase",
@@ -3423,11 +4210,13 @@ export enum KnownSyncMemberState {
 }
 
 // @public
-export enum KnownTransparentDataEncryptionActivityStatus {
+export enum KnownTableTemporalType {
     // (undocumented)
-    Decrypting = "Decrypting",
+    HistoryTable = "HistoryTable",
     // (undocumented)
-    Encrypting = "Encrypting"
+    NonTemporalTable = "NonTemporalTable",
+    // (undocumented)
+    SystemVersionedTemporalTable = "SystemVersionedTemporalTable"
 }
 
 // @public
@@ -3469,9 +4258,27 @@ export enum KnownUnitType {
 }
 
 // @public
+export enum KnownUpsertManagedServerOperationStepStatus {
+    // (undocumented)
+    Canceled = "Canceled",
+    // (undocumented)
+    Completed = "Completed",
+    // (undocumented)
+    Failed = "Failed",
+    // (undocumented)
+    InProgress = "InProgress",
+    // (undocumented)
+    NotStarted = "NotStarted",
+    // (undocumented)
+    SlowedDown = "SlowedDown"
+}
+
+// @public
 export enum KnownVirtualNetworkRuleState {
     // (undocumented)
     Deleting = "Deleting",
+    // (undocumented)
+    Failed = "Failed",
     // (undocumented)
     Initializing = "Initializing",
     // (undocumented)
@@ -3509,6 +4316,73 @@ export enum KnownVulnerabilityAssessmentScanTriggerType {
 }
 
 // @public
+export type LedgerDigestUploads = ProxyResource & {
+    digestStorageEndpoint?: string;
+    readonly state?: LedgerDigestUploadsState;
+};
+
+// @public
+export interface LedgerDigestUploadsCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export type LedgerDigestUploadsCreateOrUpdateResponse = LedgerDigestUploads;
+
+// @public
+export interface LedgerDigestUploadsDisableOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export type LedgerDigestUploadsDisableResponse = LedgerDigestUploads;
+
+// @public
+export interface LedgerDigestUploadsGetOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type LedgerDigestUploadsGetResponse = LedgerDigestUploads;
+
+// @public
+export interface LedgerDigestUploadsListByDatabaseNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type LedgerDigestUploadsListByDatabaseNextResponse = LedgerDigestUploadsListResult;
+
+// @public
+export interface LedgerDigestUploadsListByDatabaseOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type LedgerDigestUploadsListByDatabaseResponse = LedgerDigestUploadsListResult;
+
+// @public
+export interface LedgerDigestUploadsListResult {
+    readonly nextLink?: string;
+    readonly value?: LedgerDigestUploads[];
+}
+
+// @public
+export type LedgerDigestUploadsName = string;
+
+// @public
+export interface LedgerDigestUploadsOperations {
+    beginCreateOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, ledgerDigestUploads: LedgerDigestUploadsName, parameters: LedgerDigestUploads, options?: LedgerDigestUploadsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<LedgerDigestUploadsCreateOrUpdateResponse>, LedgerDigestUploadsCreateOrUpdateResponse>>;
+    beginCreateOrUpdateAndWait(resourceGroupName: string, serverName: string, databaseName: string, ledgerDigestUploads: LedgerDigestUploadsName, parameters: LedgerDigestUploads, options?: LedgerDigestUploadsCreateOrUpdateOptionalParams): Promise<LedgerDigestUploadsCreateOrUpdateResponse>;
+    beginDisable(resourceGroupName: string, serverName: string, databaseName: string, ledgerDigestUploads: LedgerDigestUploadsName, options?: LedgerDigestUploadsDisableOptionalParams): Promise<PollerLike<PollOperationState<LedgerDigestUploadsDisableResponse>, LedgerDigestUploadsDisableResponse>>;
+    beginDisableAndWait(resourceGroupName: string, serverName: string, databaseName: string, ledgerDigestUploads: LedgerDigestUploadsName, options?: LedgerDigestUploadsDisableOptionalParams): Promise<LedgerDigestUploadsDisableResponse>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, ledgerDigestUploads: LedgerDigestUploadsName, options?: LedgerDigestUploadsGetOptionalParams): Promise<LedgerDigestUploadsGetResponse>;
+    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: LedgerDigestUploadsListByDatabaseOptionalParams): PagedAsyncIterableIterator<LedgerDigestUploads>;
+}
+
+// @public
+export type LedgerDigestUploadsState = "Enabled" | "Disabled";
+
+// @public
 export interface LicenseTypeCapability {
     readonly name?: string;
     reason?: string;
@@ -3522,6 +4396,17 @@ export interface LocationCapabilities {
     readonly status?: CapabilityStatus;
     readonly supportedManagedInstanceVersions?: ManagedInstanceVersionCapability[];
     readonly supportedServerVersions?: ServerVersionCapability[];
+}
+
+// @public
+export type LogicalDatabaseTransparentDataEncryption = ProxyResource & {
+    state?: TransparentDataEncryptionState;
+};
+
+// @public
+export interface LogicalDatabaseTransparentDataEncryptionListResult {
+    readonly nextLink?: string;
+    readonly value?: LogicalDatabaseTransparentDataEncryption[];
 }
 
 // @public
@@ -3547,6 +4432,8 @@ export type LongTermRetentionBackup = ProxyResource & {
     readonly databaseDeletionTime?: Date;
     readonly backupTime?: Date;
     readonly backupExpirationTime?: Date;
+    readonly backupStorageRedundancy?: BackupStorageRedundancy;
+    requestedBackupStorageRedundancy?: BackupStorageRedundancy;
 };
 
 // @public
@@ -3556,11 +4443,30 @@ export interface LongTermRetentionBackupListResult {
 }
 
 // @public
+export type LongTermRetentionBackupOperationResult = ProxyResource & {
+    readonly requestId?: string;
+    readonly operationType?: string;
+    readonly fromBackupResourceId?: string;
+    readonly toBackupResourceId?: string;
+    readonly targetBackupStorageRedundancy?: BackupStorageRedundancy;
+    readonly status?: string;
+    readonly message?: string;
+};
+
+// @public
 export interface LongTermRetentionBackups {
+    beginCopy(locationName: string, longTermRetentionServerName: string, longTermRetentionDatabaseName: string, backupName: string, parameters: CopyLongTermRetentionBackupParameters, options?: LongTermRetentionBackupsCopyOptionalParams): Promise<PollerLike<PollOperationState<LongTermRetentionBackupsCopyResponse>, LongTermRetentionBackupsCopyResponse>>;
+    beginCopyAndWait(locationName: string, longTermRetentionServerName: string, longTermRetentionDatabaseName: string, backupName: string, parameters: CopyLongTermRetentionBackupParameters, options?: LongTermRetentionBackupsCopyOptionalParams): Promise<LongTermRetentionBackupsCopyResponse>;
+    beginCopyByResourceGroup(resourceGroupName: string, locationName: string, longTermRetentionServerName: string, longTermRetentionDatabaseName: string, backupName: string, parameters: CopyLongTermRetentionBackupParameters, options?: LongTermRetentionBackupsCopyByResourceGroupOptionalParams): Promise<PollerLike<PollOperationState<LongTermRetentionBackupsCopyByResourceGroupResponse>, LongTermRetentionBackupsCopyByResourceGroupResponse>>;
+    beginCopyByResourceGroupAndWait(resourceGroupName: string, locationName: string, longTermRetentionServerName: string, longTermRetentionDatabaseName: string, backupName: string, parameters: CopyLongTermRetentionBackupParameters, options?: LongTermRetentionBackupsCopyByResourceGroupOptionalParams): Promise<LongTermRetentionBackupsCopyByResourceGroupResponse>;
     beginDelete(locationName: string, longTermRetentionServerName: string, longTermRetentionDatabaseName: string, backupName: string, options?: LongTermRetentionBackupsDeleteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
     beginDeleteAndWait(locationName: string, longTermRetentionServerName: string, longTermRetentionDatabaseName: string, backupName: string, options?: LongTermRetentionBackupsDeleteOptionalParams): Promise<void>;
     beginDeleteByResourceGroup(resourceGroupName: string, locationName: string, longTermRetentionServerName: string, longTermRetentionDatabaseName: string, backupName: string, options?: LongTermRetentionBackupsDeleteByResourceGroupOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
     beginDeleteByResourceGroupAndWait(resourceGroupName: string, locationName: string, longTermRetentionServerName: string, longTermRetentionDatabaseName: string, backupName: string, options?: LongTermRetentionBackupsDeleteByResourceGroupOptionalParams): Promise<void>;
+    beginUpdate(locationName: string, longTermRetentionServerName: string, longTermRetentionDatabaseName: string, backupName: string, parameters: UpdateLongTermRetentionBackupParameters, options?: LongTermRetentionBackupsUpdateOptionalParams): Promise<PollerLike<PollOperationState<LongTermRetentionBackupsUpdateResponse>, LongTermRetentionBackupsUpdateResponse>>;
+    beginUpdateAndWait(locationName: string, longTermRetentionServerName: string, longTermRetentionDatabaseName: string, backupName: string, parameters: UpdateLongTermRetentionBackupParameters, options?: LongTermRetentionBackupsUpdateOptionalParams): Promise<LongTermRetentionBackupsUpdateResponse>;
+    beginUpdateByResourceGroup(resourceGroupName: string, locationName: string, longTermRetentionServerName: string, longTermRetentionDatabaseName: string, backupName: string, parameters: UpdateLongTermRetentionBackupParameters, options?: LongTermRetentionBackupsUpdateByResourceGroupOptionalParams): Promise<PollerLike<PollOperationState<LongTermRetentionBackupsUpdateByResourceGroupResponse>, LongTermRetentionBackupsUpdateByResourceGroupResponse>>;
+    beginUpdateByResourceGroupAndWait(resourceGroupName: string, locationName: string, longTermRetentionServerName: string, longTermRetentionDatabaseName: string, backupName: string, parameters: UpdateLongTermRetentionBackupParameters, options?: LongTermRetentionBackupsUpdateByResourceGroupOptionalParams): Promise<LongTermRetentionBackupsUpdateByResourceGroupResponse>;
     get(locationName: string, longTermRetentionServerName: string, longTermRetentionDatabaseName: string, backupName: string, options?: LongTermRetentionBackupsGetOptionalParams): Promise<LongTermRetentionBackupsGetResponse>;
     getByResourceGroup(resourceGroupName: string, locationName: string, longTermRetentionServerName: string, longTermRetentionDatabaseName: string, backupName: string, options?: LongTermRetentionBackupsGetByResourceGroupOptionalParams): Promise<LongTermRetentionBackupsGetByResourceGroupResponse>;
     listByDatabase(locationName: string, longTermRetentionServerName: string, longTermRetentionDatabaseName: string, options?: LongTermRetentionBackupsListByDatabaseOptionalParams): PagedAsyncIterableIterator<LongTermRetentionBackup>;
@@ -3570,6 +4476,24 @@ export interface LongTermRetentionBackups {
     listByResourceGroupServer(resourceGroupName: string, locationName: string, longTermRetentionServerName: string, options?: LongTermRetentionBackupsListByResourceGroupServerOptionalParams): PagedAsyncIterableIterator<LongTermRetentionBackup>;
     listByServer(locationName: string, longTermRetentionServerName: string, options?: LongTermRetentionBackupsListByServerOptionalParams): PagedAsyncIterableIterator<LongTermRetentionBackup>;
 }
+
+// @public
+export interface LongTermRetentionBackupsCopyByResourceGroupOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export type LongTermRetentionBackupsCopyByResourceGroupResponse = LongTermRetentionBackupOperationResult;
+
+// @public
+export interface LongTermRetentionBackupsCopyOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export type LongTermRetentionBackupsCopyResponse = LongTermRetentionBackupOperationResult;
 
 // @public
 export interface LongTermRetentionBackupsDeleteByResourceGroupOptionalParams extends coreClient.OperationOptions {
@@ -3599,7 +4523,7 @@ export type LongTermRetentionBackupsGetResponse = LongTermRetentionBackup;
 
 // @public
 export interface LongTermRetentionBackupsListByDatabaseNextOptionalParams extends coreClient.OperationOptions {
-    databaseState?: LongTermRetentionDatabaseState;
+    databaseState?: DatabaseState;
     onlyLatestPerDatabase?: boolean;
 }
 
@@ -3608,7 +4532,7 @@ export type LongTermRetentionBackupsListByDatabaseNextResponse = LongTermRetenti
 
 // @public
 export interface LongTermRetentionBackupsListByDatabaseOptionalParams extends coreClient.OperationOptions {
-    databaseState?: LongTermRetentionDatabaseState;
+    databaseState?: DatabaseState;
     onlyLatestPerDatabase?: boolean;
 }
 
@@ -3617,7 +4541,7 @@ export type LongTermRetentionBackupsListByDatabaseResponse = LongTermRetentionBa
 
 // @public
 export interface LongTermRetentionBackupsListByLocationNextOptionalParams extends coreClient.OperationOptions {
-    databaseState?: LongTermRetentionDatabaseState;
+    databaseState?: DatabaseState;
     onlyLatestPerDatabase?: boolean;
 }
 
@@ -3626,7 +4550,7 @@ export type LongTermRetentionBackupsListByLocationNextResponse = LongTermRetenti
 
 // @public
 export interface LongTermRetentionBackupsListByLocationOptionalParams extends coreClient.OperationOptions {
-    databaseState?: LongTermRetentionDatabaseState;
+    databaseState?: DatabaseState;
     onlyLatestPerDatabase?: boolean;
 }
 
@@ -3635,7 +4559,7 @@ export type LongTermRetentionBackupsListByLocationResponse = LongTermRetentionBa
 
 // @public
 export interface LongTermRetentionBackupsListByResourceGroupDatabaseNextOptionalParams extends coreClient.OperationOptions {
-    databaseState?: LongTermRetentionDatabaseState;
+    databaseState?: DatabaseState;
     onlyLatestPerDatabase?: boolean;
 }
 
@@ -3644,7 +4568,7 @@ export type LongTermRetentionBackupsListByResourceGroupDatabaseNextResponse = Lo
 
 // @public
 export interface LongTermRetentionBackupsListByResourceGroupDatabaseOptionalParams extends coreClient.OperationOptions {
-    databaseState?: LongTermRetentionDatabaseState;
+    databaseState?: DatabaseState;
     onlyLatestPerDatabase?: boolean;
 }
 
@@ -3653,7 +4577,7 @@ export type LongTermRetentionBackupsListByResourceGroupDatabaseResponse = LongTe
 
 // @public
 export interface LongTermRetentionBackupsListByResourceGroupLocationNextOptionalParams extends coreClient.OperationOptions {
-    databaseState?: LongTermRetentionDatabaseState;
+    databaseState?: DatabaseState;
     onlyLatestPerDatabase?: boolean;
 }
 
@@ -3662,7 +4586,7 @@ export type LongTermRetentionBackupsListByResourceGroupLocationNextResponse = Lo
 
 // @public
 export interface LongTermRetentionBackupsListByResourceGroupLocationOptionalParams extends coreClient.OperationOptions {
-    databaseState?: LongTermRetentionDatabaseState;
+    databaseState?: DatabaseState;
     onlyLatestPerDatabase?: boolean;
 }
 
@@ -3671,7 +4595,7 @@ export type LongTermRetentionBackupsListByResourceGroupLocationResponse = LongTe
 
 // @public
 export interface LongTermRetentionBackupsListByResourceGroupServerNextOptionalParams extends coreClient.OperationOptions {
-    databaseState?: LongTermRetentionDatabaseState;
+    databaseState?: DatabaseState;
     onlyLatestPerDatabase?: boolean;
 }
 
@@ -3680,7 +4604,7 @@ export type LongTermRetentionBackupsListByResourceGroupServerNextResponse = Long
 
 // @public
 export interface LongTermRetentionBackupsListByResourceGroupServerOptionalParams extends coreClient.OperationOptions {
-    databaseState?: LongTermRetentionDatabaseState;
+    databaseState?: DatabaseState;
     onlyLatestPerDatabase?: boolean;
 }
 
@@ -3689,7 +4613,7 @@ export type LongTermRetentionBackupsListByResourceGroupServerResponse = LongTerm
 
 // @public
 export interface LongTermRetentionBackupsListByServerNextOptionalParams extends coreClient.OperationOptions {
-    databaseState?: LongTermRetentionDatabaseState;
+    databaseState?: DatabaseState;
     onlyLatestPerDatabase?: boolean;
 }
 
@@ -3698,7 +4622,7 @@ export type LongTermRetentionBackupsListByServerNextResponse = LongTermRetention
 
 // @public
 export interface LongTermRetentionBackupsListByServerOptionalParams extends coreClient.OperationOptions {
-    databaseState?: LongTermRetentionDatabaseState;
+    databaseState?: DatabaseState;
     onlyLatestPerDatabase?: boolean;
 }
 
@@ -3706,7 +4630,22 @@ export interface LongTermRetentionBackupsListByServerOptionalParams extends core
 export type LongTermRetentionBackupsListByServerResponse = LongTermRetentionBackupListResult;
 
 // @public
-export type LongTermRetentionDatabaseState = string;
+export interface LongTermRetentionBackupsUpdateByResourceGroupOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export type LongTermRetentionBackupsUpdateByResourceGroupResponse = LongTermRetentionBackupOperationResult;
+
+// @public
+export interface LongTermRetentionBackupsUpdateOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export type LongTermRetentionBackupsUpdateResponse = LongTermRetentionBackupOperationResult;
 
 // @public
 export interface LongTermRetentionManagedInstanceBackups {
@@ -3859,7 +4798,119 @@ export interface LongTermRetentionManagedInstanceBackupsListByResourceGroupLocat
 export type LongTermRetentionManagedInstanceBackupsListByResourceGroupLocationResponse = ManagedInstanceLongTermRetentionBackupListResult;
 
 // @public
+export interface LongTermRetentionPolicies {
+    beginCreateOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, policyName: LongTermRetentionPolicyName, parameters: LongTermRetentionPolicy, options?: LongTermRetentionPoliciesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<LongTermRetentionPoliciesCreateOrUpdateResponse>, LongTermRetentionPoliciesCreateOrUpdateResponse>>;
+    beginCreateOrUpdateAndWait(resourceGroupName: string, serverName: string, databaseName: string, policyName: LongTermRetentionPolicyName, parameters: LongTermRetentionPolicy, options?: LongTermRetentionPoliciesCreateOrUpdateOptionalParams): Promise<LongTermRetentionPoliciesCreateOrUpdateResponse>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, policyName: LongTermRetentionPolicyName, options?: LongTermRetentionPoliciesGetOptionalParams): Promise<LongTermRetentionPoliciesGetResponse>;
+    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: LongTermRetentionPoliciesListByDatabaseOptionalParams): PagedAsyncIterableIterator<LongTermRetentionPolicy>;
+}
+
+// @public
+export interface LongTermRetentionPoliciesCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export type LongTermRetentionPoliciesCreateOrUpdateResponse = LongTermRetentionPolicy;
+
+// @public
+export interface LongTermRetentionPoliciesGetOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type LongTermRetentionPoliciesGetResponse = LongTermRetentionPolicy;
+
+// @public
+export interface LongTermRetentionPoliciesListByDatabaseNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type LongTermRetentionPoliciesListByDatabaseNextResponse = LongTermRetentionPolicyListResult;
+
+// @public
+export interface LongTermRetentionPoliciesListByDatabaseOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type LongTermRetentionPoliciesListByDatabaseResponse = LongTermRetentionPolicyListResult;
+
+// @public
+export type LongTermRetentionPolicy = ProxyResource & {
+    weeklyRetention?: string;
+    monthlyRetention?: string;
+    yearlyRetention?: string;
+    weekOfYear?: number;
+};
+
+// @public
+export interface LongTermRetentionPolicyListResult {
+    readonly nextLink?: string;
+    readonly value?: LongTermRetentionPolicy[];
+}
+
+// @public
 export type LongTermRetentionPolicyName = string;
+
+// @public
+export interface MaintenanceConfigurationCapability {
+    readonly name?: string;
+    reason?: string;
+    readonly status?: CapabilityStatus;
+    readonly zoneRedundant?: boolean;
+}
+
+// @public
+export type MaintenanceWindowOptions = ProxyResource & {
+    isEnabled?: boolean;
+    maintenanceWindowCycles?: MaintenanceWindowTimeRange[];
+    minDurationInMinutes?: number;
+    defaultDurationInMinutes?: number;
+    minCycles?: number;
+    timeGranularityInMinutes?: number;
+    allowMultipleMaintenanceWindowsPerCycle?: boolean;
+};
+
+// @public
+export interface MaintenanceWindowOptionsGetOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type MaintenanceWindowOptionsGetResponse = MaintenanceWindowOptions;
+
+// @public
+export interface MaintenanceWindowOptionsOperations {
+    get(resourceGroupName: string, serverName: string, databaseName: string, maintenanceWindowOptionsName: string, options?: MaintenanceWindowOptionsGetOptionalParams): Promise<MaintenanceWindowOptionsGetResponse>;
+}
+
+// @public
+export type MaintenanceWindows = ProxyResource & {
+    timeRanges?: MaintenanceWindowTimeRange[];
+};
+
+// @public
+export interface MaintenanceWindowsCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export interface MaintenanceWindowsGetOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type MaintenanceWindowsGetResponse = MaintenanceWindows;
+
+// @public
+export interface MaintenanceWindowsOperations {
+    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, maintenanceWindowName: string, parameters: MaintenanceWindows, options?: MaintenanceWindowsCreateOrUpdateOptionalParams): Promise<void>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, maintenanceWindowName: string, options?: MaintenanceWindowsGetOptionalParams): Promise<MaintenanceWindowsGetResponse>;
+}
+
+// @public
+export interface MaintenanceWindowTimeRange {
+    dayOfWeek?: DayOfWeek;
+    duration?: string;
+    startTime?: string;
+}
 
 // @public
 export interface ManagedBackupShortTermRetentionPolicies {
@@ -3938,7 +4989,63 @@ export type ManagedDatabase = TrackedResource & {
     readonly failoverGroupId?: string;
     recoverableDatabaseId?: string;
     longTermRetentionBackupResourceId?: string;
+    autoCompleteRestore?: boolean;
+    lastBackupName?: string;
 };
+
+// @public
+export interface ManagedDatabaseColumns {
+    get(resourceGroupName: string, managedInstanceName: string, databaseName: string, schemaName: string, tableName: string, columnName: string, options?: ManagedDatabaseColumnsGetOptionalParams): Promise<ManagedDatabaseColumnsGetResponse>;
+    listByDatabase(resourceGroupName: string, managedInstanceName: string, databaseName: string, options?: ManagedDatabaseColumnsListByDatabaseOptionalParams): PagedAsyncIterableIterator<DatabaseColumn>;
+    listByTable(resourceGroupName: string, managedInstanceName: string, databaseName: string, schemaName: string, tableName: string, options?: ManagedDatabaseColumnsListByTableOptionalParams): PagedAsyncIterableIterator<DatabaseColumn>;
+}
+
+// @public
+export interface ManagedDatabaseColumnsGetOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ManagedDatabaseColumnsGetResponse = DatabaseColumn;
+
+// @public
+export interface ManagedDatabaseColumnsListByDatabaseNextOptionalParams extends coreClient.OperationOptions {
+    column?: string[];
+    orderBy?: string[];
+    schema?: string[];
+    skiptoken?: string;
+    table?: string[];
+}
+
+// @public
+export type ManagedDatabaseColumnsListByDatabaseNextResponse = DatabaseColumnListResult;
+
+// @public
+export interface ManagedDatabaseColumnsListByDatabaseOptionalParams extends coreClient.OperationOptions {
+    column?: string[];
+    orderBy?: string[];
+    schema?: string[];
+    skiptoken?: string;
+    table?: string[];
+}
+
+// @public
+export type ManagedDatabaseColumnsListByDatabaseResponse = DatabaseColumnListResult;
+
+// @public
+export interface ManagedDatabaseColumnsListByTableNextOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type ManagedDatabaseColumnsListByTableNextResponse = DatabaseColumnListResult;
+
+// @public
+export interface ManagedDatabaseColumnsListByTableOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type ManagedDatabaseColumnsListByTableResponse = DatabaseColumnListResult;
 
 // @public
 export type ManagedDatabaseCreateMode = string;
@@ -3947,6 +5054,48 @@ export type ManagedDatabaseCreateMode = string;
 export interface ManagedDatabaseListResult {
     readonly nextLink?: string;
     readonly value?: ManagedDatabase[];
+}
+
+// @public
+export interface ManagedDatabaseQueries {
+    get(resourceGroupName: string, managedInstanceName: string, databaseName: string, queryId: string, options?: ManagedDatabaseQueriesGetOptionalParams): Promise<ManagedDatabaseQueriesGetResponse>;
+    listByQuery(resourceGroupName: string, managedInstanceName: string, databaseName: string, queryId: string, options?: ManagedDatabaseQueriesListByQueryOptionalParams): PagedAsyncIterableIterator<QueryStatistics>;
+}
+
+// @public
+export interface ManagedDatabaseQueriesGetOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ManagedDatabaseQueriesGetResponse = ManagedInstanceQuery;
+
+// @public
+export interface ManagedDatabaseQueriesListByQueryNextOptionalParams extends coreClient.OperationOptions {
+    endTime?: string;
+    interval?: QueryTimeGrainType;
+    startTime?: string;
+}
+
+// @public
+export type ManagedDatabaseQueriesListByQueryNextResponse = ManagedInstanceQueryStatistics;
+
+// @public
+export interface ManagedDatabaseQueriesListByQueryOptionalParams extends coreClient.OperationOptions {
+    endTime?: string;
+    interval?: QueryTimeGrainType;
+    startTime?: string;
+}
+
+// @public
+export type ManagedDatabaseQueriesListByQueryResponse = ManagedInstanceQueryStatistics;
+
+// @public
+export interface ManagedDatabaseRecommendedSensitivityLabels {
+    update(resourceGroupName: string, managedInstanceName: string, databaseName: string, parameters: RecommendedSensitivityLabelUpdateList, options?: ManagedDatabaseRecommendedSensitivityLabelsUpdateOptionalParams): Promise<void>;
+}
+
+// @public
+export interface ManagedDatabaseRecommendedSensitivityLabelsUpdateOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
@@ -3989,6 +5138,35 @@ export interface ManagedDatabases {
     listByInstance(resourceGroupName: string, managedInstanceName: string, options?: ManagedDatabasesListByInstanceOptionalParams): PagedAsyncIterableIterator<ManagedDatabase>;
     listInaccessibleByInstance(resourceGroupName: string, managedInstanceName: string, options?: ManagedDatabasesListInaccessibleByInstanceOptionalParams): PagedAsyncIterableIterator<ManagedDatabase>;
 }
+
+// @public
+export interface ManagedDatabaseSchemas {
+    get(resourceGroupName: string, managedInstanceName: string, databaseName: string, schemaName: string, options?: ManagedDatabaseSchemasGetOptionalParams): Promise<ManagedDatabaseSchemasGetResponse>;
+    listByDatabase(resourceGroupName: string, managedInstanceName: string, databaseName: string, options?: ManagedDatabaseSchemasListByDatabaseOptionalParams): PagedAsyncIterableIterator<DatabaseSchema>;
+}
+
+// @public
+export interface ManagedDatabaseSchemasGetOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ManagedDatabaseSchemasGetResponse = DatabaseSchema;
+
+// @public
+export interface ManagedDatabaseSchemasListByDatabaseNextOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type ManagedDatabaseSchemasListByDatabaseNextResponse = DatabaseSchemaListResult;
+
+// @public
+export interface ManagedDatabaseSchemasListByDatabaseOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type ManagedDatabaseSchemasListByDatabaseResponse = DatabaseSchemaListResult;
 
 // @public
 export interface ManagedDatabasesCompleteRestoreOptionalParams extends coreClient.OperationOptions {
@@ -4065,6 +5243,33 @@ export interface ManagedDatabaseSecurityAlertPolicyListResult {
 }
 
 // @public
+export interface ManagedDatabaseSecurityEvents {
+    listByDatabase(resourceGroupName: string, managedInstanceName: string, databaseName: string, options?: ManagedDatabaseSecurityEventsListByDatabaseOptionalParams): PagedAsyncIterableIterator<SecurityEvent>;
+}
+
+// @public
+export interface ManagedDatabaseSecurityEventsListByDatabaseNextOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+    skip?: number;
+    skiptoken?: string;
+    top?: number;
+}
+
+// @public
+export type ManagedDatabaseSecurityEventsListByDatabaseNextResponse = SecurityEventCollection;
+
+// @public
+export interface ManagedDatabaseSecurityEventsListByDatabaseOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+    skip?: number;
+    skiptoken?: string;
+    top?: number;
+}
+
+// @public
+export type ManagedDatabaseSecurityEventsListByDatabaseResponse = SecurityEventCollection;
+
+// @public
 export interface ManagedDatabaseSensitivityLabels {
     createOrUpdate(resourceGroupName: string, managedInstanceName: string, databaseName: string, schemaName: string, tableName: string, columnName: string, parameters: SensitivityLabel, options?: ManagedDatabaseSensitivityLabelsCreateOrUpdateOptionalParams): Promise<ManagedDatabaseSensitivityLabelsCreateOrUpdateResponse>;
     delete(resourceGroupName: string, managedInstanceName: string, databaseName: string, schemaName: string, tableName: string, columnName: string, options?: ManagedDatabaseSensitivityLabelsDeleteOptionalParams): Promise<void>;
@@ -4073,6 +5278,7 @@ export interface ManagedDatabaseSensitivityLabels {
     get(resourceGroupName: string, managedInstanceName: string, databaseName: string, schemaName: string, tableName: string, columnName: string, sensitivityLabelSource: SensitivityLabelSource, options?: ManagedDatabaseSensitivityLabelsGetOptionalParams): Promise<ManagedDatabaseSensitivityLabelsGetResponse>;
     listCurrentByDatabase(resourceGroupName: string, managedInstanceName: string, databaseName: string, options?: ManagedDatabaseSensitivityLabelsListCurrentByDatabaseOptionalParams): PagedAsyncIterableIterator<SensitivityLabel>;
     listRecommendedByDatabase(resourceGroupName: string, managedInstanceName: string, databaseName: string, options?: ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseOptionalParams): PagedAsyncIterableIterator<SensitivityLabel>;
+    update(resourceGroupName: string, managedInstanceName: string, databaseName: string, parameters: SensitivityLabelUpdateList, options?: ManagedDatabaseSensitivityLabelsUpdateOptionalParams): Promise<void>;
 }
 
 // @public
@@ -4103,7 +5309,11 @@ export type ManagedDatabaseSensitivityLabelsGetResponse = SensitivityLabel;
 
 // @public
 export interface ManagedDatabaseSensitivityLabelsListCurrentByDatabaseNextOptionalParams extends coreClient.OperationOptions {
+    // (undocumented)
+    count?: boolean;
     filter?: string;
+    // (undocumented)
+    skipToken?: string;
 }
 
 // @public
@@ -4111,7 +5321,11 @@ export type ManagedDatabaseSensitivityLabelsListCurrentByDatabaseNextResponse = 
 
 // @public
 export interface ManagedDatabaseSensitivityLabelsListCurrentByDatabaseOptionalParams extends coreClient.OperationOptions {
+    // (undocumented)
+    count?: boolean;
     filter?: string;
+    // (undocumented)
+    skipToken?: string;
 }
 
 // @public
@@ -4138,6 +5352,10 @@ export interface ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseOption
 
 // @public
 export type ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseResponse = SensitivityLabelListResult;
+
+// @public
+export interface ManagedDatabaseSensitivityLabelsUpdateOptionalParams extends coreClient.OperationOptions {
+}
 
 // @public
 export interface ManagedDatabasesGetOptionalParams extends coreClient.OperationOptions {
@@ -4187,7 +5405,72 @@ export interface ManagedDatabasesUpdateOptionalParams extends coreClient.Operati
 export type ManagedDatabasesUpdateResponse = ManagedDatabase;
 
 // @public
+export interface ManagedDatabaseTables {
+    get(resourceGroupName: string, managedInstanceName: string, databaseName: string, schemaName: string, tableName: string, options?: ManagedDatabaseTablesGetOptionalParams): Promise<ManagedDatabaseTablesGetResponse>;
+    listBySchema(resourceGroupName: string, managedInstanceName: string, databaseName: string, schemaName: string, options?: ManagedDatabaseTablesListBySchemaOptionalParams): PagedAsyncIterableIterator<DatabaseTable>;
+}
+
+// @public
+export interface ManagedDatabaseTablesGetOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ManagedDatabaseTablesGetResponse = DatabaseTable;
+
+// @public
+export interface ManagedDatabaseTablesListBySchemaNextOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type ManagedDatabaseTablesListBySchemaNextResponse = DatabaseTableListResult;
+
+// @public
+export interface ManagedDatabaseTablesListBySchemaOptionalParams extends coreClient.OperationOptions {
+    filter?: string;
+}
+
+// @public
+export type ManagedDatabaseTablesListBySchemaResponse = DatabaseTableListResult;
+
+// @public
+export interface ManagedDatabaseTransparentDataEncryption {
+    createOrUpdate(resourceGroupName: string, managedInstanceName: string, databaseName: string, tdeName: TransparentDataEncryptionName, parameters: ManagedTransparentDataEncryption, options?: ManagedDatabaseTransparentDataEncryptionCreateOrUpdateOptionalParams): Promise<ManagedDatabaseTransparentDataEncryptionCreateOrUpdateResponse>;
+    get(resourceGroupName: string, managedInstanceName: string, databaseName: string, tdeName: TransparentDataEncryptionName, options?: ManagedDatabaseTransparentDataEncryptionGetOptionalParams): Promise<ManagedDatabaseTransparentDataEncryptionGetResponse>;
+    listByDatabase(resourceGroupName: string, managedInstanceName: string, databaseName: string, options?: ManagedDatabaseTransparentDataEncryptionListByDatabaseOptionalParams): PagedAsyncIterableIterator<ManagedTransparentDataEncryption>;
+}
+
+// @public
+export interface ManagedDatabaseTransparentDataEncryptionCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ManagedDatabaseTransparentDataEncryptionCreateOrUpdateResponse = ManagedTransparentDataEncryption;
+
+// @public
+export interface ManagedDatabaseTransparentDataEncryptionGetOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ManagedDatabaseTransparentDataEncryptionGetResponse = ManagedTransparentDataEncryption;
+
+// @public
+export interface ManagedDatabaseTransparentDataEncryptionListByDatabaseNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ManagedDatabaseTransparentDataEncryptionListByDatabaseNextResponse = ManagedTransparentDataEncryptionListResult;
+
+// @public
+export interface ManagedDatabaseTransparentDataEncryptionListByDatabaseOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ManagedDatabaseTransparentDataEncryptionListByDatabaseResponse = ManagedTransparentDataEncryptionListResult;
+
+// @public
 export interface ManagedDatabaseUpdate {
+    autoCompleteRestore?: boolean;
     catalogCollation?: CatalogCollationType;
     collation?: string;
     createMode?: ManagedDatabaseCreateMode;
@@ -4195,6 +5478,7 @@ export interface ManagedDatabaseUpdate {
     readonly defaultSecondaryLocation?: string;
     readonly earliestRestorePoint?: Date;
     readonly failoverGroupId?: string;
+    lastBackupName?: string;
     longTermRetentionBackupResourceId?: string;
     recoverableDatabaseId?: string;
     restorableDroppedDatabaseId?: string;
@@ -4320,6 +5604,7 @@ export type ManagedDatabaseVulnerabilityAssessmentsListByDatabaseResponse = Data
 export type ManagedInstance = TrackedResource & {
     identity?: ResourceIdentity;
     sku?: Sku;
+    readonly provisioningState?: ManagedInstancePropertiesProvisioningState;
     managedInstanceCreateMode?: ManagedServerCreateMode;
     readonly fullyQualifiedDomainName?: string;
     administratorLogin?: string;
@@ -4338,7 +5623,16 @@ export type ManagedInstance = TrackedResource & {
     proxyOverride?: ManagedInstanceProxyOverride;
     timezoneId?: string;
     instancePoolId?: string;
+    maintenanceConfigurationId?: string;
+    readonly privateEndpointConnections?: ManagedInstancePecProperty[];
     minimalTlsVersion?: string;
+    readonly currentBackupStorageRedundancy?: BackupStorageRedundancy;
+    requestedBackupStorageRedundancy?: BackupStorageRedundancy;
+    zoneRedundant?: boolean;
+    primaryUserAssignedIdentityId?: string;
+    keyId?: string;
+    administrators?: ManagedInstanceExternalAdministrator;
+    servicePrincipal?: ServicePrincipal;
 };
 
 // @public
@@ -4357,11 +5651,11 @@ export interface ManagedInstanceAdministratorListResult {
 
 // @public
 export interface ManagedInstanceAdministrators {
-    beginCreateOrUpdate(resourceGroupName: string, managedInstanceName: string, parameters: ManagedInstanceAdministrator, options?: ManagedInstanceAdministratorsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ManagedInstanceAdministratorsCreateOrUpdateResponse>, ManagedInstanceAdministratorsCreateOrUpdateResponse>>;
-    beginCreateOrUpdateAndWait(resourceGroupName: string, managedInstanceName: string, parameters: ManagedInstanceAdministrator, options?: ManagedInstanceAdministratorsCreateOrUpdateOptionalParams): Promise<ManagedInstanceAdministratorsCreateOrUpdateResponse>;
-    beginDelete(resourceGroupName: string, managedInstanceName: string, options?: ManagedInstanceAdministratorsDeleteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
-    beginDeleteAndWait(resourceGroupName: string, managedInstanceName: string, options?: ManagedInstanceAdministratorsDeleteOptionalParams): Promise<void>;
-    get(resourceGroupName: string, managedInstanceName: string, options?: ManagedInstanceAdministratorsGetOptionalParams): Promise<ManagedInstanceAdministratorsGetResponse>;
+    beginCreateOrUpdate(resourceGroupName: string, managedInstanceName: string, administratorName: AdministratorName, parameters: ManagedInstanceAdministrator, options?: ManagedInstanceAdministratorsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ManagedInstanceAdministratorsCreateOrUpdateResponse>, ManagedInstanceAdministratorsCreateOrUpdateResponse>>;
+    beginCreateOrUpdateAndWait(resourceGroupName: string, managedInstanceName: string, administratorName: AdministratorName, parameters: ManagedInstanceAdministrator, options?: ManagedInstanceAdministratorsCreateOrUpdateOptionalParams): Promise<ManagedInstanceAdministratorsCreateOrUpdateResponse>;
+    beginDelete(resourceGroupName: string, managedInstanceName: string, administratorName: AdministratorName, options?: ManagedInstanceAdministratorsDeleteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteAndWait(resourceGroupName: string, managedInstanceName: string, administratorName: AdministratorName, options?: ManagedInstanceAdministratorsDeleteOptionalParams): Promise<void>;
+    get(resourceGroupName: string, managedInstanceName: string, administratorName: AdministratorName, options?: ManagedInstanceAdministratorsGetOptionalParams): Promise<ManagedInstanceAdministratorsGetResponse>;
     listByInstance(resourceGroupName: string, managedInstanceName: string, options?: ManagedInstanceAdministratorsListByInstanceOptionalParams): PagedAsyncIterableIterator<ManagedInstanceAdministrator>;
 }
 
@@ -4405,11 +5699,70 @@ export type ManagedInstanceAdministratorsListByInstanceResponse = ManagedInstanc
 export type ManagedInstanceAdministratorType = string;
 
 // @public
+export type ManagedInstanceAzureADOnlyAuthentication = ProxyResource & {
+    azureADOnlyAuthentication?: boolean;
+};
+
+// @public
+export interface ManagedInstanceAzureADOnlyAuthentications {
+    beginCreateOrUpdate(resourceGroupName: string, managedInstanceName: string, authenticationName: AuthenticationName, parameters: ManagedInstanceAzureADOnlyAuthentication, options?: ManagedInstanceAzureADOnlyAuthenticationsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ManagedInstanceAzureADOnlyAuthenticationsCreateOrUpdateResponse>, ManagedInstanceAzureADOnlyAuthenticationsCreateOrUpdateResponse>>;
+    beginCreateOrUpdateAndWait(resourceGroupName: string, managedInstanceName: string, authenticationName: AuthenticationName, parameters: ManagedInstanceAzureADOnlyAuthentication, options?: ManagedInstanceAzureADOnlyAuthenticationsCreateOrUpdateOptionalParams): Promise<ManagedInstanceAzureADOnlyAuthenticationsCreateOrUpdateResponse>;
+    beginDelete(resourceGroupName: string, managedInstanceName: string, authenticationName: AuthenticationName, options?: ManagedInstanceAzureADOnlyAuthenticationsDeleteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteAndWait(resourceGroupName: string, managedInstanceName: string, authenticationName: AuthenticationName, options?: ManagedInstanceAzureADOnlyAuthenticationsDeleteOptionalParams): Promise<void>;
+    get(resourceGroupName: string, managedInstanceName: string, authenticationName: AuthenticationName, options?: ManagedInstanceAzureADOnlyAuthenticationsGetOptionalParams): Promise<ManagedInstanceAzureADOnlyAuthenticationsGetResponse>;
+    listByInstance(resourceGroupName: string, managedInstanceName: string, options?: ManagedInstanceAzureADOnlyAuthenticationsListByInstanceOptionalParams): PagedAsyncIterableIterator<ManagedInstanceAzureADOnlyAuthentication>;
+}
+
+// @public
+export interface ManagedInstanceAzureADOnlyAuthenticationsCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export type ManagedInstanceAzureADOnlyAuthenticationsCreateOrUpdateResponse = ManagedInstanceAzureADOnlyAuthentication;
+
+// @public
+export interface ManagedInstanceAzureADOnlyAuthenticationsDeleteOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface ManagedInstanceAzureADOnlyAuthenticationsGetOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ManagedInstanceAzureADOnlyAuthenticationsGetResponse = ManagedInstanceAzureADOnlyAuthentication;
+
+// @public
+export interface ManagedInstanceAzureADOnlyAuthenticationsListByInstanceNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ManagedInstanceAzureADOnlyAuthenticationsListByInstanceNextResponse = ManagedInstanceAzureADOnlyAuthListResult;
+
+// @public
+export interface ManagedInstanceAzureADOnlyAuthenticationsListByInstanceOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ManagedInstanceAzureADOnlyAuthenticationsListByInstanceResponse = ManagedInstanceAzureADOnlyAuthListResult;
+
+// @public
+export interface ManagedInstanceAzureADOnlyAuthListResult {
+    readonly nextLink?: string;
+    readonly value?: ManagedInstanceAzureADOnlyAuthentication[];
+}
+
+// @public
 export interface ManagedInstanceEditionCapability {
     readonly name?: string;
     reason?: string;
     readonly status?: CapabilityStatus;
     readonly supportedFamilies?: ManagedInstanceFamilyCapability[];
+    readonly supportedStorageCapabilities?: StorageCapability[];
+    readonly zoneRedundant?: boolean;
 }
 
 // @public
@@ -4419,6 +5772,7 @@ export type ManagedInstanceEncryptionProtector = ProxyResource & {
     serverKeyType?: ServerKeyType;
     readonly uri?: string;
     readonly thumbprint?: string;
+    autoRotationEnabled?: boolean;
 };
 
 // @public
@@ -4474,6 +5828,16 @@ export interface ManagedInstanceEncryptionProtectorsRevalidateOptionalParams ext
 }
 
 // @public
+export interface ManagedInstanceExternalAdministrator {
+    administratorType?: AdministratorType;
+    azureADOnlyAuthentication?: boolean;
+    login?: string;
+    principalType?: PrincipalType;
+    sid?: string;
+    tenantId?: string;
+}
+
+// @public
 export interface ManagedInstanceFamilyCapability {
     readonly name?: string;
     reason?: string;
@@ -4490,6 +5854,7 @@ export type ManagedInstanceKey = ProxyResource & {
     uri?: string;
     readonly thumbprint?: string;
     readonly creationDate?: Date;
+    readonly autoRotationEnabled?: boolean;
 };
 
 // @public
@@ -4563,6 +5928,7 @@ export type ManagedInstanceLongTermRetentionBackup = ProxyResource & {
     readonly databaseDeletionTime?: Date;
     readonly backupTime?: Date;
     readonly backupExpirationTime?: Date;
+    readonly backupStorageRedundancy?: BackupStorageRedundancy;
 };
 
 // @public
@@ -4627,6 +5993,13 @@ export interface ManagedInstanceLongTermRetentionPolicyListResult {
 export type ManagedInstanceLongTermRetentionPolicyName = string;
 
 // @public
+export interface ManagedInstanceMaintenanceConfigurationCapability {
+    readonly name?: string;
+    reason?: string;
+    readonly status?: CapabilityStatus;
+}
+
+// @public
 export type ManagedInstanceOperation = ProxyResource & {
     readonly managedInstanceName?: string;
     readonly operation?: string;
@@ -4641,12 +6014,20 @@ export type ManagedInstanceOperation = ProxyResource & {
     readonly estimatedCompletionTime?: Date;
     readonly description?: string;
     readonly isCancellable?: boolean;
+    readonly operationParameters?: ManagedInstanceOperationParametersPair;
+    readonly operationSteps?: ManagedInstanceOperationSteps;
 };
 
 // @public
 export interface ManagedInstanceOperationListResult {
     readonly nextLink?: string;
     readonly value?: ManagedInstanceOperation[];
+}
+
+// @public
+export interface ManagedInstanceOperationParametersPair {
+    readonly currentParameters?: UpsertManagedServerOperationParameters;
+    readonly requestedParameters?: UpsertManagedServerOperationParameters;
 }
 
 // @public
@@ -4682,13 +6063,162 @@ export interface ManagedInstanceOperationsListByManagedInstanceOptionalParams ex
 export type ManagedInstanceOperationsListByManagedInstanceResponse = ManagedInstanceOperationListResult;
 
 // @public
+export interface ManagedInstanceOperationSteps {
+    readonly currentStep?: number;
+    readonly stepsList?: UpsertManagedServerOperationStep[];
+    readonly totalSteps?: string;
+}
+
+// @public
 export interface ManagedInstancePairInfo {
     partnerManagedInstanceId?: string;
     primaryManagedInstanceId?: string;
 }
 
 // @public
+export interface ManagedInstancePecProperty {
+    readonly id?: string;
+    readonly properties?: ManagedInstancePrivateEndpointConnectionProperties;
+}
+
+// @public
+export type ManagedInstancePrivateEndpointConnection = ProxyResource & {
+    privateEndpoint?: ManagedInstancePrivateEndpointProperty;
+    privateLinkServiceConnectionState?: ManagedInstancePrivateLinkServiceConnectionStateProperty;
+    readonly provisioningState?: string;
+};
+
+// @public
+export interface ManagedInstancePrivateEndpointConnectionListResult {
+    readonly nextLink?: string;
+    readonly value?: ManagedInstancePrivateEndpointConnection[];
+}
+
+// @public
+export interface ManagedInstancePrivateEndpointConnectionProperties {
+    privateEndpoint?: ManagedInstancePrivateEndpointProperty;
+    privateLinkServiceConnectionState?: ManagedInstancePrivateLinkServiceConnectionStateProperty;
+    readonly provisioningState?: string;
+}
+
+// @public
+export interface ManagedInstancePrivateEndpointConnections {
+    beginCreateOrUpdate(resourceGroupName: string, managedInstanceName: string, privateEndpointConnectionName: string, parameters: ManagedInstancePrivateEndpointConnection, options?: ManagedInstancePrivateEndpointConnectionsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ManagedInstancePrivateEndpointConnectionsCreateOrUpdateResponse>, ManagedInstancePrivateEndpointConnectionsCreateOrUpdateResponse>>;
+    beginCreateOrUpdateAndWait(resourceGroupName: string, managedInstanceName: string, privateEndpointConnectionName: string, parameters: ManagedInstancePrivateEndpointConnection, options?: ManagedInstancePrivateEndpointConnectionsCreateOrUpdateOptionalParams): Promise<ManagedInstancePrivateEndpointConnectionsCreateOrUpdateResponse>;
+    beginDelete(resourceGroupName: string, managedInstanceName: string, privateEndpointConnectionName: string, options?: ManagedInstancePrivateEndpointConnectionsDeleteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteAndWait(resourceGroupName: string, managedInstanceName: string, privateEndpointConnectionName: string, options?: ManagedInstancePrivateEndpointConnectionsDeleteOptionalParams): Promise<void>;
+    get(resourceGroupName: string, managedInstanceName: string, privateEndpointConnectionName: string, options?: ManagedInstancePrivateEndpointConnectionsGetOptionalParams): Promise<ManagedInstancePrivateEndpointConnectionsGetResponse>;
+    listByManagedInstance(resourceGroupName: string, managedInstanceName: string, options?: ManagedInstancePrivateEndpointConnectionsListByManagedInstanceOptionalParams): PagedAsyncIterableIterator<ManagedInstancePrivateEndpointConnection>;
+}
+
+// @public
+export interface ManagedInstancePrivateEndpointConnectionsCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export type ManagedInstancePrivateEndpointConnectionsCreateOrUpdateResponse = ManagedInstancePrivateEndpointConnection;
+
+// @public
+export interface ManagedInstancePrivateEndpointConnectionsDeleteOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface ManagedInstancePrivateEndpointConnectionsGetOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ManagedInstancePrivateEndpointConnectionsGetResponse = ManagedInstancePrivateEndpointConnection;
+
+// @public
+export interface ManagedInstancePrivateEndpointConnectionsListByManagedInstanceNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ManagedInstancePrivateEndpointConnectionsListByManagedInstanceNextResponse = ManagedInstancePrivateEndpointConnectionListResult;
+
+// @public
+export interface ManagedInstancePrivateEndpointConnectionsListByManagedInstanceOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ManagedInstancePrivateEndpointConnectionsListByManagedInstanceResponse = ManagedInstancePrivateEndpointConnectionListResult;
+
+// @public (undocumented)
+export interface ManagedInstancePrivateEndpointProperty {
+    id?: string;
+}
+
+// @public
+export type ManagedInstancePrivateLink = ProxyResource & {
+    readonly properties?: ManagedInstancePrivateLinkProperties;
+};
+
+// @public
+export interface ManagedInstancePrivateLinkListResult {
+    readonly nextLink?: string;
+    readonly value?: ManagedInstancePrivateLink[];
+}
+
+// @public
+export interface ManagedInstancePrivateLinkProperties {
+    readonly groupId?: string;
+    readonly requiredMembers?: string[];
+}
+
+// @public
+export interface ManagedInstancePrivateLinkResources {
+    get(resourceGroupName: string, managedInstanceName: string, groupName: string, options?: ManagedInstancePrivateLinkResourcesGetOptionalParams): Promise<ManagedInstancePrivateLinkResourcesGetResponse>;
+    listByManagedInstance(resourceGroupName: string, managedInstanceName: string, options?: ManagedInstancePrivateLinkResourcesListByManagedInstanceOptionalParams): PagedAsyncIterableIterator<ManagedInstancePrivateLink>;
+}
+
+// @public
+export interface ManagedInstancePrivateLinkResourcesGetOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ManagedInstancePrivateLinkResourcesGetResponse = ManagedInstancePrivateLink;
+
+// @public
+export interface ManagedInstancePrivateLinkResourcesListByManagedInstanceNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ManagedInstancePrivateLinkResourcesListByManagedInstanceNextResponse = ManagedInstancePrivateLinkListResult;
+
+// @public
+export interface ManagedInstancePrivateLinkResourcesListByManagedInstanceOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ManagedInstancePrivateLinkResourcesListByManagedInstanceResponse = ManagedInstancePrivateLinkListResult;
+
+// @public (undocumented)
+export interface ManagedInstancePrivateLinkServiceConnectionStateProperty {
+    readonly actionsRequired?: string;
+    description: string;
+    status: string;
+}
+
+// @public
+export type ManagedInstancePropertiesProvisioningState = string;
+
+// @public
 export type ManagedInstanceProxyOverride = string;
+
+// @public
+export type ManagedInstanceQuery = ProxyResource & {
+    queryText?: string;
+};
+
+// @public
+export interface ManagedInstanceQueryStatistics {
+    readonly nextLink?: string;
+    readonly value?: QueryStatistics[];
+}
 
 // @public
 export interface ManagedInstances {
@@ -4696,11 +6226,14 @@ export interface ManagedInstances {
     beginCreateOrUpdateAndWait(resourceGroupName: string, managedInstanceName: string, parameters: ManagedInstance, options?: ManagedInstancesCreateOrUpdateOptionalParams): Promise<ManagedInstancesCreateOrUpdateResponse>;
     beginDelete(resourceGroupName: string, managedInstanceName: string, options?: ManagedInstancesDeleteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
     beginDeleteAndWait(resourceGroupName: string, managedInstanceName: string, options?: ManagedInstancesDeleteOptionalParams): Promise<void>;
+    beginFailover(resourceGroupName: string, managedInstanceName: string, options?: ManagedInstancesFailoverOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginFailoverAndWait(resourceGroupName: string, managedInstanceName: string, options?: ManagedInstancesFailoverOptionalParams): Promise<void>;
     beginUpdate(resourceGroupName: string, managedInstanceName: string, parameters: ManagedInstanceUpdate, options?: ManagedInstancesUpdateOptionalParams): Promise<PollerLike<PollOperationState<ManagedInstancesUpdateResponse>, ManagedInstancesUpdateResponse>>;
     beginUpdateAndWait(resourceGroupName: string, managedInstanceName: string, parameters: ManagedInstanceUpdate, options?: ManagedInstancesUpdateOptionalParams): Promise<ManagedInstancesUpdateResponse>;
     get(resourceGroupName: string, managedInstanceName: string, options?: ManagedInstancesGetOptionalParams): Promise<ManagedInstancesGetResponse>;
     list(options?: ManagedInstancesListOptionalParams): PagedAsyncIterableIterator<ManagedInstance>;
     listByInstancePool(resourceGroupName: string, instancePoolName: string, options?: ManagedInstancesListByInstancePoolOptionalParams): PagedAsyncIterableIterator<ManagedInstance>;
+    listByManagedInstance(resourceGroupName: string, managedInstanceName: string, options?: ManagedInstancesListByManagedInstanceOptionalParams): PagedAsyncIterableIterator<TopQueries>;
     listByResourceGroup(resourceGroupName: string, options?: ManagedInstancesListByResourceGroupOptionalParams): PagedAsyncIterableIterator<ManagedInstance>;
 }
 
@@ -4720,7 +6253,15 @@ export interface ManagedInstancesDeleteOptionalParams extends coreClient.Operati
 }
 
 // @public
+export interface ManagedInstancesFailoverOptionalParams extends coreClient.OperationOptions {
+    replicaType?: ReplicaType;
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export interface ManagedInstancesGetOptionalParams extends coreClient.OperationOptions {
+    expand?: string;
 }
 
 // @public
@@ -4728,6 +6269,7 @@ export type ManagedInstancesGetResponse = ManagedInstance;
 
 // @public
 export interface ManagedInstancesListByInstancePoolNextOptionalParams extends coreClient.OperationOptions {
+    expand?: string;
 }
 
 // @public
@@ -4735,13 +6277,43 @@ export type ManagedInstancesListByInstancePoolNextResponse = ManagedInstanceList
 
 // @public
 export interface ManagedInstancesListByInstancePoolOptionalParams extends coreClient.OperationOptions {
+    expand?: string;
 }
 
 // @public
 export type ManagedInstancesListByInstancePoolResponse = ManagedInstanceListResult;
 
 // @public
+export interface ManagedInstancesListByManagedInstanceNextOptionalParams extends coreClient.OperationOptions {
+    aggregationFunction?: AggregationFunctionType;
+    databases?: string;
+    endTime?: string;
+    interval?: QueryTimeGrainType;
+    numberOfQueries?: number;
+    observationMetric?: MetricType;
+    startTime?: string;
+}
+
+// @public
+export type ManagedInstancesListByManagedInstanceNextResponse = TopQueriesListResult;
+
+// @public
+export interface ManagedInstancesListByManagedInstanceOptionalParams extends coreClient.OperationOptions {
+    aggregationFunction?: AggregationFunctionType;
+    databases?: string;
+    endTime?: string;
+    interval?: QueryTimeGrainType;
+    numberOfQueries?: number;
+    observationMetric?: MetricType;
+    startTime?: string;
+}
+
+// @public
+export type ManagedInstancesListByManagedInstanceResponse = TopQueriesListResult;
+
+// @public
 export interface ManagedInstancesListByResourceGroupNextOptionalParams extends coreClient.OperationOptions {
+    expand?: string;
 }
 
 // @public
@@ -4749,6 +6321,7 @@ export type ManagedInstancesListByResourceGroupNextResponse = ManagedInstanceLis
 
 // @public
 export interface ManagedInstancesListByResourceGroupOptionalParams extends coreClient.OperationOptions {
+    expand?: string;
 }
 
 // @public
@@ -4756,6 +6329,7 @@ export type ManagedInstancesListByResourceGroupResponse = ManagedInstanceListRes
 
 // @public
 export interface ManagedInstancesListNextOptionalParams extends coreClient.OperationOptions {
+    expand?: string;
 }
 
 // @public
@@ -4763,6 +6337,7 @@ export type ManagedInstancesListNextResponse = ManagedInstanceListResult;
 
 // @public
 export interface ManagedInstancesListOptionalParams extends coreClient.OperationOptions {
+    expand?: string;
 }
 
 // @public
@@ -4793,17 +6368,27 @@ export interface ManagedInstanceTdeCertificatesCreateOptionalParams extends core
 export interface ManagedInstanceUpdate {
     administratorLogin?: string;
     administratorLoginPassword?: string;
+    administrators?: ManagedInstanceExternalAdministrator;
     collation?: string;
+    readonly currentBackupStorageRedundancy?: BackupStorageRedundancy;
     readonly dnsZone?: string;
     dnsZonePartner?: string;
     readonly fullyQualifiedDomainName?: string;
+    identity?: ResourceIdentity;
     instancePoolId?: string;
+    keyId?: string;
     licenseType?: ManagedInstanceLicenseType;
+    maintenanceConfigurationId?: string;
     managedInstanceCreateMode?: ManagedServerCreateMode;
     minimalTlsVersion?: string;
+    primaryUserAssignedIdentityId?: string;
+    readonly privateEndpointConnections?: ManagedInstancePecProperty[];
+    readonly provisioningState?: ManagedInstancePropertiesProvisioningState;
     proxyOverride?: ManagedInstanceProxyOverride;
     publicDataEndpointEnabled?: boolean;
+    requestedBackupStorageRedundancy?: BackupStorageRedundancy;
     restorePointInTime?: Date;
+    servicePrincipal?: ServicePrincipal;
     sku?: Sku;
     sourceManagedInstanceId?: string;
     readonly state?: string;
@@ -4814,6 +6399,7 @@ export interface ManagedInstanceUpdate {
     };
     timezoneId?: string;
     vCores?: number;
+    zoneRedundant?: boolean;
 }
 
 // @public
@@ -4824,6 +6410,7 @@ export interface ManagedInstanceVcoresCapability {
     reason?: string;
     readonly standaloneSupported?: boolean;
     readonly status?: CapabilityStatus;
+    readonly supportedMaintenanceConfigurations?: ManagedInstanceMaintenanceConfigurationCapability[];
     readonly supportedStorageSizes?: MaxSizeRangeCapability[];
     readonly value?: number;
 }
@@ -4945,9 +6532,9 @@ export type ManagedServerCreateMode = string;
 
 // @public
 export interface ManagedServerSecurityAlertPolicies {
-    beginCreateOrUpdate(resourceGroupName: string, managedInstanceName: string, securityAlertPolicyName: SecurityAlertPolicyNameAutoGenerated, parameters: ManagedServerSecurityAlertPolicy, options?: ManagedServerSecurityAlertPoliciesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ManagedServerSecurityAlertPoliciesCreateOrUpdateResponse>, ManagedServerSecurityAlertPoliciesCreateOrUpdateResponse>>;
-    beginCreateOrUpdateAndWait(resourceGroupName: string, managedInstanceName: string, securityAlertPolicyName: SecurityAlertPolicyNameAutoGenerated, parameters: ManagedServerSecurityAlertPolicy, options?: ManagedServerSecurityAlertPoliciesCreateOrUpdateOptionalParams): Promise<ManagedServerSecurityAlertPoliciesCreateOrUpdateResponse>;
-    get(resourceGroupName: string, managedInstanceName: string, securityAlertPolicyName: SecurityAlertPolicyNameAutoGenerated, options?: ManagedServerSecurityAlertPoliciesGetOptionalParams): Promise<ManagedServerSecurityAlertPoliciesGetResponse>;
+    beginCreateOrUpdate(resourceGroupName: string, managedInstanceName: string, securityAlertPolicyName: SecurityAlertPolicyName, parameters: ManagedServerSecurityAlertPolicy, options?: ManagedServerSecurityAlertPoliciesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ManagedServerSecurityAlertPoliciesCreateOrUpdateResponse>, ManagedServerSecurityAlertPoliciesCreateOrUpdateResponse>>;
+    beginCreateOrUpdateAndWait(resourceGroupName: string, managedInstanceName: string, securityAlertPolicyName: SecurityAlertPolicyName, parameters: ManagedServerSecurityAlertPolicy, options?: ManagedServerSecurityAlertPoliciesCreateOrUpdateOptionalParams): Promise<ManagedServerSecurityAlertPoliciesCreateOrUpdateResponse>;
+    get(resourceGroupName: string, managedInstanceName: string, securityAlertPolicyName: SecurityAlertPolicyName, options?: ManagedServerSecurityAlertPoliciesGetOptionalParams): Promise<ManagedServerSecurityAlertPoliciesGetResponse>;
     listByInstance(resourceGroupName: string, managedInstanceName: string, options?: ManagedServerSecurityAlertPoliciesListByInstanceOptionalParams): PagedAsyncIterableIterator<ManagedServerSecurityAlertPolicy>;
 }
 
@@ -4983,7 +6570,8 @@ export type ManagedServerSecurityAlertPoliciesListByInstanceResponse = ManagedSe
 
 // @public
 export type ManagedServerSecurityAlertPolicy = ProxyResource & {
-    state?: SecurityAlertPolicyState;
+    readonly systemData?: SystemData;
+    state?: SecurityAlertsPolicyState;
     disabledAlerts?: string[];
     emailAddresses?: string[];
     emailAccountAdmins?: boolean;
@@ -5001,6 +6589,17 @@ export interface ManagedServerSecurityAlertPolicyListResult {
 
 // @public
 export type ManagedShortTermRetentionPolicyName = string;
+
+// @public
+export type ManagedTransparentDataEncryption = ProxyResource & {
+    state?: TransparentDataEncryptionState;
+};
+
+// @public
+export interface ManagedTransparentDataEncryptionListResult {
+    readonly nextLink?: string;
+    readonly value?: ManagedTransparentDataEncryption[];
+}
 
 // @public
 export type ManagementOperationState = string;
@@ -5066,6 +6665,9 @@ export interface MetricName {
 }
 
 // @public
+export type MetricType = string;
+
+// @public
 export interface MetricValue {
     readonly average?: number;
     readonly count?: number;
@@ -5086,6 +6688,12 @@ export interface MinCapacityCapability {
 export interface Name {
     localizedValue?: string;
     value?: string;
+}
+
+// @public
+export interface NetworkIsolationSettings {
+    sqlServerResourceId?: string;
+    storageAccountResourceId?: string;
 }
 
 // @public
@@ -5121,6 +6729,9 @@ export interface OperationListResult {
 }
 
 // @public
+export type OperationMode = string;
+
+// @public
 export type OperationOrigin = string;
 
 // @public
@@ -5141,6 +6752,63 @@ export interface OperationsListOptionalParams extends coreClient.OperationOption
 
 // @public
 export type OperationsListResponse = OperationListResult;
+
+// @public
+export type OutboundFirewallRule = ProxyResource & {
+    readonly provisioningState?: string;
+};
+
+// @public
+export interface OutboundFirewallRuleListResult {
+    readonly nextLink?: string;
+    readonly value?: OutboundFirewallRule[];
+}
+
+// @public
+export interface OutboundFirewallRules {
+    beginCreateOrUpdate(resourceGroupName: string, serverName: string, outboundRuleFqdn: string, parameters: OutboundFirewallRule, options?: OutboundFirewallRulesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<OutboundFirewallRulesCreateOrUpdateResponse>, OutboundFirewallRulesCreateOrUpdateResponse>>;
+    beginCreateOrUpdateAndWait(resourceGroupName: string, serverName: string, outboundRuleFqdn: string, parameters: OutboundFirewallRule, options?: OutboundFirewallRulesCreateOrUpdateOptionalParams): Promise<OutboundFirewallRulesCreateOrUpdateResponse>;
+    beginDelete(resourceGroupName: string, serverName: string, outboundRuleFqdn: string, options?: OutboundFirewallRulesDeleteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteAndWait(resourceGroupName: string, serverName: string, outboundRuleFqdn: string, options?: OutboundFirewallRulesDeleteOptionalParams): Promise<void>;
+    get(resourceGroupName: string, serverName: string, outboundRuleFqdn: string, options?: OutboundFirewallRulesGetOptionalParams): Promise<OutboundFirewallRulesGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: OutboundFirewallRulesListByServerOptionalParams): PagedAsyncIterableIterator<OutboundFirewallRule>;
+}
+
+// @public
+export interface OutboundFirewallRulesCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export type OutboundFirewallRulesCreateOrUpdateResponse = OutboundFirewallRule;
+
+// @public
+export interface OutboundFirewallRulesDeleteOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface OutboundFirewallRulesGetOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type OutboundFirewallRulesGetResponse = OutboundFirewallRule;
+
+// @public
+export interface OutboundFirewallRulesListByServerNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type OutboundFirewallRulesListByServerNextResponse = OutboundFirewallRuleListResult;
+
+// @public
+export interface OutboundFirewallRulesListByServerOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type OutboundFirewallRulesListByServerResponse = OutboundFirewallRuleListResult;
 
 // @public
 export interface PartnerInfo {
@@ -5171,10 +6839,13 @@ export type PerformanceLevelUnit = string;
 export type PrimaryAggregationType = string;
 
 // @public
+export type PrincipalType = string;
+
+// @public
 export type PrivateEndpointConnection = ProxyResource & {
     privateEndpoint?: PrivateEndpointProperty;
     privateLinkServiceConnectionState?: PrivateLinkServiceConnectionStateProperty;
-    readonly provisioningState?: string;
+    readonly provisioningState?: PrivateEndpointProvisioningState;
 };
 
 // @public
@@ -5186,8 +6857,15 @@ export interface PrivateEndpointConnectionListResult {
 // @public
 export interface PrivateEndpointConnectionProperties {
     privateEndpoint?: PrivateEndpointProperty;
-    privateLinkServiceConnectionState?: PrivateLinkServiceConnectionStatePropertyAutoGenerated;
+    privateLinkServiceConnectionState?: PrivateLinkServiceConnectionStateProperty;
     readonly provisioningState?: PrivateEndpointProvisioningState;
+}
+
+// @public
+export interface PrivateEndpointConnectionRequestStatus {
+    readonly privateEndpointConnectionName?: string;
+    readonly privateLinkServiceId?: string;
+    readonly status?: string;
 }
 
 // @public
@@ -5259,6 +6937,7 @@ export interface PrivateLinkResourceListResult {
 export interface PrivateLinkResourceProperties {
     readonly groupId?: string;
     readonly requiredMembers?: string[];
+    readonly requiredZoneNames?: string[];
 }
 
 // @public
@@ -5293,13 +6972,6 @@ export type PrivateLinkServiceConnectionStateActionsRequire = string;
 
 // @public (undocumented)
 export interface PrivateLinkServiceConnectionStateProperty {
-    readonly actionsRequired?: string;
-    description: string;
-    status: string;
-}
-
-// @public (undocumented)
-export interface PrivateLinkServiceConnectionStatePropertyAutoGenerated {
     readonly actionsRequired?: PrivateLinkServiceConnectionStateActionsRequire;
     description: string;
     status: PrivateLinkServiceConnectionStateStatus;
@@ -5315,6 +6987,54 @@ export type ProvisioningState = string;
 export type ProxyResource = Resource & {};
 
 // @public
+export type ProxyResourceWithWritableName = ResourceWithWritableName & {};
+
+// @public
+export interface QueryMetricInterval {
+    readonly executionCount?: number;
+    readonly intervalStartTime?: string;
+    readonly intervalType?: QueryTimeGrainType;
+    metrics?: QueryMetricProperties[];
+}
+
+// @public
+export interface QueryMetricProperties {
+    readonly avg?: number;
+    readonly displayName?: string;
+    readonly max?: number;
+    readonly min?: number;
+    readonly name?: string;
+    readonly stdev?: number;
+    readonly sum?: number;
+    readonly unit?: QueryMetricUnitType;
+    readonly value?: number;
+}
+
+// @public
+export type QueryMetricUnitType = string;
+
+// @public (undocumented)
+export type QueryStatistics = ProxyResource & {
+    readonly databaseName?: string;
+    readonly queryId?: string;
+    readonly startTime?: string;
+    readonly endTime?: string;
+    intervals?: QueryMetricInterval[];
+};
+
+// @public
+export interface QueryStatisticsProperties {
+    readonly databaseName?: string;
+    readonly endTime?: string;
+    intervals?: QueryMetricInterval[];
+    readonly queryId?: string;
+    readonly startTime?: string;
+}
+
+// @public
+export type QueryTimeGrainType = string;
+
+// @public
 export type ReadOnlyEndpointFailoverPolicy = string;
 
 // @public
@@ -5328,89 +7048,104 @@ export interface ReadScaleCapability {
 export type ReadWriteEndpointFailoverPolicy = string;
 
 // @public
-export type RecommendedElasticPool = ProxyResource & {
-    readonly databaseEdition?: ElasticPoolEdition;
-    dtu?: number;
-    databaseDtuMin?: number;
-    databaseDtuMax?: number;
-    storageMB?: number;
-    readonly observationPeriodStart?: Date;
-    readonly observationPeriodEnd?: Date;
-    readonly maxObservedDtu?: number;
-    readonly maxObservedStorageMB?: number;
-    readonly databases?: TrackedResource[];
-    readonly metrics?: RecommendedElasticPoolMetric[];
+export type RecommendedAction = ProxyResource & {
+    readonly kind?: string;
+    readonly location?: string;
+    readonly recommendationReason?: string;
+    readonly validSince?: Date;
+    readonly lastRefresh?: Date;
+    state?: RecommendedActionStateInfo;
+    readonly isExecutableAction?: boolean;
+    readonly isRevertableAction?: boolean;
+    readonly isArchivedAction?: boolean;
+    readonly executeActionStartTime?: Date;
+    readonly executeActionDuration?: string;
+    readonly revertActionStartTime?: Date;
+    readonly revertActionDuration?: string;
+    readonly executeActionInitiatedBy?: RecommendedActionInitiatedBy;
+    readonly executeActionInitiatedTime?: Date;
+    readonly revertActionInitiatedBy?: RecommendedActionInitiatedBy;
+    readonly revertActionInitiatedTime?: Date;
+    readonly score?: number;
+    readonly implementationDetails?: RecommendedActionImplementationInfo;
+    readonly errorDetails?: RecommendedActionErrorInfo;
+    readonly estimatedImpact?: RecommendedActionImpactRecord[];
+    readonly observedImpact?: RecommendedActionImpactRecord[];
+    readonly timeSeries?: RecommendedActionMetricInfo[];
+    readonly linkedObjects?: string[];
+    readonly details?: {
+        [propertyName: string]: Record<string, unknown>;
+    };
 };
 
 // @public
-export interface RecommendedElasticPoolListMetricsResult {
-    value: RecommendedElasticPoolMetric[];
+export type RecommendedActionCurrentState = string;
+
+// @public
+export interface RecommendedActionErrorInfo {
+    readonly errorCode?: string;
+    readonly isRetryable?: IsRetryable;
 }
 
 // @public
-export interface RecommendedElasticPoolListResult {
-    value: RecommendedElasticPool[];
+export interface RecommendedActionImpactRecord {
+    readonly absoluteValue?: number;
+    readonly changeValueAbsolute?: number;
+    readonly changeValueRelative?: number;
+    readonly dimensionName?: string;
+    readonly unit?: string;
 }
 
 // @public
-export interface RecommendedElasticPoolMetric {
-    dateTime?: Date;
-    dtu?: number;
-    sizeGB?: number;
+export interface RecommendedActionImplementationInfo {
+    readonly method?: ImplementationMethod;
+    readonly script?: string;
 }
 
 // @public
-export interface RecommendedElasticPools {
-    get(resourceGroupName: string, serverName: string, recommendedElasticPoolName: string, options?: RecommendedElasticPoolsGetOptionalParams): Promise<RecommendedElasticPoolsGetResponse>;
-    listByServer(resourceGroupName: string, serverName: string, options?: RecommendedElasticPoolsListByServerOptionalParams): PagedAsyncIterableIterator<RecommendedElasticPool>;
-    listMetrics(resourceGroupName: string, serverName: string, recommendedElasticPoolName: string, options?: RecommendedElasticPoolsListMetricsOptionalParams): PagedAsyncIterableIterator<RecommendedElasticPoolMetric>;
+export type RecommendedActionInitiatedBy = "User" | "System";
+
+// @public
+export interface RecommendedActionMetricInfo {
+    readonly metricName?: string;
+    readonly startTime?: Date;
+    readonly timeGrain?: string;
+    readonly unit?: string;
+    readonly value?: number;
 }
 
 // @public
-export interface RecommendedElasticPoolsGetOptionalParams extends coreClient.OperationOptions {
-}
-
-// @public
-export type RecommendedElasticPoolsGetResponse = RecommendedElasticPool;
-
-// @public
-export interface RecommendedElasticPoolsListByServerOptionalParams extends coreClient.OperationOptions {
-}
-
-// @public
-export type RecommendedElasticPoolsListByServerResponse = RecommendedElasticPoolListResult;
-
-// @public
-export interface RecommendedElasticPoolsListMetricsOptionalParams extends coreClient.OperationOptions {
-}
-
-// @public
-export type RecommendedElasticPoolsListMetricsResponse = RecommendedElasticPoolListMetricsResult;
-
-// @public
-export type RecommendedIndex = ProxyResource & {
-    readonly action?: RecommendedIndexAction;
-    readonly state?: RecommendedIndexState;
-    readonly created?: Date;
+export interface RecommendedActionStateInfo {
+    readonly actionInitiatedBy?: RecommendedActionInitiatedBy;
+    currentValue: RecommendedActionCurrentState;
     readonly lastModified?: Date;
-    readonly indexType?: RecommendedIndexType;
-    readonly schema?: string;
-    readonly table?: string;
-    readonly columns?: string[];
-    readonly includedColumns?: string[];
-    readonly indexScript?: string;
-    readonly estimatedImpact?: OperationImpact[];
-    readonly reportedImpact?: OperationImpact[];
+}
+
+// @public
+export interface RecommendedSensitivityLabels {
+    update(resourceGroupName: string, serverName: string, databaseName: string, parameters: RecommendedSensitivityLabelUpdateList, options?: RecommendedSensitivityLabelsUpdateOptionalParams): Promise<void>;
+}
+
+// @public
+export interface RecommendedSensitivityLabelsUpdateOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type RecommendedSensitivityLabelUpdate = ProxyResource & {
+    op?: RecommendedSensitivityLabelUpdateKind;
+    schema?: string;
+    table?: string;
+    column?: string;
 };
 
 // @public
-export type RecommendedIndexAction = "Create" | "Drop" | "Rebuild";
+export type RecommendedSensitivityLabelUpdateKind = "enable" | "disable";
 
 // @public
-export type RecommendedIndexState = "Active" | "Pending" | "Executing" | "Verifying" | "Pending Revert" | "Reverting" | "Reverted" | "Ignored" | "Expired" | "Blocked" | "Success";
-
-// @public
-export type RecommendedIndexType = "CLUSTERED" | "NONCLUSTERED" | "COLUMNSTORE" | "CLUSTERED COLUMNSTORE";
+export interface RecommendedSensitivityLabelUpdateList {
+    // (undocumented)
+    operations?: RecommendedSensitivityLabelUpdate[];
+}
 
 // @public
 export type RecoverableDatabase = ProxyResource & {
@@ -5485,22 +7220,23 @@ export type RecoverableManagedDatabasesListByInstanceResponse = RecoverableManag
 
 // @public
 export type ReplicationLink = ProxyResource & {
-    readonly location?: string;
-    readonly isTerminationAllowed?: boolean;
-    readonly replicationMode?: string;
     readonly partnerServer?: string;
     readonly partnerDatabase?: string;
     readonly partnerLocation?: string;
     readonly role?: ReplicationRole;
     readonly partnerRole?: ReplicationRole;
+    readonly replicationMode?: string;
     readonly startTime?: Date;
     readonly percentComplete?: number;
     readonly replicationState?: ReplicationState;
+    readonly isTerminationAllowed?: boolean;
+    readonly linkType?: ReplicationLinkType;
 };
 
 // @public
 export interface ReplicationLinkListResult {
-    value?: ReplicationLink[];
+    readonly nextLink?: string;
+    readonly value?: ReplicationLink[];
 }
 
 // @public
@@ -5514,6 +7250,7 @@ export interface ReplicationLinks {
     delete(resourceGroupName: string, serverName: string, databaseName: string, linkId: string, options?: ReplicationLinksDeleteOptionalParams): Promise<void>;
     get(resourceGroupName: string, serverName: string, databaseName: string, linkId: string, options?: ReplicationLinksGetOptionalParams): Promise<ReplicationLinksGetResponse>;
     listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: ReplicationLinksListByDatabaseOptionalParams): PagedAsyncIterableIterator<ReplicationLink>;
+    listByServer(resourceGroupName: string, serverName: string, options?: ReplicationLinksListByServerOptionalParams): PagedAsyncIterableIterator<ReplicationLink>;
 }
 
 // @public
@@ -5540,6 +7277,13 @@ export interface ReplicationLinksGetOptionalParams extends coreClient.OperationO
 export type ReplicationLinksGetResponse = ReplicationLink;
 
 // @public
+export interface ReplicationLinksListByDatabaseNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ReplicationLinksListByDatabaseNextResponse = ReplicationLinkListResult;
+
+// @public
 export interface ReplicationLinksListByDatabaseOptionalParams extends coreClient.OperationOptions {
 }
 
@@ -5547,10 +7291,27 @@ export interface ReplicationLinksListByDatabaseOptionalParams extends coreClient
 export type ReplicationLinksListByDatabaseResponse = ReplicationLinkListResult;
 
 // @public
+export interface ReplicationLinksListByServerNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ReplicationLinksListByServerNextResponse = ReplicationLinkListResult;
+
+// @public
+export interface ReplicationLinksListByServerOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ReplicationLinksListByServerResponse = ReplicationLinkListResult;
+
+// @public
 export interface ReplicationLinksUnlinkOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
+
+// @public
+export type ReplicationLinkType = string;
 
 // @public
 export type ReplicationRole = "Primary" | "Secondary" | "NonReadableSecondary" | "Source" | "Copy";
@@ -5573,6 +7334,9 @@ export interface ResourceIdentity {
     readonly principalId?: string;
     readonly tenantId?: string;
     type?: IdentityType;
+    userAssignedIdentities?: {
+        [propertyName: string]: UserIdentity;
+    };
 }
 
 // @public
@@ -5581,26 +7345,36 @@ export interface ResourceMoveDefinition {
 }
 
 // @public
+export interface ResourceWithWritableName {
+    readonly id?: string;
+    name?: string;
+    readonly type?: string;
+}
+
+// @public
 export type RestorableDroppedDatabase = ProxyResource & {
-    readonly location?: string;
+    sku?: Sku;
+    location?: string;
+    tags?: {
+        [propertyName: string]: string;
+    };
     readonly databaseName?: string;
-    readonly edition?: string;
-    readonly maxSizeBytes?: string;
-    readonly serviceLevelObjective?: string;
-    readonly elasticPoolName?: string;
+    readonly maxSizeBytes?: number;
     readonly creationDate?: Date;
     readonly deletionDate?: Date;
     readonly earliestRestoreDate?: Date;
+    readonly backupStorageRedundancy?: BackupStorageRedundancy;
 };
 
 // @public
 export interface RestorableDroppedDatabaseListResult {
-    value: RestorableDroppedDatabase[];
+    readonly nextLink?: string;
+    readonly value?: RestorableDroppedDatabase[];
 }
 
 // @public
 export interface RestorableDroppedDatabases {
-    get(resourceGroupName: string, serverName: string, restorableDroppededDatabaseId: string, options?: RestorableDroppedDatabasesGetOptionalParams): Promise<RestorableDroppedDatabasesGetResponse>;
+    get(resourceGroupName: string, serverName: string, restorableDroppedDatabaseId: string, options?: RestorableDroppedDatabasesGetOptionalParams): Promise<RestorableDroppedDatabasesGetResponse>;
     listByServer(resourceGroupName: string, serverName: string, options?: RestorableDroppedDatabasesListByServerOptionalParams): PagedAsyncIterableIterator<RestorableDroppedDatabase>;
 }
 
@@ -5610,6 +7384,13 @@ export interface RestorableDroppedDatabasesGetOptionalParams extends coreClient.
 
 // @public
 export type RestorableDroppedDatabasesGetResponse = RestorableDroppedDatabase;
+
+// @public
+export interface RestorableDroppedDatabasesListByServerNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type RestorableDroppedDatabasesListByServerNextResponse = RestorableDroppedDatabaseListResult;
 
 // @public
 export interface RestorableDroppedDatabasesListByServerOptionalParams extends coreClient.OperationOptions {
@@ -5707,6 +7488,13 @@ export interface RestorePointsGetOptionalParams extends coreClient.OperationOpti
 export type RestorePointsGetResponse = RestorePoint;
 
 // @public
+export interface RestorePointsListByDatabaseNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type RestorePointsListByDatabaseNextResponse = RestorePointListResult;
+
+// @public
 export interface RestorePointsListByDatabaseOptionalParams extends coreClient.OperationOptions {
 }
 
@@ -5720,22 +7508,62 @@ export type RestorePointType = "CONTINUOUS" | "DISCRETE";
 export type SampleName = string;
 
 // @public
-export type SecurityAlertPolicyEmailAccountAdmins = "Enabled" | "Disabled";
+export type SecondaryType = string;
 
 // @public
 export type SecurityAlertPolicyName = string;
 
 // @public
-export type SecurityAlertPolicyNameAutoGenerated = string;
-
-// @public
 export type SecurityAlertPolicyState = "New" | "Enabled" | "Disabled";
 
 // @public
-export type SecurityAlertPolicyUseServerDefault = "Enabled" | "Disabled";
+export type SecurityAlertsPolicyState = "Enabled" | "Disabled";
+
+// @public
+export type SecurityEvent = ProxyResource & {
+    readonly eventTime?: Date;
+    readonly securityEventType?: SecurityEventType;
+    readonly subscription?: string;
+    readonly server?: string;
+    readonly database?: string;
+    readonly clientIp?: string;
+    readonly applicationName?: string;
+    readonly principalName?: string;
+    readonly securityEventSqlInjectionAdditionalProperties?: SecurityEventSqlInjectionAdditionalProperties;
+};
+
+// @public
+export interface SecurityEventCollection {
+    readonly nextLink?: string;
+    readonly value?: SecurityEvent[];
+}
+
+// @public
+export interface SecurityEventsFilterParameters {
+    eventTime?: Date;
+    showServerRecords?: boolean;
+}
+
+// @public
+export interface SecurityEventSqlInjectionAdditionalProperties {
+    readonly errorCode?: number;
+    readonly errorMessage?: string;
+    readonly errorSeverity?: number;
+    readonly statement?: string;
+    readonly statementHighlightLength?: number;
+    readonly statementHighlightOffset?: number;
+    readonly threatId?: string;
+}
+
+// @public
+export type SecurityEventType = "Undefined" | "SqlInjectionVulnerability" | "SqlInjectionExploit";
 
 // @public
 export type SensitivityLabel = ProxyResource & {
+    readonly managedBy?: string;
+    readonly schemaName?: string;
+    readonly tableName?: string;
+    readonly columnName?: string;
     labelName?: string;
     labelId?: string;
     informationType?: string;
@@ -5762,6 +7590,7 @@ export interface SensitivityLabels {
     get(resourceGroupName: string, serverName: string, databaseName: string, schemaName: string, tableName: string, columnName: string, sensitivityLabelSource: SensitivityLabelSource, options?: SensitivityLabelsGetOptionalParams): Promise<SensitivityLabelsGetResponse>;
     listCurrentByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: SensitivityLabelsListCurrentByDatabaseOptionalParams): PagedAsyncIterableIterator<SensitivityLabel>;
     listRecommendedByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: SensitivityLabelsListRecommendedByDatabaseOptionalParams): PagedAsyncIterableIterator<SensitivityLabel>;
+    update(resourceGroupName: string, serverName: string, databaseName: string, parameters: SensitivityLabelUpdateList, options?: SensitivityLabelsUpdateOptionalParams): Promise<void>;
 }
 
 // @public
@@ -5792,7 +7621,11 @@ export type SensitivityLabelsGetResponse = SensitivityLabel;
 
 // @public
 export interface SensitivityLabelsListCurrentByDatabaseNextOptionalParams extends coreClient.OperationOptions {
+    // (undocumented)
+    count?: boolean;
     filter?: string;
+    // (undocumented)
+    skipToken?: string;
 }
 
 // @public
@@ -5800,7 +7633,11 @@ export type SensitivityLabelsListCurrentByDatabaseNextResponse = SensitivityLabe
 
 // @public
 export interface SensitivityLabelsListCurrentByDatabaseOptionalParams extends coreClient.OperationOptions {
+    // (undocumented)
+    count?: boolean;
     filter?: string;
+    // (undocumented)
+    skipToken?: string;
 }
 
 // @public
@@ -5832,6 +7669,28 @@ export type SensitivityLabelsListRecommendedByDatabaseResponse = SensitivityLabe
 export type SensitivityLabelSource = "current" | "recommended";
 
 // @public
+export interface SensitivityLabelsUpdateOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type SensitivityLabelUpdate = ProxyResource & {
+    op?: SensitivityLabelUpdateKind;
+    schema?: string;
+    table?: string;
+    column?: string;
+    sensitivityLabel?: SensitivityLabel;
+};
+
+// @public
+export type SensitivityLabelUpdateKind = "set" | "remove";
+
+// @public
+export interface SensitivityLabelUpdateList {
+    // (undocumented)
+    operations?: SensitivityLabelUpdate[];
+}
+
+// @public
 export type Server = TrackedResource & {
     identity?: ResourceIdentity;
     readonly kind?: string;
@@ -5842,8 +7701,43 @@ export type Server = TrackedResource & {
     readonly fullyQualifiedDomainName?: string;
     readonly privateEndpointConnections?: ServerPrivateEndpointConnection[];
     minimalTlsVersion?: string;
-    publicNetworkAccess?: ServerPublicNetworkAccess;
+    publicNetworkAccess?: ServerNetworkAccessFlag;
+    readonly workspaceFeature?: ServerWorkspaceFeature;
+    primaryUserAssignedIdentityId?: string;
+    federatedClientId?: string;
+    keyId?: string;
+    administrators?: ServerExternalAdministrator;
+    restrictOutboundNetworkAccess?: ServerNetworkAccessFlag;
 };
+
+// @public
+export interface ServerAdvisors {
+    get(resourceGroupName: string, serverName: string, advisorName: string, options?: ServerAdvisorsGetOptionalParams): Promise<ServerAdvisorsGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: ServerAdvisorsListByServerOptionalParams): Promise<ServerAdvisorsListByServerResponse>;
+    update(resourceGroupName: string, serverName: string, advisorName: string, parameters: Advisor, options?: ServerAdvisorsUpdateOptionalParams): Promise<ServerAdvisorsUpdateResponse>;
+}
+
+// @public
+export interface ServerAdvisorsGetOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ServerAdvisorsGetResponse = Advisor;
+
+// @public
+export interface ServerAdvisorsListByServerOptionalParams extends coreClient.OperationOptions {
+    expand?: string;
+}
+
+// @public
+export type ServerAdvisorsListByServerResponse = Advisor[];
+
+// @public
+export interface ServerAdvisorsUpdateOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ServerAdvisorsUpdateResponse = Advisor;
 
 // @public
 export type ServerAutomaticTuning = ProxyResource & {
@@ -5880,7 +7774,7 @@ export type ServerAzureADAdministrator = ProxyResource & {
     login?: string;
     sid?: string;
     tenantId?: string;
-    azureADOnlyAuthentication?: boolean;
+    readonly azureADOnlyAuthentication?: boolean;
 };
 
 // @public
@@ -5889,8 +7783,6 @@ export interface ServerAzureADAdministrators {
     beginCreateOrUpdateAndWait(resourceGroupName: string, serverName: string, administratorName: AdministratorName, parameters: ServerAzureADAdministrator, options?: ServerAzureADAdministratorsCreateOrUpdateOptionalParams): Promise<ServerAzureADAdministratorsCreateOrUpdateResponse>;
     beginDelete(resourceGroupName: string, serverName: string, administratorName: AdministratorName, options?: ServerAzureADAdministratorsDeleteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
     beginDeleteAndWait(resourceGroupName: string, serverName: string, administratorName: AdministratorName, options?: ServerAzureADAdministratorsDeleteOptionalParams): Promise<void>;
-    beginDisableAzureADOnlyAuthentication(resourceGroupName: string, serverName: string, options?: ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationOptionalParams): Promise<PollerLike<PollOperationState<ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationResponse>, ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationResponse>>;
-    beginDisableAzureADOnlyAuthenticationAndWait(resourceGroupName: string, serverName: string, options?: ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationOptionalParams): Promise<ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationResponse>;
     get(resourceGroupName: string, serverName: string, administratorName: AdministratorName, options?: ServerAzureADAdministratorsGetOptionalParams): Promise<ServerAzureADAdministratorsGetResponse>;
     listByServer(resourceGroupName: string, serverName: string, options?: ServerAzureADAdministratorsListByServerOptionalParams): PagedAsyncIterableIterator<ServerAzureADAdministrator>;
 }
@@ -5909,15 +7801,6 @@ export interface ServerAzureADAdministratorsDeleteOptionalParams extends coreCli
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
-
-// @public
-export interface ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationOptionalParams extends coreClient.OperationOptions {
-    resumeFrom?: string;
-    updateIntervalInMs?: number;
-}
-
-// @public
-export type ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationResponse = ServerAzureADAdministrator;
 
 // @public
 export interface ServerAzureADAdministratorsGetOptionalParams extends coreClient.OperationOptions {
@@ -5939,6 +7822,57 @@ export interface ServerAzureADAdministratorsListByServerOptionalParams extends c
 
 // @public
 export type ServerAzureADAdministratorsListByServerResponse = AdministratorListResult;
+
+// @public
+export type ServerAzureADOnlyAuthentication = ProxyResource & {
+    azureADOnlyAuthentication?: boolean;
+};
+
+// @public
+export interface ServerAzureADOnlyAuthentications {
+    beginCreateOrUpdate(resourceGroupName: string, serverName: string, authenticationName: AuthenticationName, parameters: ServerAzureADOnlyAuthentication, options?: ServerAzureADOnlyAuthenticationsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ServerAzureADOnlyAuthenticationsCreateOrUpdateResponse>, ServerAzureADOnlyAuthenticationsCreateOrUpdateResponse>>;
+    beginCreateOrUpdateAndWait(resourceGroupName: string, serverName: string, authenticationName: AuthenticationName, parameters: ServerAzureADOnlyAuthentication, options?: ServerAzureADOnlyAuthenticationsCreateOrUpdateOptionalParams): Promise<ServerAzureADOnlyAuthenticationsCreateOrUpdateResponse>;
+    beginDelete(resourceGroupName: string, serverName: string, authenticationName: AuthenticationName, options?: ServerAzureADOnlyAuthenticationsDeleteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteAndWait(resourceGroupName: string, serverName: string, authenticationName: AuthenticationName, options?: ServerAzureADOnlyAuthenticationsDeleteOptionalParams): Promise<void>;
+    get(resourceGroupName: string, serverName: string, authenticationName: AuthenticationName, options?: ServerAzureADOnlyAuthenticationsGetOptionalParams): Promise<ServerAzureADOnlyAuthenticationsGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: ServerAzureADOnlyAuthenticationsListByServerOptionalParams): PagedAsyncIterableIterator<ServerAzureADOnlyAuthentication>;
+}
+
+// @public
+export interface ServerAzureADOnlyAuthenticationsCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export type ServerAzureADOnlyAuthenticationsCreateOrUpdateResponse = ServerAzureADOnlyAuthentication;
+
+// @public
+export interface ServerAzureADOnlyAuthenticationsDeleteOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface ServerAzureADOnlyAuthenticationsGetOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ServerAzureADOnlyAuthenticationsGetResponse = ServerAzureADOnlyAuthentication;
+
+// @public
+export interface ServerAzureADOnlyAuthenticationsListByServerNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ServerAzureADOnlyAuthenticationsListByServerNextResponse = AzureADOnlyAuthListResult;
+
+// @public
+export interface ServerAzureADOnlyAuthenticationsListByServerOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ServerAzureADOnlyAuthenticationsListByServerResponse = AzureADOnlyAuthListResult;
 
 // @public
 export interface ServerBlobAuditingPolicies {
@@ -5980,15 +7914,16 @@ export type ServerBlobAuditingPoliciesListByServerResponse = ServerBlobAuditingP
 
 // @public
 export type ServerBlobAuditingPolicy = ProxyResource & {
-    state?: BlobAuditingPolicyState;
-    storageEndpoint?: string;
-    storageAccountAccessKey?: string;
+    isDevopsAuditEnabled?: boolean;
     retentionDays?: number;
     auditActionsAndGroups?: string[];
-    storageAccountSubscriptionId?: string;
     isStorageSecondaryKeyInUse?: boolean;
     isAzureMonitorTargetEnabled?: boolean;
     queueDelayMs?: number;
+    state?: BlobAuditingPolicyState;
+    storageEndpoint?: string;
+    storageAccountAccessKey?: string;
+    storageAccountSubscriptionId?: string;
 };
 
 // @public
@@ -6048,12 +7983,16 @@ export type ServerCommunicationLinksListByServerResponse = ServerCommunicationLi
 
 // @public
 export interface ServerConnectionPolicies {
-    createOrUpdate(resourceGroupName: string, serverName: string, connectionPolicyName: ConnectionPolicyName, parameters: ServerConnectionPolicy, options?: ServerConnectionPoliciesCreateOrUpdateOptionalParams): Promise<ServerConnectionPoliciesCreateOrUpdateResponse>;
+    beginCreateOrUpdate(resourceGroupName: string, serverName: string, connectionPolicyName: ConnectionPolicyName, parameters: ServerConnectionPolicy, options?: ServerConnectionPoliciesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ServerConnectionPoliciesCreateOrUpdateResponse>, ServerConnectionPoliciesCreateOrUpdateResponse>>;
+    beginCreateOrUpdateAndWait(resourceGroupName: string, serverName: string, connectionPolicyName: ConnectionPolicyName, parameters: ServerConnectionPolicy, options?: ServerConnectionPoliciesCreateOrUpdateOptionalParams): Promise<ServerConnectionPoliciesCreateOrUpdateResponse>;
     get(resourceGroupName: string, serverName: string, connectionPolicyName: ConnectionPolicyName, options?: ServerConnectionPoliciesGetOptionalParams): Promise<ServerConnectionPoliciesGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: ServerConnectionPoliciesListByServerOptionalParams): PagedAsyncIterableIterator<ServerConnectionPolicy>;
 }
 
 // @public
 export interface ServerConnectionPoliciesCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -6067,14 +8006,88 @@ export interface ServerConnectionPoliciesGetOptionalParams extends coreClient.Op
 export type ServerConnectionPoliciesGetResponse = ServerConnectionPolicy;
 
 // @public
+export interface ServerConnectionPoliciesListByServerNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ServerConnectionPoliciesListByServerNextResponse = ServerConnectionPolicyListResult;
+
+// @public
+export interface ServerConnectionPoliciesListByServerOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ServerConnectionPoliciesListByServerResponse = ServerConnectionPolicyListResult;
+
+// @public
 export type ServerConnectionPolicy = ProxyResource & {
-    readonly kind?: string;
     readonly location?: string;
+    readonly kind?: string;
     connectionType?: ServerConnectionType;
 };
 
 // @public
-export type ServerConnectionType = "Default" | "Proxy" | "Redirect";
+export interface ServerConnectionPolicyListResult {
+    readonly nextLink?: string;
+    readonly value?: ServerConnectionPolicy[];
+}
+
+// @public
+export type ServerConnectionType = string;
+
+// @public
+export type ServerDevOpsAuditingSettings = ProxyResource & {
+    readonly systemData?: SystemData;
+    isAzureMonitorTargetEnabled?: boolean;
+    state?: BlobAuditingPolicyState;
+    storageEndpoint?: string;
+    storageAccountAccessKey?: string;
+    storageAccountSubscriptionId?: string;
+};
+
+// @public
+export interface ServerDevOpsAuditSettings {
+    beginCreateOrUpdate(resourceGroupName: string, serverName: string, devOpsAuditingSettingsName: string, parameters: ServerDevOpsAuditingSettings, options?: ServerDevOpsAuditSettingsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ServerDevOpsAuditSettingsCreateOrUpdateResponse>, ServerDevOpsAuditSettingsCreateOrUpdateResponse>>;
+    beginCreateOrUpdateAndWait(resourceGroupName: string, serverName: string, devOpsAuditingSettingsName: string, parameters: ServerDevOpsAuditingSettings, options?: ServerDevOpsAuditSettingsCreateOrUpdateOptionalParams): Promise<ServerDevOpsAuditSettingsCreateOrUpdateResponse>;
+    get(resourceGroupName: string, serverName: string, devOpsAuditingSettingsName: string, options?: ServerDevOpsAuditSettingsGetOptionalParams): Promise<ServerDevOpsAuditSettingsGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: ServerDevOpsAuditSettingsListByServerOptionalParams): PagedAsyncIterableIterator<ServerDevOpsAuditingSettings>;
+}
+
+// @public
+export interface ServerDevOpsAuditSettingsCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export type ServerDevOpsAuditSettingsCreateOrUpdateResponse = ServerDevOpsAuditingSettings;
+
+// @public
+export interface ServerDevOpsAuditSettingsGetOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ServerDevOpsAuditSettingsGetResponse = ServerDevOpsAuditingSettings;
+
+// @public
+export interface ServerDevOpsAuditSettingsListByServerNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ServerDevOpsAuditSettingsListByServerNextResponse = ServerDevOpsAuditSettingsListResult;
+
+// @public
+export interface ServerDevOpsAuditSettingsListByServerOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ServerDevOpsAuditSettingsListByServerResponse = ServerDevOpsAuditSettingsListResult;
+
+// @public
+export interface ServerDevOpsAuditSettingsListResult {
+    readonly nextLink?: string;
+    readonly value?: ServerDevOpsAuditingSettings[];
+}
 
 // @public
 export type ServerDnsAlias = ProxyResource & {
@@ -6083,13 +8096,13 @@ export type ServerDnsAlias = ProxyResource & {
 
 // @public
 export interface ServerDnsAliasAcquisition {
-    oldServerDnsAliasId?: string;
+    oldServerDnsAliasId: string;
 }
 
 // @public
 export interface ServerDnsAliases {
-    beginAcquire(resourceGroupName: string, serverName: string, dnsAliasName: string, parameters: ServerDnsAliasAcquisition, options?: ServerDnsAliasesAcquireOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
-    beginAcquireAndWait(resourceGroupName: string, serverName: string, dnsAliasName: string, parameters: ServerDnsAliasAcquisition, options?: ServerDnsAliasesAcquireOptionalParams): Promise<void>;
+    beginAcquire(resourceGroupName: string, serverName: string, dnsAliasName: string, parameters: ServerDnsAliasAcquisition, options?: ServerDnsAliasesAcquireOptionalParams): Promise<PollerLike<PollOperationState<ServerDnsAliasesAcquireResponse>, ServerDnsAliasesAcquireResponse>>;
+    beginAcquireAndWait(resourceGroupName: string, serverName: string, dnsAliasName: string, parameters: ServerDnsAliasAcquisition, options?: ServerDnsAliasesAcquireOptionalParams): Promise<ServerDnsAliasesAcquireResponse>;
     beginCreateOrUpdate(resourceGroupName: string, serverName: string, dnsAliasName: string, options?: ServerDnsAliasesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ServerDnsAliasesCreateOrUpdateResponse>, ServerDnsAliasesCreateOrUpdateResponse>>;
     beginCreateOrUpdateAndWait(resourceGroupName: string, serverName: string, dnsAliasName: string, options?: ServerDnsAliasesCreateOrUpdateOptionalParams): Promise<ServerDnsAliasesCreateOrUpdateResponse>;
     beginDelete(resourceGroupName: string, serverName: string, dnsAliasName: string, options?: ServerDnsAliasesDeleteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
@@ -6103,6 +8116,9 @@ export interface ServerDnsAliasesAcquireOptionalParams extends coreClient.Operat
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
+
+// @public
+export type ServerDnsAliasesAcquireResponse = ServerDnsAlias;
 
 // @public
 export interface ServerDnsAliasesCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
@@ -6147,14 +8163,30 @@ export interface ServerDnsAliasListResult {
 }
 
 // @public
+export interface ServerExternalAdministrator {
+    administratorType?: AdministratorType;
+    azureADOnlyAuthentication?: boolean;
+    login?: string;
+    principalType?: PrincipalType;
+    sid?: string;
+    tenantId?: string;
+}
+
+// @public
+export interface ServerInfo {
+    serverId: string;
+}
+
+// @public
 export type ServerKey = ProxyResource & {
-    kind?: string;
+    readonly kind?: string;
     readonly location?: string;
     readonly subregion?: string;
     serverKeyType?: ServerKeyType;
     uri?: string;
-    thumbprint?: string;
-    creationDate?: Date;
+    readonly thumbprint?: string;
+    readonly creationDate?: Date;
+    readonly autoRotationEnabled?: boolean;
 };
 
 // @public
@@ -6219,13 +8251,55 @@ export interface ServerListResult {
 }
 
 // @public
+export type ServerNetworkAccessFlag = string;
+
+// @public
+export type ServerOperation = ProxyResource & {
+    readonly operation?: string;
+    readonly operationFriendlyName?: string;
+    readonly percentComplete?: number;
+    readonly serverName?: string;
+    readonly startTime?: Date;
+    readonly state?: ManagementOperationState;
+    readonly errorCode?: number;
+    readonly errorDescription?: string;
+    readonly errorSeverity?: number;
+    readonly isUserError?: boolean;
+    readonly estimatedCompletionTime?: Date;
+    readonly description?: string;
+    readonly isCancellable?: boolean;
+};
+
+// @public
+export interface ServerOperationListResult {
+    readonly nextLink?: string;
+    readonly value?: ServerOperation[];
+}
+
+// @public
+export interface ServerOperations {
+    listByServer(resourceGroupName: string, serverName: string, options?: ServerOperationsListByServerOptionalParams): PagedAsyncIterableIterator<ServerOperation>;
+}
+
+// @public
+export interface ServerOperationsListByServerNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ServerOperationsListByServerNextResponse = ServerOperationListResult;
+
+// @public
+export interface ServerOperationsListByServerOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ServerOperationsListByServerResponse = ServerOperationListResult;
+
+// @public
 export interface ServerPrivateEndpointConnection {
     readonly id?: string;
     readonly properties?: PrivateEndpointConnectionProperties;
 }
-
-// @public
-export type ServerPublicNetworkAccess = string;
 
 // @public
 export interface Servers {
@@ -6233,6 +8307,8 @@ export interface Servers {
     beginCreateOrUpdateAndWait(resourceGroupName: string, serverName: string, parameters: Server, options?: ServersCreateOrUpdateOptionalParams): Promise<ServersCreateOrUpdateResponse>;
     beginDelete(resourceGroupName: string, serverName: string, options?: ServersDeleteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
     beginDeleteAndWait(resourceGroupName: string, serverName: string, options?: ServersDeleteOptionalParams): Promise<void>;
+    beginImportDatabase(resourceGroupName: string, serverName: string, parameters: ImportNewDatabaseDefinition, options?: ServersImportDatabaseOptionalParams): Promise<PollerLike<PollOperationState<ServersImportDatabaseResponse>, ServersImportDatabaseResponse>>;
+    beginImportDatabaseAndWait(resourceGroupName: string, serverName: string, parameters: ImportNewDatabaseDefinition, options?: ServersImportDatabaseOptionalParams): Promise<ServersImportDatabaseResponse>;
     beginUpdate(resourceGroupName: string, serverName: string, parameters: ServerUpdate, options?: ServersUpdateOptionalParams): Promise<PollerLike<PollOperationState<ServersUpdateResponse>, ServersUpdateResponse>>;
     beginUpdateAndWait(resourceGroupName: string, serverName: string, parameters: ServerUpdate, options?: ServersUpdateOptionalParams): Promise<ServersUpdateResponse>;
     checkNameAvailability(parameters: CheckNameAvailabilityRequest, options?: ServersCheckNameAvailabilityOptionalParams): Promise<ServersCheckNameAvailabilityResponse>;
@@ -6265,9 +8341,9 @@ export interface ServersDeleteOptionalParams extends coreClient.OperationOptions
 
 // @public
 export interface ServerSecurityAlertPolicies {
-    beginCreateOrUpdate(resourceGroupName: string, serverName: string, securityAlertPolicyName: SecurityAlertPolicyNameAutoGenerated, parameters: ServerSecurityAlertPolicy, options?: ServerSecurityAlertPoliciesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ServerSecurityAlertPoliciesCreateOrUpdateResponse>, ServerSecurityAlertPoliciesCreateOrUpdateResponse>>;
-    beginCreateOrUpdateAndWait(resourceGroupName: string, serverName: string, securityAlertPolicyName: SecurityAlertPolicyNameAutoGenerated, parameters: ServerSecurityAlertPolicy, options?: ServerSecurityAlertPoliciesCreateOrUpdateOptionalParams): Promise<ServerSecurityAlertPoliciesCreateOrUpdateResponse>;
-    get(resourceGroupName: string, serverName: string, securityAlertPolicyName: SecurityAlertPolicyNameAutoGenerated, options?: ServerSecurityAlertPoliciesGetOptionalParams): Promise<ServerSecurityAlertPoliciesGetResponse>;
+    beginCreateOrUpdate(resourceGroupName: string, serverName: string, securityAlertPolicyName: SecurityAlertPolicyName, parameters: ServerSecurityAlertPolicy, options?: ServerSecurityAlertPoliciesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ServerSecurityAlertPoliciesCreateOrUpdateResponse>, ServerSecurityAlertPoliciesCreateOrUpdateResponse>>;
+    beginCreateOrUpdateAndWait(resourceGroupName: string, serverName: string, securityAlertPolicyName: SecurityAlertPolicyName, parameters: ServerSecurityAlertPolicy, options?: ServerSecurityAlertPoliciesCreateOrUpdateOptionalParams): Promise<ServerSecurityAlertPoliciesCreateOrUpdateResponse>;
+    get(resourceGroupName: string, serverName: string, securityAlertPolicyName: SecurityAlertPolicyName, options?: ServerSecurityAlertPoliciesGetOptionalParams): Promise<ServerSecurityAlertPoliciesGetResponse>;
     listByServer(resourceGroupName: string, serverName: string, options?: ServerSecurityAlertPoliciesListByServerOptionalParams): PagedAsyncIterableIterator<ServerSecurityAlertPolicy>;
 }
 
@@ -6303,7 +8379,8 @@ export type ServerSecurityAlertPoliciesListByServerResponse = LogicalServerSecur
 
 // @public
 export type ServerSecurityAlertPolicy = ProxyResource & {
-    state?: SecurityAlertPolicyState;
+    readonly systemData?: SystemData;
+    state?: SecurityAlertsPolicyState;
     disabledAlerts?: string[];
     emailAddresses?: string[];
     emailAccountAdmins?: boolean;
@@ -6315,13 +8392,24 @@ export type ServerSecurityAlertPolicy = ProxyResource & {
 
 // @public
 export interface ServersGetOptionalParams extends coreClient.OperationOptions {
+    expand?: string;
 }
 
 // @public
 export type ServersGetResponse = Server;
 
 // @public
+export interface ServersImportDatabaseOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export type ServersImportDatabaseResponse = ImportExportOperationResult;
+
+// @public
 export interface ServersListByResourceGroupNextOptionalParams extends coreClient.OperationOptions {
+    expand?: string;
 }
 
 // @public
@@ -6329,6 +8417,7 @@ export type ServersListByResourceGroupNextResponse = ServerListResult;
 
 // @public
 export interface ServersListByResourceGroupOptionalParams extends coreClient.OperationOptions {
+    expand?: string;
 }
 
 // @public
@@ -6336,6 +8425,7 @@ export type ServersListByResourceGroupResponse = ServerListResult;
 
 // @public
 export interface ServersListNextOptionalParams extends coreClient.OperationOptions {
+    expand?: string;
 }
 
 // @public
@@ -6343,6 +8433,7 @@ export type ServersListNextResponse = ServerListResult;
 
 // @public
 export interface ServersListOptionalParams extends coreClient.OperationOptions {
+    expand?: string;
 }
 
 // @public
@@ -6358,18 +8449,101 @@ export interface ServersUpdateOptionalParams extends coreClient.OperationOptions
 export type ServersUpdateResponse = Server;
 
 // @public
+export type ServerTrustGroup = ProxyResource & {
+    groupMembers?: ServerInfo[];
+    trustScopes?: ServerTrustGroupPropertiesTrustScopesItem[];
+};
+
+// @public
+export interface ServerTrustGroupListResult {
+    readonly nextLink?: string;
+    readonly value?: ServerTrustGroup[];
+}
+
+// @public
+export type ServerTrustGroupPropertiesTrustScopesItem = string;
+
+// @public
+export interface ServerTrustGroups {
+    beginCreateOrUpdate(resourceGroupName: string, locationName: string, serverTrustGroupName: string, parameters: ServerTrustGroup, options?: ServerTrustGroupsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ServerTrustGroupsCreateOrUpdateResponse>, ServerTrustGroupsCreateOrUpdateResponse>>;
+    beginCreateOrUpdateAndWait(resourceGroupName: string, locationName: string, serverTrustGroupName: string, parameters: ServerTrustGroup, options?: ServerTrustGroupsCreateOrUpdateOptionalParams): Promise<ServerTrustGroupsCreateOrUpdateResponse>;
+    beginDelete(resourceGroupName: string, locationName: string, serverTrustGroupName: string, options?: ServerTrustGroupsDeleteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteAndWait(resourceGroupName: string, locationName: string, serverTrustGroupName: string, options?: ServerTrustGroupsDeleteOptionalParams): Promise<void>;
+    get(resourceGroupName: string, locationName: string, serverTrustGroupName: string, options?: ServerTrustGroupsGetOptionalParams): Promise<ServerTrustGroupsGetResponse>;
+    listByInstance(resourceGroupName: string, managedInstanceName: string, options?: ServerTrustGroupsListByInstanceOptionalParams): PagedAsyncIterableIterator<ServerTrustGroup>;
+    listByLocation(resourceGroupName: string, locationName: string, options?: ServerTrustGroupsListByLocationOptionalParams): PagedAsyncIterableIterator<ServerTrustGroup>;
+}
+
+// @public
+export interface ServerTrustGroupsCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export type ServerTrustGroupsCreateOrUpdateResponse = ServerTrustGroup;
+
+// @public
+export interface ServerTrustGroupsDeleteOptionalParams extends coreClient.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface ServerTrustGroupsGetOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ServerTrustGroupsGetResponse = ServerTrustGroup;
+
+// @public
+export interface ServerTrustGroupsListByInstanceNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ServerTrustGroupsListByInstanceNextResponse = ServerTrustGroupListResult;
+
+// @public
+export interface ServerTrustGroupsListByInstanceOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ServerTrustGroupsListByInstanceResponse = ServerTrustGroupListResult;
+
+// @public
+export interface ServerTrustGroupsListByLocationNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ServerTrustGroupsListByLocationNextResponse = ServerTrustGroupListResult;
+
+// @public
+export interface ServerTrustGroupsListByLocationOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type ServerTrustGroupsListByLocationResponse = ServerTrustGroupListResult;
+
+// @public
 export interface ServerUpdate {
     administratorLogin?: string;
     administratorLoginPassword?: string;
+    administrators?: ServerExternalAdministrator;
+    federatedClientId?: string;
     readonly fullyQualifiedDomainName?: string;
+    identity?: ResourceIdentity;
+    keyId?: string;
     minimalTlsVersion?: string;
+    primaryUserAssignedIdentityId?: string;
     readonly privateEndpointConnections?: ServerPrivateEndpointConnection[];
-    publicNetworkAccess?: ServerPublicNetworkAccess;
+    publicNetworkAccess?: ServerNetworkAccessFlag;
+    restrictOutboundNetworkAccess?: ServerNetworkAccessFlag;
     readonly state?: string;
     tags?: {
         [propertyName: string]: string;
     };
     version?: string;
+    readonly workspaceFeature?: ServerWorkspaceFeature;
 }
 
 // @public
@@ -6464,6 +8638,9 @@ export interface ServerVulnerabilityAssessmentsListByServerOptionalParams extend
 export type ServerVulnerabilityAssessmentsListByServerResponse = ServerVulnerabilityAssessmentListResult;
 
 // @public
+export type ServerWorkspaceFeature = string;
+
+// @public
 export type ServiceObjective = ProxyResource & {
     readonly serviceObjectiveName?: string;
     readonly isDefault?: boolean;
@@ -6484,6 +8661,7 @@ export interface ServiceObjectiveCapability {
     readonly status?: CapabilityStatus;
     readonly supportedAutoPauseDelay?: AutoPauseDelayTimeRange;
     readonly supportedLicenseTypes?: LicenseTypeCapability[];
+    readonly supportedMaintenanceConfigurations?: MaintenanceConfigurationCapability[];
     readonly supportedMaxSizes?: MaxSizeRangeCapability[];
     readonly supportedMinCapacities?: MinCapacityCapability[];
     readonly zoneRedundant?: boolean;
@@ -6518,52 +8696,15 @@ export interface ServiceObjectivesListByServerOptionalParams extends coreClient.
 export type ServiceObjectivesListByServerResponse = ServiceObjectiveListResult;
 
 // @public
-export type ServiceTierAdvisor = ProxyResource & {
-    readonly observationPeriodStart?: Date;
-    readonly observationPeriodEnd?: Date;
-    readonly activeTimeRatio?: number;
-    readonly minDtu?: number;
-    readonly avgDtu?: number;
-    readonly maxDtu?: number;
-    readonly maxSizeInGB?: number;
-    readonly serviceLevelObjectiveUsageMetrics?: SloUsageMetric[];
-    readonly currentServiceLevelObjective?: string;
-    readonly currentServiceLevelObjectiveId?: string;
-    readonly usageBasedRecommendationServiceLevelObjective?: string;
-    readonly usageBasedRecommendationServiceLevelObjectiveId?: string;
-    readonly databaseSizeBasedRecommendationServiceLevelObjective?: string;
-    readonly databaseSizeBasedRecommendationServiceLevelObjectiveId?: string;
-    readonly disasterPlanBasedRecommendationServiceLevelObjective?: string;
-    readonly disasterPlanBasedRecommendationServiceLevelObjectiveId?: string;
-    readonly overallRecommendationServiceLevelObjective?: string;
-    readonly overallRecommendationServiceLevelObjectiveId?: string;
-    readonly confidence?: number;
-};
-
-// @public
-export interface ServiceTierAdvisorListResult {
-    value: ServiceTierAdvisor[];
+export interface ServicePrincipal {
+    readonly clientId?: string;
+    readonly principalId?: string;
+    readonly tenantId?: string;
+    type?: ServicePrincipalType;
 }
 
 // @public
-export interface ServiceTierAdvisors {
-    get(resourceGroupName: string, serverName: string, databaseName: string, serviceTierAdvisorName: string, options?: ServiceTierAdvisorsGetOptionalParams): Promise<ServiceTierAdvisorsGetResponse>;
-    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: ServiceTierAdvisorsListByDatabaseOptionalParams): PagedAsyncIterableIterator<ServiceTierAdvisor>;
-}
-
-// @public
-export interface ServiceTierAdvisorsGetOptionalParams extends coreClient.OperationOptions {
-}
-
-// @public
-export type ServiceTierAdvisorsGetResponse = ServiceTierAdvisor;
-
-// @public
-export interface ServiceTierAdvisorsListByDatabaseOptionalParams extends coreClient.OperationOptions {
-}
-
-// @public
-export type ServiceTierAdvisorsListByDatabaseResponse = ServiceTierAdvisorListResult;
+export type ServicePrincipalType = string;
 
 // @public
 export type ShortTermRetentionPolicyName = string;
@@ -6584,27 +8725,65 @@ export interface SloUsageMetric {
     readonly serviceLevelObjectiveId?: string;
 }
 
+// @public
+export interface SqlAgent {
+    createOrUpdate(resourceGroupName: string, managedInstanceName: string, parameters: SqlAgentConfiguration, options?: SqlAgentCreateOrUpdateOptionalParams): Promise<SqlAgentCreateOrUpdateResponse>;
+    get(resourceGroupName: string, managedInstanceName: string, options?: SqlAgentGetOptionalParams): Promise<SqlAgentGetResponse>;
+}
+
+// @public
+export type SqlAgentConfiguration = ProxyResource & {
+    state?: SqlAgentConfigurationPropertiesState;
+};
+
+// @public
+export type SqlAgentConfigurationPropertiesState = string;
+
+// @public
+export interface SqlAgentCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type SqlAgentCreateOrUpdateResponse = SqlAgentConfiguration;
+
+// @public
+export interface SqlAgentGetOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type SqlAgentGetResponse = SqlAgentConfiguration;
+
 // @public (undocumented)
 export class SqlManagementClient extends coreClient.ServiceClient {
     // (undocumented)
     $host: string;
     constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: SqlManagementClientOptionalParams);
     // (undocumented)
-    backupLongTermRetentionPolicies: BackupLongTermRetentionPolicies;
-    // (undocumented)
     backupShortTermRetentionPolicies: BackupShortTermRetentionPolicies;
     // (undocumented)
     capabilities: Capabilities;
+    // (undocumented)
+    databaseAdvisors: DatabaseAdvisors;
     // (undocumented)
     databaseAutomaticTuningOperations: DatabaseAutomaticTuningOperations;
     // (undocumented)
     databaseBlobAuditingPolicies: DatabaseBlobAuditingPolicies;
     // (undocumented)
+    databaseColumns: DatabaseColumns;
+    // (undocumented)
+    databaseExtensionsOperations: DatabaseExtensionsOperations;
+    // (undocumented)
     databaseOperations: DatabaseOperations;
+    // (undocumented)
+    databaseRecommendedActions: DatabaseRecommendedActions;
     // (undocumented)
     databases: Databases;
     // (undocumented)
-    databaseThreatDetectionPolicies: DatabaseThreatDetectionPolicies;
+    databaseSchemas: DatabaseSchemas;
+    // (undocumented)
+    databaseSecurityAlertPolicies: DatabaseSecurityAlertPolicies;
+    // (undocumented)
+    databaseTables: DatabaseTables;
     // (undocumented)
     databaseUsages: DatabaseUsages;
     // (undocumented)
@@ -6617,6 +8796,10 @@ export class SqlManagementClient extends coreClient.ServiceClient {
     dataMaskingPolicies: DataMaskingPolicies;
     // (undocumented)
     dataMaskingRules: DataMaskingRules;
+    // (undocumented)
+    dataWarehouseUserActivitiesOperations: DataWarehouseUserActivitiesOperations;
+    // (undocumented)
+    deletedServers: DeletedServers;
     // (undocumented)
     elasticPoolActivities: ElasticPoolActivities;
     // (undocumented)
@@ -6660,19 +8843,41 @@ export class SqlManagementClient extends coreClient.ServiceClient {
     // (undocumented)
     jobVersions: JobVersions;
     // (undocumented)
+    ledgerDigestUploadsOperations: LedgerDigestUploadsOperations;
+    // (undocumented)
     longTermRetentionBackups: LongTermRetentionBackups;
     // (undocumented)
     longTermRetentionManagedInstanceBackups: LongTermRetentionManagedInstanceBackups;
     // (undocumented)
+    longTermRetentionPolicies: LongTermRetentionPolicies;
+    // (undocumented)
+    maintenanceWindowOptionsOperations: MaintenanceWindowOptionsOperations;
+    // (undocumented)
+    maintenanceWindowsOperations: MaintenanceWindowsOperations;
+    // (undocumented)
     managedBackupShortTermRetentionPolicies: ManagedBackupShortTermRetentionPolicies;
+    // (undocumented)
+    managedDatabaseColumns: ManagedDatabaseColumns;
+    // (undocumented)
+    managedDatabaseQueries: ManagedDatabaseQueries;
+    // (undocumented)
+    managedDatabaseRecommendedSensitivityLabels: ManagedDatabaseRecommendedSensitivityLabels;
     // (undocumented)
     managedDatabaseRestoreDetails: ManagedDatabaseRestoreDetails;
     // (undocumented)
     managedDatabases: ManagedDatabases;
     // (undocumented)
+    managedDatabaseSchemas: ManagedDatabaseSchemas;
+    // (undocumented)
     managedDatabaseSecurityAlertPolicies: ManagedDatabaseSecurityAlertPolicies;
     // (undocumented)
+    managedDatabaseSecurityEvents: ManagedDatabaseSecurityEvents;
+    // (undocumented)
     managedDatabaseSensitivityLabels: ManagedDatabaseSensitivityLabels;
+    // (undocumented)
+    managedDatabaseTables: ManagedDatabaseTables;
+    // (undocumented)
+    managedDatabaseTransparentDataEncryption: ManagedDatabaseTransparentDataEncryption;
     // (undocumented)
     managedDatabaseVulnerabilityAssessmentRuleBaselines: ManagedDatabaseVulnerabilityAssessmentRuleBaselines;
     // (undocumented)
@@ -6682,6 +8887,8 @@ export class SqlManagementClient extends coreClient.ServiceClient {
     // (undocumented)
     managedInstanceAdministrators: ManagedInstanceAdministrators;
     // (undocumented)
+    managedInstanceAzureADOnlyAuthentications: ManagedInstanceAzureADOnlyAuthentications;
+    // (undocumented)
     managedInstanceEncryptionProtectors: ManagedInstanceEncryptionProtectors;
     // (undocumented)
     managedInstanceKeys: ManagedInstanceKeys;
@@ -6689,6 +8896,10 @@ export class SqlManagementClient extends coreClient.ServiceClient {
     managedInstanceLongTermRetentionPolicies: ManagedInstanceLongTermRetentionPolicies;
     // (undocumented)
     managedInstanceOperations: ManagedInstanceOperations;
+    // (undocumented)
+    managedInstancePrivateEndpointConnections: ManagedInstancePrivateEndpointConnections;
+    // (undocumented)
+    managedInstancePrivateLinkResources: ManagedInstancePrivateLinkResources;
     // (undocumented)
     managedInstances: ManagedInstances;
     // (undocumented)
@@ -6702,11 +8913,13 @@ export class SqlManagementClient extends coreClient.ServiceClient {
     // (undocumented)
     operations: Operations;
     // (undocumented)
+    outboundFirewallRules: OutboundFirewallRules;
+    // (undocumented)
     privateEndpointConnections: PrivateEndpointConnections;
     // (undocumented)
     privateLinkResources: PrivateLinkResources;
     // (undocumented)
-    recommendedElasticPools: RecommendedElasticPools;
+    recommendedSensitivityLabels: RecommendedSensitivityLabels;
     // (undocumented)
     recoverableDatabases: RecoverableDatabases;
     // (undocumented)
@@ -6722,9 +8935,13 @@ export class SqlManagementClient extends coreClient.ServiceClient {
     // (undocumented)
     sensitivityLabels: SensitivityLabels;
     // (undocumented)
+    serverAdvisors: ServerAdvisors;
+    // (undocumented)
     serverAutomaticTuningOperations: ServerAutomaticTuningOperations;
     // (undocumented)
     serverAzureADAdministrators: ServerAzureADAdministrators;
+    // (undocumented)
+    serverAzureADOnlyAuthentications: ServerAzureADOnlyAuthentications;
     // (undocumented)
     serverBlobAuditingPolicies: ServerBlobAuditingPolicies;
     // (undocumented)
@@ -6732,13 +8949,19 @@ export class SqlManagementClient extends coreClient.ServiceClient {
     // (undocumented)
     serverConnectionPolicies: ServerConnectionPolicies;
     // (undocumented)
+    serverDevOpsAuditSettings: ServerDevOpsAuditSettings;
+    // (undocumented)
     serverDnsAliases: ServerDnsAliases;
     // (undocumented)
     serverKeys: ServerKeys;
     // (undocumented)
+    serverOperations: ServerOperations;
+    // (undocumented)
     servers: Servers;
     // (undocumented)
     serverSecurityAlertPolicies: ServerSecurityAlertPolicies;
+    // (undocumented)
+    serverTrustGroups: ServerTrustGroups;
     // (undocumented)
     serverUsages: ServerUsages;
     // (undocumented)
@@ -6746,7 +8969,7 @@ export class SqlManagementClient extends coreClient.ServiceClient {
     // (undocumented)
     serviceObjectives: ServiceObjectives;
     // (undocumented)
-    serviceTierAdvisors: ServiceTierAdvisors;
+    sqlAgent: SqlAgent;
     // (undocumented)
     subscriptionId: string;
     // (undocumented)
@@ -6760,7 +8983,7 @@ export class SqlManagementClient extends coreClient.ServiceClient {
     // (undocumented)
     tdeCertificates: TdeCertificates;
     // (undocumented)
-    transparentDataEncryptionActivities: TransparentDataEncryptionActivities;
+    timeZones: TimeZones;
     // (undocumented)
     transparentDataEncryptions: TransparentDataEncryptions;
     // (undocumented)
@@ -6792,7 +9015,7 @@ export interface StorageCapability {
 export type StorageCapabilityStorageAccountType = string;
 
 // @public
-export type StorageKeyType = "StorageAccessKey" | "SharedAccessKey";
+export type StorageKeyType = string;
 
 // @public
 export type SubscriptionUsage = ProxyResource & {
@@ -6996,6 +9219,7 @@ export interface SyncFullSchemaTableColumn {
 
 // @public
 export type SyncGroup = ProxyResource & {
+    sku?: Sku;
     interval?: number;
     readonly lastSyncTime?: Date;
     conflictResolutionPolicy?: SyncConflictResolutionPolicy;
@@ -7004,6 +9228,10 @@ export type SyncGroup = ProxyResource & {
     hubDatabasePassword?: string;
     readonly syncState?: SyncGroupState;
     schema?: SyncGroupSchema;
+    enableConflictLogging?: boolean;
+    conflictLoggingRetentionInDays?: number;
+    usePrivateLinkConnection?: boolean;
+    readonly privateEndpointName?: string;
 };
 
 // @public
@@ -7045,7 +9273,7 @@ export interface SyncGroups {
     get(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, options?: SyncGroupsGetOptionalParams): Promise<SyncGroupsGetResponse>;
     listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: SyncGroupsListByDatabaseOptionalParams): PagedAsyncIterableIterator<SyncGroup>;
     listHubSchemas(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, options?: SyncGroupsListHubSchemasOptionalParams): PagedAsyncIterableIterator<SyncFullSchemaProperties>;
-    listLogs(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, startTime: string, endTime: string, typeParam: Enum21, options?: SyncGroupsListLogsOptionalParams): PagedAsyncIterableIterator<SyncGroupLogProperties>;
+    listLogs(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, startTime: string, endTime: string, typeParam: SyncGroupsType, options?: SyncGroupsListLogsOptionalParams): PagedAsyncIterableIterator<SyncGroupLogProperties>;
     listSyncDatabaseIds(locationName: string, options?: SyncGroupsListSyncDatabaseIdsOptionalParams): PagedAsyncIterableIterator<SyncDatabaseIdProperties>;
     triggerSync(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, options?: SyncGroupsTriggerSyncOptionalParams): Promise<void>;
 }
@@ -7167,6 +9395,9 @@ export interface SyncGroupsTriggerSyncOptionalParams extends coreClient.Operatio
 }
 
 // @public
+export type SyncGroupsType = string;
+
+// @public
 export interface SyncGroupsUpdateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
@@ -7180,6 +9411,9 @@ export type SyncMember = ProxyResource & {
     databaseType?: SyncMemberDbType;
     syncAgentId?: string;
     sqlServerDatabaseId?: string;
+    syncMemberAzureDatabaseResourceId?: string;
+    usePrivateLinkConnection?: boolean;
+    readonly privateEndpointName?: string;
     serverName?: string;
     databaseName?: string;
     userName?: string;
@@ -7281,6 +9515,19 @@ export interface SyncMembersUpdateOptionalParams extends coreClient.OperationOpt
 export type SyncMembersUpdateResponse = SyncMember;
 
 // @public
+export interface SystemData {
+    createdAt?: Date;
+    createdBy?: string;
+    createdByType?: CreatedByType;
+    lastModifiedAt?: Date;
+    lastModifiedBy?: string;
+    lastModifiedByType?: CreatedByType;
+}
+
+// @public
+export type TableTemporalType = string;
+
+// @public
 export type TdeCertificate = ProxyResource & {
     privateBlob?: string;
     certPassword?: string;
@@ -7299,6 +9546,62 @@ export interface TdeCertificatesCreateOptionalParams extends coreClient.Operatio
 }
 
 // @public
+export type TimeZone = ProxyResource & {
+    readonly timeZoneId?: string;
+    readonly displayName?: string;
+};
+
+// @public
+export interface TimeZoneListResult {
+    readonly nextLink?: string;
+    readonly value?: TimeZone[];
+}
+
+// @public
+export interface TimeZones {
+    get(locationName: string, timeZoneId: string, options?: TimeZonesGetOptionalParams): Promise<TimeZonesGetResponse>;
+    listByLocation(locationName: string, options?: TimeZonesListByLocationOptionalParams): PagedAsyncIterableIterator<TimeZone>;
+}
+
+// @public
+export interface TimeZonesGetOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type TimeZonesGetResponse = TimeZone;
+
+// @public
+export interface TimeZonesListByLocationNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type TimeZonesListByLocationNextResponse = TimeZoneListResult;
+
+// @public
+export interface TimeZonesListByLocationOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type TimeZonesListByLocationResponse = TimeZoneListResult;
+
+// @public (undocumented)
+export interface TopQueries {
+    readonly aggregationFunction?: string;
+    readonly endTime?: string;
+    readonly intervalType?: QueryTimeGrainType;
+    readonly numberOfQueries?: number;
+    readonly observationMetric?: string;
+    queries?: QueryStatisticsProperties[];
+    readonly startTime?: string;
+}
+
+// @public
+export interface TopQueriesListResult {
+    readonly nextLink?: string;
+    readonly value?: TopQueries[];
+}
+
+// @public
 export type TrackedResource = Resource & {
     location: string;
     tags?: {
@@ -7307,45 +9610,13 @@ export type TrackedResource = Resource & {
 };
 
 // @public
-export type TransparentDataEncryption = ProxyResource & {
-    readonly location?: string;
-    status?: TransparentDataEncryptionStatus;
-};
-
-// @public
-export interface TransparentDataEncryptionActivities {
-    listByConfiguration(resourceGroupName: string, serverName: string, databaseName: string, transparentDataEncryptionName: TransparentDataEncryptionName, options?: TransparentDataEncryptionActivitiesListByConfigurationOptionalParams): PagedAsyncIterableIterator<TransparentDataEncryptionActivity>;
-}
-
-// @public
-export interface TransparentDataEncryptionActivitiesListByConfigurationOptionalParams extends coreClient.OperationOptions {
-}
-
-// @public
-export type TransparentDataEncryptionActivitiesListByConfigurationResponse = TransparentDataEncryptionActivityListResult;
-
-// @public
-export type TransparentDataEncryptionActivity = ProxyResource & {
-    readonly location?: string;
-    readonly status?: TransparentDataEncryptionActivityStatus;
-    readonly percentComplete?: number;
-};
-
-// @public
-export interface TransparentDataEncryptionActivityListResult {
-    value: TransparentDataEncryptionActivity[];
-}
-
-// @public
-export type TransparentDataEncryptionActivityStatus = string;
-
-// @public
 export type TransparentDataEncryptionName = string;
 
 // @public
 export interface TransparentDataEncryptions {
-    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, transparentDataEncryptionName: TransparentDataEncryptionName, parameters: TransparentDataEncryption, options?: TransparentDataEncryptionsCreateOrUpdateOptionalParams): Promise<TransparentDataEncryptionsCreateOrUpdateResponse>;
-    get(resourceGroupName: string, serverName: string, databaseName: string, transparentDataEncryptionName: TransparentDataEncryptionName, options?: TransparentDataEncryptionsGetOptionalParams): Promise<TransparentDataEncryptionsGetResponse>;
+    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, tdeName: TransparentDataEncryptionName, parameters: LogicalDatabaseTransparentDataEncryption, options?: TransparentDataEncryptionsCreateOrUpdateOptionalParams): Promise<TransparentDataEncryptionsCreateOrUpdateResponse>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, tdeName: TransparentDataEncryptionName, options?: TransparentDataEncryptionsGetOptionalParams): Promise<TransparentDataEncryptionsGetResponse>;
+    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: TransparentDataEncryptionsListByDatabaseOptionalParams): PagedAsyncIterableIterator<LogicalDatabaseTransparentDataEncryption>;
 }
 
 // @public
@@ -7353,17 +9624,31 @@ export interface TransparentDataEncryptionsCreateOrUpdateOptionalParams extends 
 }
 
 // @public
-export type TransparentDataEncryptionsCreateOrUpdateResponse = TransparentDataEncryption;
+export type TransparentDataEncryptionsCreateOrUpdateResponse = LogicalDatabaseTransparentDataEncryption;
 
 // @public
 export interface TransparentDataEncryptionsGetOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type TransparentDataEncryptionsGetResponse = TransparentDataEncryption;
+export type TransparentDataEncryptionsGetResponse = LogicalDatabaseTransparentDataEncryption;
 
 // @public
-export type TransparentDataEncryptionStatus = "Enabled" | "Disabled";
+export interface TransparentDataEncryptionsListByDatabaseNextOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type TransparentDataEncryptionsListByDatabaseNextResponse = LogicalDatabaseTransparentDataEncryptionListResult;
+
+// @public
+export interface TransparentDataEncryptionsListByDatabaseOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type TransparentDataEncryptionsListByDatabaseResponse = LogicalDatabaseTransparentDataEncryptionListResult;
+
+// @public
+export type TransparentDataEncryptionState = "Enabled" | "Disabled";
 
 // @public
 export type UnitDefinitionType = string;
@@ -7375,6 +9660,41 @@ export type UnitType = string;
 export interface UnlinkParameters {
     forcedTermination?: boolean;
 }
+
+// @public
+export interface UpdateLongTermRetentionBackupParameters {
+    requestedBackupStorageRedundancy?: BackupStorageRedundancy;
+}
+
+// @public
+export type UpdateManagedInstanceDnsServersOperation = ProxyResource & {
+    readonly status?: DnsRefreshConfigurationPropertiesStatus;
+};
+
+// @public (undocumented)
+export interface UpsertManagedServerOperationParameters {
+    // (undocumented)
+    family?: string;
+    // (undocumented)
+    storageSizeInGB?: number;
+    // (undocumented)
+    tier?: string;
+    // (undocumented)
+    vCores?: number;
+}
+
+// @public (undocumented)
+export interface UpsertManagedServerOperationStep {
+    // (undocumented)
+    name?: string;
+    // (undocumented)
+    order?: number;
+    // (undocumented)
+    status?: UpsertManagedServerOperationStepStatus;
+}
+
+// @public
+export type UpsertManagedServerOperationStepStatus = string;
 
 // @public
 export interface Usage {
@@ -7415,10 +9735,17 @@ export interface UsagesListByInstancePoolOptionalParams extends coreClient.Opera
 export type UsagesListByInstancePoolResponse = UsageListResult;
 
 // @public
+export interface UserIdentity {
+    readonly clientId?: string;
+    readonly principalId?: string;
+}
+
+// @public
 export type VirtualCluster = TrackedResource & {
     readonly subnetId?: string;
     family?: string;
     readonly childResources?: string[];
+    maintenanceConfigurationId?: string;
 };
 
 // @public
@@ -7436,6 +9763,7 @@ export interface VirtualClusters {
     get(resourceGroupName: string, virtualClusterName: string, options?: VirtualClustersGetOptionalParams): Promise<VirtualClustersGetResponse>;
     list(options?: VirtualClustersListOptionalParams): PagedAsyncIterableIterator<VirtualCluster>;
     listByResourceGroup(resourceGroupName: string, options?: VirtualClustersListByResourceGroupOptionalParams): PagedAsyncIterableIterator<VirtualCluster>;
+    updateDnsServers(resourceGroupName: string, virtualClusterName: string, options?: VirtualClustersUpdateDnsServersOptionalParams): Promise<VirtualClustersUpdateDnsServersResponse>;
 }
 
 // @public
@@ -7480,6 +9808,13 @@ export interface VirtualClustersListOptionalParams extends coreClient.OperationO
 export type VirtualClustersListResponse = VirtualClusterListResult;
 
 // @public
+export interface VirtualClustersUpdateDnsServersOptionalParams extends coreClient.OperationOptions {
+}
+
+// @public
+export type VirtualClustersUpdateDnsServersResponse = UpdateManagedInstanceDnsServersOperation;
+
+// @public
 export interface VirtualClustersUpdateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
@@ -7492,6 +9827,7 @@ export type VirtualClustersUpdateResponse = VirtualCluster;
 export interface VirtualClusterUpdate {
     readonly childResources?: string[];
     family?: string;
+    maintenanceConfigurationId?: string;
     readonly subnetId?: string;
     tags?: {
         [propertyName: string]: string;

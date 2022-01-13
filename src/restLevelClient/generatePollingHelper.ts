@@ -2,6 +2,7 @@ import { readFileSync } from "fs";
 import * as path from "path";
 import * as hbs from "handlebars";
 import { Project } from "ts-morph";
+import { getAutorestOptions } from "../autorestSession";
 
 export function generatePollingHelper(project: Project) {
   let file: string = "";
@@ -11,7 +12,8 @@ export function generatePollingHelper(project: Project) {
   });
 
   const readmeFileContents = hbs.compile(file, { noEscape: true });
-  project.createSourceFile("src/pollingHelper.ts", readmeFileContents({}), {
+  const { srcPath } = getAutorestOptions();
+  project.createSourceFile(path.join(srcPath, "pollingHelper.ts"), readmeFileContents({}), {
     overwrite: true
   });
 }

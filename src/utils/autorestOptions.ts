@@ -33,6 +33,8 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
   const headAsBoolean = await getHeadAsBoolean(host);
   const isTestPackage = await getIsTestPackage(host);
   const generateTest = await getGenerateTest(host);
+  const batch = await getBatch(host);
+  const generateSample = await getGenerateSample(host);
 
   return {
     azureArm,
@@ -57,7 +59,9 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
     azureOutputDirectory,
     headAsBoolean,
     isTestPackage,
-    generateTest
+    generateTest,
+    batch,
+    generateSample
   };
 }
 
@@ -83,6 +87,11 @@ async function getIsTestPackage(host: AutorestExtensionHost): Promise<boolean> {
 async function getGenerateTest(host: AutorestExtensionHost): Promise<boolean> {
   const generateTest = await host.getValue("generate-test");
   return generateTest === null ? false : Boolean(generateTest);
+}
+
+async function getGenerateSample(host: AutorestExtensionHost): Promise<boolean> {
+  const generateSample = await host.getValue("generate-sample");
+  return generateSample === null ? false : Boolean(generateSample);
 }
 
 async function getSkipEnumValidation(
@@ -276,4 +285,11 @@ async function getAzureOutputDirectoryPath(
   return outputDirectoryRelativePath?.substr(0, 3) === "sdk"
     ? outputDirectoryRelativePath
     : undefined;
+}
+
+
+async function getBatch(host: AutorestExtensionHost): Promise<[string, any][] | undefined> {
+  const batch = await host.getValue<[string, any][]>('batch');
+  return batch;
+  
 }

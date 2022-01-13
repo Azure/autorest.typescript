@@ -1,4 +1,4 @@
-import LroClient, {
+import LRORestClient, {
   LRORestClientRestClient,
   getLongRunningPoller,
   Product
@@ -21,7 +21,7 @@ function createClient() {
     }
   };
 
-  const client = LroClient({
+  const client = LRORestClient({
     allowInsecureConnection: true,
     retryOptions: { retryDelayInMs: 0 }
   });
@@ -940,7 +940,7 @@ describe("LRO Rest Client", () => {
 
       assert.equal(result.status, "200");
     });
-  });
+  }).timeout(5000);
 
   describe("LRO Sad scenarios", () => {
     it("should handle PutNonRetry400 ", async () => {

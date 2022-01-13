@@ -24,6 +24,10 @@ import {
   ThroughputSettingsUpdateParameters,
   CassandraResourcesUpdateCassandraKeyspaceThroughputOptionalParams,
   CassandraResourcesUpdateCassandraKeyspaceThroughputResponse,
+  CassandraResourcesMigrateCassandraKeyspaceToAutoscaleOptionalParams,
+  CassandraResourcesMigrateCassandraKeyspaceToAutoscaleResponse,
+  CassandraResourcesMigrateCassandraKeyspaceToManualThroughputOptionalParams,
+  CassandraResourcesMigrateCassandraKeyspaceToManualThroughputResponse,
   CassandraResourcesGetCassandraTableOptionalParams,
   CassandraResourcesGetCassandraTableResponse,
   CassandraTableCreateUpdateParameters,
@@ -33,7 +37,11 @@ import {
   CassandraResourcesGetCassandraTableThroughputOptionalParams,
   CassandraResourcesGetCassandraTableThroughputResponse,
   CassandraResourcesUpdateCassandraTableThroughputOptionalParams,
-  CassandraResourcesUpdateCassandraTableThroughputResponse
+  CassandraResourcesUpdateCassandraTableThroughputResponse,
+  CassandraResourcesMigrateCassandraTableToAutoscaleOptionalParams,
+  CassandraResourcesMigrateCassandraTableToAutoscaleResponse,
+  CassandraResourcesMigrateCassandraTableToManualThroughputOptionalParams,
+  CassandraResourcesMigrateCassandraTableToManualThroughputResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -196,6 +204,74 @@ export interface CassandraResources {
     options?: CassandraResourcesUpdateCassandraKeyspaceThroughputOptionalParams
   ): Promise<CassandraResourcesUpdateCassandraKeyspaceThroughputResponse>;
   /**
+   * Migrate an Azure Cosmos DB Cassandra Keyspace from manual throughput to autoscale
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param keyspaceName Cosmos DB keyspace name.
+   * @param options The options parameters.
+   */
+  beginMigrateCassandraKeyspaceToAutoscale(
+    resourceGroupName: string,
+    accountName: string,
+    keyspaceName: string,
+    options?: CassandraResourcesMigrateCassandraKeyspaceToAutoscaleOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<
+        CassandraResourcesMigrateCassandraKeyspaceToAutoscaleResponse
+      >,
+      CassandraResourcesMigrateCassandraKeyspaceToAutoscaleResponse
+    >
+  >;
+  /**
+   * Migrate an Azure Cosmos DB Cassandra Keyspace from manual throughput to autoscale
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param keyspaceName Cosmos DB keyspace name.
+   * @param options The options parameters.
+   */
+  beginMigrateCassandraKeyspaceToAutoscaleAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    keyspaceName: string,
+    options?: CassandraResourcesMigrateCassandraKeyspaceToAutoscaleOptionalParams
+  ): Promise<CassandraResourcesMigrateCassandraKeyspaceToAutoscaleResponse>;
+  /**
+   * Migrate an Azure Cosmos DB Cassandra Keyspace from autoscale to manual throughput
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param keyspaceName Cosmos DB keyspace name.
+   * @param options The options parameters.
+   */
+  beginMigrateCassandraKeyspaceToManualThroughput(
+    resourceGroupName: string,
+    accountName: string,
+    keyspaceName: string,
+    options?: CassandraResourcesMigrateCassandraKeyspaceToManualThroughputOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<
+        CassandraResourcesMigrateCassandraKeyspaceToManualThroughputResponse
+      >,
+      CassandraResourcesMigrateCassandraKeyspaceToManualThroughputResponse
+    >
+  >;
+  /**
+   * Migrate an Azure Cosmos DB Cassandra Keyspace from autoscale to manual throughput
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param keyspaceName Cosmos DB keyspace name.
+   * @param options The options parameters.
+   */
+  beginMigrateCassandraKeyspaceToManualThroughputAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    keyspaceName: string,
+    options?: CassandraResourcesMigrateCassandraKeyspaceToManualThroughputOptionalParams
+  ): Promise<
+    CassandraResourcesMigrateCassandraKeyspaceToManualThroughputResponse
+  >;
+  /**
    * Gets the Cassandra table under an existing Azure Cosmos DB database account.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param accountName Cosmos DB database account name.
@@ -340,4 +416,78 @@ export interface CassandraResources {
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
     options?: CassandraResourcesUpdateCassandraTableThroughputOptionalParams
   ): Promise<CassandraResourcesUpdateCassandraTableThroughputResponse>;
+  /**
+   * Migrate an Azure Cosmos DB Cassandra table from manual throughput to autoscale
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param keyspaceName Cosmos DB keyspace name.
+   * @param tableName Cosmos DB table name.
+   * @param options The options parameters.
+   */
+  beginMigrateCassandraTableToAutoscale(
+    resourceGroupName: string,
+    accountName: string,
+    keyspaceName: string,
+    tableName: string,
+    options?: CassandraResourcesMigrateCassandraTableToAutoscaleOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<
+        CassandraResourcesMigrateCassandraTableToAutoscaleResponse
+      >,
+      CassandraResourcesMigrateCassandraTableToAutoscaleResponse
+    >
+  >;
+  /**
+   * Migrate an Azure Cosmos DB Cassandra table from manual throughput to autoscale
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param keyspaceName Cosmos DB keyspace name.
+   * @param tableName Cosmos DB table name.
+   * @param options The options parameters.
+   */
+  beginMigrateCassandraTableToAutoscaleAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    keyspaceName: string,
+    tableName: string,
+    options?: CassandraResourcesMigrateCassandraTableToAutoscaleOptionalParams
+  ): Promise<CassandraResourcesMigrateCassandraTableToAutoscaleResponse>;
+  /**
+   * Migrate an Azure Cosmos DB Cassandra table from autoscale to manual throughput
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param keyspaceName Cosmos DB keyspace name.
+   * @param tableName Cosmos DB table name.
+   * @param options The options parameters.
+   */
+  beginMigrateCassandraTableToManualThroughput(
+    resourceGroupName: string,
+    accountName: string,
+    keyspaceName: string,
+    tableName: string,
+    options?: CassandraResourcesMigrateCassandraTableToManualThroughputOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<
+        CassandraResourcesMigrateCassandraTableToManualThroughputResponse
+      >,
+      CassandraResourcesMigrateCassandraTableToManualThroughputResponse
+    >
+  >;
+  /**
+   * Migrate an Azure Cosmos DB Cassandra table from autoscale to manual throughput
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param keyspaceName Cosmos DB keyspace name.
+   * @param tableName Cosmos DB table name.
+   * @param options The options parameters.
+   */
+  beginMigrateCassandraTableToManualThroughputAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    keyspaceName: string,
+    tableName: string,
+    options?: CassandraResourcesMigrateCassandraTableToManualThroughputOptionalParams
+  ): Promise<CassandraResourcesMigrateCassandraTableToManualThroughputResponse>;
 }

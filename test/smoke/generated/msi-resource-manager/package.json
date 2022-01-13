@@ -96,5 +96,21 @@
     "docs": "echo skipped"
   },
   "sideEffects": false,
-  "autoPublish": true
+  "//metadata": {
+    "constantPaths": [
+      {
+        "path": "src/ManagedServiceIdentityClient.ts",
+        "prefix": "packageDetails"
+      }
+    ]
+  },
+  "autoPublish": true,
+  "//sampleConfiguration": {
+    "productName": "",
+    "productSlugs": [
+      "azure"
+    ],
+    "disableDocsMs": true,
+    "apiRefLink": "https://docs.microsoft.com/javascript/api/@msinternal/msi-resource-manager?view=azure-node-preview"
+  }
 }

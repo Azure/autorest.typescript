@@ -348,7 +348,7 @@ const getOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.DedicatedHostGroup
     }
   },
-  queryParameters: [Parameters.apiVersion],
+  queryParameters: [Parameters.apiVersion, Parameters.expand1],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,

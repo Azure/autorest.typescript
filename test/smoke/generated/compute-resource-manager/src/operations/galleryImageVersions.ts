@@ -44,7 +44,7 @@ export class GalleryImageVersionsImpl implements GalleryImageVersions {
   }
 
   /**
-   * List gallery Image Versions in a gallery Image Definition.
+   * List gallery image versions in a gallery image definition.
    * @param resourceGroupName The name of the resource group.
    * @param galleryName The name of the Shared Image Gallery in which the Image Definition resides.
    * @param galleryImageName The name of the Shared Image Gallery Image Definition from which the Image
@@ -125,15 +125,15 @@ export class GalleryImageVersionsImpl implements GalleryImageVersions {
   }
 
   /**
-   * Create or update a gallery Image Version.
+   * Create or update a gallery image version.
    * @param resourceGroupName The name of the resource group.
    * @param galleryName The name of the Shared Image Gallery in which the Image Definition resides.
-   * @param galleryImageName The name of the gallery Image Definition in which the Image Version is to be
+   * @param galleryImageName The name of the gallery image definition in which the Image Version is to be
    *                         created.
-   * @param galleryImageVersionName The name of the gallery Image Version to be created. Needs to follow
+   * @param galleryImageVersionName The name of the gallery image version to be created. Needs to follow
    *                                semantic version name pattern: The allowed characters are digit and period. Digits must be within
    *                                the range of a 32-bit integer. Format: <MajorVersion>.<MinorVersion>.<Patch>
-   * @param galleryImageVersion Parameters supplied to the create or update gallery Image Version
+   * @param galleryImageVersion Parameters supplied to the create or update gallery image version
    *                            operation.
    * @param options The options parameters.
    */
@@ -208,15 +208,15 @@ export class GalleryImageVersionsImpl implements GalleryImageVersions {
   }
 
   /**
-   * Create or update a gallery Image Version.
+   * Create or update a gallery image version.
    * @param resourceGroupName The name of the resource group.
    * @param galleryName The name of the Shared Image Gallery in which the Image Definition resides.
-   * @param galleryImageName The name of the gallery Image Definition in which the Image Version is to be
+   * @param galleryImageName The name of the gallery image definition in which the Image Version is to be
    *                         created.
-   * @param galleryImageVersionName The name of the gallery Image Version to be created. Needs to follow
+   * @param galleryImageVersionName The name of the gallery image version to be created. Needs to follow
    *                                semantic version name pattern: The allowed characters are digit and period. Digits must be within
    *                                the range of a 32-bit integer. Format: <MajorVersion>.<MinorVersion>.<Patch>
-   * @param galleryImageVersion Parameters supplied to the create or update gallery Image Version
+   * @param galleryImageVersion Parameters supplied to the create or update gallery image version
    *                            operation.
    * @param options The options parameters.
    */
@@ -240,15 +240,15 @@ export class GalleryImageVersionsImpl implements GalleryImageVersions {
   }
 
   /**
-   * Update a gallery Image Version.
+   * Update a gallery image version.
    * @param resourceGroupName The name of the resource group.
    * @param galleryName The name of the Shared Image Gallery in which the Image Definition resides.
-   * @param galleryImageName The name of the gallery Image Definition in which the Image Version is to be
+   * @param galleryImageName The name of the gallery image definition in which the Image Version is to be
    *                         updated.
-   * @param galleryImageVersionName The name of the gallery Image Version to be updated. Needs to follow
+   * @param galleryImageVersionName The name of the gallery image version to be updated. Needs to follow
    *                                semantic version name pattern: The allowed characters are digit and period. Digits must be within
    *                                the range of a 32-bit integer. Format: <MajorVersion>.<MinorVersion>.<Patch>
-   * @param galleryImageVersion Parameters supplied to the update gallery Image Version operation.
+   * @param galleryImageVersion Parameters supplied to the update gallery image version operation.
    * @param options The options parameters.
    */
   async beginUpdate(
@@ -322,15 +322,15 @@ export class GalleryImageVersionsImpl implements GalleryImageVersions {
   }
 
   /**
-   * Update a gallery Image Version.
+   * Update a gallery image version.
    * @param resourceGroupName The name of the resource group.
    * @param galleryName The name of the Shared Image Gallery in which the Image Definition resides.
-   * @param galleryImageName The name of the gallery Image Definition in which the Image Version is to be
+   * @param galleryImageName The name of the gallery image definition in which the Image Version is to be
    *                         updated.
-   * @param galleryImageVersionName The name of the gallery Image Version to be updated. Needs to follow
+   * @param galleryImageVersionName The name of the gallery image version to be updated. Needs to follow
    *                                semantic version name pattern: The allowed characters are digit and period. Digits must be within
    *                                the range of a 32-bit integer. Format: <MajorVersion>.<MinorVersion>.<Patch>
-   * @param galleryImageVersion Parameters supplied to the update gallery Image Version operation.
+   * @param galleryImageVersion Parameters supplied to the update gallery image version operation.
    * @param options The options parameters.
    */
   async beginUpdateAndWait(
@@ -353,11 +353,11 @@ export class GalleryImageVersionsImpl implements GalleryImageVersions {
   }
 
   /**
-   * Retrieves information about a gallery Image Version.
+   * Retrieves information about a gallery image version.
    * @param resourceGroupName The name of the resource group.
    * @param galleryName The name of the Shared Image Gallery in which the Image Definition resides.
-   * @param galleryImageName The name of the gallery Image Definition in which the Image Version resides.
-   * @param galleryImageVersionName The name of the gallery Image Version to be retrieved.
+   * @param galleryImageName The name of the gallery image definition in which the Image Version resides.
+   * @param galleryImageVersionName The name of the gallery image version to be retrieved.
    * @param options The options parameters.
    */
   get(
@@ -380,11 +380,11 @@ export class GalleryImageVersionsImpl implements GalleryImageVersions {
   }
 
   /**
-   * Delete a gallery Image Version.
+   * Delete a gallery image version.
    * @param resourceGroupName The name of the resource group.
    * @param galleryName The name of the Shared Image Gallery in which the Image Definition resides.
-   * @param galleryImageName The name of the gallery Image Definition in which the Image Version resides.
-   * @param galleryImageVersionName The name of the gallery Image Version to be deleted.
+   * @param galleryImageName The name of the gallery image definition in which the Image Version resides.
+   * @param galleryImageVersionName The name of the gallery image version to be deleted.
    * @param options The options parameters.
    */
   async beginDelete(
@@ -451,11 +451,11 @@ export class GalleryImageVersionsImpl implements GalleryImageVersions {
   }
 
   /**
-   * Delete a gallery Image Version.
+   * Delete a gallery image version.
    * @param resourceGroupName The name of the resource group.
    * @param galleryName The name of the Shared Image Gallery in which the Image Definition resides.
-   * @param galleryImageName The name of the gallery Image Definition in which the Image Version resides.
-   * @param galleryImageVersionName The name of the gallery Image Version to be deleted.
+   * @param galleryImageName The name of the gallery image definition in which the Image Version resides.
+   * @param galleryImageVersionName The name of the gallery image version to be deleted.
    * @param options The options parameters.
    */
   async beginDeleteAndWait(
@@ -476,7 +476,7 @@ export class GalleryImageVersionsImpl implements GalleryImageVersions {
   }
 
   /**
-   * List gallery Image Versions in a gallery Image Definition.
+   * List gallery image versions in a gallery image definition.
    * @param resourceGroupName The name of the resource group.
    * @param galleryName The name of the Shared Image Gallery in which the Image Definition resides.
    * @param galleryImageName The name of the Shared Image Gallery Image Definition from which the Image
@@ -602,7 +602,7 @@ const getOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.expand2],
+  queryParameters: [Parameters.apiVersion, Parameters.expand7],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
