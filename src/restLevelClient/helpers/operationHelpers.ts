@@ -37,9 +37,13 @@ export function getOperationParameters(
 }
 
 function filterMethodNotSynthetic(parameter: Parameter) {
+  const isApiVersion =
+    parameter.origin &&
+    parameter.language.default.serializedName === "api-version" &&
+    parameter.implementation === ImplementationLocation.Method;
   // Origin is added by M4 on synthetic parameters
   return (
-    !parameter.origin &&
+    (!parameter.origin || isApiVersion) &&
     parameter.implementation === ImplementationLocation.Method
   );
 }
@@ -53,7 +57,7 @@ export function buildMethodDefinitions(
     const method = methods[key];
     const description = methods[key][0].description;
 
-    let areAllOptional = !method.some(m => !m.hasOptionalOptions);
+    let areAllOptional = methods[key][0].hasOptionalOptions;
 
     methodDefinitions.push({
       name: key,
