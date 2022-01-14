@@ -943,6 +943,17 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     isTestPackage: true,
     restLevelClient: true
+  },
+  customUrlRest: {
+    swaggerOrConfig: "custom-baseUrl.json",
+    clientName: "CustomUrlRestClient",
+    packageName: "custom-url-rest",
+    licenseHeader: true,
+    restLevelClient: true,
+    rlcShortcut: true,
+    allowInsecureConnection: true,
+    addCredentials: false,
+    isTestPackage: true
   }
 };
 
