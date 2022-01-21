@@ -339,6 +339,814 @@ import {
 import { Client } from "@azure-rest/core-client";
 import { TokenCredential } from "@azure/core-auth";
 
+/** Contains operations for KqlScripts operations */
+export interface KqlScriptsOperations {
+  /** Get all KQL scripts */
+  getAll(
+    options?: KqlScriptsGetAllParameters
+  ): Promise<KqlScriptsGetAll200Response | KqlScriptsGetAlldefaultResponse>;
+}
+
+/** Contains operations for KqlScript operations */
+export interface KqlScriptOperations {
+  /** Creates or updates a KQL Script */
+  createOrUpdate(
+    kqlScriptName: string,
+    options: KqlScriptCreateOrUpdateParameters
+  ): Promise<
+    | KqlScriptCreateOrUpdate200Response
+    | KqlScriptCreateOrUpdate202Response
+    | KqlScriptCreateOrUpdatedefaultResponse
+  >;
+  /** Get KQL script by name */
+  getByName(
+    kqlScriptName: string,
+    options?: KqlScriptGetByNameParameters
+  ): Promise<KqlScriptGetByName200Response | KqlScriptGetByNamedefaultResponse>;
+  /** Delete KQL script by name */
+  deleteByName(
+    kqlScriptName: string,
+    options?: KqlScriptDeleteByNameParameters
+  ): Promise<
+    | KqlScriptDeleteByName200Response
+    | KqlScriptDeleteByName202Response
+    | KqlScriptDeleteByName204Response
+    | KqlScriptDeleteByNamedefaultResponse
+  >;
+  /** Rename KQL script */
+  rename(
+    kqlScriptName: string,
+    options: KqlScriptRenameParameters
+  ): Promise<
+    | KqlScriptRename200Response
+    | KqlScriptRename202Response
+    | KqlScriptRenamedefaultResponse
+  >;
+}
+
+/** Contains operations for Metastore operations */
+export interface MetastoreOperations {
+  /** Register files in Syms */
+  register(
+    id: string,
+    options: MetastoreRegisterParameters
+  ): Promise<MetastoreRegister201Response | MetastoreRegisterdefaultResponse>;
+  /** Gets status of the database */
+  getDatabaseOperations(
+    id: string,
+    options?: MetastoreGetDatabaseOperationsParameters
+  ): Promise<
+    | MetastoreGetDatabaseOperations200Response
+    | MetastoreGetDatabaseOperationsdefaultResponse
+  >;
+  /** Update files in Syms */
+  update(
+    id: string,
+    options: MetastoreUpdateParameters
+  ): Promise<MetastoreUpdate201Response | MetastoreUpdatedefaultResponse>;
+  /** Remove files in Syms */
+  delete(
+    id: string,
+    options?: MetastoreDeleteParameters
+  ): Promise<MetastoreDelete204Response | MetastoreDeletedefaultResponse>;
+}
+
+/** Contains operations for SparkConfiguration operations */
+export interface SparkConfigurationOperations {
+  /** Lists sparkconfigurations. */
+  getSparkConfigurationsByWorkspace(
+    options?: SparkConfigurationGetSparkConfigurationsByWorkspaceParameters
+  ): Promise<
+    | SparkConfigurationGetSparkConfigurationsByWorkspace200Response
+    | SparkConfigurationGetSparkConfigurationsByWorkspacedefaultResponse
+  >;
+  /** Creates or updates a sparkconfiguration. */
+  createOrUpdateSparkConfiguration(
+    sparkConfigurationName: string,
+    options: SparkConfigurationCreateOrUpdateSparkConfigurationParameters
+  ): Promise<
+    | SparkConfigurationCreateOrUpdateSparkConfiguration200Response
+    | SparkConfigurationCreateOrUpdateSparkConfiguration202Response
+    | SparkConfigurationCreateOrUpdateSparkConfigurationdefaultResponse
+  >;
+  /** Gets a sparkConfiguration. */
+  getSparkConfiguration(
+    sparkConfigurationName: string,
+    options?: SparkConfigurationGetSparkConfigurationParameters
+  ): Promise<
+    | SparkConfigurationGetSparkConfiguration200Response
+    | SparkConfigurationGetSparkConfiguration304Response
+    | SparkConfigurationGetSparkConfigurationdefaultResponse
+  >;
+  /** Deletes a sparkConfiguration. */
+  deleteSparkConfiguration(
+    sparkConfigurationName: string,
+    options?: SparkConfigurationDeleteSparkConfigurationParameters
+  ): Promise<
+    | SparkConfigurationDeleteSparkConfiguration200Response
+    | SparkConfigurationDeleteSparkConfiguration202Response
+    | SparkConfigurationDeleteSparkConfiguration204Response
+    | SparkConfigurationDeleteSparkConfigurationdefaultResponse
+  >;
+  /** Renames a sparkConfiguration. */
+  renameSparkConfiguration(
+    sparkConfigurationName: string,
+    options: SparkConfigurationRenameSparkConfigurationParameters
+  ): Promise<
+    | SparkConfigurationRenameSparkConfiguration200Response
+    | SparkConfigurationRenameSparkConfiguration202Response
+    | SparkConfigurationRenameSparkConfigurationdefaultResponse
+  >;
+}
+
+/** Contains operations for BigDataPools operations */
+export interface BigDataPoolsOperations {
+  /** List Big Data Pools */
+  list(
+    options?: BigDataPoolsListParameters
+  ): Promise<BigDataPoolsList200Response | BigDataPoolsListdefaultResponse>;
+  /** Get Big Data Pool */
+  get(
+    bigDataPoolName: string,
+    options?: BigDataPoolsGetParameters
+  ): Promise<BigDataPoolsGet200Response | BigDataPoolsGetdefaultResponse>;
+}
+
+/** Contains operations for DataFlow operations */
+export interface DataFlowOperations {
+  /** Creates or updates a data flow. */
+  createOrUpdateDataFlow(
+    dataFlowName: string,
+    options: DataFlowCreateOrUpdateDataFlowParameters
+  ): Promise<
+    | DataFlowCreateOrUpdateDataFlow200Response
+    | DataFlowCreateOrUpdateDataFlow202Response
+    | DataFlowCreateOrUpdateDataFlowdefaultResponse
+  >;
+  /** Gets a data flow. */
+  getDataFlow(
+    dataFlowName: string,
+    options?: DataFlowGetDataFlowParameters
+  ): Promise<
+    DataFlowGetDataFlow200Response | DataFlowGetDataFlowdefaultResponse
+  >;
+  /** Deletes a data flow. */
+  deleteDataFlow(
+    dataFlowName: string,
+    options?: DataFlowDeleteDataFlowParameters
+  ): Promise<
+    | DataFlowDeleteDataFlow200Response
+    | DataFlowDeleteDataFlow202Response
+    | DataFlowDeleteDataFlow204Response
+    | DataFlowDeleteDataFlowdefaultResponse
+  >;
+  /** Renames a dataflow. */
+  renameDataFlow(
+    dataFlowName: string,
+    options: DataFlowRenameDataFlowParameters
+  ): Promise<
+    | DataFlowRenameDataFlow200Response
+    | DataFlowRenameDataFlow202Response
+    | DataFlowRenameDataFlowdefaultResponse
+  >;
+  /** Lists data flows. */
+  getDataFlowsByWorkspace(
+    options?: DataFlowGetDataFlowsByWorkspaceParameters
+  ): Promise<
+    | DataFlowGetDataFlowsByWorkspace200Response
+    | DataFlowGetDataFlowsByWorkspacedefaultResponse
+  >;
+}
+
+/** Contains operations for DataFlowDebugSession operations */
+export interface DataFlowDebugSessionOperations {
+  /** Creates a data flow debug session. */
+  createDataFlowDebugSession(
+    options: DataFlowDebugSessionCreateDataFlowDebugSessionParameters
+  ): Promise<
+    | DataFlowDebugSessionCreateDataFlowDebugSession200Response
+    | DataFlowDebugSessionCreateDataFlowDebugSession202Response
+    | DataFlowDebugSessionCreateDataFlowDebugSessiondefaultResponse
+  >;
+  /** Query all active data flow debug sessions. */
+  queryDataFlowDebugSessionsByWorkspace(
+    options?: DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspaceParameters
+  ): Promise<
+    | DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspace200Response
+    | DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspacedefaultResponse
+  >;
+  /** Add a data flow into debug session. */
+  addDataFlow(
+    options: DataFlowDebugSessionAddDataFlowParameters
+  ): Promise<
+    | DataFlowDebugSessionAddDataFlow200Response
+    | DataFlowDebugSessionAddDataFlowdefaultResponse
+  >;
+  /** Deletes a data flow debug session. */
+  deleteDataFlowDebugSession(
+    options: DataFlowDebugSessionDeleteDataFlowDebugSessionParameters
+  ): Promise<
+    | DataFlowDebugSessionDeleteDataFlowDebugSession200Response
+    | DataFlowDebugSessionDeleteDataFlowDebugSessiondefaultResponse
+  >;
+  /** Execute a data flow debug command. */
+  executeCommand(
+    options: DataFlowDebugSessionExecuteCommandParameters
+  ): Promise<
+    | DataFlowDebugSessionExecuteCommand200Response
+    | DataFlowDebugSessionExecuteCommand202Response
+    | DataFlowDebugSessionExecuteCommanddefaultResponse
+  >;
+}
+
+/** Contains operations for Dataset operations */
+export interface DatasetOperations {
+  /** Lists datasets. */
+  getDatasetsByWorkspace(
+    options?: DatasetGetDatasetsByWorkspaceParameters
+  ): Promise<
+    | DatasetGetDatasetsByWorkspace200Response
+    | DatasetGetDatasetsByWorkspacedefaultResponse
+  >;
+  /** Creates or updates a dataset. */
+  createOrUpdateDataset(
+    datasetName: string,
+    options: DatasetCreateOrUpdateDatasetParameters
+  ): Promise<
+    | DatasetCreateOrUpdateDataset200Response
+    | DatasetCreateOrUpdateDataset202Response
+    | DatasetCreateOrUpdateDatasetdefaultResponse
+  >;
+  /** Gets a dataset. */
+  getDataset(
+    datasetName: string,
+    options?: DatasetGetDatasetParameters
+  ): Promise<
+    | DatasetGetDataset200Response
+    | DatasetGetDataset304Response
+    | DatasetGetDatasetdefaultResponse
+  >;
+  /** Deletes a dataset. */
+  deleteDataset(
+    datasetName: string,
+    options?: DatasetDeleteDatasetParameters
+  ): Promise<
+    | DatasetDeleteDataset200Response
+    | DatasetDeleteDataset202Response
+    | DatasetDeleteDataset204Response
+    | DatasetDeleteDatasetdefaultResponse
+  >;
+  /** Renames a dataset. */
+  renameDataset(
+    datasetName: string,
+    options: DatasetRenameDatasetParameters
+  ): Promise<
+    | DatasetRenameDataset200Response
+    | DatasetRenameDataset202Response
+    | DatasetRenameDatasetdefaultResponse
+  >;
+}
+
+/** Contains operations for WorkspaceGitRepoManagement operations */
+export interface WorkspaceGitRepoManagementOperations {
+  /** Get the GitHub access token. */
+  getGitHubAccessToken(
+    options: WorkspaceGitRepoManagementGetGitHubAccessTokenParameters
+  ): Promise<WorkspaceGitRepoManagementGetGitHubAccessToken200Response>;
+}
+
+/** Contains operations for IntegrationRuntimes operations */
+export interface IntegrationRuntimesOperations {
+  /** List Integration Runtimes */
+  list(
+    options?: IntegrationRuntimesListParameters
+  ): Promise<
+    IntegrationRuntimesList200Response | IntegrationRuntimesListdefaultResponse
+  >;
+  /** Get Integration Runtime */
+  get(
+    integrationRuntimeName: string,
+    options?: IntegrationRuntimesGetParameters
+  ): Promise<
+    IntegrationRuntimesGet200Response | IntegrationRuntimesGetdefaultResponse
+  >;
+}
+
+/** Contains operations for Library operations */
+export interface LibraryOperations {
+  /** Lists Library. */
+  list(
+    options?: LibraryListParameters
+  ): Promise<LibraryList200Response | LibraryListdefaultResponse>;
+  /** Flush Library */
+  flush(
+    libraryName: string,
+    options?: LibraryFlushParameters
+  ): Promise<
+    | LibraryFlush200Response
+    | LibraryFlush202Response
+    | LibraryFlushdefaultResponse
+  >;
+  /** Get Operation result for Library */
+  getOperationResult(
+    operationId: string,
+    options?: LibraryGetOperationResultParameters
+  ): Promise<
+    | LibraryGetOperationResult200Response
+    | LibraryGetOperationResult202Response
+    | LibraryGetOperationResultdefaultResponse
+  >;
+  /** Delete Library */
+  delete(
+    libraryName: string,
+    options?: LibraryDeleteParameters
+  ): Promise<
+    | LibraryDelete200Response
+    | LibraryDelete202Response
+    | LibraryDelete409Response
+    | LibraryDeletedefaultResponse
+  >;
+  /** Get Library */
+  get(
+    libraryName: string,
+    options?: LibraryGetParameters
+  ): Promise<
+    LibraryGet200Response | LibraryGet304Response | LibraryGetdefaultResponse
+  >;
+  /** Creates a library with the library name. */
+  create(
+    libraryName: string,
+    options?: LibraryCreateParameters | LibraryAppendParameters
+  ):
+    | Promise<
+        | LibraryCreate200Response
+        | LibraryCreate202Response
+        | LibraryCreatedefaultResponse
+      >
+    | Promise<LibraryAppend201Response | LibraryAppenddefaultResponse>;
+  /** Creates a library with the library name. */
+  append(
+    libraryName: string,
+    options?: LibraryCreateParameters | LibraryAppendParameters
+  ):
+    | Promise<
+        | LibraryCreate200Response
+        | LibraryCreate202Response
+        | LibraryCreatedefaultResponse
+      >
+    | Promise<LibraryAppend201Response | LibraryAppenddefaultResponse>;
+}
+
+/** Contains operations for LinkedService operations */
+export interface LinkedServiceOperations {
+  /** Lists linked services. */
+  getLinkedServicesByWorkspace(
+    options?: LinkedServiceGetLinkedServicesByWorkspaceParameters
+  ): Promise<
+    | LinkedServiceGetLinkedServicesByWorkspace200Response
+    | LinkedServiceGetLinkedServicesByWorkspacedefaultResponse
+  >;
+  /** Creates or updates a linked service. */
+  createOrUpdateLinkedService(
+    linkedServiceName: string,
+    options: LinkedServiceCreateOrUpdateLinkedServiceParameters
+  ): Promise<
+    | LinkedServiceCreateOrUpdateLinkedService200Response
+    | LinkedServiceCreateOrUpdateLinkedService202Response
+    | LinkedServiceCreateOrUpdateLinkedServicedefaultResponse
+  >;
+  /** Gets a linked service. */
+  getLinkedService(
+    linkedServiceName: string,
+    options?: LinkedServiceGetLinkedServiceParameters
+  ): Promise<
+    | LinkedServiceGetLinkedService200Response
+    | LinkedServiceGetLinkedService304Response
+    | LinkedServiceGetLinkedServicedefaultResponse
+  >;
+  /** Deletes a linked service. */
+  deleteLinkedService(
+    linkedServiceName: string,
+    options?: LinkedServiceDeleteLinkedServiceParameters
+  ): Promise<
+    | LinkedServiceDeleteLinkedService200Response
+    | LinkedServiceDeleteLinkedService202Response
+    | LinkedServiceDeleteLinkedService204Response
+    | LinkedServiceDeleteLinkedServicedefaultResponse
+  >;
+  /** Renames a linked service. */
+  renameLinkedService(
+    linkedServiceName: string,
+    options: LinkedServiceRenameLinkedServiceParameters
+  ): Promise<
+    | LinkedServiceRenameLinkedService200Response
+    | LinkedServiceRenameLinkedService202Response
+    | LinkedServiceRenameLinkedServicedefaultResponse
+  >;
+}
+
+/** Contains operations for Notebook operations */
+export interface NotebookOperations {
+  /** Lists Notebooks. */
+  getNotebooksByWorkspace(
+    options?: NotebookGetNotebooksByWorkspaceParameters
+  ): Promise<
+    | NotebookGetNotebooksByWorkspace200Response
+    | NotebookGetNotebooksByWorkspacedefaultResponse
+  >;
+  /** Lists a summary of Notebooks. */
+  getNotebookSummaryByWorkSpace(
+    options?: NotebookGetNotebookSummaryByWorkSpaceParameters
+  ): Promise<
+    | NotebookGetNotebookSummaryByWorkSpace200Response
+    | NotebookGetNotebookSummaryByWorkSpacedefaultResponse
+  >;
+  /** Creates or updates a Note Book. */
+  createOrUpdateNotebook(
+    notebookName: string,
+    options: NotebookCreateOrUpdateNotebookParameters
+  ): Promise<
+    | NotebookCreateOrUpdateNotebook200Response
+    | NotebookCreateOrUpdateNotebook202Response
+    | NotebookCreateOrUpdateNotebookdefaultResponse
+  >;
+  /** Gets a Note Book. */
+  getNotebook(
+    notebookName: string,
+    options?: NotebookGetNotebookParameters
+  ): Promise<
+    | NotebookGetNotebook200Response
+    | NotebookGetNotebook304Response
+    | NotebookGetNotebookdefaultResponse
+  >;
+  /** Deletes a Note book. */
+  deleteNotebook(
+    notebookName: string,
+    options?: NotebookDeleteNotebookParameters
+  ): Promise<
+    | NotebookDeleteNotebook200Response
+    | NotebookDeleteNotebook202Response
+    | NotebookDeleteNotebook204Response
+    | NotebookDeleteNotebookdefaultResponse
+  >;
+  /** Renames a notebook. */
+  renameNotebook(
+    notebookName: string,
+    options: NotebookRenameNotebookParameters
+  ): Promise<
+    | NotebookRenameNotebook200Response
+    | NotebookRenameNotebook202Response
+    | NotebookRenameNotebookdefaultResponse
+  >;
+}
+
+/** Contains operations for NotebookOperationResult operations */
+export interface NotebookOperationResultOperations {
+  /** Get notebook operation result */
+  get(
+    operationId: string,
+    options?: NotebookOperationResultGetParameters
+  ): Promise<
+    | NotebookOperationResultGet200Response
+    | NotebookOperationResultGet201Response
+    | NotebookOperationResultGet202Response
+    | NotebookOperationResultGet204Response
+    | NotebookOperationResultGetdefaultResponse
+  >;
+}
+
+/** Contains operations for PipelineOperations operations */
+export interface PipelineOperationsOperations {
+  /** Lists pipelines. */
+  getPipelinesByWorkspace(
+    options?: PipelineGetPipelinesByWorkspaceParameters
+  ): Promise<
+    | PipelineGetPipelinesByWorkspace200Response
+    | PipelineGetPipelinesByWorkspacedefaultResponse
+  >;
+  /** Creates or updates a pipeline. */
+  createOrUpdatePipeline(
+    pipelineName: string,
+    options: PipelineCreateOrUpdatePipelineParameters
+  ): Promise<
+    | PipelineCreateOrUpdatePipeline200Response
+    | PipelineCreateOrUpdatePipeline202Response
+    | PipelineCreateOrUpdatePipelinedefaultResponse
+  >;
+  /** Gets a pipeline. */
+  getPipeline(
+    pipelineName: string,
+    options?: PipelineGetPipelineParameters
+  ): Promise<
+    | PipelineGetPipeline200Response
+    | PipelineGetPipeline304Response
+    | PipelineGetPipelinedefaultResponse
+  >;
+  /** Deletes a pipeline. */
+  deletePipeline(
+    pipelineName: string,
+    options?: PipelineDeletePipelineParameters
+  ): Promise<
+    | PipelineDeletePipeline200Response
+    | PipelineDeletePipeline202Response
+    | PipelineDeletePipeline204Response
+    | PipelineDeletePipelinedefaultResponse
+  >;
+  /** Renames a pipeline. */
+  renamePipeline(
+    pipelineName: string,
+    options: PipelineRenamePipelineParameters
+  ): Promise<
+    | PipelineRenamePipeline200Response
+    | PipelineRenamePipeline202Response
+    | PipelineRenamePipelinedefaultResponse
+  >;
+  /** Creates a run of a pipeline. */
+  createPipelineRun(
+    pipelineName: string,
+    options?: PipelineCreatePipelineRunParameters
+  ): Promise<
+    | PipelineCreatePipelineRun202Response
+    | PipelineCreatePipelineRundefaultResponse
+  >;
+}
+
+/** Contains operations for PipelineRun operations */
+export interface PipelineRunOperations {
+  /** Query pipeline runs in the workspace based on input filter conditions. */
+  queryPipelineRunsByWorkspace(
+    options: PipelineRunQueryPipelineRunsByWorkspaceParameters
+  ): Promise<
+    | PipelineRunQueryPipelineRunsByWorkspace200Response
+    | PipelineRunQueryPipelineRunsByWorkspacedefaultResponse
+  >;
+  /** Get a pipeline run by its run ID. */
+  getPipelineRun(
+    runId: string,
+    options?: PipelineRunGetPipelineRunParameters
+  ): Promise<
+    | PipelineRunGetPipelineRun200Response
+    | PipelineRunGetPipelineRundefaultResponse
+  >;
+  /** Query activity runs based on input filter conditions. */
+  queryActivityRuns(
+    pipelineName: string,
+    runId: string,
+    options: PipelineRunQueryActivityRunsParameters
+  ): Promise<
+    | PipelineRunQueryActivityRuns200Response
+    | PipelineRunQueryActivityRunsdefaultResponse
+  >;
+  /** Cancel a pipeline run by its run ID. */
+  cancelPipelineRun(
+    runId: string,
+    options?: PipelineRunCancelPipelineRunParameters
+  ): Promise<
+    | PipelineRunCancelPipelineRun200Response
+    | PipelineRunCancelPipelineRundefaultResponse
+  >;
+}
+
+/** Contains operations for SparkJobDefinition operations */
+export interface SparkJobDefinitionOperations {
+  /** Lists spark job definitions. */
+  getSparkJobDefinitionsByWorkspace(
+    options?: SparkJobDefinitionGetSparkJobDefinitionsByWorkspaceParameters
+  ): Promise<
+    | SparkJobDefinitionGetSparkJobDefinitionsByWorkspace200Response
+    | SparkJobDefinitionGetSparkJobDefinitionsByWorkspacedefaultResponse
+  >;
+  /** Creates or updates a Spark Job Definition. */
+  createOrUpdateSparkJobDefinition(
+    sparkJobDefinitionName: string,
+    options: SparkJobDefinitionCreateOrUpdateSparkJobDefinitionParameters
+  ): Promise<
+    | SparkJobDefinitionCreateOrUpdateSparkJobDefinition200Response
+    | SparkJobDefinitionCreateOrUpdateSparkJobDefinition202Response
+    | SparkJobDefinitionCreateOrUpdateSparkJobDefinitiondefaultResponse
+  >;
+  /** Gets a Spark Job Definition. */
+  getSparkJobDefinition(
+    sparkJobDefinitionName: string,
+    options?: SparkJobDefinitionGetSparkJobDefinitionParameters
+  ): Promise<
+    | SparkJobDefinitionGetSparkJobDefinition200Response
+    | SparkJobDefinitionGetSparkJobDefinition304Response
+    | SparkJobDefinitionGetSparkJobDefinitiondefaultResponse
+  >;
+  /** Deletes a Spark Job Definition. */
+  deleteSparkJobDefinition(
+    sparkJobDefinitionName: string,
+    options?: SparkJobDefinitionDeleteSparkJobDefinitionParameters
+  ): Promise<
+    | SparkJobDefinitionDeleteSparkJobDefinition200Response
+    | SparkJobDefinitionDeleteSparkJobDefinition202Response
+    | SparkJobDefinitionDeleteSparkJobDefinition204Response
+    | SparkJobDefinitionDeleteSparkJobDefinitiondefaultResponse
+  >;
+  /** Executes the spark job definition. */
+  executeSparkJobDefinition(
+    sparkJobDefinitionName: string,
+    options?: SparkJobDefinitionExecuteSparkJobDefinitionParameters
+  ): Promise<
+    | SparkJobDefinitionExecuteSparkJobDefinition200Response
+    | SparkJobDefinitionExecuteSparkJobDefinition202Response
+    | SparkJobDefinitionExecuteSparkJobDefinitiondefaultResponse
+  >;
+  /** Renames a sparkJobDefinition. */
+  renameSparkJobDefinition(
+    sparkJobDefinitionName: string,
+    options: SparkJobDefinitionRenameSparkJobDefinitionParameters
+  ): Promise<
+    | SparkJobDefinitionRenameSparkJobDefinition200Response
+    | SparkJobDefinitionRenameSparkJobDefinition202Response
+    | SparkJobDefinitionRenameSparkJobDefinitiondefaultResponse
+  >;
+  /** Debug the spark job definition. */
+  debugSparkJobDefinition(
+    options: SparkJobDefinitionDebugSparkJobDefinitionParameters
+  ): Promise<
+    | SparkJobDefinitionDebugSparkJobDefinition200Response
+    | SparkJobDefinitionDebugSparkJobDefinition202Response
+    | SparkJobDefinitionDebugSparkJobDefinitiondefaultResponse
+  >;
+}
+
+/** Contains operations for SqlPools operations */
+export interface SqlPoolsOperations {
+  /** List Sql Pools */
+  list(
+    options?: SqlPoolsListParameters
+  ): Promise<SqlPoolsList200Response | SqlPoolsListdefaultResponse>;
+  /** Get Sql Pool */
+  get(
+    sqlPoolName: string,
+    options?: SqlPoolsGetParameters
+  ): Promise<SqlPoolsGet200Response | SqlPoolsGetdefaultResponse>;
+}
+
+/** Contains operations for SqlScript operations */
+export interface SqlScriptOperations {
+  /** Lists sql scripts. */
+  getSqlScriptsByWorkspace(
+    options?: SqlScriptGetSqlScriptsByWorkspaceParameters
+  ): Promise<
+    | SqlScriptGetSqlScriptsByWorkspace200Response
+    | SqlScriptGetSqlScriptsByWorkspacedefaultResponse
+  >;
+  /** Creates or updates a Sql Script. */
+  createOrUpdateSqlScript(
+    sqlScriptName: string,
+    options: SqlScriptCreateOrUpdateSqlScriptParameters
+  ): Promise<
+    | SqlScriptCreateOrUpdateSqlScript200Response
+    | SqlScriptCreateOrUpdateSqlScript202Response
+    | SqlScriptCreateOrUpdateSqlScriptdefaultResponse
+  >;
+  /** Gets a sql script. */
+  getSqlScript(
+    sqlScriptName: string,
+    options?: SqlScriptGetSqlScriptParameters
+  ): Promise<
+    | SqlScriptGetSqlScript200Response
+    | SqlScriptGetSqlScript304Response
+    | SqlScriptGetSqlScriptdefaultResponse
+  >;
+  /** Deletes a Sql Script. */
+  deleteSqlScript(
+    sqlScriptName: string,
+    options?: SqlScriptDeleteSqlScriptParameters
+  ): Promise<
+    | SqlScriptDeleteSqlScript200Response
+    | SqlScriptDeleteSqlScript202Response
+    | SqlScriptDeleteSqlScript204Response
+    | SqlScriptDeleteSqlScriptdefaultResponse
+  >;
+  /** Renames a sqlScript. */
+  renameSqlScript(
+    sqlScriptName: string,
+    options: SqlScriptRenameSqlScriptParameters
+  ): Promise<
+    | SqlScriptRenameSqlScript200Response
+    | SqlScriptRenameSqlScript202Response
+    | SqlScriptRenameSqlScriptdefaultResponse
+  >;
+}
+
+/** Contains operations for Trigger operations */
+export interface TriggerOperations {
+  /** Lists triggers. */
+  getTriggersByWorkspace(
+    options?: TriggerGetTriggersByWorkspaceParameters
+  ): Promise<
+    | TriggerGetTriggersByWorkspace200Response
+    | TriggerGetTriggersByWorkspacedefaultResponse
+  >;
+  /** Creates or updates a trigger. */
+  createOrUpdateTrigger(
+    triggerName: string,
+    options: TriggerCreateOrUpdateTriggerParameters
+  ): Promise<
+    | TriggerCreateOrUpdateTrigger200Response
+    | TriggerCreateOrUpdateTrigger202Response
+    | TriggerCreateOrUpdateTriggerdefaultResponse
+  >;
+  /** Gets a trigger. */
+  getTrigger(
+    triggerName: string,
+    options?: TriggerGetTriggerParameters
+  ): Promise<
+    | TriggerGetTrigger200Response
+    | TriggerGetTrigger304Response
+    | TriggerGetTriggerdefaultResponse
+  >;
+  /** Deletes a trigger. */
+  deleteTrigger(
+    triggerName: string,
+    options?: TriggerDeleteTriggerParameters
+  ): Promise<
+    | TriggerDeleteTrigger200Response
+    | TriggerDeleteTrigger202Response
+    | TriggerDeleteTrigger204Response
+    | TriggerDeleteTriggerdefaultResponse
+  >;
+  /** Subscribe event trigger to events. */
+  subscribeTriggerToEvents(
+    triggerName: string,
+    options?: TriggerSubscribeTriggerToEventsParameters
+  ): Promise<
+    | TriggerSubscribeTriggerToEvents200Response
+    | TriggerSubscribeTriggerToEvents202Response
+    | TriggerSubscribeTriggerToEventsdefaultResponse
+  >;
+  /** Get a trigger's event subscription status. */
+  getEventSubscriptionStatus(
+    triggerName: string,
+    options?: TriggerGetEventSubscriptionStatusParameters
+  ): Promise<
+    | TriggerGetEventSubscriptionStatus200Response
+    | TriggerGetEventSubscriptionStatusdefaultResponse
+  >;
+  /** Unsubscribe event trigger from events. */
+  unsubscribeTriggerFromEvents(
+    triggerName: string,
+    options?: TriggerUnsubscribeTriggerFromEventsParameters
+  ): Promise<
+    | TriggerUnsubscribeTriggerFromEvents200Response
+    | TriggerUnsubscribeTriggerFromEvents202Response
+    | TriggerUnsubscribeTriggerFromEventsdefaultResponse
+  >;
+  /** Starts a trigger. */
+  startTrigger(
+    triggerName: string,
+    options?: TriggerStartTriggerParameters
+  ): Promise<
+    TriggerStartTrigger200Response | TriggerStartTriggerdefaultResponse
+  >;
+  /** Stops a trigger. */
+  stopTrigger(
+    triggerName: string,
+    options?: TriggerStopTriggerParameters
+  ): Promise<TriggerStopTrigger200Response | TriggerStopTriggerdefaultResponse>;
+}
+
+/** Contains operations for TriggerRun operations */
+export interface TriggerRunOperations {
+  /** Rerun single trigger instance by runId. */
+  rerunTriggerInstance(
+    triggerName: string,
+    runId: string,
+    options?: TriggerRunRerunTriggerInstanceParameters
+  ): Promise<
+    | TriggerRunRerunTriggerInstance200Response
+    | TriggerRunRerunTriggerInstancedefaultResponse
+  >;
+  /** Cancel single trigger instance by runId. */
+  cancelTriggerInstance(
+    triggerName: string,
+    runId: string,
+    options?: TriggerRunCancelTriggerInstanceParameters
+  ): Promise<
+    | TriggerRunCancelTriggerInstance200Response
+    | TriggerRunCancelTriggerInstancedefaultResponse
+  >;
+  /** Query trigger runs. */
+  queryTriggerRunsByWorkspace(
+    options: TriggerRunQueryTriggerRunsByWorkspaceParameters
+  ): Promise<
+    | TriggerRunQueryTriggerRunsByWorkspace200Response
+    | TriggerRunQueryTriggerRunsByWorkspacedefaultResponse
+  >;
+}
+
+/** Contains operations for Workspace operations */
+export interface WorkspaceOperations {
+  /** Get Workspace */
+  get(
+    options?: WorkspaceGetParameters
+  ): Promise<WorkspaceGet200Response | WorkspaceGetdefaultResponse>;
+}
+
 export interface KqlScriptsGetAll {
   /** Get all KQL scripts */
   get(
@@ -1439,4 +2247,26 @@ export interface Routes {
 
 export type SynapseArtifactsRestClient = Client & {
   path: Routes;
+  kqlScripts: KqlScriptsOperations;
+  kqlScript: KqlScriptOperations;
+  metastore: MetastoreOperations;
+  sparkConfiguration: SparkConfigurationOperations;
+  bigDataPools: BigDataPoolsOperations;
+  dataFlow: DataFlowOperations;
+  dataFlowDebugSession: DataFlowDebugSessionOperations;
+  dataset: DatasetOperations;
+  workspaceGitRepoManagement: WorkspaceGitRepoManagementOperations;
+  integrationRuntimes: IntegrationRuntimesOperations;
+  library: LibraryOperations;
+  linkedService: LinkedServiceOperations;
+  notebook: NotebookOperations;
+  notebookOperationResult: NotebookOperationResultOperations;
+  pipelineOperations: PipelineOperationsOperations;
+  pipelineRun: PipelineRunOperations;
+  sparkJobDefinition: SparkJobDefinitionOperations;
+  sqlPools: SqlPoolsOperations;
+  sqlScript: SqlScriptOperations;
+  trigger: TriggerOperations;
+  triggerRun: TriggerRunOperations;
+  workspace: WorkspaceOperations;
 };

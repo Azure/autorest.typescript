@@ -17,10 +17,9 @@ rest-level-client: true
 add-credentials: true
 credential-scopes: "https://dev.azuresynapse.net/.default"
 tag: package-artifacts-composite-v3
+rlc-shortcut: true
 modelerfour:
   lenient-model-deduplication: true
-typescript:
-  rlc-shortcuts: true
 ```
 
 ```yaml
