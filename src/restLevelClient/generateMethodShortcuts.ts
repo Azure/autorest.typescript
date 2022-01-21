@@ -1,24 +1,35 @@
 import { CodeModel, Operation } from "@autorest/codemodel";
 import { OptionalKind, MethodSignatureStructure } from "ts-morph";
-import { NameType, normalizeName, ReservedName } from "../utils/nameUtils";
+import {
+  CasingConvention,
+  NameType,
+  normalizeName,
+  ReservedName
+} from "../utils/nameUtils";
 import { buildMethodDefinitions } from "./helpers/operationHelpers";
 import { PathParameter, Paths } from "./interfaces";
 
-const REST_CLIENT_RESERVED: ReservedName[] = [
-  { name: "path", reservedFor: [NameType.Property] },
-  { name: "pathUnchecked", reservedFor: [NameType.Property] },
-  { name: "pipeline", reservedFor: [NameType.Property] }
+export const REST_CLIENT_RESERVED: ReservedName[] = [
+  { name: "path", reservedFor: [NameType.Property, NameType.OperationGroup] },
+  {
+    name: "pathUnchecked",
+    reservedFor: [NameType.Property, NameType.OperationGroup]
+  },
+  {
+    name: "pipeline",
+    reservedFor: [NameType.Property, NameType.OperationGroup]
+  }
 ];
-
 export function generateMethodShortcuts(model: CodeModel, paths: Paths) {
   const operationGroups = model.operationGroups;
   let keys: Record<string, OptionalKind<MethodSignatureStructure>[]> = {};
   for (const group of operationGroups) {
     const groupName = normalizeName(
       group.language.default.name,
-      NameType.Property,
+      NameType.OperationGroup,
       true,
-      REST_CLIENT_RESERVED
+      REST_CLIENT_RESERVED,
+      CasingConvention.Camel
     );
 
     keys[groupName] = buildOperationDefinitions(group.operations, paths);
@@ -35,9 +46,10 @@ export function generateMethodShortcutImplementation(
   for (const group of operationGroups) {
     const groupName = normalizeName(
       group.language.default.name,
-      NameType.Property,
+      NameType.OperationGroup,
       true,
-      REST_CLIENT_RESERVED
+      REST_CLIENT_RESERVED,
+      CasingConvention.Camel
     );
 
     keys[groupName] = buildOperationDeclarations(group.operations, paths);

@@ -141,12 +141,13 @@ export function normalizeName(
   name: string,
   nameType: NameType,
   shouldGuard?: boolean,
-  customReservedNames: ReservedName[] = []
+  customReservedNames: ReservedName[] = [],
+  casingOverride?: CasingConvention
 ): string {
   if (name.startsWith("$DO_NOT_NORMALIZE$")) {
     return name.replace("$DO_NOT_NORMALIZE$", "");
   }
-  const casingConvention = getCasingConvention(nameType);
+  const casingConvention = casingOverride ?? getCasingConvention(nameType);
   const sanitizedName = sanitizeName(name);
   const parts = getNameParts(sanitizedName);
   const [firstPart, ...otherParts] = parts;
