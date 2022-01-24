@@ -18,6 +18,7 @@ import { calculateMethodName } from "../generators/utils/operationsUtils";
 import { camelCase } from "@azure-tools/codegen";
 import { OperationGroupDetails } from "../models/operationDetails";
 import { getPublicMethodName } from '../generators/utils/pagingOperations';
+import { BodiedNode } from "ts-morph";
 
 export async function transformSamples(
   codeModel: CodeModel,
@@ -75,6 +76,7 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
             clientParameterNames: "",
             methodParameterNames: "",
             bodySchemaName: "",
+            isAnyTypeBody: false,
             hasBody: false,
             hasOptional: false,
             sampleFunctionName: camelCase(example.name.replace(/\//g, " Or ").replace(/,|\.|\(|\)/g, " ").replace('\'s ', ' ')),
@@ -133,6 +135,10 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
               sample.bodySchemaName = getLanguageMetadata(
                 methodParameter.exampleValue.schema.language
               ).name;
+              if (methodParameter.exampleValue.schema.type === SchemaType.AnyObject || methodParameter.exampleValue.schema.type  === SchemaType.Any) {
+                sample.bodySchemaName = "Record<string, unknown>"
+                sample.isAnyTypeBody = true;
+              }
               paramAssignment =
                 `const ${parameterName}: ${sample.bodySchemaName} = ` +
                 getParameterAssignment(methodParameter.exampleValue);
@@ -193,6 +199,7 @@ function getParameterAssignment(exampleValue: ExampleValue) {
       case SchemaType.Object:
       case SchemaType.Any:
       case SchemaType.Dictionary:
+      case SchemaType.AnyObject:
         retValue = `{}`;
         break;
       case SchemaType.Array:
