@@ -83,6 +83,7 @@ async function generate(name: string, swaggerInfo: SwaggerInfo) {
     restLevelClient: true,
     rlcShortcut: true,
     addCredentials: false,
+    generateMetadata: true,
     outputPath: `./test/version-tolerance/generated/${swaggerInfo.output}`,
     licenseHeader: true,
     packageDetails: {
