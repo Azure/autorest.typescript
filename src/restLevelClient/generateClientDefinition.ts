@@ -31,6 +31,7 @@ import {
 } from "./generateMethodShortcuts";
 import { Methods, PathParameter, Paths } from "./interfaces";
 export let pathDictionary: Paths = {};
+let requireHttpResponse = false;
 
 export function generatePathFirstClient(model: CodeModel, project: Project) {
   const name = normalizeName(
@@ -188,9 +189,14 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
     });
   }
 
+  const clientImports = ['Client'];
+  if (requireHttpResponse) {
+    clientImports.push("HttpResponse")
+  }
+
   clientFile.addImportDeclarations([
     {
-      namedImports: ["Client"],
+      namedImports: clientImports,
       moduleSpecifier: "@azure-rest/core-client"
     }
   ]);
@@ -283,6 +289,9 @@ function getOperationReturnType(
     }
   }
 
+  if (returnType === "HttpResponse") {
+    requireHttpResponse = true;
+  }
   return returnType;
 }
 
