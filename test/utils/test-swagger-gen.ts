@@ -22,6 +22,7 @@ interface SwaggerConfig {
   isTestPackage?: boolean;
   generateTest?: boolean;
   generateSample?: boolean;
+  generateMetadata?: boolean;
 }
 
 const package_version = "1.0.0-preview1";
@@ -503,17 +504,6 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     isTestPackage: true
   },
-  urlRest: {
-    swaggerOrConfig: "url.json",
-    clientName: "UrlRestClient",
-    packageName: "url-rest",
-    licenseHeader: true,
-    restLevelClient: true,
-    rlcShortcut: true,
-    allowInsecureConnection: true,
-    addCredentials: false,
-    isTestPackage: true
-  },
   urlMulti: {
     swaggerOrConfig: "url-multi-collectionFormat.json",
     clientName: "UrlMultiClient",
@@ -861,7 +851,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     allowInsecureConnection: true,
     addCredentials: false,
     isTestPackage: true,
-    restLevelClient: true
+    restLevelClient: true,
+    generateMetadata: true
   },
   bodyStringRest: {
     swaggerOrConfig: "body-string.json",
@@ -871,7 +862,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     restLevelClient: true,
     licenseHeader: true,
     isTestPackage: true,
-    generateTest: true
+    generateTest: true,
+    generateMetadata: true
   },
   bodyComplexRest: {
     swaggerOrConfig: "test/integration/swaggers/bodyComplex.md",
@@ -881,7 +873,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     restLevelClient: true,
     allowInsecureConnection: true,
     addCredentials: false,
-    isTestPackage: true
+    isTestPackage: true,
+    generateMetadata: true
   },
   pagingRest: {
     swaggerOrConfig: "paging.json",
@@ -890,7 +883,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     addCredentials: false,
     isTestPackage: true,
-    restLevelClient: true
+    restLevelClient: true,
+    generateMetadata: true
   },
   multipleInheritanceRest: {
     swaggerOrConfig: "multiple-inheritance.json",
@@ -902,7 +896,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     restLevelClient: true,
     rlcShortcut: true,
-    isTestPackage: true
+    isTestPackage: true,
+    generateMetadata: true
   },
   mediaTypesRest: {
     swaggerOrConfig: "media_types.json",
@@ -911,7 +906,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     addCredentials: false,
     isTestPackage: true,
-    restLevelClient: true
+    restLevelClient: true,
+    generateMetadata: true
   },
   bodyFileRest: {
     swaggerOrConfig: "body-file.json",
@@ -921,7 +917,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     allowInsecureConnection: true,
     addCredentials: false,
     isTestPackage: true,
-    restLevelClient: true
+    restLevelClient: true,
+    generateMetadata: true
   },
   headerRest: {
     swaggerOrConfig: "header.json",
@@ -931,7 +928,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     restLevelClient: true,
     allowInsecureConnection: true,
     addCredentials: false,
-    isTestPackage: true
+    isTestPackage: true,
+    generateMetadata: true
   },
   bodyFormDataRest: {
     swaggerOrConfig: "body-formdata.json",
@@ -942,7 +940,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     allowInsecureConnection: true,
     addCredentials: false,
     isTestPackage: true,
-    restLevelClient: true
+    restLevelClient: true,
+    generateMetadata: true
   },
   customUrlRest: {
     swaggerOrConfig: "custom-baseUrl.json",
@@ -953,7 +952,20 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     rlcShortcut: true,
     allowInsecureConnection: true,
     addCredentials: false,
-    isTestPackage: true
+    isTestPackage: true,
+    generateMetadata: true
+  },
+  urlRest: {
+    swaggerOrConfig: "url.json",
+    clientName: "UrlRestClient",
+    packageName: "url-rest",
+    licenseHeader: true,
+    restLevelClient: true,
+    rlcShortcut: true,
+    allowInsecureConnection: true,
+    addCredentials: false,
+    isTestPackage: true,
+    generateMetadata: true
   }
 };
 
@@ -986,7 +998,8 @@ const generateSwaggers = async (
       headAsBoolean,
       isTestPackage,
       generateTest,
-      rlcShortcut
+      rlcShortcut,
+      generateMetadata
     } = testSwaggers[name];
 
     let swaggerPath = swaggerOrConfig;
@@ -1026,7 +1039,8 @@ const generateSwaggers = async (
         rlcShortcut,
         headAsBoolean,
         isTestPackage,
-        generateTest
+        generateTest,
+        generateMetadata
       },
       isDebugging
     );
