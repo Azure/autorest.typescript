@@ -28,7 +28,8 @@ export async function runAutorest(
     rlcShortcut,
     headAsBoolean,
     isTestPackage,
-    generateTest
+    generateTest,
+    generateMetadata
   } = options;
   let autorestCommand = `autorest${
     /^win/.test(process.platform) ? ".cmd" : ""
@@ -56,6 +57,9 @@ export async function runAutorest(
   }
   if (rlcShortcut === true) {
     commandArguments.push(`--rlc-shortcut=true`);
+  }
+  if (generateMetadata === true) {
+    commandArguments.push(`--generate-metadata=true`);
   }
   if (title !== undefined) {
     commandArguments.push(`--title=${title}`);
