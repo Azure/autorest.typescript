@@ -14,7 +14,8 @@ export enum AutorestParams {
   ModelDedup = "--modelerfour.lenient-model-deduplication",
   RestClient = "--rest-level-client=true",
   GenerateTest = "--generate-test=true",
-  GenerateSamples = "--generate-sample=true"
+  GenerateSamples = "--generate-sample=true",
+  GenerateMetadata = "--generate-metadata=true"
 }
 
 const getArmReadmes = (): SpecDefinition[] => {
@@ -169,7 +170,11 @@ export const readmes: SpecDefinition[] = [
       "./.tmp/specs/specification/agrifood/data-plane/readme.md"
     ),
     branch: "3ac6ce225efe665e6c74abe48016dcb2a236d609",
-    params: [AutorestParams.RestClient, AutorestParams.GenerateTest],
+    params: [
+      AutorestParams.RestClient,
+      AutorestParams.GenerateTest,
+      AutorestParams.GenerateMetadata
+    ],
     buildTag: "ci_rlc"
   },
   {
@@ -178,7 +183,7 @@ export const readmes: SpecDefinition[] = [
       "..",
       "./smoke/swagger/purview-administration-rest.md"
     ),
-    params: [AutorestParams.RestClient],
+    params: [AutorestParams.RestClient, AutorestParams.GenerateMetadata],
     buildTag: "ci_rlc"
   },
   {
@@ -187,7 +192,7 @@ export const readmes: SpecDefinition[] = [
       "..",
       "./smoke/swagger/synapse-artifacts-rest.md"
     ),
-    params: [AutorestParams.RestClient],
+    params: [AutorestParams.RestClient, AutorestParams.GenerateMetadata],
     buildTag: "ci_rlc"
   }
   // {

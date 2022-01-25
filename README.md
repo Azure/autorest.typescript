@@ -86,7 +86,6 @@ pipeline:
   typescript/emitter:
     input: typescript
     scope: typescript-scope/emitter
-
 ```
 
 ```yaml $(generate-test)
@@ -94,8 +93,8 @@ use-extension:
   "@autorest/testmodeler": "1.0.4"
 
 try-require:
-    - ./readme.test.md
-    - ./readme.tests.md
+  - ./readme.test.md
+  - ./readme.tests.md
 
 testmodeler:
   split-parents-value: false
@@ -117,19 +116,22 @@ pipeline:
   typescript/emitter:
     input: typescript
     scope: typescript-scope/emitter
-
 ```
 
 ### REST Client Generator overrides
 
 ```yaml $(rest-level-client)
-generate-metadata: false
 license-header: MICROSOFT_MIT_NO_VERSION
-source-code-folder-path: ./src
-add-credentials: true
+
+$(add-credentials == undefined):
+  - add-credentials: true
+
+$(!source-code-folder-path):
+  - source-code-folder-path: ./src
 
 typescript:
-  output-folder: ../
+  $(!output-folder):
+    - output-folder: ../
 
 modelerfour:
   # this runs a pre-namer step to clean up names

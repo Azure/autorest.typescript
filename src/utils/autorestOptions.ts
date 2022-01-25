@@ -89,7 +89,9 @@ async function getGenerateTest(host: AutorestExtensionHost): Promise<boolean> {
   return generateTest === null ? false : Boolean(generateTest);
 }
 
-async function getGenerateSample(host: AutorestExtensionHost): Promise<boolean> {
+async function getGenerateSample(
+  host: AutorestExtensionHost
+): Promise<boolean> {
   const generateSample = await host.getValue("generate-sample");
   return generateSample === null ? false : Boolean(generateSample);
 }
@@ -127,7 +129,16 @@ async function getHideClients(host: AutorestExtensionHost): Promise<boolean> {
   return (await host.getValue("hide-clients")) || false;
 }
 async function getGenerateMetadata(host: AutorestExtensionHost) {
-  return (await host.getValue("generate-metadata")) !== false;
+  const isRlc = (await host.getValue("rest-level-client")) === true;
+  const generateMetadata = await host.getValue("generate-metadata");
+
+  if (isRlc) {
+    // RLC by default don't generate metadata unless it is explicitly set to true
+    return generateMetadata === true;
+  }
+
+  // For normal autorest clients default to true unless it is set to false
+  return generateMetadata !== false;
 }
 
 async function getLicenseHeader(host: AutorestExtensionHost): Promise<boolean> {
@@ -287,9 +298,9 @@ async function getAzureOutputDirectoryPath(
     : undefined;
 }
 
-
-async function getBatch(host: AutorestExtensionHost): Promise<[string, any][] | undefined> {
-  const batch = await host.getValue<[string, any][]>('batch');
+async function getBatch(
+  host: AutorestExtensionHost
+): Promise<[string, any][] | undefined> {
+  const batch = await host.getValue<[string, any][]>("batch");
   return batch;
-  
 }
