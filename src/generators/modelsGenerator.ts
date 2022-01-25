@@ -771,6 +771,9 @@ function getPropertyTypeName(
   ignoreNullableOnOptional: boolean
 ) {
   if (property.isConstant) {
+    if (property.type === SchemaType.Number) {
+      return `${property.defaultValue}`;
+    }
     return `"${getStringForValue(
       property.defaultValue,
       property.type,
