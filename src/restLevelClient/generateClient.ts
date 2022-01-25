@@ -38,7 +38,7 @@ export function generateClient(model: CodeModel, project: Project) {
   const clientName = getLanguageMetadata(model.language).name;
   const uriParameter = getClientUriParameter();
 
-  const { addCredentials, credentialKeyHeaderName, batch } = getAutorestOptions();
+  const { addCredentials, credentialKeyHeaderName, isMultiClient } = getAutorestOptions();
   const credentialTypes = addCredentials ? ["TokenCredential"] : [];
 
   if (credentialKeyHeaderName) {
@@ -65,7 +65,7 @@ export function generateClient(model: CodeModel, project: Project) {
     statements: getClientFactoryBody(clientInterfaceName, pathDictionary)
   }
 
-  if (!batch || batch.length === 1) {
+  if (!isMultiClient) {
     functionStatement.isDefaultExport = true;
   }
   clientFile.addFunction(functionStatement);

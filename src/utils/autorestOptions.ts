@@ -3,6 +3,7 @@ import { AutorestOptions, getHost, getSession } from "../autorestSession";
 import { TracingInfo } from "../models/clientDetails";
 import { PackageDetails } from "../models/packageDetails";
 import { NameType, normalizeName } from "./nameUtils";
+import * as path from "path";
 
 /**
  * Extracts common autorest options
@@ -33,7 +34,7 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
   const headAsBoolean = await getHeadAsBoolean(host);
   const isTestPackage = await getIsTestPackage(host);
   const generateTest = await getGenerateTest(host);
-  const batch = await getBatch(host);
+  const isMultiClient = await getIsMultiClient(host);
   const generateSample = await getGenerateSample(host);
 
   return {
@@ -60,7 +61,7 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
     headAsBoolean,
     isTestPackage,
     generateTest,
-    batch,
+    isMultiClient,
     generateSample
   };
 }
@@ -287,9 +288,6 @@ async function getAzureOutputDirectoryPath(
     : undefined;
 }
 
-
-async function getBatch(host: AutorestExtensionHost): Promise<[string, any][] | undefined> {
-  const batch = await host.getValue<[string, any][]>('batch');
-  return batch;
-  
+async function getIsMultiClient(host: AutorestExtensionHost): Promise<boolean> {
+  return path.basename(((await host.getValue("source-code-folder-path")) as string) || "src") !== "src";
 }

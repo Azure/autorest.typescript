@@ -4,35 +4,39 @@ import { getAutorestOptions } from '../autorestSession';
 import { CodeModel } from '@autorest/codemodel';
 import { NameType, normalizeName } from '../utils/nameUtils';
 
-const batchOutputFolder: [string, string, string][] = [];
+const batchOutput = new Map<string | undefined, {clientName: string; moduleName: string, relativePath: string}[]>()
 
 export function generateTopLevelIndexFile(model: CodeModel, project: Project) {
-    const { batch, srcPath } = getAutorestOptions();
+    const { isMultiClient, srcPath, packageDetails } = getAutorestOptions();
+    const packageName = packageDetails.name;
     if (srcPath) {
         const clientName = model.language.default.name;
         const moduleName = normalizeName(clientName, NameType.File);
         const relativePath = srcPath.replace('/src', '');
-        batchOutputFolder.push([relativePath, clientName, moduleName]);
+        if (!batchOutput.has(packageName)) {
+          batchOutput.set(packageName, []);
+        }
+        batchOutput.get(packageName)?.push({clientName, moduleName, relativePath});
     }
-    
-    if (batch && batch.length > 1 && batchOutputFolder.length === batch.length) {
+
+    if (isMultiClient) {
         const { srcPath } = getAutorestOptions();
         const fileDirectory= path.join(srcPath as string, '../../');
         const file = project.createSourceFile('/src/index.ts', undefined, {
             overwrite: true
         });
         file.moveToDirectory(fileDirectory);
-        const allModules: string[] = [];  
-        batchOutputFolder.forEach(item => {
+        const allModules: string[] = [];
+        batchOutput.get(packageName)?.forEach(item => {
             file.addImportDeclaration({
-                namespaceImport: item[1],
-                moduleSpecifier: `${item[0]}`
+                namespaceImport: item.clientName,
+                moduleSpecifier: `${item.relativePath}`
             });
             file.addExportDeclaration({
-                moduleSpecifier: `${item[0]}/${item[2]}`,
-                namedExports: [`${item[1]} as ${item[1]}Client`]
+                moduleSpecifier: `${item.relativePath}/${item.moduleName}`,
+                namedExports: [`${item.clientName} as ${item.clientName}Client`]
             })
-            allModules.push(item[1]);
+            allModules.push(item.clientName);
         });
         file.addExportDeclaration({
             namedExports: [...allModules]
