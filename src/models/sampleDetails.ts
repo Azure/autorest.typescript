@@ -15,5 +15,6 @@ export interface SampleDetails {
     isTopLevel: boolean,
     isPaging: boolean,
     originalFileLocation?: string
-    isAnyTypeBody?: boolean
+    isAnyTypeBody?: boolean,
+    importedTypes?: string[]
 }

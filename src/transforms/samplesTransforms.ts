@@ -84,7 +84,8 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
             clientParamAssignments: [],
             isTopLevel: ogDetails.isTopLevel,
             isPaging: opDetails.pagination !== undefined,
-            originalFileLocation: example.originalFile
+            originalFileLocation: example.originalFile,
+            importedTypes: []
           };
           const clientParameterNames = ["credential"];
           const requiredParams = clientDetails.parameters.filter(
@@ -119,7 +120,7 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
             sample.clientParameterNames = clientParameterNames.join(", ");
           }
           const methodParameterNames = [];
-          const optionalParams = [];
+          const optionalParams: [string, string][]= [];
           for (const methodParameter of example.methodParameters) {
             if (
               methodParameter.exampleValue.schema.type === SchemaType.Constant
@@ -129,12 +130,14 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
             const parameterName = getLanguageMetadata(
               methodParameter.exampleValue.language
             ).name;
+            const parameterTypeName = getLanguageMetadata(
+              methodParameter.exampleValue.schema.language
+            ).name;;
             let paramAssignment = "";
             if (methodParameter.parameter.protocol?.http?.["in"] === "body") {
               sample.hasBody = true;
-              sample.bodySchemaName = getLanguageMetadata(
-                methodParameter.exampleValue.schema.language
-              ).name;
+              sample.bodySchemaName = parameterTypeName;
+              sample.importedTypes?.push(parameterTypeName);
               if (methodParameter.exampleValue.schema.type === SchemaType.AnyObject || methodParameter.exampleValue.schema.type  === SchemaType.Any) {
                 sample.bodySchemaName = "Record<string, unknown>"
                 sample.isAnyTypeBody = true;
@@ -148,7 +151,7 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
                 getParameterAssignment(methodParameter.exampleValue);
             }
             if (!methodParameter.parameter.required) {
-              optionalParams.push(parameterName);
+              optionalParams.push([ parameterName, parameterTypeName ]);
             } else {
               methodParameterNames.push(parameterName);
             }
@@ -157,7 +160,10 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
           if (optionalParams.length > 0) {
             const optionAssignment = `const options = {${optionalParams
               .map(item => {
-                return item + ": " + item;
+                if (sample.importedTypes?.indexOf(item[1]) === -1) {
+                  sample.importedTypes?.push(item[1]);
+                } 
+                return item[0] + ": " + item[0] + " as " + item[1];
               })
               .join(", ")}}`;
             sample.methodParamAssignments.push(optionAssignment);
