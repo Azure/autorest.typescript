@@ -18,7 +18,6 @@ import {
   MetadataPolicyGetdefaultResponse
 } from "./responses";
 import { Client } from "@azure-rest/core-client";
-import { TokenCredential } from "@azure/core-auth";
 
 export interface MetadataRolesList {
   /** Lists roles for Purview Account */
