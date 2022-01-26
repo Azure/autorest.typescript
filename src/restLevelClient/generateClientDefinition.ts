@@ -116,14 +116,6 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
   });
 
   const clientName = getLanguageMetadata(model.language).name;
-  const uriParameter = getClientUriParameter();
-
-  const { addCredentials, credentialKeyHeaderName } = getAutorestOptions();
-  const credentialTypes = addCredentials ? ["TokenCredential"] : [];
-
-  if (credentialKeyHeaderName) {
-    credentialTypes.push("KeyCredential");
-  }
 
   const clientIterfaceName = `${clientName}RestClient`;
 
@@ -192,13 +184,6 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
     {
       namedImports: ["Client"],
       moduleSpecifier: "@azure-rest/core-client"
-    }
-  ]);
-
-  clientFile.addImportDeclarations([
-    {
-      namedImports: credentialTypes,
-      moduleSpecifier: "@azure/core-auth"
     }
   ]);
 }

@@ -31,7 +31,6 @@ import {
   PutKitten200Response
 } from "./responses";
 import { Client } from "@azure-rest/core-client";
-import "@azure/core-auth";
 
 /** Contains operations for Client operations */
 export interface ClientOperations {

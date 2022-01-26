@@ -4,7 +4,6 @@
 import { GetEmptyParameters } from "./parameters";
 import { GetEmpty200Response, GetEmptydefaultResponse } from "./responses";
 import { Client } from "@azure-rest/core-client";
-import "@azure/core-auth";
 
 /** Contains operations for Paths operations */
 export interface PathsOperations {
