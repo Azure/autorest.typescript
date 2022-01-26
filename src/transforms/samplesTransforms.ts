@@ -70,7 +70,7 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
               example.operation.language
             ).description,
             operationName: methodName,
-            operationGroupName: normalizeName(opGroupName, NameType.Property),
+            operationGroupName: normalizeName(opGroupName, NameType.Property, true),
             clientClassName: clientName,
             clientPackageName: packageDetails.name,
             clientParameterNames: "",
@@ -103,7 +103,8 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
             }
             const parameterName = normalizeName(
               getLanguageMetadata(clientParameter.exampleValue.language).name,
-              NameType.Parameter
+              NameType.Parameter,
+              true
             );
             const paramAssignment =
               `const ${parameterName} = ` +
@@ -127,9 +128,11 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
             ) {
               continue;
             }
-            const parameterName = getLanguageMetadata(
-              methodParameter.exampleValue.language
-            ).name;
+            const parameterName = normalizeName(
+              getLanguageMetadata(methodParameter.exampleValue.language).name,
+              NameType.Parameter,
+              true
+            );
             const parameterTypeName = getLanguageMetadata(
               methodParameter.exampleValue.schema.language
             ).name;;
