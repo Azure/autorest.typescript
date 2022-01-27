@@ -99,7 +99,7 @@
   "//metadata": {
     "constantPaths": [
       {
-        "path": "src/ManagedServiceIdentityClient.ts",
+        "path": "src/managedServiceIdentityClient.ts",
         "prefix": "packageDetails"
       }
     ]

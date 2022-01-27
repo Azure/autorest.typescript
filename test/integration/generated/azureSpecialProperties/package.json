@@ -84,7 +84,7 @@
   "//metadata": {
     "constantPaths": [
       {
-        "path": "src/AzureSpecialPropertiesClient.ts",
+        "path": "src/azureSpecialPropertiesClient.ts",
         "prefix": "packageDetails"
       }
     ]

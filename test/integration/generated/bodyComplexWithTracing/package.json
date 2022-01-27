@@ -84,7 +84,7 @@
   "sideEffects": false,
   "//metadata": {
     "constantPaths": [
-      { "path": "src/BodyComplexWithTracing.ts", "prefix": "packageDetails" }
+      { "path": "src/bodyComplexWithTracing.ts", "prefix": "packageDetails" }
     ]
   },
   "autoPublish": true

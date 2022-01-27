@@ -82,7 +82,7 @@
   "sideEffects": false,
   "//metadata": {
     "constantPaths": [
-      { "path": "src/BodyTimeClient.ts", "prefix": "packageDetails" }
+      { "path": "src/bodyTimeClient.ts", "prefix": "packageDetails" }
     ]
   },
   "autoPublish": true

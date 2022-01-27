@@ -85,7 +85,7 @@
   "//metadata": {
     "constantPaths": [
       {
-        "path": "src/MediaTypesWithTracingClient.ts",
+        "path": "src/mediaTypesWithTracingClient.ts",
         "prefix": "packageDetails"
       }
     ]

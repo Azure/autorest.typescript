@@ -82,7 +82,7 @@
   "sideEffects": false,
   "//metadata": {
     "constantPaths": [
-      { "path": "src/KeyVaultClient.ts", "prefix": "packageDetails" }
+      { "path": "src/keyVaultClient.ts", "prefix": "packageDetails" }
     ]
   },
   "autoPublish": true

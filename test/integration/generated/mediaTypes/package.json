@@ -82,7 +82,7 @@
   "sideEffects": false,
   "//metadata": {
     "constantPaths": [
-      { "path": "src/MediaTypesClient.ts", "prefix": "packageDetails" }
+      { "path": "src/mediaTypesClient.ts", "prefix": "packageDetails" }
     ]
   },
   "autoPublish": true

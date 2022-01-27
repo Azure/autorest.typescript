@@ -82,7 +82,7 @@
   "sideEffects": false,
   "//metadata": {
     "constantPaths": [
-      { "path": "src/SealedChoiceClient.ts", "prefix": "packageDetails" }
+      { "path": "src/sealedChoiceClient.ts", "prefix": "packageDetails" }
     ]
   },
   "autoPublish": true

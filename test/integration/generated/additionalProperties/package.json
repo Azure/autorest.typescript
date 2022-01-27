@@ -87,7 +87,7 @@
   "//metadata": {
     "constantPaths": [
       {
-        "path": "src/AdditionalPropertiesClient.ts",
+        "path": "src/additionalPropertiesClient.ts",
         "prefix": "packageDetails"
       }
     ]

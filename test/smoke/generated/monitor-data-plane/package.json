@@ -94,7 +94,7 @@
   "//metadata": {
     "constantPaths": [
       {
-        "path": "src/MonitorClient.ts",
+        "path": "src/monitorClient.ts",
         "prefix": "packageDetails"
       }
     ]

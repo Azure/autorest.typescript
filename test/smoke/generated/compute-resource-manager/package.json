@@ -101,7 +101,7 @@
   "//metadata": {
     "constantPaths": [
       {
-        "path": "src/ComputeManagementClient.ts",
+        "path": "src/computeManagementClient.ts",
         "prefix": "packageDetails"
       }
     ]

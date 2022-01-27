@@ -85,7 +85,7 @@
   "sideEffects": false,
   "//metadata": {
     "constantPaths": [
-      { "path": "src/DataFactoryClient.ts", "prefix": "packageDetails" }
+      { "path": "src/dataFactoryClient.ts", "prefix": "packageDetails" }
     ]
   },
   "autoPublish": true

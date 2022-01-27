@@ -97,7 +97,7 @@
   "//metadata": {
     "constantPaths": [
       {
-        "path": "src/CosmosDBManagementClient.ts",
+        "path": "src/cosmosDBManagementClient.ts",
         "prefix": "packageDetails"
       }
     ]

@@ -82,7 +82,7 @@
   "sideEffects": false,
   "//metadata": {
     "constantPaths": [
-      { "path": "src/BodyBooleanQuirksClient.ts", "prefix": "packageDetails" }
+      { "path": "src/bodyBooleanQuirksClient.ts", "prefix": "packageDetails" }
     ]
   },
   "autoPublish": true
