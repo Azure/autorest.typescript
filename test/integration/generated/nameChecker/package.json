@@ -82,7 +82,7 @@
   "sideEffects": false,
   "//metadata": {
     "constantPaths": [
-      { "path": "src/SearchClient.ts", "prefix": "packageDetails" }
+      { "path": "src/searchClient.ts", "prefix": "packageDetails" }
     ]
   },
   "autoPublish": true

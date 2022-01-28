@@ -85,7 +85,7 @@
   "//metadata": {
     "constantPaths": [
       {
-        "path": "src/LroParametrizedEndpointsClient.ts",
+        "path": "src/lroParametrizedEndpointsClient.ts",
         "prefix": "packageDetails"
       }
     ]

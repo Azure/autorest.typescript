@@ -82,7 +82,7 @@
   "sideEffects": false,
   "//metadata": {
     "constantPaths": [
-      { "path": "src/XmsErrorResponsesClient.ts", "prefix": "packageDetails" }
+      { "path": "src/xmsErrorResponsesClient.ts", "prefix": "packageDetails" }
     ]
   },
   "autoPublish": true

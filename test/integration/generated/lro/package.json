@@ -84,7 +84,7 @@
   "sideEffects": false,
   "//metadata": {
     "constantPaths": [
-      { "path": "src/LROClient.ts", "prefix": "packageDetails" }
+      { "path": "src/lROClient.ts", "prefix": "packageDetails" }
     ]
   },
   "autoPublish": true

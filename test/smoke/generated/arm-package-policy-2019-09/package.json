@@ -95,7 +95,7 @@
   "//metadata": {
     "constantPaths": [
       {
-        "path": "src/PolicyClient.ts",
+        "path": "src/policyClient.ts",
         "prefix": "packageDetails"
       }
     ]

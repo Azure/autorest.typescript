@@ -101,7 +101,7 @@
   "//metadata": {
     "constantPaths": [
       {
-        "path": "src/WebSiteManagementClient.ts",
+        "path": "src/webSiteManagementClient.ts",
         "prefix": "packageDetails"
       }
     ]

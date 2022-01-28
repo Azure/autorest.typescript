@@ -95,7 +95,7 @@
   "//metadata": {
     "constantPaths": [
       {
-        "path": "src/ManagementLockClient.ts",
+        "path": "src/managementLockClient.ts",
         "prefix": "packageDetails"
       }
     ]

@@ -82,7 +82,7 @@
   "sideEffects": false,
   "//metadata": {
     "constantPaths": [
-      { "path": "src/CustomUrlClient.ts", "prefix": "packageDetails" }
+      { "path": "src/customUrlClient.ts", "prefix": "packageDetails" }
     ]
   },
   "autoPublish": true

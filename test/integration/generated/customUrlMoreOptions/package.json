@@ -83,7 +83,7 @@
   "//metadata": {
     "constantPaths": [
       {
-        "path": "src/CustomUrlMoreOptionsClient.ts",
+        "path": "src/customUrlMoreOptionsClient.ts",
         "prefix": "packageDetails"
       }
     ]

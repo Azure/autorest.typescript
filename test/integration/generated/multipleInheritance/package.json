@@ -82,7 +82,7 @@
   "sideEffects": false,
   "//metadata": {
     "constantPaths": [
-      { "path": "src/MultipleInheritanceClient.ts", "prefix": "packageDetails" }
+      { "path": "src/multipleInheritanceClient.ts", "prefix": "packageDetails" }
     ]
   },
   "autoPublish": true

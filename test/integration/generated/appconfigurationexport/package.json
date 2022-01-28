@@ -83,7 +83,7 @@
   "sideEffects": false,
   "//metadata": {
     "constantPaths": [
-      { "path": "src/AppConfigurationClient.ts", "prefix": "packageDetails" }
+      { "path": "src/appConfigurationClient.ts", "prefix": "packageDetails" }
     ]
   },
   "autoPublish": true

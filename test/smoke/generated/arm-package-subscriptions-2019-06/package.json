@@ -95,7 +95,7 @@
   "//metadata": {
     "constantPaths": [
       {
-        "path": "src/SubscriptionClient.ts",
+        "path": "src/subscriptionClient.ts",
         "prefix": "packageDetails"
       }
     ]

@@ -81,7 +81,7 @@
   },
   "sideEffects": false,
   "//metadata": {
-    "constantPaths": [{ "path": "src/PetStore.ts", "prefix": "packageDetails" }]
+    "constantPaths": [{ "path": "src/petStore.ts", "prefix": "packageDetails" }]
   },
   "autoPublish": true
 }
