@@ -28,11 +28,11 @@ async function listAllJobExecutionsInAJobAgentWithFiltering() {
   const endTimeMax = new Date("2017-03-21T19:25:00Z");
   const isActive = false;
   const options = {
-    createTimeMin: createTimeMin,
-    createTimeMax: createTimeMax,
-    endTimeMin: endTimeMin,
-    endTimeMax: endTimeMax,
-    isActive: isActive
+    createTimeMin: createTimeMin as Date,
+    createTimeMax: createTimeMax as Date,
+    endTimeMin: endTimeMin as Date,
+    endTimeMax: endTimeMax as Date,
+    isActive: isActive as boolean
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);

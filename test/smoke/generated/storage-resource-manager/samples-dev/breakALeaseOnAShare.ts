@@ -32,7 +32,7 @@ async function breakALeaseOnAShare() {
     leaseId: "8698f513-fa75-44a1-b8eb-30ba336af27d",
     proposedLeaseId: undefined
   };
-  const options = { parameters: parameters };
+  const options = { parameters: parameters as LeaseShareRequest };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.fileShares.lease(

@@ -20,7 +20,7 @@ import { DefaultAzureCredential } from "@azure/identity";
 async function listsAllAvailableResourceSkUsForTheSpecifiedRegion() {
   const subscriptionId = "{subscription-id}";
   const filter = "location eq 'westus'";
-  const options = { filter: filter };
+  const options = { filter: filter as string };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const resArray = new Array();

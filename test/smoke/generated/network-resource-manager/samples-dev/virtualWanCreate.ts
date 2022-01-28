@@ -24,7 +24,7 @@ async function virtualWanCreate() {
   const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualWANName = "wan1";
-  const WANParameters: VirtualWAN = {
+  const wANParameters: VirtualWAN = {
     typePropertiesType: "Basic",
     disableVpnEncryption: false,
     location: "West US",
@@ -35,7 +35,7 @@ async function virtualWanCreate() {
   const result = await client.virtualWans.beginCreateOrUpdateAndWait(
     resourceGroupName,
     virtualWANName,
-    WANParameters
+    wANParameters
   );
   console.log(result);
 }

@@ -7,7 +7,7 @@ const constantBody: Product = {
     constProperty: "constant",
     constProperty2: "constant2"
   },
-  constInt: "undefined",
+  constInt: 0,
   constString: "constant"
 };
 

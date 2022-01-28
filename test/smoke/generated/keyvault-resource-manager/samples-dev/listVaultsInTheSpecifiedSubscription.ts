@@ -20,7 +20,7 @@ import { DefaultAzureCredential } from "@azure/identity";
 async function listVaultsInTheSpecifiedSubscription() {
   const subscriptionId = "00000000-0000-0000-0000-000000000000";
   const top = 1;
-  const options = { top: top };
+  const options = { top: top as number };
   const credential = new DefaultAzureCredential();
   const client = new KeyVaultManagementClient(credential, subscriptionId);
   const resArray = new Array();

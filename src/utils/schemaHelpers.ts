@@ -68,7 +68,7 @@ export function getTypeForSchema(
 ): TypeDetails {
   let typeName: string = "";
   let usedModels: string[] = [];
-  let defaultValue: string = "";
+  let defaultValue;
   let kind: PropertyKind = PropertyKind.Primitive;
   switch (schema.type) {
     case SchemaType.Any:
@@ -194,7 +194,7 @@ export function getTypeForSchema(
     usedModels,
     isConstant: schema.type === SchemaType.Constant,
     nullable: isNullable,
-    ...(defaultValue && { defaultValue })
+    defaultValue
   };
 }
 

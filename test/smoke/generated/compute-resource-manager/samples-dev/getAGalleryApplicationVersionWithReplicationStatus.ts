@@ -14,7 +14,10 @@
  * @summary Retrieves information about a gallery Application Version.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/GetAGalleryApplicationVersionWithReplicationStatus.json
  */
-import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
+import {
+  ReplicationStatusTypes,
+  ComputeManagementClient
+} from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 async function getAGalleryApplicationVersionWithReplicationStatus() {
@@ -24,7 +27,7 @@ async function getAGalleryApplicationVersionWithReplicationStatus() {
   const galleryApplicationName = "myGalleryApplicationName";
   const galleryApplicationVersionName = "1.0.0";
   const expand = "ReplicationStatus";
-  const options = { expand: expand };
+  const options = { expand: expand as ReplicationStatusTypes };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.galleryApplicationVersions.get(

@@ -390,7 +390,7 @@ export interface GroupAddMemberParameters {
 export interface GroupCreateParameters {
     [property: string]: any;
     displayName: string;
-    mailEnabled: "undefined";
+    mailEnabled: "false";
     mailNickname: string;
     securityEnabled: "true";
 }

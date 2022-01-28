@@ -10,7 +10,7 @@ import * as coreClient from "@azure/core-client";
 
 export interface ErrorModel {
   status?: number;
-  constantId: "1";
+  constantId: 1;
   message?: string;
 }
 

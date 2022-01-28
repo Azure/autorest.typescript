@@ -28,10 +28,10 @@ async function getTheManagedDatabaseSecurityEventsWithMaximalParameters() {
   const skiptoken =
     "eyJCbG9iTmFtZURhdGVUaW1lIjoiXC9EYXRlKDE1MTIyODg4MTIwMTArMDIwMClcLyIsIkJsb2JOYW1lUm9sbG92ZXJJbmRleCI6IjAiLCJFbmREYXRlIjoiXC9EYXRlKDE1MTI0NjYyMDA1MjkpXC8iLCJJc1NraXBUb2tlblNldCI6ZmFsc2UsIklzVjJCbG9iVGltZUZvcm1hdCI6dHJ1ZSwiU2hvd1NlcnZlclJlY29yZHMiOmZhbHNlLCJTa2lwVmFsdWUiOjAsIlRha2VWYWx1ZSI6MTB9";
   const options = {
-    filter: filter,
-    skip: skip,
-    top: top,
-    skiptoken: skiptoken
+    filter: filter as string,
+    skip: skip as number,
+    top: top as number,
+    skiptoken: skiptoken as string
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);

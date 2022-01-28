@@ -23,7 +23,7 @@ async function listOfDatabaseRecommendedActionsForAllAdvisors() {
   const serverName = "misosisvr";
   const databaseName = "IndexAdvisor_test_3";
   const expand = "recommendedActions";
-  const options = { expand: expand };
+  const options = { expand: expand as string };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.databaseAdvisors.listByDatabase(

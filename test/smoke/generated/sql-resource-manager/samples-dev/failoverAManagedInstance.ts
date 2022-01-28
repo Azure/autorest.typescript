@@ -14,7 +14,10 @@
  * @summary Failovers a managed instance.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/FailoverManagedInstance.json
  */
-import { SqlManagementClient } from "@msinternal/sql-resource-manager";
+import {
+  ReplicaType,
+  SqlManagementClient
+} from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 async function failoverAManagedInstance() {
@@ -22,7 +25,7 @@ async function failoverAManagedInstance() {
   const resourceGroupName = "group1";
   const managedInstanceName = "instanceName";
   const replicaType = "Primary";
-  const options = { replicaType: replicaType };
+  const options = { replicaType: replicaType as ReplicaType };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.managedInstances.beginFailoverAndWait(

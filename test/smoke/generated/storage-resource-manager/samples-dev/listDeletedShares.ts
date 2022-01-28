@@ -22,7 +22,7 @@ async function listDeletedShares() {
   const resourceGroupName = "res9290";
   const accountName = "sto1590";
   const expand = "deleted";
-  const options = { expand: expand };
+  const options = { expand: expand as string };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
   const resArray = new Array();

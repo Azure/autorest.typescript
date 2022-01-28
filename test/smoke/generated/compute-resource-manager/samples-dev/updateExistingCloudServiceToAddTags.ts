@@ -25,7 +25,7 @@ async function updateExistingCloudServiceToAddTags() {
   const resourceGroupName = "ConstosoRG";
   const cloudServiceName = "{cs-name}";
   const parameters: CloudServiceUpdate = { tags: { documentation: "RestAPI" } };
-  const options = { parameters: parameters };
+  const options = { parameters: parameters as CloudServiceUpdate };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.cloudServices.beginUpdateAndWait(

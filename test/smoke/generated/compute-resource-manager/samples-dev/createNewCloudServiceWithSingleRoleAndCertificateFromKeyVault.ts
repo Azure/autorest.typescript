@@ -76,7 +76,7 @@ async function createNewCloudServiceWithSingleRoleAndCertificateFromKeyVault() {
       upgradeMode: "Auto"
     }
   };
-  const options = { parameters: parameters };
+  const options = { parameters: parameters as CloudService };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.cloudServices.beginCreateOrUpdateAndWait(

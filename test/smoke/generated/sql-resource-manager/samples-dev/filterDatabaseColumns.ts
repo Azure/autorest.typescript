@@ -27,10 +27,10 @@ async function filterDatabaseColumns() {
   const column = ["username"];
   const orderBy = ["schema asc", "table", "column desc"];
   const options = {
-    schema: schema,
-    table: table,
-    column: column,
-    orderBy: orderBy
+    schema: schema as string[],
+    table: table as string[],
+    column: column as string[],
+    orderBy: orderBy as string[]
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);

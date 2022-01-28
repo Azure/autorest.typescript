@@ -22,7 +22,7 @@ async function listInstancePoolUsagesExpandedWithChildren() {
   const resourceGroupName = "group1";
   const instancePoolName = "testIP";
   const expandChildren = true;
-  const options = { expandChildren: expandChildren };
+  const options = { expandChildren: expandChildren as boolean };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();

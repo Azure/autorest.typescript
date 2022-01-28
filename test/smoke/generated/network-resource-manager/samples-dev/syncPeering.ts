@@ -16,6 +16,7 @@
  */
 import {
   VirtualNetworkPeering,
+  SyncRemoteAddressSpace,
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
@@ -36,7 +37,9 @@ async function syncPeering() {
     },
     useRemoteGateways: false
   };
-  const options = { syncRemoteAddressSpace: syncRemoteAddressSpace };
+  const options = {
+    syncRemoteAddressSpace: syncRemoteAddressSpace as SyncRemoteAddressSpace
+  };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworkPeerings.beginCreateOrUpdateAndWait(

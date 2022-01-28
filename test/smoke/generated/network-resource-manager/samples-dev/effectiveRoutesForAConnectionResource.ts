@@ -29,7 +29,9 @@ async function effectiveRoutesForAConnectionResource() {
       "/subscriptions/subid/resourceGroups/resourceGroupName/providers/Microsoft.Network/expressRouteGateways/expressRouteGatewayName/expressRouteConnections/connectionName",
     virtualWanResourceType: "ExpressRouteConnection"
   };
-  const options = { effectiveRoutesParameters: effectiveRoutesParameters };
+  const options = {
+    effectiveRoutesParameters: effectiveRoutesParameters as EffectiveRoutesParameters
+  };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualHubs.beginGetEffectiveVirtualHubRoutesAndWait(

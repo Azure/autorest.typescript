@@ -14,7 +14,10 @@
  * @summary Get query execution statistics by query id.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ManagedInstanceQueryStatisticsListMin.json
  */
-import { SqlManagementClient } from "@msinternal/sql-resource-manager";
+import {
+  QueryTimeGrainType,
+  SqlManagementClient
+} from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 async function obtainQueryExecutionStatisticsMinimalExampleWithOnlyMandatoryRequestParameters() {
@@ -24,7 +27,7 @@ async function obtainQueryExecutionStatisticsMinimalExampleWithOnlyMandatoryRequ
   const databaseName = "database_1";
   const queryId = "42";
   const interval = "PT1H";
-  const options = { interval: interval };
+  const options = { interval: interval as QueryTimeGrainType };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();

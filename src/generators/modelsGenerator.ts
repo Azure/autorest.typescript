@@ -843,17 +843,12 @@ function withDiscriminator(
       // Remove enclosing quotes from the key to get the real property name
       const propertyName = key.replace(/(^")|("$)/g, "");
       const name = normalizeName(propertyName, NameType.Property);
-      const typeNames = discriminatorValues[key].map(disc => `"${disc}"`);
-      const modelName = `"${model.name}"`;
-      if (typeNames.indexOf(modelName) === -1) {
-        typeNames.push(modelName);
-      }
       return {
         docs: [
           `Polymorphic discriminator, which specifies the different types this object can be`
         ],
         name: `"${name}"`,
-        type: typeNames.join(" | "),
+        type: discriminatorValues[key].map(disc => `"${disc}"`).join(" | "),
         kind: StructureKind.PropertySignature
       };
     }

@@ -25,7 +25,9 @@ async function effectiveRoutesForTheVirtualHub() {
   const resourceGroupName = "rg1";
   const virtualHubName = "virtualHub1";
   const effectiveRoutesParameters: EffectiveRoutesParameters = {};
-  const options = { effectiveRoutesParameters: effectiveRoutesParameters };
+  const options = {
+    effectiveRoutesParameters: effectiveRoutesParameters as EffectiveRoutesParameters
+  };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualHubs.beginGetEffectiveVirtualHubRoutesAndWait(

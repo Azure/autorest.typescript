@@ -20,7 +20,9 @@ import { DefaultAzureCredential } from "@azure/identity";
 async function listsAllAvailableResourceSkUsWithExtendedLocationInformation() {
   const subscriptionId = "{subscription-id}";
   const includeExtendedLocations = "true";
-  const options = { includeExtendedLocations: includeExtendedLocations };
+  const options = {
+    includeExtendedLocations: includeExtendedLocations as string
+  };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const resArray = new Array();
