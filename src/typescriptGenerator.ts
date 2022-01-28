@@ -71,7 +71,10 @@ export async function generateTypeScriptLibrary(
   const clientDetails = await transformCodeModel(codeModel);
   conflictResolver(clientDetails);
 
-
+  generateModels(clientDetails, project);
+  if (generateSample) {
+    clientDetails.samples = await transformSamples(codeModel, clientDetails);
+  }
   // Skip metadata generation if `generate-metadata` is explicitly false
   generatePackageJson(project, clientDetails);
   generateLicenseFile(project);
@@ -84,14 +87,10 @@ export async function generateTypeScriptLibrary(
   generateApiExtractorConfig(project);
 
   generateClient(clientDetails, project);
-  generateModels(clientDetails, project);
 
   generateMappers(clientDetails, project);
   generateOperations(clientDetails, project);
   generateOperationsInterfaces(clientDetails, project);
-  if (generateSample) {
-    clientDetails.samples = await transformSamples(codeModel, clientDetails);
-  }
   if (generateSample && clientDetails?.samples?.length  && clientDetails?.samples?.length > 0) {
     generateSamples(clientDetails, project);
     generateSampleEnv(project);
