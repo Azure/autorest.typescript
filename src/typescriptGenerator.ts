@@ -70,9 +70,6 @@ export async function generateTypeScriptLibrary(
 
   const clientDetails = await transformCodeModel(codeModel);
   conflictResolver(clientDetails);
-  if (generateSample) {
-    clientDetails.samples = await transformSamples(codeModel, clientDetails);
-  }
 
 
   // Skip metadata generation if `generate-metadata` is explicitly false
@@ -92,6 +89,9 @@ export async function generateTypeScriptLibrary(
   generateMappers(clientDetails, project);
   generateOperations(clientDetails, project);
   generateOperationsInterfaces(clientDetails, project);
+  if (generateSample) {
+    clientDetails.samples = await transformSamples(codeModel, clientDetails);
+  }
   if (generateSample && clientDetails?.samples?.length  && clientDetails?.samples?.length > 0) {
     generateSamples(clientDetails, project);
     generateSampleEnv(project);

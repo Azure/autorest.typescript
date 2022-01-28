@@ -19,6 +19,7 @@ import { camelCase } from "@azure-tools/codegen";
 import { OperationGroupDetails } from "../models/operationDetails";
 import { getPublicMethodName } from '../generators/utils/pagingOperations';
 import { BodiedNode } from "ts-morph";
+import { getTypeForSchema } from "../utils/schemaHelpers";
 
 export async function transformSamples(
   codeModel: CodeModel,
@@ -133,9 +134,10 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
               NameType.Parameter,
               true
             );
-            const parameterTypeName = getLanguageMetadata(
-              methodParameter.exampleValue.schema.language
-            ).name;;
+            const parameterTypeDetails = getTypeForSchema(
+              methodParameter.exampleValue.schema
+            );
+            const parameterTypeName = parameterTypeDetails.typeName;
             let paramAssignment = "";
             if (methodParameter.parameter.protocol?.http?.["in"] === "body") {
               sample.hasBody = true;
@@ -163,7 +165,7 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
           if (optionalParams.length > 0) {
             const optionAssignment = `const options = {${optionalParams
               .map(item => {
-                if (sample.importedTypes?.indexOf(item[1]) === -1) {
+                if (sample.importedTypes?.indexOf(item[1]) === -1 && clientDetails.allTypes.indexOf(item[1]) > -1 ) {
                   sample.importedTypes?.push(item[1]);
                 } 
                 return item[0] + ": " + item[0] + " as " + item[1];

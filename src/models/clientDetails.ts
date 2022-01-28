@@ -34,4 +34,5 @@ export interface ClientDetails {
   options: ClientOptions;
   endpoint: EndpointDetails;
   samples?: SampleDetails[];
+  allTypes: string[];
 }
