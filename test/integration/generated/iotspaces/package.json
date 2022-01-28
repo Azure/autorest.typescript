@@ -83,7 +83,7 @@
   "sideEffects": false,
   "//metadata": {
     "constantPaths": [
-      { "path": "src/IoTSpacesClient.ts", "prefix": "packageDetails" }
+      { "path": "src/ioTSpacesClient.ts", "prefix": "packageDetails" }
     ]
   },
   "autoPublish": true

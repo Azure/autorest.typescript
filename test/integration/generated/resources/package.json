@@ -83,7 +83,7 @@
   "sideEffects": false,
   "//metadata": {
     "constantPaths": [
-      { "path": "src/ResourcesClient.ts", "prefix": "packageDetails" }
+      { "path": "src/resourcesClient.ts", "prefix": "packageDetails" }
     ]
   },
   "autoPublish": true

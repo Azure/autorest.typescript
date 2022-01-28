@@ -101,7 +101,7 @@
   "//metadata": {
     "constantPaths": [
       {
-        "path": "src/SqlManagementClient.ts",
+        "path": "src/sqlManagementClient.ts",
         "prefix": "packageDetails"
       }
     ]

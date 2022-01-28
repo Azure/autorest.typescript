@@ -101,7 +101,7 @@
   "//metadata": {
     "constantPaths": [
       {
-        "path": "src/KeyVaultManagementClient.ts",
+        "path": "src/keyVaultManagementClient.ts",
         "prefix": "packageDetails"
       }
     ]

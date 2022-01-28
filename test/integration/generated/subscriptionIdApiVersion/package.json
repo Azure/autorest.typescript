@@ -83,7 +83,7 @@
   "//metadata": {
     "constantPaths": [
       {
-        "path": "src/SubscriptionIdApiVersionClient.ts",
+        "path": "src/subscriptionIdApiVersionClient.ts",
         "prefix": "packageDetails"
       }
     ]

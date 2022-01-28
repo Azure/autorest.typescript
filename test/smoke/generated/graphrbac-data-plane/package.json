@@ -95,7 +95,7 @@
   "//metadata": {
     "constantPaths": [
       {
-        "path": "src/GraphRbacManagementClient.ts",
+        "path": "src/graphRbacManagementClient.ts",
         "prefix": "packageDetails"
       }
     ]

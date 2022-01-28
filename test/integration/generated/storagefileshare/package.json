@@ -82,7 +82,7 @@
   "sideEffects": false,
   "//metadata": {
     "constantPaths": [
-      { "path": "src/StorageFileShareClient.ts", "prefix": "packageDetails" }
+      { "path": "src/storageFileShareClient.ts", "prefix": "packageDetails" }
     ]
   },
   "autoPublish": true

@@ -82,7 +82,7 @@
   "sideEffects": false,
   "//metadata": {
     "constantPaths": [
-      { "path": "src/ModelFlatteningClient.ts", "prefix": "packageDetails" }
+      { "path": "src/modelFlatteningClient.ts", "prefix": "packageDetails" }
     ]
   },
   "autoPublish": true

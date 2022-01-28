@@ -85,7 +85,7 @@
   "sideEffects": false,
   "//metadata": {
     "constantPaths": [
-      { "path": "src/DeviceProvisioningClient.ts", "prefix": "packageDetails" }
+      { "path": "src/deviceProvisioningClient.ts", "prefix": "packageDetails" }
     ]
   },
   "autoPublish": true

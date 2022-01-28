@@ -101,7 +101,7 @@
   "//metadata": {
     "constantPaths": [
       {
-        "path": "src/NetworkManagementClient.ts",
+        "path": "src/networkManagementClient.ts",
         "prefix": "packageDetails"
       }
     ]

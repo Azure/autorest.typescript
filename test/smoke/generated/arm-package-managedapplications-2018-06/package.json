@@ -97,7 +97,7 @@
   "//metadata": {
     "constantPaths": [
       {
-        "path": "src/ApplicationClient.ts",
+        "path": "src/applicationClient.ts",
         "prefix": "packageDetails"
       }
     ]

@@ -7,6 +7,7 @@ import { PackageDetails } from "../../models/packageDetails";
 import { getAutorestOptions, getSession } from "../../autorestSession";
 import { hasPagingOperations } from "../../utils/extractPaginationDetails";
 import { hasPollingOperations } from "../../restLevelClient/helpers/hasPollingOperations";
+import { NameType, normalizeName } from "../../utils/nameUtils";
 
 export function generatePackageJson(
   project: Project,
@@ -296,7 +297,7 @@ function regularAutorestPackage(
     sideEffects: false,
     "//metadata":{
       constantPaths: [{
-        path: `src/${clientDetails.name}.ts`,
+        path: `src/${normalizeName(clientDetails.name, NameType.File)}.ts`,
         prefix: "packageDetails",
       }],
     },

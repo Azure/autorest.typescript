@@ -82,7 +82,7 @@
   "sideEffects": false,
   "//metadata": {
     "constantPaths": [
-      { "path": "src/BodyNumberClient.ts", "prefix": "packageDetails" }
+      { "path": "src/bodyNumberClient.ts", "prefix": "packageDetails" }
     ]
   },
   "autoPublish": true

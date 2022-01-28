@@ -82,7 +82,7 @@
   "sideEffects": false,
   "//metadata": {
     "constantPaths": [
-      { "path": "src/ReportClient.ts", "prefix": "packageDetails" }
+      { "path": "src/reportClient.ts", "prefix": "packageDetails" }
     ]
   },
   "autoPublish": true

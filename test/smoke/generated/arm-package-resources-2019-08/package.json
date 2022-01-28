@@ -97,7 +97,7 @@
   "//metadata": {
     "constantPaths": [
       {
-        "path": "src/ResourceManagementClient.ts",
+        "path": "src/resourceManagementClient.ts",
         "prefix": "packageDetails"
       }
     ]

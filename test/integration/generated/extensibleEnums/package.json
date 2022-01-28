@@ -82,7 +82,7 @@
   "sideEffects": false,
   "//metadata": {
     "constantPaths": [
-      { "path": "src/ExtensibleEnumsClient.ts", "prefix": "packageDetails" }
+      { "path": "src/extensibleEnumsClient.ts", "prefix": "packageDetails" }
     ]
   },
   "autoPublish": true
