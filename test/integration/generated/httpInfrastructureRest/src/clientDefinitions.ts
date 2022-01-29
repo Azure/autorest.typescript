@@ -303,8 +303,7 @@ import {
   MultipleResponsesGet200ModelA400Invalid200Response,
   MultipleResponsesGet200ModelA202Valid200Response
 } from "./responses";
-import { Client } from "@azure-rest/core-client";
-import { HttpResponse } from "@azure-rest/core-client";
+import { HttpResponse, Client } from "@azure-rest/core-client";
 import "@azure/core-auth";
 
 /** Contains operations for HttpFailure operations */
