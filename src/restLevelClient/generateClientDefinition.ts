@@ -190,6 +190,7 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
     });
   }
 
+  clientImports.add("Client");
   clientFile.addImportDeclarations([
     {
       namedImports: [...clientImports],
