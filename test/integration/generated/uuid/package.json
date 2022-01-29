@@ -82,7 +82,7 @@
   "sideEffects": false,
   "//metadata": {
     "constantPaths": [
-      { "path": "src/UuidClient.ts", "prefix": "packageDetails" }
+      { "path": "src/uuidClient.ts", "prefix": "packageDetails" }
     ]
   },
   "autoPublish": true

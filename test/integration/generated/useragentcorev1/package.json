@@ -78,7 +78,7 @@
   "sideEffects": false,
   "//metadata": {
     "constantPaths": [
-      { "path": "src/UserAgentCoreV1Client.ts", "prefix": "packageDetails" }
+      { "path": "src/userAgentCoreV1Client.ts", "prefix": "packageDetails" }
     ]
   },
   "autoPublish": true

@@ -84,7 +84,7 @@
   "sideEffects": false,
   "//metadata": {
     "constantPaths": [
-      { "path": "src/PagingNoIteratorsClient.ts", "prefix": "packageDetails" }
+      { "path": "src/pagingNoIteratorsClient.ts", "prefix": "packageDetails" }
     ]
   },
   "autoPublish": true

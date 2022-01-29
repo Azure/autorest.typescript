@@ -82,7 +82,7 @@
   "sideEffects": false,
   "//metadata": {
     "constantPaths": [
-      { "path": "src/StorageBlobClient.ts", "prefix": "packageDetails" }
+      { "path": "src/storageBlobClient.ts", "prefix": "packageDetails" }
     ]
   },
   "autoPublish": true

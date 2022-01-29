@@ -82,7 +82,7 @@
   "sideEffects": false,
   "//metadata": {
     "constantPaths": [
-      { "path": "src/MapperRequiredClient.ts", "prefix": "packageDetails" }
+      { "path": "src/mapperRequiredClient.ts", "prefix": "packageDetails" }
     ]
   },
   "autoPublish": true

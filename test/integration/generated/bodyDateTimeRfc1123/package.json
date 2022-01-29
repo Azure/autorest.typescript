@@ -82,7 +82,7 @@
   "sideEffects": false,
   "//metadata": {
     "constantPaths": [
-      { "path": "src/BodyDateTimeRfc1123Client.ts", "prefix": "packageDetails" }
+      { "path": "src/bodyDateTimeRfc1123Client.ts", "prefix": "packageDetails" }
     ]
   },
   "autoPublish": true

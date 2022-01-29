@@ -82,7 +82,7 @@
   "sideEffects": false,
   "//metadata": {
     "constantPaths": [
-      { "path": "src/HeaderPrefixClient.ts", "prefix": "packageDetails" }
+      { "path": "src/headerPrefixClient.ts", "prefix": "packageDetails" }
     ]
   },
   "autoPublish": true

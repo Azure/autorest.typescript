@@ -82,7 +82,7 @@
   "sideEffects": false,
   "//metadata": {
     "constantPaths": [
-      { "path": "src/XmlServiceClient.ts", "prefix": "packageDetails" }
+      { "path": "src/xmlServiceClient.ts", "prefix": "packageDetails" }
     ]
   },
   "autoPublish": true

@@ -95,7 +95,7 @@
   "//metadata": {
     "constantPaths": [
       {
-        "path": "src/FeatureClient.ts",
+        "path": "src/featureClient.ts",
         "prefix": "packageDetails"
       }
     ]

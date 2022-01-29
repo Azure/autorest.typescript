@@ -83,7 +83,7 @@
   "//metadata": {
     "constantPaths": [
       {
-        "path": "src/AzureParameterGroupingClient.ts",
+        "path": "src/azureParameterGroupingClient.ts",
         "prefix": "packageDetails"
       }
     ]

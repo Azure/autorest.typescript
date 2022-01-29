@@ -82,7 +82,7 @@
   "sideEffects": false,
   "//metadata": {
     "constantPaths": [
-      { "path": "src/DataLakeStorageClient.ts", "prefix": "packageDetails" }
+      { "path": "src/dataLakeStorageClient.ts", "prefix": "packageDetails" }
     ]
   },
   "autoPublish": true

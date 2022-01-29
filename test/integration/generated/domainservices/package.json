@@ -85,7 +85,7 @@
   "sideEffects": false,
   "//metadata": {
     "constantPaths": [
-      { "path": "src/DomainServicesClient.ts", "prefix": "packageDetails" }
+      { "path": "src/domainServicesClient.ts", "prefix": "packageDetails" }
     ]
   },
   "autoPublish": true

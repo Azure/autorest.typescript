@@ -82,7 +82,7 @@
   "sideEffects": false,
   "//metadata": {
     "constantPaths": [
-      { "path": "src/RegexConstraint.ts", "prefix": "packageDetails" }
+      { "path": "src/regexConstraint.ts", "prefix": "packageDetails" }
     ]
   },
   "autoPublish": true

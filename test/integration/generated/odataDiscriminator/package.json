@@ -82,7 +82,7 @@
   "sideEffects": false,
   "//metadata": {
     "constantPaths": [
-      { "path": "src/ODataDiscriminatorClient.ts", "prefix": "packageDetails" }
+      { "path": "src/oDataDiscriminatorClient.ts", "prefix": "packageDetails" }
     ]
   },
   "autoPublish": true

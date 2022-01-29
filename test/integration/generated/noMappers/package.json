@@ -82,7 +82,7 @@
   "sideEffects": false,
   "//metadata": {
     "constantPaths": [
-      { "path": "src/NoMappersClient.ts", "prefix": "packageDetails" }
+      { "path": "src/noMappersClient.ts", "prefix": "packageDetails" }
     ]
   },
   "autoPublish": true

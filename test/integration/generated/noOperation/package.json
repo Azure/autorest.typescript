@@ -82,7 +82,7 @@
   "sideEffects": false,
   "//metadata": {
     "constantPaths": [
-      { "path": "src/NoOperationsClient.ts", "prefix": "packageDetails" }
+      { "path": "src/noOperationsClient.ts", "prefix": "packageDetails" }
     ]
   },
   "autoPublish": true

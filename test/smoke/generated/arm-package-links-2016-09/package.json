@@ -95,7 +95,7 @@
   "//metadata": {
     "constantPaths": [
       {
-        "path": "src/ManagementLinkClient.ts",
+        "path": "src/managementLinkClient.ts",
         "prefix": "packageDetails"
       }
     ]

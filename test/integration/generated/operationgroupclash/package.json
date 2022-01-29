@@ -82,7 +82,7 @@
   "sideEffects": false,
   "//metadata": {
     "constantPaths": [
-      { "path": "src/OperationGroupClashClient.ts", "prefix": "packageDetails" }
+      { "path": "src/operationGroupClashClient.ts", "prefix": "packageDetails" }
     ]
   },
   "autoPublish": true
