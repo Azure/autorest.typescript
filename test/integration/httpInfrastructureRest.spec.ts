@@ -37,8 +37,6 @@ describe("Http infrastructure rest Client", () => {
         retryDelayInMs: 0
       })
     );
-    client.pipeline.removePolicy(redirectPolicy());
-    client.pipeline.addPolicy(redirectPolicy());
     // client.pipeline.removePolicy({ name: proxyPolicyName });
     // client.pipeline.addPolicy(
     //   proxyPolicy({ host: "http://127.0.0.1", port: 8888 })
