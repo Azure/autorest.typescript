@@ -7,6 +7,7 @@ import {
   RestError
 } from "@azure/core-rest-pipeline";
 import { isNode } from "@azure/core-util";
+import { result } from "lodash";
 
 describe.only("Http infrastructure rest Client", () => {
   let client: HttpInfrastructureRestClientRestClient;
@@ -143,270 +144,148 @@ describe.only("Http infrastructure rest Client", () => {
   });
 
   describe("Failure scenarios", () => {
-    it("Should get empty should throw error", async () => {
-      try {
-        const result = await client.httpFailure.getEmptyError();
-        assert.equal(result.status, "400");
-      } catch (error) {
-        console.log(error);
-        assert.equal(error.status, 400);
-      }
+    it("Should get empty should return 400", async () => {
+      const result = await client.httpFailure.getEmptyError();
+      assert.equal(result.status, "400");
     });
   });
 
-//   describe("httpClientFailure scenarios", () => {
-//     it("delete400 should throw error", async () => {
-//       try {
-//         await client.httpClientFailure.delete400();
-//         assert.fail("Expected error");
-//       } catch (error) {
-//         assert.equal(error.statusCode, 400);
-//       }
-//     });
+  describe("httpClientFailure scenarios", () => {
+    it("delete400 should return 400", async () => {
+      const result = await client.httpClientFailure.delete400();
+      assert.equal(result.status, "400");
+    });
 
-//     it("patch414 should throw error", async () => {
-//       try {
-//         await client.httpClientFailure.patch414();
-//         assert.fail("Expected error");
-//       } catch (error) {
-//         if (isNode) {
-//           assert.equal(error.statusCode, 414);
-//         } else {
-//           assert.notEqual(error.message, "Expected error");
-//         }
-//       }
-//     });
+    it("patch414 should return 414", async () => {
+      const result = await client.httpClientFailure.patch414();
+      if (isNode) {
+        assert.equal(result.status, "414");
+      }
+    });
 
-//     it("delete417 should throw error", async () => {
-//       try {
-//         await client.httpClientFailure.delete417();
-//         assert.fail("Expected error");
-//       } catch (error) {
-//         assert.equal(error.statusCode, 417);
-//       }
-//     });
+    it("delete417 should return 417", async () => {
+      const result = await client.httpClientFailure.delete417();
+      assert.equal(result.status, "417");
+    });
 
-//     it("get400 should throw error", async () => {
-//       try {
-//         await client.httpClientFailure.get400();
-//         assert.fail("Expected error");
-//       } catch (error) {
-//         assert.equal(error.statusCode, 400);
-//       }
-//     });
+    it("get400 should return 400", async () => {
+      const result = await client.httpClientFailure.get400();
+      assert.equal(result.status, "400");
+    });
 
-//     it("get402 should throw error", async () => {
-//       try {
-//         await client.httpClientFailure.get402();
-//         assert.fail("Expected error");
-//       } catch (error) {
-//         assert.equal(error.statusCode, 402);
-//       }
-//     });
+    it("get402 should return 402", async () => {
+      const result = await client.httpClientFailure.get402();
+      assert.equal(result.status, "402");
+    });
 
-//     it("get403 should throw error", async () => {
-//       try {
-//         await client.httpClientFailure.get403();
-//         assert.fail("Expected error");
-//       } catch (error) {
-//         assert.equal(error.statusCode, 403);
-//       }
-//     });
+    it("get403 should return 403", async () => {
+      const result = await client.httpClientFailure.get403();
+      assert.equal(result.status, "403");
+    });
 
-//     it("get411 should throw error", async () => {
-//       try {
-//         await client.httpClientFailure.get411();
-//         assert.fail("Expected error");
-//       } catch (error) {
-//         assert.equal(error.statusCode, 411);
-//       }
-//     });
+    it("get411 should return 411", async () => {
+      const result = await client.httpClientFailure.get411();
+      assert.equal(result.status, "411");
+    });
 
-//     it("get412 should throw error", async () => {
-//       try {
-//         await client.httpClientFailure.get412();
-//         assert.fail("Expected error");
-//       } catch (error) {
-//         assert.equal(error.statusCode, 412);
-//       }
-//     });
+    it("get412 should return 412", async () => {
+      const result = await client.httpClientFailure.get412();
+      assert.equal(result.status, "412");
+    });
 
-//     it("get416 should throw error", async () => {
-//       try {
-//         await client.httpClientFailure.get416();
-//         assert.fail("Expected error");
-//       } catch (error) {
-//         assert.equal(error.statusCode, 416);
-//       }
-//     });
+    it("get416 should return 416", async () => {
+      const result = await client.httpClientFailure.get416();
+      assert.equal(result.status, "416");
+    });
 
-//     it("head400 should throw error", async () => {
-//       try {
-//         await client.httpClientFailure.head400();
-//         assert.fail("Expected error");
-//       } catch (error) {
-//         assert.equal(error.statusCode, 400);
-//       }
-//     });
+    it("head400 should return 400", async () => {
+      const result = await client.httpClientFailure.head400();
+      assert.equal(result.status, "400");
+    });
 
-//     it("head401 should throw error", async () => {
-//       try {
-//         await client.httpClientFailure.head401();
-//         assert.fail("Expected error");
-//       } catch (error) {
-//         assert.equal(error.statusCode, 401);
-//       }
-//     });
+    it("head401 should return 401", async () => {
+      const result = await client.httpClientFailure.head401();
+      assert.equal(result.status, "401");
+    });
 
-//     it("head410 should throw error", async () => {
-//       try {
-//         await client.httpClientFailure.head410();
-//         assert.fail("Expected error");
-//       } catch (error) {
-//         assert.equal(error.statusCode, 410);
-//       }
-//     });
+    it("head410 should return 410", async () => {
+      const result = await client.httpClientFailure.head410();
+      assert.equal(result.status, "410");
+    });
 
-//     it("delete407 should throw error", async () => {
-//       try {
-//         await client.httpClientFailure.delete407();
-//         assert.fail("Expected error");
-//       } catch (error) {
-//         if (isNode) {
-//           assert.equal(error.statusCode, 407);
-//         } else {
-//           assert.equal(error.code, "REQUEST_SEND_ERROR");
-//         }
-//       }
-//     });
+    it("delete407 should return 407", async () => {
+      const result = await client.httpClientFailure.delete407();
+      if (isNode) {
+        assert.equal(result.status, "407");
+      }
+    });
 
-//     it("head429 should throw error", async () => {
-//       try {
-//         await client.httpClientFailure.head429();
-//         assert.fail("Expected error");
-//       } catch (error) {
-//         assert.equal(error.statusCode, 429);
-//       }
-//     });
+    it("head429 should return 429", async () => {
+      const result = await client.httpClientFailure.head429();
+      assert.equal(result.status, "429");
+    });
 
-//     // TODO: Investigate why options calls are sending back 204
-//     it.skip("options400 should throw error", async () => {
-//       try {
-//         const result = await client.httpClientFailure.options400();
-//         assert.fail("Expected error");
-//       } catch (error) {
-//         assert.equal(error.statusCode, 400);
-//       }
-//     });
+    // TODO: Investigate why options calls are sending back 204
+    it.skip("options400 should return 400", async () => {
+      const result = await client.httpClientFailure.options400();
+      assert.equal(result.status, "400");
+    });
 
-//     it.skip("options403 should throw error", async () => {
-//       try {
-//         await client.httpClientFailure.options403();
-//         assert.fail("Expected error");
-//       } catch (error) {
-//         assert.equal(error.statusCode, 403);
-//       }
-//     });
+    it.skip("options403 should return 403", async () => {
+      const result = await client.httpClientFailure.options403();
+      assert.equal(result.status, "403");
+    });
 
-//     it.skip("options412 should throw error", async () => {
-//       try {
-//         await client.httpClientFailure.options412();
-//         assert.fail("Expected error");
-//       } catch (error) {
-//         assert.equal(error.statusCode, 412);
-//       }
-//     });
+    it.skip("options412 should return 412", async () => {
+      const result = await client.httpClientFailure.options412();
+      assert.equal(result.status, "412");
+    });
 
-//     it("patch400 should throw error", async () => {
-//       try {
-//         await client.httpClientFailure.patch400();
-//         assert.fail("Expected error");
-//       } catch (error) {
-//         assert.equal(error.statusCode, 400);
-//       }
-//     });
+    it("patch400 should return 400", async () => {
+      const result = await client.httpClientFailure.patch400();
+      assert.equal(result.status, "400");
+    });
 
-//     it("patch405 should throw error", async () => {
-//       try {
-//         await client.httpClientFailure.patch405();
-//         assert.fail("Expected error");
-//       } catch (error) {
-//         assert.equal(error.statusCode, 405);
-//       }
-//     });
+    it("patch405 should return 405", async () => {
+      const result = await client.httpClientFailure.patch405();
+      assert.equal(result.status, "405");
+    });
 
-//     it("post400 should throw error", async () => {
-//       try {
-//         await client.httpClientFailure.post400();
-//         assert.fail("Expected error");
-//       } catch (error) {
-//         assert.equal(error.statusCode, 400);
-//       }
-//     });
+    it("post400 should return 400", async () => {
+      const result = await client.httpClientFailure.post400();
+      assert.equal(result.status, "400");
+    });
 
-//     it("post406 should throw error", async () => {
-//       try {
-//         await client.httpClientFailure.post406();
-//         assert.fail("Expected error");
-//       } catch (error) {
-//         assert.equal(error.statusCode, 406);
-//       }
-//     });
+    it("post406 should return 406", async () => {
+      const result = await client.httpClientFailure.post406();
+      assert.equal(result.status, "406");
+    });
 
-//     it("post415 should throw error", async () => {
-//       try {
-//         await client.httpClientFailure.post415();
-//         assert.fail("Expected error");
-//       } catch (error) {
-//         assert.equal(error.statusCode, 415);
-//       }
-//     });
+    it("post415 should return 415", async () => {
+      const result = await client.httpClientFailure.post415();
+      assert.equal(result.status, "415");
+    });
 
-//     it("post415 should throw error", async () => {
-//       try {
-//         await client.httpClientFailure.post415();
-//         assert.fail("Expected error");
-//       } catch (error) {
-//         assert.equal(error.statusCode, 415);
-//       }
-//     });
+    it("put400 should return 400", async () => {
+      const result = await client.httpClientFailure.put400();
+      assert.equal(result.status, "400");
+    });
 
-//     it("put400 should throw error", async () => {
-//       try {
-//         await client.httpClientFailure.put400();
-//         assert.fail("Expected error");
-//       } catch (error) {
-//         assert.equal(error.statusCode, 400);
-//       }
-//     });
+    it("put404 should return 404", async () => {
+      const result = await client.httpClientFailure.put404();
+      assert.equal(result.status, "404");
+    });
 
-//     it("put404 should throw error", async () => {
-//       try {
-//         await client.httpClientFailure.put404();
-//         assert.fail("Expected error");
-//       } catch (error) {
-//         assert.equal(error.statusCode, 404);
-//       }
-//     });
+    it("put409 should return 409", async () => {
+      const result = await client.httpClientFailure.put409();
+      assert.equal(result.status, "409");
+    });
 
-//     it("put409 should throw error", async () => {
-//       try {
-//         await client.httpClientFailure.put409();
-//         assert.fail("Expected error");
-//       } catch (error) {
-//         assert.equal(error.statusCode, 409);
-//       }
-//     });
-
-//     it("put413 should throw error", async () => {
-//       try {
-//         await client.httpClientFailure.put413();
-//         assert.fail("Expected error");
-//       } catch (error) {
-//         assert.equal(error.statusCode, 413);
-//       }
-//     });
-//   });
+    it("put413 should return 413", async () => {
+      const result = await client.httpClientFailure.put413();
+      assert.equal(result.status, "413");
+    });
+  });
 
   describe("Failure scenarios", () => {
     it("delete307 should return 200", async () => {
@@ -496,11 +375,11 @@ describe.only("Http infrastructure rest Client", () => {
     });
   });
 
-//   describe("Retry scenarios", () => {
-//     it("delete503 should retry and return 200", async () => {
-//       const response = await client.httpRetry.delete503();
-//       assert.equal(response.status, "200");
-//     }).timeout(150000);
+  describe("Retry scenarios", () => {
+    it("delete503 should retry and return 503", async () => {
+      const response = await client.httpRetry.delete503();
+      assert.equal(response.status, "503");
+    }).timeout(150000);
 
 //     it("get502 should retry and return 200", async () => {
 //       const response = await client.httpRetry.get502();
@@ -580,7 +459,7 @@ describe.only("Http infrastructure rest Client", () => {
 //         assert.equal(error.statusCode, 505);
 //       }
 //     });
-//   });
+  });
 
    describe("Multipl Response scenarios", () => {
     it("get200Model201ModelDefaultError200Valid should return 200", async () => {
@@ -596,14 +475,10 @@ describe.only("Http infrastructure rest Client", () => {
       });
     });
 
-//     it("get200Model201ModelDefaultError400Valid should throw", async () => {
-//       try {
-//         await client.multipleResponses.get200Model201ModelDefaultError400Valid();
-//         assert.fail("Expected to throw");
-//       } catch (error) {
-//         assert.equal(error.statusCode, 400);
-//       }
-//     });
+    it("get200Model201ModelDefaultError400Valid should return 400", async () => {
+      const result = await client.multipleResponses.get200Model201ModelDefaultError400Valid();
+      assert.equal(result.status, "400");
+    });
 
     it("get200ModelA201ModelC404ModelDDefaultError200Valid should return 200", async () => {
       const result = await client.multipleResponses.get200ModelA201ModelC404ModelDDefaultError200Valid();
@@ -612,37 +487,25 @@ describe.only("Http infrastructure rest Client", () => {
       });
     });
 
-//     it("get200Model204NoModelDefaultError201Invalid should throw", async () => {
-//       try {
-//         await client.multipleResponses.get200Model204NoModelDefaultError201Invalid();
-//         assert.fail("Expected to throw");
-//       } catch (error) {
-//         assert.equal(error.statusCode, 201);
-//       }
-//     });
+    it("get200Model204NoModelDefaultError201Invalid should return 201", async () => {
+      const result = await client.multipleResponses.get200Model204NoModelDefaultError201Invalid();
+      assert.equal(result.status, "201");
+    });
 
-//     it("get200Model204NoModelDefaultError201Invalid should throw", async () => {
-//       try {
-//         await client.multipleResponses.get200Model204NoModelDefaultError202None();
-//         assert.fail("Expected to throw");
-//       } catch (error) {
-//         assert.equal(error.statusCode, 202);
-//       }
-//     });
+    it("get200Model204NoModelDefaultError201Invalid should return 202", async () => {
+      const result = await client.multipleResponses.get200Model204NoModelDefaultError202None();
+      assert.equal(result.status, "202");
+    });
 
     it("get200Model204NoModelDefaultError204Valid should return 200", async () => {
       const response = await client.multipleResponses.get200Model204NoModelDefaultError204Valid();
       assert.equal(response.status, "204");
     });
 
-//     it("get200Model204NoModelDefaultError400Valid should throw", async () => {
-//       try {
-//         await client.multipleResponses.get200Model204NoModelDefaultError400Valid();
-//         assert.fail("Expected to throw");
-//       } catch (error) {
-//         assert.equal(error.statusCode, 400);
-//       }
-//     });
+    it("get200Model204NoModelDefaultError400Valid should return 400", async () => {
+      const result = await client.multipleResponses.get200Model204NoModelDefaultError400Valid();
+      assert.equal(result.status, "400");
+    });
 
     it("get200ModelA200Invalid should return 200", async () => {
       const result: any = await client.multipleResponses.get200ModelA200Invalid();
@@ -669,14 +532,10 @@ describe.only("Http infrastructure rest Client", () => {
       assert.equal(response.status, "201");
     });
 
-//     it("get200ModelA201ModelC404ModelDDefaultError201Valid should throw 400", async () => {
-//       try {
-//         await client.multipleResponses.get200ModelA201ModelC404ModelDDefaultError400Valid();
-//         assert.fail("Expected to throw");
-//       } catch (error) {
-//         assert.deepEqual(error.statusCode, 400);
-//       }
-//     });
+    it("get200ModelA201ModelC404ModelDDefaultError201Valid should return 400", async () => {
+      const result = await client.multipleResponses.get200ModelA201ModelC404ModelDDefaultError400Valid();
+      assert.deepEqual(result.status, "400");
+    });
 
     it("get200ModelA201ModelC404ModelDDefaultError404Valid should throw 404", async () => {
       const response = await client.multipleResponses.get200ModelA201ModelC404ModelDDefaultError404Valid();
@@ -693,23 +552,15 @@ describe.only("Http infrastructure rest Client", () => {
       assert.equal(response.status, "204");
     });
 
-//     it("get202None204NoneDefaultNone400Invalid should throw 400", async () => {
-//       try {
-//         await client.multipleResponses.get202None204NoneDefaultNone400Invalid();
-//         assert.fail("Expected an Error");
-//       } catch (error) {
-//         assert.equal(error.statusCode, 400);
-//       }
-//     });
+    it("get202None204NoneDefaultNone400Invalid should return 400", async () => {
+      const result = await client.multipleResponses.get202None204NoneDefaultNone400Invalid();
+      assert.equal(result.status, "400");
+    });
 
-//     it("get202None204NoneDefaultNone400None should throw 400", async () => {
-//       try {
-//         await client.multipleResponses.get202None204NoneDefaultNone400None();
-//         assert.fail("Expected an Error");
-//       } catch (error) {
-//         assert.equal(error.statusCode, 400);
-//       }
-//     });
+    it("get202None204NoneDefaultNone400None should return 400", async () => {
+      const result = await client.multipleResponses.get202None204NoneDefaultNone400None();
+      assert.equal(result.status, "400");
+    });
 
     it("getDefaultModelA200None should return 200", async () => {
       const response = await client.multipleResponses.getDefaultModelA200None();
@@ -721,23 +572,15 @@ describe.only("Http infrastructure rest Client", () => {
       assert.equal(response.status, "200");
     });
 
-//     it("getDefaultModelA400None should throw 400", async () => {
-//       try {
-//         await client.multipleResponses.getDefaultModelA400None();
-//         assert.fail("Expected an Error");
-//       } catch (error) {
-//         assert.equal(error.statusCode, 400);
-//       }
-//     });
+    it("getDefaultModelA400None should return 400", async () => {
+      const result = await client.multipleResponses.getDefaultModelA400None();
+      assert.equal(result.status, "400");
+    });
 
-//     it("getDefaultModelA400Valid should throw 400", async () => {
-//       try {
-//         await client.multipleResponses.getDefaultModelA400Valid();
-//         assert.fail("Expected an Error");
-//       } catch (error) {
-//         assert.equal(error.statusCode, 400);
-//       }
-//     });
+    it("getDefaultModelA400Valid should return 400", async () => {
+      const result = await client.multipleResponses.getDefaultModelA400Valid();
+      assert.equal(result.status, "400");
+    });
 
     it("getDefaultNone200Invalid should return 200", async () => {
       const response = await client.multipleResponses.getDefaultNone200Invalid();
@@ -749,41 +592,25 @@ describe.only("Http infrastructure rest Client", () => {
       assert.equal(response.status, "200");
     });
 
-//     it("getDefaultNone400Invalid should return 200", async () => {
-//       try {
-//         await client.multipleResponses.getDefaultNone400Invalid();
-//         assert.fail("Expected an Error");
-//       } catch (error) {
-//         assert.equal(error.statusCode, 400);
-//       }
-//     });
+    it("getDefaultNone400Invalid should return 400", async () => {
+      const result = await client.multipleResponses.getDefaultNone400Invalid();
+      assert.equal(result.status, "400");
+    });
 
-//     it("getDefaultNone400None should return 200", async () => {
-//       try {
-//         client.httpClientFailure;
-//         await client.multipleResponses.getDefaultNone400None();
-//         assert.fail("Expected an Error");
-//       } catch (error) {
-//         assert.equal(error.statusCode, 400);
-//       }
-//     });
+    it("getDefaultNone400None should return 400", async () => {
+      const result = await client.multipleResponses.getDefaultNone400None();
+      assert.equal(result.status, "400");
+    });
 
     it("should handle get200Model204NoModelDefaultError200Valid", async () => {
       const result = await client.multipleResponses.get200Model204NoModelDefaultError200Valid();
       assert.strictEqual(result.status, "200");
     });
 
-//     it("should handle ResponsesScenarioD400DefaultModel", async () => {
-//       try {
-//         await client.multipleResponses.get202None204NoneDefaultError400Valid();
-//         assert.fail(
-//           "Expected get202None204NoneDefaultError400Valid to throw an error"
-//         );
-//       } catch (error) {
-//         assert.strictEqual(error.message, "client error");
-//         assert.strictEqual(error.statusCode, 400);
-//       }
-//     });
+    it("should handle ResponsesScenarioD400DefaultModel", async () => {
+      const result = await client.multipleResponses.get202None204NoneDefaultError400Valid();
+      assert.strictEqual(result.status, "400");
+    });
 
     it("should handle get202None204NoneDefaultNone202Invalid", async () => {
       const response = await client.multipleResponses.get202None204NoneDefaultNone202Invalid();
@@ -795,79 +622,41 @@ describe.only("Http infrastructure rest Client", () => {
       assert.equal(response.status, "204");
     });
 
-//     it("should handle get200ModelA202Valid", async () => {
-//       try {
-//         await client.multipleResponses.get200ModelA202Valid();
-//         assert.fail("Expected get200ModelA202Valid to throw");
-//       } catch (e) {
-//         const error: RestError = e;
-//         assert.strictEqual(error.statusCode, 202);
-//         assert.include(error.message, "202");
-//       }
-//     });
+    it("should handle get200ModelA202Valid", async () => {
+      const result = await client.multipleResponses.get200ModelA202Valid();
+      assert.strictEqual(result.status, "202");
+    });
 
-//     it("should handle get200ModelA400Invalid", async () => {
-//       try {
-//         await client.multipleResponses.get200ModelA400Invalid();
-//         assert.fail("Expected get200ModelA400Invalid to throw");
-//       } catch (e) {
-//         const error: RestError = e;
-//         assert.strictEqual(error.statusCode, 400);
-//         assert.include(error.message, "400");
-//       }
-//     });
+    it("should handle get200ModelA400Invalid", async () => {
+      const result = await client.multipleResponses.get200ModelA400Invalid();
+      assert.strictEqual(result.status, "400");
+    });
 
-//     it("should handle get200ModelA400Valid", async () => {
-//       try {
-//         await client.multipleResponses.get200ModelA400Valid();
-//         assert.fail("Expected get200ModelA400Valid to throw");
-//       } catch (e) {
-//         const error: RestError = e;
-//         assert.strictEqual(error.statusCode, 400);
-//         assert.include(error.message, "400");
-//       }
-//     });
+    it("should handle get200ModelA400Valid", async () => {
+      const result = await client.multipleResponses.get200ModelA400Valid();
+      assert.strictEqual(result.status, "400");
+    });
 
-//     it("should handle get200ModelA400None", async () => {
-//       try {
-//         await client.multipleResponses.get200ModelA400None();
-//         assert.fail("Expected get200ModelA400None to throw");
-//       } catch (e) {
-//         const error: RestError = e;
-//         assert.strictEqual(error.statusCode, 400);
-//       }
-//     });
+    it("should handle get200ModelA400None", async () => {
+      const result = await client.multipleResponses.get200ModelA400None();
+      assert.strictEqual(result.status, "400");
+    });
    });
 
-//   describe("Failure scenarios", () => {
-//     it("getEmptyError should throw error", async () => {
-//       try {
-//         await client.httpFailure.getEmptyError();
-//         assert.fail("Expected error");
-//       } catch (error) {
-//         assert.equal(error.statusCode, 400);
-//       }
-//     });
+  describe("Failure scenarios", () => {
+    it("getEmptyError should return 400", async () => {
+      const result = await client.httpFailure.getEmptyError();
+      assert.equal(result.status, "400");
+    });
 
-//     it("getNoModelEmpty should throw 400", async () => {
-//       try {
-//         await client.httpFailure.getNoModelEmpty();
-//         assert.fail("Expected getNoModelEmpty to throw");
-//       } catch (e) {
-//         const error: RestError = e;
-//         assert.strictEqual(error.statusCode, 400);
-//       }
-//     });
+    it("getNoModelEmpty should return 400", async () => {
+      const result = await client.httpFailure.getNoModelEmpty();
+      assert.strictEqual(result.status, "400");
+    });
 
-//     it("getNoModelError should throw 400", async () => {
-//       try {
-//         await client.httpFailure.getNoModelError();
-//         assert.fail("Expected getNoModelError to throw");
-//       } catch (e) {
-//         const error: RestError = e;
-//         assert.strictEqual(error.statusCode, 400);
-//         assert.include(error.message, "NoErrorModel");
-//       }
-//     });
-//   });
+    it("getNoModelError should return 400", async () => {
+      const result = await client.httpFailure.getNoModelError();
+      assert.strictEqual(result.status, "400");
+    });
+  });
 });
