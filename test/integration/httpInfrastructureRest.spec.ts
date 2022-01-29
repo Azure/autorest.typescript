@@ -7,9 +7,8 @@ import {
   RestError
 } from "@azure/core-rest-pipeline";
 import { isNode } from "@azure/core-util";
-import { result } from "lodash";
 
-describe.only("Http infrastructure rest Client", () => {
+describe("Http infrastructure rest Client", () => {
   let client: HttpInfrastructureRestClientRestClient;
 
   // Prevents caching redirects
@@ -461,7 +460,7 @@ describe.only("Http infrastructure rest Client", () => {
 //     });
   });
 
-   describe("Multipl Response scenarios", () => {
+   describe("Multiple Response scenarios", () => {
     it("get200Model201ModelDefaultError200Valid should return 200", async () => {
       const result = await client.multipleResponses.get200Model201ModelDefaultError200Valid();
       assert.equal(result.status, "200");

@@ -31,7 +31,6 @@ import {
 } from "./generateMethodShortcuts";
 import { Methods, PathParameter, Paths } from "./interfaces";
 export let pathDictionary: Paths = {};
-let requireHttpResponse = false;
 
 export function generatePathFirstClient(model: CodeModel, project: Project) {
   const name = normalizeName(
@@ -50,6 +49,7 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
   // Get all paths
   const importedParameters = new Set<string>();
   const importedResponses = new Set<string>();
+  const clientImports = new Set<string>();
   pathDictionary = {};
   for (const operationGroup of model.operationGroups) {
     for (const operation of operationGroup.operations) {
@@ -92,7 +92,8 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
             hasOptionalOptions,
             returnType: `Promise<${getOperationReturnType(
               operation,
-              importedResponses
+              importedResponses,
+              clientImports
             )}>`
           };
 
@@ -189,14 +190,9 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
     });
   }
 
-  const clientImports = ['Client'];
-  if (requireHttpResponse) {
-    clientImports.push("HttpResponse")
-  }
-
   clientFile.addImportDeclarations([
     {
-      namedImports: clientImports,
+      namedImports: [...clientImports],
       moduleSpecifier: "@azure-rest/core-client"
     }
   ]);
@@ -268,7 +264,8 @@ function getOperationOptionsType(
 
 function getOperationReturnType(
   operation: Operation,
-  importedResponses = new Set<string>()
+  importedResponses = new Set<string>(),
+  coreClientImports = new Set<string>()
 ) {
   let returnType: string = "HttpResponse";
   if (operation.responses && operation.responses.length) {
@@ -290,7 +287,7 @@ function getOperationReturnType(
   }
 
   if (returnType === "HttpResponse") {
-    requireHttpResponse = true;
+    coreClientImports.add(returnType);
   }
   return returnType;
 }
