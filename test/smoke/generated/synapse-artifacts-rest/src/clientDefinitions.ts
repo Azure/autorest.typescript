@@ -337,7 +337,6 @@ import {
   WorkspaceGetdefaultResponse
 } from "./responses";
 import { Client } from "@azure-rest/core-client";
-import { TokenCredential } from "@azure/core-auth";
 
 /** Contains operations for KqlScripts operations */
 export interface KqlScriptsOperations {

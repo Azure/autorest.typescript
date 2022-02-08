@@ -14,7 +14,6 @@ import {
   GetNewOperation200Response
 } from "./responses";
 import { Client } from "@azure-rest/core-client";
-import "@azure/core-auth";
 
 /** Contains operations for Params operations */
 export interface ParamsOperations {

@@ -307,7 +307,6 @@ import {
   WeatherCreateDataDeleteJobdefaultResponse
 } from "./responses";
 import { Client } from "@azure-rest/core-client";
-import { TokenCredential } from "@azure/core-auth";
 
 export interface ApplicationDataListByFarmerId {
   /** Returns a paginated list of application data resources under a particular farm. */

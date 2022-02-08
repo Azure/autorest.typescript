@@ -15,7 +15,6 @@ import {
   GetEmptyFiledefaultResponse
 } from "./responses";
 import { Client } from "@azure-rest/core-client";
-import "@azure/core-auth";
 
 export interface GetFile {
   /** Get file */

@@ -265,7 +265,6 @@ import {
   LROsCustomHeaderPostAsyncRetrySucceededdefaultResponse
 } from "./responses";
 import { Client } from "@azure-rest/core-client";
-import "@azure/core-auth";
 
 export interface LROsPut200Succeeded {
   /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Succeeded’. */
