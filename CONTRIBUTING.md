@@ -81,6 +81,7 @@ npm run build
    1. Unit tests (which could be found at `test/unit/*`)
    2. Integration tests (which could be found at `test/integration/*`)
    3. Smoke tests
+   4. Version Tolerence Tests
 4. You can run the Unit tests & Integration tests using the following command:
 
 ```
@@ -111,6 +112,23 @@ fatal: destination path './.tmp/specs' already exists and is not an empty direct
 ```
 
 delete the `.tmp` folder and then try again.
+
+### Version Tolerence Tests
+
+Version tolerance tests provide coverage against unexpected **breaking changes** when generating a newer version of a swagger. RLCs are not expected to produce breaking changes unless the swagger itself has an API breaking change.
+
+Version Tolerance tests would generate 2 clients one from an initial Swagger and a second from the `updated` swagger that contains changes that are not expected to generate breaking changes. The same set of tests is run against both generated clients to make sure no breaking changes resulted.
+
+Version Tolerance tests have the following npm scripts:
+
+- `npm run validate-version-tolerance`: generates SDKs and tests for breaking changes between swagger versions
+- `generate-version-tolerance`: Generates version tolerance before and after sdks
+- `generate-version-tolerance:tests`: generates `updated` spec.ts based on hand written tests against the initial SDK
+- `test-version-tolerance`: executes all .spec.ts tests under `test/version-tolerance/`
+
+In CI we'll run `npm run validate-version-tolerance` which calls all the other npm scripts. The other individual npm scripts are useful for development.
+
+For more details on the implementation see [#1268](https://github.com/Azure/autorest.typescript/pull/1268)
 
 ### How to add an integration test case
 
