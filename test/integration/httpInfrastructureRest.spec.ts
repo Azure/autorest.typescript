@@ -2,9 +2,7 @@ import HttpInfrastructureRestClient, { HttpInfrastructureRestClientRestClient } 
 import { assert } from "chai";
 import {
   PipelinePolicy,
-  redirectPolicy,
-  exponentialRetryPolicy,
-  RestError
+  exponentialRetryPolicy
 } from "@azure/core-rest-pipeline";
 import { isNode } from "@azure/core-util";
 

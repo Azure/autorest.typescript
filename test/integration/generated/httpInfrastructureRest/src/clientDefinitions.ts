@@ -304,7 +304,6 @@ import {
   MultipleResponsesGet200ModelA202Valid200Response
 } from "./responses";
 import { HttpResponse, Client } from "@azure-rest/core-client";
-import "@azure/core-auth";
 
 /** Contains operations for HttpFailure operations */
 export interface HttpFailureOperations {
