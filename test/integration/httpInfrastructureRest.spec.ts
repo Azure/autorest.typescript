@@ -209,9 +209,14 @@ describe("Http infrastructure rest Client", () => {
     });
 
     it("delete407 should return 407", async () => {
-      const result = await client.httpClientFailure.delete407();
-      if (isNode) {
-        assert.equal(result.status, "407");
+      try {
+        const result = await client.httpClientFailure.delete407();
+      } catch (error) {
+        if (isNode) {
+          assert.equal(error.statusCode, 407);
+        } else {
+          assert.equal(error.code, "REQUEST_SEND_ERROR");
+        }
       }
     });
 
@@ -371,10 +376,10 @@ describe("Http infrastructure rest Client", () => {
   });
 
   describe("Retry scenarios", () => {
-    it("delete503 should retry and return 503", async () => {
-      const response = await client.httpRetry.delete503();
-      assert.equal(response.status, "503");
-    }).timeout(150000);
+    // it("delete503 should retry and return 200", async () => {
+    //   const response = await client.httpRetry.delete503();
+    //   assert.equal(response.status, "200");
+    // });
 
 //     it("get502 should retry and return 200", async () => {
 //       const response = await client.httpRetry.get502();
