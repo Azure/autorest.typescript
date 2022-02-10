@@ -5,9 +5,13 @@ import { Project } from "ts-morph";
 import { getAutorestOptions } from "../../autorestSession";
 
 export function generateRollupConfig(project: Project) {
-  const { generateMetadata } = getAutorestOptions();
+  const { generateMetadata, restLevelClient, monoRepo } = getAutorestOptions();
 
   if (!generateMetadata) {
+    return;
+  }
+
+  if (restLevelClient && monoRepo) {
     return;
   }
 

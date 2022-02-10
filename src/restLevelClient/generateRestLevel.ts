@@ -23,6 +23,7 @@ import { generateEnvFile } from "../generators/test/envFileGenerator";
 import { generateEnvBrowserFile } from "../generators/test/envBrowserFileGenerator";
 import { generateRecordedClientFile } from "../generators/test/recordedClientFileGenerator";
 import { generateSampleTestFile } from "../generators/test/sampleTestGenerator";
+import { generateEsLintConfig } from "../generators/static/esLintConfigGenerator";
 
 /**
  * Generates a Rest Level Client library
@@ -51,6 +52,7 @@ export async function generateRestLevelClient() {
   generateLicenseFile(project);
   generateTsConfig(project);
   generateApiExtractorConfig(project);
+  generateEsLintConfig(project);
 
   generateKarmaConfigFile(project)
   generateEnvFile(project);
@@ -64,7 +66,7 @@ export async function generateRestLevelClient() {
   generatePathFirstClient(model, project);
   generateClient(model, project);
   generateIndexFile(project);
-  
+
   generateTopLevelIndexFile(model, project);
 
   // Save the source files to the virtual filesystem

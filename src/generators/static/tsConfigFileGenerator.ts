@@ -25,26 +25,53 @@ const highLevelTsConfig: Record<string, any>  = {
 };
 
 
-const restLevelTsConfig = {
-  compilerOptions: {
-    module: "es6",
-    target: "es2015",
-    moduleResolution: "node",
-    declaration: true,
-    declarationMap: true,
-    outDir: "./dist-esm"
+const restLevelTsConfigInMonoRepo = {
+  "extends": "../../../tsconfig.package",
+  "compilerOptions": {
+    "outDir": "./dist-esm",
+    "declarationDir": "./types",
   },
-  include: ["src/**/*.ts"]
+  "include": ["src/**/*.ts"]
 };
 
+const restLevelTsConfigInNonMonoRepo ={
+  "compilerOptions": {
+    "target": "ES2017",
+    "module": "es6",
+    "lib": [],
+    "declaration": true,
+    "declarationMap": true,
+    "inlineSources": true,
+    "sourceMap": true,
+    "importHelpers": true,
+    "strict": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "outDir": "./dist-esm",
+    "declarationDir": "./types"
+  },
+  "include": ["src/**/*.ts"]
+}
+
+
 export function generateTsConfig(project: Project) {
-  const { generateMetadata, restLevelClient, generateTest, packageDetails, generateSample } = getAutorestOptions();
+  const { generateMetadata, restLevelClient, generateTest, packageDetails, generateSample, monoRepo } = getAutorestOptions();
 
   if (!generateMetadata) {
     return;
   }
 
   const clientPackageName = packageDetails.name;
+
+  const restLevelTsConfig = monoRepo? restLevelTsConfigInMonoRepo : restLevelTsConfigInNonMonoRepo;
+
   if (generateTest) {
     highLevelTsConfig.include.push("./test/**/*.ts");
     restLevelTsConfig.include.push("./test/**/*.ts");
@@ -53,7 +80,7 @@ export function generateTsConfig(project: Project) {
   if (generateSample) {
     highLevelTsConfig.include.push("samples-dev/**/*.ts");
     highLevelTsConfig.compilerOptions["paths"] = {};
-    highLevelTsConfig.compilerOptions["paths"][clientPackageName] = ["./src/index"];  
+    highLevelTsConfig.compilerOptions["paths"][clientPackageName] = ["./src/index"];
   }
 
   const tsConfigContents = restLevelClient

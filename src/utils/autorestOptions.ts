@@ -35,6 +35,7 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
   const generateTest = await getGenerateTest(host);
   const batch = await getBatch(host);
   const generateSample = await getGenerateSample(host);
+  const monoRepo = await getMonoRepo(host);
 
   return {
     azureArm,
@@ -61,7 +62,8 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
     isTestPackage,
     generateTest,
     batch,
-    generateSample
+    generateSample,
+    monoRepo
   };
 }
 
@@ -92,6 +94,11 @@ async function getGenerateTest(host: AutorestExtensionHost): Promise<boolean> {
 async function getGenerateSample(host: AutorestExtensionHost): Promise<boolean> {
   const generateSample = await host.getValue("generate-sample");
   return generateSample === null ? false : Boolean(generateSample);
+}
+
+async function getMonoRepo(host: AutorestExtensionHost): Promise<boolean> {
+  const monoRepo = await host.getValue("mono-repo");
+  return monoRepo === null ? true : Boolean(monoRepo);
 }
 
 async function getSkipEnumValidation(
@@ -291,5 +298,5 @@ async function getAzureOutputDirectoryPath(
 async function getBatch(host: AutorestExtensionHost): Promise<[string, any][] | undefined> {
   const batch = await host.getValue<[string, any][]>('batch');
   return batch;
-  
+
 }
