@@ -19,7 +19,6 @@ import {
   PutTextAndJsonBody200Response
 } from "./responses";
 import { Client } from "@azure-rest/core-client";
-import "@azure/core-auth";
 
 export interface AnalyzeBody {
   /** Analyze body, that could be different media types. */

@@ -204,7 +204,6 @@ import {
   PathItemsGetLocalPathItemQueryNulldefaultResponse
 } from "./responses";
 import { Client } from "@azure-rest/core-client";
-import "@azure/core-auth";
 
 /** Contains operations for Paths operations */
 export interface PathsOperations {

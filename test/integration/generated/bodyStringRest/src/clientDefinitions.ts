@@ -63,7 +63,6 @@ import {
   EnumPutReferencedConstantdefaultResponse
 } from "./responses";
 import { Client } from "@azure-rest/core-client";
-import "@azure/core-auth";
 
 export interface StringGetNull {
   /** Get null string value value */
