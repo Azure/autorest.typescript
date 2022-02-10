@@ -87,7 +87,7 @@ npm run build
 npm run test
 ```
 
-Running the comand above will do the following things:
+Running the command above will do the following things:
 
 - Start TestServer
 - Build Autorest.Typescript
