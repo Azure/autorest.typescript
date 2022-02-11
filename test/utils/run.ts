@@ -25,6 +25,7 @@ export async function runAutorest(
     ignoreNullableOnOptional,
     title,
     restLevelClient,
+    monoRepo,
     rlcShortcut,
     headAsBoolean,
     isTestPackage,
@@ -53,6 +54,9 @@ export async function runAutorest(
   }
   if (restLevelClient === true) {
     commandArguments.push(`--rest-level-client=${restLevelClient}`);
+  }
+  if (monoRepo !== undefined) {
+    commandArguments.push(`--mono-repo=${monoRepo}`);
   }
   if (rlcShortcut === true) {
     commandArguments.push(`--rlc-shortcut=true`);
