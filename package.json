@@ -15,7 +15,7 @@
         "integration-test:new": "npm-run-all start-test-server generate-and-test integration-test:alone stop-test-server",
         "integration-test:browser": "npm run build:test:browser && karma start karma.conf.js",
         "generate-and-test": "npm-run-all -s build generate-swaggers integration-test:alone integration-test:browser",
-        "integration-test:alone": "mocha -r ts-node/register --timeout 2000 './test/integration/**/!(sampleTest).spec.ts'",
+        "integration-test:alone": "mocha -r ts-node/register --timeout 20000 './test/integration/**/!(sampleTest).spec.ts'",
         "start-test-server": "ts-node test/utils/start-server.ts",
         "start-test-server:v2": "autorest-testserver",
         "stop-test-server": "autorest-testserver stop",
