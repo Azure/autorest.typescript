@@ -68,7 +68,7 @@ export function getTypeForSchema(
 ): TypeDetails {
   let typeName: string = "";
   let usedModels: string[] = [];
-  let defaultValue;
+  let defaultValue = undefined;
   let kind: PropertyKind = PropertyKind.Primitive;
   switch (schema.type) {
     case SchemaType.Any:

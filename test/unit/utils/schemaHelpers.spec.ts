@@ -32,7 +32,8 @@ describe("SchemaHelpers", () => {
         isConstant: false,
         nullable: false,
         kind: PropertyKind.Primitive,
-        usedModels: []
+        usedModels: [],
+        defaultValue: undefined
       });
     });
 
@@ -46,7 +47,8 @@ describe("SchemaHelpers", () => {
         isConstant: false,
         nullable: false,
         kind: PropertyKind.Primitive,
-        usedModels: []
+        usedModels: [],
+        defaultValue: undefined
       });
     });
 
@@ -65,7 +67,8 @@ describe("SchemaHelpers", () => {
         isConstant: false,
         nullable: false,
         kind: PropertyKind.Primitive,
-        usedModels: []
+        usedModels: [],
+        defaultValue: undefined
       });
     });
 
@@ -84,7 +87,8 @@ describe("SchemaHelpers", () => {
         isConstant: false,
         nullable: false,
         kind: PropertyKind.Primitive,
-        usedModels: []
+        usedModels: [],
+        defaultValue: undefined
       });
     });
 
@@ -128,7 +132,8 @@ describe("SchemaHelpers", () => {
         isConstant: false,
         nullable: false,
         kind: PropertyKind.Enum,
-        usedModels: ["ChoiceSchema"]
+        usedModels: ["ChoiceSchema"],
+        defaultValue: undefined
       });
     });
 
@@ -145,7 +150,8 @@ describe("SchemaHelpers", () => {
         isConstant: false,
         nullable: false,
         kind: PropertyKind.Primitive,
-        usedModels: []
+        usedModels: [],
+        defaultValue: undefined
       });
     });
 
@@ -162,7 +168,8 @@ describe("SchemaHelpers", () => {
         isConstant: false,
         nullable: false,
         kind: PropertyKind.Dictionary,
-        usedModels: []
+        usedModels: [],
+        defaultValue: undefined
       });
     });
 
@@ -173,7 +180,8 @@ describe("SchemaHelpers", () => {
         isConstant: false,
         nullable: false,
         kind: PropertyKind.Primitive,
-        usedModels: []
+        usedModels: [],
+        defaultValue: undefined
       });
 
       typeDetails = getTypeForSchema(new DateTimeSchema("DateTimeSchema", ""));
@@ -182,7 +190,8 @@ describe("SchemaHelpers", () => {
         isConstant: false,
         nullable: false,
         kind: PropertyKind.Primitive,
-        usedModels: []
+        usedModels: [],
+        defaultValue: undefined
       });
 
       typeDetails = getTypeForSchema(new UnixTimeSchema("UnixTimeSchema", ""));
@@ -191,7 +200,8 @@ describe("SchemaHelpers", () => {
         isConstant: false,
         nullable: false,
         kind: PropertyKind.Primitive,
-        usedModels: []
+        usedModels: [],
+        defaultValue: undefined
       });
     });
 
@@ -204,7 +214,8 @@ describe("SchemaHelpers", () => {
         isConstant: false,
         nullable: false,
         kind: PropertyKind.Primitive,
-        usedModels: []
+        usedModels: [],
+        defaultValue: undefined
       });
     });
 
@@ -218,7 +229,8 @@ describe("SchemaHelpers", () => {
         isConstant: false,
         nullable: false,
         kind: PropertyKind.Composite,
-        usedModels: [typeName]
+        usedModels: [typeName],
+        defaultValue: undefined
       });
     });
 
@@ -248,7 +260,8 @@ describe("SchemaHelpers", () => {
         isConstant: false,
         nullable: false,
         kind: PropertyKind.Composite,
-        usedModels: [typeName]
+        usedModels: [typeName],
+        defaultValue: undefined
       });
     });
   });
