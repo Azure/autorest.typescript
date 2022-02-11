@@ -49,7 +49,6 @@ import {
   ResourceSetRulesListResourceSetRulesdefaultResponse
 } from "./responses";
 import { Client } from "@azure-rest/core-client";
-import { TokenCredential } from "@azure/core-auth";
 
 export interface AccountsGetAccountProperties {
   /** Get an account */

@@ -66,7 +66,6 @@ import {
   GetPagingModelWithItemNameWithXMSClientNamedefaultResponse
 } from "./responses";
 import { Client } from "@azure-rest/core-client";
-import "@azure/core-auth";
 
 export interface GetNoItemNamePages {
   /** A paging operation that must return result of the default 'value' node. */

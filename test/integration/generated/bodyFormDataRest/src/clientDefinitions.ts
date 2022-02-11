@@ -15,7 +15,6 @@ import {
   UploadFilesdefaultResponse
 } from "./responses";
 import { Client } from "@azure-rest/core-client";
-import "@azure/core-auth";
 
 export interface UploadFile {
   /** Upload file */

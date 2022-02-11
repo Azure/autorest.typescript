@@ -93,7 +93,6 @@ import {
   CustomRequestIddefaultResponse
 } from "./responses";
 import { Client } from "@azure-rest/core-client";
-import "@azure/core-auth";
 
 export interface ParamExistingKey {
   /** Send a post request with header value "User-Agent": "overwrite" */
