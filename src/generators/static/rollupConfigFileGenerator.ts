@@ -11,6 +11,7 @@ export function generateRollupConfig(project: Project) {
     return;
   }
 
+  // when it's generating rlc codes, only generate rollup config in codegen test
   if (restLevelClient && monoRepo) {
     return;
   }

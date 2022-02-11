@@ -1,11 +1,5 @@
 {
-  "compilerOptions": {
-    "module": "es6",
-    "target": "es2015",
-    "moduleResolution": "node",
-    "declaration": true,
-    "declarationMap": true,
-    "outDir": "./dist-esm"
-  },
+  "extends": "../../../tsconfig.package",
+  "compilerOptions": { "outDir": "./dist-esm", "declarationDir": "./types" },
   "include": ["src/**/*.ts", "./test/**/*.ts"]
 }

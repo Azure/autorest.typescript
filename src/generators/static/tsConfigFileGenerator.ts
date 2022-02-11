@@ -57,7 +57,7 @@ const restLevelTsConfigInNonMonoRepo ={
     "outDir": "./dist-esm",
     "declarationDir": "./types"
   },
-  "include": ["src/**/*.ts"]
+  "include": ["./src/**/*.ts"]
 }
 
 

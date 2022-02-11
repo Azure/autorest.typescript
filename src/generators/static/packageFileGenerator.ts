@@ -126,7 +126,7 @@ function restLevelPackage(packageDetails: PackageDetails) {
     "autoPublish": false,
     dependencies: {
       "@azure/core-auth": "^1.3.0",
-      "@azure-rest/core-client": "1.0.0-beta.9",
+      "@azure-rest/core-client": "1.0.0-beta.8",
       "@azure/core-rest-pipeline": "^1.3.0",
       "@azure/logger": "^1.0.0",
       tslib: "^2.2.0",
@@ -209,7 +209,6 @@ function restLevelPackage(packageDetails: PackageDetails) {
     if (monoRepo) {
       packageInfo.scripts["build:test"] = "tsc -p . && dev-tool run bundle";
       packageInfo.scripts["integration-test:browser"] = "dev-tool run test:browser";
-
     } else {
       packageInfo.scripts["build:test"] = "tsc -p . && rollup -c 2>&1";
       packageInfo.scripts["integration-test:browser"] = "karma start --single-run";

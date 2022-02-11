@@ -24,6 +24,7 @@ import { generateEnvBrowserFile } from "../generators/test/envBrowserFileGenerat
 import { generateRecordedClientFile } from "../generators/test/recordedClientFileGenerator";
 import { generateSampleTestFile } from "../generators/test/sampleTestGenerator";
 import { generateEsLintConfig } from "../generators/static/esLintConfigGenerator";
+import { generateRollupConfig } from "../generators/static/rollupConfigFileGenerator";
 
 /**
  * Generates a Rest Level Client library
@@ -52,6 +53,7 @@ export async function generateRestLevelClient() {
   generateLicenseFile(project);
   generateTsConfig(project);
   generateApiExtractorConfig(project);
+  generateRollupConfig(project);
   generateEsLintConfig(project);
 
   generateKarmaConfigFile(project)

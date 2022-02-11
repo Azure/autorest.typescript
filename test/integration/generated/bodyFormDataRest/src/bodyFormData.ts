@@ -2,7 +2,6 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import "@azure/core-auth";
 import { BodyFormDataRestClient } from "./clientDefinitions";
 
 export default function BodyFormData(
