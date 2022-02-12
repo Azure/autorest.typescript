@@ -1,10 +1,10 @@
-import HttpInfrastructureRestClient, { HttpInfrastructureRestClientRestClient } from "./generated/httpInfrastructureRest/src";
+import HttpInfrastructureRestClient, {
+  HttpInfrastructureRestClientRestClient
+} from "./generated/httpInfrastructureRest/src";
 import { assert } from "chai";
-import {
-  PipelinePolicy,
-  exponentialRetryPolicy
-} from "@azure/core-rest-pipeline";
+import { PipelinePolicy } from "@azure/core-rest-pipeline";
 import { isNode } from "@azure/core-util";
+import { getCookiePolicy } from "./testUtils/cookiePolicy";
 
 describe("Http infrastructure rest Client", () => {
   let client: HttpInfrastructureRestClientRestClient;
@@ -24,17 +24,13 @@ describe("Http infrastructure rest Client", () => {
 
   beforeEach(() => {
     client = HttpInfrastructureRestClient({
-      allowInsecureConnection: true
+      allowInsecureConnection: true,
+      retryOptions: { maxRetryDelayInMs: 0, retryDelayInMs: 0 }
     });
     client.pipeline.addPolicy(preventCachingPolicy);
-    client.pipeline.removePolicy({ phase: "Retry" });
-    client.pipeline.addPolicy(
-      exponentialRetryPolicy({
-        maxRetries: 3,
-        maxRetryDelayInMs: 0,
-        retryDelayInMs: 0
-      })
-    );
+    // Add a policy to setup cookies so that test server knows if the request is a first request
+    // or a retry
+    client.pipeline.addPolicy(getCookiePolicy(), { phase: "Retry" });
     // client.pipeline.removePolicy({ name: proxyPolicyName });
     // client.pipeline.addPolicy(
     //   proxyPolicy({ host: "http://127.0.0.1", port: 8888 })
@@ -376,92 +372,76 @@ describe("Http infrastructure rest Client", () => {
   });
 
   describe("Retry scenarios", () => {
-    // it("delete503 should retry and return 200", async () => {
-    //   const response = await client.httpRetry.delete503();
-    //   assert.equal(response.status, "200");
-    // });
+    it("delete503 should retry and return 200", async () => {
+      const response = await client.httpRetry.delete503();
+      assert.equal(response.status, "200");
+    });
 
-//     it("get502 should retry and return 200", async () => {
-//       const response = await client.httpRetry.get502();
-//       assert.equal(response.status, "200");
-//     });
+    it("get502 should retry and return 200", async () => {
+      const response = await client.httpRetry.get502();
+      assert.equal(response.status, "200");
+    });
 
-//     it("head408 should retry and return 200", async () => {
-//       const response = await client.httpRetry.head408();
-//       assert.equal(response.status, "200");
-//     });
+    it("head408 should retry and return 200", async () => {
+      const response = await client.httpRetry.head408();
+      assert.equal(response.status, "200");
+    });
 
-//     // TODO: Investigate options
-//     it.skip("options502 should retry and return 200", async () => {
-//       const response = await client.httpRetry.options502();
-//       assert.equal(response.status, "200");
-//     });
+    // TODO: Investigate options
+    it.skip("options502 should retry and return 200", async () => {
+      const response = await client.httpRetry.options502();
+      assert.equal(response.status, "200");
+    });
 
-//     it("patch500 should retry and return 200", async () => {
-//       const response = await client.httpRetry.patch500();
-//       assert.equal(response.status, "200");
-//     });
+    it("patch500 should retry and return 200", async () => {
+      const response = await client.httpRetry.patch500();
+      assert.equal(response.status, "200");
+    });
 
-//     it("patch504 should retry and return 200", async () => {
-//       const response = await client.httpRetry.patch504();
-//       assert.equal(response.status, "200");
-//     });
+    it("patch504 should retry and return 200", async () => {
+      const response = await client.httpRetry.patch504();
+      assert.equal(response.status, "200");
+    });
 
-//     it("post503 should retry and return 200", async () => {
-//       const response = await client.httpRetry.post503();
-//       assert.equal(response.status, "200");
-//     });
+    it("post503 should retry and return 200", async () => {
+      const response = await client.httpRetry.post503();
+      assert.equal(response.status, "200");
+    });
 
-//     it("put500 should retry and return 200", async () => {
-//       const response = await client.httpRetry.put500();
-//       assert.equal(response.status, "200");
-//     });
+    it("put500 should retry and return 200", async () => {
+      const response = await client.httpRetry.put500();
+      assert.equal(response.status, "200");
+    });
 
-//     it("put504 should retry and return 200", async () => {
-//       const response = await client.httpRetry.put504();
-//       assert.equal(response.status, "200");
-//     });
-//   });
-
-//   describe("ServerFailure scenarios", () => {
-//     it("delete505 should throw error", async () => {
-//       try {
-//         await client.httpServerFailure.delete505();
-//         assert.fail("Expected to throw");
-//       } catch (error) {
-//         assert.equal(error.statusCode, 505);
-//       }
-//     });
-
-//     it("get501 should throw error", async () => {
-//       try {
-//         await client.httpServerFailure.get501();
-//         assert.fail("Expected to throw");
-//       } catch (error) {
-//         assert.equal(error.statusCode, 501);
-//       }
-//     });
-
-//     it("head501 should throw error", async () => {
-//       try {
-//         await client.httpServerFailure.head501();
-//         assert.fail("Expected to throw");
-//       } catch (error) {
-//         assert.equal(error.statusCode, 501);
-//       }
-//     });
-
-//     it("post505 should throw error", async () => {
-//       try {
-//         await client.httpServerFailure.post505();
-//         assert.fail("Expected to throw");
-//       } catch (error) {
-//         assert.equal(error.statusCode, 505);
-//       }
-//     });
+    it("put504 should retry and return 200", async () => {
+      const response = await client.httpRetry.put504();
+      assert.equal(response.status, "200");
+    });
   });
 
-   describe("Multiple Response scenarios", () => {
+  describe("ServerFailure scenarios", () => {
+    it("delete505 should get 505", async () => {
+      const response = await client.httpServerFailure.delete505();
+      assert.equal(response.status, "505");
+    });
+
+    it("get501 should get 501", async () => {
+      const response = await client.httpServerFailure.get501();
+      assert.equal(response.status, "501");
+    });
+
+    it("head501 should get 501", async () => {
+      const response = await client.httpServerFailure.head501();
+      assert.equal(response.status, "501");
+    });
+
+    it("post505 should get 505", async () => {
+      const response = await client.httpServerFailure.post505();
+      assert.equal(response.status, "505");
+    });
+  });
+
+  describe("Multiple Response scenarios", () => {
     it("get200Model201ModelDefaultError200Valid should return 200", async () => {
       const result = await client.multipleResponses.get200Model201ModelDefaultError200Valid();
       assert.equal(result.status, "200");
@@ -641,7 +621,7 @@ describe("Http infrastructure rest Client", () => {
       const result = await client.multipleResponses.get200ModelA400None();
       assert.strictEqual(result.status, "400");
     });
-   });
+  });
 
   describe("Failure scenarios", () => {
     it("getEmptyError should return 400", async () => {
