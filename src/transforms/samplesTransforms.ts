@@ -88,6 +88,14 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
             clientParamAssignments: [],
             methodParamAssignments: [],
             originalFileLocation: example.originalFile,
+            isTopLevel: ogDetails.isTopLevel,
+            isPaging: opDetails.pagination !== undefined,
+            operationName: methodName,
+            clientClassName: clientName,
+            operationGroupName: normalizeName(opGroupName, NameType.Property),
+            operationDescription: getLanguageMetadata(
+              exampleGroup.operation.language
+            ).description,
           };
           const clientParameterNames = ["credential"];
           const requiredParams = clientDetails.parameters.filter(

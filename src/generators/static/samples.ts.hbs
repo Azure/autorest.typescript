@@ -13,9 +13,9 @@ import { DefaultAzureCredential } from "@azure/identity";
 
 {{#each samples}}
 /**
- * This sample demonstrates how to {{operationDescription}}
+ * This sample demonstrates how to {{this.operationDescription}}
  *
- * @summary {{operationDescription}}
+ * @summary {{this.operationDescription}}
  * x-ms-original-file: {{this.originalFileLocation}}
  */
 async function {{this.sampleFunctionName}}() {
@@ -26,19 +26,19 @@ async function {{this.sampleFunctionName}}() {
   {{this}}
   {{/each}}
   const credential = new DefaultAzureCredential();
-  const client = new {{clientClassName}}({{this.clientParameterNames}});
-  {{#if isPaging}}
+  const client = new {{this.clientClassName}}({{this.clientParameterNames}});
+  {{#if this.isPaging}}
   const resArray = new Array();
-  for await (let item of client{{#unless isTopLevel}}.{{operationGroupName}}{{/unless}}.{{operationName}}({{this.methodParameterNames}})){
+  for await (let item of client{{#unless this.isTopLevel}}.{{this.operationGroupName}}{{/unless}}.{{this.operationName}}({{this.methodParameterNames}})){
     resArray.push(item);
   }
   console.log(resArray);
   {{else}}  
   const result = await client
-    {{#unless isTopLevel}}
-    .{{operationGroupName}}
+    {{#unless this.isTopLevel}}
+    .{{this.operationGroupName}}
     {{/unless}}
-    .{{operationName}}({{this.methodParameterNames}});
+    .{{this.operationName}}({{this.methodParameterNames}});
   console.log(result);
   
   {{/if}}

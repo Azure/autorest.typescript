@@ -19,5 +19,11 @@ export interface SampleElement {
     methodParameterNames: string,
     clientParamAssignments: string[],
     methodParamAssignments: string[],
-    originalFileLocation?: string
+    originalFileLocation?: string,
+    operationName: string,
+    isTopLevel: boolean,
+    isPaging: boolean,
+    operationGroupName: string,
+    operationDescription: string,
+    clientClassName: string,
 }
