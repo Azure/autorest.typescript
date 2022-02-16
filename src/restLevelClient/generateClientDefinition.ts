@@ -254,9 +254,8 @@ function getOperationReturnType(
   coreClientImports = new Set<string>()
 ) {
   let returnType: string = "HttpResponse";
-  if (operation.responses && operation.responses.length) {
-    const responses = [...operation.responses, ...(operation.exceptions || [])];
-
+  if ((operation.responses && operation.responses.length) || (operation.exceptions && operation.exceptions.length)) {
+    const responses = [...(operation.responses || []), ...(operation.exceptions || [])];
     const responseTypes = responses
       .filter(
         r => r.protocol.http?.statusCodes && r.protocol.http?.statusCodes.length
@@ -268,12 +267,14 @@ function getOperationReturnType(
       });
 
     if (responseTypes.length) {
+      if (responseTypes.indexOf("HttpResponse") > -1 && !coreClientImports.has(returnType)) {
+        coreClientImports.add("HttpResponse");
+      }
       returnType = responseTypes.join(" | ");
     }
   }
-
-  if (returnType === "HttpResponse") {
-    coreClientImports.add(returnType);
+  if (returnType === "HttpResponse" && !coreClientImports.has(returnType)) {
+    coreClientImports.add(returnType)
   }
   return returnType;
 }

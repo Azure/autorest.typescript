@@ -204,6 +204,36 @@ import {
   HttpRedirectsDelete307200Response,
   HttpRedirectsDelete307307Response,
   HttpRedirectsDelete307defaultResponse,
+  HttpClientFailureHead400defaultResponse,
+  HttpClientFailureGet400defaultResponse,
+  HttpClientFailureOptions400defaultResponse,
+  HttpClientFailurePut400defaultResponse,
+  HttpClientFailurePatch400defaultResponse,
+  HttpClientFailurePost400defaultResponse,
+  HttpClientFailureDelete400defaultResponse,
+  HttpClientFailureHead401defaultResponse,
+  HttpClientFailureGet402defaultResponse,
+  HttpClientFailureOptions403defaultResponse,
+  HttpClientFailureGet403defaultResponse,
+  HttpClientFailurePut404defaultResponse,
+  HttpClientFailurePatch405defaultResponse,
+  HttpClientFailurePost406defaultResponse,
+  HttpClientFailureDelete407defaultResponse,
+  HttpClientFailurePut409defaultResponse,
+  HttpClientFailureHead410defaultResponse,
+  HttpClientFailureGet411defaultResponse,
+  HttpClientFailureOptions412defaultResponse,
+  HttpClientFailureGet412defaultResponse,
+  HttpClientFailurePut413defaultResponse,
+  HttpClientFailurePatch414defaultResponse,
+  HttpClientFailurePost415defaultResponse,
+  HttpClientFailureGet416defaultResponse,
+  HttpClientFailureDelete417defaultResponse,
+  HttpClientFailureHead429defaultResponse,
+  HttpServerFailureHead501defaultResponse,
+  HttpServerFailureGet501defaultResponse,
+  HttpServerFailurePost505defaultResponse,
+  HttpServerFailureDelete505defaultResponse,
   HttpRetryHead408200Response,
   HttpRetryHead408defaultResponse,
   HttpRetryPut500200Response,
@@ -303,7 +333,7 @@ import {
   MultipleResponsesGet200ModelA400Invalid200Response,
   MultipleResponsesGet200ModelA202Valid200Response
 } from "./responses";
-import { HttpResponse, Client } from "@azure-rest/core-client";
+import { Client } from "@azure-rest/core-client";
 
 /** Contains operations for HttpFailure operations */
 export interface HttpFailureOperations {
@@ -553,89 +583,129 @@ export interface HttpRedirectsOperations {
 /** Contains operations for HttpClientFailure operations */
 export interface HttpClientFailureOperations {
   /** Return 400 status code - should be represented in the client as an error */
-  head400(options?: HttpClientFailureHead400Parameters): Promise<HttpResponse>;
+  head400(
+    options?: HttpClientFailureHead400Parameters
+  ): Promise<HttpClientFailureHead400defaultResponse>;
   /** Return 400 status code - should be represented in the client as an error */
-  get400(options?: HttpClientFailureGet400Parameters): Promise<HttpResponse>;
+  get400(
+    options?: HttpClientFailureGet400Parameters
+  ): Promise<HttpClientFailureGet400defaultResponse>;
   /** Return 400 status code - should be represented in the client as an error */
   options400(
     options?: HttpClientFailureOptions400Parameters
-  ): Promise<HttpResponse>;
+  ): Promise<HttpClientFailureOptions400defaultResponse>;
   /** Return 400 status code - should be represented in the client as an error */
-  put400(options?: HttpClientFailurePut400Parameters): Promise<HttpResponse>;
+  put400(
+    options?: HttpClientFailurePut400Parameters
+  ): Promise<HttpClientFailurePut400defaultResponse>;
   /** Return 400 status code - should be represented in the client as an error */
   patch400(
     options?: HttpClientFailurePatch400Parameters
-  ): Promise<HttpResponse>;
+  ): Promise<HttpClientFailurePatch400defaultResponse>;
   /** Return 400 status code - should be represented in the client as an error */
-  post400(options?: HttpClientFailurePost400Parameters): Promise<HttpResponse>;
+  post400(
+    options?: HttpClientFailurePost400Parameters
+  ): Promise<HttpClientFailurePost400defaultResponse>;
   /** Return 400 status code - should be represented in the client as an error */
   delete400(
     options?: HttpClientFailureDelete400Parameters
-  ): Promise<HttpResponse>;
+  ): Promise<HttpClientFailureDelete400defaultResponse>;
   /** Return 401 status code - should be represented in the client as an error */
-  head401(options?: HttpClientFailureHead401Parameters): Promise<HttpResponse>;
+  head401(
+    options?: HttpClientFailureHead401Parameters
+  ): Promise<HttpClientFailureHead401defaultResponse>;
   /** Return 402 status code - should be represented in the client as an error */
-  get402(options?: HttpClientFailureGet402Parameters): Promise<HttpResponse>;
+  get402(
+    options?: HttpClientFailureGet402Parameters
+  ): Promise<HttpClientFailureGet402defaultResponse>;
   /** Return 403 status code - should be represented in the client as an error */
   options403(
     options?: HttpClientFailureOptions403Parameters
-  ): Promise<HttpResponse>;
+  ): Promise<HttpClientFailureOptions403defaultResponse>;
   /** Return 403 status code - should be represented in the client as an error */
-  get403(options?: HttpClientFailureGet403Parameters): Promise<HttpResponse>;
+  get403(
+    options?: HttpClientFailureGet403Parameters
+  ): Promise<HttpClientFailureGet403defaultResponse>;
   /** Return 404 status code - should be represented in the client as an error */
-  put404(options?: HttpClientFailurePut404Parameters): Promise<HttpResponse>;
+  put404(
+    options?: HttpClientFailurePut404Parameters
+  ): Promise<HttpClientFailurePut404defaultResponse>;
   /** Return 405 status code - should be represented in the client as an error */
   patch405(
     options?: HttpClientFailurePatch405Parameters
-  ): Promise<HttpResponse>;
+  ): Promise<HttpClientFailurePatch405defaultResponse>;
   /** Return 406 status code - should be represented in the client as an error */
-  post406(options?: HttpClientFailurePost406Parameters): Promise<HttpResponse>;
+  post406(
+    options?: HttpClientFailurePost406Parameters
+  ): Promise<HttpClientFailurePost406defaultResponse>;
   /** Return 407 status code - should be represented in the client as an error */
   delete407(
     options?: HttpClientFailureDelete407Parameters
-  ): Promise<HttpResponse>;
+  ): Promise<HttpClientFailureDelete407defaultResponse>;
   /** Return 409 status code - should be represented in the client as an error */
-  put409(options?: HttpClientFailurePut409Parameters): Promise<HttpResponse>;
+  put409(
+    options?: HttpClientFailurePut409Parameters
+  ): Promise<HttpClientFailurePut409defaultResponse>;
   /** Return 410 status code - should be represented in the client as an error */
-  head410(options?: HttpClientFailureHead410Parameters): Promise<HttpResponse>;
+  head410(
+    options?: HttpClientFailureHead410Parameters
+  ): Promise<HttpClientFailureHead410defaultResponse>;
   /** Return 411 status code - should be represented in the client as an error */
-  get411(options?: HttpClientFailureGet411Parameters): Promise<HttpResponse>;
+  get411(
+    options?: HttpClientFailureGet411Parameters
+  ): Promise<HttpClientFailureGet411defaultResponse>;
   /** Return 412 status code - should be represented in the client as an error */
   options412(
     options?: HttpClientFailureOptions412Parameters
-  ): Promise<HttpResponse>;
+  ): Promise<HttpClientFailureOptions412defaultResponse>;
   /** Return 412 status code - should be represented in the client as an error */
-  get412(options?: HttpClientFailureGet412Parameters): Promise<HttpResponse>;
+  get412(
+    options?: HttpClientFailureGet412Parameters
+  ): Promise<HttpClientFailureGet412defaultResponse>;
   /** Return 413 status code - should be represented in the client as an error */
-  put413(options?: HttpClientFailurePut413Parameters): Promise<HttpResponse>;
+  put413(
+    options?: HttpClientFailurePut413Parameters
+  ): Promise<HttpClientFailurePut413defaultResponse>;
   /** Return 414 status code - should be represented in the client as an error */
   patch414(
     options?: HttpClientFailurePatch414Parameters
-  ): Promise<HttpResponse>;
+  ): Promise<HttpClientFailurePatch414defaultResponse>;
   /** Return 415 status code - should be represented in the client as an error */
-  post415(options?: HttpClientFailurePost415Parameters): Promise<HttpResponse>;
+  post415(
+    options?: HttpClientFailurePost415Parameters
+  ): Promise<HttpClientFailurePost415defaultResponse>;
   /** Return 416 status code - should be represented in the client as an error */
-  get416(options?: HttpClientFailureGet416Parameters): Promise<HttpResponse>;
+  get416(
+    options?: HttpClientFailureGet416Parameters
+  ): Promise<HttpClientFailureGet416defaultResponse>;
   /** Return 417 status code - should be represented in the client as an error */
   delete417(
     options?: HttpClientFailureDelete417Parameters
-  ): Promise<HttpResponse>;
+  ): Promise<HttpClientFailureDelete417defaultResponse>;
   /** Return 429 status code - should be represented in the client as an error */
-  head429(options?: HttpClientFailureHead429Parameters): Promise<HttpResponse>;
+  head429(
+    options?: HttpClientFailureHead429Parameters
+  ): Promise<HttpClientFailureHead429defaultResponse>;
 }
 
 /** Contains operations for HttpServerFailure operations */
 export interface HttpServerFailureOperations {
   /** Return 501 status code - should be represented in the client as an error */
-  head501(options?: HttpServerFailureHead501Parameters): Promise<HttpResponse>;
+  head501(
+    options?: HttpServerFailureHead501Parameters
+  ): Promise<HttpServerFailureHead501defaultResponse>;
   /** Return 501 status code - should be represented in the client as an error */
-  get501(options?: HttpServerFailureGet501Parameters): Promise<HttpResponse>;
+  get501(
+    options?: HttpServerFailureGet501Parameters
+  ): Promise<HttpServerFailureGet501defaultResponse>;
   /** Return 505 status code - should be represented in the client as an error */
-  post505(options?: HttpServerFailurePost505Parameters): Promise<HttpResponse>;
+  post505(
+    options?: HttpServerFailurePost505Parameters
+  ): Promise<HttpServerFailurePost505defaultResponse>;
   /** Return 505 status code - should be represented in the client as an error */
   delete505(
     options?: HttpServerFailureDelete505Parameters
-  ): Promise<HttpResponse>;
+  ): Promise<HttpServerFailureDelete505defaultResponse>;
 }
 
 /** Contains operations for HttpRetry operations */
@@ -1186,128 +1256,182 @@ export interface HttpRedirectsHead307 {
 
 export interface HttpClientFailureHead400 {
   /** Return 400 status code - should be represented in the client as an error */
-  head(options?: HttpClientFailureHead400Parameters): Promise<HttpResponse>;
+  head(
+    options?: HttpClientFailureHead400Parameters
+  ): Promise<HttpClientFailureHead400defaultResponse>;
   /** Return 400 status code - should be represented in the client as an error */
-  get(options?: HttpClientFailureGet400Parameters): Promise<HttpResponse>;
+  get(
+    options?: HttpClientFailureGet400Parameters
+  ): Promise<HttpClientFailureGet400defaultResponse>;
   /** Return 400 status code - should be represented in the client as an error */
   options(
     options?: HttpClientFailureOptions400Parameters
-  ): Promise<HttpResponse>;
+  ): Promise<HttpClientFailureOptions400defaultResponse>;
   /** Return 400 status code - should be represented in the client as an error */
-  put(options?: HttpClientFailurePut400Parameters): Promise<HttpResponse>;
+  put(
+    options?: HttpClientFailurePut400Parameters
+  ): Promise<HttpClientFailurePut400defaultResponse>;
   /** Return 400 status code - should be represented in the client as an error */
-  patch(options?: HttpClientFailurePatch400Parameters): Promise<HttpResponse>;
+  patch(
+    options?: HttpClientFailurePatch400Parameters
+  ): Promise<HttpClientFailurePatch400defaultResponse>;
   /** Return 400 status code - should be represented in the client as an error */
-  post(options?: HttpClientFailurePost400Parameters): Promise<HttpResponse>;
+  post(
+    options?: HttpClientFailurePost400Parameters
+  ): Promise<HttpClientFailurePost400defaultResponse>;
   /** Return 400 status code - should be represented in the client as an error */
-  delete(options?: HttpClientFailureDelete400Parameters): Promise<HttpResponse>;
+  delete(
+    options?: HttpClientFailureDelete400Parameters
+  ): Promise<HttpClientFailureDelete400defaultResponse>;
 }
 
 export interface HttpClientFailureHead401 {
   /** Return 401 status code - should be represented in the client as an error */
-  head(options?: HttpClientFailureHead401Parameters): Promise<HttpResponse>;
+  head(
+    options?: HttpClientFailureHead401Parameters
+  ): Promise<HttpClientFailureHead401defaultResponse>;
 }
 
 export interface HttpClientFailureGet402 {
   /** Return 402 status code - should be represented in the client as an error */
-  get(options?: HttpClientFailureGet402Parameters): Promise<HttpResponse>;
+  get(
+    options?: HttpClientFailureGet402Parameters
+  ): Promise<HttpClientFailureGet402defaultResponse>;
 }
 
 export interface HttpClientFailureOptions403 {
   /** Return 403 status code - should be represented in the client as an error */
   options(
     options?: HttpClientFailureOptions403Parameters
-  ): Promise<HttpResponse>;
+  ): Promise<HttpClientFailureOptions403defaultResponse>;
   /** Return 403 status code - should be represented in the client as an error */
-  get(options?: HttpClientFailureGet403Parameters): Promise<HttpResponse>;
+  get(
+    options?: HttpClientFailureGet403Parameters
+  ): Promise<HttpClientFailureGet403defaultResponse>;
 }
 
 export interface HttpClientFailurePut404 {
   /** Return 404 status code - should be represented in the client as an error */
-  put(options?: HttpClientFailurePut404Parameters): Promise<HttpResponse>;
+  put(
+    options?: HttpClientFailurePut404Parameters
+  ): Promise<HttpClientFailurePut404defaultResponse>;
 }
 
 export interface HttpClientFailurePatch405 {
   /** Return 405 status code - should be represented in the client as an error */
-  patch(options?: HttpClientFailurePatch405Parameters): Promise<HttpResponse>;
+  patch(
+    options?: HttpClientFailurePatch405Parameters
+  ): Promise<HttpClientFailurePatch405defaultResponse>;
 }
 
 export interface HttpClientFailurePost406 {
   /** Return 406 status code - should be represented in the client as an error */
-  post(options?: HttpClientFailurePost406Parameters): Promise<HttpResponse>;
+  post(
+    options?: HttpClientFailurePost406Parameters
+  ): Promise<HttpClientFailurePost406defaultResponse>;
 }
 
 export interface HttpClientFailureDelete407 {
   /** Return 407 status code - should be represented in the client as an error */
-  delete(options?: HttpClientFailureDelete407Parameters): Promise<HttpResponse>;
+  delete(
+    options?: HttpClientFailureDelete407Parameters
+  ): Promise<HttpClientFailureDelete407defaultResponse>;
 }
 
 export interface HttpClientFailurePut409 {
   /** Return 409 status code - should be represented in the client as an error */
-  put(options?: HttpClientFailurePut409Parameters): Promise<HttpResponse>;
+  put(
+    options?: HttpClientFailurePut409Parameters
+  ): Promise<HttpClientFailurePut409defaultResponse>;
 }
 
 export interface HttpClientFailureHead410 {
   /** Return 410 status code - should be represented in the client as an error */
-  head(options?: HttpClientFailureHead410Parameters): Promise<HttpResponse>;
+  head(
+    options?: HttpClientFailureHead410Parameters
+  ): Promise<HttpClientFailureHead410defaultResponse>;
 }
 
 export interface HttpClientFailureGet411 {
   /** Return 411 status code - should be represented in the client as an error */
-  get(options?: HttpClientFailureGet411Parameters): Promise<HttpResponse>;
+  get(
+    options?: HttpClientFailureGet411Parameters
+  ): Promise<HttpClientFailureGet411defaultResponse>;
 }
 
 export interface HttpClientFailureOptions412 {
   /** Return 412 status code - should be represented in the client as an error */
   options(
     options?: HttpClientFailureOptions412Parameters
-  ): Promise<HttpResponse>;
+  ): Promise<HttpClientFailureOptions412defaultResponse>;
   /** Return 412 status code - should be represented in the client as an error */
-  get(options?: HttpClientFailureGet412Parameters): Promise<HttpResponse>;
+  get(
+    options?: HttpClientFailureGet412Parameters
+  ): Promise<HttpClientFailureGet412defaultResponse>;
 }
 
 export interface HttpClientFailurePut413 {
   /** Return 413 status code - should be represented in the client as an error */
-  put(options?: HttpClientFailurePut413Parameters): Promise<HttpResponse>;
+  put(
+    options?: HttpClientFailurePut413Parameters
+  ): Promise<HttpClientFailurePut413defaultResponse>;
 }
 
 export interface HttpClientFailurePatch414 {
   /** Return 414 status code - should be represented in the client as an error */
-  patch(options?: HttpClientFailurePatch414Parameters): Promise<HttpResponse>;
+  patch(
+    options?: HttpClientFailurePatch414Parameters
+  ): Promise<HttpClientFailurePatch414defaultResponse>;
 }
 
 export interface HttpClientFailurePost415 {
   /** Return 415 status code - should be represented in the client as an error */
-  post(options?: HttpClientFailurePost415Parameters): Promise<HttpResponse>;
+  post(
+    options?: HttpClientFailurePost415Parameters
+  ): Promise<HttpClientFailurePost415defaultResponse>;
 }
 
 export interface HttpClientFailureGet416 {
   /** Return 416 status code - should be represented in the client as an error */
-  get(options?: HttpClientFailureGet416Parameters): Promise<HttpResponse>;
+  get(
+    options?: HttpClientFailureGet416Parameters
+  ): Promise<HttpClientFailureGet416defaultResponse>;
 }
 
 export interface HttpClientFailureDelete417 {
   /** Return 417 status code - should be represented in the client as an error */
-  delete(options?: HttpClientFailureDelete417Parameters): Promise<HttpResponse>;
+  delete(
+    options?: HttpClientFailureDelete417Parameters
+  ): Promise<HttpClientFailureDelete417defaultResponse>;
 }
 
 export interface HttpClientFailureHead429 {
   /** Return 429 status code - should be represented in the client as an error */
-  head(options?: HttpClientFailureHead429Parameters): Promise<HttpResponse>;
+  head(
+    options?: HttpClientFailureHead429Parameters
+  ): Promise<HttpClientFailureHead429defaultResponse>;
 }
 
 export interface HttpServerFailureHead501 {
   /** Return 501 status code - should be represented in the client as an error */
-  head(options?: HttpServerFailureHead501Parameters): Promise<HttpResponse>;
+  head(
+    options?: HttpServerFailureHead501Parameters
+  ): Promise<HttpServerFailureHead501defaultResponse>;
   /** Return 501 status code - should be represented in the client as an error */
-  get(options?: HttpServerFailureGet501Parameters): Promise<HttpResponse>;
+  get(
+    options?: HttpServerFailureGet501Parameters
+  ): Promise<HttpServerFailureGet501defaultResponse>;
 }
 
 export interface HttpServerFailurePost505 {
   /** Return 505 status code - should be represented in the client as an error */
-  post(options?: HttpServerFailurePost505Parameters): Promise<HttpResponse>;
+  post(
+    options?: HttpServerFailurePost505Parameters
+  ): Promise<HttpServerFailurePost505defaultResponse>;
   /** Return 505 status code - should be represented in the client as an error */
-  delete(options?: HttpServerFailureDelete505Parameters): Promise<HttpResponse>;
+  delete(
+    options?: HttpServerFailureDelete505Parameters
+  ): Promise<HttpServerFailureDelete505defaultResponse>;
 }
 
 export interface HttpRetryHead408 {
