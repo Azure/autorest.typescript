@@ -15,7 +15,7 @@
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ManagedInstanceQueryStatisticsListMax.json
  */
 import {
-  QueryTimeGrainType,
+  ManagedDatabaseQueriesListByQueryOptionalParams,
   SqlManagementClient
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
@@ -29,10 +29,10 @@ async function obtainQueryExecutionStatisticsExampleWithAllRequestParameters() {
   const startTime = "03/01/2020 16:23:09";
   const endTime = "03/11/2020 14:00:00";
   const interval = "P1D";
-  const options = {
-    startTime: startTime as string,
-    endTime: endTime as string,
-    interval: interval as QueryTimeGrainType
+  const options: ManagedDatabaseQueriesListByQueryOptionalParams = {
+    startTime: startTime,
+    endTime: endTime,
+    interval: interval
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);

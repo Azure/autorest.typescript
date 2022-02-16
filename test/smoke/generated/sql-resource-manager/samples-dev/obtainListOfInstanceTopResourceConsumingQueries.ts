@@ -15,8 +15,7 @@
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ManagedInstanceTopQueriesList.json
  */
 import {
-  QueryTimeGrainType,
-  MetricType,
+  ManagedInstancesListByManagedInstanceOptionalParams,
   SqlManagementClient
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
@@ -27,9 +26,9 @@ async function obtainListOfInstanceTopResourceConsumingQueries() {
   const managedInstanceName = "sqlcrudtest-4645";
   const interval = "PT1H";
   const observationMetric = "duration";
-  const options = {
-    interval: interval as QueryTimeGrainType,
-    observationMetric: observationMetric as MetricType
+  const options: ManagedInstancesListByManagedInstanceOptionalParams = {
+    interval: interval,
+    observationMetric: observationMetric
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);

@@ -16,6 +16,7 @@
  */
 import {
   LeaseContainerRequest,
+  BlobContainersLeaseOptionalParams,
   StorageManagementClient
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
@@ -32,7 +33,7 @@ async function acquireALeaseOnAContainer() {
     leaseId: undefined,
     proposedLeaseId: undefined
   };
-  const options = { parameters: parameters as LeaseContainerRequest };
+  const options: BlobContainersLeaseOptionalParams = { parameters: parameters };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.blobContainers.lease(

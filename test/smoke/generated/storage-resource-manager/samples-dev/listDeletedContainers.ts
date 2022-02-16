@@ -15,7 +15,7 @@
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/DeletedBlobContainersList.json
  */
 import {
-  ListContainersInclude,
+  BlobContainersListOptionalParams,
   StorageManagementClient
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
@@ -25,7 +25,7 @@ async function listDeletedContainers() {
   const resourceGroupName = "res9290";
   const accountName = "sto1590";
   const include = "deleted";
-  const options = { include: include as ListContainersInclude };
+  const options: BlobContainersListOptionalParams = { include: include };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
   const resArray = new Array();

@@ -16,6 +16,7 @@
  */
 import {
   CloudServiceUpdate,
+  CloudServicesUpdateOptionalParams,
   ComputeManagementClient
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
@@ -25,7 +26,7 @@ async function updateExistingCloudServiceToAddTags() {
   const resourceGroupName = "ConstosoRG";
   const cloudServiceName = "{cs-name}";
   const parameters: CloudServiceUpdate = { tags: { documentation: "RestAPI" } };
-  const options = { parameters: parameters as CloudServiceUpdate };
+  const options: CloudServicesUpdateOptionalParams = { parameters: parameters };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.cloudServices.beginUpdateAndWait(

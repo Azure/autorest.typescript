@@ -15,7 +15,7 @@
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/GetAGalleryApplicationVersionWithReplicationStatus.json
  */
 import {
-  ReplicationStatusTypes,
+  GalleryApplicationVersionsGetOptionalParams,
   ComputeManagementClient
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
@@ -27,7 +27,9 @@ async function getAGalleryApplicationVersionWithReplicationStatus() {
   const galleryApplicationName = "myGalleryApplicationName";
   const galleryApplicationVersionName = "1.0.0";
   const expand = "ReplicationStatus";
-  const options = { expand: expand as ReplicationStatusTypes };
+  const options: GalleryApplicationVersionsGetOptionalParams = {
+    expand: expand
+  };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.galleryApplicationVersions.get(

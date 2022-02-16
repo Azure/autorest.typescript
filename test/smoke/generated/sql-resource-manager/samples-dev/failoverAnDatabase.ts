@@ -15,7 +15,7 @@
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/FailoverDatabase.json
  */
 import {
-  ReplicaType,
+  DatabasesFailoverOptionalParams,
   SqlManagementClient
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
@@ -26,7 +26,7 @@ async function failoverAnDatabase() {
   const serverName = "testServer";
   const databaseName = "testDatabase";
   const replicaType = "Primary";
-  const options = { replicaType: replicaType as ReplicaType };
+  const options: DatabasesFailoverOptionalParams = { replicaType: replicaType };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.databases.beginFailoverAndWait(

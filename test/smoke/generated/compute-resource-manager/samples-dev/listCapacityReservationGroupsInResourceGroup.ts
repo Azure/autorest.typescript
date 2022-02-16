@@ -15,7 +15,7 @@
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/ListCapacityReservationGroupsInResourceGroup.json
  */
 import {
-  ExpandTypesForGetCapacityReservationGroups,
+  CapacityReservationGroupsListByResourceGroupOptionalParams,
   ComputeManagementClient
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
@@ -24,8 +24,8 @@ async function listCapacityReservationGroupsInResourceGroup() {
   const subscriptionId = "{subscription-id}";
   const resourceGroupName = "myResourceGroup";
   const expand = "virtualMachines/$ref";
-  const options = {
-    expand: expand as ExpandTypesForGetCapacityReservationGroups
+  const options: CapacityReservationGroupsListByResourceGroupOptionalParams = {
+    expand: expand
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);

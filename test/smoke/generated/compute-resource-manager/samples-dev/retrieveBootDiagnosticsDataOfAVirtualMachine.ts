@@ -14,7 +14,10 @@
  * @summary The operation to retrieve SAS URIs of boot diagnostic logs for a virtual machine in a VM scale set.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/RetrieveBootDiagnosticsDataVMScaleSetVM.json
  */
-import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
+import {
+  VirtualMachineScaleSetVMsRetrieveBootDiagnosticsDataOptionalParams,
+  ComputeManagementClient
+} from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 async function retrieveBootDiagnosticsDataOfAVirtualMachine() {
@@ -23,8 +26,8 @@ async function retrieveBootDiagnosticsDataOfAVirtualMachine() {
   const vmScaleSetName = "myvmScaleSet";
   const instanceId = "0";
   const sasUriExpirationTimeInMinutes = 60;
-  const options = {
-    sasUriExpirationTimeInMinutes: sasUriExpirationTimeInMinutes as number
+  const options: VirtualMachineScaleSetVMsRetrieveBootDiagnosticsDataOptionalParams = {
+    sasUriExpirationTimeInMinutes: sasUriExpirationTimeInMinutes
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);

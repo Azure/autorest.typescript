@@ -15,7 +15,7 @@
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ManagedInstanceQueryStatisticsListMin.json
  */
 import {
-  QueryTimeGrainType,
+  ManagedDatabaseQueriesListByQueryOptionalParams,
   SqlManagementClient
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
@@ -27,7 +27,9 @@ async function obtainQueryExecutionStatisticsMinimalExampleWithOnlyMandatoryRequ
   const databaseName = "database_1";
   const queryId = "42";
   const interval = "PT1H";
-  const options = { interval: interval as QueryTimeGrainType };
+  const options: ManagedDatabaseQueriesListByQueryOptionalParams = {
+    interval: interval
+  };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();

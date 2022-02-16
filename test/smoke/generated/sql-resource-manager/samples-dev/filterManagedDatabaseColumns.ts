@@ -14,7 +14,10 @@
  * @summary List managed database columns
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ManagedColumnsListByDatabaseMax.json
  */
-import { SqlManagementClient } from "@msinternal/sql-resource-manager";
+import {
+  ManagedDatabaseColumnsListByDatabaseOptionalParams,
+  SqlManagementClient
+} from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 async function filterManagedDatabaseColumns() {
@@ -26,11 +29,11 @@ async function filterManagedDatabaseColumns() {
   const table = ["customer", "address"];
   const column = ["username"];
   const orderBy = ["schema asc", "table", "column desc"];
-  const options = {
-    schema: schema as string[],
-    table: table as string[],
-    column: column as string[],
-    orderBy: orderBy as string[]
+  const options: ManagedDatabaseColumnsListByDatabaseOptionalParams = {
+    schema: schema,
+    table: table,
+    column: column,
+    orderBy: orderBy
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);

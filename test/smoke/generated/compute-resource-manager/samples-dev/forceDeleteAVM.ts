@@ -14,7 +14,10 @@
  * @summary The operation to delete a virtual machine.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/ForceDeleteVirtualMachine.json
  */
-import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
+import {
+  VirtualMachinesDeleteOptionalParams,
+  ComputeManagementClient
+} from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 async function forceDeleteAVM() {
@@ -22,7 +25,9 @@ async function forceDeleteAVM() {
   const resourceGroupName = "myResourceGroup";
   const vmName = "myVM";
   const forceDeletion = true;
-  const options = { forceDeletion: forceDeletion as boolean };
+  const options: VirtualMachinesDeleteOptionalParams = {
+    forceDeletion: forceDeletion
+  };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.virtualMachines.beginDeleteAndWait(

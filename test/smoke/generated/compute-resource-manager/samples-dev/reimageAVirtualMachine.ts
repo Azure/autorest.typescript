@@ -16,6 +16,7 @@
  */
 import {
   VirtualMachineReimageParameters,
+  VirtualMachinesReimageOptionalParams,
   ComputeManagementClient
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
@@ -25,7 +26,9 @@ async function reimageAVirtualMachine() {
   const resourceGroupName = "myResourceGroup";
   const vmName = "myVMName";
   const parameters: VirtualMachineReimageParameters = { tempDisk: true };
-  const options = { parameters: parameters as VirtualMachineReimageParameters };
+  const options: VirtualMachinesReimageOptionalParams = {
+    parameters: parameters
+  };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.virtualMachines.beginReimageAndWait(

@@ -163,12 +163,11 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
             sample.methodParamAssignments.push(paramAssignment);
           }
           if (optionalParams.length > 0) {
-            const optionAssignment = `const options = {${optionalParams
+            const optionTypeName = `${opDetails.typeDetails.typeName}OptionalParams`
+            sample.importedTypes?.push(optionTypeName);
+            const optionAssignment = `const options: ${optionTypeName} = {${optionalParams
               .map(item => {
-                if (sample.importedTypes?.indexOf(item[1]) === -1 && clientDetails.allTypes.indexOf(item[1]) > -1 ) {
-                  sample.importedTypes?.push(item[1]);
-                } 
-                return item[0] + ": " + item[0] + " as " + item[1];
+                return item[0] + ": " + item[0];
               })
               .join(", ")}}`;
             sample.methodParamAssignments.push(optionAssignment);

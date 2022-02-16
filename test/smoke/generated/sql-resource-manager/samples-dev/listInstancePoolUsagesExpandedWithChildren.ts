@@ -14,7 +14,10 @@
  * @summary Gets all instance pool usage metrics
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-02-01-preview/examples/ListInstancePoolUsageExpanded.json
  */
-import { SqlManagementClient } from "@msinternal/sql-resource-manager";
+import {
+  UsagesListByInstancePoolOptionalParams,
+  SqlManagementClient
+} from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 async function listInstancePoolUsagesExpandedWithChildren() {
@@ -22,7 +25,9 @@ async function listInstancePoolUsagesExpandedWithChildren() {
   const resourceGroupName = "group1";
   const instancePoolName = "testIP";
   const expandChildren = true;
-  const options = { expandChildren: expandChildren as boolean };
+  const options: UsagesListByInstancePoolOptionalParams = {
+    expandChildren: expandChildren
+  };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();

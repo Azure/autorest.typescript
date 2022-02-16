@@ -15,7 +15,7 @@
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/GetAGalleryWithSelectPermissions.json
  */
 import {
-  SelectPermissions,
+  GalleriesGetOptionalParams,
   ComputeManagementClient
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
@@ -25,7 +25,7 @@ async function getAGalleryWithSelectPermissions() {
   const resourceGroupName = "myResourceGroup";
   const galleryName = "myGalleryName";
   const select = "Permissions";
-  const options = { select: select as SelectPermissions };
+  const options: GalleriesGetOptionalParams = { select: select };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.galleries.get(

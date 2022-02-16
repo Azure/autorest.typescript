@@ -14,7 +14,10 @@
  * @summary Deletes a virtual machine from a VM scale set.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/ForceDeleteVirtualMachineScaleSetVM.json
  */
-import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
+import {
+  VirtualMachineScaleSetVMsDeleteOptionalParams,
+  ComputeManagementClient
+} from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 async function forceDeleteAVirtualMachineFromAVMScaleSet() {
@@ -23,7 +26,9 @@ async function forceDeleteAVirtualMachineFromAVMScaleSet() {
   const vmScaleSetName = "myvmScaleSet";
   const instanceId = "0";
   const forceDeletion = true;
-  const options = { forceDeletion: forceDeletion as boolean };
+  const options: VirtualMachineScaleSetVMsDeleteOptionalParams = {
+    forceDeletion: forceDeletion
+  };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.virtualMachineScaleSetVMs.beginDeleteAndWait(

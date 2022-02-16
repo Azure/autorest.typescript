@@ -14,7 +14,10 @@
  * @summary Lists all shares.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/FileShareSnapshotsList.json
  */
-import { StorageManagementClient } from "@msinternal/storage-resource-manager";
+import {
+  FileSharesListOptionalParams,
+  StorageManagementClient
+} from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 async function listShareSnapshots() {
@@ -22,7 +25,7 @@ async function listShareSnapshots() {
   const resourceGroupName = "res9290";
   const accountName = "sto1590";
   const expand = "snapshots";
-  const options = { expand: expand as string };
+  const options: FileSharesListOptionalParams = { expand: expand };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
   const resArray = new Array();

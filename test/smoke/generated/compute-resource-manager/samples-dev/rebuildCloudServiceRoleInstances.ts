@@ -16,6 +16,7 @@
  */
 import {
   RoleInstances,
+  CloudServicesRebuildOptionalParams,
   ComputeManagementClient
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
@@ -27,7 +28,9 @@ async function rebuildCloudServiceRoleInstances() {
   const parameters: RoleInstances = {
     roleInstances: ["ContosoFrontend_IN_0", "ContosoBackend_IN_1"]
   };
-  const options = { parameters: parameters as RoleInstances };
+  const options: CloudServicesRebuildOptionalParams = {
+    parameters: parameters
+  };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.cloudServices.beginRebuildAndWait(

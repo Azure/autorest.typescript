@@ -16,6 +16,7 @@
  */
 import {
   CloudService,
+  CloudServicesCreateOrUpdateOptionalParams,
   ComputeManagementClient
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
@@ -76,7 +77,9 @@ async function createNewCloudServiceWithSingleRoleAndCertificateFromKeyVault() {
       upgradeMode: "Auto"
     }
   };
-  const options = { parameters: parameters as CloudService };
+  const options: CloudServicesCreateOrUpdateOptionalParams = {
+    parameters: parameters
+  };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.cloudServices.beginCreateOrUpdateAndWait(
