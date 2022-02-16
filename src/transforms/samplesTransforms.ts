@@ -9,7 +9,7 @@ import {
   SchemaType
 } from "@autorest/codemodel";
 import { ClientDetails, ClientOptions } from "../models/clientDetails";
-import { SampleDetails } from "../models/sampleDetails";
+import { SampleDetails, SampleElement } from "../models/sampleDetails";
 import { ExampleValue, TestCodeModel } from "@autorest/testmodeler";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { getAutorestOptions, getSession } from "../autorestSession";
@@ -40,49 +40,54 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
   const session = getSession();
   let examplesModels: SampleDetails[] = [];
   if (codeModel?.testModel?.mockTest?.exampleGroups !== undefined) {
-    for (const exampleGroups of codeModel.testModel.mockTest.exampleGroups) {
+    for (const exampleGroup of codeModel.testModel.mockTest.exampleGroups) {
+      const clientName = getLanguageMetadata(codeModel.language).name;
+      const ogDetails = getTransformedOperationGroup(exampleGroup.operationGroup, operationGroupDetails);
+      if (ogDetails === undefined) {
+        session.error("An error was encountered while transforming sample", [
+          exampleGroup.operationId
+        ]);
+        continue;
+      }
+      const opDetails = getTransformedOperation(
+        exampleGroup.operationGroup,
+        exampleGroup.operation,
+        ogDetails,
+        clientName
+      );
+      let methodName = calculateMethodName(opDetails);
+      if (opDetails.isLro && opDetails.pagination === undefined) {
+        methodName = `${methodName}AndWait`;
+      } else if (opDetails.pagination) {
+        methodName = getPublicMethodName(opDetails);
+      }
+      const opGroupName = ogDetails.name;
+      const bodySchemaNameSet = new Set<string>();
+      const sampleFile: SampleDetails = {
+        sampleFileName: camelCase(exampleGroup.operationId.replace(/_/g, ' ').replace(/\//g, ' Or ').replace(/,|\.|\(|\)/g, ' ').replace('\'s ', ' ')),
+        operationDescription: getLanguageMetadata(
+          exampleGroup.operation.language
+        ).description,
+        operationName: methodName,
+        operationGroupName: normalizeName(opGroupName, NameType.Property),
+        clientClassName: clientName,
+        clientPackageName: packageDetails.name,
+        bodySchemaNames: [],
+        hasBody: false,
+        hasOptional: false,
+        isTopLevel: ogDetails.isTopLevel,
+        isPaging: opDetails.pagination !== undefined,
+        samples: []
+      };
       try {
-        for (const example of exampleGroups.examples) {
-          const clientName = getLanguageMetadata(codeModel.language).name;
-          const ogDetails = getTransformedOperationGroup(example.operationGroup, operationGroupDetails);
-          if (ogDetails === undefined) {
-            session.error("An error was encountered while transforming sample", [
-              exampleGroups.operationId
-            ]);
-            continue;
-          }
-          const opDetails = getTransformedOperation(
-            example.operationGroup,
-            example.operation,
-            ogDetails,
-            clientName
-          );
-          let methodName = calculateMethodName(opDetails);
-          if (opDetails.isLro && opDetails.pagination === undefined) {
-            methodName = `${methodName}AndWait`;
-          } else if (opDetails.pagination) {
-            methodName = getPublicMethodName(opDetails);
-          }
-          const opGroupName = ogDetails.name;
-          const sample: SampleDetails = {
-            operationDescription: getLanguageMetadata(
-              example.operation.language
-            ).description,
-            operationName: methodName,
-            operationGroupName: normalizeName(opGroupName, NameType.Property),
-            clientClassName: clientName,
-            clientPackageName: packageDetails.name,
+        for (const example of exampleGroup.examples) {
+          const sample: SampleElement = {
+            sampleFunctionName: camelCase(example.name.replace(/\//g, " Or ").replace(/,|\.|\(|\)/g, " ").replace('\'s ', ' ')),
             clientParameterNames: "",
             methodParameterNames: "",
-            bodySchemaName: "",
-            hasBody: false,
-            hasOptional: false,
-            sampleFunctionName: camelCase(example.name.replace(/\//g, " Or ").replace(/,|\.|\(|\)/g, " ").replace('\'s ', ' ')),
-            methodParamAssignments: [],
             clientParamAssignments: [],
-            isTopLevel: ogDetails.isTopLevel,
-            isPaging: opDetails.pagination !== undefined,
-            originalFileLocation: example.originalFile
+            methodParamAssignments: [],
+            originalFileLocation: example.originalFile,
           };
           const clientParameterNames = ["credential"];
           const requiredParams = clientDetails.parameters.filter(
@@ -129,12 +134,14 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
             ).name;
             let paramAssignment = "";
             if (methodParameter.parameter.protocol?.http?.["in"] === "body") {
-              sample.hasBody = true;
-              sample.bodySchemaName = getLanguageMetadata(
+              // if existing one parameter hasBody in sample file will be truthy
+              sampleFile.hasBody = true;
+              const bodySchemaName = getLanguageMetadata(
                 methodParameter.exampleValue.schema.language
               ).name;
+              bodySchemaNameSet.add(bodySchemaName);
               paramAssignment =
-                `const ${parameterName}: ${sample.bodySchemaName} = ` +
+                `const ${parameterName}: ${bodySchemaName} = ` +
                 getParameterAssignment(methodParameter.exampleValue);
             } else {
               paramAssignment =
@@ -160,14 +167,17 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
           if (methodParameterNames.length > 0) {
             sample.methodParameterNames = methodParameterNames.join(", ");
           }
-          examplesModels.push(sample);
+          sampleFile.samples.push(sample);
         }
       } catch (error) {
         session.error("An error was encountered while transforming sample", [
-          exampleGroups.operationId
+          exampleGroup.operationId
         ]);
         throw error;
       }
+      // enrich the bodySchemaNames after all examples resolved
+      sampleFile.bodySchemaNames = Array.from(bodySchemaNameSet);
+      examplesModels.push(sampleFile);
     }
   }
   return examplesModels;
@@ -185,8 +195,8 @@ function getParameterAssignment(exampleValue: ExampleValue) {
     case SchemaType.Choice:
     case SchemaType.SealedChoice:
       const choiceSchema = exampleValue.schema as ChoiceSchema;
-      schemaType = choiceSchema.choiceType.type; 
-      break;    
+      schemaType = choiceSchema.choiceType.type;
+      break;
   }
   if (rawValue === null) {
     switch (schemaType) {
@@ -203,7 +213,7 @@ function getParameterAssignment(exampleValue: ExampleValue) {
     }
     return retValue;
   }
-  switch (schemaType) { 
+  switch (schemaType) {
     case SchemaType.String:
     case SchemaType.Char:
     case SchemaType.Time:

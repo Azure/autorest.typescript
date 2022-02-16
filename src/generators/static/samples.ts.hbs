@@ -1,32 +1,35 @@
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-/**
- * This sample demonstrates how to {{operationDescription}}
- *
- * @summary {{operationDescription}}
- * x-ms-original-file: {{originalFileLocation}}
- */
 import {
 {{#if hasBody }}
-  {{bodySchemaName}},
+  {{#each bodySchemaNames}}
+  {{this}},
+  {{/each}}
 {{/if}}
   {{clientClassName}},
 } from "{{clientPackageName}}";
 import { DefaultAzureCredential } from "@azure/identity";
 
-async function {{sampleFunctionName}}() {
-  {{#each clientParamAssignments}}
+{{#each samples}}
+/**
+ * This sample demonstrates how to {{operationDescription}}
+ *
+ * @summary {{operationDescription}}
+ * x-ms-original-file: {{this.originalFileLocation}}
+ */
+async function {{this.sampleFunctionName}}() {
+  {{#each this.clientParamAssignments}}
   {{this}}
   {{/each}}
-  {{#each methodParamAssignments}}
+  {{#each this.methodParamAssignments}}
   {{this}}
   {{/each}}
   const credential = new DefaultAzureCredential();
-  const client = new {{clientClassName}}({{clientParameterNames}});
+  const client = new {{clientClassName}}({{this.clientParameterNames}});
   {{#if isPaging}}
   const resArray = new Array();
-  for await (let item of client{{#unless isTopLevel}}.{{operationGroupName}}{{/unless}}.{{operationName}}({{methodParameterNames}})){
+  for await (let item of client{{#unless isTopLevel}}.{{operationGroupName}}{{/unless}}.{{operationName}}({{this.methodParameterNames}})){
     resArray.push(item);
   }
   console.log(resArray);
@@ -35,10 +38,11 @@ async function {{sampleFunctionName}}() {
     {{#unless isTopLevel}}
     .{{operationGroupName}}
     {{/unless}}
-    .{{operationName}}({{methodParameterNames}});
+    .{{operationName}}({{this.methodParameterNames}});
   console.log(result);
   
   {{/if}}
 }
 
-{{sampleFunctionName}}().catch(console.error);
+{{this.sampleFunctionName}}().catch(console.error);
+{{/each}}
