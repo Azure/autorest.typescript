@@ -9,7 +9,7 @@ import {
   SchemaType
 } from "@autorest/codemodel";
 import { ClientDetails, ClientOptions } from "../models/clientDetails";
-import { SampleDetails, SampleElement } from "../models/sampleDetails";
+import { SampleGroup, SampleDetails } from "../models/sampleDetails";
 import { ExampleValue, TestCodeModel } from "@autorest/testmodeler";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { getAutorestOptions, getSession } from "../autorestSession";
@@ -22,7 +22,7 @@ import { getPublicMethodName } from '../generators/utils/pagingOperations';
 export async function transformSamples(
   codeModel: CodeModel,
   clientDetails: ClientDetails
-): Promise<SampleDetails[]> {
+): Promise<SampleGroup[]> {
   return await getAllExamples(codeModel as TestCodeModel, clientDetails);
 }
 
@@ -38,7 +38,7 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
   const operationGroupDetails = clientDetails.operationGroups;
   const { packageDetails } = getAutorestOptions();
   const session = getSession();
-  let examplesModels: SampleDetails[] = [];
+  let examplesModels: SampleGroup[] = [];
   if (codeModel?.testModel?.mockTest?.exampleGroups !== undefined) {
     for (const exampleGroup of codeModel.testModel.mockTest.exampleGroups) {
       const clientName = getLanguageMetadata(codeModel.language).name;
@@ -63,26 +63,18 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
       }
       const opGroupName = ogDetails.name;
       const bodySchemaNameSet = new Set<string>();
-      const sampleFile: SampleDetails = {
-        sampleFileName: camelCase(exampleGroup.operationId.replace(/_/g, ' ').replace(/\//g, ' Or ').replace(/,|\.|\(|\)/g, ' ').replace('\'s ', ' ')),
-        operationDescription: getLanguageMetadata(
-          exampleGroup.operation.language
-        ).description,
-        operationName: methodName,
-        operationGroupName: normalizeName(opGroupName, NameType.Property),
+      const sampleGroup: SampleGroup = {
+        sampleFileName: camelCase(_transformSpecialLetterToSpace(exampleGroup?.operationId)),
         clientClassName: clientName,
         clientPackageName: packageDetails.name,
         bodySchemaNames: [],
         hasBody: false,
-        hasOptional: false,
-        isTopLevel: ogDetails.isTopLevel,
-        isPaging: opDetails.pagination !== undefined,
         samples: []
       };
       try {
         for (const example of exampleGroup.examples) {
-          const sample: SampleElement = {
-            sampleFunctionName: camelCase(example.name.replace(/\//g, " Or ").replace(/,|\.|\(|\)/g, " ").replace('\'s ', ' ')),
+          const sample: SampleDetails = {
+            sampleFunctionName: camelCase(_transformSpecialLetterToSpace(example?.name)),
             clientParameterNames: "",
             methodParameterNames: "",
             clientParamAssignments: [],
@@ -142,8 +134,8 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
             ).name;
             let paramAssignment = "";
             if (methodParameter.parameter.protocol?.http?.["in"] === "body") {
-              // if existing one parameter hasBody in sample file will be truthy
-              sampleFile.hasBody = true;
+              // tag hasBody will be truthy if existing one parameter 
+              sampleGroup.hasBody = true;
               const bodySchemaName = getLanguageMetadata(
                 methodParameter.exampleValue.schema.language
               ).name;
@@ -175,7 +167,7 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
           if (methodParameterNames.length > 0) {
             sample.methodParameterNames = methodParameterNames.join(", ");
           }
-          sampleFile.samples.push(sample);
+          sampleGroup.samples.push(sample);
         }
       } catch (error) {
         session.error("An error was encountered while transforming sample", [
@@ -184,11 +176,18 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
         throw error;
       }
       // enrich the bodySchemaNames after all examples resolved
-      sampleFile.bodySchemaNames = Array.from(bodySchemaNameSet);
-      examplesModels.push(sampleFile);
+      sampleGroup.bodySchemaNames = Array.from(bodySchemaNameSet);
+      examplesModels.push(sampleGroup);
     }
   }
   return examplesModels;
+}
+
+function _transformSpecialLetterToSpace(str: string) {
+  if(!str) {
+    return str;
+  }
+  return str.replace(/_/g, ' ').replace(/\//g, ' Or ').replace(/,|\.|\(|\)/g, ' ').replace('\'s ', ' ');
 }
 
 function getParameterAssignment(exampleValue: ExampleValue) {
