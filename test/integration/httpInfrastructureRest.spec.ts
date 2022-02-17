@@ -202,7 +202,7 @@ describe("Http infrastructure rest Client", () => {
 
     it("delete407 should return 407", async () => {
       const result = await client.httpClientFailure.delete407();
-      assert.equal(error.statusCode, 407);
+      assert.equal(result.status, "407");
     });
 
     it("head429 should return 429", async () => {
