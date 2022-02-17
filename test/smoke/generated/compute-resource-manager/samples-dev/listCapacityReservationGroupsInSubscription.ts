@@ -24,7 +24,7 @@ async function listCapacityReservationGroupsInSubscription() {
   const subscriptionId = "{subscription-id}";
   const expand = "virtualMachines/$ref";
   const options: CapacityReservationGroupsListBySubscriptionOptionalParams = {
-    expand: expand
+    expand
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);

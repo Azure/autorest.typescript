@@ -30,9 +30,9 @@ async function obtainQueryExecutionStatisticsExampleWithAllRequestParameters() {
   const endTime = "03/11/2020 14:00:00";
   const interval = "P1D";
   const options: ManagedDatabaseQueriesListByQueryOptionalParams = {
-    startTime: startTime,
-    endTime: endTime,
-    interval: interval
+    startTime,
+    endTime,
+    interval
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);

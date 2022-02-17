@@ -25,7 +25,7 @@ async function listShareSnapshots() {
   const resourceGroupName = "res9290";
   const accountName = "sto1590";
   const expand = "snapshots";
-  const options: FileSharesListOptionalParams = { expand: expand };
+  const options: FileSharesListOptionalParams = { expand };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
   const resArray = new Array();

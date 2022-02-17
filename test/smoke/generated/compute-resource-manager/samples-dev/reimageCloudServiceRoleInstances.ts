@@ -28,9 +28,7 @@ async function reimageCloudServiceRoleInstances() {
   const parameters: RoleInstances = {
     roleInstances: ["ContosoFrontend_IN_0", "ContosoBackend_IN_1"]
   };
-  const options: CloudServicesReimageOptionalParams = {
-    parameters: parameters
-  };
+  const options: CloudServicesReimageOptionalParams = { parameters };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.cloudServices.beginReimageAndWait(

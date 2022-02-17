@@ -31,7 +31,7 @@ async function extendImmutabilityPolicy() {
     immutabilityPeriodSinceCreationInDays: 100
   };
   const options: BlobContainersExtendImmutabilityPolicyOptionalParams = {
-    parameters: parameters
+    parameters
   };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);

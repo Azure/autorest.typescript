@@ -26,7 +26,7 @@ async function failoverAnDatabase() {
   const serverName = "testServer";
   const databaseName = "testDatabase";
   const replicaType = "Primary";
-  const options: DatabasesFailoverOptionalParams = { replicaType: replicaType };
+  const options: DatabasesFailoverOptionalParams = { replicaType };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.databases.beginFailoverAndWait(

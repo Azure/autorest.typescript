@@ -25,7 +25,7 @@ async function listDeletedContainers() {
   const resourceGroupName = "res9290";
   const accountName = "sto1590";
   const include = "deleted";
-  const options: BlobContainersListOptionalParams = { include: include };
+  const options: BlobContainersListOptionalParams = { include };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
   const resArray = new Array();

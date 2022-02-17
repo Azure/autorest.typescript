@@ -23,9 +23,7 @@ import { DefaultAzureCredential } from "@azure/identity";
 async function listAvailabilitySetsInASubscription() {
   const subscriptionId = "{subscriptionId}";
   const expand = "virtualMachines$ref";
-  const options: AvailabilitySetsListBySubscriptionOptionalParams = {
-    expand: expand
-  };
+  const options: AvailabilitySetsListBySubscriptionOptionalParams = { expand };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const resArray = new Array();

@@ -25,7 +25,7 @@ async function getListOfServiceTagsWithNoAddressPrefixes() {
   const location = "westeurope";
   const noAddressPrefixes = true;
   const options: ServiceTagInformationListOptionalParams = {
-    noAddressPrefixes: noAddressPrefixes
+    noAddressPrefixes
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);

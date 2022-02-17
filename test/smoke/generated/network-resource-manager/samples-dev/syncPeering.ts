@@ -38,7 +38,7 @@ async function syncPeering() {
     useRemoteGateways: false
   };
   const options: VirtualNetworkPeeringsCreateOrUpdateOptionalParams = {
-    syncRemoteAddressSpace: syncRemoteAddressSpace
+    syncRemoteAddressSpace
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);

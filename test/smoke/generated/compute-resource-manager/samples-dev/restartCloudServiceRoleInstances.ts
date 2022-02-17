@@ -28,9 +28,7 @@ async function restartCloudServiceRoleInstances() {
   const parameters: RoleInstances = {
     roleInstances: ["ContosoFrontend_IN_0", "ContosoBackend_IN_1"]
   };
-  const options: CloudServicesRestartOptionalParams = {
-    parameters: parameters
-  };
+  const options: CloudServicesRestartOptionalParams = { parameters };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.cloudServices.beginRestartAndWait(

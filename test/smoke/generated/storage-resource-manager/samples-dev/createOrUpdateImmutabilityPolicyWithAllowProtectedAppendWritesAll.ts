@@ -31,7 +31,7 @@ async function createOrUpdateImmutabilityPolicyWithAllowProtectedAppendWritesAll
     immutabilityPeriodSinceCreationInDays: 3
   };
   const options: BlobContainersCreateOrUpdateImmutabilityPolicyOptionalParams = {
-    parameters: parameters
+    parameters
   };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);

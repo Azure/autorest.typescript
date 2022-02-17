@@ -32,7 +32,7 @@ async function startPacketCaptureOnVpnConnectionWithFilter() {
     linkConnectionNames: ["siteLink1", "siteLink2"]
   };
   const options: VpnConnectionsStartPacketCaptureOptionalParams = {
-    parameters: parameters
+    parameters
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);

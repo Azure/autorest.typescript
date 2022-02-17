@@ -27,8 +27,8 @@ async function obtainListOfInstanceTopResourceConsumingQueries() {
   const interval = "PT1H";
   const observationMetric = "duration";
   const options: ManagedInstancesListByManagedInstanceOptionalParams = {
-    interval: interval,
-    observationMetric: observationMetric
+    interval,
+    observationMetric
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);

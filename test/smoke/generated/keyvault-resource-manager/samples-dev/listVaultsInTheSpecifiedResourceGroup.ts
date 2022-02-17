@@ -24,7 +24,7 @@ async function listVaultsInTheSpecifiedResourceGroup() {
   const subscriptionId = "00000000-0000-0000-0000-000000000000";
   const resourceGroupName = "sample-group";
   const top = 1;
-  const options: VaultsListByResourceGroupOptionalParams = { top: top };
+  const options: VaultsListByResourceGroupOptionalParams = { top };
   const credential = new DefaultAzureCredential();
   const client = new KeyVaultManagementClient(credential, subscriptionId);
   const resArray = new Array();

@@ -25,7 +25,7 @@ async function listOfServerRecommendedActionsForAllAdvisors() {
   const resourceGroupName = "workloadinsight-demos";
   const serverName = "misosisvr";
   const expand = "recommendedActions";
-  const options: ServerAdvisorsListByServerOptionalParams = { expand: expand };
+  const options: ServerAdvisorsListByServerOptionalParams = { expand };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.serverAdvisors.listByServer(

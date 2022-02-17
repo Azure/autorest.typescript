@@ -166,9 +166,7 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
             const optionTypeName = `${opDetails.typeDetails.typeName}OptionalParams`
             sample.importedTypes?.push(optionTypeName);
             const optionAssignment = `const options: ${optionTypeName} = {${optionalParams
-              .map(item => {
-                return item[0] + ": " + item[0];
-              })
+              .map(item => { return item[0];})
               .join(", ")}}`;
             sample.methodParamAssignments.push(optionAssignment);
             methodParameterNames.push("options");

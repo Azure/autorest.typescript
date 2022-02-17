@@ -34,7 +34,7 @@ async function registerAUserProvidedFunctionAppWithAStaticSiteBuild() {
       "/subscription/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/functionRG/providers/Microsoft.Web/sites/testFunctionApp"
   };
   const options: StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildOptionalParams = {
-    isForced: isForced
+    isForced
   };
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);

@@ -30,7 +30,7 @@ async function startPacketCaptureOnVirtualNetworkGatewayConnectionWithFilter() {
       "{'TracingFlags': 11,'MaxPacketBufferSize': 120,'MaxFileSize': 200,'Filters': [{'SourceSubnets': ['20.1.1.0/24'],'DestinationSubnets': ['10.1.1.0/24'],'SourcePort': [500],'DestinationPort': [4500],'Protocol': 6,'TcpFlags': 16,'CaptureSingleDirectionTrafficOnly': true}]}"
   };
   const options: VirtualNetworkGatewayConnectionsStartPacketCaptureOptionalParams = {
-    parameters: parameters
+    parameters
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);

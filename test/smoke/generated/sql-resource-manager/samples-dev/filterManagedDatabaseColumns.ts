@@ -30,10 +30,10 @@ async function filterManagedDatabaseColumns() {
   const column = ["username"];
   const orderBy = ["schema asc", "table", "column desc"];
   const options: ManagedDatabaseColumnsListByDatabaseOptionalParams = {
-    schema: schema,
-    table: table,
-    column: column,
-    orderBy: orderBy
+    schema,
+    table,
+    column,
+    orderBy
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);

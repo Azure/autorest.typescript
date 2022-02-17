@@ -28,9 +28,7 @@ async function deleteCloudServiceRoleInstances() {
   const parameters: RoleInstances = {
     roleInstances: ["ContosoFrontend_IN_0", "ContosoBackend_IN_1"]
   };
-  const options: CloudServicesDeleteInstancesOptionalParams = {
-    parameters: parameters
-  };
+  const options: CloudServicesDeleteInstancesOptionalParams = { parameters };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.cloudServices.beginDeleteInstancesAndWait(

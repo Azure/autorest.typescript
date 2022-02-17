@@ -26,9 +26,7 @@ async function listOfDatabaseRecommendedActionsForAllAdvisors() {
   const serverName = "misosisvr";
   const databaseName = "IndexAdvisor_test_3";
   const expand = "recommendedActions";
-  const options: DatabaseAdvisorsListByDatabaseOptionalParams = {
-    expand: expand
-  };
+  const options: DatabaseAdvisorsListByDatabaseOptionalParams = { expand };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.databaseAdvisors.listByDatabase(

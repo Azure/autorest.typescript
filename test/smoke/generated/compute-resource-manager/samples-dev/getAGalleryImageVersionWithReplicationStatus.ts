@@ -27,7 +27,7 @@ async function getAGalleryImageVersionWithReplicationStatus() {
   const galleryImageName = "myGalleryImageName";
   const galleryImageVersionName = "1.0.0";
   const expand = "ReplicationStatus";
-  const options: GalleryImageVersionsGetOptionalParams = { expand: expand };
+  const options: GalleryImageVersionsGetOptionalParams = { expand };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.galleryImageVersions.get(

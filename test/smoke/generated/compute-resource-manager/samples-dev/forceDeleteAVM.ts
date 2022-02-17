@@ -25,9 +25,7 @@ async function forceDeleteAVM() {
   const resourceGroupName = "myResourceGroup";
   const vmName = "myVM";
   const forceDeletion = true;
-  const options: VirtualMachinesDeleteOptionalParams = {
-    forceDeletion: forceDeletion
-  };
+  const options: VirtualMachinesDeleteOptionalParams = { forceDeletion };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.virtualMachines.beginDeleteAndWait(

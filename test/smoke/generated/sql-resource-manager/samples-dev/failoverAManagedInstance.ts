@@ -25,9 +25,7 @@ async function failoverAManagedInstance() {
   const resourceGroupName = "group1";
   const managedInstanceName = "instanceName";
   const replicaType = "Primary";
-  const options: ManagedInstancesFailoverOptionalParams = {
-    replicaType: replicaType
-  };
+  const options: ManagedInstancesFailoverOptionalParams = { replicaType };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.managedInstances.beginFailoverAndWait(

@@ -26,7 +26,7 @@ async function forceDeleteAVMScaleSet() {
   const vmScaleSetName = "myvmScaleSet";
   const forceDeletion = true;
   const options: VirtualMachineScaleSetsDeleteOptionalParams = {
-    forceDeletion: forceDeletion
+    forceDeletion
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);

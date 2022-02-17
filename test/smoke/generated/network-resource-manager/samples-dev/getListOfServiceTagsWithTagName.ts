@@ -24,7 +24,7 @@ async function getListOfServiceTagsWithTagName() {
   const subscriptionId = "subid";
   const location = "westeurope";
   const tagName = "ApiManagement";
-  const options: ServiceTagInformationListOptionalParams = { tagName: tagName };
+  const options: ServiceTagInformationListOptionalParams = { tagName };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();

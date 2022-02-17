@@ -26,7 +26,7 @@ async function getShareStats() {
   const accountName = "sto6217";
   const shareName = "share1634";
   const expand = "stats";
-  const options: FileSharesGetOptionalParams = { expand: expand };
+  const options: FileSharesGetOptionalParams = { expand };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.fileShares.get(

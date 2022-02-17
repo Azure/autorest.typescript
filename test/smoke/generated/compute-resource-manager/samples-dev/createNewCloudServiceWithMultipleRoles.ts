@@ -65,9 +65,7 @@ async function createNewCloudServiceWithMultipleRoles() {
       upgradeMode: "Auto"
     }
   };
-  const options: CloudServicesCreateOrUpdateOptionalParams = {
-    parameters: parameters
-  };
+  const options: CloudServicesCreateOrUpdateOptionalParams = { parameters };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.cloudServices.beginCreateOrUpdateAndWait(

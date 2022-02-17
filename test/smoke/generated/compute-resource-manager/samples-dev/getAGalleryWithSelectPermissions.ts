@@ -25,7 +25,7 @@ async function getAGalleryWithSelectPermissions() {
   const resourceGroupName = "myResourceGroup";
   const galleryName = "myGalleryName";
   const select = "Permissions";
-  const options: GalleriesGetOptionalParams = { select: select };
+  const options: GalleriesGetOptionalParams = { select };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.galleries.get(

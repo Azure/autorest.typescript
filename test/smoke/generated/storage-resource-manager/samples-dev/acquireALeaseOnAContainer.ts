@@ -33,7 +33,7 @@ async function acquireALeaseOnAContainer() {
     leaseId: undefined,
     proposedLeaseId: undefined
   };
-  const options: BlobContainersLeaseOptionalParams = { parameters: parameters };
+  const options: BlobContainersLeaseOptionalParams = { parameters };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.blobContainers.lease(

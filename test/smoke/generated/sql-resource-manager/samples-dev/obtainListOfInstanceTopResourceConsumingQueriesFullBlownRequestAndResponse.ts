@@ -30,11 +30,11 @@ async function obtainListOfInstanceTopResourceConsumingQueriesFullBlownRequestAn
   const interval = "P1D";
   const observationMetric = "cpu";
   const options: ManagedInstancesListByManagedInstanceOptionalParams = {
-    databases: databases,
-    startTime: startTime,
-    endTime: endTime,
-    interval: interval,
-    observationMetric: observationMetric
+    databases,
+    startTime,
+    endTime,
+    interval,
+    observationMetric
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);

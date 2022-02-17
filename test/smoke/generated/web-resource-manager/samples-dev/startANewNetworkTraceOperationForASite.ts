@@ -25,9 +25,7 @@ async function startANewNetworkTraceOperationForASite() {
   const resourceGroupName = "testrg123";
   const name = "SampleApp";
   const durationInSeconds = 60;
-  const options: WebAppsStartNetworkTraceOptionalParams = {
-    durationInSeconds: durationInSeconds
-  };
+  const options: WebAppsStartNetworkTraceOptionalParams = { durationInSeconds };
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);
   const result = await client.webApps.beginStartNetworkTraceAndWait(

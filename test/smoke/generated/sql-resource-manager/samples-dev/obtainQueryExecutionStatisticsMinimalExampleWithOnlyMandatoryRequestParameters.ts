@@ -27,9 +27,7 @@ async function obtainQueryExecutionStatisticsMinimalExampleWithOnlyMandatoryRequ
   const databaseName = "database_1";
   const queryId = "42";
   const interval = "PT1H";
-  const options: ManagedDatabaseQueriesListByQueryOptionalParams = {
-    interval: interval
-  };
+  const options: ManagedDatabaseQueriesListByQueryOptionalParams = { interval };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();

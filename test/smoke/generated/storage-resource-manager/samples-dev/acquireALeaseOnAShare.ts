@@ -33,7 +33,7 @@ async function acquireALeaseOnAShare() {
     leaseId: undefined,
     proposedLeaseId: undefined
   };
-  const options: FileSharesLeaseOptionalParams = { parameters: parameters };
+  const options: FileSharesLeaseOptionalParams = { parameters };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.fileShares.lease(

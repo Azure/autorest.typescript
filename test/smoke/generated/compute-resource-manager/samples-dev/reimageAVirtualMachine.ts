@@ -26,9 +26,7 @@ async function reimageAVirtualMachine() {
   const resourceGroupName = "myResourceGroup";
   const vmName = "myVMName";
   const parameters: VirtualMachineReimageParameters = { tempDisk: true };
-  const options: VirtualMachinesReimageOptionalParams = {
-    parameters: parameters
-  };
+  const options: VirtualMachinesReimageOptionalParams = { parameters };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.virtualMachines.beginReimageAndWait(
