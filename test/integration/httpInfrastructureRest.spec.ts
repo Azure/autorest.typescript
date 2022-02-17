@@ -200,7 +200,10 @@ describe("Http infrastructure rest Client", () => {
       assert.equal(result.status, "410");
     });
 
-    it("delete407 should return 407", async () => {
+    it("delete407 should return 407", async function() {
+      if (!isNode) {
+        this.skip();
+      }
       const result = await client.httpClientFailure.delete407();
       assert.equal(result.status, "407");
     });
