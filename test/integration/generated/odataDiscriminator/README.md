@@ -14,6 +14,8 @@ Client that can be used to manage and query indexes and documents, as well as ma
 - [LTS versions of Node.js](https://nodejs.org/about/releases/)
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
+See our [support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUPPORT.md) for more details.
+
 
 
 

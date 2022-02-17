@@ -71,6 +71,7 @@ git clone https://github.com/Azure/autorest.typescript.git
 2. Use the following commands to build the SDK generator:
 
 ```
+npm install -g @autorest/autorest
 cd autorest.typescript
 npm install
 npm run build
@@ -80,11 +81,20 @@ npm run build
    1. Unit tests (which could be found at `test/unit/*`)
    2. Integration tests (which could be found at `test/integration/*`)
    3. Smoke tests
+   4. Version Tolerence Tests
 4. You can run the Unit tests & Integration tests using the following command:
 
 ```
 npm run test
 ```
+
+Running the command above will do the following things:
+
+- Start TestServer
+- Build Autorest.Typescript
+- Generate all scenarios in parallel (i.e. BodyString, BodyComplex, Url, CustomUrl, Header, XmlService
+- Run all the tests under test/integration
+- Stop TestServer
 
 **_Note_**: If your development environment is Windows, then run the command `npm run start-test-server:v2`(in a seperate window) before running `npm run test` and run the command `npm run stop-test-server` after. (In non windows machines, we could run the test-server in the background automatically. But, in Windows machines, it has to be done manually.)
 
@@ -102,6 +112,23 @@ fatal: destination path './.tmp/specs' already exists and is not an empty direct
 ```
 
 delete the `.tmp` folder and then try again.
+
+### Version Tolerence Tests
+
+Version tolerance tests provide coverage against unexpected **breaking changes** when generating a newer version of a swagger. RLCs are not expected to produce breaking changes unless the swagger itself has an API breaking change.
+
+Version Tolerance tests would generate 2 clients one from an initial Swagger and a second from the `updated` swagger that contains changes that are not expected to generate breaking changes. The same set of tests is run against both generated clients to make sure no breaking changes resulted.
+
+Version Tolerance tests have the following npm scripts:
+
+- `npm run validate-version-tolerance`: generates SDKs and tests for breaking changes between swagger versions
+- `generate-version-tolerance`: Generates version tolerance before and after sdks
+- `generate-version-tolerance:tests`: generates `updated` spec.ts based on hand written tests against the initial SDK
+- `test-version-tolerance`: executes all .spec.ts tests under `test/version-tolerance/`
+
+In CI we'll run `npm run validate-version-tolerance` which calls all the other npm scripts. The other individual npm scripts are useful for development.
+
+For more details on the implementation see [#1268](https://github.com/Azure/autorest.typescript/pull/1268)
 
 ### How to add an integration test case
 
@@ -152,6 +179,59 @@ Now, the code will wait for the debugger to be attached. Open the repository in 
 
 If you would like to debug the `testUserCase.spec.ts` file (after the SDK is generated), Open the repository in VS Code -> Open the `testUserCase.spec.ts` file -> Select `Run and Debug` section -> Click `IntegrationTests - Current File`.
 
+#### How to debug an unit test case
+
+- In VS Code, We have created a Debugging profile for UnitTests to start debugging:
+
+  1. Go to the debugger tab
+  2. Select the "Unit Test" Profile
+  3. Click the "Play" button
+
+- Your breakpoints will start hitting, you can set breakpoints in either Test or Generator code
+
+#### Integration Tests
+
+- In order to debug integration tests you need to start the test server, by running:
+
+      npm run start-test-server:v1
+
+- Once the Test Server is running
+
+  1. In VSCode go to the debugger tab
+  2. Select the "IntegrationTests" profile from the drop down
+  3. Click the "Play" button
+
+- **\*\***IMPORTANT**\*\***: Running Integration Tests for debugging, does not re-generate the test clients so make sure that after each change you do:
+
+  - Re-generate all the test swaggers
+
+        npm run generate-swaggers -- --build
+
+  - Re-generate a specific swagger
+
+        npm run generate-swaggers -- -i bodyComplex -b
+
+### Before investing more time investigating
+
+- Make sure to reset autorest, this will ensure that the versions used by Auotrest Core are the correct ones. This will solve many problems
+
+      autorest --reset
+
 ### Things to keep in mind when contributing
 
 If your test case is working fine as expected, now you are ready to create the PR. But, before that, make sure you run all the tests (Unit/Integration/Smoke) and ensure there are no unintentional changes. And if there are any changes (intentional) in any of the test cases, include those files also in your PR.
+
+### I've made changes to Autorest.Typescript, however when re-generating the library my changes don't seem to have been picked up
+
+- Make sure to re-build autorest.typescript after any changes you want to test
+
+      npm run build
+
+### How to update dependencies in generated package.json files?
+
+Our generated SDKs take dependency on various packages which you can see in the generated package.json files. These will need to be upgraded from time to time to stay on the latest major version so that we get bug fixes automatically due to semver.
+
+- Update the version of the dependency you are looking for in the methods `restLevelPackage` and/or `regularAutorestPackage` in the [`packageFileGenerator.ts`](https://github.com/Azure/autorest.typescript/blob/main/src/generators/static/packageFileGenerator.ts) file.
+- Run `npm run build && npm run generate-swaggers && npm run smoke-tests` to update the generated files in the repo and run smoke tests before creating the PR.
+
+For example, see the [PR 1271](https://github.com/Azure/autorest.typescript/pull/1271) that updates the version of `prettier` that the generated SDKs depend on.
