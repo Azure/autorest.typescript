@@ -21,7 +21,7 @@ export interface Product {
   /** The product documentation. */
   constChild: ConstantProduct;
   /** Constant int */
-  constInt: "undefined";
+  constInt: 0;
   /** Constant string */
   constString: "constant";
   /** Constant string as Enum */

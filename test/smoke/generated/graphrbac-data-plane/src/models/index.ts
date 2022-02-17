@@ -343,11 +343,11 @@ export interface GroupCreateParameters {
   /** Group display name */
   displayName: string;
   /** Whether the group is mail-enabled. Must be false. This is because only pure security groups can be created using the Graph API. */
-  mailEnabled: "undefined";
+  mailEnabled: false;
   /** Mail nickname */
   mailNickname: string;
   /** Whether the group is a security group. Must be true. This is because only pure security groups can be created using the Graph API. */
-  securityEnabled: "true";
+  securityEnabled: true;
 }
 
 /** Server response for Get tenant groups API call */

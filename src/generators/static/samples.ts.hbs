@@ -8,8 +8,10 @@
  * x-ms-original-file: {{originalFileLocation}}
  */
 import {
-{{#if hasBody }}
-  {{bodySchemaName}},
+{{#if importedTypes.length }}
+  {{#each importedTypes}}
+  {{this}},
+  {{/each}}
 {{/if}}
   {{clientClassName}},
 } from "{{clientPackageName}}";

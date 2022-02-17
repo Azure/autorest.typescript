@@ -121,7 +121,8 @@ export async function transformCodeModel(
     operationGroups,
     parameters,
     options,
-    endpoint: baseUrl
+    endpoint: baseUrl,
+    allTypes: []
   };
 }
 

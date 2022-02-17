@@ -14,7 +14,10 @@
  * @summary Get top resource consuming queries of a managed instance.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ManagedInstanceTopQueriesList.json
  */
-import { SqlManagementClient } from "@msinternal/sql-resource-manager";
+import {
+  ManagedInstancesListByManagedInstanceOptionalParams,
+  SqlManagementClient
+} from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 async function obtainListOfInstanceTopResourceConsumingQueries() {
@@ -23,7 +26,10 @@ async function obtainListOfInstanceTopResourceConsumingQueries() {
   const managedInstanceName = "sqlcrudtest-4645";
   const interval = "PT1H";
   const observationMetric = "duration";
-  const options = { interval: interval, observationMetric: observationMetric };
+  const options: ManagedInstancesListByManagedInstanceOptionalParams = {
+    interval,
+    observationMetric
+  };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();

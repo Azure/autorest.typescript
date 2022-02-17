@@ -14,7 +14,10 @@
  * @summary List database columns
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ColumnsListByDatabaseMax.json
  */
-import { SqlManagementClient } from "@msinternal/sql-resource-manager";
+import {
+  DatabaseColumnsListByDatabaseOptionalParams,
+  SqlManagementClient
+} from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 async function filterDatabaseColumns() {
@@ -26,11 +29,11 @@ async function filterDatabaseColumns() {
   const table = ["customer", "address"];
   const column = ["username"];
   const orderBy = ["schema asc", "table", "column desc"];
-  const options = {
-    schema: schema,
-    table: table,
-    column: column,
-    orderBy: orderBy
+  const options: DatabaseColumnsListByDatabaseOptionalParams = {
+    schema,
+    table,
+    column,
+    orderBy
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);

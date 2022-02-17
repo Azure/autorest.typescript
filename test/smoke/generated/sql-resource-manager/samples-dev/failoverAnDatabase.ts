@@ -14,7 +14,10 @@
  * @summary Failovers a database.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/FailoverDatabase.json
  */
-import { SqlManagementClient } from "@msinternal/sql-resource-manager";
+import {
+  DatabasesFailoverOptionalParams,
+  SqlManagementClient
+} from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 async function failoverAnDatabase() {
@@ -23,7 +26,7 @@ async function failoverAnDatabase() {
   const serverName = "testServer";
   const databaseName = "testDatabase";
   const replicaType = "Primary";
-  const options = { replicaType: replicaType };
+  const options: DatabasesFailoverOptionalParams = { replicaType };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.databases.beginFailoverAndWait(

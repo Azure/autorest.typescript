@@ -77,6 +77,12 @@ export function generateModels(clientDetails: ClientDetails, project: Project) {
   writeOperationModels(clientDetails, modelsIndexFile);
   writeClientModels(clientDetails, modelsIndexFile);
   modelsIndexFile.fixUnusedIdentifiers();
+  const allTypes = modelsIndexFile.getTypeAliases();
+  clientDetails.allTypes = allTypes.filter(item => {
+    return item.isExported()
+  }).map(item => {
+    return item.getName()
+  });
 }
 
 const writeClientModels = (
@@ -771,6 +777,10 @@ function getPropertyTypeName(
   ignoreNullableOnOptional: boolean
 ) {
   if (property.isConstant) {
+    if (property.type === SchemaType.Number 
+      || property.type === SchemaType.Boolean) {
+      return `${property.defaultValue}`;
+    }
     return `"${getStringForValue(
       property.defaultValue,
       property.type,
