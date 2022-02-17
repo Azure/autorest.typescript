@@ -25,12 +25,18 @@ import {
   getOperationParameters,
   getPathParamDefinitions
 } from "./helpers/operationHelpers";
-import { generateMethodShortcuts, REST_CLIENT_RESERVED } from "./generateMethodShortcuts";
+import {
+  generateMethodShortcuts,
+  REST_CLIENT_RESERVED
+} from "./generateMethodShortcuts";
 import { Methods, PathParameter, Paths } from "./interfaces";
 export let pathDictionary: Paths = {};
 
 export function generatePathFirstClient(model: CodeModel, project: Project) {
-  const name = normalizeName(getLanguageMetadata(model.language).name, NameType.File);
+  const name = normalizeName(
+    getLanguageMetadata(model.language).name,
+    NameType.File
+  );
   const { srcPath } = getAutorestOptions();
   const clientFile = project.createSourceFile(
     path.join(srcPath, `clientDefinitions.ts`),
@@ -48,7 +54,8 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
   for (const operationGroup of model.operationGroups) {
     for (const operation of operationGroup.operations) {
       const operationName = getLanguageMetadata(operation.language).name;
-      const operationDescription = getLanguageMetadata(operation.language).description;
+      const operationDescription = getLanguageMetadata(operation.language)
+        .description;
       const pathParameters: PathParameter[] =
         operation.parameters
           ?.filter(p => p.protocol.http?.in === ParameterLocation.Path)
@@ -104,7 +111,10 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
   clientFile.addInterface({
     name: "Routes",
     isExported: true,
-    callSignatures: getPathFirstRoutesInterfaceDefinition(pathDictionary, clientFile)
+    callSignatures: getPathFirstRoutesInterfaceDefinition(
+      pathDictionary,
+      clientFile
+    )
   });
 
   const clientName = getLanguageMetadata(model.language).name;
@@ -143,13 +153,18 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
     type: Writers.intersectionType(
       "Client",
       Writers.objectType({
-        properties: [{ name: "path", type: "Routes" }, ...shortcutsInOperationGroup]
+        properties: [
+          { name: "path", type: "Routes" },
+          ...shortcutsInOperationGroup
+        ]
       }),
       // If the length of shortcutMethods in operation group and all shortcutMethods
       // is the same, then we don't have any operations at the client level
       // Otherwise we need to make the client interface name an union with the
       // definition of all client level shortcut methods
-      ...(shortcutsInOperationGroup.length !== shortcutElements.length ? [`ClientOperations`] : [])
+      ...(shortcutsInOperationGroup.length !== shortcutElements.length
+        ? [`ClientOperations`]
+        : [])
     )
   });
 
@@ -176,7 +191,11 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
   ]);
 }
 
-function writeShortcutInterface(model: CodeModel, pathDictionary: Paths, clientFile: SourceFile) {
+function writeShortcutInterface(
+  model: CodeModel,
+  pathDictionary: Paths,
+  clientFile: SourceFile
+) {
   const { rlcShortcut } = getAutorestOptions();
   if (!rlcShortcut) {
     return;
@@ -194,11 +213,15 @@ function writeShortcutInterface(model: CodeModel, pathDictionary: Paths, clientF
 
   for (const group of Object.keys(shortcuts)) {
     const groupName =
-      normalizeName(group, NameType.Interface, true, REST_CLIENT_RESERVED) || "Client";
+      normalizeName(group, NameType.Interface, true, REST_CLIENT_RESERVED) ||
+      "Client";
     const groupOperations = shortcuts[group];
 
     clientFile.addInterface({
-      docs: [descriptions.get(group) || `Contains operations for ${groupName} operations`],
+      docs: [
+        descriptions.get(group) ||
+          `Contains operations for ${groupName} operations`
+      ],
       name: `${groupName}Operations`,
       isExported: true,
       methods: groupOperations
@@ -213,8 +236,13 @@ function hasRequiredOptions(operation: Operation) {
     .some(p => p.required);
 }
 
-function getOperationOptionsType(operation: Operation, importedParameters = new Set<string>()) {
-  const paramsName = `${getLanguageMetadata(operation.language).name}Parameters`;
+function getOperationOptionsType(
+  operation: Operation,
+  importedParameters = new Set<string>()
+) {
+  const paramsName = `${
+    getLanguageMetadata(operation.language).name
+  }Parameters`;
   importedParameters.add(paramsName);
 
   return paramsName;
@@ -230,9 +258,14 @@ function getOperationReturnType(
     (operation.responses && operation.responses.length) ||
     (operation.exceptions && operation.exceptions.length)
   ) {
-    const responses = [...(operation.responses ?? []), ...(operation.exceptions ?? [])];
+    const responses = [
+      ...(operation.responses ?? []),
+      ...(operation.exceptions ?? [])
+    ];
     const responseTypes = responses
-      .filter(r => r.protocol.http?.statusCodes && r.protocol.http?.statusCodes.length)
+      .filter(
+        r => r.protocol.http?.statusCodes && r.protocol.http?.statusCodes.length
+      )
       .map(r => {
         const responseName = getResponseTypeName(operation, r);
         importedResponses.add(responseName);
@@ -240,7 +273,10 @@ function getOperationReturnType(
       });
 
     if (responseTypes.length) {
-      if (responseTypes.indexOf("HttpResponse") > -1 && !coreClientImports.has(returnType)) {
+      if (
+        responseTypes.indexOf("HttpResponse") > -1 &&
+        !coreClientImports.has(returnType)
+      ) {
         coreClientImports.add("HttpResponse");
       }
       returnType = responseTypes.join(" | ");
@@ -258,17 +294,27 @@ function getPathFirstRoutesInterfaceDefinition(
 ): CallSignatureDeclarationStructure[] {
   const signatures: CallSignatureDeclarationStructure[] = [];
   for (const key of Object.keys(paths)) {
-    generatePathFirstRouteMethodsDefinition(paths[key].name, paths[key].methods, sourcefile);
+    generatePathFirstRouteMethodsDefinition(
+      paths[key].name,
+      paths[key].methods,
+      sourcefile
+    );
     const pathParams = paths[key].pathParameters;
     signatures.push({
       docs: [
         `Resource for '${key
           .replace(/}/g, "\\}")
-          .replace(/{/g, "\\{")}' has methods for the following verbs: ${Object.keys(
+          .replace(
+            /{/g,
+            "\\{"
+          )}' has methods for the following verbs: ${Object.keys(
           paths[key].methods
         ).join(", ")}`
       ],
-      parameters: [{ name: "path", type: `"${key}"` }, ...getPathParamDefinitions(pathParams)],
+      parameters: [
+        { name: "path", type: `"${key}"` },
+        ...getPathParamDefinitions(pathParams)
+      ],
       returnType: paths[key].name,
       kind: StructureKind.CallSignature
     });
