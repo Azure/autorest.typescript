@@ -954,7 +954,18 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     allowInsecureConnection: true,
     addCredentials: false,
     isTestPackage: true
-  }
+  },
+  httpInfrastructureRest: {
+    swaggerOrConfig: "httpInfrastructure.json",
+    clientName: "HttpInfrastructureRestClient",
+    packageName: "http-infrastructure-rest",
+    licenseHeader: true,
+    restLevelClient: true,
+    rlcShortcut: true,
+    allowInsecureConnection: true,
+    addCredentials: false,
+    isTestPackage: true
+  },
 };
 
 const generateSwaggers = async (
