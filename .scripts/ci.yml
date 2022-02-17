@@ -68,6 +68,11 @@ stages:
               OSVmImage: "ubuntu-18.04"
               NodeTestVersion: "14.x"
               TestType: "node"
+            Linux_Node16:
+              Pool: ${{ parameters.LinuxPool }}
+              OSVmImage: "ubuntu-18.04"
+              NodeTestVersion: "16.x"
+              TestType: "node"
         pool:
           name: $[coalesce(variables['Pool'], '')]
           vmImage: $[coalesce(variables['OSVmImage'], '')]
@@ -112,7 +117,7 @@ stages:
           tag: ci_rlc
 
   # The Prerelease and Release stages are conditioned on whether we are building a pull request and the branch.
-  - ${{if and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'), eq(parameters.IncludeRelease,true))}}:
-      - template: release.yml
+  - ? ${{if and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'), eq(parameters.IncludeRelease,true))}}
+    : - template: release.yml
         parameters:
           DependsOn: BuildStage
