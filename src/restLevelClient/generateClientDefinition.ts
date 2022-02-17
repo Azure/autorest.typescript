@@ -255,7 +255,7 @@ function getOperationReturnType(
 ) {
   let returnType: string = "HttpResponse";
   if ((operation.responses && operation.responses.length) || (operation.exceptions && operation.exceptions.length)) {
-    const responses = [...(operation.responses || []), ...(operation.exceptions || [])];
+    const responses = [...(operation.responses ?? []), ...(operation.exceptions ?? [])]
     const responseTypes = responses
       .filter(
         r => r.protocol.http?.statusCodes && r.protocol.http?.statusCodes.length
