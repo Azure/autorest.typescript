@@ -46,11 +46,6 @@ stages:
         dependsOn: Build
         strategy:
           matrix:
-            Linux_Node10:
-              Pool: ${{ parameters.LinuxPool }}
-              OSVmImage: "ubuntu-18.04"
-              NodeTestVersion: "10.x"
-              TestType: "node"
             macOS_Node12:
               Pool:
               OSVmImage: "macOS-10.15"
@@ -65,6 +60,11 @@ stages:
               Pool: ${{ parameters.LinuxPool }}
               OSVmImage: "ubuntu-18.04"
               NodeTestVersion: "14.x"
+              TestType: "node"
+            Linux_Node16:
+              Pool: ${{ parameters.LinuxPool }}
+              OSVmImage: "ubuntu-18.04"
+              NodeTestVersion: "16.x"
               TestType: "node"
         pool:
           name: $[coalesce(variables['Pool'], '')]
