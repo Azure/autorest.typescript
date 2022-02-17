@@ -31,10 +31,6 @@ describe("Http infrastructure rest Client", () => {
     // Add a policy to setup cookies so that test server knows if the request is a first request
     // or a retry
     client.pipeline.addPolicy(getCookiePolicy(), { phase: "Retry" });
-    // client.pipeline.removePolicy({ name: proxyPolicyName });
-    // client.pipeline.addPolicy(
-    //   proxyPolicy({ host: "http://127.0.0.1", port: 8888 })
-    // );
   });
 
   describe("Success scenarios", () => {
@@ -205,15 +201,8 @@ describe("Http infrastructure rest Client", () => {
     });
 
     it("delete407 should return 407", async () => {
-      try {
-        const result = await client.httpClientFailure.delete407();
-      } catch (error) {
-        if (isNode) {
-          assert.equal(error.statusCode, 407);
-        } else {
-          assert.equal(error.code, "REQUEST_SEND_ERROR");
-        }
-      }
+      const result = await client.httpClientFailure.delete407();
+      assert.equal(error.statusCode, 407);
     });
 
     it("head429 should return 429", async () => {
@@ -283,7 +272,7 @@ describe("Http infrastructure rest Client", () => {
     });
   });
 
-  describe("Failure scenarios", () => {
+  describe("Redirect scenarios", () => {
     it("delete307 should return 200", async () => {
       const response = await client.httpRedirects.delete307();
       assert.equal(response.status, "200");
