@@ -14,7 +14,8 @@ export enum AutorestParams {
   ModelDedup = "--modelerfour.lenient-model-deduplication",
   RestClient = "--rest-level-client=true",
   GenerateTest = "--generate-test=true",
-  GenerateSamples = "--generate-sample=true"
+  GenerateSamples = "--generate-sample=true",
+  MultiClient = "--multi-client"
 }
 
 const getArmReadmes = (): SpecDefinition[] => {
@@ -178,7 +179,7 @@ export const readmes: SpecDefinition[] = [
       "..",
       "./smoke/swagger/purview-administration-rest.md"
     ),
-    params: [AutorestParams.RestClient],
+    params: [AutorestParams.RestClient, AutorestParams.MultiClient],
     buildTag: "ci_rlc"
   },
   {
