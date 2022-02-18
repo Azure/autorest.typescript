@@ -5,10 +5,9 @@ import {
   ImplementationLocation,
   Operation,
   OperationGroup,
-  Protocol,
   SchemaType
 } from "@autorest/codemodel";
-import { ClientDetails, ClientOptions } from "../models/clientDetails";
+import { ClientDetails } from "../models/clientDetails";
 import { SampleGroup, SampleDetails } from "../models/sampleDetails";
 import { ExampleValue, TestCodeModel } from "@autorest/testmodeler";
 import { getLanguageMetadata } from "../utils/languageHelpers";
@@ -18,6 +17,7 @@ import { calculateMethodName } from "../generators/utils/operationsUtils";
 import { camelCase } from "@azure-tools/codegen";
 import { OperationGroupDetails } from "../models/operationDetails";
 import { getPublicMethodName } from '../generators/utils/pagingOperations';
+import { getTypeForSchema } from "../utils/schemaHelpers";
 
 export async function transformSamples(
   codeModel: CodeModel,
@@ -62,14 +62,13 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
         methodName = getPublicMethodName(opDetails);
       }
       const opGroupName = ogDetails.name;
-      const bodySchemaNameSet = new Set<string>();
+      const importedTypeSet = new Set<string>();
       const sampleGroup: SampleGroup = {
         sampleFileName: camelCase(_transformSpecialLetterToSpace(exampleGroup?.operationId)),
         clientClassName: clientName,
         clientPackageName: packageDetails.name,
-        bodySchemaNames: [],
-        hasBody: false,
-        samples: []
+        samples: [],
+        importedTypes: []
       };
       try {
         for (const example of exampleGroup.examples) {
@@ -84,7 +83,7 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
             isPaging: opDetails.pagination !== undefined,
             operationName: methodName,
             clientClassName: clientName,
-            operationGroupName: normalizeName(opGroupName, NameType.Property),
+            operationGroupName: normalizeName(opGroupName, NameType.Property, true),
             operationDescription: getLanguageMetadata(
               exampleGroup.operation.language
             ).description,
@@ -105,7 +104,8 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
             }
             const parameterName = normalizeName(
               getLanguageMetadata(clientParameter.exampleValue.language).name,
-              NameType.Parameter
+              NameType.Parameter,
+              true
             );
             const paramAssignment =
               `const ${parameterName} = ` +
@@ -122,24 +122,29 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
             sample.clientParameterNames = clientParameterNames.join(", ");
           }
           const methodParameterNames = [];
-          const optionalParams = [];
+          const optionalParams: [string, string][] = [];
           for (const methodParameter of example.methodParameters) {
             if (
               methodParameter.exampleValue.schema.type === SchemaType.Constant
             ) {
               continue;
             }
-            const parameterName = getLanguageMetadata(
-              methodParameter.exampleValue.language
-            ).name;
+            const parameterName = normalizeName(
+              getLanguageMetadata(methodParameter.exampleValue.language).name,
+              NameType.Parameter,
+              true
+            );
+            const parameterTypeDetails = getTypeForSchema(
+              methodParameter.exampleValue.schema
+            );
+            const parameterTypeName = parameterTypeDetails.typeName;
             let paramAssignment = "";
             if (methodParameter.parameter.protocol?.http?.["in"] === "body") {
-              // tag hasBody will be truthy if existing one parameter 
-              sampleGroup.hasBody = true;
-              const bodySchemaName = getLanguageMetadata(
-                methodParameter.exampleValue.schema.language
-              ).name;
-              bodySchemaNameSet.add(bodySchemaName);
+              let bodySchemaName = parameterTypeName;
+              importedTypeSet.add(parameterTypeName);
+              if (methodParameter.exampleValue.schema.type === SchemaType.AnyObject || methodParameter.exampleValue.schema.type === SchemaType.Any) {
+                bodySchemaName = "Record<string, unknown>";
+              }
               paramAssignment =
                 `const ${parameterName}: ${bodySchemaName} = ` +
                 getParameterAssignment(methodParameter.exampleValue);
@@ -149,17 +154,17 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
                 getParameterAssignment(methodParameter.exampleValue);
             }
             if (!methodParameter.parameter.required) {
-              optionalParams.push(parameterName);
+              optionalParams.push([parameterName, parameterTypeName]);
             } else {
               methodParameterNames.push(parameterName);
             }
             sample.methodParamAssignments.push(paramAssignment);
           }
           if (optionalParams.length > 0) {
-            const optionAssignment = `const options = {${optionalParams
-              .map(item => {
-                return item + ": " + item;
-              })
+            const optionTypeName = `${opDetails.typeDetails.typeName}OptionalParams`;
+            importedTypeSet.add(optionTypeName);
+            const optionAssignment = `const options: ${optionTypeName} = {${optionalParams
+              .map(item => { return item[0]; })
               .join(", ")}}`;
             sample.methodParamAssignments.push(optionAssignment);
             methodParameterNames.push("options");
@@ -175,8 +180,8 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
         ]);
         throw error;
       }
-      // enrich the bodySchemaNames after all examples resolved
-      sampleGroup.bodySchemaNames = Array.from(bodySchemaNameSet);
+      // enrich the importedTypes after all examples resolved
+      sampleGroup.importedTypes = Array.from(importedTypeSet);
       examplesModels.push(sampleGroup);
     }
   }
@@ -184,7 +189,7 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
 }
 
 function _transformSpecialLetterToSpace(str: string) {
-  if(!str) {
+  if (!str) {
     return str;
   }
   return str.replace(/_/g, ' ').replace(/\//g, ' Or ').replace(/,|\.|\(|\)/g, ' ').replace('\'s ', ' ');
@@ -210,6 +215,7 @@ function getParameterAssignment(exampleValue: ExampleValue) {
       case SchemaType.Object:
       case SchemaType.Any:
       case SchemaType.Dictionary:
+      case SchemaType.AnyObject:
         retValue = `{}`;
         break;
       case SchemaType.Array:

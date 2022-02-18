@@ -1,10 +1,9 @@
 export interface SampleGroup {
     sampleFileName: string,
-    hasBody: boolean,
-    bodySchemaNames: string[],
     clientClassName: string,
     clientPackageName: string,
     samples: SampleDetails[],
+    importedTypes?: string[],
 }
 
 export interface SampleDetails {

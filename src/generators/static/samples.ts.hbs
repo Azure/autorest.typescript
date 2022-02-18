@@ -2,8 +2,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 import {
-{{#if hasBody }}
-  {{#each bodySchemaNames}}
+{{#if importedTypes.length }}
+  {{#each importedTypes}}
   {{this}},
   {{/each}}
 {{/if}}
