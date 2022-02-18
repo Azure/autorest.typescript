@@ -14,13 +14,16 @@
  * @summary Lists all availability sets in a subscription.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/ListAvailabilitySetsInASubscription.json
  */
-import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
+import {
+  AvailabilitySetsListBySubscriptionOptionalParams,
+  ComputeManagementClient
+} from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 async function listAvailabilitySetsInASubscription() {
   const subscriptionId = "{subscriptionId}";
   const expand = "virtualMachines$ref";
-  const options = { expand: expand };
+  const options: AvailabilitySetsListBySubscriptionOptionalParams = { expand };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const resArray = new Array();

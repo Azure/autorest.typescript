@@ -14,7 +14,10 @@
  * @summary Get query execution statistics by query id.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ManagedInstanceQueryStatisticsListMax.json
  */
-import { SqlManagementClient } from "@msinternal/sql-resource-manager";
+import {
+  ManagedDatabaseQueriesListByQueryOptionalParams,
+  SqlManagementClient
+} from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 async function obtainQueryExecutionStatisticsExampleWithAllRequestParameters() {
@@ -26,10 +29,10 @@ async function obtainQueryExecutionStatisticsExampleWithAllRequestParameters() {
   const startTime = "03/01/2020 16:23:09";
   const endTime = "03/11/2020 14:00:00";
   const interval = "P1D";
-  const options = {
-    startTime: startTime,
-    endTime: endTime,
-    interval: interval
+  const options: ManagedDatabaseQueriesListByQueryOptionalParams = {
+    startTime,
+    endTime,
+    interval
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);

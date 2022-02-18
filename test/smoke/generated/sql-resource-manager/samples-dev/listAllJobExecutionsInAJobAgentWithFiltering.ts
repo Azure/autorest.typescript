@@ -14,7 +14,10 @@
  * @summary Lists all executions in a job agent.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ListJobExecutionsByAgentWithFilter.json
  */
-import { SqlManagementClient } from "@msinternal/sql-resource-manager";
+import {
+  JobExecutionsListByAgentOptionalParams,
+  SqlManagementClient
+} from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 async function listAllJobExecutionsInAJobAgentWithFiltering() {
@@ -27,12 +30,12 @@ async function listAllJobExecutionsInAJobAgentWithFiltering() {
   const endTimeMin = new Date("2017-03-21T19:20:00Z");
   const endTimeMax = new Date("2017-03-21T19:25:00Z");
   const isActive = false;
-  const options = {
-    createTimeMin: createTimeMin,
-    createTimeMax: createTimeMax,
-    endTimeMin: endTimeMin,
-    endTimeMax: endTimeMax,
-    isActive: isActive
+  const options: JobExecutionsListByAgentOptionalParams = {
+    createTimeMin,
+    createTimeMax,
+    endTimeMin,
+    endTimeMax,
+    isActive
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);

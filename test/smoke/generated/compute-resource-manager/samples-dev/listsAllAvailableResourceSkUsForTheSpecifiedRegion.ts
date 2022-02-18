@@ -14,13 +14,16 @@
  * @summary Gets the list of Microsoft.Compute SKUs available for your Subscription.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/skus/ListAvailableResourceSkusForARegion.json
  */
-import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
+import {
+  ResourceSkusListOptionalParams,
+  ComputeManagementClient
+} from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 async function listsAllAvailableResourceSkUsForTheSpecifiedRegion() {
   const subscriptionId = "{subscription-id}";
   const filter = "location eq 'westus'";
-  const options = { filter: filter };
+  const options: ResourceSkusListOptionalParams = { filter };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const resArray = new Array();

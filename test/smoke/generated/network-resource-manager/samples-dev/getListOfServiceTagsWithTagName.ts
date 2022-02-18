@@ -14,14 +14,17 @@
  * @summary Gets a list of service tag information resources with pagination.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ServiceTagInformationListResultWithTagname.json
  */
-import { NetworkManagementClient } from "@msinternal/network-resource-manager";
+import {
+  ServiceTagInformationListOptionalParams,
+  NetworkManagementClient
+} from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 async function getListOfServiceTagsWithTagName() {
   const subscriptionId = "subid";
   const location = "westeurope";
   const tagName = "ApiManagement";
-  const options = { tagName: tagName };
+  const options: ServiceTagInformationListOptionalParams = { tagName };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();

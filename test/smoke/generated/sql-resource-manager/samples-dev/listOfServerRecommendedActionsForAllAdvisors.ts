@@ -14,7 +14,10 @@
  * @summary Gets a list of server advisors.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ServerRecommendedActionListExpand.json
  */
-import { SqlManagementClient } from "@msinternal/sql-resource-manager";
+import {
+  ServerAdvisorsListByServerOptionalParams,
+  SqlManagementClient
+} from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 async function listOfServerRecommendedActionsForAllAdvisors() {
@@ -22,7 +25,7 @@ async function listOfServerRecommendedActionsForAllAdvisors() {
   const resourceGroupName = "workloadinsight-demos";
   const serverName = "misosisvr";
   const expand = "recommendedActions";
-  const options = { expand: expand };
+  const options: ServerAdvisorsListByServerOptionalParams = { expand };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.serverAdvisors.listByServer(

@@ -65,7 +65,7 @@ export type PolymorphicObjectDetails = BasicObjectDetails & {
 export interface PropertyDetails {
   name: string;
   description?: string;
-  defaultValue?: string;
+  defaultValue?: string | number | boolean;
   serializedName: string;
   type: string;
   required: boolean;
@@ -83,7 +83,7 @@ export interface TypeDetails {
   typeName: string;
   isConstant?: boolean;
   nullable?: boolean;
-  defaultValue?: string;
+  defaultValue?: string | number | boolean;
   kind: PropertyKind;
   usedModels: string[];
 }

@@ -16,6 +16,7 @@
  */
 import {
   ImmutabilityPolicy,
+  BlobContainersExtendImmutabilityPolicyOptionalParams,
   StorageManagementClient
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
@@ -29,7 +30,9 @@ async function extendImmutabilityPolicy() {
   const parameters: ImmutabilityPolicy = {
     immutabilityPeriodSinceCreationInDays: 100
   };
-  const options = { parameters: parameters };
+  const options: BlobContainersExtendImmutabilityPolicyOptionalParams = {
+    parameters
+  };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.blobContainers.extendImmutabilityPolicy(

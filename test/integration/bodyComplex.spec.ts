@@ -1,6 +1,6 @@
 import { assert } from "chai";
 import * as moment from "moment";
-import { BodyComplexWithTracing } from "./generated/bodyComplexWithTracing/src";
+import { BodyComplexWithTracing, DotFishUnion } from "./generated/bodyComplexWithTracing/src";
 import {
   BodyComplexClient,
   Sawshark,
