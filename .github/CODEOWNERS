@@ -1,2 +1,9 @@
 # Default owners
 * @sarangan12 @joheredi @JonathanCrd
+
+################
+# Automation
+################
+
+# Git Hub bot rules
+/.github/fabricbot.json
