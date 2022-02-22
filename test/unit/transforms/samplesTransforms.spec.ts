@@ -67,7 +67,7 @@ describe("transformSamples", () => {
         // validate the two examples details
         assert.strictEqual(result.clientClassName, codeModel.language.default.name);
         assert.strictEqual(result.clientPackageName, autorestSession.getAutorestOptions().packageDetails.name);
-        assert.strictEqual(result.sampleFileName, "clustersGet"); // devired from operation_id
+        assert.strictEqual(result.sampleFileName, "clustersGetSample"); // devired from operation_id
         assert.strictEqual(result.samples.length, 2);
         assert.strictEqual(result.samples[0].sampleFunctionName, "kustoClustersGet");
         assert.strictEqual(result.samples[0].originalFileLocation, "kustoClustersGet.json");
@@ -78,6 +78,8 @@ describe("transformSamples", () => {
         assert.strictEqual(result.samples[0].operationName, 'beginClustersGetAndWait');
         assert.strictEqual(result.samples[1].operationName, 'beginClustersGetAndWait');
     })
+
+
 
     // helper functions to mock test data
     const getMockOperation = () => new Operation('Get', 'Get a Kusto Cluster');
