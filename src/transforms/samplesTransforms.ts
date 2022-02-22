@@ -49,6 +49,10 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
         ]);
         continue;
       }
+      if (!(exampleGroup?.examples?.length > 0)) {
+        // Skip tranforming sample detail no given example in group
+        continue;
+      }
       const opDetails = getTransformedOperation(
         exampleGroup.operationGroup,
         exampleGroup.operation,
@@ -63,8 +67,9 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
       }
       const opGroupName = ogDetails.name;
       const importedTypeSet = new Set<string>();
+      const operatonConcante = `${exampleGroup?.operationGroup?.language?.default?.name}${exampleGroup?.operation?.language?.default?.name}`;
       const sampleGroup: SampleGroup = {
-        sampleFileName: camelCase(_transformSpecialLetterToSpace(exampleGroup?.operationId)),
+        sampleFileName: `${camelCase(_transformSpecialLetterToSpace(operatonConcante))}Sample`,
         clientClassName: clientName,
         clientPackageName: packageDetails.name,
         samples: [],
@@ -180,9 +185,11 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
         ]);
         throw error;
       }
-      // enrich the importedTypes after all examples resolved
-      sampleGroup.importedTypes = Array.from(importedTypeSet);
-      examplesModels.push(sampleGroup);
+      if (sampleGroup.samples.length > 0) {
+        // enrich the importedTypes after all examples resolved
+        sampleGroup.importedTypes = Array.from(importedTypeSet);
+        examplesModels.push(sampleGroup);
+      }
     }
   }
   return examplesModels;
