@@ -247,7 +247,7 @@ declare namespace Client_2 {
         MetadataPolicyListAll,
         MetadataPolicyUpdate,
         Routes,
-        PurviewMetadataPoliciesRestClient
+        PurviewMetadataPolicies_2 as PurviewMetadataPolicies
     }
 }
 
@@ -263,7 +263,7 @@ declare namespace Client_3 {
         ResourceSetRulesGetResourceSetRule,
         ResourceSetRulesListResourceSetRules,
         Routes_2 as Routes,
-        PurviewAccountRestClient
+        PurviewAccount_2 as PurviewAccount
     }
 }
 
@@ -560,6 +560,12 @@ interface ComplexReplacerConfigOutput {
     // (undocumented)
     typeName?: string;
 }
+
+// @public (undocumented)
+export function createPurviewAccount(endpoint: string, credentials: TokenCredential, options?: ClientOptions): PurviewAccount_2;
+
+// @public (undocumented)
+export function createPurviewMetadataPolicies(Endpoint: string, credentials: TokenCredential, options?: ClientOptions): PurviewMetadataPolicies_2;
 
 // @public (undocumented)
 interface DataPlaneAccountUpdateParameters {
@@ -1256,7 +1262,7 @@ interface PrivateLinkServiceConnectionStateOutput {
 
 declare namespace PurviewAccount {
     export {
-        PurviewAccountClient,
+        createPurviewAccount,
         Parameters_3 as Parameters,
         Responses_2 as Responses,
         Client_3 as Client,
@@ -1268,16 +1274,13 @@ declare namespace PurviewAccount {
 export { PurviewAccount }
 
 // @public (undocumented)
-export function PurviewAccountClient(endpoint: string, credentials: TokenCredential, options?: ClientOptions): PurviewAccountRestClient;
-
-// @public (undocumented)
-type PurviewAccountRestClient = Client & {
+type PurviewAccount_2 = Client & {
     path: Routes_2;
 };
 
 declare namespace PurviewMetadataPolicies {
     export {
-        PurviewMetadataPoliciesClient,
+        createPurviewMetadataPolicies,
         Parameters_2 as Parameters,
         Responses,
         Client_2 as Client,
@@ -1289,10 +1292,7 @@ declare namespace PurviewMetadataPolicies {
 export { PurviewMetadataPolicies }
 
 // @public (undocumented)
-export function PurviewMetadataPoliciesClient(Endpoint: string, credentials: TokenCredential, options?: ClientOptions): PurviewMetadataPoliciesRestClient;
-
-// @public (undocumented)
-type PurviewMetadataPoliciesRestClient = Client & {
+type PurviewMetadataPolicies_2 = Client & {
     path: Routes;
 };
 

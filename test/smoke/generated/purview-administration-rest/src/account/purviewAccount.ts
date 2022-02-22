@@ -3,13 +3,13 @@
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { TokenCredential } from "@azure/core-auth";
-import { PurviewAccountRestClient } from "./clientDefinitions";
+import { PurviewAccount } from "./clientDefinitions";
 
-export function PurviewAccount(
+export function createPurviewAccount(
   endpoint: string,
   credentials: TokenCredential,
   options: ClientOptions = {}
-): PurviewAccountRestClient {
+): PurviewAccount {
   const baseUrl = options.baseUrl ?? `${endpoint}`;
   options.apiVersion = options.apiVersion ?? "2019-11-01-preview";
   options = {
@@ -19,11 +19,7 @@ export function PurviewAccount(
     }
   };
 
-  const client = getClient(
-    baseUrl,
-    credentials,
-    options
-  ) as PurviewAccountRestClient;
+  const client = getClient(baseUrl, credentials, options) as PurviewAccount;
 
   return client;
 }
