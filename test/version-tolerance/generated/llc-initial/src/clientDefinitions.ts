@@ -27,7 +27,7 @@ export interface Routes {
   (path: "/servicedriven/parameters"): GetRequired;
 }
 
-export type LLCClientRestClient = Client & {
+export type LLCClient = Client & {
   path: Routes;
   params: ParamsOperations;
 };

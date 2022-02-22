@@ -3,14 +3,14 @@
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import "@azure/core-auth";
-import { LLCClientRestClient } from "./clientDefinitions";
+import { LLCClient } from "./clientDefinitions";
 
-export default function LLCClient(
+export default function createLLCClient(
   options: ClientOptions = {}
-): LLCClientRestClient {
+): LLCClient {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
 
-  const client = getClient(baseUrl, options) as LLCClientRestClient;
+  const client = getClient(baseUrl, options) as LLCClient;
 
   return {
     ...client,
