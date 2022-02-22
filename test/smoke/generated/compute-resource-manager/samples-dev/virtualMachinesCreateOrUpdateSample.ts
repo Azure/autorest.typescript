@@ -73,6 +73,7 @@ async function createALinuxVMWithAPatchSettingAssessmentModeOfImageDefault() {
 createALinuxVMWithAPatchSettingAssessmentModeOfImageDefault().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to The operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
  *
@@ -130,6 +131,7 @@ async function createALinuxVMWithAPatchSettingPatchModeOfImageDefault() {
 }
 
 createALinuxVMWithAPatchSettingPatchModeOfImageDefault().catch(console.error);
+
 /**
  * This sample demonstrates how to The operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
  *
@@ -192,6 +194,7 @@ async function createALinuxVMWithAPatchSettingsPatchModeAndAssessmentModeSetToAu
 createALinuxVMWithAPatchSettingsPatchModeAndAssessmentModeSetToAutomaticByPlatform().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to The operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
  *
@@ -243,6 +246,7 @@ async function createAVMFromASharedGalleryImage() {
 }
 
 createAVMFromASharedGalleryImage().catch(console.error);
+
 /**
  * This sample demonstrates how to The operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
  *
@@ -304,6 +308,7 @@ async function createAVMWithHibernationEnabled() {
 }
 
 createAVMWithHibernationEnabled().catch(console.error);
+
 /**
  * This sample demonstrates how to The operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
  *
@@ -361,6 +366,7 @@ async function createAVMWithUefiSettingsOfSecureBootAndVTpm() {
 }
 
 createAVMWithUefiSettingsOfSecureBootAndVTpm().catch(console.error);
+
 /**
  * This sample demonstrates how to The operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
  *
@@ -422,6 +428,7 @@ async function createAVMWithUserData() {
 }
 
 createAVMWithUserData().catch(console.error);
+
 /**
  * This sample demonstrates how to The operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
  *
@@ -486,6 +493,7 @@ async function createAVMWithVMSizeProperties() {
 }
 
 createAVMWithVMSizeProperties().catch(console.error);
+
 /**
  * This sample demonstrates how to The operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
  *
@@ -552,6 +560,7 @@ async function createAVMWithNetworkInterfaceConfiguration() {
 }
 
 createAVMWithNetworkInterfaceConfiguration().catch(console.error);
+
 /**
  * This sample demonstrates how to The operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
  *
@@ -612,6 +621,7 @@ async function createAWindowsVMWithAPatchSettingAssessmentModeOfImageDefault() {
 createAWindowsVMWithAPatchSettingAssessmentModeOfImageDefault().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to The operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
  *
@@ -672,6 +682,7 @@ async function createAWindowsVMWithAPatchSettingPatchModeOfAutomaticByOS() {
 createAWindowsVMWithAPatchSettingPatchModeOfAutomaticByOS().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to The operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
  *
@@ -735,6 +746,7 @@ async function createAWindowsVMWithAPatchSettingPatchModeOfAutomaticByPlatformAn
 createAWindowsVMWithAPatchSettingPatchModeOfAutomaticByPlatformAndEnableHotpatchingSetToTrue().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to The operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
  *
@@ -793,6 +805,7 @@ async function createAWindowsVMWithAPatchSettingPatchModeOfManual() {
 }
 
 createAWindowsVMWithAPatchSettingPatchModeOfManual().catch(console.error);
+
 /**
  * This sample demonstrates how to The operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
  *
@@ -856,6 +869,7 @@ async function createAWindowsVMWithPatchSettingsPatchModeAndAssessmentModeSetToA
 createAWindowsVMWithPatchSettingsPatchModeAndAssessmentModeSetToAutomaticByPlatform().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to The operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
  *
@@ -911,6 +925,7 @@ async function createACustomImageVMFromAnUnmanagedGeneralizedOSImage() {
 }
 
 createACustomImageVMFromAnUnmanagedGeneralizedOSImage().catch(console.error);
+
 /**
  * This sample demonstrates how to The operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
  *
@@ -987,6 +1002,7 @@ async function createAPlatformImageVMWithUnmanagedOSAndDataDisks() {
 }
 
 createAPlatformImageVMWithUnmanagedOSAndDataDisks().catch(console.error);
+
 /**
  * This sample demonstrates how to The operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
  *
@@ -1038,6 +1054,7 @@ async function createAVMFromACustomImage() {
 }
 
 createAVMFromACustomImage().catch(console.error);
+
 /**
  * This sample demonstrates how to The operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
  *
@@ -1089,6 +1106,7 @@ async function createAVMFromAGeneralizedSharedImage() {
 }
 
 createAVMFromAGeneralizedSharedImage().catch(console.error);
+
 /**
  * This sample demonstrates how to The operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
  *
@@ -1135,6 +1153,7 @@ async function createAVMFromASpecializedSharedImage() {
 }
 
 createAVMFromASpecializedSharedImage().catch(console.error);
+
 /**
  * This sample demonstrates how to The operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
  *
@@ -1195,6 +1214,7 @@ async function createAVMInAVirtualMachineScaleSetWithCustomerAssignedPlatformFau
 createAVMInAVirtualMachineScaleSetWithCustomerAssignedPlatformFaultDomain().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to The operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
  *
@@ -1252,6 +1272,7 @@ async function createAVMInAnAvailabilitySet() {
 }
 
 createAVMInAnAvailabilitySet().catch(console.error);
+
 /**
  * This sample demonstrates how to The operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
  *
@@ -1321,6 +1342,7 @@ async function createAVMWithApplicationProfile() {
 }
 
 createAVMWithApplicationProfile().catch(console.error);
+
 /**
  * This sample demonstrates how to The operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
  *
@@ -1410,6 +1432,7 @@ async function createAVMWithDiskEncryptionSetResourceIdInTheOSDiskAndDataDisk() 
 createAVMWithDiskEncryptionSetResourceIdInTheOSDiskAndDataDisk().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to The operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
  *
@@ -1469,6 +1492,7 @@ async function createAVMWithHostEncryptionUsingEncryptionAtHostProperty() {
 }
 
 createAVMWithHostEncryptionUsingEncryptionAtHostProperty().catch(console.error);
+
 /**
  * This sample demonstrates how to The operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
  *
@@ -1532,6 +1556,7 @@ async function createAVMWithScheduledEventsProfile() {
 }
 
 createAVMWithScheduledEventsProfile().catch(console.error);
+
 /**
  * This sample demonstrates how to The operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
  *
@@ -1590,6 +1615,7 @@ async function createAVMWithAMarketplaceImagePlan() {
 }
 
 createAVMWithAMarketplaceImagePlan().catch(console.error);
+
 /**
  * This sample demonstrates how to The operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
  *
@@ -1651,6 +1677,7 @@ async function createAVMWithAnExtensionsTimeBudget() {
 }
 
 createAVMWithAnExtensionsTimeBudget().catch(console.error);
+
 /**
  * This sample demonstrates how to The operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
  *
@@ -1711,6 +1738,7 @@ async function createAVMWithBootDiagnostics() {
 }
 
 createAVMWithBootDiagnostics().catch(console.error);
+
 /**
  * This sample demonstrates how to The operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
  *
@@ -1768,6 +1796,7 @@ async function createAVMWithEmptyDataDisks() {
 }
 
 createAVMWithEmptyDataDisks().catch(console.error);
+
 /**
  * This sample demonstrates how to The operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
  *
@@ -1829,6 +1858,7 @@ async function createAVMWithEphemeralOSDiskProvisioningInCacheDiskUsingPlacement
 createAVMWithEphemeralOSDiskProvisioningInCacheDiskUsingPlacementProperty().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to The operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
  *
@@ -1890,6 +1920,7 @@ async function createAVMWithEphemeralOSDiskProvisioningInResourceDiskUsingPlacem
 createAVMWithEphemeralOSDiskProvisioningInResourceDiskUsingPlacementProperty().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to The operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
  *
@@ -1949,6 +1980,7 @@ async function createAVMWithEphemeralOSDisk() {
 }
 
 createAVMWithEphemeralOSDisk().catch(console.error);
+
 /**
  * This sample demonstrates how to The operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
  *
@@ -2003,6 +2035,7 @@ async function createAVMWithManagedBootDiagnostics() {
 }
 
 createAVMWithManagedBootDiagnostics().catch(console.error);
+
 /**
  * This sample demonstrates how to The operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
  *
@@ -2056,6 +2089,7 @@ async function createAVMWithPasswordAuthentication() {
 }
 
 createAVMWithPasswordAuthentication().catch(console.error);
+
 /**
  * This sample demonstrates how to The operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
  *
@@ -2109,6 +2143,7 @@ async function createAVMWithPremiumStorage() {
 }
 
 createAVMWithPremiumStorage().catch(console.error);
+
 /**
  * This sample demonstrates how to The operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
  *
@@ -2173,6 +2208,7 @@ async function createAVMWithSshAuthentication() {
 }
 
 createAVMWithSshAuthentication().catch(console.error);
+
 /**
  * This sample demonstrates how to The operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
  *

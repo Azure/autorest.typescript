@@ -33,6 +33,7 @@ async function getFirewallPolicyNatRuleCollectionGroup() {
 }
 
 getFirewallPolicyNatRuleCollectionGroup().catch(console.error);
+
 /**
  * This sample demonstrates how to Gets the specified FirewallPolicyRuleCollectionGroup.
  *
@@ -55,6 +56,7 @@ async function getFirewallPolicyRuleCollectionGroup() {
 }
 
 getFirewallPolicyRuleCollectionGroup().catch(console.error);
+
 /**
  * This sample demonstrates how to Gets the specified FirewallPolicyRuleCollectionGroup.
  *
@@ -77,6 +79,7 @@ async function getFirewallPolicyRuleCollectionGroupWithIPGroups() {
 }
 
 getFirewallPolicyRuleCollectionGroupWithIPGroups().catch(console.error);
+
 /**
  * This sample demonstrates how to Gets the specified FirewallPolicyRuleCollectionGroup.
  *

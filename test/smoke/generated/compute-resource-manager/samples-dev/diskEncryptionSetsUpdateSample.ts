@@ -46,6 +46,7 @@ async function updateADiskEncryptionSetWithRotationToLatestKeyVersionEnabledSetT
 updateADiskEncryptionSetWithRotationToLatestKeyVersionEnabledSetToTrueSucceeded().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to Updates (patches) a disk encryption set.
  *
@@ -78,6 +79,7 @@ async function updateADiskEncryptionSetWithRotationToLatestKeyVersionEnabledSetT
 updateADiskEncryptionSetWithRotationToLatestKeyVersionEnabledSetToTrueUpdating().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to Updates (patches) a disk encryption set.
  *

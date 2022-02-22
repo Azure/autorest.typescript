@@ -48,6 +48,7 @@ async function storageAccountCreateObjectReplicationPolicyOnDestination() {
 }
 
 storageAccountCreateObjectReplicationPolicyOnDestination().catch(console.error);
+
 /**
  * This sample demonstrates how to Create or update the object replication policy of the storage account.
  *
@@ -86,6 +87,7 @@ async function storageAccountCreateObjectReplicationPolicyOnSource() {
 }
 
 storageAccountCreateObjectReplicationPolicyOnSource().catch(console.error);
+
 /**
  * This sample demonstrates how to Create or update the object replication policy of the storage account.
  *
@@ -122,6 +124,7 @@ async function storageAccountUpdateObjectReplicationPolicyOnDestination() {
 }
 
 storageAccountUpdateObjectReplicationPolicyOnDestination().catch(console.error);
+
 /**
  * This sample demonstrates how to Create or update the object replication policy of the storage account.
  *

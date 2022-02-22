@@ -33,6 +33,7 @@ async function getPeering() {
 }
 
 getPeering().catch(console.error);
+
 /**
  * This sample demonstrates how to Gets the specified virtual network peering.
  *

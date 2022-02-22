@@ -31,6 +31,7 @@ async function getVirtualMachineInstanceView() {
 }
 
 getVirtualMachineInstanceView().catch(console.error);
+
 /**
  * This sample demonstrates how to Retrieves information about the run-time state of a virtual machine.
  *

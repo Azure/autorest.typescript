@@ -41,6 +41,7 @@ async function getAGalleryApplicationVersionWithReplicationStatus() {
 }
 
 getAGalleryApplicationVersionWithReplicationStatus().catch(console.error);
+
 /**
  * This sample demonstrates how to Retrieves information about a gallery Application Version.
  *

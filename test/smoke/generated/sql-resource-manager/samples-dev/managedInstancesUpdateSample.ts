@@ -41,6 +41,7 @@ async function removeMaintenancePolicyFromManagedInstanceSelectDefaultMaintenanc
 removeMaintenancePolicyFromManagedInstanceSelectDefaultMaintenancePolicy().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to Updates a managed instance.
  *
@@ -78,6 +79,7 @@ async function updateManagedInstanceWithAllProperties() {
 }
 
 updateManagedInstanceWithAllProperties().catch(console.error);
+
 /**
  * This sample demonstrates how to Updates a managed instance.
  *

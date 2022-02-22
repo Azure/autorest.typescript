@@ -36,6 +36,7 @@ async function createRouteTable() {
 }
 
 createRouteTable().catch(console.error);
+
 /**
  * This sample demonstrates how to Create or updates a route table in a specified resource group.
  *

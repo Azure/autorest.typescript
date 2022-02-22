@@ -33,6 +33,7 @@ async function getAppDetectorResponse() {
 }
 
 getAppDetectorResponse().catch(console.error);
+
 /**
  * This sample demonstrates how to Description for Get site detector response
  *

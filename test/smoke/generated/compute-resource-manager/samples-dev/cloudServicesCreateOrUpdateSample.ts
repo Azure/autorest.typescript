@@ -77,6 +77,7 @@ async function createNewCloudServiceWithMultipleRoles() {
 }
 
 createNewCloudServiceWithMultipleRoles().catch(console.error);
+
 /**
  * This sample demonstrates how to Create or update a cloud service. Please note some properties can be set only during cloud service creation.
  *
@@ -135,6 +136,7 @@ async function createNewCloudServiceWithSingleRole() {
 }
 
 createNewCloudServiceWithSingleRole().catch(console.error);
+
 /**
  * This sample demonstrates how to Create or update a cloud service. Please note some properties can be set only during cloud service creation.
  *
@@ -211,6 +213,7 @@ async function createNewCloudServiceWithSingleRoleAndCertificateFromKeyVault() {
 createNewCloudServiceWithSingleRoleAndCertificateFromKeyVault().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to Create or update a cloud service. Please note some properties can be set only during cloud service creation.
  *

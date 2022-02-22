@@ -38,6 +38,7 @@ async function createNfsShares() {
 }
 
 createNfsShares().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates a new share under the specified account as described by request body. The share resource includes metadata and properties for that share. It does not include a list of the files contained by the share.
  *
@@ -62,6 +63,7 @@ async function putShares() {
 }
 
 putShares().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates a new share under the specified account as described by request body. The share resource includes metadata and properties for that share. It does not include a list of the files contained by the share.
  *

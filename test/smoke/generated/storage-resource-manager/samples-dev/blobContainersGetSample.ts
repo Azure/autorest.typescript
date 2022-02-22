@@ -33,6 +33,7 @@ async function getBlobContainersGetWithAllowProtectedAppendWritesAll() {
 }
 
 getBlobContainersGetWithAllowProtectedAppendWritesAll().catch(console.error);
+
 /**
  * This sample demonstrates how to Gets properties of a specified container.
  *

@@ -59,6 +59,7 @@ async function createPrivateEndpoint() {
 }
 
 createPrivateEndpoint().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates an private endpoint in the specified resource group.
  *
@@ -101,6 +102,7 @@ async function createPrivateEndpointWithApplicationSecurityGroups() {
 }
 
 createPrivateEndpointWithApplicationSecurityGroups().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates an private endpoint in the specified resource group.
  *

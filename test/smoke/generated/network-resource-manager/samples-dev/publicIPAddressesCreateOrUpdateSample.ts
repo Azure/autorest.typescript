@@ -39,6 +39,7 @@ async function createPublicIPAddressDns() {
 }
 
 createPublicIPAddressDns().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates a static or dynamic public IP address.
  *
@@ -67,6 +68,7 @@ async function createPublicIPAddressAllocationMethod() {
 }
 
 createPublicIPAddressAllocationMethod().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates a static or dynamic public IP address.
  *

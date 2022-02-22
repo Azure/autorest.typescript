@@ -42,6 +42,7 @@ async function updateTheEncryptionProtectorToKeyVault() {
 }
 
 updateTheEncryptionProtectorToKeyVault().catch(console.error);
+
 /**
  * This sample demonstrates how to Updates an existing encryption protector.
  *

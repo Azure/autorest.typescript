@@ -57,6 +57,7 @@ async function updateASimpleGalleryImageVersionManagedImageAsSource() {
 }
 
 updateASimpleGalleryImageVersionManagedImageAsSource().catch(console.error);
+
 /**
  * This sample demonstrates how to Update a gallery image version.
  *

@@ -36,6 +36,7 @@ async function listAllFirewallPolicyRuleCollectionGroupWithWebCategories() {
 listAllFirewallPolicyRuleCollectionGroupWithWebCategories().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to Lists all FirewallPolicyRuleCollectionGroups in a FirewallPolicy resource.
  *
@@ -61,6 +62,7 @@ async function listAllFirewallPolicyRuleCollectionGroupsForAGivenFirewallPolicy(
 listAllFirewallPolicyRuleCollectionGroupsForAGivenFirewallPolicy().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to Lists all FirewallPolicyRuleCollectionGroups in a FirewallPolicy resource.
  *

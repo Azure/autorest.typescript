@@ -33,6 +33,7 @@ async function getARestorePointCollectionButNotTheRestorePointsContainedInTheRes
 getARestorePointCollectionButNotTheRestorePointsContainedInTheRestorePointCollection().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to The operation to get the restore point collection.
  *

@@ -28,6 +28,7 @@ async function getServer() {
 }
 
 getServer().catch(console.error);
+
 /**
  * This sample demonstrates how to Gets a server.
  *

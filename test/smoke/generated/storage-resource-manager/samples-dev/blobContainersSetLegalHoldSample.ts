@@ -38,6 +38,7 @@ async function setLegalHoldContainers() {
 }
 
 setLegalHoldContainers().catch(console.error);
+
 /**
  * This sample demonstrates how to Sets legal hold tags. Setting the same tag results in an idempotent operation. SetLegalHold follows an append pattern and does not clear out the existing tags that are not specified in the request.
  *

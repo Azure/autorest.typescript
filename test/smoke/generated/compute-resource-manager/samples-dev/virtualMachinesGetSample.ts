@@ -28,6 +28,7 @@ async function getAVirtualMachine() {
 }
 
 getAVirtualMachine().catch(console.error);
+
 /**
  * This sample demonstrates how to Retrieves information about the model view or the instance view of a virtual machine.
  *

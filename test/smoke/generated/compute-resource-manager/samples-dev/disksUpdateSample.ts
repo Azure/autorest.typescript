@@ -36,6 +36,7 @@ async function createOrUpdateABurstingEnabledManagedDisk() {
 }
 
 createOrUpdateABurstingEnabledManagedDisk().catch(console.error);
+
 /**
  * This sample demonstrates how to Updates (patches) a disk.
  *
@@ -60,6 +61,7 @@ async function updateAManagedDiskToAddAcceleratedNetworking() {
 }
 
 updateAManagedDiskToAddAcceleratedNetworking().catch(console.error);
+
 /**
  * This sample demonstrates how to Updates (patches) a disk.
  *
@@ -89,6 +91,7 @@ async function updateAManagedDiskToAddPurchasePlan() {
 }
 
 updateAManagedDiskToAddPurchasePlan().catch(console.error);
+
 /**
  * This sample demonstrates how to Updates (patches) a disk.
  *
@@ -111,6 +114,7 @@ async function updateAManagedDiskToAddSupportsHibernation() {
 }
 
 updateAManagedDiskToAddSupportsHibernation().catch(console.error);
+
 /**
  * This sample demonstrates how to Updates (patches) a disk.
  *
@@ -133,6 +137,7 @@ async function updateAManagedDiskToChangeTier() {
 }
 
 updateAManagedDiskToChangeTier().catch(console.error);
+
 /**
  * This sample demonstrates how to Updates (patches) a disk.
  *
@@ -155,6 +160,7 @@ async function updateAManagedDiskToDisableBursting() {
 }
 
 updateAManagedDiskToDisableBursting().catch(console.error);
+
 /**
  * This sample demonstrates how to Updates (patches) a disk.
  *

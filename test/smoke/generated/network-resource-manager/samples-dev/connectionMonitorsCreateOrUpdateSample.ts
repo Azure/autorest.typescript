@@ -64,6 +64,7 @@ async function createConnectionMonitorV1() {
 }
 
 createConnectionMonitorV1().catch(console.error);
+
 /**
  * This sample demonstrates how to Create or update a connection monitor.
  *

@@ -129,6 +129,7 @@ async function createAzureFirewall() {
 }
 
 createAzureFirewall().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates the specified Azure Firewall.
  *
@@ -246,6 +247,7 @@ async function createAzureFirewallWithAdditionalProperties() {
 }
 
 createAzureFirewallWithAdditionalProperties().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates the specified Azure Firewall.
  *
@@ -361,6 +363,7 @@ async function createAzureFirewallWithIPGroups() {
 }
 
 createAzureFirewallWithIPGroups().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates the specified Azure Firewall.
  *
@@ -476,6 +479,7 @@ async function createAzureFirewallWithZones() {
 }
 
 createAzureFirewallWithZones().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates the specified Azure Firewall.
  *
@@ -602,6 +606,7 @@ async function createAzureFirewallWithManagementSubnet() {
 }
 
 createAzureFirewallWithManagementSubnet().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates the specified Azure Firewall.
  *

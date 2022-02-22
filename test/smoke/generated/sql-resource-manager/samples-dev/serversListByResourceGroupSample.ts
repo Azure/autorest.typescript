@@ -32,6 +32,7 @@ async function listServersByResourceGroup() {
 }
 
 listServersByResourceGroup().catch(console.error);
+
 /**
  * This sample demonstrates how to Gets a list of servers in a resource groups.
  *

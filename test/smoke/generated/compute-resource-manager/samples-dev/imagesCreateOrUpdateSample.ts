@@ -52,6 +52,7 @@ async function createAVirtualMachineImageFromABlobWithDiskEncryptionSetResource(
 createAVirtualMachineImageFromABlobWithDiskEncryptionSetResource().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to Create or update an image.
  *
@@ -85,6 +86,7 @@ async function createAVirtualMachineImageFromABlob() {
 }
 
 createAVirtualMachineImageFromABlob().catch(console.error);
+
 /**
  * This sample demonstrates how to Create or update an image.
  *
@@ -125,6 +127,7 @@ async function createAVirtualMachineImageFromAManagedDiskWithDiskEncryptionSetRe
 createAVirtualMachineImageFromAManagedDiskWithDiskEncryptionSetResource().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to Create or update an image.
  *
@@ -160,6 +163,7 @@ async function createAVirtualMachineImageFromAManagedDisk() {
 }
 
 createAVirtualMachineImageFromAManagedDisk().catch(console.error);
+
 /**
  * This sample demonstrates how to Create or update an image.
  *
@@ -200,6 +204,7 @@ async function createAVirtualMachineImageFromASnapshotWithDiskEncryptionSetResou
 createAVirtualMachineImageFromASnapshotWithDiskEncryptionSetResource().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to Create or update an image.
  *
@@ -235,6 +240,7 @@ async function createAVirtualMachineImageFromASnapshot() {
 }
 
 createAVirtualMachineImageFromASnapshot().catch(console.error);
+
 /**
  * This sample demonstrates how to Create or update an image.
  *
@@ -263,6 +269,7 @@ async function createAVirtualMachineImageFromAnExistingVirtualMachine() {
 }
 
 createAVirtualMachineImageFromAnExistingVirtualMachine().catch(console.error);
+
 /**
  * This sample demonstrates how to Create or update an image.
  *
@@ -303,6 +310,7 @@ async function createAVirtualMachineImageThatIncludesADataDiskFromABlob() {
 }
 
 createAVirtualMachineImageThatIncludesADataDiskFromABlob().catch(console.error);
+
 /**
  * This sample demonstrates how to Create or update an image.
  *
@@ -349,6 +357,7 @@ async function createAVirtualMachineImageThatIncludesADataDiskFromAManagedDisk()
 createAVirtualMachineImageThatIncludesADataDiskFromAManagedDisk().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to Create or update an image.
  *

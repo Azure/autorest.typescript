@@ -36,6 +36,7 @@ async function createServiceEndpointPolicy() {
 }
 
 createServiceEndpointPolicy().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates a service Endpoint Policies.
  *

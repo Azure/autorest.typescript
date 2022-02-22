@@ -50,6 +50,7 @@ async function filterManagedDatabaseColumns() {
 }
 
 filterManagedDatabaseColumns().catch(console.error);
+
 /**
  * This sample demonstrates how to List managed database columns
  *

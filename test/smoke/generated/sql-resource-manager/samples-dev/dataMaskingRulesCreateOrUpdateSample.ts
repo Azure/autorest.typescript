@@ -47,6 +47,7 @@ async function createOrUpdateDataMaskingRuleForDefaultMax() {
 }
 
 createOrUpdateDataMaskingRuleForDefaultMax().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates a database data masking rule.
  *
@@ -78,6 +79,7 @@ async function createOrUpdateDataMaskingRuleForDefaultMin() {
 }
 
 createOrUpdateDataMaskingRuleForDefaultMin().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates a database data masking rule.
  *
@@ -111,6 +113,7 @@ async function createOrUpdateDataMaskingRuleForNumbers() {
 }
 
 createOrUpdateDataMaskingRuleForNumbers().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates a database data masking rule.
  *

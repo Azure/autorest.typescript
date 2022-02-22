@@ -41,6 +41,7 @@ async function createsAVCoreDatabaseBySpecifyingServiceObjectiveName() {
 }
 
 createsAVCoreDatabaseBySpecifyingServiceObjectiveName().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates a new database or updates an existing database.
  *
@@ -68,6 +69,7 @@ async function createsAVCoreDatabaseBySpecifyingSkuNameAndCapacity() {
 }
 
 createsAVCoreDatabaseBySpecifyingSkuNameAndCapacity().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates a new database or updates an existing database.
  *
@@ -98,6 +100,7 @@ async function createsADatabaseAsACopy() {
 }
 
 createsADatabaseAsACopy().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates a new database or updates an existing database.
  *
@@ -129,6 +132,7 @@ async function createsADatabaseAsAnOnLineSecondary() {
 }
 
 createsADatabaseAsAnOnLineSecondary().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates a new database or updates an existing database.
  *
@@ -160,6 +164,7 @@ async function createsADatabaseAsNamedReplicaSecondary() {
 }
 
 createsADatabaseAsNamedReplicaSecondary().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates a new database or updates an existing database.
  *
@@ -190,6 +195,7 @@ async function createsADatabaseFromPointInTimeRestore() {
 }
 
 createsADatabaseFromPointInTimeRestore().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates a new database or updates an existing database.
  *
@@ -220,6 +226,7 @@ async function createsADatabaseWithDefaultMode() {
 }
 
 createsADatabaseWithDefaultMode().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates a new database or updates an existing database.
  *
@@ -244,6 +251,7 @@ async function createsADatabaseWithLedgerOn() {
 }
 
 createsADatabaseWithLedgerOn().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates a new database or updates an existing database.
  *
@@ -268,6 +276,7 @@ async function createsADatabaseWithMinimumNumberOfParameters() {
 }
 
 createsADatabaseWithMinimumNumberOfParameters().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates a new database or updates an existing database.
  *
@@ -300,6 +309,7 @@ async function createsADatabaseWithPreferredMaintenanceWindow() {
 }
 
 createsADatabaseWithPreferredMaintenanceWindow().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates a new database or updates an existing database.
  *

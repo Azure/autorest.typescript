@@ -43,6 +43,7 @@ async function startPacketCaptureOnVirtualNetworkGatewayWithFilter() {
 }
 
 startPacketCaptureOnVirtualNetworkGatewayWithFilter().catch(console.error);
+
 /**
  * This sample demonstrates how to Starts packet capture on virtual network gateway in the specified resource group.
  *

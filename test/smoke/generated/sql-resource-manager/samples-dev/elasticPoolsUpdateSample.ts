@@ -41,6 +41,7 @@ async function assignsMaintenanceConfigurationToAnElasticPool() {
 }
 
 assignsMaintenanceConfigurationToAnElasticPool().catch(console.error);
+
 /**
  * This sample demonstrates how to Updates an elastic pool.
  *
@@ -68,6 +69,7 @@ async function resetsMaintenanceConfigurationOfAnElasticPoolToDefault() {
 }
 
 resetsMaintenanceConfigurationOfAnElasticPoolToDefault().catch(console.error);
+
 /**
  * This sample demonstrates how to Updates an elastic pool.
  *
@@ -97,6 +99,7 @@ async function updateAnElasticPoolWithAllParameter() {
 }
 
 updateAnElasticPoolWithAllParameter().catch(console.error);
+
 /**
  * This sample demonstrates how to Updates an elastic pool.
  *

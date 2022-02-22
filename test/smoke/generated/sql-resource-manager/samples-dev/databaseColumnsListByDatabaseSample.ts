@@ -50,6 +50,7 @@ async function filterDatabaseColumns() {
 }
 
 filterDatabaseColumns().catch(console.error);
+
 /**
  * This sample demonstrates how to List database columns
  *

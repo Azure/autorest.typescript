@@ -84,6 +84,7 @@ async function storageAccountSetManagementPolicies() {
 }
 
 storageAccountSetManagementPolicies().catch(console.error);
+
 /**
  * This sample demonstrates how to Sets the managementpolicy to the specified storage account.
  *
@@ -129,6 +130,7 @@ async function storageAccountSetManagementPolicyForBlockAndAppendBlobs() {
 }
 
 storageAccountSetManagementPolicyForBlockAndAppendBlobs().catch(console.error);
+
 /**
  * This sample demonstrates how to Sets the managementpolicy to the specified storage account.
  *
@@ -186,6 +188,7 @@ async function storageAccountSetManagementPolicyWithSnapshotAndVersion() {
 }
 
 storageAccountSetManagementPolicyWithSnapshotAndVersion().catch(console.error);
+
 /**
  * This sample demonstrates how to Sets the managementpolicy to the specified storage account.
  *

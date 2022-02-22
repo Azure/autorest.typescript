@@ -37,6 +37,7 @@ async function getAppDetector() {
 }
 
 getAppDetector().catch(console.error);
+
 /**
  * This sample demonstrates how to Description for Get Detector
  *

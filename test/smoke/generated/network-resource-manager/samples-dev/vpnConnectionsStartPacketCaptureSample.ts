@@ -46,6 +46,7 @@ async function startPacketCaptureOnVpnConnectionWithFilter() {
 }
 
 startPacketCaptureOnVpnConnectionWithFilter().catch(console.error);
+
 /**
  * This sample demonstrates how to Starts packet capture on Vpn connection in the specified resource group.
  *

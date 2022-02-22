@@ -31,6 +31,7 @@ async function getVirtualNetwork() {
 }
 
 getVirtualNetwork().catch(console.error);
+
 /**
  * This sample demonstrates how to Gets the specified virtual network by resource group.
  *
@@ -51,6 +52,7 @@ async function getVirtualNetworkWithADelegatedSubnet() {
 }
 
 getVirtualNetworkWithADelegatedSubnet().catch(console.error);
+
 /**
  * This sample demonstrates how to Gets the specified virtual network by resource group.
  *

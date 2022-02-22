@@ -44,6 +44,7 @@ async function effectiveRoutesForAConnectionResource() {
 }
 
 effectiveRoutesForAConnectionResource().catch(console.error);
+
 /**
  * This sample demonstrates how to Gets the effective routes configured for the Virtual Hub resource or the specified resource .
  *
@@ -73,6 +74,7 @@ async function effectiveRoutesForARouteTableResource() {
 }
 
 effectiveRoutesForARouteTableResource().catch(console.error);
+
 /**
  * This sample demonstrates how to Gets the effective routes configured for the Virtual Hub resource or the specified resource .
  *

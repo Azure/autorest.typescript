@@ -32,6 +32,7 @@ async function listManagedInstancesByResourceGroup() {
 }
 
 listManagedInstancesByResourceGroup().catch(console.error);
+
 /**
  * This sample demonstrates how to Gets a list of managed instances in a resource group.
  *

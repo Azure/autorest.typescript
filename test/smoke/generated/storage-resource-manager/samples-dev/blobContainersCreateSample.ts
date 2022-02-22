@@ -41,6 +41,7 @@ async function putContainerWithDefaultEncryptionScope() {
 }
 
 putContainerWithDefaultEncryptionScope().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates a new container under the specified account as described by request body. The container resource includes metadata and properties for that container. It does not include a list of the blobs contained by the container.
  *
@@ -67,6 +68,7 @@ async function putContainerWithObjectLevelWorm() {
 }
 
 putContainerWithObjectLevelWorm().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates a new container under the specified account as described by request body. The container resource includes metadata and properties for that container. It does not include a list of the blobs contained by the container.
  *

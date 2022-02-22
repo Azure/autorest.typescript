@@ -41,6 +41,7 @@ async function getAGalleryImageVersionWithReplicationStatus() {
 }
 
 getAGalleryImageVersionWithReplicationStatus().catch(console.error);
+
 /**
  * This sample demonstrates how to Retrieves information about a gallery image version.
  *
@@ -65,6 +66,7 @@ async function getAGalleryImageVersionWithSnapshotsAsASource() {
 }
 
 getAGalleryImageVersionWithSnapshotsAsASource().catch(console.error);
+
 /**
  * This sample demonstrates how to Retrieves information about a gallery image version.
  *
@@ -89,6 +91,7 @@ async function getAGalleryImageVersionWithVhdAsASource() {
 }
 
 getAGalleryImageVersionWithVhdAsASource().catch(console.error);
+
 /**
  * This sample demonstrates how to Retrieves information about a gallery image version.
  *

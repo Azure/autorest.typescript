@@ -38,6 +38,7 @@ async function listAppDetectors() {
 }
 
 listAppDetectors().catch(console.error);
+
 /**
  * This sample demonstrates how to Description for Get Detectors
  *

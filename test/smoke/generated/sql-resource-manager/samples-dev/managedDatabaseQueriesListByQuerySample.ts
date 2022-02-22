@@ -41,6 +41,7 @@ async function obtainQueryExecutionStatistics() {
 }
 
 obtainQueryExecutionStatistics().catch(console.error);
+
 /**
  * This sample demonstrates how to Get query execution statistics by query id.
  *
@@ -79,6 +80,7 @@ async function obtainQueryExecutionStatisticsExampleWithAllRequestParameters() {
 obtainQueryExecutionStatisticsExampleWithAllRequestParameters().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to Get query execution statistics by query id.
  *

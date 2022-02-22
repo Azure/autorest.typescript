@@ -45,6 +45,7 @@ async function updatesDatabaseAutomaticTuningSettingsWithAllProperties() {
 }
 
 updatesDatabaseAutomaticTuningSettingsWithAllProperties().catch(console.error);
+
 /**
  * This sample demonstrates how to Update automatic tuning properties for target database.
  *

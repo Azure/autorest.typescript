@@ -73,6 +73,7 @@ async function putFileServices() {
 }
 
 putFileServices().catch(console.error);
+
 /**
  * This sample demonstrates how to Sets the properties of file services in storage accounts, including CORS (Cross-Origin Resource Sharing) rules.
  *
@@ -97,6 +98,7 @@ async function putFileServicesEnableSmbMultichannel() {
 }
 
 putFileServicesEnableSmbMultichannel().catch(console.error);
+
 /**
  * This sample demonstrates how to Sets the properties of file services in storage accounts, including CORS (Cross-Origin Resource Sharing) rules.
  *

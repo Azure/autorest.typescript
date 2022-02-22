@@ -47,6 +47,7 @@ async function createASnapshotByImportingAnUnmanagedBlobFromADifferentSubscripti
 createASnapshotByImportingAnUnmanagedBlobFromADifferentSubscription().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to Creates or updates a snapshot.
  *
@@ -78,6 +79,7 @@ async function createASnapshotByImportingAnUnmanagedBlobFromTheSameSubscription(
 createASnapshotByImportingAnUnmanagedBlobFromTheSameSubscription().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to Creates or updates a snapshot.
  *
@@ -109,6 +111,7 @@ async function createASnapshotFromAnExistingSnapshotInTheSameOrADifferentSubscri
 createASnapshotFromAnExistingSnapshotInTheSameOrADifferentSubscriptionInADifferentRegion().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to Creates or updates a snapshot.
  *

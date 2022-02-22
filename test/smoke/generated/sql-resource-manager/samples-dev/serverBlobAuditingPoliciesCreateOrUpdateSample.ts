@@ -51,6 +51,7 @@ async function updateAServerBlobAuditingPolicyWithAllParameters() {
 }
 
 updateAServerBlobAuditingPolicyWithAllParameters().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates a server's blob auditing policy.
  *

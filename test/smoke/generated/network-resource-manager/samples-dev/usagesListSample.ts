@@ -30,6 +30,7 @@ async function listUsages() {
 }
 
 listUsages().catch(console.error);
+
 /**
  * This sample demonstrates how to List network usages for a subscription.
  *

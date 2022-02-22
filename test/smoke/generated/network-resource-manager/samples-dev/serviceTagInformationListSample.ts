@@ -35,6 +35,7 @@ async function getListOfServiceTags() {
 }
 
 getListOfServiceTags().catch(console.error);
+
 /**
  * This sample demonstrates how to Gets a list of service tag information resources with pagination.
  *
@@ -61,6 +62,7 @@ async function getListOfServiceTagsWithNoAddressPrefixes() {
 }
 
 getListOfServiceTagsWithNoAddressPrefixes().catch(console.error);
+
 /**
  * This sample demonstrates how to Gets a list of service tag information resources with pagination.
  *

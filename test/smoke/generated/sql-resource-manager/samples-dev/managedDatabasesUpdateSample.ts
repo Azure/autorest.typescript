@@ -38,6 +38,7 @@ async function updatesAManagedDatabaseWithMaximalProperties() {
 }
 
 updatesAManagedDatabaseWithMaximalProperties().catch(console.error);
+
 /**
  * This sample demonstrates how to Updates an existing database.
  *

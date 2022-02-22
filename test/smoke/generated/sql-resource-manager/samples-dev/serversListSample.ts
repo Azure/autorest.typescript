@@ -29,6 +29,7 @@ async function listServers() {
 }
 
 listServers().catch(console.error);
+
 /**
  * This sample demonstrates how to Gets a list of all servers in the subscription.
  *

@@ -45,6 +45,7 @@ async function updateAServerDevOpsAuditSettingsWithAllParams() {
 }
 
 updateAServerDevOpsAuditSettingsWithAllParams().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates a server's DevOps audit settings.
  *

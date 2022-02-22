@@ -35,6 +35,7 @@ async function getsADatabaseRestorePoint() {
 }
 
 getsADatabaseRestorePoint().catch(console.error);
+
 /**
  * This sample demonstrates how to Gets a restore point.
  *

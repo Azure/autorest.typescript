@@ -64,6 +64,7 @@ async function createOrUpdateAJobStepWithAllPropertiesSpecified() {
 }
 
 createOrUpdateAJobStepWithAllPropertiesSpecified().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates a job step. This will implicitly create a new job version.
  *

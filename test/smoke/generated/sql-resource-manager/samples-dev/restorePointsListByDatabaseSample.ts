@@ -36,6 +36,7 @@ async function listDatabaseRestorePoints() {
 }
 
 listDatabaseRestorePoints().catch(console.error);
+
 /**
  * This sample demonstrates how to Gets a list of database restore points.
  *

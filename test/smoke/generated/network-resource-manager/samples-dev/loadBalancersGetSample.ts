@@ -31,6 +31,7 @@ async function getLoadBalancer() {
 }
 
 getLoadBalancer().catch(console.error);
+
 /**
  * This sample demonstrates how to Gets the specified load balancer.
  *

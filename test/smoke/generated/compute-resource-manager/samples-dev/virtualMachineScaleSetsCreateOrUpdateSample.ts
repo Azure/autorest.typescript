@@ -99,6 +99,7 @@ async function createAVmssWithAnExtensionThatHasSuppressFailuresEnabled() {
 }
 
 createAVmssWithAnExtensionThatHasSuppressFailuresEnabled().catch(console.error);
+
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -164,6 +165,7 @@ async function createACustomImageScaleSetFromAnUnmanagedGeneralizedOSImage() {
 createACustomImageScaleSetFromAnUnmanagedGeneralizedOSImage().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -236,6 +238,7 @@ async function createAPlatformImageScaleSetWithUnmanagedOSDisks() {
 }
 
 createAPlatformImageScaleSetWithUnmanagedOSDisks().catch(console.error);
+
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -299,6 +302,7 @@ async function createAScaleSetFromACustomImage() {
 }
 
 createAScaleSetFromACustomImage().catch(console.error);
+
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -362,6 +366,7 @@ async function createAScaleSetFromAGeneralizedSharedImage() {
 }
 
 createAScaleSetFromAGeneralizedSharedImage().catch(console.error);
+
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -420,6 +425,7 @@ async function createAScaleSetFromASpecializedSharedImage() {
 }
 
 createAScaleSetFromASpecializedSharedImage().catch(console.error);
+
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -501,6 +507,7 @@ async function createAScaleSetWithApplicationProfile() {
 }
 
 createAScaleSetWithApplicationProfile().catch(console.error);
+
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -587,6 +594,7 @@ async function createAScaleSetWithDiskEncryptionSetResourceInOSDiskAndDataDisk()
 createAScaleSetWithDiskEncryptionSetResourceInOSDiskAndDataDisk().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -668,6 +676,7 @@ async function createAScaleSetWithFpgaNetworkInterfaces() {
 }
 
 createAScaleSetWithFpgaNetworkInterfaces().catch(console.error);
+
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -741,6 +750,7 @@ async function createAScaleSetWithHostEncryptionUsingEncryptionAtHostProperty() 
 createAScaleSetWithHostEncryptionUsingEncryptionAtHostProperty().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -810,6 +820,7 @@ async function createAScaleSetWithUefiSettingsOfSecureBootAndVTpm() {
 }
 
 createAScaleSetWithUefiSettingsOfSecureBootAndVTpm().catch(console.error);
+
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -880,6 +891,7 @@ async function createAScaleSetWithAMarketplaceImagePlan() {
 }
 
 createAScaleSetWithAMarketplaceImagePlan().catch(console.error);
+
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -951,6 +963,7 @@ async function createAScaleSetWithAnAzureApplicationGateway() {
 }
 
 createAScaleSetWithAnAzureApplicationGateway().catch(console.error);
+
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -1032,6 +1045,7 @@ async function createAScaleSetWithAnAzureLoadBalancer() {
 }
 
 createAScaleSetWithAnAzureLoadBalancer().catch(console.error);
+
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -1098,6 +1112,7 @@ async function createAScaleSetWithAutomaticRepairsEnabled() {
 }
 
 createAScaleSetWithAutomaticRepairsEnabled().catch(console.error);
+
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -1170,6 +1185,7 @@ async function createAScaleSetWithBootDiagnostics() {
 }
 
 createAScaleSetWithBootDiagnostics().catch(console.error);
+
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -1240,6 +1256,7 @@ async function createAScaleSetWithEmptyDataDisksOnEachVM() {
 }
 
 createAScaleSetWithEmptyDataDisksOnEachVM().catch(console.error);
+
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -1313,6 +1330,7 @@ async function createAScaleSetWithEphemeralOSDisksUsingPlacementProperty() {
 createAScaleSetWithEphemeralOSDisksUsingPlacementProperty().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -1384,6 +1402,7 @@ async function createAScaleSetWithEphemeralOSDisks() {
 }
 
 createAScaleSetWithEphemeralOSDisks().catch(console.error);
+
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -1469,6 +1488,7 @@ async function createAScaleSetWithExtensionTimeBudget() {
 }
 
 createAScaleSetWithExtensionTimeBudget().catch(console.error);
+
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -1535,6 +1555,7 @@ async function createAScaleSetWithManagedBootDiagnostics() {
 }
 
 createAScaleSetWithManagedBootDiagnostics().catch(console.error);
+
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -1600,6 +1621,7 @@ async function createAScaleSetWithPasswordAuthentication() {
 }
 
 createAScaleSetWithPasswordAuthentication().catch(console.error);
+
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -1665,6 +1687,7 @@ async function createAScaleSetWithPremiumStorage() {
 }
 
 createAScaleSetWithPremiumStorage().catch(console.error);
+
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -1731,6 +1754,7 @@ async function createAScaleSetWithScaleInPolicy() {
 }
 
 createAScaleSetWithScaleInPolicy().catch(console.error);
+
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -1800,6 +1824,7 @@ async function createAScaleSetWithSpotRestorePolicy() {
 }
 
 createAScaleSetWithSpotRestorePolicy().catch(console.error);
+
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -1876,6 +1901,7 @@ async function createAScaleSetWithSshAuthentication() {
 }
 
 createAScaleSetWithSshAuthentication().catch(console.error);
+
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -1944,6 +1970,7 @@ async function createAScaleSetWithTerminateScheduledEventsEnabled() {
 }
 
 createAScaleSetWithTerminateScheduledEventsEnabled().catch(console.error);
+
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -2010,6 +2037,7 @@ async function createAScaleSetWithUserData() {
 }
 
 createAScaleSetWithUserData().catch(console.error);
+
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -2081,6 +2109,7 @@ async function createAScaleSetWithVirtualMachinesInDifferentZones() {
 }
 
 createAScaleSetWithVirtualMachinesInDifferentZones().catch(console.error);
+
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *

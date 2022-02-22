@@ -43,6 +43,7 @@ async function blobServicesPutLastAccessTimeBasedTracking() {
 }
 
 blobServicesPutLastAccessTimeBasedTracking().catch(console.error);
+
 /**
  * This sample demonstrates how to Sets the properties of a storage account’s Blob service, including properties for Storage Analytics and CORS (Cross-Origin Resource Sharing) rules.
  *

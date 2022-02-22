@@ -31,6 +31,7 @@ async function getAzureFirewall() {
 }
 
 getAzureFirewall().catch(console.error);
+
 /**
  * This sample demonstrates how to Gets the specified Azure Firewall.
  *
@@ -51,6 +52,7 @@ async function getAzureFirewallWithAdditionalProperties() {
 }
 
 getAzureFirewallWithAdditionalProperties().catch(console.error);
+
 /**
  * This sample demonstrates how to Gets the specified Azure Firewall.
  *
@@ -71,6 +73,7 @@ async function getAzureFirewallWithIPGroups() {
 }
 
 getAzureFirewallWithIPGroups().catch(console.error);
+
 /**
  * This sample demonstrates how to Gets the specified Azure Firewall.
  *
@@ -91,6 +94,7 @@ async function getAzureFirewallWithZones() {
 }
 
 getAzureFirewallWithZones().catch(console.error);
+
 /**
  * This sample demonstrates how to Gets the specified Azure Firewall.
  *

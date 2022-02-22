@@ -38,6 +38,7 @@ async function storageAccountPutEncryptionScope() {
 }
 
 storageAccountPutEncryptionScope().catch(console.error);
+
 /**
  * This sample demonstrates how to Synchronously creates or updates an encryption scope under the specified storage account. If an encryption scope is already created and a subsequent request is issued with different properties, the encryption scope properties will be updated per the specified request.
  *

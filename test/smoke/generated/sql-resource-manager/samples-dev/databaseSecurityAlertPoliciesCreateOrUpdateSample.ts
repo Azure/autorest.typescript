@@ -49,6 +49,7 @@ async function updateADatabaseThreatDetectionPolicyWithAllParameters() {
 }
 
 updateADatabaseThreatDetectionPolicyWithAllParameters().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates a database's security alert policy.
  *

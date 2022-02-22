@@ -39,6 +39,7 @@ async function getShareStats() {
 }
 
 getShareStats().catch(console.error);
+
 /**
  * This sample demonstrates how to Gets properties of a specified share.
  *

@@ -33,6 +33,7 @@ async function getInformationAboutADiskEncryptionSetWhenAutoKeyRotationFailed() 
 getInformationAboutADiskEncryptionSetWhenAutoKeyRotationFailed().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to Gets information about a disk encryption set.
  *

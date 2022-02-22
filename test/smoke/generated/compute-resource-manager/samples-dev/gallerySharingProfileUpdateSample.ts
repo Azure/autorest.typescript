@@ -48,6 +48,7 @@ async function addSharingIdToTheSharingProfileOfAGallery() {
 }
 
 addSharingIdToTheSharingProfileOfAGallery().catch(console.error);
+
 /**
  * This sample demonstrates how to Update sharing profile of a gallery.
  *

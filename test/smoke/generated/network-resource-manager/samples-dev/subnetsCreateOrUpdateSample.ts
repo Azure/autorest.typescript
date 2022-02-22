@@ -38,6 +38,7 @@ async function createSubnet() {
 }
 
 createSubnet().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates a subnet in the specified virtual network.
  *
@@ -62,6 +63,7 @@ async function createSubnetWithADelegation() {
 }
 
 createSubnetWithADelegation().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates a subnet in the specified virtual network.
  *

@@ -43,6 +43,7 @@ async function createAdministratorOfManagedInstance() {
 }
 
 createAdministratorOfManagedInstance().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates a managed instance administrator.
  *

@@ -29,6 +29,7 @@ async function listManagedInstances() {
 }
 
 listManagedInstances().catch(console.error);
+
 /**
  * This sample demonstrates how to Gets a list of all managed instances in the subscription.
  *

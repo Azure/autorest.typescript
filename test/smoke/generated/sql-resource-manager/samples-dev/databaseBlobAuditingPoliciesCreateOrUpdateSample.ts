@@ -43,6 +43,7 @@ async function createOrUpdateADatabaseAzureMonitorAuditingPolicyWithMinimalParam
 createOrUpdateADatabaseAzureMonitorAuditingPolicyWithMinimalParameters().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to Creates or updates a database's blob auditing policy.
  *
@@ -84,6 +85,7 @@ async function createOrUpdateADatabaseBlobAuditingPolicyWithAllParameters() {
 createOrUpdateADatabaseBlobAuditingPolicyWithAllParameters().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to Creates or updates a database's blob auditing policy.
  *

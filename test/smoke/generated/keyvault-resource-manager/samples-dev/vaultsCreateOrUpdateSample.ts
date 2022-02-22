@@ -98,6 +98,7 @@ async function createANewVaultOrUpdateAnExistingVault() {
 }
 
 createANewVaultOrUpdateAnExistingVault().catch(console.error);
+
 /**
  * This sample demonstrates how to Create or update a key vault in the specified subscription.
  *

@@ -49,6 +49,7 @@ async function createAWorkloadGroupWithAllPropertiesSpecified() {
 }
 
 createAWorkloadGroupWithAllPropertiesSpecified().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates a workload classifier.
  *

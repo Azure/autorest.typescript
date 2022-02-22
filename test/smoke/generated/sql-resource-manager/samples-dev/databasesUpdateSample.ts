@@ -42,6 +42,7 @@ async function assignsMaintenanceWindowToADatabase() {
 }
 
 assignsMaintenanceWindowToADatabase().catch(console.error);
+
 /**
  * This sample demonstrates how to Updates an existing database.
  *
@@ -70,6 +71,7 @@ async function resetsMaintenanceWindowOfADatabaseToDefault() {
 }
 
 resetsMaintenanceWindowOfADatabaseToDefault().catch(console.error);
+
 /**
  * This sample demonstrates how to Updates an existing database.
  *

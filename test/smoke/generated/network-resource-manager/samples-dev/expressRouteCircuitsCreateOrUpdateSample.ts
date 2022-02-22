@@ -51,6 +51,7 @@ async function createExpressRouteCircuit() {
 }
 
 createExpressRouteCircuit().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates an express route circuit.
  *

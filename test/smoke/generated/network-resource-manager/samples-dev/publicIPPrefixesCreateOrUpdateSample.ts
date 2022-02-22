@@ -41,6 +41,7 @@ async function createPublicIPPrefixAllocationMethod() {
 }
 
 createPublicIPPrefixAllocationMethod().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates a static or dynamic public IP prefix.
  *

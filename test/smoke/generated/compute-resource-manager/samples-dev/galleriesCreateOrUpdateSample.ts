@@ -40,6 +40,7 @@ async function createOrUpdateASimpleGalleryWithSharingProfile() {
 }
 
 createOrUpdateASimpleGalleryWithSharingProfile().catch(console.error);
+
 /**
  * This sample demonstrates how to Create or update a Shared Image Gallery.
  *
@@ -66,6 +67,7 @@ async function createOrUpdateASimpleGalleryWithSoftDeletionEnabled() {
 }
 
 createOrUpdateASimpleGalleryWithSoftDeletionEnabled().catch(console.error);
+
 /**
  * This sample demonstrates how to Create or update a Shared Image Gallery.
  *

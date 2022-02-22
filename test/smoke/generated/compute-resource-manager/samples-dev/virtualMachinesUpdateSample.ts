@@ -70,6 +70,7 @@ async function updateAVMByDetachingDataDisk() {
 }
 
 updateAVMByDetachingDataDisk().catch(console.error);
+
 /**
  * This sample demonstrates how to The operation to update a virtual machine.
  *

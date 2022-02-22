@@ -37,6 +37,7 @@ async function listContainers() {
 }
 
 listContainers().catch(console.error);
+
 /**
  * This sample demonstrates how to Lists all containers and does not support a prefix like data plane. Also SRP today does not return continuation token.
  *

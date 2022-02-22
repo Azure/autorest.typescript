@@ -31,6 +31,7 @@ async function getNetworkProfile() {
 }
 
 getNetworkProfile().catch(console.error);
+
 /**
  * This sample demonstrates how to Gets the specified network profile in a specified resource group.
  *

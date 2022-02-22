@@ -38,6 +38,7 @@ async function queueOperationPut() {
 }
 
 queueOperationPut().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates a new queue with the specified queue name, under the specified account.
  *

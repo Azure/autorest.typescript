@@ -41,6 +41,7 @@ async function createOrUpdateDataMaskingPolicyMax() {
 }
 
 createOrUpdateDataMaskingPolicyMax().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates a database data masking policy
  *

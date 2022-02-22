@@ -40,6 +40,7 @@ async function createVirtualNetwork() {
 }
 
 createVirtualNetwork().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates a virtual network in the specified resource group.
  *
@@ -67,6 +68,7 @@ async function createVirtualNetworkWithBgpCommunities() {
 }
 
 createVirtualNetworkWithBgpCommunities().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates a virtual network in the specified resource group.
  *
@@ -104,6 +106,7 @@ async function createVirtualNetworkWithDelegatedSubnets() {
 }
 
 createVirtualNetworkWithDelegatedSubnets().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates a virtual network in the specified resource group.
  *
@@ -131,6 +134,7 @@ async function createVirtualNetworkWithEncryption() {
 }
 
 createVirtualNetworkWithEncryption().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates a virtual network in the specified resource group.
  *
@@ -163,6 +167,7 @@ async function createVirtualNetworkWithServiceEndpoints() {
 }
 
 createVirtualNetworkWithServiceEndpoints().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates a virtual network in the specified resource group.
  *
@@ -203,6 +208,7 @@ async function createVirtualNetworkWithServiceEndpointsAndServiceEndpointPolicy(
 createVirtualNetworkWithServiceEndpointsAndServiceEndpointPolicy().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to Creates or updates a virtual network in the specified resource group.
  *
@@ -229,6 +235,7 @@ async function createVirtualNetworkWithSubnet() {
 }
 
 createVirtualNetworkWithSubnet().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates a virtual network in the specified resource group.
  *

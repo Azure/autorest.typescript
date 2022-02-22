@@ -34,6 +34,7 @@ async function listPeerings() {
 }
 
 listPeerings().catch(console.error);
+
 /**
  * This sample demonstrates how to Gets all virtual network peerings in a virtual network.
  *

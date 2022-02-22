@@ -53,6 +53,7 @@ async function importsToANewDatabaseUsingPrivateLinkForTheSqlServerAndStorageAcc
 importsToANewDatabaseUsingPrivateLinkForTheSqlServerAndStorageAccount().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to Imports a bacpac into a new database.
  *

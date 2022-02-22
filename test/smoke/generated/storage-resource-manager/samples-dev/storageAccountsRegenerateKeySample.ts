@@ -38,6 +38,7 @@ async function storageAccountRegenerateKerbKey() {
 }
 
 storageAccountRegenerateKerbKey().catch(console.error);
+
 /**
  * This sample demonstrates how to Regenerates one of the access keys or Kerberos keys for the specified storage account.
  *

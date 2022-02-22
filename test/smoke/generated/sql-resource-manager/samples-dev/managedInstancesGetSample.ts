@@ -31,6 +31,7 @@ async function getManagedInstance() {
 }
 
 getManagedInstance().catch(console.error);
+
 /**
  * This sample demonstrates how to Gets a managed instance.
  *

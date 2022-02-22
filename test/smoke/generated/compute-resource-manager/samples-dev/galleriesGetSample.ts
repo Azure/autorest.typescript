@@ -37,6 +37,7 @@ async function getAGalleryWithSelectPermissions() {
 }
 
 getAGalleryWithSelectPermissions().catch(console.error);
+
 /**
  * This sample demonstrates how to Retrieves information about a Shared Image Gallery.
  *

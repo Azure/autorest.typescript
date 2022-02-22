@@ -36,6 +36,7 @@ async function listOfDatabaseAdvisors() {
 }
 
 listOfDatabaseAdvisors().catch(console.error);
+
 /**
  * This sample demonstrates how to Gets a list of database advisors.
  *

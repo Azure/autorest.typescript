@@ -34,6 +34,7 @@ async function loadBalancerNetworkInterfaceListSimple() {
 }
 
 loadBalancerNetworkInterfaceListSimple().catch(console.error);
+
 /**
  * This sample demonstrates how to Gets associated load balancer network interfaces.
  *

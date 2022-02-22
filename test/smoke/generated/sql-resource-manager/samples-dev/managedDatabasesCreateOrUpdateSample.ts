@@ -48,6 +48,7 @@ async function createsANewManagedDatabaseByRestoringFromAnExternalBackup() {
 createsANewManagedDatabaseByRestoringFromAnExternalBackup().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to Creates a new database or updates an existing database.
  *
@@ -79,6 +80,7 @@ async function createsANewManagedDatabaseFromRestoringAGeoReplicatedBackup() {
 createsANewManagedDatabaseFromRestoringAGeoReplicatedBackup().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to Creates a new database or updates an existing database.
  *
@@ -111,6 +113,7 @@ async function createsANewManagedDatabaseFromRestoringALongTermRetentionBackup()
 createsANewManagedDatabaseFromRestoringALongTermRetentionBackup().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to Creates a new database or updates an existing database.
  *
@@ -141,6 +144,7 @@ async function createsANewManagedDatabaseUsingPointInTimeRestore() {
 }
 
 createsANewManagedDatabaseUsingPointInTimeRestore().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates a new database or updates an existing database.
  *
@@ -168,6 +172,7 @@ async function createsANewManagedDatabaseWithMaximalProperties() {
 }
 
 createsANewManagedDatabaseWithMaximalProperties().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates a new database or updates an existing database.
  *

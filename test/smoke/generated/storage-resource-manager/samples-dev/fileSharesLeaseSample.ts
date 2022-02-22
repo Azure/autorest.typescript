@@ -46,6 +46,7 @@ async function acquireALeaseOnAShare() {
 }
 
 acquireALeaseOnAShare().catch(console.error);
+
 /**
  * This sample demonstrates how to The Lease Share operation establishes and manages a lock on a share for delete operations. The lock duration can be 15 to 60 seconds, or can be infinite.
  *

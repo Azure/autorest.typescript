@@ -41,6 +41,7 @@ async function expressRoutePortCreate() {
 }
 
 expressRoutePortCreate().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates the specified ExpressRoutePort resource.
  *

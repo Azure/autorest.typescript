@@ -97,6 +97,7 @@ async function createOrUpdateASimpleGalleryImageVersionUsingVMAsSource() {
 }
 
 createOrUpdateASimpleGalleryImageVersionUsingVMAsSource().catch(console.error);
+
 /**
  * This sample demonstrates how to Create or update a gallery image version.
  *
@@ -182,6 +183,7 @@ async function createOrUpdateASimpleGalleryImageVersionUsingManagedImageAsSource
 createOrUpdateASimpleGalleryImageVersionUsingManagedImageAsSource().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to Create or update a gallery image version.
  *
@@ -270,6 +272,7 @@ async function createOrUpdateASimpleGalleryImageVersionUsingMixOfDisksAndSnapsho
 createOrUpdateASimpleGalleryImageVersionUsingMixOfDisksAndSnapshotsAsASource().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to Create or update a gallery image version.
  *
@@ -310,6 +313,7 @@ async function createOrUpdateASimpleGalleryImageVersionUsingShallowReplicationMo
 createOrUpdateASimpleGalleryImageVersionUsingShallowReplicationMode().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to Create or update a gallery image version.
  *
@@ -395,6 +399,7 @@ async function createOrUpdateASimpleGalleryImageVersionUsingSharedImageAsSource(
 createOrUpdateASimpleGalleryImageVersionUsingSharedImageAsSource().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to Create or update a gallery image version.
  *
@@ -483,6 +488,7 @@ async function createOrUpdateASimpleGalleryImageVersionUsingSnapshotsAsASource()
 createOrUpdateASimpleGalleryImageVersionUsingSnapshotsAsASource().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to Create or update a gallery image version.
  *

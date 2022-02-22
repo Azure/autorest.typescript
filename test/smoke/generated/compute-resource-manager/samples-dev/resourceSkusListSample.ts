@@ -32,6 +32,7 @@ async function listsAllAvailableResourceSkUs() {
 }
 
 listsAllAvailableResourceSkUs().catch(console.error);
+
 /**
  * This sample demonstrates how to Gets the list of Microsoft.Compute SKUs available for your Subscription.
  *
@@ -52,6 +53,7 @@ async function listsAllAvailableResourceSkUsForTheSpecifiedRegion() {
 }
 
 listsAllAvailableResourceSkUsForTheSpecifiedRegion().catch(console.error);
+
 /**
  * This sample demonstrates how to Gets the list of Microsoft.Compute SKUs available for your Subscription.
  *

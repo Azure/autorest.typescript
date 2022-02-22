@@ -42,6 +42,7 @@ async function createOrUpdateElasticPoolWithAllParameter() {
 }
 
 createOrUpdateElasticPoolWithAllParameter().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates an elastic pool.
  *
@@ -72,6 +73,7 @@ async function createOrUpdateElasticPoolWithMaintenanceConfigurationParameter() 
 createOrUpdateElasticPoolWithMaintenanceConfigurationParameter().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to Creates or updates an elastic pool.
  *

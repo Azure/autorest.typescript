@@ -45,6 +45,7 @@ async function createOrUpdateImmutabilityPolicy() {
 }
 
 createOrUpdateImmutabilityPolicy().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates an unlocked immutability policy. ETag in If-Match is honored if given but not required for this operation.
  *

@@ -33,6 +33,7 @@ async function loadBalancerWithBackendAddressPoolWithBackendAddresses() {
 }
 
 loadBalancerWithBackendAddressPoolWithBackendAddresses().catch(console.error);
+
 /**
  * This sample demonstrates how to Gets load balancer backend address pool.
  *

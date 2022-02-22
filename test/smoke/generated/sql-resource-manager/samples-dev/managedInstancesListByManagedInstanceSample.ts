@@ -44,6 +44,7 @@ async function obtainListOfInstanceTopResourceConsumingQueries() {
 }
 
 obtainListOfInstanceTopResourceConsumingQueries().catch(console.error);
+
 /**
  * This sample demonstrates how to Get top resource consuming queries of a managed instance.
  *
@@ -82,6 +83,7 @@ async function obtainListOfInstanceTopResourceConsumingQueriesFullBlownRequestAn
 obtainListOfInstanceTopResourceConsumingQueriesFullBlownRequestAndResponse().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to Get top resource consuming queries of a managed instance.
  *

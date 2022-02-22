@@ -40,6 +40,7 @@ async function listDeletedShares() {
 }
 
 listDeletedShares().catch(console.error);
+
 /**
  * This sample demonstrates how to Lists all shares.
  *
@@ -66,6 +67,7 @@ async function listShareSnapshots() {
 }
 
 listShareSnapshots().catch(console.error);
+
 /**
  * This sample demonstrates how to Lists all shares.
  *

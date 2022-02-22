@@ -38,6 +38,7 @@ async function listAppAnalyses() {
 }
 
 listAppAnalyses().catch(console.error);
+
 /**
  * This sample demonstrates how to Description for Get Site Analyses
  *

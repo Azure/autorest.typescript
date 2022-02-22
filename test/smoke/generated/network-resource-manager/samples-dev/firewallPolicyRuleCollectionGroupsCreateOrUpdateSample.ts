@@ -61,6 +61,7 @@ async function createFirewallPolicyNatRuleCollectionGroup() {
 }
 
 createFirewallPolicyNatRuleCollectionGroup().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates the specified FirewallPolicyRuleCollectionGroup.
  *
@@ -105,6 +106,7 @@ async function createFirewallPolicyRuleCollectionGroup() {
 }
 
 createFirewallPolicyRuleCollectionGroup().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates the specified FirewallPolicyRuleCollectionGroup.
  *
@@ -152,6 +154,7 @@ async function createFirewallPolicyRuleCollectionGroupWithIPGroups() {
 }
 
 createFirewallPolicyRuleCollectionGroupWithIPGroups().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates the specified FirewallPolicyRuleCollectionGroup.
  *

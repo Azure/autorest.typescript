@@ -54,6 +54,7 @@ async function exportsADatabaseUsingPrivateLinkToCommunicateWithSqlServerAndStor
 exportsADatabaseUsingPrivateLinkToCommunicateWithSqlServerAndStorageAccount().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to Exports a database.
  *

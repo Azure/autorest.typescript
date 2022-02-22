@@ -43,6 +43,7 @@ async function createAManagedDiskAndAssociateWithDiskAccessResource() {
 }
 
 createAManagedDiskAndAssociateWithDiskAccessResource().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates a disk.
  *
@@ -73,6 +74,7 @@ async function createAManagedDiskAndAssociateWithDiskEncryptionSet() {
 }
 
 createAManagedDiskAndAssociateWithDiskEncryptionSet().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates a disk.
  *
@@ -102,6 +104,7 @@ async function createAManagedDiskByCopyingASnapshot() {
 }
 
 createAManagedDiskByCopyingASnapshot().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates a disk.
  *
@@ -135,6 +138,7 @@ async function createAManagedDiskByImportingAnUnmanagedBlobFromADifferentSubscri
 createAManagedDiskByImportingAnUnmanagedBlobFromADifferentSubscription().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to Creates or updates a disk.
  *
@@ -166,6 +170,7 @@ async function createAManagedDiskByImportingAnUnmanagedBlobFromTheSameSubscripti
 createAManagedDiskByImportingAnUnmanagedBlobFromTheSameSubscription().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to Creates or updates a disk.
  *
@@ -198,6 +203,7 @@ async function createAManagedDiskFromAPlatformImage() {
 }
 
 createAManagedDiskFromAPlatformImage().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates a disk.
  *
@@ -229,6 +235,7 @@ async function createAManagedDiskFromAnExistingManagedDiskInTheSameOrDifferentSu
 createAManagedDiskFromAnExistingManagedDiskInTheSameOrDifferentSubscription().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to Creates or updates a disk.
  *
@@ -262,6 +269,7 @@ async function createAManagedDiskWithSecurityProfile() {
 }
 
 createAManagedDiskWithSecurityProfile().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates a disk.
  *
@@ -289,6 +297,7 @@ async function createAManagedDiskWithSsdZrsAccountType() {
 }
 
 createAManagedDiskWithSsdZrsAccountType().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates a disk.
  *
@@ -314,6 +323,7 @@ async function createAManagedUploadDisk() {
 }
 
 createAManagedUploadDisk().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates a disk.
  *
@@ -341,6 +351,7 @@ async function createAnEmptyManagedDiskInExtendedLocation() {
 }
 
 createAnEmptyManagedDiskInExtendedLocation().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates a disk.
  *
@@ -367,6 +378,7 @@ async function createAnEmptyManagedDisk() {
 }
 
 createAnEmptyManagedDisk().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates a disk.
  *

@@ -40,6 +40,7 @@ async function listInstancePoolUsagesExpandedWithChildren() {
 }
 
 listInstancePoolUsagesExpandedWithChildren().catch(console.error);
+
 /**
  * This sample demonstrates how to Gets all instance pool usage metrics
  *

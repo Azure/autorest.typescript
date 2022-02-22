@@ -72,6 +72,7 @@ async function createOrUpdateATargetGroupWithAllProperties() {
 }
 
 createOrUpdateATargetGroupWithAllProperties().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates a target group.
  *

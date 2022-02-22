@@ -34,6 +34,7 @@ async function getAppDetectorResponses() {
 }
 
 getAppDetectorResponses().catch(console.error);
+
 /**
  * This sample demonstrates how to Description for List Site Detector Responses
  *

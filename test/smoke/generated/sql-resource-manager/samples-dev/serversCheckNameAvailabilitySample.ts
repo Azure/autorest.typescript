@@ -33,6 +33,7 @@ async function checkForAServerNameThatAlreadyExists() {
 }
 
 checkForAServerNameThatAlreadyExists().catch(console.error);
+
 /**
  * This sample demonstrates how to Determines whether a resource can be created with the specified name.
  *
@@ -52,6 +53,7 @@ async function checkForAServerNameThatIsAvailable() {
 }
 
 checkForAServerNameThatIsAvailable().catch(console.error);
+
 /**
  * This sample demonstrates how to Determines whether a resource can be created with the specified name.
  *

@@ -43,6 +43,7 @@ async function updatesServerAutomaticTuningSettingsWithAllProperties() {
 }
 
 updatesServerAutomaticTuningSettingsWithAllProperties().catch(console.error);
+
 /**
  * This sample demonstrates how to Update automatic tuning options on server.
  *

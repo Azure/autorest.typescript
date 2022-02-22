@@ -98,6 +98,7 @@ async function createLoadBalancer() {
 }
 
 createLoadBalancer().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates a load balancer.
  *
@@ -183,6 +184,7 @@ async function createLoadBalancerWithFrontendIPInZone1() {
 }
 
 createLoadBalancerWithFrontendIPInZone1().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates a load balancer.
  *
@@ -273,6 +275,7 @@ async function createLoadBalancerWithGatewayLoadBalancerConsumerConfigured() {
 createLoadBalancerWithGatewayLoadBalancerConsumerConfigured().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to Creates or updates a load balancer.
  *
@@ -355,6 +358,7 @@ async function createLoadBalancerWithGatewayLoadBalancerProviderConfiguredWithOn
 createLoadBalancerWithGatewayLoadBalancerProviderConfiguredWithOneBackendPool().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to Creates or updates a load balancer.
  *
@@ -434,6 +438,7 @@ async function createLoadBalancerWithGatewayLoadBalancerProviderConfiguredWithTw
 createLoadBalancerWithGatewayLoadBalancerProviderConfiguredWithTwoBackendPool().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to Creates or updates a load balancer.
  *
@@ -517,6 +522,7 @@ async function createLoadBalancerWithGlobalTierAndOneRegionalLoadBalancerInItsBa
 createLoadBalancerWithGlobalTierAndOneRegionalLoadBalancerInItsBackendPool().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to Creates or updates a load balancer.
  *
@@ -601,6 +607,7 @@ async function createLoadBalancerWithStandardSku() {
 }
 
 createLoadBalancerWithStandardSku().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates a load balancer.
  *
@@ -662,6 +669,7 @@ async function createLoadBalancerWithInboundNatPool() {
 }
 
 createLoadBalancerWithInboundNatPool().catch(console.error);
+
 /**
  * This sample demonstrates how to Creates or updates a load balancer.
  *

@@ -33,6 +33,7 @@ async function getInformationAboutADiskAccessResourceWithPrivateEndpoints() {
 getInformationAboutADiskAccessResourceWithPrivateEndpoints().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to Gets information about a disk access resource.
  *

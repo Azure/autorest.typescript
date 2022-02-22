@@ -31,6 +31,7 @@ async function getPrivateEndpoint() {
 }
 
 getPrivateEndpoint().catch(console.error);
+
 /**
  * This sample demonstrates how to Gets the specified private endpoint by resource group.
  *
@@ -51,6 +52,7 @@ async function getPrivateEndpointWithApplicationSecurityGroups() {
 }
 
 getPrivateEndpointWithApplicationSecurityGroups().catch(console.error);
+
 /**
  * This sample demonstrates how to Gets the specified private endpoint by resource group.
  *

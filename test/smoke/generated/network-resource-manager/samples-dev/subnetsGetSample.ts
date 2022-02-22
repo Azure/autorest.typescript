@@ -33,6 +33,7 @@ async function getSubnet() {
 }
 
 getSubnet().catch(console.error);
+
 /**
  * This sample demonstrates how to Gets the specified subnet by virtual network and resource group.
  *

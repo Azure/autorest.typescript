@@ -33,6 +33,7 @@ async function getAVirtualMachineScaleSetPlacedOnADedicatedHostGroupThroughAutom
 getAVirtualMachineScaleSetPlacedOnADedicatedHostGroupThroughAutomaticPlacement().catch(
   console.error
 );
+
 /**
  * This sample demonstrates how to Display information about a virtual machine scale set.
  *
