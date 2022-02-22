@@ -1,14 +1,14 @@
 import { assert } from "chai";
-import UrlRestClient, {
-  UrlRestClientRestClient
+import createUrlRestClient, {
+  UrlRestClient
 } from "./generated/urlRest/src";
 import { UriColor } from "./generated/url/src";
 
 describe("Integration tests for UrlRest", () => {
-  let client: UrlRestClientRestClient;
+  let client: UrlRestClient;
 
   beforeEach(() => {
-    client = UrlRestClient({
+    client = createUrlRestClient({
       allowInsecureConnection: true
     });
   });

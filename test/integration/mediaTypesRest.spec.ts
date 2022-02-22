@@ -1,14 +1,14 @@
-import MediaTypes, {
-  MediaTypesRestClient
+import createMediaTypes, {
+  MediaTypes
 } from "./generated/mediaTypesRest/src";
 
 import { assert } from "chai";
 
 describe("Media types Rest", () => {
-  let client: MediaTypesRestClient;
+  let client: MediaTypes;
 
   beforeEach(() => {
-    client = MediaTypes({ allowInsecureConnection: true });
+    client = createMediaTypes({ allowInsecureConnection: true });
   });
 
   // Issue https://github.com/Azure/autorest.typescript/issues/1242

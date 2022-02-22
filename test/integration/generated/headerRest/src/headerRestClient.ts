@@ -3,14 +3,14 @@
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import "@azure/core-auth";
-import { HeaderRestClientRestClient } from "./clientDefinitions";
+import { HeaderRestClient } from "./clientDefinitions";
 
-export default function HeaderRestClient(
+export default function createHeaderRestClient(
   options: ClientOptions = {}
-): HeaderRestClientRestClient {
+): HeaderRestClient {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
 
-  const client = getClient(baseUrl, options) as HeaderRestClientRestClient;
+  const client = getClient(baseUrl, options) as HeaderRestClient;
 
   return client;
 }

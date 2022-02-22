@@ -41,6 +41,6 @@ export interface Routes {
   (path: "/formdata/stream/uploadfiles"): UploadFiles;
 }
 
-export type BodyFormDataRestClient = Client & {
+export type BodyFormData = Client & {
   path: Routes;
 };

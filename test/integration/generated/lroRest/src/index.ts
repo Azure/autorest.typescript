@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import LRORestClient from "./lRORestClient";
+import createLRORestClient from "./lRORestClient";
 
 export * from "./lRORestClient";
 export * from "./parameters";
@@ -11,4 +11,4 @@ export * from "./models";
 export * from "./outputModels";
 export * from "./pollingHelper";
 
-export default LRORestClient;
+export default createLRORestClient;

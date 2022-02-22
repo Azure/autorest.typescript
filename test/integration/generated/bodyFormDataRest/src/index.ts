@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import BodyFormData from "./bodyFormData";
+import createBodyFormData from "./bodyFormData";
 
 export * from "./bodyFormData";
 export * from "./parameters";
@@ -9,4 +9,4 @@ export * from "./responses";
 export * from "./clientDefinitions";
 export * from "./outputModels";
 
-export default BodyFormData;
+export default createBodyFormData;

@@ -368,6 +368,6 @@ export interface Routes {
   ): CustomRequestId;
 }
 
-export type HeaderRestClientRestClient = Client & {
+export type HeaderRestClient = Client & {
   path: Routes;
 };

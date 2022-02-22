@@ -119,7 +119,7 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
 
   const clientName = getLanguageMetadata(model.language).name;
 
-  const clientIterfaceName = `${clientName}RestClient`;
+  const clientInterfaceName = `${clientName}`;
 
   const { rlcShortcut } = getAutorestOptions();
 
@@ -149,7 +149,7 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
 
   clientFile.addTypeAlias({
     isExported: true,
-    name: clientIterfaceName,
+    name: clientInterfaceName,
     type: Writers.intersectionType(
       "Client",
       Writers.objectType({

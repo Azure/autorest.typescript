@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import MultipleInheritanceRestClient from "./multipleInheritanceRestClient";
+import createMultipleInheritanceRestClient from "./multipleInheritanceRestClient";
 
 export * from "./multipleInheritanceRestClient";
 export * from "./parameters";
@@ -10,4 +10,4 @@ export * from "./clientDefinitions";
 export * from "./models";
 export * from "./outputModels";
 
-export default MultipleInheritanceRestClient;
+export default createMultipleInheritanceRestClient;
