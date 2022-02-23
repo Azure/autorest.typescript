@@ -139,16 +139,13 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
             );
             const parameterTypeName = parameterTypeDetails.typeName;
             let paramAssignment = "";
-            let isAnyTypeBody = false;
             if (methodParameter.parameter.protocol?.http?.["in"] === "body") {
               sample.hasBody = true;
-              sample.bodySchemaName = parameterTypeName;   
+              sample.bodySchemaName = parameterTypeName;
+              sample.importedTypes?.push(parameterTypeName);
               if (methodParameter.exampleValue.schema.type === SchemaType.AnyObject || methodParameter.exampleValue.schema.type  === SchemaType.Any) {
                 sample.bodySchemaName = "Record<string, unknown>"
-                isAnyTypeBody = true;
-              }
-              if (!isAnyTypeBody) {
-                sample.importedTypes?.push(parameterTypeName);
+                sample.isAnyTypeBody = true;
               }
               paramAssignment =
                 `const ${parameterName}: ${sample.bodySchemaName} = ` +
