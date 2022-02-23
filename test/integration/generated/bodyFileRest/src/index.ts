@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import createBodyFile from "./bodyFile";
+import BodyFile from "./bodyFile";
 
 export * from "./bodyFile";
 export * from "./parameters";
@@ -9,4 +9,4 @@ export * from "./responses";
 export * from "./clientDefinitions";
 export * from "./outputModels";
 
-export default createBodyFile;
+export default BodyFile;

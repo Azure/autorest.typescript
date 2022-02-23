@@ -3,14 +3,17 @@
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import "@azure/core-auth";
-import { MultipleInheritanceRestClient } from "./clientDefinitions";
+import { MultipleInheritanceRestClientLike } from "./clientDefinitions";
 
-export default function createMultipleInheritanceRestClient(
+export default function MultipleInheritanceRestClient(
   options: ClientOptions = {}
-): MultipleInheritanceRestClient {
+): MultipleInheritanceRestClientLike {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
 
-  const client = getClient(baseUrl, options) as MultipleInheritanceRestClient;
+  const client = getClient(
+    baseUrl,
+    options
+  ) as MultipleInheritanceRestClientLike;
 
   return {
     ...client,

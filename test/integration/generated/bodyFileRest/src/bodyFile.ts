@@ -3,12 +3,12 @@
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import "@azure/core-auth";
-import { BodyFile } from "./clientDefinitions";
+import { BodyFileLike } from "./clientDefinitions";
 
-export default function createBodyFile(options: ClientOptions = {}): BodyFile {
+export default function BodyFile(options: ClientOptions = {}): BodyFileLike {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
 
-  const client = getClient(baseUrl, options) as BodyFile;
+  const client = getClient(baseUrl, options) as BodyFileLike;
 
   return client;
 }

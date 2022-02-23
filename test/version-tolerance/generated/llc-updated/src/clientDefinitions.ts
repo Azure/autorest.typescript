@@ -58,7 +58,7 @@ export interface Routes {
   (path: "/servicedriven/newpath"): GetNewOperation;
 }
 
-export type LLCClient = Client & {
+export type LLCClientLike = Client & {
   path: Routes;
   params: ParamsOperations;
 };

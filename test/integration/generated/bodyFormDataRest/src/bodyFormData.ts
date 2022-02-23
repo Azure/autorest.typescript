@@ -3,14 +3,14 @@
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import "@azure/core-auth";
-import { BodyFormData } from "./clientDefinitions";
+import { BodyFormDataLike } from "./clientDefinitions";
 
-export default function createBodyFormData(
+export default function BodyFormData(
   options: ClientOptions = {}
-): BodyFormData {
+): BodyFormDataLike {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
 
-  const client = getClient(baseUrl, options) as BodyFormData;
+  const client = getClient(baseUrl, options) as BodyFormDataLike;
 
   return client;
 }

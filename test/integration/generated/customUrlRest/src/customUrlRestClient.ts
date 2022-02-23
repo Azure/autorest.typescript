@@ -3,14 +3,14 @@
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import "@azure/core-auth";
-import { CustomUrlRestClient } from "./clientDefinitions";
+import { CustomUrlRestClientLike } from "./clientDefinitions";
 
-export default function createCustomUrlRestClient(
+export default function CustomUrlRestClient(
   host: string,
   options: ClientOptions = {}
-): CustomUrlRestClient {
+): CustomUrlRestClientLike {
   const baseUrl = options.baseUrl ?? `http://{accountName}${host}`;
-  const client = getClient(baseUrl, options) as CustomUrlRestClient;
+  const client = getClient(baseUrl, options) as CustomUrlRestClientLike;
 
   return {
     ...client,

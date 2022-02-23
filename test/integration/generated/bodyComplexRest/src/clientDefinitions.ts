@@ -633,6 +633,6 @@ export interface Routes {
   (path: "/complex/flatten/valid"): FlattencomplexGetValid;
 }
 
-export type BodyComplexRestClient = Client & {
+export type BodyComplexRestClientLike = Client & {
   path: Routes;
 };

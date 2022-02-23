@@ -1,13 +1,13 @@
 import { assert } from "chai";
-import createBodyStringRest, {
-  BodyStringRest
+import BodyStringRest, {
+  BodyStringRestLike
 } from "./generated/bodyStringRest/src";
 
 describe(" BodyStringRest", () => {
-  let client: BodyStringRest;
+  let client: BodyStringRestLike;
 
   beforeEach(() => {
-    client = createBodyStringRest();
+    client = BodyStringRest();
   });
 
   describe("Acceptance tests", () => {

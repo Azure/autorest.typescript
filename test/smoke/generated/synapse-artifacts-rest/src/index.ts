@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import createSynapseArtifacts from "./synapseArtifacts";
+import SynapseArtifacts from "./synapseArtifacts";
 
 export * from "./synapseArtifacts";
 export * from "./parameters";
@@ -12,4 +12,4 @@ export * from "./outputModels";
 export * from "./paginateHelper";
 export * from "./pollingHelper";
 
-export default createSynapseArtifacts;
+export default SynapseArtifacts;

@@ -3,15 +3,15 @@
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import "@azure/core-auth";
-import { BodyComplexRestClient } from "./clientDefinitions";
+import { BodyComplexRestClientLike } from "./clientDefinitions";
 
-export default function createBodyComplexRestClient(
+export default function BodyComplexRestClient(
   options: ClientOptions = {}
-): BodyComplexRestClient {
+): BodyComplexRestClientLike {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
   options.apiVersion = options.apiVersion ?? "2016-02-29";
 
-  const client = getClient(baseUrl, options) as BodyComplexRestClient;
+  const client = getClient(baseUrl, options) as BodyComplexRestClientLike;
 
   return client;
 }

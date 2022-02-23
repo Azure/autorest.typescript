@@ -3,13 +3,13 @@
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { TokenCredential } from "@azure/core-auth";
-import { PurviewMetadataPolicies } from "./clientDefinitions";
+import { PurviewMetadataPoliciesLike } from "./clientDefinitions";
 
-export function createPurviewMetadataPolicies(
+export function PurviewMetadataPolicies(
   Endpoint: string,
   credentials: TokenCredential,
   options: ClientOptions = {}
-): PurviewMetadataPolicies {
+): PurviewMetadataPoliciesLike {
   const baseUrl = options.baseUrl ?? `${Endpoint}/policyStore`;
   options.apiVersion = options.apiVersion ?? "2021-07-01-preview";
   options = {
@@ -23,7 +23,7 @@ export function createPurviewMetadataPolicies(
     baseUrl,
     credentials,
     options
-  ) as PurviewMetadataPolicies;
+  ) as PurviewMetadataPoliciesLike;
 
   return client;
 }

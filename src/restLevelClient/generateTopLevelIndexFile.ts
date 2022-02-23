@@ -30,7 +30,7 @@ export function generateTopLevelIndexFile(model: CodeModel, project: Project) {
             });
             file.addExportDeclaration({
                 moduleSpecifier: `${item[0]}/${item[2]}`,
-                namedExports: [`create${normalizeName(item[1], NameType.Class)}`]
+                namedExports: [`${item[1]} as ${item[1]}Client`]
             })
             allModules.push(item[1]);
         });

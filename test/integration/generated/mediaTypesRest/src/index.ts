@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import createMediaTypes from "./mediaTypes";
+import MediaTypes from "./mediaTypes";
 
 export * from "./mediaTypes";
 export * from "./parameters";
@@ -9,4 +9,4 @@ export * from "./responses";
 export * from "./clientDefinitions";
 export * from "./models";
 
-export default createMediaTypes;
+export default MediaTypes;

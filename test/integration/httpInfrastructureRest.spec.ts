@@ -1,5 +1,5 @@
-import createHttpInfrastructureRestClient, {
-  HttpInfrastructureRestClient
+import HttpInfrastructureRestClient, {
+  HttpInfrastructureRestClientLike
 } from "./generated/httpInfrastructureRest/src";
 import { assert } from "chai";
 import { PipelinePolicy } from "@azure/core-rest-pipeline";
@@ -7,7 +7,7 @@ import { isNode } from "@azure/core-util";
 import { getCookiePolicy } from "./testUtils/cookiePolicy";
 
 describe("Http infrastructure rest Client", () => {
-  let client: HttpInfrastructureRestClient;
+  let client: HttpInfrastructureRestClientLike;
 
   // Prevents caching redirects
   const preventCachingPolicy: PipelinePolicy = {
@@ -23,7 +23,7 @@ describe("Http infrastructure rest Client", () => {
   };
 
   beforeEach(() => {
-    client = createHttpInfrastructureRestClient({
+    client = HttpInfrastructureRestClient({
       allowInsecureConnection: true,
       retryOptions: { maxRetryDelayInMs: 0, retryDelayInMs: 0 }
     });

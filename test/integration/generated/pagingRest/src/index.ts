@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import createPaging from "./paging";
+import Paging from "./paging";
 
 export * from "./paging";
 export * from "./parameters";
@@ -11,4 +11,4 @@ export * from "./outputModels";
 export * from "./paginateHelper";
 export * from "./pollingHelper";
 
-export default createPaging;
+export default Paging;

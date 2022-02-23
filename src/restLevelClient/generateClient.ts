@@ -51,11 +51,11 @@ export function generateClient(model: CodeModel, project: Project) {
       ? []
       : [{ name: "credentials", type: credentialTypes.join(" | ") }])
   ];
-  const clientInterfaceName = `${clientName}`;
+  const clientInterfaceName = `${clientName}Like`;
 
   const functionStatement = {
     isExported: true,
-    name: `create${normalizeName(clientName, NameType.Class)}`,
+    name: `${clientName}`,
     parameters: [
       ...commonClientParams,
       { name: "options", type: "ClientOptions = {}" }
@@ -83,7 +83,7 @@ export function generateClient(model: CodeModel, project: Project) {
       moduleSpecifier: "@azure/core-auth"
     },
     {
-      namedImports: [`${clientName}`],
+      namedImports: [`${clientInterfaceName}`],
       moduleSpecifier: './clientDefinitions'
     }
   ]);

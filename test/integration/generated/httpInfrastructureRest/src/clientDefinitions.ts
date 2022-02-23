@@ -2032,7 +2032,7 @@ export interface Routes {
   ): MultipleResponsesGet200ModelA202Valid;
 }
 
-export type HttpInfrastructureRestClient = Client & {
+export type HttpInfrastructureRestClientLike = Client & {
   path: Routes;
   httpFailure: HttpFailureOperations;
   httpSuccess: HttpSuccessOperations;

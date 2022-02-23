@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import createBodyStringRest from "./bodyStringRest";
+import BodyStringRest from "./bodyStringRest";
 
 export * from "./bodyStringRest";
 export * from "./parameters";
@@ -10,4 +10,4 @@ export * from "./clientDefinitions";
 export * from "./models";
 export * from "./outputModels";
 
-export default createBodyStringRest;
+export default BodyStringRest;

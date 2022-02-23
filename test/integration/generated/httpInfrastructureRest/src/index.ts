@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import createHttpInfrastructureRestClient from "./httpInfrastructureRestClient";
+import HttpInfrastructureRestClient from "./httpInfrastructureRestClient";
 
 export * from "./httpInfrastructureRestClient";
 export * from "./parameters";
@@ -9,4 +9,4 @@ export * from "./responses";
 export * from "./clientDefinitions";
 export * from "./outputModels";
 
-export default createHttpInfrastructureRestClient;
+export default HttpInfrastructureRestClient;

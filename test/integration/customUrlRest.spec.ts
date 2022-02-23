@@ -1,14 +1,14 @@
-import createCustomUrlRestClient, {
-  CustomUrlRestClient
+import CustomUrlRestClient, {
+  CustomUrlRestClientLike
 } from "./generated/customUrlRest/src";
 import { assert } from "chai";
 
 describe("CustomRest Endpoint", () => {
-  let client: CustomUrlRestClient;
+  let client: CustomUrlRestClientLike;
   let clientOptions: any;
   beforeEach(() => {
     clientOptions = { allowInsecureConnection: true };
-    client = createCustomUrlRestClient("host:3000", clientOptions);
+    client = CustomUrlRestClient("host:3000", clientOptions);
   });
 
   it("should return 200", async () => {

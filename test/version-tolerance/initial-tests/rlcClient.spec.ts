@@ -1,12 +1,12 @@
-import createLLCClient, { LLCClient } from "../generated/llc-initial/src";
+import LLCClient, { LLCClientLike } from "../generated/llc-initial/src";
 import { assert } from "chai";
 
 const phase = "initial";
 
 describe(`RLC Version Tolerance ${phase} phase`, async () => {
-  let client: LLCClient;
+  let client: LLCClientLike;
   beforeEach(() => {
-    client = createLLCClient({ allowInsecureConnection: true });
+    client = LLCClient({ allowInsecureConnection: true });
   });
   describe("path", () => {
     it("Query parameter required to optional", async () => {

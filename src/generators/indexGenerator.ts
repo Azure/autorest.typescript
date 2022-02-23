@@ -36,7 +36,7 @@ export function generateIndexFile(
 function generateRLCIndexForMultiClient(file: SourceFile) {
   const { model } = getSession();
   const clientName = model.language.default.name;
-  const createClientFuncName = `create${normalizeName(clientName, NameType.Class)}`;
+  const createClientFuncName = `${clientName}`;
   const moduleName = normalizeName(clientName, NameType.File);
 
   file.addImportDeclaration({
@@ -101,7 +101,7 @@ function generateRLCIndexForMultiClient(file: SourceFile) {
 function generateRLCIndex(file: SourceFile) {
   const { model } = getSession();
   const clientName = model.language.default.name;
-  const createClientFuncName = `create${normalizeName(clientName, NameType.Class)}`;
+  const createClientFuncName = `${clientName}`;
   const moduleName = normalizeName(clientName, NameType.File);
 
   file.addImportDeclaration({

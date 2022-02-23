@@ -3,12 +3,12 @@
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import "@azure/core-auth";
-import { Paging } from "./clientDefinitions";
+import { PagingLike } from "./clientDefinitions";
 
-export default function createPaging(options: ClientOptions = {}): Paging {
+export default function Paging(options: ClientOptions = {}): PagingLike {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
 
-  const client = getClient(baseUrl, options) as Paging;
+  const client = getClient(baseUrl, options) as PagingLike;
 
   return client;
 }
