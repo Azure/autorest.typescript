@@ -34,6 +34,7 @@ export interface AutorestOptions {
   generateTest?: boolean;
   batch?: [string, any][];
   generateSample?: boolean;
+  productDocLink?: string;
 }
 
 let host: AutorestExtensionHost;

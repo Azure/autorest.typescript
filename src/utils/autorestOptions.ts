@@ -35,6 +35,7 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
   const generateTest = await getGenerateTest(host);
   const batch = await getBatch(host);
   const generateSample = await getGenerateSample(host);
+  const productDocLink = await getProductDocLink(host);
 
   return {
     azureArm,
@@ -61,7 +62,8 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
     isTestPackage,
     generateTest,
     batch,
-    generateSample
+    generateSample,
+    productDocLink
   };
 }
 
@@ -290,6 +292,11 @@ async function getAzureOutputDirectoryPath(
 
 async function getBatch(host: AutorestExtensionHost): Promise<[string, any][] | undefined> {
   const batch = await host.getValue<[string, any][]>('batch');
-  return batch;
-  
+  return batch; 
+}
+
+async function getProductDocLink(
+  host: AutorestExtensionHost
+): Promise<string | undefined> {
+  return (await host.getValue("product-doc-link")) || undefined;
 }

@@ -8,6 +8,9 @@ import * as path from "path";
 import { ClientDetails } from "../../models/clientDetails";
 import { getAutorestOptions } from "../../autorestSession";
 import { PackageDetails } from "../../models/packageDetails";
+import { CodeModel } from "@autorest/codemodel";
+import { getLanguageMetadata } from "../../utils/languageHelpers";
+import { normalizeName, NameType } from "../../utils/nameUtils";
 
 /**
  * Meta data information about the service, the package, and the client.
@@ -51,6 +54,8 @@ interface Metadata {
   isReleasablePackage?: boolean;
   /** indicate if the package is management plane SDK */
   azureArm?: boolean;
+  /** The URL for the service document */
+  serviceDocURL?: string;
 }
 
 /**
@@ -61,11 +66,12 @@ interface Metadata {
  */
 function createMetadata(
   packageDetails: PackageDetails,
-  clientDetails: ClientDetails,
+  codeModel: CodeModel,
   azureOutputDirectory?: string,
   addCredentials?: boolean,
   azureArm?: boolean,
-  isTestPackage?: boolean
+  isTestPackage?: boolean,
+  serviceDocURL?: string,
 ): Metadata {
   const azureHuh = packageDetails.scopeName === "azure";
   const repoURL = azureHuh
@@ -79,9 +85,15 @@ function createMetadata(
   const names = relativePackageSourcePath?.split("/").slice(1);
   const packageParentDirectoryName = names?.[0];
   const packageDirectoryName = names?.[1];
-  const clientClassName = clientDetails.name;
+  const { name: clientName } = getLanguageMetadata(codeModel.language);
+  const className = normalizeName(
+    clientName,
+    NameType.Class,
+    true /** shouldGuard */
+  );
+  const clientClassName = className;
   const clientPackageName = packageDetails.name;
-  const serviceTitle = clientDetails.info?.title ?? clientClassName;
+  const serviceTitle = codeModel.info?.title ?? clientClassName;
   const simpleServiceName =
     /**
      * It is a required convention in Azure swaggers for their titles to end with
@@ -123,7 +135,7 @@ function createMetadata(
         `https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-js%2Fsdk%2F${packageParentDirectoryName}%2F${packageDirectoryName}%2FREADME.png`
       : undefined,
     clientDescriptiveName: `${serviceName} client`,
-    description: clientDetails.info?.description,
+    description: codeModel.info?.description,
     apiRefURL: azureHuh
       ? `https://docs.microsoft.com/javascript/api/${clientPackageName}${apiRefUrlQueryParameter}`
       : undefined,
@@ -133,12 +145,13 @@ function createMetadata(
     addCredentials,
     identityPackageURL,
     isReleasablePackage: !isTestPackage,
-    azureArm: azureArm
+    azureArm: azureArm,
+    serviceDocURL
   };
 }
 
 export function generateReadmeFile(
-  clientDetails: ClientDetails,
+  codeModel: CodeModel,
   project: Project
 ) {
   const {
@@ -147,7 +160,9 @@ export function generateReadmeFile(
     generateMetadata,
     addCredentials,
     azureArm,
-    isTestPackage
+    isTestPackage,
+    restLevelClient,
+    productDocLink
   } = getAutorestOptions();
 
   if (!generateMetadata) {
@@ -156,13 +171,15 @@ export function generateReadmeFile(
 
   const metadata = createMetadata(
     packageDetails,
-    clientDetails,
+    codeModel,
     azureOutputDirectory,
     addCredentials,
     azureArm,
-    isTestPackage
+    isTestPackage,
+    productDocLink
   );
-  const file = fs.readFileSync(path.join(__dirname, "README.md.hbs"), {
+  const templateFile = !restLevelClient ? "hlcREADME.md.hbs" : "rlcREADME.md.hbs";
+  const file = fs.readFileSync(path.join(__dirname, templateFile), {
     encoding: "utf-8"
   });
   const readmeFileContents = hbs.compile(file, { noEscape: true });
