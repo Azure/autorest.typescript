@@ -15,6 +15,7 @@ export enum AutorestParams {
   RestClient = "--rest-level-client=true",
   GenerateTest = "--generate-test=true",
   GenerateSamples = "--generate-sample=true",
+  MultiClient = "--multi-client",
   MonoRepo = "--mono-repo=false"
 }
 
@@ -179,7 +180,7 @@ export const readmes: SpecDefinition[] = [
       "..",
       "./smoke/swagger/purview-administration-rest.md"
     ),
-    params: [AutorestParams.RestClient, AutorestParams.MonoRepo],
+    params: [AutorestParams.RestClient, AutorestParams.MultiClient, AutorestParams.MonoRepo],
     buildTag: "ci_rlc"
   },
   {

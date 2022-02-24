@@ -16,6 +16,7 @@
  */
 import {
   RoleInstances,
+  CloudServicesReimageOptionalParams,
   ComputeManagementClient
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
@@ -27,7 +28,7 @@ async function reimageCloudServiceRoleInstances() {
   const parameters: RoleInstances = {
     roleInstances: ["ContosoFrontend_IN_0", "ContosoBackend_IN_1"]
   };
-  const options = { parameters: parameters };
+  const options: CloudServicesReimageOptionalParams = { parameters };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.cloudServices.beginReimageAndWait(

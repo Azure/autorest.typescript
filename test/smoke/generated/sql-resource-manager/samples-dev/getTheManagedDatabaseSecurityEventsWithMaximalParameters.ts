@@ -14,7 +14,10 @@
  * @summary Gets a list of security events.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ManagedDatabaseSecurityEventsGetMax.json
  */
-import { SqlManagementClient } from "@msinternal/sql-resource-manager";
+import {
+  ManagedDatabaseSecurityEventsListByDatabaseOptionalParams,
+  SqlManagementClient
+} from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 async function getTheManagedDatabaseSecurityEventsWithMaximalParameters() {
@@ -27,11 +30,11 @@ async function getTheManagedDatabaseSecurityEventsWithMaximalParameters() {
   const top = 1;
   const skiptoken =
     "eyJCbG9iTmFtZURhdGVUaW1lIjoiXC9EYXRlKDE1MTIyODg4MTIwMTArMDIwMClcLyIsIkJsb2JOYW1lUm9sbG92ZXJJbmRleCI6IjAiLCJFbmREYXRlIjoiXC9EYXRlKDE1MTI0NjYyMDA1MjkpXC8iLCJJc1NraXBUb2tlblNldCI6ZmFsc2UsIklzVjJCbG9iVGltZUZvcm1hdCI6dHJ1ZSwiU2hvd1NlcnZlclJlY29yZHMiOmZhbHNlLCJTa2lwVmFsdWUiOjAsIlRha2VWYWx1ZSI6MTB9";
-  const options = {
-    filter: filter,
-    skip: skip,
-    top: top,
-    skiptoken: skiptoken
+  const options: ManagedDatabaseSecurityEventsListByDatabaseOptionalParams = {
+    filter,
+    skip,
+    top,
+    skiptoken
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);

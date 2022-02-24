@@ -16,6 +16,7 @@
  */
 import {
   EffectiveRoutesParameters,
+  VirtualHubsGetEffectiveVirtualHubRoutesOptionalParams,
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
@@ -29,7 +30,9 @@ async function effectiveRoutesForARouteTableResource() {
       "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualHubs/virtualHub1/hubRouteTables/hubRouteTable1",
     virtualWanResourceType: "RouteTable"
   };
-  const options = { effectiveRoutesParameters: effectiveRoutesParameters };
+  const options: VirtualHubsGetEffectiveVirtualHubRoutesOptionalParams = {
+    effectiveRoutesParameters
+  };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualHubs.beginGetEffectiveVirtualHubRoutesAndWait(

@@ -34,6 +34,7 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
   const isTestPackage = await getIsTestPackage(host);
   const generateTest = await getGenerateTest(host);
   const batch = await getBatch(host);
+  const multiClient = await getMultiClient(host);
   const generateSample = await getGenerateSample(host);
   const monoRepo = await getMonoRepo(host);
 
@@ -62,7 +63,8 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
     isTestPackage,
     generateTest,
     batch,
-    generateSample,
+    multiClient,
+    generateSample
     monoRepo
   };
 }
@@ -294,9 +296,12 @@ async function getAzureOutputDirectoryPath(
     : undefined;
 }
 
-
 async function getBatch(host: AutorestExtensionHost): Promise<[string, any][] | undefined> {
   const batch = await host.getValue<[string, any][]>('batch');
   return batch;
+}
 
+async function getMultiClient(host: AutorestExtensionHost): Promise<boolean> {
+  const multiClient = await host.getValue("multi-client") || undefined;
+  return !!multiClient;
 }

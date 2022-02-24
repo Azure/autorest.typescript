@@ -24,7 +24,7 @@ async function virtualWanUpdate() {
   const subscriptionId = "subid";
   const resourceGroupName = "rg1";
   const virtualWANName = "wan1";
-  const WANParameters: TagsObject = {
+  const wANParameters: TagsObject = {
     tags: { key1: "value1", key2: "value2" }
   };
   const credential = new DefaultAzureCredential();
@@ -32,7 +32,7 @@ async function virtualWanUpdate() {
   const result = await client.virtualWans.updateTags(
     resourceGroupName,
     virtualWANName,
-    WANParameters
+    wANParameters
   );
   console.log(result);
 }

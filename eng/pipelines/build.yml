@@ -1,9 +1,0 @@
-steps:
-  - task: NodeTool@0
-    inputs:
-      versionSpec: "14.x"
-    displayName: "Use Node 14"
-  - script: |
-      npm install
-      npm run build
-    displayName: "Build"

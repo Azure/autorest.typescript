@@ -14,7 +14,10 @@
  * @summary Gets properties of a specified share.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/FileSharesGet_Stats.json
  */
-import { StorageManagementClient } from "@msinternal/storage-resource-manager";
+import {
+  FileSharesGetOptionalParams,
+  StorageManagementClient
+} from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 async function getShareStats() {
@@ -23,7 +26,7 @@ async function getShareStats() {
   const accountName = "sto6217";
   const shareName = "share1634";
   const expand = "stats";
-  const options = { expand: expand };
+  const options: FileSharesGetOptionalParams = { expand };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.fileShares.get(

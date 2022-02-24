@@ -25,7 +25,7 @@ async function getSyncGroupLogs() {
   const syncGroupName = "syncgroupcrud-3187";
   const startTime = "2017-01-01T00:00:00";
   const endTime = "2017-12-31T00:00:00";
-  const type = "All";
+  const typeParam = "All";
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
@@ -36,7 +36,7 @@ async function getSyncGroupLogs() {
     syncGroupName,
     startTime,
     endTime,
-    type
+    typeParam
   )) {
     resArray.push(item);
   }

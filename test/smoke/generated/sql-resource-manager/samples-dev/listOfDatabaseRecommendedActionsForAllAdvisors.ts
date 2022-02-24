@@ -14,7 +14,10 @@
  * @summary Gets a list of database advisors.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/DatabaseRecommendedActionListExpand.json
  */
-import { SqlManagementClient } from "@msinternal/sql-resource-manager";
+import {
+  DatabaseAdvisorsListByDatabaseOptionalParams,
+  SqlManagementClient
+} from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 
 async function listOfDatabaseRecommendedActionsForAllAdvisors() {
@@ -23,7 +26,7 @@ async function listOfDatabaseRecommendedActionsForAllAdvisors() {
   const serverName = "misosisvr";
   const databaseName = "IndexAdvisor_test_3";
   const expand = "recommendedActions";
-  const options = { expand: expand };
+  const options: DatabaseAdvisorsListByDatabaseOptionalParams = { expand };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.databaseAdvisors.listByDatabase(

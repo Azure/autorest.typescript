@@ -16,6 +16,7 @@
  */
 import {
   LeaseShareRequest,
+  FileSharesLeaseOptionalParams,
   StorageManagementClient
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
@@ -32,7 +33,7 @@ async function acquireALeaseOnAShare() {
     leaseId: undefined,
     proposedLeaseId: undefined
   };
-  const options = { parameters: parameters };
+  const options: FileSharesLeaseOptionalParams = { parameters };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.fileShares.lease(
