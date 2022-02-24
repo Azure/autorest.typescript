@@ -25,7 +25,7 @@ export async function runAutorest(
     ignoreNullableOnOptional,
     title,
     restLevelClient,
-    monoRepo,
+    azureSdkForJs,
     rlcShortcut,
     headAsBoolean,
     isTestPackage,
@@ -55,8 +55,8 @@ export async function runAutorest(
   if (restLevelClient === true) {
     commandArguments.push(`--rest-level-client=${restLevelClient}`);
   }
-  if (monoRepo !== undefined) {
-    commandArguments.push(`--mono-repo=${monoRepo}`);
+  if (azureSdkForJs !== undefined) {
+    commandArguments.push(`--azure-sdk-for-js=${azureSdkForJs}`);
   }
   if (rlcShortcut === true) {
     commandArguments.push(`--rlc-shortcut=true`);

@@ -35,7 +35,7 @@ export interface AutorestOptions {
   batch?: [string, any][];
   multiClient?: boolean;
   generateSample?: boolean;
-  monoRepo?: boolean;
+  azureSdkForJs?: boolean;
 }
 
 let host: AutorestExtensionHost;

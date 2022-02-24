@@ -49,7 +49,7 @@ export function generatePackageJson(
  * or High Level Client
  */
 function restLevelPackage(packageDetails: PackageDetails) {
-  const { azureArm, generateTest, azureOutputDirectory, monoRepo } = getAutorestOptions();
+  const { azureArm, generateTest, azureOutputDirectory, azureSdkForJs } = getAutorestOptions();
   const { model } = getSession();
   const hasPaging = hasPagingOperations(model);
   const hasLRO = hasPollingOperations(model);
@@ -152,7 +152,7 @@ function restLevelPackage(packageDetails: PackageDetails) {
     }
   };
 
-  if (monoRepo) {
+  if (azureSdkForJs) {
     packageInfo.scripts["build"] = "npm run clean && tsc -p . && dev-tool run bundle && mkdirp ./review && api-extractor run --local";
     packageInfo.scripts["build:debug"] = "tsc -p . && dev-tool run bundle && api-extractor run --local";
     packageInfo.scripts["build:browser"] = "tsc -p . && dev-tool run bundle";
@@ -206,7 +206,7 @@ function restLevelPackage(packageDetails: PackageDetails) {
     packageInfo.scripts["integration-test"] = "npm run integration-test:node && npm run integration-test:browser";
     packageInfo.scripts["integration-test:node"] = "nyc mocha -r esm --require source-map-support/register --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 5000000 --full-trace \"dist-esm/test/{,!(browser)/**/}*.spec.js\"";
 
-    if (monoRepo) {
+    if (azureSdkForJs) {
       packageInfo.scripts["build:test"] = "tsc -p . && dev-tool run bundle";
       packageInfo.scripts["integration-test:browser"] = "dev-tool run test:browser";
     } else {

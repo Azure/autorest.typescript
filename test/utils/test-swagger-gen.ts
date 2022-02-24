@@ -17,7 +17,7 @@ interface SwaggerConfig {
   useCoreV2?: boolean;
   allowInsecureConnection?: boolean;
   restLevelClient?: boolean;
-  monoRepo?: boolean;
+  azureSdkForJs?: boolean;
   rlcShortcut?: boolean;
   headAsBoolean?: boolean;
   isTestPackage?: boolean;
@@ -510,7 +510,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "url-rest",
     licenseHeader: true,
     restLevelClient: true,
-    monoRepo: false,
+    azureSdkForJs: false,
     rlcShortcut: true,
     allowInsecureConnection: true,
     addCredentials: false,
@@ -864,7 +864,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     isTestPackage: true,
     restLevelClient: true,
-    monoRepo: false
+    azureSdkForJs: false
   },
   bodyStringRest: {
     swaggerOrConfig: "body-string.json",
@@ -872,7 +872,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "body-string-rest",
     addCredentials: false,
     restLevelClient: true,
-    monoRepo: false,
+    azureSdkForJs: false,
     licenseHeader: true,
     isTestPackage: true,
     generateTest: true
@@ -883,7 +883,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "body-complex-rest",
     licenseHeader: true,
     restLevelClient: true,
-    monoRepo: false,
+    azureSdkForJs: false,
     allowInsecureConnection: true,
     addCredentials: false,
     isTestPackage: true
@@ -896,7 +896,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     isTestPackage: true,
     restLevelClient: true,
-    monoRepo: false
+    azureSdkForJs: false
   },
   multipleInheritanceRest: {
     swaggerOrConfig: "multiple-inheritance.json",
@@ -907,7 +907,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     allowInsecureConnection: true,
     addCredentials: false,
     restLevelClient: true,
-    monoRepo: false,
+    azureSdkForJs: false,
     rlcShortcut: true,
     isTestPackage: true
   },
@@ -919,7 +919,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     isTestPackage: true,
     restLevelClient: true,
-    monoRepo: false
+    azureSdkForJs: false
   },
   bodyFileRest: {
     swaggerOrConfig: "body-file.json",
@@ -930,7 +930,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     isTestPackage: true,
     restLevelClient: true,
-    monoRepo: false
+    azureSdkForJs: false
   },
   headerRest: {
     swaggerOrConfig: "header.json",
@@ -938,7 +938,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "header-rest",
     licenseHeader: true,
     restLevelClient: true,
-    monoRepo: false,
+    azureSdkForJs: false,
     allowInsecureConnection: true,
     addCredentials: false,
     isTestPackage: true
@@ -953,7 +953,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     isTestPackage: true,
     restLevelClient: true,
-    monoRepo: false
+    azureSdkForJs: false
   },
   customUrlRest: {
     swaggerOrConfig: "custom-baseUrl.json",
@@ -961,7 +961,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "custom-url-rest",
     licenseHeader: true,
     restLevelClient: true,
-    monoRepo: false,
+    azureSdkForJs: false,
     rlcShortcut: true,
     allowInsecureConnection: true,
     addCredentials: false,
@@ -1006,7 +1006,7 @@ const generateSwaggers = async (
       useCoreV2,
       allowInsecureConnection,
       restLevelClient,
-      monoRepo,
+      azureSdkForJs,
       headAsBoolean,
       isTestPackage,
       generateTest,
@@ -1047,7 +1047,7 @@ const generateSwaggers = async (
         useCoreV2,
         allowInsecureConnection,
         restLevelClient,
-        monoRepo,
+        azureSdkForJs: azureSdkForJs,
         rlcShortcut,
         headAsBoolean,
         isTestPackage,

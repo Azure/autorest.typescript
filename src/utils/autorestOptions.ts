@@ -36,7 +36,7 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
   const batch = await getBatch(host);
   const multiClient = await getMultiClient(host);
   const generateSample = await getGenerateSample(host);
-  const monoRepo = await getMonoRepo(host);
+  const azureSdkForJs = await getAzureSdkForJs(host);
 
   return {
     azureArm,
@@ -64,8 +64,8 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
     generateTest,
     batch,
     multiClient,
-    generateSample
-    monoRepo
+    generateSample,
+    azureSdkForJs
   };
 }
 
@@ -98,9 +98,9 @@ async function getGenerateSample(host: AutorestExtensionHost): Promise<boolean> 
   return generateSample === null ? false : Boolean(generateSample);
 }
 
-async function getMonoRepo(host: AutorestExtensionHost): Promise<boolean> {
-  const monoRepo = await host.getValue("mono-repo");
-  return monoRepo === null ? true : Boolean(monoRepo);
+async function getAzureSdkForJs(host: AutorestExtensionHost): Promise<boolean> {
+  const azureSdkForJs = await host.getValue("azure-sdk-for-js");
+  return azureSdkForJs === null ? true : Boolean(azureSdkForJs);
 }
 
 async function getSkipEnumValidation(

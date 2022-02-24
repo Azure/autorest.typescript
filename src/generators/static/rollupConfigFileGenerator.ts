@@ -5,14 +5,14 @@ import { Project } from "ts-morph";
 import { getAutorestOptions } from "../../autorestSession";
 
 export function generateRollupConfig(project: Project) {
-  const { generateMetadata, restLevelClient, monoRepo } = getAutorestOptions();
+  const { generateMetadata, restLevelClient, azureSdkForJs } = getAutorestOptions();
 
   if (!generateMetadata) {
     return;
   }
 
   // when it's generating rlc codes, only generate rollup config in codegen test
-  if (restLevelClient && monoRepo) {
+  if (restLevelClient && azureSdkForJs) {
     return;
   }
 

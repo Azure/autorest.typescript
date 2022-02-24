@@ -25,7 +25,7 @@ const highLevelTsConfig: Record<string, any>  = {
 };
 
 
-const restLevelTsConfigInMonoRepo = {
+const restLevelTsConfigInAzureSdkForJs = {
   "extends": "../../../tsconfig.package",
   "compilerOptions": {
     "outDir": "./dist-esm",
@@ -34,7 +34,7 @@ const restLevelTsConfigInMonoRepo = {
   "include": ["src/**/*.ts"]
 };
 
-const restLevelTsConfigInNonMonoRepo ={
+const restLevelTsConfigNotInAzureSdkForJs ={
   "compilerOptions": {
     "target": "ES2017",
     "module": "es6",
@@ -62,7 +62,7 @@ const restLevelTsConfigInNonMonoRepo ={
 
 
 export function generateTsConfig(project: Project) {
-  const { generateMetadata, restLevelClient, generateTest, packageDetails, generateSample, monoRepo } = getAutorestOptions();
+  const { generateMetadata, restLevelClient, generateTest, packageDetails, generateSample, azureSdkForJs } = getAutorestOptions();
 
   if (!generateMetadata) {
     return;
@@ -70,7 +70,7 @@ export function generateTsConfig(project: Project) {
 
   const clientPackageName = packageDetails.name;
 
-  const restLevelTsConfig = monoRepo? restLevelTsConfigInMonoRepo : restLevelTsConfigInNonMonoRepo;
+  const restLevelTsConfig = azureSdkForJs? restLevelTsConfigInAzureSdkForJs : restLevelTsConfigNotInAzureSdkForJs;
 
   if (generateTest) {
     highLevelTsConfig.include.push("./test/**/*.ts");
