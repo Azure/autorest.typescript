@@ -33,6 +33,7 @@ export interface AutorestOptions {
   isTestPackage?: boolean;
   generateTest?: boolean;
   batch?: [string, any][];
+  multiClient?: boolean;
   generateSample?: boolean;
 }
 

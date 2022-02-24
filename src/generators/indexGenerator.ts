@@ -12,7 +12,7 @@ export function generateIndexFile(
   project: Project,
   clientDetails?: ClientDetails
 ) {
-  const { restLevelClient, srcPath, batch } = getAutorestOptions();
+  const { restLevelClient, srcPath, multiClient, batch } = getAutorestOptions();
   const indexFile = project.createSourceFile(`${srcPath}/index.ts`, undefined, {
     overwrite: true
   });
@@ -24,7 +24,7 @@ export function generateIndexFile(
       );
     }
     generateHLCIndex(clientDetails, indexFile);
-  } else if (!batch || batch?.length === 1) {
+  } else if (!multiClient || !batch || batch?.length === 1) {
     // if we are generate single client package for RLC
     generateRLCIndex(indexFile);
   } else {
@@ -153,7 +153,7 @@ function generateRLCIndex(file: SourceFile) {
       }
     ]);
   }
-  
+
   file.addExportAssignment({
     expression: clientName,
     isExportEquals: false
