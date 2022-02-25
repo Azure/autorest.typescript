@@ -60,20 +60,22 @@ interface Metadata {
 
 /**
  * Returns meta data information about the service, the package, and the client.
- * @param clientDetails - the client details
- * @param packageDetails - the package details
+ * @param codeModel - include the client details
  * @returns inferred metadata about the service, the package, and the client
  */
-function createMetadata(
-  packageDetails: PackageDetails,
+export function createMetadata(
   codeModel: CodeModel,
-  azureOutputDirectory?: string,
-  addCredentials?: boolean,
-  azureArm?: boolean,
-  isTestPackage?: boolean,
-  serviceDocURL?: string,
 ): Metadata {
-  const azureHuh = packageDetails.scopeName === "azure";
+  const {
+    packageDetails,
+    azureOutputDirectory,
+    addCredentials,
+    azureArm,
+    isTestPackage,
+    productDocLink
+  } = getAutorestOptions();
+
+  const azureHuh = packageDetails?.scopeName === "azure";
   const repoURL = azureHuh
     ? "https://github.com/Azure/azure-sdk-for-js"
     : undefined;
@@ -85,15 +87,9 @@ function createMetadata(
   const names = relativePackageSourcePath?.split("/").slice(1);
   const packageParentDirectoryName = names?.[0];
   const packageDirectoryName = names?.[1];
-  const { name: clientName } = getLanguageMetadata(codeModel.language);
-  const className = normalizeName(
-    clientName,
-    NameType.Class,
-    true /** shouldGuard */
-  );
-  const clientClassName = className;
-  const clientPackageName = packageDetails.name;
-  const serviceTitle = codeModel.info?.title ?? clientClassName;
+
+  const clientPackageName = packageDetails?.name;
+  const { clientClassName, serviceTitle } = getClientAndServiceName(codeModel);
   const simpleServiceName =
     /**
      * It is a required convention in Azure swaggers for their titles to end with
@@ -131,8 +127,8 @@ function createMetadata(
       : packageSourceURL && `${packageSourceURL}/samples`,
     impressionURL: azureHuh
       ? packageParentDirectoryName &&
-        packageDirectoryName &&
-        `https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-js%2Fsdk%2F${packageParentDirectoryName}%2F${packageDirectoryName}%2FREADME.png`
+      packageDirectoryName &&
+      `https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-js%2Fsdk%2F${packageParentDirectoryName}%2F${packageDirectoryName}%2FREADME.png`
       : undefined,
     clientDescriptiveName: `${serviceName} client`,
     description: codeModel.info?.description,
@@ -146,7 +142,7 @@ function createMetadata(
     identityPackageURL,
     isReleasablePackage: !isTestPackage,
     azureArm: azureArm,
-    serviceDocURL
+    serviceDocURL: productDocLink
   };
 }
 
@@ -155,29 +151,15 @@ export function generateReadmeFile(
   project: Project
 ) {
   const {
-    packageDetails,
-    azureOutputDirectory,
     generateMetadata,
-    addCredentials,
-    azureArm,
-    isTestPackage,
     restLevelClient,
-    productDocLink
   } = getAutorestOptions();
 
   if (!generateMetadata) {
     return;
   }
 
-  const metadata = createMetadata(
-    packageDetails,
-    codeModel,
-    azureOutputDirectory,
-    addCredentials,
-    azureArm,
-    isTestPackage,
-    productDocLink
-  );
+  const metadata = createMetadata(codeModel);
   const templateFile = !restLevelClient ? "hlcREADME.md.hbs" : "rlcREADME.md.hbs";
   const file = fs.readFileSync(path.join(__dirname, templateFile), {
     encoding: "utf-8"
@@ -186,4 +168,16 @@ export function generateReadmeFile(
   project.createSourceFile("README.md", readmeFileContents(metadata), {
     overwrite: true
   });
+}
+
+function getClientAndServiceName(codeModel: CodeModel) {
+  const { name: clientName } = getLanguageMetadata(codeModel.language);
+  const className = normalizeName(
+    clientName,
+    NameType.Class,
+    true /** shouldGuard */
+  );
+  const clientClassName = className;
+  const serviceTitle = codeModel.info?.title ?? clientClassName;
+  return { clientClassName, serviceTitle };
 }
