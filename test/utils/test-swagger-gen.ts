@@ -940,7 +940,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     rlcShortcut: true,
     allowInsecureConnection: true,
     addCredentials: false,
-    isTestPackage: true
+    isTestPackage: true,
+    azureSdkForJs: false
   },
   bodyFormDataRest: {
     swaggerOrConfig: "body-formdata.json",

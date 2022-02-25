@@ -2,7 +2,6 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import "@azure/core-auth";
 import { LRORestClientLike } from "./clientDefinitions";
 
 export default function LRORestClient(

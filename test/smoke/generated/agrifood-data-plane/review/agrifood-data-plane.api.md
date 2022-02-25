@@ -13,7 +13,6 @@ import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { PollerLike } from '@azure/core-lro';
 import { PollOperationState } from '@azure/core-lro';
 import { RequestParameters } from '@azure-rest/core-client';
-import { TokenCredential } from '@azure/core-auth';
 
 // @public (undocumented)
 export interface ApplicationData {
@@ -477,7 +476,7 @@ export interface AttachmentsListByFarmerIdQueryParamProperties {
 }
 
 // @public (undocumented)
-function AzureAgriFoodPlatformDataPlaneService(Endpoint: string, credentials: TokenCredential, options?: ClientOptions): AzureAgriFoodPlatformDataPlaneServiceLike;
+function AzureAgriFoodPlatformDataPlaneService(Endpoint: string, options?: ClientOptions): AzureAgriFoodPlatformDataPlaneServiceLike;
 export default AzureAgriFoodPlatformDataPlaneService;
 
 // @public (undocumented)
