@@ -1,10 +1,10 @@
 import BodyFormData, {
-  BodyFormDataRestClient
+  BodyFormDataLike
 } from "./generated/bodyFormDataRest/src";
 import { assert } from "chai";
 
 describe("Integration tests for BodyFormData", () => {
-  let client: BodyFormDataRestClient;
+  let client: BodyFormDataLike;
 
   it("should correctly accept file via form", async function() {
     client = BodyFormData({ allowInsecureConnection: true });

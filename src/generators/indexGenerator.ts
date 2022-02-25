@@ -12,7 +12,7 @@ export function generateIndexFile(
   project: Project,
   clientDetails?: ClientDetails
 ) {
-  const { restLevelClient, srcPath, batch } = getAutorestOptions();
+  const { restLevelClient, srcPath, multiClient, batch } = getAutorestOptions();
   const indexFile = project.createSourceFile(`${srcPath}/index.ts`, undefined, {
     overwrite: true
   });
@@ -24,7 +24,7 @@ export function generateIndexFile(
       );
     }
     generateHLCIndex(clientDetails, indexFile);
-  } else if (!batch || batch?.length === 1) {
+  } else if (!multiClient || !batch || batch?.length === 1) {
     // if we are generate single client package for RLC
     generateRLCIndex(indexFile);
   } else {
@@ -36,6 +36,7 @@ export function generateIndexFile(
 function generateRLCIndexForMultiClient(file: SourceFile) {
   const { model } = getSession();
   const clientName = model.language.default.name;
+  const createClientFuncName = `${clientName}`;
   const moduleName = normalizeName(clientName, NameType.File);
 
   file.addImportDeclaration({
@@ -89,7 +90,7 @@ function generateRLCIndexForMultiClient(file: SourceFile) {
   file.addExportDeclarations([
     {
       moduleSpecifier: `./${moduleName}`,
-      namedExports: [`${clientName} as ${clientName}Client`],
+      namedExports: [createClientFuncName],
     },
     {
       namedExports: [...exports]
@@ -100,11 +101,12 @@ function generateRLCIndexForMultiClient(file: SourceFile) {
 function generateRLCIndex(file: SourceFile) {
   const { model } = getSession();
   const clientName = model.language.default.name;
+  const createClientFuncName = `${clientName}`;
   const moduleName = normalizeName(clientName, NameType.File);
 
   file.addImportDeclaration({
     moduleSpecifier: `./${moduleName}`,
-    defaultImport: clientName
+    defaultImport: createClientFuncName
   });
 
   file.addExportDeclarations([
@@ -153,9 +155,9 @@ function generateRLCIndex(file: SourceFile) {
       }
     ]);
   }
-  
+
   file.addExportAssignment({
-    expression: clientName,
+    expression: createClientFuncName,
     isExportEquals: false
   });
 }

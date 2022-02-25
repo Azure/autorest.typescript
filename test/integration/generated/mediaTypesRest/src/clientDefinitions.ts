@@ -97,6 +97,6 @@ export interface Routes {
   (path: "/mediatypes/textAndJson"): PutTextAndJsonBody;
 }
 
-export type MediaTypesRestClient = Client & {
+export type MediaTypesLike = Client & {
   path: Routes;
 };

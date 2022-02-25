@@ -1,6 +1,6 @@
 import { assert } from "chai";
 import BodyComplexRestClient, {
-  BodyComplexRestClientRestClient,
+  BodyComplexRestClientLike,
   DotSalmonOutput,
   Fish,
   FishOutput,
@@ -12,7 +12,7 @@ import BodyComplexRestClient, {
 } from "./generated/bodyComplexRest/src";
 
 describe("BodyComplex Rest Client", () => {
-  let client: BodyComplexRestClientRestClient;
+  let client: BodyComplexRestClientLike;
 
   beforeEach(() => {
     client = BodyComplexRestClient({ allowInsecureConnection: true });

@@ -38,7 +38,7 @@ export function generateClient(model: CodeModel, project: Project) {
   const clientName = getLanguageMetadata(model.language).name;
   const uriParameter = getClientUriParameter();
 
-  const { addCredentials, credentialKeyHeaderName, batch } = getAutorestOptions();
+  const { addCredentials, credentialKeyHeaderName, multiClient, batch } = getAutorestOptions();
   const credentialTypes = addCredentials ? ["TokenCredential"] : [];
 
   if (credentialKeyHeaderName) {
@@ -51,7 +51,7 @@ export function generateClient(model: CodeModel, project: Project) {
       ? []
       : [{ name: "credentials", type: credentialTypes.join(" | ") }])
   ];
-  const clientInterfaceName = `${clientName}RestClient`;
+  const clientInterfaceName = `${clientName}Like`;
 
   const functionStatement = {
     isExported: true,
@@ -65,7 +65,7 @@ export function generateClient(model: CodeModel, project: Project) {
     statements: getClientFactoryBody(clientInterfaceName, pathDictionary)
   }
 
-  if (!batch || batch.length === 1) {
+  if (!multiClient || !batch || batch.length === 1) {
     functionStatement.isDefaultExport = true;
   }
   clientFile.addFunction(functionStatement);
@@ -83,7 +83,7 @@ export function generateClient(model: CodeModel, project: Project) {
       moduleSpecifier: "@azure/core-auth"
     },
     {
-      namedImports: [`${clientName}RestClient`],
+      namedImports: [`${clientInterfaceName}`],
       moduleSpecifier: './clientDefinitions'
     }
   ]);

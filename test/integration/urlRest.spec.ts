@@ -1,11 +1,11 @@
 import { assert } from "chai";
 import UrlRestClient, {
-  UrlRestClientRestClient
+  UrlRestClientLike
 } from "./generated/urlRest/src";
 import { UriColor } from "./generated/url/src";
 
 describe("Integration tests for UrlRest", () => {
-  let client: UrlRestClientRestClient;
+  let client: UrlRestClientLike;
 
   beforeEach(() => {
     client = UrlRestClient({

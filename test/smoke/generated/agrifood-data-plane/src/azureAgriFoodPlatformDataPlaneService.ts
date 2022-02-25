@@ -3,20 +3,20 @@
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { TokenCredential } from "@azure/core-auth";
-import { AzureAgriFoodPlatformDataPlaneServiceRestClient } from "./clientDefinitions";
+import { AzureAgriFoodPlatformDataPlaneServiceLike } from "./clientDefinitions";
 
 export default function AzureAgriFoodPlatformDataPlaneService(
   Endpoint: string,
   credentials: TokenCredential,
   options: ClientOptions = {}
-): AzureAgriFoodPlatformDataPlaneServiceRestClient {
+): AzureAgriFoodPlatformDataPlaneServiceLike {
   const baseUrl = options.baseUrl ?? `${Endpoint}`;
   options.apiVersion = options.apiVersion ?? "2021-03-31-preview";
 
   const client = getClient(
     baseUrl,
     options
-  ) as AzureAgriFoodPlatformDataPlaneServiceRestClient;
+  ) as AzureAgriFoodPlatformDataPlaneServiceLike;
 
   return client;
 }

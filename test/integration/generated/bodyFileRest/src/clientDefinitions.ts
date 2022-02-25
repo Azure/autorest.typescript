@@ -46,6 +46,6 @@ export interface Routes {
   (path: "/files/stream/empty"): GetEmptyFile;
 }
 
-export type BodyFileRestClient = Client & {
+export type BodyFileLike = Client & {
   path: Routes;
 };

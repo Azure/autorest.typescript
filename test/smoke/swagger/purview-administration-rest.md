@@ -21,7 +21,7 @@ input-file:  https://raw.githubusercontent.com/Azure/azure-rest-api-specs/main/s
 ```
 
 
-```yaml
+```yaml $(multi-client)
 modelerfour.lenient-model-deduplication: true
 package-name: "@azure-rest/purview-administration"
 generate-metadata: true

@@ -1,5 +1,5 @@
 import LRORestClient, {
-  LRORestClientRestClient,
+  LRORestClientLike,
   getLongRunningPoller,
   Product
 } from "./generated/lroRest/src";
@@ -31,7 +31,7 @@ function createClient() {
 }
 
 describe("LRO Rest Client", () => {
-  let client: LRORestClientRestClient;
+  let client: LRORestClientLike;
 
   beforeEach(() => {
     client = createClient();

@@ -309,6 +309,6 @@ export interface Routes {
   ): GetPagingModelWithItemNameWithXMSClientName;
 }
 
-export type PagingRestClient = Client & {
+export type PagingLike = Client & {
   path: Routes;
 };
