@@ -1,5 +1,5 @@
 import { spawn } from "child_process";
-import { join as joinPath } from "path";
+import { join as joinPath, sep } from "path";
 import { bold } from "chalk";
 import { readmes, SpecDefinition } from "./smoke-test-list";
 import { command } from "yargs";
@@ -66,7 +66,7 @@ const generateFromLocal = async ({
   outputFolderName
 }: SpecDefinition) => {
 
-  const readmeFilePaths = path.split('/');
+  const readmeFilePaths = path.split(sep);
   const projectName = readmeFilePaths[readmeFilePaths.length - 1].replace(/\.md/, '');
 
   const output = joinPath(SMOKE_PATH, projectName);

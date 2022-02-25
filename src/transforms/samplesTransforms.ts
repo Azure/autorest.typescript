@@ -5,11 +5,10 @@ import {
   ImplementationLocation,
   Operation,
   OperationGroup,
-  Protocol,
   SchemaType
 } from "@autorest/codemodel";
-import { ClientDetails, ClientOptions } from "../models/clientDetails";
-import { SampleDetails } from "../models/sampleDetails";
+import { ClientDetails } from "../models/clientDetails";
+import { SampleGroup, SampleDetails } from "../models/sampleDetails";
 import { ExampleValue, TestCodeModel } from "@autorest/testmodeler";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { getAutorestOptions, getSession } from "../autorestSession";
@@ -18,13 +17,12 @@ import { calculateMethodName } from "../generators/utils/operationsUtils";
 import { camelCase } from "@azure-tools/codegen";
 import { OperationGroupDetails } from "../models/operationDetails";
 import { getPublicMethodName } from '../generators/utils/pagingOperations';
-import { BodiedNode } from "ts-morph";
 import { getTypeForSchema } from "../utils/schemaHelpers";
 
 export async function transformSamples(
   codeModel: CodeModel,
   clientDetails: ClientDetails
-): Promise<SampleDetails[]> {
+): Promise<SampleGroup[]> {
   return await getAllExamples(codeModel as TestCodeModel, clientDetails);
 }
 
@@ -40,53 +38,60 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
   const operationGroupDetails = clientDetails.operationGroups;
   const { packageDetails } = getAutorestOptions();
   const session = getSession();
-  let examplesModels: SampleDetails[] = [];
+  let examplesModels: SampleGroup[] = [];
   if (codeModel?.testModel?.mockTest?.exampleGroups !== undefined) {
-    for (const exampleGroups of codeModel.testModel.mockTest.exampleGroups) {
+    for (const exampleGroup of codeModel.testModel.mockTest.exampleGroups) {
+      const clientName = getLanguageMetadata(codeModel.language).name;
+      const ogDetails = getTransformedOperationGroup(exampleGroup.operationGroup, operationGroupDetails);
+      if (ogDetails === undefined) {
+        session.error("An error was encountered while transforming sample", [
+          exampleGroup.operationId
+        ]);
+        continue;
+      }
+      if (!(exampleGroup?.examples?.length > 0)) {
+        // Skip tranforming sample detail no given example in group
+        continue;
+      }
+      const opDetails = getTransformedOperation(
+        exampleGroup.operationGroup,
+        exampleGroup.operation,
+        ogDetails,
+        clientName
+      );
+      let methodName = calculateMethodName(opDetails);
+      if (opDetails.isLro && opDetails.pagination === undefined) {
+        methodName = `${methodName}AndWait`;
+      } else if (opDetails.pagination) {
+        methodName = getPublicMethodName(opDetails);
+      }
+      const opGroupName = ogDetails.name;
+      const importedTypeSet = new Set<string>();
+      const operatonConcante = `${exampleGroup?.operationGroup?.language?.default?.name}${exampleGroup?.operation?.language?.default?.name}`;
+      const sampleGroup: SampleGroup = {
+        sampleFileName: `${camelCase(_transformSpecialLetterToSpace(operatonConcante))}Sample`,
+        clientClassName: clientName,
+        clientPackageName: packageDetails.name,
+        samples: [],
+        importedTypes: []
+      };
       try {
-        for (const example of exampleGroups.examples) {
-          const clientName = getLanguageMetadata(codeModel.language).name;
-          const ogDetails = getTransformedOperationGroup(example.operationGroup, operationGroupDetails);
-          if (ogDetails === undefined) {
-            session.error("An error was encountered while transforming sample", [
-              exampleGroups.operationId
-            ]);
-            continue;
-          }
-          const opDetails = getTransformedOperation(
-            example.operationGroup,
-            example.operation,
-            ogDetails,
-            clientName
-          );
-          let methodName = calculateMethodName(opDetails);
-          if (opDetails.isLro && opDetails.pagination === undefined) {
-            methodName = `${methodName}AndWait`;
-          } else if (opDetails.pagination) {
-            methodName = getPublicMethodName(opDetails);
-          }
-          const opGroupName = ogDetails.name;
+        for (const example of exampleGroup.examples) {
           const sample: SampleDetails = {
-            operationDescription: getLanguageMetadata(
-              example.operation.language
-            ).description,
-            operationName: methodName,
-            operationGroupName: normalizeName(opGroupName, NameType.Property, true),
-            clientClassName: clientName,
-            clientPackageName: packageDetails.name,
+            sampleFunctionName: camelCase(_transformSpecialLetterToSpace(example?.name)),
             clientParameterNames: "",
             methodParameterNames: "",
-            bodySchemaName: "",
-            isAnyTypeBody: false,
-            hasBody: false,
-            hasOptional: false,
-            sampleFunctionName: camelCase(example.name.replace(/\//g, " Or ").replace(/,|\.|\(|\)/g, " ").replace('\'s ', ' ')),
-            methodParamAssignments: [],
             clientParamAssignments: [],
+            methodParamAssignments: [],
+            originalFileLocation: example.originalFile,
             isTopLevel: ogDetails.isTopLevel,
             isPaging: opDetails.pagination !== undefined,
-            originalFileLocation: example.originalFile,
-            importedTypes: []
+            operationName: methodName,
+            clientClassName: clientName,
+            operationGroupName: normalizeName(opGroupName, NameType.Property, true),
+            operationDescription: getLanguageMetadata(
+              exampleGroup.operation.language
+            ).description,
           };
           const clientParameterNames = ["credential"];
           const requiredParams = clientDetails.parameters.filter(
@@ -122,7 +127,7 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
             sample.clientParameterNames = clientParameterNames.join(", ");
           }
           const methodParameterNames = [];
-          const optionalParams: [string, string][]= [];
+          const optionalParams: [string, string][] = [];
           for (const methodParameter of example.methodParameters) {
             if (
               methodParameter.exampleValue.schema.type === SchemaType.Constant
@@ -140,15 +145,13 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
             const parameterTypeName = parameterTypeDetails.typeName;
             let paramAssignment = "";
             if (methodParameter.parameter.protocol?.http?.["in"] === "body") {
-              sample.hasBody = true;
-              sample.bodySchemaName = parameterTypeName;
-              sample.importedTypes?.push(parameterTypeName);
-              if (methodParameter.exampleValue.schema.type === SchemaType.AnyObject || methodParameter.exampleValue.schema.type  === SchemaType.Any) {
-                sample.bodySchemaName = "Record<string, unknown>"
-                sample.isAnyTypeBody = true;
+              let bodySchemaName = parameterTypeName;
+              importedTypeSet.add(parameterTypeName);
+              if (methodParameter.exampleValue.schema.type === SchemaType.AnyObject || methodParameter.exampleValue.schema.type === SchemaType.Any) {
+                bodySchemaName = "Record<string, unknown>";
               }
               paramAssignment =
-                `const ${parameterName}: ${sample.bodySchemaName} = ` +
+                `const ${parameterName}: ${bodySchemaName} = ` +
                 getParameterAssignment(methodParameter.exampleValue);
             } else {
               paramAssignment =
@@ -156,17 +159,17 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
                 getParameterAssignment(methodParameter.exampleValue);
             }
             if (!methodParameter.parameter.required) {
-              optionalParams.push([ parameterName, parameterTypeName ]);
+              optionalParams.push([parameterName, parameterTypeName]);
             } else {
               methodParameterNames.push(parameterName);
             }
             sample.methodParamAssignments.push(paramAssignment);
           }
           if (optionalParams.length > 0) {
-            const optionTypeName = `${opDetails.typeDetails.typeName}OptionalParams`
-            sample.importedTypes?.push(optionTypeName);
+            const optionTypeName = `${opDetails.typeDetails.typeName}OptionalParams`;
+            importedTypeSet.add(optionTypeName);
             const optionAssignment = `const options: ${optionTypeName} = {${optionalParams
-              .map(item => { return item[0];})
+              .map(item => { return item[0]; })
               .join(", ")}}`;
             sample.methodParamAssignments.push(optionAssignment);
             methodParameterNames.push("options");
@@ -174,17 +177,29 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
           if (methodParameterNames.length > 0) {
             sample.methodParameterNames = methodParameterNames.join(", ");
           }
-          examplesModels.push(sample);
+          sampleGroup.samples.push(sample);
         }
       } catch (error) {
         session.error("An error was encountered while transforming sample", [
-          exampleGroups.operationId
+          exampleGroup.operationId
         ]);
         throw error;
+      }
+      if (sampleGroup.samples.length > 0) {
+        // enrich the importedTypes after all examples resolved
+        sampleGroup.importedTypes = Array.from(importedTypeSet);
+        examplesModels.push(sampleGroup);
       }
     }
   }
   return examplesModels;
+}
+
+function _transformSpecialLetterToSpace(str: string) {
+  if (!str) {
+    return str;
+  }
+  return str.replace(/_/g, ' ').replace(/\//g, ' Or ').replace(/,|\.|\(|\)/g, ' ').replace('\'s ', ' ');
 }
 
 function getParameterAssignment(exampleValue: ExampleValue) {
@@ -199,8 +214,8 @@ function getParameterAssignment(exampleValue: ExampleValue) {
     case SchemaType.Choice:
     case SchemaType.SealedChoice:
       const choiceSchema = exampleValue.schema as ChoiceSchema;
-      schemaType = choiceSchema.choiceType.type; 
-      break;    
+      schemaType = choiceSchema.choiceType.type;
+      break;
   }
   if (rawValue === null) {
     switch (schemaType) {
@@ -218,7 +233,7 @@ function getParameterAssignment(exampleValue: ExampleValue) {
     }
     return retValue;
   }
-  switch (schemaType) { 
+  switch (schemaType) {
     case SchemaType.String:
     case SchemaType.Char:
     case SchemaType.Time:

@@ -51,7 +51,7 @@ export function generateClient(model: CodeModel, project: Project) {
       ? []
       : [{ name: "credentials", type: credentialTypes.join(" | ") }])
   ];
-  const clientInterfaceName = `${clientName}RestClient`;
+  const clientInterfaceName = `${clientName}Like`;
 
   const functionStatement = {
     isExported: true,
@@ -87,7 +87,7 @@ export function generateClient(model: CodeModel, project: Project) {
   }
   clientFile.addImportDeclarations([
     {
-      namedImports: [`${clientName}RestClient`],
+      namedImports: [`${clientInterfaceName}`],
       moduleSpecifier: './clientDefinitions'
     }
   ]);

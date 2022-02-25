@@ -2,14 +2,15 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { UrlRestClientRestClient } from "./clientDefinitions";
+import "@azure/core-auth";
+import { UrlRestClientLike } from "./clientDefinitions";
 
 export default function UrlRestClient(
   options: ClientOptions = {}
-): UrlRestClientRestClient {
+): UrlRestClientLike {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
 
-  const client = getClient(baseUrl, options) as UrlRestClientRestClient;
+  const client = getClient(baseUrl, options) as UrlRestClientLike;
 
   return {
     ...client,

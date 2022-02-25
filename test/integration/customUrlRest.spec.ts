@@ -1,8 +1,10 @@
-import CustomUrlRestClient, { CustomUrlRestClientRestClient } from "./generated/customUrlRest/src";
-import { assert } from 'chai';
+import CustomUrlRestClient, {
+  CustomUrlRestClientLike
+} from "./generated/customUrlRest/src";
+import { assert } from "chai";
 
 describe("CustomRest Endpoint", () => {
-  let client: CustomUrlRestClientRestClient;
+  let client: CustomUrlRestClientLike;
   let clientOptions: any;
   beforeEach(() => {
     clientOptions = { allowInsecureConnection: true };
@@ -15,7 +17,7 @@ describe("CustomRest Endpoint", () => {
         accountName: "local"
       }
     });
-    assert.strictEqual(result.status, '200');
+    assert.strictEqual(result.status, "200");
   });
 
   it("should return 200 for RLC shortcut", async () => {
@@ -24,6 +26,6 @@ describe("CustomRest Endpoint", () => {
         accountName: "local"
       }
     });
-    assert.strictEqual(result.status, '200');
+    assert.strictEqual(result.status, "200");
   });
 });

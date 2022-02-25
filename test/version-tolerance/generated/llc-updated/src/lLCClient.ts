@@ -2,14 +2,13 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { LLCClientRestClient } from "./clientDefinitions";
+import "@azure/core-auth";
+import { LLCClientLike } from "./clientDefinitions";
 
-export default function LLCClient(
-  options: ClientOptions = {}
-): LLCClientRestClient {
+export default function LLCClient(options: ClientOptions = {}): LLCClientLike {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
 
-  const client = getClient(baseUrl, options) as LLCClientRestClient;
+  const client = getClient(baseUrl, options) as LLCClientLike;
 
   return {
     ...client,

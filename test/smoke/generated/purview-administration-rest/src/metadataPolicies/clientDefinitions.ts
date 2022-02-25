@@ -60,6 +60,6 @@ export interface Routes {
   ): MetadataPolicyUpdate;
 }
 
-export type PurviewMetadataPoliciesRestClient = Client & {
+export type PurviewMetadataPoliciesLike = Client & {
   path: Routes;
 };

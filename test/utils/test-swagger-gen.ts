@@ -504,18 +504,6 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     isTestPackage: true
   },
-  urlRest: {
-    swaggerOrConfig: "url.json",
-    clientName: "UrlRestClient",
-    packageName: "url-rest",
-    licenseHeader: true,
-    restLevelClient: true,
-    azureSdkForJs: false,
-    rlcShortcut: true,
-    allowInsecureConnection: true,
-    addCredentials: false,
-    isTestPackage: true
-  },
   urlMulti: {
     swaggerOrConfig: "url-multi-collectionFormat.json",
     clientName: "UrlMultiClient",
@@ -939,6 +927,17 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     restLevelClient: true,
     azureSdkForJs: false,
+    allowInsecureConnection: true,
+    addCredentials: false,
+    isTestPackage: true
+  },
+  urlRest: {
+    swaggerOrConfig: "url.json",
+    clientName: "UrlRestClient",
+    packageName: "url-rest",
+    licenseHeader: true,
+    restLevelClient: true,
+    rlcShortcut: true,
     allowInsecureConnection: true,
     addCredentials: false,
     isTestPackage: true

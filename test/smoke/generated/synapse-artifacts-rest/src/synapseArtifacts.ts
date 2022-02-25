@@ -3,13 +3,13 @@
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { TokenCredential } from "@azure/core-auth";
-import { SynapseArtifactsRestClient } from "./clientDefinitions";
+import { SynapseArtifactsLike } from "./clientDefinitions";
 
 export default function SynapseArtifacts(
   endpoint: string,
   credentials: TokenCredential,
   options: ClientOptions = {}
-): SynapseArtifactsRestClient {
+): SynapseArtifactsLike {
   const baseUrl = options.baseUrl ?? `${endpoint}`;
   options.apiVersion = options.apiVersion ?? "2021-11-01-preview";
   options = {
@@ -23,7 +23,7 @@ export default function SynapseArtifacts(
     baseUrl,
     credentials,
     options
-  ) as SynapseArtifactsRestClient;
+  ) as SynapseArtifactsLike;
 
   return {
     ...client,

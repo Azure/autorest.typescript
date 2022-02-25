@@ -36,6 +36,7 @@ export function generateIndexFile(
 function generateRLCIndexForMultiClient(file: SourceFile) {
   const { model } = getSession();
   const clientName = model.language.default.name;
+  const createClientFuncName = `${clientName}`;
   const moduleName = normalizeName(clientName, NameType.File);
 
   file.addImportDeclaration({
@@ -89,7 +90,7 @@ function generateRLCIndexForMultiClient(file: SourceFile) {
   file.addExportDeclarations([
     {
       moduleSpecifier: `./${moduleName}`,
-      namedExports: [`${clientName} as ${clientName}Client`],
+      namedExports: [createClientFuncName],
     },
     {
       namedExports: [...exports]
@@ -100,11 +101,12 @@ function generateRLCIndexForMultiClient(file: SourceFile) {
 function generateRLCIndex(file: SourceFile) {
   const { model } = getSession();
   const clientName = model.language.default.name;
+  const createClientFuncName = `${clientName}`;
   const moduleName = normalizeName(clientName, NameType.File);
 
   file.addImportDeclaration({
     moduleSpecifier: `./${moduleName}`,
-    defaultImport: clientName
+    defaultImport: createClientFuncName
   });
 
   file.addExportDeclarations([
@@ -155,7 +157,7 @@ function generateRLCIndex(file: SourceFile) {
   }
 
   file.addExportAssignment({
-    expression: clientName,
+    expression: createClientFuncName,
     isExportEquals: false
   });
 }

@@ -1,20 +1,22 @@
-export interface SampleDetails {
+export interface SampleGroup {
+    sampleFileName: string,
     clientClassName: string,
     clientPackageName: string,
-    operationGroupName: string,
-    operationDescription: string,
-    operationName: string,
-    hasBody: boolean,
-    hasOptional: boolean,
-    bodySchemaName: string,
+    samples: SampleDetails[],
+    importedTypes?: string[],
+}
+
+export interface SampleDetails {
     sampleFunctionName: string,
     clientParameterNames: string,
     methodParameterNames: string,
-    methodParamAssignments: string[],
     clientParamAssignments: string[],
+    methodParamAssignments: string[],
+    originalFileLocation?: string,
+    operationName: string,
     isTopLevel: boolean,
     isPaging: boolean,
-    originalFileLocation?: string
-    isAnyTypeBody?: boolean,
-    importedTypes?: string[]
+    operationGroupName: string,
+    operationDescription: string,
+    clientClassName: string,
 }

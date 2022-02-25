@@ -1245,6 +1245,6 @@ export interface Routes {
   ): WeatherGetDataDeleteJobDetails;
 }
 
-export type AzureAgriFoodPlatformDataPlaneServiceRestClient = Client & {
+export type AzureAgriFoodPlatformDataPlaneServiceLike = Client & {
   path: Routes;
 };

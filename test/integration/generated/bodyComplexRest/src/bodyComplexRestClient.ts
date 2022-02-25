@@ -2,15 +2,16 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { BodyComplexRestClientRestClient } from "./clientDefinitions";
+import "@azure/core-auth";
+import { BodyComplexRestClientLike } from "./clientDefinitions";
 
 export default function BodyComplexRestClient(
   options: ClientOptions = {}
-): BodyComplexRestClientRestClient {
+): BodyComplexRestClientLike {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
   options.apiVersion = options.apiVersion ?? "2016-02-29";
 
-  const client = getClient(baseUrl, options) as BodyComplexRestClientRestClient;
+  const client = getClient(baseUrl, options) as BodyComplexRestClientLike;
 
   return client;
 }
