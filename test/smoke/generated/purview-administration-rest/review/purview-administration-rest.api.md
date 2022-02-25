@@ -247,7 +247,7 @@ declare namespace Client_2 {
         MetadataPolicyListAll,
         MetadataPolicyUpdate,
         Routes,
-        PurviewMetadataPoliciesRestClient
+        PurviewMetadataPoliciesLike
     }
 }
 
@@ -263,7 +263,7 @@ declare namespace Client_3 {
         ResourceSetRulesGetResourceSetRule,
         ResourceSetRulesListResourceSetRules,
         Routes_2 as Routes,
-        PurviewAccountRestClient
+        PurviewAccountLike
     }
 }
 
@@ -1256,7 +1256,7 @@ interface PrivateLinkServiceConnectionStateOutput {
 
 declare namespace PurviewAccount {
     export {
-        PurviewAccountClient,
+        PurviewAccountClient as PurviewAccount,
         Parameters_3 as Parameters,
         Responses_2 as Responses,
         Client_3 as Client,
@@ -1268,16 +1268,16 @@ declare namespace PurviewAccount {
 export { PurviewAccount }
 
 // @public (undocumented)
-export function PurviewAccountClient(endpoint: string, credentials: TokenCredential, options?: ClientOptions): PurviewAccountRestClient;
+export function PurviewAccountClient(endpoint: string, credentials: TokenCredential, options?: ClientOptions): PurviewAccountLike;
 
 // @public (undocumented)
-type PurviewAccountRestClient = Client & {
+type PurviewAccountLike = Client & {
     path: Routes_2;
 };
 
 declare namespace PurviewMetadataPolicies {
     export {
-        PurviewMetadataPoliciesClient,
+        PurviewMetadataPoliciesClient as PurviewMetadataPolicies,
         Parameters_2 as Parameters,
         Responses,
         Client_2 as Client,
@@ -1289,10 +1289,10 @@ declare namespace PurviewMetadataPolicies {
 export { PurviewMetadataPolicies }
 
 // @public (undocumented)
-export function PurviewMetadataPoliciesClient(Endpoint: string, credentials: TokenCredential, options?: ClientOptions): PurviewMetadataPoliciesRestClient;
+export function PurviewMetadataPoliciesClient(Endpoint: string, credentials: TokenCredential, options?: ClientOptions): PurviewMetadataPoliciesLike;
 
 // @public (undocumented)
-type PurviewMetadataPoliciesRestClient = Client & {
+type PurviewMetadataPoliciesLike = Client & {
     path: Routes;
 };
 

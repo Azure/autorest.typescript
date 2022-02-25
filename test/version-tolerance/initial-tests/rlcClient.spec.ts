@@ -1,10 +1,10 @@
-import LLCClient, { LLCClientRestClient } from "../generated/llc-initial/src";
+import LLCClient, { LLCClientLike } from "../generated/llc-initial/src";
 import { assert } from "chai";
 
 const phase = "initial";
 
 describe(`RLC Version Tolerance ${phase} phase`, async () => {
-  let client: LLCClientRestClient;
+  let client: LLCClientLike;
   beforeEach(() => {
     client = LLCClient({ allowInsecureConnection: true });
   });

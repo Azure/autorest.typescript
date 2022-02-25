@@ -3,14 +3,14 @@
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import "@azure/core-auth";
-import { BodyStringRestRestClient } from "./clientDefinitions";
+import { BodyStringRestLike } from "./clientDefinitions";
 
 export default function BodyStringRest(
   options: ClientOptions = {}
-): BodyStringRestRestClient {
+): BodyStringRestLike {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
 
-  const client = getClient(baseUrl, options) as BodyStringRestRestClient;
+  const client = getClient(baseUrl, options) as BodyStringRestLike;
 
   return client;
 }

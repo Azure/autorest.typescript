@@ -1,8 +1,8 @@
 import { assert } from "chai";
-import BodyFile, { BodyFileRestClient } from "./generated/bodyFileRest/src";
+import BodyFile, { BodyFileLike } from "./generated/bodyFileRest/src";
 
 describe("BodyFile Client", () => {
-  let client: BodyFileRestClient;
+  let client: BodyFileLike;
 
   beforeEach("create client", () => {
     client = BodyFile({ allowInsecureConnection: true });

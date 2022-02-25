@@ -2244,7 +2244,7 @@ export interface Routes {
   (path: "/workspace"): WorkspaceGet;
 }
 
-export type SynapseArtifactsRestClient = Client & {
+export type SynapseArtifactsLike = Client & {
   path: Routes;
   kqlScripts: KqlScriptsOperations;
   kqlScript: KqlScriptOperations;

@@ -1,13 +1,13 @@
 import { assert } from "chai";
 import Paging, {
   ProductOutput,
-  PagingRestClient,
+  PagingLike,
   paginate,
   getLongRunningPoller
 } from "./generated/pagingRest/src";
 
 describe("Integration tests for Paging Rest Client", () => {
-  let client: PagingRestClient;
+  let client: PagingLike;
 
   beforeEach(() => {
     client = Paging({

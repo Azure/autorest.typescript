@@ -1,14 +1,14 @@
 import * as coreHttp from "@azure/core-http";
 import { should, assert } from "chai";
 import { isEqual } from "lodash";
-import HeaderRestClient, { HeaderRestClientRestClient } from "./generated/headerRest/src";
+import HeaderRestClient, { HeaderRestClientLike } from "./generated/headerRest/src";
 
 should();
 
 describe("header Rest", function() {
   describe("Swagger Header BAT", function() {
     describe("Basic Header Operations", function() {
-      let testClient: HeaderRestClientRestClient;
+      let testClient: HeaderRestClientLike;
       beforeEach(() => {
         testClient = HeaderRestClient();
       });

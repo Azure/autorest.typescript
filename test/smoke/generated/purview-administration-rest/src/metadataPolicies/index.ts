@@ -8,5 +8,5 @@ import * as Models from "./models";
 import * as OutputModels from "./outputModels";
 import * as PaginateHelper from "./paginateHelper";
 
-export { PurviewMetadataPolicies as PurviewMetadataPoliciesClient } from "./purviewMetadataPolicies";
+export { PurviewMetadataPolicies } from "./purviewMetadataPolicies";
 export { Parameters, Responses, Client, Models, OutputModels, PaginateHelper };
