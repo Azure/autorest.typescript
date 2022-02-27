@@ -38,7 +38,8 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
     hideClients,
     srcPath,
     addCredentials,
-    packageDetails
+    packageDetails,
+    coreHttpCompatMode
   } = getAutorestOptions();
   const hasMappers = !!clientDetails.mappers.length;
 
@@ -110,6 +111,10 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
         moduleSpecifier: "@azure/core-auth"
       });
     }
+    clientFile.addImportDeclaration({
+      namespaceImport: "coreHttpCompat",
+      moduleSpecifier: "@azure/core-http-compat"
+    });
   }
 
   addPagingEsNextRef(flattenedInlineOperations, clientFile);
@@ -172,7 +177,11 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
 
   const clientClass = clientFile.addClass({
     name: clientDetails.className,
-    extends: !useCoreV2 ? "coreHttp.ServiceClient" : "coreClient.ServiceClient",
+    extends: !useCoreV2
+      ? "coreHttp.ServiceClient"
+      : coreHttpCompatMode
+      ? "coreHttpCompat.ExtendedServiceClient"
+      : "coreClient.ServiceClient",
     isExported: true
   });
 
@@ -330,7 +339,7 @@ function writeConstructor(
       shouldAddBlankLine && writer.blankLine();
     }
   };
-  
+
   const writeStatements = (lines: string[], shouldAddBlankLine = false) => (
     writer: CodeBlockWriter
   ) => {
@@ -477,7 +486,12 @@ function getTrack2DefaultContent(addScopes: string, hasCredentials: boolean) {
   `;
 }
 
-function getTrack1DefaultContent(addScopes: string, defaults: string, packageDetails: PackageDetails, clientDetails: ClientDetails) {
+function getTrack1DefaultContent(
+  addScopes: string,
+  defaults: string,
+  packageDetails: PackageDetails,
+  clientDetails: ClientDetails
+) {
   return `// Initializing default values for options
   if (!options) {
     options = {};
@@ -531,7 +545,12 @@ function writeDefaultOptions(
 
   return !useCoreV2
     ? getTrack2DefaultContent(addScopes, hasCredentials)
-    : getTrack1DefaultContent(addScopes, defaults, packageDetails, clientDetails);
+    : getTrack1DefaultContent(
+        addScopes,
+        defaults,
+        packageDetails,
+        clientDetails
+      );
 }
 
 function getEndpointStatement({ endpoint }: EndpointDetails) {
