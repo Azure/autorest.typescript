@@ -82,7 +82,7 @@ export async function generateRestLevelClient() {
     let fileContents = fs.readFileSync(filePath);
     const licenseHeader = `// Copyright (c) Microsoft Corporation.\n// Licensed under the MIT license.\n`;
 
-    if (!isJson) {
+    if (isSourceCode) {
       fileContents = `${licenseHeader.trimLeft()}\n${fileContents}`;
     }
 

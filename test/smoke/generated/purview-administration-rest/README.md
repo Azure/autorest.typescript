@@ -1,12 +1,10 @@
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
-
 # Service client REST client library for JavaScript
 
 Purview Account Client
 
+Key links:
 
-- [Package (NPM)](https://www.npmjs.com/package/@msinternal/purview-administration-rest) |
+- [Package (NPM)](https://www.npmjs.com/package/@msinternal/purview-administration-rest)
 - [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started

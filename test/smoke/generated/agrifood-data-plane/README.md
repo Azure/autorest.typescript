@@ -1,12 +1,10 @@
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
-
 # Azure AgriFoodPlatform Data Plane client REST client library for JavaScript
 
 APIs documentation for Azure AgPlatform DataPlane Service.
 
+Key links:
 
-- [Package (NPM)](https://www.npmjs.com/package/@msinternal/agrifood-data-plane) |
+- [Package (NPM)](https://www.npmjs.com/package/@msinternal/agrifood-data-plane)
 
 ## Getting started
 
