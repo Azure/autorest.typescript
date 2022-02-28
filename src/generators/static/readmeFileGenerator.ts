@@ -63,7 +63,7 @@ interface Metadata {
  * @param codeModel - include the client details
  * @returns inferred metadata about the service, the package, and the client
  */
-export function createMetadata(
+function createMetadata(
   codeModel: CodeModel,
 ): Metadata {
   const {
@@ -110,7 +110,7 @@ export function createMetadata(
     repoURL && `${repoURL}/tree/main/sdk/identity/identity`;
 
   var apiRefUrlQueryParameter: string = "";
-  if (packageDetails.version.includes("beta")) {
+  if (packageDetails?.version.includes("beta")) {
     apiRefUrlQueryParameter = "?view=azure-node-preview";
   }
 
