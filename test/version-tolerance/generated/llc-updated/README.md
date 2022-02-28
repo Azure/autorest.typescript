@@ -1,6 +1,3 @@
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
-
 # LLC client REST client library for JavaScript
 
 LLC Swagger, this is the initial swager a service could do
