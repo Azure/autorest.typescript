@@ -103,7 +103,7 @@ function getClientFactoryBody(
   paths: Paths
 ): string | WriterFunction | (string | WriterFunction | StatementStructures)[] {
   const { rlcShortcut, packageDetails } = getAutorestOptions();
-  const clientPackageName = packageDetails.nameWithoutScope;
+  let clientPackageName = packageDetails.nameWithoutScope;
   const packageVersion = packageDetails.version;
   const { model } = getSession();
   const { endpoint, parameterName } = transformBaseUrl(model);
@@ -124,12 +124,15 @@ function getClientFactoryBody(
     apiVersionStatement = `options.apiVersion = options.apiVersion ?? "${apiVersion}"`;
   }
 
-  const userAgentInfo = `azsdk-js-${clientPackageName}-rest/${packageVersion}`;
-  const userAgentInfoStatement: VariableStatementStructure = {
-    kind: StructureKind.VariableStatement,
-    declarationKind: VariableDeclarationKind.Const,
-    declarations: [{ name: "userAgentInfo", initializer: userAgentInfo }]
-  };
+  if (!clientPackageName.endsWith("-rest")) {
+    clientPackageName = clientPackageName + "-rest";
+  }
+  const userAgentInfoStatement =
+    "const userAgentInfo = `azsdk-js-" +
+    clientPackageName +
+    "/" +
+    packageVersion +
+    "`;";
   const userAgentPrefix =
     "options.userAgentOptions && options.userAgentOptions.userAgentPrefix ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`: `${userAgentInfo}`;";
   const userAgentStatement: VariableStatementStructure = {
@@ -143,7 +146,7 @@ function getClientFactoryBody(
     userAgentOptions: {
       userAgentPrefix
     }
-  }`
+  }`;
 
   const baseUrlStatement: VariableStatementStructure = {
     kind: StructureKind.VariableStatement,
