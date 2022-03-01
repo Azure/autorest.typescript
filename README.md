@@ -183,22 +183,69 @@ Current behavior:
 type Colors = 'red color' | 'green-color' | 'blue_color';
 ```
 
-# Development
+# Development guide
+This section provides information on how to get contributing to this project.
+## 1.- Cloning the repo
+```
+git clone --recursive https://github.com/Azure/autorest.typescript.git
+```
 
-### IMPORTANT NOTES
+> ⚠️ Important:
+>
+> This project uses a git submodule for dependent code. That is why `--recursive` needs to be added when cloning this repository. If the project has been cloned already, run `git submodule update --init --recursive`.
 
-This project uses a git submodule for dependent code. When cloning this repository use `git clone --recursive ...` or perform a `git submodule update --init --recursive` after the project is cloned.
+This project is not based on the default branch `main`. To visualize it, change the branch to `v4x`:
+```
+git checkout v4x
+```
 
-This project also uses dotnet 2.0 and gulp v3. gulp v3 is not compatible with Node v12, so use Node v10 (lts/dubnium) until gulp is updated to v4.
+## 2.- Requirements
+For this project, `Dotnet 2.0`, `Gulp v3` and `Node v10` are required. Also, Linux is recommended to work on this project.
 
-### Building the project
-After cloning the repo, execute:
-- `npm install -g gulp` (gulp should be installed globally too)
+### Installing Node trought an NVM
+We recommend using a Node Version Manager (NVM) to install Node 10.x and manage your node versions. You can find them here [for Linux](https://github.com/nvm-sh/nvm/blob/master/README.md) or [for Windows](https://github.com/coreybutler/nvm-windows/releases/).
+
+### Installing Dotnet 2.0
+[Here](https://dotnet.microsoft.com/en-us/download/dotnet/2.0) are the instructions on how to install Dotnet 2.0 SDK and Runtime. However, `Dotnet 2.1` can also be used on this project since it has support for version 2.
+
+For Linux, there are some extra steps needed. [The docs](https://docs.microsoft.com/en-us/dotnet/core/install/linux?WT.mc_id=dotnet-35129-website) do not have the exact scripts to install version `2.0` nor `2.1`. You can use the scripts provided there, but be sure to change the versions on it, for example, `dotnet-sdk-6.0` -> `dotnet-sdk-2.1` and `dotnet-runtime-6.0` -> `dotnet-runtime-2.1`.
+
+Here is an example of how to install Dotnet 2.1 in Ubuntu 20.04:
+```
+wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+rm packages-microsoft-prod.deb
+
+# Installing the SDK
+sudo apt-get update; \
+  sudo apt-get install -y apt-transport-https && \
+  sudo apt-get update && \
+  sudo apt-get install -y dotnet-sdk-2.1
+
+# Installing the runtime
+sudo apt-get update; \
+  sudo apt-get install -y apt-transport-https && \
+  sudo apt-get update && \
+  sudo apt-get install -y aspnetcore-runtime-2.1
+```
+
+### Installing Gulp
+Gulp needs to be installed globally:
+```
+npm install -g gulp
+```
+
+## 3.- Building the project
+After setting up the development environment, execute:
 - `npm install`
 - `npm run build`
 
+> 💡 Note:
+>
+> If `npm install` seems stuck, it is most likely caused by the lack of the submodule in the repo. Make sure to run `git submodule update --init --recursive`.
 
-### Testing the developed changes
+## 4.- Testing the developed changes
+Execute:
 - `gulp regenerate`
 - `gulp test`
 
