@@ -15,7 +15,7 @@ jobs:
 - job: Build
   displayName: "Build, regenerate and test on $(node.version)"
   pool:
-    vmImage: 'Ubuntu 16.04'
+    vmImage: 'ubuntu-18.04'
   strategy:
     matrix:
       Node10:
@@ -74,7 +74,7 @@ jobs:
       reportDirectory: '$(System.DefaultWorkingDirectory)/**/coverage'
 - job: Check_Everything
   pool:
-    vmImage: 'Ubuntu 16.04'
+    vmImage: 'ubuntu-18.04'
   steps:
   - task: NodeTool@0
     displayName: 'Install Node 10'

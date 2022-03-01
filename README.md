@@ -1,6 +1,8 @@
 [![Build Status](https://travis-ci.org/Azure/autorest.typescript.svg?branch=master)](https://travis-ci.org/Azure/autorest.typescript)
 [![npm version](https://badge.fury.io/js/%40microsoft.azure%2Fautorest.typescript.svg)](https://badge.fury.io/js/%40microsoft.azure%2Fautorest.typescript)
 
+> **Note**: This project, [@microsoft.azure/autorest.typescript](https://www.npmjs.com/package/@microsoft.azure/autorest.typescript) is the earlier stable version of the SDK generator. The latest version of the SDK generator, [@autorest/typescript](https://www.npmjs.com/package/@autorest/typescript), is currently in preview and available in the [main branch of the Azure/autorest.typescript repository](https://github.com/Azure/autorest.typescript/tree/main).
+
 # Installation
 ```sh
 npm install -g autorest
