@@ -18,7 +18,8 @@
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
  
     <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+
     <RootNamespace>AutoRest.TypeScript</RootNamespace>
  
     <BaseOutputPath>$(MSBuildProjectDirectory)/bin</BaseOutputPath>
