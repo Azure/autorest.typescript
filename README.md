@@ -192,7 +192,7 @@ git clone --recursive https://github.com/Azure/autorest.typescript.gi
 
 > ⚠️ Important:
 >
-> This project uses a git submodule for dependent code. That is why `--recursive` needs to be added when cloning this repository. If the project is already cloned, just run `git submodule update --init --recursive`.
+> This project uses a git submodule for dependent code. That is why `--recursive` needs to be added when cloning this repository. If the project has been cloned already, run `git submodule update --init --recursive`.
 
 This project is not based on the default branch `main`. To visualize it, change the branch to `v4x`:
 ```
@@ -248,7 +248,7 @@ After setting up the development environment, execute:
 
 ## 4.- Testing the developed changes
 Execute:
-- `gulp renegerate`
+- `gulp regenerate`
 - `gulp test`
 
 ### Debugging using vscode
