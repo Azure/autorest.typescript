@@ -185,14 +185,14 @@ type Colors = 'red color' | 'green-color' | 'blue_color';
 
 # Development guide
 This section provides information on how to get contributing to this project.
-## 1.- Clonning the repo
+## 1.- Cloning the repo
 ```
 git clone --recursive https://github.com/Azure/autorest.typescript.gi
 ```
 
 > ⚠️ Important:
 >
-> This project uses a git submodule for dependent code. That is why `--recursive` needs to be added when cloning this repository. If the project is already clone, just run `git submodule update --init --recursive`.
+> This project uses a git submodule for dependent code. That is why `--recursive` needs to be added when cloning this repository. If the project is already cloned, just run `git submodule update --init --recursive`.
 
 This project is not based on the default branch `main`. To visualize it, change the branch to `v4x`:
 ```
@@ -208,11 +208,11 @@ For this project, `Dotnet 2.0`, `Gulp v3` and `Node v10` are required. Also, Lin
 We recommend using a Node Version Manager (NVM) to install Node 10.x and manage your node versions. You can find them here [for Linux](https://github.com/nvm-sh/nvm/blob/master/README.md) or [for Windows](https://github.com/coreybutler/nvm-windows/releases/).
 
 ### Installing Dotnet 2.0
-[Here](https://dotnet.microsoft.com/en-us/download/dotnet/2.0) are the instructions on how to install Dotnet 2.0 SDK and Runtime. However, `Dotnet 2.1` can also be used on this project, since it has support for version 2.
+[Here](https://dotnet.microsoft.com/en-us/download/dotnet/2.0) are the instructions on how to install Dotnet 2.0 SDK and Runtime. However, `Dotnet 2.1` can also be used on this project since it has support for version 2.
 
 For Linux, there are some extra steps needed. [The docs](https://docs.microsoft.com/en-us/dotnet/core/install/linux?WT.mc_id=dotnet-35129-website) do not have the exact scripts to install version `2.0` nor `2.1`. You can use the scripts provided there, but be sure to change the versions on it, for example, `dotnet-sdk-6.0` -> `dotnet-sdk-2.1` and `dotnet-runtime-6.0` -> `dotnet-runtime-2.1`.
 
-Here is an example on how to install Dotnet 2.1 in Ubuntu 20.04:
+Here is an example of how to install Dotnet 2.1 in Ubuntu 20.04:
 ```
 wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
 sudo dpkg -i packages-microsoft-prod.deb
