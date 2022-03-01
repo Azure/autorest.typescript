@@ -19,6 +19,18 @@ export function PurviewAccount(
     }
   };
 
+  const userAgentInfo = `azsdk-js-purview-administration-rest/1.0.0-beta.2`;
+  const userAgentPrefix =
+    options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+      ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
+      : `${userAgentInfo}`;
+  options = {
+    ...options,
+    userAgentOptions: {
+      userAgentPrefix
+    }
+  };
+
   const client = getClient(baseUrl, credentials, options) as PurviewAccountLike;
 
   return client;
