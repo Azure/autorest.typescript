@@ -187,7 +187,7 @@ type Colors = 'red color' | 'green-color' | 'blue_color';
 This section provides information on how to get contributing to this project.
 ## 1.- Cloning the repo
 ```
-git clone --recursive https://github.com/Azure/autorest.typescript.gi
+git clone --recursive https://github.com/Azure/autorest.typescript.git
 ```
 
 > ⚠️ Important:
@@ -201,8 +201,6 @@ git checkout v4x
 
 ## 2.- Requirements
 For this project, `Dotnet 2.0`, `Gulp v3` and `Node v10` are required. Also, Linux is recommended to work on this project.
-
-> Node 12 can be used once Gulp is updated to v4.
 
 ### Installing Node trought an NVM
 We recommend using a Node Version Manager (NVM) to install Node 10.x and manage your node versions. You can find them here [for Linux](https://github.com/nvm-sh/nvm/blob/master/README.md) or [for Windows](https://github.com/coreybutler/nvm-windows/releases/).
