@@ -71,7 +71,7 @@ function restLevelPackage(packageDetails: PackageDetails) {
     main: "dist/index.js",
     module: generateTest? "./dist-esm/src/index.js" : "./dist-esm/index.js",
     types: `./types/${packageDetails.nameWithoutScope}.d.ts`,
-    homepage: `https://github.com/Azure/azure-sdk-for-js/tree/main/${azureOutputDirectory}`,
+    homepage: `https://github.com/Azure/azure-sdk-for-js/tree/main/${azureOutputDirectory}/README.md`,
     repository: "github:Azure/azure-sdk-for-js",
     bugs: {
       url: "https://github.com/Azure/azure-sdk-for-js/issues"
