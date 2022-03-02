@@ -17,7 +17,7 @@ npm install -g autorest
 - You can then generate the SDK as follows:
 
 ```bash
-autorest --typescript <path to the swagger file>
+autorest --typescript --input-file=<path to the swagger file>
 ```
 
 - You will likely need to specify extra flags to control the behavior of the generation, and these flags are listed in the next section.
