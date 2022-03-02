@@ -16,6 +16,16 @@ npm install -g autorest
 
 - You can then generate the SDK as follows:
 
+if you are using a configuration (.md) file
+
+```bash
+autorest --typescript <path to the configuration file>
+```
+
+(or)
+
+if you are using a JSON/YAML file:
+
 ```bash
 autorest --typescript --input-file=<path to the swagger file>
 ```
@@ -86,7 +96,6 @@ pipeline:
   typescript/emitter:
     input: typescript
     scope: typescript-scope/emitter
-
 ```
 
 ```yaml $(generate-test)
@@ -94,8 +103,8 @@ use-extension:
   "@autorest/testmodeler": "1.0.4"
 
 try-require:
-    - ./readme.test.md
-    - ./readme.tests.md
+  - ./readme.test.md
+  - ./readme.tests.md
 
 testmodeler:
   split-parents-value: false
@@ -117,7 +126,6 @@ pipeline:
   typescript/emitter:
     input: typescript
     scope: typescript-scope/emitter
-
 ```
 
 ### REST Client Generator overrides
