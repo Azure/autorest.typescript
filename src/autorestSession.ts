@@ -36,6 +36,7 @@ export interface AutorestOptions {
   multiClient?: boolean;
   generateSample?: boolean;
   azureSdkForJs?: boolean;
+  coreHttpCompatMode?: boolean;
 }
 
 let host: AutorestExtensionHost;

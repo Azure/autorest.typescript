@@ -29,7 +29,8 @@ export async function runAutorest(
     rlcShortcut,
     headAsBoolean,
     isTestPackage,
-    generateTest
+    generateTest,
+    coreHttpCompatMode
   } = options;
   let autorestCommand = `autorest${
     /^win/.test(process.platform) ? ".cmd" : ""
@@ -97,9 +98,15 @@ export async function runAutorest(
   if (licenseHeader !== undefined) {
     commandArguments.push(`--license-header=${licenseHeader}`);
   }
+
+  if (coreHttpCompatMode) {
+    commandArguments.push(`--core-http-compat-mode=${coreHttpCompatMode}`);
+  }
+
   if (addCredentials !== undefined) {
     commandArguments.push(`--add-credentials=${!!addCredentials}`);
   }
+
   if (packageDetails.version !== "") {
     commandArguments.push(`--package-version=${packageDetails.version}`);
   }

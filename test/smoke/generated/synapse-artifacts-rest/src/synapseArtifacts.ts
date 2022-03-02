@@ -19,6 +19,18 @@ export default function SynapseArtifacts(
     }
   };
 
+  const userAgentInfo = `azsdk-js-synapse-artifacts-rest/1.0.0-beta.1`;
+  const userAgentPrefix =
+    options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+      ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
+      : `${userAgentInfo}`;
+  options = {
+    ...options,
+    userAgentOptions: {
+      userAgentPrefix
+    }
+  };
+
   const client = getClient(
     baseUrl,
     credentials,

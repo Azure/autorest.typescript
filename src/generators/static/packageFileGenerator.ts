@@ -53,7 +53,7 @@ function restLevelPackage(packageDetails: PackageDetails) {
   const { model } = getSession();
   const hasPaging = hasPagingOperations(model);
   const hasLRO = hasPollingOperations(model);
-  const packageInfo: Record<string, any> =  {
+  const packageInfo: Record<string, any> = {
     name: `${packageDetails.name}`,
     "sdk-type": `${azureArm ? "mgmt" : "client"}`,
     author: "Microsoft Corporation",
@@ -216,8 +216,9 @@ function restLevelPackage(packageDetails: PackageDetails) {
     }
 
     packageInfo["browser"] = {
-      "./dist-esm/test/public/utils/env.js": "./dist-esm/test/public/utils/env.browser.js"
-    }
+      "./dist-esm/test/public/utils/env.js":
+        "./dist-esm/test/public/utils/env.browser.js"
+    };
   }
 
   return packageInfo;
@@ -240,7 +241,8 @@ function regularAutorestPackage(
     addCredentials,
     azureOutputDirectory,
     generateTest,
-    generateSample
+    generateSample,
+    coreHttpCompatMode
   } = getAutorestOptions();
   const { model } = getSession();
   const hasLro = hasPollingOperations(model);
@@ -271,6 +273,8 @@ function regularAutorestPackage(
       ...(!useCoreV2 && { "@azure/core-http": "^2.0.0" }),
       ...(useCoreV2 && { "@azure/core-client": "^1.0.0" }),
       ...(useCoreV2 && addCredentials && { "@azure/core-auth": "^1.3.0" }),
+      ...(useCoreV2 &&
+        coreHttpCompatMode && { "@azure/core-http-compat": "^1.0.0" }),
       ...(useCoreV2 && {
         "@azure/core-rest-pipeline": "^1.1.0"
       }),
@@ -355,11 +359,13 @@ function regularAutorestPackage(
       docs: "echo skipped"
     },
     sideEffects: false,
-    "//metadata":{
-      constantPaths: [{
-        path: `src/${normalizeName(clientDetails.name, NameType.File)}.ts`,
-        prefix: "packageDetails",
-      }],
+    "//metadata": {
+      constantPaths: [
+        {
+          path: `src/${normalizeName(clientDetails.name, NameType.File)}.ts`,
+          prefix: "packageDetails"
+        }
+      ]
     },
     autoPublish: true
   };
@@ -379,14 +385,16 @@ function regularAutorestPackage(
     packageInfo.scripts["integration-test:node"] =
       "mocha -r esm --require ts-node/register --timeout 1200000 --full-trace test/*.ts --reporter ../../../common/tools/mocha-multi-reporter.js";
   }
-  if (generateSample && clientDetails.samples && clientDetails.samples.length > 0) {
+  if (
+    generateSample &&
+    clientDetails.samples &&
+    clientDetails.samples.length > 0
+  ) {
     packageInfo["//sampleConfiguration"] = {
-      "productName": description,
-      "productSlugs": [
-        "azure"
-      ],
-      "disableDocsMs": true,
-      "apiRefLink": `https://docs.microsoft.com/javascript/api/${clientPackageName}${apiRefUrlQueryParameter}`
+      productName: description,
+      productSlugs: ["azure"],
+      disableDocsMs: true,
+      apiRefLink: `https://docs.microsoft.com/javascript/api/${clientPackageName}${apiRefUrlQueryParameter}`
     };
   }
   return packageInfo;

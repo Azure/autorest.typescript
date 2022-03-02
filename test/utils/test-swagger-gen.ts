@@ -23,6 +23,7 @@ interface SwaggerConfig {
   isTestPackage?: boolean;
   generateTest?: boolean;
   generateSample?: boolean;
+  coreHttpCompatMode?: boolean;
 }
 
 const package_version = "1.0.0-preview1";
@@ -841,6 +842,16 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     isTestPackage: true
   },
+  corecompattest: {
+    swaggerOrConfig: "test/integration/swaggers/petstore.json",
+    clientName: "PetStore",
+    packageName: "petstore",
+    useCoreV2: true,
+    allowInsecureConnection: true,
+    addCredentials: false,
+    isTestPackage: true,
+    coreHttpCompatMode: true
+  },
   // TEST REST LEVEL CLIENTS
   lroRest: {
     swaggerOrConfig: "lro.json",
@@ -1011,7 +1022,8 @@ const generateSwaggers = async (
       headAsBoolean,
       isTestPackage,
       generateTest,
-      rlcShortcut
+      rlcShortcut,
+      coreHttpCompatMode
     } = testSwaggers[name];
 
     let swaggerPath = swaggerOrConfig;
@@ -1052,7 +1064,8 @@ const generateSwaggers = async (
         rlcShortcut,
         headAsBoolean,
         isTestPackage,
-        generateTest
+        generateTest,
+        coreHttpCompatMode
       },
       isDebugging
     );

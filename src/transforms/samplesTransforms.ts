@@ -146,9 +146,10 @@ export async function getAllExamples(codeModel: TestCodeModel, clientDetails: Cl
             let paramAssignment = "";
             if (methodParameter.parameter.protocol?.http?.["in"] === "body") {
               let bodySchemaName = parameterTypeName;
-              importedTypeSet.add(parameterTypeName);
               if (methodParameter.exampleValue.schema.type === SchemaType.AnyObject || methodParameter.exampleValue.schema.type === SchemaType.Any) {
                 bodySchemaName = "Record<string, unknown>";
+              } else {
+                importedTypeSet.add(parameterTypeName);
               }
               paramAssignment =
                 `const ${parameterName}: ${bodySchemaName} = ` +

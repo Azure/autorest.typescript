@@ -36,6 +36,7 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
   const batch = await getBatch(host);
   const multiClient = await getMultiClient(host);
   const generateSample = await getGenerateSample(host);
+  const coreHttpCompatMode = await getCoreHttpCompatMode(host);
   const azureSdkForJs = await getAzureSdkForJs(host);
 
   return {
@@ -65,7 +66,8 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
     batch,
     multiClient,
     generateSample,
-    azureSdkForJs
+    azureSdkForJs,
+    coreHttpCompatMode
   };
 }
 
@@ -93,7 +95,9 @@ async function getGenerateTest(host: AutorestExtensionHost): Promise<boolean> {
   return generateTest === null ? false : Boolean(generateTest);
 }
 
-async function getGenerateSample(host: AutorestExtensionHost): Promise<boolean> {
+async function getGenerateSample(
+  host: AutorestExtensionHost
+): Promise<boolean> {
   const generateSample = await host.getValue("generate-sample");
   return generateSample === null ? false : Boolean(generateSample);
 }
@@ -296,12 +300,20 @@ async function getAzureOutputDirectoryPath(
     : undefined;
 }
 
-async function getBatch(host: AutorestExtensionHost): Promise<[string, any][] | undefined> {
-  const batch = await host.getValue<[string, any][]>('batch');
+async function getBatch(
+  host: AutorestExtensionHost
+): Promise<[string, any][] | undefined> {
+  const batch = await host.getValue<[string, any][]>("batch");
   return batch;
 }
 
 async function getMultiClient(host: AutorestExtensionHost): Promise<boolean> {
-  const multiClient = await host.getValue("multi-client") || undefined;
+  const multiClient = (await host.getValue("multi-client")) || undefined;
   return !!multiClient;
+}
+
+async function getCoreHttpCompatMode(
+  host: AutorestExtensionHost
+): Promise<boolean> {
+  return (await host.getValue("core-http-compat-mode")) || false;
 }
