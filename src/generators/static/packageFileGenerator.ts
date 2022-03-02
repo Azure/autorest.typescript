@@ -53,7 +53,7 @@ function restLevelPackage(packageDetails: PackageDetails) {
   const { model } = getSession();
   const hasPaging = hasPagingOperations(model);
   const hasLRO = hasPollingOperations(model);
-  const packageInfo: Record<string, any> =  {
+  const packageInfo: Record<string, any> = {
     name: `${packageDetails.name}`,
     "sdk-type": `${azureArm ? "mgmt" : "client"}`,
     version: `${packageDetails.version}`,
@@ -144,20 +144,29 @@ function restLevelPackage(packageDetails: PackageDetails) {
     packageInfo.devDependencies["nyc"] = "^14.0.0";
     packageInfo.devDependencies["source-map-support"] = "^0.5.9";
 
-    packageInfo.scripts["test"] = "npm run clean && npm run build:test && npm run unit-test";
-    packageInfo.scripts["test:node"] = "npm run clean && npm run build:test && npm run unit-test:node";
-    packageInfo.scripts["test:browser"] = "tsc -p . && cross-env ONLY_BROWSER=true rollup -c 2>&1";
+    packageInfo.scripts["test"] =
+      "npm run clean && npm run build:test && npm run unit-test";
+    packageInfo.scripts["test:node"] =
+      "npm run clean && npm run build:test && npm run unit-test:node";
+    packageInfo.scripts["test:browser"] =
+      "tsc -p . && cross-env ONLY_BROWSER=true rollup -c 2>&1";
     packageInfo.scripts["build:test"] = "tsc -p . && rollup -c 2>&1";
-    packageInfo.scripts["unit-test"] = "npm run unit-test:node && npm run unit-test:browser";
-    packageInfo.scripts["unit-test:node"] = "mocha -r esm --require ts-node/register --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 1200000 --full-trace \"test/{,!(browser)/**/}*.spec.ts\"";
+    packageInfo.scripts["unit-test"] =
+      "npm run unit-test:node && npm run unit-test:browser";
+    packageInfo.scripts["unit-test:node"] =
+      'mocha -r esm --require ts-node/register --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 1200000 --full-trace "test/{,!(browser)/**/}*.spec.ts"';
     packageInfo.scripts["unit-test:browser"] = "karma start --single-run";
-    packageInfo.scripts["integration-test"] = "npm run integration-test:node && npm run integration-test:browser";
-    packageInfo.scripts["integration-test:browser"] = "karma start --single-run";
-    packageInfo.scripts["integration-test:node"] = "nyc mocha -r esm --require source-map-support/register --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 5000000 --full-trace \"dist-esm/test/{,!(browser)/**/}*.spec.js\"";
+    packageInfo.scripts["integration-test"] =
+      "npm run integration-test:node && npm run integration-test:browser";
+    packageInfo.scripts["integration-test:browser"] =
+      "karma start --single-run";
+    packageInfo.scripts["integration-test:node"] =
+      'nyc mocha -r esm --require source-map-support/register --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 5000000 --full-trace "dist-esm/test/{,!(browser)/**/}*.spec.js"';
 
     packageInfo["browser"] = {
-      "./dist-esm/test/public/utils/env.js": "./dist-esm/test/public/utils/env.browser.js"
-    }
+      "./dist-esm/test/public/utils/env.js":
+        "./dist-esm/test/public/utils/env.browser.js"
+    };
   }
 
   return packageInfo;
@@ -180,7 +189,8 @@ function regularAutorestPackage(
     addCredentials,
     azureOutputDirectory,
     generateTest,
-    generateSample
+    generateSample,
+    coreHttpCompatMode
   } = getAutorestOptions();
   const { model } = getSession();
   const hasLro = hasPollingOperations(model);
@@ -211,6 +221,8 @@ function regularAutorestPackage(
       ...(!useCoreV2 && { "@azure/core-http": "^2.0.0" }),
       ...(useCoreV2 && { "@azure/core-client": "^1.0.0" }),
       ...(useCoreV2 && addCredentials && { "@azure/core-auth": "^1.3.0" }),
+      ...(useCoreV2 &&
+        coreHttpCompatMode && { "@azure/core-http-compat": "^1.0.0" }),
       ...(useCoreV2 && {
         "@azure/core-rest-pipeline": "^1.1.0"
       }),
@@ -295,11 +307,13 @@ function regularAutorestPackage(
       docs: "echo skipped"
     },
     sideEffects: false,
-    "//metadata":{
-      constantPaths: [{
-        path: `src/${normalizeName(clientDetails.name, NameType.File)}.ts`,
-        prefix: "packageDetails",
-      }],
+    "//metadata": {
+      constantPaths: [
+        {
+          path: `src/${normalizeName(clientDetails.name, NameType.File)}.ts`,
+          prefix: "packageDetails"
+        }
+      ]
     },
     autoPublish: true
   };
@@ -319,14 +333,16 @@ function regularAutorestPackage(
     packageInfo.scripts["integration-test:node"] =
       "mocha -r esm --require ts-node/register --timeout 1200000 --full-trace test/*.ts --reporter ../../../common/tools/mocha-multi-reporter.js";
   }
-  if (generateSample && clientDetails.samples && clientDetails.samples.length > 0) {
+  if (
+    generateSample &&
+    clientDetails.samples &&
+    clientDetails.samples.length > 0
+  ) {
     packageInfo["//sampleConfiguration"] = {
-      "productName": description,
-      "productSlugs": [
-        "azure"
-      ],
-      "disableDocsMs": true,
-      "apiRefLink": `https://docs.microsoft.com/javascript/api/${clientPackageName}${apiRefUrlQueryParameter}`
+      productName: description,
+      productSlugs: ["azure"],
+      disableDocsMs: true,
+      apiRefLink: `https://docs.microsoft.com/javascript/api/${clientPackageName}${apiRefUrlQueryParameter}`
     };
   }
   return packageInfo;
