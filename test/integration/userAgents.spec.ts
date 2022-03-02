@@ -100,6 +100,10 @@ describe("Integration tests for User Agents", () => {
       .path("/string/nullBase64UrlEncoding")
       .get({ allowInsecureConnection: true });
     assert.equal(result.status, "200");
-    assert.equal(result.headers.userAgent?.indexOf("azsdk-js-body-string-rest") > -1, true);
+    const userAgent = result.request.headers?.get("user-agent");
+    assert.isTrue(userAgent !== undefined);
+    if (userAgent) {
+      assert.isTrue(userAgent.indexOf("azsdk-js-body-string-rest") > -1);
+    }
   });
 });
