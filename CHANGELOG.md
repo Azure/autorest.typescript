@@ -12,7 +12,7 @@
 
 ## 6.0.0-beta.13 (2021-09-14)
 
-- [BugFix] The word `Operations` has been removed from parameters and interface names. Please refer [#1181](https://github.com/Azure/autorest.typescript/pull/1181) for further details.dummy
+- [BugFix] The word `Operations` has been removed from parameters and interface names. Please refer [#1181](https://github.com/Azure/autorest.typescript/pull/1181) for further details.
 - [Feature] A pagination helper is generated and exported if the rest client operation has `x-ms-pageable`. Please refer [#1169](https://github.com/Azure/autorest.typescript/pull/1169) for further details.
 - [Feature] Test generation framework has been added to the management SDK. Please refer [#1162](https://github.com/Azure/autorest.typescript/pull/1162) for further details.
 - [BugFix] The value of property `clientName` has been fixed relating to the discriminators. Please refer [#1184](https://github.com/Azure/autorest.typescript/pull/1184) for further details.
