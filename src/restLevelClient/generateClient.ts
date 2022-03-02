@@ -13,7 +13,7 @@ import {
   VariableStatementStructure,
   WriterFunction
 } from "ts-morph";
-import * as path from 'path';
+import * as path from "path";
 
 import { getAutorestOptions, getSession } from "../autorestSession";
 import { transformBaseUrl } from "../transforms/urlTransforms";
@@ -22,7 +22,7 @@ import { isConstantSchema } from "./schemaHelpers";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { generateMethodShortcutImplementation } from "./generateMethodShortcuts";
 import { Paths } from "./interfaces";
-import { pathDictionary } from './generateClientDefinition';
+import { pathDictionary } from "./generateClientDefinition";
 
 export function generateClient(model: CodeModel, project: Project) {
   const name = normalizeName(
@@ -30,15 +30,24 @@ export function generateClient(model: CodeModel, project: Project) {
     NameType.File
   );
   const { srcPath } = getAutorestOptions();
-  const clientFile = project.createSourceFile(path.join(srcPath, `${name}.ts`), undefined, {
-    overwrite: true
-  });
+  const clientFile = project.createSourceFile(
+    path.join(srcPath, `${name}.ts`),
+    undefined,
+    {
+      overwrite: true
+    }
+  );
 
   // Get all paths
   const clientName = getLanguageMetadata(model.language).name;
   const uriParameter = getClientUriParameter();
 
-  const { addCredentials, credentialKeyHeaderName, multiClient, batch } = getAutorestOptions();
+  const {
+    addCredentials,
+    credentialKeyHeaderName,
+    multiClient,
+    batch
+  } = getAutorestOptions();
   const credentialTypes = addCredentials ? ["TokenCredential"] : [];
 
   if (credentialKeyHeaderName) {
@@ -63,7 +72,7 @@ export function generateClient(model: CodeModel, project: Project) {
     returnType: clientInterfaceName,
     isDefaultExport: false,
     statements: getClientFactoryBody(clientInterfaceName, pathDictionary)
-  }
+  };
 
   if (!multiClient || !batch || batch.length === 1) {
     functionStatement.isDefaultExport = true;
@@ -84,7 +93,7 @@ export function generateClient(model: CodeModel, project: Project) {
     },
     {
       namedImports: [`${clientInterfaceName}`],
-      moduleSpecifier: './clientDefinitions'
+      moduleSpecifier: "./clientDefinitions"
     }
   ]);
 }
@@ -93,7 +102,9 @@ function getClientFactoryBody(
   clientTypeName: string,
   paths: Paths
 ): string | WriterFunction | (string | WriterFunction | StatementStructures)[] {
-  const { rlcShortcut } = getAutorestOptions();
+  const { rlcShortcut, packageDetails } = getAutorestOptions();
+  let clientPackageName = packageDetails.nameWithoutScope;
+  const packageVersion = packageDetails.version;
   const { model } = getSession();
   const { endpoint, parameterName } = transformBaseUrl(model);
   let baseUrl: string;
@@ -112,6 +123,30 @@ function getClientFactoryBody(
   if (apiVersion) {
     apiVersionStatement = `options.apiVersion = options.apiVersion ?? "${apiVersion}"`;
   }
+
+  if (!clientPackageName.endsWith("-rest")) {
+    clientPackageName = clientPackageName + "-rest";
+  }
+  const userAgentInfoStatement =
+    "const userAgentInfo = `azsdk-js-" +
+    clientPackageName +
+    "/" +
+    packageVersion +
+    "`;";
+  const userAgentPrefix =
+    "options.userAgentOptions && options.userAgentOptions.userAgentPrefix ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`: `${userAgentInfo}`;";
+  const userAgentStatement: VariableStatementStructure = {
+    kind: StructureKind.VariableStatement,
+    declarationKind: VariableDeclarationKind.Const,
+    declarations: [{ name: "userAgentPrefix", initializer: userAgentPrefix }]
+  };
+
+  const userAgentOptionsStatement = `options = {
+    ...options,
+    userAgentOptions: {
+      userAgentPrefix
+    }
+  }`;
 
   const baseUrlStatement: VariableStatementStructure = {
     kind: StructureKind.VariableStatement,
@@ -138,7 +173,7 @@ function getClientFactoryBody(
       credentials: {
         ${scopes}
         ${apiKeyHeaderName}
-      }
+      },
     }`
       : "";
 
@@ -169,6 +204,9 @@ function getClientFactoryBody(
     baseUrlStatement,
     apiVersionStatement,
     credentials,
+    userAgentInfoStatement,
+    userAgentStatement,
+    userAgentOptionsStatement,
     getClient,
     returnStatement
   ];
