@@ -3,9 +3,9 @@
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import "@azure/core-auth";
-import { LLCClientLike } from "./clientDefinitions";
+import { DPGClientLike } from "./clientDefinitions";
 
-export default function LLCClient(options: ClientOptions = {}): LLCClientLike {
+export default function DPGClient(options: ClientOptions = {}): DPGClientLike {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
 
   const userAgentInfo = `azsdk-js-rlcClient-rest/1.0.0-beta.1`;
@@ -20,16 +20,25 @@ export default function LLCClient(options: ClientOptions = {}): LLCClientLike {
     }
   };
 
-  const client = getClient(baseUrl, options) as LLCClientLike;
+  const client = getClient(baseUrl, options) as DPGClientLike;
 
   return {
     ...client,
     params: {
+      headNoParams: (options) => {
+        return client.path("/serviceDriven/parameters").head(options);
+      },
       getRequired: (options) => {
-        return client.path("/servicedriven/parameters").get(options);
+        return client.path("/serviceDriven/parameters").get(options);
+      },
+      putRequiredOptional: (options) => {
+        return client.path("/serviceDriven/parameters").put(options);
       },
       postParameters: (options) => {
-        return client.path("/servicedriven/parameters").post(options);
+        return client.path("/serviceDriven/parameters").post(options);
+      },
+      getOptional: (options) => {
+        return client.path("/serviceDriven/moreParameters").get(options);
       }
     }
   };

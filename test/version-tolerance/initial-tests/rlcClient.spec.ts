@@ -1,24 +1,24 @@
-import LLCClient, { LLCClientLike } from "../generated/llc-initial/src";
+import DPGClient, { DPGClientLike } from "../generated/rlc-initial/src";
 import { assert } from "chai";
 
 const phase = "initial";
 
 describe(`RLC Version Tolerance ${phase} phase`, async () => {
-  let client: LLCClientLike;
+  let client: DPGClientLike;
   beforeEach(() => {
-    client = LLCClient({ allowInsecureConnection: true });
+    client = DPGClient({ allowInsecureConnection: true });
   });
   describe("path", () => {
     it("Query parameter required to optional", async () => {
       const result = await client
-        .path("/servicedriven/parameters")
+        .path("/serviceDriven/parameters")
         .get({ queryParameters: { parameter: "foo" } });
 
       assert.equal(result.status, "200");
     });
 
     it("Body payload required to optional", async () => {
-      const result = await client.path("/servicedriven/parameters").post({
+      const result = await client.path("/serviceDriven/parameters").post({
         body: { url: "http://example.org/myimage.jpeg" },
         contentType: "application/json"
       });

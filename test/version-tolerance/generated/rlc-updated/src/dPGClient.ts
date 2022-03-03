@@ -1,0 +1,51 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
+import { getClient, ClientOptions } from "@azure-rest/core-client";
+import "@azure/core-auth";
+import { DPGClientLike } from "./clientDefinitions";
+
+export default function DPGClient(options: ClientOptions = {}): DPGClientLike {
+  const baseUrl = options.baseUrl ?? "http://localhost:3000";
+
+  const userAgentInfo = `azsdk-js-rlcClient-rest/1.0.0-beta.1`;
+  const userAgentPrefix =
+    options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+      ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
+      : `${userAgentInfo}`;
+  options = {
+    ...options,
+    userAgentOptions: {
+      userAgentPrefix
+    }
+  };
+
+  const client = getClient(baseUrl, options) as DPGClientLike;
+
+  return {
+    ...client,
+    params: {
+      headNoParams: (options) => {
+        return client.path("/serviceDriven/parameters").head(options);
+      },
+      getRequired: (options) => {
+        return client.path("/serviceDriven/parameters").get(options);
+      },
+      putRequiredOptional: (options) => {
+        return client.path("/serviceDriven/parameters").put(options);
+      },
+      postParameters: (options) => {
+        return client.path("/serviceDriven/parameters").post(options);
+      },
+      deleteParameters: (options) => {
+        return client.path("/serviceDriven/parameters").delete(options);
+      },
+      getOptional: (options) => {
+        return client.path("/serviceDriven/moreParameters").get(options);
+      },
+      getNewOperation: (options) => {
+        return client.path("/serviceDriven/newPath").get(options);
+      }
+    }
+  };
+}

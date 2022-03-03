@@ -4,6 +4,17 @@
 import { RequestParameters } from "@azure-rest/core-client";
 import { PostInput } from "./models";
 
+export interface HeadNoParamsQueryParamProperties {
+  /** I'm a new input optional parameter */
+  new_parameter?: string;
+}
+
+export interface HeadNoParamsQueryParam {
+  queryParameters?: HeadNoParamsQueryParamProperties;
+}
+
+export type HeadNoParamsParameters = HeadNoParamsQueryParam & RequestParameters;
+
 export interface GetRequiredQueryParamProperties {
   /** I am a required parameter */
   parameter: string;
@@ -16,6 +27,22 @@ export interface GetRequiredQueryParam {
 }
 
 export type GetRequiredParameters = GetRequiredQueryParam & RequestParameters;
+
+export interface PutRequiredOptionalQueryParamProperties {
+  /** I am a required parameter */
+  requiredParam: string;
+  /** I am an optional parameter */
+  optionalParam?: string;
+  /** I'm a new input optional parameter */
+  new_parameter?: string;
+}
+
+export interface PutRequiredOptionalQueryParam {
+  queryParameters: PutRequiredOptionalQueryParamProperties;
+}
+
+export type PutRequiredOptionalParameters = PutRequiredOptionalQueryParam &
+  RequestParameters;
 
 export interface PostParametersBodyParam {
   /**
@@ -52,4 +79,17 @@ export type PostParametersParameters =
   | PostParametersRequestParameters
   | PostParametersRequestParameters1;
 export type DeleteParametersParameters = RequestParameters;
+
+export interface GetOptionalQueryParamProperties {
+  /** I am an optional parameter */
+  optionalParam?: string;
+  /** I'm a new input optional parameter */
+  new_parameter?: string;
+}
+
+export interface GetOptionalQueryParam {
+  queryParameters?: GetOptionalQueryParamProperties;
+}
+
+export type GetOptionalParameters = GetOptionalQueryParam & RequestParameters;
 export type GetNewOperationParameters = RequestParameters;

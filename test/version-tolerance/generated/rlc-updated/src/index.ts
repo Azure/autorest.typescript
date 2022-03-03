@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import LLCClient from "./lLCClient";
+import DPGClient from "./dPGClient";
 
-export * from "./lLCClient";
+export * from "./dPGClient";
 export * from "./parameters";
 export * from "./responses";
 export * from "./clientDefinitions";
 export * from "./models";
 
-export default LLCClient;
+export default DPGClient;
