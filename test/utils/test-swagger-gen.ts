@@ -1167,11 +1167,11 @@ const logAutorestInfo = async () => {
 
 const run = async () => {
   const isDebugging = process.argv.indexOf("--debug") !== -1;
+  const isRlc = process.argv.indexOf("rlc") !== -1;
   buildWhitelist();
   await logAutorestInfo();
   await buildAutorest();
-  await generateSwaggers(whiteList, isDebugging);
-  await generateSwaggers(whiteList, isDebugging, true)
+  await generateSwaggers(whiteList, isDebugging, isRlc);
 };
 
 run().catch(error => {
