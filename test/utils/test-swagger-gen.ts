@@ -850,7 +850,10 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     isTestPackage: true,
     coreHttpCompatMode: true
-  },
+  }
+};
+
+const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
   // TEST REST LEVEL CLIENTS
   lroRest: {
     swaggerOrConfig: "lro.json",
@@ -976,19 +979,48 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     allowInsecureConnection: true,
     addCredentials: false,
     isTestPackage: true
+  },
+  azureReport: {
+    swaggerOrConfig: "azure-report.json",
+    clientName: "ReportClient",
+    packageName: "zzzAzureReport",
+    licenseHeader: true,
+    useCoreV2: true,
+    allowInsecureConnection: true,
+    addCredentials: false,
+    isTestPackage: true
+  },
+  report: {
+    swaggerOrConfig: "report.json",
+    clientName: "ReportClient",
+    packageName: "zzzReport",
+    licenseHeader: true,
+    useCoreV2: true,
+    allowInsecureConnection: true,
+    addCredentials: false,
+    isTestPackage: true
   }
-};
+}
 
 const generateSwaggers = async (
   whiteList?: string[],
-  isDebugging?: boolean
+  isDebugging?: boolean,
+  isRlc?: boolean,
 ) => {
-  const swaggers = Object.keys(testSwaggers).filter(name => {
+  let swaggers = Object.keys(testSwaggers).filter(name => {
     if (!whiteList || !whiteList.length) {
       return true;
     }
     return whiteList.includes(name);
   });
+  if (isRlc) {
+    swaggers = Object.keys(rlcTestSwaggers).filter(name => {
+      if (!whiteList || !whiteList.length) {
+        return true;
+      }
+      return whiteList.includes(name);
+    });
+  }
 
   for (let name of swaggers) {
     const {
@@ -1139,6 +1171,7 @@ const run = async () => {
   await logAutorestInfo();
   await buildAutorest();
   await generateSwaggers(whiteList, isDebugging);
+  await generateSwaggers(whiteList, isDebugging, true)
 };
 
 run().catch(error => {
