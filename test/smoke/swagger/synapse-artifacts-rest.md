@@ -7,6 +7,7 @@
 ```yaml
 package-name: "@msinternal/synapse-artifacts"
 title: SynapseArtifacts
+product-doc-link: https://azure.microsoft.com/en-us/services/synapse-analytics/
 generate-metadata: false
 license-header: MICROSOFT_MIT_NO_VERSION
 output-folder: ../
@@ -14,6 +15,7 @@ source-code-folder-path: ./src
 require: https://raw.githubusercontent.com/Azure/azure-rest-api-specs/949388b9dfddc435859fda2850c5bb5019aa217b/specification/synapse/data-plane/readme.md
 package-version: 1.0.0-beta.1
 rest-level-client: true
+openapi-type: data-plane
 add-credentials: true
 credential-scopes: "https://dev.azuresynapse.net/.default"
 tag: package-artifacts-composite-v3

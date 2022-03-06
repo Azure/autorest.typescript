@@ -85,6 +85,7 @@ describe("readmeFileGenerator", () => {
                 useCoreV2: true,
                 allowInsecureConnection: true,
                 restLevelClient: true,
+                productDocLink: "https://azure.microsoft.com/en-us/services/purview/"
             } as autorestSession.AutorestOptions;
             const codeModel = new CodeModel("testCodeModel");
             // set client details info
@@ -99,7 +100,6 @@ describe("readmeFileGenerator", () => {
             sinon.replace(autorestSession, "getAutorestOptions", () => autorestOption);
             const project = getEmptyProject();
             generateReadmeFile(codeModel, project);
-
             const expectedContends = readFileSync(path.join(__dirname, "files/case-rlcReadme.md"), 'utf-8').replace(/(\r\n|\n|\r)/gm, " ");
             const actualContents = getFirstFileContent(project).replace(/(\r\n|\n|\r)/gm, " ");
             // Mitigate the newline issues
