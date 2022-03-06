@@ -36,6 +36,7 @@ export interface AutorestOptions {
   multiClient?: boolean;
   generateSample?: boolean;
   productDocLink?: string;
+  coreHttpCompatMode?: boolean;
 }
 
 let host: AutorestExtensionHost;

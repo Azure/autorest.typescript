@@ -1,6 +1,7 @@
-## 6.0.0-beta.16 (UNRELEASED)
+## 6.0.0-beta.16 (2022-03-01)
 
 - [Feature] Bumped @autorest/extension-base version to 3.4.1 and fix breaking changes. [#1253](https://github.com/Azure/autorest.typescript/pull/1253)
+- [Feature] Introduced new flag `core-http-compat-mode` and supported generation of SDKs with the new compatability package.
 
 ## 6.0.0-beta.15 (2021-11-10)
 

@@ -69,6 +69,10 @@ export function generateModels(clientDetails: ClientDetails, project: Project) {
       namespaceImport: "coreRestPipeline",
       moduleSpecifier: "@azure/core-rest-pipeline"
     });
+    modelsIndexFile.addImportDeclaration({
+      namespaceImport: "coreHttpCompat",
+      moduleSpecifier: "@azure/core-http-compat"
+    });
   }
 
   writeUniontypes(clientDetails, modelsIndexFile);
@@ -78,18 +82,20 @@ export function generateModels(clientDetails: ClientDetails, project: Project) {
   writeClientModels(clientDetails, modelsIndexFile);
   modelsIndexFile.fixUnusedIdentifiers();
   const allTypes = modelsIndexFile.getTypeAliases();
-  clientDetails.allTypes = allTypes.filter(item => {
-    return item.isExported()
-  }).map(item => {
-    return item.getName()
-  });
+  clientDetails.allTypes = allTypes
+    .filter(item => {
+      return item.isExported();
+    })
+    .map(item => {
+      return item.getName();
+    });
 }
 
 const writeClientModels = (
   clientDetails: ClientDetails,
   modelsIndexFile: SourceFile
 ) => {
-  const { useCoreV2 } = getAutorestOptions();
+  const { useCoreV2, coreHttpCompatMode } = getAutorestOptions();
   let clientOptionalParams = clientDetails.parameters.filter(
     p =>
       (!p.required || p.defaultValue) &&
@@ -103,6 +109,8 @@ const writeClientModels = (
     {
       baseClass: !useCoreV2
         ? "coreHttp.ServiceClientOptions"
+        : coreHttpCompatMode
+        ? "coreHttpCompat.ExtendedServiceClientOptions"
         : "coreClient.ServiceClientOptions"
     }
   );
@@ -777,8 +785,10 @@ function getPropertyTypeName(
   ignoreNullableOnOptional: boolean
 ) {
   if (property.isConstant) {
-    if (property.type === SchemaType.Number 
-      || property.type === SchemaType.Boolean) {
+    if (
+      property.type === SchemaType.Number ||
+      property.type === SchemaType.Boolean
+    ) {
       return `${property.defaultValue}`;
     }
     return `"${getStringForValue(
