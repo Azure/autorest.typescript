@@ -73,7 +73,7 @@ function createMetadata(
     productDocLink
   } = getAutorestOptions();
 
-  const azureHuh = packageDetails?.scopeName === "azure";
+  const azureHuh = packageDetails?.scopeName === "azure" || packageDetails?.scopeName === "azure-rest";
   const repoURL = azureHuh
     ? "https://github.com/Azure/azure-sdk-for-js"
     : undefined;

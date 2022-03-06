@@ -75,6 +75,7 @@ describe("readmeFileGenerator", () => {
                     scopeName: "azure-rest",
                     version: "1.0.0-beta.1"
                 },
+                azureOutputDirectory: "sdk/agrifood/agrifood-farming-rest",
                 licenseHeader: false,
                 hideClients: true,
                 azureArm: false,
@@ -102,6 +103,7 @@ describe("readmeFileGenerator", () => {
             generateReadmeFile(codeModel, project);
             const expectedContends = readFileSync(path.join(__dirname, "files/case-rlcReadme.md"), 'utf-8').replace(/(\r\n|\n|\r)/gm, " ");
             const actualContents = getFirstFileContent(project).replace(/(\r\n|\n|\r)/gm, " ");
+            // writeFileSync(path.join(__dirname, "files/case-rlcReadme2.md"), getFirstFileContent(project));
             // Mitigate the newline issues
             assert.strictEqual(actualContents, expectedContends);
         });
