@@ -44,7 +44,7 @@ async function check_tree() {
     );
 
     throw new Error(
-      "Git tree is dirty, regenerate all test swaggers and make sure that there are no un-intended changes \n" + messages
+      "Git tree is dirty, regenerate all test swaggers and make sure that there are no un-intended changes"
     );
   }
 }
