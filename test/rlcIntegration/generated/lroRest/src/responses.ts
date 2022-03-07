@@ -48,6 +48,63 @@ export interface LROsPatch200SucceededIgnoreHeadersdefaultResponse
   body: CloudErrorOutput;
 }
 
+/** Long running patch request, service returns a 201 to the initial request with async header. */
+export interface LROsPatch201RetryWithAsyncHeader200Response
+  extends HttpResponse {
+  status: "200";
+  body: ProductOutput;
+}
+
+export interface LROsPatch201RetryWithAsyncHeader201Headers {
+  /** Location to poll for result status: will be set to /lro/patch/201/retry/onlyAsyncHeader/operationStatuses/201 */
+  "azure-asyncoperation"?: string;
+}
+
+/** Long running patch request, service returns a 201 to the initial request with async header. */
+export interface LROsPatch201RetryWithAsyncHeader201Response
+  extends HttpResponse {
+  status: "201";
+  body: ProductOutput;
+  headers: RawHttpHeaders & LROsPatch201RetryWithAsyncHeader201Headers;
+}
+
+/** Long running patch request, service returns a 201 to the initial request with async header. */
+export interface LROsPatch201RetryWithAsyncHeaderdefaultResponse
+  extends HttpResponse {
+  status: "500";
+  body: CloudErrorOutput;
+}
+
+/** Long running patch request, service returns a 202 to the initial request with async and location header. */
+export interface LROsPatch202RetryWithAsyncAndLocationHeader200Response
+  extends HttpResponse {
+  status: "200";
+  body: ProductOutput;
+}
+
+export interface LROsPatch202RetryWithAsyncAndLocationHeader202Headers {
+  /** Location to poll for result status: will be set to /lro/patch/202/retry/asyncAndLocationHeader/operationResults/202 */
+  "azure-asyncoperation"?: string;
+  /** Location to poll for final status: will be set to /lro/patch/202/retry/asyncAndLocationHeader/operationResults/202/finalResults/202 */
+  location?: string;
+}
+
+/** Long running patch request, service returns a 202 to the initial request with async and location header. */
+export interface LROsPatch202RetryWithAsyncAndLocationHeader202Response
+  extends HttpResponse {
+  status: "202";
+  body: ProductOutput;
+  headers: RawHttpHeaders &
+    LROsPatch202RetryWithAsyncAndLocationHeader202Headers;
+}
+
+/** Long running patch request, service returns a 202 to the initial request with async and location header. */
+export interface LROsPatch202RetryWithAsyncAndLocationHeaderdefaultResponse
+  extends HttpResponse {
+  status: "500";
+  body: CloudErrorOutput;
+}
+
 /** Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Succeeded’. */
 export interface LROsPut201Succeeded201Response extends HttpResponse {
   status: "201";

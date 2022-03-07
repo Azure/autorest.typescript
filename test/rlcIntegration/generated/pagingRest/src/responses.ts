@@ -81,6 +81,18 @@ export interface GetWithQueryParamsdefaultResponse extends HttpResponse {
   body: Record<string, unknown>;
 }
 
+/** Define `filter` as a query param for all calls. However, the returned next link will also include the `filter` as part of it. Make sure you don't end up duplicating the `filter` param in the url sent. */
+export interface DuplicateParams200Response extends HttpResponse {
+  status: "200";
+  body: ProductResultOutput;
+}
+
+/** Define `filter` as a query param for all calls. However, the returned next link will also include the `filter` as part of it. Make sure you don't end up duplicating the `filter` param in the url sent. */
+export interface DuplicateParamsdefaultResponse extends HttpResponse {
+  status: "500";
+  body: Record<string, unknown>;
+}
+
 /** Next operation for getWithQueryParams. Pass in next=True to pass test. Returns a ProductResult */
 export interface NextOperationWithQueryParams200Response extends HttpResponse {
   status: "200";

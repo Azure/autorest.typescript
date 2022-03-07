@@ -4,6 +4,8 @@
 import {
   LROsPut200SucceededParameters,
   LROsPatch200SucceededIgnoreHeadersParameters,
+  LROsPatch201RetryWithAsyncHeaderParameters,
+  LROsPatch202RetryWithAsyncAndLocationHeaderParameters,
   LROsPut201SucceededParameters,
   LROsPost202ListParameters,
   LROsPut200SucceededNoStateParameters,
@@ -88,6 +90,12 @@ import {
   LROsPut200SucceededdefaultResponse,
   LROsPatch200SucceededIgnoreHeaders200Response,
   LROsPatch200SucceededIgnoreHeadersdefaultResponse,
+  LROsPatch201RetryWithAsyncHeader200Response,
+  LROsPatch201RetryWithAsyncHeader201Response,
+  LROsPatch201RetryWithAsyncHeaderdefaultResponse,
+  LROsPatch202RetryWithAsyncAndLocationHeader200Response,
+  LROsPatch202RetryWithAsyncAndLocationHeader202Response,
+  LROsPatch202RetryWithAsyncAndLocationHeaderdefaultResponse,
   LROsPut201Succeeded201Response,
   LROsPut201SucceededdefaultResponse,
   LROsPost202List200Response,
@@ -284,6 +292,28 @@ export interface LROsPatch200SucceededIgnoreHeaders {
   ): Promise<
     | LROsPatch200SucceededIgnoreHeaders200Response
     | LROsPatch200SucceededIgnoreHeadersdefaultResponse
+  >;
+}
+
+export interface LROsPatch201RetryWithAsyncHeader {
+  /** Long running patch request, service returns a 201 to the initial request with async header. */
+  patch(
+    options?: LROsPatch201RetryWithAsyncHeaderParameters
+  ): Promise<
+    | LROsPatch201RetryWithAsyncHeader200Response
+    | LROsPatch201RetryWithAsyncHeader201Response
+    | LROsPatch201RetryWithAsyncHeaderdefaultResponse
+  >;
+}
+
+export interface LROsPatch202RetryWithAsyncAndLocationHeader {
+  /** Long running patch request, service returns a 202 to the initial request with async and location header. */
+  patch(
+    options?: LROsPatch202RetryWithAsyncAndLocationHeaderParameters
+  ): Promise<
+    | LROsPatch202RetryWithAsyncAndLocationHeader200Response
+    | LROsPatch202RetryWithAsyncAndLocationHeader202Response
+    | LROsPatch202RetryWithAsyncAndLocationHeaderdefaultResponse
   >;
 }
 
@@ -1067,6 +1097,14 @@ export interface Routes {
   (
     path: "/lro/patch/200/succeeded/ignoreheaders"
   ): LROsPatch200SucceededIgnoreHeaders;
+  /** Resource for '/lro/patch/201/retry/onlyAsyncHeader' has methods for the following verbs: patch */
+  (
+    path: "/lro/patch/201/retry/onlyAsyncHeader"
+  ): LROsPatch201RetryWithAsyncHeader;
+  /** Resource for '/lro/patch/202/retry/asyncAndLocationHeader' has methods for the following verbs: patch */
+  (
+    path: "/lro/patch/202/retry/asyncAndLocationHeader"
+  ): LROsPatch202RetryWithAsyncAndLocationHeader;
   /** Resource for '/lro/put/201/succeeded' has methods for the following verbs: put */
   (path: "/lro/put/201/succeeded"): LROsPut201Succeeded;
   /** Resource for '/lro/list' has methods for the following verbs: post */

@@ -8,6 +8,7 @@ import {
   FirstResponseEmptyParameters,
   GetMultiplePagesParameters,
   GetWithQueryParamsParameters,
+  DuplicateParamsParameters,
   NextOperationWithQueryParamsParameters,
   GetOdataMultiplePagesParameters,
   GetMultiplePagesWithOffsetParameters,
@@ -36,6 +37,8 @@ import {
   GetMultiplePagesdefaultResponse,
   GetWithQueryParams200Response,
   GetWithQueryParamsdefaultResponse,
+  DuplicateParams200Response,
+  DuplicateParamsdefaultResponse,
   NextOperationWithQueryParams200Response,
   NextOperationWithQueryParamsdefaultResponse,
   GetOdataMultiplePages200Response,
@@ -110,6 +113,13 @@ export interface GetWithQueryParams {
   get(
     options: GetWithQueryParamsParameters
   ): Promise<GetWithQueryParams200Response | GetWithQueryParamsdefaultResponse>;
+}
+
+export interface DuplicateParams {
+  /** Define `filter` as a query param for all calls. However, the returned next link will also include the `filter` as part of it. Make sure you don't end up duplicating the `filter` param in the url sent. */
+  get(
+    options?: DuplicateParamsParameters
+  ): Promise<DuplicateParams200Response | DuplicateParamsdefaultResponse>;
 }
 
 export interface NextOperationWithQueryParams {
@@ -258,6 +268,8 @@ export interface Routes {
   (path: "/paging/multiple"): GetMultiplePages;
   /** Resource for '/paging/multiple/getWithQueryParams' has methods for the following verbs: get */
   (path: "/paging/multiple/getWithQueryParams"): GetWithQueryParams;
+  /** Resource for '/paging/multiple/duplicateParams/1' has methods for the following verbs: get */
+  (path: "/paging/multiple/duplicateParams/1"): DuplicateParams;
   /** Resource for '/paging/multiple/nextOperationWithQueryParams' has methods for the following verbs: get */
   (
     path: "/paging/multiple/nextOperationWithQueryParams"

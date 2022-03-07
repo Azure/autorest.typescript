@@ -32,6 +32,34 @@ export type LROsPatch200SucceededIgnoreHeadersParameters = LROsPatch200Succeeded
   LROsPatch200SucceededIgnoreHeadersBodyParam &
   RequestParameters;
 
+export interface LROsPatch201RetryWithAsyncHeaderBodyParam {
+  /** Product to patch */
+  body?: Product;
+}
+
+export interface LROsPatch201RetryWithAsyncHeaderMediaTypesParam {
+  /** Request content type */
+  contentType?: "application/json";
+}
+
+export type LROsPatch201RetryWithAsyncHeaderParameters = LROsPatch201RetryWithAsyncHeaderMediaTypesParam &
+  LROsPatch201RetryWithAsyncHeaderBodyParam &
+  RequestParameters;
+
+export interface LROsPatch202RetryWithAsyncAndLocationHeaderBodyParam {
+  /** Product to patch */
+  body?: Product;
+}
+
+export interface LROsPatch202RetryWithAsyncAndLocationHeaderMediaTypesParam {
+  /** Request content type */
+  contentType?: "application/json";
+}
+
+export type LROsPatch202RetryWithAsyncAndLocationHeaderParameters = LROsPatch202RetryWithAsyncAndLocationHeaderMediaTypesParam &
+  LROsPatch202RetryWithAsyncAndLocationHeaderBodyParam &
+  RequestParameters;
+
 export interface LROsPut201SucceededBodyParam {
   /** Product to put */
   body?: Product;

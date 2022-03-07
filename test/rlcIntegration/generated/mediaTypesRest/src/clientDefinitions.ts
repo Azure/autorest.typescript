@@ -45,7 +45,7 @@ export interface AnalyzeBodyNoAcceptHeader {
 }
 
 export interface ContentTypeWithEncoding {
-  /** Pass in contentType 'text/plain; encoding=UTF-8' to pass test. Value for input does not matter */
+  /** Pass in contentType 'text/plain; charset=UTF-8' to pass test. Value for input does not matter */
   post(
     options?: ContentTypeWithEncodingParameters
   ): Promise<ContentTypeWithEncoding200Response>;

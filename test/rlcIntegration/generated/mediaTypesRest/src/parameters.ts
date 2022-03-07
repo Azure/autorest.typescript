@@ -81,7 +81,7 @@ export interface ContentTypeWithEncodingBodyParam {
 
 export interface ContentTypeWithEncodingMediaTypesParam {
   /** Request content type */
-  contentType?: "text/plain";
+  contentType?: "text/plain; charset=UTF-8";
 }
 
 export type ContentTypeWithEncodingParameters = ContentTypeWithEncodingMediaTypesParam &

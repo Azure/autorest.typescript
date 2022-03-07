@@ -38,6 +38,18 @@ export interface GetWithQueryParamsQueryParam {
 export type GetWithQueryParamsParameters = GetWithQueryParamsQueryParam &
   RequestParameters;
 
+export interface DuplicateParamsQueryParamProperties {
+  /** OData filter options. Pass in 'foo' */
+  $filter?: string;
+}
+
+export interface DuplicateParamsQueryParam {
+  queryParameters?: DuplicateParamsQueryParamProperties;
+}
+
+export type DuplicateParamsParameters = DuplicateParamsQueryParam &
+  RequestParameters;
+
 export interface NextOperationWithQueryParamsQueryParamProperties {
   /** A constant. Must be True */
   queryConstant: true;

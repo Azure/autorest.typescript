@@ -28,7 +28,7 @@ interface SwaggerConfig {
 const package_version = "1.0.0-preview1";
 let whiteList: string[] = [];
 
-const testSwaggers: { [name: string]: SwaggerConfig } = {
+let testSwaggers: { [name: string]: SwaggerConfig } = {
   additionalProperties: {
     swaggerOrConfig: "additionalProperties.json",
     clientName: "AdditionalPropertiesClient",
@@ -1000,27 +1000,22 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     isTestPackage: true
   }
-}
+};
 
 const generateSwaggers = async (
   whiteList?: string[],
   isDebugging?: boolean,
-  isRlc?: boolean,
+  isRlc?: boolean
 ) => {
-  let swaggers = Object.keys(testSwaggers).filter(name => {
+  if (isRlc) {
+    testSwaggers = rlcTestSwaggers;
+  }
+  const swaggers = Object.keys(testSwaggers).filter(name => {
     if (!whiteList || !whiteList.length) {
       return true;
     }
     return whiteList.includes(name);
   });
-  if (isRlc) {
-    swaggers = Object.keys(rlcTestSwaggers).filter(name => {
-      if (!whiteList || !whiteList.length) {
-        return true;
-      }
-      return whiteList.includes(name);
-    });
-  }
 
   for (let name of swaggers) {
     const {
@@ -1063,7 +1058,9 @@ const generateSwaggers = async (
         srcPath: "",
         licenseHeader: !!licenseHeader,
         addCredentials,
-        outputPath: `./test/integration/generated/${name}`,
+        outputPath: isRlc
+          ? `./test/rlcIntegration/generated/${name}`
+          : `./test/integration/generated/${name}`,
         title: clientName,
         packageDetails: {
           name:

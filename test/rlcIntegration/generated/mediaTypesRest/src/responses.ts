@@ -21,7 +21,7 @@ export interface AnalyzeBodyNoAcceptHeaderdefaultResponse extends HttpResponse {
   body: Record<string, unknown>;
 }
 
-/** Pass in contentType 'text/plain; encoding=UTF-8' to pass test. Value for input does not matter */
+/** Pass in contentType 'text/plain; charset=UTF-8' to pass test. Value for input does not matter */
 export interface ContentTypeWithEncoding200Response extends HttpResponse {
   status: "200";
   body: string;
