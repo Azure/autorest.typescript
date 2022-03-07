@@ -45,7 +45,7 @@ AZURE_CLIENT_ID, AZURE_TENANT_ID, AZURE_CLIENT_SECRET
 Use the returned token credential to authenticate the client:
 
 ```typescript
-import BodyStringRest from "@azure-rest/purview-catalog";
+import { BodyStringRest } from "@msinternal/body-string-rest";
 import { DefaultAzureCredential } from "@azure/identity";
 const client = BodyStringRest(
   "<ENDPOINT>",

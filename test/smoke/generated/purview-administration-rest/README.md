@@ -46,7 +46,7 @@ AZURE_CLIENT_ID, AZURE_TENANT_ID, AZURE_CLIENT_SECRET
 Use the returned token credential to authenticate the client:
 
 ```typescript
-import PurviewAccount from "@azure-rest/purview-catalog";
+import { PurviewAccountClient } from "@msinternal/purview-administration-rest";
 import { DefaultAzureCredential } from "@azure/identity";
 const client = PurviewAccount(
   "<ENDPOINT>",

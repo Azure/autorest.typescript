@@ -57,6 +57,8 @@ interface Metadata {
   /** The dependency info for this service */
   dependencyDescription?: string;
   dependencyLink?: string;
+  /** Indicates if the package is a multi-client */
+  hasMultiClients?: boolean;
 }
 
 /**
@@ -75,7 +77,9 @@ function createMetadata(
     azureArm,
     isTestPackage,
     productDocLink,
-    dependencyInfo
+    dependencyInfo,
+    multiClient,
+    batch
   } = getAutorestOptions();
 
   const azureHuh = packageDetails?.scopeName === "azure" || packageDetails?.scopeName === "azure-rest";
@@ -147,7 +151,8 @@ function createMetadata(
     azureArm: azureArm,
     serviceDocURL: productDocLink,
     dependencyDescription: dependencyInfo?.description,
-    dependencyLink: dependencyInfo?.link
+    dependencyLink: dependencyInfo?.link,
+    hasMultiClients: multiClient && batch && batch.length > 1
   };
 }
 

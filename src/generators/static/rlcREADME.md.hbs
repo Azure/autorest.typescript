@@ -59,7 +59,11 @@ AZURE_CLIENT_ID, AZURE_TENANT_ID, AZURE_CLIENT_SECRET
 Use the returned token credential to authenticate the client:
 
 ```typescript
-import {{ clientClassName }} from "@azure-rest/purview-catalog";
+{{#if hasMultiClients}}
+import { {{ clientClassName }}Client } from "{{ clientPackageName }}";
+{{else}}  
+import { {{ clientClassName }} } from "{{ clientPackageName }}";
+{{/if}}
 import { DefaultAzureCredential } from "@azure/identity";
 const client = {{ clientClassName }}(
   "<ENDPOINT>",

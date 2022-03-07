@@ -49,7 +49,7 @@ AZURE_CLIENT_ID, AZURE_TENANT_ID, AZURE_CLIENT_SECRET
 Use the returned token credential to authenticate the client:
 
 ```typescript
-import AgfoodClient from "@azure-rest/purview-catalog";
+import { AgfoodClient } from "@azure-rest/agrifood-farming";
 import { DefaultAzureCredential } from "@azure/identity";
 const client = AgfoodClient(
   "<ENDPOINT>",

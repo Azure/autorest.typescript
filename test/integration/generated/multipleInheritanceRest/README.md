@@ -45,7 +45,7 @@ AZURE_CLIENT_ID, AZURE_TENANT_ID, AZURE_CLIENT_SECRET
 Use the returned token credential to authenticate the client:
 
 ```typescript
-import MultipleInheritanceRestClient from "@azure-rest/purview-catalog";
+import { MultipleInheritanceRestClient } from "@msinternal/multiple-inheritance-rest";
 import { DefaultAzureCredential } from "@azure/identity";
 const client = MultipleInheritanceRestClient(
   "<ENDPOINT>",

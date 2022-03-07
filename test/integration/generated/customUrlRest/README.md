@@ -45,7 +45,7 @@ AZURE_CLIENT_ID, AZURE_TENANT_ID, AZURE_CLIENT_SECRET
 Use the returned token credential to authenticate the client:
 
 ```typescript
-import CustomUrlRestClient from "@azure-rest/purview-catalog";
+import { CustomUrlRestClient } from "@msinternal/custom-url-rest";
 import { DefaultAzureCredential } from "@azure/identity";
 const client = CustomUrlRestClient(
   "<ENDPOINT>",

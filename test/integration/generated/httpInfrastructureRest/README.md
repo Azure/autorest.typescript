@@ -45,7 +45,7 @@ AZURE_CLIENT_ID, AZURE_TENANT_ID, AZURE_CLIENT_SECRET
 Use the returned token credential to authenticate the client:
 
 ```typescript
-import HttpInfrastructureRestClient from "@azure-rest/purview-catalog";
+import { HttpInfrastructureRestClient } from "@msinternal/http-infrastructure-rest";
 import { DefaultAzureCredential } from "@azure/identity";
 const client = HttpInfrastructureRestClient(
   "<ENDPOINT>",
