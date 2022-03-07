@@ -54,6 +54,9 @@ interface Metadata {
   azureArm?: boolean;
   /** The URL for the service document */
   serviceDocURL?: string;
+  /** The dependency info for this service */
+  dependencyDescription?: string;
+  dependencyLink?: string;
 }
 
 /**
@@ -71,7 +74,8 @@ function createMetadata(
     addCredentials,
     azureArm,
     isTestPackage,
-    productDocLink
+    productDocLink,
+    dependencyInfo
   } = getAutorestOptions();
 
   const azureHuh = packageDetails?.scopeName === "azure" || packageDetails?.scopeName === "azure-rest";
@@ -141,7 +145,9 @@ function createMetadata(
     identityPackageURL,
     isReleasablePackage: !isTestPackage,
     azureArm: azureArm,
-    serviceDocURL: productDocLink
+    serviceDocURL: productDocLink,
+    dependencyDescription: dependencyInfo?.description,
+    dependencyLink: dependencyInfo?.link
   };
 }
 
