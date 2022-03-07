@@ -7,7 +7,6 @@ LLC Swagger, this is the initial swager a service could do
 Key links:
 
 - [Package (NPM)](https://www.npmjs.com/package/@msinternal/rlcClient)
-- [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started
 
