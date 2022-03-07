@@ -78,7 +78,7 @@ export async function generateTypeScriptLibrary(
   // Skip metadata generation if `generate-metadata` is explicitly false
   generatePackageJson(project, clientDetails);
   generateLicenseFile(project);
-  generateReadmeFile(codeModel, project);
+  generateReadmeFile(codeModel.language, codeModel.info, project);
   if (generateTest) {
     generateSampleTestFile(project);
   }
@@ -91,7 +91,7 @@ export async function generateTypeScriptLibrary(
   generateMappers(clientDetails, project);
   generateOperations(clientDetails, project);
   generateOperationsInterfaces(clientDetails, project);
-  if (generateSample && clientDetails?.samples?.length  && clientDetails?.samples?.length > 0) {
+  if (generateSample && clientDetails?.samples?.length && clientDetails?.samples?.length > 0) {
     generateSamples(clientDetails, project);
     generateSampleEnv(project);
   }

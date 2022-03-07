@@ -49,7 +49,7 @@ export async function generateRestLevelClient() {
 
 
   performCodeModelMutations(model);
-  generateReadmeFile(model, project);
+  generateReadmeFile(model.language, model.info, project);
   generatePackageJson(project);
   generateLicenseFile(project);
   generateTsConfig(project);

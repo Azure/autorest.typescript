@@ -19,7 +19,7 @@ describe("readmeFileGenerator", () => {
             sinon.replace(autorestSession, "getAutorestOptions", () => autorestOption);
             const project = getEmptyProject();
             const codeModel = new CodeModel("testCodeModel");
-            generateReadmeFile(codeModel, project);
+            generateReadmeFile(codeModel.language, codeModel.info, project);
 
             // Save the source files to the virtual filesystem
             project.saveSync();
@@ -59,7 +59,7 @@ describe("readmeFileGenerator", () => {
             codeModel.info.description = "The Azure Kusto management API provides a RESTful set of web services that interact with Azure Kusto services to manage your clusters and databases. The API enables you to create, update, and delete clusters and databases.";
             sinon.replace(autorestSession, "getAutorestOptions", () => autorestOption);
             const project = getEmptyProject();
-            generateReadmeFile(codeModel, project);
+            generateReadmeFile(codeModel.language, codeModel.info, project);
 
             const expectedContends = readFileSync(path.join(__dirname, "files/case-hlcReadme.md"), 'utf-8').replace(/(\r\n|\n|\r)/gm, " ");
             const actualContents = getFirstFileContent(project).replace(/(\r\n|\n|\r)/gm, " ");
@@ -100,7 +100,7 @@ describe("readmeFileGenerator", () => {
             codeModel.info.description = "Simple test description";
             sinon.replace(autorestSession, "getAutorestOptions", () => autorestOption);
             const project = getEmptyProject();
-            generateReadmeFile(codeModel, project);
+            generateReadmeFile(codeModel.language, codeModel.info, project);
             const expectedContends = readFileSync(path.join(__dirname, "files/case-rlcReadme.md"), 'utf-8').replace(/(\r\n|\n|\r)/gm, " ");
             const actualContents = getFirstFileContent(project).replace(/(\r\n|\n|\r)/gm, " ");
             // writeFileSync(path.join(__dirname, "files/case-rlcReadme2.md"), getFirstFileContent(project));

@@ -6,7 +6,7 @@ import * as hbs from "handlebars";
 import * as fs from "fs";
 import * as path from "path";
 import { getAutorestOptions } from "../../autorestSession";
-import { CodeModel } from "@autorest/codemodel";
+import { Info, Languages } from "@autorest/codemodel";
 import { getLanguageMetadata } from "../../utils/languageHelpers";
 import { normalizeName, NameType } from "../../utils/nameUtils";
 
@@ -62,7 +62,8 @@ interface Metadata {
  * @returns inferred metadata about the service, the package, and the client
  */
 function createMetadata(
-  codeModel: CodeModel,
+  codeModelLanguage: Languages,
+  codeModelInfo: Info
 ): Metadata {
   const {
     packageDetails,
@@ -87,7 +88,7 @@ function createMetadata(
   const packageDirectoryName = names?.[1];
 
   const clientPackageName = packageDetails?.name;
-  const { clientClassName, serviceTitle } = getClientAndServiceName(codeModel);
+  const { clientClassName, serviceTitle } = getClientAndServiceName(codeModelLanguage, codeModelInfo);
   const simpleServiceName =
     /**
      * It is a required convention in Azure swaggers for their titles to end with
@@ -129,7 +130,7 @@ function createMetadata(
       `https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-js%2Fsdk%2F${packageParentDirectoryName}%2F${packageDirectoryName}%2FREADME.png`
       : undefined,
     clientDescriptiveName: `${serviceName} client`,
-    description: codeModel.info?.description,
+    description: codeModelInfo?.description,
     apiRefURL: azureHuh
       ? `https://docs.microsoft.com/javascript/api/${clientPackageName}${apiRefUrlQueryParameter}`
       : undefined,
@@ -145,7 +146,8 @@ function createMetadata(
 }
 
 export function generateReadmeFile(
-  codeModel: CodeModel,
+  codeModelLanguage: Languages,
+  codeModelInfo: Info,
   project: Project
 ) {
   const {
@@ -157,7 +159,7 @@ export function generateReadmeFile(
     return;
   }
 
-  const metadata = createMetadata(codeModel);
+  const metadata = createMetadata(codeModelLanguage, codeModelInfo);
   const templateFile = !restLevelClient ? "hlcREADME.md.hbs" : "rlcREADME.md.hbs";
   const file = fs.readFileSync(path.join(__dirname, templateFile), {
     encoding: "utf-8"
@@ -168,14 +170,15 @@ export function generateReadmeFile(
   });
 }
 
-function getClientAndServiceName(codeModel: CodeModel) {
-  const { name: clientName } = getLanguageMetadata(codeModel.language);
+function getClientAndServiceName(codeModelLanguage: Languages,
+  codeModelInfo: Info) {
+  const { name: clientName } = getLanguageMetadata(codeModelLanguage);
   const className = normalizeName(
     clientName,
     NameType.Class,
     true /** shouldGuard */
   );
   const clientClassName = className;
-  const serviceTitle = codeModel.info?.title ?? clientClassName;
+  const serviceTitle = codeModelInfo?.title ?? clientClassName;
   return { clientClassName, serviceTitle };
 }
