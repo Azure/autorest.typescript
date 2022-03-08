@@ -5,9 +5,10 @@ import { Project } from "ts-morph";
 import * as hbs from "handlebars";
 import * as fs from "fs";
 import * as path from "path";
-import { ClientDetails } from "../../models/clientDetails";
 import { getAutorestOptions } from "../../autorestSession";
-import { PackageDetails } from "../../models/packageDetails";
+import { Info, Languages } from "@autorest/codemodel";
+import { getLanguageMetadata } from "../../utils/languageHelpers";
+import { normalizeName, NameType } from "../../utils/nameUtils";
 
 /**
  * Meta data information about the service, the package, and the client.
@@ -51,23 +52,37 @@ interface Metadata {
   isReleasablePackage?: boolean;
   /** indicate if the package is management plane SDK */
   azureArm?: boolean;
+  /** The URL for the service document */
+  serviceDocURL?: string;
+  /** The dependency info for this service */
+  dependencyDescription?: string;
+  dependencyLink?: string;
+  /** Indicates if the package is a multi-client */
+  hasMultiClients?: boolean;
 }
 
 /**
  * Returns meta data information about the service, the package, and the client.
- * @param clientDetails - the client details
- * @param packageDetails - the package details
+ * @param codeModel - include the client details
  * @returns inferred metadata about the service, the package, and the client
  */
 function createMetadata(
-  packageDetails: PackageDetails,
-  clientDetails: ClientDetails,
-  azureOutputDirectory?: string,
-  addCredentials?: boolean,
-  azureArm?: boolean,
-  isTestPackage?: boolean
+  codeModelLanguage: Languages,
+  codeModelInfo: Info
 ): Metadata {
-  const azureHuh = packageDetails.scopeName === "azure";
+  const {
+    packageDetails,
+    azureOutputDirectory,
+    addCredentials,
+    azureArm,
+    isTestPackage,
+    productDocLink,
+    dependencyInfo,
+    multiClient,
+    batch
+  } = getAutorestOptions();
+
+  const azureHuh = packageDetails?.scopeName === "azure" || packageDetails?.scopeName === "azure-rest";
   const repoURL = azureHuh
     ? "https://github.com/Azure/azure-sdk-for-js"
     : undefined;
@@ -79,9 +94,9 @@ function createMetadata(
   const names = relativePackageSourcePath?.split("/").slice(1);
   const packageParentDirectoryName = names?.[0];
   const packageDirectoryName = names?.[1];
-  const clientClassName = clientDetails.name;
-  const clientPackageName = packageDetails.name;
-  const serviceTitle = clientDetails.info?.title ?? clientClassName;
+
+  const clientPackageName = packageDetails?.name;
+  const { clientClassName, serviceTitle } = getClientAndServiceName(codeModelLanguage, codeModelInfo);
   const simpleServiceName =
     /**
      * It is a required convention in Azure swaggers for their titles to end with
@@ -102,7 +117,7 @@ function createMetadata(
     repoURL && `${repoURL}/tree/main/sdk/identity/identity`;
 
   var apiRefUrlQueryParameter: string = "";
-  if (packageDetails.version.includes("beta")) {
+  if (packageDetails?.version.includes("beta")) {
     apiRefUrlQueryParameter = "?view=azure-node-preview";
   }
 
@@ -119,11 +134,11 @@ function createMetadata(
       : packageSourceURL && `${packageSourceURL}/samples`,
     impressionURL: azureHuh
       ? packageParentDirectoryName &&
-        packageDirectoryName &&
-        `https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-js%2Fsdk%2F${packageParentDirectoryName}%2F${packageDirectoryName}%2FREADME.png`
+      packageDirectoryName &&
+      `https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-js%2Fsdk%2F${packageParentDirectoryName}%2F${packageDirectoryName}%2FREADME.png`
       : undefined,
     clientDescriptiveName: `${serviceName} client`,
-    description: clientDetails.info?.description,
+    description: codeModelInfo?.description,
     apiRefURL: azureHuh
       ? `https://docs.microsoft.com/javascript/api/${clientPackageName}${apiRefUrlQueryParameter}`
       : undefined,
@@ -133,40 +148,48 @@ function createMetadata(
     addCredentials,
     identityPackageURL,
     isReleasablePackage: !isTestPackage,
-    azureArm: azureArm
+    azureArm: azureArm,
+    serviceDocURL: productDocLink,
+    dependencyDescription: dependencyInfo?.description,
+    dependencyLink: dependencyInfo?.link,
+    hasMultiClients: multiClient && batch && batch.length > 1
   };
 }
 
 export function generateReadmeFile(
-  clientDetails: ClientDetails,
+  codeModelLanguage: Languages,
+  codeModelInfo: Info,
   project: Project
 ) {
   const {
-    packageDetails,
-    azureOutputDirectory,
     generateMetadata,
-    addCredentials,
-    azureArm,
-    isTestPackage
+    restLevelClient,
   } = getAutorestOptions();
 
   if (!generateMetadata) {
     return;
   }
 
-  const metadata = createMetadata(
-    packageDetails,
-    clientDetails,
-    azureOutputDirectory,
-    addCredentials,
-    azureArm,
-    isTestPackage
-  );
-  const file = fs.readFileSync(path.join(__dirname, "README.md.hbs"), {
+  const metadata = createMetadata(codeModelLanguage, codeModelInfo);
+  const templateFile = !restLevelClient ? "hlcREADME.md.hbs" : "rlcREADME.md.hbs";
+  const file = fs.readFileSync(path.join(__dirname, templateFile), {
     encoding: "utf-8"
   });
   const readmeFileContents = hbs.compile(file, { noEscape: true });
   project.createSourceFile("README.md", readmeFileContents(metadata), {
     overwrite: true
   });
+}
+
+function getClientAndServiceName(codeModelLanguage: Languages,
+  codeModelInfo: Info) {
+  const { name: clientName } = getLanguageMetadata(codeModelLanguage);
+  const className = normalizeName(
+    clientName,
+    NameType.Class,
+    true /** shouldGuard */
+  );
+  const clientClassName = className;
+  const serviceTitle = codeModelInfo?.title ?? clientClassName;
+  return { clientClassName, serviceTitle };
 }

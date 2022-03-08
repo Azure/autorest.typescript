@@ -81,6 +81,7 @@ async function generate(name: string, swaggerInfo: SwaggerInfo) {
   await runAutorest(swaggerPath, {
     srcPath: "",
     restLevelClient: true,
+    azureArm: false,
     rlcShortcut: true,
     addCredentials: false,
     outputPath: `./test/version-tolerance/generated/${swaggerInfo.output}`,

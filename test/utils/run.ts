@@ -29,11 +29,11 @@ export async function runAutorest(
     headAsBoolean,
     isTestPackage,
     generateTest,
-    coreHttpCompatMode
+    coreHttpCompatMode,
+    azureArm
   } = options;
-  let autorestCommand = `autorest${
-    /^win/.test(process.platform) ? ".cmd" : ""
-  }`;
+  let autorestCommand = `autorest${/^win/.test(process.platform) ? ".cmd" : ""
+    }`;
   let commandArguments: string[] = [`--typescript`];
 
   if (tracingInfo) {
@@ -54,6 +54,9 @@ export async function runAutorest(
   }
   if (restLevelClient === true) {
     commandArguments.push(`--rest-level-client=${restLevelClient}`);
+  }
+  if (azureArm !== undefined && !azureArm) {
+    commandArguments.push(`--openapi-type=data-plane`);
   }
   if (rlcShortcut === true) {
     commandArguments.push(`--rlc-shortcut=true`);
