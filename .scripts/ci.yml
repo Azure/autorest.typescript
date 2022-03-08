@@ -49,7 +49,7 @@ stages:
               artifactName: packages
               path: $(Build.ArtifactStagingDirectory)
 
-      - job: Test
+      - job: HLC Test
         dependsOn: Build
         strategy:
           matrix:
@@ -88,6 +88,55 @@ stages:
             displayName: "Run Node Tests"
             condition: eq(variables['TestType'], 'node')
           - script: npm run test:browser
+            displayName: "Run Browser Tests"
+            condition: eq(variables['TestType'], 'browser')
+          - script: npm run check:tree
+            displayName: "Check git Tree"
+          - script: |
+              npm run --appendCoverage -- $(Build.Repository.Name) $(Build.SourceBranch) $(github-token) $(storage-coverage-user) $(storage-coverage-pass)
+            workingDirectory: node_modules/@microsoft.azure/autorest.testserver
+            displayName: "Upload Coverage Report"
+            condition: and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'))
+
+      - job: RLC Test
+        dependsOn: Build
+        strategy:
+          matrix:
+            macOS_Node12:
+              Pool:
+              OSVmImage: "macOS-10.15"
+              NodeTestVersion: "12.x"
+              TestType: "node"
+            Browser_Linux_Node12:
+              Pool: ${{ parameters.LinuxPool }}
+              OSVmImage:
+              NodeTestVersion: "12.x"
+              TestType: "browser"
+            Linux_Node14:
+              Pool: ${{ parameters.LinuxPool }}
+              OSVmImage: "ubuntu-18.04"
+              NodeTestVersion: "14.x"
+              TestType: "node"
+            Linux_Node16:
+              Pool: ${{ parameters.LinuxPool }}
+              OSVmImage: "ubuntu-18.04"
+              NodeTestVersion: "16.x"
+              TestType: "node"
+        pool:
+          name: $[coalesce(variables['Pool'], '')]
+          vmImage: $[coalesce(variables['OSVmImage'], '')]
+        steps:
+          - template: build.yml
+          - script: npm run rlc-generate-swaggers
+            displayName: "Generate Test Clients"
+          - task: NodeTool@0
+            inputs:
+              versionSpec: $(NodeTestVersion)
+            displayName: "Use Node $(NodeTestVersion)"
+          - script: npm run rlc-test:node
+            displayName: "Run Node Tests"
+            condition: eq(variables['TestType'], 'node')
+          - script: npm run rlc-test:browser
             displayName: "Run Browser Tests"
             condition: eq(variables['TestType'], 'browser')
           - script: npm run check:tree
