@@ -21,6 +21,11 @@ export interface TracingInfo {
   packagePrefix: string;
 }
 
+export interface DependencyInfo {
+  link: string;
+  description: string;
+}
+
 export interface ClientDetails {
   name: string;
   className: string;

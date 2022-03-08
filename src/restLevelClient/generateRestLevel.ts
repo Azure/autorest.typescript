@@ -23,6 +23,7 @@ import { generateEnvFile } from "../generators/test/envFileGenerator";
 import { generateEnvBrowserFile } from "../generators/test/envBrowserFileGenerator";
 import { generateRecordedClientFile } from "../generators/test/recordedClientFileGenerator";
 import { generateSampleTestFile } from "../generators/test/sampleTestGenerator";
+import { generateReadmeFile } from "../generators/static/readmeFileGenerator";
 
 /**
  * Generates a Rest Level Client library
@@ -46,7 +47,9 @@ export async function generateRestLevelClient() {
     generatePollingHelper(project);
   }
 
+
   performCodeModelMutations(model);
+  generateReadmeFile(model.language, model.info, project);
   generatePackageJson(project);
   generateLicenseFile(project);
   generateTsConfig(project);
@@ -64,7 +67,7 @@ export async function generateRestLevelClient() {
   generatePathFirstClient(model, project);
   generateClient(model, project);
   generateIndexFile(project);
-  
+
   generateTopLevelIndexFile(model, project);
 
   // Save the source files to the virtual filesystem
@@ -79,7 +82,7 @@ export async function generateRestLevelClient() {
     let fileContents = fs.readFileSync(filePath);
     const licenseHeader = `// Copyright (c) Microsoft Corporation.\n// Licensed under the MIT license.\n`;
 
-    if (!isJson) {
+    if (isSourceCode) {
       fileContents = `${licenseHeader.trimLeft()}\n${fileContents}`;
     }
 

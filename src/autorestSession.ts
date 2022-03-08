@@ -6,7 +6,7 @@ import {
 import { CodeModel, codeModelSchema } from "@autorest/codemodel";
 import { extractAutorestOptions } from "./utils/autorestOptions";
 import { PackageDetails } from "./models/packageDetails";
-import { TracingInfo } from "./models/clientDetails";
+import { DependencyInfo, TracingInfo } from "./models/clientDetails";
 
 export interface AutorestOptions {
   restLevelClient?: boolean;
@@ -35,7 +35,9 @@ export interface AutorestOptions {
   batch?: [string, any][];
   multiClient?: boolean;
   generateSample?: boolean;
+  productDocLink?: string;
   coreHttpCompatMode?: boolean;
+  dependencyInfo?: DependencyInfo;
 }
 
 let host: AutorestExtensionHost;
