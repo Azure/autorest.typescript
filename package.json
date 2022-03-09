@@ -7,7 +7,7 @@
         "check:tree": "ts-node ./test/utils/check-clean-tree.ts",
         "clean": "rimraf test-browser test/**/node_modules",
         "start": "node ./dist/src/main.js",
-        "test": "npm-run-all unit-test integration-test rlc-integration-test",
+        "test": "npm-run-all unit-test integration-test rlc-integration-test validate-version-tolerance",
         "test:node": "npm run unit-test && npm run start-test-server:v2 & npm run integration-test:alone && npm run stop-test-server",
         "test:browser": "npm run start-test-server:v2 & npm run integration-test:browser && npm run stop-test-server",
         "rlc-test:node": "npm run unit-test && npm run start-test-server:v2 & npm run rlc-integration-test:alone && npm run stop-test-server",
