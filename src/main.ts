@@ -23,7 +23,7 @@ export async function processRequest(host: AutorestExtensionHost) {
       ? await generateRestLevelClient()
       : await generateTypeScriptLibrary(session.model, host);
     session.info(`Autorest.Typescript took ${Date.now() - start}ms`);
-  } catch (err) {
+  } catch (err: any) {
     session.error("An error was encountered while handling a request:", err);
     throw err;
   }
