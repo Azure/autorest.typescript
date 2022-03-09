@@ -93,7 +93,7 @@ stages:
           - script: npm run check:tree
             displayName: "Check git Tree"
           - script: |
-              npm run --appendCoverage -- $(Build.Repository.Name) $(Build.SourceBranch) $(github-token) $(storage-coverage-user) $(storage-coverage-pass)
+              npx -p @microsoft.azure/autorest.testserver autorest-testserver-coverage -- $(Build.Repository.Name) $(Build.SourceBranch) $(github-token) $(storage-coverage-user) $(storage-coverage-pass)
             workingDirectory: node_modules/@microsoft.azure/autorest.testserver
             displayName: "Upload Coverage Report"
             condition: and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'))
@@ -142,7 +142,7 @@ stages:
           - script: npm run check:tree
             displayName: "Check git Tree"
           - script: |
-              npm run --appendCoverage -- $(Build.Repository.Name) $(Build.SourceBranch) $(github-token) $(storage-coverage-user) $(storage-coverage-pass)
+              npx -p @microsoft.azure/autorest.testserver autorest-testserver-coverage -- $(Build.Repository.Name) $(Build.SourceBranch) $(github-token) $(storage-coverage-user) $(storage-coverage-pass)
             workingDirectory: node_modules/@microsoft.azure/autorest.testserver
             displayName: "Upload Coverage Report"
             condition: and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'))

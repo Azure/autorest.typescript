@@ -24,7 +24,7 @@
         "rlc-generate-and-test": "npm-run-all -s build rlc-generate-swaggers rlc-integration-test:alone rlc-integration-test:browser",
         "rlc-integration-test:alone": "mocha -r ts-node/register --timeout 2000 './test/rlcIntegration/**/!(sampleTest).spec.ts'",
         "start-test-server": "ts-node test/utils/start-server.ts",
-        "start-test-server:v2": "autorest-testserver",
+        "start-test-server:v2": "autorest-testserver run --appendCoverage",
         "stop-test-server": "autorest-testserver stop",
         "debug": "node --inspect-brk ./dist/src/main.js",
         "generate-swaggers": "ts-node ./test/utils/test-swagger-gen.ts",
