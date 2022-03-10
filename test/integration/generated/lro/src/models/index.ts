@@ -79,6 +79,20 @@ export interface LROsPatch200SucceededIgnoreHeadersHeaders {
   azureAsyncOperation?: string;
 }
 
+/** Defines headers for LROs_patch201RetryWithAsyncHeader operation. */
+export interface LROsPatch201RetryWithAsyncHeaderHeaders {
+  /** Location to poll for result status: will be set to /lro/patch/201/retry/onlyAsyncHeader/operationStatuses/201 */
+  azureAsyncOperation?: string;
+}
+
+/** Defines headers for LROs_patch202RetryWithAsyncAndLocationHeader operation. */
+export interface LROsPatch202RetryWithAsyncAndLocationHeaderHeaders {
+  /** Location to poll for result status: will be set to /lro/patch/202/retry/asyncAndLocationHeader/operationResults/202 */
+  azureAsyncOperation?: string;
+  /** Location to poll for final status: will be set to /lro/patch/202/retry/asyncAndLocationHeader/operationResults/202/finalResults/202 */
+  location?: string;
+}
+
 /** Defines headers for LROs_post202List operation. */
 export interface LROsPost202ListHeaders {
   /** Location to poll for result status: will be set to /lro/list/pollingGet */
@@ -680,6 +694,34 @@ export interface LROsPatch200SucceededIgnoreHeadersOptionalParams
 /** Contains response data for the patch200SucceededIgnoreHeaders operation. */
 export type LROsPatch200SucceededIgnoreHeadersResponse = LROsPatch200SucceededIgnoreHeadersHeaders &
   Product;
+
+/** Optional parameters. */
+export interface LROsPatch201RetryWithAsyncHeaderOptionalParams
+  extends coreClient.OperationOptions {
+  /** Product to patch */
+  product?: Product;
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Contains response data for the patch201RetryWithAsyncHeader operation. */
+export type LROsPatch201RetryWithAsyncHeaderResponse = Product;
+
+/** Optional parameters. */
+export interface LROsPatch202RetryWithAsyncAndLocationHeaderOptionalParams
+  extends coreClient.OperationOptions {
+  /** Product to patch */
+  product?: Product;
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Contains response data for the patch202RetryWithAsyncAndLocationHeader operation. */
+export type LROsPatch202RetryWithAsyncAndLocationHeaderResponse = Product;
 
 /** Optional parameters. */
 export interface LROsPut201SucceededOptionalParams

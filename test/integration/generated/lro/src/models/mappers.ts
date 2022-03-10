@@ -213,6 +213,42 @@ export const LROsPatch200SucceededIgnoreHeadersHeaders: coreClient.CompositeMapp
   }
 };
 
+export const LROsPatch201RetryWithAsyncHeaderHeaders: coreClient.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "LROsPatch201RetryWithAsyncHeaderHeaders",
+    modelProperties: {
+      azureAsyncOperation: {
+        serializedName: "azure-asyncoperation",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const LROsPatch202RetryWithAsyncAndLocationHeaderHeaders: coreClient.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "LROsPatch202RetryWithAsyncAndLocationHeaderHeaders",
+    modelProperties: {
+      azureAsyncOperation: {
+        serializedName: "azure-asyncoperation",
+        type: {
+          name: "String"
+        }
+      },
+      location: {
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
 export const LROsPost202ListHeaders: coreClient.CompositeMapper = {
   type: {
     name: "Composite",

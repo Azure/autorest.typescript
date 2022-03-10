@@ -26,6 +26,8 @@ import {
   PagingGetMultiplePagesResponse,
   PagingGetWithQueryParamsOptionalParams,
   PagingGetWithQueryParamsResponse,
+  PagingDuplicateParamsOptionalParams,
+  PagingDuplicateParamsResponse,
   PagingNextOperationWithQueryParamsOptionalParams,
   PagingNextOperationWithQueryParamsResponse,
   PagingGetOdataMultiplePagesOptionalParams,
@@ -64,6 +66,8 @@ import {
   PagingFirstResponseEmptyNextResponse,
   PagingGetMultiplePagesNextOptionalParams,
   PagingGetMultiplePagesNextResponse,
+  PagingDuplicateParamsNextOptionalParams,
+  PagingDuplicateParamsNextResponse,
   PagingGetOdataMultiplePagesNextOptionalParams,
   PagingGetOdataMultiplePagesNextResponse,
   PagingGetMultiplePagesWithOffsetNextOptionalParams,
@@ -175,6 +179,21 @@ export class PagingImpl implements Paging {
     return this.client.sendOperationRequest(
       { requiredQueryParameter, options },
       getWithQueryParamsOperationSpec
+    );
+  }
+
+  /**
+   * Define `filter` as a query param for all calls. However, the returned next link will also include
+   * the `filter` as part of it. Make sure you don't end up duplicating the `filter` param in the url
+   * sent.
+   * @param options The options parameters.
+   */
+  duplicateParams(
+    options?: PagingDuplicateParamsOptionalParams
+  ): Promise<PagingDuplicateParamsResponse> {
+    return this.client.sendOperationRequest(
+      { options },
+      duplicateParamsOperationSpec
     );
   }
 
@@ -491,6 +510,21 @@ export class PagingImpl implements Paging {
   }
 
   /**
+   * DuplicateParamsNext
+   * @param nextLink The nextLink from the previous successful call to the DuplicateParams method.
+   * @param options The options parameters.
+   */
+  duplicateParamsNext(
+    nextLink: string,
+    options?: PagingDuplicateParamsNextOptionalParams
+  ): Promise<PagingDuplicateParamsNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      duplicateParamsNextOperationSpec
+    );
+  }
+
+  /**
    * GetOdataMultiplePagesNext
    * @param nextLink The nextLink from the previous successful call to the GetOdataMultiplePages method.
    * @param options The options parameters.
@@ -719,6 +753,20 @@ const getWithQueryParamsOperationSpec: coreClient.OperationSpec = {
     Parameters.requiredQueryParameter,
     Parameters.queryConstant
   ],
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const duplicateParamsOperationSpec: coreClient.OperationSpec = {
+  path: "/paging/multiple/duplicateParams/1",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResult
+    },
+    default: {}
+  },
+  queryParameters: [Parameters.filter],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
@@ -989,6 +1037,20 @@ const getMultiplePagesNextOperationSpec: coreClient.OperationSpec = {
     Parameters.maxresults,
     Parameters.timeout
   ],
+  serializer
+};
+const duplicateParamsNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResult
+    },
+    default: {}
+  },
+  queryParameters: [Parameters.filter],
+  urlParameters: [Parameters.$host, Parameters.nextLink],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOdataMultiplePagesNextOperationSpec: coreClient.OperationSpec = {

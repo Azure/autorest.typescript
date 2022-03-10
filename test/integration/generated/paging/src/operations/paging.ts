@@ -29,6 +29,8 @@ import {
   PagingGetMultiplePagesOptionalParams,
   PagingNextOperationWithQueryParamsOptionalParams,
   PagingGetWithQueryParamsOptionalParams,
+  PagingDuplicateParamsNextOptionalParams,
+  PagingDuplicateParamsOptionalParams,
   PagingGetOdataMultiplePagesNextOptionalParams,
   PagingGetOdataMultiplePagesOptionalParams,
   PagingGetMultiplePagesWithOffsetOptions,
@@ -59,6 +61,7 @@ import {
   PagingFirstResponseEmptyResponse,
   PagingGetMultiplePagesResponse,
   PagingGetWithQueryParamsResponse,
+  PagingDuplicateParamsResponse,
   PagingNextOperationWithQueryParamsResponse,
   PagingGetOdataMultiplePagesResponse,
   PagingGetMultiplePagesWithOffsetResponse,
@@ -77,6 +80,7 @@ import {
   PagingGetSinglePagesNextResponse,
   PagingFirstResponseEmptyNextResponse,
   PagingGetMultiplePagesNextResponse,
+  PagingDuplicateParamsNextResponse,
   PagingGetOdataMultiplePagesNextResponse,
   PagingGetMultiplePagesWithOffsetNextResponse,
   PagingGetMultiplePagesRetryFirstNextResponse,
@@ -361,6 +365,50 @@ export class PagingImpl implements Paging {
       requiredQueryParameter,
       options
     )) {
+      yield* page;
+    }
+  }
+
+  /**
+   * Define `filter` as a query param for all calls. However, the returned next link will also include
+   * the `filter` as part of it. Make sure you don't end up duplicating the `filter` param in the url
+   * sent.
+   * @param options The options parameters.
+   */
+  public listDuplicateParams(
+    options?: PagingDuplicateParamsOptionalParams
+  ): PagedAsyncIterableIterator<Product> {
+    const iter = this.duplicateParamsPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.duplicateParamsPagingPage(options);
+      }
+    };
+  }
+
+  private async *duplicateParamsPagingPage(
+    options?: PagingDuplicateParamsOptionalParams
+  ): AsyncIterableIterator<Product[]> {
+    let result = await this._duplicateParams(options);
+    yield result.values || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._duplicateParamsNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.values || [];
+    }
+  }
+
+  private async *duplicateParamsPagingAll(
+    options?: PagingDuplicateParamsOptionalParams
+  ): AsyncIterableIterator<Product> {
+    for await (const page of this.duplicateParamsPagingPage(options)) {
       yield* page;
     }
   }
@@ -1254,6 +1302,33 @@ export class PagingImpl implements Paging {
   }
 
   /**
+   * Define `filter` as a query param for all calls. However, the returned next link will also include
+   * the `filter` as part of it. Make sure you don't end up duplicating the `filter` param in the url
+   * sent.
+   * @param options The options parameters.
+   */
+  private async _duplicateParams(
+    options?: PagingDuplicateParamsOptionalParams
+  ): Promise<PagingDuplicateParamsResponse> {
+    const { span } = createSpan("PagingClient-_duplicateParams", options || {});
+    try {
+      const result = await this.client.sendOperationRequest(
+        { options },
+        duplicateParamsOperationSpec
+      );
+      return result as PagingDuplicateParamsResponse;
+    } catch (error) {
+      span.setStatus({
+        code: coreTracing.SpanStatusCode.UNSET,
+        message: error.message
+      });
+      throw error;
+    } finally {
+      span.end();
+    }
+  }
+
+  /**
    * Next operation for getWithQueryParams. Pass in next=True to pass test. Returns a ProductResult
    * @param options The options parameters.
    */
@@ -1833,6 +1908,36 @@ export class PagingImpl implements Paging {
   }
 
   /**
+   * DuplicateParamsNext
+   * @param nextLink The nextLink from the previous successful call to the DuplicateParams method.
+   * @param options The options parameters.
+   */
+  private async _duplicateParamsNext(
+    nextLink: string,
+    options?: PagingDuplicateParamsNextOptionalParams
+  ): Promise<PagingDuplicateParamsNextResponse> {
+    const { span } = createSpan(
+      "PagingClient-_duplicateParamsNext",
+      options || {}
+    );
+    try {
+      const result = await this.client.sendOperationRequest(
+        { nextLink, options },
+        duplicateParamsNextOperationSpec
+      );
+      return result as PagingDuplicateParamsNextResponse;
+    } catch (error) {
+      span.setStatus({
+        code: coreTracing.SpanStatusCode.UNSET,
+        message: error.message
+      });
+      throw error;
+    } finally {
+      span.end();
+    }
+  }
+
+  /**
    * GetOdataMultiplePagesNext
    * @param nextLink The nextLink from the previous successful call to the GetOdataMultiplePages method.
    * @param options The options parameters.
@@ -2200,6 +2305,20 @@ const getWithQueryParamsOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
+const duplicateParamsOperationSpec: coreClient.OperationSpec = {
+  path: "/paging/multiple/duplicateParams/1",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResult
+    },
+    default: {}
+  },
+  queryParameters: [Parameters.filter],
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
+  serializer
+};
 const nextOperationWithQueryParamsOperationSpec: coreClient.OperationSpec = {
   path: "/paging/multiple/nextOperationWithQueryParams",
   httpMethod: "GET",
@@ -2466,6 +2585,20 @@ const getMultiplePagesNextOperationSpec: coreClient.OperationSpec = {
     Parameters.maxresults,
     Parameters.timeout
   ],
+  serializer
+};
+const duplicateParamsNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResult
+    },
+    default: {}
+  },
+  queryParameters: [Parameters.filter],
+  urlParameters: [Parameters.$host, Parameters.nextLink],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getOdataMultiplePagesNextOperationSpec: coreClient.OperationSpec = {

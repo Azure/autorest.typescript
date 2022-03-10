@@ -165,6 +165,16 @@ export interface PagingGetWithQueryParamsOptionalParams
 export type PagingGetWithQueryParamsResponse = ProductResult;
 
 /** Optional parameters. */
+export interface PagingDuplicateParamsOptionalParams
+  extends coreClient.OperationOptions {
+  /** OData filter options. Pass in 'foo' */
+  filter?: string;
+}
+
+/** Contains response data for the duplicateParams operation. */
+export type PagingDuplicateParamsResponse = ProductResult;
+
+/** Optional parameters. */
 export interface PagingNextOperationWithQueryParamsOptionalParams
   extends coreClient.OperationOptions {}
 
@@ -311,6 +321,16 @@ export interface PagingGetMultiplePagesNextOptionalParams
 
 /** Contains response data for the getMultiplePagesNext operation. */
 export type PagingGetMultiplePagesNextResponse = ProductResult;
+
+/** Optional parameters. */
+export interface PagingDuplicateParamsNextOptionalParams
+  extends coreClient.OperationOptions {
+  /** OData filter options. Pass in 'foo' */
+  filter?: string;
+}
+
+/** Contains response data for the duplicateParamsNext operation. */
+export type PagingDuplicateParamsNextResponse = ProductResult;
 
 /** Optional parameters. */
 export interface PagingGetOdataMultiplePagesNextOptionalParams

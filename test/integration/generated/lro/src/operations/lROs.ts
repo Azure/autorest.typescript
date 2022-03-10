@@ -18,6 +18,10 @@ import {
   LROsPut200SucceededResponse,
   LROsPatch200SucceededIgnoreHeadersOptionalParams,
   LROsPatch200SucceededIgnoreHeadersResponse,
+  LROsPatch201RetryWithAsyncHeaderOptionalParams,
+  LROsPatch201RetryWithAsyncHeaderResponse,
+  LROsPatch202RetryWithAsyncAndLocationHeaderOptionalParams,
+  LROsPatch202RetryWithAsyncAndLocationHeaderResponse,
   LROsPut201SucceededOptionalParams,
   LROsPut201SucceededResponse,
   LROsPost202ListOptionalParams,
@@ -258,6 +262,157 @@ export class LROsImpl implements LROs {
     options?: LROsPatch200SucceededIgnoreHeadersOptionalParams
   ): Promise<LROsPatch200SucceededIgnoreHeadersResponse> {
     const poller = await this.beginPatch200SucceededIgnoreHeaders(options);
+    return poller.pollUntilDone();
+  }
+
+  /**
+   * Long running patch request, service returns a 201 to the initial request with async header.
+   * @param options The options parameters.
+   */
+  async beginPatch201RetryWithAsyncHeader(
+    options?: LROsPatch201RetryWithAsyncHeaderOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<LROsPatch201RetryWithAsyncHeaderResponse>,
+      LROsPatch201RetryWithAsyncHeaderResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<LROsPatch201RetryWithAsyncHeaderResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { options },
+      patch201RetryWithAsyncHeaderOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs,
+      lroResourceLocationConfig: "azure-async-operation"
+    });
+  }
+
+  /**
+   * Long running patch request, service returns a 201 to the initial request with async header.
+   * @param options The options parameters.
+   */
+  async beginPatch201RetryWithAsyncHeaderAndWait(
+    options?: LROsPatch201RetryWithAsyncHeaderOptionalParams
+  ): Promise<LROsPatch201RetryWithAsyncHeaderResponse> {
+    const poller = await this.beginPatch201RetryWithAsyncHeader(options);
+    return poller.pollUntilDone();
+  }
+
+  /**
+   * Long running patch request, service returns a 202 to the initial request with async and location
+   * header.
+   * @param options The options parameters.
+   */
+  async beginPatch202RetryWithAsyncAndLocationHeader(
+    options?: LROsPatch202RetryWithAsyncAndLocationHeaderOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<LROsPatch202RetryWithAsyncAndLocationHeaderResponse>,
+      LROsPatch202RetryWithAsyncAndLocationHeaderResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<LROsPatch202RetryWithAsyncAndLocationHeaderResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { options },
+      patch202RetryWithAsyncAndLocationHeaderOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs
+    });
+  }
+
+  /**
+   * Long running patch request, service returns a 202 to the initial request with async and location
+   * header.
+   * @param options The options parameters.
+   */
+  async beginPatch202RetryWithAsyncAndLocationHeaderAndWait(
+    options?: LROsPatch202RetryWithAsyncAndLocationHeaderOptionalParams
+  ): Promise<LROsPatch202RetryWithAsyncAndLocationHeaderResponse> {
+    const poller = await this.beginPatch202RetryWithAsyncAndLocationHeader(
+      options
+    );
     return poller.pollUntilDone();
   }
 
@@ -3342,6 +3497,58 @@ const patch200SucceededIgnoreHeadersOperationSpec: coreClient.OperationSpec = {
     204: {
       bodyMapper: Mappers.Product,
       headersMapper: Mappers.LROsPatch200SucceededIgnoreHeadersHeaders
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  requestBody: Parameters.product,
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType, Parameters.accept],
+  mediaType: "json",
+  serializer
+};
+const patch201RetryWithAsyncHeaderOperationSpec: coreClient.OperationSpec = {
+  path: "/lro/patch/201/retry/onlyAsyncHeader",
+  httpMethod: "PATCH",
+  responses: {
+    200: {
+      bodyMapper: Mappers.Product
+    },
+    201: {
+      bodyMapper: Mappers.Product
+    },
+    202: {
+      bodyMapper: Mappers.Product
+    },
+    204: {
+      bodyMapper: Mappers.Product
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  requestBody: Parameters.product,
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType, Parameters.accept],
+  mediaType: "json",
+  serializer
+};
+const patch202RetryWithAsyncAndLocationHeaderOperationSpec: coreClient.OperationSpec = {
+  path: "/lro/patch/202/retry/asyncAndLocationHeader",
+  httpMethod: "PATCH",
+  responses: {
+    200: {
+      bodyMapper: Mappers.Product
+    },
+    201: {
+      bodyMapper: Mappers.Product
+    },
+    202: {
+      bodyMapper: Mappers.Product
+    },
+    204: {
+      bodyMapper: Mappers.Product
     },
     default: {
       bodyMapper: Mappers.CloudError

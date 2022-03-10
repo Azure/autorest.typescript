@@ -2,7 +2,7 @@ import { assert } from "chai";
 import UrlRestClient, {
   UrlRestClientLike
 } from "./generated/urlRest/src";
-import { UriColor } from "./generated/url/src";
+export type UriColor = "red color" | "green color" | "blue color";
 
 describe("Integration tests for UrlRest", () => {
   let client: UrlRestClientLike;

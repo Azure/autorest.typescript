@@ -176,6 +176,19 @@ describe(" BodyStringRest", () => {
 
       assert.equal(result.status, "200");
     });
+
+    it("should send correct user agent prefix string for rlc", async () => {
+      const client: BodyStringRestLike = BodyStringRest();
+      const result = await client
+        .path("/string/nullBase64UrlEncoding")
+        .get({ allowInsecureConnection: true });
+      assert.equal(result.status, "200");
+      const userAgent = result.request.headers?.get("user-agent");
+      assert.isTrue(userAgent !== undefined);
+      if (userAgent) {
+        assert.isTrue(userAgent.indexOf("azsdk-js-body-string-rest") > -1);
+      }
+    });
   });
 
   describe("Mbcs", () => {
