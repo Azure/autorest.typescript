@@ -25,10 +25,6 @@ task 'init', "" ,(done)->
 task 'fetch_submodules',"", (done) ->
   execute "git submodule update --init --recursive", done
 
-task 'install_common',"", (done) ->
-  # global.verbose = true
-  execute "npm install",{cwd:"#{basefolder}/autorest.common", silent:false }, done
-
 # Run language-specific tests:
 task 'test', '', ['test/generator-unit', 'test/typecheck'], (done) ->
   await run 'test/metadata', defer _

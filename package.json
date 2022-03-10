@@ -12,8 +12,6 @@
     "testci/generator-unit": "gulp testci/generator-unit",
     "regenerateci": "gulp regenerateci",
     "build": "gulp build",
-    "prepare": "gulp install_common && gulp build",
-    "prepack": "npm install && gulp install_common && gulp build",
     "regenerate": "gulp regenerate",
     "clean": "gulp clean",
     "nuke": "git clean -xdf",

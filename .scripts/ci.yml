@@ -1,0 +1,98 @@
+trigger:
+  batch: true
+  branches:
+    include:
+    - v4x
+
+pr:
+  branches:
+    include:
+    - v4x
+
+parameters:
+  - name: LinuxPool
+    type: string
+    default: azsdk-pool-mms-ubuntu-1804-general
+  - name: IncludeRelease
+    type: boolean
+    default: true
+  - name: OSVmImage
+    type: string
+    default: ubuntu-18.04
+
+pool:
+  vmImage: ubuntu-18.04
+
+stages:
+  - stage: BuildStage
+    jobs:
+      - job: Build
+        steps:
+          - template: build.yml
+          - script: |
+              export MAIN_VERSION=$(node -p -e "require('./package.json').version")
+              echo "##vso[task.setvariable variable=MAIN_VERSION;isOutput=true;]MAIN_VERSION"
+            name: SetMainVersion
+          - script: |
+              export TAR_NAME=$(npm pack -q)
+              echo "##vso[task.setvariable variable=TAR_NAME;isOutput=true;]$TAR_NAME"
+            name: PackArtifacts
+          - task: CopyFiles@2
+            inputs:
+              contents: "*.tgz"
+              targetFolder: $(Build.ArtifactStagingDirectory)
+              flattenFolders: true
+            displayName: "Copy packages"
+
+          - task: PublishPipelineArtifact@1
+            condition: succeededOrFailed()
+            displayName: "Publish artifacts"
+            inputs:
+              artifactName: packages
+              path: $(Build.ArtifactStagingDirectory)
+
+          - task: gulp@0
+            displayName: 'Run gulp regenerate'
+            inputs:
+              targets: regenerate
+              verbose: false
+          
+          - task: gulp@0
+            displayName: 'gulp testci'
+            inputs:
+              targets: testci
+              verbose: false
+          - task: PublishTestResults@2
+            inputs:
+              testResultsFiles: '**/test-results.xml'
+              testRunTitle: 'Test results for JavaScript'
+          - task: PublishCodeCoverageResults@1
+            inputs:
+              codeCoverageTool: Cobertura
+              summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/*coverage.xml'
+              reportDirectory: '$(System.DefaultWorkingDirectory)/**/coverage'
+
+      - job: Check
+        steps:
+        - task: NodeTool@0
+          displayName: 'Install Node 10'
+          inputs:
+            versionSpec: 10.x
+        - task: Npm@1
+          displayName: 'npm install'
+          inputs:
+            command: custom
+            verbose: false
+            customCommand: install
+        - task: Npm@1
+          displayName: 'npm run check:everything -- --azure-devops'
+          inputs:
+            command: custom
+            verbose: false
+            customCommand: run check:everything -- --azure-devops
+
+              # The Prerelease and Release stages are conditioned on whether we are building a pull request and the branch.
+  - ? ${{if and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'), eq(parameters.IncludeRelease,true))}}
+    : - template: release.yml
+        parameters:
+          DependsOn: BuildStage
