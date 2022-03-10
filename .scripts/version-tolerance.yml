@@ -10,7 +10,7 @@ jobs:
         displayName: "Check git Tree"
 
       - script: |
-          npx -p @microsoft.azure/autorest.testserver autorest-testserver-coverage -- $(Build.Repository.Name) $(Build.SourceBranch) $(github-token) $(storage-coverage-user) $(storage-coverage-pass)
+          npx -p @microsoft.azure/autorest.testserver autorest-testserver-coverage -- publish --repo=$(Build.Repository.Name) --ref=$(Build.SourceBranch) --githubToken=$(github-token) --azStorageAccount=$(storage-coverage-user) --azStorageAccessKey=$(storage-coverage-pass)
         workingDirectory: node_modules/@microsoft.azure/autorest.testserver
         displayName: "Upload Coverage Report"
         condition: and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'))
