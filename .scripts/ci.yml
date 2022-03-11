@@ -51,8 +51,7 @@ stages:
             inputs:
               artifactName: packages
               path: $(Build.ArtifactStagingDirectory)
-
-      - job: HLC_Test
+      - job: HLC_Generation
         dependsOn: Build
         strategy:
           matrix:
@@ -82,26 +81,11 @@ stages:
         steps:
           - template: build.yml
           - script: npm run generate-swaggers
-            displayName: "Generate Test Clients"
-          - task: NodeTool@0
-            inputs:
-              versionSpec: $(NodeTestVersion)
-            displayName: "Use Node $(NodeTestVersion)"
-          - script: npm run test:node
-            displayName: "Run Node Tests"
-            condition: eq(variables['TestType'], 'node')
-          - script: npm run test:browser
-            displayName: "Run Browser Tests"
-            condition: eq(variables['TestType'], 'browser')
+            displayName: "Generate HLC Test Clients"
           - script: npm run check:tree
-            displayName: "Check git Tree"
-          - script: |
-              npm run coverage -- publish --repo=$(Build.Repository.Name) --ref=$(Build.SourceBranch) --githubToken=$(github-token) --azStorageAccount=$(storage-coverage-user) --azStorageAccessKey=$(storage-coverage-pass) --coverageDirectory=$(AUTOREST_TESTSERVER_COVERAGE_DIRECTORY)
-            workingDirectory: node_modules/@microsoft.azure/autorest.testserver
-            displayName: "Upload Coverage Report"
-            condition: and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'))
+            displayName: "Check git Tree"            
 
-      - job: RLC_Test
+      - job: RLC_Generation
         dependsOn: Build
         strategy:
           matrix:
@@ -131,15 +115,50 @@ stages:
         steps:
           - template: build.yml
           - script: npm run rlc-generate-swaggers
-            displayName: "Generate Test Clients"
+            displayName: "Generate RLC Test Clients"
+          - script: npm run generate-version-tolerance
+            displayName: "Generate RLC version tolerance initial version"
+          - script: npm run generate-version-tolerance:test
+            displayName: "Generate RLC version tolerance update version"  
+          - script: npm run check:tree
+            displayName: "Check git Tree"  
+      - job: Test
+        dependsOn: Build
+        strategy:
+          matrix:
+            macOS_Node12:
+              Pool:
+              OSVmImage: "macOS-10.15"
+              NodeTestVersion: "12.x"
+              TestType: "node"
+            Browser_Linux_Node12:
+              Pool: ${{ parameters.LinuxPool }}
+              OSVmImage:
+              NodeTestVersion: "12.x"
+              TestType: "browser"
+            Linux_Node14:
+              Pool: ${{ parameters.LinuxPool }}
+              OSVmImage: "ubuntu-18.04"
+              NodeTestVersion: "14.x"
+              TestType: "node"
+            Linux_Node16:
+              Pool: ${{ parameters.LinuxPool }}
+              OSVmImage: "ubuntu-18.04"
+              NodeTestVersion: "16.x"
+              TestType: "node"
+        pool:
+          name: $[coalesce(variables['Pool'], '')]
+          vmImage: $[coalesce(variables['OSVmImage'], '')]
+        steps:
+          - template: build.yml
           - task: NodeTool@0
             inputs:
               versionSpec: $(NodeTestVersion)
             displayName: "Use Node $(NodeTestVersion)"
-          - script: npm run rlc-test:node
+          - script: npm run test:node
             displayName: "Run Node Tests"
             condition: eq(variables['TestType'], 'node')
-          - script: npm run rlc-test:browser
+          - script: npm run test:browser
             displayName: "Run Browser Tests"
             condition: eq(variables['TestType'], 'browser')
           - script: npm run check:tree
@@ -149,7 +168,7 @@ stages:
             workingDirectory: node_modules/@microsoft.azure/autorest.testserver
             displayName: "Upload Coverage Report"
             condition: and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'))
-      - template: version-tolerance.yml
+
       # We are splitting smoke test validation in buckets to help reduce the overall run time by running each bucket in parallel
       - template: smoke-test.yml
         parameters:
