@@ -1,6 +1,3 @@
-variables:
-  AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: "$(Build.SourcesDirectory)/coverage/"
-
 jobs:
   - job: VersionToleranceTests
     steps:
