@@ -36,7 +36,7 @@ describe("Media types Rest", () => {
     const result = await client
       .path("/mediatypes/contentTypeWithEncoding")
       .post({
-        contentType: "text/plain; encoding=UTF-8" as any,
+        contentType: "text/plain; charset=UTF-8",
         body: "test"
       });
 
