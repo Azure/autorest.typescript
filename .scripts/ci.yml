@@ -59,22 +59,18 @@ stages:
               Pool:
               OSVmImage: "macOS-10.15"
               NodeTestVersion: "12.x"
-              TestType: "node"
             Browser_Linux_Node12:
               Pool: ${{ parameters.LinuxPool }}
               OSVmImage:
               NodeTestVersion: "12.x"
-              TestType: "browser"
             Linux_Node14:
               Pool: ${{ parameters.LinuxPool }}
               OSVmImage: "ubuntu-18.04"
               NodeTestVersion: "14.x"
-              TestType: "node"
             Linux_Node16:
               Pool: ${{ parameters.LinuxPool }}
               OSVmImage: "ubuntu-18.04"
               NodeTestVersion: "16.x"
-              TestType: "node"
         pool:
           name: $[coalesce(variables['Pool'], '')]
           vmImage: $[coalesce(variables['OSVmImage'], '')]
@@ -93,22 +89,18 @@ stages:
               Pool:
               OSVmImage: "macOS-10.15"
               NodeTestVersion: "12.x"
-              TestType: "node"
             Browser_Linux_Node12:
               Pool: ${{ parameters.LinuxPool }}
               OSVmImage:
               NodeTestVersion: "12.x"
-              TestType: "browser"
             Linux_Node14:
               Pool: ${{ parameters.LinuxPool }}
               OSVmImage: "ubuntu-18.04"
               NodeTestVersion: "14.x"
-              TestType: "node"
             Linux_Node16:
               Pool: ${{ parameters.LinuxPool }}
               OSVmImage: "ubuntu-18.04"
               NodeTestVersion: "16.x"
-              TestType: "node"
         pool:
           name: $[coalesce(variables['Pool'], '')]
           vmImage: $[coalesce(variables['OSVmImage'], '')]
@@ -130,22 +122,18 @@ stages:
               Pool:
               OSVmImage: "macOS-10.15"
               NodeTestVersion: "12.x"
-              TestType: "node"
             Browser_Linux_Node12:
               Pool: ${{ parameters.LinuxPool }}
               OSVmImage:
               NodeTestVersion: "12.x"
-              TestType: "browser"
             Linux_Node14:
               Pool: ${{ parameters.LinuxPool }}
               OSVmImage: "ubuntu-18.04"
               NodeTestVersion: "14.x"
-              TestType: "node"
             Linux_Node16:
               Pool: ${{ parameters.LinuxPool }}
               OSVmImage: "ubuntu-18.04"
               NodeTestVersion: "16.x"
-              TestType: "node"
         pool:
           name: $[coalesce(variables['Pool'], '')]
           vmImage: $[coalesce(variables['OSVmImage'], '')]
@@ -157,10 +145,8 @@ stages:
             displayName: "Use Node $(NodeTestVersion)"
           - script: npm run test:node
             displayName: "Run Node Tests"
-            condition: eq(variables['TestType'], 'node')
           - script: npm run test:browser
             displayName: "Run Browser Tests"
-            condition: eq(variables['TestType'], 'browser')
           - script: npm run check:tree
             displayName: "Check git Tree"
           - script: |
