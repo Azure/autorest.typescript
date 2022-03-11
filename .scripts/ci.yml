@@ -143,10 +143,14 @@ stages:
             inputs:
               versionSpec: $(NodeTestVersion)
             displayName: "Use Node $(NodeTestVersion)"
-          - script: npm run test:node
+          - script: npm run start-test-server:v2
+            displayName: "Start Test Server"     
+          - script: npm run test:node:alone
             displayName: "Run Node Tests"
-          - script: npm run test:browser
+          - script: npm run test:browser:alone
             displayName: "Run Browser Tests"
+          - script: npm run stop-test-server
+            displayName: "Stop Test Server"   
           - script: npm run check:tree
             displayName: "Check git Tree"
           - script: |
