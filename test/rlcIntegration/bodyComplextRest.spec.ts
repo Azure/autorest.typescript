@@ -18,54 +18,67 @@ describe("BodyComplex Rest Client", () => {
     client = BodyComplexRestClient({ allowInsecureConnection: true });
   });
 
-  describe("Swagger Complex Type BAT", function() {
+  describe("Swagger Complex Type BAT", () => {
     describe("Basic Types Operations", function() {
-      it("should get and put valid basic type properties", async function() {
+      it("should get and put valid basic type properties", async () => {
         const result = await client.path("/complex/basic/valid").get();
 
-        if (result.status !== "200") {
-          const error = `Unexpected status code ${result.status}`;
-          assert.fail(error);
-          throw error;
+        try {
+          if (result.status !== "200") {
+            const error = `Unexpected status code ${result.status}`;
+            assert.fail(error);
+            throw error;
+          }
+  
+          assert.strictEqual(result.body.id, 2);
+          assert.strictEqual(result.body.name, "abc");
+          assert.strictEqual(result.body.color, "YELLOW");
+  
+          const resultPut = await client
+            .path("/complex/basic/valid")
+            .put({ body: { id: 2, name: "abc", color: "Magenta" } });
+  
+          assert.equal(resultPut.status, "200");
+        } catch (err) {
+          assert.fail(err);
         }
 
-        assert.strictEqual(result.body.id, 2);
-        assert.strictEqual(result.body.name, "abc");
-        assert.strictEqual(result.body.color, "YELLOW");
-
-        const resultPut = await client
-          .path("/complex/basic/valid")
-          .put({ body: { id: 2, name: "abc", color: "Magenta" } });
-
-        assert.equal(resultPut.status, "200");
       });
 
-      it("should get null basic type properties", async function() {
+      it("should get null basic type properties", async () => {
         // const result = await testClient.basic.getNull();
-        const result = await client.path("/complex/basic/null").get();
+        try {
+          const result = await client.path("/complex/basic/null").get();
 
-        if (result.status !== "200") {
-          const error = `Unexpected status code ${result.status}`;
-          assert.fail(error);
-          throw error;
+          if (result.status !== "200") {
+            const error = `Unexpected status code ${result.status}`;
+            assert.fail(error);
+            throw error;
+          }
+
+          assert.strictEqual(null, result.body.id);
+          assert.strictEqual(null, result.body.name);
+        } catch (err) {
+          assert.fail(err);
         }
-
-        assert.strictEqual(null, result.body.id);
-        assert.strictEqual(null, result.body.name);
       });
 
       it("should get empty basic type properties", async () => {
         // const result = await testClient.basic.getEmpty();
-        const result = await client.path("/complex/basic/empty").get();
+        try {
+          const result = await client.path("/complex/basic/empty").get();
 
-        if (result.status !== "200") {
-          const error = `Unexpected status code ${result.status}`;
-          assert.fail(error);
-          throw error;
+          if (result.status !== "200") {
+            const error = `Unexpected status code ${result.status}`;
+            assert.fail(error);
+            throw error;
+          }
+  
+          assert.strictEqual(result.body.id, undefined);
+          assert.strictEqual(result.body.name, undefined);
+        } catch (err) {
+          assert.fail(err);
         }
-
-        assert.strictEqual(result.body.id, undefined);
-        assert.strictEqual(result.body.name, undefined);
       });
 
       it("should get basic type properties when the payload is empty", async () => {
