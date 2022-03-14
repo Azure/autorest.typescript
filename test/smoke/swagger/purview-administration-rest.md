@@ -22,14 +22,19 @@ input-file:  https://raw.githubusercontent.com/Azure/azure-rest-api-specs/main/s
 
 
 ```yaml $(multi-client)
+product-doc-link: https://azure.microsoft.com/en-us/services/purview/
 modelerfour.lenient-model-deduplication: true
 package-name: "@azure-rest/purview-administration"
 generate-metadata: true
 license-header: MICROSOFT_MIT_NO_VERSION
 package-version: 1.0.0-beta.2
 rest-level-client: true
+openapi-type: data-plane
 add-credentials: true
 credential-scopes: "https://purview.azure.net/.default"
+dependency-info: 
+  link: "https://docs.microsoft.com/azure/purview/create-catalog-portal#add-a-security-principal-to-a-data-plane-role"
+  description: "enable AAD authentication on your Purview resource"
 batch:
   - purview-metadata: true
   - purview-account: true

@@ -1,6 +1,6 @@
 import { Channel, AutorestExtensionHost } from "@autorest/extension-base";
 import { AutorestOptions, getHost, getSession } from "../autorestSession";
-import { TracingInfo } from "../models/clientDetails";
+import { DependencyInfo, TracingInfo } from "../models/clientDetails";
 import { PackageDetails } from "../models/packageDetails";
 import { NameType, normalizeName } from "./nameUtils";
 
@@ -36,8 +36,10 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
   const batch = await getBatch(host);
   const multiClient = await getMultiClient(host);
   const generateSample = await getGenerateSample(host);
+  const productDocLink = await getProductDocLink(host);
   const coreHttpCompatMode = await getCoreHttpCompatMode(host);
   const azureSdkForJs = await getAzureSdkForJs(host);
+  const dependencyInfo = await getDependencyInfo(host);
 
   return {
     azureArm,
@@ -67,7 +69,9 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
     multiClient,
     generateSample,
     azureSdkForJs,
-    coreHttpCompatMode
+    productDocLink,
+    coreHttpCompatMode,
+    dependencyInfo
   };
 }
 
@@ -307,6 +311,12 @@ async function getBatch(
   return batch;
 }
 
+async function getProductDocLink(
+  host: AutorestExtensionHost
+): Promise<string | undefined> {
+  return (await host.getValue("product-doc-link")) || undefined;
+}
+
 async function getMultiClient(host: AutorestExtensionHost): Promise<boolean> {
   const multiClient = (await host.getValue("multi-client")) || undefined;
   return !!multiClient;
@@ -316,4 +326,35 @@ async function getCoreHttpCompatMode(
   host: AutorestExtensionHost
 ): Promise<boolean> {
   return (await host.getValue("core-http-compat-mode")) || false;
+}
+
+async function getDependencyInfo(
+  host: AutorestExtensionHost
+): Promise<DependencyInfo | undefined> {
+  const dependency: DependencyInfo | undefined =
+    (await host.getValue("dependency-info")) || undefined;
+
+  if (dependency && dependency.description && dependency.link) {
+    return dependency;
+  }
+
+  const link: string | undefined =
+    (await host.getValue<string>("dependency-info.link")) || undefined;
+  const description: string | undefined =
+    (await host.getValue("dependency-info.description")) || undefined;
+
+  if (description && link) {
+    return {
+      link,
+      description
+    };
+  }
+
+  if (!dependency && !description && !link) {
+    return undefined;
+  }
+
+  throw new Error(
+    "Invalid dependency-info. Make sure that link and description are defined"
+  );
 }

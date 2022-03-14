@@ -82,6 +82,7 @@ async function generate(name: string, swaggerInfo: SwaggerInfo) {
     srcPath: "",
     restLevelClient: true,
     azureSdkForJs: false,
+    azureArm: false,
     rlcShortcut: true,
     addCredentials: false,
     outputPath: `./test/version-tolerance/generated/${swaggerInfo.output}`,

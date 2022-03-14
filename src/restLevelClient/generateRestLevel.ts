@@ -25,6 +25,7 @@ import { generateRecordedClientFile } from "../generators/test/recordedClientFil
 import { generateSampleTestFile } from "../generators/test/sampleTestGenerator";
 import { generateEsLintConfig } from "../generators/static/esLintConfigGenerator";
 import { generateRollupConfig } from "../generators/static/rollupConfigFileGenerator";
+import { generateReadmeFile } from "../generators/static/readmeFileGenerator";
 
 /**
  * Generates a Rest Level Client library
@@ -48,7 +49,9 @@ export async function generateRestLevelClient() {
     generatePollingHelper(project);
   }
 
+
   performCodeModelMutations(model);
+  generateReadmeFile(model.language, model.info, project);
   generatePackageJson(project);
   generateLicenseFile(project);
   generateTsConfig(project);
@@ -83,7 +86,7 @@ export async function generateRestLevelClient() {
     let fileContents = fs.readFileSync(filePath);
     const licenseHeader = `// Copyright (c) Microsoft Corporation.\n// Licensed under the MIT license.\n`;
 
-    if (!isJson) {
+    if (isSourceCode) {
       fileContents = `${licenseHeader.trimLeft()}\n${fileContents}`;
     }
 

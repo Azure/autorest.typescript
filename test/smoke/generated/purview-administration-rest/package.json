@@ -1,6 +1,6 @@
 {
   "name": "@msinternal/purview-administration-rest",
-  "sdk-type": "mgmt",
+  "sdk-type": "client",
   "author": "Microsoft Corporation",
   "version": "1.0.0-beta.2",
   "description": "",
