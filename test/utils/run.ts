@@ -25,6 +25,7 @@ export async function runAutorest(
     ignoreNullableOnOptional,
     title,
     restLevelClient,
+    azureSdkForJs,
     rlcShortcut,
     headAsBoolean,
     isTestPackage,
@@ -54,6 +55,9 @@ export async function runAutorest(
   }
   if (restLevelClient === true) {
     commandArguments.push(`--rest-level-client=${restLevelClient}`);
+  }
+  if (azureSdkForJs !== undefined) {
+    commandArguments.push(`--azure-sdk-for-js=${azureSdkForJs}`);
   }
   if (azureArm !== undefined && !azureArm) {
     commandArguments.push(`--openapi-type=data-plane`);

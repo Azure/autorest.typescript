@@ -81,6 +81,7 @@ async function generate(name: string, swaggerInfo: SwaggerInfo) {
   await runAutorest(swaggerPath, {
     srcPath: "",
     restLevelClient: true,
+    azureSdkForJs: false,
     azureArm: false,
     rlcShortcut: true,
     addCredentials: false,

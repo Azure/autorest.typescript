@@ -3,7 +3,6 @@
 
 import { Context } from "mocha";
 import {
-  env,
   record,
   RecorderEnvironmentSetup,
   Recorder
