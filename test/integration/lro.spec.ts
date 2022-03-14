@@ -14,6 +14,7 @@ import {
   check204
 } from "../utils/responseStatusChecker";
 import { HttpClientWithCookieSupport } from "./testUtils/HttpClientWithCookieSupport";
+import { PollerCancelledError } from "@azure/core-lro";
 
 const clientOptions: ServiceClientOptions = {
   httpClient: new HttpClientWithCookieSupport(),
@@ -115,15 +116,19 @@ describe("LROs", () => {
     let state: any, serializedState: string;
     it("should handle serializing the state", async () => {
       const poller = await client.lROs.beginPut200Succeeded(LROOptions);
-      poller.onProgress(currentState => {
-        if (state === undefined && serializedState === undefined) {
-          state = currentState;
-          serializedState = JSON.stringify({ state: currentState });
-          assert.equal(serializedState, poller.toString());
-        }
-      });
+      if (!poller.isDone()) {
+        poller.onProgress(currentState => {
+          if (state === undefined && serializedState === undefined) {
+            state = currentState;
+            serializedState = JSON.stringify({ state: currentState });
+            assert.equal(serializedState, poller.toString());
+          }
+        });
+      }
       await poller.pollUntilDone();
-      assert.ok(state.initialRawResponse);
+      if (state) {
+        assert.ok(state.initialRawResponse);
+      }
     });
   });
 
