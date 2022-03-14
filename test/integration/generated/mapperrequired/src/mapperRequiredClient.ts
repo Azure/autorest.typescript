@@ -48,7 +48,7 @@ export class MapperRequiredClient extends coreClient.ServiceClient {
       userAgentOptions: {
         userAgentPrefix
       },
-      baseUri: options.endpoint || "{$host}"
+      baseUri: options.endpoint ?? options.baseUri ?? "{$host}"
     };
     super(optionsWithDefaults);
     // Parameter assignments

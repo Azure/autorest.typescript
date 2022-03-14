@@ -135,10 +135,12 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       putNonRetry400OperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**
@@ -209,10 +211,12 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       putNonRetry201Creating400OperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**
@@ -284,10 +288,12 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       putNonRetry201Creating400InvalidJsonOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**
@@ -361,10 +367,12 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       putAsyncRelativeRetry400OperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**
@@ -435,10 +443,12 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       deleteNonRetry400OperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**
@@ -508,10 +518,12 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       delete202NonRetry400OperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**
@@ -582,10 +594,12 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       deleteAsyncRelativeRetry400OperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**
@@ -656,10 +670,12 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       postNonRetry400OperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**
@@ -729,10 +745,12 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       post202NonRetry400OperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**
@@ -803,10 +821,12 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       postAsyncRelativeRetry400OperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**
@@ -877,10 +897,12 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       putError201NoProvisioningStatePayloadOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**
@@ -954,10 +976,12 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       putAsyncRelativeRetryNoStatusOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**
@@ -1031,10 +1055,12 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       putAsyncRelativeRetryNoStatusPayloadOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**
@@ -1103,10 +1129,12 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       delete204SucceededOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**
@@ -1177,10 +1205,12 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       deleteAsyncRelativeRetryNoStatusOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**
@@ -1251,10 +1281,12 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       post202NoLocationOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**
@@ -1326,10 +1358,12 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       postAsyncRelativeRetryNoPayloadOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**
@@ -1402,10 +1436,12 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       put200InvalidJsonOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**
@@ -1477,10 +1513,12 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       putAsyncRelativeRetryInvalidHeaderOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**
@@ -1555,10 +1593,12 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       putAsyncRelativeRetryInvalidJsonPollingOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**
@@ -1633,10 +1673,12 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       delete202RetryInvalidHeaderOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**
@@ -1708,10 +1750,12 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       deleteAsyncRelativeRetryInvalidHeaderOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**
@@ -1787,10 +1831,12 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       deleteAsyncRelativeRetryInvalidJsonPollingOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**
@@ -1864,10 +1910,12 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       post202RetryInvalidHeaderOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**
@@ -1940,10 +1988,12 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       postAsyncRelativeRetryInvalidHeaderOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**
@@ -2019,10 +2069,12 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       postAsyncRelativeRetryInvalidJsonPollingOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**

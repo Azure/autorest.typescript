@@ -47,7 +47,8 @@ export class LroParametrizedEndpointsClient extends coreClient.ServiceClient {
       userAgentOptions: {
         userAgentPrefix
       },
-      baseUri: options.endpoint || "http://{accountName}{host}"
+      baseUri:
+        options.endpoint ?? options.baseUri ?? "http://{accountName}{host}"
     };
     super(optionsWithDefaults);
 
@@ -113,11 +114,13 @@ export class LroParametrizedEndpointsClient extends coreClient.ServiceClient {
       { accountName, options },
       pollWithParameterizedEndpointsOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
       lroResourceLocationConfig: "location"
     });
+    poller.poll();
+    return poller;
   }
 
   /**
@@ -194,10 +197,12 @@ export class LroParametrizedEndpointsClient extends coreClient.ServiceClient {
       { accountName, options },
       pollWithConstantParameterizedEndpointsOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**

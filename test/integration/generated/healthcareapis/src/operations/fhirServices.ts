@@ -212,10 +212,12 @@ export class FhirServicesImpl implements FhirServices {
       },
       createOrUpdateOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**
@@ -313,10 +315,12 @@ export class FhirServicesImpl implements FhirServices {
       },
       updateOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**
@@ -401,10 +405,12 @@ export class FhirServicesImpl implements FhirServices {
       { resourceGroupName, fhirServiceName, workspaceName, options },
       deleteOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**

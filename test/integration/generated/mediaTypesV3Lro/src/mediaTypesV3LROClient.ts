@@ -53,7 +53,7 @@ export class MediaTypesV3LROClient extends coreClient.ServiceClient {
       userAgentOptions: {
         userAgentPrefix
       },
-      baseUri: options.endpoint || "{$host}"
+      baseUri: options.endpoint ?? options.baseUri ?? "{$host}"
     };
     super(optionsWithDefaults);
     // Parameter assignments
@@ -167,10 +167,12 @@ export class MediaTypesV3LROClient extends coreClient.ServiceClient {
     };
 
     const lro = new LroImpl(sendOperation, operationArguments, operationSpec);
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**

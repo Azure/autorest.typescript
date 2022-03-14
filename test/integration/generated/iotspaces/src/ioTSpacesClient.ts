@@ -45,7 +45,7 @@ export class IoTSpacesClient extends coreClient.ServiceClient {
       userAgentOptions: {
         userAgentPrefix
       },
-      baseUri: options.endpoint
+      baseUri: options.endpoint ?? options.baseUri ?? ""
     };
     super(optionsWithDefaults);
   }

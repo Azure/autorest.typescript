@@ -229,10 +229,12 @@ export class DomainServicesImpl implements DomainServices {
       { resourceGroupName, domainServiceName, domainService, options },
       createOrUpdateOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**
@@ -334,10 +336,12 @@ export class DomainServicesImpl implements DomainServices {
       { resourceGroupName, domainServiceName, options },
       deleteOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**
@@ -424,10 +428,12 @@ export class DomainServicesImpl implements DomainServices {
       { resourceGroupName, domainServiceName, domainService, options },
       updateOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**

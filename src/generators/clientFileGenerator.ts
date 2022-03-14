@@ -554,13 +554,15 @@ function writeDefaultOptions(
 }
 
 function getEndpointStatement({ endpoint }: EndpointDetails) {
-  return `this.baseUri = options.endpoint ${
-    endpoint ? ` || "${endpoint}"` : ""
+  return `this.baseUri = options.endpoint ?? ${
+    endpoint ? `"${endpoint}"` : `""`
   };`;
 }
 
 function getEndpoint({ endpoint }: EndpointDetails) {
-  return `options.endpoint ${endpoint ? ` || "${endpoint}"` : ""}`;
+  return `options.endpoint ?? options.baseUri ?? ${
+    endpoint ? `"${endpoint}"` : `""`
+  }`;
 }
 
 function getRequiredParamAssignments(requiredParameters: ParameterDetails[]) {

@@ -100,10 +100,12 @@ export class LRORetrysImpl implements LRORetrys {
       { options },
       put201CreatingSucceeded200OperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**
@@ -177,10 +179,12 @@ export class LRORetrysImpl implements LRORetrys {
       { options },
       putAsyncRelativeRetrySucceededOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**
@@ -256,10 +260,12 @@ export class LRORetrysImpl implements LRORetrys {
       { options },
       deleteProvisioning202Accepted200SucceededOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**
@@ -334,10 +340,12 @@ export class LRORetrysImpl implements LRORetrys {
       { options },
       delete202Retry200OperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**
@@ -409,10 +417,12 @@ export class LRORetrysImpl implements LRORetrys {
       { options },
       deleteAsyncRelativeRetrySucceededOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**
@@ -484,10 +494,12 @@ export class LRORetrysImpl implements LRORetrys {
       { options },
       post202Retry200OperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**
@@ -560,10 +572,12 @@ export class LRORetrysImpl implements LRORetrys {
       { options },
       postAsyncRelativeRetrySucceededOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**

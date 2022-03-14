@@ -95,10 +95,12 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
       { options },
       putAsyncRetrySucceededOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**
@@ -174,10 +176,12 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
       { options },
       put201CreatingSucceeded200OperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**
@@ -252,10 +256,12 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
       { options },
       post202Retry200OperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**
@@ -330,10 +336,12 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
       { options },
       postAsyncRetrySucceededOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    poller.poll();
+    return poller;
   }
 
   /**
