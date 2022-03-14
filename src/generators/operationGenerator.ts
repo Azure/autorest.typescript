@@ -984,7 +984,7 @@ function writeLroOperationBody(
         ? `, lroResourceLocationConfig: "${lroResourceLocationConfig.toLowerCase()}"`
         : ""
     } });`,
-    'poller.poll();',
+    'await poller.poll();',
     'return poller;'
   ]);
 

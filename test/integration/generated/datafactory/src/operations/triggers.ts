@@ -275,7 +275,7 @@ export class TriggersImpl implements Triggers {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    poller.poll();
+    await poller.poll();
     return poller;
   }
 
@@ -386,7 +386,7 @@ export class TriggersImpl implements Triggers {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    poller.poll();
+    await poller.poll();
     return poller;
   }
 
@@ -473,7 +473,7 @@ export class TriggersImpl implements Triggers {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    poller.poll();
+    await poller.poll();
     return poller;
   }
 
@@ -560,7 +560,7 @@ export class TriggersImpl implements Triggers {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    poller.poll();
+    await poller.poll();
     return poller;
   }
 

@@ -171,7 +171,7 @@ export class MediaTypesV3LROClient extends coreClient.ServiceClient {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    poller.poll();
+    await poller.poll();
     return poller;
   }
 

@@ -91,7 +91,7 @@ export class IntegrationRuntimeObjectMetadataImpl
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    poller.poll();
+    await poller.poll();
     return poller;
   }
 

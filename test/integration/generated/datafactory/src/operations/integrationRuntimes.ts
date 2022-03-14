@@ -411,7 +411,7 @@ export class IntegrationRuntimesImpl implements IntegrationRuntimes {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    poller.poll();
+    await poller.poll();
     return poller;
   }
 
@@ -498,7 +498,7 @@ export class IntegrationRuntimesImpl implements IntegrationRuntimes {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    poller.poll();
+    await poller.poll();
     return poller;
   }
 
