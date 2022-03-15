@@ -417,10 +417,12 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       { resourceGroupName, accountName, updateParameters, options },
       updateOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -508,10 +510,12 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       { resourceGroupName, accountName, createUpdateParameters, options },
       createOrUpdateOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -592,10 +596,12 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       { resourceGroupName, accountName, options },
       deleteOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -677,10 +683,12 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       { resourceGroupName, accountName, failoverParameters, options },
       failoverPriorityChangeOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -824,10 +832,12 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       { resourceGroupName, accountName, regionParameterForOffline, options },
       offlineRegionOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -909,10 +919,12 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       { resourceGroupName, accountName, regionParameterForOnline, options },
       onlineRegionOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -1028,10 +1040,12 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       { resourceGroupName, accountName, keyToRegenerate, options },
       regenerateKeyOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**

@@ -695,10 +695,12 @@ export class SqlResourcesImpl implements SqlResources {
       },
       createUpdateSqlDatabaseOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -783,10 +785,12 @@ export class SqlResourcesImpl implements SqlResources {
       { resourceGroupName, accountName, databaseName, options },
       deleteSqlDatabaseOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -902,10 +906,12 @@ export class SqlResourcesImpl implements SqlResources {
       },
       updateSqlDatabaseThroughputOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -996,10 +1002,12 @@ export class SqlResourcesImpl implements SqlResources {
       { resourceGroupName, accountName, databaseName, options },
       migrateSqlDatabaseToAutoscaleOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -1088,10 +1096,12 @@ export class SqlResourcesImpl implements SqlResources {
       { resourceGroupName, accountName, databaseName, options },
       migrateSqlDatabaseToManualThroughputOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -1229,10 +1239,12 @@ export class SqlResourcesImpl implements SqlResources {
       },
       createUpdateSqlContainerOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -1322,10 +1334,12 @@ export class SqlResourcesImpl implements SqlResources {
       { resourceGroupName, accountName, databaseName, containerName, options },
       deleteSqlContainerOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -1448,10 +1462,12 @@ export class SqlResourcesImpl implements SqlResources {
       },
       updateSqlContainerThroughputOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -1547,10 +1563,12 @@ export class SqlResourcesImpl implements SqlResources {
       { resourceGroupName, accountName, databaseName, containerName, options },
       migrateSqlContainerToAutoscaleOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -1644,10 +1662,12 @@ export class SqlResourcesImpl implements SqlResources {
       { resourceGroupName, accountName, databaseName, containerName, options },
       migrateSqlContainerToManualThroughputOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -1803,10 +1823,12 @@ export class SqlResourcesImpl implements SqlResources {
       },
       createUpdateSqlStoredProcedureOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -1909,10 +1931,12 @@ export class SqlResourcesImpl implements SqlResources {
       },
       deleteSqlStoredProcedureOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -2073,10 +2097,12 @@ export class SqlResourcesImpl implements SqlResources {
       },
       createUpdateSqlUserDefinedFunctionOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -2179,10 +2205,12 @@ export class SqlResourcesImpl implements SqlResources {
       },
       deleteSqlUserDefinedFunctionOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -2340,10 +2368,12 @@ export class SqlResourcesImpl implements SqlResources {
       },
       createUpdateSqlTriggerOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -2445,10 +2475,12 @@ export class SqlResourcesImpl implements SqlResources {
       },
       deleteSqlTriggerOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -2569,10 +2601,12 @@ export class SqlResourcesImpl implements SqlResources {
       },
       createUpdateSqlRoleDefinitionOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -2658,10 +2692,12 @@ export class SqlResourcesImpl implements SqlResources {
       { roleDefinitionId, resourceGroupName, accountName, options },
       deleteSqlRoleDefinitionOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -2793,10 +2829,12 @@ export class SqlResourcesImpl implements SqlResources {
       },
       createUpdateSqlRoleAssignmentOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -2882,10 +2920,12 @@ export class SqlResourcesImpl implements SqlResources {
       { roleAssignmentId, resourceGroupName, accountName, options },
       deleteSqlRoleAssignmentOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -3002,11 +3042,13 @@ export class SqlResourcesImpl implements SqlResources {
       },
       retrieveContinuousBackupInformationOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
       lroResourceLocationConfig: "location"
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
