@@ -81,7 +81,7 @@ export class AzureSpecialPropertiesClient extends coreClient.ServiceClient {
       userAgentOptions: {
         userAgentPrefix
       },
-      baseUri: options.endpoint || "http://localhost:3000"
+      baseUri: options.endpoint ?? options.baseUri ?? "http://localhost:3000"
     };
     super(optionsWithDefaults);
     // Parameter assignments

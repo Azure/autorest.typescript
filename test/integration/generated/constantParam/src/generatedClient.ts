@@ -52,7 +52,10 @@ export class GeneratedClient extends coreClient.ServiceClient {
       userAgentOptions: {
         userAgentPrefix
       },
-      baseUri: options.endpoint || "{Endpoint}/text/analytics/{ApiVersion}"
+      baseUri:
+        options.endpoint ??
+        options.baseUri ??
+        "{Endpoint}/text/analytics/{ApiVersion}"
     };
     super(optionsWithDefaults);
     // Parameter assignments

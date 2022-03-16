@@ -979,11 +979,13 @@ function writeLroOperationBody(
     sendOperationStatement,
     `const lro = new LroImpl(sendOperation,${operationParamsName},
       ${operationSpecName})`,
-    `return new LroEngine(lro,{ resumeFrom: options?.resumeFrom, intervalInMs: options?.updateIntervalInMs${
+    `const poller = new LroEngine(lro,{ resumeFrom: options?.resumeFrom, intervalInMs: options?.updateIntervalInMs${
       lroResourceLocationConfig
         ? `, lroResourceLocationConfig: "${lroResourceLocationConfig.toLowerCase()}"`
         : ""
-    } });`
+    } });`,
+    'await poller.poll();',
+    'return poller;'
   ]);
 
   methodDeclaration.setReturnType(

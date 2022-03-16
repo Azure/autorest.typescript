@@ -1614,10 +1614,12 @@ export class PagingImpl implements Paging {
       { options },
       getMultiplePagesLROOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**

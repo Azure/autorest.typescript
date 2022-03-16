@@ -207,10 +207,12 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
       { resourceGroupName, scriptName, deploymentScript, options },
       createOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**

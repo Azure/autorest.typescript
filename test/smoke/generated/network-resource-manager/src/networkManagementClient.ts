@@ -319,7 +319,8 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
       userAgentOptions: {
         userAgentPrefix
       },
-      baseUri: options.endpoint || "https://management.azure.com"
+      baseUri:
+        options.endpoint ?? options.baseUri ?? "https://management.azure.com"
     };
     super(optionsWithDefaults);
     // Parameter assignments
@@ -878,11 +879,13 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
       { resourceGroupName, bastionHostName, bslRequest, options },
       putBastionShareableLinkOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
       lroResourceLocationConfig: "location"
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -942,11 +945,13 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
       { resourceGroupName, bastionHostName, bslRequest, options },
       deleteBastionShareableLinkOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
       lroResourceLocationConfig: "location"
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -1050,11 +1055,13 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
       { resourceGroupName, bastionHostName, options },
       getActiveSessionsOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
       lroResourceLocationConfig: "location"
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -1177,11 +1184,13 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
       { resourceGroupName, virtualWANName, vpnClientParams, options },
       generatevirtualwanvpnserverconfigurationvpnprofileOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
       lroResourceLocationConfig: "location"
     });
+    await poller.poll();
+    return poller;
   }
 
   /**

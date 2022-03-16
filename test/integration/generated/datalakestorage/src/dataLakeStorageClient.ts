@@ -61,7 +61,7 @@ export class DataLakeStorageClient extends coreClient.ServiceClient {
       userAgentOptions: {
         userAgentPrefix
       },
-      baseUri: options.endpoint || "{url}"
+      baseUri: options.endpoint ?? options.baseUri ?? "{url}"
     };
     super(optionsWithDefaults);
     // Parameter assignments

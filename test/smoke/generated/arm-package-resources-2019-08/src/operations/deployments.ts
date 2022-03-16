@@ -416,10 +416,12 @@ export class DeploymentsImpl implements Deployments {
       { scope, deploymentName, options },
       deleteAtScopeOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -526,10 +528,12 @@ export class DeploymentsImpl implements Deployments {
       { scope, deploymentName, parameters, options },
       createOrUpdateAtScopeOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -701,10 +705,12 @@ export class DeploymentsImpl implements Deployments {
       { deploymentName, options },
       deleteAtTenantScopeOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -801,10 +807,12 @@ export class DeploymentsImpl implements Deployments {
       { deploymentName, parameters, options },
       createOrUpdateAtTenantScopeOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -965,10 +973,12 @@ export class DeploymentsImpl implements Deployments {
       { groupId, deploymentName, options },
       deleteAtManagementGroupScopeOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -1077,10 +1087,12 @@ export class DeploymentsImpl implements Deployments {
       { groupId, deploymentName, parameters, options },
       createOrUpdateAtManagementGroupScopeOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -1252,10 +1264,12 @@ export class DeploymentsImpl implements Deployments {
       { deploymentName, options },
       deleteAtSubscriptionScopeOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -1355,10 +1369,12 @@ export class DeploymentsImpl implements Deployments {
       { deploymentName, parameters, options },
       createOrUpdateAtSubscriptionScopeOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -1490,11 +1506,13 @@ export class DeploymentsImpl implements Deployments {
       { deploymentName, parameters, options },
       whatIfAtSubscriptionScopeOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
       lroResourceLocationConfig: "location"
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -1607,10 +1625,12 @@ export class DeploymentsImpl implements Deployments {
       { resourceGroupName, deploymentName, options },
       deleteOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -1721,10 +1741,12 @@ export class DeploymentsImpl implements Deployments {
       { resourceGroupName, deploymentName, parameters, options },
       createOrUpdateOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -1870,11 +1892,13 @@ export class DeploymentsImpl implements Deployments {
       { resourceGroupName, deploymentName, parameters, options },
       whatIfOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
       lroResourceLocationConfig: "location"
     });
+    await poller.poll();
+    return poller;
   }
 
   /**

@@ -301,10 +301,12 @@ export class GremlinResourcesImpl implements GremlinResources {
       },
       createUpdateGremlinDatabaseOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -390,10 +392,12 @@ export class GremlinResourcesImpl implements GremlinResources {
       { resourceGroupName, accountName, databaseName, options },
       deleteGremlinDatabaseOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -511,10 +515,12 @@ export class GremlinResourcesImpl implements GremlinResources {
       },
       updateGremlinDatabaseThroughputOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -607,10 +613,12 @@ export class GremlinResourcesImpl implements GremlinResources {
       { resourceGroupName, accountName, databaseName, options },
       migrateGremlinDatabaseToAutoscaleOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -699,10 +707,12 @@ export class GremlinResourcesImpl implements GremlinResources {
       { resourceGroupName, accountName, databaseName, options },
       migrateGremlinDatabaseToManualThroughputOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -840,10 +850,12 @@ export class GremlinResourcesImpl implements GremlinResources {
       },
       createUpdateGremlinGraphOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -933,10 +945,12 @@ export class GremlinResourcesImpl implements GremlinResources {
       { resourceGroupName, accountName, databaseName, graphName, options },
       deleteGremlinGraphOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -1060,10 +1074,12 @@ export class GremlinResourcesImpl implements GremlinResources {
       },
       updateGremlinGraphThroughputOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -1161,10 +1177,12 @@ export class GremlinResourcesImpl implements GremlinResources {
       { resourceGroupName, accountName, databaseName, graphName, options },
       migrateGremlinGraphToAutoscaleOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -1258,10 +1276,12 @@ export class GremlinResourcesImpl implements GremlinResources {
       { resourceGroupName, accountName, databaseName, graphName, options },
       migrateGremlinGraphToManualThroughputOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
