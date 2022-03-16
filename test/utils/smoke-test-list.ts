@@ -15,7 +15,8 @@ export enum AutorestParams {
   RestClient = "--rest-level-client=true",
   GenerateTest = "--generate-test=true",
   GenerateSamples = "--generate-sample=true",
-  MultiClient = "--multi-client"
+  MultiClient = "--multi-client",
+  AzureSdkForJs = "--azure-sdk-for-js=false"
 }
 
 const getArmReadmes = (): SpecDefinition[] => {
@@ -170,7 +171,7 @@ export const readmes: SpecDefinition[] = [
       "./.tmp/specs/specification/agrifood/data-plane/readme.md"
     ),
     branch: "3ac6ce225efe665e6c74abe48016dcb2a236d609",
-    params: [AutorestParams.RestClient, AutorestParams.GenerateTest],
+    params: [AutorestParams.RestClient, AutorestParams.GenerateTest, AutorestParams.AzureSdkForJs],
     buildTag: "ci_rlc"
   },
   {
@@ -179,7 +180,7 @@ export const readmes: SpecDefinition[] = [
       "..",
       "./smoke/swagger/purview-administration-rest.md"
     ),
-    params: [AutorestParams.RestClient, AutorestParams.MultiClient],
+    params: [AutorestParams.RestClient, AutorestParams.MultiClient, AutorestParams.AzureSdkForJs],
     buildTag: "ci_rlc"
   },
   {
@@ -188,7 +189,7 @@ export const readmes: SpecDefinition[] = [
       "..",
       "./smoke/swagger/synapse-artifacts-rest.md"
     ),
-    params: [AutorestParams.RestClient],
+    params: [AutorestParams.RestClient, AutorestParams.AzureSdkForJs],
     buildTag: "ci_rlc"
   }
   // {

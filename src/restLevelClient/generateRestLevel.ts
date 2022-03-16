@@ -23,6 +23,8 @@ import { generateEnvFile } from "../generators/test/envFileGenerator";
 import { generateEnvBrowserFile } from "../generators/test/envBrowserFileGenerator";
 import { generateRecordedClientFile } from "../generators/test/recordedClientFileGenerator";
 import { generateSampleTestFile } from "../generators/test/sampleTestGenerator";
+import { generateEsLintConfig } from "../generators/static/esLintConfigGenerator";
+import { generateRollupConfig } from "../generators/static/rollupConfigFileGenerator";
 import { generateReadmeFile } from "../generators/static/readmeFileGenerator";
 
 /**
@@ -54,6 +56,8 @@ export async function generateRestLevelClient() {
   generateLicenseFile(project);
   generateTsConfig(project);
   generateApiExtractorConfig(project);
+  generateRollupConfig(project);
+  generateEsLintConfig(project);
 
   generateKarmaConfigFile(project)
   generateEnvFile(project);

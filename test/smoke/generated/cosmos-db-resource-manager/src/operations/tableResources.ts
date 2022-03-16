@@ -214,10 +214,12 @@ export class TableResourcesImpl implements TableResources {
       },
       createUpdateTableOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -302,10 +304,12 @@ export class TableResourcesImpl implements TableResources {
       { resourceGroupName, accountName, tableName, options },
       deleteTableOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -421,10 +425,12 @@ export class TableResourcesImpl implements TableResources {
       },
       updateTableThroughputOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -515,10 +521,12 @@ export class TableResourcesImpl implements TableResources {
       { resourceGroupName, accountName, tableName, options },
       migrateTableToAutoscaleOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -605,10 +613,12 @@ export class TableResourcesImpl implements TableResources {
       { resourceGroupName, accountName, tableName, options },
       migrateTableToManualThroughputOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**

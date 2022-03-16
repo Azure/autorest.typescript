@@ -304,10 +304,12 @@ export class MongoDBResourcesImpl implements MongoDBResources {
       },
       createUpdateMongoDBDatabaseOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -393,10 +395,12 @@ export class MongoDBResourcesImpl implements MongoDBResources {
       { resourceGroupName, accountName, databaseName, options },
       deleteMongoDBDatabaseOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -514,10 +518,12 @@ export class MongoDBResourcesImpl implements MongoDBResources {
       },
       updateMongoDBDatabaseThroughputOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -610,10 +616,12 @@ export class MongoDBResourcesImpl implements MongoDBResources {
       { resourceGroupName, accountName, databaseName, options },
       migrateMongoDBDatabaseToAutoscaleOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -702,10 +710,12 @@ export class MongoDBResourcesImpl implements MongoDBResources {
       { resourceGroupName, accountName, databaseName, options },
       migrateMongoDBDatabaseToManualThroughputOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -844,10 +854,12 @@ export class MongoDBResourcesImpl implements MongoDBResources {
       },
       createUpdateMongoDBCollectionOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -938,10 +950,12 @@ export class MongoDBResourcesImpl implements MongoDBResources {
       { resourceGroupName, accountName, databaseName, collectionName, options },
       deleteMongoDBCollectionOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -1067,10 +1081,12 @@ export class MongoDBResourcesImpl implements MongoDBResources {
       },
       updateMongoDBCollectionThroughputOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -1168,10 +1184,12 @@ export class MongoDBResourcesImpl implements MongoDBResources {
       { resourceGroupName, accountName, databaseName, collectionName, options },
       migrateMongoDBCollectionToAutoscaleOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -1265,10 +1283,12 @@ export class MongoDBResourcesImpl implements MongoDBResources {
       { resourceGroupName, accountName, databaseName, collectionName, options },
       migrateMongoDBCollectionToManualThroughputOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
+    await poller.poll();
+    return poller;
   }
 
   /**
@@ -1373,11 +1393,13 @@ export class MongoDBResourcesImpl implements MongoDBResources {
       },
       retrieveContinuousBackupInformationOperationSpec
     );
-    return new LroEngine(lro, {
+    const poller = new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
       lroResourceLocationConfig: "location"
     });
+    await poller.poll();
+    return poller;
   }
 
   /**

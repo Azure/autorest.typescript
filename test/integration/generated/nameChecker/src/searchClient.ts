@@ -46,7 +46,10 @@ export class SearchClient extends coreClient.ServiceClient {
       userAgentOptions: {
         userAgentPrefix
       },
-      baseUri: options.endpoint || "{endpoint}/indexes('{indexName}')"
+      baseUri:
+        options.endpoint ??
+        options.baseUri ??
+        "{endpoint}/indexes('{indexName}')"
     };
     super(optionsWithDefaults);
     // Parameter assignments

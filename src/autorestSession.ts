@@ -35,6 +35,7 @@ export interface AutorestOptions {
   batch?: [string, any][];
   multiClient?: boolean;
   generateSample?: boolean;
+  azureSdkForJs?: boolean;
   productDocLink?: string;
   coreHttpCompatMode?: boolean;
   dependencyInfo?: DependencyInfo;

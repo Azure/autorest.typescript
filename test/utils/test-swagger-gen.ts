@@ -17,6 +17,7 @@ interface SwaggerConfig {
   useCoreV2?: boolean;
   allowInsecureConnection?: boolean;
   restLevelClient?: boolean;
+  azureSdkForJs?: boolean;
   rlcShortcut?: boolean;
   headAsBoolean?: boolean;
   isTestPackage?: boolean;
@@ -864,7 +865,8 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     allowInsecureConnection: true,
     addCredentials: false,
     isTestPackage: true,
-    restLevelClient: true
+    restLevelClient: true,
+    azureSdkForJs: false
   },
   bodyStringRest: {
     swaggerOrConfig: "body-string.json",
@@ -872,6 +874,7 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "body-string-rest",
     addCredentials: false,
     restLevelClient: true,
+    azureSdkForJs: false,
     licenseHeader: true,
     isTestPackage: true,
     generateTest: true
@@ -882,6 +885,7 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "body-complex-rest",
     licenseHeader: true,
     restLevelClient: true,
+    azureSdkForJs: false,
     allowInsecureConnection: true,
     addCredentials: false,
     isTestPackage: true
@@ -893,7 +897,8 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     addCredentials: false,
     isTestPackage: true,
-    restLevelClient: true
+    restLevelClient: true,
+    azureSdkForJs: false
   },
   multipleInheritanceRest: {
     swaggerOrConfig: "multiple-inheritance.json",
@@ -904,6 +909,7 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     allowInsecureConnection: true,
     addCredentials: false,
     restLevelClient: true,
+    azureSdkForJs: false,
     rlcShortcut: true,
     isTestPackage: true
   },
@@ -914,7 +920,8 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     addCredentials: false,
     isTestPackage: true,
-    restLevelClient: true
+    restLevelClient: true,
+    azureSdkForJs: false
   },
   bodyFileRest: {
     swaggerOrConfig: "body-file.json",
@@ -924,7 +931,8 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     allowInsecureConnection: true,
     addCredentials: false,
     isTestPackage: true,
-    restLevelClient: true
+    restLevelClient: true,
+    azureSdkForJs: false
   },
   headerRest: {
     swaggerOrConfig: "header.json",
@@ -932,6 +940,7 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "header-rest",
     licenseHeader: true,
     restLevelClient: true,
+    azureSdkForJs: false,
     allowInsecureConnection: true,
     addCredentials: false,
     isTestPackage: true
@@ -945,7 +954,8 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     rlcShortcut: true,
     allowInsecureConnection: true,
     addCredentials: false,
-    isTestPackage: true
+    isTestPackage: true,
+    azureSdkForJs: false
   },
   bodyFormDataRest: {
     swaggerOrConfig: "body-formdata.json",
@@ -956,7 +966,8 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     allowInsecureConnection: true,
     addCredentials: false,
     isTestPackage: true,
-    restLevelClient: true
+    restLevelClient: true,
+    azureSdkForJs: false
   },
   customUrlRest: {
     swaggerOrConfig: "custom-baseUrl.json",
@@ -964,6 +975,7 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "custom-url-rest",
     licenseHeader: true,
     restLevelClient: true,
+    azureSdkForJs: false,
     rlcShortcut: true,
     allowInsecureConnection: true,
     addCredentials: false,
@@ -998,7 +1010,8 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     useCoreV2: true,
     allowInsecureConnection: true,
     addCredentials: false,
-    isTestPackage: true
+    isTestPackage: true,
+    azureSdkForJs: false
   }
 };
 
@@ -1032,6 +1045,7 @@ const generateSwaggers = async (
       useCoreV2,
       allowInsecureConnection,
       restLevelClient,
+      azureSdkForJs,
       headAsBoolean,
       isTestPackage,
       generateTest,
@@ -1075,6 +1089,7 @@ const generateSwaggers = async (
         useCoreV2,
         allowInsecureConnection,
         restLevelClient,
+        azureSdkForJs: azureSdkForJs,
         rlcShortcut,
         headAsBoolean,
         isTestPackage,

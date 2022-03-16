@@ -17,6 +17,6 @@ describe("My test", () => {
   });
 
   it("sample test", async function() {
-    console.log("Hi, I'm a test!");
+    assert.equal(1, 1);
   });
 });

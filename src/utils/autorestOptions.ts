@@ -38,6 +38,7 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
   const generateSample = await getGenerateSample(host);
   const productDocLink = await getProductDocLink(host);
   const coreHttpCompatMode = await getCoreHttpCompatMode(host);
+  const azureSdkForJs = await getAzureSdkForJs(host);
   const dependencyInfo = await getDependencyInfo(host);
 
   return {
@@ -65,8 +66,9 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
     isTestPackage,
     generateTest,
     batch,
-    generateSample,
     multiClient,
+    generateSample,
+    azureSdkForJs,
     productDocLink,
     coreHttpCompatMode,
     dependencyInfo
@@ -102,6 +104,11 @@ async function getGenerateSample(
 ): Promise<boolean> {
   const generateSample = await host.getValue("generate-sample");
   return generateSample === null ? false : Boolean(generateSample);
+}
+
+async function getAzureSdkForJs(host: AutorestExtensionHost): Promise<boolean> {
+  const azureSdkForJs = await host.getValue("azure-sdk-for-js");
+  return azureSdkForJs === null ? true : Boolean(azureSdkForJs);
 }
 
 async function getSkipEnumValidation(
