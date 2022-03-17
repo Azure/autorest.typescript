@@ -1,3 +1,7 @@
+## 6.0.0-beta.17 (2022-03-17)
+
+- [BugFix] Include the `@azure/core-http-compat` package correctly in the client file. Please refer [#1344](https://github.com/Azure/autorest.typescript/issues/1344) for further details.
+
 ## 6.0.0-beta.16 (2022-03-01)
 
 - [Feature] Bumped @autorest/extension-base version to 3.4.1 and fix breaking changes. [#1253](https://github.com/Azure/autorest.typescript/pull/1253)

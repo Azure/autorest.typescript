@@ -94,6 +94,10 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
       namespaceImport: "coreClient",
       moduleSpecifier: "@azure/core-client"
     });
+    clientFile.addImportDeclaration({
+      namespaceImport: "coreHttpCompat",
+      moduleSpecifier: "@azure/core-http-compat"
+    });
   }
 
   if (hasCredentials || hasInlineOperations || !hasClientOptionalParams) {
@@ -111,10 +115,6 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
         moduleSpecifier: "@azure/core-auth"
       });
     }
-    clientFile.addImportDeclaration({
-      namespaceImport: "coreHttpCompat",
-      moduleSpecifier: "@azure/core-http-compat"
-    });
   }
 
   addPagingEsNextRef(flattenedInlineOperations, clientFile);
