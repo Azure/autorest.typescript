@@ -153,14 +153,19 @@ const extractOperationParameters = (codeModel: CodeModel) =>
           // This is known to be the case when an operation can consume multiple media types.
           // We need to ensure that the parameters from each request (method overload) is accounted for.
           const requestParams: OperationParameterDetails[] = [];
-          requests.forEach(request => {
-            request.parameters?.forEach(parameter => {
+          requests.map(request => {
+            request.parameters?.map(parameter => {
               requestParams.push({
                 operationName,
                 parameter,
                 targetMediaType: request.protocol.http?.knownMediaType
               });
+              if ((parameter as any)['targetProperty'] !== undefined) {
+                (parameter as any)['targetProperty'].language.default.isParameter = true;
+              }
+              return parameter;
             });
+            return request;
           });
           return [...operations, ...requestParams, ...operationParams];
         },
