@@ -92,7 +92,7 @@ export function transformProperty({
   return {
     name: normalizeName(
       metadata.name,
-      NameType.Property,
+      metadata.isParameter? NameType.Parameter: NameType.Property,
       true /** shouldGuard */
     ),
     description,

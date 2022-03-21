@@ -147,7 +147,15 @@ const extractOperationParameters = (codeModel: CodeModel) =>
           }
           const operationParams: OperationParameterDetails[] = (
             operation.parameters || []
-          ).map(p => ({ parameter: p, operationName }));
+          ).map(p => { 
+            if (p.required || p.flattened) {
+              p.language.default.isParameter = true;
+            }
+            return {
+              parameter: p, 
+              operationName 
+            }  
+          });
 
           // Operations may have multiple requests, each with their own set of parameters.
           // This is known to be the case when an operation can consume multiple media types.
@@ -160,8 +168,12 @@ const extractOperationParameters = (codeModel: CodeModel) =>
                 parameter,
                 targetMediaType: request.protocol.http?.knownMediaType
               });
-              if ((parameter as any)['targetProperty'] !== undefined) {
-                (parameter as any)['targetProperty'].language.default.isParameter = true;
+              if (parameter.required || parameter.flattened) {
+                if ((parameter as any)['targetProperty'] !== undefined) {
+                  (parameter as any)['targetProperty'].language.default.isParameter = true;
+                } else {
+                  parameter.language.default.isParameter = true;
+                }
               }
               return parameter;
             });
@@ -336,7 +348,7 @@ function getParameterPath(parameter: Parameter) {
   const name = normalizeName(
     metadata.name,
     NameType.Parameter,
-    true /** shouldGuard */
+    // true /** shouldGuard */
   );
 
   if (parameter.groupedBy) {
@@ -346,7 +358,7 @@ function getParameterPath(parameter: Parameter) {
       ...(!parameter.required && !parameter.groupedBy.required
         ? ["options"]
         : []),
-      normalizeName(groupedByName, NameType.Parameter, true /** shouldGuard */),
+      normalizeName(groupedByName, NameType.Parameter),
       name
     ];
   }
