@@ -131,7 +131,7 @@ export const apiVersion: OperationQueryParameter = {
   parameterPath: "apiVersion",
   mapper: {
     defaultValue: "2014-04-01",
-    isConstant: true,
+    isConstant: false,
     serializedName: "api-version",
     type: {
       name: "String"
@@ -269,7 +269,7 @@ export const apiVersion1: OperationQueryParameter = {
   parameterPath: "apiVersion",
   mapper: {
     defaultValue: "2021-05-01-preview",
-    isConstant: true,
+    isConstant: false,
     serializedName: "api-version",
     type: {
       name: "String"
@@ -349,7 +349,7 @@ export const apiVersion2: OperationQueryParameter = {
   parameterPath: "apiVersion",
   mapper: {
     defaultValue: "2020-11-01-preview",
-    isConstant: true,
+    isConstant: false,
     serializedName: "api-version",
     type: {
       name: "String"
@@ -387,7 +387,7 @@ export const apiVersion3: OperationQueryParameter = {
   parameterPath: "apiVersion",
   mapper: {
     defaultValue: "2021-02-01-preview",
-    isConstant: true,
+    isConstant: false,
     serializedName: "api-version",
     type: {
       name: "String"

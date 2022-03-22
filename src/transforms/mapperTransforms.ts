@@ -623,7 +623,12 @@ function transformConstantMapper(pipelineValue: PipelineValue): PipelineValue {
     isConstant: true,
     ...(serializedName && { serializedName })
   };
-
+  /**
+   * we should allow customer to input api-version 
+   */
+  if (serializedName == "api-version") {
+    mapper.isConstant = false;
+  }
   return {
     schema,
     mapper,
