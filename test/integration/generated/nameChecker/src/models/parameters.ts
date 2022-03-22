@@ -46,7 +46,7 @@ export const indexName: OperationURLParameter = {
 };
 
 export const xMsClientRequestId: OperationParameter = {
-  parameterPath: ["options", "requestOptionsParam", "xMsClientRequestId"],
+  parameterPath: ["options", "requestOptions", "xMsClientRequestId"],
   mapper: {
     serializedName: "x-ms-client-request-id",
     type: {
