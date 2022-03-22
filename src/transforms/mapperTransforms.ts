@@ -310,9 +310,6 @@ function isUberParent(objectSchema: ObjectSchema) {
 
 function transformObjectMapper(pipelineValue: PipelineValue) {
   const { schema, options } = pipelineValue;
-  if (schema.language.default.name == "ResourceNameAvailabilityRequest") {
-    const myschema = schema;
-  }
 
   if (!isSchemaType([SchemaType.Object], schema)) {
     return pipelineValue;
