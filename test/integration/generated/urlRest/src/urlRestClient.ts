@@ -2,11 +2,11 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { UrlRestClientLike } from "./clientDefinitions";
+import { UrlRestClient } from "./clientDefinitions";
 
-export default function UrlRestClient(
+export default function createClient(
   options: ClientOptions = {}
-): UrlRestClientLike {
+): UrlRestClient {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
 
   const userAgentInfo = `azsdk-js-url-rest/1.0.0-preview1`;
@@ -21,7 +21,7 @@ export default function UrlRestClient(
     }
   };
 
-  const client = getClient(baseUrl, options) as UrlRestClientLike;
+  const client = getClient(baseUrl, options) as UrlRestClient;
 
   return {
     ...client,

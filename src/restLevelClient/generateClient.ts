@@ -55,11 +55,11 @@ export function generateClient(model: CodeModel, project: Project) {
       ? []
       : [{ name: "credentials", type: credentialTypes.join(" | ") }])
   ];
-  const clientInterfaceName = `${clientName}Like`;
+  const clientInterfaceName = clientName.endsWith("Client")? `${clientName}`: `${clientName}Client`;
 
   const functionStatement = {
     isExported: true,
-    name: `${clientName}`,
+    name: `createClient`,
     parameters: [
       ...commonClientParams,
       { name: "options", type: "ClientOptions = {}" }

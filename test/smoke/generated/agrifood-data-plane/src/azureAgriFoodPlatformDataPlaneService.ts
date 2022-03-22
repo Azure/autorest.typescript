@@ -2,12 +2,12 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { AzureAgriFoodPlatformDataPlaneServiceLike } from "./clientDefinitions";
+import { AzureAgriFoodPlatformDataPlaneServiceClient } from "./clientDefinitions";
 
-export default function AzureAgriFoodPlatformDataPlaneService(
+export default function createClient(
   Endpoint: string,
   options: ClientOptions = {}
-): AzureAgriFoodPlatformDataPlaneServiceLike {
+): AzureAgriFoodPlatformDataPlaneServiceClient {
   const baseUrl = options.baseUrl ?? `${Endpoint}`;
   options.apiVersion = options.apiVersion ?? "2021-03-31-preview";
 
@@ -26,7 +26,7 @@ export default function AzureAgriFoodPlatformDataPlaneService(
   const client = getClient(
     baseUrl,
     options
-  ) as AzureAgriFoodPlatformDataPlaneServiceLike;
+  ) as AzureAgriFoodPlatformDataPlaneServiceClient;
 
   return client;
 }

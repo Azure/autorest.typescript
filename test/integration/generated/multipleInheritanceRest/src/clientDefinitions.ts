@@ -124,6 +124,6 @@ export interface Routes {
   (path: "/multipleInheritance/kitten"): GetKitten;
 }
 
-export type MultipleInheritanceRestClientLike = Client & {
+export type MultipleInheritanceRestClient = Client & {
   path: Routes;
 } & ClientOperations;

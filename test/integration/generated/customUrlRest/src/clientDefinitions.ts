@@ -25,7 +25,7 @@ export interface Routes {
   (path: "/customuri"): GetEmpty;
 }
 
-export type CustomUrlRestClientLike = Client & {
+export type CustomUrlRestClient = Client & {
   path: Routes;
   paths: PathsOperations;
 };

@@ -1408,7 +1408,7 @@ export interface Routes {
   ): PathItemsGetLocalPathItemQueryNull;
 }
 
-export type UrlRestClientLike = Client & {
+export type UrlRestClient = Client & {
   path: Routes;
   paths: PathsOperations;
   queries: QueriesOperations;

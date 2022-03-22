@@ -247,7 +247,7 @@ declare namespace Client_2 {
         MetadataPolicyListAll,
         MetadataPolicyUpdate,
         Routes,
-        PurviewMetadataPoliciesLike
+        PurviewMetadataPoliciesClient
     }
 }
 
@@ -263,7 +263,7 @@ declare namespace Client_3 {
         ResourceSetRulesGetResourceSetRule,
         ResourceSetRulesListResourceSetRules,
         Routes_2 as Routes,
-        PurviewAccountLike
+        PurviewAccountClient
     }
 }
 
@@ -560,6 +560,12 @@ interface ComplexReplacerConfigOutput {
     // (undocumented)
     typeName?: string;
 }
+
+// @public (undocumented)
+function createClient(Endpoint: string, credentials: TokenCredential, options?: ClientOptions): PurviewMetadataPoliciesClient;
+
+// @public (undocumented)
+function createClient_2(endpoint: string, credentials: TokenCredential, options?: ClientOptions): PurviewAccountClient;
 
 // @public (undocumented)
 interface DataPlaneAccountUpdateParameters {
@@ -1256,7 +1262,7 @@ interface PrivateLinkServiceConnectionStateOutput {
 
 declare namespace PurviewAccount {
     export {
-        PurviewAccountClient as PurviewAccount,
+        createClient_2 as PurviewAccount,
         Parameters_3 as Parameters,
         Responses_2 as Responses,
         Client_3 as Client,
@@ -1268,16 +1274,13 @@ declare namespace PurviewAccount {
 export { PurviewAccount }
 
 // @public (undocumented)
-export function PurviewAccountClient(endpoint: string, credentials: TokenCredential, options?: ClientOptions): PurviewAccountLike;
-
-// @public (undocumented)
-type PurviewAccountLike = Client & {
+type PurviewAccountClient = Client & {
     path: Routes_2;
 };
 
 declare namespace PurviewMetadataPolicies {
     export {
-        PurviewMetadataPoliciesClient as PurviewMetadataPolicies,
+        createClient as PurviewMetadataPolicies,
         Parameters_2 as Parameters,
         Responses,
         Client_2 as Client,
@@ -1289,10 +1292,7 @@ declare namespace PurviewMetadataPolicies {
 export { PurviewMetadataPolicies }
 
 // @public (undocumented)
-export function PurviewMetadataPoliciesClient(Endpoint: string, credentials: TokenCredential, options?: ClientOptions): PurviewMetadataPoliciesLike;
-
-// @public (undocumented)
-type PurviewMetadataPoliciesLike = Client & {
+type PurviewMetadataPoliciesClient = Client & {
     path: Routes;
 };
 

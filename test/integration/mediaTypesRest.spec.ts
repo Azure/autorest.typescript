@@ -1,11 +1,11 @@
 import MediaTypes, {
-  MediaTypesLike
+  MediaTypesClient
 } from "./generated/mediaTypesRest/src";
 
 import { assert } from "chai";
 
 describe("Media types Rest", () => {
-  let client: MediaTypesLike;
+  let client: MediaTypesClient;
 
   beforeEach(() => {
     client = MediaTypes({ allowInsecureConnection: true });
