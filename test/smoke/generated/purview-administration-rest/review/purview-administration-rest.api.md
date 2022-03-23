@@ -1262,7 +1262,7 @@ interface PrivateLinkServiceConnectionStateOutput {
 
 declare namespace PurviewAccount {
     export {
-        createClient_2 as PurviewAccount,
+        createClient_2 as createClient,
         Parameters_3 as Parameters,
         Responses_2 as Responses,
         Client_3 as Client,
@@ -1280,7 +1280,7 @@ type PurviewAccountClient = Client & {
 
 declare namespace PurviewMetadataPolicies {
     export {
-        createClient as PurviewMetadataPolicies,
+        createClient,
         Parameters_2 as Parameters,
         Responses,
         Client_2 as Client,
