@@ -348,7 +348,7 @@ export interface PathsOperations {
   ): Promise<PathsDateNull400Response | PathsDateNulldefaultResponse>;
   /** Get '2012-01-01T01:01:01Z' as date-time */
   dateTimeValid(
-    dateTimePath: "2012-01-01T01:01:01Z",
+    dateTimePath: "2012-01-01T01:01:01.000Z",
     options?: PathsDateTimeValidParameters
   ): Promise<PathsDateTimeValid200Response | PathsDateTimeValiddefaultResponse>;
   /** Get null as date-time, should be disallowed or throw depending on representation of date-time */
@@ -1282,7 +1282,7 @@ export interface Routes {
   /** Resource for '/paths/datetime/2012-01-01T01%3A01%3A01Z/\{dateTimePath\}' has methods for the following verbs: get */
   (
     path: "/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}",
-    dateTimePath: "2012-01-01T01:01:01Z"
+    dateTimePath: "2012-01-01T01:01:01.000Z"
   ): PathsDateTimeValid;
   /** Resource for '/paths/datetime/null/\{dateTimePath\}' has methods for the following verbs: get */
   (

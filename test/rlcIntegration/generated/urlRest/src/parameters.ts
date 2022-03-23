@@ -353,7 +353,7 @@ export type QueriesDateNullParameters = QueriesDateNullQueryParam &
 
 export interface QueriesDateTimeValidQueryParamProperties {
   /** '2012-01-01T01:01:01Z' as date-time */
-  dateTimeQuery: "2012-01-01T01:01:01Z";
+  dateTimeQuery: "2012-01-01T01:01:01.000Z";
 }
 
 export interface QueriesDateTimeValidQueryParam {
