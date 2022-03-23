@@ -1,5 +1,5 @@
-import LRORestClient, {
-  LRORestClientLike,
+import LRORest, {
+  LRORestClient,
   getLongRunningPoller,
   Product
 } from "./generated/lroRest/src";
@@ -21,7 +21,7 @@ function createClient() {
     }
   };
 
-  const client = LRORestClient({
+  const client = LRORest({
     allowInsecureConnection: true,
     retryOptions: { retryDelayInMs: 0 }
   });
@@ -31,7 +31,7 @@ function createClient() {
 }
 
 describe("LRO Rest Client", () => {
-  let client: LRORestClientLike;
+  let client: LRORestClient;
 
   beforeEach(() => {
     client = createClient();

@@ -476,11 +476,7 @@ export interface AttachmentsListByFarmerIdQueryParamProperties {
 }
 
 // @public (undocumented)
-function AzureAgriFoodPlatformDataPlaneService(Endpoint: string, options?: ClientOptions): AzureAgriFoodPlatformDataPlaneServiceLike;
-export default AzureAgriFoodPlatformDataPlaneService;
-
-// @public (undocumented)
-export type AzureAgriFoodPlatformDataPlaneServiceLike = Client & {
+export type AzureAgriFoodPlatformDataPlaneServiceClient = Client & {
     path: Routes;
 };
 
@@ -883,6 +879,10 @@ export interface CascadeDeleteJobOutput {
     startTime?: string;
     status?: string;
 }
+
+// @public (undocumented)
+function createClient(Endpoint: string, options?: ClientOptions): AzureAgriFoodPlatformDataPlaneServiceClient;
+export default createClient;
 
 // @public (undocumented)
 export interface Crop {

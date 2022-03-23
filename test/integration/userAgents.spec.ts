@@ -9,7 +9,7 @@ import {
 } from "./generated/useragentcorev2/src";
 
 import BodyStringRest, {
-  BodyStringRestLike
+  BodyStringRestClient
 } from "./generated/bodyStringRest/src";
 
 import { assert } from "chai";
@@ -95,7 +95,7 @@ describe("Integration tests for User Agents", () => {
   });
 
   it("should send correct user agent prefix string for rlc", async () => {
-    const client: BodyStringRestLike = BodyStringRest();
+    const client: BodyStringRestClient = BodyStringRest();
     const result = await client
       .path("/string/nullBase64UrlEncoding")
       .get({ allowInsecureConnection: true });

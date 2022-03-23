@@ -2,11 +2,11 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { BodyFormDataLike } from "./clientDefinitions";
+import { BodyFormDataClient } from "./clientDefinitions";
 
-export default function BodyFormData(
+export default function createClient(
   options: ClientOptions = {}
-): BodyFormDataLike {
+): BodyFormDataClient {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
 
   const userAgentInfo = `azsdk-js-body-formdata-rest/1.0.0-preview1`;
@@ -21,7 +21,7 @@ export default function BodyFormData(
     }
   };
 
-  const client = getClient(baseUrl, options) as BodyFormDataLike;
+  const client = getClient(baseUrl, options) as BodyFormDataClient;
 
   return client;
 }

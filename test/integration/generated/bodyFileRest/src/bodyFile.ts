@@ -2,9 +2,11 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { BodyFileLike } from "./clientDefinitions";
+import { BodyFileClient } from "./clientDefinitions";
 
-export default function BodyFile(options: ClientOptions = {}): BodyFileLike {
+export default function createClient(
+  options: ClientOptions = {}
+): BodyFileClient {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
 
   const userAgentInfo = `azsdk-js-body-file-rest/1.0.0-preview1`;
@@ -19,7 +21,7 @@ export default function BodyFile(options: ClientOptions = {}): BodyFileLike {
     }
   };
 
-  const client = getClient(baseUrl, options) as BodyFileLike;
+  const client = getClient(baseUrl, options) as BodyFileClient;
 
   return client;
 }

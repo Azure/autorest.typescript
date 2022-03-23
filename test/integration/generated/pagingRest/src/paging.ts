@@ -2,9 +2,11 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { PagingLike } from "./clientDefinitions";
+import { PagingClient } from "./clientDefinitions";
 
-export default function Paging(options: ClientOptions = {}): PagingLike {
+export default function createClient(
+  options: ClientOptions = {}
+): PagingClient {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
 
   const userAgentInfo = `azsdk-js-paging-service-rest/1.0.0-preview1`;
@@ -19,7 +21,7 @@ export default function Paging(options: ClientOptions = {}): PagingLike {
     }
   };
 
-  const client = getClient(baseUrl, options) as PagingLike;
+  const client = getClient(baseUrl, options) as PagingClient;
 
   return client;
 }

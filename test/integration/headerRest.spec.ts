@@ -1,16 +1,16 @@
 import * as coreHttp from "@azure/core-http";
 import { should, assert } from "chai";
 import { isEqual } from "lodash";
-import HeaderRestClient, { HeaderRestClientLike } from "./generated/headerRest/src";
+import HeaderRest, { HeaderRestClient } from "./generated/headerRest/src";
 
 should();
 
 describe("header Rest", function() {
   describe("Swagger Header BAT", function() {
     describe("Basic Header Operations", function() {
-      let testClient: HeaderRestClientLike;
+      let testClient: HeaderRestClient;
       beforeEach(() => {
-        testClient = HeaderRestClient();
+        testClient = HeaderRest();
       });
 
       it("should override existing headers (nodejs only)", async function() {

@@ -2,9 +2,9 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { LLCClientLike } from "./clientDefinitions";
+import { LLCClient } from "./clientDefinitions";
 
-export default function LLCClient(options: ClientOptions = {}): LLCClientLike {
+export default function createClient(options: ClientOptions = {}): LLCClient {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
 
   const userAgentInfo = `azsdk-js-rlcClient-rest/1.0.0-beta.1`;
@@ -19,7 +19,7 @@ export default function LLCClient(options: ClientOptions = {}): LLCClientLike {
     }
   };
 
-  const client = getClient(baseUrl, options) as LLCClientLike;
+  const client = getClient(baseUrl, options) as LLCClient;
 
   return {
     ...client,
