@@ -3,7 +3,7 @@ import BodyStringRest, {
   BodyStringRestClient
 } from "./generated/bodyStringRest/src";
 
-describe("UserAgentRest", () => {
+describe("BodyStringRest", () => {
   let client: BodyStringRestClient;
 
   beforeEach(() => {
