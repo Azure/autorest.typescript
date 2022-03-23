@@ -149,7 +149,7 @@ const extractOperationParameters = (codeModel: CodeModel) =>
             operation.parameters || []
           ).map(p => { 
             if (p.required || p.flattened) {
-              p.language.default.isParameter = true;
+              p.language.default.isTopLevelParameter = true;
             }
             return {
               parameter: p, 
@@ -170,9 +170,9 @@ const extractOperationParameters = (codeModel: CodeModel) =>
               });
               if (parameter.required || parameter.flattened) {
                 if ((parameter as any)['targetProperty'] !== undefined) {
-                  (parameter as any)['targetProperty'].language.default.isParameter = true;
+                  (parameter as any)['targetProperty'].language.default.isTopLevelParameter = true;
                 } else {
-                  parameter.language.default.isParameter = true;
+                  parameter.language.default.isTopLevelParameter = true;
                 }
               }
               return parameter;
@@ -358,7 +358,7 @@ function getParameterPath(parameter: Parameter) {
       ...(!parameter.required && !parameter.groupedBy.required
         ? ["options"]
         : []),
-      normalizeName(groupedByName, NameType.Parameter),
+      normalizeName(groupedByName, NameType.Parameter, true /** shouldGuard */),
       name
     ];
   }

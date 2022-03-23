@@ -693,7 +693,7 @@ function processProperties(
     const propName = getLanguageMetadata(prop.language).name;
     const name = normalizeName(
       propName,
-      prop.language.default.isParameter? NameType.Parameter: NameType.Property,
+      prop.language.default.isTopLevelParameter? NameType.Parameter: NameType.Property,
       true /** shouldGuard */
     );
     modelProperties[name] = getMapperOrRef(prop.schema, serializedName, {
