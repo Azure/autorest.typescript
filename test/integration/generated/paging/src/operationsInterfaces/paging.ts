@@ -15,6 +15,7 @@ import {
   PagingFirstResponseEmptyOptionalParams,
   PagingGetMultiplePagesOptionalParams,
   PagingGetWithQueryParamsOptionalParams,
+  PagingDuplicateParamsOptionalParams,
   PagingGetOdataMultiplePagesOptionalParams,
   PagingGetMultiplePagesWithOffsetOptions,
   PagingGetMultiplePagesWithOffsetOptionalParams,
@@ -80,6 +81,15 @@ export interface Paging {
   listWithQueryParams(
     requiredQueryParameter: number,
     options?: PagingGetWithQueryParamsOptionalParams
+  ): PagedAsyncIterableIterator<Product>;
+  /**
+   * Define `filter` as a query param for all calls. However, the returned next link will also include
+   * the `filter` as part of it. Make sure you don't end up duplicating the `filter` param in the url
+   * sent.
+   * @param options The options parameters.
+   */
+  listDuplicateParams(
+    options?: PagingDuplicateParamsOptionalParams
   ): PagedAsyncIterableIterator<Product>;
   /**
    * A paging operation that includes a nextLink in odata format that has 10 pages

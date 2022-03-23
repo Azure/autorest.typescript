@@ -90,6 +90,16 @@ export const queryConstant: OperationQueryParameter = {
   }
 };
 
+export const filter: OperationQueryParameter = {
+  parameterPath: ["options", "filter"],
+  mapper: {
+    serializedName: "$filter",
+    type: {
+      name: "String"
+    }
+  }
+};
+
 export const maxresults1: OperationParameter = {
   parameterPath: [
     "options",

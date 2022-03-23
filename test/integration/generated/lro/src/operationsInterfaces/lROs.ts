@@ -12,6 +12,10 @@ import {
   LROsPut200SucceededResponse,
   LROsPatch200SucceededIgnoreHeadersOptionalParams,
   LROsPatch200SucceededIgnoreHeadersResponse,
+  LROsPatch201RetryWithAsyncHeaderOptionalParams,
+  LROsPatch201RetryWithAsyncHeaderResponse,
+  LROsPatch202RetryWithAsyncAndLocationHeaderOptionalParams,
+  LROsPatch202RetryWithAsyncAndLocationHeaderResponse,
   LROsPut201SucceededOptionalParams,
   LROsPut201SucceededResponse,
   LROsPost202ListOptionalParams,
@@ -137,6 +141,46 @@ export interface LROs {
   beginPatch200SucceededIgnoreHeadersAndWait(
     options?: LROsPatch200SucceededIgnoreHeadersOptionalParams
   ): Promise<LROsPatch200SucceededIgnoreHeadersResponse>;
+  /**
+   * Long running patch request, service returns a 201 to the initial request with async header.
+   * @param options The options parameters.
+   */
+  beginPatch201RetryWithAsyncHeader(
+    options?: LROsPatch201RetryWithAsyncHeaderOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<LROsPatch201RetryWithAsyncHeaderResponse>,
+      LROsPatch201RetryWithAsyncHeaderResponse
+    >
+  >;
+  /**
+   * Long running patch request, service returns a 201 to the initial request with async header.
+   * @param options The options parameters.
+   */
+  beginPatch201RetryWithAsyncHeaderAndWait(
+    options?: LROsPatch201RetryWithAsyncHeaderOptionalParams
+  ): Promise<LROsPatch201RetryWithAsyncHeaderResponse>;
+  /**
+   * Long running patch request, service returns a 202 to the initial request with async and location
+   * header.
+   * @param options The options parameters.
+   */
+  beginPatch202RetryWithAsyncAndLocationHeader(
+    options?: LROsPatch202RetryWithAsyncAndLocationHeaderOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<LROsPatch202RetryWithAsyncAndLocationHeaderResponse>,
+      LROsPatch202RetryWithAsyncAndLocationHeaderResponse
+    >
+  >;
+  /**
+   * Long running patch request, service returns a 202 to the initial request with async and location
+   * header.
+   * @param options The options parameters.
+   */
+  beginPatch202RetryWithAsyncAndLocationHeaderAndWait(
+    options?: LROsPatch202RetryWithAsyncAndLocationHeaderOptionalParams
+  ): Promise<LROsPatch202RetryWithAsyncAndLocationHeaderResponse>;
   /**
    * Long running put request, service returns a 201 to the initial request, with an entity that contains
    * ProvisioningState=’Succeeded’.
