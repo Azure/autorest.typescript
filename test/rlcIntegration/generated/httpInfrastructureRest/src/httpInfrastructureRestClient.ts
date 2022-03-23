@@ -2,11 +2,11 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { HttpInfrastructureRestClientLike } from "./clientDefinitions";
+import { HttpInfrastructureRestClient } from "./clientDefinitions";
 
-export default function HttpInfrastructureRestClient(
+export default function createClient(
   options: ClientOptions = {}
-): HttpInfrastructureRestClientLike {
+): HttpInfrastructureRestClient {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
 
   const userAgentInfo = `azsdk-js-http-infrastructure-rest/1.0.0-preview1`;
@@ -21,10 +21,7 @@ export default function HttpInfrastructureRestClient(
     }
   };
 
-  const client = getClient(
-    baseUrl,
-    options
-  ) as HttpInfrastructureRestClientLike;
+  const client = getClient(baseUrl, options) as HttpInfrastructureRestClient;
 
   return {
     ...client,

@@ -2,12 +2,12 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { CustomUrlRestClientLike } from "./clientDefinitions";
+import { CustomUrlRestClient } from "./clientDefinitions";
 
-export default function CustomUrlRestClient(
+export default function createClient(
   host: string,
   options: ClientOptions = {}
-): CustomUrlRestClientLike {
+): CustomUrlRestClient {
   const baseUrl = options.baseUrl ?? `http://{accountName}${host}`;
   const userAgentInfo = `azsdk-js-custom-url-rest/1.0.0-preview1`;
   const userAgentPrefix =
@@ -21,7 +21,7 @@ export default function CustomUrlRestClient(
     }
   };
 
-  const client = getClient(baseUrl, options) as CustomUrlRestClientLike;
+  const client = getClient(baseUrl, options) as CustomUrlRestClient;
 
   return {
     ...client,

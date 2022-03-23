@@ -80,7 +80,7 @@ export interface Routes {
   (path: "/serviceDriven/moreParameters"): GetOptional;
 }
 
-export type DPGClientLike = Client & {
+export type DPGClient = Client & {
   path: Routes;
   params: ParamsOperations;
 };

@@ -1,10 +1,10 @@
 import { assert } from "chai";
 import BodyStringRest, {
-  BodyStringRestLike
+  BodyStringRestClient
 } from "./generated/bodyStringRest/src";
 
 describe(" BodyStringRest", () => {
-  let client: BodyStringRestLike;
+  let client: BodyStringRestClient;
 
   beforeEach(() => {
     client = BodyStringRest();

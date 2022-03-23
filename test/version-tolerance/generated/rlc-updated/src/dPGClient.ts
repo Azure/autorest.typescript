@@ -2,9 +2,9 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { DPGClientLike } from "./clientDefinitions";
+import { DPGClient } from "./clientDefinitions";
 
-export default function DPGClient(options: ClientOptions = {}): DPGClientLike {
+export default function createClient(options: ClientOptions = {}): DPGClient {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
 
   const userAgentInfo = `azsdk-js-rlcClient-rest/1.0.0-beta.1`;
@@ -19,7 +19,7 @@ export default function DPGClient(options: ClientOptions = {}): DPGClientLike {
     }
   };
 
-  const client = getClient(baseUrl, options) as DPGClientLike;
+  const client = getClient(baseUrl, options) as DPGClient;
 
   return {
     ...client,

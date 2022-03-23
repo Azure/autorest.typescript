@@ -111,7 +111,7 @@ export interface Routes {
   (path: "/serviceDriven/newPath"): GetNewOperation;
 }
 
-export type DPGClientLike = Client & {
+export type DPGClient = Client & {
   path: Routes;
   params: ParamsOperations;
 };

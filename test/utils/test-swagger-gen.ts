@@ -851,6 +851,19 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     isTestPackage: true,
     coreHttpCompatMode: true
+  },
+  datasearch: {
+    swaggerOrConfig: "test/integration/swaggers/dataSearch.json",
+    clientName: "DataSearchClient",
+    packageName: "data-search",
+    licenseHeader: true,
+    useCoreV2: true,
+    allowInsecureConnection: true,
+    addCredentials: false,
+    isTestPackage: true,
+    generateTest: true,
+    generateSample: true,
+    coreHttpCompatMode: true
   }
 };
 

@@ -225,6 +225,6 @@ export interface Routes {
   (path: "/string/enum/ReferencedConstant"): EnumGetReferencedConstant;
 }
 
-export type BodyStringRestLike = Client & {
+export type BodyStringRestClient = Client & {
   path: Routes;
 };

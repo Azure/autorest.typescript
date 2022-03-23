@@ -2,11 +2,11 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { HeaderRestClientLike } from "./clientDefinitions";
+import { HeaderRestClient } from "./clientDefinitions";
 
-export default function HeaderRestClient(
+export default function createClient(
   options: ClientOptions = {}
-): HeaderRestClientLike {
+): HeaderRestClient {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
 
   const userAgentInfo = `azsdk-js-header-rest/1.0.0-preview1`;
@@ -21,7 +21,7 @@ export default function HeaderRestClient(
     }
   };
 
-  const client = getClient(baseUrl, options) as HeaderRestClientLike;
+  const client = getClient(baseUrl, options) as HeaderRestClient;
 
   return client;
 }

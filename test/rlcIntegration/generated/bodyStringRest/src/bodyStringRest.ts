@@ -2,11 +2,11 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { BodyStringRestLike } from "./clientDefinitions";
+import { BodyStringRestClient } from "./clientDefinitions";
 
-export default function BodyStringRest(
+export default function createClient(
   options: ClientOptions = {}
-): BodyStringRestLike {
+): BodyStringRestClient {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
 
   const userAgentInfo = `azsdk-js-body-string-rest/1.0.0-preview1`;
@@ -21,7 +21,7 @@ export default function BodyStringRest(
     }
   };
 
-  const client = getClient(baseUrl, options) as BodyStringRestLike;
+  const client = getClient(baseUrl, options) as BodyStringRestClient;
 
   return client;
 }

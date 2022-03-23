@@ -1329,6 +1329,6 @@ export interface Routes {
   ): LROsCustomHeaderPostAsyncRetrySucceeded;
 }
 
-export type LRORestClientLike = Client & {
+export type LRORestClient = Client & {
   path: Routes;
 };

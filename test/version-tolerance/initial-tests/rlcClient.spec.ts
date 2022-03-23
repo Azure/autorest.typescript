@@ -1,12 +1,13 @@
-import DPGClient, { DPGClientLike } from "../generated/rlc-initial/src";
+import DPG, { DPGClient } from "../generated/rlc-initial/src";
 import { assert } from "chai";
 
 const phase = "initial";
 
 describe(`RLC Version Tolerance ${phase} phase`, async () => {
-  let client: DPGClientLike;
+
+  let client: DPGClient;
   beforeEach(() => {
-    client = DPGClient({ allowInsecureConnection: true });
+    client = DPG({ allowInsecureConnection: true });
   });
   describe("path", () => {
     it("Query parameter required to optional", async () => {

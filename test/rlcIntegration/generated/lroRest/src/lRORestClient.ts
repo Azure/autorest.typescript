@@ -2,11 +2,11 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { LRORestClientLike } from "./clientDefinitions";
+import { LRORestClient } from "./clientDefinitions";
 
-export default function LRORestClient(
+export default function createClient(
   options: ClientOptions = {}
-): LRORestClientLike {
+): LRORestClient {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
 
   const userAgentInfo = `azsdk-js-lro-rest/1.0.0-preview1`;
@@ -21,7 +21,7 @@ export default function LRORestClient(
     }
   };
 
-  const client = getClient(baseUrl, options) as LRORestClientLike;
+  const client = getClient(baseUrl, options) as LRORestClient;
 
   return client;
 }

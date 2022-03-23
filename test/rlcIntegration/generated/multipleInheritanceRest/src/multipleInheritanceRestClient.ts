@@ -2,11 +2,11 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { MultipleInheritanceRestClientLike } from "./clientDefinitions";
+import { MultipleInheritanceRestClient } from "./clientDefinitions";
 
-export default function MultipleInheritanceRestClient(
+export default function createClient(
   options: ClientOptions = {}
-): MultipleInheritanceRestClientLike {
+): MultipleInheritanceRestClient {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
 
   const userAgentInfo = `azsdk-js-multiple-inheritance-rest/1.0.0-preview1`;
@@ -21,10 +21,7 @@ export default function MultipleInheritanceRestClient(
     }
   };
 
-  const client = getClient(
-    baseUrl,
-    options
-  ) as MultipleInheritanceRestClientLike;
+  const client = getClient(baseUrl, options) as MultipleInheritanceRestClient;
 
   return {
     ...client,
