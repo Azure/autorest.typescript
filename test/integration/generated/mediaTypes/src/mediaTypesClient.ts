@@ -172,7 +172,7 @@ export class MediaTypesClient extends coreClient.ServiceClient {
   }
 
   /**
-   * Pass in contentType 'text/plain; encoding=UTF-8' to pass test. Value for input does not matter
+   * Pass in contentType 'text/plain; charset=UTF-8' to pass test. Value for input does not matter
    * @param options The options parameters.
    */
   contentTypeWithEncoding(

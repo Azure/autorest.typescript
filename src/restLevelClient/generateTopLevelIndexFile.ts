@@ -28,10 +28,6 @@ export function generateTopLevelIndexFile(model: CodeModel, project: Project) {
                 namespaceImport: item[1],
                 moduleSpecifier: `${item[0]}`
             });
-            file.addExportDeclaration({
-                moduleSpecifier: `${item[0]}/${item[2]}`,
-                namedExports: [`${item[1]} as ${item[1]}Client`]
-            })
             allModules.push(item[1]);
         });
         file.addExportDeclaration({

@@ -55,7 +55,7 @@ import { MediaTypesWithTracingClient } from "./generated/mediaTypesWithTracing/s
         const response = await client.contentTypeWithEncoding({
           input: "test",
           requestOptions: {
-            customHeaders: { "content-type": "text/plain; encoding=UTF-8" }
+            customHeaders: { "content-type": "text/plain; charset=UTF-8" }
           },
           ...responseStatusChecker
         });

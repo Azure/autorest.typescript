@@ -3,6 +3,7 @@ import {
   ArraySchema,
   ChoiceSchema,
   ConstantSchema,
+  DateTimeSchema,
   DictionarySchema,
   isObjectSchema,
   ObjectSchema,
@@ -134,7 +135,11 @@ export function primitiveSchemaToType(
         .join(" | ");
     case SchemaType.Constant:
       const value = (schema as ConstantSchema).value.value;
-      return typeof value === "string" ? `"${value}"` : value;
+      return typeof value === "string"
+        ? (schema as ConstantSchema)?.valueType?.type === SchemaType.DateTime
+          ? `"${(new Date(`${value}`)).toISOString()}"`
+          : `"${value}"`
+        : value;
   }
 
   throw new Error(`Unknown primitive schema ${schema.type}`);

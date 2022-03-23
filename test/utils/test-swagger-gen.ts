@@ -29,7 +29,7 @@ interface SwaggerConfig {
 const package_version = "1.0.0-preview1";
 let whiteList: string[] = [];
 
-const testSwaggers: { [name: string]: SwaggerConfig } = {
+let testSwaggers: { [name: string]: SwaggerConfig } = {
   additionalProperties: {
     swaggerOrConfig: "additionalProperties.json",
     clientName: "AdditionalPropertiesClient",
@@ -864,7 +864,10 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     generateTest: true,
     generateSample: true,
     coreHttpCompatMode: true
-  },
+  }
+};
+
+const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
   // TEST REST LEVEL CLIENTS
   lroRest: {
     swaggerOrConfig: "lro.json",
@@ -1000,6 +1003,26 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     rlcShortcut: true,
     allowInsecureConnection: true,
     addCredentials: false,
+    isTestPackage: true
+  },
+  azureReport: {
+    swaggerOrConfig: "azure-report.json",
+    clientName: "ReportClient",
+    packageName: "zzzAzureReport",
+    licenseHeader: true,
+    useCoreV2: true,
+    allowInsecureConnection: true,
+    addCredentials: false,
+    isTestPackage: true
+  },
+  report: {
+    swaggerOrConfig: "report.json",
+    clientName: "ReportClient",
+    packageName: "zzzReport",
+    licenseHeader: true,
+    useCoreV2: true,
+    allowInsecureConnection: true,
+    addCredentials: false,
     isTestPackage: true,
     azureSdkForJs: false
   }
@@ -1007,8 +1030,12 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
 
 const generateSwaggers = async (
   whiteList?: string[],
-  isDebugging?: boolean
+  isDebugging?: boolean,
+  isRlc?: boolean
 ) => {
+  if (isRlc) {
+    testSwaggers = rlcTestSwaggers;
+  }
   const swaggers = Object.keys(testSwaggers).filter(name => {
     if (!whiteList || !whiteList.length) {
       return true;
@@ -1058,7 +1085,9 @@ const generateSwaggers = async (
         srcPath: "",
         licenseHeader: !!licenseHeader,
         addCredentials,
-        outputPath: `./test/integration/generated/${name}`,
+        outputPath: isRlc
+          ? `./test/rlcIntegration/generated/${name}`
+          : `./test/integration/generated/${name}`,
         title: clientName,
         packageDetails: {
           name:
@@ -1163,10 +1192,11 @@ const logAutorestInfo = async () => {
 
 const run = async () => {
   const isDebugging = process.argv.indexOf("--debug") !== -1;
+  const isRlc = process.argv.indexOf("rlc") !== -1;
   buildWhitelist();
   await logAutorestInfo();
   await buildAutorest();
-  await generateSwaggers(whiteList, isDebugging);
+  await generateSwaggers(whiteList, isDebugging, isRlc);
 };
 
 run().catch(error => {

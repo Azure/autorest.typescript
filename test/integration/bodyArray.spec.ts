@@ -206,8 +206,8 @@ describe("Integration tests for BodyArrayClient", () => {
       );
       expect(response).to.deep.equal([
         new Date("2000-12-01T00:00:01.000Z"),
-        new Date("1980-01-02T00:11:35.000Z"),
-        new Date("1492-10-12T10:15:01.000Z")
+        new Date("1980-01-01T23:11:35.000Z"),
+        new Date("1492-10-12T18:15:01.000Z")
       ]);
     });
   });

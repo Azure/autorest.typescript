@@ -119,7 +119,7 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
 
   const clientName = getLanguageMetadata(model.language).name;
 
-  const clientInterfaceName = `${clientName}Like`;
+  const clientInterfaceName = clientName.endsWith("Client")? `${clientName}`: `${clientName}Client`;
 
   const { rlcShortcut } = getAutorestOptions();
 

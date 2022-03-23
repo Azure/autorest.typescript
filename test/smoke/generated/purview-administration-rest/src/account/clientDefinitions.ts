@@ -207,6 +207,6 @@ export interface Routes {
   (path: "/resourceSetRuleConfigs"): ResourceSetRulesListResourceSetRules;
 }
 
-export type PurviewAccountLike = Client & {
+export type PurviewAccountClient = Client & {
   path: Routes;
 };

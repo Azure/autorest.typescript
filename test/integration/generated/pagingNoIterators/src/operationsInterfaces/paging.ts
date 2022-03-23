@@ -20,6 +20,8 @@ import {
   PagingGetMultiplePagesResponse,
   PagingGetWithQueryParamsOptionalParams,
   PagingGetWithQueryParamsResponse,
+  PagingDuplicateParamsOptionalParams,
+  PagingDuplicateParamsResponse,
   PagingNextOperationWithQueryParamsOptionalParams,
   PagingNextOperationWithQueryParamsResponse,
   PagingGetOdataMultiplePagesOptionalParams,
@@ -58,6 +60,8 @@ import {
   PagingFirstResponseEmptyNextResponse,
   PagingGetMultiplePagesNextOptionalParams,
   PagingGetMultiplePagesNextResponse,
+  PagingDuplicateParamsNextOptionalParams,
+  PagingDuplicateParamsNextResponse,
   PagingGetOdataMultiplePagesNextOptionalParams,
   PagingGetOdataMultiplePagesNextResponse,
   PagingGetMultiplePagesWithOffsetNextOptionalParams,
@@ -126,6 +130,15 @@ export interface Paging {
     requiredQueryParameter: number,
     options?: PagingGetWithQueryParamsOptionalParams
   ): Promise<PagingGetWithQueryParamsResponse>;
+  /**
+   * Define `filter` as a query param for all calls. However, the returned next link will also include
+   * the `filter` as part of it. Make sure you don't end up duplicating the `filter` param in the url
+   * sent.
+   * @param options The options parameters.
+   */
+  duplicateParams(
+    options?: PagingDuplicateParamsOptionalParams
+  ): Promise<PagingDuplicateParamsResponse>;
   /**
    * Next operation for getWithQueryParams. Pass in next=True to pass test. Returns a ProductResult
    * @param options The options parameters.
@@ -286,6 +299,15 @@ export interface Paging {
     nextLink: string,
     options?: PagingGetMultiplePagesNextOptionalParams
   ): Promise<PagingGetMultiplePagesNextResponse>;
+  /**
+   * DuplicateParamsNext
+   * @param nextLink The nextLink from the previous successful call to the DuplicateParams method.
+   * @param options The options parameters.
+   */
+  duplicateParamsNext(
+    nextLink: string,
+    options?: PagingDuplicateParamsNextOptionalParams
+  ): Promise<PagingDuplicateParamsNextResponse>;
   /**
    * GetOdataMultiplePagesNext
    * @param nextLink The nextLink from the previous successful call to the GetOdataMultiplePages method.
