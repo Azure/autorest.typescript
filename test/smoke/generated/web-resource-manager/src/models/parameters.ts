@@ -908,7 +908,7 @@ export const name1: OperationParameter = {
 };
 
 export const typeParam: OperationParameter = {
-  parameterPath: "type",
+  parameterPath: "typeParam",
   mapper: ResourceNameAvailabilityRequestMapper
 };
 

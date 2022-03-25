@@ -324,7 +324,7 @@ export const publisherName: OperationURLParameter = {
 };
 
 export const typeParam: OperationURLParameter = {
-  parameterPath: "type",
+  parameterPath: "typeParam",
   mapper: {
     serializedName: "type",
     required: true,

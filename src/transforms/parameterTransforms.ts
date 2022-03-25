@@ -148,7 +148,7 @@ const extractOperationParameters = (codeModel: CodeModel) =>
           const operationParams: OperationParameterDetails[] = (
             operation.parameters || []
           ).map(p => { 
-            if (p.required || p.flattened) {
+            if (p.required) {
               p.language.default.isTopLevelParameter = true;
             }
             return {
@@ -168,12 +168,11 @@ const extractOperationParameters = (codeModel: CodeModel) =>
                 parameter,
                 targetMediaType: request.protocol.http?.knownMediaType
               });
-              if (parameter.required || parameter.flattened) {
+              if (parameter.required) {
                 if ((parameter as any)['targetProperty'] !== undefined) {
                   (parameter as any)['targetProperty'].language.default.isTopLevelParameter = true;
-                } else {
-                  parameter.language.default.isTopLevelParameter = true;
                 }
+                parameter.language.default.isTopLevelParameter = true;
               }
               return parameter;
             });
@@ -345,10 +344,13 @@ function getIsGlobal(parameter: Parameter) {
 function getParameterPath(parameter: Parameter) {
   const metadata = getLanguageMetadata(parameter.language);
   // ParameterPath has to include the name we used for the parameter, not the serializedName
+  if (metadata.name == "type") {
+    const paramName = metadata.name;
+  }
   const name = normalizeName(
     metadata.name,
     NameType.Parameter,
-    // true /** shouldGuard */
+    parameter.language.default.isTopLevelParameter ? true: false /** shouldGuard */
   );
 
   if (parameter.groupedBy) {

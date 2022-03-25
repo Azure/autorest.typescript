@@ -1532,7 +1532,7 @@ export const endTime1: OperationQueryParameter = {
 };
 
 export const typeParam: OperationQueryParameter = {
-  parameterPath: "type",
+  parameterPath: "typeParam",
   mapper: {
     serializedName: "type",
     required: true,
