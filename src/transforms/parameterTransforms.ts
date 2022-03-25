@@ -344,9 +344,6 @@ function getIsGlobal(parameter: Parameter) {
 function getParameterPath(parameter: Parameter) {
   const metadata = getLanguageMetadata(parameter.language);
   // ParameterPath has to include the name we used for the parameter, not the serializedName
-  if (metadata.name == "type") {
-    const paramName = metadata.name;
-  }
   const name = normalizeName(
     metadata.name,
     NameType.Parameter,
