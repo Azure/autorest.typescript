@@ -4,7 +4,6 @@ import { assert } from "chai";
 const phase = "initial";
 
 describe(`RLC Version Tolerance ${phase} phase`, async () => {
-
   let client: DPGClient;
   beforeEach(() => {
     client = DPG({ allowInsecureConnection: true });
@@ -19,9 +18,7 @@ describe(`RLC Version Tolerance ${phase} phase`, async () => {
     });
 
     it("Header request with no param to optional", async () => {
-      const result = await client
-        .path("/serviceDriven/parameters")
-        .head();
+      const result = await client.path("/serviceDriven/parameters").head();
 
       assert.equal(result.status, "200");
     });
@@ -36,7 +33,6 @@ describe(`RLC Version Tolerance ${phase} phase`, async () => {
       assert.equal(result.status, "200");
     });
 
-
     it("Body payload required to optional", async () => {
       const result = await client.path("/serviceDriven/parameters").post({
         body: { url: "http://example.org/myimage.jpeg" },
@@ -44,6 +40,17 @@ describe(`RLC Version Tolerance ${phase} phase`, async () => {
       });
 
       assert.equal(result.status, "200");
+
+      const result2 = await client
+        ./*@version-tolerance:update-only*/ pathUnchecked(
+          "/serviceDriven/parameters"
+        )
+        .post({
+          body: "http://example.org/myimage.jpeg",
+          contentType: "image/jpeg"
+        });
+
+      assert.equal(result2.status, "200");
     });
 
     it("Query parameters with more optional param", async () => {
@@ -51,8 +58,30 @@ describe(`RLC Version Tolerance ${phase} phase`, async () => {
       assert.equal(result.status, "200");
     });
 
+    it("Add a new delete operation", async () => {
+      const result = await client
+        ./*@version-tolerance:update-only*/ pathUnchecked(
+          "/serviceDriven/parameters"
+        )
+        .delete();
+
+      assert.equal(result.status, "204");
+    });
+
+    it("Add a new operation path", async () => {
+      const result = await client
+        ./*@version-tolerance:update-only*/ pathUnchecked(
+          "/serviceDriven/newPath"
+        )
+        .get();
+
+      assert.equal(result.status, "200");
+    });
+
     it("Call glass breaker", async () => {
-      const result = await client.pathUnchecked("/servicedriven/glassbreaker").get();
+      const result = await client
+        .pathUnchecked("/servicedriven/glassbreaker")
+        .get();
       assert.equal(result.status, "200");
     });
   });
@@ -66,7 +95,7 @@ describe(`RLC Version Tolerance ${phase} phase`, async () => {
     });
 
     it("Header request with no param to optional", async () => {
-      const result = await client.params.headNoParams()
+      const result = await client.params.headNoParams();
 
       assert.equal(result.status, "200");
     });
@@ -88,11 +117,35 @@ describe(`RLC Version Tolerance ${phase} phase`, async () => {
       });
 
       assert.equal(result.status, "200");
+
+      /** @version-tolerance:update-only-start
+        const result2 = await client.params.postParameters({
+        body: "http://example.org/myimage.jpeg",
+        contentType: "image/jpeg"
+      });
+      assert.equal(result2.status, "200");
+    @version-tolerance:update-only-end **/
     });
 
     it("Query parameters with more optional param", async () => {
       const result = await client.params.getOptional();
       assert.equal(result.status, "200");
     });
+
+    /** @version-tolerance:update-only-start
+    it("Add a new operation", async () => {
+      const result = await client.params.deleteParameters();
+
+      assert.equal(result.status, "204");
+    });
+    @version-tolerance: update-only-end **/
+
+    /** @version-tolerance:update-only-start
+    it("Add a new operation path", async () => {
+      const result = await client.params.getNewOperation();
+
+      assert.equal(result.status, "200");
+    });
+    @version-tolerance:update-only-end **/
   });
 });
