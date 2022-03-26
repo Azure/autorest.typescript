@@ -124,7 +124,7 @@ export const fromParam: OperationQueryParameter = {
   parameterPath: [
     "options",
     "parameterGroupingPostReservedWordsParameters",
-    "fromParam"
+    "from"
   ],
   mapper: {
     serializedName: "from",
