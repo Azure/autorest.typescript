@@ -5,7 +5,7 @@ import DPGCustomization, {
   paginate
 } from "./generated/dpgCustomization/src";
 
-describe.only("DPGCustomization Client", () => {
+describe("DPGCustomization Client", () => {
   let client: DPGCustomizationClient;
 
   beforeEach("create client", () => {
