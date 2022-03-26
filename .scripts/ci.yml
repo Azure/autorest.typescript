@@ -109,7 +109,9 @@ stages:
           - script: npm run rlc-generate-swaggers
             displayName: "Generate RLC Test Clients"
           - script: npm run generate-version-tolerance
-            displayName: "Generate RLC version tolerance clients"
+            displayName: "Generate RLC version tolerance initial version"
+          - script: npm run generate-version-tolerance:tests
+            displayName: "Generate RLC version tolerance update version"  
           - script: npm run check:tree
             displayName: "Check git Tree"  
       - job: Test
