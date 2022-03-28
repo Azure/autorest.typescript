@@ -1,3 +1,7 @@
+## 6.0.0-beta.18 (2022-03-28)
+
+- [BugFix] fix mapper and parameter path for renamed parameter. Please refer to [#1342](https://github.com/Azure/autorest.typescript/issues/1342) for more details.
+- [BugFix] rename client class name for rest level client. Please refer to [#1349](https://github.com/Azure/autorest.typescript/pull/1349) for more details.
 ## 6.0.0-beta.17 (2022-03-17)
 
 - [BugFix] Include the `@azure/core-http-compat` package correctly in the client file. Please refer [#1344](https://github.com/Azure/autorest.typescript/issues/1344) for further details.
