@@ -11,11 +11,11 @@ import { format } from "prettier";
 import { prettierJSONOptions, prettierTypeScriptOptions } from "./config";
 import { generateParameterInterfaces } from "./generateParameterTypes";
 import { generatePathFirstClient } from "./generateClientDefinition";
-import { generateClient } from './generateClient';
+import { generateClient } from "./generateClient";
 import { generateIndexFile } from "../generators/indexGenerator";
 import { generatePagingHelper } from "./generatePagingHelper";
 import { generatePollingHelper } from "./generatePollingHelper";
-import { generateTopLevelIndexFile } from './generateTopLevelIndexFile';
+import { generateTopLevelIndexFile } from "./generateTopLevelIndexFile";
 import { hasPagingOperations } from "../utils/extractPaginationDetails";
 import { hasPollingOperations } from "./helpers/hasPollingOperations";
 import { generateKarmaConfigFile } from "../generators/static/karmaConfigFileGenerator";
@@ -35,14 +35,7 @@ import * as fsextra from "fs-extra";
 export async function generateRestLevelClient() {
   const host = getHost();
   const { model } = getSession();
-  const {
-    packageDetails,
-    licenseHeader: shouldGenerateLicense,
-    generateTest,
-    generateSample,
-    outputPath,
-    srcPath
-  } = getAutorestOptions();
+  const { outputPath, srcPath } = getAutorestOptions();
 
   const project = new Project({
     useInMemoryFileSystem: true,
@@ -59,7 +52,6 @@ export async function generateRestLevelClient() {
     generatePollingHelper(project);
   }
 
-
   performCodeModelMutations(model);
   generateReadmeFile(model.language, model.info, project);
   generatePackageJson(project);
@@ -69,7 +61,7 @@ export async function generateRestLevelClient() {
   generateRollupConfig(project);
   generateEsLintConfig(project);
 
-  generateKarmaConfigFile(project)
+  generateKarmaConfigFile(project);
   generateEnvFile(project);
   generateEnvBrowserFile(project);
   generateRecordedClientFile(project);
@@ -89,7 +81,7 @@ export async function generateRestLevelClient() {
   const fs = project.getFileSystem();
   const pathToClear = outputPath ? path.join(outputPath, srcPath) : srcPath;
   fsextra.emptyDirSync(`${pathToClear}`);
-  
+
   // Loop over the files
   for (const file of project.getSourceFiles()) {
     const filePath = file.getFilePath();
