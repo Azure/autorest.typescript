@@ -26,6 +26,8 @@ import { generateSampleTestFile } from "../generators/test/sampleTestGenerator";
 import { generateEsLintConfig } from "../generators/static/esLintConfigGenerator";
 import { generateRollupConfig } from "../generators/static/rollupConfigFileGenerator";
 import { generateReadmeFile } from "../generators/static/readmeFileGenerator";
+import * as path from "path";
+import * as fsextra from "fs-extra";
 
 /**
  * Generates a Rest Level Client library
@@ -33,6 +35,14 @@ import { generateReadmeFile } from "../generators/static/readmeFileGenerator";
 export async function generateRestLevelClient() {
   const host = getHost();
   const { model } = getSession();
+  const {
+    packageDetails,
+    licenseHeader: shouldGenerateLicense,
+    generateTest,
+    generateSample,
+    outputPath,
+    srcPath
+  } = getAutorestOptions();
 
   const project = new Project({
     useInMemoryFileSystem: true,
@@ -77,7 +87,9 @@ export async function generateRestLevelClient() {
   // Save the source files to the virtual filesystem
   project.saveSync();
   const fs = project.getFileSystem();
-
+  const pathToClear = outputPath ? path.join(outputPath, srcPath) : srcPath;
+  fsextra.emptyDirSync(`${pathToClear}`);
+  
   // Loop over the files
   for (const file of project.getSourceFiles()) {
     const filePath = file.getFilePath();
@@ -97,7 +109,6 @@ export async function generateRestLevelClient() {
         isJson ? prettierJSONOptions : prettierTypeScriptOptions
       );
     }
-
     // Write the file to the AutoRest host
     host.writeFile({
       filename: filePath.substr(1), // Get rid of the leading slash '/'
