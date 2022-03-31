@@ -48,10 +48,10 @@
     "dependencies": {
         "@autorest/codemodel": "^4.17.0",
         "@autorest/extension-base": "^3.4.1",
-        "@azure-rest/core-client": "1.0.0-alpha.20220112.1",
         "@autorest/testmodeler": "^1.0.4",
+        "@azure-rest/core-client": "1.0.0-alpha.20220112.1",
         "@azure-tools/codegen": "^2.5.294",
-        "@azure/core-client": "^1.3.0",
+        "@azure/core-client": "file:../azure-sdk-for-js/sdk/core/core-client/azure-core-client-1.5.1.tgz",
         "@azure/core-http": "^1.2.4",
         "@azure/core-http-compat": "^1.1.0",
         "@azure/core-lro": "^2.1.0",

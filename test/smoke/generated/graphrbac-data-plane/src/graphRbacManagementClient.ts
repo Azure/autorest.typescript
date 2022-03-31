@@ -7,6 +7,11 @@
  */
 
 import * as coreClient from "@azure/core-client";
+import {
+  PipelineRequest,
+  PipelineResponse,
+  SendRequest
+} from "@azure/core-rest-pipeline";
 import * as coreAuth from "@azure/core-auth";
 import {
   SignedInUserImpl,
@@ -97,6 +102,32 @@ export class GraphRbacManagementClient extends coreClient.ServiceClient {
     this.oAuth2PermissionGrantOperations = new OAuth2PermissionGrantOperationsImpl(
       this
     );
+    if (options.apiVersion) {
+      this.customApiVersion(options.apiVersion);
+    }
+  }
+
+  /**  A policy that sets the api-version (or equivalent) to reflect the library version. */
+  private customApiVersion(apiVersion: string) {
+    const apiVersionPolicy = {
+      name: "replace api version",
+      async sendRequest(
+        request: PipelineRequest,
+        next: SendRequest
+      ): Promise<PipelineResponse> {
+        const param = request.url.split("?");
+        if (param.length > 1) {
+          const newParams = param[1].split("&").map((item) => {
+            if (item.indexOf("api-version") > -1) {
+              return item.replace(/(?<==).*$/, apiVersion);
+            }
+          });
+          request.url = param[0] + "?" + newParams.join("&");
+        }
+        return next(request);
+      }
+    };
+    this.pipeline.addPolicy(apiVersionPolicy);
   }
 
   signedInUser: SignedInUser;

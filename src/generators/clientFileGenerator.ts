@@ -6,7 +6,9 @@ import {
   PropertyDeclarationStructure,
   ClassDeclaration,
   SourceFile,
-  CodeBlockWriter
+  CodeBlockWriter,
+  Scope,
+  ReturnTypedNode
 } from "ts-morph";
 import { ClientDetails } from "../models/clientDetails";
 import {
@@ -29,6 +31,7 @@ import { getAutorestOptions } from "../autorestSession";
 import { ParameterDetails } from "../models/parameterDetails";
 import { EndpointDetails } from "../transforms/urlTransforms";
 import { PackageDetails } from "../models/packageDetails";
+import { generateOperationJSDoc } from "./utils/docsUtils";
 
 type OperationDeclarationDetails = { name: string; typeName: string };
 
@@ -98,6 +101,15 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
       namespaceImport: "coreHttpCompat",
       moduleSpecifier: "@azure/core-http-compat"
     });
+    const coreRestPipelineImports = [
+      "PipelineRequest",
+      "PipelineResponse",
+      "SendRequest"
+    ];
+    clientFile.addImportDeclaration({
+      namedImports: coreRestPipelineImports,
+      moduleSpecifier: "@azure/core-rest-pipeline"
+    });
   }
 
   if (hasCredentials || hasInlineOperations || !hasClientOptionalParams) {
@@ -116,7 +128,6 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
       });
     }
   }
-
   addPagingEsNextRef(flattenedInlineOperations, clientFile);
   addPagingImports(flattenedInlineOperations, clientFile);
 
@@ -201,6 +212,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
   );
   writeClassProperties(clientClass, clientParams, importedModels);
   writeConstructor(clientDetails, clientClass, importedModels);
+  writeCustomApiVersion(clientClass);
   writeClientOperations(
     clientFile,
     clientClass,
@@ -208,7 +220,6 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
     hasLro,
     importedModels
   );
-
   // Use named import from Models
   if (importedModels.size) {
     clientFile.addImportDeclaration({
@@ -379,8 +390,41 @@ function writeConstructor(
   clientConstructor.addStatements([
     ...operationDeclarationDetails.map(
       ({ name, typeName }) => `this.${name} = new ${typeName}Impl(this)`
-    )
+    ),
   ]);
+  clientConstructor.addStatements("if (options.apiVersion) { this.customApiVersion(options.apiVersion); }")
+}
+
+function writeCustomApiVersion(
+  classDeclaration: ClassDeclaration
+) {
+  const operationMethod = classDeclaration.addMethod({
+    name: "customApiVersion",
+    parameters: [{ name: "apiVersion", type: "string"}],
+    scope: Scope.Private,
+    docs: [
+      " A policy that sets the api-version (or equivalent) to reflect the library version."
+    ],
+    isAsync: false
+  });
+  operationMethod.addStatements(`  const apiVersionPolicy =  {
+    name: "replace api version",
+    async sendRequest(request: PipelineRequest, next: SendRequest): Promise<PipelineResponse> {
+      const param = request.url.split('?');
+      if (param.length > 1) {
+        const newParams = param[1].split('&').map((item) => {
+          if(item.indexOf('api-version') > -1) {
+            return item.replace(/(?<==).*$/, apiVersion)
+          }
+        });
+        request.url = param[0] + "?" + newParams.join("&");
+
+      }
+      return next(request);
+    },
+  };
+  this.pipeline.addPolicy(apiVersionPolicy);
+  `);
 }
 
 function getOperationGroupsDeclarationDetails(
