@@ -392,23 +392,25 @@ function writeConstructor(
       ({ name, typeName }) => `this.${name} = new ${typeName}Impl(this)`
     ),
   ]);
-  clientConstructor.addStatements("if (options.apiVersion) { this.customApiVersion(options.apiVersion); }")
+  clientConstructor.addStatements("this.addCustomApiVersionPolicy(options.apiVersion);")
 }
 
 function writeCustomApiVersion(
   classDeclaration: ClassDeclaration
 ) {
   const operationMethod = classDeclaration.addMethod({
-    name: "customApiVersion",
-    parameters: [{ name: "apiVersion", type: "string"}],
+    name: "addCustomApiVersionPolicy",
+    parameters: [{ name: "apiVersion", type: "string", hasQuestionToken: true}],
     scope: Scope.Private,
     docs: [
-      " A policy that sets the api-version (or equivalent) to reflect the library version."
+      "A function that adds a policy that sets the api-version (or equivalent) to reflect the library version."
     ],
     isAsync: false
   });
-  operationMethod.addStatements(`  const apiVersionPolicy =  {
-    name: "replace api version",
+  operationMethod.addStatements(`if (!apiVersion) { return; }
+  const apiVersionPolicy =  {
+    
+    name: "CustomApiVersionPolicy",
     async sendRequest(request: PipelineRequest, next: SendRequest): Promise<PipelineResponse> {
       const param = request.url.split('?');
       if (param.length > 1) {

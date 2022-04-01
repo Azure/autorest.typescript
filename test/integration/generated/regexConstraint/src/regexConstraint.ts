@@ -57,15 +57,16 @@ export class RegexConstraint extends coreClient.ServiceClient {
     super(optionsWithDefaults);
     // Parameter assignments
     this.$host = $host;
-    if (options.apiVersion) {
-      this.customApiVersion(options.apiVersion);
-    }
+    this.addCustomApiVersionPolicy(options.apiVersion);
   }
 
-  /**  A policy that sets the api-version (or equivalent) to reflect the library version. */
-  private customApiVersion(apiVersion: string) {
+  /** A function that adds a policy that sets the api-version (or equivalent) to reflect the library version. */
+  private addCustomApiVersionPolicy(apiVersion?: string) {
+    if (!apiVersion) {
+      return;
+    }
     const apiVersionPolicy = {
-      name: "replace api version",
+      name: "CustomApiVersionPolicy",
       async sendRequest(
         request: PipelineRequest,
         next: SendRequest
