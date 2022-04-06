@@ -9,7 +9,7 @@ describe("My test", () => {
   let recorder: Recorder;
 
   beforeEach(async function() {
-    recorder = createRecorder(this);
+    recorder = await createRecorder(this);
   });
 
   afterEach(async function() {
