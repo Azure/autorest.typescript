@@ -210,9 +210,17 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
   const clientParams = clientDetails.parameters.filter(
     param => param.implementationLocation === ImplementationLocation.Client
   );
+  const hasApiVersion =
+    clientParams
+      .map(item => {
+        return item.serializedName;
+      })
+      .indexOf("api-version") > -1;
   writeClassProperties(clientClass, clientParams, importedModels);
-  writeConstructor(clientDetails, clientClass, importedModels);
-  writeCustomApiVersion(clientClass);
+  writeConstructor(clientDetails, clientClass, importedModels, hasApiVersion);
+  if (hasApiVersion) {
+    writeCustomApiVersion(clientClass);
+  }
   writeClientOperations(
     clientFile,
     clientClass,
@@ -278,7 +286,8 @@ export function checkForNameCollisions(
 function writeConstructor(
   clientDetails: ClientDetails,
   classDeclaration: ClassDeclaration,
-  importedModels: Set<string>
+  importedModels: Set<string>,
+  hasApiVersion: boolean
 ) {
   const requiredParams = clientDetails.parameters.filter(
     param =>
@@ -390,17 +399,21 @@ function writeConstructor(
   clientConstructor.addStatements([
     ...operationDeclarationDetails.map(
       ({ name, typeName }) => `this.${name} = new ${typeName}Impl(this)`
-    ),
+    )
   ]);
-  clientConstructor.addStatements("this.addCustomApiVersionPolicy(options.apiVersion);")
+  if (hasApiVersion) {
+    clientConstructor.addStatements(
+      "this.addCustomApiVersionPolicy(options.apiVersion);"
+    );
+  }
 }
 
-function writeCustomApiVersion(
-  classDeclaration: ClassDeclaration
-) {
+function writeCustomApiVersion(classDeclaration: ClassDeclaration) {
   const operationMethod = classDeclaration.addMethod({
     name: "addCustomApiVersionPolicy",
-    parameters: [{ name: "apiVersion", type: "string", hasQuestionToken: true}],
+    parameters: [
+      { name: "apiVersion", type: "string", hasQuestionToken: true }
+    ],
     scope: Scope.Private,
     docs: [
       "A function that adds a policy that sets the api-version (or equivalent) to reflect the library version."
