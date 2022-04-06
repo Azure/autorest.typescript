@@ -9,6 +9,6 @@
 import { createTracingClient } from "@azure/core-tracing";
 
 export const tracingClient = createTracingClient({
-  namespace: "Microsoft.Body.Complex",
-  packageName: "Azure.Body.Complex"
+  namespace: "Microsoft.Autorest.LRO",
+  packageName: "Azure.Autorest.LRO"
 });

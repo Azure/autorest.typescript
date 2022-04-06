@@ -118,6 +118,7 @@ export class PetStore extends coreClient.ServiceClient {
       );
     }
     operationArguments.options = options || {};
+    operationArguments.options = options || {};
     return this.sendOperationRequest(operationArguments, operationSpec);
   }
 

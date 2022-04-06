@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { tracingClient } from "../tracing";
 import { LROs } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -132,7 +133,15 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsPut200SucceededResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPut200Succeeded",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsPut200SucceededResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -209,7 +218,15 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsPatch200SucceededIgnoreHeadersResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPatch200SucceededIgnoreHeaders",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsPatch200SucceededIgnoreHeadersResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -285,7 +302,15 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsPatch201RetryWithAsyncHeaderResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPatch201RetryWithAsyncHeader",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsPatch201RetryWithAsyncHeaderResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -362,7 +387,15 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsPatch202RetryWithAsyncAndLocationHeaderResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPatch202RetryWithAsyncAndLocationHeader",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsPatch202RetryWithAsyncAndLocationHeaderResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -441,7 +474,15 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsPut201SucceededResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPut201Succeeded",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsPut201SucceededResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -518,7 +559,15 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsPost202ListResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPost202List",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsPost202ListResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -595,7 +644,15 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsPut200SucceededNoStateResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPut200SucceededNoState",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsPut200SucceededNoStateResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -672,7 +729,15 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsPut202Retry200Response> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPut202Retry200",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsPut202Retry200Response
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -750,7 +815,15 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsPut201CreatingSucceeded200Response> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPut201CreatingSucceeded200",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsPut201CreatingSucceeded200Response
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -829,7 +902,15 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsPut200UpdatingSucceeded204Response> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPut200UpdatingSucceeded204",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsPut200UpdatingSucceeded204Response
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -908,7 +989,15 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsPut201CreatingFailed200Response> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPut201CreatingFailed200",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsPut201CreatingFailed200Response
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -987,7 +1076,15 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsPut200Acceptedcanceled200Response> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPut200Acceptedcanceled200",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsPut200Acceptedcanceled200Response
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -1065,7 +1162,15 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsPutNoHeaderInRetryResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPutNoHeaderInRetry",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsPutNoHeaderInRetryResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -1143,7 +1248,15 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsPutAsyncRetrySucceededResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPutAsyncRetrySucceeded",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsPutAsyncRetrySucceededResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -1222,7 +1335,15 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsPutAsyncNoRetrySucceededResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPutAsyncNoRetrySucceeded",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsPutAsyncNoRetrySucceededResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -1301,7 +1422,15 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsPutAsyncRetryFailedResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPutAsyncRetryFailed",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsPutAsyncRetryFailedResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -1380,7 +1509,15 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsPutAsyncNoRetrycanceledResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPutAsyncNoRetrycanceled",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsPutAsyncNoRetrycanceledResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -1458,7 +1595,15 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsPutAsyncNoHeaderInRetryResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPutAsyncNoHeaderInRetry",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsPutAsyncNoHeaderInRetryResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -1534,7 +1679,15 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsPutNonResourceResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPutNonResource",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsPutNonResourceResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -1609,7 +1762,15 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsPutAsyncNonResourceResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPutAsyncNonResource",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsPutAsyncNonResourceResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -1684,7 +1845,15 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsPutSubResourceResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPutSubResource",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsPutSubResourceResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -1759,7 +1928,15 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsPutAsyncSubResourceResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPutAsyncSubResource",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsPutAsyncSubResourceResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -1836,7 +2013,15 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsDeleteProvisioning202Accepted200SucceededResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginDeleteProvisioning202Accepted200Succeeded",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsDeleteProvisioning202Accepted200SucceededResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -1917,7 +2102,15 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsDeleteProvisioning202DeletingFailed200Response> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginDeleteProvisioning202DeletingFailed200",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsDeleteProvisioning202DeletingFailed200Response
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -1998,7 +2191,15 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsDeleteProvisioning202Deletingcanceled200Response> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginDeleteProvisioning202Deletingcanceled200",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsDeleteProvisioning202Deletingcanceled200Response
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -2072,7 +2273,13 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginDelete204Succeeded",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<void>;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -2148,7 +2355,15 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsDelete202Retry200Response> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginDelete202Retry200",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsDelete202Retry200Response
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -2225,7 +2440,15 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsDelete202NoRetry204Response> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginDelete202NoRetry204",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsDelete202NoRetry204Response
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -2302,7 +2525,15 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsDeleteNoHeaderInRetryResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginDeleteNoHeaderInRetry",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsDeleteNoHeaderInRetryResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -2379,7 +2610,15 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsDeleteAsyncNoHeaderInRetryResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginDeleteAsyncNoHeaderInRetry",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsDeleteAsyncNoHeaderInRetryResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -2456,7 +2695,15 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsDeleteAsyncRetrySucceededResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginDeleteAsyncRetrySucceeded",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsDeleteAsyncRetrySucceededResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -2533,7 +2780,15 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsDeleteAsyncNoRetrySucceededResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginDeleteAsyncNoRetrySucceeded",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsDeleteAsyncNoRetrySucceededResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -2610,7 +2865,15 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsDeleteAsyncRetryFailedResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginDeleteAsyncRetryFailed",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsDeleteAsyncRetryFailedResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -2687,7 +2950,15 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsDeleteAsyncRetrycanceledResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginDeleteAsyncRetrycanceled",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsDeleteAsyncRetrycanceledResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -2764,7 +3035,15 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsPost200WithPayloadResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPost200WithPayload",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsPost200WithPayloadResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -2841,7 +3120,15 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsPost202Retry200Response> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPost202Retry200",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsPost202Retry200Response
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -2918,7 +3205,15 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsPost202NoRetry204Response> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPost202NoRetry204",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsPost202NoRetry204Response
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -2995,7 +3290,15 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsPostDoubleHeadersFinalLocationGetResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPostDoubleHeadersFinalLocationGet",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsPostDoubleHeadersFinalLocationGetResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -3074,7 +3377,15 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsPostDoubleHeadersFinalAzureHeaderGetResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPostDoubleHeadersFinalAzureHeaderGet",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsPostDoubleHeadersFinalAzureHeaderGetResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -3158,7 +3469,15 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPostDoubleHeadersFinalAzureHeaderGetDefault",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -3239,7 +3558,15 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsPostAsyncRetrySucceededResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPostAsyncRetrySucceeded",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsPostAsyncRetrySucceededResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -3318,7 +3645,15 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsPostAsyncNoRetrySucceededResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPostAsyncNoRetrySucceeded",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsPostAsyncNoRetrySucceededResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -3397,7 +3732,15 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsPostAsyncRetryFailedResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPostAsyncRetryFailed",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsPostAsyncRetryFailedResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -3476,7 +3819,15 @@ export class LROsImpl implements LROs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsPostAsyncRetrycanceledResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPostAsyncRetrycanceled",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsPostAsyncRetrycanceledResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,

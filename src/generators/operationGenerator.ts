@@ -768,30 +768,12 @@ function writeNoOverloadsOperationBody(
   const vanillaOptionsName = "options";
   let options = vanillaOptionsName;
 
-  if (tracingInfo) {
-    const operationName = operationMethod.getName();
-    const {
-      outputOptionsVarName: updatedOptionsName,
-      statement: tracingStatement
-    } = getTracingSpanStatement(
-      clientDetails,
-      operationName,
-      `${options} || {}`
-    );
-    operationMethod.addStatements([tracingStatement]);
-    // Options from createSpan should be used as operation options, updating
-    options = compileOperationOptionsToRequestOptionsBase(
-      updatedOptionsName,
-      operation.isLro,
-      lroResourceLocationConfig
-    );
-  } else {
-    options = compileOperationOptionsToRequestOptionsBase(
-      vanillaOptionsName,
-      operation.isLro,
-      lroResourceLocationConfig
-    );
-  }
+  // Options from createSpan should be used as operation options, updating
+  options = compileOperationOptionsToRequestOptionsBase(
+    vanillaOptionsName,
+    operation.isLro,
+    lroResourceLocationConfig
+  );
 
   const sendParams = parameterDeclarations
     .map(p =>
@@ -813,6 +795,7 @@ function writeNoOverloadsOperationBody(
   if (operation.isLro) {
     if (!useCoreV2) {
       writeLroOperationBody(
+        clientDetails,
         "operationArguments",
         responseName,
         operationSpecName,
@@ -823,6 +806,7 @@ function writeNoOverloadsOperationBody(
       );
     } else {
       writeLroOperationBody(
+        clientDetails,
         `{${sendParams}}`,
         responseName,
         operationSpecName,
@@ -850,18 +834,6 @@ interface OptionsStatement {
   outputOptionsVarName: string;
 }
 
-function getTracingSpanStatement(
-  clientDetails: ClientDetails,
-  operationName: string,
-  options: string
-): OptionsStatement {
-  const outputOptionsVarName = "updatedOptions";
-  return {
-    statement: `const { span, ${outputOptionsVarName} } = createSpan("${clientDetails.className}-${operationName}", ${options});`,
-    outputOptionsVarName: outputOptionsVarName
-  };
-}
-
 function writeSendOperationRequest(
   responseName: string,
   operationMethod: MethodDeclaration,
@@ -871,6 +843,7 @@ function writeSendOperationRequest(
   sendParams: string
 ) {
   const { useCoreV2, tracingInfo } = getAutorestOptions();
+  const operationName = operationMethod.getName();
   const client = isInline ? "" : ".client";
   const sendRequestStatement = !useCoreV2
     ? `this${client}.sendOperationRequest(operationArguments, ${operationSpecName})`
@@ -882,7 +855,8 @@ function writeSendOperationRequest(
     getTracingTryCatchStatement(
       sendRequestStatement,
       responseName,
-      !!tracingInfo
+      !!tracingInfo,
+      `${clientDetails.className}-${operationName}`
     )
   );
 }
@@ -894,22 +868,15 @@ function getSpanStatusCode() {
 function getTracingTryCatchStatement(
   sendRequestStatement: string,
   responseName: string,
-  isTracingEnabled: boolean
+  isTracingEnabled: boolean,
+  spanName: string
 ) {
   const { useCoreV2 } = getAutorestOptions();
   if (isTracingEnabled) {
-    return `try {
-      const result = await ${sendRequestStatement}
-      return result as ${responseName};
-    } catch(error) {
-    span.setStatus({
-      code: ${getSpanStatusCode()},
-      message: error.message
-    });
-      throw error;
-    } finally {
-      span.end();
-    }`;
+    return `
+    return tracingClient.withSpan("${spanName}", options ?? {}, async updatedOptions => {
+      return ${sendRequestStatement} as Promise<${responseName}>;
+    });`;
   } else {
     return !useCoreV2
       ? `return ${sendRequestStatement} as Promise<${responseName}>`
@@ -918,6 +885,7 @@ function getTracingTryCatchStatement(
 }
 
 function writeLroOperationBody(
+  clientDetails: ClientDetails,
   operationParamsName: string,
   responseName: string,
   operationSpecName: string,
@@ -927,6 +895,7 @@ function writeLroOperationBody(
   isTracingEnabled = false
 ) {
   const { useCoreV2 } = getAutorestOptions();
+  const spanName = `${clientDetails.className}-${methodDeclaration.getName()}`;
   const client = isInline ? "" : ".client";
   const sendRequestStatement = `this${client}.sendOperationRequest(args, spec)`;
   const sendOperationStatement = !useCoreV2
@@ -934,7 +903,8 @@ function writeLroOperationBody(
       ${getTracingTryCatchStatement(
         sendRequestStatement,
         responseName,
-        isTracingEnabled
+        isTracingEnabled,
+        spanName
       )}
       };
       const sendOperation = async (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec) => {
@@ -949,7 +919,8 @@ function writeLroOperationBody(
     ${getTracingTryCatchStatement(
       sendRequestStatement,
       responseName,
-      isTracingEnabled
+      isTracingEnabled,
+      spanName
     )}
     };
     const sendOperation = async (args: coreClient.OperationArguments, spec: coreClient.OperationSpec) => {
@@ -984,8 +955,8 @@ function writeLroOperationBody(
         ? `, lroResourceLocationConfig: "${lroResourceLocationConfig.toLowerCase()}"`
         : ""
     } });`,
-    'await poller.poll();',
-    'return poller;'
+    "await poller.poll();",
+    "return poller;"
   ]);
 
   methodDeclaration.setReturnType(
@@ -1008,6 +979,7 @@ function writeMultiMediaTypeOperationBody(
 ): void {
   const { useCoreV2, tracingInfo } = getAutorestOptions();
   const coreImport = !useCoreV2 ? "coreHttp" : "coreClient";
+
   operationMethod.addStatements([
     `let operationSpec: ${coreImport}.OperationSpec;`,
     `let operationArguments: ${coreImport}.OperationArguments;`
@@ -1089,29 +1061,21 @@ function writeMultiMediaTypeOperationBody(
   const lroResourceLocationConfig =
     operation.lroOptions && operation.lroOptions["final-state-via"];
 
-  if (tracingInfo) {
-    const operationName = operationMethod.getName();
-    const {
-      outputOptionsVarName,
-      statement: tracingStatement
-    } = getTracingSpanStatement(clientDetails, operationName, optionsVarName);
-    operationMethod.addStatements([
-      tracingStatement,
-      `operationArguments.options = ${compileOperationOptionsToRequestOptionsBase(
-        outputOptionsVarName,
-        operation.isLro,
-        lroResourceLocationConfig
-      )};`
-    ]);
-  } else {
-    operationMethod.addStatements([
-      `operationArguments.options = ${compileOperationOptionsToRequestOptionsBase(
-        optionsVarName,
-        operation.isLro,
-        lroResourceLocationConfig
-      )};`
-    ]);
-  }
+  const operationName = operationMethod.getName();
+  operationMethod.addStatements([
+    `operationArguments.options = ${compileOperationOptionsToRequestOptionsBase(
+      optionsVarName,
+      operation.isLro,
+      lroResourceLocationConfig
+    )};`
+  ]);
+  operationMethod.addStatements([
+    `operationArguments.options = ${compileOperationOptionsToRequestOptionsBase(
+      optionsVarName,
+      operation.isLro,
+      lroResourceLocationConfig
+    )};`
+  ]);
 
   if (!operation.isLro) {
     writeSendOperationRequest(
@@ -1124,6 +1088,7 @@ function writeMultiMediaTypeOperationBody(
     );
   } else {
     writeLroOperationBody(
+      clientDetails,
       "operationArguments",
       responseName,
       "operationSpec",
@@ -1323,10 +1288,7 @@ function addImports(
 
   const clientClassName = `${className}`;
 
-  const clientFileName = normalizeName(
-    clientClassName,
-    NameType.File
-  );
+  const clientFileName = normalizeName(clientClassName, NameType.File);
 
   operationGroupFile.addImportDeclaration({
     namedImports: [`${clientClassName}`],

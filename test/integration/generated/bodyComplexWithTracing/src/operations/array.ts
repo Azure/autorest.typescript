@@ -6,10 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { createSpan } from "../tracing";
+import { tracingClient } from "../tracing";
 import { Array } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as coreTracing from "@azure/core-tracing";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyComplexWithTracing } from "../bodyComplexWithTracing";
@@ -44,25 +43,16 @@ export class ArrayImpl implements Array {
   async getValid(
     options?: ArrayGetValidOptionalParams
   ): Promise<ArrayGetValidResponse> {
-    const { span } = createSpan(
+    return tracingClient.withSpan(
       "BodyComplexWithTracing-getValid",
-      options || {}
+      options ?? {},
+      async () => {
+        return this.client.sendOperationRequest(
+          { options },
+          getValidOperationSpec
+        ) as Promise<ArrayGetValidResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { options },
-        getValidOperationSpec
-      );
-      return result as ArrayGetValidResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -75,25 +65,16 @@ export class ArrayImpl implements Array {
     complexBody: ArrayWrapper,
     options?: ArrayPutValidOptionalParams
   ): Promise<void> {
-    const { span } = createSpan(
+    return tracingClient.withSpan(
       "BodyComplexWithTracing-putValid",
-      options || {}
+      options ?? {},
+      async () => {
+        return this.client.sendOperationRequest(
+          { complexBody, options },
+          putValidOperationSpec
+        ) as Promise<void>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { complexBody, options },
-        putValidOperationSpec
-      );
-      return result as void;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -103,25 +84,16 @@ export class ArrayImpl implements Array {
   async getEmpty(
     options?: ArrayGetEmptyOptionalParams
   ): Promise<ArrayGetEmptyResponse> {
-    const { span } = createSpan(
+    return tracingClient.withSpan(
       "BodyComplexWithTracing-getEmpty",
-      options || {}
+      options ?? {},
+      async () => {
+        return this.client.sendOperationRequest(
+          { options },
+          getEmptyOperationSpec
+        ) as Promise<ArrayGetEmptyResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { options },
-        getEmptyOperationSpec
-      );
-      return result as ArrayGetEmptyResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -133,25 +105,16 @@ export class ArrayImpl implements Array {
     complexBody: ArrayWrapper,
     options?: ArrayPutEmptyOptionalParams
   ): Promise<void> {
-    const { span } = createSpan(
+    return tracingClient.withSpan(
       "BodyComplexWithTracing-putEmpty",
-      options || {}
+      options ?? {},
+      async () => {
+        return this.client.sendOperationRequest(
+          { complexBody, options },
+          putEmptyOperationSpec
+        ) as Promise<void>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { complexBody, options },
-        putEmptyOperationSpec
-      );
-      return result as void;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -161,25 +124,16 @@ export class ArrayImpl implements Array {
   async getNotProvided(
     options?: ArrayGetNotProvidedOptionalParams
   ): Promise<ArrayGetNotProvidedResponse> {
-    const { span } = createSpan(
+    return tracingClient.withSpan(
       "BodyComplexWithTracing-getNotProvided",
-      options || {}
+      options ?? {},
+      async () => {
+        return this.client.sendOperationRequest(
+          { options },
+          getNotProvidedOperationSpec
+        ) as Promise<ArrayGetNotProvidedResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { options },
-        getNotProvidedOperationSpec
-      );
-      return result as ArrayGetNotProvidedResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 }
 // Operation Specifications

@@ -6,10 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { createSpan } from "../tracing";
+import { tracingClient } from "../tracing";
 import { Basic } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as coreTracing from "@azure/core-tracing";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyComplexWithTracing } from "../bodyComplexWithTracing";
@@ -47,25 +46,16 @@ export class BasicImpl implements Basic {
   async getValid(
     options?: BasicGetValidOptionalParams
   ): Promise<BasicGetValidResponse> {
-    const { span } = createSpan(
+    return tracingClient.withSpan(
       "BodyComplexWithTracing-getValid",
-      options || {}
+      options ?? {},
+      async () => {
+        return this.client.sendOperationRequest(
+          { options },
+          getValidOperationSpec
+        ) as Promise<BasicGetValidResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { options },
-        getValidOperationSpec
-      );
-      return result as BasicGetValidResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -77,25 +67,16 @@ export class BasicImpl implements Basic {
     complexBody: BasicDef,
     options?: BasicPutValidOptionalParams
   ): Promise<void> {
-    const { span } = createSpan(
+    return tracingClient.withSpan(
       "BodyComplexWithTracing-putValid",
-      options || {}
+      options ?? {},
+      async () => {
+        return this.client.sendOperationRequest(
+          { complexBody, options },
+          putValidOperationSpec
+        ) as Promise<void>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { complexBody, options },
-        putValidOperationSpec
-      );
-      return result as void;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -105,25 +86,16 @@ export class BasicImpl implements Basic {
   async getInvalid(
     options?: BasicGetInvalidOptionalParams
   ): Promise<BasicGetInvalidResponse> {
-    const { span } = createSpan(
+    return tracingClient.withSpan(
       "BodyComplexWithTracing-getInvalid",
-      options || {}
+      options ?? {},
+      async () => {
+        return this.client.sendOperationRequest(
+          { options },
+          getInvalidOperationSpec
+        ) as Promise<BasicGetInvalidResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { options },
-        getInvalidOperationSpec
-      );
-      return result as BasicGetInvalidResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -133,25 +105,16 @@ export class BasicImpl implements Basic {
   async getEmpty(
     options?: BasicGetEmptyOptionalParams
   ): Promise<BasicGetEmptyResponse> {
-    const { span } = createSpan(
+    return tracingClient.withSpan(
       "BodyComplexWithTracing-getEmpty",
-      options || {}
+      options ?? {},
+      async () => {
+        return this.client.sendOperationRequest(
+          { options },
+          getEmptyOperationSpec
+        ) as Promise<BasicGetEmptyResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { options },
-        getEmptyOperationSpec
-      );
-      return result as BasicGetEmptyResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -161,25 +124,16 @@ export class BasicImpl implements Basic {
   async getNull(
     options?: BasicGetNullOptionalParams
   ): Promise<BasicGetNullResponse> {
-    const { span } = createSpan(
+    return tracingClient.withSpan(
       "BodyComplexWithTracing-getNull",
-      options || {}
+      options ?? {},
+      async () => {
+        return this.client.sendOperationRequest(
+          { options },
+          getNullOperationSpec
+        ) as Promise<BasicGetNullResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { options },
-        getNullOperationSpec
-      );
-      return result as BasicGetNullResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -189,25 +143,16 @@ export class BasicImpl implements Basic {
   async getNotProvided(
     options?: BasicGetNotProvidedOptionalParams
   ): Promise<BasicGetNotProvidedResponse> {
-    const { span } = createSpan(
+    return tracingClient.withSpan(
       "BodyComplexWithTracing-getNotProvided",
-      options || {}
+      options ?? {},
+      async () => {
+        return this.client.sendOperationRequest(
+          { options },
+          getNotProvidedOperationSpec
+        ) as Promise<BasicGetNotProvidedResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { options },
-        getNotProvidedOperationSpec
-      );
-      return result as BasicGetNotProvidedResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 }
 // Operation Specifications

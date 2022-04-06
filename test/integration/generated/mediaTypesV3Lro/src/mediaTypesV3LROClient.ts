@@ -150,6 +150,7 @@ export class MediaTypesV3LROClient extends coreClient.ServiceClient {
       );
     }
     operationArguments.options = this.getOperationOptions(options);
+    operationArguments.options = this.getOperationOptions(options);
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
@@ -287,6 +288,7 @@ export class MediaTypesV3LROClient extends coreClient.ServiceClient {
         `"contentType" must be a valid value but instead was "${args[1]}".`
       );
     }
+    operationArguments.options = options || {};
     operationArguments.options = options || {};
     return this.sendOperationRequest(operationArguments, operationSpec);
   }

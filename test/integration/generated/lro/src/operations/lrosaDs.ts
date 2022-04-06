@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { tracingClient } from "../tracing";
 import { LrosaDs } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -95,7 +96,15 @@ export class LrosaDsImpl implements LrosaDs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LrosaDsPutNonRetry400Response> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPutNonRetry400",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LrosaDsPutNonRetry400Response
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -171,7 +180,15 @@ export class LrosaDsImpl implements LrosaDs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LrosaDsPutNonRetry201Creating400Response> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPutNonRetry201Creating400",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LrosaDsPutNonRetry201Creating400Response
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -248,7 +265,15 @@ export class LrosaDsImpl implements LrosaDs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LrosaDsPutNonRetry201Creating400InvalidJsonResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPutNonRetry201Creating400InvalidJson",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LrosaDsPutNonRetry201Creating400InvalidJsonResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -327,7 +352,15 @@ export class LrosaDsImpl implements LrosaDs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LrosaDsPutAsyncRelativeRetry400Response> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPutAsyncRelativeRetry400",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LrosaDsPutAsyncRelativeRetry400Response
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -403,7 +436,15 @@ export class LrosaDsImpl implements LrosaDs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LrosaDsDeleteNonRetry400Response> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginDeleteNonRetry400",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LrosaDsDeleteNonRetry400Response
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -478,7 +519,15 @@ export class LrosaDsImpl implements LrosaDs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LrosaDsDelete202NonRetry400Response> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginDelete202NonRetry400",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LrosaDsDelete202NonRetry400Response
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -554,7 +603,15 @@ export class LrosaDsImpl implements LrosaDs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LrosaDsDeleteAsyncRelativeRetry400Response> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginDeleteAsyncRelativeRetry400",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LrosaDsDeleteAsyncRelativeRetry400Response
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -630,7 +687,15 @@ export class LrosaDsImpl implements LrosaDs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LrosaDsPostNonRetry400Response> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPostNonRetry400",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LrosaDsPostNonRetry400Response
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -705,7 +770,15 @@ export class LrosaDsImpl implements LrosaDs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LrosaDsPost202NonRetry400Response> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPost202NonRetry400",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LrosaDsPost202NonRetry400Response
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -781,7 +854,15 @@ export class LrosaDsImpl implements LrosaDs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LrosaDsPostAsyncRelativeRetry400Response> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPostAsyncRelativeRetry400",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LrosaDsPostAsyncRelativeRetry400Response
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -857,7 +938,15 @@ export class LrosaDsImpl implements LrosaDs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LrosaDsPutError201NoProvisioningStatePayloadResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPutError201NoProvisioningStatePayload",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LrosaDsPutError201NoProvisioningStatePayloadResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -936,7 +1025,15 @@ export class LrosaDsImpl implements LrosaDs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LrosaDsPutAsyncRelativeRetryNoStatusResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPutAsyncRelativeRetryNoStatus",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LrosaDsPutAsyncRelativeRetryNoStatusResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -1015,7 +1112,15 @@ export class LrosaDsImpl implements LrosaDs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LrosaDsPutAsyncRelativeRetryNoStatusPayloadResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPutAsyncRelativeRetryNoStatusPayload",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LrosaDsPutAsyncRelativeRetryNoStatusPayloadResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -1089,7 +1194,13 @@ export class LrosaDsImpl implements LrosaDs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginDelete204Succeeded",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<void>;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -1165,7 +1276,15 @@ export class LrosaDsImpl implements LrosaDs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LrosaDsDeleteAsyncRelativeRetryNoStatusResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginDeleteAsyncRelativeRetryNoStatus",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LrosaDsDeleteAsyncRelativeRetryNoStatusResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -1241,7 +1360,15 @@ export class LrosaDsImpl implements LrosaDs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LrosaDsPost202NoLocationResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPost202NoLocation",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LrosaDsPost202NoLocationResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -1318,7 +1445,15 @@ export class LrosaDsImpl implements LrosaDs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LrosaDsPostAsyncRelativeRetryNoPayloadResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPostAsyncRelativeRetryNoPayload",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LrosaDsPostAsyncRelativeRetryNoPayloadResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -1396,7 +1531,15 @@ export class LrosaDsImpl implements LrosaDs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LrosaDsPut200InvalidJsonResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPut200InvalidJson",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LrosaDsPut200InvalidJsonResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -1473,7 +1616,15 @@ export class LrosaDsImpl implements LrosaDs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LrosaDsPutAsyncRelativeRetryInvalidHeaderResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPutAsyncRelativeRetryInvalidHeader",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LrosaDsPutAsyncRelativeRetryInvalidHeaderResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -1553,7 +1704,15 @@ export class LrosaDsImpl implements LrosaDs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LrosaDsPutAsyncRelativeRetryInvalidJsonPollingResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPutAsyncRelativeRetryInvalidJsonPolling",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LrosaDsPutAsyncRelativeRetryInvalidJsonPollingResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -1633,7 +1792,15 @@ export class LrosaDsImpl implements LrosaDs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LrosaDsDelete202RetryInvalidHeaderResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginDelete202RetryInvalidHeader",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LrosaDsDelete202RetryInvalidHeaderResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -1710,7 +1877,15 @@ export class LrosaDsImpl implements LrosaDs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LrosaDsDeleteAsyncRelativeRetryInvalidHeaderResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginDeleteAsyncRelativeRetryInvalidHeader",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LrosaDsDeleteAsyncRelativeRetryInvalidHeaderResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -1791,7 +1966,15 @@ export class LrosaDsImpl implements LrosaDs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginDeleteAsyncRelativeRetryInvalidJsonPolling",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -1870,7 +2053,15 @@ export class LrosaDsImpl implements LrosaDs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LrosaDsPost202RetryInvalidHeaderResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPost202RetryInvalidHeader",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LrosaDsPost202RetryInvalidHeaderResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -1948,7 +2139,15 @@ export class LrosaDsImpl implements LrosaDs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LrosaDsPostAsyncRelativeRetryInvalidHeaderResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPostAsyncRelativeRetryInvalidHeader",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LrosaDsPostAsyncRelativeRetryInvalidHeaderResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -2029,7 +2228,15 @@ export class LrosaDsImpl implements LrosaDs {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LrosaDsPostAsyncRelativeRetryInvalidJsonPollingResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient-beginPostAsyncRelativeRetryInvalidJsonPolling",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LrosaDsPostAsyncRelativeRetryInvalidJsonPollingResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,

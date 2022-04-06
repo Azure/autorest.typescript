@@ -298,8 +298,7 @@ function regularAutorestPackage(
         "@azure/core-rest-pipeline": "^1.8.0"
       }),
       ...(tracingInfo && {
-        "@azure/core-tracing": "1.0.0-preview.13",
-        "@opentelemetry/api": "^0.10.2"
+        "@azure/core-tracing": "^1.0.0"
       }),
       tslib: "^2.2.0"
     },

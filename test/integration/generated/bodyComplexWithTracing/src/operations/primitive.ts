@@ -6,10 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { createSpan } from "../tracing";
+import { tracingClient } from "../tracing";
 import { Primitive } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as coreTracing from "@azure/core-tracing";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyComplexWithTracing } from "../bodyComplexWithTracing";
@@ -79,22 +78,16 @@ export class PrimitiveImpl implements Primitive {
   async getInt(
     options?: PrimitiveGetIntOptionalParams
   ): Promise<PrimitiveGetIntResponse> {
-    const { span } = createSpan("BodyComplexWithTracing-getInt", options || {});
-    try {
-      const result = await this.client.sendOperationRequest(
-        { options },
-        getIntOperationSpec
-      );
-      return result as PrimitiveGetIntResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
+    return tracingClient.withSpan(
+      "BodyComplexWithTracing-getInt",
+      options ?? {},
+      async () => {
+        return this.client.sendOperationRequest(
+          { options },
+          getIntOperationSpec
+        ) as Promise<PrimitiveGetIntResponse>;
+      }
+    );
   }
 
   /**
@@ -106,22 +99,16 @@ export class PrimitiveImpl implements Primitive {
     complexBody: IntWrapper,
     options?: PrimitivePutIntOptionalParams
   ): Promise<void> {
-    const { span } = createSpan("BodyComplexWithTracing-putInt", options || {});
-    try {
-      const result = await this.client.sendOperationRequest(
-        { complexBody, options },
-        putIntOperationSpec
-      );
-      return result as void;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
+    return tracingClient.withSpan(
+      "BodyComplexWithTracing-putInt",
+      options ?? {},
+      async () => {
+        return this.client.sendOperationRequest(
+          { complexBody, options },
+          putIntOperationSpec
+        ) as Promise<void>;
+      }
+    );
   }
 
   /**
@@ -131,25 +118,16 @@ export class PrimitiveImpl implements Primitive {
   async getLong(
     options?: PrimitiveGetLongOptionalParams
   ): Promise<PrimitiveGetLongResponse> {
-    const { span } = createSpan(
+    return tracingClient.withSpan(
       "BodyComplexWithTracing-getLong",
-      options || {}
+      options ?? {},
+      async () => {
+        return this.client.sendOperationRequest(
+          { options },
+          getLongOperationSpec
+        ) as Promise<PrimitiveGetLongResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { options },
-        getLongOperationSpec
-      );
-      return result as PrimitiveGetLongResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -161,25 +139,16 @@ export class PrimitiveImpl implements Primitive {
     complexBody: LongWrapper,
     options?: PrimitivePutLongOptionalParams
   ): Promise<void> {
-    const { span } = createSpan(
+    return tracingClient.withSpan(
       "BodyComplexWithTracing-putLong",
-      options || {}
+      options ?? {},
+      async () => {
+        return this.client.sendOperationRequest(
+          { complexBody, options },
+          putLongOperationSpec
+        ) as Promise<void>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { complexBody, options },
-        putLongOperationSpec
-      );
-      return result as void;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -189,25 +158,16 @@ export class PrimitiveImpl implements Primitive {
   async getFloat(
     options?: PrimitiveGetFloatOptionalParams
   ): Promise<PrimitiveGetFloatResponse> {
-    const { span } = createSpan(
+    return tracingClient.withSpan(
       "BodyComplexWithTracing-getFloat",
-      options || {}
+      options ?? {},
+      async () => {
+        return this.client.sendOperationRequest(
+          { options },
+          getFloatOperationSpec
+        ) as Promise<PrimitiveGetFloatResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { options },
-        getFloatOperationSpec
-      );
-      return result as PrimitiveGetFloatResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -219,25 +179,16 @@ export class PrimitiveImpl implements Primitive {
     complexBody: FloatWrapper,
     options?: PrimitivePutFloatOptionalParams
   ): Promise<void> {
-    const { span } = createSpan(
+    return tracingClient.withSpan(
       "BodyComplexWithTracing-putFloat",
-      options || {}
+      options ?? {},
+      async () => {
+        return this.client.sendOperationRequest(
+          { complexBody, options },
+          putFloatOperationSpec
+        ) as Promise<void>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { complexBody, options },
-        putFloatOperationSpec
-      );
-      return result as void;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -247,25 +198,16 @@ export class PrimitiveImpl implements Primitive {
   async getDouble(
     options?: PrimitiveGetDoubleOptionalParams
   ): Promise<PrimitiveGetDoubleResponse> {
-    const { span } = createSpan(
+    return tracingClient.withSpan(
       "BodyComplexWithTracing-getDouble",
-      options || {}
+      options ?? {},
+      async () => {
+        return this.client.sendOperationRequest(
+          { options },
+          getDoubleOperationSpec
+        ) as Promise<PrimitiveGetDoubleResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { options },
-        getDoubleOperationSpec
-      );
-      return result as PrimitiveGetDoubleResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -278,25 +220,16 @@ export class PrimitiveImpl implements Primitive {
     complexBody: DoubleWrapper,
     options?: PrimitivePutDoubleOptionalParams
   ): Promise<void> {
-    const { span } = createSpan(
+    return tracingClient.withSpan(
       "BodyComplexWithTracing-putDouble",
-      options || {}
+      options ?? {},
+      async () => {
+        return this.client.sendOperationRequest(
+          { complexBody, options },
+          putDoubleOperationSpec
+        ) as Promise<void>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { complexBody, options },
-        putDoubleOperationSpec
-      );
-      return result as void;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -306,25 +239,16 @@ export class PrimitiveImpl implements Primitive {
   async getBool(
     options?: PrimitiveGetBoolOptionalParams
   ): Promise<PrimitiveGetBoolResponse> {
-    const { span } = createSpan(
+    return tracingClient.withSpan(
       "BodyComplexWithTracing-getBool",
-      options || {}
+      options ?? {},
+      async () => {
+        return this.client.sendOperationRequest(
+          { options },
+          getBoolOperationSpec
+        ) as Promise<PrimitiveGetBoolResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { options },
-        getBoolOperationSpec
-      );
-      return result as PrimitiveGetBoolResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -336,25 +260,16 @@ export class PrimitiveImpl implements Primitive {
     complexBody: BooleanWrapper,
     options?: PrimitivePutBoolOptionalParams
   ): Promise<void> {
-    const { span } = createSpan(
+    return tracingClient.withSpan(
       "BodyComplexWithTracing-putBool",
-      options || {}
+      options ?? {},
+      async () => {
+        return this.client.sendOperationRequest(
+          { complexBody, options },
+          putBoolOperationSpec
+        ) as Promise<void>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { complexBody, options },
-        putBoolOperationSpec
-      );
-      return result as void;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -364,25 +279,16 @@ export class PrimitiveImpl implements Primitive {
   async getString(
     options?: PrimitiveGetStringOptionalParams
   ): Promise<PrimitiveGetStringResponse> {
-    const { span } = createSpan(
+    return tracingClient.withSpan(
       "BodyComplexWithTracing-getString",
-      options || {}
+      options ?? {},
+      async () => {
+        return this.client.sendOperationRequest(
+          { options },
+          getStringOperationSpec
+        ) as Promise<PrimitiveGetStringResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { options },
-        getStringOperationSpec
-      );
-      return result as PrimitiveGetStringResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -394,25 +300,16 @@ export class PrimitiveImpl implements Primitive {
     complexBody: StringWrapper,
     options?: PrimitivePutStringOptionalParams
   ): Promise<void> {
-    const { span } = createSpan(
+    return tracingClient.withSpan(
       "BodyComplexWithTracing-putString",
-      options || {}
+      options ?? {},
+      async () => {
+        return this.client.sendOperationRequest(
+          { complexBody, options },
+          putStringOperationSpec
+        ) as Promise<void>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { complexBody, options },
-        putStringOperationSpec
-      );
-      return result as void;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -422,25 +319,16 @@ export class PrimitiveImpl implements Primitive {
   async getDate(
     options?: PrimitiveGetDateOptionalParams
   ): Promise<PrimitiveGetDateResponse> {
-    const { span } = createSpan(
+    return tracingClient.withSpan(
       "BodyComplexWithTracing-getDate",
-      options || {}
+      options ?? {},
+      async () => {
+        return this.client.sendOperationRequest(
+          { options },
+          getDateOperationSpec
+        ) as Promise<PrimitiveGetDateResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { options },
-        getDateOperationSpec
-      );
-      return result as PrimitiveGetDateResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -452,25 +340,16 @@ export class PrimitiveImpl implements Primitive {
     complexBody: DateWrapper,
     options?: PrimitivePutDateOptionalParams
   ): Promise<void> {
-    const { span } = createSpan(
+    return tracingClient.withSpan(
       "BodyComplexWithTracing-putDate",
-      options || {}
+      options ?? {},
+      async () => {
+        return this.client.sendOperationRequest(
+          { complexBody, options },
+          putDateOperationSpec
+        ) as Promise<void>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { complexBody, options },
-        putDateOperationSpec
-      );
-      return result as void;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -480,25 +359,16 @@ export class PrimitiveImpl implements Primitive {
   async getDateTime(
     options?: PrimitiveGetDateTimeOptionalParams
   ): Promise<PrimitiveGetDateTimeResponse> {
-    const { span } = createSpan(
+    return tracingClient.withSpan(
       "BodyComplexWithTracing-getDateTime",
-      options || {}
+      options ?? {},
+      async () => {
+        return this.client.sendOperationRequest(
+          { options },
+          getDateTimeOperationSpec
+        ) as Promise<PrimitiveGetDateTimeResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { options },
-        getDateTimeOperationSpec
-      );
-      return result as PrimitiveGetDateTimeResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -510,25 +380,16 @@ export class PrimitiveImpl implements Primitive {
     complexBody: DatetimeWrapper,
     options?: PrimitivePutDateTimeOptionalParams
   ): Promise<void> {
-    const { span } = createSpan(
+    return tracingClient.withSpan(
       "BodyComplexWithTracing-putDateTime",
-      options || {}
+      options ?? {},
+      async () => {
+        return this.client.sendOperationRequest(
+          { complexBody, options },
+          putDateTimeOperationSpec
+        ) as Promise<void>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { complexBody, options },
-        putDateTimeOperationSpec
-      );
-      return result as void;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -538,25 +399,16 @@ export class PrimitiveImpl implements Primitive {
   async getDateTimeRfc1123(
     options?: PrimitiveGetDateTimeRfc1123OptionalParams
   ): Promise<PrimitiveGetDateTimeRfc1123Response> {
-    const { span } = createSpan(
+    return tracingClient.withSpan(
       "BodyComplexWithTracing-getDateTimeRfc1123",
-      options || {}
+      options ?? {},
+      async () => {
+        return this.client.sendOperationRequest(
+          { options },
+          getDateTimeRfc1123OperationSpec
+        ) as Promise<PrimitiveGetDateTimeRfc1123Response>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { options },
-        getDateTimeRfc1123OperationSpec
-      );
-      return result as PrimitiveGetDateTimeRfc1123Response;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -568,25 +420,16 @@ export class PrimitiveImpl implements Primitive {
     complexBody: Datetimerfc1123Wrapper,
     options?: PrimitivePutDateTimeRfc1123OptionalParams
   ): Promise<void> {
-    const { span } = createSpan(
+    return tracingClient.withSpan(
       "BodyComplexWithTracing-putDateTimeRfc1123",
-      options || {}
+      options ?? {},
+      async () => {
+        return this.client.sendOperationRequest(
+          { complexBody, options },
+          putDateTimeRfc1123OperationSpec
+        ) as Promise<void>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { complexBody, options },
-        putDateTimeRfc1123OperationSpec
-      );
-      return result as void;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -596,25 +439,16 @@ export class PrimitiveImpl implements Primitive {
   async getDuration(
     options?: PrimitiveGetDurationOptionalParams
   ): Promise<PrimitiveGetDurationResponse> {
-    const { span } = createSpan(
+    return tracingClient.withSpan(
       "BodyComplexWithTracing-getDuration",
-      options || {}
+      options ?? {},
+      async () => {
+        return this.client.sendOperationRequest(
+          { options },
+          getDurationOperationSpec
+        ) as Promise<PrimitiveGetDurationResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { options },
-        getDurationOperationSpec
-      );
-      return result as PrimitiveGetDurationResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -626,25 +460,16 @@ export class PrimitiveImpl implements Primitive {
     complexBody: DurationWrapper,
     options?: PrimitivePutDurationOptionalParams
   ): Promise<void> {
-    const { span } = createSpan(
+    return tracingClient.withSpan(
       "BodyComplexWithTracing-putDuration",
-      options || {}
+      options ?? {},
+      async () => {
+        return this.client.sendOperationRequest(
+          { complexBody, options },
+          putDurationOperationSpec
+        ) as Promise<void>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { complexBody, options },
-        putDurationOperationSpec
-      );
-      return result as void;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -654,25 +479,16 @@ export class PrimitiveImpl implements Primitive {
   async getByte(
     options?: PrimitiveGetByteOptionalParams
   ): Promise<PrimitiveGetByteResponse> {
-    const { span } = createSpan(
+    return tracingClient.withSpan(
       "BodyComplexWithTracing-getByte",
-      options || {}
+      options ?? {},
+      async () => {
+        return this.client.sendOperationRequest(
+          { options },
+          getByteOperationSpec
+        ) as Promise<PrimitiveGetByteResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { options },
-        getByteOperationSpec
-      );
-      return result as PrimitiveGetByteResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -684,25 +500,16 @@ export class PrimitiveImpl implements Primitive {
     complexBody: ByteWrapper,
     options?: PrimitivePutByteOptionalParams
   ): Promise<void> {
-    const { span } = createSpan(
+    return tracingClient.withSpan(
       "BodyComplexWithTracing-putByte",
-      options || {}
+      options ?? {},
+      async () => {
+        return this.client.sendOperationRequest(
+          { complexBody, options },
+          putByteOperationSpec
+        ) as Promise<void>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { complexBody, options },
-        putByteOperationSpec
-      );
-      return result as void;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 }
 // Operation Specifications
