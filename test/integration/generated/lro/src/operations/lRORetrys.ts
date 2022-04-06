@@ -62,7 +62,7 @@ export class LRORetrysImpl implements LRORetrys {
       spec: coreClient.OperationSpec
     ): Promise<LRORetrysPut201CreatingSucceeded200Response> => {
       return tracingClient.withSpan(
-        "LROClient-beginPut201CreatingSucceeded200",
+        "LROClient.beginPut201CreatingSucceeded200",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -149,7 +149,7 @@ export class LRORetrysImpl implements LRORetrys {
       spec: coreClient.OperationSpec
     ): Promise<LRORetrysPutAsyncRelativeRetrySucceededResponse> => {
       return tracingClient.withSpan(
-        "LROClient-beginPutAsyncRelativeRetrySucceeded",
+        "LROClient.beginPutAsyncRelativeRetrySucceeded",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -238,7 +238,7 @@ export class LRORetrysImpl implements LRORetrys {
       spec: coreClient.OperationSpec
     ): Promise<LRORetrysDeleteProvisioning202Accepted200SucceededResponse> => {
       return tracingClient.withSpan(
-        "LROClient-beginDeleteProvisioning202Accepted200Succeeded",
+        "LROClient.beginDeleteProvisioning202Accepted200Succeeded",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -326,7 +326,7 @@ export class LRORetrysImpl implements LRORetrys {
       spec: coreClient.OperationSpec
     ): Promise<LRORetrysDelete202Retry200Response> => {
       return tracingClient.withSpan(
-        "LROClient-beginDelete202Retry200",
+        "LROClient.beginDelete202Retry200",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -411,7 +411,7 @@ export class LRORetrysImpl implements LRORetrys {
       spec: coreClient.OperationSpec
     ): Promise<LRORetrysDeleteAsyncRelativeRetrySucceededResponse> => {
       return tracingClient.withSpan(
-        "LROClient-beginDeleteAsyncRelativeRetrySucceeded",
+        "LROClient.beginDeleteAsyncRelativeRetrySucceeded",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -496,7 +496,7 @@ export class LRORetrysImpl implements LRORetrys {
       spec: coreClient.OperationSpec
     ): Promise<LRORetrysPost202Retry200Response> => {
       return tracingClient.withSpan(
-        "LROClient-beginPost202Retry200",
+        "LROClient.beginPost202Retry200",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -582,7 +582,7 @@ export class LRORetrysImpl implements LRORetrys {
       spec: coreClient.OperationSpec
     ): Promise<LRORetrysPostAsyncRelativeRetrySucceededResponse> => {
       return tracingClient.withSpan(
-        "LROClient-beginPostAsyncRelativeRetrySucceeded",
+        "LROClient.beginPostAsyncRelativeRetrySucceeded",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<

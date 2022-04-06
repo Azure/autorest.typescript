@@ -34,9 +34,9 @@ export class FlattencomplexImpl implements Flattencomplex {
     options?: FlattencomplexGetValidOptionalParams
   ): Promise<FlattencomplexGetValidResponse> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-getValid",
+      "BodyComplexWithTracing.getValid",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           getValidOperationSpec

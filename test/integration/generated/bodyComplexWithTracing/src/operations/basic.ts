@@ -47,9 +47,9 @@ export class BasicImpl implements Basic {
     options?: BasicGetValidOptionalParams
   ): Promise<BasicGetValidResponse> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-getValid",
+      "BodyComplexWithTracing.getValid",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           getValidOperationSpec
@@ -68,9 +68,9 @@ export class BasicImpl implements Basic {
     options?: BasicPutValidOptionalParams
   ): Promise<void> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-putValid",
+      "BodyComplexWithTracing.putValid",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
           putValidOperationSpec
@@ -87,9 +87,9 @@ export class BasicImpl implements Basic {
     options?: BasicGetInvalidOptionalParams
   ): Promise<BasicGetInvalidResponse> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-getInvalid",
+      "BodyComplexWithTracing.getInvalid",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           getInvalidOperationSpec
@@ -106,9 +106,9 @@ export class BasicImpl implements Basic {
     options?: BasicGetEmptyOptionalParams
   ): Promise<BasicGetEmptyResponse> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-getEmpty",
+      "BodyComplexWithTracing.getEmpty",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           getEmptyOperationSpec
@@ -125,9 +125,9 @@ export class BasicImpl implements Basic {
     options?: BasicGetNullOptionalParams
   ): Promise<BasicGetNullResponse> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-getNull",
+      "BodyComplexWithTracing.getNull",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           getNullOperationSpec
@@ -144,9 +144,9 @@ export class BasicImpl implements Basic {
     options?: BasicGetNotProvidedOptionalParams
   ): Promise<BasicGetNotProvidedResponse> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-getNotProvided",
+      "BodyComplexWithTracing.getNotProvided",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           getNotProvidedOperationSpec

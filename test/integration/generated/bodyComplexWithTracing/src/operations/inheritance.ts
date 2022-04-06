@@ -39,9 +39,9 @@ export class InheritanceImpl implements Inheritance {
     options?: InheritanceGetValidOptionalParams
   ): Promise<InheritanceGetValidResponse> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-getValid",
+      "BodyComplexWithTracing.getValid",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           getValidOperationSpec
@@ -62,9 +62,9 @@ export class InheritanceImpl implements Inheritance {
     options?: InheritancePutValidOptionalParams
   ): Promise<void> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-putValid",
+      "BodyComplexWithTracing.putValid",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
           putValidOperationSpec

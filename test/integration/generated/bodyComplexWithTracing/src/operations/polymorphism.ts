@@ -52,9 +52,9 @@ export class PolymorphismImpl implements Polymorphism {
     options?: PolymorphismGetValidOptionalParams
   ): Promise<PolymorphismGetValidResponse> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-getValid",
+      "BodyComplexWithTracing.getValid",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           getValidOperationSpec
@@ -105,9 +105,9 @@ export class PolymorphismImpl implements Polymorphism {
     options?: PolymorphismPutValidOptionalParams
   ): Promise<void> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-putValid",
+      "BodyComplexWithTracing.putValid",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
           putValidOperationSpec
@@ -124,9 +124,9 @@ export class PolymorphismImpl implements Polymorphism {
     options?: PolymorphismGetDotSyntaxOptionalParams
   ): Promise<PolymorphismGetDotSyntaxResponse> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-getDotSyntax",
+      "BodyComplexWithTracing.getDotSyntax",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           getDotSyntaxOperationSpec
@@ -145,9 +145,9 @@ export class PolymorphismImpl implements Polymorphism {
     options?: PolymorphismGetComposedWithDiscriminatorOptionalParams
   ): Promise<PolymorphismGetComposedWithDiscriminatorResponse> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-getComposedWithDiscriminator",
+      "BodyComplexWithTracing.getComposedWithDiscriminator",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           getComposedWithDiscriminatorOperationSpec
@@ -166,9 +166,9 @@ export class PolymorphismImpl implements Polymorphism {
     options?: PolymorphismGetComposedWithoutDiscriminatorOptionalParams
   ): Promise<PolymorphismGetComposedWithoutDiscriminatorResponse> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-getComposedWithoutDiscriminator",
+      "BodyComplexWithTracing.getComposedWithoutDiscriminator",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           getComposedWithoutDiscriminatorOperationSpec
@@ -186,9 +186,9 @@ export class PolymorphismImpl implements Polymorphism {
     options?: PolymorphismGetComplicatedOptionalParams
   ): Promise<PolymorphismGetComplicatedResponse> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-getComplicated",
+      "BodyComplexWithTracing.getComplicated",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           getComplicatedOperationSpec
@@ -208,9 +208,9 @@ export class PolymorphismImpl implements Polymorphism {
     options?: PolymorphismPutComplicatedOptionalParams
   ): Promise<void> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-putComplicated",
+      "BodyComplexWithTracing.putComplicated",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
           putComplicatedOperationSpec
@@ -229,9 +229,9 @@ export class PolymorphismImpl implements Polymorphism {
     options?: PolymorphismPutMissingDiscriminatorOptionalParams
   ): Promise<PolymorphismPutMissingDiscriminatorResponse> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-putMissingDiscriminator",
+      "BodyComplexWithTracing.putMissingDiscriminator",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
           putMissingDiscriminatorOperationSpec
@@ -277,9 +277,9 @@ export class PolymorphismImpl implements Polymorphism {
     options?: PolymorphismPutValidMissingRequiredOptionalParams
   ): Promise<void> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-putValidMissingRequired",
+      "BodyComplexWithTracing.putValidMissingRequired",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
           putValidMissingRequiredOperationSpec

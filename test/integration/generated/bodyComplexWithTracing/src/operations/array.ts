@@ -44,9 +44,9 @@ export class ArrayImpl implements Array {
     options?: ArrayGetValidOptionalParams
   ): Promise<ArrayGetValidResponse> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-getValid",
+      "BodyComplexWithTracing.getValid",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           getValidOperationSpec
@@ -66,9 +66,9 @@ export class ArrayImpl implements Array {
     options?: ArrayPutValidOptionalParams
   ): Promise<void> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-putValid",
+      "BodyComplexWithTracing.putValid",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
           putValidOperationSpec
@@ -85,9 +85,9 @@ export class ArrayImpl implements Array {
     options?: ArrayGetEmptyOptionalParams
   ): Promise<ArrayGetEmptyResponse> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-getEmpty",
+      "BodyComplexWithTracing.getEmpty",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           getEmptyOperationSpec
@@ -106,9 +106,9 @@ export class ArrayImpl implements Array {
     options?: ArrayPutEmptyOptionalParams
   ): Promise<void> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-putEmpty",
+      "BodyComplexWithTracing.putEmpty",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
           putEmptyOperationSpec
@@ -125,9 +125,9 @@ export class ArrayImpl implements Array {
     options?: ArrayGetNotProvidedOptionalParams
   ): Promise<ArrayGetNotProvidedResponse> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-getNotProvided",
+      "BodyComplexWithTracing.getNotProvided",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           getNotProvidedOperationSpec

@@ -39,9 +39,9 @@ export class PolymorphicrecursiveImpl implements Polymorphicrecursive {
     options?: PolymorphicrecursiveGetValidOptionalParams
   ): Promise<PolymorphicrecursiveGetValidResponse> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-getValid",
+      "BodyComplexWithTracing.getValid",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           getValidOperationSpec
@@ -112,9 +112,9 @@ export class PolymorphicrecursiveImpl implements Polymorphicrecursive {
     options?: PolymorphicrecursivePutValidOptionalParams
   ): Promise<void> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-putValid",
+      "BodyComplexWithTracing.putValid",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
           putValidOperationSpec

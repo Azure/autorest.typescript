@@ -39,9 +39,9 @@ export class ReadonlypropertyImpl implements Readonlyproperty {
     options?: ReadonlypropertyGetValidOptionalParams
   ): Promise<ReadonlypropertyGetValidResponse> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-getValid",
+      "BodyComplexWithTracing.getValid",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           getValidOperationSpec
@@ -60,9 +60,9 @@ export class ReadonlypropertyImpl implements Readonlyproperty {
     options?: ReadonlypropertyPutValidOptionalParams
   ): Promise<void> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-putValid",
+      "BodyComplexWithTracing.putValid",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
           putValidOperationSpec

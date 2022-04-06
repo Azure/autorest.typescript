@@ -119,7 +119,7 @@ export class MediaTypesWithTracingClient extends coreClient.ServiceClient {
     operationArguments.options = options || {};
 
     return tracingClient.withSpan(
-      "MediaTypesWithTracingClient-analyzeBody",
+      "MediaTypesWithTracingClient.analyzeBody",
       options ?? {},
       async () => {
         return this.sendOperationRequest(
@@ -181,7 +181,7 @@ export class MediaTypesWithTracingClient extends coreClient.ServiceClient {
     operationArguments.options = options || {};
 
     return tracingClient.withSpan(
-      "MediaTypesWithTracingClient-analyzeBodyNoAcceptHeader",
+      "MediaTypesWithTracingClient.analyzeBodyNoAcceptHeader",
       options ?? {},
       async () => {
         return this.sendOperationRequest(
@@ -200,9 +200,9 @@ export class MediaTypesWithTracingClient extends coreClient.ServiceClient {
     options?: ContentTypeWithEncodingOptionalParams
   ): Promise<ContentTypeWithEncodingResponse> {
     return tracingClient.withSpan(
-      "MediaTypesWithTracingClient-contentTypeWithEncoding",
+      "MediaTypesWithTracingClient.contentTypeWithEncoding",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.sendOperationRequest(
           { options },
           contentTypeWithEncodingOperationSpec
@@ -222,9 +222,9 @@ export class MediaTypesWithTracingClient extends coreClient.ServiceClient {
     options?: BinaryBodyWithTwoContentTypesOptionalParams
   ): Promise<BinaryBodyWithTwoContentTypesResponse> {
     return tracingClient.withSpan(
-      "MediaTypesWithTracingClient-binaryBodyWithTwoContentTypes",
+      "MediaTypesWithTracingClient.binaryBodyWithTwoContentTypes",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.sendOperationRequest(
           { message, options },
           binaryBodyWithTwoContentTypesOperationSpec
@@ -308,7 +308,7 @@ export class MediaTypesWithTracingClient extends coreClient.ServiceClient {
     operationArguments.options = options || {};
 
     return tracingClient.withSpan(
-      "MediaTypesWithTracingClient-binaryBodyWithThreeContentTypes",
+      "MediaTypesWithTracingClient.binaryBodyWithThreeContentTypes",
       options ?? {},
       async () => {
         return this.sendOperationRequest(
@@ -377,7 +377,7 @@ export class MediaTypesWithTracingClient extends coreClient.ServiceClient {
     operationArguments.options = options || {};
 
     return tracingClient.withSpan(
-      "MediaTypesWithTracingClient-putTextAndJsonBody",
+      "MediaTypesWithTracingClient.putTextAndJsonBody",
       options ?? {},
       async () => {
         return this.sendOperationRequest(

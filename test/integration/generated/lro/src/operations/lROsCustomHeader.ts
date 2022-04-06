@@ -57,7 +57,7 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
       spec: coreClient.OperationSpec
     ): Promise<LROsCustomHeaderPutAsyncRetrySucceededResponse> => {
       return tracingClient.withSpan(
-        "LROClient-beginPutAsyncRetrySucceeded",
+        "LROClient.beginPutAsyncRetrySucceeded",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -146,7 +146,7 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
       spec: coreClient.OperationSpec
     ): Promise<LROsCustomHeaderPut201CreatingSucceeded200Response> => {
       return tracingClient.withSpan(
-        "LROClient-beginPut201CreatingSucceeded200",
+        "LROClient.beginPut201CreatingSucceeded200",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -234,7 +234,7 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
       spec: coreClient.OperationSpec
     ): Promise<LROsCustomHeaderPost202Retry200Response> => {
       return tracingClient.withSpan(
-        "LROClient-beginPost202Retry200",
+        "LROClient.beginPost202Retry200",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -322,7 +322,7 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
       spec: coreClient.OperationSpec
     ): Promise<LROsCustomHeaderPostAsyncRetrySucceededResponse> => {
       return tracingClient.withSpan(
-        "LROClient-beginPostAsyncRetrySucceeded",
+        "LROClient.beginPostAsyncRetrySucceeded",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<

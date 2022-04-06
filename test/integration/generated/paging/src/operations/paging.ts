@@ -1139,9 +1139,9 @@ export class PagingImpl implements Paging {
     options?: PagingGetNoItemNamePagesOptionalParams
   ): Promise<PagingGetNoItemNamePagesResponse> {
     return tracingClient.withSpan(
-      "PagingClient-_getNoItemNamePages",
+      "PagingClient._getNoItemNamePages",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           getNoItemNamePagesOperationSpec
@@ -1158,9 +1158,9 @@ export class PagingImpl implements Paging {
     options?: PagingGetNullNextLinkNamePagesOptionalParams
   ): Promise<PagingGetNullNextLinkNamePagesResponse> {
     return tracingClient.withSpan(
-      "PagingClient-_getNullNextLinkNamePages",
+      "PagingClient._getNullNextLinkNamePages",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           getNullNextLinkNamePagesOperationSpec
@@ -1177,9 +1177,9 @@ export class PagingImpl implements Paging {
     options?: PagingGetSinglePagesOptionalParams
   ): Promise<PagingGetSinglePagesResponse> {
     return tracingClient.withSpan(
-      "PagingClient-_getSinglePages",
+      "PagingClient._getSinglePages",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           getSinglePagesOperationSpec
@@ -1197,9 +1197,9 @@ export class PagingImpl implements Paging {
     options?: PagingFirstResponseEmptyOptionalParams
   ): Promise<PagingFirstResponseEmptyResponse> {
     return tracingClient.withSpan(
-      "PagingClient-_firstResponseEmpty",
+      "PagingClient._firstResponseEmpty",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           firstResponseEmptyOperationSpec
@@ -1216,9 +1216,9 @@ export class PagingImpl implements Paging {
     options?: PagingGetMultiplePagesOptionalParams
   ): Promise<PagingGetMultiplePagesResponse> {
     return tracingClient.withSpan(
-      "PagingClient-_getMultiplePages",
+      "PagingClient._getMultiplePages",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           getMultiplePagesOperationSpec
@@ -1238,9 +1238,9 @@ export class PagingImpl implements Paging {
     options?: PagingGetWithQueryParamsOptionalParams
   ): Promise<PagingGetWithQueryParamsResponse> {
     return tracingClient.withSpan(
-      "PagingClient-_getWithQueryParams",
+      "PagingClient._getWithQueryParams",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { requiredQueryParameter, options },
           getWithQueryParamsOperationSpec
@@ -1259,9 +1259,9 @@ export class PagingImpl implements Paging {
     options?: PagingDuplicateParamsOptionalParams
   ): Promise<PagingDuplicateParamsResponse> {
     return tracingClient.withSpan(
-      "PagingClient-_duplicateParams",
+      "PagingClient._duplicateParams",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           duplicateParamsOperationSpec
@@ -1278,9 +1278,9 @@ export class PagingImpl implements Paging {
     options?: PagingNextOperationWithQueryParamsOptionalParams
   ): Promise<PagingNextOperationWithQueryParamsResponse> {
     return tracingClient.withSpan(
-      "PagingClient-_nextOperationWithQueryParams",
+      "PagingClient._nextOperationWithQueryParams",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           nextOperationWithQueryParamsOperationSpec
@@ -1297,9 +1297,9 @@ export class PagingImpl implements Paging {
     options?: PagingGetOdataMultiplePagesOptionalParams
   ): Promise<PagingGetOdataMultiplePagesResponse> {
     return tracingClient.withSpan(
-      "PagingClient-_getOdataMultiplePages",
+      "PagingClient._getOdataMultiplePages",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           getOdataMultiplePagesOperationSpec
@@ -1318,9 +1318,9 @@ export class PagingImpl implements Paging {
     options?: PagingGetMultiplePagesWithOffsetOptionalParams
   ): Promise<PagingGetMultiplePagesWithOffsetResponse> {
     return tracingClient.withSpan(
-      "PagingClient-_getMultiplePagesWithOffset",
+      "PagingClient._getMultiplePagesWithOffset",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { pagingGetMultiplePagesWithOffsetOptions, options },
           getMultiplePagesWithOffsetOperationSpec
@@ -1338,9 +1338,9 @@ export class PagingImpl implements Paging {
     options?: PagingGetMultiplePagesRetryFirstOptionalParams
   ): Promise<PagingGetMultiplePagesRetryFirstResponse> {
     return tracingClient.withSpan(
-      "PagingClient-_getMultiplePagesRetryFirst",
+      "PagingClient._getMultiplePagesRetryFirst",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           getMultiplePagesRetryFirstOperationSpec
@@ -1358,9 +1358,9 @@ export class PagingImpl implements Paging {
     options?: PagingGetMultiplePagesRetrySecondOptionalParams
   ): Promise<PagingGetMultiplePagesRetrySecondResponse> {
     return tracingClient.withSpan(
-      "PagingClient-_getMultiplePagesRetrySecond",
+      "PagingClient._getMultiplePagesRetrySecond",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           getMultiplePagesRetrySecondOperationSpec
@@ -1377,9 +1377,9 @@ export class PagingImpl implements Paging {
     options?: PagingGetSinglePagesFailureOptionalParams
   ): Promise<PagingGetSinglePagesFailureResponse> {
     return tracingClient.withSpan(
-      "PagingClient-_getSinglePagesFailure",
+      "PagingClient._getSinglePagesFailure",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           getSinglePagesFailureOperationSpec
@@ -1396,9 +1396,9 @@ export class PagingImpl implements Paging {
     options?: PagingGetMultiplePagesFailureOptionalParams
   ): Promise<PagingGetMultiplePagesFailureResponse> {
     return tracingClient.withSpan(
-      "PagingClient-_getMultiplePagesFailure",
+      "PagingClient._getMultiplePagesFailure",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           getMultiplePagesFailureOperationSpec
@@ -1415,9 +1415,9 @@ export class PagingImpl implements Paging {
     options?: PagingGetMultiplePagesFailureUriOptionalParams
   ): Promise<PagingGetMultiplePagesFailureUriResponse> {
     return tracingClient.withSpan(
-      "PagingClient-_getMultiplePagesFailureUri",
+      "PagingClient._getMultiplePagesFailureUri",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           getMultiplePagesFailureUriOperationSpec
@@ -1438,9 +1438,9 @@ export class PagingImpl implements Paging {
     options?: PagingGetMultiplePagesFragmentNextLinkOptionalParams
   ): Promise<PagingGetMultiplePagesFragmentNextLinkResponse> {
     return tracingClient.withSpan(
-      "PagingClient-_getMultiplePagesFragmentNextLink",
+      "PagingClient._getMultiplePagesFragmentNextLink",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { apiVersion, tenant, options },
           getMultiplePagesFragmentNextLinkOperationSpec
@@ -1459,9 +1459,9 @@ export class PagingImpl implements Paging {
     options?: PagingGetMultiplePagesFragmentWithGroupingNextLinkOptionalParams
   ): Promise<PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse> {
     return tracingClient.withSpan(
-      "PagingClient-_getMultiplePagesFragmentWithGroupingNextLink",
+      "PagingClient._getMultiplePagesFragmentWithGroupingNextLink",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { customParameterGroup, options },
           getMultiplePagesFragmentWithGroupingNextLinkOperationSpec
@@ -1489,7 +1489,7 @@ export class PagingImpl implements Paging {
       spec: coreClient.OperationSpec
     ): Promise<PagingGetMultiplePagesLROResponse> => {
       return tracingClient.withSpan(
-        "PagingClient-_getMultiplePagesLRO",
+        "PagingClient._getMultiplePagesLRO",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -1558,9 +1558,9 @@ export class PagingImpl implements Paging {
     options?: PagingNextFragmentOptionalParams
   ): Promise<PagingNextFragmentResponse> {
     return tracingClient.withSpan(
-      "PagingClient-_nextFragment",
+      "PagingClient._nextFragment",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { apiVersion, tenant, nextLink, options },
           nextFragmentOperationSpec
@@ -1581,9 +1581,9 @@ export class PagingImpl implements Paging {
     options?: PagingNextFragmentWithGroupingOptionalParams
   ): Promise<PagingNextFragmentWithGroupingResponse> {
     return tracingClient.withSpan(
-      "PagingClient-_nextFragmentWithGrouping",
+      "PagingClient._nextFragmentWithGrouping",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { nextLink, customParameterGroup, options },
           nextFragmentWithGroupingOperationSpec
@@ -1601,9 +1601,9 @@ export class PagingImpl implements Paging {
     options?: PagingGetPagingModelWithItemNameWithXMSClientNameOptionalParams
   ): Promise<PagingGetPagingModelWithItemNameWithXMSClientNameResponse> {
     return tracingClient.withSpan(
-      "PagingClient-_getPagingModelWithItemNameWithXMSClientName",
+      "PagingClient._getPagingModelWithItemNameWithXMSClientName",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           getPagingModelWithItemNameWithXMSClientNameOperationSpec
@@ -1622,9 +1622,9 @@ export class PagingImpl implements Paging {
     options?: PagingGetNoItemNamePagesNextOptionalParams
   ): Promise<PagingGetNoItemNamePagesNextResponse> {
     return tracingClient.withSpan(
-      "PagingClient-_getNoItemNamePagesNext",
+      "PagingClient._getNoItemNamePagesNext",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { nextLink, options },
           getNoItemNamePagesNextOperationSpec
@@ -1643,9 +1643,9 @@ export class PagingImpl implements Paging {
     options?: PagingGetSinglePagesNextOptionalParams
   ): Promise<PagingGetSinglePagesNextResponse> {
     return tracingClient.withSpan(
-      "PagingClient-_getSinglePagesNext",
+      "PagingClient._getSinglePagesNext",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { nextLink, options },
           getSinglePagesNextOperationSpec
@@ -1664,9 +1664,9 @@ export class PagingImpl implements Paging {
     options?: PagingFirstResponseEmptyNextOptionalParams
   ): Promise<PagingFirstResponseEmptyNextResponse> {
     return tracingClient.withSpan(
-      "PagingClient-_firstResponseEmptyNext",
+      "PagingClient._firstResponseEmptyNext",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { nextLink, options },
           firstResponseEmptyNextOperationSpec
@@ -1685,9 +1685,9 @@ export class PagingImpl implements Paging {
     options?: PagingGetMultiplePagesNextOptionalParams
   ): Promise<PagingGetMultiplePagesNextResponse> {
     return tracingClient.withSpan(
-      "PagingClient-_getMultiplePagesNext",
+      "PagingClient._getMultiplePagesNext",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { nextLink, options },
           getMultiplePagesNextOperationSpec
@@ -1706,9 +1706,9 @@ export class PagingImpl implements Paging {
     options?: PagingDuplicateParamsNextOptionalParams
   ): Promise<PagingDuplicateParamsNextResponse> {
     return tracingClient.withSpan(
-      "PagingClient-_duplicateParamsNext",
+      "PagingClient._duplicateParamsNext",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { nextLink, options },
           duplicateParamsNextOperationSpec
@@ -1727,9 +1727,9 @@ export class PagingImpl implements Paging {
     options?: PagingGetOdataMultiplePagesNextOptionalParams
   ): Promise<PagingGetOdataMultiplePagesNextResponse> {
     return tracingClient.withSpan(
-      "PagingClient-_getOdataMultiplePagesNext",
+      "PagingClient._getOdataMultiplePagesNext",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { nextLink, options },
           getOdataMultiplePagesNextOperationSpec
@@ -1751,9 +1751,9 @@ export class PagingImpl implements Paging {
     options?: PagingGetMultiplePagesWithOffsetNextOptionalParams
   ): Promise<PagingGetMultiplePagesWithOffsetNextResponse> {
     return tracingClient.withSpan(
-      "PagingClient-_getMultiplePagesWithOffsetNext",
+      "PagingClient._getMultiplePagesWithOffsetNext",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { pagingGetMultiplePagesWithOffsetOptions, nextLink, options },
           getMultiplePagesWithOffsetNextOperationSpec
@@ -1773,9 +1773,9 @@ export class PagingImpl implements Paging {
     options?: PagingGetMultiplePagesRetryFirstNextOptionalParams
   ): Promise<PagingGetMultiplePagesRetryFirstNextResponse> {
     return tracingClient.withSpan(
-      "PagingClient-_getMultiplePagesRetryFirstNext",
+      "PagingClient._getMultiplePagesRetryFirstNext",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { nextLink, options },
           getMultiplePagesRetryFirstNextOperationSpec
@@ -1795,9 +1795,9 @@ export class PagingImpl implements Paging {
     options?: PagingGetMultiplePagesRetrySecondNextOptionalParams
   ): Promise<PagingGetMultiplePagesRetrySecondNextResponse> {
     return tracingClient.withSpan(
-      "PagingClient-_getMultiplePagesRetrySecondNext",
+      "PagingClient._getMultiplePagesRetrySecondNext",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { nextLink, options },
           getMultiplePagesRetrySecondNextOperationSpec
@@ -1816,9 +1816,9 @@ export class PagingImpl implements Paging {
     options?: PagingGetSinglePagesFailureNextOptionalParams
   ): Promise<PagingGetSinglePagesFailureNextResponse> {
     return tracingClient.withSpan(
-      "PagingClient-_getSinglePagesFailureNext",
+      "PagingClient._getSinglePagesFailureNext",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { nextLink, options },
           getSinglePagesFailureNextOperationSpec
@@ -1838,9 +1838,9 @@ export class PagingImpl implements Paging {
     options?: PagingGetMultiplePagesFailureNextOptionalParams
   ): Promise<PagingGetMultiplePagesFailureNextResponse> {
     return tracingClient.withSpan(
-      "PagingClient-_getMultiplePagesFailureNext",
+      "PagingClient._getMultiplePagesFailureNext",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { nextLink, options },
           getMultiplePagesFailureNextOperationSpec
@@ -1860,9 +1860,9 @@ export class PagingImpl implements Paging {
     options?: PagingGetMultiplePagesFailureUriNextOptionalParams
   ): Promise<PagingGetMultiplePagesFailureUriNextResponse> {
     return tracingClient.withSpan(
-      "PagingClient-_getMultiplePagesFailureUriNext",
+      "PagingClient._getMultiplePagesFailureUriNext",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { nextLink, options },
           getMultiplePagesFailureUriNextOperationSpec
@@ -1881,9 +1881,9 @@ export class PagingImpl implements Paging {
     options?: PagingGetMultiplePagesLRONextOptionalParams
   ): Promise<PagingGetMultiplePagesLRONextResponse> {
     return tracingClient.withSpan(
-      "PagingClient-_getMultiplePagesLRONext",
+      "PagingClient._getMultiplePagesLRONext",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { nextLink, options },
           getMultiplePagesLRONextOperationSpec
@@ -1903,9 +1903,9 @@ export class PagingImpl implements Paging {
     options?: PagingGetPagingModelWithItemNameWithXMSClientNameNextOptionalParams
   ): Promise<PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse> {
     return tracingClient.withSpan(
-      "PagingClient-_getPagingModelWithItemNameWithXMSClientNameNext",
+      "PagingClient._getPagingModelWithItemNameWithXMSClientNameNext",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { nextLink, options },
           getPagingModelWithItemNameWithXMSClientNameNextOperationSpec

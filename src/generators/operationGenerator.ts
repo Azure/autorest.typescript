@@ -856,7 +856,7 @@ function writeSendOperationRequest(
       sendRequestStatement,
       responseName,
       !!tracingInfo,
-      `${clientDetails.className}-${operationName}`
+      `${clientDetails.className}.${operationName}`
     )
   );
 }
@@ -874,7 +874,7 @@ function getTracingTryCatchStatement(
   const { useCoreV2 } = getAutorestOptions();
   if (isTracingEnabled) {
     return `
-    return tracingClient.withSpan("${spanName}", options ?? {}, async updatedOptions => {
+    return tracingClient.withSpan("${spanName}", options ?? {}, async options => {
       return ${sendRequestStatement} as Promise<${responseName}>;
     });`;
   } else {
@@ -895,7 +895,7 @@ function writeLroOperationBody(
   isTracingEnabled = false
 ) {
   const { useCoreV2 } = getAutorestOptions();
-  const spanName = `${clientDetails.className}-${methodDeclaration.getName()}`;
+  const spanName = `${clientDetails.className}.${methodDeclaration.getName()}`;
   const client = isInline ? "" : ".client";
   const sendRequestStatement = `this${client}.sendOperationRequest(args, spec)`;
   const sendOperationStatement = !useCoreV2

@@ -134,7 +134,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<LROsPut200SucceededResponse> => {
       return tracingClient.withSpan(
-        "LROClient-beginPut200Succeeded",
+        "LROClient.beginPut200Succeeded",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -219,7 +219,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<LROsPatch200SucceededIgnoreHeadersResponse> => {
       return tracingClient.withSpan(
-        "LROClient-beginPatch200SucceededIgnoreHeaders",
+        "LROClient.beginPatch200SucceededIgnoreHeaders",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -303,7 +303,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<LROsPatch201RetryWithAsyncHeaderResponse> => {
       return tracingClient.withSpan(
-        "LROClient-beginPatch201RetryWithAsyncHeader",
+        "LROClient.beginPatch201RetryWithAsyncHeader",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -388,7 +388,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<LROsPatch202RetryWithAsyncAndLocationHeaderResponse> => {
       return tracingClient.withSpan(
-        "LROClient-beginPatch202RetryWithAsyncAndLocationHeader",
+        "LROClient.beginPatch202RetryWithAsyncAndLocationHeader",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -475,7 +475,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<LROsPut201SucceededResponse> => {
       return tracingClient.withSpan(
-        "LROClient-beginPut201Succeeded",
+        "LROClient.beginPut201Succeeded",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -560,7 +560,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<LROsPost202ListResponse> => {
       return tracingClient.withSpan(
-        "LROClient-beginPost202List",
+        "LROClient.beginPost202List",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -645,7 +645,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<LROsPut200SucceededNoStateResponse> => {
       return tracingClient.withSpan(
-        "LROClient-beginPut200SucceededNoState",
+        "LROClient.beginPut200SucceededNoState",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -730,7 +730,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<LROsPut202Retry200Response> => {
       return tracingClient.withSpan(
-        "LROClient-beginPut202Retry200",
+        "LROClient.beginPut202Retry200",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -816,7 +816,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<LROsPut201CreatingSucceeded200Response> => {
       return tracingClient.withSpan(
-        "LROClient-beginPut201CreatingSucceeded200",
+        "LROClient.beginPut201CreatingSucceeded200",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -903,7 +903,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<LROsPut200UpdatingSucceeded204Response> => {
       return tracingClient.withSpan(
-        "LROClient-beginPut200UpdatingSucceeded204",
+        "LROClient.beginPut200UpdatingSucceeded204",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -990,7 +990,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<LROsPut201CreatingFailed200Response> => {
       return tracingClient.withSpan(
-        "LROClient-beginPut201CreatingFailed200",
+        "LROClient.beginPut201CreatingFailed200",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -1077,7 +1077,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<LROsPut200Acceptedcanceled200Response> => {
       return tracingClient.withSpan(
-        "LROClient-beginPut200Acceptedcanceled200",
+        "LROClient.beginPut200Acceptedcanceled200",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -1163,7 +1163,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<LROsPutNoHeaderInRetryResponse> => {
       return tracingClient.withSpan(
-        "LROClient-beginPutNoHeaderInRetry",
+        "LROClient.beginPutNoHeaderInRetry",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -1249,7 +1249,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<LROsPutAsyncRetrySucceededResponse> => {
       return tracingClient.withSpan(
-        "LROClient-beginPutAsyncRetrySucceeded",
+        "LROClient.beginPutAsyncRetrySucceeded",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -1336,7 +1336,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<LROsPutAsyncNoRetrySucceededResponse> => {
       return tracingClient.withSpan(
-        "LROClient-beginPutAsyncNoRetrySucceeded",
+        "LROClient.beginPutAsyncNoRetrySucceeded",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -1423,7 +1423,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<LROsPutAsyncRetryFailedResponse> => {
       return tracingClient.withSpan(
-        "LROClient-beginPutAsyncRetryFailed",
+        "LROClient.beginPutAsyncRetryFailed",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -1510,7 +1510,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<LROsPutAsyncNoRetrycanceledResponse> => {
       return tracingClient.withSpan(
-        "LROClient-beginPutAsyncNoRetrycanceled",
+        "LROClient.beginPutAsyncNoRetrycanceled",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -1596,7 +1596,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<LROsPutAsyncNoHeaderInRetryResponse> => {
       return tracingClient.withSpan(
-        "LROClient-beginPutAsyncNoHeaderInRetry",
+        "LROClient.beginPutAsyncNoHeaderInRetry",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -1680,7 +1680,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<LROsPutNonResourceResponse> => {
       return tracingClient.withSpan(
-        "LROClient-beginPutNonResource",
+        "LROClient.beginPutNonResource",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -1763,7 +1763,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<LROsPutAsyncNonResourceResponse> => {
       return tracingClient.withSpan(
-        "LROClient-beginPutAsyncNonResource",
+        "LROClient.beginPutAsyncNonResource",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -1846,7 +1846,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<LROsPutSubResourceResponse> => {
       return tracingClient.withSpan(
-        "LROClient-beginPutSubResource",
+        "LROClient.beginPutSubResource",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -1929,7 +1929,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<LROsPutAsyncSubResourceResponse> => {
       return tracingClient.withSpan(
-        "LROClient-beginPutAsyncSubResource",
+        "LROClient.beginPutAsyncSubResource",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -2014,7 +2014,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<LROsDeleteProvisioning202Accepted200SucceededResponse> => {
       return tracingClient.withSpan(
-        "LROClient-beginDeleteProvisioning202Accepted200Succeeded",
+        "LROClient.beginDeleteProvisioning202Accepted200Succeeded",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -2103,7 +2103,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<LROsDeleteProvisioning202DeletingFailed200Response> => {
       return tracingClient.withSpan(
-        "LROClient-beginDeleteProvisioning202DeletingFailed200",
+        "LROClient.beginDeleteProvisioning202DeletingFailed200",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -2192,7 +2192,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<LROsDeleteProvisioning202Deletingcanceled200Response> => {
       return tracingClient.withSpan(
-        "LROClient-beginDeleteProvisioning202Deletingcanceled200",
+        "LROClient.beginDeleteProvisioning202Deletingcanceled200",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -2274,7 +2274,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return tracingClient.withSpan(
-        "LROClient-beginDelete204Succeeded",
+        "LROClient.beginDelete204Succeeded",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<void>;
@@ -2356,7 +2356,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<LROsDelete202Retry200Response> => {
       return tracingClient.withSpan(
-        "LROClient-beginDelete202Retry200",
+        "LROClient.beginDelete202Retry200",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -2441,7 +2441,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<LROsDelete202NoRetry204Response> => {
       return tracingClient.withSpan(
-        "LROClient-beginDelete202NoRetry204",
+        "LROClient.beginDelete202NoRetry204",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -2526,7 +2526,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<LROsDeleteNoHeaderInRetryResponse> => {
       return tracingClient.withSpan(
-        "LROClient-beginDeleteNoHeaderInRetry",
+        "LROClient.beginDeleteNoHeaderInRetry",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -2611,7 +2611,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<LROsDeleteAsyncNoHeaderInRetryResponse> => {
       return tracingClient.withSpan(
-        "LROClient-beginDeleteAsyncNoHeaderInRetry",
+        "LROClient.beginDeleteAsyncNoHeaderInRetry",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -2696,7 +2696,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<LROsDeleteAsyncRetrySucceededResponse> => {
       return tracingClient.withSpan(
-        "LROClient-beginDeleteAsyncRetrySucceeded",
+        "LROClient.beginDeleteAsyncRetrySucceeded",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -2781,7 +2781,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<LROsDeleteAsyncNoRetrySucceededResponse> => {
       return tracingClient.withSpan(
-        "LROClient-beginDeleteAsyncNoRetrySucceeded",
+        "LROClient.beginDeleteAsyncNoRetrySucceeded",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -2866,7 +2866,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<LROsDeleteAsyncRetryFailedResponse> => {
       return tracingClient.withSpan(
-        "LROClient-beginDeleteAsyncRetryFailed",
+        "LROClient.beginDeleteAsyncRetryFailed",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -2951,7 +2951,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<LROsDeleteAsyncRetrycanceledResponse> => {
       return tracingClient.withSpan(
-        "LROClient-beginDeleteAsyncRetrycanceled",
+        "LROClient.beginDeleteAsyncRetrycanceled",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -3036,7 +3036,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<LROsPost200WithPayloadResponse> => {
       return tracingClient.withSpan(
-        "LROClient-beginPost200WithPayload",
+        "LROClient.beginPost200WithPayload",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -3121,7 +3121,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<LROsPost202Retry200Response> => {
       return tracingClient.withSpan(
-        "LROClient-beginPost202Retry200",
+        "LROClient.beginPost202Retry200",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -3206,7 +3206,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<LROsPost202NoRetry204Response> => {
       return tracingClient.withSpan(
-        "LROClient-beginPost202NoRetry204",
+        "LROClient.beginPost202NoRetry204",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -3291,7 +3291,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<LROsPostDoubleHeadersFinalLocationGetResponse> => {
       return tracingClient.withSpan(
-        "LROClient-beginPostDoubleHeadersFinalLocationGet",
+        "LROClient.beginPostDoubleHeadersFinalLocationGet",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -3378,7 +3378,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<LROsPostDoubleHeadersFinalAzureHeaderGetResponse> => {
       return tracingClient.withSpan(
-        "LROClient-beginPostDoubleHeadersFinalAzureHeaderGet",
+        "LROClient.beginPostDoubleHeadersFinalAzureHeaderGet",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -3470,7 +3470,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse> => {
       return tracingClient.withSpan(
-        "LROClient-beginPostDoubleHeadersFinalAzureHeaderGetDefault",
+        "LROClient.beginPostDoubleHeadersFinalAzureHeaderGetDefault",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -3559,7 +3559,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<LROsPostAsyncRetrySucceededResponse> => {
       return tracingClient.withSpan(
-        "LROClient-beginPostAsyncRetrySucceeded",
+        "LROClient.beginPostAsyncRetrySucceeded",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -3646,7 +3646,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<LROsPostAsyncNoRetrySucceededResponse> => {
       return tracingClient.withSpan(
-        "LROClient-beginPostAsyncNoRetrySucceeded",
+        "LROClient.beginPostAsyncNoRetrySucceeded",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -3733,7 +3733,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<LROsPostAsyncRetryFailedResponse> => {
       return tracingClient.withSpan(
-        "LROClient-beginPostAsyncRetryFailed",
+        "LROClient.beginPostAsyncRetryFailed",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<
@@ -3820,7 +3820,7 @@ export class LROsImpl implements LROs {
       spec: coreClient.OperationSpec
     ): Promise<LROsPostAsyncRetrycanceledResponse> => {
       return tracingClient.withSpan(
-        "LROClient-beginPostAsyncRetrycanceled",
+        "LROClient.beginPostAsyncRetrycanceled",
         options ?? {},
         async () => {
           return this.client.sendOperationRequest(args, spec) as Promise<

@@ -46,9 +46,9 @@ export class DictionaryImpl implements Dictionary {
     options?: DictionaryGetValidOptionalParams
   ): Promise<DictionaryGetValidResponse> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-getValid",
+      "BodyComplexWithTracing.getValid",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           getValidOperationSpec
@@ -68,9 +68,9 @@ export class DictionaryImpl implements Dictionary {
     options?: DictionaryPutValidOptionalParams
   ): Promise<void> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-putValid",
+      "BodyComplexWithTracing.putValid",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
           putValidOperationSpec
@@ -87,9 +87,9 @@ export class DictionaryImpl implements Dictionary {
     options?: DictionaryGetEmptyOptionalParams
   ): Promise<DictionaryGetEmptyResponse> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-getEmpty",
+      "BodyComplexWithTracing.getEmpty",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           getEmptyOperationSpec
@@ -108,9 +108,9 @@ export class DictionaryImpl implements Dictionary {
     options?: DictionaryPutEmptyOptionalParams
   ): Promise<void> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-putEmpty",
+      "BodyComplexWithTracing.putEmpty",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
           putEmptyOperationSpec
@@ -127,9 +127,9 @@ export class DictionaryImpl implements Dictionary {
     options?: DictionaryGetNullOptionalParams
   ): Promise<DictionaryGetNullResponse> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-getNull",
+      "BodyComplexWithTracing.getNull",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           getNullOperationSpec
@@ -146,9 +146,9 @@ export class DictionaryImpl implements Dictionary {
     options?: DictionaryGetNotProvidedOptionalParams
   ): Promise<DictionaryGetNotProvidedResponse> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-getNotProvided",
+      "BodyComplexWithTracing.getNotProvided",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           getNotProvidedOperationSpec

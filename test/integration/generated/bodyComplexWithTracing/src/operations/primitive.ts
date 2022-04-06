@@ -79,9 +79,9 @@ export class PrimitiveImpl implements Primitive {
     options?: PrimitiveGetIntOptionalParams
   ): Promise<PrimitiveGetIntResponse> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-getInt",
+      "BodyComplexWithTracing.getInt",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           getIntOperationSpec
@@ -100,9 +100,9 @@ export class PrimitiveImpl implements Primitive {
     options?: PrimitivePutIntOptionalParams
   ): Promise<void> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-putInt",
+      "BodyComplexWithTracing.putInt",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
           putIntOperationSpec
@@ -119,9 +119,9 @@ export class PrimitiveImpl implements Primitive {
     options?: PrimitiveGetLongOptionalParams
   ): Promise<PrimitiveGetLongResponse> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-getLong",
+      "BodyComplexWithTracing.getLong",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           getLongOperationSpec
@@ -140,9 +140,9 @@ export class PrimitiveImpl implements Primitive {
     options?: PrimitivePutLongOptionalParams
   ): Promise<void> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-putLong",
+      "BodyComplexWithTracing.putLong",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
           putLongOperationSpec
@@ -159,9 +159,9 @@ export class PrimitiveImpl implements Primitive {
     options?: PrimitiveGetFloatOptionalParams
   ): Promise<PrimitiveGetFloatResponse> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-getFloat",
+      "BodyComplexWithTracing.getFloat",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           getFloatOperationSpec
@@ -180,9 +180,9 @@ export class PrimitiveImpl implements Primitive {
     options?: PrimitivePutFloatOptionalParams
   ): Promise<void> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-putFloat",
+      "BodyComplexWithTracing.putFloat",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
           putFloatOperationSpec
@@ -199,9 +199,9 @@ export class PrimitiveImpl implements Primitive {
     options?: PrimitiveGetDoubleOptionalParams
   ): Promise<PrimitiveGetDoubleResponse> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-getDouble",
+      "BodyComplexWithTracing.getDouble",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           getDoubleOperationSpec
@@ -221,9 +221,9 @@ export class PrimitiveImpl implements Primitive {
     options?: PrimitivePutDoubleOptionalParams
   ): Promise<void> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-putDouble",
+      "BodyComplexWithTracing.putDouble",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
           putDoubleOperationSpec
@@ -240,9 +240,9 @@ export class PrimitiveImpl implements Primitive {
     options?: PrimitiveGetBoolOptionalParams
   ): Promise<PrimitiveGetBoolResponse> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-getBool",
+      "BodyComplexWithTracing.getBool",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           getBoolOperationSpec
@@ -261,9 +261,9 @@ export class PrimitiveImpl implements Primitive {
     options?: PrimitivePutBoolOptionalParams
   ): Promise<void> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-putBool",
+      "BodyComplexWithTracing.putBool",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
           putBoolOperationSpec
@@ -280,9 +280,9 @@ export class PrimitiveImpl implements Primitive {
     options?: PrimitiveGetStringOptionalParams
   ): Promise<PrimitiveGetStringResponse> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-getString",
+      "BodyComplexWithTracing.getString",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           getStringOperationSpec
@@ -301,9 +301,9 @@ export class PrimitiveImpl implements Primitive {
     options?: PrimitivePutStringOptionalParams
   ): Promise<void> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-putString",
+      "BodyComplexWithTracing.putString",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
           putStringOperationSpec
@@ -320,9 +320,9 @@ export class PrimitiveImpl implements Primitive {
     options?: PrimitiveGetDateOptionalParams
   ): Promise<PrimitiveGetDateResponse> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-getDate",
+      "BodyComplexWithTracing.getDate",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           getDateOperationSpec
@@ -341,9 +341,9 @@ export class PrimitiveImpl implements Primitive {
     options?: PrimitivePutDateOptionalParams
   ): Promise<void> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-putDate",
+      "BodyComplexWithTracing.putDate",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
           putDateOperationSpec
@@ -360,9 +360,9 @@ export class PrimitiveImpl implements Primitive {
     options?: PrimitiveGetDateTimeOptionalParams
   ): Promise<PrimitiveGetDateTimeResponse> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-getDateTime",
+      "BodyComplexWithTracing.getDateTime",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           getDateTimeOperationSpec
@@ -381,9 +381,9 @@ export class PrimitiveImpl implements Primitive {
     options?: PrimitivePutDateTimeOptionalParams
   ): Promise<void> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-putDateTime",
+      "BodyComplexWithTracing.putDateTime",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
           putDateTimeOperationSpec
@@ -400,9 +400,9 @@ export class PrimitiveImpl implements Primitive {
     options?: PrimitiveGetDateTimeRfc1123OptionalParams
   ): Promise<PrimitiveGetDateTimeRfc1123Response> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-getDateTimeRfc1123",
+      "BodyComplexWithTracing.getDateTimeRfc1123",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           getDateTimeRfc1123OperationSpec
@@ -421,9 +421,9 @@ export class PrimitiveImpl implements Primitive {
     options?: PrimitivePutDateTimeRfc1123OptionalParams
   ): Promise<void> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-putDateTimeRfc1123",
+      "BodyComplexWithTracing.putDateTimeRfc1123",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
           putDateTimeRfc1123OperationSpec
@@ -440,9 +440,9 @@ export class PrimitiveImpl implements Primitive {
     options?: PrimitiveGetDurationOptionalParams
   ): Promise<PrimitiveGetDurationResponse> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-getDuration",
+      "BodyComplexWithTracing.getDuration",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           getDurationOperationSpec
@@ -461,9 +461,9 @@ export class PrimitiveImpl implements Primitive {
     options?: PrimitivePutDurationOptionalParams
   ): Promise<void> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-putDuration",
+      "BodyComplexWithTracing.putDuration",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
           putDurationOperationSpec
@@ -480,9 +480,9 @@ export class PrimitiveImpl implements Primitive {
     options?: PrimitiveGetByteOptionalParams
   ): Promise<PrimitiveGetByteResponse> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-getByte",
+      "BodyComplexWithTracing.getByte",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { options },
           getByteOperationSpec
@@ -501,9 +501,9 @@ export class PrimitiveImpl implements Primitive {
     options?: PrimitivePutByteOptionalParams
   ): Promise<void> {
     return tracingClient.withSpan(
-      "BodyComplexWithTracing-putByte",
+      "BodyComplexWithTracing.putByte",
       options ?? {},
-      async () => {
+      async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
           putByteOperationSpec
