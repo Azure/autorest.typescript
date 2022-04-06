@@ -116,7 +116,6 @@ export class MediaTypesClient extends coreClient.ServiceClient {
       );
     }
     operationArguments.options = options || {};
-    operationArguments.options = options || {};
     return this.sendOperationRequest(operationArguments, operationSpec);
   }
 
@@ -168,7 +167,6 @@ export class MediaTypesClient extends coreClient.ServiceClient {
         `"contentType" must be a valid value but instead was "${args[0]}".`
       );
     }
-    operationArguments.options = options || {};
     operationArguments.options = options || {};
     return this.sendOperationRequest(operationArguments, operationSpec);
   }
@@ -275,7 +273,6 @@ export class MediaTypesClient extends coreClient.ServiceClient {
       );
     }
     operationArguments.options = options || {};
-    operationArguments.options = options || {};
     return this.sendOperationRequest(operationArguments, operationSpec);
   }
 
@@ -334,7 +331,6 @@ export class MediaTypesClient extends coreClient.ServiceClient {
         `"contentType" must be a valid value but instead was "${args[0]}".`
       );
     }
-    operationArguments.options = options || {};
     operationArguments.options = options || {};
     return this.sendOperationRequest(operationArguments, operationSpec);
   }

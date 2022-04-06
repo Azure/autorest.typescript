@@ -92,7 +92,6 @@ export class FooApiImpl implements FooApi {
       );
     }
     operationArguments.options = options || {};
-    operationArguments.options = options || {};
     return this.client.sendOperationRequest(operationArguments, operationSpec);
   }
 
@@ -162,7 +161,6 @@ export class FooApiImpl implements FooApi {
         `"contentType" must be a valid value but instead was "${args[1]}".`
       );
     }
-    operationArguments.options = options || {};
     operationArguments.options = options || {};
     return this.client.sendOperationRequest(operationArguments, operationSpec);
   }

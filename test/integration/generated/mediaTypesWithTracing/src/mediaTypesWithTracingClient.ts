@@ -117,7 +117,6 @@ export class MediaTypesWithTracingClient extends coreClient.ServiceClient {
       );
     }
     operationArguments.options = options || {};
-    operationArguments.options = options || {};
 
     return tracingClient.withSpan(
       "MediaTypesWithTracingClient-analyzeBody",
@@ -179,7 +178,6 @@ export class MediaTypesWithTracingClient extends coreClient.ServiceClient {
         `"contentType" must be a valid value but instead was "${args[0]}".`
       );
     }
-    operationArguments.options = options || {};
     operationArguments.options = options || {};
 
     return tracingClient.withSpan(
@@ -308,7 +306,6 @@ export class MediaTypesWithTracingClient extends coreClient.ServiceClient {
       );
     }
     operationArguments.options = options || {};
-    operationArguments.options = options || {};
 
     return tracingClient.withSpan(
       "MediaTypesWithTracingClient-binaryBodyWithThreeContentTypes",
@@ -377,7 +374,6 @@ export class MediaTypesWithTracingClient extends coreClient.ServiceClient {
         `"contentType" must be a valid value but instead was "${args[0]}".`
       );
     }
-    operationArguments.options = options || {};
     operationArguments.options = options || {};
 
     return tracingClient.withSpan(

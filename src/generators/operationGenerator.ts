@@ -1061,14 +1061,6 @@ function writeMultiMediaTypeOperationBody(
   const lroResourceLocationConfig =
     operation.lroOptions && operation.lroOptions["final-state-via"];
 
-  const operationName = operationMethod.getName();
-  operationMethod.addStatements([
-    `operationArguments.options = ${compileOperationOptionsToRequestOptionsBase(
-      optionsVarName,
-      operation.isLro,
-      lroResourceLocationConfig
-    )};`
-  ]);
   operationMethod.addStatements([
     `operationArguments.options = ${compileOperationOptionsToRequestOptionsBase(
       optionsVarName,
