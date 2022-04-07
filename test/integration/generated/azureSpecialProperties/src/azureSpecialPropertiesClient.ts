@@ -122,6 +122,8 @@ export class AzureSpecialPropertiesClient extends coreClient.ServiceClient {
           const newParams = param[1].split("&").map((item) => {
             if (item.indexOf("api-version") > -1) {
               return item.replace(/(?<==).*$/, apiVersion);
+            } else {
+              return item;
             }
           });
           request.url = param[0] + "?" + newParams.join("&");

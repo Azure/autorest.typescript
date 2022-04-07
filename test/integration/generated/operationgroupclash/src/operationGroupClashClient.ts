@@ -58,7 +58,7 @@ export class OperationGroupClashClient extends coreClient.ServiceClient {
     this.apiVersion = apiVersion;
     this.productOperations = new ProductOperationsImpl(this);
     this.pipelineOperations = new PipelineOperationsImpl(this);
-    this.addCustomApiVersionPolicy(options.apiVersion);
+    this.addCustomApiVersionPolicy(apiVersion);
   }
 
   /** A function that adds a policy that sets the api-version (or equivalent) to reflect the library version. */
@@ -77,6 +77,8 @@ export class OperationGroupClashClient extends coreClient.ServiceClient {
           const newParams = param[1].split("&").map((item) => {
             if (item.indexOf("api-version") > -1) {
               return item.replace(/(?<==).*$/, apiVersion);
+            } else {
+              return item;
             }
           });
           request.url = param[0] + "?" + newParams.join("&");

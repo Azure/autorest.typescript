@@ -106,10 +106,12 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
       "PipelineResponse",
       "SendRequest"
     ];
-    clientFile.addImportDeclaration({
-      namedImports: coreRestPipelineImports,
-      moduleSpecifier: "@azure/core-rest-pipeline"
-    });
+    if (useCoreV2) {
+      clientFile.addImportDeclaration({
+        namedImports: coreRestPipelineImports,
+        moduleSpecifier: "@azure/core-rest-pipeline"
+      });
+    }
   }
 
   if (hasCredentials || hasInlineOperations || !hasClientOptionalParams) {
@@ -210,15 +212,17 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
   const clientParams = clientDetails.parameters.filter(
     param => param.implementationLocation === ImplementationLocation.Client
   );
-  const hasApiVersion =
-    clientParams
-      .map(item => {
-        return item.serializedName;
-      })
-      .indexOf("api-version") > -1;
+
+  const apiVersionParams = clientParams.filter(
+    item => item.serializedName.indexOf("api-version") > -1
+  );
+  const apiVersionParam =
+    apiVersionParams && apiVersionParams.length === 1
+      ? apiVersionParams[0]
+      : undefined;
   writeClassProperties(clientClass, clientParams, importedModels);
-  writeConstructor(clientDetails, clientClass, importedModels, hasApiVersion);
-  if (hasApiVersion) {
+  writeConstructor(clientDetails, clientClass, importedModels, apiVersionParam);
+  if (useCoreV2 && apiVersionParam) {
     writeCustomApiVersion(clientClass);
   }
   writeClientOperations(
@@ -287,7 +291,7 @@ function writeConstructor(
   clientDetails: ClientDetails,
   classDeclaration: ClassDeclaration,
   importedModels: Set<string>,
-  hasApiVersion: boolean
+  apiVersionParam?: ParameterDetails
 ) {
   const requiredParams = clientDetails.parameters.filter(
     param =>
@@ -401,9 +405,15 @@ function writeConstructor(
       ({ name, typeName }) => `this.${name} = new ${typeName}Impl(this)`
     )
   ]);
-  if (hasApiVersion) {
+  if (useCoreV2 && apiVersionParam) {
     clientConstructor.addStatements(
-      "this.addCustomApiVersionPolicy(options.apiVersion);"
+      `this.addCustomApiVersionPolicy(${
+        !apiVersionParam.required ||
+        !!apiVersionParam.defaultValue ||
+          apiVersionParam.schemaType === SchemaType.Constant
+          ? "options."
+          : ""
+      }apiVersion);`
     );
   }
 }
@@ -429,7 +439,9 @@ function writeCustomApiVersion(classDeclaration: ClassDeclaration) {
       if (param.length > 1) {
         const newParams = param[1].split('&').map((item) => {
           if(item.indexOf('api-version') > -1) {
-            return item.replace(/(?<==).*$/, apiVersion)
+            return item.replace(/(?<==).*$/, apiVersion);
+          } else {
+            return item;
           }
         });
         request.url = param[0] + "?" + newParams.join("&");

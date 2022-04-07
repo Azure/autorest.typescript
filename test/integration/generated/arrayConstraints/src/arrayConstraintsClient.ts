@@ -72,7 +72,7 @@ export class ArrayConstraintsClient extends coreClient.ServiceClient {
     // Parameter assignments
     this.$host = $host;
     this.apiVersion = apiVersion;
-    this.addCustomApiVersionPolicy(options.apiVersion);
+    this.addCustomApiVersionPolicy(apiVersion);
   }
 
   /** A function that adds a policy that sets the api-version (or equivalent) to reflect the library version. */
@@ -91,6 +91,8 @@ export class ArrayConstraintsClient extends coreClient.ServiceClient {
           const newParams = param[1].split("&").map((item) => {
             if (item.indexOf("api-version") > -1) {
               return item.replace(/(?<==).*$/, apiVersion);
+            } else {
+              return item;
             }
           });
           request.url = param[0] + "?" + newParams.join("&");
