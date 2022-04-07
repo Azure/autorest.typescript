@@ -527,9 +527,9 @@ function getTrack2DefaultContent(
       `
       if (options?.pipeline && options.pipeline.getOrderedPolicies().length > 0) {
         const pipelinePolicies: coreRestPipeline.PipelinePolicy[] = options.pipeline.getOrderedPolicies();
-        const bearerTokenAuthenticationPolicyFound = pipelinePolicies.find(
+        const bearerTokenAuthenticationPolicyFound = pipelinePolicies.some(
           pipelinePolicy =>
-            pipelinePolicy.name ==
+            pipelinePolicy.name ===
             coreRestPipeline.bearerTokenAuthenticationPolicyName
         );
         if (!bearerTokenAuthenticationPolicyFound) {

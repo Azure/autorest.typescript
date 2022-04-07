@@ -43,9 +43,9 @@ export class HeaderPrefixClient extends coreClient.ServiceClient {
 
     if (options?.pipeline && options.pipeline.getOrderedPolicies().length > 0) {
       const pipelinePolicies: coreRestPipeline.PipelinePolicy[] = options.pipeline.getOrderedPolicies();
-      const bearerTokenAuthenticationPolicyFound = pipelinePolicies.find(
-        (pipelinePolicy) =>
-          pipelinePolicy.name ==
+      const bearerTokenAuthenticationPolicyFound = pipelinePolicies.some(
+        pipelinePolicy =>
+          pipelinePolicy.name ===
           coreRestPipeline.bearerTokenAuthenticationPolicyName
       );
       if (!bearerTokenAuthenticationPolicyFound) {
