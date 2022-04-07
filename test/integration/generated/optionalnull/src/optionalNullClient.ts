@@ -44,7 +44,7 @@ export class OptionalNullClient extends coreClient.ServiceClient {
     if (options?.pipeline && options.pipeline.getOrderedPolicies().length > 0) {
       const pipelinePolicies: coreRestPipeline.PipelinePolicy[] = options.pipeline.getOrderedPolicies();
       const bearerTokenAuthenticationPolicyFound = pipelinePolicies.some(
-        pipelinePolicy =>
+        (pipelinePolicy) =>
           pipelinePolicy.name ===
           coreRestPipeline.bearerTokenAuthenticationPolicyName
       );
