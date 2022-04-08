@@ -11,11 +11,16 @@ import {
   ArraySchema,
   DictionarySchema,
   SchemaResponse,
-  ComplexSchema
+  ComplexSchema,
+  OAuth2SecurityScheme,
+  KeySecurityScheme,
+  ParameterLocation,
+  Security
 } from "@autorest/codemodel";
 import { getStringForValue } from "./valueHelpers";
 import { getLanguageMetadata } from "./languageHelpers";
-import { normalizeName, NameType, normalizeTypeName } from "./nameUtils";
+import { normalizeName, NameType } from "./nameUtils";
+import { logger } from "./logger";
 
 /**
  * Extracts parents from an ObjectSchema
@@ -220,4 +225,40 @@ export function getSchemaTypeDocumentation(schema: Schema) {
     default:
       return "";
   }
+}
+
+export function getSecurityInfoFromModel(security: Security) {
+  const credentialScopes: Set<string> = new Set<string>();
+  let credentialKeyHeaderName: string = "";
+  for (const securitySchema of security.schemes) {
+    if (securitySchema.type === "OAuth2") {
+      (securitySchema as OAuth2SecurityScheme).scopes.forEach(scope => {
+        credentialScopes.add(scope);
+      });
+    } else if (
+      credentialKeyHeaderName === "" &&
+      securitySchema.type === "ApiKey" &&
+      (securitySchema as KeySecurityScheme).in === ParameterLocation.Header
+    ) {
+      credentialKeyHeaderName = (securitySchema as KeySecurityScheme).name;
+    } else if (
+      credentialKeyHeaderName !== "" &&
+      credentialKeyHeaderName !== (securitySchema as KeySecurityScheme).name &&
+      securitySchema.type === "ApiKey" &&
+      (securitySchema as KeySecurityScheme).in === ParameterLocation.Header
+    ) {
+      logger.warning(
+        `Set multiple headers for key credential has not been supported yet`
+      );
+    }
+  }
+  const scopes: string[] = [];
+  credentialScopes.forEach(item => {
+    scopes.push(item);
+  });
+  return {
+    addCredentials: security.authenticationRequired,
+    credentialScopes: scopes,
+    credentialKeyHeaderName: credentialKeyHeaderName
+  };
 }

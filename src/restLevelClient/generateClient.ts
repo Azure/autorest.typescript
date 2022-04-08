@@ -2,7 +2,9 @@ import {
   CodeModel,
   Operation,
   ParameterLocation,
-  ImplementationLocation
+  ImplementationLocation,
+  OAuth2SecurityScheme,
+  KeySecurityScheme
 } from "@autorest/codemodel";
 
 import {
@@ -23,6 +25,7 @@ import { getLanguageMetadata } from "../utils/languageHelpers";
 import { generateMethodShortcutImplementation } from "./generateMethodShortcuts";
 import { Paths } from "./interfaces";
 import { pathDictionary } from "./generateClientDefinition";
+import { getSecurityInfoFromModel } from "../utils/schemaHelpers"
 
 export function generateClient(model: CodeModel, project: Project) {
   const name = normalizeName(
@@ -42,7 +45,12 @@ export function generateClient(model: CodeModel, project: Project) {
   const clientName = getLanguageMetadata(model.language).name;
   const uriParameter = getClientUriParameter();
 
-  const { addCredentials, credentialKeyHeaderName, multiClient, batch, credentialScopes } = getAutorestOptions();
+  const { multiClient, batch } = getAutorestOptions();
+  const {
+    addCredentials,
+    credentialScopes,
+    credentialKeyHeaderName
+  } = getSecurityInfoFromModel(model.security);
   const credentialTypes = addCredentials ? ["TokenCredential"] : [];
 
   if (credentialKeyHeaderName) {
@@ -51,11 +59,15 @@ export function generateClient(model: CodeModel, project: Project) {
 
   const commonClientParams = [
     ...(uriParameter ? [{ name: uriParameter, type: "string" }] : []),
-    ...(addCredentials === false || !credentialScopes || credentialScopes.length === 0
+    ...(addCredentials === false ||
+    !credentialScopes ||
+    credentialScopes.length === 0
       ? []
       : [{ name: "credentials", type: credentialTypes.join(" | ") }])
   ];
-  const clientInterfaceName = clientName.endsWith("Client")? `${clientName}`: `${clientName}Client`;
+  const clientInterfaceName = clientName.endsWith("Client")
+    ? `${clientName}`
+    : `${clientName}Client`;
 
   const functionStatement = {
     isExported: true,
@@ -153,7 +165,10 @@ function getClientFactoryBody(
     declarations: [{ name: "baseUrl", initializer: baseUrl }]
   };
 
-  const { credentialScopes, credentialKeyHeaderName } = getAutorestOptions();
+  const {
+    credentialScopes,
+    credentialKeyHeaderName
+  } = getSecurityInfoFromModel(model.security);
 
   const scopesString =
     credentialScopes && credentialScopes.length

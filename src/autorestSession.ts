@@ -12,9 +12,6 @@ export interface AutorestOptions {
   restLevelClient?: boolean;
   rlcShortcut?: boolean;
   azureArm?: boolean;
-  addCredentials?: boolean;
-  credentialKeyHeaderName?: string;
-  credentialScopes?: string[];
   srcPath: string;
   outputPath?: string;
   title?: string;

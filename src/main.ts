@@ -16,7 +16,7 @@ import {
 export async function processRequest(host: AutorestExtensionHost) {
   await initializeSession(host);
   const session = getSession();
-  const { restLevelClient } = getAutorestOptions();
+  const { restLevelClient, azureArm } = getAutorestOptions();
   try {
     const start = Date.now();
     restLevelClient

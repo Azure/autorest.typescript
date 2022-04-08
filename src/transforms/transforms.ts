@@ -8,7 +8,9 @@ import {
   CodeModel,
   ChoiceSchema,
   SealedChoiceSchema,
-  SchemaType
+  SchemaType,
+  OAuth2SecurityScheme,
+  KeySecurityScheme
 } from "@autorest/codemodel";
 import { normalizeName, NameType } from "../utils/nameUtils";
 import { getStringForValue } from "../utils/valueHelpers";
@@ -18,7 +20,6 @@ import { transformOperationGroups } from "./operationTransforms";
 import { transformOptions } from "./optionsTransforms";
 import { transformParameters } from "./parameterTransforms";
 import { transformObjects, transformObject } from "./objectTransforms";
-import { transformSamples } from "./samplesTransforms";
 import { ObjectDetails } from "../models/modelDetails";
 import { transformBaseUrl } from "./urlTransforms";
 import { normalizeModelWithExtensions } from "./extensions";
@@ -105,7 +106,7 @@ export async function transformCodeModel(
     transformGroups(codeModel),
     transformParameters(codeModel, options),
     transformMappers(codeModel, uberParents, options),
-    transformChoices(codeModel),
+    transformChoices(codeModel)
   ]);
 
   const baseUrl = transformBaseUrl(codeModel);
@@ -122,7 +123,8 @@ export async function transformCodeModel(
     parameters,
     options,
     endpoint: baseUrl,
-    allTypes: []
+    allTypes: [],
+    security: codeModel.security
   };
 }
 

@@ -5,10 +5,11 @@ import { Project } from "ts-morph";
 import * as hbs from "handlebars";
 import * as fs from "fs";
 import * as path from "path";
-import { getAutorestOptions } from "../../autorestSession";
+import { getAutorestOptions, getSession } from "../../autorestSession";
 import { Info, Languages } from "@autorest/codemodel";
 import { getLanguageMetadata } from "../../utils/languageHelpers";
 import { normalizeName, NameType } from "../../utils/nameUtils";
+import { getSecurityInfoFromModel } from "../../utils/schemaHelpers";
 
 /**
  * Meta data information about the service, the package, and the client.
@@ -73,7 +74,6 @@ function createMetadata(
   const {
     packageDetails,
     azureOutputDirectory,
-    addCredentials,
     azureArm,
     isTestPackage,
     productDocLink,
@@ -81,6 +81,8 @@ function createMetadata(
     multiClient,
     batch
   } = getAutorestOptions();
+  const { model } = getSession();
+  const { addCredentials } = getSecurityInfoFromModel(model.security);
 
   const azureHuh = packageDetails?.scopeName === "azure" || packageDetails?.scopeName === "azure-rest";
   const repoURL = azureHuh

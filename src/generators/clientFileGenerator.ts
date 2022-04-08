@@ -29,6 +29,7 @@ import { getAutorestOptions } from "../autorestSession";
 import { ParameterDetails } from "../models/parameterDetails";
 import { EndpointDetails } from "../transforms/urlTransforms";
 import { PackageDetails } from "../models/packageDetails";
+import { getSecurityInfoFromModel } from "../utils/schemaHelpers";
 
 type OperationDeclarationDetails = { name: string; typeName: string };
 
@@ -37,10 +38,10 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
     useCoreV2,
     hideClients,
     srcPath,
-    addCredentials,
     packageDetails,
     coreHttpCompatMode
   } = getAutorestOptions();
+  const addCredentials = getSecurityInfoFromModel(clientDetails.security);
   const hasMappers = !!clientDetails.mappers.length;
 
   // Check if there are any client level operations
@@ -559,7 +560,8 @@ function writeDefaultOptions(
   hasLro: boolean,
   clientDetails: ClientDetails
 ) {
-  const { useCoreV2, credentialScopes, packageDetails } = getAutorestOptions();
+  const { useCoreV2, packageDetails } = getAutorestOptions();
+  const { credentialScopes } = getSecurityInfoFromModel(clientDetails.security);
 
   const credentialScopesValues = getCredentialScopesValue(credentialScopes);
   const addScopes = credentialScopes
