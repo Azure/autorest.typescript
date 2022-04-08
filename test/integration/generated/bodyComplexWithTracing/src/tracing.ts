@@ -10,5 +10,6 @@ import { createTracingClient } from "@azure/core-tracing";
 
 export const tracingClient = createTracingClient({
   namespace: "Microsoft.Body.Complex",
-  packageName: "Azure.Body.Complex"
+  packageName: "@msinternal/body-complex-tracing",
+  packageVersion: "1.0.0-preview1"
 });

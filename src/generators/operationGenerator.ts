@@ -852,7 +852,7 @@ function writeSendOperationRequest(
   // When tracing is enabled we want to report success and failures through OpenTelemetry
   // so we create a span and mark it as succeeded or failed
   operationMethod.addStatements(
-    getTracingTryCatchStatement(
+    getTracingClientWithSpanStatement(
       sendRequestStatement,
       responseName,
       !!tracingInfo,
@@ -865,7 +865,7 @@ function getSpanStatusCode() {
   return "coreTracing.SpanStatusCode.UNSET";
 }
 
-function getTracingTryCatchStatement(
+function getTracingClientWithSpanStatement(
   sendRequestStatement: string,
   responseName: string,
   isTracingEnabled: boolean,
@@ -900,7 +900,7 @@ function writeLroOperationBody(
   const sendRequestStatement = `this${client}.sendOperationRequest(args, spec)`;
   const sendOperationStatement = !useCoreV2
     ? `const directSendOperation = async (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec): Promise<${responseName}> => {
-      ${getTracingTryCatchStatement(
+      ${getTracingClientWithSpanStatement(
         sendRequestStatement,
         responseName,
         isTracingEnabled,
@@ -916,7 +916,7 @@ function writeLroOperationBody(
         }};
     }`
     : `const directSendOperation = async (args: coreClient.OperationArguments, spec: coreClient.OperationSpec): Promise<${responseName}> => {
-    ${getTracingTryCatchStatement(
+    ${getTracingClientWithSpanStatement(
       sendRequestStatement,
       responseName,
       isTracingEnabled,

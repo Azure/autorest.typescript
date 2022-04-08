@@ -26,7 +26,7 @@ export function generateTracingFile(project: Project) {
 }
 
 function writeCreateSpanFunction(file: SourceFile) {
-  const { tracingInfo } = getAutorestOptions();
+  const { tracingInfo, packageDetails } = getAutorestOptions();
 
   if (!tracingInfo) {
     return;
@@ -40,7 +40,8 @@ function writeCreateSpanFunction(file: SourceFile) {
         name: "tracingClient",
         initializer: `createTracingClient({
         namespace: "${tracingInfo.namespace}",
-        packageName: "${tracingInfo.packagePrefix}"
+        packageName: "${packageDetails.name}",
+        packageVersion: "${packageDetails.version}"
       });`
       }
     ]

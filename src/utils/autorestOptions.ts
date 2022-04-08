@@ -210,7 +210,7 @@ async function getTracingInfo(
   const tracing: TracingInfo | undefined =
     (await host.getValue("tracing-info")) || undefined;
 
-  if (tracing && tracing.namespace && tracing.packagePrefix) {
+  if (tracing && tracing.namespace) {
     return tracing;
   }
 
