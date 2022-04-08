@@ -1,6 +1,9 @@
 import { assert } from "chai";
 import * as moment from "moment";
-import { BodyComplexWithTracing, DotFishUnion } from "./generated/bodyComplexWithTracing/src";
+import {
+  BodyComplexWithTracing,
+  DotFishUnion
+} from "./generated/bodyComplexWithTracing/src";
 import {
   BodyComplexClient,
   Sawshark,
@@ -431,11 +434,13 @@ const clientOptions = {
 
           assert.deepStrictEqual(result.salmons, [
             {
+              fishType: "DotSalmon",
               location: "sweden",
               iswild: false,
               species: "king"
             },
             {
+              fishType: "DotSalmon",
               location: "atlantic",
               iswild: true,
               species: "king"

@@ -119,6 +119,9 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
       namespaceImport: "coreRestPipeline",
       moduleSpecifier: "@azure/core-rest-pipeline"
     });
+  }
+
+  if (hasCredentials || hasInlineOperations || !hasClientOptionalParams) {
     clientFile.addImportDeclaration({
       namespaceImport: "coreTracing",
       moduleSpecifier: "@azure/core-tracing"
@@ -535,7 +538,7 @@ function getCredentialScopesValue(credentialScopes?: string | string[]) {
   return credentialScopes;
 }
 
-function getTrack2DefaultContent(addScopes: string, hasCredentials: boolean) {
+function getTrack1DefaultContent(addScopes: string, hasCredentials: boolean) {
   return `// Initializing default values for options
   if (!options) {
      options = {};
@@ -557,13 +560,15 @@ function getTrack2DefaultContent(addScopes: string, hasCredentials: boolean) {
   `;
 }
 
-function getTrack1DefaultContent(
+function getTrack2DefaultContent(
   addScopes: string,
   defaults: string,
   packageDetails: PackageDetails,
   clientDetails: ClientDetails
 ) {
-  return `// Initializing default values for options
+  const { azureArm, allowInsecureConnection } = getAutorestOptions();
+
+  const defaultContent = `// Initializing default values for options
   if (!options) {
     options = {};
   }
@@ -589,6 +594,38 @@ function getTrack1DefaultContent(
   };
   super(optionsWithDefaults);
   `;
+
+  if (azureArm && !allowInsecureConnection) {
+    return (
+      defaultContent +
+      `
+      if (options?.pipeline && options.pipeline.getOrderedPolicies().length > 0) {
+        const pipelinePolicies: coreRestPipeline.PipelinePolicy[] = options.pipeline.getOrderedPolicies();
+        const bearerTokenAuthenticationPolicyFound = pipelinePolicies.some(
+          pipelinePolicy =>
+            pipelinePolicy.name ===
+            coreRestPipeline.bearerTokenAuthenticationPolicyName
+        );
+        if (!bearerTokenAuthenticationPolicyFound) {
+          this.pipeline.removePolicy({
+            name: coreRestPipeline.bearerTokenAuthenticationPolicyName
+          });
+          this.pipeline.addPolicy(
+            coreRestPipeline.bearerTokenAuthenticationPolicy({
+              scopes: \`\${optionsWithDefaults.baseUri}/.default\`,
+              challengeCallbacks: {
+                authorizeRequestOnChallenge:
+                  coreClient.authorizeRequestOnClaimChallenge
+              }
+            })
+          );
+        }
+      }
+    `
+    );
+  }
+
+  return defaultContent;
 }
 
 function writeDefaultOptions(
@@ -615,8 +652,8 @@ function writeDefaultOptions(
   };`;
 
   return !useCoreV2
-    ? getTrack2DefaultContent(addScopes, hasCredentials)
-    : getTrack1DefaultContent(
+    ? getTrack1DefaultContent(addScopes, hasCredentials)
+    : getTrack2DefaultContent(
         addScopes,
         defaults,
         packageDetails,

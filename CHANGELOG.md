@@ -1,3 +1,9 @@
+## 6.0.0-beta.19 (2022-04-07)
+
+- [Feature] Support CAE Bearer Token Authentication Policy. Please refer to [#1336](https://github.com/Azure/autorest.typescript/pull/1336) for further details.
+
+- [Feature] Support updated version of `@azure/core-http-compat` package.
+
 ## 6.0.0-beta.18 (2022-03-28)
 
 - [BugFix] fix mapper and parameter path for renamed parameter. Please refer to [#1342](https://github.com/Azure/autorest.typescript/issues/1342) for more details.
