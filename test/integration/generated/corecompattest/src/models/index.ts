@@ -96,17 +96,14 @@ export enum KnownOrderStatus {
  * **delivered**
  */
 export type OrderStatus = string;
+/** Defines values for ContentType. */
+export type ContentType = "application/json" | "application/xml";
 
 /** Optional parameters. */
-export interface AddPetUsingByteArray$binaryOptionalParams
+export interface AddPetUsingByteArrayOptionalParams
   extends coreClient.OperationOptions {
-  /** Pet object in the form of byte array */
-  body?: coreRestPipeline.RequestBodyType;
-}
-
-/** Optional parameters. */
-export interface AddPetUsingByteArray$xmlOptionalParams
-  extends coreClient.OperationOptions {
+  /** Upload file type */
+  contentType?: ContentType;
   /** Pet object in the form of byte array */
   body?: coreRestPipeline.RequestBodyType;
 }

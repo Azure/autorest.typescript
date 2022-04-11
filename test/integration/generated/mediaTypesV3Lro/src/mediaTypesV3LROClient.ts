@@ -8,6 +8,7 @@
 
 import * as coreClient from "@azure/core-client";
 import * as coreRestPipeline from "@azure/core-rest-pipeline";
+import * as coreAuth from "@azure/core-auth";
 import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "./lroImpl";
 import * as Parameters from "./models/parameters";
@@ -25,10 +26,18 @@ export class MediaTypesV3LROClient extends coreClient.ServiceClient {
 
   /**
    * Initializes a new instance of the MediaTypesV3LROClient class.
+   * @param credentials Subscription credentials which uniquely identify client subscription.
    * @param $host server parameter
    * @param options The parameter options
    */
-  constructor($host: string, options?: MediaTypesV3LROClientOptionalParams) {
+  constructor(
+    credentials: coreAuth.TokenCredential,
+    $host: string,
+    options?: MediaTypesV3LROClientOptionalParams
+  ) {
+    if (credentials === undefined) {
+      throw new Error("'credentials' cannot be null");
+    }
     if ($host === undefined) {
       throw new Error("'$host' cannot be null");
     }
@@ -38,7 +47,8 @@ export class MediaTypesV3LROClient extends coreClient.ServiceClient {
       options = {};
     }
     const defaults: MediaTypesV3LROClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
+      requestContentType: "application/json; charset=utf-8",
+      credential: credentials
     };
 
     const packageDetails = `azsdk-js-media-types-v3-lro-client/1.0.0-preview1`;

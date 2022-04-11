@@ -10,41 +10,18 @@ import {
 } from "../models/mappers";
 
 export const contentType: OperationParameter = {
-  parameterPath: "contentType",
+  parameterPath: ["options", "contentType"],
   mapper: {
-    defaultValue: "application/json",
-    isConstant: true,
     serializedName: "Content-Type",
+    xmlName: "Content-Type",
     type: {
-      name: "String"
+      name: "Enum",
+      allowedValues: ["application/json", "application/xml"]
     }
   }
 };
 
 export const body: OperationParameter = {
-  parameterPath: ["options", "body"],
-  mapper: {
-    serializedName: "body",
-    xmlName: "body",
-    type: {
-      name: "Stream"
-    }
-  }
-};
-
-export const contentType1: OperationParameter = {
-  parameterPath: "contentType",
-  mapper: {
-    defaultValue: "application/xml",
-    isConstant: true,
-    serializedName: "Content-Type",
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const body1: OperationParameter = {
   parameterPath: ["options", "body"],
   mapper: {
     serializedName: "body",
@@ -68,7 +45,7 @@ export const $host: OperationURLParameter = {
   skipEncoding: true
 };
 
-export const contentType2: OperationParameter = {
+export const contentType1: OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
     defaultValue: "application/json",
@@ -80,7 +57,7 @@ export const contentType2: OperationParameter = {
   }
 };
 
-export const body2: OperationParameter = {
+export const body1: OperationParameter = {
   parameterPath: ["options", "body"],
   mapper: PetMapper
 };
@@ -146,7 +123,7 @@ export const petId: OperationURLParameter = {
   }
 };
 
-export const contentType3: OperationParameter = {
+export const contentType2: OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
     defaultValue: "application/x-www-form-urlencoded",
@@ -203,7 +180,7 @@ export const apiKey: OperationParameter = {
   }
 };
 
-export const contentType4: OperationParameter = {
+export const contentType3: OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
     defaultValue: "multipart/form-data",
@@ -237,7 +214,7 @@ export const file: OperationParameter = {
   }
 };
 
-export const body3: OperationParameter = {
+export const body2: OperationParameter = {
   parameterPath: ["options", "body"],
   mapper: OrderMapper
 };
@@ -254,12 +231,12 @@ export const orderId: OperationURLParameter = {
   }
 };
 
-export const body4: OperationParameter = {
+export const body3: OperationParameter = {
   parameterPath: ["options", "body"],
   mapper: UserMapper
 };
 
-export const body5: OperationParameter = {
+export const body4: OperationParameter = {
   parameterPath: ["options", "body"],
   mapper: {
     serializedName: "body",

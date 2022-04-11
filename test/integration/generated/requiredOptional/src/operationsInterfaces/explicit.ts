@@ -111,7 +111,7 @@ export interface Explicit {
   /**
    * Test explicitly required string. Please put null and the client library should throw before the
    * request is sent.
-   * @param bodyParameter
+   * @param bodyParameter simple string
    * @param options The options parameters.
    */
   postRequiredStringParameter(

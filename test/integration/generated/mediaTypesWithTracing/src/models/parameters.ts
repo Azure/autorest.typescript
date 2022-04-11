@@ -158,25 +158,27 @@ export const accept3: OperationParameter = {
 };
 
 export const contentType4: OperationParameter = {
-  parameterPath: "contentType",
+  parameterPath: ["options", "contentType"],
   mapper: {
     serializedName: "Content-Type",
-    required: true,
     type: {
       name: "Enum",
-      allowedValues: ["application/json", "application/octet-stream"]
+      allowedValues: [
+        "application/json",
+        "application/octet-stream",
+        "text/plain"
+      ]
     }
   }
 };
 
 export const contentType5: OperationParameter = {
-  parameterPath: "contentType",
+  parameterPath: ["options", "contentType"],
   mapper: {
-    defaultValue: "text/plain",
-    isConstant: true,
     serializedName: "Content-Type",
     type: {
-      name: "String"
+      name: "Enum",
+      allowedValues: ["application/json", "text/plain"]
     }
   }
 };
@@ -193,29 +195,6 @@ export const message1: OperationParameter = {
 };
 
 export const accept4: OperationParameter = {
-  parameterPath: "accept",
-  mapper: {
-    defaultValue: "text/plain",
-    isConstant: true,
-    serializedName: "Accept",
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const message2: OperationParameter = {
-  parameterPath: "message",
-  mapper: {
-    serializedName: "message",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const accept5: OperationParameter = {
   parameterPath: "accept",
   mapper: {
     defaultValue: "text/plain",

@@ -13,10 +13,11 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
   const restLevelClient = await getRestLevelClient(host);
   const rlcShortcut = await getHasShortcutMethods(host);
   const azureArm = await getIsAzureArm(host);
-  const addCredentials = await getAddCredentials(host);
+  const security = await getSecurity(host);
+  const securityHeaderName = await getSecurityHeaderName(host);
   const srcPath = await getSrcPath(host);
   const outputPath = await getOutputPath(host);
-  const credentialScopes = await getCredentialScopes(host);
+  const securityScopes = await getSecurityScopes(host);
   const packageDetails = await getPackageDetails(host);
   const licenseHeader = await getLicenseHeader(host);
   const generateMetadata = await getGenerateMetadata(host);
@@ -42,6 +43,9 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
 
   return {
     azureArm,
+    security,
+    securityHeaderName,
+    securityScopes,
     restLevelClient,
     rlcShortcut,
     srcPath,
@@ -163,25 +167,17 @@ async function getOutputPath(
   return (await host.getValue("output-folder")) || undefined;
 }
 
-async function getKeyCredentialHeaderName(
+async function getSecurityHeaderName(
   host: AutorestExtensionHost
 ): Promise<string | undefined> {
-  return (await host.getValue("credential-key-header-name")) || undefined;
+  return (await host.getValue("security-header-name")) || undefined;
 }
 
-async function getAddCredentials(
+async function getSecurity(
   host: AutorestExtensionHost
-): Promise<boolean> {
-  const addCredentials =
-    (await host.getValue("add-credentials"))
-
-  // Only set addCredentials to false if explicitly set to false
-  // otherwise default to true
-  if (addCredentials === false) {
-    return false;
-  } else {
-    return true;
-  }
+): Promise<string | undefined> {
+  const security: string | undefined = await host.getValue("security");
+  return security
 }
 async function getIsAzureArm(host: AutorestExtensionHost): Promise<boolean> {
   const flag = (await host.getValue("azure-arm")) === true;
@@ -253,38 +249,14 @@ async function getPackageDetails(
   };
 }
 
-export async function getCredentialScopes(
+export async function getSecurityScopes(
   host: AutorestExtensionHost
 ): Promise<string[] | undefined> {
-  const addCredentials = await host.getValue("add-credentials");
-  const credentialScopes = await host.getValue("credential-scopes");
-  const azureArm = await host.getValue("azure-arm");
-
-  if (credentialScopes && !addCredentials) {
-    throw new Error(
-      "--credential-scopes must be used with the --add-credentials flag"
-    );
+  const securityScopes: string | undefined = await host.getValue("security-scopes");
+  if(securityScopes !== undefined && typeof securityScopes === "string") {
+    return securityScopes.split(",");
   }
-
-  if (!credentialScopes) {
-    if (azureArm) {
-      return ["https://management.azure.com/.default"];
-    } else if (addCredentials) {
-      host.message({
-        Channel: Channel.Warning,
-        Text: `You have default credential policy BearerTokenCredentialPolicy
-        but not the --credential-scopes flag set while generating non-management plane code.
-        This is not recommended because it forces the customer to pass credential scopes
-        through kwargs if they want to authenticate.`
-      });
-    }
-  }
-
-  if (typeof credentialScopes === "string") {
-    return credentialScopes.split(",");
-  }
-
-  return undefined;
+  return securityScopes;
 }
 
 async function getAzureOutputDirectoryPath(

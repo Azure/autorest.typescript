@@ -194,8 +194,8 @@ const putOptionalBodyOperationSpec: coreClient.OperationSpec = {
   },
   requestBody: Parameters.bodyParameter,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept, Parameters.contentType],
-  mediaType: "json",
+  headerParameters: [Parameters.contentType, Parameters.accept1],
+  mediaType: "text",
   serializer
 };
 const putOptionalBinaryBodyOperationSpec: coreClient.OperationSpec = {
@@ -209,7 +209,7 @@ const putOptionalBinaryBodyOperationSpec: coreClient.OperationSpec = {
   },
   requestBody: Parameters.bodyParameter1,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType1, Parameters.accept1],
+  headerParameters: [Parameters.contentType1, Parameters.accept2],
   mediaType: "binary",
   serializer
 };

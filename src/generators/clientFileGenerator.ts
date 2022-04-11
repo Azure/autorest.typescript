@@ -564,7 +564,7 @@ function writeDefaultOptions(
   const { credentialScopes } = getSecurityInfoFromModel(clientDetails.security);
 
   const credentialScopesValues = getCredentialScopesValue(credentialScopes);
-  const addScopes = credentialScopes
+  const addScopes = credentialScopes && credentialScopes.length > 0
     ? `if(!options.credentialScopes) {
     options.credentialScopes = ${credentialScopesValues}
   }`

@@ -12,6 +12,9 @@ export interface AutorestOptions {
   restLevelClient?: boolean;
   rlcShortcut?: boolean;
   azureArm?: boolean;
+  security?: string;
+  securityHeaderName?: string;
+  securityScopes?: string | string[];
   srcPath: string;
   outputPath?: string;
   title?: string;

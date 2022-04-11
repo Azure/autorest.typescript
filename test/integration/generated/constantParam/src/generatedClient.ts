@@ -7,6 +7,7 @@
  */
 
 import * as coreClient from "@azure/core-client";
+import * as coreAuth from "@azure/core-auth";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
 import {
@@ -23,11 +24,19 @@ export class GeneratedClient extends coreClient.ServiceClient {
 
   /**
    * Initializes a new instance of the GeneratedClient class.
+   * @param credentials Subscription credentials which uniquely identify client subscription.
    * @param endpoint Supported Cognitive Services endpoints (protocol and hostname, for example:
    *                 https://westus.api.cognitive.microsoft.com).
    * @param options The parameter options
    */
-  constructor(endpoint: string, options?: GeneratedClientOptionalParams) {
+  constructor(
+    credentials: coreAuth.TokenCredential,
+    endpoint: string,
+    options?: GeneratedClientOptionalParams
+  ) {
+    if (credentials === undefined) {
+      throw new Error("'credentials' cannot be null");
+    }
     if (endpoint === undefined) {
       throw new Error("'endpoint' cannot be null");
     }
@@ -37,7 +46,8 @@ export class GeneratedClient extends coreClient.ServiceClient {
       options = {};
     }
     const defaults: GeneratedClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
+      requestContentType: "application/json; charset=utf-8",
+      credential: credentials
     };
 
     const packageDetails = `azsdk-js-constantParam/1.0.0-preview1`;

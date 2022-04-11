@@ -70,6 +70,7 @@ export interface ImplicitPutOptionalHeaderOptionalParams
 /** Optional parameters. */
 export interface ImplicitPutOptionalBodyOptionalParams
   extends coreClient.OperationOptions {
+  /** simple string */
   bodyParameter?: string;
 }
 
@@ -138,6 +139,7 @@ export interface ExplicitPostRequiredStringParameterOptionalParams
 /** Optional parameters. */
 export interface ExplicitPostOptionalStringParameterOptionalParams
   extends coreClient.OperationOptions {
+  /** simple string */
   bodyParameter?: string;
 }
 
