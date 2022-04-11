@@ -5,7 +5,7 @@ import { createRecorder } from "./utils/recordedClient";
 describe("My test", () => {
   let recorder: Recorder;
 
-  beforeEach(async function() {
+  beforeEach(async function(this: Context) {
     recorder = createRecorder(this);
   });
 

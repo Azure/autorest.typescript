@@ -55,7 +55,7 @@ function restLevelPackage(packageDetails: PackageDetails) {
   const hasLRO = hasPollingOperations(model);
   const packageInfo: Record<string, any> = {
     name: `${packageDetails.name}`,
-    "sdk-type": `${azureArm ? "mgmt" : "client"}`,
+    "sdk-type": "client",
     author: "Microsoft Corporation",
     version: `${packageDetails.version}`,
     description: `${packageDetails.description}`,
@@ -69,7 +69,7 @@ function restLevelPackage(packageDetails: PackageDetails) {
     ],
     license: "MIT",
     main: "dist/index.js",
-    module: generateTest? "./dist-esm/src/index.js" : "./dist-esm/index.js",
+    module: generateTest ? "./dist-esm/src/index.js" : "./dist-esm/index.js",
     types: `./types/${packageDetails.nameWithoutScope}.d.ts`,
     homepage: `https://github.com/Azure/azure-sdk-for-js/tree/main/${azureOutputDirectory}/README.md`,
     repository: "github:Azure/azure-sdk-for-js",
@@ -78,7 +78,7 @@ function restLevelPackage(packageDetails: PackageDetails) {
     },
     "files": [
       "dist/",
-      generateTest? "dist-esm/src/" : "dist-esm/",
+      generateTest ? "dist-esm/src/" : "dist-esm/",
       `types/${packageDetails.nameWithoutScope}.d.ts`,
       "README.md",
       "LICENSE",
@@ -126,7 +126,7 @@ function restLevelPackage(packageDetails: PackageDetails) {
     "autoPublish": false,
     dependencies: {
       "@azure/core-auth": "^1.3.0",
-      "@azure-rest/core-client": "1.0.0-beta.8",
+      "@azure-rest/core-client": "1.0.0-beta.9",
       "@azure/core-rest-pipeline": "^1.3.0",
       "@azure/logger": "^1.0.0",
       tslib: "^2.2.0",
