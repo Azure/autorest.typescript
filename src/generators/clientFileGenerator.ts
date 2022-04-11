@@ -6,7 +6,9 @@ import {
   PropertyDeclarationStructure,
   ClassDeclaration,
   SourceFile,
-  CodeBlockWriter
+  CodeBlockWriter,
+  Scope,
+  ReturnTypedNode
 } from "ts-morph";
 import { ClientDetails } from "../models/clientDetails";
 import {
@@ -29,6 +31,7 @@ import { getAutorestOptions } from "../autorestSession";
 import { ParameterDetails } from "../models/parameterDetails";
 import { EndpointDetails } from "../transforms/urlTransforms";
 import { PackageDetails } from "../models/packageDetails";
+import { generateOperationJSDoc } from "./utils/docsUtils";
 
 type OperationDeclarationDetails = { name: string; typeName: string };
 
@@ -102,6 +105,15 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
       namespaceImport: "coreRestPipeline",
       moduleSpecifier: "@azure/core-rest-pipeline"
     });
+    const coreRestPipelineImports = [
+      "PipelineRequest",
+      "PipelineResponse",
+      "SendRequest"
+    ];
+    clientFile.addImportDeclaration({
+      namedImports: coreRestPipelineImports,
+      moduleSpecifier: "@azure/core-rest-pipeline"
+    });
   }
 
   if (hasCredentials || hasInlineOperations || !hasClientOptionalParams) {
@@ -116,7 +128,6 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
       });
     }
   }
-
   addPagingEsNextRef(flattenedInlineOperations, clientFile);
   addPagingImports(flattenedInlineOperations, clientFile);
 
@@ -199,8 +210,19 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
   const clientParams = clientDetails.parameters.filter(
     param => param.implementationLocation === ImplementationLocation.Client
   );
+
+  const apiVersionParams = clientParams.filter(
+    item => item.serializedName.indexOf("api-version") > -1
+  );
+  const apiVersionParam =
+    apiVersionParams && apiVersionParams.length === 1
+      ? apiVersionParams[0]
+      : undefined;
   writeClassProperties(clientClass, clientParams, importedModels);
-  writeConstructor(clientDetails, clientClass, importedModels);
+  writeConstructor(clientDetails, clientClass, importedModels, apiVersionParam);
+  if (useCoreV2 && apiVersionParam) {
+    writeCustomApiVersion(clientClass);
+  }
   writeClientOperations(
     clientFile,
     clientClass,
@@ -208,7 +230,6 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
     hasLro,
     importedModels
   );
-
   // Use named import from Models
   if (importedModels.size) {
     clientFile.addImportDeclaration({
@@ -267,7 +288,8 @@ export function checkForNameCollisions(
 function writeConstructor(
   clientDetails: ClientDetails,
   classDeclaration: ClassDeclaration,
-  importedModels: Set<string>
+  importedModels: Set<string>,
+  apiVersionParam?: ParameterDetails
 ) {
   const requiredParams = clientDetails.parameters.filter(
     param =>
@@ -381,6 +403,53 @@ function writeConstructor(
       ({ name, typeName }) => `this.${name} = new ${typeName}Impl(this)`
     )
   ]);
+  if (useCoreV2 && apiVersionParam) {
+    clientConstructor.addStatements(
+      `this.addCustomApiVersionPolicy(${
+        !apiVersionParam.required ||
+        !!apiVersionParam.defaultValue ||
+          apiVersionParam.schemaType === SchemaType.Constant
+          ? "options."
+          : ""
+      }apiVersion);`
+    );
+  }
+}
+
+function writeCustomApiVersion(classDeclaration: ClassDeclaration) {
+  const operationMethod = classDeclaration.addMethod({
+    name: "addCustomApiVersionPolicy",
+    parameters: [
+      { name: "apiVersion", type: "string", hasQuestionToken: true }
+    ],
+    scope: Scope.Private,
+    docs: [
+      "A function that adds a policy that sets the api-version (or equivalent) to reflect the library version."
+    ],
+    isAsync: false
+  });
+  operationMethod.addStatements(`if (!apiVersion) { return; }
+  const apiVersionPolicy =  {
+    
+    name: "CustomApiVersionPolicy",
+    async sendRequest(request: PipelineRequest, next: SendRequest): Promise<PipelineResponse> {
+      const param = request.url.split('?');
+      if (param.length > 1) {
+        const newParams = param[1].split('&').map((item) => {
+          if(item.indexOf('api-version') > -1) {
+            return item.replace(/(?<==).*$/, apiVersion);
+          } else {
+            return item;
+          }
+        });
+        request.url = param[0] + "?" + newParams.join("&");
+
+      }
+      return next(request);
+    },
+  };
+  this.pipeline.addPolicy(apiVersionPolicy);
+  `);
 }
 
 function getOperationGroupsDeclarationDetails(

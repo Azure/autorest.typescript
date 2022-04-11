@@ -426,4 +426,35 @@ describe("AzureSpecialProperties", () => {
       assert.isTrue(_response!.request.url.startsWith("http://usethisone.com"));
     });
   });
+
+  describe("customize api version", async () => {
+    it("should be able to customize api version from client", async () => {
+      let _response: FullOperationResponse;
+      const client = new AzureSpecialPropertiesClient(
+        mockCredential,
+        dummySubscriptionId,
+        {
+          httpClient: {
+            sendRequest: req =>
+              Promise.resolve({
+                status: 200,
+                headers: createHttpHeaders(),
+                request: req
+              })
+          },
+          endpoint: "http://usethisone.com",
+          apiVersion: "2011-05-18"
+        }
+      );
+      client.pipeline.removePolicy({
+        name: bearerTokenAuthenticationPolicyName
+      });
+      await client.apiVersionDefault.getMethodGlobalValid({
+        onResponse: r => {
+          assert.isTrue(r!.request.url.indexOf("2011-05-18") > -1);
+        }
+      });
+      
+    });
+  })
 });
