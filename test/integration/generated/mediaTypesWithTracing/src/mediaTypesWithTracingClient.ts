@@ -8,8 +8,7 @@
 
 import * as coreClient from "@azure/core-client";
 import * as coreRestPipeline from "@azure/core-rest-pipeline";
-import * as coreTracing from "@azure/core-tracing";
-import { createSpan } from "./tracing";
+import { tracingClient } from "./tracing";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
 import {
@@ -117,26 +116,18 @@ export class MediaTypesWithTracingClient extends coreClient.ServiceClient {
         `"contentType" must be a valid value but instead was "${args[0]}".`
       );
     }
-    const { span } = createSpan(
-      "MediaTypesWithTracingClient-analyzeBody",
-      options
-    );
     operationArguments.options = options || {};
-    try {
-      const result = await this.sendOperationRequest(
-        operationArguments,
-        operationSpec
-      );
-      return result as AnalyzeBodyResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
+
+    return tracingClient.withSpan(
+      "MediaTypesWithTracingClient.analyzeBody",
+      options ?? {},
+      async () => {
+        return this.sendOperationRequest(
+          operationArguments,
+          operationSpec
+        ) as Promise<AnalyzeBodyResponse>;
+      }
+    );
   }
 
   /**
@@ -187,26 +178,18 @@ export class MediaTypesWithTracingClient extends coreClient.ServiceClient {
         `"contentType" must be a valid value but instead was "${args[0]}".`
       );
     }
-    const { span } = createSpan(
-      "MediaTypesWithTracingClient-analyzeBodyNoAcceptHeader",
-      options
-    );
     operationArguments.options = options || {};
-    try {
-      const result = await this.sendOperationRequest(
-        operationArguments,
-        operationSpec
-      );
-      return result as void;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
+
+    return tracingClient.withSpan(
+      "MediaTypesWithTracingClient.analyzeBodyNoAcceptHeader",
+      options ?? {},
+      async () => {
+        return this.sendOperationRequest(
+          operationArguments,
+          operationSpec
+        ) as Promise<void>;
+      }
+    );
   }
 
   /**
@@ -216,25 +199,16 @@ export class MediaTypesWithTracingClient extends coreClient.ServiceClient {
   async contentTypeWithEncoding(
     options?: ContentTypeWithEncodingOptionalParams
   ): Promise<ContentTypeWithEncodingResponse> {
-    const { span } = createSpan(
-      "MediaTypesWithTracingClient-contentTypeWithEncoding",
-      options || {}
+    return tracingClient.withSpan(
+      "MediaTypesWithTracingClient.contentTypeWithEncoding",
+      options ?? {},
+      async (options) => {
+        return this.sendOperationRequest(
+          { options },
+          contentTypeWithEncodingOperationSpec
+        ) as Promise<ContentTypeWithEncodingResponse>;
+      }
     );
-    try {
-      const result = await this.sendOperationRequest(
-        { options },
-        contentTypeWithEncodingOperationSpec
-      );
-      return result as ContentTypeWithEncodingResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -247,25 +221,16 @@ export class MediaTypesWithTracingClient extends coreClient.ServiceClient {
     message: coreRestPipeline.RequestBodyType,
     options?: BinaryBodyWithTwoContentTypesOptionalParams
   ): Promise<BinaryBodyWithTwoContentTypesResponse> {
-    const { span } = createSpan(
-      "MediaTypesWithTracingClient-binaryBodyWithTwoContentTypes",
-      options || {}
+    return tracingClient.withSpan(
+      "MediaTypesWithTracingClient.binaryBodyWithTwoContentTypes",
+      options ?? {},
+      async (options) => {
+        return this.sendOperationRequest(
+          { message, options },
+          binaryBodyWithTwoContentTypesOperationSpec
+        ) as Promise<BinaryBodyWithTwoContentTypesResponse>;
+      }
     );
-    try {
-      const result = await this.sendOperationRequest(
-        { message, options },
-        binaryBodyWithTwoContentTypesOperationSpec
-      );
-      return result as BinaryBodyWithTwoContentTypesResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -340,26 +305,18 @@ export class MediaTypesWithTracingClient extends coreClient.ServiceClient {
         `"contentType" must be a valid value but instead was "${args[0]}".`
       );
     }
-    const { span } = createSpan(
-      "MediaTypesWithTracingClient-binaryBodyWithThreeContentTypes",
-      options
-    );
     operationArguments.options = options || {};
-    try {
-      const result = await this.sendOperationRequest(
-        operationArguments,
-        operationSpec
-      );
-      return result as BinaryBodyWithThreeContentTypesResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
+
+    return tracingClient.withSpan(
+      "MediaTypesWithTracingClient.binaryBodyWithThreeContentTypes",
+      options ?? {},
+      async () => {
+        return this.sendOperationRequest(
+          operationArguments,
+          operationSpec
+        ) as Promise<BinaryBodyWithThreeContentTypesResponse>;
+      }
+    );
   }
 
   /**
@@ -417,26 +374,18 @@ export class MediaTypesWithTracingClient extends coreClient.ServiceClient {
         `"contentType" must be a valid value but instead was "${args[0]}".`
       );
     }
-    const { span } = createSpan(
-      "MediaTypesWithTracingClient-putTextAndJsonBody",
-      options
-    );
     operationArguments.options = options || {};
-    try {
-      const result = await this.sendOperationRequest(
-        operationArguments,
-        operationSpec
-      );
-      return result as PutTextAndJsonBodyResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
+
+    return tracingClient.withSpan(
+      "MediaTypesWithTracingClient.putTextAndJsonBody",
+      options ?? {},
+      async () => {
+        return this.sendOperationRequest(
+          operationArguments,
+          operationSpec
+        ) as Promise<PutTextAndJsonBodyResponse>;
+      }
+    );
   }
 }
 // Operation Specifications

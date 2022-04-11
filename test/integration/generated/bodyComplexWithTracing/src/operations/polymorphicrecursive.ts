@@ -6,10 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { createSpan } from "../tracing";
+import { tracingClient } from "../tracing";
 import { Polymorphicrecursive } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as coreTracing from "@azure/core-tracing";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyComplexWithTracing } from "../bodyComplexWithTracing";
@@ -39,25 +38,16 @@ export class PolymorphicrecursiveImpl implements Polymorphicrecursive {
   async getValid(
     options?: PolymorphicrecursiveGetValidOptionalParams
   ): Promise<PolymorphicrecursiveGetValidResponse> {
-    const { span } = createSpan(
-      "BodyComplexWithTracing-getValid",
-      options || {}
+    return tracingClient.withSpan(
+      "BodyComplexWithTracing.getValid",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { options },
+          getValidOperationSpec
+        ) as Promise<PolymorphicrecursiveGetValidResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { options },
-        getValidOperationSpec
-      );
-      return result as PolymorphicrecursiveGetValidResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -121,25 +111,16 @@ export class PolymorphicrecursiveImpl implements Polymorphicrecursive {
     complexBody: FishUnion,
     options?: PolymorphicrecursivePutValidOptionalParams
   ): Promise<void> {
-    const { span } = createSpan(
-      "BodyComplexWithTracing-putValid",
-      options || {}
+    return tracingClient.withSpan(
+      "BodyComplexWithTracing.putValid",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { complexBody, options },
+          putValidOperationSpec
+        ) as Promise<void>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { complexBody, options },
-        putValidOperationSpec
-      );
-      return result as void;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 }
 // Operation Specifications

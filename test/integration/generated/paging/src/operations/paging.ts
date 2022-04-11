@@ -6,11 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { createSpan } from "../tracing";
+import { tracingClient } from "../tracing";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { Paging } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as coreTracing from "@azure/core-tracing";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { PagingClient } from "../pagingClient";
@@ -1139,25 +1138,16 @@ export class PagingImpl implements Paging {
   private async _getNoItemNamePages(
     options?: PagingGetNoItemNamePagesOptionalParams
   ): Promise<PagingGetNoItemNamePagesResponse> {
-    const { span } = createSpan(
-      "PagingClient-_getNoItemNamePages",
-      options || {}
+    return tracingClient.withSpan(
+      "PagingClient._getNoItemNamePages",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { options },
+          getNoItemNamePagesOperationSpec
+        ) as Promise<PagingGetNoItemNamePagesResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { options },
-        getNoItemNamePagesOperationSpec
-      );
-      return result as PagingGetNoItemNamePagesResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -1167,25 +1157,16 @@ export class PagingImpl implements Paging {
   private async _getNullNextLinkNamePages(
     options?: PagingGetNullNextLinkNamePagesOptionalParams
   ): Promise<PagingGetNullNextLinkNamePagesResponse> {
-    const { span } = createSpan(
-      "PagingClient-_getNullNextLinkNamePages",
-      options || {}
+    return tracingClient.withSpan(
+      "PagingClient._getNullNextLinkNamePages",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { options },
+          getNullNextLinkNamePagesOperationSpec
+        ) as Promise<PagingGetNullNextLinkNamePagesResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { options },
-        getNullNextLinkNamePagesOperationSpec
-      );
-      return result as PagingGetNullNextLinkNamePagesResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -1195,22 +1176,16 @@ export class PagingImpl implements Paging {
   private async _getSinglePages(
     options?: PagingGetSinglePagesOptionalParams
   ): Promise<PagingGetSinglePagesResponse> {
-    const { span } = createSpan("PagingClient-_getSinglePages", options || {});
-    try {
-      const result = await this.client.sendOperationRequest(
-        { options },
-        getSinglePagesOperationSpec
-      );
-      return result as PagingGetSinglePagesResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
+    return tracingClient.withSpan(
+      "PagingClient._getSinglePages",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { options },
+          getSinglePagesOperationSpec
+        ) as Promise<PagingGetSinglePagesResponse>;
+      }
+    );
   }
 
   /**
@@ -1221,25 +1196,16 @@ export class PagingImpl implements Paging {
   private async _firstResponseEmpty(
     options?: PagingFirstResponseEmptyOptionalParams
   ): Promise<PagingFirstResponseEmptyResponse> {
-    const { span } = createSpan(
-      "PagingClient-_firstResponseEmpty",
-      options || {}
+    return tracingClient.withSpan(
+      "PagingClient._firstResponseEmpty",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { options },
+          firstResponseEmptyOperationSpec
+        ) as Promise<PagingFirstResponseEmptyResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { options },
-        firstResponseEmptyOperationSpec
-      );
-      return result as PagingFirstResponseEmptyResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -1249,25 +1215,16 @@ export class PagingImpl implements Paging {
   private async _getMultiplePages(
     options?: PagingGetMultiplePagesOptionalParams
   ): Promise<PagingGetMultiplePagesResponse> {
-    const { span } = createSpan(
-      "PagingClient-_getMultiplePages",
-      options || {}
+    return tracingClient.withSpan(
+      "PagingClient._getMultiplePages",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { options },
+          getMultiplePagesOperationSpec
+        ) as Promise<PagingGetMultiplePagesResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { options },
-        getMultiplePagesOperationSpec
-      );
-      return result as PagingGetMultiplePagesResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -1280,25 +1237,16 @@ export class PagingImpl implements Paging {
     requiredQueryParameter: number,
     options?: PagingGetWithQueryParamsOptionalParams
   ): Promise<PagingGetWithQueryParamsResponse> {
-    const { span } = createSpan(
-      "PagingClient-_getWithQueryParams",
-      options || {}
+    return tracingClient.withSpan(
+      "PagingClient._getWithQueryParams",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { requiredQueryParameter, options },
+          getWithQueryParamsOperationSpec
+        ) as Promise<PagingGetWithQueryParamsResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { requiredQueryParameter, options },
-        getWithQueryParamsOperationSpec
-      );
-      return result as PagingGetWithQueryParamsResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -1310,22 +1258,16 @@ export class PagingImpl implements Paging {
   private async _duplicateParams(
     options?: PagingDuplicateParamsOptionalParams
   ): Promise<PagingDuplicateParamsResponse> {
-    const { span } = createSpan("PagingClient-_duplicateParams", options || {});
-    try {
-      const result = await this.client.sendOperationRequest(
-        { options },
-        duplicateParamsOperationSpec
-      );
-      return result as PagingDuplicateParamsResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
+    return tracingClient.withSpan(
+      "PagingClient._duplicateParams",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { options },
+          duplicateParamsOperationSpec
+        ) as Promise<PagingDuplicateParamsResponse>;
+      }
+    );
   }
 
   /**
@@ -1335,25 +1277,16 @@ export class PagingImpl implements Paging {
   private async _nextOperationWithQueryParams(
     options?: PagingNextOperationWithQueryParamsOptionalParams
   ): Promise<PagingNextOperationWithQueryParamsResponse> {
-    const { span } = createSpan(
-      "PagingClient-_nextOperationWithQueryParams",
-      options || {}
+    return tracingClient.withSpan(
+      "PagingClient._nextOperationWithQueryParams",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { options },
+          nextOperationWithQueryParamsOperationSpec
+        ) as Promise<PagingNextOperationWithQueryParamsResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { options },
-        nextOperationWithQueryParamsOperationSpec
-      );
-      return result as PagingNextOperationWithQueryParamsResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -1363,25 +1296,16 @@ export class PagingImpl implements Paging {
   private async _getOdataMultiplePages(
     options?: PagingGetOdataMultiplePagesOptionalParams
   ): Promise<PagingGetOdataMultiplePagesResponse> {
-    const { span } = createSpan(
-      "PagingClient-_getOdataMultiplePages",
-      options || {}
+    return tracingClient.withSpan(
+      "PagingClient._getOdataMultiplePages",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { options },
+          getOdataMultiplePagesOperationSpec
+        ) as Promise<PagingGetOdataMultiplePagesResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { options },
-        getOdataMultiplePagesOperationSpec
-      );
-      return result as PagingGetOdataMultiplePagesResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -1393,25 +1317,16 @@ export class PagingImpl implements Paging {
     pagingGetMultiplePagesWithOffsetOptions: PagingGetMultiplePagesWithOffsetOptions,
     options?: PagingGetMultiplePagesWithOffsetOptionalParams
   ): Promise<PagingGetMultiplePagesWithOffsetResponse> {
-    const { span } = createSpan(
-      "PagingClient-_getMultiplePagesWithOffset",
-      options || {}
+    return tracingClient.withSpan(
+      "PagingClient._getMultiplePagesWithOffset",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { pagingGetMultiplePagesWithOffsetOptions, options },
+          getMultiplePagesWithOffsetOperationSpec
+        ) as Promise<PagingGetMultiplePagesWithOffsetResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { pagingGetMultiplePagesWithOffsetOptions, options },
-        getMultiplePagesWithOffsetOperationSpec
-      );
-      return result as PagingGetMultiplePagesWithOffsetResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -1422,25 +1337,16 @@ export class PagingImpl implements Paging {
   private async _getMultiplePagesRetryFirst(
     options?: PagingGetMultiplePagesRetryFirstOptionalParams
   ): Promise<PagingGetMultiplePagesRetryFirstResponse> {
-    const { span } = createSpan(
-      "PagingClient-_getMultiplePagesRetryFirst",
-      options || {}
+    return tracingClient.withSpan(
+      "PagingClient._getMultiplePagesRetryFirst",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { options },
+          getMultiplePagesRetryFirstOperationSpec
+        ) as Promise<PagingGetMultiplePagesRetryFirstResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { options },
-        getMultiplePagesRetryFirstOperationSpec
-      );
-      return result as PagingGetMultiplePagesRetryFirstResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -1451,25 +1357,16 @@ export class PagingImpl implements Paging {
   private async _getMultiplePagesRetrySecond(
     options?: PagingGetMultiplePagesRetrySecondOptionalParams
   ): Promise<PagingGetMultiplePagesRetrySecondResponse> {
-    const { span } = createSpan(
-      "PagingClient-_getMultiplePagesRetrySecond",
-      options || {}
+    return tracingClient.withSpan(
+      "PagingClient._getMultiplePagesRetrySecond",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { options },
+          getMultiplePagesRetrySecondOperationSpec
+        ) as Promise<PagingGetMultiplePagesRetrySecondResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { options },
-        getMultiplePagesRetrySecondOperationSpec
-      );
-      return result as PagingGetMultiplePagesRetrySecondResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -1479,25 +1376,16 @@ export class PagingImpl implements Paging {
   private async _getSinglePagesFailure(
     options?: PagingGetSinglePagesFailureOptionalParams
   ): Promise<PagingGetSinglePagesFailureResponse> {
-    const { span } = createSpan(
-      "PagingClient-_getSinglePagesFailure",
-      options || {}
+    return tracingClient.withSpan(
+      "PagingClient._getSinglePagesFailure",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { options },
+          getSinglePagesFailureOperationSpec
+        ) as Promise<PagingGetSinglePagesFailureResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { options },
-        getSinglePagesFailureOperationSpec
-      );
-      return result as PagingGetSinglePagesFailureResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -1507,25 +1395,16 @@ export class PagingImpl implements Paging {
   private async _getMultiplePagesFailure(
     options?: PagingGetMultiplePagesFailureOptionalParams
   ): Promise<PagingGetMultiplePagesFailureResponse> {
-    const { span } = createSpan(
-      "PagingClient-_getMultiplePagesFailure",
-      options || {}
+    return tracingClient.withSpan(
+      "PagingClient._getMultiplePagesFailure",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { options },
+          getMultiplePagesFailureOperationSpec
+        ) as Promise<PagingGetMultiplePagesFailureResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { options },
-        getMultiplePagesFailureOperationSpec
-      );
-      return result as PagingGetMultiplePagesFailureResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -1535,25 +1414,16 @@ export class PagingImpl implements Paging {
   private async _getMultiplePagesFailureUri(
     options?: PagingGetMultiplePagesFailureUriOptionalParams
   ): Promise<PagingGetMultiplePagesFailureUriResponse> {
-    const { span } = createSpan(
-      "PagingClient-_getMultiplePagesFailureUri",
-      options || {}
+    return tracingClient.withSpan(
+      "PagingClient._getMultiplePagesFailureUri",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { options },
+          getMultiplePagesFailureUriOperationSpec
+        ) as Promise<PagingGetMultiplePagesFailureUriResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { options },
-        getMultiplePagesFailureUriOperationSpec
-      );
-      return result as PagingGetMultiplePagesFailureUriResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -1567,25 +1437,16 @@ export class PagingImpl implements Paging {
     tenant: string,
     options?: PagingGetMultiplePagesFragmentNextLinkOptionalParams
   ): Promise<PagingGetMultiplePagesFragmentNextLinkResponse> {
-    const { span } = createSpan(
-      "PagingClient-_getMultiplePagesFragmentNextLink",
-      options || {}
+    return tracingClient.withSpan(
+      "PagingClient._getMultiplePagesFragmentNextLink",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { apiVersion, tenant, options },
+          getMultiplePagesFragmentNextLinkOperationSpec
+        ) as Promise<PagingGetMultiplePagesFragmentNextLinkResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { apiVersion, tenant, options },
-        getMultiplePagesFragmentNextLinkOperationSpec
-      );
-      return result as PagingGetMultiplePagesFragmentNextLinkResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -1597,25 +1458,18 @@ export class PagingImpl implements Paging {
     customParameterGroup: CustomParameterGroup,
     options?: PagingGetMultiplePagesFragmentWithGroupingNextLinkOptionalParams
   ): Promise<PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse> {
-    const { span } = createSpan(
-      "PagingClient-_getMultiplePagesFragmentWithGroupingNextLink",
-      options || {}
+    return tracingClient.withSpan(
+      "PagingClient._getMultiplePagesFragmentWithGroupingNextLink",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { customParameterGroup, options },
+          getMultiplePagesFragmentWithGroupingNextLinkOperationSpec
+        ) as Promise<
+          PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse
+        >;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { customParameterGroup, options },
-        getMultiplePagesFragmentWithGroupingNextLinkOperationSpec
-      );
-      return result as PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -1630,26 +1484,19 @@ export class PagingImpl implements Paging {
       PagingGetMultiplePagesLROResponse
     >
   > {
-    const { span } = createSpan(
-      "PagingClient-_getMultiplePagesLRO",
-      options || {}
-    );
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<PagingGetMultiplePagesLROResponse> => {
-      try {
-        const result = await this.client.sendOperationRequest(args, spec);
-        return result as PagingGetMultiplePagesLROResponse;
-      } catch (error) {
-        span.setStatus({
-          code: coreTracing.SpanStatusCode.UNSET,
-          message: error.message
-        });
-        throw error;
-      } finally {
-        span.end();
-      }
+      return tracingClient.withSpan(
+        "PagingClient._getMultiplePagesLRO",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            PagingGetMultiplePagesLROResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -1710,22 +1557,16 @@ export class PagingImpl implements Paging {
     nextLink: string,
     options?: PagingNextFragmentOptionalParams
   ): Promise<PagingNextFragmentResponse> {
-    const { span } = createSpan("PagingClient-_nextFragment", options || {});
-    try {
-      const result = await this.client.sendOperationRequest(
-        { apiVersion, tenant, nextLink, options },
-        nextFragmentOperationSpec
-      );
-      return result as PagingNextFragmentResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
+    return tracingClient.withSpan(
+      "PagingClient._nextFragment",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { apiVersion, tenant, nextLink, options },
+          nextFragmentOperationSpec
+        ) as Promise<PagingNextFragmentResponse>;
+      }
+    );
   }
 
   /**
@@ -1739,25 +1580,16 @@ export class PagingImpl implements Paging {
     customParameterGroup: CustomParameterGroup,
     options?: PagingNextFragmentWithGroupingOptionalParams
   ): Promise<PagingNextFragmentWithGroupingResponse> {
-    const { span } = createSpan(
-      "PagingClient-_nextFragmentWithGrouping",
-      options || {}
+    return tracingClient.withSpan(
+      "PagingClient._nextFragmentWithGrouping",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { nextLink, customParameterGroup, options },
+          nextFragmentWithGroupingOperationSpec
+        ) as Promise<PagingNextFragmentWithGroupingResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { nextLink, customParameterGroup, options },
-        nextFragmentWithGroupingOperationSpec
-      );
-      return result as PagingNextFragmentWithGroupingResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -1768,25 +1600,16 @@ export class PagingImpl implements Paging {
   private async _getPagingModelWithItemNameWithXMSClientName(
     options?: PagingGetPagingModelWithItemNameWithXMSClientNameOptionalParams
   ): Promise<PagingGetPagingModelWithItemNameWithXMSClientNameResponse> {
-    const { span } = createSpan(
-      "PagingClient-_getPagingModelWithItemNameWithXMSClientName",
-      options || {}
+    return tracingClient.withSpan(
+      "PagingClient._getPagingModelWithItemNameWithXMSClientName",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { options },
+          getPagingModelWithItemNameWithXMSClientNameOperationSpec
+        ) as Promise<PagingGetPagingModelWithItemNameWithXMSClientNameResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { options },
-        getPagingModelWithItemNameWithXMSClientNameOperationSpec
-      );
-      return result as PagingGetPagingModelWithItemNameWithXMSClientNameResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -1798,25 +1621,16 @@ export class PagingImpl implements Paging {
     nextLink: string,
     options?: PagingGetNoItemNamePagesNextOptionalParams
   ): Promise<PagingGetNoItemNamePagesNextResponse> {
-    const { span } = createSpan(
-      "PagingClient-_getNoItemNamePagesNext",
-      options || {}
+    return tracingClient.withSpan(
+      "PagingClient._getNoItemNamePagesNext",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { nextLink, options },
+          getNoItemNamePagesNextOperationSpec
+        ) as Promise<PagingGetNoItemNamePagesNextResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { nextLink, options },
-        getNoItemNamePagesNextOperationSpec
-      );
-      return result as PagingGetNoItemNamePagesNextResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -1828,25 +1642,16 @@ export class PagingImpl implements Paging {
     nextLink: string,
     options?: PagingGetSinglePagesNextOptionalParams
   ): Promise<PagingGetSinglePagesNextResponse> {
-    const { span } = createSpan(
-      "PagingClient-_getSinglePagesNext",
-      options || {}
+    return tracingClient.withSpan(
+      "PagingClient._getSinglePagesNext",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { nextLink, options },
+          getSinglePagesNextOperationSpec
+        ) as Promise<PagingGetSinglePagesNextResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { nextLink, options },
-        getSinglePagesNextOperationSpec
-      );
-      return result as PagingGetSinglePagesNextResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -1858,25 +1663,16 @@ export class PagingImpl implements Paging {
     nextLink: string,
     options?: PagingFirstResponseEmptyNextOptionalParams
   ): Promise<PagingFirstResponseEmptyNextResponse> {
-    const { span } = createSpan(
-      "PagingClient-_firstResponseEmptyNext",
-      options || {}
+    return tracingClient.withSpan(
+      "PagingClient._firstResponseEmptyNext",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { nextLink, options },
+          firstResponseEmptyNextOperationSpec
+        ) as Promise<PagingFirstResponseEmptyNextResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { nextLink, options },
-        firstResponseEmptyNextOperationSpec
-      );
-      return result as PagingFirstResponseEmptyNextResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -1888,25 +1684,16 @@ export class PagingImpl implements Paging {
     nextLink: string,
     options?: PagingGetMultiplePagesNextOptionalParams
   ): Promise<PagingGetMultiplePagesNextResponse> {
-    const { span } = createSpan(
-      "PagingClient-_getMultiplePagesNext",
-      options || {}
+    return tracingClient.withSpan(
+      "PagingClient._getMultiplePagesNext",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { nextLink, options },
+          getMultiplePagesNextOperationSpec
+        ) as Promise<PagingGetMultiplePagesNextResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { nextLink, options },
-        getMultiplePagesNextOperationSpec
-      );
-      return result as PagingGetMultiplePagesNextResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -1918,25 +1705,16 @@ export class PagingImpl implements Paging {
     nextLink: string,
     options?: PagingDuplicateParamsNextOptionalParams
   ): Promise<PagingDuplicateParamsNextResponse> {
-    const { span } = createSpan(
-      "PagingClient-_duplicateParamsNext",
-      options || {}
+    return tracingClient.withSpan(
+      "PagingClient._duplicateParamsNext",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { nextLink, options },
+          duplicateParamsNextOperationSpec
+        ) as Promise<PagingDuplicateParamsNextResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { nextLink, options },
-        duplicateParamsNextOperationSpec
-      );
-      return result as PagingDuplicateParamsNextResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -1948,25 +1726,16 @@ export class PagingImpl implements Paging {
     nextLink: string,
     options?: PagingGetOdataMultiplePagesNextOptionalParams
   ): Promise<PagingGetOdataMultiplePagesNextResponse> {
-    const { span } = createSpan(
-      "PagingClient-_getOdataMultiplePagesNext",
-      options || {}
+    return tracingClient.withSpan(
+      "PagingClient._getOdataMultiplePagesNext",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { nextLink, options },
+          getOdataMultiplePagesNextOperationSpec
+        ) as Promise<PagingGetOdataMultiplePagesNextResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { nextLink, options },
-        getOdataMultiplePagesNextOperationSpec
-      );
-      return result as PagingGetOdataMultiplePagesNextResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -1981,25 +1750,16 @@ export class PagingImpl implements Paging {
     nextLink: string,
     options?: PagingGetMultiplePagesWithOffsetNextOptionalParams
   ): Promise<PagingGetMultiplePagesWithOffsetNextResponse> {
-    const { span } = createSpan(
-      "PagingClient-_getMultiplePagesWithOffsetNext",
-      options || {}
+    return tracingClient.withSpan(
+      "PagingClient._getMultiplePagesWithOffsetNext",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { pagingGetMultiplePagesWithOffsetOptions, nextLink, options },
+          getMultiplePagesWithOffsetNextOperationSpec
+        ) as Promise<PagingGetMultiplePagesWithOffsetNextResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { pagingGetMultiplePagesWithOffsetOptions, nextLink, options },
-        getMultiplePagesWithOffsetNextOperationSpec
-      );
-      return result as PagingGetMultiplePagesWithOffsetNextResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -2012,25 +1772,16 @@ export class PagingImpl implements Paging {
     nextLink: string,
     options?: PagingGetMultiplePagesRetryFirstNextOptionalParams
   ): Promise<PagingGetMultiplePagesRetryFirstNextResponse> {
-    const { span } = createSpan(
-      "PagingClient-_getMultiplePagesRetryFirstNext",
-      options || {}
+    return tracingClient.withSpan(
+      "PagingClient._getMultiplePagesRetryFirstNext",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { nextLink, options },
+          getMultiplePagesRetryFirstNextOperationSpec
+        ) as Promise<PagingGetMultiplePagesRetryFirstNextResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { nextLink, options },
-        getMultiplePagesRetryFirstNextOperationSpec
-      );
-      return result as PagingGetMultiplePagesRetryFirstNextResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -2043,25 +1794,16 @@ export class PagingImpl implements Paging {
     nextLink: string,
     options?: PagingGetMultiplePagesRetrySecondNextOptionalParams
   ): Promise<PagingGetMultiplePagesRetrySecondNextResponse> {
-    const { span } = createSpan(
-      "PagingClient-_getMultiplePagesRetrySecondNext",
-      options || {}
+    return tracingClient.withSpan(
+      "PagingClient._getMultiplePagesRetrySecondNext",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { nextLink, options },
+          getMultiplePagesRetrySecondNextOperationSpec
+        ) as Promise<PagingGetMultiplePagesRetrySecondNextResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { nextLink, options },
-        getMultiplePagesRetrySecondNextOperationSpec
-      );
-      return result as PagingGetMultiplePagesRetrySecondNextResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -2073,25 +1815,16 @@ export class PagingImpl implements Paging {
     nextLink: string,
     options?: PagingGetSinglePagesFailureNextOptionalParams
   ): Promise<PagingGetSinglePagesFailureNextResponse> {
-    const { span } = createSpan(
-      "PagingClient-_getSinglePagesFailureNext",
-      options || {}
+    return tracingClient.withSpan(
+      "PagingClient._getSinglePagesFailureNext",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { nextLink, options },
+          getSinglePagesFailureNextOperationSpec
+        ) as Promise<PagingGetSinglePagesFailureNextResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { nextLink, options },
-        getSinglePagesFailureNextOperationSpec
-      );
-      return result as PagingGetSinglePagesFailureNextResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -2104,25 +1837,16 @@ export class PagingImpl implements Paging {
     nextLink: string,
     options?: PagingGetMultiplePagesFailureNextOptionalParams
   ): Promise<PagingGetMultiplePagesFailureNextResponse> {
-    const { span } = createSpan(
-      "PagingClient-_getMultiplePagesFailureNext",
-      options || {}
+    return tracingClient.withSpan(
+      "PagingClient._getMultiplePagesFailureNext",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { nextLink, options },
+          getMultiplePagesFailureNextOperationSpec
+        ) as Promise<PagingGetMultiplePagesFailureNextResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { nextLink, options },
-        getMultiplePagesFailureNextOperationSpec
-      );
-      return result as PagingGetMultiplePagesFailureNextResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -2135,25 +1859,16 @@ export class PagingImpl implements Paging {
     nextLink: string,
     options?: PagingGetMultiplePagesFailureUriNextOptionalParams
   ): Promise<PagingGetMultiplePagesFailureUriNextResponse> {
-    const { span } = createSpan(
-      "PagingClient-_getMultiplePagesFailureUriNext",
-      options || {}
+    return tracingClient.withSpan(
+      "PagingClient._getMultiplePagesFailureUriNext",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { nextLink, options },
+          getMultiplePagesFailureUriNextOperationSpec
+        ) as Promise<PagingGetMultiplePagesFailureUriNextResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { nextLink, options },
-        getMultiplePagesFailureUriNextOperationSpec
-      );
-      return result as PagingGetMultiplePagesFailureUriNextResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -2165,25 +1880,16 @@ export class PagingImpl implements Paging {
     nextLink: string,
     options?: PagingGetMultiplePagesLRONextOptionalParams
   ): Promise<PagingGetMultiplePagesLRONextResponse> {
-    const { span } = createSpan(
-      "PagingClient-_getMultiplePagesLRONext",
-      options || {}
+    return tracingClient.withSpan(
+      "PagingClient._getMultiplePagesLRONext",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { nextLink, options },
+          getMultiplePagesLRONextOperationSpec
+        ) as Promise<PagingGetMultiplePagesLRONextResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { nextLink, options },
-        getMultiplePagesLRONextOperationSpec
-      );
-      return result as PagingGetMultiplePagesLRONextResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -2196,25 +1902,18 @@ export class PagingImpl implements Paging {
     nextLink: string,
     options?: PagingGetPagingModelWithItemNameWithXMSClientNameNextOptionalParams
   ): Promise<PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse> {
-    const { span } = createSpan(
-      "PagingClient-_getPagingModelWithItemNameWithXMSClientNameNext",
-      options || {}
+    return tracingClient.withSpan(
+      "PagingClient._getPagingModelWithItemNameWithXMSClientNameNext",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { nextLink, options },
+          getPagingModelWithItemNameWithXMSClientNameNextOperationSpec
+        ) as Promise<
+          PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse
+        >;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { nextLink, options },
-        getPagingModelWithItemNameWithXMSClientNameNextOperationSpec
-      );
-      return result as PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 }
 // Operation Specifications

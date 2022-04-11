@@ -6,10 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { createSpan } from "../tracing";
+import { tracingClient } from "../tracing";
 import { Flattencomplex } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as coreTracing from "@azure/core-tracing";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyComplexWithTracing } from "../bodyComplexWithTracing";
@@ -34,25 +33,16 @@ export class FlattencomplexImpl implements Flattencomplex {
   async getValid(
     options?: FlattencomplexGetValidOptionalParams
   ): Promise<FlattencomplexGetValidResponse> {
-    const { span } = createSpan(
-      "BodyComplexWithTracing-getValid",
-      options || {}
+    return tracingClient.withSpan(
+      "BodyComplexWithTracing.getValid",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { options },
+          getValidOperationSpec
+        ) as Promise<FlattencomplexGetValidResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { options },
-        getValidOperationSpec
-      );
-      return result as FlattencomplexGetValidResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 }
 // Operation Specifications

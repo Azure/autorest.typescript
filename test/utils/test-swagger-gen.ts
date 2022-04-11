@@ -317,7 +317,11 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     useCoreV2: true,
     allowInsecureConnection: true,
     addCredentials: false,
-    isTestPackage: true
+    isTestPackage: true,
+    tracing: {
+      namespace: "Microsoft.Autorest.LRO",
+      packagePrefix: "Azure.Autorest.LRO"
+    }
   },
   lroParametrizedEndpoints: {
     swaggerOrConfig: "lro-parameterized-endpoints.json",
