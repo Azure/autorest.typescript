@@ -101,22 +101,17 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
       namespaceImport: "coreHttpCompat",
       moduleSpecifier: "@azure/core-http-compat"
     });
+    clientFile.addImportDeclaration({
+      namespaceImport: "coreRestPipeline",
+      moduleSpecifier: "@azure/core-rest-pipeline"
+    });
     const coreRestPipelineImports = [
       "PipelineRequest",
       "PipelineResponse",
       "SendRequest"
     ];
-    if (useCoreV2) {
-      clientFile.addImportDeclaration({
-        namedImports: coreRestPipelineImports,
-        moduleSpecifier: "@azure/core-rest-pipeline"
-      });
-    }
-  }
-
-  if (hasCredentials || hasInlineOperations || !hasClientOptionalParams) {
     clientFile.addImportDeclaration({
-      namespaceImport: "coreRestPipeline",
+      namedImports: coreRestPipelineImports,
       moduleSpecifier: "@azure/core-rest-pipeline"
     });
   }

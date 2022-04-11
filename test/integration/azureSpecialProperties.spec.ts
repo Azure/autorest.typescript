@@ -451,10 +451,10 @@ describe("AzureSpecialProperties", () => {
       });
       await client.apiVersionDefault.getMethodGlobalValid({
         onResponse: r => {
-          _response = r;
+          assert.isTrue(r!.request.url.indexOf("2011-05-18") > -1);
         }
       });
-      assert.isTrue(_response!.request.url.indexOf("2011-05-18") > -1);
+      
     });
   })
 });
