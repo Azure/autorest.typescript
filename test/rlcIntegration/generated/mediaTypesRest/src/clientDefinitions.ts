@@ -22,26 +22,17 @@ import { Client } from "@azure-rest/core-client";
 
 export interface AnalyzeBody {
   /** Analyze body, that could be different media types. */
-  post(
-    options?: AnalyzeBodyParameters | AnalyzeBodyParameters
-  ): Promise<AnalyzeBody200Response> | Promise<AnalyzeBody200Response>;
+  post(options?: AnalyzeBodyParameters): Promise<AnalyzeBody200Response>;
 }
 
 export interface AnalyzeBodyNoAcceptHeader {
   /** Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept type. */
   post(
-    options?:
-      | AnalyzeBodyNoAcceptHeaderParameters
-      | AnalyzeBodyNoAcceptHeaderParameters
-  ):
-    | Promise<
-        | AnalyzeBodyNoAcceptHeader202Response
-        | AnalyzeBodyNoAcceptHeaderdefaultResponse
-      >
-    | Promise<
-        | AnalyzeBodyNoAcceptHeader202Response
-        | AnalyzeBodyNoAcceptHeaderdefaultResponse
-      >;
+    options?: AnalyzeBodyNoAcceptHeaderParameters
+  ): Promise<
+    | AnalyzeBodyNoAcceptHeader202Response
+    | AnalyzeBodyNoAcceptHeaderdefaultResponse
+  >;
 }
 
 export interface ContentTypeWithEncoding {
@@ -61,21 +52,15 @@ export interface BinaryBodyWithTwoContentTypes {
 export interface BinaryBodyWithThreeContentTypes {
   /** Binary body with three content types. Pass in string 'hello, world' with content type 'text/plain', {'hello': world'} with content type 'application/json' and a byte string for 'application/octet-stream'. */
   post(
-    options:
-      | BinaryBodyWithThreeContentTypesParameters
-      | BinaryBodyWithThreeContentTypesParameters
-  ):
-    | Promise<BinaryBodyWithThreeContentTypes200Response>
-    | Promise<BinaryBodyWithThreeContentTypes200Response>;
+    options: BinaryBodyWithThreeContentTypesParameters
+  ): Promise<BinaryBodyWithThreeContentTypes200Response>;
 }
 
 export interface PutTextAndJsonBody {
   /** Body that's either text/plain or application/json */
   post(
-    options: PutTextAndJsonBodyParameters | PutTextAndJsonBodyParameters
-  ):
-    | Promise<PutTextAndJsonBody200Response>
-    | Promise<PutTextAndJsonBody200Response>;
+    options: PutTextAndJsonBodyParameters
+  ): Promise<PutTextAndJsonBody200Response>;
 }
 
 export interface Routes {
