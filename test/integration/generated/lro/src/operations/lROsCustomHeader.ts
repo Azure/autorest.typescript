@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import { tracingClient } from "../tracing";
 import { LROsCustomHeader } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -55,7 +56,15 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsCustomHeaderPutAsyncRetrySucceededResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient.beginPutAsyncRetrySucceeded",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsCustomHeaderPutAsyncRetrySucceededResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -136,7 +145,15 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsCustomHeaderPut201CreatingSucceeded200Response> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient.beginPut201CreatingSucceeded200",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsCustomHeaderPut201CreatingSucceeded200Response
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -216,7 +233,15 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsCustomHeaderPost202Retry200Response> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient.beginPost202Retry200",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsCustomHeaderPost202Retry200Response
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,
@@ -296,7 +321,15 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<LROsCustomHeaderPostAsyncRetrySucceededResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+      return tracingClient.withSpan(
+        "LROClient.beginPostAsyncRetrySucceeded",
+        options ?? {},
+        async () => {
+          return this.client.sendOperationRequest(args, spec) as Promise<
+            LROsCustomHeaderPostAsyncRetrySucceededResponse
+          >;
+        }
+      );
     };
     const sendOperation = async (
       args: coreClient.OperationArguments,

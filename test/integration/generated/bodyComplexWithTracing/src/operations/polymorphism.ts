@@ -6,10 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { createSpan } from "../tracing";
+import { tracingClient } from "../tracing";
 import { Polymorphism } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as coreTracing from "@azure/core-tracing";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyComplexWithTracing } from "../bodyComplexWithTracing";
@@ -52,25 +51,16 @@ export class PolymorphismImpl implements Polymorphism {
   async getValid(
     options?: PolymorphismGetValidOptionalParams
   ): Promise<PolymorphismGetValidResponse> {
-    const { span } = createSpan(
-      "BodyComplexWithTracing-getValid",
-      options || {}
+    return tracingClient.withSpan(
+      "BodyComplexWithTracing.getValid",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { options },
+          getValidOperationSpec
+        ) as Promise<PolymorphismGetValidResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { options },
-        getValidOperationSpec
-      );
-      return result as PolymorphismGetValidResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -114,25 +104,16 @@ export class PolymorphismImpl implements Polymorphism {
     complexBody: FishUnion,
     options?: PolymorphismPutValidOptionalParams
   ): Promise<void> {
-    const { span } = createSpan(
-      "BodyComplexWithTracing-putValid",
-      options || {}
+    return tracingClient.withSpan(
+      "BodyComplexWithTracing.putValid",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { complexBody, options },
+          putValidOperationSpec
+        ) as Promise<void>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { complexBody, options },
-        putValidOperationSpec
-      );
-      return result as void;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -142,25 +123,16 @@ export class PolymorphismImpl implements Polymorphism {
   async getDotSyntax(
     options?: PolymorphismGetDotSyntaxOptionalParams
   ): Promise<PolymorphismGetDotSyntaxResponse> {
-    const { span } = createSpan(
-      "BodyComplexWithTracing-getDotSyntax",
-      options || {}
+    return tracingClient.withSpan(
+      "BodyComplexWithTracing.getDotSyntax",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { options },
+          getDotSyntaxOperationSpec
+        ) as Promise<PolymorphismGetDotSyntaxResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { options },
-        getDotSyntaxOperationSpec
-      );
-      return result as PolymorphismGetDotSyntaxResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -172,25 +144,16 @@ export class PolymorphismImpl implements Polymorphism {
   async getComposedWithDiscriminator(
     options?: PolymorphismGetComposedWithDiscriminatorOptionalParams
   ): Promise<PolymorphismGetComposedWithDiscriminatorResponse> {
-    const { span } = createSpan(
-      "BodyComplexWithTracing-getComposedWithDiscriminator",
-      options || {}
+    return tracingClient.withSpan(
+      "BodyComplexWithTracing.getComposedWithDiscriminator",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { options },
+          getComposedWithDiscriminatorOperationSpec
+        ) as Promise<PolymorphismGetComposedWithDiscriminatorResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { options },
-        getComposedWithDiscriminatorOperationSpec
-      );
-      return result as PolymorphismGetComposedWithDiscriminatorResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -202,25 +165,16 @@ export class PolymorphismImpl implements Polymorphism {
   async getComposedWithoutDiscriminator(
     options?: PolymorphismGetComposedWithoutDiscriminatorOptionalParams
   ): Promise<PolymorphismGetComposedWithoutDiscriminatorResponse> {
-    const { span } = createSpan(
-      "BodyComplexWithTracing-getComposedWithoutDiscriminator",
-      options || {}
+    return tracingClient.withSpan(
+      "BodyComplexWithTracing.getComposedWithoutDiscriminator",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { options },
+          getComposedWithoutDiscriminatorOperationSpec
+        ) as Promise<PolymorphismGetComposedWithoutDiscriminatorResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { options },
-        getComposedWithoutDiscriminatorOperationSpec
-      );
-      return result as PolymorphismGetComposedWithoutDiscriminatorResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -231,25 +185,16 @@ export class PolymorphismImpl implements Polymorphism {
   async getComplicated(
     options?: PolymorphismGetComplicatedOptionalParams
   ): Promise<PolymorphismGetComplicatedResponse> {
-    const { span } = createSpan(
-      "BodyComplexWithTracing-getComplicated",
-      options || {}
+    return tracingClient.withSpan(
+      "BodyComplexWithTracing.getComplicated",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { options },
+          getComplicatedOperationSpec
+        ) as Promise<PolymorphismGetComplicatedResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { options },
-        getComplicatedOperationSpec
-      );
-      return result as PolymorphismGetComplicatedResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -262,25 +207,16 @@ export class PolymorphismImpl implements Polymorphism {
     complexBody: SalmonUnion,
     options?: PolymorphismPutComplicatedOptionalParams
   ): Promise<void> {
-    const { span } = createSpan(
-      "BodyComplexWithTracing-putComplicated",
-      options || {}
+    return tracingClient.withSpan(
+      "BodyComplexWithTracing.putComplicated",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { complexBody, options },
+          putComplicatedOperationSpec
+        ) as Promise<void>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { complexBody, options },
-        putComplicatedOperationSpec
-      );
-      return result as void;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -292,25 +228,16 @@ export class PolymorphismImpl implements Polymorphism {
     complexBody: SalmonUnion,
     options?: PolymorphismPutMissingDiscriminatorOptionalParams
   ): Promise<PolymorphismPutMissingDiscriminatorResponse> {
-    const { span } = createSpan(
-      "BodyComplexWithTracing-putMissingDiscriminator",
-      options || {}
+    return tracingClient.withSpan(
+      "BodyComplexWithTracing.putMissingDiscriminator",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { complexBody, options },
+          putMissingDiscriminatorOperationSpec
+        ) as Promise<PolymorphismPutMissingDiscriminatorResponse>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { complexBody, options },
-        putMissingDiscriminatorOperationSpec
-      );
-      return result as PolymorphismPutMissingDiscriminatorResponse;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 
   /**
@@ -349,25 +276,16 @@ export class PolymorphismImpl implements Polymorphism {
     complexBody: FishUnion,
     options?: PolymorphismPutValidMissingRequiredOptionalParams
   ): Promise<void> {
-    const { span } = createSpan(
-      "BodyComplexWithTracing-putValidMissingRequired",
-      options || {}
+    return tracingClient.withSpan(
+      "BodyComplexWithTracing.putValidMissingRequired",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { complexBody, options },
+          putValidMissingRequiredOperationSpec
+        ) as Promise<void>;
+      }
     );
-    try {
-      const result = await this.client.sendOperationRequest(
-        { complexBody, options },
-        putValidMissingRequiredOperationSpec
-      );
-      return result as void;
-    } catch (error) {
-      span.setStatus({
-        code: coreTracing.SpanStatusCode.UNSET,
-        message: error.message
-      });
-      throw error;
-    } finally {
-      span.end();
-    }
   }
 }
 // Operation Specifications
