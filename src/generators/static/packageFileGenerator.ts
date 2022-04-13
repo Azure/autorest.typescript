@@ -60,7 +60,7 @@ function restLevelPackage(packageDetails: PackageDetails) {
   const hasLRO = hasPollingOperations(model);
   const packageInfo: Record<string, any> = {
     name: `${packageDetails.name}`,
-    "sdk-type": `${azureArm ? "mgmt" : "client"}`,
+    "sdk-type": "client",
     author: "Microsoft Corporation",
     version: `${packageDetails.version}`,
     description: `${packageDetails.description}`,
@@ -132,7 +132,7 @@ function restLevelPackage(packageDetails: PackageDetails) {
     autoPublish: false,
     dependencies: {
       "@azure/core-auth": "^1.3.0",
-      "@azure-rest/core-client": "1.0.0-beta.8",
+      "@azure-rest/core-client": "1.0.0-beta.9",
       "@azure/core-rest-pipeline": "^1.8.0",
       "@azure/logger": "^1.0.0",
       tslib: "^2.2.0",
@@ -184,8 +184,9 @@ function restLevelPackage(packageDetails: PackageDetails) {
 
   if (generateTest) {
     packageInfo.module = `./dist-esm/src/index.js`;
+    packageInfo.devDependencies["@azure-tools/test-credential"] = "^1.0.0";
     packageInfo.devDependencies["@azure/identity"] = "^2.0.1";
-    packageInfo.devDependencies["@azure-tools/test-recorder"] = "^1.0.0";
+    packageInfo.devDependencies["@azure-tools/test-recorder"] = "^2.0.0";
     packageInfo.devDependencies["mocha"] = "^7.1.1";
     packageInfo.devDependencies["mocha-junit-reporter"] = "^1.18.0";
     packageInfo.devDependencies["cross-env"] = "^7.0.2";
@@ -197,8 +198,6 @@ function restLevelPackage(packageDetails: PackageDetails) {
     packageInfo.devDependencies["karma-env-preprocessor"] = "^0.1.1";
     packageInfo.devDependencies["karma-firefox-launcher"] = "^1.1.0";
     packageInfo.devDependencies["karma-ie-launcher"] = "^1.0.0";
-    packageInfo.devDependencies["karma-json-preprocessor"] = "^0.3.3";
-    packageInfo.devDependencies["karma-json-to-file-reporter"] = "^1.0.1";
     packageInfo.devDependencies["karma-junit-reporter"] = "^2.0.1";
     packageInfo.devDependencies["karma-mocha-reporter"] = "^2.2.5";
     packageInfo.devDependencies["karma-mocha"] = "^2.0.1";
@@ -207,7 +206,6 @@ function restLevelPackage(packageDetails: PackageDetails) {
     packageInfo.devDependencies["karma"] = "^6.2.0";
     packageInfo.devDependencies["nyc"] = "^14.0.0";
     packageInfo.devDependencies["source-map-support"] = "^0.5.9";
-
     packageInfo.scripts["test"] =
       "npm run clean && npm run build:test && npm run unit-test";
     packageInfo.scripts["test:node"] =
@@ -216,22 +214,26 @@ function restLevelPackage(packageDetails: PackageDetails) {
       "tsc -p . && cross-env ONLY_BROWSER=true rollup -c 2>&1";
     packageInfo.scripts["unit-test"] =
       "npm run unit-test:node && npm run unit-test:browser";
-    packageInfo.scripts["unit-test:node"] =
-      'mocha -r esm --require ts-node/register --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 1200000 --full-trace "test/{,!(browser)/**/}*.spec.ts"';
-    packageInfo.scripts["unit-test:browser"] = "karma start --single-run";
     packageInfo.scripts["integration-test"] =
       "npm run integration-test:node && npm run integration-test:browser";
-    packageInfo.scripts["integration-test:node"] =
-      'nyc mocha -r esm --require source-map-support/register --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 5000000 --full-trace "dist-esm/test/{,!(browser)/**/}*.spec.js"';
 
     if (azureSdkForJs) {
       packageInfo.scripts["build:test"] = "tsc -p . && dev-tool run bundle";
       packageInfo.scripts["integration-test:browser"] =
         "dev-tool run test:browser";
+      packageInfo.scripts["unit-test:browser"] = "dev-tool run test:browser";
+      packageInfo.scripts["unit-test:node"] =
+        "dev-tool run test:node-ts-input -- --timeout 1200000 --exclude 'test/**/browser/*.spec.ts' 'test/**/*.spec.ts'";
+      packageInfo.scripts["integration-test:node"] =
+        "dev-tool run test:node-js-input -- --timeout 5000000 'dist-esm/test/**/*.spec.js'";
     } else {
       packageInfo.scripts["build:test"] = "tsc -p . && rollup -c 2>&1";
-      packageInfo.scripts["integration-test:browser"] =
-        "karma start --single-run";
+      packageInfo.scripts["integration-test:browser"] = "karma start --single-run";
+      packageInfo.scripts["unit-test:browser"] = "karma start --single-run";
+      packageInfo.scripts["unit-test:node"] =
+        "mocha -r esm --require ts-node/register --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 1200000 --full-trace \"test/{,!(browser)/**/}*.spec.ts\"";
+      packageInfo.scripts["integration-test:node"] =
+        "nyc mocha -r esm --require source-map-support/register --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 5000000 --full-trace \"dist-esm/test/{,!(browser)/**/}*.spec.js\"";
     }
 
     packageInfo["browser"] = {

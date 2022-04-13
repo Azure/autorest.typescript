@@ -4,12 +4,13 @@
 import { Recorder } from "@azure-tools/test-recorder";
 import * as assert from "assert";
 import { createRecorder } from "./utils/recordedClient";
+import { Context } from "mocha";
 
 describe("My test", () => {
   let recorder: Recorder;
 
-  beforeEach(async function() {
-    recorder = createRecorder(this);
+  beforeEach(async function(this: Context) {
+    recorder = await createRecorder(this);
   });
 
   afterEach(async function() {
