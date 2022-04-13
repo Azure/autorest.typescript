@@ -184,6 +184,7 @@ function restLevelPackage(packageDetails: PackageDetails) {
 
   if (generateTest) {
     packageInfo.module = `./dist-esm/src/index.js`;
+    packageInfo.devDependencies["@azure-tools/test-credential"] = "^1.0.0";
     packageInfo.devDependencies["@azure/identity"] = "^2.0.1";
     packageInfo.devDependencies["@azure-tools/test-recorder"] = "^2.0.0";
     packageInfo.devDependencies["mocha"] = "^7.1.1";
