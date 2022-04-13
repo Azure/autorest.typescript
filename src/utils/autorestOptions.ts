@@ -103,12 +103,12 @@ async function getGenerateSample(
   host: AutorestExtensionHost
 ): Promise<boolean> {
   const generateSample = await host.getValue("generate-sample");
-  return generateSample === null ? false : Boolean(generateSample);
+  return generateSample === undefined || generateSample === null ? false : Boolean(generateSample);
 }
 
 async function getAzureSdkForJs(host: AutorestExtensionHost): Promise<boolean> {
   const azureSdkForJs = await host.getValue("azure-sdk-for-js");
-  return azureSdkForJs === null ? true : Boolean(azureSdkForJs);
+  return azureSdkForJs === undefined || azureSdkForJs === null ? true : Boolean(azureSdkForJs);
 }
 
 async function getSkipEnumValidation(
