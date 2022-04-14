@@ -14,11 +14,7 @@ export function addTracingOperationImports(
   if (tracingInfo) {
     sourceFile.addImportDeclarations([
       {
-        namedImports: ["CanonicalCode"],
-        moduleSpecifier: "@opentelemetry/api"
-      },
-      {
-        namedImports: ["createSpan"],
+        namedImports: ["tracingClient"],
         moduleSpecifier: `${traverseToRoot}/tracing`
       }
     ]);

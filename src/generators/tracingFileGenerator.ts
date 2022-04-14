@@ -2,8 +2,6 @@
 // Licensed under the MIT License.
 
 import { Project, SourceFile, VariableDeclarationKind } from "ts-morph";
-import { PackageDetails } from "../models/packageDetails";
-import { NameType, normalizeName } from "../utils/nameUtils";
 import { getAutorestOptions } from "../autorestSession";
 
 export function generateTracingFile(project: Project) {
@@ -18,7 +16,7 @@ export function generateTracingFile(project: Project) {
 
   file.addImportDeclarations([
     {
-      namedImports: ["createSpanFunction"],
+      namedImports: ["createTracingClient"],
       moduleSpecifier: "@azure/core-tracing"
     }
   ]);
@@ -28,7 +26,7 @@ export function generateTracingFile(project: Project) {
 }
 
 function writeCreateSpanFunction(file: SourceFile) {
-  const { tracingInfo } = getAutorestOptions();
+  const { tracingInfo, packageDetails } = getAutorestOptions();
 
   if (!tracingInfo) {
     return;
@@ -39,29 +37,13 @@ function writeCreateSpanFunction(file: SourceFile) {
     declarationKind: VariableDeclarationKind.Const,
     declarations: [
       {
-        name: "createSpan",
-        initializer: `createSpanFunction({
+        name: "tracingClient",
+        initializer: `createTracingClient({
         namespace: "${tracingInfo.namespace}",
-        packagePrefix: "${tracingInfo.packagePrefix}"
+        packageName: "${packageDetails.name}",
+        packageVersion: "${packageDetails.version}"
       });`
       }
     ]
   });
-}
-
-function getTelemetryPackageName({ nameWithoutScope }: PackageDetails) {
-  return nameWithoutScope
-    .split(/[-._ ]+/)
-    .map(part => normalizeName(part, NameType.Class));
-}
-
-function getTelemetryNamespace(packageDetails: PackageDetails) {
-  const { scopeName } = packageDetails;
-
-  return [
-    ...(scopeName ? [scopeName] : []),
-    ...getTelemetryPackageName(packageDetails)
-  ]
-    .map(part => normalizeName(part, NameType.Class))
-    .join(".");
 }

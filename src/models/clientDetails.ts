@@ -19,7 +19,7 @@ export interface ClientOptions {
 
 export interface TracingInfo {
   namespace: string;
-  packagePrefix: string;
+  packagePrefix?: string;
 }
 
 export interface DependencyInfo {
