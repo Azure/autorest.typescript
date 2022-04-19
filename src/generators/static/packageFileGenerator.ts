@@ -263,7 +263,8 @@ function regularAutorestPackage(
     azureOutputDirectory,
     generateTest,
     generateSample,
-    coreHttpCompatMode
+    coreHttpCompatMode,
+    azureSdkForJs
   } = getAutorestOptions();
   const { model } = getSession();
   const hasLro = hasPollingOperations(model);
@@ -392,7 +393,8 @@ function regularAutorestPackage(
   if (generateTest) {
     packageInfo.module = `./dist-esm/src/index.js`;
     packageInfo.devDependencies["@azure/identity"] = "^2.0.1";
-    packageInfo.devDependencies["@azure-tools/test-recorder"] = "^1.0.0";
+    packageInfo.devDependencies["@azure-tools/test-recorder"] = "^2.0.0";
+    packageInfo.devDependencies["@azure-tools/test-credential"] = "^1.0.0";
     packageInfo.devDependencies["mocha"] = "^7.1.1";
     packageInfo.devDependencies["cross-env"] = "^7.0.2";
     packageInfo.scripts["test"] = "npm run integration-test";
@@ -402,8 +404,15 @@ function regularAutorestPackage(
       "cross-env TEST_MODE=playback npm run integration-test:node";
     packageInfo.scripts["integration-test"] =
       "npm run integration-test:node && npm run integration-test:browser";
-    packageInfo.scripts["integration-test:node"] =
-      "mocha -r esm --require ts-node/register --timeout 1200000 --full-trace test/*.ts --reporter ../../../common/tools/mocha-multi-reporter.js";
+
+    if (azureSdkForJs) {
+      packageInfo.devDependencies["@azure/dev-tool"] = "^1.0.0";
+      packageInfo.scripts["integration-test:node"] =
+        "dev-tool run test:node-ts-input -- --timeout 1200000 'test/*.ts'";
+    } else {
+      packageInfo.scripts["integration-test:node"] =
+        "mocha -r esm --require ts-node/register --timeout 1200000 --full-trace test/*.ts --reporter ../../../common/tools/mocha-multi-reporter.js";
+    }
   }
   if (
     generateSample &&

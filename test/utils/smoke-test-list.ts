@@ -56,7 +56,8 @@ export const readmes: SpecDefinition[] = [
     params: [
       AutorestParams.GenerateTest,
       AutorestParams.ModelDedup,
-      AutorestParams.GenerateSamples
+      AutorestParams.GenerateSamples,
+      AutorestParams.AzureSdkForJs
     ],
     buildTag: "ci_1"
   },
@@ -67,7 +68,7 @@ export const readmes: SpecDefinition[] = [
       "..",
       "./.tmp/specs/specification/web/resource-manager/readme.md"
     ),
-    params: [AutorestParams.GenerateTest, AutorestParams.GenerateSamples],
+    params: [AutorestParams.GenerateTest, AutorestParams.GenerateSamples, AutorestParams.AzureSdkForJs],
     branch: "925e8285703ddd461588d8f5fbf14bd97c286fab",
     buildTag: "ci_2"
   },
@@ -110,7 +111,8 @@ export const readmes: SpecDefinition[] = [
     params: [
       AutorestParams.GenerateTest,
       AutorestParams.ModelDedup,
-      AutorestParams.GenerateSamples
+      AutorestParams.GenerateSamples,
+      AutorestParams.AzureSdkForJs
     ],
     branch: "925e8285703ddd461588d8f5fbf14bd97c286fab",
     buildTag: "ci_2"
@@ -122,7 +124,11 @@ export const readmes: SpecDefinition[] = [
       "..",
       "./.tmp/specs/specification/network/resource-manager/readme.md"
     ),
-    params: [AutorestParams.GenerateTest, AutorestParams.GenerateSamples],
+    params: [
+      AutorestParams.GenerateTest,
+      AutorestParams.GenerateSamples,
+      AutorestParams.AzureSdkForJs
+    ],
     branch: "925e8285703ddd461588d8f5fbf14bd97c286fab",
     buildTag: "ci_3"
   },
@@ -133,7 +139,11 @@ export const readmes: SpecDefinition[] = [
       "..",
       "./.tmp/specs/specification/keyvault/resource-manager/readme.md"
     ),
-    params: [AutorestParams.GenerateTest, AutorestParams.GenerateSamples],
+    params: [
+      AutorestParams.GenerateTest,
+      AutorestParams.GenerateSamples,
+      AutorestParams.AzureSdkForJs
+    ],
     branch: "925e8285703ddd461588d8f5fbf14bd97c286fab",
     buildTag: "ci_3"
   },
@@ -147,7 +157,8 @@ export const readmes: SpecDefinition[] = [
     params: [
       AutorestParams.ModelDedup,
       AutorestParams.GenerateTest,
-      AutorestParams.GenerateSamples
+      AutorestParams.GenerateSamples,
+      AutorestParams.AzureSdkForJs
     ],
     branch: "925e8285703ddd461588d8f5fbf14bd97c286fab",
     buildTag: "ci_3"
@@ -159,7 +170,11 @@ export const readmes: SpecDefinition[] = [
       "..",
       "./.tmp/specs/specification/msi/resource-manager/readme.md"
     ),
-    params: [AutorestParams.GenerateTest, AutorestParams.GenerateSamples],
+    params: [
+      AutorestParams.GenerateTest,
+      AutorestParams.GenerateSamples,
+      AutorestParams.AzureSdkForJs
+    ],
     branch: "925e8285703ddd461588d8f5fbf14bd97c286fab",
     buildTag: "ci_3"
   },
