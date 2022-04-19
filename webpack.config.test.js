@@ -1,4 +1,5 @@
 const { readdirSync, statSync } = require("fs");
+const webpack = require("webpack");
 const { join: joinPath, sep, extname } = require("path");
 
 function getIntegrationTestFiles() {
@@ -31,7 +32,19 @@ module.exports = {
   },
   mode: "development",
   devtool: "inline-source-map",
-  node: {
-    fs: "empty"
-  }
+  resolve: {
+    fallback: {
+      fs: false,
+      path: require.resolve("path-browserify"),
+      buffer: require.resolve("buffer")
+    }
+  },
+  plugins: [
+    new webpack.ProvidePlugin({
+      Buffer: ["buffer", "Buffer"]
+    }),
+    new webpack.ProvidePlugin({
+      process: "process/browser"
+    })
+  ]
 };
