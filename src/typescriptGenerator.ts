@@ -8,7 +8,6 @@ import { CodeModel } from "@autorest/codemodel";
 import { Project, IndentationText } from "ts-morph";
 import { AutorestExtensionHost } from "@autorest/extension-base";
 import { transformCodeModel } from "./transforms/transforms";
-import { transformSamples } from './transforms/samplesTransforms';
 import { generateClient } from "./generators/clientFileGenerator";
 import { generateModels } from "./generators/modelsGenerator";
 import { generateMappers } from "./generators/mappersGenerator";
@@ -22,8 +21,8 @@ import { generateTsConfig } from "./generators/static/tsConfigFileGenerator";
 import { generateRollupConfig } from "./generators/static/rollupConfigFileGenerator";
 import { generateOperations } from "./generators/operationGenerator";
 import { generateOperationsInterfaces } from "./generators/operationInterfaceGenerator";
-import { generateSampleEnv } from './generators/samples/sampleEnvGenerator';
-import { generateSamples } from './generators/samples/sampleGenerator';
+import { generateSampleEnv } from "./generators/samples/sampleEnvGenerator";
+import { generateSamples } from "./generators/samples/sampleGenerator";
 import { generateParameters } from "./generators/parametersGenerator";
 import { generateLroFiles } from "./generators/LROGenerator";
 import { generateTracingFile } from "./generators/tracingFileGenerator";
@@ -72,9 +71,6 @@ export async function generateTypeScriptLibrary(
   conflictResolver(clientDetails);
 
   generateModels(clientDetails, project);
-  if (generateSample) {
-    clientDetails.samples = await transformSamples(codeModel, clientDetails);
-  }
   // Skip metadata generation if `generate-metadata` is explicitly false
   generatePackageJson(project, clientDetails);
   generateLicenseFile(project);
@@ -91,7 +87,11 @@ export async function generateTypeScriptLibrary(
   generateMappers(clientDetails, project);
   generateOperations(clientDetails, project);
   generateOperationsInterfaces(clientDetails, project);
-  if (generateSample && clientDetails?.samples?.length && clientDetails?.samples?.length > 0) {
+  if (
+    generateSample &&
+    clientDetails?.samples?.length &&
+    clientDetails?.samples?.length > 0
+  ) {
     generateSamples(clientDetails, project);
     generateSampleEnv(project);
   }

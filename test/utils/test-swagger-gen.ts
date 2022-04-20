@@ -22,7 +22,6 @@ interface SwaggerConfig {
   headAsBoolean?: boolean;
   isTestPackage?: boolean;
   generateTest?: boolean;
-  generateSample?: boolean;
   coreHttpCompatMode?: boolean;
 }
 
@@ -39,8 +38,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     allowInsecureConnection: true,
     addCredentials: false,
     isTestPackage: true,
-    generateTest: true,
-    generateSample: true
+    generateTest: true
   },
   arrayConstraints: {
     swaggerOrConfig: "test/integration/swaggers/arrayConstraints.md",
@@ -866,7 +864,6 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     isTestPackage: true,
     generateTest: true,
-    generateSample: true,
     coreHttpCompatMode: true
   }
 };

@@ -49,7 +49,6 @@
         "@autorest/codemodel": "^4.17.0",
         "@autorest/extension-base": "^3.4.1",
         "@azure-rest/core-client": "1.0.0-alpha.20220112.1",
-        "@autorest/testmodeler": "^1.0.4",
         "@azure-tools/codegen": "^2.5.294",
         "@azure/core-client": "^1.5.0",
         "@azure/core-http": "^1.2.4",
@@ -100,10 +99,10 @@
         "karma-typescript": "^5.0.3",
         "karma-typescript-es6-transform": "^5.0.3",
         "mocha": "^9.2.2",
-        "mocha-typescript": "1.1.17",
         "moment": "^2.29.2",
         "node-cmd": "^3.0.0",
         "npm-run-all": "^4.1.5",
+        "path-browserify": "^1.0.1",
         "puppeteer": "^3.3.0",
         "rimraf": "^3.0.2",
         "sinon": "^10.0.0",
@@ -112,8 +111,8 @@
         "ts-node": "^8.5.2",
         "typescript": "^4.3.4",
         "wait-port": "^0.2.6",
-        "webpack": "^4.43.0",
-        "webpack-cli": "^3.3.12",
+        "webpack": "^5.72.0",
+        "webpack-cli": "^4.9.2",
         "yargs": "^15.3.1"
     }
 }
