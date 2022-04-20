@@ -106,13 +106,5 @@
       }
     ]
   },
-  "autoPublish": true,
-  "//sampleConfiguration": {
-    "productName": "",
-    "productSlugs": [
-      "azure"
-    ],
-    "disableDocsMs": true,
-    "apiRefLink": "https://docs.microsoft.com/javascript/api/@msinternal/network-resource-manager?view=azure-node-preview"
-  }
+  "autoPublish": true
 }
