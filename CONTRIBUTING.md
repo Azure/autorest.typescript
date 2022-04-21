@@ -141,7 +141,7 @@ Whenever you work on adding a feature/fixing a bug, this would probably be your 
 
 Let us say your test input will be called `testUserCase.json`.
 
-2. Now add the test input to the integration test suite to the file [`test-swagger-gen.ts`](./test/utils/test-swagger-gen.ts). In the file, add the following to the array `testSwaggers`:
+2. Now add the test input to the integration test suite to the file [`test-swagger-gen.ts`](./test/commands/test-swagger-gen.ts). In the file, add the following to the array `testSwaggers`:
 
 ```
 testUserCase: {
