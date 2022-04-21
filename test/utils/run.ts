@@ -32,7 +32,8 @@ export async function runAutorest(
     isTestPackage,
     generateTest,
     coreHttpCompatMode,
-    azureArm
+    azureArm,
+    lenientModelDeduplication
   } = options;
   let autorestCommand = `autorest${/^win/.test(process.platform) ? ".cmd" : ""
     }`;
@@ -117,6 +118,10 @@ export async function runAutorest(
 
   if (security !== undefined) {
     commandArguments.push(`--security=${security}`);
+  }
+
+  if (lenientModelDeduplication) {
+    commandArguments.push("--modelerfour.lenient-model-deduplication=true");
   }
 
   if (packageDetails.version !== "") {

@@ -40,6 +40,7 @@ export interface AutorestOptions {
   productDocLink?: string;
   coreHttpCompatMode?: boolean;
   dependencyInfo?: DependencyInfo;
+  lenientModelDeduplication?: boolean;
 }
 
 let host: AutorestExtensionHost;

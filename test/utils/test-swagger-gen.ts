@@ -25,6 +25,7 @@ interface SwaggerConfig {
   generateTest?: boolean;
   generateSample?: boolean;
   coreHttpCompatMode?: boolean;
+  lenientModelDeduplication?: boolean
 }
 
 const package_version = "1.0.0-preview1";
@@ -339,7 +340,8 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     useCoreV2: true,
     allowInsecureConnection: true,
     addCredentials: false,
-    isTestPackage: true
+    isTestPackage: true,
+    lenientModelDeduplication: true
   },
   mediaTypesWithTracing: {
     swaggerOrConfig: "media_types.json",
@@ -353,7 +355,8 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     useCoreV2: true,
     allowInsecureConnection: true,
     addCredentials: false,
-    isTestPackage: true
+    isTestPackage: true,
+    lenientModelDeduplication: true
   },
   mediaTypesV3: {
     swaggerOrConfig: "test/integration/swaggers/media-types-v3.json",
@@ -1077,7 +1080,8 @@ const generateSwaggers = async (
       isTestPackage,
       generateTest,
       rlcShortcut,
-      coreHttpCompatMode
+      coreHttpCompatMode,
+      lenientModelDeduplication
     } = testSwaggers[name];
 
     let swaggerPath = swaggerOrConfig;
@@ -1122,7 +1126,8 @@ const generateSwaggers = async (
         headAsBoolean,
         isTestPackage,
         generateTest,
-        coreHttpCompatMode
+        coreHttpCompatMode,
+        lenientModelDeduplication
       },
       isDebugging
     );

@@ -70,7 +70,6 @@ modelerfour:
   group-parameters: true
   # Enable older inconsistent behavior that an enum with a single value would become a constant by default.
   seal-single-value-enum-by-default: true
-  lenient-model-deduplication: true
 
 typescript-scope/emitter:
   input-artifact: typescript-files
