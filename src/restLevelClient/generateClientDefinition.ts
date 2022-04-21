@@ -91,7 +91,7 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
             description: operationDescription,
             optionsName: getOperationOptionsType(operation, importedParameters),
             hasOptionalOptions,
-            returnType: `StreamableMethod<${getOperationReturnType(
+            returnType: `Promise<${getOperationReturnType(
               operation,
               importedResponses,
               clientImports
@@ -191,7 +191,6 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
   }
 
   clientImports.add("Client");
-  clientImports.add("StreamableMethod");
   clientFile.addImportDeclarations([
     {
       namedImports: [...clientImports],
