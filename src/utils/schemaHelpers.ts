@@ -21,6 +21,7 @@ import { getStringForValue } from "./valueHelpers";
 import { getLanguageMetadata } from "./languageHelpers";
 import { normalizeName, NameType } from "./nameUtils";
 import { logger } from "./logger";
+import { getAutorestOptions } from "../autorestSession";
 
 /**
  * Extracts parents from an ObjectSchema
@@ -153,7 +154,7 @@ export function getTypeForSchema(
       }
       break;
     case SchemaType.AnyObject:
-      kind = PropertyKind.Dictionary
+      kind = PropertyKind.Dictionary;
       typeName = `Record<string, unknown>`;
       break;
     case SchemaType.Number:
@@ -228,6 +229,7 @@ export function getSchemaTypeDocumentation(schema: Schema) {
 }
 
 export function getSecurityInfoFromModel(security: Security) {
+  const { addCredentials } = getAutorestOptions();
   const credentialScopes: Set<string> = new Set<string>();
   let credentialKeyHeaderName: string = "";
   for (const securitySchema of security.schemes) {
@@ -257,7 +259,8 @@ export function getSecurityInfoFromModel(security: Security) {
     scopes.push(item);
   });
   return {
-    addCredentials: security.authenticationRequired,
+    addCredentials:
+      addCredentials === false ? false : security.authenticationRequired,
     credentialScopes: scopes,
     credentialKeyHeaderName: credentialKeyHeaderName
   };

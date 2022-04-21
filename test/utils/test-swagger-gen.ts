@@ -7,6 +7,7 @@ interface SwaggerConfig {
   swaggerOrConfig: string;
   clientName: string;
   packageName: string;
+  addCredentials?: boolean;
   security?: string;
   licenseHeader?: boolean;
   securityScopes?: string | string[];
@@ -37,7 +38,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true,
     generateTest: true,
     generateSample: true
@@ -49,7 +50,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   attestation: {
@@ -60,7 +61,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   azureParameterGrouping: {
@@ -70,7 +71,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   azureReport: {
@@ -80,7 +81,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   azureSpecialProperties: {
@@ -99,7 +100,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   bodyBoolean: {
@@ -109,7 +110,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   bodyBooleanQuirks: {
@@ -119,7 +120,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   bodyByte: {
@@ -129,7 +130,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   bodyComplex: {
@@ -139,7 +140,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   bodyComplexWithTracing: {
@@ -153,7 +154,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     },
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   bodyDate: {
@@ -163,7 +164,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   bodyDateTime: {
@@ -173,7 +174,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   bodyDateTimeRfc1123: {
@@ -183,7 +184,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   bodyDictionary: {
@@ -193,7 +194,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   bodyDuration: {
@@ -203,7 +204,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   bodyFile: {
@@ -213,7 +214,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   bodyInteger: {
@@ -223,7 +224,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   bodyNumber: {
@@ -233,7 +234,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   bodyString: {
@@ -243,7 +244,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   bodyTime: {
@@ -253,7 +254,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   customUrl: {
@@ -263,7 +264,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   customUrlMoreOptions: {
@@ -273,7 +274,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   customUrlPaging: {
@@ -283,7 +284,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   header: {
@@ -293,7 +294,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   httpInfrastructure: {
@@ -303,7 +304,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   lro: {
@@ -313,7 +314,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true,
     tracing: {
       namespace: "Microsoft.Autorest.LRO",
@@ -327,7 +328,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   mediaTypes: {
@@ -337,7 +338,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   mediaTypesWithTracing: {
@@ -351,7 +352,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     },
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   mediaTypesV3: {
@@ -361,7 +362,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   mediaTypesV3Lro: {
@@ -370,7 +371,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "media-types-v3-lro-client",
     licenseHeader: true,
     useCoreV2: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   modelFlattening: {
@@ -380,7 +381,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   multipleInheritance: {
@@ -390,7 +391,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   noMappers: {
@@ -400,7 +401,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   noOperation: {
@@ -410,7 +411,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   nonStringEnum: {
@@ -420,7 +421,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   objectType: {
@@ -430,7 +431,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   paging: {
@@ -443,7 +444,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
       packagePrefix: "Azure.Media.Types"
     },
     useCoreV2: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   pagingNoIterators: {
@@ -453,7 +454,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     disableAsyncIterators: true,
     useCoreV2: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   requiredOptional: {
@@ -463,7 +464,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   regexConstraint: {
@@ -473,7 +474,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   report: {
@@ -483,7 +484,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   uuid: {
@@ -493,7 +494,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   url: {
@@ -503,7 +504,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   urlMulti: {
@@ -513,7 +514,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   url2: {
@@ -523,7 +524,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   xmlservice: {
@@ -533,7 +534,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   noLicenseHeader: {
@@ -542,7 +543,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "nolicense-header",
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   licenseHeader: {
@@ -552,7 +553,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   subscriptionIdApiVersion: {
@@ -562,7 +563,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   bodyFormData: {
@@ -572,7 +573,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   validation: {
@@ -582,7 +583,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   extensibleEnums: {
@@ -592,7 +593,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   xmsErrorResponses: {
@@ -600,7 +601,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     clientName: "XmsErrorResponsesClient",
     packageName: "xms-error-responses",
     licenseHeader: true,
-    security: undefined,
+    addCredentials: false,
     useCoreV2: true,
     isTestPackage: true
   },
@@ -611,7 +612,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   appconfiguration: {
@@ -621,7 +622,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   appconfigurationexport: {
@@ -632,7 +633,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     hideClients: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   mapperrequired: {
@@ -642,7 +643,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   readmeFileChecker: {
@@ -651,7 +652,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "keyvault-secrets",
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   nameChecker: {
@@ -660,7 +661,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "search-documents",
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   polymorphicSkipNormalize: {
@@ -670,7 +671,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "media-services",
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   petstore: {
@@ -679,7 +680,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "petstore",
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   textanalytics: {
@@ -690,7 +691,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   constantParam: {
@@ -701,7 +702,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   storagefileshare: {
@@ -709,7 +710,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     clientName: "StorageFileShareClient",
     packageName: "storagefileshare",
     useCoreV2: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   optionalnull: {
@@ -718,7 +719,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "optionalnull",
     ignoreNullableOnOptional: true,
     useCoreV2: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   storageblob: {
@@ -726,7 +727,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     clientName: "StorageBlobClient",
     packageName: "storageblob",
     useCoreV2: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   headerprefix: {
@@ -734,7 +735,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     clientName: "HeaderPrefixClient",
     packageName: "headerprefix",
     useCoreV2: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   operationgroupclash: {
@@ -743,7 +744,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "operationgroupclash",
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   domainservices: {
@@ -752,7 +753,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "domainservices",
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   deviceprovisioningservice: {
@@ -761,7 +762,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "deviceprovisioning",
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   datafactory: {
@@ -770,7 +771,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "datafactory",
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   healthcareapis: {
@@ -779,7 +780,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "healthcareapis",
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   useragentcorev1: {
@@ -789,7 +790,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: false,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   useragentcorev2: {
@@ -799,7 +800,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   iotspaces: {
@@ -830,7 +831,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   datalakestorage: {
@@ -840,7 +841,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   corecompattest: {
@@ -849,7 +850,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "petstore",
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true,
     coreHttpCompatMode: true
   },
@@ -860,7 +861,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true,
     generateTest: true,
     generateSample: true,
@@ -877,7 +878,7 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true,
     restLevelClient: true,
     azureSdkForJs: false
@@ -886,7 +887,7 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     swaggerOrConfig: "body-string.json",
     clientName: "BodyStringRest",
     packageName: "body-string-rest",
-    security: undefined,
+    addCredentials: false,
     restLevelClient: true,
     azureSdkForJs: false,
     licenseHeader: true,
@@ -901,7 +902,7 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     restLevelClient: true,
     azureSdkForJs: false,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   pagingRest: {
@@ -909,7 +910,7 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     clientName: "Paging",
     packageName: "paging-service",
     licenseHeader: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true,
     restLevelClient: true,
     azureSdkForJs: false
@@ -921,7 +922,7 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     restLevelClient: true,
     azureSdkForJs: false,
     rlcShortcut: true,
@@ -932,7 +933,7 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     clientName: "MediaTypes",
     packageName: "media-types-service-rest",
     licenseHeader: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true,
     restLevelClient: true,
     azureSdkForJs: false
@@ -943,7 +944,7 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "body-file",
     licenseHeader: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true,
     restLevelClient: true,
     azureSdkForJs: false
@@ -956,7 +957,7 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     restLevelClient: true,
     azureSdkForJs: false,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   urlRest: {
@@ -967,7 +968,7 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     restLevelClient: true,
     rlcShortcut: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true,
     azureSdkForJs: false
   },
@@ -978,7 +979,7 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true,
     restLevelClient: true,
     azureSdkForJs: false
@@ -992,7 +993,7 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     azureSdkForJs: false,
     rlcShortcut: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   httpInfrastructureRest: {
@@ -1003,7 +1004,7 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     restLevelClient: true,
     rlcShortcut: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   dpgCustomization: {
@@ -1014,7 +1015,7 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     restLevelClient: true,
     rlcShortcut: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   azureReport: {
@@ -1024,7 +1025,7 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true
   },
   report: {
@@ -1034,7 +1035,7 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    security: undefined,
+    addCredentials: false,
     isTestPackage: true,
     azureSdkForJs: false
   }
@@ -1057,6 +1058,7 @@ const generateSwaggers = async (
 
   for (let name of swaggers) {
     const {
+      addCredentials,
       security,
       clientName,
       swaggerOrConfig,
@@ -1096,6 +1098,7 @@ const generateSwaggers = async (
         securityScopes: security && securityScopes && security.length > 0 ? securityScopes : undefined,
         srcPath: "",
         licenseHeader: !!licenseHeader,
+        addCredentials,
         security,
         outputPath: isRlc
           ? `./test/rlcIntegration/generated/${name}`

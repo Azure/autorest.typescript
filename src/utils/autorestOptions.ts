@@ -13,6 +13,9 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
   const restLevelClient = await getRestLevelClient(host);
   const rlcShortcut = await getHasShortcutMethods(host);
   const azureArm = await getIsAzureArm(host);
+  const addCredentials = await getAddCredentials(host);
+
+
   const security = await getSecurity(host);
   const securityHeaderName = await getSecurityHeaderName(host);
   const srcPath = await getSrcPath(host);
@@ -43,6 +46,7 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
 
   return {
     azureArm,
+    addCredentials,
     security,
     securityHeaderName,
     securityScopes,
@@ -171,6 +175,20 @@ async function getSecurityHeaderName(
   host: AutorestExtensionHost
 ): Promise<string | undefined> {
   return (await host.getValue("security-header-name")) || undefined;
+}
+
+async function getAddCredentials(
+  host: AutorestExtensionHost
+): Promise<boolean> {
+  const addCredentials = await host.getValue("add-credentials");
+
+  // Only set addCredentials to false if explicitly set to false
+  // otherwise default to true
+  if (addCredentials === false) {
+    return false;
+  } else {
+    return true;
+  }
 }
 
 async function getSecurity(

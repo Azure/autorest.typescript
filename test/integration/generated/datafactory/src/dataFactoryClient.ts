@@ -4,7 +4,6 @@ import {
   PipelineResponse,
   SendRequest
 } from "@azure/core-rest-pipeline";
-import * as coreAuth from "@azure/core-auth";
 import {
   OperationsImpl,
   FactoriesImpl,
@@ -58,18 +57,13 @@ export class DataFactoryClient extends coreClient.ServiceClient {
 
   /**
    * Initializes a new instance of the DataFactoryClient class.
-   * @param credentials Subscription credentials which uniquely identify client subscription.
    * @param subscriptionId The subscription identifier.
    * @param options The parameter options
    */
   constructor(
-    credentials: coreAuth.TokenCredential,
     subscriptionId: string,
     options?: DataFactoryClientOptionalParams
   ) {
-    if (credentials === undefined) {
-      throw new Error("'credentials' cannot be null");
-    }
     if (subscriptionId === undefined) {
       throw new Error("'subscriptionId' cannot be null");
     }
@@ -79,8 +73,7 @@ export class DataFactoryClient extends coreClient.ServiceClient {
       options = {};
     }
     const defaults: DataFactoryClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8",
-      credential: credentials
+      requestContentType: "application/json; charset=utf-8"
     };
 
     const packageDetails = `azsdk-js-datafactory/1.0.0-preview1`;

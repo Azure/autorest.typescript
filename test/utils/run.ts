@@ -18,6 +18,7 @@ export async function runAutorest(
     licenseHeader,
     outputPath,
     packageDetails,
+    addCredentials,
     security,
     securityScopes,
     disablePagingAsyncIterators,
@@ -108,6 +109,10 @@ export async function runAutorest(
 
   if (coreHttpCompatMode) {
     commandArguments.push(`--core-http-compat-mode=${coreHttpCompatMode}`);
+  }
+
+  if (addCredentials !== undefined) {
+    commandArguments.push(`--add-credentials=${!!addCredentials}`);
   }
 
   if (security !== undefined) {

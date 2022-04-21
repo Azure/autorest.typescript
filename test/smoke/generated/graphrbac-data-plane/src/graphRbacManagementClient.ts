@@ -75,6 +75,9 @@ export class GraphRbacManagementClient extends coreClient.ServiceClient {
         ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
         : `${packageDetails}`;
 
+    if (!options.credentialScopes) {
+      options.credentialScopes = ["user_impersonation"];
+    }
     const optionsWithDefaults = {
       ...defaults,
       ...options,
