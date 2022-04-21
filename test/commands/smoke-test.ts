@@ -3,7 +3,7 @@ import { join as joinPath, sep } from "path";
 import { bold } from "chalk";
 import { readmes, SpecDefinition } from "./smoke-test-list";
 import { command } from "yargs";
-import { SPECS_PATH, DEFAULT_SPEC_BRANCH } from "./constants";
+import { SPECS_PATH, DEFAULT_SPEC_BRANCH } from "../utils/constants";
 import { onExit } from "./childProcessOnExit";
 import { appendFileSync, read } from "fs";
 import { runAutorest } from "./run";

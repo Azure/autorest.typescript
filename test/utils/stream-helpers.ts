@@ -25,8 +25,11 @@ export function readStreamToBuffer(
  * @param stream Node.js Readable stream.
  */
 export function countBytesFromStream(
-  stream: NodeJS.ReadableStream
+  stream: NodeJS.ReadableStream | ReadableStream
 ): Promise<number> {
+  if (!isNodeReadableStream(stream)) {
+    throw new Error("Browser streams are not supported in NodeJS");
+  }
   return new Promise<number>((resolve, reject) => {
     let byteCount = 0;
     stream.on("error", reject);
@@ -37,4 +40,11 @@ export function countBytesFromStream(
       resolve(byteCount);
     });
   });
+}
+
+/**
+ * Checks if the body is a NodeReadable stream which is not supported in Browsers
+ */
+function isNodeReadableStream(body: any): body is NodeJS.ReadableStream {
+  return body && typeof body.pipe === "function";
 }

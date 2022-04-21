@@ -1,6 +1,5 @@
 import { BodyDurationClient } from "./generated/bodyDuration/src";
-import { expect } from "chai";
-import { fail } from "assert";
+import { expect, assert } from "chai";
 import { responseStatusChecker } from "../utils/responseStatusChecker";
 
 describe("BodyDateClient", function() {
@@ -19,7 +18,7 @@ describe("BodyDateClient", function() {
     let isError = false;
     try {
       await testClient.duration.getInvalid();
-      fail("Expected to throw");
+      assert.fail("Expected to throw");
     } catch (error) {
       isError = true;
     } finally {

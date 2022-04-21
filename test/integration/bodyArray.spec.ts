@@ -281,9 +281,9 @@ describe("Integration tests for BodyArrayClient", () => {
     it("returns a list of byte arrays", async () => {
       const response = await client.array.getByteValid(responseStatusChecker);
       expect(response).to.deep.equal([
-        Buffer.from([0xff, 0xff, 0xff, 0xfa]),
-        Buffer.from([0x01, 0x02, 0x03]),
-        Buffer.from([0x25, 0x29, 0x43])
+        new Uint8Array([0xff, 0xff, 0xff, 0xfa]),
+        new Uint8Array([0x01, 0x02, 0x03]),
+        new Uint8Array([0x25, 0x29, 0x43])
       ]);
     });
   });
@@ -292,9 +292,9 @@ describe("Integration tests for BodyArrayClient", () => {
     it(`sends a list of duration strings successfully`, async () => {
       await client.array.putByteValid(
         [
-          Buffer.from([0xff, 0xff, 0xff, 0xfa]),
-          Buffer.from([0x01, 0x02, 0x03]),
-          Buffer.from([0x25, 0x29, 0x43])
+          new Uint8Array([0xff, 0xff, 0xff, 0xfa]),
+          new Uint8Array([0x01, 0x02, 0x03]),
+          new Uint8Array([0x25, 0x29, 0x43])
         ],
         {
           onResponse: response => {
@@ -310,7 +310,10 @@ describe("Integration tests for BodyArrayClient", () => {
       const response = await client.array.getByteInvalidNull(
         responseStatusChecker
       );
-      expect(response).to.deep.equal([Buffer.from([0xab, 0xac, 0xad]), null]);
+      expect(response).to.deep.equal([
+        new Uint8Array([0xab, 0xac, 0xad]),
+        null
+      ]);
     });
   });
 
@@ -688,10 +691,11 @@ describe("Integration tests for BodyArrayClient", () => {
   describe("#getBase64Url", () => {
     it("returns a list of buffers", async () => {
       const response = await client.array.getBase64Url(responseStatusChecker);
+      const encoder = new TextEncoder();
       expect(response).to.deep.equal([
-        Buffer.from("a string that gets encoded with base64url"),
-        Buffer.from("test string"),
-        Buffer.from("Lorem ipsum")
+        encoder.encode("a string that gets encoded with base64url"),
+        encoder.encode("test string"),
+        encoder.encode("Lorem ipsum")
       ]);
     });
   });

@@ -9,7 +9,7 @@ import {
   StringSchema,
   ByteArraySchema
 } from "@autorest/codemodel";
-import * as assert from "assert";
+import { assert } from "chai";
 
 describe("ValueHelpers", () => {
   describe("getStringForValue", () => {
@@ -47,19 +47,22 @@ describe("ValueHelpers", () => {
           1,
           new NumberSchema("Número", "El número.", SchemaType.Number, 32).type
         ),
-        1
+        1 as any
       );
 
-      assert.strictEqual(getStringForValue(1, MapperTypes.Number), 1);
+      assert.strictEqual(getStringForValue(1, MapperTypes.Number), 1 as any);
     });
 
     it("converts a boolean value to a plain string", () => {
       assert.strictEqual(
         getStringForValue(true, new BooleanSchema("Truth", "The truth.").type),
-        true
+        true as any
       );
 
-      assert.strictEqual(getStringForValue(true, MapperTypes.Boolean), true);
+      assert.strictEqual(
+        getStringForValue(true, MapperTypes.Boolean),
+        true as any
+      );
     });
 
     it("converts a string value to a ByteArray", () => {
