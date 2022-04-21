@@ -16,7 +16,8 @@ export enum AutorestParams {
   GenerateTest = "--generate-test=true",
   GenerateSamples = "--generate-sample=true",
   MultiClient = "--multi-client",
-  AzureSdkForJs = "--azure-sdk-for-js=false"
+  AzureSdkForJs = "--azure-sdk-for-js=false",
+  AzureArm = "--azure-arm"
 }
 
 const getArmReadmes = (): SpecDefinition[] => {
@@ -56,7 +57,8 @@ export const readmes: SpecDefinition[] = [
     params: [
       AutorestParams.GenerateTest,
       AutorestParams.ModelDedup,
-      AutorestParams.GenerateSamples
+      AutorestParams.GenerateSamples,
+      AutorestParams.AzureArm
     ],
     buildTag: "ci_1"
   },

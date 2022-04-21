@@ -7,6 +7,7 @@
  */
 
 import * as coreClient from "@azure/core-client";
+import * as coreAuth from "@azure/core-auth";
 import {
   RecoverableDatabasesImpl,
   DataMaskingPoliciesImpl,
@@ -255,13 +256,18 @@ export class SqlManagementClient extends coreClient.ServiceClient {
 
   /**
    * Initializes a new instance of the SqlManagementClient class.
+   * @param credentials Subscription credentials which uniquely identify client subscription.
    * @param subscriptionId The subscription ID that identifies an Azure subscription.
    * @param options The parameter options
    */
   constructor(
+    credentials: coreAuth.TokenCredential,
     subscriptionId: string,
     options?: SqlManagementClientOptionalParams
   ) {
+    if (credentials === undefined) {
+      throw new Error("'credentials' cannot be null");
+    }
     if (subscriptionId === undefined) {
       throw new Error("'subscriptionId' cannot be null");
     }
@@ -271,7 +277,8 @@ export class SqlManagementClient extends coreClient.ServiceClient {
       options = {};
     }
     const defaults: SqlManagementClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
+      requestContentType: "application/json; charset=utf-8",
+      credential: credentials
     };
 
     const packageDetails = `azsdk-js-sql-resource-manager/1.0.0-beta.1`;
@@ -280,6 +287,9 @@ export class SqlManagementClient extends coreClient.ServiceClient {
         ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
         : `${packageDetails}`;
 
+    if (!options.credentialScopes) {
+      options.credentialScopes = ["https://management.azure.com/.default"];
+    }
     const optionsWithDefaults = {
       ...defaults,
       ...options,

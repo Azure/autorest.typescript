@@ -44,7 +44,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
     packageDetails,
     coreHttpCompatMode
   } = getAutorestOptions();
-  const addCredentials = getSecurityInfoFromModel(clientDetails.security);
+  const { addCredentials } = getSecurityInfoFromModel(clientDetails.security);
   const hasMappers = !!clientDetails.mappers.length;
 
   // Check if there are any client level operations
