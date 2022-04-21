@@ -31,7 +31,9 @@ const generateFromReadme = async ({
   params,
   outputFolderName
 }: SpecDefinition) => {
-  const matches = path.match(/^[^#].*?specification[\/\\]([\w-]+[\/\\][\w-]+)[\/\\]readme.md/);
+  const matches = path.match(
+    /^[^#].*?specification[\/\\]([\w-]+[\/\\][\w-]+)[\/\\]readme.md/
+  );
   if (!matches?.length) {
     return;
   }
@@ -59,15 +61,16 @@ const generateFromReadme = async ({
   return output;
 };
 
-
 const generateFromLocal = async ({
   path,
   params,
   outputFolderName
 }: SpecDefinition) => {
-
   const readmeFilePaths = path.split(sep);
-  const projectName = readmeFilePaths[readmeFilePaths.length - 1].replace(/\.md/, '');
+  const projectName = readmeFilePaths[readmeFilePaths.length - 1].replace(
+    /\.md/,
+    ""
+  );
 
   const output = joinPath(SMOKE_PATH, projectName);
   await runAutorest(
@@ -232,7 +235,9 @@ const main = async () => {
       default: undefined,
       type: "string"
     }
-  }).help().argv;
+  })
+    .help()
+    .parseSync();
 
   let tag = (args.tag || args.t) as string;
   let swaggers = readmes;

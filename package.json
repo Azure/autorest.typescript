@@ -37,7 +37,7 @@
         "test-version-tolerance": "mocha -r ts-node/register --timeout 2000 './test/version-tolerance/**/!(sampleTest).spec.ts'",
         "clone:specs": "git clone https://github.com/Azure/azure-rest-api-specs.git ./.tmp/specs",
         "smoke-test": "ts-node ./test/utils/smoke-test.ts",
-        "copyFiles": "copyfiles src/**/*.hbs dist/ && copyfiles src/**/**/*.hbs dist/"
+        "copyFiles": "cp src/**/*.hbs dist/ && cp src/**/**/*.hbs dist/ && cp src/generators/samples/*.hbs dist/src/generators/samples/ && cp src/generators/static/*.hbs dist/src/generators/static/ && cp src/generators/test/*.hbs dist/src/generators/test/ && cp src/restLevelClient/*.hbs dist/src/restLevelClient/"
     },
     "files": [
         "src",
@@ -82,19 +82,17 @@
         "@types/sinon": "^10.0.0",
         "@types/tough-cookie": "^4.0.0",
         "@types/xmlbuilder": "0.0.34",
-        "@types/yargs": "^15.0.4",
+        "@types/yargs": "^17.0.10",
         "@typescript-eslint/eslint-plugin": "~2.0.0",
         "@typescript-eslint/parser": "~2.0.0",
         "autorest": "^3.4.2",
         "chai": "^4.2.0",
         "chalk": "^4.0.0",
-        "copyfiles": "^2.4.1",
         "directory-tree": "^2.2.7",
         "eslint": "^8.13.0",
         "karma": "^6.3.18",
         "karma-chrome-launcher": "^3.1.0",
         "karma-mocha": "^2.0.1",
-        "karma-mocha-reporter": "^2.2.5",
         "karma-source-map-support": "^1.4.0",
         "karma-typescript": "^5.0.3",
         "karma-typescript-es6-transform": "^5.0.3",
@@ -113,6 +111,6 @@
         "wait-port": "^0.2.6",
         "webpack": "^5.72.0",
         "webpack-cli": "^4.9.2",
-        "yargs": "^15.3.1"
+        "yargs": "^17.4.1"
     }
 }
