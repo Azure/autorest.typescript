@@ -206,17 +206,18 @@ function restLevelPackage(packageDetails: PackageDetails) {
     packageInfo.devDependencies["karma"] = "^6.2.0";
     packageInfo.devDependencies["nyc"] = "^14.0.0";
     packageInfo.devDependencies["source-map-support"] = "^0.5.9";
-    packageInfo.scripts["test"] =
-      "npm run clean && npm run build:test && npm run unit-test";
-    packageInfo.scripts["test:node"] =
-      "npm run clean && npm run build:test && npm run unit-test:node";
-    packageInfo.scripts["test:browser"] =
-      "tsc -p . && cross-env ONLY_BROWSER=true rollup -c 2>&1";
-    packageInfo.scripts["unit-test"] =
-      "npm run unit-test:node && npm run unit-test:browser";
-    packageInfo.scripts["integration-test"] =
-      "npm run integration-test:node && npm run integration-test:browser";
-
+    packageInfo.scripts["test"] =  "npm run clean && npm run build:test && npm run unit-test";
+    packageInfo.scripts["test:node"] =  "npm run clean && npm run build:test && npm run unit-test:node";
+    packageInfo.scripts["test:browser"] =  "npm run clean && npm run build:test && npm run unit-test:browser";
+    packageInfo.scripts["build:browser"] =  "tsc -p . && cross-env ONLY_BROWSER=true rollup -c 2>&1";
+    packageInfo.scripts["build:node"] =  "tsc -p . && cross-env ONLY_NODE=true rollup -c 2>&1";
+    packageInfo.scripts["build:test"] =  "tsc -p . && rollup -c 2>&1";
+    packageInfo.scripts["unit-test"] = "npm run unit-test:node && npm run unit-test:browser";
+    packageInfo.scripts["unit-test:node"] = "mocha -r esm --require ts-node/register --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 1200000 --full-trace \"test/{,!(browser)/**/}*.spec.ts\"";
+    packageInfo.scripts["unit-test:browser"] =  "karma start --single-run";
+    packageInfo.scripts["integration-test:browser"] = "karma start --single-run";
+    packageInfo.scripts["integration-test:node"] = "nyc mocha -r esm --require source-map-support/register --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 5000000 --full-trace \"dist-esm/test/{,!(browser)/**/}*.spec.js\"";
+    packageInfo.scripts["integration-test"] = "npm run integration-test:node && npm run integration-test:browser";
     if (azureSdkForJs) {
       packageInfo.scripts["build:test"] = "tsc -p . && dev-tool run bundle";
       packageInfo.scripts["integration-test:browser"] =
@@ -226,14 +227,6 @@ function restLevelPackage(packageDetails: PackageDetails) {
         "dev-tool run test:node-ts-input -- --timeout 1200000 --exclude 'test/**/browser/*.spec.ts' 'test/**/*.spec.ts'";
       packageInfo.scripts["integration-test:node"] =
         "dev-tool run test:node-js-input -- --timeout 5000000 'dist-esm/test/**/*.spec.js'";
-    } else {
-      packageInfo.scripts["build:test"] = "tsc -p . && rollup -c 2>&1";
-      packageInfo.scripts["integration-test:browser"] = "karma start --single-run";
-      packageInfo.scripts["unit-test:browser"] = "karma start --single-run";
-      packageInfo.scripts["unit-test:node"] =
-        "mocha -r esm --require ts-node/register --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 1200000 --full-trace \"test/{,!(browser)/**/}*.spec.ts\"";
-      packageInfo.scripts["integration-test:node"] =
-        "nyc mocha -r esm --require source-map-support/register --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 5000000 --full-trace \"dist-esm/test/{,!(browser)/**/}*.spec.js\"";
     }
 
     packageInfo["browser"] = {

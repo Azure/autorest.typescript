@@ -38,8 +38,8 @@ export interface ParamsOperations {
   ): Promise<PutRequiredOptional200Response>;
   /** POST a JSON or a JPEG */
   postParameters(
-    options: PostParametersParameters | PostParametersParameters
-  ): Promise<PostParameters200Response> | Promise<PostParameters200Response>;
+    options: PostParametersParameters
+  ): Promise<PostParameters200Response>;
   /**
    * Delete something.
    *  Initially the path exists but there is no delete method. After evolution this is a new method in a known path
@@ -74,9 +74,7 @@ export interface HeadNoParams {
     options: PutRequiredOptionalParameters
   ): Promise<PutRequiredOptional200Response>;
   /** POST a JSON or a JPEG */
-  post(
-    options: PostParametersParameters | PostParametersParameters
-  ): Promise<PostParameters200Response> | Promise<PostParameters200Response>;
+  post(options: PostParametersParameters): Promise<PostParameters200Response>;
   /**
    * Delete something.
    *  Initially the path exists but there is no delete method. After evolution this is a new method in a known path

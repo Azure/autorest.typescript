@@ -22,7 +22,6 @@ interface SwaggerConfig {
   headAsBoolean?: boolean;
   isTestPackage?: boolean;
   generateTest?: boolean;
-  generateSample?: boolean;
   coreHttpCompatMode?: boolean;
 }
 
@@ -40,7 +39,6 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     isTestPackage: true,
     generateTest: true,
-    generateSample: true,
     azureSdkForJs: false
   },
   arrayConstraints: {
@@ -867,7 +865,6 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     isTestPackage: true,
     generateTest: true,
-    generateSample: true,
     coreHttpCompatMode: true,
     azureSdkForJs: false
   }

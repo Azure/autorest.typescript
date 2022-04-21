@@ -35,7 +35,6 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
   const generateTest = await getGenerateTest(host);
   const batch = await getBatch(host);
   const multiClient = await getMultiClient(host);
-  const generateSample = await getGenerateSample(host);
   const productDocLink = await getProductDocLink(host);
   const coreHttpCompatMode = await getCoreHttpCompatMode(host);
   const azureSdkForJs = await getAzureSdkForJs(host);
@@ -67,7 +66,6 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
     generateTest,
     batch,
     multiClient,
-    generateSample,
     azureSdkForJs,
     productDocLink,
     coreHttpCompatMode,
@@ -99,16 +97,11 @@ async function getGenerateTest(host: AutorestExtensionHost): Promise<boolean> {
   return generateTest === null ? false : Boolean(generateTest);
 }
 
-async function getGenerateSample(
-  host: AutorestExtensionHost
-): Promise<boolean> {
-  const generateSample = await host.getValue("generate-sample");
-  return generateSample === null ? false : Boolean(generateSample);
-}
-
 async function getAzureSdkForJs(host: AutorestExtensionHost): Promise<boolean> {
   const azureSdkForJs = await host.getValue("azure-sdk-for-js");
-  return azureSdkForJs === null ? true : Boolean(azureSdkForJs);
+  return azureSdkForJs === undefined || azureSdkForJs === null
+    ? true
+    : Boolean(azureSdkForJs);
 }
 
 async function getSkipEnumValidation(

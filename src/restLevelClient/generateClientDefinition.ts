@@ -4,6 +4,7 @@ import {
   ParameterLocation,
   ImplementationLocation
 } from "@autorest/codemodel";
+import { isEqual } from "lodash";
 
 import { getResponseTypeName } from "./operationHelpers";
 
@@ -97,7 +98,12 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
             )}>`
           };
 
-          if (pathDictionary[path].methods[`${method}`]) {
+          if (
+            pathDictionary[path].methods[`${method}`] &&
+            !pathDictionary[path].methods[`${method}`].some(m =>
+              isEqual(m, newMethod)
+            )
+          ) {
             pathDictionary[path].methods[`${method}`].push(newMethod);
           } else {
             pathDictionary[path].methods[`${method}`] = [newMethod];
@@ -119,7 +125,9 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
 
   const clientName = getLanguageMetadata(model.language).name;
 
-  const clientInterfaceName = clientName.endsWith("Client")? `${clientName}`: `${clientName}Client`;
+  const clientInterfaceName = clientName.endsWith("Client")
+    ? `${clientName}`
+    : `${clientName}Client`;
 
   const { rlcShortcut } = getAutorestOptions();
 
@@ -320,12 +328,6 @@ function getPathFirstRoutesInterfaceDefinition(
     });
   }
   return signatures;
-}
-
-function getClientUriParameter() {
-  const { model } = getSession();
-  const { parameterName } = transformBaseUrl(model);
-  return parameterName;
 }
 
 function generatePathFirstRouteMethodsDefinition(

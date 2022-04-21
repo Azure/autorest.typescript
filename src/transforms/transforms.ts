@@ -18,7 +18,6 @@ import { transformOperationGroups } from "./operationTransforms";
 import { transformOptions } from "./optionsTransforms";
 import { transformParameters } from "./parameterTransforms";
 import { transformObjects, transformObject } from "./objectTransforms";
-import { transformSamples } from "./samplesTransforms";
 import { ObjectDetails } from "../models/modelDetails";
 import { transformBaseUrl } from "./urlTransforms";
 import { normalizeModelWithExtensions } from "./extensions";
@@ -100,12 +99,12 @@ export async function transformCodeModel(
 
   const options = await transformOptions(operationGroups);
 
-  const [objects, groups, parameters, mappers, unions ] = await Promise.all([
+  const [objects, groups, parameters, mappers, unions] = await Promise.all([
     transformObjects(codeModel, uberParents),
     transformGroups(codeModel),
     transformParameters(codeModel, options),
     transformMappers(codeModel, uberParents, options),
-    transformChoices(codeModel),
+    transformChoices(codeModel)
   ]);
 
   const baseUrl = transformBaseUrl(codeModel);

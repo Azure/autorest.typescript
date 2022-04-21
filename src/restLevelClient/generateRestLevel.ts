@@ -28,6 +28,7 @@ import { generateRollupConfig } from "../generators/static/rollupConfigFileGener
 import { generateReadmeFile } from "../generators/static/readmeFileGenerator";
 import * as path from "path";
 import * as fsextra from "fs-extra";
+import { generateSampleEnv } from "../generators/samples/sampleEnvGenerator";
 
 /**
  * Generates a Rest Level Client library
@@ -35,7 +36,7 @@ import * as fsextra from "fs-extra";
 export async function generateRestLevelClient() {
   const host = getHost();
   const { model } = getSession();
-  const { outputPath, srcPath } = getAutorestOptions();
+  const { outputPath, srcPath, generateTest } = getAutorestOptions();
 
   const project = new Project({
     useInMemoryFileSystem: true,
@@ -75,7 +76,9 @@ export async function generateRestLevelClient() {
   generateIndexFile(project);
 
   generateTopLevelIndexFile(model, project);
-
+  if (generateTest) {
+    generateSampleEnv(project);
+  }
   // Save the source files to the virtual filesystem
   project.saveSync();
   const fs = project.getFileSystem();
