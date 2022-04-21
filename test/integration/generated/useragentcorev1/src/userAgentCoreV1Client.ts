@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { ServiceClient, getDefaultUserAgentValue } from "@azure/core-http";
+import * as coreHttp from "@azure/core-http";
 import { GroupImpl } from "./operations";
 import { Group } from "./operationsInterfaces";
 import { UserAgentCoreV1ClientOptionalParams } from "./models";
@@ -14,7 +14,7 @@ import { UserAgentCoreV1ClientOptionalParams } from "./models";
 const packageName = "@msinternal/useragent-corev1";
 const packageVersion = "1.0.0-preview1";
 
-export class UserAgentCoreV1Client extends ServiceClient {
+export class UserAgentCoreV1Client extends coreHttp.ServiceClient {
   $host: string;
   subscriptionId: string;
   apiVersion: string;
@@ -40,7 +40,7 @@ export class UserAgentCoreV1Client extends ServiceClient {
     const defaultUserAgent = `azsdk-js-${packageName.replace(
       /@.*\//,
       ""
-    )}/${packageVersion} ${getDefaultUserAgentValue()}`;
+    )}/${packageVersion} ${coreHttp.getDefaultUserAgentValue()}`;
 
     super(undefined, {
       ...options,
