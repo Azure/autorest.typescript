@@ -9,7 +9,7 @@ import {
   StringSchema,
   ByteArraySchema
 } from "@autorest/codemodel";
-import * as assert from "assert";
+import { assert } from "chai";
 
 describe("ValueHelpers", () => {
   describe("getStringForValue", () => {

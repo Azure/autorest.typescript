@@ -5,7 +5,7 @@ import {
 } from "./generated/bodyFormData/src";
 import { assert } from "chai";
 import { readFileSync } from "../utils/fileSystem";
-import { isNode } from "@azure/core-http";
+import { isNode } from "@azure/core-util";
 
 if (isNode) {
   describe("Integration tests for BodyFormData", () => {

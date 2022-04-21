@@ -9,14 +9,16 @@ function getIntegrationTestFiles() {
   hlcFiles = hlcFiles
     .filter(
       name =>
-        extname(name) === ".js" && statSync(`${hlcDirPath}${sep}${name}`).isFile()
+        extname(name) === ".js" &&
+        statSync(`${hlcDirPath}${sep}${name}`).isFile()
     )
     .map(filename => `${hlcDirPath}${sep}${filename}`);
 
   rlcFiles = rlcFiles
     .filter(
       name =>
-        extname(name) === ".js" && statSync(`${rlcDirPath}${sep}${name}`).isFile()
+        extname(name) === ".js" &&
+        statSync(`${rlcDirPath}${sep}${name}`).isFile()
     )
     .map(filename => `${rlcDirPath}${sep}${filename}`);
 
@@ -24,6 +26,29 @@ function getIntegrationTestFiles() {
 }
 
 const entry = getIntegrationTestFiles();
+//[
+//   "/workspaces/autorest.typescript/test-browser/integration/additionalProperties.spec.js",
+//   "/workspaces/autorest.typescript/test-browser/integration/appConfiguration.spec.js",
+//   "/workspaces/autorest.typescript/test-browser/integration/appConfigurationExport.spec.js",
+//   "/workspaces/autorest.typescript/test-browser/integration/azureParameterGrouping.spec.js",
+//   "/workspaces/autorest.typescript/test-browser/integration/azureSpecialProperties.spec.js",
+//   "/workspaces/autorest.typescript/test-browser/integration/bodyArray.spec.js",
+//   "/workspaces/autorest.typescript/test-browser/integration/bodyBoolean.spec.js",
+//   "/workspaces/autorest.typescript/test-browser/integration/bodyBooleanQuirks.spec.js",
+//   "/workspaces/autorest.typescript/test-browser/integration/bodyByte.spec.js",
+//   "/workspaces/autorest.typescript/test-browser/integration/bodyComplex.spec.js",
+//   "/workspaces/autorest.typescript/test-browser/integration/bodyDate.spec.js",
+//   "/workspaces/autorest.typescript/test-browser/integration/bodyDateTime.spec.js",
+//   "/workspaces/autorest.typescript/test-browser/integration/bodyDateTimeRfc1123.spec.js",
+//   "/workspaces/autorest.typescript/test-browser/integration/bodyDictionary.spec.js",
+//   "/workspaces/autorest.typescript/test-browser/integration/bodyDuration.spec.js",
+//   "/workspaces/autorest.typescript/test-browser/integration/bodyFile.spec.js",
+//   "/workspaces/autorest.typescript/test-browser/integration/bodyFormData.spec.js",
+//   "/workspaces/autorest.typescript/test-browser/integration/bodyInteger.spec.js",
+//   "/workspaces/autorest.typescript/test-browser/integration/bodyNumber.spec.js",
+//   "/workspaces/autorest.typescript/test-browser/integration/bodyString.spec.js",
+//   "/workspaces/autorest.typescript/test-browser/integration/bodyTime.spec.js"
+// ];
 
 module.exports = {
   target: "web",
@@ -41,6 +66,14 @@ module.exports = {
       }
     ]
   },
+  ignoreWarnings: [
+    {
+      module: /opentelemetry/
+    },
+    {
+      module: /core-asynciterator-polyfill/
+    }
+  ],
   mode: "development",
   devtool: "inline-source-map"
 };

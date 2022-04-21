@@ -41,7 +41,8 @@
     },
     "browser": {
         "./test-browser/utils/stream-helpers.js": "./test-browser/utils/stream-helpers.browser.js",
-        "./test-browser/utils/fileSystem.js": "./test-browser/utils/fileSystem.browser.js"
+        "./test-browser/utils/fileSystem.js": "./test-browser/utils/fileSystem.browser.js",
+        "./test-browser/utils/path.js": "./test-browser/utils/path.browser.js"
     },
     "files": [
         "src",

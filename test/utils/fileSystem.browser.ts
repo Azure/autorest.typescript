@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 export function readFileSync(file: string, options: string): string;
 export function readFileSync(
   file: string,

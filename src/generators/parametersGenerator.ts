@@ -11,7 +11,6 @@ import {
 } from "ts-morph";
 import { ClientDetails } from "../models/clientDetails";
 import { ParameterDetails } from "../models/parameterDetails";
-import { isString } from "util";
 import { writeMapper } from "./mappersGenerator";
 import { shouldImportParameters } from "./utils/importUtils";
 import { logger } from "../utils/logger";
@@ -143,7 +142,7 @@ function writeParameterMapper(
   { mapper }: ParameterDetails
 ) {
   writer.write("mapper: ");
-  if (isString(mapper)) {
+  if (typeof mapper === "string") {
     writer.write(`${mapper}Mapper`);
   } else {
     writeMapper(writer, mapper);
@@ -184,7 +183,7 @@ function getCoreHttpImports(clientDetails: ClientDetails) {
 
 function getImportedMappers(clientDetails: ClientDetails) {
   const mappers = clientDetails.parameters
-    .filter(p => !p.isSynthetic && isString(p.mapper))
+    .filter(p => !p.isSynthetic && typeof p.mapper === "string")
     .map(p => `${p.mapper} as ${p.mapper}Mapper`);
 
   return [...new Set<string>(mappers)];

@@ -1,6 +1,6 @@
 import { BodyByteClient } from "./generated/bodyByte/src";
 import { expect } from "chai";
-import { isNode } from "@azure/core-http";
+import { isNode } from "@azure/core-util";
 import { responseStatusChecker } from "../utils/responseStatusChecker";
 
 describe("Body Byte Client", function() {

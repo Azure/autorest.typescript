@@ -1,5 +1,5 @@
 import { KnownMediaType } from "@azure-tools/codegen";
-import * as assert from "assert";
+import { assert } from "chai";
 import { checkForNameCollisions } from "../../../src/generators/clientFileGenerator";
 import { PropertyKind } from "../../../src/models/modelDetails";
 import { OperationGroupDetails } from "../../../src/models/operationDetails";

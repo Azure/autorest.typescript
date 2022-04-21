@@ -5,28 +5,15 @@ import LRORest, {
 } from "./generated/lroRest/src";
 import { assert } from "chai";
 import { PipelineRequest } from "@azure/core-rest-pipeline";
-import { it } from "mocha";
+import { addCookiePolicies } from "../utils/cookies";
 
 function createClient() {
-  let cookie: string | undefined;
-  const cookiePolicy = {
-    name: "CookiePolicy",
-    sendRequest: async (req: PipelineRequest, next: any) => {
-      if (cookie) {
-        req.headers.set("Cookie", cookie);
-      }
-      const response = await next(req);
-      cookie = response.headers.get("set-cookie");
-      return response;
-    }
-  };
-
   const client = LRORest({
     allowInsecureConnection: true,
     retryOptions: { retryDelayInMs: 0 }
   });
-  client.pipeline.addPolicy(cookiePolicy, { phase: "Retry" });
 
+  addCookiePolicies(client.pipeline);
   return client;
 }
 

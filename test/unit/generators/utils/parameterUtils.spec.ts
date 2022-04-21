@@ -1,7 +1,7 @@
 import { filterOperationParameters } from "../../../../src/generators/utils/parameterUtils";
 import { ParameterDetails } from "../../../../src/models/parameterDetails";
 import { OperationDetails } from "../../../../src/models/operationDetails";
-import * as assert from "assert";
+import { assert } from "chai";
 import {
   ParameterLocation,
   Parameter,

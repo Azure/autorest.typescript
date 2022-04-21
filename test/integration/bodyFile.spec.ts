@@ -1,6 +1,6 @@
-import { join as joinPath } from "path";
+import { joinPath } from "../utils/path";
 import { assert } from "chai";
-import { isNode } from "@azure/core-http";
+import { isNode } from "@azure/core-util";
 import {
   readStreamToBuffer,
   countBytesFromStream
