@@ -13,11 +13,9 @@ import {
   check202,
   check204
 } from "../utils/responseStatusChecker";
-import { HttpClientWithCookieSupport } from "./testUtils/HttpClientWithCookieSupport";
-import { PollerCancelledError } from "@azure/core-lro";
+import { addCookiePolicies } from "../utils/cookies";
 
 const clientOptions: ServiceClientOptions = {
-  httpClient: new HttpClientWithCookieSupport(),
   allowInsecureConnection: true
 };
 
@@ -36,6 +34,7 @@ describe("LROs", () => {
 
   beforeEach(() => {
     client = new LROClient(clientOptions);
+    addCookiePolicies(client.pipeline);
   });
 
   describe("Pipeline validation", () => {
@@ -516,6 +515,7 @@ describe("Custom Headers", () => {
       }
     };
     client = new LROClient(clientOptions);
+    addCookiePolicies(client.pipeline);
   });
 
   it("should handle putAsyncRetrySucceeded with customheaders ", async () => {
@@ -558,6 +558,7 @@ describe("LRO Sad scenarios", () => {
       }
     };
     client = new LROClient(pipelineOptions);
+    addCookiePolicies(client.pipeline);
   });
 
   it("should handle PutNonRetry400 ", async () => {
@@ -803,6 +804,7 @@ describe("LRORetries", () => {
       }
     };
     client = new LROClient(pipelineOptions);
+    addCookiePolicies(client.pipeline);
   });
 
   it("should retry put201CreatingSucceeded200", async () => {

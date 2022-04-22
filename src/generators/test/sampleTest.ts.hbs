@@ -1,6 +1,7 @@
 import { Recorder, RecorderStartOptions, env } from "@azure-tools/test-recorder";
-import * as assert from "assert";
+import { assert } from "chai";
 import { Context } from "mocha";
+
 
 const replaceableVariables: Record<string, string> = {
   AZURE_CLIENT_ID: "azure_client_id",

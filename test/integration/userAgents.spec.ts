@@ -18,10 +18,18 @@ describe("Integration tests for User Agents", () => {
       "testgroup101"
     );
 
-    const array = result._response.request.headers
-      .get("user-agent")!
-      .match(
+    const userAgent =
+      result._response.request.headers.get("user-agent") ??
+      // In browser we send the user-agent in x-ms-useragent as some browsers block setting user-agent
+      result._response.request.headers.get("x-ms-useragent") ??
+      "";
+
+    const array =
+      userAgent.match(
         /azsdk-js-useragent-corev1\/1\.0\.0-preview1 core-http\/.* Node\/v.* OS\/.*/g
+      ) ||
+      userAgent.match(
+        /azsdk-js-useragent-corev1\/1\.0\.0-preview1 core-http\/.* OS\/.*/g
       );
 
     assert.equal(array!.length, 1, "Unexpected User Agent Value");
@@ -36,10 +44,18 @@ describe("Integration tests for User Agents", () => {
       "testgroup101"
     );
 
-    const array = result._response.request.headers
-      .get("user-agent")!
-      .match(
+    const userAgent =
+      result._response.request.headers.get("user-agent") ??
+      // In browser we send the user-agent in x-ms-useragent as some browsers block setting user-agent
+      result._response.request.headers.get("x-ms-useragent") ??
+      "";
+
+    const array =
+      userAgent.match(
         /CustomUserAgentPrefix azsdk-js-useragent-corev1\/1\.0\.0-preview1 core-http\/.* Node\/v.* OS\/.*/g
+      ) ??
+      userAgent.match(
+        /CustomUserAgentPrefix azsdk-js-useragent-corev1\/1\.0\.0-preview1 core-http\/.* OS\/.*/g
       );
 
     assert.equal(array!.length, 1, "Unexpected User Agent Value");
@@ -54,10 +70,17 @@ describe("Integration tests for User Agents", () => {
       "testgroup101",
       {
         onResponse: (response: any) => {
-          const array = response.request.headers
-            .get("user-agent")!
-            .match(
+          const userAgent =
+            response.request.headers.get("user-agent") ??
+            // In browser we send the user-agent in x-ms-useragent as some browsers block setting user-agent
+            response.request.headers.get("x-ms-useragent") ??
+            "";
+          const array =
+            userAgent.match(
               /azsdk-js-useragent-corev2\/1\.0\.0-preview1 core-rest-pipeline\/.* Node\/v.* OS\/.*/g
+            ) ??
+            userAgent.match(
+              /azsdk-js-useragent-corev2\/1\.0\.0-preview1 core-rest-pipeline\/.* OS\/.*/g
             );
 
           assert.equal(array!.length, 1, "Unexpected User Agent Value");
@@ -78,10 +101,17 @@ describe("Integration tests for User Agents", () => {
       "testgroup101",
       {
         onResponse: (response: any) => {
-          const array = response.request.headers
-            .get("user-agent")!
-            .match(
+          const userAgent =
+            response.request.headers.get("user-agent") ??
+            // In browser we send the user-agent in x-ms-useragent as some browsers block setting user-agent
+            response.request.headers.get("x-ms-useragent") ??
+            "";
+          const array =
+            userAgent.match(
               /CustomUserAgentPrefix azsdk-js-useragent-corev2\/1\.0\.0-preview1 core-rest-pipeline\/.* Node\/v.* OS\/.*/g
+            ) ??
+            userAgent.match(
+              /CustomUserAgentPrefix azsdk-js-useragent-corev2\/1\.0\.0-preview1 core-rest-pipeline\/.* OS\/.*/g
             );
 
           assert.equal(array!.length, 1, "Unexpected User Agent Value");

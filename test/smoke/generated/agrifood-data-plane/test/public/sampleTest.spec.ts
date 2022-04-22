@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { Recorder } from "@azure-tools/test-recorder";
-import * as assert from "assert";
+import { assert } from "chai";
 import { createRecorder } from "./utils/recordedClient";
 import { Context } from "mocha";
 

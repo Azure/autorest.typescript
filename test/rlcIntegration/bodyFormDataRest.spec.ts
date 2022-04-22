@@ -43,9 +43,20 @@ describe("Integration tests for BodyFormData", () => {
 
   it("should correctly accept file via body", async () => {
     client = BodyFormData({ allowInsecureConnection: true });
-    const content = Buffer.from(
-      new Uint8Array([72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100])
-    );
+    const content = new Uint8Array([
+      72,
+      101,
+      108,
+      108,
+      111,
+      32,
+      87,
+      111,
+      114,
+      108,
+      100
+    ]);
+
     const response = await client.path("/formdata/stream/uploadfile").put({
       body: content,
       binaryResponse: true,

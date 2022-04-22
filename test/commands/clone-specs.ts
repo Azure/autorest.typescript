@@ -1,6 +1,6 @@
 import { exists } from "fs";
 import { spawn, ChildProcess } from "child_process";
-import { SPECS_PATH, DEFAULT_SPEC_BRANCH } from "./constants";
+import { SPECS_PATH, DEFAULT_SPEC_BRANCH } from "../utils/constants";
 import { readmes } from "./smoke-test-list";
 
 const SPECS_REPO = "https://github.com/Azure/azure-rest-api-specs.git";
@@ -16,7 +16,7 @@ async function specsExist() {
 async function onExit(childProcess: ChildProcess) {
   return new Promise((resolve, reject) => {
     childProcess.once("exit", () => {
-      resolve();
+      resolve({});
     });
     childProcess.once("error", reject);
   });
