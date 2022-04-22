@@ -38,7 +38,8 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     allowInsecureConnection: true,
     addCredentials: false,
     isTestPackage: true,
-    generateTest: true
+    generateTest: true,
+    azureSdkForJs: false
   },
   arrayConstraints: {
     swaggerOrConfig: "test/integration/swaggers/arrayConstraints.md",
@@ -864,7 +865,8 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     isTestPackage: true,
     generateTest: true,
-    coreHttpCompatMode: true
+    coreHttpCompatMode: true,
+    azureSdkForJs: false
   }
 };
 

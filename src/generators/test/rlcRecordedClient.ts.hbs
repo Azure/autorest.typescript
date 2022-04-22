@@ -2,7 +2,7 @@ import { Context } from "mocha";
 import { Recorder, RecorderStartOptions } from "@azure-tools/test-recorder";
 import "./env";
 
-const envSetupForPlayback: { [k: string]: string } = {
+const envSetupForPlayback: Record<string, string> = {
   ENDPOINT: "https://endpoint",
   AZURE_CLIENT_ID: "azure_client_id",
   AZURE_CLIENT_SECRET: "azure_client_secret",
