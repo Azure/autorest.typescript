@@ -5,7 +5,7 @@ parameters:
 jobs:
   - job: ${{ parameters.name }}
     variables:
-      skipComponentGovernanceDetection: true
+      - template: globals.yml
     steps:
       - template: build.yml
       - script: npm run clone:specs

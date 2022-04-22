@@ -54,7 +54,7 @@ stages:
       - job: HLC_Generation
         dependsOn: Build
         variables:
-          skipComponentGovernanceDetection: true
+          - template: globals.yml
         strategy:
           matrix:
             macOS_Node12:
@@ -86,7 +86,7 @@ stages:
       - job: RLC_Generation
         dependsOn: Build
         variables:
-          skipComponentGovernanceDetection: true
+          - template: globals.yml
         strategy:
           matrix:
             macOS_Node12:
@@ -121,7 +121,7 @@ stages:
       - job: Test
         dependsOn: Build
         variables:
-          skipComponentGovernanceDetection: true
+          - template: globals.yml
         strategy:
           matrix:
             macOS_Node12:
