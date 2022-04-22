@@ -53,6 +53,8 @@ stages:
               path: $(Build.ArtifactStagingDirectory)
       - job: HLC_Generation
         dependsOn: Build
+        variables:
+          skipComponentGovernanceDetection: true
         strategy:
           matrix:
             macOS_Node12:
@@ -79,10 +81,12 @@ stages:
           - script: npm run generate-swaggers
             displayName: "Generate HLC Test Clients"
           - script: npm run check:tree
-            displayName: "Check git Tree"            
+            displayName: "Check git Tree"
 
       - job: RLC_Generation
         dependsOn: Build
+        variables:
+          skipComponentGovernanceDetection: true
         strategy:
           matrix:
             macOS_Node12:
@@ -111,11 +115,13 @@ stages:
           - script: npm run generate-version-tolerance
             displayName: "Generate RLC version tolerance initial version"
           - script: npm run generate-version-tolerance:tests
-            displayName: "Generate RLC version tolerance update version"  
+            displayName: "Generate RLC version tolerance update version"
           - script: npm run check:tree
-            displayName: "Check git Tree"  
+            displayName: "Check git Tree"
       - job: Test
         dependsOn: Build
+        variables:
+          skipComponentGovernanceDetection: true
         strategy:
           matrix:
             macOS_Node12:
@@ -144,13 +150,13 @@ stages:
               versionSpec: $(NodeTestVersion)
             displayName: "Use Node $(NodeTestVersion)"
           - script: npm run start-test-server:v2 &
-            displayName: "Start Test Server"     
+            displayName: "Start Test Server"
           - script: npm run test:node:alone
             displayName: "Run Node Tests"
           - script: npm run test:browser:alone
             displayName: "Run Browser Tests"
           - script: npm run stop-test-server
-            displayName: "Stop Test Server"   
+            displayName: "Stop Test Server"
           - script: npm run check:tree
             displayName: "Check git Tree"
           - script: |
