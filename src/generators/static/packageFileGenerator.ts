@@ -144,7 +144,7 @@ function restLevelPackage(packageDetails: PackageDetails) {
       })
     },
     devDependencies: {
-      "@microsoft/api-extractor": "^7.18.11",
+      "@microsoft/api-extractor": "7.18.11",
       autorest: "latest",
       "@types/node": "^12.0.0",
       dotenv: "^8.2.0",
@@ -303,7 +303,7 @@ function regularAutorestPackage(
     module: `./dist-esm/index.js`,
     types: `./types/${packageDetails.nameWithoutScope}.d.ts`,
     devDependencies: {
-      "@microsoft/api-extractor": "^7.18.11",
+      "@microsoft/api-extractor": "7.18.11",
       "@rollup/plugin-commonjs": "^21.0.1",
       "@rollup/plugin-json": "^4.1.0",
       "@rollup/plugin-multi-entry": "^4.1.0",

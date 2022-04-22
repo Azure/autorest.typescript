@@ -53,7 +53,7 @@
     "dependencies": {
         "@autorest/codemodel": "^4.17.0",
         "@autorest/extension-base": "^3.4.1",
-        "@azure-rest/core-client": "1.0.0-alpha.20220415.2",
+        "@azure-rest/core-client": "1.0.0-alpha.20220421.2",
         "@azure-tools/codegen": "^2.5.294",
         "@azure/core-client": "^1.5.0",
         "@azure/core-http": "^1.2.4",
