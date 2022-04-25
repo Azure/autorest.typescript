@@ -12,7 +12,7 @@ describe("Media types Rest", () => {
   });
 
   // Issue https://github.com/Azure/autorest.typescript/issues/1242
-  it.skip("should handle /analyze with application/pdf", async () => {
+  it("should handle /analyze with application/pdf", async () => {
     const result = await client.path("/mediatypes/analyze").post({
       contentType: "application/pdf",
       body: "PDF"
