@@ -70,15 +70,17 @@ export class GeneratedClient extends coreClient.ServiceClient {
    * indicate 100% certainty that the identified language is true. See the <a
    * href="https://aka.ms/talangs">Supported languages in Text Analytics API</a> for the list of enabled
    * languages.
+   * @param contentType Body Parameter content-type
    * @param input Collection of documents to analyze for language endpoint.
    * @param options The options parameters.
    */
   languages(
+    contentType: "application/json",
     input: LanguageBatchInput,
     options?: LanguagesOptionalParams
   ): Promise<LanguagesResponse> {
     return this.sendOperationRequest(
-      { input, options },
+      { contentType, input, options },
       languagesOperationSpec
     );
   }

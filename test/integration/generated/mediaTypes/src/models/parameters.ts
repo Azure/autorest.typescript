@@ -124,9 +124,10 @@ export const accept2: OperationParameter = {
 };
 
 export const contentType3: OperationParameter = {
-  parameterPath: ["options", "contentType"],
+  parameterPath: "contentType",
   mapper: {
     serializedName: "Content-Type",
+    required: true,
     type: {
       name: "Enum",
       allowedValues: ["application/json", "application/octet-stream"]
@@ -158,9 +159,10 @@ export const accept3: OperationParameter = {
 };
 
 export const contentType4: OperationParameter = {
-  parameterPath: ["options", "contentType"],
+  parameterPath: "contentType",
   mapper: {
     serializedName: "Content-Type",
+    required: true,
     type: {
       name: "Enum",
       allowedValues: [
@@ -173,9 +175,10 @@ export const contentType4: OperationParameter = {
 };
 
 export const contentType5: OperationParameter = {
-  parameterPath: ["options", "contentType"],
+  parameterPath: "contentType",
   mapper: {
     serializedName: "Content-Type",
+    required: true,
     type: {
       name: "Enum",
       allowedValues: ["application/json", "text/plain"]

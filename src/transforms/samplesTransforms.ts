@@ -9,7 +9,7 @@ import {
 } from "@autorest/codemodel";
 import { ClientDetails } from "../models/clientDetails";
 import { SampleGroup, SampleDetails } from "../models/sampleDetails";
-import { ExampleValue, TestCodeModel } from "@autorest/testmodeler";
+import { ExampleValue, TestCodeModel } from "@autorest/testmodeler/dist/src/core/model";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { getAutorestOptions, getSession } from "../autorestSession";
 import {

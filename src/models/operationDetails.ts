@@ -23,6 +23,10 @@ export interface OperationRequestDetails {
   parameters?: (Parameter | VirtualParameter)[];
 }
 
+export interface OperationRequestMediaTypes {
+  [mediaType: string]: OperationRequestDetails;
+}
+
 export type OperationResponseMapper = Mapper | string;
 
 /**
@@ -77,6 +81,7 @@ export interface OperationDetails {
   lroOptions?: { "final-state-via": string };
   scope?: Scope;
   namePrefix?: string;
+  requestMediaTypes: OperationRequestMediaTypes
 }
 
 /**

@@ -14,7 +14,7 @@ import {
 import { LanguageBatchInput as LanguageBatchInputMapper } from "../models/mappers";
 
 export const contentType: OperationParameter = {
-  parameterPath: ["options", "contentType"],
+  parameterPath: "contentType",
   mapper: {
     defaultValue: "application/json",
     isConstant: true,

@@ -84,10 +84,17 @@ export class GeneratedClient extends coreClient.ServiceClient {
 
   /**
    * Submit a collection of text documents for analysis. Specify one or more unique tasks to be executed.
+   * @param contentType Body Parameter content-type
    * @param options The options parameters.
    */
-  analyze(options?: AnalyzeOptionalParams): Promise<AnalyzeResponse> {
-    return this.sendOperationRequest({ options }, analyzeOperationSpec);
+  analyze(
+    contentType: "application/json",
+    options?: AnalyzeOptionalParams
+  ): Promise<AnalyzeResponse> {
+    return this.sendOperationRequest(
+      { contentType, options },
+      analyzeOperationSpec
+    );
   }
 
   /**
@@ -140,14 +147,19 @@ export class GeneratedClient extends coreClient.ServiceClient {
   /**
    * Start a healthcare analysis job to recognize healthcare related entities (drugs, conditions,
    * symptoms, etc) and their relations.
+   * @param contentType Body Parameter content-type
    * @param input Collection of documents to analyze.
    * @param options The options parameters.
    */
   health(
+    contentType: "application/json",
     input: MultiLanguageBatchInput,
     options?: HealthOptionalParams
   ): Promise<HealthResponse> {
-    return this.sendOperationRequest({ input, options }, healthOperationSpec);
+    return this.sendOperationRequest(
+      { contentType, input, options },
+      healthOperationSpec
+    );
   }
 
   /**
@@ -155,15 +167,17 @@ export class GeneratedClient extends coreClient.ServiceClient {
    * entity types, check <a href="https://aka.ms/taner">Supported Entity Types in Text Analytics API</a>.
    * See the <a href="https://aka.ms/talangs">Supported languages in Text Analytics API</a> for the list
    * of enabled languages.
+   * @param contentType Body Parameter content-type
    * @param input Collection of documents to analyze.
    * @param options The options parameters.
    */
   entitiesRecognitionGeneral(
+    contentType: "application/json",
     input: MultiLanguageBatchInput,
     options?: EntitiesRecognitionGeneralOptionalParams
   ): Promise<EntitiesRecognitionGeneralResponse> {
     return this.sendOperationRequest(
-      { input, options },
+      { contentType, input, options },
       entitiesRecognitionGeneralOperationSpec
     );
   }
@@ -174,15 +188,17 @@ export class GeneratedClient extends coreClient.ServiceClient {
    * Entity Types in Text Analytics API</a>. See the <a href="https://aka.ms/talangs">Supported languages
    * in Text Analytics API</a> for the list of enabled languages.
    *
+   * @param contentType Body Parameter content-type
    * @param input Collection of documents to analyze.
    * @param options The options parameters.
    */
   entitiesRecognitionPii(
+    contentType: "application/json",
     input: MultiLanguageBatchInput,
     options?: EntitiesRecognitionPiiOptionalParams
   ): Promise<EntitiesRecognitionPiiResponse> {
     return this.sendOperationRequest(
-      { input, options },
+      { contentType, input, options },
       entitiesRecognitionPiiOperationSpec
     );
   }
@@ -191,15 +207,17 @@ export class GeneratedClient extends coreClient.ServiceClient {
    * The API returns a list of recognized entities with links to a well known knowledge base. See the <a
    * href="https://aka.ms/talangs">Supported languages in Text Analytics API</a> for the list of enabled
    * languages.
+   * @param contentType Body Parameter content-type
    * @param input Collection of documents to analyze.
    * @param options The options parameters.
    */
   entitiesLinking(
+    contentType: "application/json",
     input: MultiLanguageBatchInput,
     options?: EntitiesLinkingOptionalParams
   ): Promise<EntitiesLinkingResponse> {
     return this.sendOperationRequest(
-      { input, options },
+      { contentType, input, options },
       entitiesLinkingOperationSpec
     );
   }
@@ -208,15 +226,17 @@ export class GeneratedClient extends coreClient.ServiceClient {
    * The API returns a list of strings denoting the key phrases in the input text. See the <a
    * href="https://aka.ms/talangs">Supported languages in Text Analytics API</a> for the list of enabled
    * languages.
+   * @param contentType Body Parameter content-type
    * @param input Collection of documents to analyze.
    * @param options The options parameters.
    */
   keyPhrases(
+    contentType: "application/json",
     input: MultiLanguageBatchInput,
     options?: KeyPhrasesOptionalParams
   ): Promise<KeyPhrasesResponse> {
     return this.sendOperationRequest(
-      { input, options },
+      { contentType, input, options },
       keyPhrasesOperationSpec
     );
   }
@@ -226,15 +246,17 @@ export class GeneratedClient extends coreClient.ServiceClient {
    * indicate 100% certainty that the identified language is true. See the <a
    * href="https://aka.ms/talangs">Supported languages in Text Analytics API</a> for the list of enabled
    * languages.
+   * @param contentType Body Parameter content-type
    * @param input Collection of documents to analyze for language endpoint.
    * @param options The options parameters.
    */
   languages(
+    contentType: "application/json",
     input: LanguageBatchInput,
     options?: LanguagesOptionalParams
   ): Promise<LanguagesResponse> {
     return this.sendOperationRequest(
-      { input, options },
+      { contentType, input, options },
       languagesOperationSpec
     );
   }
@@ -243,15 +265,17 @@ export class GeneratedClient extends coreClient.ServiceClient {
    * The API returns a detailed sentiment analysis for the input text. The analysis is done in multiple
    * levels of granularity, start from the a document level, down to sentence and key terms (targets and
    * assessments).
+   * @param contentType Body Parameter content-type
    * @param input Collection of documents to analyze.
    * @param options The options parameters.
    */
   sentiment(
+    contentType: "application/json",
     input: MultiLanguageBatchInput,
     options?: SentimentOptionalParams
   ): Promise<SentimentOperationResponse> {
     return this.sendOperationRequest(
-      { input, options },
+      { contentType, input, options },
       sentimentOperationSpec
     );
   }

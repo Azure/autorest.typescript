@@ -55,12 +55,13 @@ function normalizeMultipleContentTypes(codeModel: CodeModel) {
     const operations = operationGroup.operations.slice();
 
     for (const operation of operations) {
-      const requests = operation.requests;
-      if (!requests || (requests && requests.length > 1)) {
+      const requests = operation.requestMediaTypes;
+      if (!requests || (requests && Object.keys(requests).length > 1)) {
         continue;
       }
 
-      for (const request of requests) {
+      for (const key of Object.keys(requests)) {
+        const request = requests[key];
         const parameters = request.parameters;
         if (!parameters) {
           continue;

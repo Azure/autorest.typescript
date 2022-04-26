@@ -10,9 +10,10 @@ import {
 } from "../models/mappers";
 
 export const contentType: OperationParameter = {
-  parameterPath: ["options", "contentType"],
+  parameterPath: "contentType",
   mapper: {
     serializedName: "Content-Type",
+    required: true,
     xmlName: "Content-Type",
     type: {
       name: "Enum",
@@ -46,7 +47,7 @@ export const $host: OperationURLParameter = {
 };
 
 export const contentType1: OperationParameter = {
-  parameterPath: ["options", "contentType"],
+  parameterPath: "contentType",
   mapper: {
     defaultValue: "application/json",
     isConstant: true,
@@ -210,6 +211,18 @@ export const file: OperationParameter = {
     xmlName: "file",
     type: {
       name: "Stream"
+    }
+  }
+};
+
+export const contentType4: OperationParameter = {
+  parameterPath: ["options", "contentType"],
+  mapper: {
+    defaultValue: "application/json",
+    isConstant: true,
+    serializedName: "Content-Type",
+    type: {
+      name: "String"
     }
   }
 };

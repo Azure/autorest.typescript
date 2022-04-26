@@ -358,14 +358,16 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
   /**
    * Creates a key-value.
    * @param key The key of the key-value to create.
+   * @param contentType Body Parameter content-type
    * @param options The options parameters.
    */
   putKeyValue(
     key: string,
+    contentType: "application/vnd.microsoft.appconfig.kv+json",
     options?: PutKeyValueOptionalParams
   ): Promise<PutKeyValueResponse> {
     return this.sendOperationRequest(
-      { key, options },
+      { key, contentType, options },
       putKeyValueOperationSpec
     );
   }

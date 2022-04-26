@@ -3,6 +3,7 @@ import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
 import {
   PetStoreOptionalParams,
+  ContentType,
   AddPetUsingByteArrayOptionalParams,
   AddPetOptionalParams,
   UpdatePetOptionalParams,
@@ -75,31 +76,47 @@ export class PetStore extends coreClient.ServiceClient {
 
   /**
    * Fake endpoint to test byte array in body parameter for adding a new pet to the store
+   * @param contentType Upload file type
    * @param options The options parameters.
    */
   addPetUsingByteArray(
+    contentType: ContentType,
     options?: AddPetUsingByteArrayOptionalParams
   ): Promise<void> {
     return this.sendOperationRequest(
-      { options },
+      { contentType, options },
       addPetUsingByteArrayOperationSpec
     );
   }
 
   /**
    * Adds a new pet to the store. You may receive an HTTP invalid input if your pet is invalid.
+   * @param contentType Body Parameter content-type
    * @param options The options parameters.
    */
-  addPet(options?: AddPetOptionalParams): Promise<void> {
-    return this.sendOperationRequest({ options }, addPetOperationSpec);
+  addPet(
+    contentType: "application/json",
+    options?: AddPetOptionalParams
+  ): Promise<void> {
+    return this.sendOperationRequest(
+      { contentType, options },
+      addPetOperationSpec
+    );
   }
 
   /**
    * Update an existing pet
+   * @param contentType Body Parameter content-type
    * @param options The options parameters.
    */
-  updatePet(options?: UpdatePetOptionalParams): Promise<void> {
-    return this.sendOperationRequest({ options }, updatePetOperationSpec);
+  updatePet(
+    contentType: "application/json",
+    options?: UpdatePetOptionalParams
+  ): Promise<void> {
+    return this.sendOperationRequest(
+      { contentType, options },
+      updatePetOperationSpec
+    );
   }
 
   /**
@@ -499,7 +516,7 @@ const placeOrderOperationSpec: coreClient.OperationSpec = {
   },
   requestBody: Parameters.body2,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType1, Parameters.accept],
+  headerParameters: [Parameters.accept, Parameters.contentType4],
   mediaType: "json",
   serializer
 };
@@ -531,7 +548,7 @@ const createUserOperationSpec: coreClient.OperationSpec = {
   responses: { default: {} },
   requestBody: Parameters.body3,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType1],
+  headerParameters: [Parameters.contentType4],
   mediaType: "json",
   serializer
 };
@@ -541,7 +558,7 @@ const createUsersWithArrayInputOperationSpec: coreClient.OperationSpec = {
   responses: { default: {} },
   requestBody: Parameters.body4,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType1],
+  headerParameters: [Parameters.contentType4],
   mediaType: "json",
   serializer
 };
@@ -551,7 +568,7 @@ const createUsersWithListInputOperationSpec: coreClient.OperationSpec = {
   responses: { default: {} },
   requestBody: Parameters.body4,
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType1],
+  headerParameters: [Parameters.contentType4],
   mediaType: "json",
   serializer
 };
@@ -598,7 +615,7 @@ const updateUserOperationSpec: coreClient.OperationSpec = {
   responses: { 400: {}, 404: {} },
   requestBody: Parameters.body3,
   urlParameters: [Parameters.$host, Parameters.username1],
-  headerParameters: [Parameters.contentType1],
+  headerParameters: [Parameters.contentType4],
   mediaType: "json",
   serializer
 };

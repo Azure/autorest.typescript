@@ -14,7 +14,7 @@ import {
   ParameterLocation,
   ConstantSchema,
   CodeModel,
-  ObjectSchema
+  ObjectSchema,
 } from "@autorest/codemodel";
 import {
   normalizeName,
@@ -431,6 +431,7 @@ export async function transformOperation(
   }
 
   const mediaTypes = await getOperationMediaTypes(requests, responses);
+  const requestMediaTypes = await getOperationRequestMediaTypes(operation);
 
   return {
     name,
@@ -446,7 +447,8 @@ export async function transformOperation(
     mediaTypes,
     pagination,
     isLro,
-    lroOptions
+    lroOptions,
+    requestMediaTypes
   };
 }
 
@@ -514,6 +516,20 @@ async function getOperationMediaTypes(
   responses.forEach(r => r.mediaType && mediaTypes.add(r.mediaType));
 
   return mediaTypes;
+}
+
+async function getOperationRequestMediaTypes(operation: Operation) {
+  const requestMediaType = operation.requestMediaTypes;
+  const requestMediaTypeDetails: Record<string, OperationRequestDetails> = {};
+  if (requestMediaType && Object.keys(requestMediaType).length > 0) {
+    for(const key of Object.keys(requestMediaType)) {
+      const request = requestMediaType[key];
+      const requestDetails = transformOperationRequest(request);
+      requestMediaTypeDetails[key] = requestDetails;
+    }
+  }
+  return requestMediaTypeDetails;
+  
 }
 
 function getGroupedParameters(

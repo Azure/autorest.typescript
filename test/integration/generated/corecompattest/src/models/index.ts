@@ -102,8 +102,6 @@ export type ContentType = "application/json" | "application/xml";
 /** Optional parameters. */
 export interface AddPetUsingByteArrayOptionalParams
   extends coreClient.OperationOptions {
-  /** Upload file type */
-  contentType?: ContentType;
   /** Pet object in the form of byte array */
   body?: coreRestPipeline.RequestBodyType;
 }
