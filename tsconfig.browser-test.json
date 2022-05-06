@@ -22,28 +22,11 @@
     "outDir": "./test-browser",
     "rootDir": "./test"
   },
-  "include": [
-    "test/integration/*.ts",
-    "test/integration/generated/**/*.ts",
-    "test/utils/stream-helpers.ts"
-  ],
+  "include": ["test/**/*.ts"],
   "exclude": [
-    "test/integration/generated/bodyStringRest/test/**/*.ts",
-    "test/integration/generated/additionalProperties/test/**/*.ts",
-    "test/integration/generated/datasearch/test/**/*.ts",
-    "test/integration/generated/noLicenseHeader/*.ts",
-    "test/integration/generated/licenseHeader/*.ts",
-    "test/integration/generated/bodyFormData/*.ts",
-    "test/integration/generated/appconfigurationexport/*.ts",
-    "test/integration/generated/mapperrequired/*.ts",
-    "test/integration/generated/nameChecker/*.ts",
-    "test/integration/generated/useragentcorev1/*.ts",
-    "test/integration/generated/useragentcorev2/*.ts",
-    "test/integration/licenseHeader.spec.ts",
-    "test/integration/bodyFormData.spec.ts",
-    "test/integration/appConfigurationExport.spec.ts",
-    "test/integration/mapperRequired.spec.ts",
-    "test/integration/userAgents.spec.ts",
-    "test/integration/nameChecker.spec.ts"
+    "test/smoke/**/*.ts",
+    "test/**/test/**/*.ts",
+    "test/unit/**/*.ts",
+    "test/commands/**/*.ts"
   ]
 }

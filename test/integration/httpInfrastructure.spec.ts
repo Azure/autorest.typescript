@@ -17,7 +17,7 @@ import {
   responseStatusChecker302,
   responseStatusChecker404
 } from "../utils/responseStatusChecker";
-import { HttpClientWithCookieSupport } from "./testUtils/HttpClientWithCookieSupport";
+import { addCookiePolicies } from "../utils/cookies";
 
 describe("Http infrastructure Client", () => {
   let client: HttpInfrastructureClient;
@@ -37,7 +37,6 @@ describe("Http infrastructure Client", () => {
 
   beforeEach(() => {
     client = new HttpInfrastructureClient({
-      httpClient: new HttpClientWithCookieSupport(),
       allowInsecureConnection: true
     });
     client.pipeline.addPolicy(preventCachingPolicy);
@@ -51,10 +50,7 @@ describe("Http infrastructure Client", () => {
     );
     client.pipeline.removePolicy(redirectPolicy());
     client.pipeline.addPolicy(redirectPolicy());
-    // client.pipeline.removePolicy({ name: proxyPolicyName });
-    // client.pipeline.addPolicy(
-    //   proxyPolicy({ host: "http://127.0.0.1", port: 8888 })
-    // );
+    addCookiePolicies(client.pipeline);
   });
 
   describe("Success scenarios", () => {

@@ -101,7 +101,7 @@ export async function transformCodeModel(
 
   const options = await transformOptions(operationGroups);
 
-  const [objects, groups, parameters, mappers, unions ] = await Promise.all([
+  const [objects, groups, parameters, mappers, unions] = await Promise.all([
     transformObjects(codeModel, uberParents),
     transformGroups(codeModel),
     transformParameters(codeModel, options),

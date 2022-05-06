@@ -250,7 +250,8 @@ describe("BodyDictionary", () => {
   });
 
   it("should get base64 dictionaries", async () => {
-    const stringToByteArray = (str: string) => Buffer.from(str, "utf-8");
+    const encoder = new TextEncoder();
+    const stringToByteArray = (str: string) => encoder.encode(str);
     const base64Url1 = stringToByteArray(
       "a string that gets encoded with base64url"
     );

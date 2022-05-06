@@ -22,8 +22,8 @@ import { generateTsConfig } from "./generators/static/tsConfigFileGenerator";
 import { generateRollupConfig } from "./generators/static/rollupConfigFileGenerator";
 import { generateOperations } from "./generators/operationGenerator";
 import { generateOperationsInterfaces } from "./generators/operationInterfaceGenerator";
-import { generateSampleEnv } from './generators/samples/sampleEnvGenerator';
-import { generateSamples } from './generators/samples/sampleGenerator';
+import { generateSampleEnv } from "./generators/samples/sampleEnvGenerator";
+import { generateSamples } from "./generators/samples/sampleGenerator";
 import { generateParameters } from "./generators/parametersGenerator";
 import { generateLroFiles } from "./generators/LROGenerator";
 import { generateTracingFile } from "./generators/tracingFileGenerator";
@@ -91,7 +91,11 @@ export async function generateTypeScriptLibrary(
   generateMappers(clientDetails, project);
   generateOperations(clientDetails, project);
   generateOperationsInterfaces(clientDetails, project);
-  if (generateSample && clientDetails?.samples?.length && clientDetails?.samples?.length > 0) {
+  if (
+    generateSample &&
+    clientDetails?.samples?.length &&
+    clientDetails?.samples?.length > 0
+  ) {
     generateSamples(clientDetails, project);
     generateSampleEnv(project);
   }

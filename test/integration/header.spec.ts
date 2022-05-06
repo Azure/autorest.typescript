@@ -1,4 +1,4 @@
-import * as coreHttp from "@azure/core-http";
+import { isNode } from "@azure/core-util";
 import { should, assert } from "chai";
 import { isEqual } from "lodash";
 import { HeaderClient } from "./generated/header/src";
@@ -14,7 +14,7 @@ describe("typescript", function() {
       });
 
       it("should override existing headers (nodejs only)", async function() {
-        if (!coreHttp.isNode) {
+        if (!isNode) {
           this.skip();
         }
 
@@ -193,7 +193,8 @@ describe("typescript", function() {
 
       it("should send and receive byte array type headers", async function() {
         const value = "啊齄丂狛狜隣郎隣兀﨩";
-        const bytes = Buffer.from(value, "utf8");
+        const encoder = new TextEncoder();
+        const bytes = encoder.encode(value);
         await testClient.header.paramByte("valid", bytes);
 
         const response = await testClient.header.responseByte("valid");

@@ -1,4 +1,4 @@
-import * as assert from "assert";
+import { assert } from "chai";
 import { UrlClient, UriColor } from "./generated/url/src";
 import { responseStatusChecker } from "../utils/responseStatusChecker";
 
@@ -317,7 +317,8 @@ describe("Integration tests for Url", () => {
 
 function stringToByteArray(str: string) {
   // TODO make this work for browser
-  return Buffer.from(str, "utf-8");
+  const encoder = new TextEncoder();
+  return encoder.encode(str);
 }
 
 async function shouldThrow(fn: () => Promise<any>) {

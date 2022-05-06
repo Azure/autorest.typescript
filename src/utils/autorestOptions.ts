@@ -35,10 +35,10 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
   const azureOutputDirectory = await getAzureOutputDirectoryPath(host);
   const headAsBoolean = await getHeadAsBoolean(host);
   const isTestPackage = await getIsTestPackage(host);
+  const generateSample = await getGenerateSample(host);
   const generateTest = await getGenerateTest(host);
   const batch = await getBatch(host);
   const multiClient = await getMultiClient(host);
-  const generateSample = await getGenerateSample(host);
   const productDocLink = await getProductDocLink(host);
   const coreHttpCompatMode = await getCoreHttpCompatMode(host);
   const azureSdkForJs = await getAzureSdkForJs(host);
@@ -98,21 +98,23 @@ async function getIsTestPackage(host: AutorestExtensionHost): Promise<boolean> {
   return isTestPackage === null ? false : Boolean(isTestPackage);
 }
 
+async function getGenerateSample(
+  host: AutorestExtensionHost
+): Promise<boolean> {
+  const generateSample = await host.getValue("generate-sample");
+  return generateSample === undefined || generateSample === null ? false : Boolean(generateSample);
+}
+
 async function getGenerateTest(host: AutorestExtensionHost): Promise<boolean> {
   const generateTest = await host.getValue("generate-test");
   return generateTest === null ? false : Boolean(generateTest);
 }
 
-async function getGenerateSample(
-  host: AutorestExtensionHost
-): Promise<boolean> {
-  const generateSample = await host.getValue("generate-sample");
-  return generateSample === null ? false : Boolean(generateSample);
-}
-
 async function getAzureSdkForJs(host: AutorestExtensionHost): Promise<boolean> {
   const azureSdkForJs = await host.getValue("azure-sdk-for-js");
-  return azureSdkForJs === null ? true : Boolean(azureSdkForJs);
+  return azureSdkForJs === undefined || azureSdkForJs === null
+    ? true
+    : Boolean(azureSdkForJs);
 }
 
 async function getSkipEnumValidation(

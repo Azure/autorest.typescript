@@ -28,7 +28,7 @@
   "module": "./dist-esm/src/index.js",
   "types": "./types/sql-resource-manager.d.ts",
   "devDependencies": {
-    "@microsoft/api-extractor": "^7.18.11",
+    "@microsoft/api-extractor": "7.18.11",
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-multi-entry": "^4.1.0",
@@ -40,7 +40,8 @@
     "uglify-js": "^3.4.9",
     "rimraf": "^3.0.0",
     "@azure/identity": "^2.0.1",
-    "@azure-tools/test-recorder": "^1.0.0",
+    "@azure-tools/test-recorder": "^2.0.0",
+    "@azure-tools/test-credential": "^1.0.0",
     "mocha": "^7.1.1",
     "cross-env": "^7.0.2"
   },
@@ -106,13 +107,5 @@
       }
     ]
   },
-  "autoPublish": true,
-  "//sampleConfiguration": {
-    "productName": "",
-    "productSlugs": [
-      "azure"
-    ],
-    "disableDocsMs": true,
-    "apiRefLink": "https://docs.microsoft.com/javascript/api/@msinternal/sql-resource-manager?view=azure-node-preview"
-  }
+  "autoPublish": true
 }

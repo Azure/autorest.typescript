@@ -1,4 +1,4 @@
-import * as assert from "assert";
+import { assert } from "chai";
 import { normalizeName, NameType } from "../../../src/utils/nameUtils";
 
 describe("NameUtils", () => {

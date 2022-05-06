@@ -4,7 +4,7 @@ import HttpInfrastructureRest, {
 import { assert } from "chai";
 import { PipelinePolicy } from "@azure/core-rest-pipeline";
 import { isNode } from "@azure/core-util";
-import { getCookiePolicy } from "./testUtils/cookiePolicy";
+import { addCookiePolicies } from "../utils/cookies";
 
 describe("Http infrastructure rest Client", () => {
   let client: HttpInfrastructureRestClient;
@@ -30,7 +30,7 @@ describe("Http infrastructure rest Client", () => {
     client.pipeline.addPolicy(preventCachingPolicy);
     // Add a policy to setup cookies so that test server knows if the request is a first request
     // or a retry
-    client.pipeline.addPolicy(getCookiePolicy(), { phase: "Retry" });
+    addCookiePolicies(client.pipeline);
   });
 
   describe("Success scenarios", () => {

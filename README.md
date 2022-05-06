@@ -91,7 +91,7 @@ pipeline:
 
 ```yaml $(generate-sample)
 use-extension:
-  "@autorest/testmodeler": "2.2.4"
+  "@autorest/testmodeler": "2.2.5"
 
 try-require:
     - ./readme.test.md
