@@ -7,7 +7,6 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import * as coreRestPipeline from "@azure/core-rest-pipeline";
 import { PetImpl } from "./operations";
 import { Pet } from "./operationsInterfaces";
 import { XmsErrorResponsesClientOptionalParams } from "./models";
@@ -43,35 +42,6 @@ export class XmsErrorResponsesClient extends coreClient.ServiceClient {
       baseUri: options.endpoint ?? options.baseUri ?? "http://localhost"
     };
     super(optionsWithDefaults);
-
-    let bearerTokenAuthenticationPolicyFound: boolean = false;
-    if (options?.pipeline && options.pipeline.getOrderedPolicies().length > 0) {
-      const pipelinePolicies: coreRestPipeline.PipelinePolicy[] = options.pipeline.getOrderedPolicies();
-      bearerTokenAuthenticationPolicyFound = pipelinePolicies.some(
-        (pipelinePolicy) =>
-          pipelinePolicy.name ===
-          coreRestPipeline.bearerTokenAuthenticationPolicyName
-      );
-    }
-    if (
-      !options ||
-      !options.pipeline ||
-      options.pipeline.getOrderedPolicies().length == 0 ||
-      !bearerTokenAuthenticationPolicyFound
-    ) {
-      this.pipeline.removePolicy({
-        name: coreRestPipeline.bearerTokenAuthenticationPolicyName
-      });
-      this.pipeline.addPolicy(
-        coreRestPipeline.bearerTokenAuthenticationPolicy({
-          scopes: `${optionsWithDefaults.baseUri}/.default`,
-          challengeCallbacks: {
-            authorizeRequestOnChallenge:
-              coreClient.authorizeRequestOnClaimChallenge
-          }
-        })
-      );
-    }
 
     // Assigning values to Constant parameters
     this.$host = options.$host || "http://localhost";

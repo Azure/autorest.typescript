@@ -446,6 +446,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     },
     useCoreV2: true,
     addCredentials: false,
+    allowInsecureConnection: true,
     isTestPackage: true
   },
   pagingNoIterators: {
@@ -454,6 +455,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "paging-no-iterators",
     licenseHeader: true,
     disableAsyncIterators: true,
+    allowInsecureConnection: true,
     useCoreV2: true,
     addCredentials: false,
     isTestPackage: true
@@ -603,6 +605,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "xms-error-responses",
     licenseHeader: true,
     addCredentials: false,
+    allowInsecureConnection: true,
     useCoreV2: true,
     isTestPackage: true
   },
