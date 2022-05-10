@@ -408,7 +408,7 @@ function writeConstructor(
       `this.addCustomApiVersionPolicy(${
         !apiVersionParam.required ||
         !!apiVersionParam.defaultValue ||
-          apiVersionParam.schemaType === SchemaType.Constant
+        apiVersionParam.schemaType === SchemaType.Constant
           ? "options."
           : ""
       }apiVersion);`
@@ -594,27 +594,28 @@ function getTrack2DefaultContent(
     return (
       defaultContent +
       `
+      let bearerTokenAuthenticationPolicyFound: boolean = false;
       if (options?.pipeline && options.pipeline.getOrderedPolicies().length > 0) {
         const pipelinePolicies: coreRestPipeline.PipelinePolicy[] = options.pipeline.getOrderedPolicies();
-        const bearerTokenAuthenticationPolicyFound = pipelinePolicies.some(
+        bearerTokenAuthenticationPolicyFound = pipelinePolicies.some(
           pipelinePolicy =>
             pipelinePolicy.name ===
             coreRestPipeline.bearerTokenAuthenticationPolicyName
         );
-        if (!bearerTokenAuthenticationPolicyFound) {
-          this.pipeline.removePolicy({
-            name: coreRestPipeline.bearerTokenAuthenticationPolicyName
-          });
-          this.pipeline.addPolicy(
-            coreRestPipeline.bearerTokenAuthenticationPolicy({
-              scopes: \`\${optionsWithDefaults.baseUri}/.default\`,
-              challengeCallbacks: {
-                authorizeRequestOnChallenge:
-                  coreClient.authorizeRequestOnClaimChallenge
-              }
-            })
-          );
-        }
+      }
+      if (!options || !options.pipeline || options.pipeline.getOrderedPolicies().length == 0 || !bearerTokenAuthenticationPolicyFound) {
+        this.pipeline.removePolicy({
+          name: coreRestPipeline.bearerTokenAuthenticationPolicyName
+        });
+        this.pipeline.addPolicy(
+          coreRestPipeline.bearerTokenAuthenticationPolicy({
+            scopes: \`\${optionsWithDefaults.baseUri}/.default\`,
+            challengeCallbacks: {
+              authorizeRequestOnChallenge:
+                coreClient.authorizeRequestOnClaimChallenge
+            }
+          })
+        );
       }
     `
     );

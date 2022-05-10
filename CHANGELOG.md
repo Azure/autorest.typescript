@@ -1,3 +1,7 @@
+## 6.0.0-beta.20 (2022-04-07)
+
+- [BugFix] Fixed the issue with support of CAE Bearer Token Authentication Policy. Please refer to [#1336](https://github.com/Azure/autorest.typescript/pull/1336#discussion_r868700986) for further details.
+
 ## 6.0.0-beta.19 (2022-04-07)
 
 - [Feature] Support CAE Bearer Token Authentication Policy. Please refer to [#1336](https://github.com/Azure/autorest.typescript/pull/1336) for further details.
