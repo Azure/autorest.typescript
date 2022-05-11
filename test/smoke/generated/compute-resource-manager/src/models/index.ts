@@ -4025,7 +4025,7 @@ export type ImageReference = SubResource & {
 };
 
 /** Describes the parameter of customer managed disk encryption set resource id that can be specified for disk. <br><br> NOTE: The disk encryption set resource id can only be specified for managed disk. Please refer https://aka.ms/mdssewithcmkoverview for more details. */
-export type DiskEncryptionSetParameters = SubResource & {};
+export type DiskEncryptionSetParameters = SubResource;
 
 /** The parameters of a managed disk. */
 export type ManagedDiskParameters = SubResource & {
@@ -4992,7 +4992,7 @@ export type AvailabilitySetUpdate = UpdateResource & {
 };
 
 /** Specifies information about the proximity placement group. */
-export type ProximityPlacementGroupUpdate = UpdateResource & {};
+export type ProximityPlacementGroupUpdate = UpdateResource;
 
 /** Specifies information about the dedicated host group that the dedicated host should be assigned to. Only tags may be updated. */
 export type DedicatedHostGroupUpdate = UpdateResource & {
@@ -5494,7 +5494,7 @@ export type CapacityReservationInstanceViewWithName = CapacityReservationInstanc
 };
 
 /** Describes a Virtual Machine Scale Set VM Reimage Parameters. */
-export type VirtualMachineScaleSetVMReimageParameters = VirtualMachineReimageParameters & {};
+export type VirtualMachineScaleSetVMReimageParameters = VirtualMachineReimageParameters;
 
 /** Api request input for LogAnalytics getRequestRateByInterval Api. */
 export type RequestRateByIntervalInput = LogAnalyticsInputBase & {
@@ -5503,7 +5503,7 @@ export type RequestRateByIntervalInput = LogAnalyticsInputBase & {
 };
 
 /** Api request input for LogAnalytics getThrottledRequests Api. */
-export type ThrottledRequestsInput = LogAnalyticsInputBase & {};
+export type ThrottledRequestsInput = LogAnalyticsInputBase;
 
 /** Describes the properties of a Run Command. */
 export type RunCommandDocument = RunCommandDocumentBase & {
@@ -5666,7 +5666,7 @@ export type GalleryApplicationVersionUpdate = UpdateResourceDefinition & {
 };
 
 /** The publishing profile of a gallery image Version. */
-export type GalleryImageVersionPublishingProfile = GalleryArtifactPublishingProfileBase & {};
+export type GalleryImageVersionPublishingProfile = GalleryArtifactPublishingProfileBase;
 
 /** The publishing profile of a gallery image version. */
 export type GalleryApplicationVersionPublishingProfile = GalleryArtifactPublishingProfileBase & {
@@ -5678,7 +5678,7 @@ export type GalleryApplicationVersionPublishingProfile = GalleryArtifactPublishi
 };
 
 /** Contains encryption settings for an OS disk image. */
-export type OSDiskImageEncryption = DiskImageEncryption & {};
+export type OSDiskImageEncryption = DiskImageEncryption;
 
 /** Contains encryption settings for a data disk image. */
 export type DataDiskImageEncryption = DiskImageEncryption & {
@@ -5687,7 +5687,7 @@ export type DataDiskImageEncryption = DiskImageEncryption & {
 };
 
 /** This is the OS disk image. */
-export type GalleryOSDiskImage = GalleryDiskImage & {};
+export type GalleryOSDiskImage = GalleryDiskImage;
 
 /** This is the data disk image. */
 export type GalleryDataDiskImage = GalleryDiskImage & {
@@ -5702,7 +5702,7 @@ export type PirSharedGalleryResource = PirResource & {
 };
 
 /** Specifies information about the Community Gallery that you want to create or update. */
-export type CommunityGallery = PirCommunityGalleryResource & {};
+export type CommunityGallery = PirCommunityGalleryResource;
 
 /** Specifies information about the gallery image definition that you want to create or update. */
 export type CommunityGalleryImage = PirCommunityGalleryResource & {
@@ -5757,7 +5757,7 @@ export type VirtualMachineScaleSetReimageParameters = VirtualMachineScaleSetVMRe
 };
 
 /** Specifies information about the Shared Gallery that you want to create or update. */
-export type SharedGallery = PirSharedGalleryResource & {};
+export type SharedGallery = PirSharedGalleryResource;
 
 /** Specifies information about the gallery image definition that you want to create or update. */
 export type SharedGalleryImage = PirSharedGalleryResource & {

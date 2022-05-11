@@ -551,21 +551,19 @@ export type ServicesDescription = ServicesResource & {
 };
 
 /** The common properties of tracked resources in the service. */
-export type TaggedResource = ResourceTags & LocationBasedResource & {};
+export type TaggedResource = ResourceTags & LocationBasedResource;
 
 /** Workspace patch properties */
-export type WorkspacePatchResource = ResourceTags & {};
+export type WorkspacePatchResource = ResourceTags;
 
 /** Dicom Service patch properties */
-export type DicomServicePatchResource = ResourceTags & {};
+export type DicomServicePatchResource = ResourceTags;
 
 /** Iot Connector patch properties */
-export type IotConnectorPatchResource = ResourceTags &
-  ServiceManagedIdentity & {};
+export type IotConnectorPatchResource = ResourceTags & ServiceManagedIdentity;
 
 /** FhirService patch properties */
-export type FhirServicePatchResource = ResourceTags &
-  ServiceManagedIdentity & {};
+export type FhirServicePatchResource = ResourceTags & ServiceManagedIdentity;
 
 /** The common properties for any location based resource, tracked or proxy. */
 export type LocationBasedResource = ResourceCore & {

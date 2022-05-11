@@ -712,7 +712,7 @@ export type ServicePrincipalCreateParameters = ServicePrincipalBase & {
 };
 
 /** Request parameters for update an existing service principal. */
-export type ServicePrincipalUpdateParameters = ServicePrincipalBase & {};
+export type ServicePrincipalUpdateParameters = ServicePrincipalBase;
 
 /** Request parameters for creating a new work or school account user. */
 export type UserCreateParameters = UserBase & {

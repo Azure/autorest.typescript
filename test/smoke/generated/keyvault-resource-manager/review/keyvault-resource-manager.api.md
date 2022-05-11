@@ -1163,7 +1163,7 @@ export type Secret = Resource & {
 };
 
 // @public
-export type SecretAttributes = Attributes & {};
+export type SecretAttributes = Attributes;
 
 // @public
 export interface SecretCreateOrUpdateParameters {

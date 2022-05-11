@@ -2180,7 +2180,7 @@ export interface ConnectivitySource {
 }
 
 // @public
-export type Container = SubResource & {};
+export type Container = SubResource;
 
 // @public
 export type ContainerNetworkInterface = SubResource & {
@@ -9667,10 +9667,10 @@ export interface PrivateLinkServiceListResult {
 }
 
 // @public
-export type PrivateLinkServicePropertiesAutoApproval = ResourceSet & {};
+export type PrivateLinkServicePropertiesAutoApproval = ResourceSet;
 
 // @public
-export type PrivateLinkServicePropertiesVisibility = ResourceSet & {};
+export type PrivateLinkServicePropertiesVisibility = ResourceSet;
 
 // @public
 export interface PrivateLinkServices {
@@ -13085,7 +13085,7 @@ export interface VirtualWanVpnProfileParameters {
 }
 
 // @public
-export type Vm = Resource & {};
+export type Vm = Resource;
 
 // @public
 export interface VnetRoute {
