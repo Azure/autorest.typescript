@@ -190,6 +190,7 @@ function restLevelPackage(packageDetails: PackageDetails) {
     packageInfo.devDependencies["mocha"] = "^7.1.1";
     packageInfo.devDependencies["mocha-junit-reporter"] = "^1.18.0";
     packageInfo.devDependencies["cross-env"] = "^7.0.2";
+    packageInfo.devDependencies["@types/chai"] = "^4.2.8";
     packageInfo.devDependencies["chai"] = "^4.2.0";
     packageInfo.devDependencies["cross-env"] = "^7.0.2";
     packageInfo.devDependencies["karma-chrome-launcher"] = "^3.0.0";
@@ -206,15 +207,15 @@ function restLevelPackage(packageDetails: PackageDetails) {
     packageInfo.devDependencies["karma"] = "^6.2.0";
     packageInfo.devDependencies["nyc"] = "^14.0.0";
     packageInfo.devDependencies["source-map-support"] = "^0.5.9";
-    packageInfo.scripts["test"] =  "npm run clean && npm run build:test && npm run unit-test";
-    packageInfo.scripts["test:node"] =  "npm run clean && npm run build:test && npm run unit-test:node";
-    packageInfo.scripts["test:browser"] =  "npm run clean && npm run build:test && npm run unit-test:browser";
-    packageInfo.scripts["build:browser"] =  "tsc -p . && cross-env ONLY_BROWSER=true rollup -c 2>&1";
-    packageInfo.scripts["build:node"] =  "tsc -p . && cross-env ONLY_NODE=true rollup -c 2>&1";
-    packageInfo.scripts["build:test"] =  "tsc -p . && rollup -c 2>&1";
+    packageInfo.scripts["test"] = "npm run clean && npm run build:test && npm run unit-test";
+    packageInfo.scripts["test:node"] = "npm run clean && npm run build:test && npm run unit-test:node";
+    packageInfo.scripts["test:browser"] = "npm run clean && npm run build:test && npm run unit-test:browser";
+    packageInfo.scripts["build:browser"] = "tsc -p . && cross-env ONLY_BROWSER=true rollup -c 2>&1";
+    packageInfo.scripts["build:node"] = "tsc -p . && cross-env ONLY_NODE=true rollup -c 2>&1";
+    packageInfo.scripts["build:test"] = "tsc -p . && rollup -c 2>&1";
     packageInfo.scripts["unit-test"] = "npm run unit-test:node && npm run unit-test:browser";
     packageInfo.scripts["unit-test:node"] = "mocha -r esm --require ts-node/register --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 1200000 --full-trace \"test/{,!(browser)/**/}*.spec.ts\"";
-    packageInfo.scripts["unit-test:browser"] =  "karma start --single-run";
+    packageInfo.scripts["unit-test:browser"] = "karma start --single-run";
     packageInfo.scripts["integration-test:browser"] = "karma start --single-run";
     packageInfo.scripts["integration-test:node"] = "nyc mocha -r esm --require source-map-support/register --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 5000000 --full-trace \"dist-esm/test/{,!(browser)/**/}*.spec.js\"";
     packageInfo.scripts["integration-test"] = "npm run integration-test:node && npm run integration-test:browser";
@@ -389,6 +390,8 @@ function regularAutorestPackage(
     packageInfo.devDependencies["@azure-tools/test-recorder"] = "^2.0.0";
     packageInfo.devDependencies["@azure-tools/test-credential"] = "^1.0.0";
     packageInfo.devDependencies["mocha"] = "^7.1.1";
+    packageInfo.devDependencies["@types/chai"] = "^4.2.8";
+    packageInfo.devDependencies["chai"] = "^4.2.0";
     packageInfo.devDependencies["cross-env"] = "^7.0.2";
     packageInfo.scripts["test"] = "npm run integration-test";
     packageInfo.scripts["unit-test"] =
