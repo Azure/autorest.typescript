@@ -141,7 +141,11 @@ async function getGenerateMetadata(host: AutorestExtensionHost) {
 }
 
 async function getLicenseHeader(host: AutorestExtensionHost): Promise<boolean> {
-  return (await host.getValue("license-header")) || false;
+  const license: boolean | undefined = await host.getValue("license-header");
+  if (license === undefined) {
+    return true;
+  }
+  return license;
 }
 
 async function getTitle(
