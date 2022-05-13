@@ -86,21 +86,9 @@ pipeline:
   typescript/emitter:
     input: typescript
     scope: typescript-scope/emitter
-
 ```
 
 ```yaml $(generate-test)
-use-extension:
-  "@autorest/testmodeler": "1.0.4"
-
-try-require:
-    - ./readme.test.md
-    - ./readme.tests.md
-
-testmodeler:
-  split-parents-value: false
-
-include-x-ms-examples-original-file: true
 modelerfour:
   include-x-ms-examples-original-file: true
 
@@ -117,7 +105,6 @@ pipeline:
   typescript/emitter:
     input: typescript
     scope: typescript-scope/emitter
-
 ```
 
 ### REST Client Generator overrides
