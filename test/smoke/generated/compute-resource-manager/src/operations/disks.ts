@@ -16,24 +16,12 @@ import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
   Disk,
-  DisksListByResourceGroupNextOptionalParams,
-  DisksListByResourceGroupOptionalParams,
-  DisksListNextOptionalParams,
-  DisksListOptionalParams,
-  DisksCreateOrUpdateOptionalParams,
   DisksCreateOrUpdateResponse,
-  DiskUpdate,
-  DisksUpdateOptionalParams,
   DisksUpdateResponse,
-  DisksGetOptionalParams,
   DisksGetResponse,
-  DisksDeleteOptionalParams,
   DisksListByResourceGroupResponse,
   DisksListResponse,
-  GrantAccessData,
-  DisksGrantAccessOptionalParams,
   DisksGrantAccessResponse,
-  DisksRevokeAccessOptionalParams,
   DisksListByResourceGroupNextResponse,
   DisksListNextResponse
 } from "../models";
@@ -53,14 +41,10 @@ export class DisksImpl implements Disks {
 
   /**
    * Lists all the disks under a resource group.
-   * @param resourceGroupName The name of the resource group.
-   * @param options The options parameters.
+   *
    */
-  public listByResourceGroup(
-    resourceGroupName: string,
-    options?: DisksListByResourceGroupOptionalParams
-  ): PagedAsyncIterableIterator<Disk> {
-    const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
+  public listByResourceGroup(): PagedAsyncIterableIterator<Disk> {
+    const iter = this.listByResourceGroupPagingAll();
     return {
       next() {
         return iter.next();
@@ -69,49 +53,36 @@ export class DisksImpl implements Disks {
         return this;
       },
       byPage: () => {
-        return this.listByResourceGroupPagingPage(resourceGroupName, options);
+        return this.listByResourceGroupPagingPage();
       }
     };
   }
 
-  private async *listByResourceGroupPagingPage(
-    resourceGroupName: string,
-    options?: DisksListByResourceGroupOptionalParams
-  ): AsyncIterableIterator<Disk[]> {
-    let result = await this._listByResourceGroup(resourceGroupName, options);
+  private async *listByResourceGroupPagingPage(): AsyncIterableIterator<
+    Disk[]
+  > {
+    let result = await this._listByResourceGroup();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listByResourceGroupNext(
-        resourceGroupName,
-        continuationToken,
-        options
-      );
+      result = await this._listByResourceGroupNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listByResourceGroupPagingAll(
-    resourceGroupName: string,
-    options?: DisksListByResourceGroupOptionalParams
-  ): AsyncIterableIterator<Disk> {
-    for await (const page of this.listByResourceGroupPagingPage(
-      resourceGroupName,
-      options
-    )) {
+  private async *listByResourceGroupPagingAll(): AsyncIterableIterator<Disk> {
+    for await (const page of this.listByResourceGroupPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Lists all the disks under a subscription.
-   * @param options The options parameters.
+   *
    */
-  public list(
-    options?: DisksListOptionalParams
-  ): PagedAsyncIterableIterator<Disk> {
-    const iter = this.listPagingAll(options);
+  public list(): PagedAsyncIterableIterator<Disk> {
+    const iter = this.listPagingAll();
     return {
       next() {
         return iter.next();
@@ -120,47 +91,33 @@ export class DisksImpl implements Disks {
         return this;
       },
       byPage: () => {
-        return this.listPagingPage(options);
+        return this.listPagingPage();
       }
     };
   }
 
-  private async *listPagingPage(
-    options?: DisksListOptionalParams
-  ): AsyncIterableIterator<Disk[]> {
-    let result = await this._list(options);
+  private async *listPagingPage(): AsyncIterableIterator<Disk[]> {
+    let result = await this._list();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listNext(continuationToken, options);
+      result = await this._listNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listPagingAll(
-    options?: DisksListOptionalParams
-  ): AsyncIterableIterator<Disk> {
-    for await (const page of this.listPagingPage(options)) {
+  private async *listPagingAll(): AsyncIterableIterator<Disk> {
+    for await (const page of this.listPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Creates or updates a disk.
-   * @param resourceGroupName The name of the resource group.
-   * @param diskName The name of the managed disk that is being created. The name can't be changed after
-   *                 the disk is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The maximum name
-   *                 length is 80 characters.
-   * @param disk Disk object supplied in the body of the Put disk operation.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdate(
-    resourceGroupName: string,
-    diskName: string,
-    disk: Disk,
-    options?: DisksCreateOrUpdateOptionalParams
-  ): Promise<
+  async beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<DisksCreateOrUpdateResponse>,
       DisksCreateOrUpdateResponse
@@ -207,7 +164,7 @@ export class DisksImpl implements Disks {
 
     const lro = new LroImpl(
       sendOperation,
-      { resourceGroupName, diskName, disk, options },
+      { resourceGroupName, diskName, options },
       createOrUpdateOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -220,43 +177,18 @@ export class DisksImpl implements Disks {
 
   /**
    * Creates or updates a disk.
-   * @param resourceGroupName The name of the resource group.
-   * @param diskName The name of the managed disk that is being created. The name can't be changed after
-   *                 the disk is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The maximum name
-   *                 length is 80 characters.
-   * @param disk Disk object supplied in the body of the Put disk operation.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    diskName: string,
-    disk: Disk,
-    options?: DisksCreateOrUpdateOptionalParams
-  ): Promise<DisksCreateOrUpdateResponse> {
-    const poller = await this.beginCreateOrUpdate(
-      resourceGroupName,
-      diskName,
-      disk,
-      options
-    );
+  async beginCreateOrUpdateAndWait(): Promise<DisksCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate();
     return poller.pollUntilDone();
   }
 
   /**
    * Updates (patches) a disk.
-   * @param resourceGroupName The name of the resource group.
-   * @param diskName The name of the managed disk that is being created. The name can't be changed after
-   *                 the disk is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The maximum name
-   *                 length is 80 characters.
-   * @param disk Disk object supplied in the body of the Patch disk operation.
-   * @param options The options parameters.
+   *
    */
-  async beginUpdate(
-    resourceGroupName: string,
-    diskName: string,
-    disk: DiskUpdate,
-    options?: DisksUpdateOptionalParams
-  ): Promise<
+  async beginUpdate(): Promise<
     PollerLike<PollOperationState<DisksUpdateResponse>, DisksUpdateResponse>
   > {
     const directSendOperation = async (
@@ -300,7 +232,7 @@ export class DisksImpl implements Disks {
 
     const lro = new LroImpl(
       sendOperation,
-      { resourceGroupName, diskName, disk, options },
+      { resourceGroupName, diskName, options },
       updateOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -313,167 +245,51 @@ export class DisksImpl implements Disks {
 
   /**
    * Updates (patches) a disk.
-   * @param resourceGroupName The name of the resource group.
-   * @param diskName The name of the managed disk that is being created. The name can't be changed after
-   *                 the disk is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The maximum name
-   *                 length is 80 characters.
-   * @param disk Disk object supplied in the body of the Patch disk operation.
-   * @param options The options parameters.
+   *
    */
-  async beginUpdateAndWait(
-    resourceGroupName: string,
-    diskName: string,
-    disk: DiskUpdate,
-    options?: DisksUpdateOptionalParams
-  ): Promise<DisksUpdateResponse> {
-    const poller = await this.beginUpdate(
-      resourceGroupName,
-      diskName,
-      disk,
-      options
-    );
+  async beginUpdateAndWait(): Promise<DisksUpdateResponse> {
+    const poller = await this.beginUpdate();
     return poller.pollUntilDone();
   }
 
   /**
    * Gets information about a disk.
-   * @param resourceGroupName The name of the resource group.
-   * @param diskName The name of the managed disk that is being created. The name can't be changed after
-   *                 the disk is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The maximum name
-   *                 length is 80 characters.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    diskName: string,
-    options?: DisksGetOptionalParams
-  ): Promise<DisksGetResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, diskName, options },
-      getOperationSpec
-    );
-  }
+  get(): Promise<DisksGetResponse> {}
 
   /**
    * Deletes a disk.
-   * @param resourceGroupName The name of the resource group.
-   * @param diskName The name of the managed disk that is being created. The name can't be changed after
-   *                 the disk is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The maximum name
-   *                 length is 80 characters.
-   * @param options The options parameters.
+   *
    */
-  async beginDelete(
-    resourceGroupName: string,
-    diskName: string,
-    options?: DisksDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<void> => {
-      return this.client.sendOperationRequest(args, spec);
-    };
-    const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return {
-        flatResponse,
-        rawResponse: {
-          statusCode: currentRawResponse!.status,
-          body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
-      };
-    };
-
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, diskName, options },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
-    });
-    await poller.poll();
-    return poller;
-  }
+  async beginDelete(): Promise<PollerLike<PollOperationState<void>, void>> {}
 
   /**
    * Deletes a disk.
-   * @param resourceGroupName The name of the resource group.
-   * @param diskName The name of the managed disk that is being created. The name can't be changed after
-   *                 the disk is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The maximum name
-   *                 length is 80 characters.
-   * @param options The options parameters.
+   *
    */
-  async beginDeleteAndWait(
-    resourceGroupName: string,
-    diskName: string,
-    options?: DisksDeleteOptionalParams
-  ): Promise<void> {
-    const poller = await this.beginDelete(resourceGroupName, diskName, options);
+  async beginDeleteAndWait(): Promise<void> {
+    const poller = await this.beginDelete();
     return poller.pollUntilDone();
   }
 
   /**
    * Lists all the disks under a resource group.
-   * @param resourceGroupName The name of the resource group.
-   * @param options The options parameters.
+   *
    */
-  private _listByResourceGroup(
-    resourceGroupName: string,
-    options?: DisksListByResourceGroupOptionalParams
-  ): Promise<DisksListByResourceGroupResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, options },
-      listByResourceGroupOperationSpec
-    );
-  }
+  private _listByResourceGroup(): Promise<DisksListByResourceGroupResponse> {}
 
   /**
    * Lists all the disks under a subscription.
-   * @param options The options parameters.
+   *
    */
-  private _list(options?: DisksListOptionalParams): Promise<DisksListResponse> {
-    return this.client.sendOperationRequest({ options }, listOperationSpec);
-  }
+  private _list(): Promise<DisksListResponse> {}
 
   /**
    * Grants access to a disk.
-   * @param resourceGroupName The name of the resource group.
-   * @param diskName The name of the managed disk that is being created. The name can't be changed after
-   *                 the disk is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The maximum name
-   *                 length is 80 characters.
-   * @param grantAccessData Access data object supplied in the body of the get disk access operation.
-   * @param options The options parameters.
+   *
    */
-  async beginGrantAccess(
-    resourceGroupName: string,
-    diskName: string,
-    grantAccessData: GrantAccessData,
-    options?: DisksGrantAccessOptionalParams
-  ): Promise<
+  async beginGrantAccess(): Promise<
     PollerLike<
       PollOperationState<DisksGrantAccessResponse>,
       DisksGrantAccessResponse
@@ -520,7 +336,7 @@ export class DisksImpl implements Disks {
 
     const lro = new LroImpl(
       sendOperation,
-      { resourceGroupName, diskName, grantAccessData, options },
+      { resourceGroupName, diskName, options },
       grantAccessOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -534,146 +350,43 @@ export class DisksImpl implements Disks {
 
   /**
    * Grants access to a disk.
-   * @param resourceGroupName The name of the resource group.
-   * @param diskName The name of the managed disk that is being created. The name can't be changed after
-   *                 the disk is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The maximum name
-   *                 length is 80 characters.
-   * @param grantAccessData Access data object supplied in the body of the get disk access operation.
-   * @param options The options parameters.
+   *
    */
-  async beginGrantAccessAndWait(
-    resourceGroupName: string,
-    diskName: string,
-    grantAccessData: GrantAccessData,
-    options?: DisksGrantAccessOptionalParams
-  ): Promise<DisksGrantAccessResponse> {
-    const poller = await this.beginGrantAccess(
-      resourceGroupName,
-      diskName,
-      grantAccessData,
-      options
-    );
+  async beginGrantAccessAndWait(): Promise<DisksGrantAccessResponse> {
+    const poller = await this.beginGrantAccess();
     return poller.pollUntilDone();
   }
 
   /**
    * Revokes access to a disk.
-   * @param resourceGroupName The name of the resource group.
-   * @param diskName The name of the managed disk that is being created. The name can't be changed after
-   *                 the disk is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The maximum name
-   *                 length is 80 characters.
-   * @param options The options parameters.
+   *
    */
-  async beginRevokeAccess(
-    resourceGroupName: string,
-    diskName: string,
-    options?: DisksRevokeAccessOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<void> => {
-      return this.client.sendOperationRequest(args, spec);
-    };
-    const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return {
-        flatResponse,
-        rawResponse: {
-          statusCode: currentRawResponse!.status,
-          body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
-      };
-    };
-
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, diskName, options },
-      revokeAccessOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "location"
-    });
-    await poller.poll();
-    return poller;
-  }
+  async beginRevokeAccess(): Promise<
+    PollerLike<PollOperationState<void>, void>
+  > {}
 
   /**
    * Revokes access to a disk.
-   * @param resourceGroupName The name of the resource group.
-   * @param diskName The name of the managed disk that is being created. The name can't be changed after
-   *                 the disk is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The maximum name
-   *                 length is 80 characters.
-   * @param options The options parameters.
+   *
    */
-  async beginRevokeAccessAndWait(
-    resourceGroupName: string,
-    diskName: string,
-    options?: DisksRevokeAccessOptionalParams
-  ): Promise<void> {
-    const poller = await this.beginRevokeAccess(
-      resourceGroupName,
-      diskName,
-      options
-    );
+  async beginRevokeAccessAndWait(): Promise<void> {
+    const poller = await this.beginRevokeAccess();
     return poller.pollUntilDone();
   }
 
   /**
    * ListByResourceGroupNext
-   * @param resourceGroupName The name of the resource group.
-   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
-   * @param options The options parameters.
+   *
    */
-  private _listByResourceGroupNext(
-    resourceGroupName: string,
-    nextLink: string,
-    options?: DisksListByResourceGroupNextOptionalParams
-  ): Promise<DisksListByResourceGroupNextResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options },
-      listByResourceGroupNextOperationSpec
-    );
-  }
+  private _listByResourceGroupNext(): Promise<
+    DisksListByResourceGroupNextResponse
+  > {}
 
   /**
    * ListNext
-   * @param nextLink The nextLink from the previous successful call to the List method.
-   * @param options The options parameters.
+   *
    */
-  private _listNext(
-    nextLink: string,
-    options?: DisksListNextOptionalParams
-  ): Promise<DisksListNextResponse> {
-    return this.client.sendOperationRequest(
-      { nextLink, options },
-      listNextOperationSpec
-    );
-  }
+  private _listNext(): Promise<DisksListNextResponse> {}
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
@@ -738,70 +451,6 @@ const updateOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/disks/{diskName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.Disk
-    }
-  },
-  queryParameters: [Parameters.apiVersion1],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId,
-    Parameters.diskName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const deleteOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/disks/{diskName}",
-  httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
-  queryParameters: [Parameters.apiVersion1],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId,
-    Parameters.diskName
-  ],
-  serializer
-};
-const listByResourceGroupOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/disks",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DiskList
-    }
-  },
-  queryParameters: [Parameters.apiVersion1],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listOperationSpec: coreClient.OperationSpec = {
-  path: "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/disks",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DiskList
-    }
-  },
-  queryParameters: [Parameters.apiVersion1],
-  urlParameters: [Parameters.$host, Parameters.subscriptionId],
-  headerParameters: [Parameters.accept],
-  serializer
-};
 const grantAccessOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/disks/{diskName}/beginGetAccess",
@@ -830,54 +479,5 @@ const grantAccessOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const revokeAccessOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/disks/{diskName}/endGetAccess",
-  httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
-  queryParameters: [Parameters.apiVersion1],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId,
-    Parameters.diskName
-  ],
-  serializer
-};
-const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DiskList
-    }
-  },
-  queryParameters: [Parameters.apiVersion1],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId,
-    Parameters.nextLink
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DiskList
-    }
-  },
-  queryParameters: [Parameters.apiVersion1],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.nextLink
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };

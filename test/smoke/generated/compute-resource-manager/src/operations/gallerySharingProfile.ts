@@ -13,11 +13,7 @@ import * as Parameters from "../models/parameters";
 import { ComputeManagementClient } from "../computeManagementClient";
 import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
-import {
-  SharingUpdate,
-  GallerySharingProfileUpdateOptionalParams,
-  GallerySharingProfileUpdateResponse
-} from "../models";
+import { GallerySharingProfileUpdateResponse } from "../models";
 
 /** Class containing GallerySharingProfile operations. */
 export class GallerySharingProfileImpl implements GallerySharingProfile {
@@ -33,17 +29,9 @@ export class GallerySharingProfileImpl implements GallerySharingProfile {
 
   /**
    * Update sharing profile of a gallery.
-   * @param resourceGroupName The name of the resource group.
-   * @param galleryName The name of the Shared Image Gallery.
-   * @param sharingUpdate Parameters supplied to the update gallery sharing profile.
-   * @param options The options parameters.
+   *
    */
-  async beginUpdate(
-    resourceGroupName: string,
-    galleryName: string,
-    sharingUpdate: SharingUpdate,
-    options?: GallerySharingProfileUpdateOptionalParams
-  ): Promise<
+  async beginUpdate(): Promise<
     PollerLike<
       PollOperationState<GallerySharingProfileUpdateResponse>,
       GallerySharingProfileUpdateResponse
@@ -90,7 +78,7 @@ export class GallerySharingProfileImpl implements GallerySharingProfile {
 
     const lro = new LroImpl(
       sendOperation,
-      { resourceGroupName, galleryName, sharingUpdate, options },
+      { resourceGroupName, galleryName, options },
       updateOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -103,23 +91,10 @@ export class GallerySharingProfileImpl implements GallerySharingProfile {
 
   /**
    * Update sharing profile of a gallery.
-   * @param resourceGroupName The name of the resource group.
-   * @param galleryName The name of the Shared Image Gallery.
-   * @param sharingUpdate Parameters supplied to the update gallery sharing profile.
-   * @param options The options parameters.
+   *
    */
-  async beginUpdateAndWait(
-    resourceGroupName: string,
-    galleryName: string,
-    sharingUpdate: SharingUpdate,
-    options?: GallerySharingProfileUpdateOptionalParams
-  ): Promise<GallerySharingProfileUpdateResponse> {
-    const poller = await this.beginUpdate(
-      resourceGroupName,
-      galleryName,
-      sharingUpdate,
-      options
-    );
+  async beginUpdateAndWait(): Promise<GallerySharingProfileUpdateResponse> {
+    const poller = await this.beginUpdate();
     return poller.pollUntilDone();
   }
 }

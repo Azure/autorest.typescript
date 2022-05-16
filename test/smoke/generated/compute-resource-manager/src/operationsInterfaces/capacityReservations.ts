@@ -10,14 +10,8 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   CapacityReservation,
-  CapacityReservationsListByCapacityReservationGroupOptionalParams,
-  CapacityReservationsCreateOrUpdateOptionalParams,
   CapacityReservationsCreateOrUpdateResponse,
-  CapacityReservationUpdate,
-  CapacityReservationsUpdateOptionalParams,
   CapacityReservationsUpdateResponse,
-  CapacityReservationsDeleteOptionalParams,
-  CapacityReservationsGetOptionalParams,
   CapacityReservationsGetResponse
 } from "../models";
 
@@ -27,32 +21,18 @@ export interface CapacityReservations {
   /**
    * Lists all of the capacity reservations in the specified capacity reservation group. Use the nextLink
    * property in the response to get the next page of capacity reservations.
-   * @param resourceGroupName The name of the resource group.
-   * @param capacityReservationGroupName The name of the capacity reservation group.
-   * @param options The options parameters.
+   *
    */
-  listByCapacityReservationGroup(
-    resourceGroupName: string,
-    capacityReservationGroupName: string,
-    options?: CapacityReservationsListByCapacityReservationGroupOptionalParams
-  ): PagedAsyncIterableIterator<CapacityReservation>;
+  listByCapacityReservationGroup(): PagedAsyncIterableIterator<
+    CapacityReservation
+  >;
   /**
    * The operation to create or update a capacity reservation. Please note some properties can be set
    * only during capacity reservation creation. Please refer to https://aka.ms/CapacityReservation for
    * more details.
-   * @param resourceGroupName The name of the resource group.
-   * @param capacityReservationGroupName The name of the capacity reservation group.
-   * @param capacityReservationName The name of the capacity reservation.
-   * @param parameters Parameters supplied to the Create capacity reservation.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdate(
-    resourceGroupName: string,
-    capacityReservationGroupName: string,
-    capacityReservationName: string,
-    parameters: CapacityReservation,
-    options?: CapacityReservationsCreateOrUpdateOptionalParams
-  ): Promise<
+  beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<CapacityReservationsCreateOrUpdateResponse>,
       CapacityReservationsCreateOrUpdateResponse
@@ -62,34 +42,16 @@ export interface CapacityReservations {
    * The operation to create or update a capacity reservation. Please note some properties can be set
    * only during capacity reservation creation. Please refer to https://aka.ms/CapacityReservation for
    * more details.
-   * @param resourceGroupName The name of the resource group.
-   * @param capacityReservationGroupName The name of the capacity reservation group.
-   * @param capacityReservationName The name of the capacity reservation.
-   * @param parameters Parameters supplied to the Create capacity reservation.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    capacityReservationGroupName: string,
-    capacityReservationName: string,
-    parameters: CapacityReservation,
-    options?: CapacityReservationsCreateOrUpdateOptionalParams
-  ): Promise<CapacityReservationsCreateOrUpdateResponse>;
+  beginCreateOrUpdateAndWait(): Promise<
+    CapacityReservationsCreateOrUpdateResponse
+  >;
   /**
    * The operation to update a capacity reservation.
-   * @param resourceGroupName The name of the resource group.
-   * @param capacityReservationGroupName The name of the capacity reservation group.
-   * @param capacityReservationName The name of the capacity reservation.
-   * @param parameters Parameters supplied to the Update capacity reservation operation.
-   * @param options The options parameters.
+   *
    */
-  beginUpdate(
-    resourceGroupName: string,
-    capacityReservationGroupName: string,
-    capacityReservationName: string,
-    parameters: CapacityReservationUpdate,
-    options?: CapacityReservationsUpdateOptionalParams
-  ): Promise<
+  beginUpdate(): Promise<
     PollerLike<
       PollOperationState<CapacityReservationsUpdateResponse>,
       CapacityReservationsUpdateResponse
@@ -97,60 +59,26 @@ export interface CapacityReservations {
   >;
   /**
    * The operation to update a capacity reservation.
-   * @param resourceGroupName The name of the resource group.
-   * @param capacityReservationGroupName The name of the capacity reservation group.
-   * @param capacityReservationName The name of the capacity reservation.
-   * @param parameters Parameters supplied to the Update capacity reservation operation.
-   * @param options The options parameters.
+   *
    */
-  beginUpdateAndWait(
-    resourceGroupName: string,
-    capacityReservationGroupName: string,
-    capacityReservationName: string,
-    parameters: CapacityReservationUpdate,
-    options?: CapacityReservationsUpdateOptionalParams
-  ): Promise<CapacityReservationsUpdateResponse>;
+  beginUpdateAndWait(): Promise<CapacityReservationsUpdateResponse>;
   /**
    * The operation to delete a capacity reservation. This operation is allowed only when all the
    * associated resources are disassociated from the capacity reservation. Please refer to
    * https://aka.ms/CapacityReservation for more details.
-   * @param resourceGroupName The name of the resource group.
-   * @param capacityReservationGroupName The name of the capacity reservation group.
-   * @param capacityReservationName The name of the capacity reservation.
-   * @param options The options parameters.
+   *
    */
-  beginDelete(
-    resourceGroupName: string,
-    capacityReservationGroupName: string,
-    capacityReservationName: string,
-    options?: CapacityReservationsDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  beginDelete(): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * The operation to delete a capacity reservation. This operation is allowed only when all the
    * associated resources are disassociated from the capacity reservation. Please refer to
    * https://aka.ms/CapacityReservation for more details.
-   * @param resourceGroupName The name of the resource group.
-   * @param capacityReservationGroupName The name of the capacity reservation group.
-   * @param capacityReservationName The name of the capacity reservation.
-   * @param options The options parameters.
+   *
    */
-  beginDeleteAndWait(
-    resourceGroupName: string,
-    capacityReservationGroupName: string,
-    capacityReservationName: string,
-    options?: CapacityReservationsDeleteOptionalParams
-  ): Promise<void>;
+  beginDeleteAndWait(): Promise<void>;
   /**
    * The operation that retrieves information about the capacity reservation.
-   * @param resourceGroupName The name of the resource group.
-   * @param capacityReservationGroupName The name of the capacity reservation group.
-   * @param capacityReservationName The name of the capacity reservation.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    capacityReservationGroupName: string,
-    capacityReservationName: string,
-    options?: CapacityReservationsGetOptionalParams
-  ): Promise<CapacityReservationsGetResponse>;
+  get(): Promise<CapacityReservationsGetResponse>;
 }

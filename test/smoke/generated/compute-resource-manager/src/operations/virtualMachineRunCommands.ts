@@ -12,25 +12,18 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClient } from "../computeManagementClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   RunCommandDocumentBase,
-  VirtualMachineRunCommandsListNextOptionalParams,
-  VirtualMachineRunCommandsListOptionalParams,
   VirtualMachineRunCommand,
-  VirtualMachineRunCommandsListByVirtualMachineNextOptionalParams,
-  VirtualMachineRunCommandsListByVirtualMachineOptionalParams,
   VirtualMachineRunCommandsListResponse,
-  VirtualMachineRunCommandsGetOptionalParams,
   VirtualMachineRunCommandsGetResponse,
-  VirtualMachineRunCommandsCreateOrUpdateOptionalParams,
+  VirtualMachineRunCommandsCreateOrUpdateApplicationJsonOptionalParams,
+  VirtualMachineRunCommandsCreateOrUpdateTextJsonOptionalParams,
   VirtualMachineRunCommandsCreateOrUpdateResponse,
-  VirtualMachineRunCommandUpdate,
-  VirtualMachineRunCommandsUpdateOptionalParams,
+  VirtualMachineRunCommandsUpdateApplicationJsonOptionalParams,
+  VirtualMachineRunCommandsUpdateTextJsonOptionalParams,
   VirtualMachineRunCommandsUpdateResponse,
-  VirtualMachineRunCommandsDeleteOptionalParams,
-  VirtualMachineRunCommandsGetByVirtualMachineOptionalParams,
   VirtualMachineRunCommandsGetByVirtualMachineResponse,
   VirtualMachineRunCommandsListByVirtualMachineResponse,
   VirtualMachineRunCommandsListNextResponse,
@@ -41,26 +34,18 @@ import {
 /** Class containing VirtualMachineRunCommands operations. */
 export class VirtualMachineRunCommandsImpl
   implements VirtualMachineRunCommands {
-  private readonly client: ComputeManagementClient;
-
   /**
    * Initialize a new instance of the class VirtualMachineRunCommands class.
    * @param client Reference to the service client
    */
-  constructor(client: ComputeManagementClient) {
-    this.client = client;
-  }
+  constructor(client: ComputeManagementClient) {}
 
   /**
    * Lists all available run commands for a subscription in a location.
-   * @param location The location upon which run commands is queried.
-   * @param options The options parameters.
+   *
    */
-  public list(
-    location: string,
-    options?: VirtualMachineRunCommandsListOptionalParams
-  ): PagedAsyncIterableIterator<RunCommandDocumentBase> {
-    const iter = this.listPagingAll(location, options);
+  public list(): PagedAsyncIterableIterator<RunCommandDocumentBase> {
+    const iter = this.listPagingAll();
     return {
       next() {
         return iter.next();
@@ -69,50 +54,40 @@ export class VirtualMachineRunCommandsImpl
         return this;
       },
       byPage: () => {
-        return this.listPagingPage(location, options);
+        return this.listPagingPage();
       }
     };
   }
 
-  private async *listPagingPage(
-    location: string,
-    options?: VirtualMachineRunCommandsListOptionalParams
-  ): AsyncIterableIterator<RunCommandDocumentBase[]> {
-    let result = await this._list(location, options);
+  private async *listPagingPage(): AsyncIterableIterator<
+    RunCommandDocumentBase[]
+  > {
+    let result = await this._list();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listNext(location, continuationToken, options);
+      result = await this._listNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listPagingAll(
-    location: string,
-    options?: VirtualMachineRunCommandsListOptionalParams
-  ): AsyncIterableIterator<RunCommandDocumentBase> {
-    for await (const page of this.listPagingPage(location, options)) {
+  private async *listPagingAll(): AsyncIterableIterator<
+    RunCommandDocumentBase
+  > {
+    for await (const page of this.listPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * The operation to get all run commands of a Virtual Machine.
-   * @param resourceGroupName The name of the resource group.
-   * @param vmName The name of the virtual machine containing the run command.
-   * @param options The options parameters.
+   *
    */
-  public listByVirtualMachine(
-    resourceGroupName: string,
-    vmName: string,
-    options?: VirtualMachineRunCommandsListByVirtualMachineOptionalParams
-  ): PagedAsyncIterableIterator<VirtualMachineRunCommand> {
-    const iter = this.listByVirtualMachinePagingAll(
-      resourceGroupName,
-      vmName,
-      options
-    );
+  public listByVirtualMachine(): PagedAsyncIterableIterator<
+    VirtualMachineRunCommand
+  > {
+    const iter = this.listByVirtualMachinePagingAll();
     return {
       next() {
         return iter.next();
@@ -121,192 +96,106 @@ export class VirtualMachineRunCommandsImpl
         return this;
       },
       byPage: () => {
-        return this.listByVirtualMachinePagingPage(
-          resourceGroupName,
-          vmName,
-          options
-        );
+        return this.listByVirtualMachinePagingPage();
       }
     };
   }
 
-  private async *listByVirtualMachinePagingPage(
-    resourceGroupName: string,
-    vmName: string,
-    options?: VirtualMachineRunCommandsListByVirtualMachineOptionalParams
-  ): AsyncIterableIterator<VirtualMachineRunCommand[]> {
-    let result = await this._listByVirtualMachine(
-      resourceGroupName,
-      vmName,
-      options
-    );
+  private async *listByVirtualMachinePagingPage(): AsyncIterableIterator<
+    VirtualMachineRunCommand[]
+  > {
+    let result = await this._listByVirtualMachine();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listByVirtualMachineNext(
-        resourceGroupName,
-        vmName,
-        continuationToken,
-        options
-      );
+      result = await this._listByVirtualMachineNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listByVirtualMachinePagingAll(
-    resourceGroupName: string,
-    vmName: string,
-    options?: VirtualMachineRunCommandsListByVirtualMachineOptionalParams
-  ): AsyncIterableIterator<VirtualMachineRunCommand> {
-    for await (const page of this.listByVirtualMachinePagingPage(
-      resourceGroupName,
-      vmName,
-      options
-    )) {
+  private async *listByVirtualMachinePagingAll(): AsyncIterableIterator<
+    VirtualMachineRunCommand
+  > {
+    for await (const page of this.listByVirtualMachinePagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Lists all available run commands for a subscription in a location.
-   * @param location The location upon which run commands is queried.
-   * @param options The options parameters.
+   *
    */
-  private _list(
-    location: string,
-    options?: VirtualMachineRunCommandsListOptionalParams
-  ): Promise<VirtualMachineRunCommandsListResponse> {
-    return this.client.sendOperationRequest(
-      { location, options },
-      listOperationSpec
-    );
-  }
+  private _list(): Promise<VirtualMachineRunCommandsListResponse> {}
 
   /**
    * Gets specific run command for a subscription in a location.
-   * @param location The location upon which run commands is queried.
-   * @param commandId The command id.
-   * @param options The options parameters.
+   *
    */
-  get(
-    location: string,
-    commandId: string,
-    options?: VirtualMachineRunCommandsGetOptionalParams
-  ): Promise<VirtualMachineRunCommandsGetResponse> {
-    return this.client.sendOperationRequest(
-      { location, commandId, options },
-      getOperationSpec
-    );
-  }
+  get(): Promise<VirtualMachineRunCommandsGetResponse> {}
 
   /**
    * The operation to create or update the run command.
    * @param resourceGroupName The name of the resource group.
    * @param vmName The name of the virtual machine where the run command should be created or updated.
    * @param runCommandName The name of the virtual machine run command.
-   * @param contentType Body Parameter content-type
-   * @param runCommand Parameters supplied to the Create Virtual Machine RunCommand operation.
    * @param options The options parameters.
    */
-  async beginCreateOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     vmName: string,
     runCommandName: string,
-    contentType: "application/json",
-    runCommand: VirtualMachineRunCommand,
-    options?: VirtualMachineRunCommandsCreateOrUpdateOptionalParams
+    options?: VirtualMachineRunCommandsCreateOrUpdateApplicationJsonOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualMachineRunCommandsCreateOrUpdateResponse>,
       VirtualMachineRunCommandsCreateOrUpdateResponse
     >
-  > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<VirtualMachineRunCommandsCreateOrUpdateResponse> => {
-      return this.client.sendOperationRequest(args, spec);
-    };
-    const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return {
-        flatResponse,
-        rawResponse: {
-          statusCode: currentRawResponse!.status,
-          body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
-      };
-    };
-
-    const lro = new LroImpl(
-      sendOperation,
-      {
-        resourceGroupName,
-        vmName,
-        runCommandName,
-        contentType,
-        runCommand,
-        options
-      },
-      createOrUpdateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
-    });
-    await poller.poll();
-    return poller;
-  }
-
+  >;
   /**
    * The operation to create or update the run command.
    * @param resourceGroupName The name of the resource group.
    * @param vmName The name of the virtual machine where the run command should be created or updated.
    * @param runCommandName The name of the virtual machine run command.
-   * @param contentType Body Parameter content-type
-   * @param runCommand Parameters supplied to the Create Virtual Machine RunCommand operation.
    * @param options The options parameters.
    */
-  async beginCreateOrUpdateAndWait(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     vmName: string,
     runCommandName: string,
-    contentType: "application/json",
-    runCommand: VirtualMachineRunCommand,
-    options?: VirtualMachineRunCommandsCreateOrUpdateOptionalParams
-  ): Promise<VirtualMachineRunCommandsCreateOrUpdateResponse> {
-    const poller = await this.beginCreateOrUpdate(
-      resourceGroupName,
-      vmName,
-      runCommandName,
-      contentType,
-      runCommand,
-      options
-    );
-    return poller.pollUntilDone();
+    options?: VirtualMachineRunCommandsCreateOrUpdateTextJsonOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<VirtualMachineRunCommandsCreateOrUpdateResponse>,
+      VirtualMachineRunCommandsCreateOrUpdateResponse
+    >
+  >;
+  /**
+   * The operation to create or update the run command.
+   *
+   */
+  async beginCreateOrUpdate(): Promise<
+    PollerLike<
+      PollOperationState<VirtualMachineRunCommandsCreateOrUpdateResponse>,
+      VirtualMachineRunCommandsCreateOrUpdateResponse
+    >
+  > {}
+
+  /**
+   * The operation to create or update the run command.
+   *
+   */
+  async beginCreateOrUpdateAndWait(): Promise<
+    VirtualMachineRunCommandsCreateOrUpdateResponse
+  > {
+    if (args[-1] === "application/json") {
+      const poller = await this.beginCreateOrUpdate(...args);
+      return poller.pollUntilDone();
+    } else if (args[-1] === "application/json") {
+      const poller = await this.beginCreateOrUpdate(...args);
+      return poller.pollUntilDone();
+    }
+    throw new Error("Impossible case");
   }
 
   /**
@@ -314,310 +203,112 @@ export class VirtualMachineRunCommandsImpl
    * @param resourceGroupName The name of the resource group.
    * @param vmName The name of the virtual machine where the run command should be updated.
    * @param runCommandName The name of the virtual machine run command.
-   * @param contentType Body Parameter content-type
-   * @param runCommand Parameters supplied to the Update Virtual Machine RunCommand operation.
    * @param options The options parameters.
    */
-  async beginUpdate(
+  beginUpdate(
     resourceGroupName: string,
     vmName: string,
     runCommandName: string,
-    contentType: "application/json",
-    runCommand: VirtualMachineRunCommandUpdate,
-    options?: VirtualMachineRunCommandsUpdateOptionalParams
+    options?: VirtualMachineRunCommandsUpdateApplicationJsonOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualMachineRunCommandsUpdateResponse>,
       VirtualMachineRunCommandsUpdateResponse
     >
-  > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<VirtualMachineRunCommandsUpdateResponse> => {
-      return this.client.sendOperationRequest(args, spec);
-    };
-    const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return {
-        flatResponse,
-        rawResponse: {
-          statusCode: currentRawResponse!.status,
-          body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
-      };
-    };
-
-    const lro = new LroImpl(
-      sendOperation,
-      {
-        resourceGroupName,
-        vmName,
-        runCommandName,
-        contentType,
-        runCommand,
-        options
-      },
-      updateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
-    });
-    await poller.poll();
-    return poller;
-  }
-
+  >;
   /**
    * The operation to update the run command.
    * @param resourceGroupName The name of the resource group.
    * @param vmName The name of the virtual machine where the run command should be updated.
    * @param runCommandName The name of the virtual machine run command.
-   * @param contentType Body Parameter content-type
-   * @param runCommand Parameters supplied to the Update Virtual Machine RunCommand operation.
    * @param options The options parameters.
    */
-  async beginUpdateAndWait(
+  beginUpdate(
     resourceGroupName: string,
     vmName: string,
     runCommandName: string,
-    contentType: "application/json",
-    runCommand: VirtualMachineRunCommandUpdate,
-    options?: VirtualMachineRunCommandsUpdateOptionalParams
-  ): Promise<VirtualMachineRunCommandsUpdateResponse> {
-    const poller = await this.beginUpdate(
-      resourceGroupName,
-      vmName,
-      runCommandName,
-      contentType,
-      runCommand,
-      options
-    );
-    return poller.pollUntilDone();
+    options?: VirtualMachineRunCommandsUpdateTextJsonOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<VirtualMachineRunCommandsUpdateResponse>,
+      VirtualMachineRunCommandsUpdateResponse
+    >
+  >;
+  /**
+   * The operation to update the run command.
+   *
+   */
+  async beginUpdate(): Promise<
+    PollerLike<
+      PollOperationState<VirtualMachineRunCommandsUpdateResponse>,
+      VirtualMachineRunCommandsUpdateResponse
+    >
+  > {}
+
+  /**
+   * The operation to update the run command.
+   *
+   */
+  async beginUpdateAndWait(): Promise<VirtualMachineRunCommandsUpdateResponse> {
+    if (args[-1] === "application/json") {
+      const poller = await this.beginUpdate(...args);
+      return poller.pollUntilDone();
+    } else if (args[-1] === "application/json") {
+      const poller = await this.beginUpdate(...args);
+      return poller.pollUntilDone();
+    }
+    throw new Error("Impossible case");
   }
 
   /**
    * The operation to delete the run command.
-   * @param resourceGroupName The name of the resource group.
-   * @param vmName The name of the virtual machine where the run command should be deleted.
-   * @param runCommandName The name of the virtual machine run command.
-   * @param options The options parameters.
+   *
    */
-  async beginDelete(
-    resourceGroupName: string,
-    vmName: string,
-    runCommandName: string,
-    options?: VirtualMachineRunCommandsDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<void> => {
-      return this.client.sendOperationRequest(args, spec);
-    };
-    const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return {
-        flatResponse,
-        rawResponse: {
-          statusCode: currentRawResponse!.status,
-          body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
-      };
-    };
-
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, vmName, runCommandName, options },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
-    });
-    await poller.poll();
-    return poller;
-  }
+  async beginDelete(): Promise<PollerLike<PollOperationState<void>, void>> {}
 
   /**
    * The operation to delete the run command.
-   * @param resourceGroupName The name of the resource group.
-   * @param vmName The name of the virtual machine where the run command should be deleted.
-   * @param runCommandName The name of the virtual machine run command.
-   * @param options The options parameters.
+   *
    */
-  async beginDeleteAndWait(
-    resourceGroupName: string,
-    vmName: string,
-    runCommandName: string,
-    options?: VirtualMachineRunCommandsDeleteOptionalParams
-  ): Promise<void> {
-    const poller = await this.beginDelete(
-      resourceGroupName,
-      vmName,
-      runCommandName,
-      options
-    );
+  async beginDeleteAndWait(): Promise<void> {
+    const poller = await this.beginDelete();
     return poller.pollUntilDone();
   }
 
   /**
    * The operation to get the run command.
-   * @param resourceGroupName The name of the resource group.
-   * @param vmName The name of the virtual machine containing the run command.
-   * @param runCommandName The name of the virtual machine run command.
-   * @param options The options parameters.
+   *
    */
-  getByVirtualMachine(
-    resourceGroupName: string,
-    vmName: string,
-    runCommandName: string,
-    options?: VirtualMachineRunCommandsGetByVirtualMachineOptionalParams
-  ): Promise<VirtualMachineRunCommandsGetByVirtualMachineResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, vmName, runCommandName, options },
-      getByVirtualMachineOperationSpec
-    );
-  }
+  getByVirtualMachine(): Promise<
+    VirtualMachineRunCommandsGetByVirtualMachineResponse
+  > {}
 
   /**
    * The operation to get all run commands of a Virtual Machine.
-   * @param resourceGroupName The name of the resource group.
-   * @param vmName The name of the virtual machine containing the run command.
-   * @param options The options parameters.
+   *
    */
-  private _listByVirtualMachine(
-    resourceGroupName: string,
-    vmName: string,
-    options?: VirtualMachineRunCommandsListByVirtualMachineOptionalParams
-  ): Promise<VirtualMachineRunCommandsListByVirtualMachineResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, vmName, options },
-      listByVirtualMachineOperationSpec
-    );
-  }
+  private _listByVirtualMachine(): Promise<
+    VirtualMachineRunCommandsListByVirtualMachineResponse
+  > {}
 
   /**
    * ListNext
-   * @param location The location upon which run commands is queried.
-   * @param nextLink The nextLink from the previous successful call to the List method.
-   * @param options The options parameters.
+   *
    */
-  private _listNext(
-    location: string,
-    nextLink: string,
-    options?: VirtualMachineRunCommandsListNextOptionalParams
-  ): Promise<VirtualMachineRunCommandsListNextResponse> {
-    return this.client.sendOperationRequest(
-      { location, nextLink, options },
-      listNextOperationSpec
-    );
-  }
+  private _listNext(): Promise<VirtualMachineRunCommandsListNextResponse> {}
 
   /**
    * ListByVirtualMachineNext
-   * @param resourceGroupName The name of the resource group.
-   * @param vmName The name of the virtual machine containing the run command.
-   * @param nextLink The nextLink from the previous successful call to the ListByVirtualMachine method.
-   * @param options The options parameters.
+   *
    */
-  private _listByVirtualMachineNext(
-    resourceGroupName: string,
-    vmName: string,
-    nextLink: string,
-    options?: VirtualMachineRunCommandsListByVirtualMachineNextOptionalParams
-  ): Promise<VirtualMachineRunCommandsListByVirtualMachineNextResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, vmName, nextLink, options },
-      listByVirtualMachineNextOperationSpec
-    );
-  }
+  private _listByVirtualMachineNext(): Promise<
+    VirtualMachineRunCommandsListByVirtualMachineNextResponse
+  > {}
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/runCommands",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.RunCommandListResult
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.location1
-  ],
-  headerParameters: [Parameters.accept1],
-  serializer
-};
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/runCommands/{commandId}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.RunCommandDocument
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.location1,
-    Parameters.commandId
-  ],
-  headerParameters: [Parameters.accept1],
-  serializer
-};
-const createOrUpdateOperationSpec: coreClient.OperationSpec = {
+const createOrUpdate$jsonOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/runCommands/{runCommandName}",
   httpMethod: "PUT",
@@ -651,7 +342,7 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const updateOperationSpec: coreClient.OperationSpec = {
+const update$jsonOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/runCommands/{runCommandName}",
   httpMethod: "PATCH",
@@ -683,114 +374,5 @@ const updateOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.contentType1, Parameters.accept1],
   mediaType: "json",
-  serializer
-};
-const deleteOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/runCommands/{runCommandName}",
-  httpMethod: "DELETE",
-  responses: {
-    200: {},
-    201: {},
-    202: {},
-    204: {},
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId,
-    Parameters.vmName,
-    Parameters.runCommandName
-  ],
-  headerParameters: [Parameters.accept1],
-  serializer
-};
-const getByVirtualMachineOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/runCommands/{runCommandName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.VirtualMachineRunCommand
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.expand],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId,
-    Parameters.vmName,
-    Parameters.runCommandName
-  ],
-  headerParameters: [Parameters.accept1],
-  serializer
-};
-const listByVirtualMachineOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/runCommands",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.VirtualMachineRunCommandsListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.expand],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId,
-    Parameters.vmName
-  ],
-  headerParameters: [Parameters.accept1],
-  serializer
-};
-const listNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.RunCommandListResult
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.nextLink,
-    Parameters.location1
-  ],
-  headerParameters: [Parameters.accept1],
-  serializer
-};
-const listByVirtualMachineNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.VirtualMachineRunCommandsListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.expand],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId,
-    Parameters.nextLink,
-    Parameters.vmName
-  ],
-  headerParameters: [Parameters.accept1],
   serializer
 };

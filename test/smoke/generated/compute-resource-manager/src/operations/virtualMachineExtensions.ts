@@ -14,16 +14,9 @@ import { ComputeManagementClient } from "../computeManagementClient";
 import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
-  VirtualMachineExtension,
-  VirtualMachineExtensionsCreateOrUpdateOptionalParams,
   VirtualMachineExtensionsCreateOrUpdateResponse,
-  VirtualMachineExtensionUpdate,
-  VirtualMachineExtensionsUpdateOptionalParams,
   VirtualMachineExtensionsUpdateResponse,
-  VirtualMachineExtensionsDeleteOptionalParams,
-  VirtualMachineExtensionsGetOptionalParams,
   VirtualMachineExtensionsGetResponse,
-  VirtualMachineExtensionsListOptionalParams,
   VirtualMachineExtensionsListResponse
 } from "../models";
 
@@ -41,19 +34,9 @@ export class VirtualMachineExtensionsImpl implements VirtualMachineExtensions {
 
   /**
    * The operation to create or update the extension.
-   * @param resourceGroupName The name of the resource group.
-   * @param vmName The name of the virtual machine where the extension should be created or updated.
-   * @param vmExtensionName The name of the virtual machine extension.
-   * @param extensionParameters Parameters supplied to the Create Virtual Machine Extension operation.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdate(
-    resourceGroupName: string,
-    vmName: string,
-    vmExtensionName: string,
-    extensionParameters: VirtualMachineExtension,
-    options?: VirtualMachineExtensionsCreateOrUpdateOptionalParams
-  ): Promise<
+  async beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<VirtualMachineExtensionsCreateOrUpdateResponse>,
       VirtualMachineExtensionsCreateOrUpdateResponse
@@ -100,13 +83,7 @@ export class VirtualMachineExtensionsImpl implements VirtualMachineExtensions {
 
     const lro = new LroImpl(
       sendOperation,
-      {
-        resourceGroupName,
-        vmName,
-        vmExtensionName,
-        extensionParameters,
-        options
-      },
+      { resourceGroupName, vmName, vmExtensionName, options },
       createOrUpdateOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -119,44 +96,20 @@ export class VirtualMachineExtensionsImpl implements VirtualMachineExtensions {
 
   /**
    * The operation to create or update the extension.
-   * @param resourceGroupName The name of the resource group.
-   * @param vmName The name of the virtual machine where the extension should be created or updated.
-   * @param vmExtensionName The name of the virtual machine extension.
-   * @param extensionParameters Parameters supplied to the Create Virtual Machine Extension operation.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    vmName: string,
-    vmExtensionName: string,
-    extensionParameters: VirtualMachineExtension,
-    options?: VirtualMachineExtensionsCreateOrUpdateOptionalParams
-  ): Promise<VirtualMachineExtensionsCreateOrUpdateResponse> {
-    const poller = await this.beginCreateOrUpdate(
-      resourceGroupName,
-      vmName,
-      vmExtensionName,
-      extensionParameters,
-      options
-    );
+  async beginCreateOrUpdateAndWait(): Promise<
+    VirtualMachineExtensionsCreateOrUpdateResponse
+  > {
+    const poller = await this.beginCreateOrUpdate();
     return poller.pollUntilDone();
   }
 
   /**
    * The operation to update the extension.
-   * @param resourceGroupName The name of the resource group.
-   * @param vmName The name of the virtual machine where the extension should be updated.
-   * @param vmExtensionName The name of the virtual machine extension.
-   * @param extensionParameters Parameters supplied to the Update Virtual Machine Extension operation.
-   * @param options The options parameters.
+   *
    */
-  async beginUpdate(
-    resourceGroupName: string,
-    vmName: string,
-    vmExtensionName: string,
-    extensionParameters: VirtualMachineExtensionUpdate,
-    options?: VirtualMachineExtensionsUpdateOptionalParams
-  ): Promise<
+  async beginUpdate(): Promise<
     PollerLike<
       PollOperationState<VirtualMachineExtensionsUpdateResponse>,
       VirtualMachineExtensionsUpdateResponse
@@ -203,13 +156,7 @@ export class VirtualMachineExtensionsImpl implements VirtualMachineExtensions {
 
     const lro = new LroImpl(
       sendOperation,
-      {
-        resourceGroupName,
-        vmName,
-        vmExtensionName,
-        extensionParameters,
-        options
-      },
+      { resourceGroupName, vmName, vmExtensionName, options },
       updateOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -222,151 +169,39 @@ export class VirtualMachineExtensionsImpl implements VirtualMachineExtensions {
 
   /**
    * The operation to update the extension.
-   * @param resourceGroupName The name of the resource group.
-   * @param vmName The name of the virtual machine where the extension should be updated.
-   * @param vmExtensionName The name of the virtual machine extension.
-   * @param extensionParameters Parameters supplied to the Update Virtual Machine Extension operation.
-   * @param options The options parameters.
+   *
    */
-  async beginUpdateAndWait(
-    resourceGroupName: string,
-    vmName: string,
-    vmExtensionName: string,
-    extensionParameters: VirtualMachineExtensionUpdate,
-    options?: VirtualMachineExtensionsUpdateOptionalParams
-  ): Promise<VirtualMachineExtensionsUpdateResponse> {
-    const poller = await this.beginUpdate(
-      resourceGroupName,
-      vmName,
-      vmExtensionName,
-      extensionParameters,
-      options
-    );
+  async beginUpdateAndWait(): Promise<VirtualMachineExtensionsUpdateResponse> {
+    const poller = await this.beginUpdate();
     return poller.pollUntilDone();
   }
 
   /**
    * The operation to delete the extension.
-   * @param resourceGroupName The name of the resource group.
-   * @param vmName The name of the virtual machine where the extension should be deleted.
-   * @param vmExtensionName The name of the virtual machine extension.
-   * @param options The options parameters.
+   *
    */
-  async beginDelete(
-    resourceGroupName: string,
-    vmName: string,
-    vmExtensionName: string,
-    options?: VirtualMachineExtensionsDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<void> => {
-      return this.client.sendOperationRequest(args, spec);
-    };
-    const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return {
-        flatResponse,
-        rawResponse: {
-          statusCode: currentRawResponse!.status,
-          body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
-      };
-    };
-
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, vmName, vmExtensionName, options },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
-    });
-    await poller.poll();
-    return poller;
-  }
+  async beginDelete(): Promise<PollerLike<PollOperationState<void>, void>> {}
 
   /**
    * The operation to delete the extension.
-   * @param resourceGroupName The name of the resource group.
-   * @param vmName The name of the virtual machine where the extension should be deleted.
-   * @param vmExtensionName The name of the virtual machine extension.
-   * @param options The options parameters.
+   *
    */
-  async beginDeleteAndWait(
-    resourceGroupName: string,
-    vmName: string,
-    vmExtensionName: string,
-    options?: VirtualMachineExtensionsDeleteOptionalParams
-  ): Promise<void> {
-    const poller = await this.beginDelete(
-      resourceGroupName,
-      vmName,
-      vmExtensionName,
-      options
-    );
+  async beginDeleteAndWait(): Promise<void> {
+    const poller = await this.beginDelete();
     return poller.pollUntilDone();
   }
 
   /**
    * The operation to get the extension.
-   * @param resourceGroupName The name of the resource group.
-   * @param vmName The name of the virtual machine containing the extension.
-   * @param vmExtensionName The name of the virtual machine extension.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    vmName: string,
-    vmExtensionName: string,
-    options?: VirtualMachineExtensionsGetOptionalParams
-  ): Promise<VirtualMachineExtensionsGetResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, vmName, vmExtensionName, options },
-      getOperationSpec
-    );
-  }
+  get(): Promise<VirtualMachineExtensionsGetResponse> {}
 
   /**
    * The operation to get all extensions of a Virtual Machine.
-   * @param resourceGroupName The name of the resource group.
-   * @param vmName The name of the virtual machine containing the extension.
-   * @param options The options parameters.
+   *
    */
-  list(
-    resourceGroupName: string,
-    vmName: string,
-    options?: VirtualMachineExtensionsListOptionalParams
-  ): Promise<VirtualMachineExtensionsListResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, vmName, options },
-      listOperationSpec
-    );
-  }
+  list(): Promise<VirtualMachineExtensionsListResponse> {}
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
@@ -431,59 +266,5 @@ const updateOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const deleteOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/extensions/{vmExtensionName}",
-  httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId,
-    Parameters.vmName,
-    Parameters.vmExtensionName
-  ],
-  serializer
-};
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/extensions/{vmExtensionName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.VirtualMachineExtension
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.expand],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId,
-    Parameters.vmName,
-    Parameters.vmExtensionName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/extensions",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.VirtualMachineExtensionsListResult
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.expand],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId,
-    Parameters.vmName
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };

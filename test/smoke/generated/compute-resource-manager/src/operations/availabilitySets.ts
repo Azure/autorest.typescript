@@ -14,19 +14,9 @@ import * as Parameters from "../models/parameters";
 import { ComputeManagementClient } from "../computeManagementClient";
 import {
   AvailabilitySet,
-  AvailabilitySetsListBySubscriptionNextOptionalParams,
-  AvailabilitySetsListBySubscriptionOptionalParams,
-  AvailabilitySetsListNextOptionalParams,
-  AvailabilitySetsListOptionalParams,
   VirtualMachineSize,
-  AvailabilitySetsListAvailableSizesOptionalParams,
-  AvailabilitySetsCreateOrUpdateOptionalParams,
   AvailabilitySetsCreateOrUpdateResponse,
-  AvailabilitySetUpdate,
-  AvailabilitySetsUpdateOptionalParams,
   AvailabilitySetsUpdateResponse,
-  AvailabilitySetsDeleteOptionalParams,
-  AvailabilitySetsGetOptionalParams,
   AvailabilitySetsGetResponse,
   AvailabilitySetsListBySubscriptionResponse,
   AvailabilitySetsListResponse,
@@ -50,12 +40,10 @@ export class AvailabilitySetsImpl implements AvailabilitySets {
 
   /**
    * Lists all availability sets in a subscription.
-   * @param options The options parameters.
+   *
    */
-  public listBySubscription(
-    options?: AvailabilitySetsListBySubscriptionOptionalParams
-  ): PagedAsyncIterableIterator<AvailabilitySet> {
-    const iter = this.listBySubscriptionPagingAll(options);
+  public listBySubscription(): PagedAsyncIterableIterator<AvailabilitySet> {
+    const iter = this.listBySubscriptionPagingAll();
     return {
       next() {
         return iter.next();
@@ -64,42 +52,38 @@ export class AvailabilitySetsImpl implements AvailabilitySets {
         return this;
       },
       byPage: () => {
-        return this.listBySubscriptionPagingPage(options);
+        return this.listBySubscriptionPagingPage();
       }
     };
   }
 
-  private async *listBySubscriptionPagingPage(
-    options?: AvailabilitySetsListBySubscriptionOptionalParams
-  ): AsyncIterableIterator<AvailabilitySet[]> {
-    let result = await this._listBySubscription(options);
+  private async *listBySubscriptionPagingPage(): AsyncIterableIterator<
+    AvailabilitySet[]
+  > {
+    let result = await this._listBySubscription();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listBySubscriptionNext(continuationToken, options);
+      result = await this._listBySubscriptionNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listBySubscriptionPagingAll(
-    options?: AvailabilitySetsListBySubscriptionOptionalParams
-  ): AsyncIterableIterator<AvailabilitySet> {
-    for await (const page of this.listBySubscriptionPagingPage(options)) {
+  private async *listBySubscriptionPagingAll(): AsyncIterableIterator<
+    AvailabilitySet
+  > {
+    for await (const page of this.listBySubscriptionPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Lists all availability sets in a resource group.
-   * @param resourceGroupName The name of the resource group.
-   * @param options The options parameters.
+   *
    */
-  public list(
-    resourceGroupName: string,
-    options?: AvailabilitySetsListOptionalParams
-  ): PagedAsyncIterableIterator<AvailabilitySet> {
-    const iter = this.listPagingAll(resourceGroupName, options);
+  public list(): PagedAsyncIterableIterator<AvailabilitySet> {
+    const iter = this.listPagingAll();
     return {
       next() {
         return iter.next();
@@ -108,34 +92,24 @@ export class AvailabilitySetsImpl implements AvailabilitySets {
         return this;
       },
       byPage: () => {
-        return this.listPagingPage(resourceGroupName, options);
+        return this.listPagingPage();
       }
     };
   }
 
-  private async *listPagingPage(
-    resourceGroupName: string,
-    options?: AvailabilitySetsListOptionalParams
-  ): AsyncIterableIterator<AvailabilitySet[]> {
-    let result = await this._list(resourceGroupName, options);
+  private async *listPagingPage(): AsyncIterableIterator<AvailabilitySet[]> {
+    let result = await this._list();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listNext(
-        resourceGroupName,
-        continuationToken,
-        options
-      );
+      result = await this._listNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listPagingAll(
-    resourceGroupName: string,
-    options?: AvailabilitySetsListOptionalParams
-  ): AsyncIterableIterator<AvailabilitySet> {
-    for await (const page of this.listPagingPage(resourceGroupName, options)) {
+  private async *listPagingAll(): AsyncIterableIterator<AvailabilitySet> {
+    for await (const page of this.listPagingPage()) {
       yield* page;
     }
   }
@@ -143,20 +117,10 @@ export class AvailabilitySetsImpl implements AvailabilitySets {
   /**
    * Lists all available virtual machine sizes that can be used to create a new virtual machine in an
    * existing availability set.
-   * @param resourceGroupName The name of the resource group.
-   * @param availabilitySetName The name of the availability set.
-   * @param options The options parameters.
+   *
    */
-  public listAvailableSizes(
-    resourceGroupName: string,
-    availabilitySetName: string,
-    options?: AvailabilitySetsListAvailableSizesOptionalParams
-  ): PagedAsyncIterableIterator<VirtualMachineSize> {
-    const iter = this.listAvailableSizesPagingAll(
-      resourceGroupName,
-      availabilitySetName,
-      options
-    );
+  public listAvailableSizes(): PagedAsyncIterableIterator<VirtualMachineSize> {
+    const iter = this.listAvailableSizesPagingAll();
     return {
       next() {
         return iter.next();
@@ -165,191 +129,96 @@ export class AvailabilitySetsImpl implements AvailabilitySets {
         return this;
       },
       byPage: () => {
-        return this.listAvailableSizesPagingPage(
-          resourceGroupName,
-          availabilitySetName,
-          options
-        );
+        return this.listAvailableSizesPagingPage();
       }
     };
   }
 
-  private async *listAvailableSizesPagingPage(
-    resourceGroupName: string,
-    availabilitySetName: string,
-    options?: AvailabilitySetsListAvailableSizesOptionalParams
-  ): AsyncIterableIterator<VirtualMachineSize[]> {
-    let result = await this._listAvailableSizes(
-      resourceGroupName,
-      availabilitySetName,
-      options
-    );
+  private async *listAvailableSizesPagingPage(): AsyncIterableIterator<
+    VirtualMachineSize[]
+  > {
+    let result = await this._listAvailableSizes();
     yield result.value || [];
   }
 
-  private async *listAvailableSizesPagingAll(
-    resourceGroupName: string,
-    availabilitySetName: string,
-    options?: AvailabilitySetsListAvailableSizesOptionalParams
-  ): AsyncIterableIterator<VirtualMachineSize> {
-    for await (const page of this.listAvailableSizesPagingPage(
-      resourceGroupName,
-      availabilitySetName,
-      options
-    )) {
+  private async *listAvailableSizesPagingAll(): AsyncIterableIterator<
+    VirtualMachineSize
+  > {
+    for await (const page of this.listAvailableSizesPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Create or update an availability set.
-   * @param resourceGroupName The name of the resource group.
-   * @param availabilitySetName The name of the availability set.
-   * @param parameters Parameters supplied to the Create Availability Set operation.
-   * @param options The options parameters.
+   *
    */
-  createOrUpdate(
-    resourceGroupName: string,
-    availabilitySetName: string,
-    parameters: AvailabilitySet,
-    options?: AvailabilitySetsCreateOrUpdateOptionalParams
-  ): Promise<AvailabilitySetsCreateOrUpdateResponse> {
+  createOrUpdate(): Promise<AvailabilitySetsCreateOrUpdateResponse> {
     return this.client.sendOperationRequest(
-      { resourceGroupName, availabilitySetName, parameters, options },
+      { resourceGroupName, availabilitySetName, options },
       createOrUpdateOperationSpec
     );
   }
 
   /**
    * Update an availability set.
-   * @param resourceGroupName The name of the resource group.
-   * @param availabilitySetName The name of the availability set.
-   * @param parameters Parameters supplied to the Update Availability Set operation.
-   * @param options The options parameters.
+   *
    */
-  update(
-    resourceGroupName: string,
-    availabilitySetName: string,
-    parameters: AvailabilitySetUpdate,
-    options?: AvailabilitySetsUpdateOptionalParams
-  ): Promise<AvailabilitySetsUpdateResponse> {
+  update(): Promise<AvailabilitySetsUpdateResponse> {
     return this.client.sendOperationRequest(
-      { resourceGroupName, availabilitySetName, parameters, options },
+      { resourceGroupName, availabilitySetName, options },
       updateOperationSpec
     );
   }
 
   /**
    * Delete an availability set.
-   * @param resourceGroupName The name of the resource group.
-   * @param availabilitySetName The name of the availability set.
-   * @param options The options parameters.
+   *
    */
-  delete(
-    resourceGroupName: string,
-    availabilitySetName: string,
-    options?: AvailabilitySetsDeleteOptionalParams
-  ): Promise<void> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, availabilitySetName, options },
-      deleteOperationSpec
-    );
-  }
+  delete(): Promise<void> {}
 
   /**
    * Retrieves information about an availability set.
-   * @param resourceGroupName The name of the resource group.
-   * @param availabilitySetName The name of the availability set.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    availabilitySetName: string,
-    options?: AvailabilitySetsGetOptionalParams
-  ): Promise<AvailabilitySetsGetResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, availabilitySetName, options },
-      getOperationSpec
-    );
-  }
+  get(): Promise<AvailabilitySetsGetResponse> {}
 
   /**
    * Lists all availability sets in a subscription.
-   * @param options The options parameters.
+   *
    */
-  private _listBySubscription(
-    options?: AvailabilitySetsListBySubscriptionOptionalParams
-  ): Promise<AvailabilitySetsListBySubscriptionResponse> {
-    return this.client.sendOperationRequest(
-      { options },
-      listBySubscriptionOperationSpec
-    );
-  }
+  private _listBySubscription(): Promise<
+    AvailabilitySetsListBySubscriptionResponse
+  > {}
 
   /**
    * Lists all availability sets in a resource group.
-   * @param resourceGroupName The name of the resource group.
-   * @param options The options parameters.
+   *
    */
-  private _list(
-    resourceGroupName: string,
-    options?: AvailabilitySetsListOptionalParams
-  ): Promise<AvailabilitySetsListResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, options },
-      listOperationSpec
-    );
-  }
+  private _list(): Promise<AvailabilitySetsListResponse> {}
 
   /**
    * Lists all available virtual machine sizes that can be used to create a new virtual machine in an
    * existing availability set.
-   * @param resourceGroupName The name of the resource group.
-   * @param availabilitySetName The name of the availability set.
-   * @param options The options parameters.
+   *
    */
-  private _listAvailableSizes(
-    resourceGroupName: string,
-    availabilitySetName: string,
-    options?: AvailabilitySetsListAvailableSizesOptionalParams
-  ): Promise<AvailabilitySetsListAvailableSizesResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, availabilitySetName, options },
-      listAvailableSizesOperationSpec
-    );
-  }
+  private _listAvailableSizes(): Promise<
+    AvailabilitySetsListAvailableSizesResponse
+  > {}
 
   /**
    * ListBySubscriptionNext
-   * @param nextLink The nextLink from the previous successful call to the ListBySubscription method.
-   * @param options The options parameters.
+   *
    */
-  private _listBySubscriptionNext(
-    nextLink: string,
-    options?: AvailabilitySetsListBySubscriptionNextOptionalParams
-  ): Promise<AvailabilitySetsListBySubscriptionNextResponse> {
-    return this.client.sendOperationRequest(
-      { nextLink, options },
-      listBySubscriptionNextOperationSpec
-    );
-  }
+  private _listBySubscriptionNext(): Promise<
+    AvailabilitySetsListBySubscriptionNextResponse
+  > {}
 
   /**
    * ListNext
-   * @param resourceGroupName The name of the resource group.
-   * @param nextLink The nextLink from the previous successful call to the List method.
-   * @param options The options parameters.
+   *
    */
-  private _listNext(
-    resourceGroupName: string,
-    nextLink: string,
-    options?: AvailabilitySetsListNextOptionalParams
-  ): Promise<AvailabilitySetsListNextResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options },
-      listNextOperationSpec
-    );
-  }
+  private _listNext(): Promise<AvailabilitySetsListNextResponse> {}
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
@@ -394,124 +263,5 @@ const updateOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const deleteOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/availabilitySets/{availabilitySetName}",
-  httpMethod: "DELETE",
-  responses: { 200: {}, 204: {} },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.availabilitySetName,
-    Parameters.subscriptionId
-  ],
-  serializer
-};
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/availabilitySets/{availabilitySetName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.AvailabilitySet
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.availabilitySetName,
-    Parameters.subscriptionId
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listBySubscriptionOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/availabilitySets",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.AvailabilitySetListResult
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.expand],
-  urlParameters: [Parameters.$host, Parameters.subscriptionId],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/availabilitySets",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.AvailabilitySetListResult
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listAvailableSizesOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/availabilitySets/{availabilitySetName}/vmSizes",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.VirtualMachineSizeListResult
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.availabilitySetName,
-    Parameters.subscriptionId
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listBySubscriptionNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.AvailabilitySetListResult
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.expand],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.nextLink
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.AvailabilitySetListResult
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId,
-    Parameters.nextLink
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };

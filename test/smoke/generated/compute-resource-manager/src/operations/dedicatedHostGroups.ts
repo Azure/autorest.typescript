@@ -14,17 +14,8 @@ import * as Parameters from "../models/parameters";
 import { ComputeManagementClient } from "../computeManagementClient";
 import {
   DedicatedHostGroup,
-  DedicatedHostGroupsListByResourceGroupNextOptionalParams,
-  DedicatedHostGroupsListByResourceGroupOptionalParams,
-  DedicatedHostGroupsListBySubscriptionNextOptionalParams,
-  DedicatedHostGroupsListBySubscriptionOptionalParams,
-  DedicatedHostGroupsCreateOrUpdateOptionalParams,
   DedicatedHostGroupsCreateOrUpdateResponse,
-  DedicatedHostGroupUpdate,
-  DedicatedHostGroupsUpdateOptionalParams,
   DedicatedHostGroupsUpdateResponse,
-  DedicatedHostGroupsDeleteOptionalParams,
-  DedicatedHostGroupsGetOptionalParams,
   DedicatedHostGroupsGetResponse,
   DedicatedHostGroupsListByResourceGroupResponse,
   DedicatedHostGroupsListBySubscriptionResponse,
@@ -48,14 +39,10 @@ export class DedicatedHostGroupsImpl implements DedicatedHostGroups {
   /**
    * Lists all of the dedicated host groups in the specified resource group. Use the nextLink property in
    * the response to get the next page of dedicated host groups.
-   * @param resourceGroupName The name of the resource group.
-   * @param options The options parameters.
+   *
    */
-  public listByResourceGroup(
-    resourceGroupName: string,
-    options?: DedicatedHostGroupsListByResourceGroupOptionalParams
-  ): PagedAsyncIterableIterator<DedicatedHostGroup> {
-    const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
+  public listByResourceGroup(): PagedAsyncIterableIterator<DedicatedHostGroup> {
+    const iter = this.listByResourceGroupPagingAll();
     return {
       next() {
         return iter.next();
@@ -64,37 +51,28 @@ export class DedicatedHostGroupsImpl implements DedicatedHostGroups {
         return this;
       },
       byPage: () => {
-        return this.listByResourceGroupPagingPage(resourceGroupName, options);
+        return this.listByResourceGroupPagingPage();
       }
     };
   }
 
-  private async *listByResourceGroupPagingPage(
-    resourceGroupName: string,
-    options?: DedicatedHostGroupsListByResourceGroupOptionalParams
-  ): AsyncIterableIterator<DedicatedHostGroup[]> {
-    let result = await this._listByResourceGroup(resourceGroupName, options);
+  private async *listByResourceGroupPagingPage(): AsyncIterableIterator<
+    DedicatedHostGroup[]
+  > {
+    let result = await this._listByResourceGroup();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listByResourceGroupNext(
-        resourceGroupName,
-        continuationToken,
-        options
-      );
+      result = await this._listByResourceGroupNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listByResourceGroupPagingAll(
-    resourceGroupName: string,
-    options?: DedicatedHostGroupsListByResourceGroupOptionalParams
-  ): AsyncIterableIterator<DedicatedHostGroup> {
-    for await (const page of this.listByResourceGroupPagingPage(
-      resourceGroupName,
-      options
-    )) {
+  private async *listByResourceGroupPagingAll(): AsyncIterableIterator<
+    DedicatedHostGroup
+  > {
+    for await (const page of this.listByResourceGroupPagingPage()) {
       yield* page;
     }
   }
@@ -102,12 +80,10 @@ export class DedicatedHostGroupsImpl implements DedicatedHostGroups {
   /**
    * Lists all of the dedicated host groups in the subscription. Use the nextLink property in the
    * response to get the next page of dedicated host groups.
-   * @param options The options parameters.
+   *
    */
-  public listBySubscription(
-    options?: DedicatedHostGroupsListBySubscriptionOptionalParams
-  ): PagedAsyncIterableIterator<DedicatedHostGroup> {
-    const iter = this.listBySubscriptionPagingAll(options);
+  public listBySubscription(): PagedAsyncIterableIterator<DedicatedHostGroup> {
+    const iter = this.listBySubscriptionPagingAll();
     return {
       next() {
         return iter.next();
@@ -116,28 +92,28 @@ export class DedicatedHostGroupsImpl implements DedicatedHostGroups {
         return this;
       },
       byPage: () => {
-        return this.listBySubscriptionPagingPage(options);
+        return this.listBySubscriptionPagingPage();
       }
     };
   }
 
-  private async *listBySubscriptionPagingPage(
-    options?: DedicatedHostGroupsListBySubscriptionOptionalParams
-  ): AsyncIterableIterator<DedicatedHostGroup[]> {
-    let result = await this._listBySubscription(options);
+  private async *listBySubscriptionPagingPage(): AsyncIterableIterator<
+    DedicatedHostGroup[]
+  > {
+    let result = await this._listBySubscription();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listBySubscriptionNext(continuationToken, options);
+      result = await this._listBySubscriptionNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listBySubscriptionPagingAll(
-    options?: DedicatedHostGroupsListBySubscriptionOptionalParams
-  ): AsyncIterableIterator<DedicatedHostGroup> {
-    for await (const page of this.listBySubscriptionPagingPage(options)) {
+  private async *listBySubscriptionPagingAll(): AsyncIterableIterator<
+    DedicatedHostGroup
+  > {
+    for await (const page of this.listBySubscriptionPagingPage()) {
       yield* page;
     }
   }
@@ -145,137 +121,71 @@ export class DedicatedHostGroupsImpl implements DedicatedHostGroups {
   /**
    * Create or update a dedicated host group. For details of Dedicated Host and Dedicated Host Groups
    * please see [Dedicated Host Documentation] (https://go.microsoft.com/fwlink/?linkid=2082596)
-   * @param resourceGroupName The name of the resource group.
-   * @param hostGroupName The name of the dedicated host group.
-   * @param parameters Parameters supplied to the Create Dedicated Host Group.
-   * @param options The options parameters.
+   *
    */
-  createOrUpdate(
-    resourceGroupName: string,
-    hostGroupName: string,
-    parameters: DedicatedHostGroup,
-    options?: DedicatedHostGroupsCreateOrUpdateOptionalParams
-  ): Promise<DedicatedHostGroupsCreateOrUpdateResponse> {
+  createOrUpdate(): Promise<DedicatedHostGroupsCreateOrUpdateResponse> {
     return this.client.sendOperationRequest(
-      { resourceGroupName, hostGroupName, parameters, options },
+      { resourceGroupName, hostGroupName, options },
       createOrUpdateOperationSpec
     );
   }
 
   /**
    * Update an dedicated host group.
-   * @param resourceGroupName The name of the resource group.
-   * @param hostGroupName The name of the dedicated host group.
-   * @param parameters Parameters supplied to the Update Dedicated Host Group operation.
-   * @param options The options parameters.
+   *
    */
-  update(
-    resourceGroupName: string,
-    hostGroupName: string,
-    parameters: DedicatedHostGroupUpdate,
-    options?: DedicatedHostGroupsUpdateOptionalParams
-  ): Promise<DedicatedHostGroupsUpdateResponse> {
+  update(): Promise<DedicatedHostGroupsUpdateResponse> {
     return this.client.sendOperationRequest(
-      { resourceGroupName, hostGroupName, parameters, options },
+      { resourceGroupName, hostGroupName, options },
       updateOperationSpec
     );
   }
 
   /**
    * Delete a dedicated host group.
-   * @param resourceGroupName The name of the resource group.
-   * @param hostGroupName The name of the dedicated host group.
-   * @param options The options parameters.
+   *
    */
-  delete(
-    resourceGroupName: string,
-    hostGroupName: string,
-    options?: DedicatedHostGroupsDeleteOptionalParams
-  ): Promise<void> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, hostGroupName, options },
-      deleteOperationSpec
-    );
-  }
+  delete(): Promise<void> {}
 
   /**
    * Retrieves information about a dedicated host group.
-   * @param resourceGroupName The name of the resource group.
-   * @param hostGroupName The name of the dedicated host group.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    hostGroupName: string,
-    options?: DedicatedHostGroupsGetOptionalParams
-  ): Promise<DedicatedHostGroupsGetResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, hostGroupName, options },
-      getOperationSpec
-    );
-  }
+  get(): Promise<DedicatedHostGroupsGetResponse> {}
 
   /**
    * Lists all of the dedicated host groups in the specified resource group. Use the nextLink property in
    * the response to get the next page of dedicated host groups.
-   * @param resourceGroupName The name of the resource group.
-   * @param options The options parameters.
+   *
    */
-  private _listByResourceGroup(
-    resourceGroupName: string,
-    options?: DedicatedHostGroupsListByResourceGroupOptionalParams
-  ): Promise<DedicatedHostGroupsListByResourceGroupResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, options },
-      listByResourceGroupOperationSpec
-    );
-  }
+  private _listByResourceGroup(): Promise<
+    DedicatedHostGroupsListByResourceGroupResponse
+  > {}
 
   /**
    * Lists all of the dedicated host groups in the subscription. Use the nextLink property in the
    * response to get the next page of dedicated host groups.
-   * @param options The options parameters.
+   *
    */
-  private _listBySubscription(
-    options?: DedicatedHostGroupsListBySubscriptionOptionalParams
-  ): Promise<DedicatedHostGroupsListBySubscriptionResponse> {
-    return this.client.sendOperationRequest(
-      { options },
-      listBySubscriptionOperationSpec
-    );
-  }
+  private _listBySubscription(): Promise<
+    DedicatedHostGroupsListBySubscriptionResponse
+  > {}
 
   /**
    * ListByResourceGroupNext
-   * @param resourceGroupName The name of the resource group.
-   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
-   * @param options The options parameters.
+   *
    */
-  private _listByResourceGroupNext(
-    resourceGroupName: string,
-    nextLink: string,
-    options?: DedicatedHostGroupsListByResourceGroupNextOptionalParams
-  ): Promise<DedicatedHostGroupsListByResourceGroupNextResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options },
-      listByResourceGroupNextOperationSpec
-    );
-  }
+  private _listByResourceGroupNext(): Promise<
+    DedicatedHostGroupsListByResourceGroupNextResponse
+  > {}
 
   /**
    * ListBySubscriptionNext
-   * @param nextLink The nextLink from the previous successful call to the ListBySubscription method.
-   * @param options The options parameters.
+   *
    */
-  private _listBySubscriptionNext(
-    nextLink: string,
-    options?: DedicatedHostGroupsListBySubscriptionNextOptionalParams
-  ): Promise<DedicatedHostGroupsListBySubscriptionNextResponse> {
-    return this.client.sendOperationRequest(
-      { nextLink, options },
-      listBySubscriptionNextOperationSpec
-    );
-  }
+  private _listBySubscriptionNext(): Promise<
+    DedicatedHostGroupsListBySubscriptionNextResponse
+  > {}
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
@@ -323,105 +233,5 @@ const updateOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const deleteOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/hostGroups/{hostGroupName}",
-  httpMethod: "DELETE",
-  responses: { 200: {}, 204: {} },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId,
-    Parameters.hostGroupName
-  ],
-  serializer
-};
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/hostGroups/{hostGroupName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DedicatedHostGroup
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.expand1],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId,
-    Parameters.hostGroupName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByResourceGroupOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/hostGroups",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DedicatedHostGroupListResult
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listBySubscriptionOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/hostGroups",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DedicatedHostGroupListResult
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.subscriptionId],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DedicatedHostGroupListResult
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId,
-    Parameters.nextLink
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listBySubscriptionNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DedicatedHostGroupListResult
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.nextLink
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };

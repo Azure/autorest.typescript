@@ -16,10 +16,6 @@ import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
   UpdateDomain,
-  CloudServicesUpdateDomainListUpdateDomainsNextOptionalParams,
-  CloudServicesUpdateDomainListUpdateDomainsOptionalParams,
-  CloudServicesUpdateDomainWalkUpdateDomainOptionalParams,
-  CloudServicesUpdateDomainGetUpdateDomainOptionalParams,
   CloudServicesUpdateDomainGetUpdateDomainResponse,
   CloudServicesUpdateDomainListUpdateDomainsResponse,
   CloudServicesUpdateDomainListUpdateDomainsNextResponse
@@ -41,20 +37,10 @@ export class CloudServicesUpdateDomainImpl
 
   /**
    * Gets a list of all update domains in a cloud service.
-   * @param resourceGroupName Name of the resource group.
-   * @param cloudServiceName Name of the cloud service.
-   * @param options The options parameters.
+   *
    */
-  public listUpdateDomains(
-    resourceGroupName: string,
-    cloudServiceName: string,
-    options?: CloudServicesUpdateDomainListUpdateDomainsOptionalParams
-  ): PagedAsyncIterableIterator<UpdateDomain> {
-    const iter = this.listUpdateDomainsPagingAll(
-      resourceGroupName,
-      cloudServiceName,
-      options
-    );
+  public listUpdateDomains(): PagedAsyncIterableIterator<UpdateDomain> {
+    const iter = this.listUpdateDomainsPagingAll();
     return {
       next() {
         return iter.next();
@@ -63,68 +49,39 @@ export class CloudServicesUpdateDomainImpl
         return this;
       },
       byPage: () => {
-        return this.listUpdateDomainsPagingPage(
-          resourceGroupName,
-          cloudServiceName,
-          options
-        );
+        return this.listUpdateDomainsPagingPage();
       }
     };
   }
 
-  private async *listUpdateDomainsPagingPage(
-    resourceGroupName: string,
-    cloudServiceName: string,
-    options?: CloudServicesUpdateDomainListUpdateDomainsOptionalParams
-  ): AsyncIterableIterator<UpdateDomain[]> {
-    let result = await this._listUpdateDomains(
-      resourceGroupName,
-      cloudServiceName,
-      options
-    );
+  private async *listUpdateDomainsPagingPage(): AsyncIterableIterator<
+    UpdateDomain[]
+  > {
+    let result = await this._listUpdateDomains();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listUpdateDomainsNext(
-        resourceGroupName,
-        cloudServiceName,
-        continuationToken,
-        options
-      );
+      result = await this._listUpdateDomainsNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listUpdateDomainsPagingAll(
-    resourceGroupName: string,
-    cloudServiceName: string,
-    options?: CloudServicesUpdateDomainListUpdateDomainsOptionalParams
-  ): AsyncIterableIterator<UpdateDomain> {
-    for await (const page of this.listUpdateDomainsPagingPage(
-      resourceGroupName,
-      cloudServiceName,
-      options
-    )) {
+  private async *listUpdateDomainsPagingAll(): AsyncIterableIterator<
+    UpdateDomain
+  > {
+    for await (const page of this.listUpdateDomainsPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Updates the role instances in the specified update domain.
-   * @param resourceGroupName Name of the resource group.
-   * @param cloudServiceName Name of the cloud service.
-   * @param updateDomain Specifies an integer value that identifies the update domain. Update domains are
-   *                     identified with a zero-based index: the first update domain has an ID of 0, the second has an ID of
-   *                     1, and so on.
-   * @param options The options parameters.
+   *
    */
-  async beginWalkUpdateDomain(
-    resourceGroupName: string,
-    cloudServiceName: string,
-    updateDomain: number,
-    options?: CloudServicesUpdateDomainWalkUpdateDomainOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  async beginWalkUpdateDomain(): Promise<
+    PollerLike<PollOperationState<void>, void>
+  > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
@@ -179,85 +136,37 @@ export class CloudServicesUpdateDomainImpl
 
   /**
    * Updates the role instances in the specified update domain.
-   * @param resourceGroupName Name of the resource group.
-   * @param cloudServiceName Name of the cloud service.
-   * @param updateDomain Specifies an integer value that identifies the update domain. Update domains are
-   *                     identified with a zero-based index: the first update domain has an ID of 0, the second has an ID of
-   *                     1, and so on.
-   * @param options The options parameters.
+   *
    */
-  async beginWalkUpdateDomainAndWait(
-    resourceGroupName: string,
-    cloudServiceName: string,
-    updateDomain: number,
-    options?: CloudServicesUpdateDomainWalkUpdateDomainOptionalParams
-  ): Promise<void> {
-    const poller = await this.beginWalkUpdateDomain(
-      resourceGroupName,
-      cloudServiceName,
-      updateDomain,
-      options
-    );
+  async beginWalkUpdateDomainAndWait(): Promise<void> {
+    const poller = await this.beginWalkUpdateDomain();
     return poller.pollUntilDone();
   }
 
   /**
    * Gets the specified update domain of a cloud service. Use nextLink property in the response to get
    * the next page of update domains. Do this till nextLink is null to fetch all the update domains.
-   * @param resourceGroupName Name of the resource group.
-   * @param cloudServiceName Name of the cloud service.
-   * @param updateDomain Specifies an integer value that identifies the update domain. Update domains are
-   *                     identified with a zero-based index: the first update domain has an ID of 0, the second has an ID of
-   *                     1, and so on.
-   * @param options The options parameters.
+   *
    */
-  getUpdateDomain(
-    resourceGroupName: string,
-    cloudServiceName: string,
-    updateDomain: number,
-    options?: CloudServicesUpdateDomainGetUpdateDomainOptionalParams
-  ): Promise<CloudServicesUpdateDomainGetUpdateDomainResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, cloudServiceName, updateDomain, options },
-      getUpdateDomainOperationSpec
-    );
-  }
+  getUpdateDomain(): Promise<
+    CloudServicesUpdateDomainGetUpdateDomainResponse
+  > {}
 
   /**
    * Gets a list of all update domains in a cloud service.
-   * @param resourceGroupName Name of the resource group.
-   * @param cloudServiceName Name of the cloud service.
-   * @param options The options parameters.
+   *
    */
-  private _listUpdateDomains(
-    resourceGroupName: string,
-    cloudServiceName: string,
-    options?: CloudServicesUpdateDomainListUpdateDomainsOptionalParams
-  ): Promise<CloudServicesUpdateDomainListUpdateDomainsResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, cloudServiceName, options },
-      listUpdateDomainsOperationSpec
-    );
-  }
+  private _listUpdateDomains(): Promise<
+    CloudServicesUpdateDomainListUpdateDomainsResponse
+  > {}
 
   /**
    * ListUpdateDomainsNext
-   * @param resourceGroupName Name of the resource group.
-   * @param cloudServiceName Name of the cloud service.
-   * @param nextLink The nextLink from the previous successful call to the ListUpdateDomains method.
-   * @param options The options parameters.
+   *
    */
-  private _listUpdateDomainsNext(
-    resourceGroupName: string,
-    cloudServiceName: string,
-    nextLink: string,
-    options?: CloudServicesUpdateDomainListUpdateDomainsNextOptionalParams
-  ): Promise<CloudServicesUpdateDomainListUpdateDomainsNextResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, cloudServiceName, nextLink, options },
-      listUpdateDomainsNextOperationSpec
-    );
-  }
+  private _listUpdateDomainsNext(): Promise<
+    CloudServicesUpdateDomainListUpdateDomainsNextResponse
+  > {}
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
@@ -286,72 +195,5 @@ const walkUpdateDomainOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const getUpdateDomainOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/cloudServices/{cloudServiceName}/updateDomains/{updateDomain}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.UpdateDomain
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId,
-    Parameters.cloudServiceName,
-    Parameters.updateDomain
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listUpdateDomainsOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/cloudServices/{cloudServiceName}/updateDomains",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.UpdateDomainListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId,
-    Parameters.cloudServiceName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listUpdateDomainsNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.UpdateDomainListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId,
-    Parameters.nextLink,
-    Parameters.cloudServiceName
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };

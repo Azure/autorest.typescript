@@ -16,16 +16,9 @@ import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
   GalleryApplicationVersion,
-  GalleryApplicationVersionsListByGalleryApplicationNextOptionalParams,
-  GalleryApplicationVersionsListByGalleryApplicationOptionalParams,
-  GalleryApplicationVersionsCreateOrUpdateOptionalParams,
   GalleryApplicationVersionsCreateOrUpdateResponse,
-  GalleryApplicationVersionUpdate,
-  GalleryApplicationVersionsUpdateOptionalParams,
   GalleryApplicationVersionsUpdateResponse,
-  GalleryApplicationVersionsGetOptionalParams,
   GalleryApplicationVersionsGetResponse,
-  GalleryApplicationVersionsDeleteOptionalParams,
   GalleryApplicationVersionsListByGalleryApplicationResponse,
   GalleryApplicationVersionsListByGalleryApplicationNextResponse
 } from "../models";
@@ -46,25 +39,12 @@ export class GalleryApplicationVersionsImpl
 
   /**
    * List gallery Application Versions in a gallery Application Definition.
-   * @param resourceGroupName The name of the resource group.
-   * @param galleryName The name of the Shared Application Gallery in which the Application Definition
-   *                    resides.
-   * @param galleryApplicationName The name of the Shared Application Gallery Application Definition from
-   *                               which the Application Versions are to be listed.
-   * @param options The options parameters.
+   *
    */
-  public listByGalleryApplication(
-    resourceGroupName: string,
-    galleryName: string,
-    galleryApplicationName: string,
-    options?: GalleryApplicationVersionsListByGalleryApplicationOptionalParams
-  ): PagedAsyncIterableIterator<GalleryApplicationVersion> {
-    const iter = this.listByGalleryApplicationPagingAll(
-      resourceGroupName,
-      galleryName,
-      galleryApplicationName,
-      options
-    );
+  public listByGalleryApplication(): PagedAsyncIterableIterator<
+    GalleryApplicationVersion
+  > {
+    const iter = this.listByGalleryApplicationPagingAll();
     return {
       next() {
         return iter.next();
@@ -73,81 +53,37 @@ export class GalleryApplicationVersionsImpl
         return this;
       },
       byPage: () => {
-        return this.listByGalleryApplicationPagingPage(
-          resourceGroupName,
-          galleryName,
-          galleryApplicationName,
-          options
-        );
+        return this.listByGalleryApplicationPagingPage();
       }
     };
   }
 
-  private async *listByGalleryApplicationPagingPage(
-    resourceGroupName: string,
-    galleryName: string,
-    galleryApplicationName: string,
-    options?: GalleryApplicationVersionsListByGalleryApplicationOptionalParams
-  ): AsyncIterableIterator<GalleryApplicationVersion[]> {
-    let result = await this._listByGalleryApplication(
-      resourceGroupName,
-      galleryName,
-      galleryApplicationName,
-      options
-    );
+  private async *listByGalleryApplicationPagingPage(): AsyncIterableIterator<
+    GalleryApplicationVersion[]
+  > {
+    let result = await this._listByGalleryApplication();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listByGalleryApplicationNext(
-        resourceGroupName,
-        galleryName,
-        galleryApplicationName,
-        continuationToken,
-        options
-      );
+      result = await this._listByGalleryApplicationNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listByGalleryApplicationPagingAll(
-    resourceGroupName: string,
-    galleryName: string,
-    galleryApplicationName: string,
-    options?: GalleryApplicationVersionsListByGalleryApplicationOptionalParams
-  ): AsyncIterableIterator<GalleryApplicationVersion> {
-    for await (const page of this.listByGalleryApplicationPagingPage(
-      resourceGroupName,
-      galleryName,
-      galleryApplicationName,
-      options
-    )) {
+  private async *listByGalleryApplicationPagingAll(): AsyncIterableIterator<
+    GalleryApplicationVersion
+  > {
+    for await (const page of this.listByGalleryApplicationPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Create or update a gallery Application Version.
-   * @param resourceGroupName The name of the resource group.
-   * @param galleryName The name of the Shared Application Gallery in which the Application Definition
-   *                    resides.
-   * @param galleryApplicationName The name of the gallery Application Definition in which the
-   *                               Application Version is to be created.
-   * @param galleryApplicationVersionName The name of the gallery Application Version to be created.
-   *                                      Needs to follow semantic version name pattern: The allowed characters are digit and period. Digits
-   *                                      must be within the range of a 32-bit integer. Format: <MajorVersion>.<MinorVersion>.<Patch>
-   * @param galleryApplicationVersion Parameters supplied to the create or update gallery Application
-   *                                  Version operation.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdate(
-    resourceGroupName: string,
-    galleryName: string,
-    galleryApplicationName: string,
-    galleryApplicationVersionName: string,
-    galleryApplicationVersion: GalleryApplicationVersion,
-    options?: GalleryApplicationVersionsCreateOrUpdateOptionalParams
-  ): Promise<
+  async beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<GalleryApplicationVersionsCreateOrUpdateResponse>,
       GalleryApplicationVersionsCreateOrUpdateResponse
@@ -199,7 +135,6 @@ export class GalleryApplicationVersionsImpl
         galleryName,
         galleryApplicationName,
         galleryApplicationVersionName,
-        galleryApplicationVersion,
         options
       },
       createOrUpdateOperationSpec
@@ -214,59 +149,20 @@ export class GalleryApplicationVersionsImpl
 
   /**
    * Create or update a gallery Application Version.
-   * @param resourceGroupName The name of the resource group.
-   * @param galleryName The name of the Shared Application Gallery in which the Application Definition
-   *                    resides.
-   * @param galleryApplicationName The name of the gallery Application Definition in which the
-   *                               Application Version is to be created.
-   * @param galleryApplicationVersionName The name of the gallery Application Version to be created.
-   *                                      Needs to follow semantic version name pattern: The allowed characters are digit and period. Digits
-   *                                      must be within the range of a 32-bit integer. Format: <MajorVersion>.<MinorVersion>.<Patch>
-   * @param galleryApplicationVersion Parameters supplied to the create or update gallery Application
-   *                                  Version operation.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    galleryName: string,
-    galleryApplicationName: string,
-    galleryApplicationVersionName: string,
-    galleryApplicationVersion: GalleryApplicationVersion,
-    options?: GalleryApplicationVersionsCreateOrUpdateOptionalParams
-  ): Promise<GalleryApplicationVersionsCreateOrUpdateResponse> {
-    const poller = await this.beginCreateOrUpdate(
-      resourceGroupName,
-      galleryName,
-      galleryApplicationName,
-      galleryApplicationVersionName,
-      galleryApplicationVersion,
-      options
-    );
+  async beginCreateOrUpdateAndWait(): Promise<
+    GalleryApplicationVersionsCreateOrUpdateResponse
+  > {
+    const poller = await this.beginCreateOrUpdate();
     return poller.pollUntilDone();
   }
 
   /**
    * Update a gallery Application Version.
-   * @param resourceGroupName The name of the resource group.
-   * @param galleryName The name of the Shared Application Gallery in which the Application Definition
-   *                    resides.
-   * @param galleryApplicationName The name of the gallery Application Definition in which the
-   *                               Application Version is to be updated.
-   * @param galleryApplicationVersionName The name of the gallery Application Version to be updated.
-   *                                      Needs to follow semantic version name pattern: The allowed characters are digit and period. Digits
-   *                                      must be within the range of a 32-bit integer. Format: <MajorVersion>.<MinorVersion>.<Patch>
-   * @param galleryApplicationVersion Parameters supplied to the update gallery Application Version
-   *                                  operation.
-   * @param options The options parameters.
+   *
    */
-  async beginUpdate(
-    resourceGroupName: string,
-    galleryName: string,
-    galleryApplicationName: string,
-    galleryApplicationVersionName: string,
-    galleryApplicationVersion: GalleryApplicationVersionUpdate,
-    options?: GalleryApplicationVersionsUpdateOptionalParams
-  ): Promise<
+  async beginUpdate(): Promise<
     PollerLike<
       PollOperationState<GalleryApplicationVersionsUpdateResponse>,
       GalleryApplicationVersionsUpdateResponse
@@ -318,7 +214,6 @@ export class GalleryApplicationVersionsImpl
         galleryName,
         galleryApplicationName,
         galleryApplicationVersionName,
-        galleryApplicationVersion,
         options
       },
       updateOperationSpec
@@ -333,218 +228,51 @@ export class GalleryApplicationVersionsImpl
 
   /**
    * Update a gallery Application Version.
-   * @param resourceGroupName The name of the resource group.
-   * @param galleryName The name of the Shared Application Gallery in which the Application Definition
-   *                    resides.
-   * @param galleryApplicationName The name of the gallery Application Definition in which the
-   *                               Application Version is to be updated.
-   * @param galleryApplicationVersionName The name of the gallery Application Version to be updated.
-   *                                      Needs to follow semantic version name pattern: The allowed characters are digit and period. Digits
-   *                                      must be within the range of a 32-bit integer. Format: <MajorVersion>.<MinorVersion>.<Patch>
-   * @param galleryApplicationVersion Parameters supplied to the update gallery Application Version
-   *                                  operation.
-   * @param options The options parameters.
+   *
    */
-  async beginUpdateAndWait(
-    resourceGroupName: string,
-    galleryName: string,
-    galleryApplicationName: string,
-    galleryApplicationVersionName: string,
-    galleryApplicationVersion: GalleryApplicationVersionUpdate,
-    options?: GalleryApplicationVersionsUpdateOptionalParams
-  ): Promise<GalleryApplicationVersionsUpdateResponse> {
-    const poller = await this.beginUpdate(
-      resourceGroupName,
-      galleryName,
-      galleryApplicationName,
-      galleryApplicationVersionName,
-      galleryApplicationVersion,
-      options
-    );
+  async beginUpdateAndWait(): Promise<
+    GalleryApplicationVersionsUpdateResponse
+  > {
+    const poller = await this.beginUpdate();
     return poller.pollUntilDone();
   }
 
   /**
    * Retrieves information about a gallery Application Version.
-   * @param resourceGroupName The name of the resource group.
-   * @param galleryName The name of the Shared Application Gallery in which the Application Definition
-   *                    resides.
-   * @param galleryApplicationName The name of the gallery Application Definition in which the
-   *                               Application Version resides.
-   * @param galleryApplicationVersionName The name of the gallery Application Version to be retrieved.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    galleryName: string,
-    galleryApplicationName: string,
-    galleryApplicationVersionName: string,
-    options?: GalleryApplicationVersionsGetOptionalParams
-  ): Promise<GalleryApplicationVersionsGetResponse> {
-    return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        galleryName,
-        galleryApplicationName,
-        galleryApplicationVersionName,
-        options
-      },
-      getOperationSpec
-    );
-  }
+  get(): Promise<GalleryApplicationVersionsGetResponse> {}
 
   /**
    * Delete a gallery Application Version.
-   * @param resourceGroupName The name of the resource group.
-   * @param galleryName The name of the Shared Application Gallery in which the Application Definition
-   *                    resides.
-   * @param galleryApplicationName The name of the gallery Application Definition in which the
-   *                               Application Version resides.
-   * @param galleryApplicationVersionName The name of the gallery Application Version to be deleted.
-   * @param options The options parameters.
+   *
    */
-  async beginDelete(
-    resourceGroupName: string,
-    galleryName: string,
-    galleryApplicationName: string,
-    galleryApplicationVersionName: string,
-    options?: GalleryApplicationVersionsDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<void> => {
-      return this.client.sendOperationRequest(args, spec);
-    };
-    const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return {
-        flatResponse,
-        rawResponse: {
-          statusCode: currentRawResponse!.status,
-          body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
-      };
-    };
-
-    const lro = new LroImpl(
-      sendOperation,
-      {
-        resourceGroupName,
-        galleryName,
-        galleryApplicationName,
-        galleryApplicationVersionName,
-        options
-      },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
-    });
-    await poller.poll();
-    return poller;
-  }
+  async beginDelete(): Promise<PollerLike<PollOperationState<void>, void>> {}
 
   /**
    * Delete a gallery Application Version.
-   * @param resourceGroupName The name of the resource group.
-   * @param galleryName The name of the Shared Application Gallery in which the Application Definition
-   *                    resides.
-   * @param galleryApplicationName The name of the gallery Application Definition in which the
-   *                               Application Version resides.
-   * @param galleryApplicationVersionName The name of the gallery Application Version to be deleted.
-   * @param options The options parameters.
+   *
    */
-  async beginDeleteAndWait(
-    resourceGroupName: string,
-    galleryName: string,
-    galleryApplicationName: string,
-    galleryApplicationVersionName: string,
-    options?: GalleryApplicationVersionsDeleteOptionalParams
-  ): Promise<void> {
-    const poller = await this.beginDelete(
-      resourceGroupName,
-      galleryName,
-      galleryApplicationName,
-      galleryApplicationVersionName,
-      options
-    );
+  async beginDeleteAndWait(): Promise<void> {
+    const poller = await this.beginDelete();
     return poller.pollUntilDone();
   }
 
   /**
    * List gallery Application Versions in a gallery Application Definition.
-   * @param resourceGroupName The name of the resource group.
-   * @param galleryName The name of the Shared Application Gallery in which the Application Definition
-   *                    resides.
-   * @param galleryApplicationName The name of the Shared Application Gallery Application Definition from
-   *                               which the Application Versions are to be listed.
-   * @param options The options parameters.
+   *
    */
-  private _listByGalleryApplication(
-    resourceGroupName: string,
-    galleryName: string,
-    galleryApplicationName: string,
-    options?: GalleryApplicationVersionsListByGalleryApplicationOptionalParams
-  ): Promise<GalleryApplicationVersionsListByGalleryApplicationResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, galleryName, galleryApplicationName, options },
-      listByGalleryApplicationOperationSpec
-    );
-  }
+  private _listByGalleryApplication(): Promise<
+    GalleryApplicationVersionsListByGalleryApplicationResponse
+  > {}
 
   /**
    * ListByGalleryApplicationNext
-   * @param resourceGroupName The name of the resource group.
-   * @param galleryName The name of the Shared Application Gallery in which the Application Definition
-   *                    resides.
-   * @param galleryApplicationName The name of the Shared Application Gallery Application Definition from
-   *                               which the Application Versions are to be listed.
-   * @param nextLink The nextLink from the previous successful call to the ListByGalleryApplication
-   *                 method.
-   * @param options The options parameters.
+   *
    */
-  private _listByGalleryApplicationNext(
-    resourceGroupName: string,
-    galleryName: string,
-    galleryApplicationName: string,
-    nextLink: string,
-    options?: GalleryApplicationVersionsListByGalleryApplicationNextOptionalParams
-  ): Promise<GalleryApplicationVersionsListByGalleryApplicationNextResponse> {
-    return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        galleryName,
-        galleryApplicationName,
-        nextLink,
-        options
-      },
-      listByGalleryApplicationNextOperationSpec
-    );
-  }
+  private _listByGalleryApplicationNext(): Promise<
+    GalleryApplicationVersionsListByGalleryApplicationNextResponse
+  > {}
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
@@ -617,100 +345,5 @@ const updateOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/galleries/{galleryName}/applications/{galleryApplicationName}/versions/{galleryApplicationVersionName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.GalleryApplicationVersion
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.expand7],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId,
-    Parameters.galleryName,
-    Parameters.galleryApplicationName,
-    Parameters.galleryApplicationVersionName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const deleteOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/galleries/{galleryName}/applications/{galleryApplicationName}/versions/{galleryApplicationVersionName}",
-  httpMethod: "DELETE",
-  responses: {
-    200: {},
-    201: {},
-    202: {},
-    204: {},
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId,
-    Parameters.galleryName,
-    Parameters.galleryApplicationName,
-    Parameters.galleryApplicationVersionName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByGalleryApplicationOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/galleries/{galleryName}/applications/{galleryApplicationName}/versions",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.GalleryApplicationVersionList
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId,
-    Parameters.galleryName,
-    Parameters.galleryApplicationName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByGalleryApplicationNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.GalleryApplicationVersionList
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId,
-    Parameters.nextLink,
-    Parameters.galleryName,
-    Parameters.galleryApplicationName
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };

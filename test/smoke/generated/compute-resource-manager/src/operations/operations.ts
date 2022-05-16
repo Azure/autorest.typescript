@@ -10,35 +10,24 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { Operations } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
 import { ComputeManagementClient } from "../computeManagementClient";
-import {
-  ComputeOperationValue,
-  OperationsListOptionalParams,
-  OperationsListResponse
-} from "../models";
+import { ComputeOperationValue, OperationsListResponse } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing Operations operations. */
 export class OperationsImpl implements Operations {
-  private readonly client: ComputeManagementClient;
-
   /**
    * Initialize a new instance of the class Operations class.
    * @param client Reference to the service client
    */
-  constructor(client: ComputeManagementClient) {
-    this.client = client;
-  }
+  constructor(client: ComputeManagementClient) {}
 
   /**
    * Gets a list of compute operations.
-   * @param options The options parameters.
+   *
    */
-  public list(
-    options?: OperationsListOptionalParams
-  ): PagedAsyncIterableIterator<ComputeOperationValue> {
-    const iter = this.listPagingAll(options);
+  public list(): PagedAsyncIterableIterator<ComputeOperationValue> {
+    const iter = this.listPagingAll();
     return {
       next() {
         return iter.next();
@@ -47,49 +36,28 @@ export class OperationsImpl implements Operations {
         return this;
       },
       byPage: () => {
-        return this.listPagingPage(options);
+        return this.listPagingPage();
       }
     };
   }
 
-  private async *listPagingPage(
-    options?: OperationsListOptionalParams
-  ): AsyncIterableIterator<ComputeOperationValue[]> {
-    let result = await this._list(options);
+  private async *listPagingPage(): AsyncIterableIterator<
+    ComputeOperationValue[]
+  > {
+    let result = await this._list();
     yield result.value || [];
   }
 
-  private async *listPagingAll(
-    options?: OperationsListOptionalParams
-  ): AsyncIterableIterator<ComputeOperationValue> {
-    for await (const page of this.listPagingPage(options)) {
+  private async *listPagingAll(): AsyncIterableIterator<ComputeOperationValue> {
+    for await (const page of this.listPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Gets a list of compute operations.
-   * @param options The options parameters.
+   *
    */
-  private _list(
-    options?: OperationsListOptionalParams
-  ): Promise<OperationsListResponse> {
-    return this.client.sendOperationRequest({ options }, listOperationSpec);
-  }
+  private _list(): Promise<OperationsListResponse> {}
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
-
-const listOperationSpec: coreClient.OperationSpec = {
-  path: "/providers/Microsoft.Compute/operations",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ComputeOperationListResult
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept],
-  serializer
-};

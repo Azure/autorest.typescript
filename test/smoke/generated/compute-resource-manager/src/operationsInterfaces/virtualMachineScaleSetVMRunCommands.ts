@@ -10,14 +10,8 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualMachineRunCommand,
-  VirtualMachineScaleSetVMRunCommandsListOptionalParams,
-  VirtualMachineScaleSetVMRunCommandsCreateOrUpdateOptionalParams,
   VirtualMachineScaleSetVMRunCommandsCreateOrUpdateResponse,
-  VirtualMachineRunCommandUpdate,
-  VirtualMachineScaleSetVMRunCommandsUpdateOptionalParams,
   VirtualMachineScaleSetVMRunCommandsUpdateResponse,
-  VirtualMachineScaleSetVMRunCommandsDeleteOptionalParams,
-  VirtualMachineScaleSetVMRunCommandsGetOptionalParams,
   VirtualMachineScaleSetVMRunCommandsGetResponse
 } from "../models";
 
@@ -26,36 +20,14 @@ import {
 export interface VirtualMachineScaleSetVMRunCommands {
   /**
    * The operation to get all run commands of an instance in Virtual Machine Scaleset.
-   * @param resourceGroupName The name of the resource group.
-   * @param vmScaleSetName The name of the VM scale set.
-   * @param instanceId The instance ID of the virtual machine.
-   * @param options The options parameters.
+   *
    */
-  list(
-    resourceGroupName: string,
-    vmScaleSetName: string,
-    instanceId: string,
-    options?: VirtualMachineScaleSetVMRunCommandsListOptionalParams
-  ): PagedAsyncIterableIterator<VirtualMachineRunCommand>;
+  list(): PagedAsyncIterableIterator<VirtualMachineRunCommand>;
   /**
    * The operation to create or update the VMSS VM run command.
-   * @param resourceGroupName The name of the resource group.
-   * @param vmScaleSetName The name of the VM scale set.
-   * @param instanceId The instance ID of the virtual machine.
-   * @param runCommandName The name of the virtual machine run command.
-   * @param contentType Body Parameter content-type
-   * @param runCommand Parameters supplied to the Create Virtual Machine RunCommand operation.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdate(
-    resourceGroupName: string,
-    vmScaleSetName: string,
-    instanceId: string,
-    runCommandName: string,
-    contentType: "application/json",
-    runCommand: VirtualMachineRunCommand,
-    options?: VirtualMachineScaleSetVMRunCommandsCreateOrUpdateOptionalParams
-  ): Promise<
+  beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<
         VirtualMachineScaleSetVMRunCommandsCreateOrUpdateResponse
@@ -65,42 +37,16 @@ export interface VirtualMachineScaleSetVMRunCommands {
   >;
   /**
    * The operation to create or update the VMSS VM run command.
-   * @param resourceGroupName The name of the resource group.
-   * @param vmScaleSetName The name of the VM scale set.
-   * @param instanceId The instance ID of the virtual machine.
-   * @param runCommandName The name of the virtual machine run command.
-   * @param contentType Body Parameter content-type
-   * @param runCommand Parameters supplied to the Create Virtual Machine RunCommand operation.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    vmScaleSetName: string,
-    instanceId: string,
-    runCommandName: string,
-    contentType: "application/json",
-    runCommand: VirtualMachineRunCommand,
-    options?: VirtualMachineScaleSetVMRunCommandsCreateOrUpdateOptionalParams
-  ): Promise<VirtualMachineScaleSetVMRunCommandsCreateOrUpdateResponse>;
+  beginCreateOrUpdateAndWait(): Promise<
+    VirtualMachineScaleSetVMRunCommandsCreateOrUpdateResponse
+  >;
   /**
    * The operation to update the VMSS VM run command.
-   * @param resourceGroupName The name of the resource group.
-   * @param vmScaleSetName The name of the VM scale set.
-   * @param instanceId The instance ID of the virtual machine.
-   * @param runCommandName The name of the virtual machine run command.
-   * @param contentType Body Parameter content-type
-   * @param runCommand Parameters supplied to the Update Virtual Machine RunCommand operation.
-   * @param options The options parameters.
+   *
    */
-  beginUpdate(
-    resourceGroupName: string,
-    vmScaleSetName: string,
-    instanceId: string,
-    runCommandName: string,
-    contentType: "application/json",
-    runCommand: VirtualMachineRunCommandUpdate,
-    options?: VirtualMachineScaleSetVMRunCommandsUpdateOptionalParams
-  ): Promise<
+  beginUpdate(): Promise<
     PollerLike<
       PollOperationState<VirtualMachineScaleSetVMRunCommandsUpdateResponse>,
       VirtualMachineScaleSetVMRunCommandsUpdateResponse
@@ -108,66 +54,24 @@ export interface VirtualMachineScaleSetVMRunCommands {
   >;
   /**
    * The operation to update the VMSS VM run command.
-   * @param resourceGroupName The name of the resource group.
-   * @param vmScaleSetName The name of the VM scale set.
-   * @param instanceId The instance ID of the virtual machine.
-   * @param runCommandName The name of the virtual machine run command.
-   * @param contentType Body Parameter content-type
-   * @param runCommand Parameters supplied to the Update Virtual Machine RunCommand operation.
-   * @param options The options parameters.
+   *
    */
-  beginUpdateAndWait(
-    resourceGroupName: string,
-    vmScaleSetName: string,
-    instanceId: string,
-    runCommandName: string,
-    contentType: "application/json",
-    runCommand: VirtualMachineRunCommandUpdate,
-    options?: VirtualMachineScaleSetVMRunCommandsUpdateOptionalParams
-  ): Promise<VirtualMachineScaleSetVMRunCommandsUpdateResponse>;
+  beginUpdateAndWait(): Promise<
+    VirtualMachineScaleSetVMRunCommandsUpdateResponse
+  >;
   /**
    * The operation to delete the VMSS VM run command.
-   * @param resourceGroupName The name of the resource group.
-   * @param vmScaleSetName The name of the VM scale set.
-   * @param instanceId The instance ID of the virtual machine.
-   * @param runCommandName The name of the virtual machine run command.
-   * @param options The options parameters.
+   *
    */
-  beginDelete(
-    resourceGroupName: string,
-    vmScaleSetName: string,
-    instanceId: string,
-    runCommandName: string,
-    options?: VirtualMachineScaleSetVMRunCommandsDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  beginDelete(): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * The operation to delete the VMSS VM run command.
-   * @param resourceGroupName The name of the resource group.
-   * @param vmScaleSetName The name of the VM scale set.
-   * @param instanceId The instance ID of the virtual machine.
-   * @param runCommandName The name of the virtual machine run command.
-   * @param options The options parameters.
+   *
    */
-  beginDeleteAndWait(
-    resourceGroupName: string,
-    vmScaleSetName: string,
-    instanceId: string,
-    runCommandName: string,
-    options?: VirtualMachineScaleSetVMRunCommandsDeleteOptionalParams
-  ): Promise<void>;
+  beginDeleteAndWait(): Promise<void>;
   /**
    * The operation to get the VMSS VM run command.
-   * @param resourceGroupName The name of the resource group.
-   * @param vmScaleSetName The name of the VM scale set.
-   * @param instanceId The instance ID of the virtual machine.
-   * @param runCommandName The name of the virtual machine run command.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    vmScaleSetName: string,
-    instanceId: string,
-    runCommandName: string,
-    options?: VirtualMachineScaleSetVMRunCommandsGetOptionalParams
-  ): Promise<VirtualMachineScaleSetVMRunCommandsGetResponse>;
+  get(): Promise<VirtualMachineScaleSetVMRunCommandsGetResponse>;
 }

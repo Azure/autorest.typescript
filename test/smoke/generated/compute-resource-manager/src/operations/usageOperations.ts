@@ -10,40 +10,25 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { UsageOperations } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
 import { ComputeManagementClient } from "../computeManagementClient";
-import {
-  Usage,
-  UsageListNextOptionalParams,
-  UsageListOptionalParams,
-  UsageListResponse,
-  UsageListNextResponse
-} from "../models";
+import { Usage, UsageListResponse, UsageListNextResponse } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing UsageOperations operations. */
 export class UsageOperationsImpl implements UsageOperations {
-  private readonly client: ComputeManagementClient;
-
   /**
    * Initialize a new instance of the class UsageOperations class.
    * @param client Reference to the service client
    */
-  constructor(client: ComputeManagementClient) {
-    this.client = client;
-  }
+  constructor(client: ComputeManagementClient) {}
 
   /**
    * Gets, for the specified location, the current compute resource usage information as well as the
    * limits for compute resources under the subscription.
-   * @param location The location for which resource usage is queried.
-   * @param options The options parameters.
+   *
    */
-  public list(
-    location: string,
-    options?: UsageListOptionalParams
-  ): PagedAsyncIterableIterator<Usage> {
-    const iter = this.listPagingAll(location, options);
+  public list(): PagedAsyncIterableIterator<Usage> {
+    const iter = this.listPagingAll();
     return {
       next() {
         return iter.next();
@@ -52,30 +37,24 @@ export class UsageOperationsImpl implements UsageOperations {
         return this;
       },
       byPage: () => {
-        return this.listPagingPage(location, options);
+        return this.listPagingPage();
       }
     };
   }
 
-  private async *listPagingPage(
-    location: string,
-    options?: UsageListOptionalParams
-  ): AsyncIterableIterator<Usage[]> {
-    let result = await this._list(location, options);
+  private async *listPagingPage(): AsyncIterableIterator<Usage[]> {
+    let result = await this._list();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listNext(location, continuationToken, options);
+      result = await this._listNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listPagingAll(
-    location: string,
-    options?: UsageListOptionalParams
-  ): AsyncIterableIterator<Usage> {
-    for await (const page of this.listPagingPage(location, options)) {
+  private async *listPagingAll(): AsyncIterableIterator<Usage> {
+    for await (const page of this.listPagingPage()) {
       yield* page;
     }
   }
@@ -83,72 +62,14 @@ export class UsageOperationsImpl implements UsageOperations {
   /**
    * Gets, for the specified location, the current compute resource usage information as well as the
    * limits for compute resources under the subscription.
-   * @param location The location for which resource usage is queried.
-   * @param options The options parameters.
+   *
    */
-  private _list(
-    location: string,
-    options?: UsageListOptionalParams
-  ): Promise<UsageListResponse> {
-    return this.client.sendOperationRequest(
-      { location, options },
-      listOperationSpec
-    );
-  }
+  private _list(): Promise<UsageListResponse> {}
 
   /**
    * ListNext
-   * @param location The location for which resource usage is queried.
-   * @param nextLink The nextLink from the previous successful call to the List method.
-   * @param options The options parameters.
+   *
    */
-  private _listNext(
-    location: string,
-    nextLink: string,
-    options?: UsageListNextOptionalParams
-  ): Promise<UsageListNextResponse> {
-    return this.client.sendOperationRequest(
-      { location, nextLink, options },
-      listNextOperationSpec
-    );
-  }
+  private _listNext(): Promise<UsageListNextResponse> {}
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
-
-const listOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/usages",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ListUsagesResult
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.location1
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ListUsagesResult
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.nextLink,
-    Parameters.location1
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};

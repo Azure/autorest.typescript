@@ -16,16 +16,9 @@ import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
   GalleryImage,
-  GalleryImagesListByGalleryNextOptionalParams,
-  GalleryImagesListByGalleryOptionalParams,
-  GalleryImagesCreateOrUpdateOptionalParams,
   GalleryImagesCreateOrUpdateResponse,
-  GalleryImageUpdate,
-  GalleryImagesUpdateOptionalParams,
   GalleryImagesUpdateResponse,
-  GalleryImagesGetOptionalParams,
   GalleryImagesGetResponse,
-  GalleryImagesDeleteOptionalParams,
   GalleryImagesListByGalleryResponse,
   GalleryImagesListByGalleryNextResponse
 } from "../models";
@@ -45,21 +38,10 @@ export class GalleryImagesImpl implements GalleryImages {
 
   /**
    * List gallery image definitions in a gallery.
-   * @param resourceGroupName The name of the resource group.
-   * @param galleryName The name of the Shared Image Gallery from which Image Definitions are to be
-   *                    listed.
-   * @param options The options parameters.
+   *
    */
-  public listByGallery(
-    resourceGroupName: string,
-    galleryName: string,
-    options?: GalleryImagesListByGalleryOptionalParams
-  ): PagedAsyncIterableIterator<GalleryImage> {
-    const iter = this.listByGalleryPagingAll(
-      resourceGroupName,
-      galleryName,
-      options
-    );
+  public listByGallery(): PagedAsyncIterableIterator<GalleryImage> {
+    const iter = this.listByGalleryPagingAll();
     return {
       next() {
         return iter.next();
@@ -68,71 +50,35 @@ export class GalleryImagesImpl implements GalleryImages {
         return this;
       },
       byPage: () => {
-        return this.listByGalleryPagingPage(
-          resourceGroupName,
-          galleryName,
-          options
-        );
+        return this.listByGalleryPagingPage();
       }
     };
   }
 
-  private async *listByGalleryPagingPage(
-    resourceGroupName: string,
-    galleryName: string,
-    options?: GalleryImagesListByGalleryOptionalParams
-  ): AsyncIterableIterator<GalleryImage[]> {
-    let result = await this._listByGallery(
-      resourceGroupName,
-      galleryName,
-      options
-    );
+  private async *listByGalleryPagingPage(): AsyncIterableIterator<
+    GalleryImage[]
+  > {
+    let result = await this._listByGallery();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listByGalleryNext(
-        resourceGroupName,
-        galleryName,
-        continuationToken,
-        options
-      );
+      result = await this._listByGalleryNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listByGalleryPagingAll(
-    resourceGroupName: string,
-    galleryName: string,
-    options?: GalleryImagesListByGalleryOptionalParams
-  ): AsyncIterableIterator<GalleryImage> {
-    for await (const page of this.listByGalleryPagingPage(
-      resourceGroupName,
-      galleryName,
-      options
-    )) {
+  private async *listByGalleryPagingAll(): AsyncIterableIterator<GalleryImage> {
+    for await (const page of this.listByGalleryPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Create or update a gallery image definition.
-   * @param resourceGroupName The name of the resource group.
-   * @param galleryName The name of the Shared Image Gallery in which the Image Definition is to be
-   *                    created.
-   * @param galleryImageName The name of the gallery image definition to be created or updated. The
-   *                         allowed characters are alphabets and numbers with dots, dashes, and periods allowed in the middle.
-   *                         The maximum length is 80 characters.
-   * @param galleryImage Parameters supplied to the create or update gallery image operation.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdate(
-    resourceGroupName: string,
-    galleryName: string,
-    galleryImageName: string,
-    galleryImage: GalleryImage,
-    options?: GalleryImagesCreateOrUpdateOptionalParams
-  ): Promise<
+  async beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<GalleryImagesCreateOrUpdateResponse>,
       GalleryImagesCreateOrUpdateResponse
@@ -179,13 +125,7 @@ export class GalleryImagesImpl implements GalleryImages {
 
     const lro = new LroImpl(
       sendOperation,
-      {
-        resourceGroupName,
-        galleryName,
-        galleryImageName,
-        galleryImage,
-        options
-      },
+      { resourceGroupName, galleryName, galleryImageName, options },
       createOrUpdateOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -198,50 +138,20 @@ export class GalleryImagesImpl implements GalleryImages {
 
   /**
    * Create or update a gallery image definition.
-   * @param resourceGroupName The name of the resource group.
-   * @param galleryName The name of the Shared Image Gallery in which the Image Definition is to be
-   *                    created.
-   * @param galleryImageName The name of the gallery image definition to be created or updated. The
-   *                         allowed characters are alphabets and numbers with dots, dashes, and periods allowed in the middle.
-   *                         The maximum length is 80 characters.
-   * @param galleryImage Parameters supplied to the create or update gallery image operation.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    galleryName: string,
-    galleryImageName: string,
-    galleryImage: GalleryImage,
-    options?: GalleryImagesCreateOrUpdateOptionalParams
-  ): Promise<GalleryImagesCreateOrUpdateResponse> {
-    const poller = await this.beginCreateOrUpdate(
-      resourceGroupName,
-      galleryName,
-      galleryImageName,
-      galleryImage,
-      options
-    );
+  async beginCreateOrUpdateAndWait(): Promise<
+    GalleryImagesCreateOrUpdateResponse
+  > {
+    const poller = await this.beginCreateOrUpdate();
     return poller.pollUntilDone();
   }
 
   /**
    * Update a gallery image definition.
-   * @param resourceGroupName The name of the resource group.
-   * @param galleryName The name of the Shared Image Gallery in which the Image Definition is to be
-   *                    updated.
-   * @param galleryImageName The name of the gallery image definition to be updated. The allowed
-   *                         characters are alphabets and numbers with dots, dashes, and periods allowed in the middle. The
-   *                         maximum length is 80 characters.
-   * @param galleryImage Parameters supplied to the update gallery image operation.
-   * @param options The options parameters.
+   *
    */
-  async beginUpdate(
-    resourceGroupName: string,
-    galleryName: string,
-    galleryImageName: string,
-    galleryImage: GalleryImageUpdate,
-    options?: GalleryImagesUpdateOptionalParams
-  ): Promise<
+  async beginUpdate(): Promise<
     PollerLike<
       PollOperationState<GalleryImagesUpdateResponse>,
       GalleryImagesUpdateResponse
@@ -288,13 +198,7 @@ export class GalleryImagesImpl implements GalleryImages {
 
     const lro = new LroImpl(
       sendOperation,
-      {
-        resourceGroupName,
-        galleryName,
-        galleryImageName,
-        galleryImage,
-        options
-      },
+      { resourceGroupName, galleryName, galleryImageName, options },
       updateOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -307,178 +211,47 @@ export class GalleryImagesImpl implements GalleryImages {
 
   /**
    * Update a gallery image definition.
-   * @param resourceGroupName The name of the resource group.
-   * @param galleryName The name of the Shared Image Gallery in which the Image Definition is to be
-   *                    updated.
-   * @param galleryImageName The name of the gallery image definition to be updated. The allowed
-   *                         characters are alphabets and numbers with dots, dashes, and periods allowed in the middle. The
-   *                         maximum length is 80 characters.
-   * @param galleryImage Parameters supplied to the update gallery image operation.
-   * @param options The options parameters.
+   *
    */
-  async beginUpdateAndWait(
-    resourceGroupName: string,
-    galleryName: string,
-    galleryImageName: string,
-    galleryImage: GalleryImageUpdate,
-    options?: GalleryImagesUpdateOptionalParams
-  ): Promise<GalleryImagesUpdateResponse> {
-    const poller = await this.beginUpdate(
-      resourceGroupName,
-      galleryName,
-      galleryImageName,
-      galleryImage,
-      options
-    );
+  async beginUpdateAndWait(): Promise<GalleryImagesUpdateResponse> {
+    const poller = await this.beginUpdate();
     return poller.pollUntilDone();
   }
 
   /**
    * Retrieves information about a gallery image definition.
-   * @param resourceGroupName The name of the resource group.
-   * @param galleryName The name of the Shared Image Gallery from which the Image Definitions are to be
-   *                    retrieved.
-   * @param galleryImageName The name of the gallery image definition to be retrieved.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    galleryName: string,
-    galleryImageName: string,
-    options?: GalleryImagesGetOptionalParams
-  ): Promise<GalleryImagesGetResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, galleryName, galleryImageName, options },
-      getOperationSpec
-    );
-  }
+  get(): Promise<GalleryImagesGetResponse> {}
 
   /**
    * Delete a gallery image.
-   * @param resourceGroupName The name of the resource group.
-   * @param galleryName The name of the Shared Image Gallery in which the Image Definition is to be
-   *                    deleted.
-   * @param galleryImageName The name of the gallery image definition to be deleted.
-   * @param options The options parameters.
+   *
    */
-  async beginDelete(
-    resourceGroupName: string,
-    galleryName: string,
-    galleryImageName: string,
-    options?: GalleryImagesDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<void> => {
-      return this.client.sendOperationRequest(args, spec);
-    };
-    const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return {
-        flatResponse,
-        rawResponse: {
-          statusCode: currentRawResponse!.status,
-          body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
-      };
-    };
-
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, galleryName, galleryImageName, options },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
-    });
-    await poller.poll();
-    return poller;
-  }
+  async beginDelete(): Promise<PollerLike<PollOperationState<void>, void>> {}
 
   /**
    * Delete a gallery image.
-   * @param resourceGroupName The name of the resource group.
-   * @param galleryName The name of the Shared Image Gallery in which the Image Definition is to be
-   *                    deleted.
-   * @param galleryImageName The name of the gallery image definition to be deleted.
-   * @param options The options parameters.
+   *
    */
-  async beginDeleteAndWait(
-    resourceGroupName: string,
-    galleryName: string,
-    galleryImageName: string,
-    options?: GalleryImagesDeleteOptionalParams
-  ): Promise<void> {
-    const poller = await this.beginDelete(
-      resourceGroupName,
-      galleryName,
-      galleryImageName,
-      options
-    );
+  async beginDeleteAndWait(): Promise<void> {
+    const poller = await this.beginDelete();
     return poller.pollUntilDone();
   }
 
   /**
    * List gallery image definitions in a gallery.
-   * @param resourceGroupName The name of the resource group.
-   * @param galleryName The name of the Shared Image Gallery from which Image Definitions are to be
-   *                    listed.
-   * @param options The options parameters.
+   *
    */
-  private _listByGallery(
-    resourceGroupName: string,
-    galleryName: string,
-    options?: GalleryImagesListByGalleryOptionalParams
-  ): Promise<GalleryImagesListByGalleryResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, galleryName, options },
-      listByGalleryOperationSpec
-    );
-  }
+  private _listByGallery(): Promise<GalleryImagesListByGalleryResponse> {}
 
   /**
    * ListByGalleryNext
-   * @param resourceGroupName The name of the resource group.
-   * @param galleryName The name of the Shared Image Gallery from which Image Definitions are to be
-   *                    listed.
-   * @param nextLink The nextLink from the previous successful call to the ListByGallery method.
-   * @param options The options parameters.
+   *
    */
-  private _listByGalleryNext(
-    resourceGroupName: string,
-    galleryName: string,
-    nextLink: string,
-    options?: GalleryImagesListByGalleryNextOptionalParams
-  ): Promise<GalleryImagesListByGalleryNextResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, galleryName, nextLink, options },
-      listByGalleryNextOperationSpec
-    );
-  }
+  private _listByGalleryNext(): Promise<
+    GalleryImagesListByGalleryNextResponse
+  > {}
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
@@ -549,96 +322,5 @@ const updateOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/galleries/{galleryName}/images/{galleryImageName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.GalleryImage
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId,
-    Parameters.galleryName,
-    Parameters.galleryImageName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const deleteOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/galleries/{galleryName}/images/{galleryImageName}",
-  httpMethod: "DELETE",
-  responses: {
-    200: {},
-    201: {},
-    202: {},
-    204: {},
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId,
-    Parameters.galleryName,
-    Parameters.galleryImageName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByGalleryOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/galleries/{galleryName}/images",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.GalleryImageList
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId,
-    Parameters.galleryName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByGalleryNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.GalleryImageList
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId,
-    Parameters.nextLink,
-    Parameters.galleryName
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };

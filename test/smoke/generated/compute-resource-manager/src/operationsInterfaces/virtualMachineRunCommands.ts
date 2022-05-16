@@ -10,18 +10,10 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   RunCommandDocumentBase,
-  VirtualMachineRunCommandsListOptionalParams,
   VirtualMachineRunCommand,
-  VirtualMachineRunCommandsListByVirtualMachineOptionalParams,
-  VirtualMachineRunCommandsGetOptionalParams,
   VirtualMachineRunCommandsGetResponse,
-  VirtualMachineRunCommandsCreateOrUpdateOptionalParams,
   VirtualMachineRunCommandsCreateOrUpdateResponse,
-  VirtualMachineRunCommandUpdate,
-  VirtualMachineRunCommandsUpdateOptionalParams,
   VirtualMachineRunCommandsUpdateResponse,
-  VirtualMachineRunCommandsDeleteOptionalParams,
-  VirtualMachineRunCommandsGetByVirtualMachineOptionalParams,
   VirtualMachineRunCommandsGetByVirtualMachineResponse
 } from "../models";
 
@@ -30,52 +22,24 @@ import {
 export interface VirtualMachineRunCommands {
   /**
    * Lists all available run commands for a subscription in a location.
-   * @param location The location upon which run commands is queried.
-   * @param options The options parameters.
+   *
    */
-  list(
-    location: string,
-    options?: VirtualMachineRunCommandsListOptionalParams
-  ): PagedAsyncIterableIterator<RunCommandDocumentBase>;
+  list(): PagedAsyncIterableIterator<RunCommandDocumentBase>;
   /**
    * The operation to get all run commands of a Virtual Machine.
-   * @param resourceGroupName The name of the resource group.
-   * @param vmName The name of the virtual machine containing the run command.
-   * @param options The options parameters.
+   *
    */
-  listByVirtualMachine(
-    resourceGroupName: string,
-    vmName: string,
-    options?: VirtualMachineRunCommandsListByVirtualMachineOptionalParams
-  ): PagedAsyncIterableIterator<VirtualMachineRunCommand>;
+  listByVirtualMachine(): PagedAsyncIterableIterator<VirtualMachineRunCommand>;
   /**
    * Gets specific run command for a subscription in a location.
-   * @param location The location upon which run commands is queried.
-   * @param commandId The command id.
-   * @param options The options parameters.
+   *
    */
-  get(
-    location: string,
-    commandId: string,
-    options?: VirtualMachineRunCommandsGetOptionalParams
-  ): Promise<VirtualMachineRunCommandsGetResponse>;
+  get(): Promise<VirtualMachineRunCommandsGetResponse>;
   /**
    * The operation to create or update the run command.
-   * @param resourceGroupName The name of the resource group.
-   * @param vmName The name of the virtual machine where the run command should be created or updated.
-   * @param runCommandName The name of the virtual machine run command.
-   * @param contentType Body Parameter content-type
-   * @param runCommand Parameters supplied to the Create Virtual Machine RunCommand operation.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdate(
-    resourceGroupName: string,
-    vmName: string,
-    runCommandName: string,
-    contentType: "application/json",
-    runCommand: VirtualMachineRunCommand,
-    options?: VirtualMachineRunCommandsCreateOrUpdateOptionalParams
-  ): Promise<
+  beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<VirtualMachineRunCommandsCreateOrUpdateResponse>,
       VirtualMachineRunCommandsCreateOrUpdateResponse
@@ -83,38 +47,16 @@ export interface VirtualMachineRunCommands {
   >;
   /**
    * The operation to create or update the run command.
-   * @param resourceGroupName The name of the resource group.
-   * @param vmName The name of the virtual machine where the run command should be created or updated.
-   * @param runCommandName The name of the virtual machine run command.
-   * @param contentType Body Parameter content-type
-   * @param runCommand Parameters supplied to the Create Virtual Machine RunCommand operation.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    vmName: string,
-    runCommandName: string,
-    contentType: "application/json",
-    runCommand: VirtualMachineRunCommand,
-    options?: VirtualMachineRunCommandsCreateOrUpdateOptionalParams
-  ): Promise<VirtualMachineRunCommandsCreateOrUpdateResponse>;
+  beginCreateOrUpdateAndWait(): Promise<
+    VirtualMachineRunCommandsCreateOrUpdateResponse
+  >;
   /**
    * The operation to update the run command.
-   * @param resourceGroupName The name of the resource group.
-   * @param vmName The name of the virtual machine where the run command should be updated.
-   * @param runCommandName The name of the virtual machine run command.
-   * @param contentType Body Parameter content-type
-   * @param runCommand Parameters supplied to the Update Virtual Machine RunCommand operation.
-   * @param options The options parameters.
+   *
    */
-  beginUpdate(
-    resourceGroupName: string,
-    vmName: string,
-    runCommandName: string,
-    contentType: "application/json",
-    runCommand: VirtualMachineRunCommandUpdate,
-    options?: VirtualMachineRunCommandsUpdateOptionalParams
-  ): Promise<
+  beginUpdate(): Promise<
     PollerLike<
       PollOperationState<VirtualMachineRunCommandsUpdateResponse>,
       VirtualMachineRunCommandsUpdateResponse
@@ -122,58 +64,24 @@ export interface VirtualMachineRunCommands {
   >;
   /**
    * The operation to update the run command.
-   * @param resourceGroupName The name of the resource group.
-   * @param vmName The name of the virtual machine where the run command should be updated.
-   * @param runCommandName The name of the virtual machine run command.
-   * @param contentType Body Parameter content-type
-   * @param runCommand Parameters supplied to the Update Virtual Machine RunCommand operation.
-   * @param options The options parameters.
+   *
    */
-  beginUpdateAndWait(
-    resourceGroupName: string,
-    vmName: string,
-    runCommandName: string,
-    contentType: "application/json",
-    runCommand: VirtualMachineRunCommandUpdate,
-    options?: VirtualMachineRunCommandsUpdateOptionalParams
-  ): Promise<VirtualMachineRunCommandsUpdateResponse>;
+  beginUpdateAndWait(): Promise<VirtualMachineRunCommandsUpdateResponse>;
   /**
    * The operation to delete the run command.
-   * @param resourceGroupName The name of the resource group.
-   * @param vmName The name of the virtual machine where the run command should be deleted.
-   * @param runCommandName The name of the virtual machine run command.
-   * @param options The options parameters.
+   *
    */
-  beginDelete(
-    resourceGroupName: string,
-    vmName: string,
-    runCommandName: string,
-    options?: VirtualMachineRunCommandsDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  beginDelete(): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * The operation to delete the run command.
-   * @param resourceGroupName The name of the resource group.
-   * @param vmName The name of the virtual machine where the run command should be deleted.
-   * @param runCommandName The name of the virtual machine run command.
-   * @param options The options parameters.
+   *
    */
-  beginDeleteAndWait(
-    resourceGroupName: string,
-    vmName: string,
-    runCommandName: string,
-    options?: VirtualMachineRunCommandsDeleteOptionalParams
-  ): Promise<void>;
+  beginDeleteAndWait(): Promise<void>;
   /**
    * The operation to get the run command.
-   * @param resourceGroupName The name of the resource group.
-   * @param vmName The name of the virtual machine containing the run command.
-   * @param runCommandName The name of the virtual machine run command.
-   * @param options The options parameters.
+   *
    */
-  getByVirtualMachine(
-    resourceGroupName: string,
-    vmName: string,
-    runCommandName: string,
-    options?: VirtualMachineRunCommandsGetByVirtualMachineOptionalParams
-  ): Promise<VirtualMachineRunCommandsGetByVirtualMachineResponse>;
+  getByVirtualMachine(): Promise<
+    VirtualMachineRunCommandsGetByVirtualMachineResponse
+  >;
 }

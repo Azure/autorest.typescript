@@ -14,17 +14,8 @@ import * as Parameters from "../models/parameters";
 import { ComputeManagementClient } from "../computeManagementClient";
 import {
   ProximityPlacementGroup,
-  ProximityPlacementGroupsListBySubscriptionNextOptionalParams,
-  ProximityPlacementGroupsListBySubscriptionOptionalParams,
-  ProximityPlacementGroupsListByResourceGroupNextOptionalParams,
-  ProximityPlacementGroupsListByResourceGroupOptionalParams,
-  ProximityPlacementGroupsCreateOrUpdateOptionalParams,
   ProximityPlacementGroupsCreateOrUpdateResponse,
-  ProximityPlacementGroupUpdate,
-  ProximityPlacementGroupsUpdateOptionalParams,
   ProximityPlacementGroupsUpdateResponse,
-  ProximityPlacementGroupsDeleteOptionalParams,
-  ProximityPlacementGroupsGetOptionalParams,
   ProximityPlacementGroupsGetResponse,
   ProximityPlacementGroupsListBySubscriptionResponse,
   ProximityPlacementGroupsListByResourceGroupResponse,
@@ -47,12 +38,12 @@ export class ProximityPlacementGroupsImpl implements ProximityPlacementGroups {
 
   /**
    * Lists all proximity placement groups in a subscription.
-   * @param options The options parameters.
+   *
    */
-  public listBySubscription(
-    options?: ProximityPlacementGroupsListBySubscriptionOptionalParams
-  ): PagedAsyncIterableIterator<ProximityPlacementGroup> {
-    const iter = this.listBySubscriptionPagingAll(options);
+  public listBySubscription(): PagedAsyncIterableIterator<
+    ProximityPlacementGroup
+  > {
+    const iter = this.listBySubscriptionPagingAll();
     return {
       next() {
         return iter.next();
@@ -61,42 +52,40 @@ export class ProximityPlacementGroupsImpl implements ProximityPlacementGroups {
         return this;
       },
       byPage: () => {
-        return this.listBySubscriptionPagingPage(options);
+        return this.listBySubscriptionPagingPage();
       }
     };
   }
 
-  private async *listBySubscriptionPagingPage(
-    options?: ProximityPlacementGroupsListBySubscriptionOptionalParams
-  ): AsyncIterableIterator<ProximityPlacementGroup[]> {
-    let result = await this._listBySubscription(options);
+  private async *listBySubscriptionPagingPage(): AsyncIterableIterator<
+    ProximityPlacementGroup[]
+  > {
+    let result = await this._listBySubscription();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listBySubscriptionNext(continuationToken, options);
+      result = await this._listBySubscriptionNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listBySubscriptionPagingAll(
-    options?: ProximityPlacementGroupsListBySubscriptionOptionalParams
-  ): AsyncIterableIterator<ProximityPlacementGroup> {
-    for await (const page of this.listBySubscriptionPagingPage(options)) {
+  private async *listBySubscriptionPagingAll(): AsyncIterableIterator<
+    ProximityPlacementGroup
+  > {
+    for await (const page of this.listBySubscriptionPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Lists all proximity placement groups in a resource group.
-   * @param resourceGroupName The name of the resource group.
-   * @param options The options parameters.
+   *
    */
-  public listByResourceGroup(
-    resourceGroupName: string,
-    options?: ProximityPlacementGroupsListByResourceGroupOptionalParams
-  ): PagedAsyncIterableIterator<ProximityPlacementGroup> {
-    const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
+  public listByResourceGroup(): PagedAsyncIterableIterator<
+    ProximityPlacementGroup
+  > {
+    const iter = this.listByResourceGroupPagingAll();
     return {
       next() {
         return iter.next();
@@ -105,172 +94,97 @@ export class ProximityPlacementGroupsImpl implements ProximityPlacementGroups {
         return this;
       },
       byPage: () => {
-        return this.listByResourceGroupPagingPage(resourceGroupName, options);
+        return this.listByResourceGroupPagingPage();
       }
     };
   }
 
-  private async *listByResourceGroupPagingPage(
-    resourceGroupName: string,
-    options?: ProximityPlacementGroupsListByResourceGroupOptionalParams
-  ): AsyncIterableIterator<ProximityPlacementGroup[]> {
-    let result = await this._listByResourceGroup(resourceGroupName, options);
+  private async *listByResourceGroupPagingPage(): AsyncIterableIterator<
+    ProximityPlacementGroup[]
+  > {
+    let result = await this._listByResourceGroup();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listByResourceGroupNext(
-        resourceGroupName,
-        continuationToken,
-        options
-      );
+      result = await this._listByResourceGroupNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listByResourceGroupPagingAll(
-    resourceGroupName: string,
-    options?: ProximityPlacementGroupsListByResourceGroupOptionalParams
-  ): AsyncIterableIterator<ProximityPlacementGroup> {
-    for await (const page of this.listByResourceGroupPagingPage(
-      resourceGroupName,
-      options
-    )) {
+  private async *listByResourceGroupPagingAll(): AsyncIterableIterator<
+    ProximityPlacementGroup
+  > {
+    for await (const page of this.listByResourceGroupPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Create or update a proximity placement group.
-   * @param resourceGroupName The name of the resource group.
-   * @param proximityPlacementGroupName The name of the proximity placement group.
-   * @param parameters Parameters supplied to the Create Proximity Placement Group operation.
-   * @param options The options parameters.
+   *
    */
-  createOrUpdate(
-    resourceGroupName: string,
-    proximityPlacementGroupName: string,
-    parameters: ProximityPlacementGroup,
-    options?: ProximityPlacementGroupsCreateOrUpdateOptionalParams
-  ): Promise<ProximityPlacementGroupsCreateOrUpdateResponse> {
+  createOrUpdate(): Promise<ProximityPlacementGroupsCreateOrUpdateResponse> {
     return this.client.sendOperationRequest(
-      { resourceGroupName, proximityPlacementGroupName, parameters, options },
+      { resourceGroupName, proximityPlacementGroupName, options },
       createOrUpdateOperationSpec
     );
   }
 
   /**
    * Update a proximity placement group.
-   * @param resourceGroupName The name of the resource group.
-   * @param proximityPlacementGroupName The name of the proximity placement group.
-   * @param parameters Parameters supplied to the Update Proximity Placement Group operation.
-   * @param options The options parameters.
+   *
    */
-  update(
-    resourceGroupName: string,
-    proximityPlacementGroupName: string,
-    parameters: ProximityPlacementGroupUpdate,
-    options?: ProximityPlacementGroupsUpdateOptionalParams
-  ): Promise<ProximityPlacementGroupsUpdateResponse> {
+  update(): Promise<ProximityPlacementGroupsUpdateResponse> {
     return this.client.sendOperationRequest(
-      { resourceGroupName, proximityPlacementGroupName, parameters, options },
+      { resourceGroupName, proximityPlacementGroupName, options },
       updateOperationSpec
     );
   }
 
   /**
    * Delete a proximity placement group.
-   * @param resourceGroupName The name of the resource group.
-   * @param proximityPlacementGroupName The name of the proximity placement group.
-   * @param options The options parameters.
+   *
    */
-  delete(
-    resourceGroupName: string,
-    proximityPlacementGroupName: string,
-    options?: ProximityPlacementGroupsDeleteOptionalParams
-  ): Promise<void> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, proximityPlacementGroupName, options },
-      deleteOperationSpec
-    );
-  }
+  delete(): Promise<void> {}
 
   /**
    * Retrieves information about a proximity placement group .
-   * @param resourceGroupName The name of the resource group.
-   * @param proximityPlacementGroupName The name of the proximity placement group.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    proximityPlacementGroupName: string,
-    options?: ProximityPlacementGroupsGetOptionalParams
-  ): Promise<ProximityPlacementGroupsGetResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, proximityPlacementGroupName, options },
-      getOperationSpec
-    );
-  }
+  get(): Promise<ProximityPlacementGroupsGetResponse> {}
 
   /**
    * Lists all proximity placement groups in a subscription.
-   * @param options The options parameters.
+   *
    */
-  private _listBySubscription(
-    options?: ProximityPlacementGroupsListBySubscriptionOptionalParams
-  ): Promise<ProximityPlacementGroupsListBySubscriptionResponse> {
-    return this.client.sendOperationRequest(
-      { options },
-      listBySubscriptionOperationSpec
-    );
-  }
+  private _listBySubscription(): Promise<
+    ProximityPlacementGroupsListBySubscriptionResponse
+  > {}
 
   /**
    * Lists all proximity placement groups in a resource group.
-   * @param resourceGroupName The name of the resource group.
-   * @param options The options parameters.
+   *
    */
-  private _listByResourceGroup(
-    resourceGroupName: string,
-    options?: ProximityPlacementGroupsListByResourceGroupOptionalParams
-  ): Promise<ProximityPlacementGroupsListByResourceGroupResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, options },
-      listByResourceGroupOperationSpec
-    );
-  }
+  private _listByResourceGroup(): Promise<
+    ProximityPlacementGroupsListByResourceGroupResponse
+  > {}
 
   /**
    * ListBySubscriptionNext
-   * @param nextLink The nextLink from the previous successful call to the ListBySubscription method.
-   * @param options The options parameters.
+   *
    */
-  private _listBySubscriptionNext(
-    nextLink: string,
-    options?: ProximityPlacementGroupsListBySubscriptionNextOptionalParams
-  ): Promise<ProximityPlacementGroupsListBySubscriptionNextResponse> {
-    return this.client.sendOperationRequest(
-      { nextLink, options },
-      listBySubscriptionNextOperationSpec
-    );
-  }
+  private _listBySubscriptionNext(): Promise<
+    ProximityPlacementGroupsListBySubscriptionNextResponse
+  > {}
 
   /**
    * ListByResourceGroupNext
-   * @param resourceGroupName The name of the resource group.
-   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
-   * @param options The options parameters.
+   *
    */
-  private _listByResourceGroupNext(
-    resourceGroupName: string,
-    nextLink: string,
-    options?: ProximityPlacementGroupsListByResourceGroupNextOptionalParams
-  ): Promise<ProximityPlacementGroupsListByResourceGroupNextResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options },
-      listByResourceGroupNextOperationSpec
-    );
-  }
+  private _listByResourceGroupNext(): Promise<
+    ProximityPlacementGroupsListByResourceGroupNextResponse
+  > {}
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
@@ -318,105 +232,5 @@ const updateOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const deleteOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/proximityPlacementGroups/{proximityPlacementGroupName}",
-  httpMethod: "DELETE",
-  responses: { 200: {} },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId,
-    Parameters.proximityPlacementGroupName
-  ],
-  serializer
-};
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/proximityPlacementGroups/{proximityPlacementGroupName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ProximityPlacementGroup
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.includeColocationStatus],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId,
-    Parameters.proximityPlacementGroupName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listBySubscriptionOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/proximityPlacementGroups",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ProximityPlacementGroupListResult
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.subscriptionId],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByResourceGroupOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/proximityPlacementGroups",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ProximityPlacementGroupListResult
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listBySubscriptionNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ProximityPlacementGroupListResult
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.nextLink
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ProximityPlacementGroupListResult
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId,
-    Parameters.nextLink
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };

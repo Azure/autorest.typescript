@@ -184,18 +184,6 @@ export const expand: OperationQueryParameter = {
   }
 };
 
-export const nextLink: OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
 export const parameters2: OperationParameter = {
   parameterPath: "parameters",
   mapper: ProximityPlacementGroupMapper

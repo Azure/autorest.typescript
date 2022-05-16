@@ -16,15 +16,9 @@ import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
   DiskRestorePoint,
-  DiskRestorePointListByRestorePointNextOptionalParams,
-  DiskRestorePointListByRestorePointOptionalParams,
-  DiskRestorePointGetOptionalParams,
   DiskRestorePointGetResponse,
   DiskRestorePointListByRestorePointResponse,
-  GrantAccessData,
-  DiskRestorePointGrantAccessOptionalParams,
   DiskRestorePointGrantAccessResponse,
-  DiskRestorePointRevokeAccessOptionalParams,
   DiskRestorePointListByRestorePointNextResponse
 } from "../models";
 
@@ -44,24 +38,10 @@ export class DiskRestorePointOperationsImpl
 
   /**
    * Lists diskRestorePoints under a vmRestorePoint.
-   * @param resourceGroupName The name of the resource group.
-   * @param restorePointCollectionName The name of the restore point collection that the disk restore
-   *                                   point belongs.
-   * @param vmRestorePointName The name of the vm restore point that the disk disk restore point belongs.
-   * @param options The options parameters.
+   *
    */
-  public listByRestorePoint(
-    resourceGroupName: string,
-    restorePointCollectionName: string,
-    vmRestorePointName: string,
-    options?: DiskRestorePointListByRestorePointOptionalParams
-  ): PagedAsyncIterableIterator<DiskRestorePoint> {
-    const iter = this.listByRestorePointPagingAll(
-      resourceGroupName,
-      restorePointCollectionName,
-      vmRestorePointName,
-      options
-    );
+  public listByRestorePoint(): PagedAsyncIterableIterator<DiskRestorePoint> {
+    const iter = this.listByRestorePointPagingAll();
     return {
       next() {
         return iter.next();
@@ -70,130 +50,51 @@ export class DiskRestorePointOperationsImpl
         return this;
       },
       byPage: () => {
-        return this.listByRestorePointPagingPage(
-          resourceGroupName,
-          restorePointCollectionName,
-          vmRestorePointName,
-          options
-        );
+        return this.listByRestorePointPagingPage();
       }
     };
   }
 
-  private async *listByRestorePointPagingPage(
-    resourceGroupName: string,
-    restorePointCollectionName: string,
-    vmRestorePointName: string,
-    options?: DiskRestorePointListByRestorePointOptionalParams
-  ): AsyncIterableIterator<DiskRestorePoint[]> {
-    let result = await this._listByRestorePoint(
-      resourceGroupName,
-      restorePointCollectionName,
-      vmRestorePointName,
-      options
-    );
+  private async *listByRestorePointPagingPage(): AsyncIterableIterator<
+    DiskRestorePoint[]
+  > {
+    let result = await this._listByRestorePoint();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listByRestorePointNext(
-        resourceGroupName,
-        restorePointCollectionName,
-        vmRestorePointName,
-        continuationToken,
-        options
-      );
+      result = await this._listByRestorePointNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listByRestorePointPagingAll(
-    resourceGroupName: string,
-    restorePointCollectionName: string,
-    vmRestorePointName: string,
-    options?: DiskRestorePointListByRestorePointOptionalParams
-  ): AsyncIterableIterator<DiskRestorePoint> {
-    for await (const page of this.listByRestorePointPagingPage(
-      resourceGroupName,
-      restorePointCollectionName,
-      vmRestorePointName,
-      options
-    )) {
+  private async *listByRestorePointPagingAll(): AsyncIterableIterator<
+    DiskRestorePoint
+  > {
+    for await (const page of this.listByRestorePointPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Get disk restorePoint resource
-   * @param resourceGroupName The name of the resource group.
-   * @param restorePointCollectionName The name of the restore point collection that the disk restore
-   *                                   point belongs.
-   * @param vmRestorePointName The name of the vm restore point that the disk disk restore point belongs.
-   * @param diskRestorePointName The name of the disk restore point created.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    restorePointCollectionName: string,
-    vmRestorePointName: string,
-    diskRestorePointName: string,
-    options?: DiskRestorePointGetOptionalParams
-  ): Promise<DiskRestorePointGetResponse> {
-    return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        restorePointCollectionName,
-        vmRestorePointName,
-        diskRestorePointName,
-        options
-      },
-      getOperationSpec
-    );
-  }
+  get(): Promise<DiskRestorePointGetResponse> {}
 
   /**
    * Lists diskRestorePoints under a vmRestorePoint.
-   * @param resourceGroupName The name of the resource group.
-   * @param restorePointCollectionName The name of the restore point collection that the disk restore
-   *                                   point belongs.
-   * @param vmRestorePointName The name of the vm restore point that the disk disk restore point belongs.
-   * @param options The options parameters.
+   *
    */
-  private _listByRestorePoint(
-    resourceGroupName: string,
-    restorePointCollectionName: string,
-    vmRestorePointName: string,
-    options?: DiskRestorePointListByRestorePointOptionalParams
-  ): Promise<DiskRestorePointListByRestorePointResponse> {
-    return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        restorePointCollectionName,
-        vmRestorePointName,
-        options
-      },
-      listByRestorePointOperationSpec
-    );
-  }
+  private _listByRestorePoint(): Promise<
+    DiskRestorePointListByRestorePointResponse
+  > {}
 
   /**
    * Grants access to a diskRestorePoint.
-   * @param resourceGroupName The name of the resource group.
-   * @param restorePointCollectionName The name of the restore point collection that the disk restore
-   *                                   point belongs.
-   * @param vmRestorePointName The name of the vm restore point that the disk disk restore point belongs.
-   * @param diskRestorePointName The name of the disk restore point created.
-   * @param grantAccessData Access data object supplied in the body of the get disk access operation.
-   * @param options The options parameters.
+   *
    */
-  async beginGrantAccess(
-    resourceGroupName: string,
-    restorePointCollectionName: string,
-    vmRestorePointName: string,
-    diskRestorePointName: string,
-    grantAccessData: GrantAccessData,
-    options?: DiskRestorePointGrantAccessOptionalParams
-  ): Promise<
+  async beginGrantAccess(): Promise<
     PollerLike<
       PollOperationState<DiskRestorePointGrantAccessResponse>,
       DiskRestorePointGrantAccessResponse
@@ -245,7 +146,6 @@ export class DiskRestorePointOperationsImpl
         restorePointCollectionName,
         vmRestorePointName,
         diskRestorePointName,
-        grantAccessData,
         options
       },
       grantAccessOperationSpec
@@ -261,212 +161,43 @@ export class DiskRestorePointOperationsImpl
 
   /**
    * Grants access to a diskRestorePoint.
-   * @param resourceGroupName The name of the resource group.
-   * @param restorePointCollectionName The name of the restore point collection that the disk restore
-   *                                   point belongs.
-   * @param vmRestorePointName The name of the vm restore point that the disk disk restore point belongs.
-   * @param diskRestorePointName The name of the disk restore point created.
-   * @param grantAccessData Access data object supplied in the body of the get disk access operation.
-   * @param options The options parameters.
+   *
    */
-  async beginGrantAccessAndWait(
-    resourceGroupName: string,
-    restorePointCollectionName: string,
-    vmRestorePointName: string,
-    diskRestorePointName: string,
-    grantAccessData: GrantAccessData,
-    options?: DiskRestorePointGrantAccessOptionalParams
-  ): Promise<DiskRestorePointGrantAccessResponse> {
-    const poller = await this.beginGrantAccess(
-      resourceGroupName,
-      restorePointCollectionName,
-      vmRestorePointName,
-      diskRestorePointName,
-      grantAccessData,
-      options
-    );
+  async beginGrantAccessAndWait(): Promise<
+    DiskRestorePointGrantAccessResponse
+  > {
+    const poller = await this.beginGrantAccess();
     return poller.pollUntilDone();
   }
 
   /**
    * Revokes access to a diskRestorePoint.
-   * @param resourceGroupName The name of the resource group.
-   * @param restorePointCollectionName The name of the restore point collection that the disk restore
-   *                                   point belongs.
-   * @param vmRestorePointName The name of the vm restore point that the disk disk restore point belongs.
-   * @param diskRestorePointName The name of the disk restore point created.
-   * @param options The options parameters.
+   *
    */
-  async beginRevokeAccess(
-    resourceGroupName: string,
-    restorePointCollectionName: string,
-    vmRestorePointName: string,
-    diskRestorePointName: string,
-    options?: DiskRestorePointRevokeAccessOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<void> => {
-      return this.client.sendOperationRequest(args, spec);
-    };
-    const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return {
-        flatResponse,
-        rawResponse: {
-          statusCode: currentRawResponse!.status,
-          body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
-      };
-    };
-
-    const lro = new LroImpl(
-      sendOperation,
-      {
-        resourceGroupName,
-        restorePointCollectionName,
-        vmRestorePointName,
-        diskRestorePointName,
-        options
-      },
-      revokeAccessOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "location"
-    });
-    await poller.poll();
-    return poller;
-  }
+  async beginRevokeAccess(): Promise<
+    PollerLike<PollOperationState<void>, void>
+  > {}
 
   /**
    * Revokes access to a diskRestorePoint.
-   * @param resourceGroupName The name of the resource group.
-   * @param restorePointCollectionName The name of the restore point collection that the disk restore
-   *                                   point belongs.
-   * @param vmRestorePointName The name of the vm restore point that the disk disk restore point belongs.
-   * @param diskRestorePointName The name of the disk restore point created.
-   * @param options The options parameters.
+   *
    */
-  async beginRevokeAccessAndWait(
-    resourceGroupName: string,
-    restorePointCollectionName: string,
-    vmRestorePointName: string,
-    diskRestorePointName: string,
-    options?: DiskRestorePointRevokeAccessOptionalParams
-  ): Promise<void> {
-    const poller = await this.beginRevokeAccess(
-      resourceGroupName,
-      restorePointCollectionName,
-      vmRestorePointName,
-      diskRestorePointName,
-      options
-    );
+  async beginRevokeAccessAndWait(): Promise<void> {
+    const poller = await this.beginRevokeAccess();
     return poller.pollUntilDone();
   }
 
   /**
    * ListByRestorePointNext
-   * @param resourceGroupName The name of the resource group.
-   * @param restorePointCollectionName The name of the restore point collection that the disk restore
-   *                                   point belongs.
-   * @param vmRestorePointName The name of the vm restore point that the disk disk restore point belongs.
-   * @param nextLink The nextLink from the previous successful call to the ListByRestorePoint method.
-   * @param options The options parameters.
+   *
    */
-  private _listByRestorePointNext(
-    resourceGroupName: string,
-    restorePointCollectionName: string,
-    vmRestorePointName: string,
-    nextLink: string,
-    options?: DiskRestorePointListByRestorePointNextOptionalParams
-  ): Promise<DiskRestorePointListByRestorePointNextResponse> {
-    return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        restorePointCollectionName,
-        vmRestorePointName,
-        nextLink,
-        options
-      },
-      listByRestorePointNextOperationSpec
-    );
-  }
+  private _listByRestorePointNext(): Promise<
+    DiskRestorePointListByRestorePointNextResponse
+  > {}
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/restorePointCollections/{restorePointCollectionName}/restorePoints/{vmRestorePointName}/diskRestorePoints/{diskRestorePointName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DiskRestorePoint
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion1],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId,
-    Parameters.restorePointCollectionName,
-    Parameters.vmRestorePointName,
-    Parameters.diskRestorePointName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByRestorePointOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/restorePointCollections/{restorePointCollectionName}/restorePoints/{vmRestorePointName}/diskRestorePoints",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DiskRestorePointList
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion1],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId,
-    Parameters.restorePointCollectionName,
-    Parameters.vmRestorePointName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
 const grantAccessOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/restorePointCollections/{restorePointCollectionName}/restorePoints/{vmRestorePointName}/diskRestorePoints/{diskRestorePointName}/beginGetAccess",
@@ -500,53 +231,5 @@ const grantAccessOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const revokeAccessOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/restorePointCollections/{restorePointCollectionName}/restorePoints/{vmRestorePointName}/diskRestorePoints/{diskRestorePointName}/endGetAccess",
-  httpMethod: "POST",
-  responses: {
-    200: {},
-    201: {},
-    202: {},
-    204: {},
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion1],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId,
-    Parameters.restorePointCollectionName,
-    Parameters.vmRestorePointName,
-    Parameters.diskRestorePointName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByRestorePointNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DiskRestorePointList
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion1],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId,
-    Parameters.nextLink,
-    Parameters.restorePointCollectionName,
-    Parameters.vmRestorePointName
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };

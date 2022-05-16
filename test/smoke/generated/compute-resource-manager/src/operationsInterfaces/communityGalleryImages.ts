@@ -6,24 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
-  CommunityGalleryImagesGetOptionalParams,
-  CommunityGalleryImagesGetResponse
-} from "../models";
+import { CommunityGalleryImagesGetResponse } from "../models";
 
 /** Interface representing a CommunityGalleryImages. */
 export interface CommunityGalleryImages {
   /**
    * Get a community gallery image.
-   * @param location Resource location.
-   * @param publicGalleryName The public name of the community gallery.
-   * @param galleryImageName The name of the community gallery image definition.
-   * @param options The options parameters.
+   *
    */
-  get(
-    location: string,
-    publicGalleryName: string,
-    galleryImageName: string,
-    options?: CommunityGalleryImagesGetOptionalParams
-  ): Promise<CommunityGalleryImagesGetResponse>;
+  get(): Promise<CommunityGalleryImagesGetResponse>;
 }

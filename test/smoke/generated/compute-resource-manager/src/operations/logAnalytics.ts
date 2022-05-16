@@ -14,11 +14,7 @@ import { ComputeManagementClient } from "../computeManagementClient";
 import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
-  RequestRateByIntervalInput,
-  LogAnalyticsExportRequestRateByIntervalOptionalParams,
   LogAnalyticsExportRequestRateByIntervalResponse,
-  ThrottledRequestsInput,
-  LogAnalyticsExportThrottledRequestsOptionalParams,
   LogAnalyticsExportThrottledRequestsResponse
 } from "../models";
 
@@ -37,15 +33,9 @@ export class LogAnalyticsImpl implements LogAnalytics {
   /**
    * Export logs that show Api requests made by this subscription in the given time window to show
    * throttling activities.
-   * @param location The location upon which virtual-machine-sizes is queried.
-   * @param parameters Parameters supplied to the LogAnalytics getRequestRateByInterval Api.
-   * @param options The options parameters.
+   *
    */
-  async beginExportRequestRateByInterval(
-    location: string,
-    parameters: RequestRateByIntervalInput,
-    options?: LogAnalyticsExportRequestRateByIntervalOptionalParams
-  ): Promise<
+  async beginExportRequestRateByInterval(): Promise<
     PollerLike<
       PollOperationState<LogAnalyticsExportRequestRateByIntervalResponse>,
       LogAnalyticsExportRequestRateByIntervalResponse
@@ -92,7 +82,7 @@ export class LogAnalyticsImpl implements LogAnalytics {
 
     const lro = new LroImpl(
       sendOperation,
-      { location, parameters, options },
+      { location, options },
       exportRequestRateByIntervalOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -107,34 +97,20 @@ export class LogAnalyticsImpl implements LogAnalytics {
   /**
    * Export logs that show Api requests made by this subscription in the given time window to show
    * throttling activities.
-   * @param location The location upon which virtual-machine-sizes is queried.
-   * @param parameters Parameters supplied to the LogAnalytics getRequestRateByInterval Api.
-   * @param options The options parameters.
+   *
    */
-  async beginExportRequestRateByIntervalAndWait(
-    location: string,
-    parameters: RequestRateByIntervalInput,
-    options?: LogAnalyticsExportRequestRateByIntervalOptionalParams
-  ): Promise<LogAnalyticsExportRequestRateByIntervalResponse> {
-    const poller = await this.beginExportRequestRateByInterval(
-      location,
-      parameters,
-      options
-    );
+  async beginExportRequestRateByIntervalAndWait(): Promise<
+    LogAnalyticsExportRequestRateByIntervalResponse
+  > {
+    const poller = await this.beginExportRequestRateByInterval();
     return poller.pollUntilDone();
   }
 
   /**
    * Export logs that show total throttled Api requests for this subscription in the given time window.
-   * @param location The location upon which virtual-machine-sizes is queried.
-   * @param parameters Parameters supplied to the LogAnalytics getThrottledRequests Api.
-   * @param options The options parameters.
+   *
    */
-  async beginExportThrottledRequests(
-    location: string,
-    parameters: ThrottledRequestsInput,
-    options?: LogAnalyticsExportThrottledRequestsOptionalParams
-  ): Promise<
+  async beginExportThrottledRequests(): Promise<
     PollerLike<
       PollOperationState<LogAnalyticsExportThrottledRequestsResponse>,
       LogAnalyticsExportThrottledRequestsResponse
@@ -181,7 +157,7 @@ export class LogAnalyticsImpl implements LogAnalytics {
 
     const lro = new LroImpl(
       sendOperation,
-      { location, parameters, options },
+      { location, options },
       exportThrottledRequestsOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -195,20 +171,12 @@ export class LogAnalyticsImpl implements LogAnalytics {
 
   /**
    * Export logs that show total throttled Api requests for this subscription in the given time window.
-   * @param location The location upon which virtual-machine-sizes is queried.
-   * @param parameters Parameters supplied to the LogAnalytics getThrottledRequests Api.
-   * @param options The options parameters.
+   *
    */
-  async beginExportThrottledRequestsAndWait(
-    location: string,
-    parameters: ThrottledRequestsInput,
-    options?: LogAnalyticsExportThrottledRequestsOptionalParams
-  ): Promise<LogAnalyticsExportThrottledRequestsResponse> {
-    const poller = await this.beginExportThrottledRequests(
-      location,
-      parameters,
-      options
-    );
+  async beginExportThrottledRequestsAndWait(): Promise<
+    LogAnalyticsExportThrottledRequestsResponse
+  > {
+    const poller = await this.beginExportThrottledRequests();
     return poller.pollUntilDone();
   }
 }

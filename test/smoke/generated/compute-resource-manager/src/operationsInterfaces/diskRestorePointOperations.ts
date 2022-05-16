@@ -10,13 +10,8 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   DiskRestorePoint,
-  DiskRestorePointListByRestorePointOptionalParams,
-  DiskRestorePointGetOptionalParams,
   DiskRestorePointGetResponse,
-  GrantAccessData,
-  DiskRestorePointGrantAccessOptionalParams,
-  DiskRestorePointGrantAccessResponse,
-  DiskRestorePointRevokeAccessOptionalParams
+  DiskRestorePointGrantAccessResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -24,52 +19,19 @@ import {
 export interface DiskRestorePointOperations {
   /**
    * Lists diskRestorePoints under a vmRestorePoint.
-   * @param resourceGroupName The name of the resource group.
-   * @param restorePointCollectionName The name of the restore point collection that the disk restore
-   *                                   point belongs.
-   * @param vmRestorePointName The name of the vm restore point that the disk disk restore point belongs.
-   * @param options The options parameters.
+   *
    */
-  listByRestorePoint(
-    resourceGroupName: string,
-    restorePointCollectionName: string,
-    vmRestorePointName: string,
-    options?: DiskRestorePointListByRestorePointOptionalParams
-  ): PagedAsyncIterableIterator<DiskRestorePoint>;
+  listByRestorePoint(): PagedAsyncIterableIterator<DiskRestorePoint>;
   /**
    * Get disk restorePoint resource
-   * @param resourceGroupName The name of the resource group.
-   * @param restorePointCollectionName The name of the restore point collection that the disk restore
-   *                                   point belongs.
-   * @param vmRestorePointName The name of the vm restore point that the disk disk restore point belongs.
-   * @param diskRestorePointName The name of the disk restore point created.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    restorePointCollectionName: string,
-    vmRestorePointName: string,
-    diskRestorePointName: string,
-    options?: DiskRestorePointGetOptionalParams
-  ): Promise<DiskRestorePointGetResponse>;
+  get(): Promise<DiskRestorePointGetResponse>;
   /**
    * Grants access to a diskRestorePoint.
-   * @param resourceGroupName The name of the resource group.
-   * @param restorePointCollectionName The name of the restore point collection that the disk restore
-   *                                   point belongs.
-   * @param vmRestorePointName The name of the vm restore point that the disk disk restore point belongs.
-   * @param diskRestorePointName The name of the disk restore point created.
-   * @param grantAccessData Access data object supplied in the body of the get disk access operation.
-   * @param options The options parameters.
+   *
    */
-  beginGrantAccess(
-    resourceGroupName: string,
-    restorePointCollectionName: string,
-    vmRestorePointName: string,
-    diskRestorePointName: string,
-    grantAccessData: GrantAccessData,
-    options?: DiskRestorePointGrantAccessOptionalParams
-  ): Promise<
+  beginGrantAccess(): Promise<
     PollerLike<
       PollOperationState<DiskRestorePointGrantAccessResponse>,
       DiskRestorePointGrantAccessResponse
@@ -77,52 +39,17 @@ export interface DiskRestorePointOperations {
   >;
   /**
    * Grants access to a diskRestorePoint.
-   * @param resourceGroupName The name of the resource group.
-   * @param restorePointCollectionName The name of the restore point collection that the disk restore
-   *                                   point belongs.
-   * @param vmRestorePointName The name of the vm restore point that the disk disk restore point belongs.
-   * @param diskRestorePointName The name of the disk restore point created.
-   * @param grantAccessData Access data object supplied in the body of the get disk access operation.
-   * @param options The options parameters.
+   *
    */
-  beginGrantAccessAndWait(
-    resourceGroupName: string,
-    restorePointCollectionName: string,
-    vmRestorePointName: string,
-    diskRestorePointName: string,
-    grantAccessData: GrantAccessData,
-    options?: DiskRestorePointGrantAccessOptionalParams
-  ): Promise<DiskRestorePointGrantAccessResponse>;
+  beginGrantAccessAndWait(): Promise<DiskRestorePointGrantAccessResponse>;
   /**
    * Revokes access to a diskRestorePoint.
-   * @param resourceGroupName The name of the resource group.
-   * @param restorePointCollectionName The name of the restore point collection that the disk restore
-   *                                   point belongs.
-   * @param vmRestorePointName The name of the vm restore point that the disk disk restore point belongs.
-   * @param diskRestorePointName The name of the disk restore point created.
-   * @param options The options parameters.
+   *
    */
-  beginRevokeAccess(
-    resourceGroupName: string,
-    restorePointCollectionName: string,
-    vmRestorePointName: string,
-    diskRestorePointName: string,
-    options?: DiskRestorePointRevokeAccessOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  beginRevokeAccess(): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Revokes access to a diskRestorePoint.
-   * @param resourceGroupName The name of the resource group.
-   * @param restorePointCollectionName The name of the restore point collection that the disk restore
-   *                                   point belongs.
-   * @param vmRestorePointName The name of the vm restore point that the disk disk restore point belongs.
-   * @param diskRestorePointName The name of the disk restore point created.
-   * @param options The options parameters.
+   *
    */
-  beginRevokeAccessAndWait(
-    resourceGroupName: string,
-    restorePointCollectionName: string,
-    vmRestorePointName: string,
-    diskRestorePointName: string,
-    options?: DiskRestorePointRevokeAccessOptionalParams
-  ): Promise<void>;
+  beginRevokeAccessAndWait(): Promise<void>;
 }
