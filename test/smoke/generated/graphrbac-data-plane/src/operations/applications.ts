@@ -299,15 +299,17 @@ export class ApplicationsImpl implements Applications {
 
   /**
    * Create a new application.
+   * @param contentType Body Parameter content-type
    * @param parameters The parameters for creating an application.
    * @param options The options parameters.
    */
   create(
+    contentType: "application/json",
     parameters: ApplicationCreateParameters,
     options?: ApplicationsCreateOptionalParams
   ): Promise<ApplicationsCreateResponse> {
     return this.client.sendOperationRequest(
-      { parameters, options },
+      { contentType, parameters, options },
       createOperationSpec
     );
   }
@@ -355,16 +357,18 @@ export class ApplicationsImpl implements Applications {
   /**
    * Update an existing application.
    * @param applicationObjectId Application object ID.
+   * @param contentType Body Parameter content-type
    * @param parameters Parameters to update an existing application.
    * @param options The options parameters.
    */
   patch(
     applicationObjectId: string,
+    contentType: "application/json",
     parameters: ApplicationUpdateParameters,
     options?: ApplicationsPatchOptionalParams
   ): Promise<void> {
     return this.client.sendOperationRequest(
-      { applicationObjectId, parameters, options },
+      { applicationObjectId, contentType, parameters, options },
       patchOperationSpec
     );
   }
@@ -387,17 +391,19 @@ export class ApplicationsImpl implements Applications {
   /**
    * Add an owner to an application.
    * @param applicationObjectId The object ID of the application to which to add the owner.
+   * @param contentType Body Parameter content-type
    * @param parameters The URL of the owner object, such as
    *                   https://graph.windows.net/0b1f9851-1bf0-433f-aec3-cb9272f093dc/directoryObjects/f260bbc4-c254-447b-94cf-293b5ec434dd.
    * @param options The options parameters.
    */
   addOwner(
     applicationObjectId: string,
+    contentType: "application/json",
     parameters: AddOwnerParameters,
     options?: ApplicationsAddOwnerOptionalParams
   ): Promise<void> {
     return this.client.sendOperationRequest(
-      { applicationObjectId, parameters, options },
+      { applicationObjectId, contentType, parameters, options },
       addOwnerOperationSpec
     );
   }
@@ -437,16 +443,18 @@ export class ApplicationsImpl implements Applications {
   /**
    * Update the keyCredentials associated with an application.
    * @param applicationObjectId Application object ID.
+   * @param contentType Body Parameter content-type
    * @param parameters Parameters to update the keyCredentials of an existing application.
    * @param options The options parameters.
    */
   updateKeyCredentials(
     applicationObjectId: string,
+    contentType: "application/json",
     parameters: KeyCredentialsUpdateParameters,
     options?: ApplicationsUpdateKeyCredentialsOptionalParams
   ): Promise<void> {
     return this.client.sendOperationRequest(
-      { applicationObjectId, parameters, options },
+      { applicationObjectId, contentType, parameters, options },
       updateKeyCredentialsOperationSpec
     );
   }
@@ -469,16 +477,18 @@ export class ApplicationsImpl implements Applications {
   /**
    * Update passwordCredentials associated with an application.
    * @param applicationObjectId Application object ID.
+   * @param contentType Body Parameter content-type
    * @param parameters Parameters to update passwordCredentials of an existing application.
    * @param options The options parameters.
    */
   updatePasswordCredentials(
     applicationObjectId: string,
+    contentType: "application/json",
     parameters: PasswordCredentialsUpdateParameters,
     options?: ApplicationsUpdatePasswordCredentialsOptionalParams
   ): Promise<void> {
     return this.client.sendOperationRequest(
-      { applicationObjectId, parameters, options },
+      { applicationObjectId, contentType, parameters, options },
       updatePasswordCredentialsOperationSpec
     );
   }

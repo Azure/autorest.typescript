@@ -386,6 +386,7 @@ export interface VirtualMachineScaleSetVMs {
    * @param resourceGroupName The name of the resource group.
    * @param vmScaleSetName The name of the VM scale set.
    * @param instanceId The instance ID of the virtual machine.
+   * @param contentType Body Parameter content-type
    * @param parameters Parameters supplied to the Run command operation.
    * @param options The options parameters.
    */
@@ -393,6 +394,7 @@ export interface VirtualMachineScaleSetVMs {
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
+    contentType: "application/json",
     parameters: RunCommandInput,
     options?: VirtualMachineScaleSetVMsRunCommandOptionalParams
   ): Promise<
@@ -406,6 +408,7 @@ export interface VirtualMachineScaleSetVMs {
    * @param resourceGroupName The name of the resource group.
    * @param vmScaleSetName The name of the VM scale set.
    * @param instanceId The instance ID of the virtual machine.
+   * @param contentType Body Parameter content-type
    * @param parameters Parameters supplied to the Run command operation.
    * @param options The options parameters.
    */
@@ -413,6 +416,7 @@ export interface VirtualMachineScaleSetVMs {
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
+    contentType: "application/json",
     parameters: RunCommandInput,
     options?: VirtualMachineScaleSetVMsRunCommandOptionalParams
   ): Promise<VirtualMachineScaleSetVMsRunCommandResponse>;

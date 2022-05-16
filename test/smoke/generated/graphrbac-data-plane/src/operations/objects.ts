@@ -37,14 +37,20 @@ export class ObjectsImpl implements Objects {
   /**
    * Gets the directory objects specified in a list of object IDs. You can also specify which resource
    * collections (users, groups, etc.) should be searched by specifying the optional types parameter.
+   * @param contentType Body Parameter content-type
    * @param parameters Objects filtering parameters.
    * @param options The options parameters.
    */
   public listObjectsByObjectIds(
+    contentType: "application/json",
     parameters: GetObjectsParameters,
     options?: ObjectsGetObjectsByObjectIdsOptionalParams
   ): PagedAsyncIterableIterator<DirectoryObjectUnion> {
-    const iter = this.getObjectsByObjectIdsPagingAll(parameters, options);
+    const iter = this.getObjectsByObjectIdsPagingAll(
+      contentType,
+      parameters,
+      options
+    );
     return {
       next() {
         return iter.next();
@@ -53,16 +59,25 @@ export class ObjectsImpl implements Objects {
         return this;
       },
       byPage: () => {
-        return this.getObjectsByObjectIdsPagingPage(parameters, options);
+        return this.getObjectsByObjectIdsPagingPage(
+          contentType,
+          parameters,
+          options
+        );
       }
     };
   }
 
   private async *getObjectsByObjectIdsPagingPage(
+    contentType: "application/json",
     parameters: GetObjectsParameters,
     options?: ObjectsGetObjectsByObjectIdsOptionalParams
   ): AsyncIterableIterator<DirectoryObjectUnion[]> {
-    let result = await this._getObjectsByObjectIds(parameters, options);
+    let result = await this._getObjectsByObjectIds(
+      contentType,
+      parameters,
+      options
+    );
     yield result.value || [];
     let continuationToken = result.odataNextLink;
     while (continuationToken) {
@@ -76,10 +91,12 @@ export class ObjectsImpl implements Objects {
   }
 
   private async *getObjectsByObjectIdsPagingAll(
+    contentType: "application/json",
     parameters: GetObjectsParameters,
     options?: ObjectsGetObjectsByObjectIdsOptionalParams
   ): AsyncIterableIterator<DirectoryObjectUnion> {
     for await (const page of this.getObjectsByObjectIdsPagingPage(
+      contentType,
       parameters,
       options
     )) {
@@ -142,15 +159,17 @@ export class ObjectsImpl implements Objects {
   /**
    * Gets the directory objects specified in a list of object IDs. You can also specify which resource
    * collections (users, groups, etc.) should be searched by specifying the optional types parameter.
+   * @param contentType Body Parameter content-type
    * @param parameters Objects filtering parameters.
    * @param options The options parameters.
    */
   private _getObjectsByObjectIds(
+    contentType: "application/json",
     parameters: GetObjectsParameters,
     options?: ObjectsGetObjectsByObjectIdsOptionalParams
   ): Promise<ObjectsGetObjectsByObjectIdsResponse> {
     return this.client.sendOperationRequest(
-      { parameters, options },
+      { contentType, parameters, options },
       getObjectsByObjectIdsOperationSpec
     );
   }

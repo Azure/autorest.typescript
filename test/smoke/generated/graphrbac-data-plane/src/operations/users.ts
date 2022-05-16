@@ -89,15 +89,22 @@ export class UsersImpl implements Users {
   /**
    * Gets a collection that contains the object IDs of the groups of which the user is a member.
    * @param objectId The object ID of the user for which to get group membership.
+   * @param contentType Body Parameter content-type
    * @param parameters User filtering parameters.
    * @param options The options parameters.
    */
   public listMemberGroups(
     objectId: string,
+    contentType: "application/json",
     parameters: UserGetMemberGroupsParameters,
     options?: UsersGetMemberGroupsOptionalParams
   ): PagedAsyncIterableIterator<string> {
-    const iter = this.getMemberGroupsPagingAll(objectId, parameters, options);
+    const iter = this.getMemberGroupsPagingAll(
+      objectId,
+      contentType,
+      parameters,
+      options
+    );
     return {
       next() {
         return iter.next();
@@ -106,27 +113,40 @@ export class UsersImpl implements Users {
         return this;
       },
       byPage: () => {
-        return this.getMemberGroupsPagingPage(objectId, parameters, options);
+        return this.getMemberGroupsPagingPage(
+          objectId,
+          contentType,
+          parameters,
+          options
+        );
       }
     };
   }
 
   private async *getMemberGroupsPagingPage(
     objectId: string,
+    contentType: "application/json",
     parameters: UserGetMemberGroupsParameters,
     options?: UsersGetMemberGroupsOptionalParams
   ): AsyncIterableIterator<string[]> {
-    let result = await this._getMemberGroups(objectId, parameters, options);
+    let result = await this._getMemberGroups(
+      objectId,
+      contentType,
+      parameters,
+      options
+    );
     yield result.value || [];
   }
 
   private async *getMemberGroupsPagingAll(
     objectId: string,
+    contentType: "application/json",
     parameters: UserGetMemberGroupsParameters,
     options?: UsersGetMemberGroupsOptionalParams
   ): AsyncIterableIterator<string> {
     for await (const page of this.getMemberGroupsPagingPage(
       objectId,
+      contentType,
       parameters,
       options
     )) {
@@ -182,15 +202,17 @@ export class UsersImpl implements Users {
 
   /**
    * Create a new user.
+   * @param contentType Body Parameter content-type
    * @param parameters Parameters to create a user.
    * @param options The options parameters.
    */
   create(
+    contentType: "application/json",
     parameters: UserCreateParameters,
     options?: UsersCreateOptionalParams
   ): Promise<UsersCreateResponse> {
     return this.client.sendOperationRequest(
-      { parameters, options },
+      { contentType, parameters, options },
       createOperationSpec
     );
   }
@@ -221,16 +243,18 @@ export class UsersImpl implements Users {
   /**
    * Updates a user.
    * @param upnOrObjectId The object ID or principal name of the user to update.
+   * @param contentType Body Parameter content-type
    * @param parameters Parameters to update an existing user.
    * @param options The options parameters.
    */
   update(
     upnOrObjectId: string,
+    contentType: "application/json",
     parameters: UserUpdateParameters,
     options?: UsersUpdateOptionalParams
   ): Promise<void> {
     return this.client.sendOperationRequest(
-      { upnOrObjectId, parameters, options },
+      { upnOrObjectId, contentType, parameters, options },
       updateOperationSpec
     );
   }
@@ -253,16 +277,18 @@ export class UsersImpl implements Users {
   /**
    * Gets a collection that contains the object IDs of the groups of which the user is a member.
    * @param objectId The object ID of the user for which to get group membership.
+   * @param contentType Body Parameter content-type
    * @param parameters User filtering parameters.
    * @param options The options parameters.
    */
   private _getMemberGroups(
     objectId: string,
+    contentType: "application/json",
     parameters: UserGetMemberGroupsParameters,
     options?: UsersGetMemberGroupsOptionalParams
   ): Promise<UsersGetMemberGroupsResponse> {
     return this.client.sendOperationRequest(
-      { objectId, parameters, options },
+      { objectId, contentType, parameters, options },
       getMemberGroupsOperationSpec
     );
   }

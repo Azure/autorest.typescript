@@ -154,15 +154,22 @@ export class GroupsImpl implements Groups {
   /**
    * Gets a collection of object IDs of groups of which the specified group is a member.
    * @param objectId The object ID of the group for which to get group membership.
+   * @param contentType Body Parameter content-type
    * @param parameters Group filtering parameters.
    * @param options The options parameters.
    */
   public listMemberGroups(
     objectId: string,
+    contentType: "application/json",
     parameters: GroupGetMemberGroupsParameters,
     options?: GroupsGetMemberGroupsOptionalParams
   ): PagedAsyncIterableIterator<string> {
-    const iter = this.getMemberGroupsPagingAll(objectId, parameters, options);
+    const iter = this.getMemberGroupsPagingAll(
+      objectId,
+      contentType,
+      parameters,
+      options
+    );
     return {
       next() {
         return iter.next();
@@ -171,27 +178,40 @@ export class GroupsImpl implements Groups {
         return this;
       },
       byPage: () => {
-        return this.getMemberGroupsPagingPage(objectId, parameters, options);
+        return this.getMemberGroupsPagingPage(
+          objectId,
+          contentType,
+          parameters,
+          options
+        );
       }
     };
   }
 
   private async *getMemberGroupsPagingPage(
     objectId: string,
+    contentType: "application/json",
     parameters: GroupGetMemberGroupsParameters,
     options?: GroupsGetMemberGroupsOptionalParams
   ): AsyncIterableIterator<string[]> {
-    let result = await this._getMemberGroups(objectId, parameters, options);
+    let result = await this._getMemberGroups(
+      objectId,
+      contentType,
+      parameters,
+      options
+    );
     yield result.value || [];
   }
 
   private async *getMemberGroupsPagingAll(
     objectId: string,
+    contentType: "application/json",
     parameters: GroupGetMemberGroupsParameters,
     options?: GroupsGetMemberGroupsOptionalParams
   ): AsyncIterableIterator<string> {
     for await (const page of this.getMemberGroupsPagingPage(
       objectId,
+      contentType,
       parameters,
       options
     )) {
@@ -343,15 +363,17 @@ export class GroupsImpl implements Groups {
   /**
    * Checks whether the specified user, group, contact, or service principal is a direct or transitive
    * member of the specified group.
+   * @param contentType Body Parameter content-type
    * @param parameters The check group membership parameters.
    * @param options The options parameters.
    */
   isMemberOf(
+    contentType: "application/json",
     parameters: CheckGroupMembershipParameters,
     options?: GroupsIsMemberOfOptionalParams
   ): Promise<GroupsIsMemberOfResponse> {
     return this.client.sendOperationRequest(
-      { parameters, options },
+      { contentType, parameters, options },
       isMemberOfOperationSpec
     );
   }
@@ -376,32 +398,36 @@ export class GroupsImpl implements Groups {
   /**
    * Add a member to a group.
    * @param groupObjectId The object ID of the group to which to add the member.
+   * @param contentType Body Parameter content-type
    * @param parameters The URL of the member object, such as
    *                   https://graph.windows.net/0b1f9851-1bf0-433f-aec3-cb9272f093dc/directoryObjects/f260bbc4-c254-447b-94cf-293b5ec434dd.
    * @param options The options parameters.
    */
   addMember(
     groupObjectId: string,
+    contentType: "application/json",
     parameters: GroupAddMemberParameters,
     options?: GroupsAddMemberOptionalParams
   ): Promise<void> {
     return this.client.sendOperationRequest(
-      { groupObjectId, parameters, options },
+      { groupObjectId, contentType, parameters, options },
       addMemberOperationSpec
     );
   }
 
   /**
    * Create a group in the directory.
+   * @param contentType Body Parameter content-type
    * @param parameters The parameters for the group to create.
    * @param options The options parameters.
    */
   create(
+    contentType: "application/json",
     parameters: GroupCreateParameters,
     options?: GroupsCreateOptionalParams
   ): Promise<GroupsCreateResponse> {
     return this.client.sendOperationRequest(
-      { parameters, options },
+      { contentType, parameters, options },
       createOperationSpec
     );
   }
@@ -464,16 +490,18 @@ export class GroupsImpl implements Groups {
   /**
    * Gets a collection of object IDs of groups of which the specified group is a member.
    * @param objectId The object ID of the group for which to get group membership.
+   * @param contentType Body Parameter content-type
    * @param parameters Group filtering parameters.
    * @param options The options parameters.
    */
   private _getMemberGroups(
     objectId: string,
+    contentType: "application/json",
     parameters: GroupGetMemberGroupsParameters,
     options?: GroupsGetMemberGroupsOptionalParams
   ): Promise<GroupsGetMemberGroupsResponse> {
     return this.client.sendOperationRequest(
-      { objectId, parameters, options },
+      { objectId, contentType, parameters, options },
       getMemberGroupsOperationSpec
     );
   }
@@ -496,17 +524,19 @@ export class GroupsImpl implements Groups {
   /**
    * Add an owner to a group.
    * @param objectId The object ID of the application to which to add the owner.
+   * @param contentType Body Parameter content-type
    * @param parameters The URL of the owner object, such as
    *                   https://graph.windows.net/0b1f9851-1bf0-433f-aec3-cb9272f093dc/directoryObjects/f260bbc4-c254-447b-94cf-293b5ec434dd.
    * @param options The options parameters.
    */
   addOwner(
     objectId: string,
+    contentType: "application/json",
     parameters: AddOwnerParameters,
     options?: GroupsAddOwnerOptionalParams
   ): Promise<void> {
     return this.client.sendOperationRequest(
-      { objectId, parameters, options },
+      { objectId, contentType, parameters, options },
       addOwnerOperationSpec
     );
   }

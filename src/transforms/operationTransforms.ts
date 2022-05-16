@@ -102,8 +102,9 @@ export function transformOperationSpec(
 
   const operationSpecDetails: OperationSpecDetails[] = [];
 
-  const hasMultipleRequests = operationDetails.requests.length > 1;
-  for (const request of operationDetails.requests) {
+  const hasMultipleRequests = Object.keys(operationDetails.requestMediaTypes).length > 1;
+  for (const mediaType of Object.keys(operationDetails.requestMediaTypes)) {
+    const request = operationDetails.requestMediaTypes[mediaType];
     const isXML = operationDetails.mediaTypes.has(KnownMediaType.Xml);
     const httpInfo = extractHttpDetails(request);
     const {
@@ -407,8 +408,18 @@ export async function transformOperation(
     operation.extensions &&
     operation.extensions["x-ms-long-running-operation-options"];
 
-  const codeModelRequests = operation.requests;
-  if (codeModelRequests === undefined || !codeModelRequests.length) {
+  const codeModelRequests = operation.requestMediaTypes;
+  const requests = [];
+  if (codeModelRequests && Object.keys(codeModelRequests).length) {
+    for(const mediaType of Object.keys(codeModelRequests)) {
+      const request = codeModelRequests[mediaType];
+      requests.push(transformOperationRequest(request));
+    }
+  } else if (operation.requests && operation.requests.length) {
+    for(const request of operation.requests) {
+      requests.push(transformOperationRequest(request));
+    } 
+  } else {
     throw new Error(
       `No request object was found for operation: ${operationFullName}`
     );
@@ -416,7 +427,6 @@ export async function transformOperation(
 
   const pagingValueProperty = metadata.paging?.itemName;
 
-  const requests = codeModelRequests.map(transformOperationRequest);
   let responses = responsesAndErrors.map(response =>
     transformOperationResponse(response, operationFullName, pagingValueProperty)
   );

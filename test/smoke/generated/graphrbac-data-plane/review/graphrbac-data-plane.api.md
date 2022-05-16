@@ -108,8 +108,8 @@ export interface ApplicationListResult {
 
 // @public
 export interface Applications {
-    addOwner(applicationObjectId: string, parameters: AddOwnerParameters, options?: ApplicationsAddOwnerOptionalParams): Promise<void>;
-    create(parameters: ApplicationCreateParameters, options?: ApplicationsCreateOptionalParams): Promise<ApplicationsCreateResponse>;
+    addOwner(applicationObjectId: string, contentType: "application/json", parameters: AddOwnerParameters, options?: ApplicationsAddOwnerOptionalParams): Promise<void>;
+    create(contentType: "application/json", parameters: ApplicationCreateParameters, options?: ApplicationsCreateOptionalParams): Promise<ApplicationsCreateResponse>;
     delete(applicationObjectId: string, options?: ApplicationsDeleteOptionalParams): Promise<void>;
     get(applicationObjectId: string, options?: ApplicationsGetOptionalParams): Promise<ApplicationsGetResponse>;
     getServicePrincipalsIdByAppId(applicationID: string, options?: ApplicationsGetServicePrincipalsIdByAppIdOptionalParams): Promise<ApplicationsGetServicePrincipalsIdByAppIdResponse>;
@@ -118,10 +118,10 @@ export interface Applications {
     listNext(nextLink: string, options?: ApplicationsListNextOptionalParams): PagedAsyncIterableIterator<Application>;
     listOwners(applicationObjectId: string, options?: ApplicationsListOwnersOptionalParams): PagedAsyncIterableIterator<DirectoryObjectUnion>;
     listPasswordCredentials(applicationObjectId: string, options?: ApplicationsListPasswordCredentialsOptionalParams): PagedAsyncIterableIterator<PasswordCredential>;
-    patch(applicationObjectId: string, parameters: ApplicationUpdateParameters, options?: ApplicationsPatchOptionalParams): Promise<void>;
+    patch(applicationObjectId: string, contentType: "application/json", parameters: ApplicationUpdateParameters, options?: ApplicationsPatchOptionalParams): Promise<void>;
     removeOwner(applicationObjectId: string, ownerObjectId: string, options?: ApplicationsRemoveOwnerOptionalParams): Promise<void>;
-    updateKeyCredentials(applicationObjectId: string, parameters: KeyCredentialsUpdateParameters, options?: ApplicationsUpdateKeyCredentialsOptionalParams): Promise<void>;
-    updatePasswordCredentials(applicationObjectId: string, parameters: PasswordCredentialsUpdateParameters, options?: ApplicationsUpdatePasswordCredentialsOptionalParams): Promise<void>;
+    updateKeyCredentials(applicationObjectId: string, contentType: "application/json", parameters: KeyCredentialsUpdateParameters, options?: ApplicationsUpdateKeyCredentialsOptionalParams): Promise<void>;
+    updatePasswordCredentials(applicationObjectId: string, contentType: "application/json", parameters: PasswordCredentialsUpdateParameters, options?: ApplicationsUpdatePasswordCredentialsOptionalParams): Promise<void>;
 }
 
 // @public
@@ -417,16 +417,16 @@ export type GroupMembershipClaimTypes = string;
 
 // @public
 export interface Groups {
-    addMember(groupObjectId: string, parameters: GroupAddMemberParameters, options?: GroupsAddMemberOptionalParams): Promise<void>;
-    addOwner(objectId: string, parameters: AddOwnerParameters, options?: GroupsAddOwnerOptionalParams): Promise<void>;
-    create(parameters: GroupCreateParameters, options?: GroupsCreateOptionalParams): Promise<GroupsCreateResponse>;
+    addMember(groupObjectId: string, contentType: "application/json", parameters: GroupAddMemberParameters, options?: GroupsAddMemberOptionalParams): Promise<void>;
+    addOwner(objectId: string, contentType: "application/json", parameters: AddOwnerParameters, options?: GroupsAddOwnerOptionalParams): Promise<void>;
+    create(contentType: "application/json", parameters: GroupCreateParameters, options?: GroupsCreateOptionalParams): Promise<GroupsCreateResponse>;
     delete(objectId: string, options?: GroupsDeleteOptionalParams): Promise<void>;
     get(objectId: string, options?: GroupsGetOptionalParams): Promise<GroupsGetResponse>;
-    isMemberOf(parameters: CheckGroupMembershipParameters, options?: GroupsIsMemberOfOptionalParams): Promise<GroupsIsMemberOfResponse>;
+    isMemberOf(contentType: "application/json", parameters: CheckGroupMembershipParameters, options?: GroupsIsMemberOfOptionalParams): Promise<GroupsIsMemberOfResponse>;
     list(options?: GroupsListOptionalParams): PagedAsyncIterableIterator<ADGroup>;
     listGroupMembers(objectId: string, options?: GroupsGetGroupMembersOptionalParams): PagedAsyncIterableIterator<DirectoryObjectUnion>;
     listGroupMembersNext(nextLink: string, options?: GroupsGetGroupMembersNextOptionalParams): PagedAsyncIterableIterator<DirectoryObjectUnion>;
-    listMemberGroups(objectId: string, parameters: GroupGetMemberGroupsParameters, options?: GroupsGetMemberGroupsOptionalParams): PagedAsyncIterableIterator<string>;
+    listMemberGroups(objectId: string, contentType: "application/json", parameters: GroupGetMemberGroupsParameters, options?: GroupsGetMemberGroupsOptionalParams): PagedAsyncIterableIterator<string>;
     listNext(nextLink: string, options?: GroupsListNextOptionalParams): PagedAsyncIterableIterator<ADGroup>;
     listOwners(objectId: string, options?: GroupsListOwnersOptionalParams): PagedAsyncIterableIterator<DirectoryObjectUnion>;
     removeMember(groupObjectId: string, memberObjectId: string, options?: GroupsRemoveMemberOptionalParams): Promise<void>;
@@ -648,7 +648,7 @@ export interface OAuth2PermissionGrantOperations {
 
 // @public
 export interface Objects {
-    listObjectsByObjectIds(parameters: GetObjectsParameters, options?: ObjectsGetObjectsByObjectIdsOptionalParams): PagedAsyncIterableIterator<DirectoryObjectUnion>;
+    listObjectsByObjectIds(contentType: "application/json", parameters: GetObjectsParameters, options?: ObjectsGetObjectsByObjectIdsOptionalParams): PagedAsyncIterableIterator<DirectoryObjectUnion>;
     listObjectsByObjectIdsNext(nextLink: string, options?: ObjectsGetObjectsByObjectIdsNextOptionalParams): PagedAsyncIterableIterator<DirectoryObjectUnion>;
 }
 
@@ -795,7 +795,7 @@ export interface ServicePrincipalObjectResult {
 
 // @public
 export interface ServicePrincipals {
-    create(parameters: ServicePrincipalCreateParameters, options?: ServicePrincipalsCreateOptionalParams): Promise<ServicePrincipalsCreateResponse>;
+    create(contentType: "application/json", parameters: ServicePrincipalCreateParameters, options?: ServicePrincipalsCreateOptionalParams): Promise<ServicePrincipalsCreateResponse>;
     delete(objectId: string, options?: ServicePrincipalsDeleteOptionalParams): Promise<void>;
     get(objectId: string, options?: ServicePrincipalsGetOptionalParams): Promise<ServicePrincipalsGetResponse>;
     list(options?: ServicePrincipalsListOptionalParams): PagedAsyncIterableIterator<ServicePrincipal>;
@@ -803,9 +803,9 @@ export interface ServicePrincipals {
     listNext(nextLink: string, options?: ServicePrincipalsListNextOptionalParams): PagedAsyncIterableIterator<ServicePrincipal>;
     listOwners(objectId: string, options?: ServicePrincipalsListOwnersOptionalParams): PagedAsyncIterableIterator<DirectoryObjectUnion>;
     listPasswordCredentials(objectId: string, options?: ServicePrincipalsListPasswordCredentialsOptionalParams): PagedAsyncIterableIterator<PasswordCredential>;
-    update(objectId: string, parameters: ServicePrincipalUpdateParameters, options?: ServicePrincipalsUpdateOptionalParams): Promise<void>;
-    updateKeyCredentials(objectId: string, parameters: KeyCredentialsUpdateParameters, options?: ServicePrincipalsUpdateKeyCredentialsOptionalParams): Promise<void>;
-    updatePasswordCredentials(objectId: string, parameters: PasswordCredentialsUpdateParameters, options?: ServicePrincipalsUpdatePasswordCredentialsOptionalParams): Promise<void>;
+    update(objectId: string, contentType: "application/json", parameters: ServicePrincipalUpdateParameters, options?: ServicePrincipalsUpdateOptionalParams): Promise<void>;
+    updateKeyCredentials(objectId: string, contentType: "application/json", parameters: KeyCredentialsUpdateParameters, options?: ServicePrincipalsUpdateKeyCredentialsOptionalParams): Promise<void>;
+    updatePasswordCredentials(objectId: string, contentType: "application/json", parameters: PasswordCredentialsUpdateParameters, options?: ServicePrincipalsUpdatePasswordCredentialsOptionalParams): Promise<void>;
 }
 
 // @public
@@ -974,13 +974,13 @@ export interface UserListResult {
 
 // @public
 export interface Users {
-    create(parameters: UserCreateParameters, options?: UsersCreateOptionalParams): Promise<UsersCreateResponse>;
+    create(contentType: "application/json", parameters: UserCreateParameters, options?: UsersCreateOptionalParams): Promise<UsersCreateResponse>;
     delete(upnOrObjectId: string, options?: UsersDeleteOptionalParams): Promise<void>;
     get(upnOrObjectId: string, options?: UsersGetOptionalParams): Promise<UsersGetResponse>;
     list(options?: UsersListOptionalParams): PagedAsyncIterableIterator<User>;
-    listMemberGroups(objectId: string, parameters: UserGetMemberGroupsParameters, options?: UsersGetMemberGroupsOptionalParams): PagedAsyncIterableIterator<string>;
+    listMemberGroups(objectId: string, contentType: "application/json", parameters: UserGetMemberGroupsParameters, options?: UsersGetMemberGroupsOptionalParams): PagedAsyncIterableIterator<string>;
     listNext(nextLink: string, options?: UsersListNextOptionalParams): PagedAsyncIterableIterator<User>;
-    update(upnOrObjectId: string, parameters: UserUpdateParameters, options?: UsersUpdateOptionalParams): Promise<void>;
+    update(upnOrObjectId: string, contentType: "application/json", parameters: UserUpdateParameters, options?: UsersUpdateOptionalParams): Promise<void>;
 }
 
 // @public

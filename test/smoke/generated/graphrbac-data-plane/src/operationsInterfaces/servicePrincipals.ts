@@ -79,21 +79,25 @@ export interface ServicePrincipals {
   ): PagedAsyncIterableIterator<ServicePrincipal>;
   /**
    * Creates a service principal in the directory.
+   * @param contentType Body Parameter content-type
    * @param parameters Parameters to create a service principal.
    * @param options The options parameters.
    */
   create(
+    contentType: "application/json",
     parameters: ServicePrincipalCreateParameters,
     options?: ServicePrincipalsCreateOptionalParams
   ): Promise<ServicePrincipalsCreateResponse>;
   /**
    * Updates a service principal in the directory.
    * @param objectId The object ID of the service principal to delete.
+   * @param contentType Body Parameter content-type
    * @param parameters Parameters to update a service principal.
    * @param options The options parameters.
    */
   update(
     objectId: string,
+    contentType: "application/json",
     parameters: ServicePrincipalUpdateParameters,
     options?: ServicePrincipalsUpdateOptionalParams
   ): Promise<void>;
@@ -119,22 +123,26 @@ export interface ServicePrincipals {
   /**
    * Update the keyCredentials associated with a service principal.
    * @param objectId The object ID for which to get service principal information.
+   * @param contentType Body Parameter content-type
    * @param parameters Parameters to update the keyCredentials of an existing service principal.
    * @param options The options parameters.
    */
   updateKeyCredentials(
     objectId: string,
+    contentType: "application/json",
     parameters: KeyCredentialsUpdateParameters,
     options?: ServicePrincipalsUpdateKeyCredentialsOptionalParams
   ): Promise<void>;
   /**
    * Updates the passwordCredentials associated with a service principal.
    * @param objectId The object ID of the service principal.
+   * @param contentType Body Parameter content-type
    * @param parameters Parameters to update the passwordCredentials of an existing service principal.
    * @param options The options parameters.
    */
   updatePasswordCredentials(
     objectId: string,
+    contentType: "application/json",
     parameters: PasswordCredentialsUpdateParameters,
     options?: ServicePrincipalsUpdatePasswordCredentialsOptionalParams
   ): Promise<void>;

@@ -278,15 +278,17 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
 
   /**
    * Creates a service principal in the directory.
+   * @param contentType Body Parameter content-type
    * @param parameters Parameters to create a service principal.
    * @param options The options parameters.
    */
   create(
+    contentType: "application/json",
     parameters: ServicePrincipalCreateParameters,
     options?: ServicePrincipalsCreateOptionalParams
   ): Promise<ServicePrincipalsCreateResponse> {
     return this.client.sendOperationRequest(
-      { parameters, options },
+      { contentType, parameters, options },
       createOperationSpec
     );
   }
@@ -304,16 +306,18 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
   /**
    * Updates a service principal in the directory.
    * @param objectId The object ID of the service principal to delete.
+   * @param contentType Body Parameter content-type
    * @param parameters Parameters to update a service principal.
    * @param options The options parameters.
    */
   update(
     objectId: string,
+    contentType: "application/json",
     parameters: ServicePrincipalUpdateParameters,
     options?: ServicePrincipalsUpdateOptionalParams
   ): Promise<void> {
     return this.client.sendOperationRequest(
-      { objectId, parameters, options },
+      { objectId, contentType, parameters, options },
       updateOperationSpec
     );
   }
@@ -382,16 +386,18 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
   /**
    * Update the keyCredentials associated with a service principal.
    * @param objectId The object ID for which to get service principal information.
+   * @param contentType Body Parameter content-type
    * @param parameters Parameters to update the keyCredentials of an existing service principal.
    * @param options The options parameters.
    */
   updateKeyCredentials(
     objectId: string,
+    contentType: "application/json",
     parameters: KeyCredentialsUpdateParameters,
     options?: ServicePrincipalsUpdateKeyCredentialsOptionalParams
   ): Promise<void> {
     return this.client.sendOperationRequest(
-      { objectId, parameters, options },
+      { objectId, contentType, parameters, options },
       updateKeyCredentialsOperationSpec
     );
   }
@@ -414,16 +420,18 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
   /**
    * Updates the passwordCredentials associated with a service principal.
    * @param objectId The object ID of the service principal.
+   * @param contentType Body Parameter content-type
    * @param parameters Parameters to update the passwordCredentials of an existing service principal.
    * @param options The options parameters.
    */
   updatePasswordCredentials(
     objectId: string,
+    contentType: "application/json",
     parameters: PasswordCredentialsUpdateParameters,
     options?: ServicePrincipalsUpdatePasswordCredentialsOptionalParams
   ): Promise<void> {
     return this.client.sendOperationRequest(
-      { objectId, parameters, options },
+      { objectId, contentType, parameters, options },
       updatePasswordCredentialsOperationSpec
     );
   }

@@ -20,10 +20,12 @@ export interface Objects {
   /**
    * Gets the directory objects specified in a list of object IDs. You can also specify which resource
    * collections (users, groups, etc.) should be searched by specifying the optional types parameter.
+   * @param contentType Body Parameter content-type
    * @param parameters Objects filtering parameters.
    * @param options The options parameters.
    */
   listObjectsByObjectIds(
+    contentType: "application/json",
     parameters: GetObjectsParameters,
     options?: ObjectsGetObjectsByObjectIdsOptionalParams
   ): PagedAsyncIterableIterator<DirectoryObjectUnion>;

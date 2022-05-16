@@ -202,7 +202,7 @@ const createOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.body,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.accept1, Parameters.contentType1],
   mediaType: "json",
   serializer
 };

@@ -1697,12 +1697,14 @@ export class VirtualMachinesImpl implements VirtualMachines {
    * Run command on the VM.
    * @param resourceGroupName The name of the resource group.
    * @param vmName The name of the virtual machine.
+   * @param contentType Body Parameter content-type
    * @param parameters Parameters supplied to the Run command operation.
    * @param options The options parameters.
    */
   async beginRunCommand(
     resourceGroupName: string,
     vmName: string,
+    contentType: "application/json",
     parameters: RunCommandInput,
     options?: VirtualMachinesRunCommandOptionalParams
   ): Promise<
@@ -1752,7 +1754,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
 
     const lro = new LroImpl(
       sendOperation,
-      { resourceGroupName, vmName, parameters, options },
+      { resourceGroupName, vmName, contentType, parameters, options },
       runCommandOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -1768,18 +1770,21 @@ export class VirtualMachinesImpl implements VirtualMachines {
    * Run command on the VM.
    * @param resourceGroupName The name of the resource group.
    * @param vmName The name of the virtual machine.
+   * @param contentType Body Parameter content-type
    * @param parameters Parameters supplied to the Run command operation.
    * @param options The options parameters.
    */
   async beginRunCommandAndWait(
     resourceGroupName: string,
     vmName: string,
+    contentType: "application/json",
     parameters: RunCommandInput,
     options?: VirtualMachinesRunCommandOptionalParams
   ): Promise<VirtualMachinesRunCommandResponse> {
     const poller = await this.beginRunCommand(
       resourceGroupName,
       vmName,
+      contentType,
       parameters,
       options
     );
@@ -2330,7 +2335,7 @@ const runCommandOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.vmName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.contentType1, Parameters.accept1],
   mediaType: "json",
   serializer
 };

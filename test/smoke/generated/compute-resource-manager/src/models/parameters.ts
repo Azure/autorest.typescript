@@ -530,6 +530,18 @@ export const installPatchesInput: OperationParameter = {
   mapper: VirtualMachineInstallPatchesParametersMapper
 };
 
+export const contentType1: OperationParameter = {
+  parameterPath: "contentType",
+  mapper: {
+    defaultValue: "application/json",
+    isConstant: true,
+    serializedName: "Content-Type",
+    type: {
+      name: "String"
+    }
+  }
+};
+
 export const parameters14: OperationParameter = {
   parameterPath: "parameters",
   mapper: RunCommandInputMapper

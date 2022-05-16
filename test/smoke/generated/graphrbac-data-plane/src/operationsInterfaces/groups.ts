@@ -54,11 +54,13 @@ export interface Groups {
   /**
    * Gets a collection of object IDs of groups of which the specified group is a member.
    * @param objectId The object ID of the group for which to get group membership.
+   * @param contentType Body Parameter content-type
    * @param parameters Group filtering parameters.
    * @param options The options parameters.
    */
   listMemberGroups(
     objectId: string,
+    contentType: "application/json",
     parameters: GroupGetMemberGroupsParameters,
     options?: GroupsGetMemberGroupsOptionalParams
   ): PagedAsyncIterableIterator<string>;
@@ -92,10 +94,12 @@ export interface Groups {
   /**
    * Checks whether the specified user, group, contact, or service principal is a direct or transitive
    * member of the specified group.
+   * @param contentType Body Parameter content-type
    * @param parameters The check group membership parameters.
    * @param options The options parameters.
    */
   isMemberOf(
+    contentType: "application/json",
     parameters: CheckGroupMembershipParameters,
     options?: GroupsIsMemberOfOptionalParams
   ): Promise<GroupsIsMemberOfResponse>;
@@ -113,21 +117,25 @@ export interface Groups {
   /**
    * Add a member to a group.
    * @param groupObjectId The object ID of the group to which to add the member.
+   * @param contentType Body Parameter content-type
    * @param parameters The URL of the member object, such as
    *                   https://graph.windows.net/0b1f9851-1bf0-433f-aec3-cb9272f093dc/directoryObjects/f260bbc4-c254-447b-94cf-293b5ec434dd.
    * @param options The options parameters.
    */
   addMember(
     groupObjectId: string,
+    contentType: "application/json",
     parameters: GroupAddMemberParameters,
     options?: GroupsAddMemberOptionalParams
   ): Promise<void>;
   /**
    * Create a group in the directory.
+   * @param contentType Body Parameter content-type
    * @param parameters The parameters for the group to create.
    * @param options The options parameters.
    */
   create(
+    contentType: "application/json",
     parameters: GroupCreateParameters,
     options?: GroupsCreateOptionalParams
   ): Promise<GroupsCreateResponse>;
@@ -149,12 +157,14 @@ export interface Groups {
   /**
    * Add an owner to a group.
    * @param objectId The object ID of the application to which to add the owner.
+   * @param contentType Body Parameter content-type
    * @param parameters The URL of the owner object, such as
    *                   https://graph.windows.net/0b1f9851-1bf0-433f-aec3-cb9272f093dc/directoryObjects/f260bbc4-c254-447b-94cf-293b5ec434dd.
    * @param options The options parameters.
    */
   addOwner(
     objectId: string,
+    contentType: "application/json",
     parameters: AddOwnerParameters,
     options?: GroupsAddOwnerOptionalParams
   ): Promise<void>;

@@ -1118,6 +1118,7 @@ export class VirtualMachineScaleSetVMsImpl
    * @param resourceGroupName The name of the resource group.
    * @param vmScaleSetName The name of the VM scale set.
    * @param instanceId The instance ID of the virtual machine.
+   * @param contentType Body Parameter content-type
    * @param parameters Parameters supplied to the Run command operation.
    * @param options The options parameters.
    */
@@ -1125,6 +1126,7 @@ export class VirtualMachineScaleSetVMsImpl
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
+    contentType: "application/json",
     parameters: RunCommandInput,
     options?: VirtualMachineScaleSetVMsRunCommandOptionalParams
   ): Promise<
@@ -1174,7 +1176,14 @@ export class VirtualMachineScaleSetVMsImpl
 
     const lro = new LroImpl(
       sendOperation,
-      { resourceGroupName, vmScaleSetName, instanceId, parameters, options },
+      {
+        resourceGroupName,
+        vmScaleSetName,
+        instanceId,
+        contentType,
+        parameters,
+        options
+      },
       runCommandOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -1191,6 +1200,7 @@ export class VirtualMachineScaleSetVMsImpl
    * @param resourceGroupName The name of the resource group.
    * @param vmScaleSetName The name of the VM scale set.
    * @param instanceId The instance ID of the virtual machine.
+   * @param contentType Body Parameter content-type
    * @param parameters Parameters supplied to the Run command operation.
    * @param options The options parameters.
    */
@@ -1198,6 +1208,7 @@ export class VirtualMachineScaleSetVMsImpl
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
+    contentType: "application/json",
     parameters: RunCommandInput,
     options?: VirtualMachineScaleSetVMsRunCommandOptionalParams
   ): Promise<VirtualMachineScaleSetVMsRunCommandResponse> {
@@ -1205,6 +1216,7 @@ export class VirtualMachineScaleSetVMsImpl
       resourceGroupName,
       vmScaleSetName,
       instanceId,
+      contentType,
       parameters,
       options
     );
@@ -1534,7 +1546,7 @@ const runCommandOperationSpec: coreClient.OperationSpec = {
     Parameters.vmScaleSetName,
     Parameters.instanceId
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.contentType1, Parameters.accept1],
   mediaType: "json",
   serializer
 };

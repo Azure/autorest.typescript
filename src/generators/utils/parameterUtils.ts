@@ -116,12 +116,13 @@ export function getOperationParameterSignatures(
     includeContentType: true
   }).filter(p => !p.isFlattened);
 
-  const operationRequests = operation.requests;
-  const overloadParameterDeclarations: ParameterWithDescription[][] = [];
-  const hasMultipleOverloads = operationRequests.length > 1;
+  const operationRequests = operation.requestMediaTypes;
+  const overloadParameterDeclarations: Record<string, ParameterWithDescription[]> = {};
+  const hasMultipleOverloads = Object.keys(operationRequests).length > 1;
 
-  for (const request of operationRequests) {
-    const requestMediaType = request.mediaType;
+  for (const mediaType of Object.keys(operationRequests)) {
+    const request = operationRequests[mediaType];
+    const requestMediaType = mediaType;
     // filter out parameters that belong to a different media type
     const requestParameters = operationParameters.filter(
       ({ targetMediaType }) =>
@@ -197,7 +198,7 @@ export function getOperationParameterSignatures(
     );
     orderedParameterDeclarations.push(optionalParameter);
 
-    overloadParameterDeclarations.push(orderedParameterDeclarations);
+    overloadParameterDeclarations[mediaType] = orderedParameterDeclarations;
   }
 
   // Create the parameter declarations for the base method signature.
@@ -366,7 +367,7 @@ function getOptionsParameter(
   });
 
   const mediaPrefix = mediaType ? `$${mediaType}` : "";
-  type = `${operation.typeDetails.typeName}${mediaPrefix}OptionalParams`;
+  type = `${operation.typeDetails.typeName}${normalizeName(mediaPrefix.replace(/\$|\//g, '_'), NameType.Interface)}OptionalParams`;
   importedModels.add(type);
 
   return {
@@ -388,20 +389,20 @@ function getOptionsParameter(
  * @param overloadParameterDeclarations
  */
 function getBaseMethodParameterDeclarations(
-  overloadParameterDeclarations: ParameterWithDescription[][]
+  overloadParameterDeclarations: Record<string, ParameterWithDescription[]>
 ): ParameterWithDescription[] {
   if (!overloadParameterDeclarations.length) {
     return [];
   }
-  if (overloadParameterDeclarations.length === 1) {
-    return [...overloadParameterDeclarations[0]];
+  if (Object.keys(overloadParameterDeclarations).length === 1) {
+    return [...Object.values(overloadParameterDeclarations)[0]];
   }
 
   const baseMethodArg: ParameterWithDescription = {
     name: "args",
     isRestParameter: true,
     description: "Includes all the parameters for this operation.",
-    type: overloadParameterDeclarations
+    type: Object.values(overloadParameterDeclarations)
       .map(overloadParams => {
         return `[ ${overloadParams
           .map(p => (p.hasQuestionToken ? `${p.type}?` : p.type))

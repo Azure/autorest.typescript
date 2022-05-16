@@ -734,9 +734,10 @@ function writeOptionalParameters(
   if (mediaTypesCount > 1) {
     // Create an optional params for each media type.
     for (const mediaType of mediaTypes!.values()) {
+      const optionalName = `${typeName}$${normalizeName(mediaType, NameType.Interface)}OptionalParams`;
       interfaces.push(
         modelsIndexFile.addInterface(
-          buildOptionsInterface(`${typeName}$${mediaType}OptionalParams`, [
+          buildOptionsInterface(optionalName, [
             ...optionalGroupDeclarations,
             ...optionalParams
               .filter(

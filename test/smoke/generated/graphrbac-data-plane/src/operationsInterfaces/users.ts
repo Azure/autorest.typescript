@@ -34,11 +34,13 @@ export interface Users {
   /**
    * Gets a collection that contains the object IDs of the groups of which the user is a member.
    * @param objectId The object ID of the user for which to get group membership.
+   * @param contentType Body Parameter content-type
    * @param parameters User filtering parameters.
    * @param options The options parameters.
    */
   listMemberGroups(
     objectId: string,
+    contentType: "application/json",
     parameters: UserGetMemberGroupsParameters,
     options?: UsersGetMemberGroupsOptionalParams
   ): PagedAsyncIterableIterator<string>;
@@ -53,10 +55,12 @@ export interface Users {
   ): PagedAsyncIterableIterator<User>;
   /**
    * Create a new user.
+   * @param contentType Body Parameter content-type
    * @param parameters Parameters to create a user.
    * @param options The options parameters.
    */
   create(
+    contentType: "application/json",
     parameters: UserCreateParameters,
     options?: UsersCreateOptionalParams
   ): Promise<UsersCreateResponse>;
@@ -72,11 +76,13 @@ export interface Users {
   /**
    * Updates a user.
    * @param upnOrObjectId The object ID or principal name of the user to update.
+   * @param contentType Body Parameter content-type
    * @param parameters Parameters to update an existing user.
    * @param options The options parameters.
    */
   update(
     upnOrObjectId: string,
+    contentType: "application/json",
     parameters: UserUpdateParameters,
     options?: UsersUpdateOptionalParams
   ): Promise<void>;

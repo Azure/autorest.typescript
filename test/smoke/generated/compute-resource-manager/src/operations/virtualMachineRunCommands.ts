@@ -205,6 +205,7 @@ export class VirtualMachineRunCommandsImpl
    * @param resourceGroupName The name of the resource group.
    * @param vmName The name of the virtual machine where the run command should be created or updated.
    * @param runCommandName The name of the virtual machine run command.
+   * @param contentType Body Parameter content-type
    * @param runCommand Parameters supplied to the Create Virtual Machine RunCommand operation.
    * @param options The options parameters.
    */
@@ -212,6 +213,7 @@ export class VirtualMachineRunCommandsImpl
     resourceGroupName: string,
     vmName: string,
     runCommandName: string,
+    contentType: "application/json",
     runCommand: VirtualMachineRunCommand,
     options?: VirtualMachineRunCommandsCreateOrUpdateOptionalParams
   ): Promise<
@@ -261,7 +263,14 @@ export class VirtualMachineRunCommandsImpl
 
     const lro = new LroImpl(
       sendOperation,
-      { resourceGroupName, vmName, runCommandName, runCommand, options },
+      {
+        resourceGroupName,
+        vmName,
+        runCommandName,
+        contentType,
+        runCommand,
+        options
+      },
       createOrUpdateOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -277,6 +286,7 @@ export class VirtualMachineRunCommandsImpl
    * @param resourceGroupName The name of the resource group.
    * @param vmName The name of the virtual machine where the run command should be created or updated.
    * @param runCommandName The name of the virtual machine run command.
+   * @param contentType Body Parameter content-type
    * @param runCommand Parameters supplied to the Create Virtual Machine RunCommand operation.
    * @param options The options parameters.
    */
@@ -284,6 +294,7 @@ export class VirtualMachineRunCommandsImpl
     resourceGroupName: string,
     vmName: string,
     runCommandName: string,
+    contentType: "application/json",
     runCommand: VirtualMachineRunCommand,
     options?: VirtualMachineRunCommandsCreateOrUpdateOptionalParams
   ): Promise<VirtualMachineRunCommandsCreateOrUpdateResponse> {
@@ -291,6 +302,7 @@ export class VirtualMachineRunCommandsImpl
       resourceGroupName,
       vmName,
       runCommandName,
+      contentType,
       runCommand,
       options
     );
@@ -302,6 +314,7 @@ export class VirtualMachineRunCommandsImpl
    * @param resourceGroupName The name of the resource group.
    * @param vmName The name of the virtual machine where the run command should be updated.
    * @param runCommandName The name of the virtual machine run command.
+   * @param contentType Body Parameter content-type
    * @param runCommand Parameters supplied to the Update Virtual Machine RunCommand operation.
    * @param options The options parameters.
    */
@@ -309,6 +322,7 @@ export class VirtualMachineRunCommandsImpl
     resourceGroupName: string,
     vmName: string,
     runCommandName: string,
+    contentType: "application/json",
     runCommand: VirtualMachineRunCommandUpdate,
     options?: VirtualMachineRunCommandsUpdateOptionalParams
   ): Promise<
@@ -358,7 +372,14 @@ export class VirtualMachineRunCommandsImpl
 
     const lro = new LroImpl(
       sendOperation,
-      { resourceGroupName, vmName, runCommandName, runCommand, options },
+      {
+        resourceGroupName,
+        vmName,
+        runCommandName,
+        contentType,
+        runCommand,
+        options
+      },
       updateOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -374,6 +395,7 @@ export class VirtualMachineRunCommandsImpl
    * @param resourceGroupName The name of the resource group.
    * @param vmName The name of the virtual machine where the run command should be updated.
    * @param runCommandName The name of the virtual machine run command.
+   * @param contentType Body Parameter content-type
    * @param runCommand Parameters supplied to the Update Virtual Machine RunCommand operation.
    * @param options The options parameters.
    */
@@ -381,6 +403,7 @@ export class VirtualMachineRunCommandsImpl
     resourceGroupName: string,
     vmName: string,
     runCommandName: string,
+    contentType: "application/json",
     runCommand: VirtualMachineRunCommandUpdate,
     options?: VirtualMachineRunCommandsUpdateOptionalParams
   ): Promise<VirtualMachineRunCommandsUpdateResponse> {
@@ -388,6 +411,7 @@ export class VirtualMachineRunCommandsImpl
       resourceGroupName,
       vmName,
       runCommandName,
+      contentType,
       runCommand,
       options
     );
@@ -623,7 +647,7 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     Parameters.vmName,
     Parameters.runCommandName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.contentType1, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -657,7 +681,7 @@ const updateOperationSpec: coreClient.OperationSpec = {
     Parameters.vmName,
     Parameters.runCommandName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.contentType1, Parameters.accept1],
   mediaType: "json",
   serializer
 };

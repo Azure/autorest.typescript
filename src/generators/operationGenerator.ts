@@ -614,12 +614,13 @@ export function writeOperations(
         ],
         isAsync: true
       });
-      if (overloadParameterDeclarations.length > 1) {
+      if (Object.keys(overloadParameterDeclarations).length > 1) {
         // Since contentType is always added as a synthetic parameter by modelerfour, it should always
         // be in the same position for all overloads.
         let contentTypePosition: number = -1;
-        for (let i = 0; i < overloadParameterDeclarations.length; i++) {
-          const overloadParameters = overloadParameterDeclarations[i];
+        let isFirst = true;
+        for (const mediaType of Object.keys(overloadParameterDeclarations)) {
+          const overloadParameters = overloadParameterDeclarations[mediaType];
 
           contentTypePosition = overloadParameters.findIndex(
             (param: ParameterWithDescription) => {
@@ -628,14 +629,15 @@ export function writeOperations(
           );
 
           // Get conditional to handle the current overload
-          const conditional = getContentTypeInfo(operation.requests[i])
+          const conditional = getContentTypeInfo(operation.requestMediaTypes[mediaType])
             ?.map(type => `args[${contentTypePosition}] === "${type}"`)
             .join(" || ");
 
           const assignments = `const poller = await this.${methodName}(...args);
           return poller.pollUntilDone();`;
 
-          const elseif = i === 0 ? "if" : "else if";
+          const elseif = isFirst === true ? "if" : "else if";
+          isFirst = false;
 
           // Add conditional statement to handle the current overload
           operationMethod.addStatements([
@@ -664,22 +666,22 @@ export function writeOperations(
 function writeOperationBody(
   generatedOperation: MethodDeclaration,
   operationDetails: OperationDetails,
-  overloadDeclarations: OverloadDeclarations,
+  overloadDeclarations: Record<string, ParameterWithDescription[]>,
   clientDetails: ClientDetails,
   responseName: string,
   isInline: boolean
 ): void {
-  if (overloadDeclarations.length === 1) {
+  if (Object.keys(overloadDeclarations).length === 1) {
     // No overloads
     writeNoOverloadsOperationBody(
       operationDetails,
       responseName,
       generatedOperation,
-      overloadDeclarations[0],
+      Object.values(overloadDeclarations)[0],
       clientDetails,
       isInline
     );
-  } else {
+  } else if (Object.keys(overloadDeclarations).length === 1){
     // This condition implies that the user can specify a contentType,
     // and this contentType can change how the request is serialized.
     writeMultiMediaTypeOperationBody(
@@ -693,12 +695,13 @@ function writeOperationBody(
   }
 }
 
-type OverloadDeclarations = OptionalKind<
-  ParameterDeclarationStructure & {
+type OverloadDeclarations = Record<
+  string,
+  Array<ParameterDeclarationStructure & {
     description: string;
     isContentType?: boolean | undefined;
-  }
->[][];
+  }>
+>;
 
 /**
  * Adds any required overloads to a TSMorph method
@@ -710,15 +713,16 @@ type OverloadDeclarations = OptionalKind<
 function addOperationOverloads(
   generatedOperation: MethodDeclaration,
   operationDetails: OperationDetails,
-  overloadDeclarations: OverloadDeclarations,
+  overloadDeclarations: Record<string, ParameterWithDescription[]>,
   returnType: string
 ): void {
-  if (overloadDeclarations.length === 1) {
+  if (Object.keys(overloadDeclarations).length === 1) {
     // We have a single method definition so no need for overloads
     return;
   }
 
-  for (const overload of overloadDeclarations) {
+  for (const mediaType of Object.keys(overloadDeclarations)) {
+    const overload = overloadDeclarations[mediaType];
     generatedOperation.addOverload({
       parameters: overload,
       returnType,
@@ -972,7 +976,7 @@ function writeLroOperationBody(
 function writeMultiMediaTypeOperationBody(
   operationMethod: MethodDeclaration,
   operation: OperationDetails,
-  overloadParameterDeclarations: ParameterWithDescription[][],
+  overloadParameterDeclarations: Record<string, ParameterWithDescription[]>,
   responseName: string,
   clientDetails: ClientDetails,
   isInline = false
@@ -986,10 +990,10 @@ function writeMultiMediaTypeOperationBody(
   ]);
 
   // We need to use the contentType parameter to determine which spec to use.
-  const requests = operation.requests;
-  if (overloadParameterDeclarations.length !== requests.length) {
+  const requests = operation.requestMediaTypes;
+  if (Object.keys(overloadParameterDeclarations).length !== Object.keys(requests).length) {
     throw new Error(
-      `Expected ${requests.length} overloads, but found generated ${overloadParameterDeclarations.length} for ${operation.name}`
+      `Expected ${Object.keys(requests).length} overloads, but found generated ${Object.keys(overloadParameterDeclarations).length} for ${operation.name}`
     );
   }
 
@@ -999,10 +1003,11 @@ function writeMultiMediaTypeOperationBody(
   // Since contentType is always added as a synthetic parameter by modelerfour, it should always
   // be in the same position for all overloads.
   let contentTypePosition: number = -1;
-  for (let i = 0; i < requests.length; i++) {
-    const request = requests[i];
-    const overloadParameters = overloadParameterDeclarations[i];
-    const mediaType = request.mediaType!;
+  let isFirst = true;
+  for (const mediaType of Object.keys(requests)) {
+    const request = requests[mediaType];
+    const overloadParameters = overloadParameterDeclarations[mediaType];
+
     const contentTypeValues = getContentTypeInfo(request);
 
     contentTypePosition = overloadParameters.findIndex(param => {
@@ -1041,7 +1046,8 @@ function writeMultiMediaTypeOperationBody(
       `${optionsVarName} = args[${optionsIndex}];`
     ].join("\n");
 
-    const elseif = i === 0 ? "if" : "else if";
+    const elseif = isFirst === true ? "if" : "else if";
+    isFirst = false;
 
     // Add conditional statement to handle the current overload
     operationMethod.addStatements([

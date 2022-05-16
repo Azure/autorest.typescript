@@ -140,8 +140,47 @@ const extractOperationParameters = (codeModel: CodeModel) =>
           const operationName = getOperationFullName(og, operation, clientName);
 
           // Look for request in old 'request' property if new 'requests' doesn't exist
-          const requests = operation.requests;
-          if (requests === undefined) {
+          const requests = operation.requestMediaTypes;
+          // Operations may have multiple requests, each with their own set of parameters.
+          // This is known to be the case when an operation can consume multiple media types.
+          // We need to ensure that the parameters from each request (method overload) is accounted for.
+          const requestParams: OperationParameterDetails[] = [];
+          if (requests !== undefined) {
+            for(const mediaType of Object.keys(requests)) {
+              const request = requests[mediaType];
+              request.parameters?.map(parameter => {
+                requestParams.push({
+                  operationName,
+                  parameter,
+                  targetMediaType: request.protocol.http?.knownMediaType
+                });
+                if (parameter.required) {
+                  if ((parameter as any)['targetProperty'] !== undefined) {
+                    (parameter as any)['targetProperty'].language.default.isTopLevelParameter = true;
+                  }
+                  parameter.language.default.isTopLevelParameter = true;
+                }
+                return parameter;
+              });
+            }
+          } else if (operation.requests) {
+            for(const request of operation.requests) {
+              request.parameters?.map(parameter => {
+                requestParams.push({
+                  operationName,
+                  parameter,
+                  targetMediaType: request.protocol.http?.knownMediaType
+                });
+                if (parameter.required) {
+                  if ((parameter as any)['targetProperty'] !== undefined) {
+                    (parameter as any)['targetProperty'].language.default.isTopLevelParameter = true;
+                  }
+                  parameter.language.default.isTopLevelParameter = true;
+                }
+                return parameter;
+              });
+            }            
+          } else {
             throw new Error(
               `No request object was found for operation: ${operationName}`
             );
@@ -156,28 +195,6 @@ const extractOperationParameters = (codeModel: CodeModel) =>
               parameter: p, 
               operationName 
             }  
-          });
-
-          // Operations may have multiple requests, each with their own set of parameters.
-          // This is known to be the case when an operation can consume multiple media types.
-          // We need to ensure that the parameters from each request (method overload) is accounted for.
-          const requestParams: OperationParameterDetails[] = [];
-          requests.map(request => {
-            request.parameters?.map(parameter => {
-              requestParams.push({
-                operationName,
-                parameter,
-                targetMediaType: request.protocol.http?.knownMediaType
-              });
-              if (parameter.required) {
-                if ((parameter as any)['targetProperty'] !== undefined) {
-                  (parameter as any)['targetProperty'].language.default.isTopLevelParameter = true;
-                }
-                parameter.language.default.isTopLevelParameter = true;
-              }
-              return parameter;
-            });
-            return request;
           });
           return [...operations, ...requestParams, ...operationParams];
         },

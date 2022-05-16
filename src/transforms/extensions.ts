@@ -206,11 +206,15 @@ function addPageableMethods(codeModel: CodeModel) {
       );
 
       // Ensure all overloads support the nextLink parameter.
-      for (const request of nextLinkMethod.requests ?? []) {
-        const parameters = request.parameters ?? [];
-        parameters.push(nextLinkParameter);
-        request.parameters = parameters;
+      if (nextLinkMethod.requestMediaTypes) {
+        for (const mediaType of Object.keys(nextLinkMethod.requestMediaTypes)) {
+          const request = nextLinkMethod.requestMediaTypes[mediaType];
+          const parameters = request.parameters ?? [];
+          parameters.push(nextLinkParameter);
+          request.parameters = parameters;
+        }
       }
+
 
       operationGroup.addOperation(nextLinkMethod);
     }

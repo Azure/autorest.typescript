@@ -43,6 +43,7 @@ export interface VirtualMachineScaleSetVMRunCommands {
    * @param vmScaleSetName The name of the VM scale set.
    * @param instanceId The instance ID of the virtual machine.
    * @param runCommandName The name of the virtual machine run command.
+   * @param contentType Body Parameter content-type
    * @param runCommand Parameters supplied to the Create Virtual Machine RunCommand operation.
    * @param options The options parameters.
    */
@@ -51,6 +52,7 @@ export interface VirtualMachineScaleSetVMRunCommands {
     vmScaleSetName: string,
     instanceId: string,
     runCommandName: string,
+    contentType: "application/json",
     runCommand: VirtualMachineRunCommand,
     options?: VirtualMachineScaleSetVMRunCommandsCreateOrUpdateOptionalParams
   ): Promise<
@@ -67,6 +69,7 @@ export interface VirtualMachineScaleSetVMRunCommands {
    * @param vmScaleSetName The name of the VM scale set.
    * @param instanceId The instance ID of the virtual machine.
    * @param runCommandName The name of the virtual machine run command.
+   * @param contentType Body Parameter content-type
    * @param runCommand Parameters supplied to the Create Virtual Machine RunCommand operation.
    * @param options The options parameters.
    */
@@ -75,6 +78,7 @@ export interface VirtualMachineScaleSetVMRunCommands {
     vmScaleSetName: string,
     instanceId: string,
     runCommandName: string,
+    contentType: "application/json",
     runCommand: VirtualMachineRunCommand,
     options?: VirtualMachineScaleSetVMRunCommandsCreateOrUpdateOptionalParams
   ): Promise<VirtualMachineScaleSetVMRunCommandsCreateOrUpdateResponse>;
@@ -84,6 +88,7 @@ export interface VirtualMachineScaleSetVMRunCommands {
    * @param vmScaleSetName The name of the VM scale set.
    * @param instanceId The instance ID of the virtual machine.
    * @param runCommandName The name of the virtual machine run command.
+   * @param contentType Body Parameter content-type
    * @param runCommand Parameters supplied to the Update Virtual Machine RunCommand operation.
    * @param options The options parameters.
    */
@@ -92,6 +97,7 @@ export interface VirtualMachineScaleSetVMRunCommands {
     vmScaleSetName: string,
     instanceId: string,
     runCommandName: string,
+    contentType: "application/json",
     runCommand: VirtualMachineRunCommandUpdate,
     options?: VirtualMachineScaleSetVMRunCommandsUpdateOptionalParams
   ): Promise<
@@ -106,6 +112,7 @@ export interface VirtualMachineScaleSetVMRunCommands {
    * @param vmScaleSetName The name of the VM scale set.
    * @param instanceId The instance ID of the virtual machine.
    * @param runCommandName The name of the virtual machine run command.
+   * @param contentType Body Parameter content-type
    * @param runCommand Parameters supplied to the Update Virtual Machine RunCommand operation.
    * @param options The options parameters.
    */
@@ -114,6 +121,7 @@ export interface VirtualMachineScaleSetVMRunCommands {
     vmScaleSetName: string,
     instanceId: string,
     runCommandName: string,
+    contentType: "application/json",
     runCommand: VirtualMachineRunCommandUpdate,
     options?: VirtualMachineScaleSetVMRunCommandsUpdateOptionalParams
   ): Promise<VirtualMachineScaleSetVMRunCommandsUpdateResponse>;

@@ -90,7 +90,7 @@ export const nextLink: OperationURLParameter = {
 };
 
 export const contentType: OperationParameter = {
-  parameterPath: ["options", "contentType"],
+  parameterPath: "contentType",
   mapper: {
     defaultValue: "application/json",
     isConstant: true,
@@ -290,6 +290,18 @@ export const accept1: OperationParameter = {
     defaultValue: "application/json",
     isConstant: true,
     serializedName: "Accept",
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const contentType1: OperationParameter = {
+  parameterPath: ["options", "contentType"],
+  mapper: {
+    defaultValue: "application/json",
+    isConstant: true,
+    serializedName: "Content-Type",
     type: {
       name: "String"
     }

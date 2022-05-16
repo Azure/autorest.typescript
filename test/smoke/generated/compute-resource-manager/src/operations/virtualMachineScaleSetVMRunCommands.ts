@@ -130,6 +130,7 @@ export class VirtualMachineScaleSetVMRunCommandsImpl
    * @param vmScaleSetName The name of the VM scale set.
    * @param instanceId The instance ID of the virtual machine.
    * @param runCommandName The name of the virtual machine run command.
+   * @param contentType Body Parameter content-type
    * @param runCommand Parameters supplied to the Create Virtual Machine RunCommand operation.
    * @param options The options parameters.
    */
@@ -138,6 +139,7 @@ export class VirtualMachineScaleSetVMRunCommandsImpl
     vmScaleSetName: string,
     instanceId: string,
     runCommandName: string,
+    contentType: "application/json",
     runCommand: VirtualMachineRunCommand,
     options?: VirtualMachineScaleSetVMRunCommandsCreateOrUpdateOptionalParams
   ): Promise<
@@ -194,6 +196,7 @@ export class VirtualMachineScaleSetVMRunCommandsImpl
         vmScaleSetName,
         instanceId,
         runCommandName,
+        contentType,
         runCommand,
         options
       },
@@ -213,6 +216,7 @@ export class VirtualMachineScaleSetVMRunCommandsImpl
    * @param vmScaleSetName The name of the VM scale set.
    * @param instanceId The instance ID of the virtual machine.
    * @param runCommandName The name of the virtual machine run command.
+   * @param contentType Body Parameter content-type
    * @param runCommand Parameters supplied to the Create Virtual Machine RunCommand operation.
    * @param options The options parameters.
    */
@@ -221,6 +225,7 @@ export class VirtualMachineScaleSetVMRunCommandsImpl
     vmScaleSetName: string,
     instanceId: string,
     runCommandName: string,
+    contentType: "application/json",
     runCommand: VirtualMachineRunCommand,
     options?: VirtualMachineScaleSetVMRunCommandsCreateOrUpdateOptionalParams
   ): Promise<VirtualMachineScaleSetVMRunCommandsCreateOrUpdateResponse> {
@@ -229,6 +234,7 @@ export class VirtualMachineScaleSetVMRunCommandsImpl
       vmScaleSetName,
       instanceId,
       runCommandName,
+      contentType,
       runCommand,
       options
     );
@@ -241,6 +247,7 @@ export class VirtualMachineScaleSetVMRunCommandsImpl
    * @param vmScaleSetName The name of the VM scale set.
    * @param instanceId The instance ID of the virtual machine.
    * @param runCommandName The name of the virtual machine run command.
+   * @param contentType Body Parameter content-type
    * @param runCommand Parameters supplied to the Update Virtual Machine RunCommand operation.
    * @param options The options parameters.
    */
@@ -249,6 +256,7 @@ export class VirtualMachineScaleSetVMRunCommandsImpl
     vmScaleSetName: string,
     instanceId: string,
     runCommandName: string,
+    contentType: "application/json",
     runCommand: VirtualMachineRunCommandUpdate,
     options?: VirtualMachineScaleSetVMRunCommandsUpdateOptionalParams
   ): Promise<
@@ -303,6 +311,7 @@ export class VirtualMachineScaleSetVMRunCommandsImpl
         vmScaleSetName,
         instanceId,
         runCommandName,
+        contentType,
         runCommand,
         options
       },
@@ -322,6 +331,7 @@ export class VirtualMachineScaleSetVMRunCommandsImpl
    * @param vmScaleSetName The name of the VM scale set.
    * @param instanceId The instance ID of the virtual machine.
    * @param runCommandName The name of the virtual machine run command.
+   * @param contentType Body Parameter content-type
    * @param runCommand Parameters supplied to the Update Virtual Machine RunCommand operation.
    * @param options The options parameters.
    */
@@ -330,6 +340,7 @@ export class VirtualMachineScaleSetVMRunCommandsImpl
     vmScaleSetName: string,
     instanceId: string,
     runCommandName: string,
+    contentType: "application/json",
     runCommand: VirtualMachineRunCommandUpdate,
     options?: VirtualMachineScaleSetVMRunCommandsUpdateOptionalParams
   ): Promise<VirtualMachineScaleSetVMRunCommandsUpdateResponse> {
@@ -338,6 +349,7 @@ export class VirtualMachineScaleSetVMRunCommandsImpl
       vmScaleSetName,
       instanceId,
       runCommandName,
+      contentType,
       runCommand,
       options
     );
@@ -543,7 +555,7 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     Parameters.instanceId,
     Parameters.runCommandName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.contentType1, Parameters.accept1],
   mediaType: "json",
   serializer
 };
@@ -578,7 +590,7 @@ const updateOperationSpec: coreClient.OperationSpec = {
     Parameters.instanceId,
     Parameters.runCommandName
   ],
-  headerParameters: [Parameters.contentType, Parameters.accept1],
+  headerParameters: [Parameters.contentType1, Parameters.accept1],
   mediaType: "json",
   serializer
 };

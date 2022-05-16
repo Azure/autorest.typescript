@@ -537,12 +537,14 @@ export interface VirtualMachines {
    * Run command on the VM.
    * @param resourceGroupName The name of the resource group.
    * @param vmName The name of the virtual machine.
+   * @param contentType Body Parameter content-type
    * @param parameters Parameters supplied to the Run command operation.
    * @param options The options parameters.
    */
   beginRunCommand(
     resourceGroupName: string,
     vmName: string,
+    contentType: "application/json",
     parameters: RunCommandInput,
     options?: VirtualMachinesRunCommandOptionalParams
   ): Promise<
@@ -555,12 +557,14 @@ export interface VirtualMachines {
    * Run command on the VM.
    * @param resourceGroupName The name of the resource group.
    * @param vmName The name of the virtual machine.
+   * @param contentType Body Parameter content-type
    * @param parameters Parameters supplied to the Run command operation.
    * @param options The options parameters.
    */
   beginRunCommandAndWait(
     resourceGroupName: string,
     vmName: string,
+    contentType: "application/json",
     parameters: RunCommandInput,
     options?: VirtualMachinesRunCommandOptionalParams
   ): Promise<VirtualMachinesRunCommandResponse>;

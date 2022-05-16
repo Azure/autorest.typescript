@@ -64,6 +64,7 @@ export interface VirtualMachineRunCommands {
    * @param resourceGroupName The name of the resource group.
    * @param vmName The name of the virtual machine where the run command should be created or updated.
    * @param runCommandName The name of the virtual machine run command.
+   * @param contentType Body Parameter content-type
    * @param runCommand Parameters supplied to the Create Virtual Machine RunCommand operation.
    * @param options The options parameters.
    */
@@ -71,6 +72,7 @@ export interface VirtualMachineRunCommands {
     resourceGroupName: string,
     vmName: string,
     runCommandName: string,
+    contentType: "application/json",
     runCommand: VirtualMachineRunCommand,
     options?: VirtualMachineRunCommandsCreateOrUpdateOptionalParams
   ): Promise<
@@ -84,6 +86,7 @@ export interface VirtualMachineRunCommands {
    * @param resourceGroupName The name of the resource group.
    * @param vmName The name of the virtual machine where the run command should be created or updated.
    * @param runCommandName The name of the virtual machine run command.
+   * @param contentType Body Parameter content-type
    * @param runCommand Parameters supplied to the Create Virtual Machine RunCommand operation.
    * @param options The options parameters.
    */
@@ -91,6 +94,7 @@ export interface VirtualMachineRunCommands {
     resourceGroupName: string,
     vmName: string,
     runCommandName: string,
+    contentType: "application/json",
     runCommand: VirtualMachineRunCommand,
     options?: VirtualMachineRunCommandsCreateOrUpdateOptionalParams
   ): Promise<VirtualMachineRunCommandsCreateOrUpdateResponse>;
@@ -99,6 +103,7 @@ export interface VirtualMachineRunCommands {
    * @param resourceGroupName The name of the resource group.
    * @param vmName The name of the virtual machine where the run command should be updated.
    * @param runCommandName The name of the virtual machine run command.
+   * @param contentType Body Parameter content-type
    * @param runCommand Parameters supplied to the Update Virtual Machine RunCommand operation.
    * @param options The options parameters.
    */
@@ -106,6 +111,7 @@ export interface VirtualMachineRunCommands {
     resourceGroupName: string,
     vmName: string,
     runCommandName: string,
+    contentType: "application/json",
     runCommand: VirtualMachineRunCommandUpdate,
     options?: VirtualMachineRunCommandsUpdateOptionalParams
   ): Promise<
@@ -119,6 +125,7 @@ export interface VirtualMachineRunCommands {
    * @param resourceGroupName The name of the resource group.
    * @param vmName The name of the virtual machine where the run command should be updated.
    * @param runCommandName The name of the virtual machine run command.
+   * @param contentType Body Parameter content-type
    * @param runCommand Parameters supplied to the Update Virtual Machine RunCommand operation.
    * @param options The options parameters.
    */
@@ -126,6 +133,7 @@ export interface VirtualMachineRunCommands {
     resourceGroupName: string,
     vmName: string,
     runCommandName: string,
+    contentType: "application/json",
     runCommand: VirtualMachineRunCommandUpdate,
     options?: VirtualMachineRunCommandsUpdateOptionalParams
   ): Promise<VirtualMachineRunCommandsUpdateResponse>;
