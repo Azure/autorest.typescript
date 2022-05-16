@@ -272,10 +272,10 @@ export type CassandraKeyspaceCreateUpdateParameters = ARMResourceProperties & {
 };
 
 // @public (undocumented)
-export type CassandraKeyspaceGetPropertiesOptions = OptionsResource & {};
+export type CassandraKeyspaceGetPropertiesOptions = OptionsResource;
 
 // @public (undocumented)
-export type CassandraKeyspaceGetPropertiesResource = CassandraKeyspaceResource & ExtendedResourceProperties & {};
+export type CassandraKeyspaceGetPropertiesResource = CassandraKeyspaceResource & ExtendedResourceProperties;
 
 // @public
 export type CassandraKeyspaceGetResults = ARMResourceProperties & {
@@ -468,10 +468,10 @@ export type CassandraTableCreateUpdateParameters = ARMResourceProperties & {
 };
 
 // @public (undocumented)
-export type CassandraTableGetPropertiesOptions = OptionsResource & {};
+export type CassandraTableGetPropertiesOptions = OptionsResource;
 
 // @public (undocumented)
-export type CassandraTableGetPropertiesResource = CassandraTableResource & ExtendedResourceProperties & {};
+export type CassandraTableGetPropertiesResource = CassandraTableResource & ExtendedResourceProperties;
 
 // @public
 export type CassandraTableGetResults = ARMResourceProperties & {
@@ -1229,10 +1229,10 @@ export type GremlinDatabaseCreateUpdateParameters = ARMResourceProperties & {
 };
 
 // @public (undocumented)
-export type GremlinDatabaseGetPropertiesOptions = OptionsResource & {};
+export type GremlinDatabaseGetPropertiesOptions = OptionsResource;
 
 // @public (undocumented)
-export type GremlinDatabaseGetPropertiesResource = GremlinDatabaseResource & ExtendedResourceProperties & {};
+export type GremlinDatabaseGetPropertiesResource = GremlinDatabaseResource & ExtendedResourceProperties;
 
 // @public
 export type GremlinDatabaseGetResults = ARMResourceProperties & {
@@ -1257,10 +1257,10 @@ export type GremlinGraphCreateUpdateParameters = ARMResourceProperties & {
 };
 
 // @public (undocumented)
-export type GremlinGraphGetPropertiesOptions = OptionsResource & {};
+export type GremlinGraphGetPropertiesOptions = OptionsResource;
 
 // @public (undocumented)
-export type GremlinGraphGetPropertiesResource = GremlinGraphResource & ExtendedResourceProperties & {};
+export type GremlinGraphGetPropertiesResource = GremlinGraphResource & ExtendedResourceProperties;
 
 // @public
 export type GremlinGraphGetResults = ARMResourceProperties & {
@@ -1983,10 +1983,10 @@ export type MongoDBCollectionCreateUpdateParameters = ARMResourceProperties & {
 };
 
 // @public (undocumented)
-export type MongoDBCollectionGetPropertiesOptions = OptionsResource & {};
+export type MongoDBCollectionGetPropertiesOptions = OptionsResource;
 
 // @public (undocumented)
-export type MongoDBCollectionGetPropertiesResource = MongoDBCollectionResource & ExtendedResourceProperties & {};
+export type MongoDBCollectionGetPropertiesResource = MongoDBCollectionResource & ExtendedResourceProperties;
 
 // @public
 export type MongoDBCollectionGetResults = ARMResourceProperties & {
@@ -2016,10 +2016,10 @@ export type MongoDBDatabaseCreateUpdateParameters = ARMResourceProperties & {
 };
 
 // @public (undocumented)
-export type MongoDBDatabaseGetPropertiesOptions = OptionsResource & {};
+export type MongoDBDatabaseGetPropertiesOptions = OptionsResource;
 
 // @public (undocumented)
-export type MongoDBDatabaseGetPropertiesResource = MongoDBDatabaseResource & ExtendedResourceProperties & {};
+export type MongoDBDatabaseGetPropertiesResource = MongoDBDatabaseResource & ExtendedResourceProperties;
 
 // @public
 export type MongoDBDatabaseGetResults = ARMResourceProperties & {
@@ -2243,7 +2243,7 @@ export interface NotebookWorkspaceConnectionInfoResult {
 }
 
 // @public
-export type NotebookWorkspaceCreateUpdateParameters = ARMProxyResource & {};
+export type NotebookWorkspaceCreateUpdateParameters = ARMProxyResource;
 
 // @public
 export interface NotebookWorkspaceListResult {
@@ -2594,7 +2594,7 @@ export interface PrivateLinkServiceConnectionStateProperty {
 }
 
 // @public
-export type ProxyResource = Resource & {};
+export type ProxyResource = Resource;
 
 // @public
 export type PublicNetworkAccess = string;
@@ -2898,10 +2898,10 @@ export type SqlContainerCreateUpdateParameters = ARMResourceProperties & {
 };
 
 // @public (undocumented)
-export type SqlContainerGetPropertiesOptions = OptionsResource & {};
+export type SqlContainerGetPropertiesOptions = OptionsResource;
 
 // @public (undocumented)
-export type SqlContainerGetPropertiesResource = SqlContainerResource & ExtendedResourceProperties & {};
+export type SqlContainerGetPropertiesResource = SqlContainerResource & ExtendedResourceProperties;
 
 // @public
 export type SqlContainerGetResults = ARMResourceProperties & {
@@ -2932,7 +2932,7 @@ export type SqlDatabaseCreateUpdateParameters = ARMResourceProperties & {
 };
 
 // @public (undocumented)
-export type SqlDatabaseGetPropertiesOptions = OptionsResource & {};
+export type SqlDatabaseGetPropertiesOptions = OptionsResource;
 
 // @public (undocumented)
 export type SqlDatabaseGetPropertiesResource = SqlDatabaseResource & ExtendedResourceProperties & {
@@ -3345,7 +3345,7 @@ export type SqlStoredProcedureCreateUpdateParameters = ARMResourceProperties & {
 };
 
 // @public (undocumented)
-export type SqlStoredProcedureGetPropertiesResource = SqlStoredProcedureResource & ExtendedResourceProperties & {};
+export type SqlStoredProcedureGetPropertiesResource = SqlStoredProcedureResource & ExtendedResourceProperties;
 
 // @public
 export type SqlStoredProcedureGetResults = ARMResourceProperties & {
@@ -3370,7 +3370,7 @@ export type SqlTriggerCreateUpdateParameters = ARMResourceProperties & {
 };
 
 // @public (undocumented)
-export type SqlTriggerGetPropertiesResource = SqlTriggerResource & ExtendedResourceProperties & {};
+export type SqlTriggerGetPropertiesResource = SqlTriggerResource & ExtendedResourceProperties;
 
 // @public
 export type SqlTriggerGetResults = ARMResourceProperties & {
@@ -3397,7 +3397,7 @@ export type SqlUserDefinedFunctionCreateUpdateParameters = ARMResourceProperties
 };
 
 // @public (undocumented)
-export type SqlUserDefinedFunctionGetPropertiesResource = SqlUserDefinedFunctionResource & ExtendedResourceProperties & {};
+export type SqlUserDefinedFunctionGetPropertiesResource = SqlUserDefinedFunctionResource & ExtendedResourceProperties;
 
 // @public
 export type SqlUserDefinedFunctionGetResults = ARMResourceProperties & {
@@ -3432,10 +3432,10 @@ export type TableCreateUpdateParameters = ARMResourceProperties & {
 };
 
 // @public (undocumented)
-export type TableGetPropertiesOptions = OptionsResource & {};
+export type TableGetPropertiesOptions = OptionsResource;
 
 // @public (undocumented)
-export type TableGetPropertiesResource = TableResource & ExtendedResourceProperties & {};
+export type TableGetPropertiesResource = TableResource & ExtendedResourceProperties;
 
 // @public
 export type TableGetResults = ARMResourceProperties & {
@@ -3540,7 +3540,7 @@ export interface ThroughputPolicyResource {
 }
 
 // @public (undocumented)
-export type ThroughputSettingsGetPropertiesResource = ThroughputSettingsResource & ExtendedResourceProperties & {};
+export type ThroughputSettingsGetPropertiesResource = ThroughputSettingsResource & ExtendedResourceProperties;
 
 // @public
 export type ThroughputSettingsGetResults = ARMResourceProperties & {

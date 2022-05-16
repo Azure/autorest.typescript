@@ -643,7 +643,7 @@ export interface Databases {
 }
 
 // @public
-export type DatabaseSchema = ProxyResource & {};
+export type DatabaseSchema = ProxyResource;
 
 // @public
 export interface DatabaseSchemaListResult {
@@ -2998,7 +2998,7 @@ export type JobTargetGroupsListByAgentResponse = JobTargetGroupListResult;
 export type JobTargetType = string;
 
 // @public
-export type JobVersion = ProxyResource & {};
+export type JobVersion = ProxyResource;
 
 // @public
 export interface JobVersionListResult {
@@ -6984,10 +6984,10 @@ export type PrivateLinkServiceConnectionStateStatus = string;
 export type ProvisioningState = string;
 
 // @public
-export type ProxyResource = Resource & {};
+export type ProxyResource = Resource;
 
 // @public
-export type ProxyResourceWithWritableName = ResourceWithWritableName & {};
+export type ProxyResourceWithWritableName = ResourceWithWritableName;
 
 // @public
 export interface QueryMetricInterval {

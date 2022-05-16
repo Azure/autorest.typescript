@@ -1836,7 +1836,7 @@ export interface PeriodicModeProperties {
 }
 
 /** The resource model definition for a Azure Resource Manager proxy resource. It will not have tags and a location */
-export type ProxyResource = Resource & {};
+export type ProxyResource = Resource;
 
 /** The object representing periodic mode backup policy. */
 export type PeriodicModeBackupPolicy = BackupPolicy & {
@@ -2308,40 +2308,40 @@ export type RestorableSqlDatabasePropertiesResourceDatabase = SqlDatabaseResourc
   };
 
 export type ThroughputSettingsGetPropertiesResource = ThroughputSettingsResource &
-  ExtendedResourceProperties & {};
+  ExtendedResourceProperties;
 
 export type SqlContainerGetPropertiesResource = SqlContainerResource &
-  ExtendedResourceProperties & {};
+  ExtendedResourceProperties;
 
 export type SqlStoredProcedureGetPropertiesResource = SqlStoredProcedureResource &
-  ExtendedResourceProperties & {};
+  ExtendedResourceProperties;
 
 export type SqlUserDefinedFunctionGetPropertiesResource = SqlUserDefinedFunctionResource &
-  ExtendedResourceProperties & {};
+  ExtendedResourceProperties;
 
 export type SqlTriggerGetPropertiesResource = SqlTriggerResource &
-  ExtendedResourceProperties & {};
+  ExtendedResourceProperties;
 
 export type MongoDBDatabaseGetPropertiesResource = MongoDBDatabaseResource &
-  ExtendedResourceProperties & {};
+  ExtendedResourceProperties;
 
 export type MongoDBCollectionGetPropertiesResource = MongoDBCollectionResource &
-  ExtendedResourceProperties & {};
+  ExtendedResourceProperties;
 
 export type TableGetPropertiesResource = TableResource &
-  ExtendedResourceProperties & {};
+  ExtendedResourceProperties;
 
 export type CassandraKeyspaceGetPropertiesResource = CassandraKeyspaceResource &
-  ExtendedResourceProperties & {};
+  ExtendedResourceProperties;
 
 export type CassandraTableGetPropertiesResource = CassandraTableResource &
-  ExtendedResourceProperties & {};
+  ExtendedResourceProperties;
 
 export type GremlinDatabaseGetPropertiesResource = GremlinDatabaseResource &
-  ExtendedResourceProperties & {};
+  ExtendedResourceProperties;
 
 export type GremlinGraphGetPropertiesResource = GremlinGraphResource &
-  ExtendedResourceProperties & {};
+  ExtendedResourceProperties;
 
 /** Cosmos DB SQL container resource object */
 export type RestorableSqlContainerPropertiesResourceContainer = SqlContainerResource &
@@ -2353,23 +2353,23 @@ export type RestorableSqlContainerPropertiesResourceContainer = SqlContainerReso
     readonly self?: string;
   };
 
-export type SqlDatabaseGetPropertiesOptions = OptionsResource & {};
+export type SqlDatabaseGetPropertiesOptions = OptionsResource;
 
-export type SqlContainerGetPropertiesOptions = OptionsResource & {};
+export type SqlContainerGetPropertiesOptions = OptionsResource;
 
-export type MongoDBDatabaseGetPropertiesOptions = OptionsResource & {};
+export type MongoDBDatabaseGetPropertiesOptions = OptionsResource;
 
-export type MongoDBCollectionGetPropertiesOptions = OptionsResource & {};
+export type MongoDBCollectionGetPropertiesOptions = OptionsResource;
 
-export type TableGetPropertiesOptions = OptionsResource & {};
+export type TableGetPropertiesOptions = OptionsResource;
 
-export type CassandraKeyspaceGetPropertiesOptions = OptionsResource & {};
+export type CassandraKeyspaceGetPropertiesOptions = OptionsResource;
 
-export type CassandraTableGetPropertiesOptions = OptionsResource & {};
+export type CassandraTableGetPropertiesOptions = OptionsResource;
 
-export type GremlinDatabaseGetPropertiesOptions = OptionsResource & {};
+export type GremlinDatabaseGetPropertiesOptions = OptionsResource;
 
-export type GremlinGraphGetPropertiesOptions = OptionsResource & {};
+export type GremlinGraphGetPropertiesOptions = OptionsResource;
 
 /** Cosmos DB location get result */
 export type LocationGetResult = ARMProxyResource & {
@@ -2392,7 +2392,7 @@ export type NotebookWorkspace = ARMProxyResource & {
 };
 
 /** Parameters to create a notebook workspace resource */
-export type NotebookWorkspaceCreateUpdateParameters = ARMProxyResource & {};
+export type NotebookWorkspaceCreateUpdateParameters = ARMProxyResource;
 
 /** A private link resource */
 export type PrivateLinkResource = ARMProxyResource & {

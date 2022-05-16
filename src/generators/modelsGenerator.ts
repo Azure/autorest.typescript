@@ -581,10 +581,10 @@ const writeObjectSignature = (modelsIndexFile: SourceFile) => (
       name: model.name,
       docs: model.description ? [model.description] : [],
       isExported: true,
-      type: Writers.intersectionType(
+      type: properties.length > 0 ? Writers.intersectionType(
         parents,
         Writers.objectType({ properties })
-      ),
+      ) : parents,
       leadingTrivia: writer => writer.blankLine()
     });
   } else {

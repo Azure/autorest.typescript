@@ -882,7 +882,7 @@ export interface ServicePrincipalsUpdatePasswordCredentialsOptionalParams extend
 }
 
 // @public
-export type ServicePrincipalUpdateParameters = ServicePrincipalBase & {};
+export type ServicePrincipalUpdateParameters = ServicePrincipalBase;
 
 // @public
 export interface SignedInUser {
