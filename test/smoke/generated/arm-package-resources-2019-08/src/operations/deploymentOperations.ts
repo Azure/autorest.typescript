@@ -10,33 +10,17 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { DeploymentOperations } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
 import { ResourceManagementClient } from "../resourceManagementClient";
 import {
   DeploymentOperation,
-  DeploymentOperationsListAtScopeNextOptionalParams,
-  DeploymentOperationsListAtScopeOptionalParams,
-  DeploymentOperationsListAtTenantScopeNextOptionalParams,
-  DeploymentOperationsListAtTenantScopeOptionalParams,
-  DeploymentOperationsListAtManagementGroupScopeNextOptionalParams,
-  DeploymentOperationsListAtManagementGroupScopeOptionalParams,
-  DeploymentOperationsListAtSubscriptionScopeNextOptionalParams,
-  DeploymentOperationsListAtSubscriptionScopeOptionalParams,
-  DeploymentOperationsListNextOptionalParams,
-  DeploymentOperationsListOptionalParams,
-  DeploymentOperationsGetAtScopeOptionalParams,
   DeploymentOperationsGetAtScopeResponse,
   DeploymentOperationsListAtScopeResponse,
-  DeploymentOperationsGetAtTenantScopeOptionalParams,
   DeploymentOperationsGetAtTenantScopeResponse,
   DeploymentOperationsListAtTenantScopeResponse,
-  DeploymentOperationsGetAtManagementGroupScopeOptionalParams,
   DeploymentOperationsGetAtManagementGroupScopeResponse,
   DeploymentOperationsListAtManagementGroupScopeResponse,
-  DeploymentOperationsGetAtSubscriptionScopeOptionalParams,
   DeploymentOperationsGetAtSubscriptionScopeResponse,
   DeploymentOperationsListAtSubscriptionScopeResponse,
-  DeploymentOperationsGetOptionalParams,
   DeploymentOperationsGetResponse,
   DeploymentOperationsListResponse,
   DeploymentOperationsListAtScopeNextResponse,
@@ -49,28 +33,18 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing DeploymentOperations operations. */
 export class DeploymentOperationsImpl implements DeploymentOperations {
-  private readonly client: ResourceManagementClient;
-
   /**
    * Initialize a new instance of the class DeploymentOperations class.
    * @param client Reference to the service client
    */
-  constructor(client: ResourceManagementClient) {
-    this.client = client;
-  }
+  constructor(client: ResourceManagementClient) {}
 
   /**
    * Gets all deployments operations for a deployment.
-   * @param scope The scope of a deployment.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  public listAtScope(
-    scope: string,
-    deploymentName: string,
-    options?: DeploymentOperationsListAtScopeOptionalParams
-  ): PagedAsyncIterableIterator<DeploymentOperation> {
-    const iter = this.listAtScopePagingAll(scope, deploymentName, options);
+  public listAtScope(): PagedAsyncIterableIterator<DeploymentOperation> {
+    const iter = this.listAtScopePagingAll();
     return {
       next() {
         return iter.next();
@@ -79,55 +53,38 @@ export class DeploymentOperationsImpl implements DeploymentOperations {
         return this;
       },
       byPage: () => {
-        return this.listAtScopePagingPage(scope, deploymentName, options);
+        return this.listAtScopePagingPage();
       }
     };
   }
 
-  private async *listAtScopePagingPage(
-    scope: string,
-    deploymentName: string,
-    options?: DeploymentOperationsListAtScopeOptionalParams
-  ): AsyncIterableIterator<DeploymentOperation[]> {
-    let result = await this._listAtScope(scope, deploymentName, options);
+  private async *listAtScopePagingPage(): AsyncIterableIterator<
+    DeploymentOperation[]
+  > {
+    let result = await this._listAtScope();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listAtScopeNext(
-        scope,
-        deploymentName,
-        continuationToken,
-        options
-      );
+      result = await this._listAtScopeNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listAtScopePagingAll(
-    scope: string,
-    deploymentName: string,
-    options?: DeploymentOperationsListAtScopeOptionalParams
-  ): AsyncIterableIterator<DeploymentOperation> {
-    for await (const page of this.listAtScopePagingPage(
-      scope,
-      deploymentName,
-      options
-    )) {
+  private async *listAtScopePagingAll(): AsyncIterableIterator<
+    DeploymentOperation
+  > {
+    for await (const page of this.listAtScopePagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Gets all deployments operations for a deployment.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  public listAtTenantScope(
-    deploymentName: string,
-    options?: DeploymentOperationsListAtTenantScopeOptionalParams
-  ): PagedAsyncIterableIterator<DeploymentOperation> {
-    const iter = this.listAtTenantScopePagingAll(deploymentName, options);
+  public listAtTenantScope(): PagedAsyncIterableIterator<DeploymentOperation> {
+    const iter = this.listAtTenantScopePagingAll();
     return {
       next() {
         return iter.next();
@@ -136,57 +93,40 @@ export class DeploymentOperationsImpl implements DeploymentOperations {
         return this;
       },
       byPage: () => {
-        return this.listAtTenantScopePagingPage(deploymentName, options);
+        return this.listAtTenantScopePagingPage();
       }
     };
   }
 
-  private async *listAtTenantScopePagingPage(
-    deploymentName: string,
-    options?: DeploymentOperationsListAtTenantScopeOptionalParams
-  ): AsyncIterableIterator<DeploymentOperation[]> {
-    let result = await this._listAtTenantScope(deploymentName, options);
+  private async *listAtTenantScopePagingPage(): AsyncIterableIterator<
+    DeploymentOperation[]
+  > {
+    let result = await this._listAtTenantScope();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listAtTenantScopeNext(
-        deploymentName,
-        continuationToken,
-        options
-      );
+      result = await this._listAtTenantScopeNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listAtTenantScopePagingAll(
-    deploymentName: string,
-    options?: DeploymentOperationsListAtTenantScopeOptionalParams
-  ): AsyncIterableIterator<DeploymentOperation> {
-    for await (const page of this.listAtTenantScopePagingPage(
-      deploymentName,
-      options
-    )) {
+  private async *listAtTenantScopePagingAll(): AsyncIterableIterator<
+    DeploymentOperation
+  > {
+    for await (const page of this.listAtTenantScopePagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Gets all deployments operations for a deployment.
-   * @param groupId The management group ID.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  public listAtManagementGroupScope(
-    groupId: string,
-    deploymentName: string,
-    options?: DeploymentOperationsListAtManagementGroupScopeOptionalParams
-  ): PagedAsyncIterableIterator<DeploymentOperation> {
-    const iter = this.listAtManagementGroupScopePagingAll(
-      groupId,
-      deploymentName,
-      options
-    );
+  public listAtManagementGroupScope(): PagedAsyncIterableIterator<
+    DeploymentOperation
+  > {
+    const iter = this.listAtManagementGroupScopePagingAll();
     return {
       next() {
         return iter.next();
@@ -195,63 +135,40 @@ export class DeploymentOperationsImpl implements DeploymentOperations {
         return this;
       },
       byPage: () => {
-        return this.listAtManagementGroupScopePagingPage(
-          groupId,
-          deploymentName,
-          options
-        );
+        return this.listAtManagementGroupScopePagingPage();
       }
     };
   }
 
-  private async *listAtManagementGroupScopePagingPage(
-    groupId: string,
-    deploymentName: string,
-    options?: DeploymentOperationsListAtManagementGroupScopeOptionalParams
-  ): AsyncIterableIterator<DeploymentOperation[]> {
-    let result = await this._listAtManagementGroupScope(
-      groupId,
-      deploymentName,
-      options
-    );
+  private async *listAtManagementGroupScopePagingPage(): AsyncIterableIterator<
+    DeploymentOperation[]
+  > {
+    let result = await this._listAtManagementGroupScope();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listAtManagementGroupScopeNext(
-        groupId,
-        deploymentName,
-        continuationToken,
-        options
-      );
+      result = await this._listAtManagementGroupScopeNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listAtManagementGroupScopePagingAll(
-    groupId: string,
-    deploymentName: string,
-    options?: DeploymentOperationsListAtManagementGroupScopeOptionalParams
-  ): AsyncIterableIterator<DeploymentOperation> {
-    for await (const page of this.listAtManagementGroupScopePagingPage(
-      groupId,
-      deploymentName,
-      options
-    )) {
+  private async *listAtManagementGroupScopePagingAll(): AsyncIterableIterator<
+    DeploymentOperation
+  > {
+    for await (const page of this.listAtManagementGroupScopePagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Gets all deployments operations for a deployment.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  public listAtSubscriptionScope(
-    deploymentName: string,
-    options?: DeploymentOperationsListAtSubscriptionScopeOptionalParams
-  ): PagedAsyncIterableIterator<DeploymentOperation> {
-    const iter = this.listAtSubscriptionScopePagingAll(deploymentName, options);
+  public listAtSubscriptionScope(): PagedAsyncIterableIterator<
+    DeploymentOperation
+  > {
+    const iter = this.listAtSubscriptionScopePagingAll();
     return {
       next() {
         return iter.next();
@@ -260,53 +177,38 @@ export class DeploymentOperationsImpl implements DeploymentOperations {
         return this;
       },
       byPage: () => {
-        return this.listAtSubscriptionScopePagingPage(deploymentName, options);
+        return this.listAtSubscriptionScopePagingPage();
       }
     };
   }
 
-  private async *listAtSubscriptionScopePagingPage(
-    deploymentName: string,
-    options?: DeploymentOperationsListAtSubscriptionScopeOptionalParams
-  ): AsyncIterableIterator<DeploymentOperation[]> {
-    let result = await this._listAtSubscriptionScope(deploymentName, options);
+  private async *listAtSubscriptionScopePagingPage(): AsyncIterableIterator<
+    DeploymentOperation[]
+  > {
+    let result = await this._listAtSubscriptionScope();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listAtSubscriptionScopeNext(
-        deploymentName,
-        continuationToken,
-        options
-      );
+      result = await this._listAtSubscriptionScopeNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listAtSubscriptionScopePagingAll(
-    deploymentName: string,
-    options?: DeploymentOperationsListAtSubscriptionScopeOptionalParams
-  ): AsyncIterableIterator<DeploymentOperation> {
-    for await (const page of this.listAtSubscriptionScopePagingPage(
-      deploymentName,
-      options
-    )) {
+  private async *listAtSubscriptionScopePagingAll(): AsyncIterableIterator<
+    DeploymentOperation
+  > {
+    for await (const page of this.listAtSubscriptionScopePagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Gets all deployments operations for a deployment.
-   * @param resourceGroupName The name of the resource group. The name is case insensitive.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  public list(
-    resourceGroupName: string,
-    deploymentName: string,
-    options?: DeploymentOperationsListOptionalParams
-  ): PagedAsyncIterableIterator<DeploymentOperation> {
-    const iter = this.listPagingAll(resourceGroupName, deploymentName, options);
+  public list(): PagedAsyncIterableIterator<DeploymentOperation> {
+    const iter = this.listPagingAll();
     return {
       next() {
         return iter.next();
@@ -315,627 +217,136 @@ export class DeploymentOperationsImpl implements DeploymentOperations {
         return this;
       },
       byPage: () => {
-        return this.listPagingPage(resourceGroupName, deploymentName, options);
+        return this.listPagingPage();
       }
     };
   }
 
-  private async *listPagingPage(
-    resourceGroupName: string,
-    deploymentName: string,
-    options?: DeploymentOperationsListOptionalParams
-  ): AsyncIterableIterator<DeploymentOperation[]> {
-    let result = await this._list(resourceGroupName, deploymentName, options);
+  private async *listPagingPage(): AsyncIterableIterator<
+    DeploymentOperation[]
+  > {
+    let result = await this._list();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listNext(
-        resourceGroupName,
-        deploymentName,
-        continuationToken,
-        options
-      );
+      result = await this._listNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listPagingAll(
-    resourceGroupName: string,
-    deploymentName: string,
-    options?: DeploymentOperationsListOptionalParams
-  ): AsyncIterableIterator<DeploymentOperation> {
-    for await (const page of this.listPagingPage(
-      resourceGroupName,
-      deploymentName,
-      options
-    )) {
+  private async *listPagingAll(): AsyncIterableIterator<DeploymentOperation> {
+    for await (const page of this.listPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Gets a deployments operation.
-   * @param scope The scope of a deployment.
-   * @param deploymentName The name of the deployment.
-   * @param operationId The ID of the operation to get.
-   * @param options The options parameters.
+   *
    */
-  getAtScope(
-    scope: string,
-    deploymentName: string,
-    operationId: string,
-    options?: DeploymentOperationsGetAtScopeOptionalParams
-  ): Promise<DeploymentOperationsGetAtScopeResponse> {
-    return this.client.sendOperationRequest(
-      { scope, deploymentName, operationId, options },
-      getAtScopeOperationSpec
-    );
-  }
+  getAtScope(): Promise<DeploymentOperationsGetAtScopeResponse> {}
 
   /**
    * Gets all deployments operations for a deployment.
-   * @param scope The scope of a deployment.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  private _listAtScope(
-    scope: string,
-    deploymentName: string,
-    options?: DeploymentOperationsListAtScopeOptionalParams
-  ): Promise<DeploymentOperationsListAtScopeResponse> {
-    return this.client.sendOperationRequest(
-      { scope, deploymentName, options },
-      listAtScopeOperationSpec
-    );
-  }
+  private _listAtScope(): Promise<DeploymentOperationsListAtScopeResponse> {}
 
   /**
    * Gets a deployments operation.
-   * @param deploymentName The name of the deployment.
-   * @param operationId The ID of the operation to get.
-   * @param options The options parameters.
+   *
    */
-  getAtTenantScope(
-    deploymentName: string,
-    operationId: string,
-    options?: DeploymentOperationsGetAtTenantScopeOptionalParams
-  ): Promise<DeploymentOperationsGetAtTenantScopeResponse> {
-    return this.client.sendOperationRequest(
-      { deploymentName, operationId, options },
-      getAtTenantScopeOperationSpec
-    );
-  }
+  getAtTenantScope(): Promise<DeploymentOperationsGetAtTenantScopeResponse> {}
 
   /**
    * Gets all deployments operations for a deployment.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  private _listAtTenantScope(
-    deploymentName: string,
-    options?: DeploymentOperationsListAtTenantScopeOptionalParams
-  ): Promise<DeploymentOperationsListAtTenantScopeResponse> {
-    return this.client.sendOperationRequest(
-      { deploymentName, options },
-      listAtTenantScopeOperationSpec
-    );
-  }
+  private _listAtTenantScope(): Promise<
+    DeploymentOperationsListAtTenantScopeResponse
+  > {}
 
   /**
    * Gets a deployments operation.
-   * @param groupId The management group ID.
-   * @param deploymentName The name of the deployment.
-   * @param operationId The ID of the operation to get.
-   * @param options The options parameters.
+   *
    */
-  getAtManagementGroupScope(
-    groupId: string,
-    deploymentName: string,
-    operationId: string,
-    options?: DeploymentOperationsGetAtManagementGroupScopeOptionalParams
-  ): Promise<DeploymentOperationsGetAtManagementGroupScopeResponse> {
-    return this.client.sendOperationRequest(
-      { groupId, deploymentName, operationId, options },
-      getAtManagementGroupScopeOperationSpec
-    );
-  }
+  getAtManagementGroupScope(): Promise<
+    DeploymentOperationsGetAtManagementGroupScopeResponse
+  > {}
 
   /**
    * Gets all deployments operations for a deployment.
-   * @param groupId The management group ID.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  private _listAtManagementGroupScope(
-    groupId: string,
-    deploymentName: string,
-    options?: DeploymentOperationsListAtManagementGroupScopeOptionalParams
-  ): Promise<DeploymentOperationsListAtManagementGroupScopeResponse> {
-    return this.client.sendOperationRequest(
-      { groupId, deploymentName, options },
-      listAtManagementGroupScopeOperationSpec
-    );
-  }
+  private _listAtManagementGroupScope(): Promise<
+    DeploymentOperationsListAtManagementGroupScopeResponse
+  > {}
 
   /**
    * Gets a deployments operation.
-   * @param deploymentName The name of the deployment.
-   * @param operationId The ID of the operation to get.
-   * @param options The options parameters.
+   *
    */
-  getAtSubscriptionScope(
-    deploymentName: string,
-    operationId: string,
-    options?: DeploymentOperationsGetAtSubscriptionScopeOptionalParams
-  ): Promise<DeploymentOperationsGetAtSubscriptionScopeResponse> {
-    return this.client.sendOperationRequest(
-      { deploymentName, operationId, options },
-      getAtSubscriptionScopeOperationSpec
-    );
-  }
+  getAtSubscriptionScope(): Promise<
+    DeploymentOperationsGetAtSubscriptionScopeResponse
+  > {}
 
   /**
    * Gets all deployments operations for a deployment.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  private _listAtSubscriptionScope(
-    deploymentName: string,
-    options?: DeploymentOperationsListAtSubscriptionScopeOptionalParams
-  ): Promise<DeploymentOperationsListAtSubscriptionScopeResponse> {
-    return this.client.sendOperationRequest(
-      { deploymentName, options },
-      listAtSubscriptionScopeOperationSpec
-    );
-  }
+  private _listAtSubscriptionScope(): Promise<
+    DeploymentOperationsListAtSubscriptionScopeResponse
+  > {}
 
   /**
    * Gets a deployments operation.
-   * @param resourceGroupName The name of the resource group. The name is case insensitive.
-   * @param deploymentName The name of the deployment.
-   * @param operationId The ID of the operation to get.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    deploymentName: string,
-    operationId: string,
-    options?: DeploymentOperationsGetOptionalParams
-  ): Promise<DeploymentOperationsGetResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, deploymentName, operationId, options },
-      getOperationSpec
-    );
-  }
+  get(): Promise<DeploymentOperationsGetResponse> {}
 
   /**
    * Gets all deployments operations for a deployment.
-   * @param resourceGroupName The name of the resource group. The name is case insensitive.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  private _list(
-    resourceGroupName: string,
-    deploymentName: string,
-    options?: DeploymentOperationsListOptionalParams
-  ): Promise<DeploymentOperationsListResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, deploymentName, options },
-      listOperationSpec
-    );
-  }
+  private _list(): Promise<DeploymentOperationsListResponse> {}
 
   /**
    * ListAtScopeNext
-   * @param scope The scope of a deployment.
-   * @param deploymentName The name of the deployment.
-   * @param nextLink The nextLink from the previous successful call to the ListAtScope method.
-   * @param options The options parameters.
+   *
    */
-  private _listAtScopeNext(
-    scope: string,
-    deploymentName: string,
-    nextLink: string,
-    options?: DeploymentOperationsListAtScopeNextOptionalParams
-  ): Promise<DeploymentOperationsListAtScopeNextResponse> {
-    return this.client.sendOperationRequest(
-      { scope, deploymentName, nextLink, options },
-      listAtScopeNextOperationSpec
-    );
-  }
+  private _listAtScopeNext(): Promise<
+    DeploymentOperationsListAtScopeNextResponse
+  > {}
 
   /**
    * ListAtTenantScopeNext
-   * @param deploymentName The name of the deployment.
-   * @param nextLink The nextLink from the previous successful call to the ListAtTenantScope method.
-   * @param options The options parameters.
+   *
    */
-  private _listAtTenantScopeNext(
-    deploymentName: string,
-    nextLink: string,
-    options?: DeploymentOperationsListAtTenantScopeNextOptionalParams
-  ): Promise<DeploymentOperationsListAtTenantScopeNextResponse> {
-    return this.client.sendOperationRequest(
-      { deploymentName, nextLink, options },
-      listAtTenantScopeNextOperationSpec
-    );
-  }
+  private _listAtTenantScopeNext(): Promise<
+    DeploymentOperationsListAtTenantScopeNextResponse
+  > {}
 
   /**
    * ListAtManagementGroupScopeNext
-   * @param groupId The management group ID.
-   * @param deploymentName The name of the deployment.
-   * @param nextLink The nextLink from the previous successful call to the ListAtManagementGroupScope
-   *                 method.
-   * @param options The options parameters.
+   *
    */
-  private _listAtManagementGroupScopeNext(
-    groupId: string,
-    deploymentName: string,
-    nextLink: string,
-    options?: DeploymentOperationsListAtManagementGroupScopeNextOptionalParams
-  ): Promise<DeploymentOperationsListAtManagementGroupScopeNextResponse> {
-    return this.client.sendOperationRequest(
-      { groupId, deploymentName, nextLink, options },
-      listAtManagementGroupScopeNextOperationSpec
-    );
-  }
+  private _listAtManagementGroupScopeNext(): Promise<
+    DeploymentOperationsListAtManagementGroupScopeNextResponse
+  > {}
 
   /**
    * ListAtSubscriptionScopeNext
-   * @param deploymentName The name of the deployment.
-   * @param nextLink The nextLink from the previous successful call to the ListAtSubscriptionScope
-   *                 method.
-   * @param options The options parameters.
+   *
    */
-  private _listAtSubscriptionScopeNext(
-    deploymentName: string,
-    nextLink: string,
-    options?: DeploymentOperationsListAtSubscriptionScopeNextOptionalParams
-  ): Promise<DeploymentOperationsListAtSubscriptionScopeNextResponse> {
-    return this.client.sendOperationRequest(
-      { deploymentName, nextLink, options },
-      listAtSubscriptionScopeNextOperationSpec
-    );
-  }
+  private _listAtSubscriptionScopeNext(): Promise<
+    DeploymentOperationsListAtSubscriptionScopeNextResponse
+  > {}
 
   /**
    * ListNext
-   * @param resourceGroupName The name of the resource group. The name is case insensitive.
-   * @param deploymentName The name of the deployment.
-   * @param nextLink The nextLink from the previous successful call to the List method.
-   * @param options The options parameters.
+   *
    */
-  private _listNext(
-    resourceGroupName: string,
-    deploymentName: string,
-    nextLink: string,
-    options?: DeploymentOperationsListNextOptionalParams
-  ): Promise<DeploymentOperationsListNextResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, deploymentName, nextLink, options },
-      listNextOperationSpec
-    );
-  }
+  private _listNext(): Promise<DeploymentOperationsListNextResponse> {}
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
-
-const getAtScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/{scope}/providers/Microsoft.Resources/deployments/{deploymentName}/operations/{operationId}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DeploymentOperation
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.scope,
-    Parameters.deploymentName,
-    Parameters.operationId
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listAtScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/{scope}/providers/Microsoft.Resources/deployments/{deploymentName}/operations",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DeploymentOperationsListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.top],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.scope,
-    Parameters.deploymentName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const getAtTenantScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/providers/Microsoft.Resources/deployments/{deploymentName}/operations/{operationId}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DeploymentOperation
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.deploymentName,
-    Parameters.operationId
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listAtTenantScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/providers/Microsoft.Resources/deployments/{deploymentName}/operations",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DeploymentOperationsListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.top],
-  urlParameters: [Parameters.$host, Parameters.deploymentName],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const getAtManagementGroupScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/providers/Microsoft.Management/managementGroups/{groupId}/providers/Microsoft.Resources/deployments/{deploymentName}/operations/{operationId}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DeploymentOperation
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.deploymentName,
-    Parameters.groupId,
-    Parameters.operationId
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listAtManagementGroupScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/providers/Microsoft.Management/managementGroups/{groupId}/providers/Microsoft.Resources/deployments/{deploymentName}/operations",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DeploymentOperationsListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.top],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.deploymentName,
-    Parameters.groupId
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const getAtSubscriptionScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Resources/deployments/{deploymentName}/operations/{operationId}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DeploymentOperation
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.deploymentName,
-    Parameters.subscriptionId,
-    Parameters.operationId
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listAtSubscriptionScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Resources/deployments/{deploymentName}/operations",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DeploymentOperationsListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.top],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.deploymentName,
-    Parameters.subscriptionId
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/deployments/{deploymentName}/operations/{operationId}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DeploymentOperation
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.deploymentName,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.operationId
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/deployments/{deploymentName}/operations",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DeploymentOperationsListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.top],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.deploymentName,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listAtScopeNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DeploymentOperationsListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.top],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.nextLink,
-    Parameters.scope,
-    Parameters.deploymentName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listAtTenantScopeNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DeploymentOperationsListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.top],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.nextLink,
-    Parameters.deploymentName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listAtManagementGroupScopeNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DeploymentOperationsListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.top],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.nextLink,
-    Parameters.deploymentName,
-    Parameters.groupId
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listAtSubscriptionScopeNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DeploymentOperationsListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.top],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.nextLink,
-    Parameters.deploymentName,
-    Parameters.subscriptionId
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DeploymentOperationsListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.top],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.nextLink,
-    Parameters.deploymentName,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};

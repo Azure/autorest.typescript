@@ -10,11 +10,7 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ServerConnectionPolicy,
-  ServerConnectionPoliciesListByServerOptionalParams,
-  ConnectionPolicyName,
-  ServerConnectionPoliciesGetOptionalParams,
   ServerConnectionPoliciesGetResponse,
-  ServerConnectionPoliciesCreateOrUpdateOptionalParams,
   ServerConnectionPoliciesCreateOrUpdateResponse
 } from "../models";
 
@@ -23,46 +19,19 @@ import {
 export interface ServerConnectionPolicies {
   /**
    * Lists connection policy
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  listByServer(
-    resourceGroupName: string,
-    serverName: string,
-    options?: ServerConnectionPoliciesListByServerOptionalParams
-  ): PagedAsyncIterableIterator<ServerConnectionPolicy>;
+  listByServer(): PagedAsyncIterableIterator<ServerConnectionPolicy>;
   /**
    * Gets a server connection policy
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param connectionPolicyName The name of the connection policy.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    connectionPolicyName: ConnectionPolicyName,
-    options?: ServerConnectionPoliciesGetOptionalParams
-  ): Promise<ServerConnectionPoliciesGetResponse>;
+  get(): Promise<ServerConnectionPoliciesGetResponse>;
   /**
    * Updates a server connection policy
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param connectionPolicyName The name of the connection policy.
-   * @param parameters The required parameters for updating a server connection policy.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    connectionPolicyName: ConnectionPolicyName,
-    parameters: ServerConnectionPolicy,
-    options?: ServerConnectionPoliciesCreateOrUpdateOptionalParams
-  ): Promise<
+  beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<ServerConnectionPoliciesCreateOrUpdateResponse>,
       ServerConnectionPoliciesCreateOrUpdateResponse
@@ -70,18 +39,9 @@ export interface ServerConnectionPolicies {
   >;
   /**
    * Updates a server connection policy
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param connectionPolicyName The name of the connection policy.
-   * @param parameters The required parameters for updating a server connection policy.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    connectionPolicyName: ConnectionPolicyName,
-    parameters: ServerConnectionPolicy,
-    options?: ServerConnectionPoliciesCreateOrUpdateOptionalParams
-  ): Promise<ServerConnectionPoliciesCreateOrUpdateResponse>;
+  beginCreateOrUpdateAndWait(): Promise<
+    ServerConnectionPoliciesCreateOrUpdateResponse
+  >;
 }

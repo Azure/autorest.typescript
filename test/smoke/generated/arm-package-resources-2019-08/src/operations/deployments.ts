@@ -16,84 +16,33 @@ import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
   DeploymentExtended,
-  DeploymentsListAtScopeNextOptionalParams,
-  DeploymentsListAtScopeOptionalParams,
-  DeploymentsListAtTenantScopeNextOptionalParams,
-  DeploymentsListAtTenantScopeOptionalParams,
-  DeploymentsListAtManagementGroupScopeNextOptionalParams,
-  DeploymentsListAtManagementGroupScopeOptionalParams,
-  DeploymentsListAtSubscriptionScopeNextOptionalParams,
-  DeploymentsListAtSubscriptionScopeOptionalParams,
-  DeploymentsListByResourceGroupNextOptionalParams,
-  DeploymentsListByResourceGroupOptionalParams,
-  DeploymentsDeleteAtScopeOptionalParams,
-  DeploymentsCheckExistenceAtScopeOptionalParams,
-  Deployment,
-  DeploymentsCreateOrUpdateAtScopeOptionalParams,
   DeploymentsCreateOrUpdateAtScopeResponse,
-  DeploymentsGetAtScopeOptionalParams,
   DeploymentsGetAtScopeResponse,
-  DeploymentsCancelAtScopeOptionalParams,
-  DeploymentsValidateAtScopeOptionalParams,
   DeploymentsValidateAtScopeResponse,
-  DeploymentsExportTemplateAtScopeOptionalParams,
   DeploymentsExportTemplateAtScopeResponse,
   DeploymentsListAtScopeResponse,
-  DeploymentsDeleteAtTenantScopeOptionalParams,
-  DeploymentsCheckExistenceAtTenantScopeOptionalParams,
-  ScopedDeployment,
-  DeploymentsCreateOrUpdateAtTenantScopeOptionalParams,
   DeploymentsCreateOrUpdateAtTenantScopeResponse,
-  DeploymentsGetAtTenantScopeOptionalParams,
   DeploymentsGetAtTenantScopeResponse,
-  DeploymentsCancelAtTenantScopeOptionalParams,
-  DeploymentsValidateAtTenantScopeOptionalParams,
   DeploymentsValidateAtTenantScopeResponse,
-  DeploymentsExportTemplateAtTenantScopeOptionalParams,
   DeploymentsExportTemplateAtTenantScopeResponse,
   DeploymentsListAtTenantScopeResponse,
-  DeploymentsDeleteAtManagementGroupScopeOptionalParams,
-  DeploymentsCheckExistenceAtManagementGroupScopeOptionalParams,
-  DeploymentsCreateOrUpdateAtManagementGroupScopeOptionalParams,
   DeploymentsCreateOrUpdateAtManagementGroupScopeResponse,
-  DeploymentsGetAtManagementGroupScopeOptionalParams,
   DeploymentsGetAtManagementGroupScopeResponse,
-  DeploymentsCancelAtManagementGroupScopeOptionalParams,
-  DeploymentsValidateAtManagementGroupScopeOptionalParams,
   DeploymentsValidateAtManagementGroupScopeResponse,
-  DeploymentsExportTemplateAtManagementGroupScopeOptionalParams,
   DeploymentsExportTemplateAtManagementGroupScopeResponse,
   DeploymentsListAtManagementGroupScopeResponse,
-  DeploymentsDeleteAtSubscriptionScopeOptionalParams,
-  DeploymentsCheckExistenceAtSubscriptionScopeOptionalParams,
-  DeploymentsCreateOrUpdateAtSubscriptionScopeOptionalParams,
   DeploymentsCreateOrUpdateAtSubscriptionScopeResponse,
-  DeploymentsGetAtSubscriptionScopeOptionalParams,
   DeploymentsGetAtSubscriptionScopeResponse,
-  DeploymentsCancelAtSubscriptionScopeOptionalParams,
-  DeploymentsValidateAtSubscriptionScopeOptionalParams,
   DeploymentsValidateAtSubscriptionScopeResponse,
-  DeploymentWhatIf,
-  DeploymentsWhatIfAtSubscriptionScopeOptionalParams,
   DeploymentsWhatIfAtSubscriptionScopeResponse,
-  DeploymentsExportTemplateAtSubscriptionScopeOptionalParams,
   DeploymentsExportTemplateAtSubscriptionScopeResponse,
   DeploymentsListAtSubscriptionScopeResponse,
-  DeploymentsDeleteOptionalParams,
-  DeploymentsCheckExistenceOptionalParams,
-  DeploymentsCreateOrUpdateOptionalParams,
   DeploymentsCreateOrUpdateResponse,
-  DeploymentsGetOptionalParams,
   DeploymentsGetResponse,
-  DeploymentsCancelOptionalParams,
-  DeploymentsValidateOptionalParams,
   DeploymentsValidateResponse,
-  DeploymentsWhatIfOptionalParams,
   DeploymentsWhatIfResponse,
-  DeploymentsExportTemplateOptionalParams,
   DeploymentsExportTemplateResponse,
   DeploymentsListByResourceGroupResponse,
-  DeploymentsCalculateTemplateHashOptionalParams,
   DeploymentsCalculateTemplateHashResponse,
   DeploymentsListAtScopeNextResponse,
   DeploymentsListAtTenantScopeNextResponse,
@@ -117,14 +66,10 @@ export class DeploymentsImpl implements Deployments {
 
   /**
    * Get all the deployments at the given scope.
-   * @param scope The scope of a deployment.
-   * @param options The options parameters.
+   *
    */
-  public listAtScope(
-    scope: string,
-    options?: DeploymentsListAtScopeOptionalParams
-  ): PagedAsyncIterableIterator<DeploymentExtended> {
-    const iter = this.listAtScopePagingAll(scope, options);
+  public listAtScope(): PagedAsyncIterableIterator<DeploymentExtended> {
+    const iter = this.listAtScopePagingAll();
     return {
       next() {
         return iter.next();
@@ -133,42 +78,38 @@ export class DeploymentsImpl implements Deployments {
         return this;
       },
       byPage: () => {
-        return this.listAtScopePagingPage(scope, options);
+        return this.listAtScopePagingPage();
       }
     };
   }
 
-  private async *listAtScopePagingPage(
-    scope: string,
-    options?: DeploymentsListAtScopeOptionalParams
-  ): AsyncIterableIterator<DeploymentExtended[]> {
-    let result = await this._listAtScope(scope, options);
+  private async *listAtScopePagingPage(): AsyncIterableIterator<
+    DeploymentExtended[]
+  > {
+    let result = await this._listAtScope();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listAtScopeNext(scope, continuationToken, options);
+      result = await this._listAtScopeNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listAtScopePagingAll(
-    scope: string,
-    options?: DeploymentsListAtScopeOptionalParams
-  ): AsyncIterableIterator<DeploymentExtended> {
-    for await (const page of this.listAtScopePagingPage(scope, options)) {
+  private async *listAtScopePagingAll(): AsyncIterableIterator<
+    DeploymentExtended
+  > {
+    for await (const page of this.listAtScopePagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Get all the deployments at the tenant scope.
-   * @param options The options parameters.
+   *
    */
-  public listAtTenantScope(
-    options?: DeploymentsListAtTenantScopeOptionalParams
-  ): PagedAsyncIterableIterator<DeploymentExtended> {
-    const iter = this.listAtTenantScopePagingAll(options);
+  public listAtTenantScope(): PagedAsyncIterableIterator<DeploymentExtended> {
+    const iter = this.listAtTenantScopePagingAll();
     return {
       next() {
         return iter.next();
@@ -177,42 +118,40 @@ export class DeploymentsImpl implements Deployments {
         return this;
       },
       byPage: () => {
-        return this.listAtTenantScopePagingPage(options);
+        return this.listAtTenantScopePagingPage();
       }
     };
   }
 
-  private async *listAtTenantScopePagingPage(
-    options?: DeploymentsListAtTenantScopeOptionalParams
-  ): AsyncIterableIterator<DeploymentExtended[]> {
-    let result = await this._listAtTenantScope(options);
+  private async *listAtTenantScopePagingPage(): AsyncIterableIterator<
+    DeploymentExtended[]
+  > {
+    let result = await this._listAtTenantScope();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listAtTenantScopeNext(continuationToken, options);
+      result = await this._listAtTenantScopeNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listAtTenantScopePagingAll(
-    options?: DeploymentsListAtTenantScopeOptionalParams
-  ): AsyncIterableIterator<DeploymentExtended> {
-    for await (const page of this.listAtTenantScopePagingPage(options)) {
+  private async *listAtTenantScopePagingAll(): AsyncIterableIterator<
+    DeploymentExtended
+  > {
+    for await (const page of this.listAtTenantScopePagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Get all the deployments for a management group.
-   * @param groupId The management group ID.
-   * @param options The options parameters.
+   *
    */
-  public listAtManagementGroupScope(
-    groupId: string,
-    options?: DeploymentsListAtManagementGroupScopeOptionalParams
-  ): PagedAsyncIterableIterator<DeploymentExtended> {
-    const iter = this.listAtManagementGroupScopePagingAll(groupId, options);
+  public listAtManagementGroupScope(): PagedAsyncIterableIterator<
+    DeploymentExtended
+  > {
+    const iter = this.listAtManagementGroupScopePagingAll();
     return {
       next() {
         return iter.next();
@@ -221,49 +160,40 @@ export class DeploymentsImpl implements Deployments {
         return this;
       },
       byPage: () => {
-        return this.listAtManagementGroupScopePagingPage(groupId, options);
+        return this.listAtManagementGroupScopePagingPage();
       }
     };
   }
 
-  private async *listAtManagementGroupScopePagingPage(
-    groupId: string,
-    options?: DeploymentsListAtManagementGroupScopeOptionalParams
-  ): AsyncIterableIterator<DeploymentExtended[]> {
-    let result = await this._listAtManagementGroupScope(groupId, options);
+  private async *listAtManagementGroupScopePagingPage(): AsyncIterableIterator<
+    DeploymentExtended[]
+  > {
+    let result = await this._listAtManagementGroupScope();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listAtManagementGroupScopeNext(
-        groupId,
-        continuationToken,
-        options
-      );
+      result = await this._listAtManagementGroupScopeNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listAtManagementGroupScopePagingAll(
-    groupId: string,
-    options?: DeploymentsListAtManagementGroupScopeOptionalParams
-  ): AsyncIterableIterator<DeploymentExtended> {
-    for await (const page of this.listAtManagementGroupScopePagingPage(
-      groupId,
-      options
-    )) {
+  private async *listAtManagementGroupScopePagingAll(): AsyncIterableIterator<
+    DeploymentExtended
+  > {
+    for await (const page of this.listAtManagementGroupScopePagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Get all the deployments for a subscription.
-   * @param options The options parameters.
+   *
    */
-  public listAtSubscriptionScope(
-    options?: DeploymentsListAtSubscriptionScopeOptionalParams
-  ): PagedAsyncIterableIterator<DeploymentExtended> {
-    const iter = this.listAtSubscriptionScopePagingAll(options);
+  public listAtSubscriptionScope(): PagedAsyncIterableIterator<
+    DeploymentExtended
+  > {
+    const iter = this.listAtSubscriptionScopePagingAll();
     return {
       next() {
         return iter.next();
@@ -272,46 +202,38 @@ export class DeploymentsImpl implements Deployments {
         return this;
       },
       byPage: () => {
-        return this.listAtSubscriptionScopePagingPage(options);
+        return this.listAtSubscriptionScopePagingPage();
       }
     };
   }
 
-  private async *listAtSubscriptionScopePagingPage(
-    options?: DeploymentsListAtSubscriptionScopeOptionalParams
-  ): AsyncIterableIterator<DeploymentExtended[]> {
-    let result = await this._listAtSubscriptionScope(options);
+  private async *listAtSubscriptionScopePagingPage(): AsyncIterableIterator<
+    DeploymentExtended[]
+  > {
+    let result = await this._listAtSubscriptionScope();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listAtSubscriptionScopeNext(
-        continuationToken,
-        options
-      );
+      result = await this._listAtSubscriptionScopeNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listAtSubscriptionScopePagingAll(
-    options?: DeploymentsListAtSubscriptionScopeOptionalParams
-  ): AsyncIterableIterator<DeploymentExtended> {
-    for await (const page of this.listAtSubscriptionScopePagingPage(options)) {
+  private async *listAtSubscriptionScopePagingAll(): AsyncIterableIterator<
+    DeploymentExtended
+  > {
+    for await (const page of this.listAtSubscriptionScopePagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Get all the deployments for a resource group.
-   * @param resourceGroupName The name of the resource group with the deployments to get. The name is
-   *                          case insensitive.
-   * @param options The options parameters.
+   *
    */
-  public listByResourceGroup(
-    resourceGroupName: string,
-    options?: DeploymentsListByResourceGroupOptionalParams
-  ): PagedAsyncIterableIterator<DeploymentExtended> {
-    const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
+  public listByResourceGroup(): PagedAsyncIterableIterator<DeploymentExtended> {
+    const iter = this.listByResourceGroupPagingAll();
     return {
       next() {
         return iter.next();
@@ -320,37 +242,28 @@ export class DeploymentsImpl implements Deployments {
         return this;
       },
       byPage: () => {
-        return this.listByResourceGroupPagingPage(resourceGroupName, options);
+        return this.listByResourceGroupPagingPage();
       }
     };
   }
 
-  private async *listByResourceGroupPagingPage(
-    resourceGroupName: string,
-    options?: DeploymentsListByResourceGroupOptionalParams
-  ): AsyncIterableIterator<DeploymentExtended[]> {
-    let result = await this._listByResourceGroup(resourceGroupName, options);
+  private async *listByResourceGroupPagingPage(): AsyncIterableIterator<
+    DeploymentExtended[]
+  > {
+    let result = await this._listByResourceGroup();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listByResourceGroupNext(
-        resourceGroupName,
-        continuationToken,
-        options
-      );
+      result = await this._listByResourceGroupNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listByResourceGroupPagingAll(
-    resourceGroupName: string,
-    options?: DeploymentsListByResourceGroupOptionalParams
-  ): AsyncIterableIterator<DeploymentExtended> {
-    for await (const page of this.listByResourceGroupPagingPage(
-      resourceGroupName,
-      options
-    )) {
+  private async *listByResourceGroupPagingAll(): AsyncIterableIterator<
+    DeploymentExtended
+  > {
+    for await (const page of this.listByResourceGroupPagingPage()) {
       yield* page;
     }
   }
@@ -363,66 +276,11 @@ export class DeploymentsImpl implements Deployments {
    * call to the URI in the Location header returns a status of 202. When the process finishes, the URI
    * in the Location header returns a status of 204 on success. If the asynchronous request failed, the
    * URI in the Location header returns an error-level status code.
-   * @param scope The scope of a deployment.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  async beginDeleteAtScope(
-    scope: string,
-    deploymentName: string,
-    options?: DeploymentsDeleteAtScopeOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<void> => {
-      return this.client.sendOperationRequest(args, spec);
-    };
-    const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return {
-        flatResponse,
-        rawResponse: {
-          statusCode: currentRawResponse!.status,
-          body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
-      };
-    };
-
-    const lro = new LroImpl(
-      sendOperation,
-      { scope, deploymentName, options },
-      deleteAtScopeOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
-    });
-    await poller.poll();
-    return poller;
-  }
+  async beginDeleteAtScope(): Promise<
+    PollerLike<PollOperationState<void>, void>
+  > {}
 
   /**
    * A template deployment that is currently running cannot be deleted. Deleting a template deployment
@@ -432,53 +290,24 @@ export class DeploymentsImpl implements Deployments {
    * call to the URI in the Location header returns a status of 202. When the process finishes, the URI
    * in the Location header returns a status of 204 on success. If the asynchronous request failed, the
    * URI in the Location header returns an error-level status code.
-   * @param scope The scope of a deployment.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  async beginDeleteAtScopeAndWait(
-    scope: string,
-    deploymentName: string,
-    options?: DeploymentsDeleteAtScopeOptionalParams
-  ): Promise<void> {
-    const poller = await this.beginDeleteAtScope(
-      scope,
-      deploymentName,
-      options
-    );
+  async beginDeleteAtScopeAndWait(): Promise<void> {
+    const poller = await this.beginDeleteAtScope();
     return poller.pollUntilDone();
   }
 
   /**
    * Checks whether the deployment exists.
-   * @param scope The scope of a deployment.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  checkExistenceAtScope(
-    scope: string,
-    deploymentName: string,
-    options?: DeploymentsCheckExistenceAtScopeOptionalParams
-  ): Promise<void> {
-    return this.client.sendOperationRequest(
-      { scope, deploymentName, options },
-      checkExistenceAtScopeOperationSpec
-    );
-  }
+  checkExistenceAtScope(): Promise<void> {}
 
   /**
    * You can provide the template and parameters directly in the request or link to JSON files.
-   * @param scope The scope of a deployment.
-   * @param deploymentName The name of the deployment.
-   * @param parameters Additional parameters supplied to the operation.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdateAtScope(
-    scope: string,
-    deploymentName: string,
-    parameters: Deployment,
-    options?: DeploymentsCreateOrUpdateAtScopeOptionalParams
-  ): Promise<
+  async beginCreateOrUpdateAtScope(): Promise<
     PollerLike<
       PollOperationState<DeploymentsCreateOrUpdateAtScopeResponse>,
       DeploymentsCreateOrUpdateAtScopeResponse
@@ -525,7 +354,7 @@ export class DeploymentsImpl implements Deployments {
 
     const lro = new LroImpl(
       sendOperation,
-      { scope, deploymentName, parameters, options },
+      { scope, deploymentName, options },
       createOrUpdateAtScopeOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -538,113 +367,52 @@ export class DeploymentsImpl implements Deployments {
 
   /**
    * You can provide the template and parameters directly in the request or link to JSON files.
-   * @param scope The scope of a deployment.
-   * @param deploymentName The name of the deployment.
-   * @param parameters Additional parameters supplied to the operation.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdateAtScopeAndWait(
-    scope: string,
-    deploymentName: string,
-    parameters: Deployment,
-    options?: DeploymentsCreateOrUpdateAtScopeOptionalParams
-  ): Promise<DeploymentsCreateOrUpdateAtScopeResponse> {
-    const poller = await this.beginCreateOrUpdateAtScope(
-      scope,
-      deploymentName,
-      parameters,
-      options
-    );
+  async beginCreateOrUpdateAtScopeAndWait(): Promise<
+    DeploymentsCreateOrUpdateAtScopeResponse
+  > {
+    const poller = await this.beginCreateOrUpdateAtScope();
     return poller.pollUntilDone();
   }
 
   /**
    * Gets a deployment.
-   * @param scope The scope of a deployment.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  getAtScope(
-    scope: string,
-    deploymentName: string,
-    options?: DeploymentsGetAtScopeOptionalParams
-  ): Promise<DeploymentsGetAtScopeResponse> {
-    return this.client.sendOperationRequest(
-      { scope, deploymentName, options },
-      getAtScopeOperationSpec
-    );
-  }
+  getAtScope(): Promise<DeploymentsGetAtScopeResponse> {}
 
   /**
    * You can cancel a deployment only if the provisioningState is Accepted or Running. After the
    * deployment is canceled, the provisioningState is set to Canceled. Canceling a template deployment
    * stops the currently running template deployment and leaves the resources partially deployed.
-   * @param scope The scope of a deployment.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  cancelAtScope(
-    scope: string,
-    deploymentName: string,
-    options?: DeploymentsCancelAtScopeOptionalParams
-  ): Promise<void> {
-    return this.client.sendOperationRequest(
-      { scope, deploymentName, options },
-      cancelAtScopeOperationSpec
-    );
-  }
+  cancelAtScope(): Promise<void> {}
 
   /**
    * Validates whether the specified template is syntactically correct and will be accepted by Azure
    * Resource Manager..
-   * @param scope The scope of a deployment.
-   * @param deploymentName The name of the deployment.
-   * @param parameters Parameters to validate.
-   * @param options The options parameters.
+   *
    */
-  validateAtScope(
-    scope: string,
-    deploymentName: string,
-    parameters: Deployment,
-    options?: DeploymentsValidateAtScopeOptionalParams
-  ): Promise<DeploymentsValidateAtScopeResponse> {
+  validateAtScope(): Promise<DeploymentsValidateAtScopeResponse> {
     return this.client.sendOperationRequest(
-      { scope, deploymentName, parameters, options },
+      { scope, deploymentName, options },
       validateAtScopeOperationSpec
     );
   }
 
   /**
    * Exports the template used for specified deployment.
-   * @param scope The scope of a deployment.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  exportTemplateAtScope(
-    scope: string,
-    deploymentName: string,
-    options?: DeploymentsExportTemplateAtScopeOptionalParams
-  ): Promise<DeploymentsExportTemplateAtScopeResponse> {
-    return this.client.sendOperationRequest(
-      { scope, deploymentName, options },
-      exportTemplateAtScopeOperationSpec
-    );
-  }
+  exportTemplateAtScope(): Promise<DeploymentsExportTemplateAtScopeResponse> {}
 
   /**
    * Get all the deployments at the given scope.
-   * @param scope The scope of a deployment.
-   * @param options The options parameters.
+   *
    */
-  private _listAtScope(
-    scope: string,
-    options?: DeploymentsListAtScopeOptionalParams
-  ): Promise<DeploymentsListAtScopeResponse> {
-    return this.client.sendOperationRequest(
-      { scope, options },
-      listAtScopeOperationSpec
-    );
-  }
+  private _listAtScope(): Promise<DeploymentsListAtScopeResponse> {}
 
   /**
    * A template deployment that is currently running cannot be deleted. Deleting a template deployment
@@ -654,64 +422,11 @@ export class DeploymentsImpl implements Deployments {
    * call to the URI in the Location header returns a status of 202. When the process finishes, the URI
    * in the Location header returns a status of 204 on success. If the asynchronous request failed, the
    * URI in the Location header returns an error-level status code.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  async beginDeleteAtTenantScope(
-    deploymentName: string,
-    options?: DeploymentsDeleteAtTenantScopeOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<void> => {
-      return this.client.sendOperationRequest(args, spec);
-    };
-    const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return {
-        flatResponse,
-        rawResponse: {
-          statusCode: currentRawResponse!.status,
-          body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
-      };
-    };
-
-    const lro = new LroImpl(
-      sendOperation,
-      { deploymentName, options },
-      deleteAtTenantScopeOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
-    });
-    await poller.poll();
-    return poller;
-  }
+  async beginDeleteAtTenantScope(): Promise<
+    PollerLike<PollOperationState<void>, void>
+  > {}
 
   /**
    * A template deployment that is currently running cannot be deleted. Deleting a template deployment
@@ -721,43 +436,24 @@ export class DeploymentsImpl implements Deployments {
    * call to the URI in the Location header returns a status of 202. When the process finishes, the URI
    * in the Location header returns a status of 204 on success. If the asynchronous request failed, the
    * URI in the Location header returns an error-level status code.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  async beginDeleteAtTenantScopeAndWait(
-    deploymentName: string,
-    options?: DeploymentsDeleteAtTenantScopeOptionalParams
-  ): Promise<void> {
-    const poller = await this.beginDeleteAtTenantScope(deploymentName, options);
+  async beginDeleteAtTenantScopeAndWait(): Promise<void> {
+    const poller = await this.beginDeleteAtTenantScope();
     return poller.pollUntilDone();
   }
 
   /**
    * Checks whether the deployment exists.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  checkExistenceAtTenantScope(
-    deploymentName: string,
-    options?: DeploymentsCheckExistenceAtTenantScopeOptionalParams
-  ): Promise<void> {
-    return this.client.sendOperationRequest(
-      { deploymentName, options },
-      checkExistenceAtTenantScopeOperationSpec
-    );
-  }
+  checkExistenceAtTenantScope(): Promise<void> {}
 
   /**
    * You can provide the template and parameters directly in the request or link to JSON files.
-   * @param deploymentName The name of the deployment.
-   * @param parameters Additional parameters supplied to the operation.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdateAtTenantScope(
-    deploymentName: string,
-    parameters: ScopedDeployment,
-    options?: DeploymentsCreateOrUpdateAtTenantScopeOptionalParams
-  ): Promise<
+  async beginCreateOrUpdateAtTenantScope(): Promise<
     PollerLike<
       PollOperationState<DeploymentsCreateOrUpdateAtTenantScopeResponse>,
       DeploymentsCreateOrUpdateAtTenantScopeResponse
@@ -804,7 +500,7 @@ export class DeploymentsImpl implements Deployments {
 
     const lro = new LroImpl(
       sendOperation,
-      { deploymentName, parameters, options },
+      { deploymentName, options },
       createOrUpdateAtTenantScopeOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -817,100 +513,54 @@ export class DeploymentsImpl implements Deployments {
 
   /**
    * You can provide the template and parameters directly in the request or link to JSON files.
-   * @param deploymentName The name of the deployment.
-   * @param parameters Additional parameters supplied to the operation.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdateAtTenantScopeAndWait(
-    deploymentName: string,
-    parameters: ScopedDeployment,
-    options?: DeploymentsCreateOrUpdateAtTenantScopeOptionalParams
-  ): Promise<DeploymentsCreateOrUpdateAtTenantScopeResponse> {
-    const poller = await this.beginCreateOrUpdateAtTenantScope(
-      deploymentName,
-      parameters,
-      options
-    );
+  async beginCreateOrUpdateAtTenantScopeAndWait(): Promise<
+    DeploymentsCreateOrUpdateAtTenantScopeResponse
+  > {
+    const poller = await this.beginCreateOrUpdateAtTenantScope();
     return poller.pollUntilDone();
   }
 
   /**
    * Gets a deployment.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  getAtTenantScope(
-    deploymentName: string,
-    options?: DeploymentsGetAtTenantScopeOptionalParams
-  ): Promise<DeploymentsGetAtTenantScopeResponse> {
-    return this.client.sendOperationRequest(
-      { deploymentName, options },
-      getAtTenantScopeOperationSpec
-    );
-  }
+  getAtTenantScope(): Promise<DeploymentsGetAtTenantScopeResponse> {}
 
   /**
    * You can cancel a deployment only if the provisioningState is Accepted or Running. After the
    * deployment is canceled, the provisioningState is set to Canceled. Canceling a template deployment
    * stops the currently running template deployment and leaves the resources partially deployed.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  cancelAtTenantScope(
-    deploymentName: string,
-    options?: DeploymentsCancelAtTenantScopeOptionalParams
-  ): Promise<void> {
-    return this.client.sendOperationRequest(
-      { deploymentName, options },
-      cancelAtTenantScopeOperationSpec
-    );
-  }
+  cancelAtTenantScope(): Promise<void> {}
 
   /**
    * Validates whether the specified template is syntactically correct and will be accepted by Azure
    * Resource Manager..
-   * @param deploymentName The name of the deployment.
-   * @param parameters Parameters to validate.
-   * @param options The options parameters.
+   *
    */
-  validateAtTenantScope(
-    deploymentName: string,
-    parameters: ScopedDeployment,
-    options?: DeploymentsValidateAtTenantScopeOptionalParams
-  ): Promise<DeploymentsValidateAtTenantScopeResponse> {
+  validateAtTenantScope(): Promise<DeploymentsValidateAtTenantScopeResponse> {
     return this.client.sendOperationRequest(
-      { deploymentName, parameters, options },
+      { deploymentName, options },
       validateAtTenantScopeOperationSpec
     );
   }
 
   /**
    * Exports the template used for specified deployment.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  exportTemplateAtTenantScope(
-    deploymentName: string,
-    options?: DeploymentsExportTemplateAtTenantScopeOptionalParams
-  ): Promise<DeploymentsExportTemplateAtTenantScopeResponse> {
-    return this.client.sendOperationRequest(
-      { deploymentName, options },
-      exportTemplateAtTenantScopeOperationSpec
-    );
-  }
+  exportTemplateAtTenantScope(): Promise<
+    DeploymentsExportTemplateAtTenantScopeResponse
+  > {}
 
   /**
    * Get all the deployments at the tenant scope.
-   * @param options The options parameters.
+   *
    */
-  private _listAtTenantScope(
-    options?: DeploymentsListAtTenantScopeOptionalParams
-  ): Promise<DeploymentsListAtTenantScopeResponse> {
-    return this.client.sendOperationRequest(
-      { options },
-      listAtTenantScopeOperationSpec
-    );
-  }
+  private _listAtTenantScope(): Promise<DeploymentsListAtTenantScopeResponse> {}
 
   /**
    * A template deployment that is currently running cannot be deleted. Deleting a template deployment
@@ -920,66 +570,11 @@ export class DeploymentsImpl implements Deployments {
    * call to the URI in the Location header returns a status of 202. When the process finishes, the URI
    * in the Location header returns a status of 204 on success. If the asynchronous request failed, the
    * URI in the Location header returns an error-level status code.
-   * @param groupId The management group ID.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  async beginDeleteAtManagementGroupScope(
-    groupId: string,
-    deploymentName: string,
-    options?: DeploymentsDeleteAtManagementGroupScopeOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<void> => {
-      return this.client.sendOperationRequest(args, spec);
-    };
-    const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return {
-        flatResponse,
-        rawResponse: {
-          statusCode: currentRawResponse!.status,
-          body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
-      };
-    };
-
-    const lro = new LroImpl(
-      sendOperation,
-      { groupId, deploymentName, options },
-      deleteAtManagementGroupScopeOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
-    });
-    await poller.poll();
-    return poller;
-  }
+  async beginDeleteAtManagementGroupScope(): Promise<
+    PollerLike<PollOperationState<void>, void>
+  > {}
 
   /**
    * A template deployment that is currently running cannot be deleted. Deleting a template deployment
@@ -989,53 +584,24 @@ export class DeploymentsImpl implements Deployments {
    * call to the URI in the Location header returns a status of 202. When the process finishes, the URI
    * in the Location header returns a status of 204 on success. If the asynchronous request failed, the
    * URI in the Location header returns an error-level status code.
-   * @param groupId The management group ID.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  async beginDeleteAtManagementGroupScopeAndWait(
-    groupId: string,
-    deploymentName: string,
-    options?: DeploymentsDeleteAtManagementGroupScopeOptionalParams
-  ): Promise<void> {
-    const poller = await this.beginDeleteAtManagementGroupScope(
-      groupId,
-      deploymentName,
-      options
-    );
+  async beginDeleteAtManagementGroupScopeAndWait(): Promise<void> {
+    const poller = await this.beginDeleteAtManagementGroupScope();
     return poller.pollUntilDone();
   }
 
   /**
    * Checks whether the deployment exists.
-   * @param groupId The management group ID.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  checkExistenceAtManagementGroupScope(
-    groupId: string,
-    deploymentName: string,
-    options?: DeploymentsCheckExistenceAtManagementGroupScopeOptionalParams
-  ): Promise<void> {
-    return this.client.sendOperationRequest(
-      { groupId, deploymentName, options },
-      checkExistenceAtManagementGroupScopeOperationSpec
-    );
-  }
+  checkExistenceAtManagementGroupScope(): Promise<void> {}
 
   /**
    * You can provide the template and parameters directly in the request or link to JSON files.
-   * @param groupId The management group ID.
-   * @param deploymentName The name of the deployment.
-   * @param parameters Additional parameters supplied to the operation.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdateAtManagementGroupScope(
-    groupId: string,
-    deploymentName: string,
-    parameters: ScopedDeployment,
-    options?: DeploymentsCreateOrUpdateAtManagementGroupScopeOptionalParams
-  ): Promise<
+  async beginCreateOrUpdateAtManagementGroupScope(): Promise<
     PollerLike<
       PollOperationState<
         DeploymentsCreateOrUpdateAtManagementGroupScopeResponse
@@ -1084,7 +650,7 @@ export class DeploymentsImpl implements Deployments {
 
     const lro = new LroImpl(
       sendOperation,
-      { groupId, deploymentName, parameters, options },
+      { groupId, deploymentName, options },
       createOrUpdateAtManagementGroupScopeOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -1097,113 +663,60 @@ export class DeploymentsImpl implements Deployments {
 
   /**
    * You can provide the template and parameters directly in the request or link to JSON files.
-   * @param groupId The management group ID.
-   * @param deploymentName The name of the deployment.
-   * @param parameters Additional parameters supplied to the operation.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdateAtManagementGroupScopeAndWait(
-    groupId: string,
-    deploymentName: string,
-    parameters: ScopedDeployment,
-    options?: DeploymentsCreateOrUpdateAtManagementGroupScopeOptionalParams
-  ): Promise<DeploymentsCreateOrUpdateAtManagementGroupScopeResponse> {
-    const poller = await this.beginCreateOrUpdateAtManagementGroupScope(
-      groupId,
-      deploymentName,
-      parameters,
-      options
-    );
+  async beginCreateOrUpdateAtManagementGroupScopeAndWait(): Promise<
+    DeploymentsCreateOrUpdateAtManagementGroupScopeResponse
+  > {
+    const poller = await this.beginCreateOrUpdateAtManagementGroupScope();
     return poller.pollUntilDone();
   }
 
   /**
    * Gets a deployment.
-   * @param groupId The management group ID.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  getAtManagementGroupScope(
-    groupId: string,
-    deploymentName: string,
-    options?: DeploymentsGetAtManagementGroupScopeOptionalParams
-  ): Promise<DeploymentsGetAtManagementGroupScopeResponse> {
-    return this.client.sendOperationRequest(
-      { groupId, deploymentName, options },
-      getAtManagementGroupScopeOperationSpec
-    );
-  }
+  getAtManagementGroupScope(): Promise<
+    DeploymentsGetAtManagementGroupScopeResponse
+  > {}
 
   /**
    * You can cancel a deployment only if the provisioningState is Accepted or Running. After the
    * deployment is canceled, the provisioningState is set to Canceled. Canceling a template deployment
    * stops the currently running template deployment and leaves the resources partially deployed.
-   * @param groupId The management group ID.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  cancelAtManagementGroupScope(
-    groupId: string,
-    deploymentName: string,
-    options?: DeploymentsCancelAtManagementGroupScopeOptionalParams
-  ): Promise<void> {
-    return this.client.sendOperationRequest(
-      { groupId, deploymentName, options },
-      cancelAtManagementGroupScopeOperationSpec
-    );
-  }
+  cancelAtManagementGroupScope(): Promise<void> {}
 
   /**
    * Validates whether the specified template is syntactically correct and will be accepted by Azure
    * Resource Manager..
-   * @param groupId The management group ID.
-   * @param deploymentName The name of the deployment.
-   * @param parameters Parameters to validate.
-   * @param options The options parameters.
+   *
    */
-  validateAtManagementGroupScope(
-    groupId: string,
-    deploymentName: string,
-    parameters: ScopedDeployment,
-    options?: DeploymentsValidateAtManagementGroupScopeOptionalParams
-  ): Promise<DeploymentsValidateAtManagementGroupScopeResponse> {
+  validateAtManagementGroupScope(): Promise<
+    DeploymentsValidateAtManagementGroupScopeResponse
+  > {
     return this.client.sendOperationRequest(
-      { groupId, deploymentName, parameters, options },
+      { groupId, deploymentName, options },
       validateAtManagementGroupScopeOperationSpec
     );
   }
 
   /**
    * Exports the template used for specified deployment.
-   * @param groupId The management group ID.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  exportTemplateAtManagementGroupScope(
-    groupId: string,
-    deploymentName: string,
-    options?: DeploymentsExportTemplateAtManagementGroupScopeOptionalParams
-  ): Promise<DeploymentsExportTemplateAtManagementGroupScopeResponse> {
-    return this.client.sendOperationRequest(
-      { groupId, deploymentName, options },
-      exportTemplateAtManagementGroupScopeOperationSpec
-    );
-  }
+  exportTemplateAtManagementGroupScope(): Promise<
+    DeploymentsExportTemplateAtManagementGroupScopeResponse
+  > {}
 
   /**
    * Get all the deployments for a management group.
-   * @param groupId The management group ID.
-   * @param options The options parameters.
+   *
    */
-  private _listAtManagementGroupScope(
-    groupId: string,
-    options?: DeploymentsListAtManagementGroupScopeOptionalParams
-  ): Promise<DeploymentsListAtManagementGroupScopeResponse> {
-    return this.client.sendOperationRequest(
-      { groupId, options },
-      listAtManagementGroupScopeOperationSpec
-    );
-  }
+  private _listAtManagementGroupScope(): Promise<
+    DeploymentsListAtManagementGroupScopeResponse
+  > {}
 
   /**
    * A template deployment that is currently running cannot be deleted. Deleting a template deployment
@@ -1213,64 +726,11 @@ export class DeploymentsImpl implements Deployments {
    * call to the URI in the Location header returns a status of 202. When the process finishes, the URI
    * in the Location header returns a status of 204 on success. If the asynchronous request failed, the
    * URI in the Location header returns an error-level status code.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  async beginDeleteAtSubscriptionScope(
-    deploymentName: string,
-    options?: DeploymentsDeleteAtSubscriptionScopeOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<void> => {
-      return this.client.sendOperationRequest(args, spec);
-    };
-    const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return {
-        flatResponse,
-        rawResponse: {
-          statusCode: currentRawResponse!.status,
-          body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
-      };
-    };
-
-    const lro = new LroImpl(
-      sendOperation,
-      { deploymentName, options },
-      deleteAtSubscriptionScopeOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
-    });
-    await poller.poll();
-    return poller;
-  }
+  async beginDeleteAtSubscriptionScope(): Promise<
+    PollerLike<PollOperationState<void>, void>
+  > {}
 
   /**
    * A template deployment that is currently running cannot be deleted. Deleting a template deployment
@@ -1280,46 +740,24 @@ export class DeploymentsImpl implements Deployments {
    * call to the URI in the Location header returns a status of 202. When the process finishes, the URI
    * in the Location header returns a status of 204 on success. If the asynchronous request failed, the
    * URI in the Location header returns an error-level status code.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  async beginDeleteAtSubscriptionScopeAndWait(
-    deploymentName: string,
-    options?: DeploymentsDeleteAtSubscriptionScopeOptionalParams
-  ): Promise<void> {
-    const poller = await this.beginDeleteAtSubscriptionScope(
-      deploymentName,
-      options
-    );
+  async beginDeleteAtSubscriptionScopeAndWait(): Promise<void> {
+    const poller = await this.beginDeleteAtSubscriptionScope();
     return poller.pollUntilDone();
   }
 
   /**
    * Checks whether the deployment exists.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  checkExistenceAtSubscriptionScope(
-    deploymentName: string,
-    options?: DeploymentsCheckExistenceAtSubscriptionScopeOptionalParams
-  ): Promise<void> {
-    return this.client.sendOperationRequest(
-      { deploymentName, options },
-      checkExistenceAtSubscriptionScopeOperationSpec
-    );
-  }
+  checkExistenceAtSubscriptionScope(): Promise<void> {}
 
   /**
    * You can provide the template and parameters directly in the request or link to JSON files.
-   * @param deploymentName The name of the deployment.
-   * @param parameters Additional parameters supplied to the operation.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdateAtSubscriptionScope(
-    deploymentName: string,
-    parameters: Deployment,
-    options?: DeploymentsCreateOrUpdateAtSubscriptionScopeOptionalParams
-  ): Promise<
+  async beginCreateOrUpdateAtSubscriptionScope(): Promise<
     PollerLike<
       PollOperationState<DeploymentsCreateOrUpdateAtSubscriptionScopeResponse>,
       DeploymentsCreateOrUpdateAtSubscriptionScopeResponse
@@ -1366,7 +804,7 @@ export class DeploymentsImpl implements Deployments {
 
     const lro = new LroImpl(
       sendOperation,
-      { deploymentName, parameters, options },
+      { deploymentName, options },
       createOrUpdateAtSubscriptionScopeOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -1379,84 +817,50 @@ export class DeploymentsImpl implements Deployments {
 
   /**
    * You can provide the template and parameters directly in the request or link to JSON files.
-   * @param deploymentName The name of the deployment.
-   * @param parameters Additional parameters supplied to the operation.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdateAtSubscriptionScopeAndWait(
-    deploymentName: string,
-    parameters: Deployment,
-    options?: DeploymentsCreateOrUpdateAtSubscriptionScopeOptionalParams
-  ): Promise<DeploymentsCreateOrUpdateAtSubscriptionScopeResponse> {
-    const poller = await this.beginCreateOrUpdateAtSubscriptionScope(
-      deploymentName,
-      parameters,
-      options
-    );
+  async beginCreateOrUpdateAtSubscriptionScopeAndWait(): Promise<
+    DeploymentsCreateOrUpdateAtSubscriptionScopeResponse
+  > {
+    const poller = await this.beginCreateOrUpdateAtSubscriptionScope();
     return poller.pollUntilDone();
   }
 
   /**
    * Gets a deployment.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  getAtSubscriptionScope(
-    deploymentName: string,
-    options?: DeploymentsGetAtSubscriptionScopeOptionalParams
-  ): Promise<DeploymentsGetAtSubscriptionScopeResponse> {
-    return this.client.sendOperationRequest(
-      { deploymentName, options },
-      getAtSubscriptionScopeOperationSpec
-    );
-  }
+  getAtSubscriptionScope(): Promise<
+    DeploymentsGetAtSubscriptionScopeResponse
+  > {}
 
   /**
    * You can cancel a deployment only if the provisioningState is Accepted or Running. After the
    * deployment is canceled, the provisioningState is set to Canceled. Canceling a template deployment
    * stops the currently running template deployment and leaves the resources partially deployed.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  cancelAtSubscriptionScope(
-    deploymentName: string,
-    options?: DeploymentsCancelAtSubscriptionScopeOptionalParams
-  ): Promise<void> {
-    return this.client.sendOperationRequest(
-      { deploymentName, options },
-      cancelAtSubscriptionScopeOperationSpec
-    );
-  }
+  cancelAtSubscriptionScope(): Promise<void> {}
 
   /**
    * Validates whether the specified template is syntactically correct and will be accepted by Azure
    * Resource Manager..
-   * @param deploymentName The name of the deployment.
-   * @param parameters Parameters to validate.
-   * @param options The options parameters.
+   *
    */
-  validateAtSubscriptionScope(
-    deploymentName: string,
-    parameters: Deployment,
-    options?: DeploymentsValidateAtSubscriptionScopeOptionalParams
-  ): Promise<DeploymentsValidateAtSubscriptionScopeResponse> {
+  validateAtSubscriptionScope(): Promise<
+    DeploymentsValidateAtSubscriptionScopeResponse
+  > {
     return this.client.sendOperationRequest(
-      { deploymentName, parameters, options },
+      { deploymentName, options },
       validateAtSubscriptionScopeOperationSpec
     );
   }
 
   /**
    * Returns changes that will be made by the deployment if executed at the scope of the subscription.
-   * @param deploymentName The name of the deployment.
-   * @param parameters Parameters to What If.
-   * @param options The options parameters.
+   *
    */
-  async beginWhatIfAtSubscriptionScope(
-    deploymentName: string,
-    parameters: DeploymentWhatIf,
-    options?: DeploymentsWhatIfAtSubscriptionScopeOptionalParams
-  ): Promise<
+  async beginWhatIfAtSubscriptionScope(): Promise<
     PollerLike<
       PollOperationState<DeploymentsWhatIfAtSubscriptionScopeResponse>,
       DeploymentsWhatIfAtSubscriptionScopeResponse
@@ -1503,7 +907,7 @@ export class DeploymentsImpl implements Deployments {
 
     const lro = new LroImpl(
       sendOperation,
-      { deploymentName, parameters, options },
+      { deploymentName, options },
       whatIfAtSubscriptionScopeOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -1517,50 +921,30 @@ export class DeploymentsImpl implements Deployments {
 
   /**
    * Returns changes that will be made by the deployment if executed at the scope of the subscription.
-   * @param deploymentName The name of the deployment.
-   * @param parameters Parameters to What If.
-   * @param options The options parameters.
+   *
    */
-  async beginWhatIfAtSubscriptionScopeAndWait(
-    deploymentName: string,
-    parameters: DeploymentWhatIf,
-    options?: DeploymentsWhatIfAtSubscriptionScopeOptionalParams
-  ): Promise<DeploymentsWhatIfAtSubscriptionScopeResponse> {
-    const poller = await this.beginWhatIfAtSubscriptionScope(
-      deploymentName,
-      parameters,
-      options
-    );
+  async beginWhatIfAtSubscriptionScopeAndWait(): Promise<
+    DeploymentsWhatIfAtSubscriptionScopeResponse
+  > {
+    const poller = await this.beginWhatIfAtSubscriptionScope();
     return poller.pollUntilDone();
   }
 
   /**
    * Exports the template used for specified deployment.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  exportTemplateAtSubscriptionScope(
-    deploymentName: string,
-    options?: DeploymentsExportTemplateAtSubscriptionScopeOptionalParams
-  ): Promise<DeploymentsExportTemplateAtSubscriptionScopeResponse> {
-    return this.client.sendOperationRequest(
-      { deploymentName, options },
-      exportTemplateAtSubscriptionScopeOperationSpec
-    );
-  }
+  exportTemplateAtSubscriptionScope(): Promise<
+    DeploymentsExportTemplateAtSubscriptionScopeResponse
+  > {}
 
   /**
    * Get all the deployments for a subscription.
-   * @param options The options parameters.
+   *
    */
-  private _listAtSubscriptionScope(
-    options?: DeploymentsListAtSubscriptionScopeOptionalParams
-  ): Promise<DeploymentsListAtSubscriptionScopeResponse> {
-    return this.client.sendOperationRequest(
-      { options },
-      listAtSubscriptionScopeOperationSpec
-    );
-  }
+  private _listAtSubscriptionScope(): Promise<
+    DeploymentsListAtSubscriptionScopeResponse
+  > {}
 
   /**
    * A template deployment that is currently running cannot be deleted. Deleting a template deployment
@@ -1571,67 +955,9 @@ export class DeploymentsImpl implements Deployments {
    * Location header returns a status of 202. When the process finishes, the URI in the Location header
    * returns a status of 204 on success. If the asynchronous request failed, the URI in the Location
    * header returns an error-level status code.
-   * @param resourceGroupName The name of the resource group with the deployment to delete. The name is
-   *                          case insensitive.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  async beginDelete(
-    resourceGroupName: string,
-    deploymentName: string,
-    options?: DeploymentsDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<void> => {
-      return this.client.sendOperationRequest(args, spec);
-    };
-    const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return {
-        flatResponse,
-        rawResponse: {
-          statusCode: currentRawResponse!.status,
-          body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
-      };
-    };
-
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, deploymentName, options },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
-    });
-    await poller.poll();
-    return poller;
-  }
+  async beginDelete(): Promise<PollerLike<PollOperationState<void>, void>> {}
 
   /**
    * A template deployment that is currently running cannot be deleted. Deleting a template deployment
@@ -1642,56 +968,24 @@ export class DeploymentsImpl implements Deployments {
    * Location header returns a status of 202. When the process finishes, the URI in the Location header
    * returns a status of 204 on success. If the asynchronous request failed, the URI in the Location
    * header returns an error-level status code.
-   * @param resourceGroupName The name of the resource group with the deployment to delete. The name is
-   *                          case insensitive.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  async beginDeleteAndWait(
-    resourceGroupName: string,
-    deploymentName: string,
-    options?: DeploymentsDeleteOptionalParams
-  ): Promise<void> {
-    const poller = await this.beginDelete(
-      resourceGroupName,
-      deploymentName,
-      options
-    );
+  async beginDeleteAndWait(): Promise<void> {
+    const poller = await this.beginDelete();
     return poller.pollUntilDone();
   }
 
   /**
    * Checks whether the deployment exists.
-   * @param resourceGroupName The name of the resource group with the deployment to check. The name is
-   *                          case insensitive.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  checkExistence(
-    resourceGroupName: string,
-    deploymentName: string,
-    options?: DeploymentsCheckExistenceOptionalParams
-  ): Promise<void> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, deploymentName, options },
-      checkExistenceOperationSpec
-    );
-  }
+  checkExistence(): Promise<void> {}
 
   /**
    * You can provide the template and parameters directly in the request or link to JSON files.
-   * @param resourceGroupName The name of the resource group to deploy the resources to. The name is case
-   *                          insensitive. The resource group must already exist.
-   * @param deploymentName The name of the deployment.
-   * @param parameters Additional parameters supplied to the operation.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdate(
-    resourceGroupName: string,
-    deploymentName: string,
-    parameters: Deployment,
-    options?: DeploymentsCreateOrUpdateOptionalParams
-  ): Promise<
+  async beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<DeploymentsCreateOrUpdateResponse>,
       DeploymentsCreateOrUpdateResponse
@@ -1738,7 +1032,7 @@ export class DeploymentsImpl implements Deployments {
 
     const lro = new LroImpl(
       sendOperation,
-      { resourceGroupName, deploymentName, parameters, options },
+      { resourceGroupName, deploymentName, options },
       createOrUpdateOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -1751,98 +1045,46 @@ export class DeploymentsImpl implements Deployments {
 
   /**
    * You can provide the template and parameters directly in the request or link to JSON files.
-   * @param resourceGroupName The name of the resource group to deploy the resources to. The name is case
-   *                          insensitive. The resource group must already exist.
-   * @param deploymentName The name of the deployment.
-   * @param parameters Additional parameters supplied to the operation.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    deploymentName: string,
-    parameters: Deployment,
-    options?: DeploymentsCreateOrUpdateOptionalParams
-  ): Promise<DeploymentsCreateOrUpdateResponse> {
-    const poller = await this.beginCreateOrUpdate(
-      resourceGroupName,
-      deploymentName,
-      parameters,
-      options
-    );
+  async beginCreateOrUpdateAndWait(): Promise<
+    DeploymentsCreateOrUpdateResponse
+  > {
+    const poller = await this.beginCreateOrUpdate();
     return poller.pollUntilDone();
   }
 
   /**
    * Gets a deployment.
-   * @param resourceGroupName The name of the resource group. The name is case insensitive.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    deploymentName: string,
-    options?: DeploymentsGetOptionalParams
-  ): Promise<DeploymentsGetResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, deploymentName, options },
-      getOperationSpec
-    );
-  }
+  get(): Promise<DeploymentsGetResponse> {}
 
   /**
    * You can cancel a deployment only if the provisioningState is Accepted or Running. After the
    * deployment is canceled, the provisioningState is set to Canceled. Canceling a template deployment
    * stops the currently running template deployment and leaves the resource group partially deployed.
-   * @param resourceGroupName The name of the resource group. The name is case insensitive.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  cancel(
-    resourceGroupName: string,
-    deploymentName: string,
-    options?: DeploymentsCancelOptionalParams
-  ): Promise<void> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, deploymentName, options },
-      cancelOperationSpec
-    );
-  }
+  cancel(): Promise<void> {}
 
   /**
    * Validates whether the specified template is syntactically correct and will be accepted by Azure
    * Resource Manager..
-   * @param resourceGroupName The name of the resource group the template will be deployed to. The name
-   *                          is case insensitive.
-   * @param deploymentName The name of the deployment.
-   * @param parameters Parameters to validate.
-   * @param options The options parameters.
+   *
    */
-  validate(
-    resourceGroupName: string,
-    deploymentName: string,
-    parameters: Deployment,
-    options?: DeploymentsValidateOptionalParams
-  ): Promise<DeploymentsValidateResponse> {
+  validate(): Promise<DeploymentsValidateResponse> {
     return this.client.sendOperationRequest(
-      { resourceGroupName, deploymentName, parameters, options },
+      { resourceGroupName, deploymentName, options },
       validateOperationSpec
     );
   }
 
   /**
    * Returns changes that will be made by the deployment if executed at the scope of the resource group.
-   * @param resourceGroupName The name of the resource group the template will be deployed to. The name
-   *                          is case insensitive.
-   * @param deploymentName The name of the deployment.
-   * @param parameters Parameters to validate.
-   * @param options The options parameters.
+   *
    */
-  async beginWhatIf(
-    resourceGroupName: string,
-    deploymentName: string,
-    parameters: DeploymentWhatIf,
-    options?: DeploymentsWhatIfOptionalParams
-  ): Promise<
+  async beginWhatIf(): Promise<
     PollerLike<
       PollOperationState<DeploymentsWhatIfResponse>,
       DeploymentsWhatIfResponse
@@ -1889,7 +1131,7 @@ export class DeploymentsImpl implements Deployments {
 
     const lro = new LroImpl(
       sendOperation,
-      { resourceGroupName, deploymentName, parameters, options },
+      { resourceGroupName, deploymentName, options },
       whatIfOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -1903,202 +1145,79 @@ export class DeploymentsImpl implements Deployments {
 
   /**
    * Returns changes that will be made by the deployment if executed at the scope of the resource group.
-   * @param resourceGroupName The name of the resource group the template will be deployed to. The name
-   *                          is case insensitive.
-   * @param deploymentName The name of the deployment.
-   * @param parameters Parameters to validate.
-   * @param options The options parameters.
+   *
    */
-  async beginWhatIfAndWait(
-    resourceGroupName: string,
-    deploymentName: string,
-    parameters: DeploymentWhatIf,
-    options?: DeploymentsWhatIfOptionalParams
-  ): Promise<DeploymentsWhatIfResponse> {
-    const poller = await this.beginWhatIf(
-      resourceGroupName,
-      deploymentName,
-      parameters,
-      options
-    );
+  async beginWhatIfAndWait(): Promise<DeploymentsWhatIfResponse> {
+    const poller = await this.beginWhatIf();
     return poller.pollUntilDone();
   }
 
   /**
    * Exports the template used for specified deployment.
-   * @param resourceGroupName The name of the resource group. The name is case insensitive.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  exportTemplate(
-    resourceGroupName: string,
-    deploymentName: string,
-    options?: DeploymentsExportTemplateOptionalParams
-  ): Promise<DeploymentsExportTemplateResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, deploymentName, options },
-      exportTemplateOperationSpec
-    );
-  }
+  exportTemplate(): Promise<DeploymentsExportTemplateResponse> {}
 
   /**
    * Get all the deployments for a resource group.
-   * @param resourceGroupName The name of the resource group with the deployments to get. The name is
-   *                          case insensitive.
-   * @param options The options parameters.
+   *
    */
-  private _listByResourceGroup(
-    resourceGroupName: string,
-    options?: DeploymentsListByResourceGroupOptionalParams
-  ): Promise<DeploymentsListByResourceGroupResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, options },
-      listByResourceGroupOperationSpec
-    );
-  }
+  private _listByResourceGroup(): Promise<
+    DeploymentsListByResourceGroupResponse
+  > {}
 
   /**
    * Calculate the hash of the given template.
-   * @param template The template provided to calculate hash.
-   * @param options The options parameters.
+   *
    */
-  calculateTemplateHash(
-    template: Record<string, unknown>,
-    options?: DeploymentsCalculateTemplateHashOptionalParams
-  ): Promise<DeploymentsCalculateTemplateHashResponse> {
+  calculateTemplateHash(): Promise<DeploymentsCalculateTemplateHashResponse> {
     return this.client.sendOperationRequest(
-      { template, options },
+      { options },
       calculateTemplateHashOperationSpec
     );
   }
 
   /**
    * ListAtScopeNext
-   * @param scope The scope of a deployment.
-   * @param nextLink The nextLink from the previous successful call to the ListAtScope method.
-   * @param options The options parameters.
+   *
    */
-  private _listAtScopeNext(
-    scope: string,
-    nextLink: string,
-    options?: DeploymentsListAtScopeNextOptionalParams
-  ): Promise<DeploymentsListAtScopeNextResponse> {
-    return this.client.sendOperationRequest(
-      { scope, nextLink, options },
-      listAtScopeNextOperationSpec
-    );
-  }
+  private _listAtScopeNext(): Promise<DeploymentsListAtScopeNextResponse> {}
 
   /**
    * ListAtTenantScopeNext
-   * @param nextLink The nextLink from the previous successful call to the ListAtTenantScope method.
-   * @param options The options parameters.
+   *
    */
-  private _listAtTenantScopeNext(
-    nextLink: string,
-    options?: DeploymentsListAtTenantScopeNextOptionalParams
-  ): Promise<DeploymentsListAtTenantScopeNextResponse> {
-    return this.client.sendOperationRequest(
-      { nextLink, options },
-      listAtTenantScopeNextOperationSpec
-    );
-  }
+  private _listAtTenantScopeNext(): Promise<
+    DeploymentsListAtTenantScopeNextResponse
+  > {}
 
   /**
    * ListAtManagementGroupScopeNext
-   * @param groupId The management group ID.
-   * @param nextLink The nextLink from the previous successful call to the ListAtManagementGroupScope
-   *                 method.
-   * @param options The options parameters.
+   *
    */
-  private _listAtManagementGroupScopeNext(
-    groupId: string,
-    nextLink: string,
-    options?: DeploymentsListAtManagementGroupScopeNextOptionalParams
-  ): Promise<DeploymentsListAtManagementGroupScopeNextResponse> {
-    return this.client.sendOperationRequest(
-      { groupId, nextLink, options },
-      listAtManagementGroupScopeNextOperationSpec
-    );
-  }
+  private _listAtManagementGroupScopeNext(): Promise<
+    DeploymentsListAtManagementGroupScopeNextResponse
+  > {}
 
   /**
    * ListAtSubscriptionScopeNext
-   * @param nextLink The nextLink from the previous successful call to the ListAtSubscriptionScope
-   *                 method.
-   * @param options The options parameters.
+   *
    */
-  private _listAtSubscriptionScopeNext(
-    nextLink: string,
-    options?: DeploymentsListAtSubscriptionScopeNextOptionalParams
-  ): Promise<DeploymentsListAtSubscriptionScopeNextResponse> {
-    return this.client.sendOperationRequest(
-      { nextLink, options },
-      listAtSubscriptionScopeNextOperationSpec
-    );
-  }
+  private _listAtSubscriptionScopeNext(): Promise<
+    DeploymentsListAtSubscriptionScopeNextResponse
+  > {}
 
   /**
    * ListByResourceGroupNext
-   * @param resourceGroupName The name of the resource group with the deployments to get. The name is
-   *                          case insensitive.
-   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
-   * @param options The options parameters.
+   *
    */
-  private _listByResourceGroupNext(
-    resourceGroupName: string,
-    nextLink: string,
-    options?: DeploymentsListByResourceGroupNextOptionalParams
-  ): Promise<DeploymentsListByResourceGroupNextResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options },
-      listByResourceGroupNextOperationSpec
-    );
-  }
+  private _listByResourceGroupNext(): Promise<
+    DeploymentsListByResourceGroupNextResponse
+  > {}
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const deleteAtScopeOperationSpec: coreClient.OperationSpec = {
-  path: "/{scope}/providers/Microsoft.Resources/deployments/{deploymentName}",
-  httpMethod: "DELETE",
-  responses: {
-    200: {},
-    201: {},
-    202: {},
-    204: {},
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.scope,
-    Parameters.deploymentName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const checkExistenceAtScopeOperationSpec: coreClient.OperationSpec = {
-  path: "/{scope}/providers/Microsoft.Resources/deployments/{deploymentName}",
-  httpMethod: "HEAD",
-  responses: {
-    204: {},
-    404: {},
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.scope,
-    Parameters.deploymentName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
 const createOrUpdateAtScopeOperationSpec: coreClient.OperationSpec = {
   path: "/{scope}/providers/Microsoft.Resources/deployments/{deploymentName}",
   httpMethod: "PUT",
@@ -2130,45 +1249,6 @@ const createOrUpdateAtScopeOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getAtScopeOperationSpec: coreClient.OperationSpec = {
-  path: "/{scope}/providers/Microsoft.Resources/deployments/{deploymentName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DeploymentExtended
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.scope,
-    Parameters.deploymentName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const cancelAtScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/{scope}/providers/Microsoft.Resources/deployments/{deploymentName}/cancel",
-  httpMethod: "POST",
-  responses: {
-    204: {},
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.scope,
-    Parameters.deploymentName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
 const validateAtScopeOperationSpec: coreClient.OperationSpec = {
   path:
     "/{scope}/providers/Microsoft.Resources/deployments/{deploymentName}/validate",
@@ -2193,75 +1273,6 @@ const validateAtScopeOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const exportTemplateAtScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/{scope}/providers/Microsoft.Resources/deployments/{deploymentName}/exportTemplate",
-  httpMethod: "POST",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DeploymentExportResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.scope,
-    Parameters.deploymentName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listAtScopeOperationSpec: coreClient.OperationSpec = {
-  path: "/{scope}/providers/Microsoft.Resources/deployments/",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DeploymentListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.filter, Parameters.top],
-  urlParameters: [Parameters.$host, Parameters.scope],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const deleteAtTenantScopeOperationSpec: coreClient.OperationSpec = {
-  path: "/providers/Microsoft.Resources/deployments/{deploymentName}",
-  httpMethod: "DELETE",
-  responses: {
-    200: {},
-    201: {},
-    202: {},
-    204: {},
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.deploymentName],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const checkExistenceAtTenantScopeOperationSpec: coreClient.OperationSpec = {
-  path: "/providers/Microsoft.Resources/deployments/{deploymentName}",
-  httpMethod: "HEAD",
-  responses: {
-    204: {},
-    404: {},
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.deploymentName],
-  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateAtTenantScopeOperationSpec: coreClient.OperationSpec = {
@@ -2291,36 +1302,6 @@ const createOrUpdateAtTenantScopeOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getAtTenantScopeOperationSpec: coreClient.OperationSpec = {
-  path: "/providers/Microsoft.Resources/deployments/{deploymentName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DeploymentExtended
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.deploymentName],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const cancelAtTenantScopeOperationSpec: coreClient.OperationSpec = {
-  path: "/providers/Microsoft.Resources/deployments/{deploymentName}/cancel",
-  httpMethod: "POST",
-  responses: {
-    204: {},
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.deploymentName],
-  headerParameters: [Parameters.accept],
-  serializer
-};
 const validateAtTenantScopeOperationSpec: coreClient.OperationSpec = {
   path: "/providers/Microsoft.Resources/deployments/{deploymentName}/validate",
   httpMethod: "POST",
@@ -2340,81 +1321,6 @@ const validateAtTenantScopeOperationSpec: coreClient.OperationSpec = {
   urlParameters: [Parameters.$host, Parameters.deploymentName],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const exportTemplateAtTenantScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/providers/Microsoft.Resources/deployments/{deploymentName}/exportTemplate",
-  httpMethod: "POST",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DeploymentExportResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.deploymentName],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listAtTenantScopeOperationSpec: coreClient.OperationSpec = {
-  path: "/providers/Microsoft.Resources/deployments/",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DeploymentListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.filter, Parameters.top],
-  urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const deleteAtManagementGroupScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/providers/Microsoft.Management/managementGroups/{groupId}/providers/Microsoft.Resources/deployments/{deploymentName}",
-  httpMethod: "DELETE",
-  responses: {
-    200: {},
-    201: {},
-    202: {},
-    204: {},
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.deploymentName,
-    Parameters.groupId
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const checkExistenceAtManagementGroupScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/providers/Microsoft.Management/managementGroups/{groupId}/providers/Microsoft.Resources/deployments/{deploymentName}",
-  httpMethod: "HEAD",
-  responses: {
-    204: {},
-    404: {},
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.deploymentName,
-    Parameters.groupId
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateAtManagementGroupScopeOperationSpec: coreClient.OperationSpec = {
@@ -2449,46 +1355,6 @@ const createOrUpdateAtManagementGroupScopeOperationSpec: coreClient.OperationSpe
   mediaType: "json",
   serializer
 };
-const getAtManagementGroupScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/providers/Microsoft.Management/managementGroups/{groupId}/providers/Microsoft.Resources/deployments/{deploymentName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DeploymentExtended
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.deploymentName,
-    Parameters.groupId
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const cancelAtManagementGroupScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/providers/Microsoft.Management/managementGroups/{groupId}/providers/Microsoft.Resources/deployments/{deploymentName}/cancel",
-  httpMethod: "POST",
-  responses: {
-    204: {},
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.deploymentName,
-    Parameters.groupId
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
 const validateAtManagementGroupScopeOperationSpec: coreClient.OperationSpec = {
   path:
     "/providers/Microsoft.Management/managementGroups/{groupId}/providers/Microsoft.Resources/deployments/{deploymentName}/validate",
@@ -2513,86 +1379,6 @@ const validateAtManagementGroupScopeOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const exportTemplateAtManagementGroupScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/providers/Microsoft.Management/managementGroups/{groupId}/providers/Microsoft.Resources/deployments/{deploymentName}/exportTemplate",
-  httpMethod: "POST",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DeploymentExportResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.deploymentName,
-    Parameters.groupId
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listAtManagementGroupScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/providers/Microsoft.Management/managementGroups/{groupId}/providers/Microsoft.Resources/deployments/",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DeploymentListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.filter, Parameters.top],
-  urlParameters: [Parameters.$host, Parameters.groupId],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const deleteAtSubscriptionScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Resources/deployments/{deploymentName}",
-  httpMethod: "DELETE",
-  responses: {
-    200: {},
-    201: {},
-    202: {},
-    204: {},
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.deploymentName,
-    Parameters.subscriptionId
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const checkExistenceAtSubscriptionScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Resources/deployments/{deploymentName}",
-  httpMethod: "HEAD",
-  responses: {
-    204: {},
-    404: {},
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.deploymentName,
-    Parameters.subscriptionId
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateAtSubscriptionScopeOperationSpec: coreClient.OperationSpec = {
@@ -2625,46 +1411,6 @@ const createOrUpdateAtSubscriptionScopeOperationSpec: coreClient.OperationSpec =
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const getAtSubscriptionScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Resources/deployments/{deploymentName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DeploymentExtended
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.deploymentName,
-    Parameters.subscriptionId
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const cancelAtSubscriptionScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Resources/deployments/{deploymentName}/cancel",
-  httpMethod: "POST",
-  responses: {
-    204: {},
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.deploymentName,
-    Parameters.subscriptionId
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };
 const validateAtSubscriptionScopeOperationSpec: coreClient.OperationSpec = {
@@ -2725,88 +1471,6 @@ const whatIfAtSubscriptionScopeOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const exportTemplateAtSubscriptionScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Resources/deployments/{deploymentName}/exportTemplate",
-  httpMethod: "POST",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DeploymentExportResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.deploymentName,
-    Parameters.subscriptionId
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listAtSubscriptionScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Resources/deployments/",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DeploymentListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.filter, Parameters.top],
-  urlParameters: [Parameters.$host, Parameters.subscriptionId],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const deleteOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deployments/{deploymentName}",
-  httpMethod: "DELETE",
-  responses: {
-    200: {},
-    201: {},
-    202: {},
-    204: {},
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.deploymentName,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const checkExistenceOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deployments/{deploymentName}",
-  httpMethod: "HEAD",
-  responses: {
-    204: {},
-    404: {},
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.deploymentName,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
 const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deployments/{deploymentName}",
@@ -2838,48 +1502,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deployments/{deploymentName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DeploymentExtended
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.deploymentName,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const cancelOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deployments/{deploymentName}/cancel",
-  httpMethod: "POST",
-  responses: {
-    204: {},
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.deploymentName,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };
 const validateOperationSpec: coreClient.OperationSpec = {
@@ -2942,49 +1564,6 @@ const whatIfOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const exportTemplateOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deployments/{deploymentName}/exportTemplate",
-  httpMethod: "POST",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DeploymentExportResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.deploymentName,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByResourceGroupOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deployments/",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DeploymentListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.filter, Parameters.top],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
 const calculateTemplateHashOperationSpec: coreClient.OperationSpec = {
   path: "/providers/Microsoft.Resources/calculateTemplateHash",
   httpMethod: "POST",
@@ -3001,94 +1580,5 @@ const calculateTemplateHashOperationSpec: coreClient.OperationSpec = {
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const listAtScopeNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DeploymentListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.filter, Parameters.top],
-  urlParameters: [Parameters.$host, Parameters.nextLink, Parameters.scope],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listAtTenantScopeNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DeploymentListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.filter, Parameters.top],
-  urlParameters: [Parameters.$host, Parameters.nextLink],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listAtManagementGroupScopeNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DeploymentListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.filter, Parameters.top],
-  urlParameters: [Parameters.$host, Parameters.nextLink, Parameters.groupId],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listAtSubscriptionScopeNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DeploymentListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.filter, Parameters.top],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.nextLink,
-    Parameters.subscriptionId
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DeploymentListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.filter, Parameters.top],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.nextLink,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };

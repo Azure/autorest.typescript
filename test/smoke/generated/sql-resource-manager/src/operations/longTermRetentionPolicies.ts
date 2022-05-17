@@ -16,12 +16,7 @@ import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
   LongTermRetentionPolicy,
-  LongTermRetentionPoliciesListByDatabaseNextOptionalParams,
-  LongTermRetentionPoliciesListByDatabaseOptionalParams,
-  LongTermRetentionPolicyName,
-  LongTermRetentionPoliciesGetOptionalParams,
   LongTermRetentionPoliciesGetResponse,
-  LongTermRetentionPoliciesCreateOrUpdateOptionalParams,
   LongTermRetentionPoliciesCreateOrUpdateResponse,
   LongTermRetentionPoliciesListByDatabaseResponse,
   LongTermRetentionPoliciesListByDatabaseNextResponse
@@ -43,24 +38,10 @@ export class LongTermRetentionPoliciesImpl
 
   /**
    * Gets a database's long term retention policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param options The options parameters.
+   *
    */
-  public listByDatabase(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: LongTermRetentionPoliciesListByDatabaseOptionalParams
-  ): PagedAsyncIterableIterator<LongTermRetentionPolicy> {
-    const iter = this.listByDatabasePagingAll(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      options
-    );
+  public listByDatabase(): PagedAsyncIterableIterator<LongTermRetentionPolicy> {
+    const iter = this.listByDatabasePagingAll();
     return {
       next() {
         return iter.next();
@@ -69,99 +50,43 @@ export class LongTermRetentionPoliciesImpl
         return this;
       },
       byPage: () => {
-        return this.listByDatabasePagingPage(
-          resourceGroupName,
-          serverName,
-          databaseName,
-          options
-        );
+        return this.listByDatabasePagingPage();
       }
     };
   }
 
-  private async *listByDatabasePagingPage(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: LongTermRetentionPoliciesListByDatabaseOptionalParams
-  ): AsyncIterableIterator<LongTermRetentionPolicy[]> {
-    let result = await this._listByDatabase(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      options
-    );
+  private async *listByDatabasePagingPage(): AsyncIterableIterator<
+    LongTermRetentionPolicy[]
+  > {
+    let result = await this._listByDatabase();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listByDatabaseNext(
-        resourceGroupName,
-        serverName,
-        databaseName,
-        continuationToken,
-        options
-      );
+      result = await this._listByDatabaseNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listByDatabasePagingAll(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: LongTermRetentionPoliciesListByDatabaseOptionalParams
-  ): AsyncIterableIterator<LongTermRetentionPolicy> {
-    for await (const page of this.listByDatabasePagingPage(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      options
-    )) {
+  private async *listByDatabasePagingAll(): AsyncIterableIterator<
+    LongTermRetentionPolicy
+  > {
+    for await (const page of this.listByDatabasePagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Gets a database's long term retention policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param policyName The policy name. Should always be Default.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    policyName: LongTermRetentionPolicyName,
-    options?: LongTermRetentionPoliciesGetOptionalParams
-  ): Promise<LongTermRetentionPoliciesGetResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, databaseName, policyName, options },
-      getOperationSpec
-    );
-  }
+  get(): Promise<LongTermRetentionPoliciesGetResponse> {}
 
   /**
    * Sets a database's long term retention policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param policyName The policy name. Should always be Default.
-   * @param parameters The long term retention policy info.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    policyName: LongTermRetentionPolicyName,
-    parameters: LongTermRetentionPolicy,
-    options?: LongTermRetentionPoliciesCreateOrUpdateOptionalParams
-  ): Promise<
+  async beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<LongTermRetentionPoliciesCreateOrUpdateResponse>,
       LongTermRetentionPoliciesCreateOrUpdateResponse
@@ -208,14 +133,7 @@ export class LongTermRetentionPoliciesImpl
 
     const lro = new LroImpl(
       sendOperation,
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        policyName,
-        parameters,
-        options
-      },
+      { resourceGroupName, serverName, databaseName, policyName, options },
       createOrUpdateOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -228,100 +146,34 @@ export class LongTermRetentionPoliciesImpl
 
   /**
    * Sets a database's long term retention policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param policyName The policy name. Should always be Default.
-   * @param parameters The long term retention policy info.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    policyName: LongTermRetentionPolicyName,
-    parameters: LongTermRetentionPolicy,
-    options?: LongTermRetentionPoliciesCreateOrUpdateOptionalParams
-  ): Promise<LongTermRetentionPoliciesCreateOrUpdateResponse> {
-    const poller = await this.beginCreateOrUpdate(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      policyName,
-      parameters,
-      options
-    );
+  async beginCreateOrUpdateAndWait(): Promise<
+    LongTermRetentionPoliciesCreateOrUpdateResponse
+  > {
+    const poller = await this.beginCreateOrUpdate();
     return poller.pollUntilDone();
   }
 
   /**
    * Gets a database's long term retention policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param options The options parameters.
+   *
    */
-  private _listByDatabase(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: LongTermRetentionPoliciesListByDatabaseOptionalParams
-  ): Promise<LongTermRetentionPoliciesListByDatabaseResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, databaseName, options },
-      listByDatabaseOperationSpec
-    );
-  }
+  private _listByDatabase(): Promise<
+    LongTermRetentionPoliciesListByDatabaseResponse
+  > {}
 
   /**
    * ListByDatabaseNext
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param nextLink The nextLink from the previous successful call to the ListByDatabase method.
-   * @param options The options parameters.
+   *
    */
-  private _listByDatabaseNext(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    nextLink: string,
-    options?: LongTermRetentionPoliciesListByDatabaseNextOptionalParams
-  ): Promise<LongTermRetentionPoliciesListByDatabaseNextResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, databaseName, nextLink, options },
-      listByDatabaseNextOperationSpec
-    );
-  }
+  private _listByDatabaseNext(): Promise<
+    LongTermRetentionPoliciesListByDatabaseNextResponse
+  > {}
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/backupLongTermRetentionPolicies/{policyName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.LongTermRetentionPolicy
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.databaseName,
-    Parameters.policyName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
 const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/backupLongTermRetentionPolicies/{policyName}",
@@ -353,47 +205,5 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const listByDatabaseOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/backupLongTermRetentionPolicies",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.LongTermRetentionPolicyListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.databaseName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByDatabaseNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.LongTermRetentionPolicyListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.databaseName,
-    Parameters.nextLink
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };

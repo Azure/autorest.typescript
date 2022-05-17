@@ -16,42 +16,19 @@ import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
   Metric,
-  DatabasesListMetricsOptionalParams,
   MetricDefinition,
-  DatabasesListMetricDefinitionsOptionalParams,
   Database,
-  DatabasesListByServerNextOptionalParams,
-  DatabasesListByServerOptionalParams,
-  DatabasesListByElasticPoolNextOptionalParams,
-  DatabasesListByElasticPoolOptionalParams,
-  DatabasesListInaccessibleByServerNextOptionalParams,
-  DatabasesListInaccessibleByServerOptionalParams,
   DatabasesListMetricsResponse,
   DatabasesListMetricDefinitionsResponse,
   DatabasesListByServerResponse,
-  DatabasesGetOptionalParams,
   DatabasesGetResponse,
-  DatabasesCreateOrUpdateOptionalParams,
   DatabasesCreateOrUpdateResponse,
-  DatabasesDeleteOptionalParams,
-  DatabaseUpdate,
-  DatabasesUpdateOptionalParams,
   DatabasesUpdateResponse,
   DatabasesListByElasticPoolResponse,
-  DatabasesFailoverOptionalParams,
   DatabasesListInaccessibleByServerResponse,
-  DatabasesPauseOptionalParams,
   DatabasesPauseResponse,
-  DatabasesResumeOptionalParams,
   DatabasesResumeResponse,
-  DatabasesUpgradeDataWarehouseOptionalParams,
-  ResourceMoveDefinition,
-  DatabasesRenameOptionalParams,
-  ImportExistingDatabaseDefinition,
-  DatabasesImportOptionalParams,
   DatabasesImportResponse,
-  ExportDatabaseDefinition,
-  DatabasesExportOptionalParams,
   DatabasesExportResponse,
   DatabasesListByServerNextResponse,
   DatabasesListByElasticPoolNextResponse,
@@ -73,27 +50,10 @@ export class DatabasesImpl implements Databases {
 
   /**
    * Returns database metrics.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param filter An OData filter expression that describes a subset of metrics to return.
-   * @param options The options parameters.
+   *
    */
-  public listMetrics(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    filter: string,
-    options?: DatabasesListMetricsOptionalParams
-  ): PagedAsyncIterableIterator<Metric> {
-    const iter = this.listMetricsPagingAll(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      filter,
-      options
-    );
+  public listMetrics(): PagedAsyncIterableIterator<Metric> {
+    const iter = this.listMetricsPagingAll();
     return {
       next() {
         return iter.next();
@@ -102,72 +62,28 @@ export class DatabasesImpl implements Databases {
         return this;
       },
       byPage: () => {
-        return this.listMetricsPagingPage(
-          resourceGroupName,
-          serverName,
-          databaseName,
-          filter,
-          options
-        );
+        return this.listMetricsPagingPage();
       }
     };
   }
 
-  private async *listMetricsPagingPage(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    filter: string,
-    options?: DatabasesListMetricsOptionalParams
-  ): AsyncIterableIterator<Metric[]> {
-    let result = await this._listMetrics(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      filter,
-      options
-    );
+  private async *listMetricsPagingPage(): AsyncIterableIterator<Metric[]> {
+    let result = await this._listMetrics();
     yield result.value || [];
   }
 
-  private async *listMetricsPagingAll(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    filter: string,
-    options?: DatabasesListMetricsOptionalParams
-  ): AsyncIterableIterator<Metric> {
-    for await (const page of this.listMetricsPagingPage(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      filter,
-      options
-    )) {
+  private async *listMetricsPagingAll(): AsyncIterableIterator<Metric> {
+    for await (const page of this.listMetricsPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Returns database metric definitions.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param options The options parameters.
+   *
    */
-  public listMetricDefinitions(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: DatabasesListMetricDefinitionsOptionalParams
-  ): PagedAsyncIterableIterator<MetricDefinition> {
-    const iter = this.listMetricDefinitionsPagingAll(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      options
-    );
+  public listMetricDefinitions(): PagedAsyncIterableIterator<MetricDefinition> {
+    const iter = this.listMetricDefinitionsPagingAll();
     return {
       next() {
         return iter.next();
@@ -176,64 +92,32 @@ export class DatabasesImpl implements Databases {
         return this;
       },
       byPage: () => {
-        return this.listMetricDefinitionsPagingPage(
-          resourceGroupName,
-          serverName,
-          databaseName,
-          options
-        );
+        return this.listMetricDefinitionsPagingPage();
       }
     };
   }
 
-  private async *listMetricDefinitionsPagingPage(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: DatabasesListMetricDefinitionsOptionalParams
-  ): AsyncIterableIterator<MetricDefinition[]> {
-    let result = await this._listMetricDefinitions(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      options
-    );
+  private async *listMetricDefinitionsPagingPage(): AsyncIterableIterator<
+    MetricDefinition[]
+  > {
+    let result = await this._listMetricDefinitions();
     yield result.value || [];
   }
 
-  private async *listMetricDefinitionsPagingAll(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: DatabasesListMetricDefinitionsOptionalParams
-  ): AsyncIterableIterator<MetricDefinition> {
-    for await (const page of this.listMetricDefinitionsPagingPage(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      options
-    )) {
+  private async *listMetricDefinitionsPagingAll(): AsyncIterableIterator<
+    MetricDefinition
+  > {
+    for await (const page of this.listMetricDefinitionsPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Gets a list of databases.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  public listByServer(
-    resourceGroupName: string,
-    serverName: string,
-    options?: DatabasesListByServerOptionalParams
-  ): PagedAsyncIterableIterator<Database> {
-    const iter = this.listByServerPagingAll(
-      resourceGroupName,
-      serverName,
-      options
-    );
+  public listByServer(): PagedAsyncIterableIterator<Database> {
+    const iter = this.listByServerPagingAll();
     return {
       next() {
         return iter.next();
@@ -242,73 +126,34 @@ export class DatabasesImpl implements Databases {
         return this;
       },
       byPage: () => {
-        return this.listByServerPagingPage(
-          resourceGroupName,
-          serverName,
-          options
-        );
+        return this.listByServerPagingPage();
       }
     };
   }
 
-  private async *listByServerPagingPage(
-    resourceGroupName: string,
-    serverName: string,
-    options?: DatabasesListByServerOptionalParams
-  ): AsyncIterableIterator<Database[]> {
-    let result = await this._listByServer(
-      resourceGroupName,
-      serverName,
-      options
-    );
+  private async *listByServerPagingPage(): AsyncIterableIterator<Database[]> {
+    let result = await this._listByServer();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listByServerNext(
-        resourceGroupName,
-        serverName,
-        continuationToken,
-        options
-      );
+      result = await this._listByServerNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listByServerPagingAll(
-    resourceGroupName: string,
-    serverName: string,
-    options?: DatabasesListByServerOptionalParams
-  ): AsyncIterableIterator<Database> {
-    for await (const page of this.listByServerPagingPage(
-      resourceGroupName,
-      serverName,
-      options
-    )) {
+  private async *listByServerPagingAll(): AsyncIterableIterator<Database> {
+    for await (const page of this.listByServerPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Gets a list of databases in an elastic pool.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param elasticPoolName The name of the elastic pool.
-   * @param options The options parameters.
+   *
    */
-  public listByElasticPool(
-    resourceGroupName: string,
-    serverName: string,
-    elasticPoolName: string,
-    options?: DatabasesListByElasticPoolOptionalParams
-  ): PagedAsyncIterableIterator<Database> {
-    const iter = this.listByElasticPoolPagingAll(
-      resourceGroupName,
-      serverName,
-      elasticPoolName,
-      options
-    );
+  public listByElasticPool(): PagedAsyncIterableIterator<Database> {
+    const iter = this.listByElasticPoolPagingAll();
     return {
       next() {
         return iter.next();
@@ -317,76 +162,36 @@ export class DatabasesImpl implements Databases {
         return this;
       },
       byPage: () => {
-        return this.listByElasticPoolPagingPage(
-          resourceGroupName,
-          serverName,
-          elasticPoolName,
-          options
-        );
+        return this.listByElasticPoolPagingPage();
       }
     };
   }
 
-  private async *listByElasticPoolPagingPage(
-    resourceGroupName: string,
-    serverName: string,
-    elasticPoolName: string,
-    options?: DatabasesListByElasticPoolOptionalParams
-  ): AsyncIterableIterator<Database[]> {
-    let result = await this._listByElasticPool(
-      resourceGroupName,
-      serverName,
-      elasticPoolName,
-      options
-    );
+  private async *listByElasticPoolPagingPage(): AsyncIterableIterator<
+    Database[]
+  > {
+    let result = await this._listByElasticPool();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listByElasticPoolNext(
-        resourceGroupName,
-        serverName,
-        elasticPoolName,
-        continuationToken,
-        options
-      );
+      result = await this._listByElasticPoolNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listByElasticPoolPagingAll(
-    resourceGroupName: string,
-    serverName: string,
-    elasticPoolName: string,
-    options?: DatabasesListByElasticPoolOptionalParams
-  ): AsyncIterableIterator<Database> {
-    for await (const page of this.listByElasticPoolPagingPage(
-      resourceGroupName,
-      serverName,
-      elasticPoolName,
-      options
-    )) {
+  private async *listByElasticPoolPagingAll(): AsyncIterableIterator<Database> {
+    for await (const page of this.listByElasticPoolPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Gets a list of inaccessible databases in a logical server
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  public listInaccessibleByServer(
-    resourceGroupName: string,
-    serverName: string,
-    options?: DatabasesListInaccessibleByServerOptionalParams
-  ): PagedAsyncIterableIterator<Database> {
-    const iter = this.listInaccessibleByServerPagingAll(
-      resourceGroupName,
-      serverName,
-      options
-    );
+  public listInaccessibleByServer(): PagedAsyncIterableIterator<Database> {
+    const iter = this.listInaccessibleByServerPagingAll();
     return {
       next() {
         return iter.next();
@@ -395,149 +200,63 @@ export class DatabasesImpl implements Databases {
         return this;
       },
       byPage: () => {
-        return this.listInaccessibleByServerPagingPage(
-          resourceGroupName,
-          serverName,
-          options
-        );
+        return this.listInaccessibleByServerPagingPage();
       }
     };
   }
 
-  private async *listInaccessibleByServerPagingPage(
-    resourceGroupName: string,
-    serverName: string,
-    options?: DatabasesListInaccessibleByServerOptionalParams
-  ): AsyncIterableIterator<Database[]> {
-    let result = await this._listInaccessibleByServer(
-      resourceGroupName,
-      serverName,
-      options
-    );
+  private async *listInaccessibleByServerPagingPage(): AsyncIterableIterator<
+    Database[]
+  > {
+    let result = await this._listInaccessibleByServer();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listInaccessibleByServerNext(
-        resourceGroupName,
-        serverName,
-        continuationToken,
-        options
-      );
+      result = await this._listInaccessibleByServerNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listInaccessibleByServerPagingAll(
-    resourceGroupName: string,
-    serverName: string,
-    options?: DatabasesListInaccessibleByServerOptionalParams
-  ): AsyncIterableIterator<Database> {
-    for await (const page of this.listInaccessibleByServerPagingPage(
-      resourceGroupName,
-      serverName,
-      options
-    )) {
+  private async *listInaccessibleByServerPagingAll(): AsyncIterableIterator<
+    Database
+  > {
+    for await (const page of this.listInaccessibleByServerPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Returns database metrics.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param filter An OData filter expression that describes a subset of metrics to return.
-   * @param options The options parameters.
+   *
    */
-  private _listMetrics(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    filter: string,
-    options?: DatabasesListMetricsOptionalParams
-  ): Promise<DatabasesListMetricsResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, databaseName, filter, options },
-      listMetricsOperationSpec
-    );
-  }
+  private _listMetrics(): Promise<DatabasesListMetricsResponse> {}
 
   /**
    * Returns database metric definitions.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param options The options parameters.
+   *
    */
-  private _listMetricDefinitions(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: DatabasesListMetricDefinitionsOptionalParams
-  ): Promise<DatabasesListMetricDefinitionsResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, databaseName, options },
-      listMetricDefinitionsOperationSpec
-    );
-  }
+  private _listMetricDefinitions(): Promise<
+    DatabasesListMetricDefinitionsResponse
+  > {}
 
   /**
    * Gets a list of databases.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  private _listByServer(
-    resourceGroupName: string,
-    serverName: string,
-    options?: DatabasesListByServerOptionalParams
-  ): Promise<DatabasesListByServerResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, options },
-      listByServerOperationSpec
-    );
-  }
+  private _listByServer(): Promise<DatabasesListByServerResponse> {}
 
   /**
    * Gets a database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: DatabasesGetOptionalParams
-  ): Promise<DatabasesGetResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, databaseName, options },
-      getOperationSpec
-    );
-  }
+  get(): Promise<DatabasesGetResponse> {}
 
   /**
    * Creates a new database or updates an existing database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param parameters The requested database resource state.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    parameters: Database,
-    options?: DatabasesCreateOrUpdateOptionalParams
-  ): Promise<
+  async beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<DatabasesCreateOrUpdateResponse>,
       DatabasesCreateOrUpdateResponse
@@ -584,7 +303,7 @@ export class DatabasesImpl implements Databases {
 
     const lro = new LroImpl(
       sendOperation,
-      { resourceGroupName, serverName, databaseName, parameters, options },
+      { resourceGroupName, serverName, databaseName, options },
       createOrUpdateOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -597,135 +316,33 @@ export class DatabasesImpl implements Databases {
 
   /**
    * Creates a new database or updates an existing database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param parameters The requested database resource state.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    parameters: Database,
-    options?: DatabasesCreateOrUpdateOptionalParams
-  ): Promise<DatabasesCreateOrUpdateResponse> {
-    const poller = await this.beginCreateOrUpdate(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      parameters,
-      options
-    );
+  async beginCreateOrUpdateAndWait(): Promise<DatabasesCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate();
     return poller.pollUntilDone();
   }
 
   /**
    * Deletes the database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param options The options parameters.
+   *
    */
-  async beginDelete(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: DatabasesDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<void> => {
-      return this.client.sendOperationRequest(args, spec);
-    };
-    const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return {
-        flatResponse,
-        rawResponse: {
-          statusCode: currentRawResponse!.status,
-          body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
-      };
-    };
-
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, serverName, databaseName, options },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
-    });
-    await poller.poll();
-    return poller;
-  }
+  async beginDelete(): Promise<PollerLike<PollOperationState<void>, void>> {}
 
   /**
    * Deletes the database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param options The options parameters.
+   *
    */
-  async beginDeleteAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: DatabasesDeleteOptionalParams
-  ): Promise<void> {
-    const poller = await this.beginDelete(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      options
-    );
+  async beginDeleteAndWait(): Promise<void> {
+    const poller = await this.beginDelete();
     return poller.pollUntilDone();
   }
 
   /**
    * Updates an existing database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param parameters The requested database resource state.
-   * @param options The options parameters.
+   *
    */
-  async beginUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    parameters: DatabaseUpdate,
-    options?: DatabasesUpdateOptionalParams
-  ): Promise<
+  async beginUpdate(): Promise<
     PollerLike<
       PollOperationState<DatabasesUpdateResponse>,
       DatabasesUpdateResponse
@@ -772,7 +389,7 @@ export class DatabasesImpl implements Databases {
 
     const lro = new LroImpl(
       sendOperation,
-      { resourceGroupName, serverName, databaseName, parameters, options },
+      { resourceGroupName, serverName, databaseName, options },
       updateOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -785,472 +402,115 @@ export class DatabasesImpl implements Databases {
 
   /**
    * Updates an existing database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param parameters The requested database resource state.
-   * @param options The options parameters.
+   *
    */
-  async beginUpdateAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    parameters: DatabaseUpdate,
-    options?: DatabasesUpdateOptionalParams
-  ): Promise<DatabasesUpdateResponse> {
-    const poller = await this.beginUpdate(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      parameters,
-      options
-    );
+  async beginUpdateAndWait(): Promise<DatabasesUpdateResponse> {
+    const poller = await this.beginUpdate();
     return poller.pollUntilDone();
   }
 
   /**
    * Gets a list of databases in an elastic pool.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param elasticPoolName The name of the elastic pool.
-   * @param options The options parameters.
+   *
    */
-  private _listByElasticPool(
-    resourceGroupName: string,
-    serverName: string,
-    elasticPoolName: string,
-    options?: DatabasesListByElasticPoolOptionalParams
-  ): Promise<DatabasesListByElasticPoolResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, elasticPoolName, options },
-      listByElasticPoolOperationSpec
-    );
-  }
+  private _listByElasticPool(): Promise<DatabasesListByElasticPoolResponse> {}
 
   /**
    * Failovers a database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database to failover.
-   * @param options The options parameters.
+   *
    */
-  async beginFailover(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: DatabasesFailoverOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<void> => {
-      return this.client.sendOperationRequest(args, spec);
-    };
-    const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return {
-        flatResponse,
-        rawResponse: {
-          statusCode: currentRawResponse!.status,
-          body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
-      };
-    };
-
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, serverName, databaseName, options },
-      failoverOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
-    });
-    await poller.poll();
-    return poller;
-  }
+  async beginFailover(): Promise<PollerLike<PollOperationState<void>, void>> {}
 
   /**
    * Failovers a database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database to failover.
-   * @param options The options parameters.
+   *
    */
-  async beginFailoverAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: DatabasesFailoverOptionalParams
-  ): Promise<void> {
-    const poller = await this.beginFailover(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      options
-    );
+  async beginFailoverAndWait(): Promise<void> {
+    const poller = await this.beginFailover();
     return poller.pollUntilDone();
   }
 
   /**
    * Gets a list of inaccessible databases in a logical server
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  private _listInaccessibleByServer(
-    resourceGroupName: string,
-    serverName: string,
-    options?: DatabasesListInaccessibleByServerOptionalParams
-  ): Promise<DatabasesListInaccessibleByServerResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, options },
-      listInaccessibleByServerOperationSpec
-    );
-  }
+  private _listInaccessibleByServer(): Promise<
+    DatabasesListInaccessibleByServerResponse
+  > {}
 
   /**
    * Pauses a database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database to be paused.
-   * @param options The options parameters.
+   *
    */
-  async beginPause(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: DatabasesPauseOptionalParams
-  ): Promise<
+  async beginPause(): Promise<
     PollerLike<
       PollOperationState<DatabasesPauseResponse>,
       DatabasesPauseResponse
     >
-  > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<DatabasesPauseResponse> => {
-      return this.client.sendOperationRequest(args, spec);
-    };
-    const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return {
-        flatResponse,
-        rawResponse: {
-          statusCode: currentRawResponse!.status,
-          body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
-      };
-    };
-
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, serverName, databaseName, options },
-      pauseOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
-    });
-    await poller.poll();
-    return poller;
-  }
+  > {}
 
   /**
    * Pauses a database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database to be paused.
-   * @param options The options parameters.
+   *
    */
-  async beginPauseAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: DatabasesPauseOptionalParams
-  ): Promise<DatabasesPauseResponse> {
-    const poller = await this.beginPause(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      options
-    );
+  async beginPauseAndWait(): Promise<DatabasesPauseResponse> {
+    const poller = await this.beginPause();
     return poller.pollUntilDone();
   }
 
   /**
    * Resumes a database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database to be resumed.
-   * @param options The options parameters.
+   *
    */
-  async beginResume(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: DatabasesResumeOptionalParams
-  ): Promise<
+  async beginResume(): Promise<
     PollerLike<
       PollOperationState<DatabasesResumeResponse>,
       DatabasesResumeResponse
     >
-  > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<DatabasesResumeResponse> => {
-      return this.client.sendOperationRequest(args, spec);
-    };
-    const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return {
-        flatResponse,
-        rawResponse: {
-          statusCode: currentRawResponse!.status,
-          body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
-      };
-    };
-
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, serverName, databaseName, options },
-      resumeOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
-    });
-    await poller.poll();
-    return poller;
-  }
+  > {}
 
   /**
    * Resumes a database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database to be resumed.
-   * @param options The options parameters.
+   *
    */
-  async beginResumeAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: DatabasesResumeOptionalParams
-  ): Promise<DatabasesResumeResponse> {
-    const poller = await this.beginResume(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      options
-    );
+  async beginResumeAndWait(): Promise<DatabasesResumeResponse> {
+    const poller = await this.beginResume();
     return poller.pollUntilDone();
   }
 
   /**
    * Upgrades a data warehouse.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database to be upgraded.
-   * @param options The options parameters.
+   *
    */
-  async beginUpgradeDataWarehouse(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: DatabasesUpgradeDataWarehouseOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<void> => {
-      return this.client.sendOperationRequest(args, spec);
-    };
-    const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return {
-        flatResponse,
-        rawResponse: {
-          statusCode: currentRawResponse!.status,
-          body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
-      };
-    };
-
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, serverName, databaseName, options },
-      upgradeDataWarehouseOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
-    });
-    await poller.poll();
-    return poller;
-  }
+  async beginUpgradeDataWarehouse(): Promise<
+    PollerLike<PollOperationState<void>, void>
+  > {}
 
   /**
    * Upgrades a data warehouse.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database to be upgraded.
-   * @param options The options parameters.
+   *
    */
-  async beginUpgradeDataWarehouseAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: DatabasesUpgradeDataWarehouseOptionalParams
-  ): Promise<void> {
-    const poller = await this.beginUpgradeDataWarehouse(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      options
-    );
+  async beginUpgradeDataWarehouseAndWait(): Promise<void> {
+    const poller = await this.beginUpgradeDataWarehouse();
     return poller.pollUntilDone();
   }
 
   /**
    * Renames a database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database to rename.
-   * @param parameters The resource move definition for renaming this database.
-   * @param options The options parameters.
+   *
    */
-  rename(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    parameters: ResourceMoveDefinition,
-    options?: DatabasesRenameOptionalParams
-  ): Promise<void> {
+  rename(): Promise<void> {
     return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, databaseName, parameters, options },
+      { resourceGroupName, serverName, databaseName, options },
       renameOperationSpec
     );
   }
 
   /**
    * Imports a bacpac into a new database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param parameters The database import request parameters.
-   * @param options The options parameters.
+   *
    */
-  async beginImport(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    parameters: ImportExistingDatabaseDefinition,
-    options?: DatabasesImportOptionalParams
-  ): Promise<
+  async beginImport(): Promise<
     PollerLike<
       PollOperationState<DatabasesImportResponse>,
       DatabasesImportResponse
@@ -1297,7 +557,7 @@ export class DatabasesImpl implements Databases {
 
     const lro = new LroImpl(
       sendOperation,
-      { resourceGroupName, serverName, databaseName, parameters, options },
+      { resourceGroupName, serverName, databaseName, options },
       importOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -1310,46 +570,18 @@ export class DatabasesImpl implements Databases {
 
   /**
    * Imports a bacpac into a new database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param parameters The database import request parameters.
-   * @param options The options parameters.
+   *
    */
-  async beginImportAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    parameters: ImportExistingDatabaseDefinition,
-    options?: DatabasesImportOptionalParams
-  ): Promise<DatabasesImportResponse> {
-    const poller = await this.beginImport(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      parameters,
-      options
-    );
+  async beginImportAndWait(): Promise<DatabasesImportResponse> {
+    const poller = await this.beginImport();
     return poller.pollUntilDone();
   }
 
   /**
    * Exports a database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param parameters The database export request parameters.
-   * @param options The options parameters.
+   *
    */
-  async beginExport(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    parameters: ExportDatabaseDefinition,
-    options?: DatabasesExportOptionalParams
-  ): Promise<
+  async beginExport(): Promise<
     PollerLike<
       PollOperationState<DatabasesExportResponse>,
       DatabasesExportResponse
@@ -1396,7 +628,7 @@ export class DatabasesImpl implements Databases {
 
     const lro = new LroImpl(
       sendOperation,
-      { resourceGroupName, serverName, databaseName, parameters, options },
+      { resourceGroupName, serverName, databaseName, options },
       exportOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -1409,177 +641,38 @@ export class DatabasesImpl implements Databases {
 
   /**
    * Exports a database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param parameters The database export request parameters.
-   * @param options The options parameters.
+   *
    */
-  async beginExportAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    parameters: ExportDatabaseDefinition,
-    options?: DatabasesExportOptionalParams
-  ): Promise<DatabasesExportResponse> {
-    const poller = await this.beginExport(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      parameters,
-      options
-    );
+  async beginExportAndWait(): Promise<DatabasesExportResponse> {
+    const poller = await this.beginExport();
     return poller.pollUntilDone();
   }
 
   /**
    * ListByServerNext
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param nextLink The nextLink from the previous successful call to the ListByServer method.
-   * @param options The options parameters.
+   *
    */
-  private _listByServerNext(
-    resourceGroupName: string,
-    serverName: string,
-    nextLink: string,
-    options?: DatabasesListByServerNextOptionalParams
-  ): Promise<DatabasesListByServerNextResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, nextLink, options },
-      listByServerNextOperationSpec
-    );
-  }
+  private _listByServerNext(): Promise<DatabasesListByServerNextResponse> {}
 
   /**
    * ListByElasticPoolNext
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param elasticPoolName The name of the elastic pool.
-   * @param nextLink The nextLink from the previous successful call to the ListByElasticPool method.
-   * @param options The options parameters.
+   *
    */
-  private _listByElasticPoolNext(
-    resourceGroupName: string,
-    serverName: string,
-    elasticPoolName: string,
-    nextLink: string,
-    options?: DatabasesListByElasticPoolNextOptionalParams
-  ): Promise<DatabasesListByElasticPoolNextResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, elasticPoolName, nextLink, options },
-      listByElasticPoolNextOperationSpec
-    );
-  }
+  private _listByElasticPoolNext(): Promise<
+    DatabasesListByElasticPoolNextResponse
+  > {}
 
   /**
    * ListInaccessibleByServerNext
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param nextLink The nextLink from the previous successful call to the ListInaccessibleByServer
-   *                 method.
-   * @param options The options parameters.
+   *
    */
-  private _listInaccessibleByServerNext(
-    resourceGroupName: string,
-    serverName: string,
-    nextLink: string,
-    options?: DatabasesListInaccessibleByServerNextOptionalParams
-  ): Promise<DatabasesListInaccessibleByServerNextResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, nextLink, options },
-      listInaccessibleByServerNextOperationSpec
-    );
-  }
+  private _listInaccessibleByServerNext(): Promise<
+    DatabasesListInaccessibleByServerNextResponse
+  > {}
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listMetricsOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/metrics",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.MetricListResult
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.filter],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.databaseName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listMetricDefinitionsOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/metricDefinitions",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.MetricDefinitionListResult
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.databaseName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByServerOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DatabaseListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.skipToken, Parameters.apiVersion1],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.Database
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion1],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.databaseName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
 const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}",
@@ -1612,21 +705,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}",
-  httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
-  queryParameters: [Parameters.apiVersion1],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.databaseName
-  ],
-  serializer
-};
 const updateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}",
@@ -1657,137 +735,6 @@ const updateOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const listByElasticPoolOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/elasticPools/{elasticPoolName}/databases",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DatabaseListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion1],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.elasticPoolName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const failoverOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/failover",
-  httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
-  queryParameters: [Parameters.apiVersion1, Parameters.replicaType],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.databaseName
-  ],
-  serializer
-};
-const listInaccessibleByServerOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/inaccessibleDatabases",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DatabaseListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion1],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const pauseOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/pause",
-  httpMethod: "POST",
-  responses: {
-    200: {
-      bodyMapper: Mappers.Database
-    },
-    201: {
-      bodyMapper: Mappers.Database
-    },
-    202: {
-      bodyMapper: Mappers.Database
-    },
-    204: {
-      bodyMapper: Mappers.Database
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion1],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.databaseName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const resumeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/resume",
-  httpMethod: "POST",
-  responses: {
-    200: {
-      bodyMapper: Mappers.Database
-    },
-    201: {
-      bodyMapper: Mappers.Database
-    },
-    202: {
-      bodyMapper: Mappers.Database
-    },
-    204: {
-      bodyMapper: Mappers.Database
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion1],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.databaseName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const upgradeDataWarehouseOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/upgradeDataWarehouse",
-  httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
-  queryParameters: [Parameters.apiVersion1],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.databaseName
-  ],
   serializer
 };
 const renameOperationSpec: coreClient.OperationSpec = {
@@ -1870,66 +817,5 @@ const exportOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const listByServerNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DatabaseListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.skipToken, Parameters.apiVersion1],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.nextLink
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByElasticPoolNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DatabaseListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion1],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.elasticPoolName,
-    Parameters.nextLink
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listInaccessibleByServerNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DatabaseListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion1],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.nextLink
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };

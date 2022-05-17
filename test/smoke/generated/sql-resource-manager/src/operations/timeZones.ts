@@ -10,14 +10,10 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { TimeZones } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import {
   TimeZone,
-  TimeZonesListByLocationNextOptionalParams,
-  TimeZonesListByLocationOptionalParams,
   TimeZonesListByLocationResponse,
-  TimeZonesGetOptionalParams,
   TimeZonesGetResponse,
   TimeZonesListByLocationNextResponse
 } from "../models";
@@ -25,26 +21,18 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing TimeZones operations. */
 export class TimeZonesImpl implements TimeZones {
-  private readonly client: SqlManagementClient;
-
   /**
    * Initialize a new instance of the class TimeZones class.
    * @param client Reference to the service client
    */
-  constructor(client: SqlManagementClient) {
-    this.client = client;
-  }
+  constructor(client: SqlManagementClient) {}
 
   /**
    * Gets a list of managed instance time zones by location.
-   * @param locationName
-   * @param options The options parameters.
+   *
    */
-  public listByLocation(
-    locationName: string,
-    options?: TimeZonesListByLocationOptionalParams
-  ): PagedAsyncIterableIterator<TimeZone> {
-    const iter = this.listByLocationPagingAll(locationName, options);
+  public listByLocation(): PagedAsyncIterableIterator<TimeZone> {
+    const iter = this.listByLocationPagingAll();
     return {
       next() {
         return iter.next();
@@ -53,148 +41,44 @@ export class TimeZonesImpl implements TimeZones {
         return this;
       },
       byPage: () => {
-        return this.listByLocationPagingPage(locationName, options);
+        return this.listByLocationPagingPage();
       }
     };
   }
 
-  private async *listByLocationPagingPage(
-    locationName: string,
-    options?: TimeZonesListByLocationOptionalParams
-  ): AsyncIterableIterator<TimeZone[]> {
-    let result = await this._listByLocation(locationName, options);
+  private async *listByLocationPagingPage(): AsyncIterableIterator<TimeZone[]> {
+    let result = await this._listByLocation();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listByLocationNext(
-        locationName,
-        continuationToken,
-        options
-      );
+      result = await this._listByLocationNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listByLocationPagingAll(
-    locationName: string,
-    options?: TimeZonesListByLocationOptionalParams
-  ): AsyncIterableIterator<TimeZone> {
-    for await (const page of this.listByLocationPagingPage(
-      locationName,
-      options
-    )) {
+  private async *listByLocationPagingAll(): AsyncIterableIterator<TimeZone> {
+    for await (const page of this.listByLocationPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Gets a list of managed instance time zones by location.
-   * @param locationName
-   * @param options The options parameters.
+   *
    */
-  private _listByLocation(
-    locationName: string,
-    options?: TimeZonesListByLocationOptionalParams
-  ): Promise<TimeZonesListByLocationResponse> {
-    return this.client.sendOperationRequest(
-      { locationName, options },
-      listByLocationOperationSpec
-    );
-  }
+  private _listByLocation(): Promise<TimeZonesListByLocationResponse> {}
 
   /**
    * Gets a managed instance time zone.
-   * @param locationName
-   * @param timeZoneId
-   * @param options The options parameters.
+   *
    */
-  get(
-    locationName: string,
-    timeZoneId: string,
-    options?: TimeZonesGetOptionalParams
-  ): Promise<TimeZonesGetResponse> {
-    return this.client.sendOperationRequest(
-      { locationName, timeZoneId, options },
-      getOperationSpec
-    );
-  }
+  get(): Promise<TimeZonesGetResponse> {}
 
   /**
    * ListByLocationNext
-   * @param locationName
-   * @param nextLink The nextLink from the previous successful call to the ListByLocation method.
-   * @param options The options parameters.
+   *
    */
-  private _listByLocationNext(
-    locationName: string,
-    nextLink: string,
-    options?: TimeZonesListByLocationNextOptionalParams
-  ): Promise<TimeZonesListByLocationNextResponse> {
-    return this.client.sendOperationRequest(
-      { locationName, nextLink, options },
-      listByLocationNextOperationSpec
-    );
-  }
+  private _listByLocationNext(): Promise<TimeZonesListByLocationNextResponse> {}
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
-
-const listByLocationOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Sql/locations/{locationName}/timeZones",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.TimeZoneListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.locationName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Sql/locations/{locationName}/timeZones/{timeZoneId}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.TimeZone
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.locationName,
-    Parameters.timeZoneId
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByLocationNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.TimeZoneListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.nextLink,
-    Parameters.locationName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};

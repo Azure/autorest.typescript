@@ -14,14 +14,9 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import {
   JobCredential,
-  JobCredentialsListByAgentNextOptionalParams,
-  JobCredentialsListByAgentOptionalParams,
   JobCredentialsListByAgentResponse,
-  JobCredentialsGetOptionalParams,
   JobCredentialsGetResponse,
-  JobCredentialsCreateOrUpdateOptionalParams,
   JobCredentialsCreateOrUpdateResponse,
-  JobCredentialsDeleteOptionalParams,
   JobCredentialsListByAgentNextResponse
 } from "../models";
 
@@ -40,24 +35,10 @@ export class JobCredentialsImpl implements JobCredentials {
 
   /**
    * Gets a list of jobs credentials.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param jobAgentName The name of the job agent.
-   * @param options The options parameters.
+   *
    */
-  public listByAgent(
-    resourceGroupName: string,
-    serverName: string,
-    jobAgentName: string,
-    options?: JobCredentialsListByAgentOptionalParams
-  ): PagedAsyncIterableIterator<JobCredential> {
-    const iter = this.listByAgentPagingAll(
-      resourceGroupName,
-      serverName,
-      jobAgentName,
-      options
-    );
+  public listByAgent(): PagedAsyncIterableIterator<JobCredential> {
+    const iter = this.listByAgentPagingAll();
     return {
       next() {
         return iter.next();
@@ -66,222 +47,68 @@ export class JobCredentialsImpl implements JobCredentials {
         return this;
       },
       byPage: () => {
-        return this.listByAgentPagingPage(
-          resourceGroupName,
-          serverName,
-          jobAgentName,
-          options
-        );
+        return this.listByAgentPagingPage();
       }
     };
   }
 
-  private async *listByAgentPagingPage(
-    resourceGroupName: string,
-    serverName: string,
-    jobAgentName: string,
-    options?: JobCredentialsListByAgentOptionalParams
-  ): AsyncIterableIterator<JobCredential[]> {
-    let result = await this._listByAgent(
-      resourceGroupName,
-      serverName,
-      jobAgentName,
-      options
-    );
+  private async *listByAgentPagingPage(): AsyncIterableIterator<
+    JobCredential[]
+  > {
+    let result = await this._listByAgent();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listByAgentNext(
-        resourceGroupName,
-        serverName,
-        jobAgentName,
-        continuationToken,
-        options
-      );
+      result = await this._listByAgentNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listByAgentPagingAll(
-    resourceGroupName: string,
-    serverName: string,
-    jobAgentName: string,
-    options?: JobCredentialsListByAgentOptionalParams
-  ): AsyncIterableIterator<JobCredential> {
-    for await (const page of this.listByAgentPagingPage(
-      resourceGroupName,
-      serverName,
-      jobAgentName,
-      options
-    )) {
+  private async *listByAgentPagingAll(): AsyncIterableIterator<JobCredential> {
+    for await (const page of this.listByAgentPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Gets a list of jobs credentials.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param jobAgentName The name of the job agent.
-   * @param options The options parameters.
+   *
    */
-  private _listByAgent(
-    resourceGroupName: string,
-    serverName: string,
-    jobAgentName: string,
-    options?: JobCredentialsListByAgentOptionalParams
-  ): Promise<JobCredentialsListByAgentResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, jobAgentName, options },
-      listByAgentOperationSpec
-    );
-  }
+  private _listByAgent(): Promise<JobCredentialsListByAgentResponse> {}
 
   /**
    * Gets a jobs credential.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param jobAgentName The name of the job agent.
-   * @param credentialName The name of the credential.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    jobAgentName: string,
-    credentialName: string,
-    options?: JobCredentialsGetOptionalParams
-  ): Promise<JobCredentialsGetResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, jobAgentName, credentialName, options },
-      getOperationSpec
-    );
-  }
+  get(): Promise<JobCredentialsGetResponse> {}
 
   /**
    * Creates or updates a job credential.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param jobAgentName The name of the job agent.
-   * @param credentialName The name of the credential.
-   * @param parameters The requested job credential state.
-   * @param options The options parameters.
+   *
    */
-  createOrUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    jobAgentName: string,
-    credentialName: string,
-    parameters: JobCredential,
-    options?: JobCredentialsCreateOrUpdateOptionalParams
-  ): Promise<JobCredentialsCreateOrUpdateResponse> {
+  createOrUpdate(): Promise<JobCredentialsCreateOrUpdateResponse> {
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        jobAgentName,
-        credentialName,
-        parameters,
-        options
-      },
+      { resourceGroupName, serverName, jobAgentName, credentialName, options },
       createOrUpdateOperationSpec
     );
   }
 
   /**
    * Deletes a job credential.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param jobAgentName The name of the job agent.
-   * @param credentialName The name of the credential.
-   * @param options The options parameters.
+   *
    */
-  delete(
-    resourceGroupName: string,
-    serverName: string,
-    jobAgentName: string,
-    credentialName: string,
-    options?: JobCredentialsDeleteOptionalParams
-  ): Promise<void> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, jobAgentName, credentialName, options },
-      deleteOperationSpec
-    );
-  }
+  delete(): Promise<void> {}
 
   /**
    * ListByAgentNext
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param jobAgentName The name of the job agent.
-   * @param nextLink The nextLink from the previous successful call to the ListByAgent method.
-   * @param options The options parameters.
+   *
    */
-  private _listByAgentNext(
-    resourceGroupName: string,
-    serverName: string,
-    jobAgentName: string,
-    nextLink: string,
-    options?: JobCredentialsListByAgentNextOptionalParams
-  ): Promise<JobCredentialsListByAgentNextResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, jobAgentName, nextLink, options },
-      listByAgentNextOperationSpec
-    );
-  }
+  private _listByAgentNext(): Promise<JobCredentialsListByAgentNextResponse> {}
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listByAgentOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/jobAgents/{jobAgentName}/credentials",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.JobCredentialListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.jobAgentName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/jobAgents/{jobAgentName}/credentials/{credentialName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.JobCredential
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.jobAgentName,
-    Parameters.credentialName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
 const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/jobAgents/{jobAgentName}/credentials/{credentialName}",
@@ -307,42 +134,5 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const deleteOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/jobAgents/{jobAgentName}/credentials/{credentialName}",
-  httpMethod: "DELETE",
-  responses: { 200: {}, 204: {}, default: {} },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.jobAgentName,
-    Parameters.credentialName
-  ],
-  serializer
-};
-const listByAgentNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.JobCredentialListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.nextLink,
-    Parameters.jobAgentName
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };

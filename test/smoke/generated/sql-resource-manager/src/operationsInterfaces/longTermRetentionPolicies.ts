@@ -10,11 +10,7 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   LongTermRetentionPolicy,
-  LongTermRetentionPoliciesListByDatabaseOptionalParams,
-  LongTermRetentionPolicyName,
-  LongTermRetentionPoliciesGetOptionalParams,
   LongTermRetentionPoliciesGetResponse,
-  LongTermRetentionPoliciesCreateOrUpdateOptionalParams,
   LongTermRetentionPoliciesCreateOrUpdateResponse
 } from "../models";
 
@@ -23,52 +19,19 @@ import {
 export interface LongTermRetentionPolicies {
   /**
    * Gets a database's long term retention policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param options The options parameters.
+   *
    */
-  listByDatabase(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: LongTermRetentionPoliciesListByDatabaseOptionalParams
-  ): PagedAsyncIterableIterator<LongTermRetentionPolicy>;
+  listByDatabase(): PagedAsyncIterableIterator<LongTermRetentionPolicy>;
   /**
    * Gets a database's long term retention policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param policyName The policy name. Should always be Default.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    policyName: LongTermRetentionPolicyName,
-    options?: LongTermRetentionPoliciesGetOptionalParams
-  ): Promise<LongTermRetentionPoliciesGetResponse>;
+  get(): Promise<LongTermRetentionPoliciesGetResponse>;
   /**
    * Sets a database's long term retention policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param policyName The policy name. Should always be Default.
-   * @param parameters The long term retention policy info.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    policyName: LongTermRetentionPolicyName,
-    parameters: LongTermRetentionPolicy,
-    options?: LongTermRetentionPoliciesCreateOrUpdateOptionalParams
-  ): Promise<
+  beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<LongTermRetentionPoliciesCreateOrUpdateResponse>,
       LongTermRetentionPoliciesCreateOrUpdateResponse
@@ -76,20 +39,9 @@ export interface LongTermRetentionPolicies {
   >;
   /**
    * Sets a database's long term retention policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param policyName The policy name. Should always be Default.
-   * @param parameters The long term retention policy info.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    policyName: LongTermRetentionPolicyName,
-    parameters: LongTermRetentionPolicy,
-    options?: LongTermRetentionPoliciesCreateOrUpdateOptionalParams
-  ): Promise<LongTermRetentionPoliciesCreateOrUpdateResponse>;
+  beginCreateOrUpdateAndWait(): Promise<
+    LongTermRetentionPoliciesCreateOrUpdateResponse
+  >;
 }

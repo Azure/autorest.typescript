@@ -10,14 +10,10 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { ManagedDatabaseSchemas } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import {
   DatabaseSchema,
-  ManagedDatabaseSchemasListByDatabaseNextOptionalParams,
-  ManagedDatabaseSchemasListByDatabaseOptionalParams,
   ManagedDatabaseSchemasListByDatabaseResponse,
-  ManagedDatabaseSchemasGetOptionalParams,
   ManagedDatabaseSchemasGetResponse,
   ManagedDatabaseSchemasListByDatabaseNextResponse
 } from "../models";
@@ -25,36 +21,18 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing ManagedDatabaseSchemas operations. */
 export class ManagedDatabaseSchemasImpl implements ManagedDatabaseSchemas {
-  private readonly client: SqlManagementClient;
-
   /**
    * Initialize a new instance of the class ManagedDatabaseSchemas class.
    * @param client Reference to the service client
    */
-  constructor(client: SqlManagementClient) {
-    this.client = client;
-  }
+  constructor(client: SqlManagementClient) {}
 
   /**
    * List managed database schemas
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the database.
-   * @param options The options parameters.
+   *
    */
-  public listByDatabase(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    options?: ManagedDatabaseSchemasListByDatabaseOptionalParams
-  ): PagedAsyncIterableIterator<DatabaseSchema> {
-    const iter = this.listByDatabasePagingAll(
-      resourceGroupName,
-      managedInstanceName,
-      databaseName,
-      options
-    );
+  public listByDatabase(): PagedAsyncIterableIterator<DatabaseSchema> {
+    const iter = this.listByDatabasePagingAll();
     return {
       next() {
         return iter.next();
@@ -63,199 +41,52 @@ export class ManagedDatabaseSchemasImpl implements ManagedDatabaseSchemas {
         return this;
       },
       byPage: () => {
-        return this.listByDatabasePagingPage(
-          resourceGroupName,
-          managedInstanceName,
-          databaseName,
-          options
-        );
+        return this.listByDatabasePagingPage();
       }
     };
   }
 
-  private async *listByDatabasePagingPage(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    options?: ManagedDatabaseSchemasListByDatabaseOptionalParams
-  ): AsyncIterableIterator<DatabaseSchema[]> {
-    let result = await this._listByDatabase(
-      resourceGroupName,
-      managedInstanceName,
-      databaseName,
-      options
-    );
+  private async *listByDatabasePagingPage(): AsyncIterableIterator<
+    DatabaseSchema[]
+  > {
+    let result = await this._listByDatabase();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listByDatabaseNext(
-        resourceGroupName,
-        managedInstanceName,
-        databaseName,
-        continuationToken,
-        options
-      );
+      result = await this._listByDatabaseNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listByDatabasePagingAll(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    options?: ManagedDatabaseSchemasListByDatabaseOptionalParams
-  ): AsyncIterableIterator<DatabaseSchema> {
-    for await (const page of this.listByDatabasePagingPage(
-      resourceGroupName,
-      managedInstanceName,
-      databaseName,
-      options
-    )) {
+  private async *listByDatabasePagingAll(): AsyncIterableIterator<
+    DatabaseSchema
+  > {
+    for await (const page of this.listByDatabasePagingPage()) {
       yield* page;
     }
   }
 
   /**
    * List managed database schemas
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the database.
-   * @param options The options parameters.
+   *
    */
-  private _listByDatabase(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    options?: ManagedDatabaseSchemasListByDatabaseOptionalParams
-  ): Promise<ManagedDatabaseSchemasListByDatabaseResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, managedInstanceName, databaseName, options },
-      listByDatabaseOperationSpec
-    );
-  }
+  private _listByDatabase(): Promise<
+    ManagedDatabaseSchemasListByDatabaseResponse
+  > {}
 
   /**
    * Get managed database schema
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the database.
-   * @param schemaName The name of the schema.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    schemaName: string,
-    options?: ManagedDatabaseSchemasGetOptionalParams
-  ): Promise<ManagedDatabaseSchemasGetResponse> {
-    return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        databaseName,
-        schemaName,
-        options
-      },
-      getOperationSpec
-    );
-  }
+  get(): Promise<ManagedDatabaseSchemasGetResponse> {}
 
   /**
    * ListByDatabaseNext
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the database.
-   * @param nextLink The nextLink from the previous successful call to the ListByDatabase method.
-   * @param options The options parameters.
+   *
    */
-  private _listByDatabaseNext(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    nextLink: string,
-    options?: ManagedDatabaseSchemasListByDatabaseNextOptionalParams
-  ): Promise<ManagedDatabaseSchemasListByDatabaseNextResponse> {
-    return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        databaseName,
-        nextLink,
-        options
-      },
-      listByDatabaseNextOperationSpec
-    );
-  }
+  private _listByDatabaseNext(): Promise<
+    ManagedDatabaseSchemasListByDatabaseNextResponse
+  > {}
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
-
-const listByDatabaseOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/databases/{databaseName}/schemas",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DatabaseSchemaListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2, Parameters.filter1],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.databaseName,
-    Parameters.managedInstanceName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/databases/{databaseName}/schemas/{schemaName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DatabaseSchema
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.databaseName,
-    Parameters.schemaName,
-    Parameters.managedInstanceName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByDatabaseNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DatabaseSchemaListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2, Parameters.filter1],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.databaseName,
-    Parameters.nextLink,
-    Parameters.managedInstanceName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};

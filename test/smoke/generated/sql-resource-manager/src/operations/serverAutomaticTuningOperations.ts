@@ -12,10 +12,7 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import {
-  ServerAutomaticTuningGetOptionalParams,
   ServerAutomaticTuningGetResponse,
-  ServerAutomaticTuning,
-  ServerAutomaticTuningUpdateOptionalParams,
   ServerAutomaticTuningUpdateResponse
 } from "../models";
 
@@ -34,38 +31,17 @@ export class ServerAutomaticTuningOperationsImpl
 
   /**
    * Retrieves server automatic tuning options.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    options?: ServerAutomaticTuningGetOptionalParams
-  ): Promise<ServerAutomaticTuningGetResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, options },
-      getOperationSpec
-    );
-  }
+  get(): Promise<ServerAutomaticTuningGetResponse> {}
 
   /**
    * Update automatic tuning options on server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param parameters The requested automatic tuning resource state.
-   * @param options The options parameters.
+   *
    */
-  update(
-    resourceGroupName: string,
-    serverName: string,
-    parameters: ServerAutomaticTuning,
-    options?: ServerAutomaticTuningUpdateOptionalParams
-  ): Promise<ServerAutomaticTuningUpdateResponse> {
+  update(): Promise<ServerAutomaticTuningUpdateResponse> {
     return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, parameters, options },
+      { resourceGroupName, serverName, options },
       updateOperationSpec
     );
   }
@@ -73,26 +49,6 @@ export class ServerAutomaticTuningOperationsImpl
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/automaticTuning/current",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ServerAutomaticTuning
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
 const updateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/automaticTuning/current",

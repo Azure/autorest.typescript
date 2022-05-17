@@ -16,15 +16,9 @@ import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
   RestorePoint,
-  RestorePointsListByDatabaseNextOptionalParams,
-  RestorePointsListByDatabaseOptionalParams,
   RestorePointsListByDatabaseResponse,
-  CreateDatabaseRestorePointDefinition,
-  RestorePointsCreateOptionalParams,
   RestorePointsCreateResponse,
-  RestorePointsGetOptionalParams,
   RestorePointsGetResponse,
-  RestorePointsDeleteOptionalParams,
   RestorePointsListByDatabaseNextResponse
 } from "../models";
 
@@ -43,24 +37,10 @@ export class RestorePointsImpl implements RestorePoints {
 
   /**
    * Gets a list of database restore points.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param options The options parameters.
+   *
    */
-  public listByDatabase(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: RestorePointsListByDatabaseOptionalParams
-  ): PagedAsyncIterableIterator<RestorePoint> {
-    const iter = this.listByDatabasePagingAll(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      options
-    );
+  public listByDatabase(): PagedAsyncIterableIterator<RestorePoint> {
+    const iter = this.listByDatabasePagingAll();
     return {
       next() {
         return iter.next();
@@ -69,95 +49,43 @@ export class RestorePointsImpl implements RestorePoints {
         return this;
       },
       byPage: () => {
-        return this.listByDatabasePagingPage(
-          resourceGroupName,
-          serverName,
-          databaseName,
-          options
-        );
+        return this.listByDatabasePagingPage();
       }
     };
   }
 
-  private async *listByDatabasePagingPage(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: RestorePointsListByDatabaseOptionalParams
-  ): AsyncIterableIterator<RestorePoint[]> {
-    let result = await this._listByDatabase(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      options
-    );
+  private async *listByDatabasePagingPage(): AsyncIterableIterator<
+    RestorePoint[]
+  > {
+    let result = await this._listByDatabase();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listByDatabaseNext(
-        resourceGroupName,
-        serverName,
-        databaseName,
-        continuationToken,
-        options
-      );
+      result = await this._listByDatabaseNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listByDatabasePagingAll(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: RestorePointsListByDatabaseOptionalParams
-  ): AsyncIterableIterator<RestorePoint> {
-    for await (const page of this.listByDatabasePagingPage(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      options
-    )) {
+  private async *listByDatabasePagingAll(): AsyncIterableIterator<
+    RestorePoint
+  > {
+    for await (const page of this.listByDatabasePagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Gets a list of database restore points.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param options The options parameters.
+   *
    */
-  private _listByDatabase(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: RestorePointsListByDatabaseOptionalParams
-  ): Promise<RestorePointsListByDatabaseResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, databaseName, options },
-      listByDatabaseOperationSpec
-    );
-  }
+  private _listByDatabase(): Promise<RestorePointsListByDatabaseResponse> {}
 
   /**
    * Creates a restore point for a data warehouse.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param parameters The definition for creating the restore point of this database.
-   * @param options The options parameters.
+   *
    */
-  async beginCreate(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    parameters: CreateDatabaseRestorePointDefinition,
-    options?: RestorePointsCreateOptionalParams
-  ): Promise<
+  async beginCreate(): Promise<
     PollerLike<
       PollOperationState<RestorePointsCreateResponse>,
       RestorePointsCreateResponse
@@ -204,7 +132,7 @@ export class RestorePointsImpl implements RestorePoints {
 
     const lro = new LroImpl(
       sendOperation,
-      { resourceGroupName, serverName, databaseName, parameters, options },
+      { resourceGroupName, serverName, databaseName, options },
       createOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -217,132 +145,36 @@ export class RestorePointsImpl implements RestorePoints {
 
   /**
    * Creates a restore point for a data warehouse.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param parameters The definition for creating the restore point of this database.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    parameters: CreateDatabaseRestorePointDefinition,
-    options?: RestorePointsCreateOptionalParams
-  ): Promise<RestorePointsCreateResponse> {
-    const poller = await this.beginCreate(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      parameters,
-      options
-    );
+  async beginCreateAndWait(): Promise<RestorePointsCreateResponse> {
+    const poller = await this.beginCreate();
     return poller.pollUntilDone();
   }
 
   /**
    * Gets a restore point.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param restorePointName The name of the restore point.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    restorePointName: string,
-    options?: RestorePointsGetOptionalParams
-  ): Promise<RestorePointsGetResponse> {
-    return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        restorePointName,
-        options
-      },
-      getOperationSpec
-    );
-  }
+  get(): Promise<RestorePointsGetResponse> {}
 
   /**
    * Deletes a restore point.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param restorePointName The name of the restore point.
-   * @param options The options parameters.
+   *
    */
-  delete(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    restorePointName: string,
-    options?: RestorePointsDeleteOptionalParams
-  ): Promise<void> {
-    return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        restorePointName,
-        options
-      },
-      deleteOperationSpec
-    );
-  }
+  delete(): Promise<void> {}
 
   /**
    * ListByDatabaseNext
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param nextLink The nextLink from the previous successful call to the ListByDatabase method.
-   * @param options The options parameters.
+   *
    */
-  private _listByDatabaseNext(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    nextLink: string,
-    options?: RestorePointsListByDatabaseNextOptionalParams
-  ): Promise<RestorePointsListByDatabaseNextResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, databaseName, nextLink, options },
-      listByDatabaseNextOperationSpec
-    );
-  }
+  private _listByDatabaseNext(): Promise<
+    RestorePointsListByDatabaseNextResponse
+  > {}
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listByDatabaseOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/restorePoints",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.RestorePointListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.databaseName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
 const createOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/restorePoints",
@@ -373,64 +205,5 @@ const createOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/restorePoints/{restorePointName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.RestorePoint
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.databaseName,
-    Parameters.restorePointName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const deleteOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/restorePoints/{restorePointName}",
-  httpMethod: "DELETE",
-  responses: { 200: {}, default: {} },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.databaseName,
-    Parameters.restorePointName
-  ],
-  serializer
-};
-const listByDatabaseNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.RestorePointListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.databaseName,
-    Parameters.nextLink
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };

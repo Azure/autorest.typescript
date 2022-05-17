@@ -10,13 +10,8 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ManagedInstanceAzureADOnlyAuthentication,
-  ManagedInstanceAzureADOnlyAuthenticationsListByInstanceOptionalParams,
-  AuthenticationName,
-  ManagedInstanceAzureADOnlyAuthenticationsGetOptionalParams,
   ManagedInstanceAzureADOnlyAuthenticationsGetResponse,
-  ManagedInstanceAzureADOnlyAuthenticationsCreateOrUpdateOptionalParams,
-  ManagedInstanceAzureADOnlyAuthenticationsCreateOrUpdateResponse,
-  ManagedInstanceAzureADOnlyAuthenticationsDeleteOptionalParams
+  ManagedInstanceAzureADOnlyAuthenticationsCreateOrUpdateResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -24,48 +19,22 @@ import {
 export interface ManagedInstanceAzureADOnlyAuthentications {
   /**
    * Gets a list of server Azure Active Directory only authentications.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param options The options parameters.
+   *
    */
-  listByInstance(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    options?: ManagedInstanceAzureADOnlyAuthenticationsListByInstanceOptionalParams
-  ): PagedAsyncIterableIterator<ManagedInstanceAzureADOnlyAuthentication>;
+  listByInstance(): PagedAsyncIterableIterator<
+    ManagedInstanceAzureADOnlyAuthentication
+  >;
   /**
    * Gets a specific Azure Active Directory only authentication property.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param authenticationName The name of server azure active directory only authentication.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    authenticationName: AuthenticationName,
-    options?: ManagedInstanceAzureADOnlyAuthenticationsGetOptionalParams
-  ): Promise<ManagedInstanceAzureADOnlyAuthenticationsGetResponse>;
+  get(): Promise<ManagedInstanceAzureADOnlyAuthenticationsGetResponse>;
   /**
    * Sets Server Active Directory only authentication property or updates an existing server Active
    * Directory only authentication property.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param authenticationName The name of server azure active directory only authentication.
-   * @param parameters The required parameters for creating or updating an Active Directory only
-   *                   authentication property.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdate(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    authenticationName: AuthenticationName,
-    parameters: ManagedInstanceAzureADOnlyAuthentication,
-    options?: ManagedInstanceAzureADOnlyAuthenticationsCreateOrUpdateOptionalParams
-  ): Promise<
+  beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<
         ManagedInstanceAzureADOnlyAuthenticationsCreateOrUpdateResponse
@@ -76,47 +45,19 @@ export interface ManagedInstanceAzureADOnlyAuthentications {
   /**
    * Sets Server Active Directory only authentication property or updates an existing server Active
    * Directory only authentication property.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param authenticationName The name of server azure active directory only authentication.
-   * @param parameters The required parameters for creating or updating an Active Directory only
-   *                   authentication property.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    authenticationName: AuthenticationName,
-    parameters: ManagedInstanceAzureADOnlyAuthentication,
-    options?: ManagedInstanceAzureADOnlyAuthenticationsCreateOrUpdateOptionalParams
-  ): Promise<ManagedInstanceAzureADOnlyAuthenticationsCreateOrUpdateResponse>;
+  beginCreateOrUpdateAndWait(): Promise<
+    ManagedInstanceAzureADOnlyAuthenticationsCreateOrUpdateResponse
+  >;
   /**
    * Deletes an existing server Active Directory only authentication property.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param authenticationName The name of server azure active directory only authentication.
-   * @param options The options parameters.
+   *
    */
-  beginDelete(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    authenticationName: AuthenticationName,
-    options?: ManagedInstanceAzureADOnlyAuthenticationsDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  beginDelete(): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes an existing server Active Directory only authentication property.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param authenticationName The name of server azure active directory only authentication.
-   * @param options The options parameters.
+   *
    */
-  beginDeleteAndWait(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    authenticationName: AuthenticationName,
-    options?: ManagedInstanceAzureADOnlyAuthenticationsDeleteOptionalParams
-  ): Promise<void>;
+  beginDeleteAndWait(): Promise<void>;
 }

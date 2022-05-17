@@ -10,11 +10,7 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   DeletedServer,
-  DeletedServersListOptionalParams,
-  DeletedServersListByLocationOptionalParams,
-  DeletedServersGetOptionalParams,
   DeletedServersGetResponse,
-  DeletedServersRecoverOptionalParams,
   DeletedServersRecoverResponse
 } from "../models";
 
@@ -23,42 +19,24 @@ import {
 export interface DeletedServers {
   /**
    * Gets a list of all deleted servers in a subscription.
-   * @param options The options parameters.
+   *
    */
-  list(
-    options?: DeletedServersListOptionalParams
-  ): PagedAsyncIterableIterator<DeletedServer>;
+  list(): PagedAsyncIterableIterator<DeletedServer>;
   /**
    * Gets a list of deleted servers for a location.
-   * @param locationName The name of the region where the resource is located.
-   * @param options The options parameters.
+   *
    */
-  listByLocation(
-    locationName: string,
-    options?: DeletedServersListByLocationOptionalParams
-  ): PagedAsyncIterableIterator<DeletedServer>;
+  listByLocation(): PagedAsyncIterableIterator<DeletedServer>;
   /**
    * Gets a deleted server.
-   * @param locationName The name of the region where the resource is located.
-   * @param deletedServerName The name of the deleted server.
-   * @param options The options parameters.
+   *
    */
-  get(
-    locationName: string,
-    deletedServerName: string,
-    options?: DeletedServersGetOptionalParams
-  ): Promise<DeletedServersGetResponse>;
+  get(): Promise<DeletedServersGetResponse>;
   /**
    * Recovers a deleted server.
-   * @param locationName The name of the region where the resource is located.
-   * @param deletedServerName The name of the deleted server.
-   * @param options The options parameters.
+   *
    */
-  beginRecover(
-    locationName: string,
-    deletedServerName: string,
-    options?: DeletedServersRecoverOptionalParams
-  ): Promise<
+  beginRecover(): Promise<
     PollerLike<
       PollOperationState<DeletedServersRecoverResponse>,
       DeletedServersRecoverResponse
@@ -66,13 +44,7 @@ export interface DeletedServers {
   >;
   /**
    * Recovers a deleted server.
-   * @param locationName The name of the region where the resource is located.
-   * @param deletedServerName The name of the deleted server.
-   * @param options The options parameters.
+   *
    */
-  beginRecoverAndWait(
-    locationName: string,
-    deletedServerName: string,
-    options?: DeletedServersRecoverOptionalParams
-  ): Promise<DeletedServersRecoverResponse>;
+  beginRecoverAndWait(): Promise<DeletedServersRecoverResponse>;
 }

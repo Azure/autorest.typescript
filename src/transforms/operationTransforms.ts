@@ -40,7 +40,6 @@ import { KnownMediaType } from "@azure-tools/codegen";
 import { headersToSchema } from "../utils/headersToSchema";
 import { extractPaginationDetails } from "../utils/extractPaginationDetails";
 import { isEmpty, isEqual } from "lodash";
-import { populateOperationParameters } from "./parameterTransforms";
 
 /**
  * SWAGGER doesn't require to define all possible response codes
@@ -259,15 +258,7 @@ export function transformOperationRequest(
     path: request.protocol.http.path,
     method: request.protocol.http.method,
     mediaType: request.protocol.http.knownMediaType,
-    parameters:  request?.parameters?.forEach(p =>
-      populateOperationParameters(
-        p.parameter,
-        parameters,
-        p.operationName,
-        hasXmlMetadata,
-        p.targetMediaType
-      )
-    );
+    parameters: request.parameters
   };
 }
 

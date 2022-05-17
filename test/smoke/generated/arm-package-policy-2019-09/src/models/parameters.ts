@@ -222,18 +222,6 @@ export const policyAssignmentId: OperationURLParameter = {
   skipEncoding: true
 };
 
-export const nextLink: OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
 export const parameters1: OperationParameter = {
   parameterPath: "parameters",
   mapper: PolicyDefinitionMapper

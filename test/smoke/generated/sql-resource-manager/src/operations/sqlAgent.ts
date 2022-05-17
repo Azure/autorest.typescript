@@ -11,13 +11,7 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
-import {
-  SqlAgentGetOptionalParams,
-  SqlAgentGetResponse,
-  SqlAgentConfiguration,
-  SqlAgentCreateOrUpdateOptionalParams,
-  SqlAgentCreateOrUpdateResponse
-} from "../models";
+import { SqlAgentGetResponse, SqlAgentCreateOrUpdateResponse } from "../models";
 
 /** Class containing SqlAgent operations. */
 export class SqlAgentImpl implements SqlAgent {
@@ -33,38 +27,17 @@ export class SqlAgentImpl implements SqlAgent {
 
   /**
    * Gets current instance sql agent configuration.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    options?: SqlAgentGetOptionalParams
-  ): Promise<SqlAgentGetResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, managedInstanceName, options },
-      getOperationSpec
-    );
-  }
+  get(): Promise<SqlAgentGetResponse> {}
 
   /**
    * Puts new sql agent configuration to instance.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param parameters A recoverable managed database resource.
-   * @param options The options parameters.
+   *
    */
-  createOrUpdate(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    parameters: SqlAgentConfiguration,
-    options?: SqlAgentCreateOrUpdateOptionalParams
-  ): Promise<SqlAgentCreateOrUpdateResponse> {
+  createOrUpdate(): Promise<SqlAgentCreateOrUpdateResponse> {
     return this.client.sendOperationRequest(
-      { resourceGroupName, managedInstanceName, parameters, options },
+      { resourceGroupName, managedInstanceName, options },
       createOrUpdateOperationSpec
     );
   }
@@ -72,26 +45,6 @@ export class SqlAgentImpl implements SqlAgent {
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/sqlAgent/current",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.SqlAgentConfiguration
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.managedInstanceName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
 const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/sqlAgent/current",

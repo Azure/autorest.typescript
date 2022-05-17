@@ -16,13 +16,10 @@ import * as coreAuth from "@azure/core-auth";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { FeaturesImpl } from "./operations";
 import { Features } from "./operationsInterfaces";
-import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
 import {
   FeatureClientOptionalParams,
   Operation,
-  ListOperationsNextOptionalParams,
-  ListOperationsOptionalParams,
   ListOperationsResponse,
   ListOperationsNextResponse
 } from "./models";
@@ -119,12 +116,10 @@ export class FeatureClient extends coreClient.ServiceClient {
 
   /**
    * Lists all of the available Microsoft.Features REST API operations.
-   * @param options The options parameters.
+   *
    */
-  public listOperations(
-    options?: ListOperationsOptionalParams
-  ): PagedAsyncIterableIterator<Operation> {
-    const iter = this.listOperationsPagingAll(options);
+  public listOperations(): PagedAsyncIterableIterator<Operation> {
+    const iter = this.listOperationsPagingAll();
     return {
       next() {
         return iter.next();
@@ -133,85 +128,42 @@ export class FeatureClient extends coreClient.ServiceClient {
         return this;
       },
       byPage: () => {
-        return this.listOperationsPagingPage(options);
+        return this.listOperationsPagingPage();
       }
     };
   }
 
-  private async *listOperationsPagingPage(
-    options?: ListOperationsOptionalParams
-  ): AsyncIterableIterator<Operation[]> {
-    let result = await this._listOperations(options);
+  private async *listOperationsPagingPage(): AsyncIterableIterator<
+    Operation[]
+  > {
+    let result = await this._listOperations();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listOperationsNext(continuationToken, options);
+      result = await this._listOperationsNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listOperationsPagingAll(
-    options?: ListOperationsOptionalParams
-  ): AsyncIterableIterator<Operation> {
-    for await (const page of this.listOperationsPagingPage(options)) {
+  private async *listOperationsPagingAll(): AsyncIterableIterator<Operation> {
+    for await (const page of this.listOperationsPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Lists all of the available Microsoft.Features REST API operations.
-   * @param options The options parameters.
+   *
    */
-  private _listOperations(
-    options?: ListOperationsOptionalParams
-  ): Promise<ListOperationsResponse> {
-    return this.sendOperationRequest({ options }, listOperationsOperationSpec);
-  }
+  private _listOperations(): Promise<ListOperationsResponse> {}
 
   /**
    * ListOperationsNext
-   * @param nextLink The nextLink from the previous successful call to the ListOperations method.
-   * @param options The options parameters.
+   *
    */
-  private _listOperationsNext(
-    nextLink: string,
-    options?: ListOperationsNextOptionalParams
-  ): Promise<ListOperationsNextResponse> {
-    return this.sendOperationRequest(
-      { nextLink, options },
-      listOperationsNextOperationSpec
-    );
-  }
+  private _listOperationsNext(): Promise<ListOperationsNextResponse> {}
 
   features: Features;
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
-
-const listOperationsOperationSpec: coreClient.OperationSpec = {
-  path: "/providers/Microsoft.Features/operations",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.OperationListResult
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listOperationsNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.OperationListResult
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.nextLink],
-  headerParameters: [Parameters.accept],
-  serializer
-};

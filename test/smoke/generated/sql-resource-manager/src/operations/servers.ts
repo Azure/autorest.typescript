@@ -16,25 +16,12 @@ import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
   Server,
-  ServersListByResourceGroupNextOptionalParams,
-  ServersListByResourceGroupOptionalParams,
-  ServersListNextOptionalParams,
-  ServersListOptionalParams,
   ServersListByResourceGroupResponse,
-  ServersGetOptionalParams,
   ServersGetResponse,
-  ServersCreateOrUpdateOptionalParams,
   ServersCreateOrUpdateResponse,
-  ServersDeleteOptionalParams,
-  ServerUpdate,
-  ServersUpdateOptionalParams,
   ServersUpdateResponse,
   ServersListResponse,
-  ImportNewDatabaseDefinition,
-  ServersImportDatabaseOptionalParams,
   ServersImportDatabaseResponse,
-  CheckNameAvailabilityRequest,
-  ServersCheckNameAvailabilityOptionalParams,
   ServersCheckNameAvailabilityResponse,
   ServersListByResourceGroupNextResponse,
   ServersListNextResponse
@@ -55,15 +42,10 @@ export class ServersImpl implements Servers {
 
   /**
    * Gets a list of servers in a resource groups.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param options The options parameters.
+   *
    */
-  public listByResourceGroup(
-    resourceGroupName: string,
-    options?: ServersListByResourceGroupOptionalParams
-  ): PagedAsyncIterableIterator<Server> {
-    const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
+  public listByResourceGroup(): PagedAsyncIterableIterator<Server> {
+    const iter = this.listByResourceGroupPagingAll();
     return {
       next() {
         return iter.next();
@@ -72,49 +54,36 @@ export class ServersImpl implements Servers {
         return this;
       },
       byPage: () => {
-        return this.listByResourceGroupPagingPage(resourceGroupName, options);
+        return this.listByResourceGroupPagingPage();
       }
     };
   }
 
-  private async *listByResourceGroupPagingPage(
-    resourceGroupName: string,
-    options?: ServersListByResourceGroupOptionalParams
-  ): AsyncIterableIterator<Server[]> {
-    let result = await this._listByResourceGroup(resourceGroupName, options);
+  private async *listByResourceGroupPagingPage(): AsyncIterableIterator<
+    Server[]
+  > {
+    let result = await this._listByResourceGroup();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listByResourceGroupNext(
-        resourceGroupName,
-        continuationToken,
-        options
-      );
+      result = await this._listByResourceGroupNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listByResourceGroupPagingAll(
-    resourceGroupName: string,
-    options?: ServersListByResourceGroupOptionalParams
-  ): AsyncIterableIterator<Server> {
-    for await (const page of this.listByResourceGroupPagingPage(
-      resourceGroupName,
-      options
-    )) {
+  private async *listByResourceGroupPagingAll(): AsyncIterableIterator<Server> {
+    for await (const page of this.listByResourceGroupPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Gets a list of all servers in the subscription.
-   * @param options The options parameters.
+   *
    */
-  public list(
-    options?: ServersListOptionalParams
-  ): PagedAsyncIterableIterator<Server> {
-    const iter = this.listPagingAll(options);
+  public list(): PagedAsyncIterableIterator<Server> {
+    const iter = this.listPagingAll();
     return {
       next() {
         return iter.next();
@@ -123,80 +92,45 @@ export class ServersImpl implements Servers {
         return this;
       },
       byPage: () => {
-        return this.listPagingPage(options);
+        return this.listPagingPage();
       }
     };
   }
 
-  private async *listPagingPage(
-    options?: ServersListOptionalParams
-  ): AsyncIterableIterator<Server[]> {
-    let result = await this._list(options);
+  private async *listPagingPage(): AsyncIterableIterator<Server[]> {
+    let result = await this._list();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listNext(continuationToken, options);
+      result = await this._listNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listPagingAll(
-    options?: ServersListOptionalParams
-  ): AsyncIterableIterator<Server> {
-    for await (const page of this.listPagingPage(options)) {
+  private async *listPagingAll(): AsyncIterableIterator<Server> {
+    for await (const page of this.listPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Gets a list of servers in a resource groups.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param options The options parameters.
+   *
    */
-  private _listByResourceGroup(
-    resourceGroupName: string,
-    options?: ServersListByResourceGroupOptionalParams
-  ): Promise<ServersListByResourceGroupResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, options },
-      listByResourceGroupOperationSpec
-    );
-  }
+  private _listByResourceGroup(): Promise<ServersListByResourceGroupResponse> {}
 
   /**
    * Gets a server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    options?: ServersGetOptionalParams
-  ): Promise<ServersGetResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, options },
-      getOperationSpec
-    );
-  }
+  get(): Promise<ServersGetResponse> {}
 
   /**
    * Creates or updates a server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param parameters The requested server resource state.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    parameters: Server,
-    options?: ServersCreateOrUpdateOptionalParams
-  ): Promise<
+  async beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<ServersCreateOrUpdateResponse>,
       ServersCreateOrUpdateResponse
@@ -243,7 +177,7 @@ export class ServersImpl implements Servers {
 
     const lro = new LroImpl(
       sendOperation,
-      { resourceGroupName, serverName, parameters, options },
+      { resourceGroupName, serverName, options },
       createOrUpdateOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -256,125 +190,33 @@ export class ServersImpl implements Servers {
 
   /**
    * Creates or updates a server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param parameters The requested server resource state.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    parameters: Server,
-    options?: ServersCreateOrUpdateOptionalParams
-  ): Promise<ServersCreateOrUpdateResponse> {
-    const poller = await this.beginCreateOrUpdate(
-      resourceGroupName,
-      serverName,
-      parameters,
-      options
-    );
+  async beginCreateOrUpdateAndWait(): Promise<ServersCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate();
     return poller.pollUntilDone();
   }
 
   /**
    * Deletes a server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  async beginDelete(
-    resourceGroupName: string,
-    serverName: string,
-    options?: ServersDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<void> => {
-      return this.client.sendOperationRequest(args, spec);
-    };
-    const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return {
-        flatResponse,
-        rawResponse: {
-          statusCode: currentRawResponse!.status,
-          body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
-      };
-    };
-
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, serverName, options },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
-    });
-    await poller.poll();
-    return poller;
-  }
+  async beginDelete(): Promise<PollerLike<PollOperationState<void>, void>> {}
 
   /**
    * Deletes a server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  async beginDeleteAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    options?: ServersDeleteOptionalParams
-  ): Promise<void> {
-    const poller = await this.beginDelete(
-      resourceGroupName,
-      serverName,
-      options
-    );
+  async beginDeleteAndWait(): Promise<void> {
+    const poller = await this.beginDelete();
     return poller.pollUntilDone();
   }
 
   /**
    * Updates a server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param parameters The requested server resource state.
-   * @param options The options parameters.
+   *
    */
-  async beginUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    parameters: ServerUpdate,
-    options?: ServersUpdateOptionalParams
-  ): Promise<
+  async beginUpdate(): Promise<
     PollerLike<PollOperationState<ServersUpdateResponse>, ServersUpdateResponse>
   > {
     const directSendOperation = async (
@@ -418,7 +260,7 @@ export class ServersImpl implements Servers {
 
     const lro = new LroImpl(
       sendOperation,
-      { resourceGroupName, serverName, parameters, options },
+      { resourceGroupName, serverName, options },
       updateOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -431,51 +273,24 @@ export class ServersImpl implements Servers {
 
   /**
    * Updates a server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param parameters The requested server resource state.
-   * @param options The options parameters.
+   *
    */
-  async beginUpdateAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    parameters: ServerUpdate,
-    options?: ServersUpdateOptionalParams
-  ): Promise<ServersUpdateResponse> {
-    const poller = await this.beginUpdate(
-      resourceGroupName,
-      serverName,
-      parameters,
-      options
-    );
+  async beginUpdateAndWait(): Promise<ServersUpdateResponse> {
+    const poller = await this.beginUpdate();
     return poller.pollUntilDone();
   }
 
   /**
    * Gets a list of all servers in the subscription.
-   * @param options The options parameters.
+   *
    */
-  private _list(
-    options?: ServersListOptionalParams
-  ): Promise<ServersListResponse> {
-    return this.client.sendOperationRequest({ options }, listOperationSpec);
-  }
+  private _list(): Promise<ServersListResponse> {}
 
   /**
    * Imports a bacpac into a new database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param parameters The database import request parameters.
-   * @param options The options parameters.
+   *
    */
-  async beginImportDatabase(
-    resourceGroupName: string,
-    serverName: string,
-    parameters: ImportNewDatabaseDefinition,
-    options?: ServersImportDatabaseOptionalParams
-  ): Promise<
+  async beginImportDatabase(): Promise<
     PollerLike<
       PollOperationState<ServersImportDatabaseResponse>,
       ServersImportDatabaseResponse
@@ -522,7 +337,7 @@ export class ServersImpl implements Servers {
 
     const lro = new LroImpl(
       sendOperation,
-      { resourceGroupName, serverName, parameters, options },
+      { resourceGroupName, serverName, options },
       importDatabaseOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -535,117 +350,41 @@ export class ServersImpl implements Servers {
 
   /**
    * Imports a bacpac into a new database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param parameters The database import request parameters.
-   * @param options The options parameters.
+   *
    */
-  async beginImportDatabaseAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    parameters: ImportNewDatabaseDefinition,
-    options?: ServersImportDatabaseOptionalParams
-  ): Promise<ServersImportDatabaseResponse> {
-    const poller = await this.beginImportDatabase(
-      resourceGroupName,
-      serverName,
-      parameters,
-      options
-    );
+  async beginImportDatabaseAndWait(): Promise<ServersImportDatabaseResponse> {
+    const poller = await this.beginImportDatabase();
     return poller.pollUntilDone();
   }
 
   /**
    * Determines whether a resource can be created with the specified name.
-   * @param parameters The name availability request parameters.
-   * @param options The options parameters.
+   *
    */
-  checkNameAvailability(
-    parameters: CheckNameAvailabilityRequest,
-    options?: ServersCheckNameAvailabilityOptionalParams
-  ): Promise<ServersCheckNameAvailabilityResponse> {
+  checkNameAvailability(): Promise<ServersCheckNameAvailabilityResponse> {
     return this.client.sendOperationRequest(
-      { parameters, options },
+      { options },
       checkNameAvailabilityOperationSpec
     );
   }
 
   /**
    * ListByResourceGroupNext
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
-   * @param options The options parameters.
+   *
    */
-  private _listByResourceGroupNext(
-    resourceGroupName: string,
-    nextLink: string,
-    options?: ServersListByResourceGroupNextOptionalParams
-  ): Promise<ServersListByResourceGroupNextResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options },
-      listByResourceGroupNextOperationSpec
-    );
-  }
+  private _listByResourceGroupNext(): Promise<
+    ServersListByResourceGroupNextResponse
+  > {}
 
   /**
    * ListNext
-   * @param nextLink The nextLink from the previous successful call to the List method.
-   * @param options The options parameters.
+   *
    */
-  private _listNext(
-    nextLink: string,
-    options?: ServersListNextOptionalParams
-  ): Promise<ServersListNextResponse> {
-    return this.client.sendOperationRequest(
-      { nextLink, options },
-      listNextOperationSpec
-    );
-  }
+  private _listNext(): Promise<ServersListNextResponse> {}
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listByResourceGroupOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ServerListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion3, Parameters.expand],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.Server
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion3, Parameters.expand],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
 const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}",
@@ -677,20 +416,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}",
-  httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
-  queryParameters: [Parameters.apiVersion3],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName
-  ],
-  serializer
-};
 const updateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}",
@@ -720,20 +445,6 @@ const updateOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const listOperationSpec: coreClient.OperationSpec = {
-  path: "/subscriptions/{subscriptionId}/providers/Microsoft.Sql/servers",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ServerListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion3, Parameters.expand],
-  urlParameters: [Parameters.$host, Parameters.subscriptionId],
-  headerParameters: [Parameters.accept],
   serializer
 };
 const importDatabaseOperationSpec: coreClient.OperationSpec = {
@@ -782,42 +493,5 @@ const checkNameAvailabilityOperationSpec: coreClient.OperationSpec = {
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ServerListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion3, Parameters.expand],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.nextLink
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ServerListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion3, Parameters.expand],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.nextLink
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };

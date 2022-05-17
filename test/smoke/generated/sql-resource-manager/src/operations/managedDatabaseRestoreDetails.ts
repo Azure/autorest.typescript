@@ -9,77 +9,22 @@
 import { ManagedDatabaseRestoreDetails } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
-import {
-  RestoreDetailsName,
-  ManagedDatabaseRestoreDetailsGetOptionalParams,
-  ManagedDatabaseRestoreDetailsGetResponse
-} from "../models";
+import { ManagedDatabaseRestoreDetailsGetResponse } from "../models";
 
 /** Class containing ManagedDatabaseRestoreDetails operations. */
 export class ManagedDatabaseRestoreDetailsImpl
   implements ManagedDatabaseRestoreDetails {
-  private readonly client: SqlManagementClient;
-
   /**
    * Initialize a new instance of the class ManagedDatabaseRestoreDetails class.
    * @param client Reference to the service client
    */
-  constructor(client: SqlManagementClient) {
-    this.client = client;
-  }
+  constructor(client: SqlManagementClient) {}
 
   /**
    * Gets managed database restore details.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the database.
-   * @param restoreDetailsName The name of the restore details to retrieve.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    restoreDetailsName: RestoreDetailsName,
-    options?: ManagedDatabaseRestoreDetailsGetOptionalParams
-  ): Promise<ManagedDatabaseRestoreDetailsGetResponse> {
-    return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        databaseName,
-        restoreDetailsName,
-        options
-      },
-      getOperationSpec
-    );
-  }
+  get(): Promise<ManagedDatabaseRestoreDetailsGetResponse> {}
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
-
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/databases/{databaseName}/restoreDetails/{restoreDetailsName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ManagedDatabaseRestoreDetailsResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.databaseName,
-    Parameters.managedInstanceName,
-    Parameters.restoreDetailsName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};

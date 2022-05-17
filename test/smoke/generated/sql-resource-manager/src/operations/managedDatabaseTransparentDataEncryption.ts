@@ -14,12 +14,7 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import {
   ManagedTransparentDataEncryption,
-  ManagedDatabaseTransparentDataEncryptionListByDatabaseNextOptionalParams,
-  ManagedDatabaseTransparentDataEncryptionListByDatabaseOptionalParams,
-  TransparentDataEncryptionName,
-  ManagedDatabaseTransparentDataEncryptionGetOptionalParams,
   ManagedDatabaseTransparentDataEncryptionGetResponse,
-  ManagedDatabaseTransparentDataEncryptionCreateOrUpdateOptionalParams,
   ManagedDatabaseTransparentDataEncryptionCreateOrUpdateResponse,
   ManagedDatabaseTransparentDataEncryptionListByDatabaseResponse,
   ManagedDatabaseTransparentDataEncryptionListByDatabaseNextResponse
@@ -41,25 +36,12 @@ export class ManagedDatabaseTransparentDataEncryptionImpl
 
   /**
    * Gets a list of managed database's transparent data encryptions.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the managed database for which the transparent data encryption is
-   *                     defined.
-   * @param options The options parameters.
+   *
    */
-  public listByDatabase(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    options?: ManagedDatabaseTransparentDataEncryptionListByDatabaseOptionalParams
-  ): PagedAsyncIterableIterator<ManagedTransparentDataEncryption> {
-    const iter = this.listByDatabasePagingAll(
-      resourceGroupName,
-      managedInstanceName,
-      databaseName,
-      options
-    );
+  public listByDatabase(): PagedAsyncIterableIterator<
+    ManagedTransparentDataEncryption
+  > {
+    const iter = this.listByDatabasePagingAll();
     return {
       next() {
         return iter.next();
@@ -68,113 +50,51 @@ export class ManagedDatabaseTransparentDataEncryptionImpl
         return this;
       },
       byPage: () => {
-        return this.listByDatabasePagingPage(
-          resourceGroupName,
-          managedInstanceName,
-          databaseName,
-          options
-        );
+        return this.listByDatabasePagingPage();
       }
     };
   }
 
-  private async *listByDatabasePagingPage(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    options?: ManagedDatabaseTransparentDataEncryptionListByDatabaseOptionalParams
-  ): AsyncIterableIterator<ManagedTransparentDataEncryption[]> {
-    let result = await this._listByDatabase(
-      resourceGroupName,
-      managedInstanceName,
-      databaseName,
-      options
-    );
+  private async *listByDatabasePagingPage(): AsyncIterableIterator<
+    ManagedTransparentDataEncryption[]
+  > {
+    let result = await this._listByDatabase();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listByDatabaseNext(
-        resourceGroupName,
-        managedInstanceName,
-        databaseName,
-        continuationToken,
-        options
-      );
+      result = await this._listByDatabaseNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listByDatabasePagingAll(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    options?: ManagedDatabaseTransparentDataEncryptionListByDatabaseOptionalParams
-  ): AsyncIterableIterator<ManagedTransparentDataEncryption> {
-    for await (const page of this.listByDatabasePagingPage(
-      resourceGroupName,
-      managedInstanceName,
-      databaseName,
-      options
-    )) {
+  private async *listByDatabasePagingAll(): AsyncIterableIterator<
+    ManagedTransparentDataEncryption
+  > {
+    for await (const page of this.listByDatabasePagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Gets a managed database's transparent data encryption.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the managed database for which the transparent data encryption is
-   *                     defined.
-   * @param tdeName The name of the transparent data encryption configuration.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    tdeName: TransparentDataEncryptionName,
-    options?: ManagedDatabaseTransparentDataEncryptionGetOptionalParams
-  ): Promise<ManagedDatabaseTransparentDataEncryptionGetResponse> {
-    return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        databaseName,
-        tdeName,
-        options
-      },
-      getOperationSpec
-    );
-  }
+  get(): Promise<ManagedDatabaseTransparentDataEncryptionGetResponse> {}
 
   /**
    * Updates a database's transparent data encryption configuration.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the managed database for which the security alert policy is defined.
-   * @param tdeName The name of the transparent data encryption configuration.
-   * @param parameters The database transparent data encryption.
-   * @param options The options parameters.
+   *
    */
-  createOrUpdate(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    tdeName: TransparentDataEncryptionName,
-    parameters: ManagedTransparentDataEncryption,
-    options?: ManagedDatabaseTransparentDataEncryptionCreateOrUpdateOptionalParams
-  ): Promise<ManagedDatabaseTransparentDataEncryptionCreateOrUpdateResponse> {
+  createOrUpdate(): Promise<
+    ManagedDatabaseTransparentDataEncryptionCreateOrUpdateResponse
+  > {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         managedInstanceName,
         databaseName,
         tdeName,
-        parameters,
         options
       },
       createOrUpdateOperationSpec
@@ -183,81 +103,23 @@ export class ManagedDatabaseTransparentDataEncryptionImpl
 
   /**
    * Gets a list of managed database's transparent data encryptions.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the managed database for which the transparent data encryption is
-   *                     defined.
-   * @param options The options parameters.
+   *
    */
-  private _listByDatabase(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    options?: ManagedDatabaseTransparentDataEncryptionListByDatabaseOptionalParams
-  ): Promise<ManagedDatabaseTransparentDataEncryptionListByDatabaseResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, managedInstanceName, databaseName, options },
-      listByDatabaseOperationSpec
-    );
-  }
+  private _listByDatabase(): Promise<
+    ManagedDatabaseTransparentDataEncryptionListByDatabaseResponse
+  > {}
 
   /**
    * ListByDatabaseNext
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the managed database for which the transparent data encryption is
-   *                     defined.
-   * @param nextLink The nextLink from the previous successful call to the ListByDatabase method.
-   * @param options The options parameters.
+   *
    */
-  private _listByDatabaseNext(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    nextLink: string,
-    options?: ManagedDatabaseTransparentDataEncryptionListByDatabaseNextOptionalParams
-  ): Promise<
+  private _listByDatabaseNext(): Promise<
     ManagedDatabaseTransparentDataEncryptionListByDatabaseNextResponse
-  > {
-    return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        databaseName,
-        nextLink,
-        options
-      },
-      listByDatabaseNextOperationSpec
-    );
-  }
+  > {}
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/databases/{databaseName}/transparentDataEncryption/{tdeName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ManagedTransparentDataEncryption
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.databaseName,
-    Parameters.managedInstanceName,
-    Parameters.tdeName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
 const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/databases/{databaseName}/transparentDataEncryption/{tdeName}",
@@ -283,47 +145,5 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const listByDatabaseOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/databases/{databaseName}/transparentDataEncryption",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ManagedTransparentDataEncryptionListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.databaseName,
-    Parameters.managedInstanceName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByDatabaseNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ManagedTransparentDataEncryptionListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.databaseName,
-    Parameters.nextLink,
-    Parameters.managedInstanceName
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };

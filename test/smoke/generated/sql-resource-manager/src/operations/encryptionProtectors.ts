@@ -16,15 +16,9 @@ import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
   EncryptionProtector,
-  EncryptionProtectorsListByServerNextOptionalParams,
-  EncryptionProtectorsListByServerOptionalParams,
   EncryptionProtectorsListByServerResponse,
-  EncryptionProtectorName,
-  EncryptionProtectorsGetOptionalParams,
   EncryptionProtectorsGetResponse,
-  EncryptionProtectorsCreateOrUpdateOptionalParams,
   EncryptionProtectorsCreateOrUpdateResponse,
-  EncryptionProtectorsRevalidateOptionalParams,
   EncryptionProtectorsListByServerNextResponse
 } from "../models";
 
@@ -43,21 +37,10 @@ export class EncryptionProtectorsImpl implements EncryptionProtectors {
 
   /**
    * Gets a list of server encryption protectors
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  public listByServer(
-    resourceGroupName: string,
-    serverName: string,
-    options?: EncryptionProtectorsListByServerOptionalParams
-  ): PagedAsyncIterableIterator<EncryptionProtector> {
-    const iter = this.listByServerPagingAll(
-      resourceGroupName,
-      serverName,
-      options
-    );
+  public listByServer(): PagedAsyncIterableIterator<EncryptionProtector> {
+    const iter = this.listByServerPagingAll();
     return {
       next() {
         return iter.next();
@@ -66,107 +49,49 @@ export class EncryptionProtectorsImpl implements EncryptionProtectors {
         return this;
       },
       byPage: () => {
-        return this.listByServerPagingPage(
-          resourceGroupName,
-          serverName,
-          options
-        );
+        return this.listByServerPagingPage();
       }
     };
   }
 
-  private async *listByServerPagingPage(
-    resourceGroupName: string,
-    serverName: string,
-    options?: EncryptionProtectorsListByServerOptionalParams
-  ): AsyncIterableIterator<EncryptionProtector[]> {
-    let result = await this._listByServer(
-      resourceGroupName,
-      serverName,
-      options
-    );
+  private async *listByServerPagingPage(): AsyncIterableIterator<
+    EncryptionProtector[]
+  > {
+    let result = await this._listByServer();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listByServerNext(
-        resourceGroupName,
-        serverName,
-        continuationToken,
-        options
-      );
+      result = await this._listByServerNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listByServerPagingAll(
-    resourceGroupName: string,
-    serverName: string,
-    options?: EncryptionProtectorsListByServerOptionalParams
-  ): AsyncIterableIterator<EncryptionProtector> {
-    for await (const page of this.listByServerPagingPage(
-      resourceGroupName,
-      serverName,
-      options
-    )) {
+  private async *listByServerPagingAll(): AsyncIterableIterator<
+    EncryptionProtector
+  > {
+    for await (const page of this.listByServerPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Gets a list of server encryption protectors
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  private _listByServer(
-    resourceGroupName: string,
-    serverName: string,
-    options?: EncryptionProtectorsListByServerOptionalParams
-  ): Promise<EncryptionProtectorsListByServerResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, options },
-      listByServerOperationSpec
-    );
-  }
+  private _listByServer(): Promise<EncryptionProtectorsListByServerResponse> {}
 
   /**
    * Gets a server encryption protector.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param encryptionProtectorName The name of the encryption protector to be retrieved.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    encryptionProtectorName: EncryptionProtectorName,
-    options?: EncryptionProtectorsGetOptionalParams
-  ): Promise<EncryptionProtectorsGetResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, encryptionProtectorName, options },
-      getOperationSpec
-    );
-  }
+  get(): Promise<EncryptionProtectorsGetResponse> {}
 
   /**
    * Updates an existing encryption protector.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param encryptionProtectorName The name of the encryption protector to be updated.
-   * @param parameters The requested encryption protector resource state.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    encryptionProtectorName: EncryptionProtectorName,
-    parameters: EncryptionProtector,
-    options?: EncryptionProtectorsCreateOrUpdateOptionalParams
-  ): Promise<
+  async beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<EncryptionProtectorsCreateOrUpdateResponse>,
       EncryptionProtectorsCreateOrUpdateResponse
@@ -213,13 +138,7 @@ export class EncryptionProtectorsImpl implements EncryptionProtectors {
 
     const lro = new LroImpl(
       sendOperation,
-      {
-        resourceGroupName,
-        serverName,
-        encryptionProtectorName,
-        parameters,
-        options
-      },
+      { resourceGroupName, serverName, encryptionProtectorName, options },
       createOrUpdateOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -232,183 +151,43 @@ export class EncryptionProtectorsImpl implements EncryptionProtectors {
 
   /**
    * Updates an existing encryption protector.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param encryptionProtectorName The name of the encryption protector to be updated.
-   * @param parameters The requested encryption protector resource state.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    encryptionProtectorName: EncryptionProtectorName,
-    parameters: EncryptionProtector,
-    options?: EncryptionProtectorsCreateOrUpdateOptionalParams
-  ): Promise<EncryptionProtectorsCreateOrUpdateResponse> {
-    const poller = await this.beginCreateOrUpdate(
-      resourceGroupName,
-      serverName,
-      encryptionProtectorName,
-      parameters,
-      options
-    );
+  async beginCreateOrUpdateAndWait(): Promise<
+    EncryptionProtectorsCreateOrUpdateResponse
+  > {
+    const poller = await this.beginCreateOrUpdate();
     return poller.pollUntilDone();
   }
 
   /**
    * Revalidates an existing encryption protector.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param encryptionProtectorName The name of the encryption protector to be updated.
-   * @param options The options parameters.
+   *
    */
-  async beginRevalidate(
-    resourceGroupName: string,
-    serverName: string,
-    encryptionProtectorName: EncryptionProtectorName,
-    options?: EncryptionProtectorsRevalidateOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<void> => {
-      return this.client.sendOperationRequest(args, spec);
-    };
-    const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return {
-        flatResponse,
-        rawResponse: {
-          statusCode: currentRawResponse!.status,
-          body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
-      };
-    };
-
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, serverName, encryptionProtectorName, options },
-      revalidateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
-    });
-    await poller.poll();
-    return poller;
-  }
+  async beginRevalidate(): Promise<
+    PollerLike<PollOperationState<void>, void>
+  > {}
 
   /**
    * Revalidates an existing encryption protector.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param encryptionProtectorName The name of the encryption protector to be updated.
-   * @param options The options parameters.
+   *
    */
-  async beginRevalidateAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    encryptionProtectorName: EncryptionProtectorName,
-    options?: EncryptionProtectorsRevalidateOptionalParams
-  ): Promise<void> {
-    const poller = await this.beginRevalidate(
-      resourceGroupName,
-      serverName,
-      encryptionProtectorName,
-      options
-    );
+  async beginRevalidateAndWait(): Promise<void> {
+    const poller = await this.beginRevalidate();
     return poller.pollUntilDone();
   }
 
   /**
    * ListByServerNext
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param nextLink The nextLink from the previous successful call to the ListByServer method.
-   * @param options The options parameters.
+   *
    */
-  private _listByServerNext(
-    resourceGroupName: string,
-    serverName: string,
-    nextLink: string,
-    options?: EncryptionProtectorsListByServerNextOptionalParams
-  ): Promise<EncryptionProtectorsListByServerNextResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, nextLink, options },
-      listByServerNextOperationSpec
-    );
-  }
+  private _listByServerNext(): Promise<
+    EncryptionProtectorsListByServerNextResponse
+  > {}
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listByServerOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/encryptionProtector",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.EncryptionProtectorListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/encryptionProtector/{encryptionProtectorName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.EncryptionProtector
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.encryptionProtectorName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
 const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/encryptionProtector/{encryptionProtectorName}",
@@ -439,40 +218,5 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const revalidateOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/encryptionProtector/{encryptionProtectorName}/revalidate",
-  httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.encryptionProtectorName
-  ],
-  serializer
-};
-const listByServerNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.EncryptionProtectorListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.nextLink
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };

@@ -10,18 +10,9 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ManagedDatabase,
-  ManagedDatabasesListByInstanceOptionalParams,
-  ManagedDatabasesListInaccessibleByInstanceOptionalParams,
-  ManagedDatabasesGetOptionalParams,
   ManagedDatabasesGetResponse,
-  ManagedDatabasesCreateOrUpdateOptionalParams,
   ManagedDatabasesCreateOrUpdateResponse,
-  ManagedDatabasesDeleteOptionalParams,
-  ManagedDatabaseUpdate,
-  ManagedDatabasesUpdateOptionalParams,
-  ManagedDatabasesUpdateResponse,
-  CompleteDatabaseRestoreDefinition,
-  ManagedDatabasesCompleteRestoreOptionalParams
+  ManagedDatabasesUpdateResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -29,58 +20,24 @@ import {
 export interface ManagedDatabases {
   /**
    * Gets a list of managed databases.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param options The options parameters.
+   *
    */
-  listByInstance(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    options?: ManagedDatabasesListByInstanceOptionalParams
-  ): PagedAsyncIterableIterator<ManagedDatabase>;
+  listByInstance(): PagedAsyncIterableIterator<ManagedDatabase>;
   /**
    * Gets a list of inaccessible managed databases in a managed instance
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param options The options parameters.
+   *
    */
-  listInaccessibleByInstance(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    options?: ManagedDatabasesListInaccessibleByInstanceOptionalParams
-  ): PagedAsyncIterableIterator<ManagedDatabase>;
+  listInaccessibleByInstance(): PagedAsyncIterableIterator<ManagedDatabase>;
   /**
    * Gets a managed database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the database.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    options?: ManagedDatabasesGetOptionalParams
-  ): Promise<ManagedDatabasesGetResponse>;
+  get(): Promise<ManagedDatabasesGetResponse>;
   /**
    * Creates a new database or updates an existing database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the database.
-   * @param parameters The requested database resource state.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdate(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    parameters: ManagedDatabase,
-    options?: ManagedDatabasesCreateOrUpdateOptionalParams
-  ): Promise<
+  beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<ManagedDatabasesCreateOrUpdateResponse>,
       ManagedDatabasesCreateOrUpdateResponse
@@ -88,64 +45,24 @@ export interface ManagedDatabases {
   >;
   /**
    * Creates a new database or updates an existing database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the database.
-   * @param parameters The requested database resource state.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    parameters: ManagedDatabase,
-    options?: ManagedDatabasesCreateOrUpdateOptionalParams
-  ): Promise<ManagedDatabasesCreateOrUpdateResponse>;
+  beginCreateOrUpdateAndWait(): Promise<ManagedDatabasesCreateOrUpdateResponse>;
   /**
    * Deletes a managed database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the database.
-   * @param options The options parameters.
+   *
    */
-  beginDelete(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    options?: ManagedDatabasesDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  beginDelete(): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes a managed database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the database.
-   * @param options The options parameters.
+   *
    */
-  beginDeleteAndWait(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    options?: ManagedDatabasesDeleteOptionalParams
-  ): Promise<void>;
+  beginDeleteAndWait(): Promise<void>;
   /**
    * Updates an existing database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the database.
-   * @param parameters The requested database resource state.
-   * @param options The options parameters.
+   *
    */
-  beginUpdate(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    parameters: ManagedDatabaseUpdate,
-    options?: ManagedDatabasesUpdateOptionalParams
-  ): Promise<
+  beginUpdate(): Promise<
     PollerLike<
       PollOperationState<ManagedDatabasesUpdateResponse>,
       ManagedDatabasesUpdateResponse
@@ -153,50 +70,17 @@ export interface ManagedDatabases {
   >;
   /**
    * Updates an existing database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the database.
-   * @param parameters The requested database resource state.
-   * @param options The options parameters.
+   *
    */
-  beginUpdateAndWait(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    parameters: ManagedDatabaseUpdate,
-    options?: ManagedDatabasesUpdateOptionalParams
-  ): Promise<ManagedDatabasesUpdateResponse>;
+  beginUpdateAndWait(): Promise<ManagedDatabasesUpdateResponse>;
   /**
    * Completes the restore operation on a managed database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the database.
-   * @param parameters The definition for completing the restore of this managed database.
-   * @param options The options parameters.
+   *
    */
-  beginCompleteRestore(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    parameters: CompleteDatabaseRestoreDefinition,
-    options?: ManagedDatabasesCompleteRestoreOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  beginCompleteRestore(): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Completes the restore operation on a managed database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the database.
-   * @param parameters The definition for completing the restore of this managed database.
-   * @param options The options parameters.
+   *
    */
-  beginCompleteRestoreAndWait(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    parameters: CompleteDatabaseRestoreDefinition,
-    options?: ManagedDatabasesCompleteRestoreOptionalParams
-  ): Promise<void>;
+  beginCompleteRestoreAndWait(): Promise<void>;
 }

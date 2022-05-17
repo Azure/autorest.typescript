@@ -14,12 +14,7 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import {
   LogicalDatabaseTransparentDataEncryption,
-  TransparentDataEncryptionsListByDatabaseNextOptionalParams,
-  TransparentDataEncryptionsListByDatabaseOptionalParams,
-  TransparentDataEncryptionName,
-  TransparentDataEncryptionsGetOptionalParams,
   TransparentDataEncryptionsGetResponse,
-  TransparentDataEncryptionsCreateOrUpdateOptionalParams,
   TransparentDataEncryptionsCreateOrUpdateResponse,
   TransparentDataEncryptionsListByDatabaseResponse,
   TransparentDataEncryptionsListByDatabaseNextResponse
@@ -41,25 +36,12 @@ export class TransparentDataEncryptionsImpl
 
   /**
    * Gets a list of the logical database's transparent data encryption.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the logical database for which the transparent data encryption is
-   *                     defined.
-   * @param options The options parameters.
+   *
    */
-  public listByDatabase(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: TransparentDataEncryptionsListByDatabaseOptionalParams
-  ): PagedAsyncIterableIterator<LogicalDatabaseTransparentDataEncryption> {
-    const iter = this.listByDatabasePagingAll(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      options
-    );
+  public listByDatabase(): PagedAsyncIterableIterator<
+    LogicalDatabaseTransparentDataEncryption
+  > {
+    const iter = this.listByDatabasePagingAll();
     return {
       next() {
         return iter.next();
@@ -68,182 +50,68 @@ export class TransparentDataEncryptionsImpl
         return this;
       },
       byPage: () => {
-        return this.listByDatabasePagingPage(
-          resourceGroupName,
-          serverName,
-          databaseName,
-          options
-        );
+        return this.listByDatabasePagingPage();
       }
     };
   }
 
-  private async *listByDatabasePagingPage(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: TransparentDataEncryptionsListByDatabaseOptionalParams
-  ): AsyncIterableIterator<LogicalDatabaseTransparentDataEncryption[]> {
-    let result = await this._listByDatabase(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      options
-    );
+  private async *listByDatabasePagingPage(): AsyncIterableIterator<
+    LogicalDatabaseTransparentDataEncryption[]
+  > {
+    let result = await this._listByDatabase();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listByDatabaseNext(
-        resourceGroupName,
-        serverName,
-        databaseName,
-        continuationToken,
-        options
-      );
+      result = await this._listByDatabaseNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listByDatabasePagingAll(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: TransparentDataEncryptionsListByDatabaseOptionalParams
-  ): AsyncIterableIterator<LogicalDatabaseTransparentDataEncryption> {
-    for await (const page of this.listByDatabasePagingPage(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      options
-    )) {
+  private async *listByDatabasePagingAll(): AsyncIterableIterator<
+    LogicalDatabaseTransparentDataEncryption
+  > {
+    for await (const page of this.listByDatabasePagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Gets a logical database's transparent data encryption.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the logical database for which the transparent data encryption is
-   *                     defined.
-   * @param tdeName The name of the transparent data encryption configuration.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    tdeName: TransparentDataEncryptionName,
-    options?: TransparentDataEncryptionsGetOptionalParams
-  ): Promise<TransparentDataEncryptionsGetResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, databaseName, tdeName, options },
-      getOperationSpec
-    );
-  }
+  get(): Promise<TransparentDataEncryptionsGetResponse> {}
 
   /**
    * Updates a logical database's transparent data encryption configuration.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the logical database for which the security alert policy is defined.
-   * @param tdeName The name of the transparent data encryption configuration.
-   * @param parameters The database transparent data encryption.
-   * @param options The options parameters.
+   *
    */
-  createOrUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    tdeName: TransparentDataEncryptionName,
-    parameters: LogicalDatabaseTransparentDataEncryption,
-    options?: TransparentDataEncryptionsCreateOrUpdateOptionalParams
-  ): Promise<TransparentDataEncryptionsCreateOrUpdateResponse> {
+  createOrUpdate(): Promise<TransparentDataEncryptionsCreateOrUpdateResponse> {
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        tdeName,
-        parameters,
-        options
-      },
+      { resourceGroupName, serverName, databaseName, tdeName, options },
       createOrUpdateOperationSpec
     );
   }
 
   /**
    * Gets a list of the logical database's transparent data encryption.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the logical database for which the transparent data encryption is
-   *                     defined.
-   * @param options The options parameters.
+   *
    */
-  private _listByDatabase(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: TransparentDataEncryptionsListByDatabaseOptionalParams
-  ): Promise<TransparentDataEncryptionsListByDatabaseResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, databaseName, options },
-      listByDatabaseOperationSpec
-    );
-  }
+  private _listByDatabase(): Promise<
+    TransparentDataEncryptionsListByDatabaseResponse
+  > {}
 
   /**
    * ListByDatabaseNext
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the logical database for which the transparent data encryption is
-   *                     defined.
-   * @param nextLink The nextLink from the previous successful call to the ListByDatabase method.
-   * @param options The options parameters.
+   *
    */
-  private _listByDatabaseNext(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    nextLink: string,
-    options?: TransparentDataEncryptionsListByDatabaseNextOptionalParams
-  ): Promise<TransparentDataEncryptionsListByDatabaseNextResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, databaseName, nextLink, options },
-      listByDatabaseNextOperationSpec
-    );
-  }
+  private _listByDatabaseNext(): Promise<
+    TransparentDataEncryptionsListByDatabaseNextResponse
+  > {}
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/transparentDataEncryption/{tdeName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.LogicalDatabaseTransparentDataEncryption
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion3],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.databaseName,
-    Parameters.tdeName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
 const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/transparentDataEncryption/{tdeName}",
@@ -270,47 +138,5 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const listByDatabaseOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/transparentDataEncryption",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.LogicalDatabaseTransparentDataEncryptionListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion3],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.databaseName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByDatabaseNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.LogicalDatabaseTransparentDataEncryptionListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion3],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.databaseName,
-    Parameters.nextLink
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };

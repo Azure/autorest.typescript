@@ -16,14 +16,9 @@ import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
   ManagedInstanceKey,
-  ManagedInstanceKeysListByInstanceNextOptionalParams,
-  ManagedInstanceKeysListByInstanceOptionalParams,
   ManagedInstanceKeysListByInstanceResponse,
-  ManagedInstanceKeysGetOptionalParams,
   ManagedInstanceKeysGetResponse,
-  ManagedInstanceKeysCreateOrUpdateOptionalParams,
   ManagedInstanceKeysCreateOrUpdateResponse,
-  ManagedInstanceKeysDeleteOptionalParams,
   ManagedInstanceKeysListByInstanceNextResponse
 } from "../models";
 
@@ -42,21 +37,10 @@ export class ManagedInstanceKeysImpl implements ManagedInstanceKeys {
 
   /**
    * Gets a list of managed instance keys.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param options The options parameters.
+   *
    */
-  public listByInstance(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    options?: ManagedInstanceKeysListByInstanceOptionalParams
-  ): PagedAsyncIterableIterator<ManagedInstanceKey> {
-    const iter = this.listByInstancePagingAll(
-      resourceGroupName,
-      managedInstanceName,
-      options
-    );
+  public listByInstance(): PagedAsyncIterableIterator<ManagedInstanceKey> {
+    const iter = this.listByInstancePagingAll();
     return {
       next() {
         return iter.next();
@@ -65,107 +49,51 @@ export class ManagedInstanceKeysImpl implements ManagedInstanceKeys {
         return this;
       },
       byPage: () => {
-        return this.listByInstancePagingPage(
-          resourceGroupName,
-          managedInstanceName,
-          options
-        );
+        return this.listByInstancePagingPage();
       }
     };
   }
 
-  private async *listByInstancePagingPage(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    options?: ManagedInstanceKeysListByInstanceOptionalParams
-  ): AsyncIterableIterator<ManagedInstanceKey[]> {
-    let result = await this._listByInstance(
-      resourceGroupName,
-      managedInstanceName,
-      options
-    );
+  private async *listByInstancePagingPage(): AsyncIterableIterator<
+    ManagedInstanceKey[]
+  > {
+    let result = await this._listByInstance();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listByInstanceNext(
-        resourceGroupName,
-        managedInstanceName,
-        continuationToken,
-        options
-      );
+      result = await this._listByInstanceNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listByInstancePagingAll(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    options?: ManagedInstanceKeysListByInstanceOptionalParams
-  ): AsyncIterableIterator<ManagedInstanceKey> {
-    for await (const page of this.listByInstancePagingPage(
-      resourceGroupName,
-      managedInstanceName,
-      options
-    )) {
+  private async *listByInstancePagingAll(): AsyncIterableIterator<
+    ManagedInstanceKey
+  > {
+    for await (const page of this.listByInstancePagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Gets a list of managed instance keys.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param options The options parameters.
+   *
    */
-  private _listByInstance(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    options?: ManagedInstanceKeysListByInstanceOptionalParams
-  ): Promise<ManagedInstanceKeysListByInstanceResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, managedInstanceName, options },
-      listByInstanceOperationSpec
-    );
-  }
+  private _listByInstance(): Promise<
+    ManagedInstanceKeysListByInstanceResponse
+  > {}
 
   /**
    * Gets a managed instance key.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param keyName The name of the managed instance key to be retrieved.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    keyName: string,
-    options?: ManagedInstanceKeysGetOptionalParams
-  ): Promise<ManagedInstanceKeysGetResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, managedInstanceName, keyName, options },
-      getOperationSpec
-    );
-  }
+  get(): Promise<ManagedInstanceKeysGetResponse> {}
 
   /**
    * Creates or updates a managed instance key.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param keyName The name of the managed instance key to be operated on (updated or created).
-   * @param parameters The requested managed instance key resource state.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdate(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    keyName: string,
-    parameters: ManagedInstanceKey,
-    options?: ManagedInstanceKeysCreateOrUpdateOptionalParams
-  ): Promise<
+  async beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<ManagedInstanceKeysCreateOrUpdateResponse>,
       ManagedInstanceKeysCreateOrUpdateResponse
@@ -212,7 +140,7 @@ export class ManagedInstanceKeysImpl implements ManagedInstanceKeys {
 
     const lro = new LroImpl(
       sendOperation,
-      { resourceGroupName, managedInstanceName, keyName, parameters, options },
+      { resourceGroupName, managedInstanceName, keyName, options },
       createOrUpdateOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -225,183 +153,41 @@ export class ManagedInstanceKeysImpl implements ManagedInstanceKeys {
 
   /**
    * Creates or updates a managed instance key.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param keyName The name of the managed instance key to be operated on (updated or created).
-   * @param parameters The requested managed instance key resource state.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    keyName: string,
-    parameters: ManagedInstanceKey,
-    options?: ManagedInstanceKeysCreateOrUpdateOptionalParams
-  ): Promise<ManagedInstanceKeysCreateOrUpdateResponse> {
-    const poller = await this.beginCreateOrUpdate(
-      resourceGroupName,
-      managedInstanceName,
-      keyName,
-      parameters,
-      options
-    );
+  async beginCreateOrUpdateAndWait(): Promise<
+    ManagedInstanceKeysCreateOrUpdateResponse
+  > {
+    const poller = await this.beginCreateOrUpdate();
     return poller.pollUntilDone();
   }
 
   /**
    * Deletes the managed instance key with the given name.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param keyName The name of the managed instance key to be deleted.
-   * @param options The options parameters.
+   *
    */
-  async beginDelete(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    keyName: string,
-    options?: ManagedInstanceKeysDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<void> => {
-      return this.client.sendOperationRequest(args, spec);
-    };
-    const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return {
-        flatResponse,
-        rawResponse: {
-          statusCode: currentRawResponse!.status,
-          body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
-      };
-    };
-
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, managedInstanceName, keyName, options },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
-    });
-    await poller.poll();
-    return poller;
-  }
+  async beginDelete(): Promise<PollerLike<PollOperationState<void>, void>> {}
 
   /**
    * Deletes the managed instance key with the given name.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param keyName The name of the managed instance key to be deleted.
-   * @param options The options parameters.
+   *
    */
-  async beginDeleteAndWait(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    keyName: string,
-    options?: ManagedInstanceKeysDeleteOptionalParams
-  ): Promise<void> {
-    const poller = await this.beginDelete(
-      resourceGroupName,
-      managedInstanceName,
-      keyName,
-      options
-    );
+  async beginDeleteAndWait(): Promise<void> {
+    const poller = await this.beginDelete();
     return poller.pollUntilDone();
   }
 
   /**
    * ListByInstanceNext
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param nextLink The nextLink from the previous successful call to the ListByInstance method.
-   * @param options The options parameters.
+   *
    */
-  private _listByInstanceNext(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    nextLink: string,
-    options?: ManagedInstanceKeysListByInstanceNextOptionalParams
-  ): Promise<ManagedInstanceKeysListByInstanceNextResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, managedInstanceName, nextLink, options },
-      listByInstanceNextOperationSpec
-    );
-  }
+  private _listByInstanceNext(): Promise<
+    ManagedInstanceKeysListByInstanceNextResponse
+  > {}
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listByInstanceOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/keys",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ManagedInstanceKeyListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2, Parameters.filter1],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.managedInstanceName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/keys/{keyName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ManagedInstanceKey
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.managedInstanceName,
-    Parameters.keyName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
 const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/keys/{keyName}",
@@ -432,40 +218,5 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const deleteOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/keys/{keyName}",
-  httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.managedInstanceName,
-    Parameters.keyName
-  ],
-  serializer
-};
-const listByInstanceNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ManagedInstanceKeyListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2, Parameters.filter1],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.nextLink,
-    Parameters.managedInstanceName
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };

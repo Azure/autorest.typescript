@@ -16,13 +16,8 @@ import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
   VirtualNetworkRule,
-  VirtualNetworkRulesListByServerNextOptionalParams,
-  VirtualNetworkRulesListByServerOptionalParams,
-  VirtualNetworkRulesGetOptionalParams,
   VirtualNetworkRulesGetResponse,
-  VirtualNetworkRulesCreateOrUpdateOptionalParams,
   VirtualNetworkRulesCreateOrUpdateResponse,
-  VirtualNetworkRulesDeleteOptionalParams,
   VirtualNetworkRulesListByServerResponse,
   VirtualNetworkRulesListByServerNextResponse
 } from "../models";
@@ -42,21 +37,10 @@ export class VirtualNetworkRulesImpl implements VirtualNetworkRules {
 
   /**
    * Gets a list of virtual network rules in a server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  public listByServer(
-    resourceGroupName: string,
-    serverName: string,
-    options?: VirtualNetworkRulesListByServerOptionalParams
-  ): PagedAsyncIterableIterator<VirtualNetworkRule> {
-    const iter = this.listByServerPagingAll(
-      resourceGroupName,
-      serverName,
-      options
-    );
+  public listByServer(): PagedAsyncIterableIterator<VirtualNetworkRule> {
+    const iter = this.listByServerPagingAll();
     return {
       next() {
         return iter.next();
@@ -65,89 +49,43 @@ export class VirtualNetworkRulesImpl implements VirtualNetworkRules {
         return this;
       },
       byPage: () => {
-        return this.listByServerPagingPage(
-          resourceGroupName,
-          serverName,
-          options
-        );
+        return this.listByServerPagingPage();
       }
     };
   }
 
-  private async *listByServerPagingPage(
-    resourceGroupName: string,
-    serverName: string,
-    options?: VirtualNetworkRulesListByServerOptionalParams
-  ): AsyncIterableIterator<VirtualNetworkRule[]> {
-    let result = await this._listByServer(
-      resourceGroupName,
-      serverName,
-      options
-    );
+  private async *listByServerPagingPage(): AsyncIterableIterator<
+    VirtualNetworkRule[]
+  > {
+    let result = await this._listByServer();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listByServerNext(
-        resourceGroupName,
-        serverName,
-        continuationToken,
-        options
-      );
+      result = await this._listByServerNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listByServerPagingAll(
-    resourceGroupName: string,
-    serverName: string,
-    options?: VirtualNetworkRulesListByServerOptionalParams
-  ): AsyncIterableIterator<VirtualNetworkRule> {
-    for await (const page of this.listByServerPagingPage(
-      resourceGroupName,
-      serverName,
-      options
-    )) {
+  private async *listByServerPagingAll(): AsyncIterableIterator<
+    VirtualNetworkRule
+  > {
+    for await (const page of this.listByServerPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Gets a virtual network rule.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param virtualNetworkRuleName The name of the virtual network rule.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    virtualNetworkRuleName: string,
-    options?: VirtualNetworkRulesGetOptionalParams
-  ): Promise<VirtualNetworkRulesGetResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, virtualNetworkRuleName, options },
-      getOperationSpec
-    );
-  }
+  get(): Promise<VirtualNetworkRulesGetResponse> {}
 
   /**
    * Creates or updates an existing virtual network rule.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param virtualNetworkRuleName The name of the virtual network rule.
-   * @param parameters The requested virtual Network Rule Resource state.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    virtualNetworkRuleName: string,
-    parameters: VirtualNetworkRule,
-    options?: VirtualNetworkRulesCreateOrUpdateOptionalParams
-  ): Promise<
+  async beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<VirtualNetworkRulesCreateOrUpdateResponse>,
       VirtualNetworkRulesCreateOrUpdateResponse
@@ -194,13 +132,7 @@ export class VirtualNetworkRulesImpl implements VirtualNetworkRules {
 
     const lro = new LroImpl(
       sendOperation,
-      {
-        resourceGroupName,
-        serverName,
-        virtualNetworkRuleName,
-        parameters,
-        options
-      },
+      { resourceGroupName, serverName, virtualNetworkRuleName, options },
       createOrUpdateOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -213,181 +145,47 @@ export class VirtualNetworkRulesImpl implements VirtualNetworkRules {
 
   /**
    * Creates or updates an existing virtual network rule.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param virtualNetworkRuleName The name of the virtual network rule.
-   * @param parameters The requested virtual Network Rule Resource state.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    virtualNetworkRuleName: string,
-    parameters: VirtualNetworkRule,
-    options?: VirtualNetworkRulesCreateOrUpdateOptionalParams
-  ): Promise<VirtualNetworkRulesCreateOrUpdateResponse> {
-    const poller = await this.beginCreateOrUpdate(
-      resourceGroupName,
-      serverName,
-      virtualNetworkRuleName,
-      parameters,
-      options
-    );
+  async beginCreateOrUpdateAndWait(): Promise<
+    VirtualNetworkRulesCreateOrUpdateResponse
+  > {
+    const poller = await this.beginCreateOrUpdate();
     return poller.pollUntilDone();
   }
 
   /**
    * Deletes the virtual network rule with the given name.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param virtualNetworkRuleName The name of the virtual network rule.
-   * @param options The options parameters.
+   *
    */
-  async beginDelete(
-    resourceGroupName: string,
-    serverName: string,
-    virtualNetworkRuleName: string,
-    options?: VirtualNetworkRulesDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<void> => {
-      return this.client.sendOperationRequest(args, spec);
-    };
-    const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return {
-        flatResponse,
-        rawResponse: {
-          statusCode: currentRawResponse!.status,
-          body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
-      };
-    };
-
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, serverName, virtualNetworkRuleName, options },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
-    });
-    await poller.poll();
-    return poller;
-  }
+  async beginDelete(): Promise<PollerLike<PollOperationState<void>, void>> {}
 
   /**
    * Deletes the virtual network rule with the given name.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param virtualNetworkRuleName The name of the virtual network rule.
-   * @param options The options parameters.
+   *
    */
-  async beginDeleteAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    virtualNetworkRuleName: string,
-    options?: VirtualNetworkRulesDeleteOptionalParams
-  ): Promise<void> {
-    const poller = await this.beginDelete(
-      resourceGroupName,
-      serverName,
-      virtualNetworkRuleName,
-      options
-    );
+  async beginDeleteAndWait(): Promise<void> {
+    const poller = await this.beginDelete();
     return poller.pollUntilDone();
   }
 
   /**
    * Gets a list of virtual network rules in a server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  private _listByServer(
-    resourceGroupName: string,
-    serverName: string,
-    options?: VirtualNetworkRulesListByServerOptionalParams
-  ): Promise<VirtualNetworkRulesListByServerResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, options },
-      listByServerOperationSpec
-    );
-  }
+  private _listByServer(): Promise<VirtualNetworkRulesListByServerResponse> {}
 
   /**
    * ListByServerNext
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param nextLink The nextLink from the previous successful call to the ListByServer method.
-   * @param options The options parameters.
+   *
    */
-  private _listByServerNext(
-    resourceGroupName: string,
-    serverName: string,
-    nextLink: string,
-    options?: VirtualNetworkRulesListByServerNextOptionalParams
-  ): Promise<VirtualNetworkRulesListByServerNextResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, nextLink, options },
-      listByServerNextOperationSpec
-    );
-  }
+  private _listByServerNext(): Promise<
+    VirtualNetworkRulesListByServerNextResponse
+  > {}
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/virtualNetworkRules/{virtualNetworkRuleName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.VirtualNetworkRule
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.virtualNetworkRuleName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
 const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/virtualNetworkRules/{virtualNetworkRuleName}",
@@ -418,60 +216,5 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const deleteOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/virtualNetworkRules/{virtualNetworkRuleName}",
-  httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.virtualNetworkRuleName
-  ],
-  serializer
-};
-const listByServerOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/virtualNetworkRules",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.VirtualNetworkRuleListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByServerNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.VirtualNetworkRuleListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.nextLink
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };

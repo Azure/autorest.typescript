@@ -16,13 +16,8 @@ import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
   ManagedInstancePrivateEndpointConnection,
-  ManagedInstancePrivateEndpointConnectionsListByManagedInstanceNextOptionalParams,
-  ManagedInstancePrivateEndpointConnectionsListByManagedInstanceOptionalParams,
-  ManagedInstancePrivateEndpointConnectionsGetOptionalParams,
   ManagedInstancePrivateEndpointConnectionsGetResponse,
-  ManagedInstancePrivateEndpointConnectionsCreateOrUpdateOptionalParams,
   ManagedInstancePrivateEndpointConnectionsCreateOrUpdateResponse,
-  ManagedInstancePrivateEndpointConnectionsDeleteOptionalParams,
   ManagedInstancePrivateEndpointConnectionsListByManagedInstanceResponse,
   ManagedInstancePrivateEndpointConnectionsListByManagedInstanceNextResponse
 } from "../models";
@@ -43,21 +38,12 @@ export class ManagedInstancePrivateEndpointConnectionsImpl
 
   /**
    * Gets all private endpoint connections on a server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param options The options parameters.
+   *
    */
-  public listByManagedInstance(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    options?: ManagedInstancePrivateEndpointConnectionsListByManagedInstanceOptionalParams
-  ): PagedAsyncIterableIterator<ManagedInstancePrivateEndpointConnection> {
-    const iter = this.listByManagedInstancePagingAll(
-      resourceGroupName,
-      managedInstanceName,
-      options
-    );
+  public listByManagedInstance(): PagedAsyncIterableIterator<
+    ManagedInstancePrivateEndpointConnection
+  > {
+    const iter = this.listByManagedInstancePagingAll();
     return {
       next() {
         return iter.next();
@@ -66,94 +52,43 @@ export class ManagedInstancePrivateEndpointConnectionsImpl
         return this;
       },
       byPage: () => {
-        return this.listByManagedInstancePagingPage(
-          resourceGroupName,
-          managedInstanceName,
-          options
-        );
+        return this.listByManagedInstancePagingPage();
       }
     };
   }
 
-  private async *listByManagedInstancePagingPage(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    options?: ManagedInstancePrivateEndpointConnectionsListByManagedInstanceOptionalParams
-  ): AsyncIterableIterator<ManagedInstancePrivateEndpointConnection[]> {
-    let result = await this._listByManagedInstance(
-      resourceGroupName,
-      managedInstanceName,
-      options
-    );
+  private async *listByManagedInstancePagingPage(): AsyncIterableIterator<
+    ManagedInstancePrivateEndpointConnection[]
+  > {
+    let result = await this._listByManagedInstance();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listByManagedInstanceNext(
-        resourceGroupName,
-        managedInstanceName,
-        continuationToken,
-        options
-      );
+      result = await this._listByManagedInstanceNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listByManagedInstancePagingAll(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    options?: ManagedInstancePrivateEndpointConnectionsListByManagedInstanceOptionalParams
-  ): AsyncIterableIterator<ManagedInstancePrivateEndpointConnection> {
-    for await (const page of this.listByManagedInstancePagingPage(
-      resourceGroupName,
-      managedInstanceName,
-      options
-    )) {
+  private async *listByManagedInstancePagingAll(): AsyncIterableIterator<
+    ManagedInstancePrivateEndpointConnection
+  > {
+    for await (const page of this.listByManagedInstancePagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Gets a private endpoint connection.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param privateEndpointConnectionName The name of the private endpoint connection.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    privateEndpointConnectionName: string,
-    options?: ManagedInstancePrivateEndpointConnectionsGetOptionalParams
-  ): Promise<ManagedInstancePrivateEndpointConnectionsGetResponse> {
-    return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        privateEndpointConnectionName,
-        options
-      },
-      getOperationSpec
-    );
-  }
+  get(): Promise<ManagedInstancePrivateEndpointConnectionsGetResponse> {}
 
   /**
    * Approve or reject a private endpoint connection with a given name.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param privateEndpointConnectionName
-   * @param parameters A private endpoint connection
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdate(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    privateEndpointConnectionName: string,
-    parameters: ManagedInstancePrivateEndpointConnection,
-    options?: ManagedInstancePrivateEndpointConnectionsCreateOrUpdateOptionalParams
-  ): Promise<
+  async beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<
         ManagedInstancePrivateEndpointConnectionsCreateOrUpdateResponse
@@ -206,7 +141,6 @@ export class ManagedInstancePrivateEndpointConnectionsImpl
         resourceGroupName,
         managedInstanceName,
         privateEndpointConnectionName,
-        parameters,
         options
       },
       createOrUpdateOperationSpec
@@ -221,190 +155,49 @@ export class ManagedInstancePrivateEndpointConnectionsImpl
 
   /**
    * Approve or reject a private endpoint connection with a given name.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param privateEndpointConnectionName
-   * @param parameters A private endpoint connection
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    privateEndpointConnectionName: string,
-    parameters: ManagedInstancePrivateEndpointConnection,
-    options?: ManagedInstancePrivateEndpointConnectionsCreateOrUpdateOptionalParams
-  ): Promise<ManagedInstancePrivateEndpointConnectionsCreateOrUpdateResponse> {
-    const poller = await this.beginCreateOrUpdate(
-      resourceGroupName,
-      managedInstanceName,
-      privateEndpointConnectionName,
-      parameters,
-      options
-    );
+  async beginCreateOrUpdateAndWait(): Promise<
+    ManagedInstancePrivateEndpointConnectionsCreateOrUpdateResponse
+  > {
+    const poller = await this.beginCreateOrUpdate();
     return poller.pollUntilDone();
   }
 
   /**
    * Deletes a private endpoint connection with a given name.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param privateEndpointConnectionName
-   * @param options The options parameters.
+   *
    */
-  async beginDelete(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    privateEndpointConnectionName: string,
-    options?: ManagedInstancePrivateEndpointConnectionsDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<void> => {
-      return this.client.sendOperationRequest(args, spec);
-    };
-    const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return {
-        flatResponse,
-        rawResponse: {
-          statusCode: currentRawResponse!.status,
-          body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
-      };
-    };
-
-    const lro = new LroImpl(
-      sendOperation,
-      {
-        resourceGroupName,
-        managedInstanceName,
-        privateEndpointConnectionName,
-        options
-      },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
-    });
-    await poller.poll();
-    return poller;
-  }
+  async beginDelete(): Promise<PollerLike<PollOperationState<void>, void>> {}
 
   /**
    * Deletes a private endpoint connection with a given name.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param privateEndpointConnectionName
-   * @param options The options parameters.
+   *
    */
-  async beginDeleteAndWait(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    privateEndpointConnectionName: string,
-    options?: ManagedInstancePrivateEndpointConnectionsDeleteOptionalParams
-  ): Promise<void> {
-    const poller = await this.beginDelete(
-      resourceGroupName,
-      managedInstanceName,
-      privateEndpointConnectionName,
-      options
-    );
+  async beginDeleteAndWait(): Promise<void> {
+    const poller = await this.beginDelete();
     return poller.pollUntilDone();
   }
 
   /**
    * Gets all private endpoint connections on a server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param options The options parameters.
+   *
    */
-  private _listByManagedInstance(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    options?: ManagedInstancePrivateEndpointConnectionsListByManagedInstanceOptionalParams
-  ): Promise<
+  private _listByManagedInstance(): Promise<
     ManagedInstancePrivateEndpointConnectionsListByManagedInstanceResponse
-  > {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, managedInstanceName, options },
-      listByManagedInstanceOperationSpec
-    );
-  }
+  > {}
 
   /**
    * ListByManagedInstanceNext
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param nextLink The nextLink from the previous successful call to the ListByManagedInstance method.
-   * @param options The options parameters.
+   *
    */
-  private _listByManagedInstanceNext(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    nextLink: string,
-    options?: ManagedInstancePrivateEndpointConnectionsListByManagedInstanceNextOptionalParams
-  ): Promise<
+  private _listByManagedInstanceNext(): Promise<
     ManagedInstancePrivateEndpointConnectionsListByManagedInstanceNextResponse
-  > {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, managedInstanceName, nextLink, options },
-      listByManagedInstanceNextOperationSpec
-    );
-  }
+  > {}
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/privateEndpointConnections/{privateEndpointConnectionName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ManagedInstancePrivateEndpointConnection
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.managedInstanceName,
-    Parameters.privateEndpointConnectionName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
 const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/privateEndpointConnections/{privateEndpointConnectionName}",
@@ -435,60 +228,5 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const deleteOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/privateEndpointConnections/{privateEndpointConnectionName}",
-  httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.managedInstanceName,
-    Parameters.privateEndpointConnectionName
-  ],
-  serializer
-};
-const listByManagedInstanceOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/privateEndpointConnections",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ManagedInstancePrivateEndpointConnectionListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.managedInstanceName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByManagedInstanceNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ManagedInstancePrivateEndpointConnectionListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.nextLink,
-    Parameters.managedInstanceName
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };

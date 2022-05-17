@@ -10,23 +10,14 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { Providers } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
 import { ResourceManagementClient } from "../resourceManagementClient";
 import {
   Provider,
-  ProvidersListNextOptionalParams,
-  ProvidersListOptionalParams,
-  ProvidersListAtTenantScopeNextOptionalParams,
-  ProvidersListAtTenantScopeOptionalParams,
-  ProvidersUnregisterOptionalParams,
   ProvidersUnregisterResponse,
-  ProvidersRegisterOptionalParams,
   ProvidersRegisterResponse,
   ProvidersListResponse,
   ProvidersListAtTenantScopeResponse,
-  ProvidersGetOptionalParams,
   ProvidersGetResponse,
-  ProvidersGetAtTenantScopeOptionalParams,
   ProvidersGetAtTenantScopeResponse,
   ProvidersListNextResponse,
   ProvidersListAtTenantScopeNextResponse
@@ -35,24 +26,18 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing Providers operations. */
 export class ProvidersImpl implements Providers {
-  private readonly client: ResourceManagementClient;
-
   /**
    * Initialize a new instance of the class Providers class.
    * @param client Reference to the service client
    */
-  constructor(client: ResourceManagementClient) {
-    this.client = client;
-  }
+  constructor(client: ResourceManagementClient) {}
 
   /**
    * Gets all resource providers for a subscription.
-   * @param options The options parameters.
+   *
    */
-  public list(
-    options?: ProvidersListOptionalParams
-  ): PagedAsyncIterableIterator<Provider> {
-    const iter = this.listPagingAll(options);
+  public list(): PagedAsyncIterableIterator<Provider> {
+    const iter = this.listPagingAll();
     return {
       next() {
         return iter.next();
@@ -61,40 +46,34 @@ export class ProvidersImpl implements Providers {
         return this;
       },
       byPage: () => {
-        return this.listPagingPage(options);
+        return this.listPagingPage();
       }
     };
   }
 
-  private async *listPagingPage(
-    options?: ProvidersListOptionalParams
-  ): AsyncIterableIterator<Provider[]> {
-    let result = await this._list(options);
+  private async *listPagingPage(): AsyncIterableIterator<Provider[]> {
+    let result = await this._list();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listNext(continuationToken, options);
+      result = await this._listNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listPagingAll(
-    options?: ProvidersListOptionalParams
-  ): AsyncIterableIterator<Provider> {
-    for await (const page of this.listPagingPage(options)) {
+  private async *listPagingAll(): AsyncIterableIterator<Provider> {
+    for await (const page of this.listPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Gets all resource providers for the tenant.
-   * @param options The options parameters.
+   *
    */
-  public listAtTenantScope(
-    options?: ProvidersListAtTenantScopeOptionalParams
-  ): PagedAsyncIterableIterator<Provider> {
-    const iter = this.listAtTenantScopePagingAll(options);
+  public listAtTenantScope(): PagedAsyncIterableIterator<Provider> {
+    const iter = this.listAtTenantScopePagingAll();
     return {
       next() {
         return iter.next();
@@ -103,291 +82,78 @@ export class ProvidersImpl implements Providers {
         return this;
       },
       byPage: () => {
-        return this.listAtTenantScopePagingPage(options);
+        return this.listAtTenantScopePagingPage();
       }
     };
   }
 
-  private async *listAtTenantScopePagingPage(
-    options?: ProvidersListAtTenantScopeOptionalParams
-  ): AsyncIterableIterator<Provider[]> {
-    let result = await this._listAtTenantScope(options);
+  private async *listAtTenantScopePagingPage(): AsyncIterableIterator<
+    Provider[]
+  > {
+    let result = await this._listAtTenantScope();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listAtTenantScopeNext(continuationToken, options);
+      result = await this._listAtTenantScopeNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listAtTenantScopePagingAll(
-    options?: ProvidersListAtTenantScopeOptionalParams
-  ): AsyncIterableIterator<Provider> {
-    for await (const page of this.listAtTenantScopePagingPage(options)) {
+  private async *listAtTenantScopePagingAll(): AsyncIterableIterator<Provider> {
+    for await (const page of this.listAtTenantScopePagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Unregisters a subscription from a resource provider.
-   * @param resourceProviderNamespace The namespace of the resource provider to unregister.
-   * @param options The options parameters.
+   *
    */
-  unregister(
-    resourceProviderNamespace: string,
-    options?: ProvidersUnregisterOptionalParams
-  ): Promise<ProvidersUnregisterResponse> {
-    return this.client.sendOperationRequest(
-      { resourceProviderNamespace, options },
-      unregisterOperationSpec
-    );
-  }
+  unregister(): Promise<ProvidersUnregisterResponse> {}
 
   /**
    * Registers a subscription with a resource provider.
-   * @param resourceProviderNamespace The namespace of the resource provider to register.
-   * @param options The options parameters.
+   *
    */
-  register(
-    resourceProviderNamespace: string,
-    options?: ProvidersRegisterOptionalParams
-  ): Promise<ProvidersRegisterResponse> {
-    return this.client.sendOperationRequest(
-      { resourceProviderNamespace, options },
-      registerOperationSpec
-    );
-  }
+  register(): Promise<ProvidersRegisterResponse> {}
 
   /**
    * Gets all resource providers for a subscription.
-   * @param options The options parameters.
+   *
    */
-  private _list(
-    options?: ProvidersListOptionalParams
-  ): Promise<ProvidersListResponse> {
-    return this.client.sendOperationRequest({ options }, listOperationSpec);
-  }
+  private _list(): Promise<ProvidersListResponse> {}
 
   /**
    * Gets all resource providers for the tenant.
-   * @param options The options parameters.
+   *
    */
-  private _listAtTenantScope(
-    options?: ProvidersListAtTenantScopeOptionalParams
-  ): Promise<ProvidersListAtTenantScopeResponse> {
-    return this.client.sendOperationRequest(
-      { options },
-      listAtTenantScopeOperationSpec
-    );
-  }
+  private _listAtTenantScope(): Promise<ProvidersListAtTenantScopeResponse> {}
 
   /**
    * Gets the specified resource provider.
-   * @param resourceProviderNamespace The namespace of the resource provider.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceProviderNamespace: string,
-    options?: ProvidersGetOptionalParams
-  ): Promise<ProvidersGetResponse> {
-    return this.client.sendOperationRequest(
-      { resourceProviderNamespace, options },
-      getOperationSpec
-    );
-  }
+  get(): Promise<ProvidersGetResponse> {}
 
   /**
    * Gets the specified resource provider at the tenant level.
-   * @param resourceProviderNamespace The namespace of the resource provider.
-   * @param options The options parameters.
+   *
    */
-  getAtTenantScope(
-    resourceProviderNamespace: string,
-    options?: ProvidersGetAtTenantScopeOptionalParams
-  ): Promise<ProvidersGetAtTenantScopeResponse> {
-    return this.client.sendOperationRequest(
-      { resourceProviderNamespace, options },
-      getAtTenantScopeOperationSpec
-    );
-  }
+  getAtTenantScope(): Promise<ProvidersGetAtTenantScopeResponse> {}
 
   /**
    * ListNext
-   * @param nextLink The nextLink from the previous successful call to the List method.
-   * @param options The options parameters.
+   *
    */
-  private _listNext(
-    nextLink: string,
-    options?: ProvidersListNextOptionalParams
-  ): Promise<ProvidersListNextResponse> {
-    return this.client.sendOperationRequest(
-      { nextLink, options },
-      listNextOperationSpec
-    );
-  }
+  private _listNext(): Promise<ProvidersListNextResponse> {}
 
   /**
    * ListAtTenantScopeNext
-   * @param nextLink The nextLink from the previous successful call to the ListAtTenantScope method.
-   * @param options The options parameters.
+   *
    */
-  private _listAtTenantScopeNext(
-    nextLink: string,
-    options?: ProvidersListAtTenantScopeNextOptionalParams
-  ): Promise<ProvidersListAtTenantScopeNextResponse> {
-    return this.client.sendOperationRequest(
-      { nextLink, options },
-      listAtTenantScopeNextOperationSpec
-    );
-  }
+  private _listAtTenantScopeNext(): Promise<
+    ProvidersListAtTenantScopeNextResponse
+  > {}
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
-
-const unregisterOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/{resourceProviderNamespace}/unregister",
-  httpMethod: "POST",
-  responses: {
-    200: {
-      bodyMapper: Mappers.Provider
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceProviderNamespace
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const registerOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/{resourceProviderNamespace}/register",
-  httpMethod: "POST",
-  responses: {
-    200: {
-      bodyMapper: Mappers.Provider
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceProviderNamespace
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listOperationSpec: coreClient.OperationSpec = {
-  path: "/subscriptions/{subscriptionId}/providers",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ProviderListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.top, Parameters.expand],
-  urlParameters: [Parameters.$host, Parameters.subscriptionId],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listAtTenantScopeOperationSpec: coreClient.OperationSpec = {
-  path: "/providers",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ProviderListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.top, Parameters.expand],
-  urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const getOperationSpec: coreClient.OperationSpec = {
-  path: "/subscriptions/{subscriptionId}/providers/{resourceProviderNamespace}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.Provider
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.expand],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceProviderNamespace
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const getAtTenantScopeOperationSpec: coreClient.OperationSpec = {
-  path: "/providers/{resourceProviderNamespace}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.Provider
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.expand],
-  urlParameters: [Parameters.$host, Parameters.resourceProviderNamespace],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ProviderListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.top, Parameters.expand],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.nextLink,
-    Parameters.subscriptionId
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listAtTenantScopeNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ProviderListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.top, Parameters.expand],
-  urlParameters: [Parameters.$host, Parameters.nextLink],
-  headerParameters: [Parameters.accept],
-  serializer
-};

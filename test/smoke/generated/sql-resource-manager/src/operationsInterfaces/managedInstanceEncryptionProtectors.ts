@@ -10,12 +10,7 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ManagedInstanceEncryptionProtector,
-  ManagedInstanceEncryptionProtectorsListByInstanceOptionalParams,
-  EncryptionProtectorName,
-  ManagedInstanceEncryptionProtectorsRevalidateOptionalParams,
-  ManagedInstanceEncryptionProtectorsGetOptionalParams,
   ManagedInstanceEncryptionProtectorsGetResponse,
-  ManagedInstanceEncryptionProtectorsCreateOrUpdateOptionalParams,
   ManagedInstanceEncryptionProtectorsCreateOrUpdateResponse
 } from "../models";
 
@@ -24,74 +19,31 @@ import {
 export interface ManagedInstanceEncryptionProtectors {
   /**
    * Gets a list of managed instance encryption protectors
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param options The options parameters.
+   *
    */
-  listByInstance(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    options?: ManagedInstanceEncryptionProtectorsListByInstanceOptionalParams
-  ): PagedAsyncIterableIterator<ManagedInstanceEncryptionProtector>;
+  listByInstance(): PagedAsyncIterableIterator<
+    ManagedInstanceEncryptionProtector
+  >;
   /**
    * Revalidates an existing encryption protector.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param encryptionProtectorName The name of the encryption protector to be updated.
-   * @param options The options parameters.
+   *
    */
-  beginRevalidate(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    encryptionProtectorName: EncryptionProtectorName,
-    options?: ManagedInstanceEncryptionProtectorsRevalidateOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  beginRevalidate(): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Revalidates an existing encryption protector.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param encryptionProtectorName The name of the encryption protector to be updated.
-   * @param options The options parameters.
+   *
    */
-  beginRevalidateAndWait(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    encryptionProtectorName: EncryptionProtectorName,
-    options?: ManagedInstanceEncryptionProtectorsRevalidateOptionalParams
-  ): Promise<void>;
+  beginRevalidateAndWait(): Promise<void>;
   /**
    * Gets a managed instance encryption protector.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param encryptionProtectorName The name of the encryption protector to be retrieved.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    encryptionProtectorName: EncryptionProtectorName,
-    options?: ManagedInstanceEncryptionProtectorsGetOptionalParams
-  ): Promise<ManagedInstanceEncryptionProtectorsGetResponse>;
+  get(): Promise<ManagedInstanceEncryptionProtectorsGetResponse>;
   /**
    * Updates an existing encryption protector.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param encryptionProtectorName The name of the encryption protector to be updated.
-   * @param parameters The requested encryption protector resource state.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdate(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    encryptionProtectorName: EncryptionProtectorName,
-    parameters: ManagedInstanceEncryptionProtector,
-    options?: ManagedInstanceEncryptionProtectorsCreateOrUpdateOptionalParams
-  ): Promise<
+  beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<
         ManagedInstanceEncryptionProtectorsCreateOrUpdateResponse
@@ -101,18 +53,9 @@ export interface ManagedInstanceEncryptionProtectors {
   >;
   /**
    * Updates an existing encryption protector.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param encryptionProtectorName The name of the encryption protector to be updated.
-   * @param parameters The requested encryption protector resource state.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    encryptionProtectorName: EncryptionProtectorName,
-    parameters: ManagedInstanceEncryptionProtector,
-    options?: ManagedInstanceEncryptionProtectorsCreateOrUpdateOptionalParams
-  ): Promise<ManagedInstanceEncryptionProtectorsCreateOrUpdateResponse>;
+  beginCreateOrUpdateAndWait(): Promise<
+    ManagedInstanceEncryptionProtectorsCreateOrUpdateResponse
+  >;
 }

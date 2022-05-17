@@ -10,13 +10,8 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ManagedBackupShortTermRetentionPolicy,
-  ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesListByRestorableDroppedDatabaseOptionalParams,
-  ManagedShortTermRetentionPolicyName,
-  ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesGetOptionalParams,
   ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesGetResponse,
-  ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesCreateOrUpdateOptionalParams,
   ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesCreateOrUpdateResponse,
-  ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesUpdateOptionalParams,
   ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesUpdateResponse
 } from "../models";
 
@@ -25,54 +20,23 @@ import {
 export interface ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicies {
   /**
    * Gets a dropped database's short term retention policy list.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param restorableDroppedDatabaseId
-   * @param options The options parameters.
+   *
    */
-  listByRestorableDroppedDatabase(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    restorableDroppedDatabaseId: string,
-    options?: ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesListByRestorableDroppedDatabaseOptionalParams
-  ): PagedAsyncIterableIterator<ManagedBackupShortTermRetentionPolicy>;
+  listByRestorableDroppedDatabase(): PagedAsyncIterableIterator<
+    ManagedBackupShortTermRetentionPolicy
+  >;
   /**
    * Gets a dropped database's short term retention policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param restorableDroppedDatabaseId
-   * @param policyName The policy name.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    restorableDroppedDatabaseId: string,
-    policyName: ManagedShortTermRetentionPolicyName,
-    options?: ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesGetOptionalParams
-  ): Promise<
+  get(): Promise<
     ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesGetResponse
   >;
   /**
    * Sets a database's short term retention policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param restorableDroppedDatabaseId
-   * @param policyName The policy name. Should always be "default".
-   * @param parameters The short term retention policy info.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdate(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    restorableDroppedDatabaseId: string,
-    policyName: ManagedShortTermRetentionPolicyName,
-    parameters: ManagedBackupShortTermRetentionPolicy,
-    options?: ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesCreateOrUpdateOptionalParams
-  ): Promise<
+  beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<
         ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesCreateOrUpdateResponse
@@ -82,42 +46,16 @@ export interface ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicie
   >;
   /**
    * Sets a database's short term retention policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param restorableDroppedDatabaseId
-   * @param policyName The policy name. Should always be "default".
-   * @param parameters The short term retention policy info.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    restorableDroppedDatabaseId: string,
-    policyName: ManagedShortTermRetentionPolicyName,
-    parameters: ManagedBackupShortTermRetentionPolicy,
-    options?: ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesCreateOrUpdateOptionalParams
-  ): Promise<
+  beginCreateOrUpdateAndWait(): Promise<
     ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesCreateOrUpdateResponse
   >;
   /**
    * Sets a database's short term retention policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param restorableDroppedDatabaseId
-   * @param policyName The policy name. Should always be "default".
-   * @param parameters The short term retention policy info.
-   * @param options The options parameters.
+   *
    */
-  beginUpdate(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    restorableDroppedDatabaseId: string,
-    policyName: ManagedShortTermRetentionPolicyName,
-    parameters: ManagedBackupShortTermRetentionPolicy,
-    options?: ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesUpdateOptionalParams
-  ): Promise<
+  beginUpdate(): Promise<
     PollerLike<
       PollOperationState<
         ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesUpdateResponse
@@ -127,22 +65,9 @@ export interface ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicie
   >;
   /**
    * Sets a database's short term retention policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param restorableDroppedDatabaseId
-   * @param policyName The policy name. Should always be "default".
-   * @param parameters The short term retention policy info.
-   * @param options The options parameters.
+   *
    */
-  beginUpdateAndWait(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    restorableDroppedDatabaseId: string,
-    policyName: ManagedShortTermRetentionPolicyName,
-    parameters: ManagedBackupShortTermRetentionPolicy,
-    options?: ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesUpdateOptionalParams
-  ): Promise<
+  beginUpdateAndWait(): Promise<
     ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesUpdateResponse
   >;
 }

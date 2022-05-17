@@ -323,18 +323,6 @@ export const parameters7: OperationParameter = {
   mapper: ExportDatabaseDefinitionMapper
 };
 
-export const nextLink: OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
 export const skip: OperationQueryParameter = {
   parameterPath: ["options", "skip"],
   mapper: {

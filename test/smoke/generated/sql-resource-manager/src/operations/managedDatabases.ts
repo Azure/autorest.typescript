@@ -16,21 +16,10 @@ import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
   ManagedDatabase,
-  ManagedDatabasesListByInstanceNextOptionalParams,
-  ManagedDatabasesListByInstanceOptionalParams,
-  ManagedDatabasesListInaccessibleByInstanceNextOptionalParams,
-  ManagedDatabasesListInaccessibleByInstanceOptionalParams,
   ManagedDatabasesListByInstanceResponse,
-  ManagedDatabasesGetOptionalParams,
   ManagedDatabasesGetResponse,
-  ManagedDatabasesCreateOrUpdateOptionalParams,
   ManagedDatabasesCreateOrUpdateResponse,
-  ManagedDatabasesDeleteOptionalParams,
-  ManagedDatabaseUpdate,
-  ManagedDatabasesUpdateOptionalParams,
   ManagedDatabasesUpdateResponse,
-  CompleteDatabaseRestoreDefinition,
-  ManagedDatabasesCompleteRestoreOptionalParams,
   ManagedDatabasesListInaccessibleByInstanceResponse,
   ManagedDatabasesListByInstanceNextResponse,
   ManagedDatabasesListInaccessibleByInstanceNextResponse
@@ -51,21 +40,10 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
 
   /**
    * Gets a list of managed databases.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param options The options parameters.
+   *
    */
-  public listByInstance(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    options?: ManagedDatabasesListByInstanceOptionalParams
-  ): PagedAsyncIterableIterator<ManagedDatabase> {
-    const iter = this.listByInstancePagingAll(
-      resourceGroupName,
-      managedInstanceName,
-      options
-    );
+  public listByInstance(): PagedAsyncIterableIterator<ManagedDatabase> {
+    const iter = this.listByInstancePagingAll();
     return {
       next() {
         return iter.next();
@@ -74,70 +52,40 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
         return this;
       },
       byPage: () => {
-        return this.listByInstancePagingPage(
-          resourceGroupName,
-          managedInstanceName,
-          options
-        );
+        return this.listByInstancePagingPage();
       }
     };
   }
 
-  private async *listByInstancePagingPage(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    options?: ManagedDatabasesListByInstanceOptionalParams
-  ): AsyncIterableIterator<ManagedDatabase[]> {
-    let result = await this._listByInstance(
-      resourceGroupName,
-      managedInstanceName,
-      options
-    );
+  private async *listByInstancePagingPage(): AsyncIterableIterator<
+    ManagedDatabase[]
+  > {
+    let result = await this._listByInstance();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listByInstanceNext(
-        resourceGroupName,
-        managedInstanceName,
-        continuationToken,
-        options
-      );
+      result = await this._listByInstanceNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listByInstancePagingAll(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    options?: ManagedDatabasesListByInstanceOptionalParams
-  ): AsyncIterableIterator<ManagedDatabase> {
-    for await (const page of this.listByInstancePagingPage(
-      resourceGroupName,
-      managedInstanceName,
-      options
-    )) {
+  private async *listByInstancePagingAll(): AsyncIterableIterator<
+    ManagedDatabase
+  > {
+    for await (const page of this.listByInstancePagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Gets a list of inaccessible managed databases in a managed instance
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param options The options parameters.
+   *
    */
-  public listInaccessibleByInstance(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    options?: ManagedDatabasesListInaccessibleByInstanceOptionalParams
-  ): PagedAsyncIterableIterator<ManagedDatabase> {
-    const iter = this.listInaccessibleByInstancePagingAll(
-      resourceGroupName,
-      managedInstanceName,
-      options
-    );
+  public listInaccessibleByInstance(): PagedAsyncIterableIterator<
+    ManagedDatabase
+  > {
+    const iter = this.listInaccessibleByInstancePagingAll();
     return {
       next() {
         return iter.next();
@@ -146,107 +94,49 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
         return this;
       },
       byPage: () => {
-        return this.listInaccessibleByInstancePagingPage(
-          resourceGroupName,
-          managedInstanceName,
-          options
-        );
+        return this.listInaccessibleByInstancePagingPage();
       }
     };
   }
 
-  private async *listInaccessibleByInstancePagingPage(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    options?: ManagedDatabasesListInaccessibleByInstanceOptionalParams
-  ): AsyncIterableIterator<ManagedDatabase[]> {
-    let result = await this._listInaccessibleByInstance(
-      resourceGroupName,
-      managedInstanceName,
-      options
-    );
+  private async *listInaccessibleByInstancePagingPage(): AsyncIterableIterator<
+    ManagedDatabase[]
+  > {
+    let result = await this._listInaccessibleByInstance();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listInaccessibleByInstanceNext(
-        resourceGroupName,
-        managedInstanceName,
-        continuationToken,
-        options
-      );
+      result = await this._listInaccessibleByInstanceNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listInaccessibleByInstancePagingAll(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    options?: ManagedDatabasesListInaccessibleByInstanceOptionalParams
-  ): AsyncIterableIterator<ManagedDatabase> {
-    for await (const page of this.listInaccessibleByInstancePagingPage(
-      resourceGroupName,
-      managedInstanceName,
-      options
-    )) {
+  private async *listInaccessibleByInstancePagingAll(): AsyncIterableIterator<
+    ManagedDatabase
+  > {
+    for await (const page of this.listInaccessibleByInstancePagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Gets a list of managed databases.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param options The options parameters.
+   *
    */
-  private _listByInstance(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    options?: ManagedDatabasesListByInstanceOptionalParams
-  ): Promise<ManagedDatabasesListByInstanceResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, managedInstanceName, options },
-      listByInstanceOperationSpec
-    );
-  }
+  private _listByInstance(): Promise<ManagedDatabasesListByInstanceResponse> {}
 
   /**
    * Gets a managed database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the database.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    options?: ManagedDatabasesGetOptionalParams
-  ): Promise<ManagedDatabasesGetResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, managedInstanceName, databaseName, options },
-      getOperationSpec
-    );
-  }
+  get(): Promise<ManagedDatabasesGetResponse> {}
 
   /**
    * Creates a new database or updates an existing database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the database.
-   * @param parameters The requested database resource state.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdate(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    parameters: ManagedDatabase,
-    options?: ManagedDatabasesCreateOrUpdateOptionalParams
-  ): Promise<
+  async beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<ManagedDatabasesCreateOrUpdateResponse>,
       ManagedDatabasesCreateOrUpdateResponse
@@ -293,13 +183,7 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
 
     const lro = new LroImpl(
       sendOperation,
-      {
-        resourceGroupName,
-        managedInstanceName,
-        databaseName,
-        parameters,
-        options
-      },
+      { resourceGroupName, managedInstanceName, databaseName, options },
       createOrUpdateOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -312,135 +196,35 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
 
   /**
    * Creates a new database or updates an existing database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the database.
-   * @param parameters The requested database resource state.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    parameters: ManagedDatabase,
-    options?: ManagedDatabasesCreateOrUpdateOptionalParams
-  ): Promise<ManagedDatabasesCreateOrUpdateResponse> {
-    const poller = await this.beginCreateOrUpdate(
-      resourceGroupName,
-      managedInstanceName,
-      databaseName,
-      parameters,
-      options
-    );
+  async beginCreateOrUpdateAndWait(): Promise<
+    ManagedDatabasesCreateOrUpdateResponse
+  > {
+    const poller = await this.beginCreateOrUpdate();
     return poller.pollUntilDone();
   }
 
   /**
    * Deletes a managed database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the database.
-   * @param options The options parameters.
+   *
    */
-  async beginDelete(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    options?: ManagedDatabasesDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<void> => {
-      return this.client.sendOperationRequest(args, spec);
-    };
-    const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return {
-        flatResponse,
-        rawResponse: {
-          statusCode: currentRawResponse!.status,
-          body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
-      };
-    };
-
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, managedInstanceName, databaseName, options },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
-    });
-    await poller.poll();
-    return poller;
-  }
+  async beginDelete(): Promise<PollerLike<PollOperationState<void>, void>> {}
 
   /**
    * Deletes a managed database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the database.
-   * @param options The options parameters.
+   *
    */
-  async beginDeleteAndWait(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    options?: ManagedDatabasesDeleteOptionalParams
-  ): Promise<void> {
-    const poller = await this.beginDelete(
-      resourceGroupName,
-      managedInstanceName,
-      databaseName,
-      options
-    );
+  async beginDeleteAndWait(): Promise<void> {
+    const poller = await this.beginDelete();
     return poller.pollUntilDone();
   }
 
   /**
    * Updates an existing database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the database.
-   * @param parameters The requested database resource state.
-   * @param options The options parameters.
+   *
    */
-  async beginUpdate(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    parameters: ManagedDatabaseUpdate,
-    options?: ManagedDatabasesUpdateOptionalParams
-  ): Promise<
+  async beginUpdate(): Promise<
     PollerLike<
       PollOperationState<ManagedDatabasesUpdateResponse>,
       ManagedDatabasesUpdateResponse
@@ -487,13 +271,7 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
 
     const lro = new LroImpl(
       sendOperation,
-      {
-        resourceGroupName,
-        managedInstanceName,
-        databaseName,
-        parameters,
-        options
-      },
+      { resourceGroupName, managedInstanceName, databaseName, options },
       updateOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -506,46 +284,20 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
 
   /**
    * Updates an existing database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the database.
-   * @param parameters The requested database resource state.
-   * @param options The options parameters.
+   *
    */
-  async beginUpdateAndWait(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    parameters: ManagedDatabaseUpdate,
-    options?: ManagedDatabasesUpdateOptionalParams
-  ): Promise<ManagedDatabasesUpdateResponse> {
-    const poller = await this.beginUpdate(
-      resourceGroupName,
-      managedInstanceName,
-      databaseName,
-      parameters,
-      options
-    );
+  async beginUpdateAndWait(): Promise<ManagedDatabasesUpdateResponse> {
+    const poller = await this.beginUpdate();
     return poller.pollUntilDone();
   }
 
   /**
    * Completes the restore operation on a managed database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the database.
-   * @param parameters The definition for completing the restore of this managed database.
-   * @param options The options parameters.
+   *
    */
-  async beginCompleteRestore(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    parameters: CompleteDatabaseRestoreDefinition,
-    options?: ManagedDatabasesCompleteRestoreOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  async beginCompleteRestore(): Promise<
+    PollerLike<PollOperationState<void>, void>
+  > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
@@ -587,13 +339,7 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
 
     const lro = new LroImpl(
       sendOperation,
-      {
-        resourceGroupName,
-        managedInstanceName,
-        databaseName,
-        parameters,
-        options
-      },
+      { resourceGroupName, managedInstanceName, databaseName, options },
       completeRestoreOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -606,133 +352,40 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
 
   /**
    * Completes the restore operation on a managed database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the database.
-   * @param parameters The definition for completing the restore of this managed database.
-   * @param options The options parameters.
+   *
    */
-  async beginCompleteRestoreAndWait(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    parameters: CompleteDatabaseRestoreDefinition,
-    options?: ManagedDatabasesCompleteRestoreOptionalParams
-  ): Promise<void> {
-    const poller = await this.beginCompleteRestore(
-      resourceGroupName,
-      managedInstanceName,
-      databaseName,
-      parameters,
-      options
-    );
+  async beginCompleteRestoreAndWait(): Promise<void> {
+    const poller = await this.beginCompleteRestore();
     return poller.pollUntilDone();
   }
 
   /**
    * Gets a list of inaccessible managed databases in a managed instance
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param options The options parameters.
+   *
    */
-  private _listInaccessibleByInstance(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    options?: ManagedDatabasesListInaccessibleByInstanceOptionalParams
-  ): Promise<ManagedDatabasesListInaccessibleByInstanceResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, managedInstanceName, options },
-      listInaccessibleByInstanceOperationSpec
-    );
-  }
+  private _listInaccessibleByInstance(): Promise<
+    ManagedDatabasesListInaccessibleByInstanceResponse
+  > {}
 
   /**
    * ListByInstanceNext
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param nextLink The nextLink from the previous successful call to the ListByInstance method.
-   * @param options The options parameters.
+   *
    */
-  private _listByInstanceNext(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    nextLink: string,
-    options?: ManagedDatabasesListByInstanceNextOptionalParams
-  ): Promise<ManagedDatabasesListByInstanceNextResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, managedInstanceName, nextLink, options },
-      listByInstanceNextOperationSpec
-    );
-  }
+  private _listByInstanceNext(): Promise<
+    ManagedDatabasesListByInstanceNextResponse
+  > {}
 
   /**
    * ListInaccessibleByInstanceNext
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param nextLink The nextLink from the previous successful call to the ListInaccessibleByInstance
-   *                 method.
-   * @param options The options parameters.
+   *
    */
-  private _listInaccessibleByInstanceNext(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    nextLink: string,
-    options?: ManagedDatabasesListInaccessibleByInstanceNextOptionalParams
-  ): Promise<ManagedDatabasesListInaccessibleByInstanceNextResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, managedInstanceName, nextLink, options },
-      listInaccessibleByInstanceNextOperationSpec
-    );
-  }
+  private _listInaccessibleByInstanceNext(): Promise<
+    ManagedDatabasesListInaccessibleByInstanceNextResponse
+  > {}
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listByInstanceOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/databases",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ManagedDatabaseListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.managedInstanceName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/databases/{databaseName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ManagedDatabase
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.databaseName,
-    Parameters.managedInstanceName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
 const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/databases/{databaseName}",
@@ -763,21 +416,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const deleteOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/databases/{databaseName}",
-  httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.databaseName,
-    Parameters.managedInstanceName
-  ],
   serializer
 };
 const updateOperationSpec: coreClient.OperationSpec = {
@@ -828,65 +466,5 @@ const completeRestoreOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const listInaccessibleByInstanceOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/inaccessibleManagedDatabases",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ManagedDatabaseListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.managedInstanceName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByInstanceNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ManagedDatabaseListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.nextLink,
-    Parameters.managedInstanceName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listInaccessibleByInstanceNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ManagedDatabaseListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.nextLink,
-    Parameters.managedInstanceName
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };

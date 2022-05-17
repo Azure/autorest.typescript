@@ -14,14 +14,9 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import {
   Job,
-  JobsListByAgentNextOptionalParams,
-  JobsListByAgentOptionalParams,
   JobsListByAgentResponse,
-  JobsGetOptionalParams,
   JobsGetResponse,
-  JobsCreateOrUpdateOptionalParams,
   JobsCreateOrUpdateResponse,
-  JobsDeleteOptionalParams,
   JobsListByAgentNextResponse
 } from "../models";
 
@@ -40,24 +35,10 @@ export class JobsImpl implements Jobs {
 
   /**
    * Gets a list of jobs.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param jobAgentName The name of the job agent.
-   * @param options The options parameters.
+   *
    */
-  public listByAgent(
-    resourceGroupName: string,
-    serverName: string,
-    jobAgentName: string,
-    options?: JobsListByAgentOptionalParams
-  ): PagedAsyncIterableIterator<Job> {
-    const iter = this.listByAgentPagingAll(
-      resourceGroupName,
-      serverName,
-      jobAgentName,
-      options
-    );
+  public listByAgent(): PagedAsyncIterableIterator<Job> {
+    const iter = this.listByAgentPagingAll();
     return {
       next() {
         return iter.next();
@@ -66,222 +47,66 @@ export class JobsImpl implements Jobs {
         return this;
       },
       byPage: () => {
-        return this.listByAgentPagingPage(
-          resourceGroupName,
-          serverName,
-          jobAgentName,
-          options
-        );
+        return this.listByAgentPagingPage();
       }
     };
   }
 
-  private async *listByAgentPagingPage(
-    resourceGroupName: string,
-    serverName: string,
-    jobAgentName: string,
-    options?: JobsListByAgentOptionalParams
-  ): AsyncIterableIterator<Job[]> {
-    let result = await this._listByAgent(
-      resourceGroupName,
-      serverName,
-      jobAgentName,
-      options
-    );
+  private async *listByAgentPagingPage(): AsyncIterableIterator<Job[]> {
+    let result = await this._listByAgent();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listByAgentNext(
-        resourceGroupName,
-        serverName,
-        jobAgentName,
-        continuationToken,
-        options
-      );
+      result = await this._listByAgentNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listByAgentPagingAll(
-    resourceGroupName: string,
-    serverName: string,
-    jobAgentName: string,
-    options?: JobsListByAgentOptionalParams
-  ): AsyncIterableIterator<Job> {
-    for await (const page of this.listByAgentPagingPage(
-      resourceGroupName,
-      serverName,
-      jobAgentName,
-      options
-    )) {
+  private async *listByAgentPagingAll(): AsyncIterableIterator<Job> {
+    for await (const page of this.listByAgentPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Gets a list of jobs.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param jobAgentName The name of the job agent.
-   * @param options The options parameters.
+   *
    */
-  private _listByAgent(
-    resourceGroupName: string,
-    serverName: string,
-    jobAgentName: string,
-    options?: JobsListByAgentOptionalParams
-  ): Promise<JobsListByAgentResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, jobAgentName, options },
-      listByAgentOperationSpec
-    );
-  }
+  private _listByAgent(): Promise<JobsListByAgentResponse> {}
 
   /**
    * Gets a job.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param jobAgentName The name of the job agent.
-   * @param jobName The name of the job to get.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    jobAgentName: string,
-    jobName: string,
-    options?: JobsGetOptionalParams
-  ): Promise<JobsGetResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, jobAgentName, jobName, options },
-      getOperationSpec
-    );
-  }
+  get(): Promise<JobsGetResponse> {}
 
   /**
    * Creates or updates a job.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param jobAgentName The name of the job agent.
-   * @param jobName The name of the job to get.
-   * @param parameters The requested job state.
-   * @param options The options parameters.
+   *
    */
-  createOrUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    jobAgentName: string,
-    jobName: string,
-    parameters: Job,
-    options?: JobsCreateOrUpdateOptionalParams
-  ): Promise<JobsCreateOrUpdateResponse> {
+  createOrUpdate(): Promise<JobsCreateOrUpdateResponse> {
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        jobAgentName,
-        jobName,
-        parameters,
-        options
-      },
+      { resourceGroupName, serverName, jobAgentName, jobName, options },
       createOrUpdateOperationSpec
     );
   }
 
   /**
    * Deletes a job.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param jobAgentName The name of the job agent.
-   * @param jobName The name of the job to delete.
-   * @param options The options parameters.
+   *
    */
-  delete(
-    resourceGroupName: string,
-    serverName: string,
-    jobAgentName: string,
-    jobName: string,
-    options?: JobsDeleteOptionalParams
-  ): Promise<void> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, jobAgentName, jobName, options },
-      deleteOperationSpec
-    );
-  }
+  delete(): Promise<void> {}
 
   /**
    * ListByAgentNext
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param jobAgentName The name of the job agent.
-   * @param nextLink The nextLink from the previous successful call to the ListByAgent method.
-   * @param options The options parameters.
+   *
    */
-  private _listByAgentNext(
-    resourceGroupName: string,
-    serverName: string,
-    jobAgentName: string,
-    nextLink: string,
-    options?: JobsListByAgentNextOptionalParams
-  ): Promise<JobsListByAgentNextResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, jobAgentName, nextLink, options },
-      listByAgentNextOperationSpec
-    );
-  }
+  private _listByAgentNext(): Promise<JobsListByAgentNextResponse> {}
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listByAgentOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/jobAgents/{jobAgentName}/jobs",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.JobListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.jobAgentName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/jobAgents/{jobAgentName}/jobs/{jobName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.Job
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.jobAgentName,
-    Parameters.jobName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
 const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/jobAgents/{jobAgentName}/jobs/{jobName}",
@@ -307,42 +132,5 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const deleteOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/jobAgents/{jobAgentName}/jobs/{jobName}",
-  httpMethod: "DELETE",
-  responses: { 200: {}, 204: {}, default: {} },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.jobAgentName,
-    Parameters.jobName
-  ],
-  serializer
-};
-const listByAgentNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.JobListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.nextLink,
-    Parameters.jobAgentName
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };

@@ -10,16 +10,11 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { Subscriptions } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
 import { SubscriptionClient } from "../subscriptionClient";
 import {
   Location,
-  SubscriptionsListLocationsOptionalParams,
   Subscription,
-  SubscriptionsListNextOptionalParams,
-  SubscriptionsListOptionalParams,
   SubscriptionsListLocationsResponse,
-  SubscriptionsGetOptionalParams,
   SubscriptionsGetResponse,
   SubscriptionsListResponse,
   SubscriptionsListNextResponse
@@ -28,27 +23,19 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing Subscriptions operations. */
 export class SubscriptionsImpl implements Subscriptions {
-  private readonly client: SubscriptionClient;
-
   /**
    * Initialize a new instance of the class Subscriptions class.
    * @param client Reference to the service client
    */
-  constructor(client: SubscriptionClient) {
-    this.client = client;
-  }
+  constructor(client: SubscriptionClient) {}
 
   /**
    * This operation provides all the locations that are available for resource providers; however, each
    * resource provider may support a subset of this list.
-   * @param subscriptionId The ID of the target subscription.
-   * @param options The options parameters.
+   *
    */
-  public listLocations(
-    subscriptionId: string,
-    options?: SubscriptionsListLocationsOptionalParams
-  ): PagedAsyncIterableIterator<Location> {
-    const iter = this.listLocationsPagingAll(subscriptionId, options);
+  public listLocations(): PagedAsyncIterableIterator<Location> {
+    const iter = this.listLocationsPagingAll();
     return {
       next() {
         return iter.next();
@@ -57,39 +44,28 @@ export class SubscriptionsImpl implements Subscriptions {
         return this;
       },
       byPage: () => {
-        return this.listLocationsPagingPage(subscriptionId, options);
+        return this.listLocationsPagingPage();
       }
     };
   }
 
-  private async *listLocationsPagingPage(
-    subscriptionId: string,
-    options?: SubscriptionsListLocationsOptionalParams
-  ): AsyncIterableIterator<Location[]> {
-    let result = await this._listLocations(subscriptionId, options);
+  private async *listLocationsPagingPage(): AsyncIterableIterator<Location[]> {
+    let result = await this._listLocations();
     yield result.value || [];
   }
 
-  private async *listLocationsPagingAll(
-    subscriptionId: string,
-    options?: SubscriptionsListLocationsOptionalParams
-  ): AsyncIterableIterator<Location> {
-    for await (const page of this.listLocationsPagingPage(
-      subscriptionId,
-      options
-    )) {
+  private async *listLocationsPagingAll(): AsyncIterableIterator<Location> {
+    for await (const page of this.listLocationsPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Gets all subscriptions for a tenant.
-   * @param options The options parameters.
+   *
    */
-  public list(
-    options?: SubscriptionsListOptionalParams
-  ): PagedAsyncIterableIterator<Subscription> {
-    const iter = this.listPagingAll(options);
+  public list(): PagedAsyncIterableIterator<Subscription> {
+    const iter = this.listPagingAll();
     return {
       next() {
         return iter.next();
@@ -98,28 +74,24 @@ export class SubscriptionsImpl implements Subscriptions {
         return this;
       },
       byPage: () => {
-        return this.listPagingPage(options);
+        return this.listPagingPage();
       }
     };
   }
 
-  private async *listPagingPage(
-    options?: SubscriptionsListOptionalParams
-  ): AsyncIterableIterator<Subscription[]> {
-    let result = await this._list(options);
+  private async *listPagingPage(): AsyncIterableIterator<Subscription[]> {
+    let result = await this._list();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listNext(continuationToken, options);
+      result = await this._listNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listPagingAll(
-    options?: SubscriptionsListOptionalParams
-  ): AsyncIterableIterator<Subscription> {
-    for await (const page of this.listPagingPage(options)) {
+  private async *listPagingAll(): AsyncIterableIterator<Subscription> {
+    for await (const page of this.listPagingPage()) {
       yield* page;
     }
   }
@@ -127,111 +99,26 @@ export class SubscriptionsImpl implements Subscriptions {
   /**
    * This operation provides all the locations that are available for resource providers; however, each
    * resource provider may support a subset of this list.
-   * @param subscriptionId The ID of the target subscription.
-   * @param options The options parameters.
+   *
    */
-  private _listLocations(
-    subscriptionId: string,
-    options?: SubscriptionsListLocationsOptionalParams
-  ): Promise<SubscriptionsListLocationsResponse> {
-    return this.client.sendOperationRequest(
-      { subscriptionId, options },
-      listLocationsOperationSpec
-    );
-  }
+  private _listLocations(): Promise<SubscriptionsListLocationsResponse> {}
 
   /**
    * Gets details about a specified subscription.
-   * @param subscriptionId The ID of the target subscription.
-   * @param options The options parameters.
+   *
    */
-  get(
-    subscriptionId: string,
-    options?: SubscriptionsGetOptionalParams
-  ): Promise<SubscriptionsGetResponse> {
-    return this.client.sendOperationRequest(
-      { subscriptionId, options },
-      getOperationSpec
-    );
-  }
+  get(): Promise<SubscriptionsGetResponse> {}
 
   /**
    * Gets all subscriptions for a tenant.
-   * @param options The options parameters.
+   *
    */
-  private _list(
-    options?: SubscriptionsListOptionalParams
-  ): Promise<SubscriptionsListResponse> {
-    return this.client.sendOperationRequest({ options }, listOperationSpec);
-  }
+  private _list(): Promise<SubscriptionsListResponse> {}
 
   /**
    * ListNext
-   * @param nextLink The nextLink from the previous successful call to the List method.
-   * @param options The options parameters.
+   *
    */
-  private _listNext(
-    nextLink: string,
-    options?: SubscriptionsListNextOptionalParams
-  ): Promise<SubscriptionsListNextResponse> {
-    return this.client.sendOperationRequest(
-      { nextLink, options },
-      listNextOperationSpec
-    );
-  }
+  private _listNext(): Promise<SubscriptionsListNextResponse> {}
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
-
-const listLocationsOperationSpec: coreClient.OperationSpec = {
-  path: "/subscriptions/{subscriptionId}/locations",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.LocationListResult
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.subscriptionId],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const getOperationSpec: coreClient.OperationSpec = {
-  path: "/subscriptions/{subscriptionId}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.Subscription
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.subscriptionId],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listOperationSpec: coreClient.OperationSpec = {
-  path: "/subscriptions",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.SubscriptionListResult
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.SubscriptionListResult
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.nextLink],
-  headerParameters: [Parameters.accept],
-  serializer
-};

@@ -7,10 +7,7 @@
  */
 
 import {
-  DatabaseAutomaticTuningGetOptionalParams,
   DatabaseAutomaticTuningGetResponse,
-  DatabaseAutomaticTuning,
-  DatabaseAutomaticTuningUpdateOptionalParams,
   DatabaseAutomaticTuningUpdateResponse
 } from "../models";
 
@@ -18,32 +15,12 @@ import {
 export interface DatabaseAutomaticTuningOperations {
   /**
    * Gets a database's automatic tuning.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: DatabaseAutomaticTuningGetOptionalParams
-  ): Promise<DatabaseAutomaticTuningGetResponse>;
+  get(): Promise<DatabaseAutomaticTuningGetResponse>;
   /**
    * Update automatic tuning properties for target database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param parameters The requested automatic tuning resource state.
-   * @param options The options parameters.
+   *
    */
-  update(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    parameters: DatabaseAutomaticTuning,
-    options?: DatabaseAutomaticTuningUpdateOptionalParams
-  ): Promise<DatabaseAutomaticTuningUpdateResponse>;
+  update(): Promise<DatabaseAutomaticTuningUpdateResponse>;
 }

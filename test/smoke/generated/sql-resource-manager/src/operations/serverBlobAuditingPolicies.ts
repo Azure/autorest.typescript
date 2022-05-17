@@ -16,11 +16,7 @@ import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
   ServerBlobAuditingPolicy,
-  ServerBlobAuditingPoliciesListByServerNextOptionalParams,
-  ServerBlobAuditingPoliciesListByServerOptionalParams,
-  ServerBlobAuditingPoliciesGetOptionalParams,
   ServerBlobAuditingPoliciesGetResponse,
-  ServerBlobAuditingPoliciesCreateOrUpdateOptionalParams,
   ServerBlobAuditingPoliciesCreateOrUpdateResponse,
   ServerBlobAuditingPoliciesListByServerResponse,
   ServerBlobAuditingPoliciesListByServerNextResponse
@@ -42,21 +38,10 @@ export class ServerBlobAuditingPoliciesImpl
 
   /**
    * Lists auditing settings of a server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  public listByServer(
-    resourceGroupName: string,
-    serverName: string,
-    options?: ServerBlobAuditingPoliciesListByServerOptionalParams
-  ): PagedAsyncIterableIterator<ServerBlobAuditingPolicy> {
-    const iter = this.listByServerPagingAll(
-      resourceGroupName,
-      serverName,
-      options
-    );
+  public listByServer(): PagedAsyncIterableIterator<ServerBlobAuditingPolicy> {
+    const iter = this.listByServerPagingAll();
     return {
       next() {
         return iter.next();
@@ -65,85 +50,43 @@ export class ServerBlobAuditingPoliciesImpl
         return this;
       },
       byPage: () => {
-        return this.listByServerPagingPage(
-          resourceGroupName,
-          serverName,
-          options
-        );
+        return this.listByServerPagingPage();
       }
     };
   }
 
-  private async *listByServerPagingPage(
-    resourceGroupName: string,
-    serverName: string,
-    options?: ServerBlobAuditingPoliciesListByServerOptionalParams
-  ): AsyncIterableIterator<ServerBlobAuditingPolicy[]> {
-    let result = await this._listByServer(
-      resourceGroupName,
-      serverName,
-      options
-    );
+  private async *listByServerPagingPage(): AsyncIterableIterator<
+    ServerBlobAuditingPolicy[]
+  > {
+    let result = await this._listByServer();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listByServerNext(
-        resourceGroupName,
-        serverName,
-        continuationToken,
-        options
-      );
+      result = await this._listByServerNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listByServerPagingAll(
-    resourceGroupName: string,
-    serverName: string,
-    options?: ServerBlobAuditingPoliciesListByServerOptionalParams
-  ): AsyncIterableIterator<ServerBlobAuditingPolicy> {
-    for await (const page of this.listByServerPagingPage(
-      resourceGroupName,
-      serverName,
-      options
-    )) {
+  private async *listByServerPagingAll(): AsyncIterableIterator<
+    ServerBlobAuditingPolicy
+  > {
+    for await (const page of this.listByServerPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Gets a server's blob auditing policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    options?: ServerBlobAuditingPoliciesGetOptionalParams
-  ): Promise<ServerBlobAuditingPoliciesGetResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, options },
-      getOperationSpec
-    );
-  }
+  get(): Promise<ServerBlobAuditingPoliciesGetResponse> {}
 
   /**
    * Creates or updates a server's blob auditing policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param parameters Properties of blob auditing policy
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    parameters: ServerBlobAuditingPolicy,
-    options?: ServerBlobAuditingPoliciesCreateOrUpdateOptionalParams
-  ): Promise<
+  async beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<ServerBlobAuditingPoliciesCreateOrUpdateResponse>,
       ServerBlobAuditingPoliciesCreateOrUpdateResponse
@@ -190,7 +133,7 @@ export class ServerBlobAuditingPoliciesImpl
 
     const lro = new LroImpl(
       sendOperation,
-      { resourceGroupName, serverName, parameters, options },
+      { resourceGroupName, serverName, options },
       createOrUpdateOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -203,89 +146,34 @@ export class ServerBlobAuditingPoliciesImpl
 
   /**
    * Creates or updates a server's blob auditing policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param parameters Properties of blob auditing policy
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    parameters: ServerBlobAuditingPolicy,
-    options?: ServerBlobAuditingPoliciesCreateOrUpdateOptionalParams
-  ): Promise<ServerBlobAuditingPoliciesCreateOrUpdateResponse> {
-    const poller = await this.beginCreateOrUpdate(
-      resourceGroupName,
-      serverName,
-      parameters,
-      options
-    );
+  async beginCreateOrUpdateAndWait(): Promise<
+    ServerBlobAuditingPoliciesCreateOrUpdateResponse
+  > {
+    const poller = await this.beginCreateOrUpdate();
     return poller.pollUntilDone();
   }
 
   /**
    * Lists auditing settings of a server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  private _listByServer(
-    resourceGroupName: string,
-    serverName: string,
-    options?: ServerBlobAuditingPoliciesListByServerOptionalParams
-  ): Promise<ServerBlobAuditingPoliciesListByServerResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, options },
-      listByServerOperationSpec
-    );
-  }
+  private _listByServer(): Promise<
+    ServerBlobAuditingPoliciesListByServerResponse
+  > {}
 
   /**
    * ListByServerNext
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param nextLink The nextLink from the previous successful call to the ListByServer method.
-   * @param options The options parameters.
+   *
    */
-  private _listByServerNext(
-    resourceGroupName: string,
-    serverName: string,
-    nextLink: string,
-    options?: ServerBlobAuditingPoliciesListByServerNextOptionalParams
-  ): Promise<ServerBlobAuditingPoliciesListByServerNextResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, nextLink, options },
-      listByServerNextOperationSpec
-    );
-  }
+  private _listByServerNext(): Promise<
+    ServerBlobAuditingPoliciesListByServerNextResponse
+  > {}
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/auditingSettings/{blobAuditingPolicyName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ServerBlobAuditingPolicy
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.blobAuditingPolicyName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
 const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/auditingSettings/{blobAuditingPolicyName}",
@@ -316,45 +204,5 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const listByServerOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/auditingSettings",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ServerBlobAuditingPolicyListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByServerNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ServerBlobAuditingPolicyListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.nextLink
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };

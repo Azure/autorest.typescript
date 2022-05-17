@@ -16,37 +16,15 @@ import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
   LongTermRetentionBackup,
-  LongTermRetentionBackupsListByDatabaseNextOptionalParams,
-  LongTermRetentionBackupsListByDatabaseOptionalParams,
-  LongTermRetentionBackupsListByLocationNextOptionalParams,
-  LongTermRetentionBackupsListByLocationOptionalParams,
-  LongTermRetentionBackupsListByServerNextOptionalParams,
-  LongTermRetentionBackupsListByServerOptionalParams,
-  LongTermRetentionBackupsListByResourceGroupDatabaseNextOptionalParams,
-  LongTermRetentionBackupsListByResourceGroupDatabaseOptionalParams,
-  LongTermRetentionBackupsListByResourceGroupLocationNextOptionalParams,
-  LongTermRetentionBackupsListByResourceGroupLocationOptionalParams,
-  LongTermRetentionBackupsListByResourceGroupServerNextOptionalParams,
-  LongTermRetentionBackupsListByResourceGroupServerOptionalParams,
-  CopyLongTermRetentionBackupParameters,
-  LongTermRetentionBackupsCopyOptionalParams,
   LongTermRetentionBackupsCopyResponse,
-  UpdateLongTermRetentionBackupParameters,
-  LongTermRetentionBackupsUpdateOptionalParams,
   LongTermRetentionBackupsUpdateResponse,
-  LongTermRetentionBackupsGetOptionalParams,
   LongTermRetentionBackupsGetResponse,
-  LongTermRetentionBackupsDeleteOptionalParams,
   LongTermRetentionBackupsListByDatabaseResponse,
   LongTermRetentionBackupsListByLocationResponse,
   LongTermRetentionBackupsListByServerResponse,
-  LongTermRetentionBackupsCopyByResourceGroupOptionalParams,
   LongTermRetentionBackupsCopyByResourceGroupResponse,
-  LongTermRetentionBackupsUpdateByResourceGroupOptionalParams,
   LongTermRetentionBackupsUpdateByResourceGroupResponse,
-  LongTermRetentionBackupsGetByResourceGroupOptionalParams,
   LongTermRetentionBackupsGetByResourceGroupResponse,
-  LongTermRetentionBackupsDeleteByResourceGroupOptionalParams,
   LongTermRetentionBackupsListByResourceGroupDatabaseResponse,
   LongTermRetentionBackupsListByResourceGroupLocationResponse,
   LongTermRetentionBackupsListByResourceGroupServerResponse,
@@ -73,23 +51,10 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
 
   /**
    * Lists all long term retention backups for a database.
-   * @param locationName The location of the database
-   * @param longTermRetentionServerName The name of the server
-   * @param longTermRetentionDatabaseName The name of the database
-   * @param options The options parameters.
+   *
    */
-  public listByDatabase(
-    locationName: string,
-    longTermRetentionServerName: string,
-    longTermRetentionDatabaseName: string,
-    options?: LongTermRetentionBackupsListByDatabaseOptionalParams
-  ): PagedAsyncIterableIterator<LongTermRetentionBackup> {
-    const iter = this.listByDatabasePagingAll(
-      locationName,
-      longTermRetentionServerName,
-      longTermRetentionDatabaseName,
-      options
-    );
+  public listByDatabase(): PagedAsyncIterableIterator<LongTermRetentionBackup> {
+    const iter = this.listByDatabasePagingAll();
     return {
       next() {
         return iter.next();
@@ -98,69 +63,38 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
         return this;
       },
       byPage: () => {
-        return this.listByDatabasePagingPage(
-          locationName,
-          longTermRetentionServerName,
-          longTermRetentionDatabaseName,
-          options
-        );
+        return this.listByDatabasePagingPage();
       }
     };
   }
 
-  private async *listByDatabasePagingPage(
-    locationName: string,
-    longTermRetentionServerName: string,
-    longTermRetentionDatabaseName: string,
-    options?: LongTermRetentionBackupsListByDatabaseOptionalParams
-  ): AsyncIterableIterator<LongTermRetentionBackup[]> {
-    let result = await this._listByDatabase(
-      locationName,
-      longTermRetentionServerName,
-      longTermRetentionDatabaseName,
-      options
-    );
+  private async *listByDatabasePagingPage(): AsyncIterableIterator<
+    LongTermRetentionBackup[]
+  > {
+    let result = await this._listByDatabase();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listByDatabaseNext(
-        locationName,
-        longTermRetentionServerName,
-        longTermRetentionDatabaseName,
-        continuationToken,
-        options
-      );
+      result = await this._listByDatabaseNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listByDatabasePagingAll(
-    locationName: string,
-    longTermRetentionServerName: string,
-    longTermRetentionDatabaseName: string,
-    options?: LongTermRetentionBackupsListByDatabaseOptionalParams
-  ): AsyncIterableIterator<LongTermRetentionBackup> {
-    for await (const page of this.listByDatabasePagingPage(
-      locationName,
-      longTermRetentionServerName,
-      longTermRetentionDatabaseName,
-      options
-    )) {
+  private async *listByDatabasePagingAll(): AsyncIterableIterator<
+    LongTermRetentionBackup
+  > {
+    for await (const page of this.listByDatabasePagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Lists the long term retention backups for a given location.
-   * @param locationName The location of the database
-   * @param options The options parameters.
+   *
    */
-  public listByLocation(
-    locationName: string,
-    options?: LongTermRetentionBackupsListByLocationOptionalParams
-  ): PagedAsyncIterableIterator<LongTermRetentionBackup> {
-    const iter = this.listByLocationPagingAll(locationName, options);
+  public listByLocation(): PagedAsyncIterableIterator<LongTermRetentionBackup> {
+    const iter = this.listByLocationPagingAll();
     return {
       next() {
         return iter.next();
@@ -169,57 +103,38 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
         return this;
       },
       byPage: () => {
-        return this.listByLocationPagingPage(locationName, options);
+        return this.listByLocationPagingPage();
       }
     };
   }
 
-  private async *listByLocationPagingPage(
-    locationName: string,
-    options?: LongTermRetentionBackupsListByLocationOptionalParams
-  ): AsyncIterableIterator<LongTermRetentionBackup[]> {
-    let result = await this._listByLocation(locationName, options);
+  private async *listByLocationPagingPage(): AsyncIterableIterator<
+    LongTermRetentionBackup[]
+  > {
+    let result = await this._listByLocation();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listByLocationNext(
-        locationName,
-        continuationToken,
-        options
-      );
+      result = await this._listByLocationNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listByLocationPagingAll(
-    locationName: string,
-    options?: LongTermRetentionBackupsListByLocationOptionalParams
-  ): AsyncIterableIterator<LongTermRetentionBackup> {
-    for await (const page of this.listByLocationPagingPage(
-      locationName,
-      options
-    )) {
+  private async *listByLocationPagingAll(): AsyncIterableIterator<
+    LongTermRetentionBackup
+  > {
+    for await (const page of this.listByLocationPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Lists the long term retention backups for a given server.
-   * @param locationName The location of the database
-   * @param longTermRetentionServerName The name of the server
-   * @param options The options parameters.
+   *
    */
-  public listByServer(
-    locationName: string,
-    longTermRetentionServerName: string,
-    options?: LongTermRetentionBackupsListByServerOptionalParams
-  ): PagedAsyncIterableIterator<LongTermRetentionBackup> {
-    const iter = this.listByServerPagingAll(
-      locationName,
-      longTermRetentionServerName,
-      options
-    );
+  public listByServer(): PagedAsyncIterableIterator<LongTermRetentionBackup> {
+    const iter = this.listByServerPagingAll();
     return {
       next() {
         return iter.next();
@@ -228,76 +143,40 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
         return this;
       },
       byPage: () => {
-        return this.listByServerPagingPage(
-          locationName,
-          longTermRetentionServerName,
-          options
-        );
+        return this.listByServerPagingPage();
       }
     };
   }
 
-  private async *listByServerPagingPage(
-    locationName: string,
-    longTermRetentionServerName: string,
-    options?: LongTermRetentionBackupsListByServerOptionalParams
-  ): AsyncIterableIterator<LongTermRetentionBackup[]> {
-    let result = await this._listByServer(
-      locationName,
-      longTermRetentionServerName,
-      options
-    );
+  private async *listByServerPagingPage(): AsyncIterableIterator<
+    LongTermRetentionBackup[]
+  > {
+    let result = await this._listByServer();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listByServerNext(
-        locationName,
-        longTermRetentionServerName,
-        continuationToken,
-        options
-      );
+      result = await this._listByServerNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listByServerPagingAll(
-    locationName: string,
-    longTermRetentionServerName: string,
-    options?: LongTermRetentionBackupsListByServerOptionalParams
-  ): AsyncIterableIterator<LongTermRetentionBackup> {
-    for await (const page of this.listByServerPagingPage(
-      locationName,
-      longTermRetentionServerName,
-      options
-    )) {
+  private async *listByServerPagingAll(): AsyncIterableIterator<
+    LongTermRetentionBackup
+  > {
+    for await (const page of this.listByServerPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Lists all long term retention backups for a database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param locationName The location of the database
-   * @param longTermRetentionServerName The name of the server
-   * @param longTermRetentionDatabaseName The name of the database
-   * @param options The options parameters.
+   *
    */
-  public listByResourceGroupDatabase(
-    resourceGroupName: string,
-    locationName: string,
-    longTermRetentionServerName: string,
-    longTermRetentionDatabaseName: string,
-    options?: LongTermRetentionBackupsListByResourceGroupDatabaseOptionalParams
-  ): PagedAsyncIterableIterator<LongTermRetentionBackup> {
-    const iter = this.listByResourceGroupDatabasePagingAll(
-      resourceGroupName,
-      locationName,
-      longTermRetentionServerName,
-      longTermRetentionDatabaseName,
-      options
-    );
+  public listByResourceGroupDatabase(): PagedAsyncIterableIterator<
+    LongTermRetentionBackup
+  > {
+    const iter = this.listByResourceGroupDatabasePagingAll();
     return {
       next() {
         return iter.next();
@@ -306,82 +185,40 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
         return this;
       },
       byPage: () => {
-        return this.listByResourceGroupDatabasePagingPage(
-          resourceGroupName,
-          locationName,
-          longTermRetentionServerName,
-          longTermRetentionDatabaseName,
-          options
-        );
+        return this.listByResourceGroupDatabasePagingPage();
       }
     };
   }
 
-  private async *listByResourceGroupDatabasePagingPage(
-    resourceGroupName: string,
-    locationName: string,
-    longTermRetentionServerName: string,
-    longTermRetentionDatabaseName: string,
-    options?: LongTermRetentionBackupsListByResourceGroupDatabaseOptionalParams
-  ): AsyncIterableIterator<LongTermRetentionBackup[]> {
-    let result = await this._listByResourceGroupDatabase(
-      resourceGroupName,
-      locationName,
-      longTermRetentionServerName,
-      longTermRetentionDatabaseName,
-      options
-    );
+  private async *listByResourceGroupDatabasePagingPage(): AsyncIterableIterator<
+    LongTermRetentionBackup[]
+  > {
+    let result = await this._listByResourceGroupDatabase();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listByResourceGroupDatabaseNext(
-        resourceGroupName,
-        locationName,
-        longTermRetentionServerName,
-        longTermRetentionDatabaseName,
-        continuationToken,
-        options
-      );
+      result = await this._listByResourceGroupDatabaseNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listByResourceGroupDatabasePagingAll(
-    resourceGroupName: string,
-    locationName: string,
-    longTermRetentionServerName: string,
-    longTermRetentionDatabaseName: string,
-    options?: LongTermRetentionBackupsListByResourceGroupDatabaseOptionalParams
-  ): AsyncIterableIterator<LongTermRetentionBackup> {
-    for await (const page of this.listByResourceGroupDatabasePagingPage(
-      resourceGroupName,
-      locationName,
-      longTermRetentionServerName,
-      longTermRetentionDatabaseName,
-      options
-    )) {
+  private async *listByResourceGroupDatabasePagingAll(): AsyncIterableIterator<
+    LongTermRetentionBackup
+  > {
+    for await (const page of this.listByResourceGroupDatabasePagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Lists the long term retention backups for a given location.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param locationName The location of the database
-   * @param options The options parameters.
+   *
    */
-  public listByResourceGroupLocation(
-    resourceGroupName: string,
-    locationName: string,
-    options?: LongTermRetentionBackupsListByResourceGroupLocationOptionalParams
-  ): PagedAsyncIterableIterator<LongTermRetentionBackup> {
-    const iter = this.listByResourceGroupLocationPagingAll(
-      resourceGroupName,
-      locationName,
-      options
-    );
+  public listByResourceGroupLocation(): PagedAsyncIterableIterator<
+    LongTermRetentionBackup
+  > {
+    const iter = this.listByResourceGroupLocationPagingAll();
     return {
       next() {
         return iter.next();
@@ -390,73 +227,40 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
         return this;
       },
       byPage: () => {
-        return this.listByResourceGroupLocationPagingPage(
-          resourceGroupName,
-          locationName,
-          options
-        );
+        return this.listByResourceGroupLocationPagingPage();
       }
     };
   }
 
-  private async *listByResourceGroupLocationPagingPage(
-    resourceGroupName: string,
-    locationName: string,
-    options?: LongTermRetentionBackupsListByResourceGroupLocationOptionalParams
-  ): AsyncIterableIterator<LongTermRetentionBackup[]> {
-    let result = await this._listByResourceGroupLocation(
-      resourceGroupName,
-      locationName,
-      options
-    );
+  private async *listByResourceGroupLocationPagingPage(): AsyncIterableIterator<
+    LongTermRetentionBackup[]
+  > {
+    let result = await this._listByResourceGroupLocation();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listByResourceGroupLocationNext(
-        resourceGroupName,
-        locationName,
-        continuationToken,
-        options
-      );
+      result = await this._listByResourceGroupLocationNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listByResourceGroupLocationPagingAll(
-    resourceGroupName: string,
-    locationName: string,
-    options?: LongTermRetentionBackupsListByResourceGroupLocationOptionalParams
-  ): AsyncIterableIterator<LongTermRetentionBackup> {
-    for await (const page of this.listByResourceGroupLocationPagingPage(
-      resourceGroupName,
-      locationName,
-      options
-    )) {
+  private async *listByResourceGroupLocationPagingAll(): AsyncIterableIterator<
+    LongTermRetentionBackup
+  > {
+    for await (const page of this.listByResourceGroupLocationPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Lists the long term retention backups for a given server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param locationName The location of the database
-   * @param longTermRetentionServerName The name of the server
-   * @param options The options parameters.
+   *
    */
-  public listByResourceGroupServer(
-    resourceGroupName: string,
-    locationName: string,
-    longTermRetentionServerName: string,
-    options?: LongTermRetentionBackupsListByResourceGroupServerOptionalParams
-  ): PagedAsyncIterableIterator<LongTermRetentionBackup> {
-    const iter = this.listByResourceGroupServerPagingAll(
-      resourceGroupName,
-      locationName,
-      longTermRetentionServerName,
-      options
-    );
+  public listByResourceGroupServer(): PagedAsyncIterableIterator<
+    LongTermRetentionBackup
+  > {
+    const iter = this.listByResourceGroupServerPagingAll();
     return {
       next() {
         return iter.next();
@@ -465,76 +269,37 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
         return this;
       },
       byPage: () => {
-        return this.listByResourceGroupServerPagingPage(
-          resourceGroupName,
-          locationName,
-          longTermRetentionServerName,
-          options
-        );
+        return this.listByResourceGroupServerPagingPage();
       }
     };
   }
 
-  private async *listByResourceGroupServerPagingPage(
-    resourceGroupName: string,
-    locationName: string,
-    longTermRetentionServerName: string,
-    options?: LongTermRetentionBackupsListByResourceGroupServerOptionalParams
-  ): AsyncIterableIterator<LongTermRetentionBackup[]> {
-    let result = await this._listByResourceGroupServer(
-      resourceGroupName,
-      locationName,
-      longTermRetentionServerName,
-      options
-    );
+  private async *listByResourceGroupServerPagingPage(): AsyncIterableIterator<
+    LongTermRetentionBackup[]
+  > {
+    let result = await this._listByResourceGroupServer();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listByResourceGroupServerNext(
-        resourceGroupName,
-        locationName,
-        longTermRetentionServerName,
-        continuationToken,
-        options
-      );
+      result = await this._listByResourceGroupServerNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listByResourceGroupServerPagingAll(
-    resourceGroupName: string,
-    locationName: string,
-    longTermRetentionServerName: string,
-    options?: LongTermRetentionBackupsListByResourceGroupServerOptionalParams
-  ): AsyncIterableIterator<LongTermRetentionBackup> {
-    for await (const page of this.listByResourceGroupServerPagingPage(
-      resourceGroupName,
-      locationName,
-      longTermRetentionServerName,
-      options
-    )) {
+  private async *listByResourceGroupServerPagingAll(): AsyncIterableIterator<
+    LongTermRetentionBackup
+  > {
+    for await (const page of this.listByResourceGroupServerPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Copy an existing long term retention backup.
-   * @param locationName The location of the database.
-   * @param longTermRetentionServerName The name of the server
-   * @param longTermRetentionDatabaseName The name of the database
-   * @param backupName The backup name.
-   * @param parameters The parameters needed for long term retention copy request
-   * @param options The options parameters.
+   *
    */
-  async beginCopy(
-    locationName: string,
-    longTermRetentionServerName: string,
-    longTermRetentionDatabaseName: string,
-    backupName: string,
-    parameters: CopyLongTermRetentionBackupParameters,
-    options?: LongTermRetentionBackupsCopyOptionalParams
-  ): Promise<
+  async beginCopy(): Promise<
     PollerLike<
       PollOperationState<LongTermRetentionBackupsCopyResponse>,
       LongTermRetentionBackupsCopyResponse
@@ -586,7 +351,6 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
         longTermRetentionServerName,
         longTermRetentionDatabaseName,
         backupName,
-        parameters,
         options
       },
       copyOperationSpec
@@ -601,49 +365,18 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
 
   /**
    * Copy an existing long term retention backup.
-   * @param locationName The location of the database.
-   * @param longTermRetentionServerName The name of the server
-   * @param longTermRetentionDatabaseName The name of the database
-   * @param backupName The backup name.
-   * @param parameters The parameters needed for long term retention copy request
-   * @param options The options parameters.
+   *
    */
-  async beginCopyAndWait(
-    locationName: string,
-    longTermRetentionServerName: string,
-    longTermRetentionDatabaseName: string,
-    backupName: string,
-    parameters: CopyLongTermRetentionBackupParameters,
-    options?: LongTermRetentionBackupsCopyOptionalParams
-  ): Promise<LongTermRetentionBackupsCopyResponse> {
-    const poller = await this.beginCopy(
-      locationName,
-      longTermRetentionServerName,
-      longTermRetentionDatabaseName,
-      backupName,
-      parameters,
-      options
-    );
+  async beginCopyAndWait(): Promise<LongTermRetentionBackupsCopyResponse> {
+    const poller = await this.beginCopy();
     return poller.pollUntilDone();
   }
 
   /**
    * Updates an existing long term retention backup.
-   * @param locationName The location of the database.
-   * @param longTermRetentionServerName The name of the server
-   * @param longTermRetentionDatabaseName The name of the database
-   * @param backupName The backup name.
-   * @param parameters The requested backup resource state
-   * @param options The options parameters.
+   *
    */
-  async beginUpdate(
-    locationName: string,
-    longTermRetentionServerName: string,
-    longTermRetentionDatabaseName: string,
-    backupName: string,
-    parameters: UpdateLongTermRetentionBackupParameters,
-    options?: LongTermRetentionBackupsUpdateOptionalParams
-  ): Promise<
+  async beginUpdate(): Promise<
     PollerLike<
       PollOperationState<LongTermRetentionBackupsUpdateResponse>,
       LongTermRetentionBackupsUpdateResponse
@@ -695,7 +428,6 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
         longTermRetentionServerName,
         longTermRetentionDatabaseName,
         backupName,
-        parameters,
         options
       },
       updateOperationSpec
@@ -710,233 +442,63 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
 
   /**
    * Updates an existing long term retention backup.
-   * @param locationName The location of the database.
-   * @param longTermRetentionServerName The name of the server
-   * @param longTermRetentionDatabaseName The name of the database
-   * @param backupName The backup name.
-   * @param parameters The requested backup resource state
-   * @param options The options parameters.
+   *
    */
-  async beginUpdateAndWait(
-    locationName: string,
-    longTermRetentionServerName: string,
-    longTermRetentionDatabaseName: string,
-    backupName: string,
-    parameters: UpdateLongTermRetentionBackupParameters,
-    options?: LongTermRetentionBackupsUpdateOptionalParams
-  ): Promise<LongTermRetentionBackupsUpdateResponse> {
-    const poller = await this.beginUpdate(
-      locationName,
-      longTermRetentionServerName,
-      longTermRetentionDatabaseName,
-      backupName,
-      parameters,
-      options
-    );
+  async beginUpdateAndWait(): Promise<LongTermRetentionBackupsUpdateResponse> {
+    const poller = await this.beginUpdate();
     return poller.pollUntilDone();
   }
 
   /**
    * Gets a long term retention backup.
-   * @param locationName The location of the database.
-   * @param longTermRetentionServerName The name of the server
-   * @param longTermRetentionDatabaseName The name of the database
-   * @param backupName The backup name.
-   * @param options The options parameters.
+   *
    */
-  get(
-    locationName: string,
-    longTermRetentionServerName: string,
-    longTermRetentionDatabaseName: string,
-    backupName: string,
-    options?: LongTermRetentionBackupsGetOptionalParams
-  ): Promise<LongTermRetentionBackupsGetResponse> {
-    return this.client.sendOperationRequest(
-      {
-        locationName,
-        longTermRetentionServerName,
-        longTermRetentionDatabaseName,
-        backupName,
-        options
-      },
-      getOperationSpec
-    );
-  }
+  get(): Promise<LongTermRetentionBackupsGetResponse> {}
 
   /**
    * Deletes a long term retention backup.
-   * @param locationName The location of the database
-   * @param longTermRetentionServerName The name of the server
-   * @param longTermRetentionDatabaseName The name of the database
-   * @param backupName The backup name.
-   * @param options The options parameters.
+   *
    */
-  async beginDelete(
-    locationName: string,
-    longTermRetentionServerName: string,
-    longTermRetentionDatabaseName: string,
-    backupName: string,
-    options?: LongTermRetentionBackupsDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<void> => {
-      return this.client.sendOperationRequest(args, spec);
-    };
-    const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return {
-        flatResponse,
-        rawResponse: {
-          statusCode: currentRawResponse!.status,
-          body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
-      };
-    };
-
-    const lro = new LroImpl(
-      sendOperation,
-      {
-        locationName,
-        longTermRetentionServerName,
-        longTermRetentionDatabaseName,
-        backupName,
-        options
-      },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
-    });
-    await poller.poll();
-    return poller;
-  }
+  async beginDelete(): Promise<PollerLike<PollOperationState<void>, void>> {}
 
   /**
    * Deletes a long term retention backup.
-   * @param locationName The location of the database
-   * @param longTermRetentionServerName The name of the server
-   * @param longTermRetentionDatabaseName The name of the database
-   * @param backupName The backup name.
-   * @param options The options parameters.
+   *
    */
-  async beginDeleteAndWait(
-    locationName: string,
-    longTermRetentionServerName: string,
-    longTermRetentionDatabaseName: string,
-    backupName: string,
-    options?: LongTermRetentionBackupsDeleteOptionalParams
-  ): Promise<void> {
-    const poller = await this.beginDelete(
-      locationName,
-      longTermRetentionServerName,
-      longTermRetentionDatabaseName,
-      backupName,
-      options
-    );
+  async beginDeleteAndWait(): Promise<void> {
+    const poller = await this.beginDelete();
     return poller.pollUntilDone();
   }
 
   /**
    * Lists all long term retention backups for a database.
-   * @param locationName The location of the database
-   * @param longTermRetentionServerName The name of the server
-   * @param longTermRetentionDatabaseName The name of the database
-   * @param options The options parameters.
+   *
    */
-  private _listByDatabase(
-    locationName: string,
-    longTermRetentionServerName: string,
-    longTermRetentionDatabaseName: string,
-    options?: LongTermRetentionBackupsListByDatabaseOptionalParams
-  ): Promise<LongTermRetentionBackupsListByDatabaseResponse> {
-    return this.client.sendOperationRequest(
-      {
-        locationName,
-        longTermRetentionServerName,
-        longTermRetentionDatabaseName,
-        options
-      },
-      listByDatabaseOperationSpec
-    );
-  }
+  private _listByDatabase(): Promise<
+    LongTermRetentionBackupsListByDatabaseResponse
+  > {}
 
   /**
    * Lists the long term retention backups for a given location.
-   * @param locationName The location of the database
-   * @param options The options parameters.
+   *
    */
-  private _listByLocation(
-    locationName: string,
-    options?: LongTermRetentionBackupsListByLocationOptionalParams
-  ): Promise<LongTermRetentionBackupsListByLocationResponse> {
-    return this.client.sendOperationRequest(
-      { locationName, options },
-      listByLocationOperationSpec
-    );
-  }
+  private _listByLocation(): Promise<
+    LongTermRetentionBackupsListByLocationResponse
+  > {}
 
   /**
    * Lists the long term retention backups for a given server.
-   * @param locationName The location of the database
-   * @param longTermRetentionServerName The name of the server
-   * @param options The options parameters.
+   *
    */
-  private _listByServer(
-    locationName: string,
-    longTermRetentionServerName: string,
-    options?: LongTermRetentionBackupsListByServerOptionalParams
-  ): Promise<LongTermRetentionBackupsListByServerResponse> {
-    return this.client.sendOperationRequest(
-      { locationName, longTermRetentionServerName, options },
-      listByServerOperationSpec
-    );
-  }
+  private _listByServer(): Promise<
+    LongTermRetentionBackupsListByServerResponse
+  > {}
 
   /**
    * Copy an existing long term retention backup to a different server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param locationName The location of the database.
-   * @param longTermRetentionServerName The name of the server
-   * @param longTermRetentionDatabaseName The name of the database
-   * @param backupName The backup name.
-   * @param parameters The parameters needed for long term retention copy request
-   * @param options The options parameters.
+   *
    */
-  async beginCopyByResourceGroup(
-    resourceGroupName: string,
-    locationName: string,
-    longTermRetentionServerName: string,
-    longTermRetentionDatabaseName: string,
-    backupName: string,
-    parameters: CopyLongTermRetentionBackupParameters,
-    options?: LongTermRetentionBackupsCopyByResourceGroupOptionalParams
-  ): Promise<
+  async beginCopyByResourceGroup(): Promise<
     PollerLike<
       PollOperationState<LongTermRetentionBackupsCopyByResourceGroupResponse>,
       LongTermRetentionBackupsCopyByResourceGroupResponse
@@ -989,7 +551,6 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
         longTermRetentionServerName,
         longTermRetentionDatabaseName,
         backupName,
-        parameters,
         options
       },
       copyByResourceGroupOperationSpec
@@ -1004,56 +565,20 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
 
   /**
    * Copy an existing long term retention backup to a different server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param locationName The location of the database.
-   * @param longTermRetentionServerName The name of the server
-   * @param longTermRetentionDatabaseName The name of the database
-   * @param backupName The backup name.
-   * @param parameters The parameters needed for long term retention copy request
-   * @param options The options parameters.
+   *
    */
-  async beginCopyByResourceGroupAndWait(
-    resourceGroupName: string,
-    locationName: string,
-    longTermRetentionServerName: string,
-    longTermRetentionDatabaseName: string,
-    backupName: string,
-    parameters: CopyLongTermRetentionBackupParameters,
-    options?: LongTermRetentionBackupsCopyByResourceGroupOptionalParams
-  ): Promise<LongTermRetentionBackupsCopyByResourceGroupResponse> {
-    const poller = await this.beginCopyByResourceGroup(
-      resourceGroupName,
-      locationName,
-      longTermRetentionServerName,
-      longTermRetentionDatabaseName,
-      backupName,
-      parameters,
-      options
-    );
+  async beginCopyByResourceGroupAndWait(): Promise<
+    LongTermRetentionBackupsCopyByResourceGroupResponse
+  > {
+    const poller = await this.beginCopyByResourceGroup();
     return poller.pollUntilDone();
   }
 
   /**
    * Updates an existing long term retention backup.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param locationName The location of the database.
-   * @param longTermRetentionServerName The name of the server
-   * @param longTermRetentionDatabaseName The name of the database
-   * @param backupName The backup name.
-   * @param parameters The requested backup resource state
-   * @param options The options parameters.
+   *
    */
-  async beginUpdateByResourceGroup(
-    resourceGroupName: string,
-    locationName: string,
-    longTermRetentionServerName: string,
-    longTermRetentionDatabaseName: string,
-    backupName: string,
-    parameters: UpdateLongTermRetentionBackupParameters,
-    options?: LongTermRetentionBackupsUpdateByResourceGroupOptionalParams
-  ): Promise<
+  async beginUpdateByResourceGroup(): Promise<
     PollerLike<
       PollOperationState<LongTermRetentionBackupsUpdateByResourceGroupResponse>,
       LongTermRetentionBackupsUpdateByResourceGroupResponse
@@ -1106,7 +631,6 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
         longTermRetentionServerName,
         longTermRetentionDatabaseName,
         backupName,
-        parameters,
         options
       },
       updateByResourceGroupOperationSpec
@@ -1121,383 +645,111 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
 
   /**
    * Updates an existing long term retention backup.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param locationName The location of the database.
-   * @param longTermRetentionServerName The name of the server
-   * @param longTermRetentionDatabaseName The name of the database
-   * @param backupName The backup name.
-   * @param parameters The requested backup resource state
-   * @param options The options parameters.
+   *
    */
-  async beginUpdateByResourceGroupAndWait(
-    resourceGroupName: string,
-    locationName: string,
-    longTermRetentionServerName: string,
-    longTermRetentionDatabaseName: string,
-    backupName: string,
-    parameters: UpdateLongTermRetentionBackupParameters,
-    options?: LongTermRetentionBackupsUpdateByResourceGroupOptionalParams
-  ): Promise<LongTermRetentionBackupsUpdateByResourceGroupResponse> {
-    const poller = await this.beginUpdateByResourceGroup(
-      resourceGroupName,
-      locationName,
-      longTermRetentionServerName,
-      longTermRetentionDatabaseName,
-      backupName,
-      parameters,
-      options
-    );
+  async beginUpdateByResourceGroupAndWait(): Promise<
+    LongTermRetentionBackupsUpdateByResourceGroupResponse
+  > {
+    const poller = await this.beginUpdateByResourceGroup();
     return poller.pollUntilDone();
   }
 
   /**
    * Gets a long term retention backup.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param locationName The location of the database.
-   * @param longTermRetentionServerName The name of the server
-   * @param longTermRetentionDatabaseName The name of the database
-   * @param backupName The backup name.
-   * @param options The options parameters.
+   *
    */
-  getByResourceGroup(
-    resourceGroupName: string,
-    locationName: string,
-    longTermRetentionServerName: string,
-    longTermRetentionDatabaseName: string,
-    backupName: string,
-    options?: LongTermRetentionBackupsGetByResourceGroupOptionalParams
-  ): Promise<LongTermRetentionBackupsGetByResourceGroupResponse> {
-    return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        locationName,
-        longTermRetentionServerName,
-        longTermRetentionDatabaseName,
-        backupName,
-        options
-      },
-      getByResourceGroupOperationSpec
-    );
-  }
+  getByResourceGroup(): Promise<
+    LongTermRetentionBackupsGetByResourceGroupResponse
+  > {}
 
   /**
    * Deletes a long term retention backup.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param locationName The location of the database
-   * @param longTermRetentionServerName The name of the server
-   * @param longTermRetentionDatabaseName The name of the database
-   * @param backupName The backup name.
-   * @param options The options parameters.
+   *
    */
-  async beginDeleteByResourceGroup(
-    resourceGroupName: string,
-    locationName: string,
-    longTermRetentionServerName: string,
-    longTermRetentionDatabaseName: string,
-    backupName: string,
-    options?: LongTermRetentionBackupsDeleteByResourceGroupOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<void> => {
-      return this.client.sendOperationRequest(args, spec);
-    };
-    const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return {
-        flatResponse,
-        rawResponse: {
-          statusCode: currentRawResponse!.status,
-          body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
-      };
-    };
-
-    const lro = new LroImpl(
-      sendOperation,
-      {
-        resourceGroupName,
-        locationName,
-        longTermRetentionServerName,
-        longTermRetentionDatabaseName,
-        backupName,
-        options
-      },
-      deleteByResourceGroupOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
-    });
-    await poller.poll();
-    return poller;
-  }
+  async beginDeleteByResourceGroup(): Promise<
+    PollerLike<PollOperationState<void>, void>
+  > {}
 
   /**
    * Deletes a long term retention backup.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param locationName The location of the database
-   * @param longTermRetentionServerName The name of the server
-   * @param longTermRetentionDatabaseName The name of the database
-   * @param backupName The backup name.
-   * @param options The options parameters.
+   *
    */
-  async beginDeleteByResourceGroupAndWait(
-    resourceGroupName: string,
-    locationName: string,
-    longTermRetentionServerName: string,
-    longTermRetentionDatabaseName: string,
-    backupName: string,
-    options?: LongTermRetentionBackupsDeleteByResourceGroupOptionalParams
-  ): Promise<void> {
-    const poller = await this.beginDeleteByResourceGroup(
-      resourceGroupName,
-      locationName,
-      longTermRetentionServerName,
-      longTermRetentionDatabaseName,
-      backupName,
-      options
-    );
+  async beginDeleteByResourceGroupAndWait(): Promise<void> {
+    const poller = await this.beginDeleteByResourceGroup();
     return poller.pollUntilDone();
   }
 
   /**
    * Lists all long term retention backups for a database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param locationName The location of the database
-   * @param longTermRetentionServerName The name of the server
-   * @param longTermRetentionDatabaseName The name of the database
-   * @param options The options parameters.
+   *
    */
-  private _listByResourceGroupDatabase(
-    resourceGroupName: string,
-    locationName: string,
-    longTermRetentionServerName: string,
-    longTermRetentionDatabaseName: string,
-    options?: LongTermRetentionBackupsListByResourceGroupDatabaseOptionalParams
-  ): Promise<LongTermRetentionBackupsListByResourceGroupDatabaseResponse> {
-    return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        locationName,
-        longTermRetentionServerName,
-        longTermRetentionDatabaseName,
-        options
-      },
-      listByResourceGroupDatabaseOperationSpec
-    );
-  }
+  private _listByResourceGroupDatabase(): Promise<
+    LongTermRetentionBackupsListByResourceGroupDatabaseResponse
+  > {}
 
   /**
    * Lists the long term retention backups for a given location.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param locationName The location of the database
-   * @param options The options parameters.
+   *
    */
-  private _listByResourceGroupLocation(
-    resourceGroupName: string,
-    locationName: string,
-    options?: LongTermRetentionBackupsListByResourceGroupLocationOptionalParams
-  ): Promise<LongTermRetentionBackupsListByResourceGroupLocationResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, locationName, options },
-      listByResourceGroupLocationOperationSpec
-    );
-  }
+  private _listByResourceGroupLocation(): Promise<
+    LongTermRetentionBackupsListByResourceGroupLocationResponse
+  > {}
 
   /**
    * Lists the long term retention backups for a given server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param locationName The location of the database
-   * @param longTermRetentionServerName The name of the server
-   * @param options The options parameters.
+   *
    */
-  private _listByResourceGroupServer(
-    resourceGroupName: string,
-    locationName: string,
-    longTermRetentionServerName: string,
-    options?: LongTermRetentionBackupsListByResourceGroupServerOptionalParams
-  ): Promise<LongTermRetentionBackupsListByResourceGroupServerResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, locationName, longTermRetentionServerName, options },
-      listByResourceGroupServerOperationSpec
-    );
-  }
+  private _listByResourceGroupServer(): Promise<
+    LongTermRetentionBackupsListByResourceGroupServerResponse
+  > {}
 
   /**
    * ListByDatabaseNext
-   * @param locationName The location of the database
-   * @param longTermRetentionServerName The name of the server
-   * @param longTermRetentionDatabaseName The name of the database
-   * @param nextLink The nextLink from the previous successful call to the ListByDatabase method.
-   * @param options The options parameters.
+   *
    */
-  private _listByDatabaseNext(
-    locationName: string,
-    longTermRetentionServerName: string,
-    longTermRetentionDatabaseName: string,
-    nextLink: string,
-    options?: LongTermRetentionBackupsListByDatabaseNextOptionalParams
-  ): Promise<LongTermRetentionBackupsListByDatabaseNextResponse> {
-    return this.client.sendOperationRequest(
-      {
-        locationName,
-        longTermRetentionServerName,
-        longTermRetentionDatabaseName,
-        nextLink,
-        options
-      },
-      listByDatabaseNextOperationSpec
-    );
-  }
+  private _listByDatabaseNext(): Promise<
+    LongTermRetentionBackupsListByDatabaseNextResponse
+  > {}
 
   /**
    * ListByLocationNext
-   * @param locationName The location of the database
-   * @param nextLink The nextLink from the previous successful call to the ListByLocation method.
-   * @param options The options parameters.
+   *
    */
-  private _listByLocationNext(
-    locationName: string,
-    nextLink: string,
-    options?: LongTermRetentionBackupsListByLocationNextOptionalParams
-  ): Promise<LongTermRetentionBackupsListByLocationNextResponse> {
-    return this.client.sendOperationRequest(
-      { locationName, nextLink, options },
-      listByLocationNextOperationSpec
-    );
-  }
+  private _listByLocationNext(): Promise<
+    LongTermRetentionBackupsListByLocationNextResponse
+  > {}
 
   /**
    * ListByServerNext
-   * @param locationName The location of the database
-   * @param longTermRetentionServerName The name of the server
-   * @param nextLink The nextLink from the previous successful call to the ListByServer method.
-   * @param options The options parameters.
+   *
    */
-  private _listByServerNext(
-    locationName: string,
-    longTermRetentionServerName: string,
-    nextLink: string,
-    options?: LongTermRetentionBackupsListByServerNextOptionalParams
-  ): Promise<LongTermRetentionBackupsListByServerNextResponse> {
-    return this.client.sendOperationRequest(
-      { locationName, longTermRetentionServerName, nextLink, options },
-      listByServerNextOperationSpec
-    );
-  }
+  private _listByServerNext(): Promise<
+    LongTermRetentionBackupsListByServerNextResponse
+  > {}
 
   /**
    * ListByResourceGroupDatabaseNext
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param locationName The location of the database
-   * @param longTermRetentionServerName The name of the server
-   * @param longTermRetentionDatabaseName The name of the database
-   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroupDatabase
-   *                 method.
-   * @param options The options parameters.
+   *
    */
-  private _listByResourceGroupDatabaseNext(
-    resourceGroupName: string,
-    locationName: string,
-    longTermRetentionServerName: string,
-    longTermRetentionDatabaseName: string,
-    nextLink: string,
-    options?: LongTermRetentionBackupsListByResourceGroupDatabaseNextOptionalParams
-  ): Promise<LongTermRetentionBackupsListByResourceGroupDatabaseNextResponse> {
-    return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        locationName,
-        longTermRetentionServerName,
-        longTermRetentionDatabaseName,
-        nextLink,
-        options
-      },
-      listByResourceGroupDatabaseNextOperationSpec
-    );
-  }
+  private _listByResourceGroupDatabaseNext(): Promise<
+    LongTermRetentionBackupsListByResourceGroupDatabaseNextResponse
+  > {}
 
   /**
    * ListByResourceGroupLocationNext
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param locationName The location of the database
-   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroupLocation
-   *                 method.
-   * @param options The options parameters.
+   *
    */
-  private _listByResourceGroupLocationNext(
-    resourceGroupName: string,
-    locationName: string,
-    nextLink: string,
-    options?: LongTermRetentionBackupsListByResourceGroupLocationNextOptionalParams
-  ): Promise<LongTermRetentionBackupsListByResourceGroupLocationNextResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, locationName, nextLink, options },
-      listByResourceGroupLocationNextOperationSpec
-    );
-  }
+  private _listByResourceGroupLocationNext(): Promise<
+    LongTermRetentionBackupsListByResourceGroupLocationNextResponse
+  > {}
 
   /**
    * ListByResourceGroupServerNext
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param locationName The location of the database
-   * @param longTermRetentionServerName The name of the server
-   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroupServer
-   *                 method.
-   * @param options The options parameters.
+   *
    */
-  private _listByResourceGroupServerNext(
-    resourceGroupName: string,
-    locationName: string,
-    longTermRetentionServerName: string,
-    nextLink: string,
-    options?: LongTermRetentionBackupsListByResourceGroupServerNextOptionalParams
-  ): Promise<LongTermRetentionBackupsListByResourceGroupServerNextResponse> {
-    return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        locationName,
-        longTermRetentionServerName,
-        nextLink,
-        options
-      },
-      listByResourceGroupServerNextOperationSpec
-    );
-  }
+  private _listByResourceGroupServerNext(): Promise<
+    LongTermRetentionBackupsListByResourceGroupServerNextResponse
+  > {}
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
@@ -1568,116 +820,6 @@ const updateOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Sql/locations/{locationName}/longTermRetentionServers/{longTermRetentionServerName}/longTermRetentionDatabases/{longTermRetentionDatabaseName}/longTermRetentionBackups/{backupName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.LongTermRetentionBackup
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion1],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.locationName,
-    Parameters.longTermRetentionServerName,
-    Parameters.longTermRetentionDatabaseName,
-    Parameters.backupName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const deleteOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Sql/locations/{locationName}/longTermRetentionServers/{longTermRetentionServerName}/longTermRetentionDatabases/{longTermRetentionDatabaseName}/longTermRetentionBackups/{backupName}",
-  httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
-  queryParameters: [Parameters.apiVersion1],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.locationName,
-    Parameters.longTermRetentionServerName,
-    Parameters.longTermRetentionDatabaseName,
-    Parameters.backupName
-  ],
-  serializer
-};
-const listByDatabaseOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Sql/locations/{locationName}/longTermRetentionServers/{longTermRetentionServerName}/longTermRetentionDatabases/{longTermRetentionDatabaseName}/longTermRetentionBackups",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.LongTermRetentionBackupListResult
-    },
-    default: {}
-  },
-  queryParameters: [
-    Parameters.apiVersion1,
-    Parameters.onlyLatestPerDatabase,
-    Parameters.databaseState
-  ],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.locationName,
-    Parameters.longTermRetentionServerName,
-    Parameters.longTermRetentionDatabaseName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByLocationOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Sql/locations/{locationName}/longTermRetentionBackups",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.LongTermRetentionBackupListResult
-    },
-    default: {}
-  },
-  queryParameters: [
-    Parameters.apiVersion1,
-    Parameters.onlyLatestPerDatabase,
-    Parameters.databaseState
-  ],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.locationName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByServerOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Sql/locations/{locationName}/longTermRetentionServers/{longTermRetentionServerName}/longTermRetentionBackups",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.LongTermRetentionBackupListResult
-    },
-    default: {}
-  },
-  queryParameters: [
-    Parameters.apiVersion1,
-    Parameters.onlyLatestPerDatabase,
-    Parameters.databaseState
-  ],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.locationName,
-    Parameters.longTermRetentionServerName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
 const copyByResourceGroupOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/locations/{locationName}/longTermRetentionServers/{longTermRetentionServerName}/longTermRetentionDatabases/{longTermRetentionDatabaseName}/longTermRetentionBackups/{backupName}/copy",
@@ -1744,267 +886,5 @@ const updateByResourceGroupOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const getByResourceGroupOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/locations/{locationName}/longTermRetentionServers/{longTermRetentionServerName}/longTermRetentionDatabases/{longTermRetentionDatabaseName}/longTermRetentionBackups/{backupName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.LongTermRetentionBackup
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion1],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.locationName,
-    Parameters.longTermRetentionServerName,
-    Parameters.longTermRetentionDatabaseName,
-    Parameters.backupName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const deleteByResourceGroupOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/locations/{locationName}/longTermRetentionServers/{longTermRetentionServerName}/longTermRetentionDatabases/{longTermRetentionDatabaseName}/longTermRetentionBackups/{backupName}",
-  httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
-  queryParameters: [Parameters.apiVersion1],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.locationName,
-    Parameters.longTermRetentionServerName,
-    Parameters.longTermRetentionDatabaseName,
-    Parameters.backupName
-  ],
-  serializer
-};
-const listByResourceGroupDatabaseOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/locations/{locationName}/longTermRetentionServers/{longTermRetentionServerName}/longTermRetentionDatabases/{longTermRetentionDatabaseName}/longTermRetentionBackups",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.LongTermRetentionBackupListResult
-    },
-    default: {}
-  },
-  queryParameters: [
-    Parameters.apiVersion1,
-    Parameters.onlyLatestPerDatabase,
-    Parameters.databaseState
-  ],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.locationName,
-    Parameters.longTermRetentionServerName,
-    Parameters.longTermRetentionDatabaseName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByResourceGroupLocationOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/locations/{locationName}/longTermRetentionBackups",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.LongTermRetentionBackupListResult
-    },
-    default: {}
-  },
-  queryParameters: [
-    Parameters.apiVersion1,
-    Parameters.onlyLatestPerDatabase,
-    Parameters.databaseState
-  ],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.locationName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByResourceGroupServerOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/locations/{locationName}/longTermRetentionServers/{longTermRetentionServerName}/longTermRetentionBackups",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.LongTermRetentionBackupListResult
-    },
-    default: {}
-  },
-  queryParameters: [
-    Parameters.apiVersion1,
-    Parameters.onlyLatestPerDatabase,
-    Parameters.databaseState
-  ],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.locationName,
-    Parameters.longTermRetentionServerName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByDatabaseNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.LongTermRetentionBackupListResult
-    },
-    default: {}
-  },
-  queryParameters: [
-    Parameters.apiVersion1,
-    Parameters.onlyLatestPerDatabase,
-    Parameters.databaseState
-  ],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.nextLink,
-    Parameters.locationName,
-    Parameters.longTermRetentionServerName,
-    Parameters.longTermRetentionDatabaseName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByLocationNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.LongTermRetentionBackupListResult
-    },
-    default: {}
-  },
-  queryParameters: [
-    Parameters.apiVersion1,
-    Parameters.onlyLatestPerDatabase,
-    Parameters.databaseState
-  ],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.nextLink,
-    Parameters.locationName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByServerNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.LongTermRetentionBackupListResult
-    },
-    default: {}
-  },
-  queryParameters: [
-    Parameters.apiVersion1,
-    Parameters.onlyLatestPerDatabase,
-    Parameters.databaseState
-  ],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.nextLink,
-    Parameters.locationName,
-    Parameters.longTermRetentionServerName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByResourceGroupDatabaseNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.LongTermRetentionBackupListResult
-    },
-    default: {}
-  },
-  queryParameters: [
-    Parameters.apiVersion1,
-    Parameters.onlyLatestPerDatabase,
-    Parameters.databaseState
-  ],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.nextLink,
-    Parameters.locationName,
-    Parameters.longTermRetentionServerName,
-    Parameters.longTermRetentionDatabaseName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByResourceGroupLocationNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.LongTermRetentionBackupListResult
-    },
-    default: {}
-  },
-  queryParameters: [
-    Parameters.apiVersion1,
-    Parameters.onlyLatestPerDatabase,
-    Parameters.databaseState
-  ],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.nextLink,
-    Parameters.locationName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByResourceGroupServerNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.LongTermRetentionBackupListResult
-    },
-    default: {}
-  },
-  queryParameters: [
-    Parameters.apiVersion1,
-    Parameters.onlyLatestPerDatabase,
-    Parameters.databaseState
-  ],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.nextLink,
-    Parameters.locationName,
-    Parameters.longTermRetentionServerName
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };

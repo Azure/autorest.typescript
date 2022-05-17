@@ -10,10 +10,7 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ExtendedServerBlobAuditingPolicy,
-  ExtendedServerBlobAuditingPoliciesListByServerOptionalParams,
-  ExtendedServerBlobAuditingPoliciesGetOptionalParams,
   ExtendedServerBlobAuditingPoliciesGetResponse,
-  ExtendedServerBlobAuditingPoliciesCreateOrUpdateOptionalParams,
   ExtendedServerBlobAuditingPoliciesCreateOrUpdateResponse
 } from "../models";
 
@@ -22,42 +19,19 @@ import {
 export interface ExtendedServerBlobAuditingPolicies {
   /**
    * Lists extended auditing settings of a server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  listByServer(
-    resourceGroupName: string,
-    serverName: string,
-    options?: ExtendedServerBlobAuditingPoliciesListByServerOptionalParams
-  ): PagedAsyncIterableIterator<ExtendedServerBlobAuditingPolicy>;
+  listByServer(): PagedAsyncIterableIterator<ExtendedServerBlobAuditingPolicy>;
   /**
    * Gets an extended server's blob auditing policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    options?: ExtendedServerBlobAuditingPoliciesGetOptionalParams
-  ): Promise<ExtendedServerBlobAuditingPoliciesGetResponse>;
+  get(): Promise<ExtendedServerBlobAuditingPoliciesGetResponse>;
   /**
    * Creates or updates an extended server's blob auditing policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param parameters Properties of extended blob auditing policy
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    parameters: ExtendedServerBlobAuditingPolicy,
-    options?: ExtendedServerBlobAuditingPoliciesCreateOrUpdateOptionalParams
-  ): Promise<
+  beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<
         ExtendedServerBlobAuditingPoliciesCreateOrUpdateResponse
@@ -67,16 +41,9 @@ export interface ExtendedServerBlobAuditingPolicies {
   >;
   /**
    * Creates or updates an extended server's blob auditing policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param parameters Properties of extended blob auditing policy
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    parameters: ExtendedServerBlobAuditingPolicy,
-    options?: ExtendedServerBlobAuditingPoliciesCreateOrUpdateOptionalParams
-  ): Promise<ExtendedServerBlobAuditingPoliciesCreateOrUpdateResponse>;
+  beginCreateOrUpdateAndWait(): Promise<
+    ExtendedServerBlobAuditingPoliciesCreateOrUpdateResponse
+  >;
 }

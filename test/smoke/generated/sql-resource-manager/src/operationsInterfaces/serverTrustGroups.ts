@@ -10,13 +10,8 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ServerTrustGroup,
-  ServerTrustGroupsListByLocationOptionalParams,
-  ServerTrustGroupsListByInstanceOptionalParams,
-  ServerTrustGroupsGetOptionalParams,
   ServerTrustGroupsGetResponse,
-  ServerTrustGroupsCreateOrUpdateOptionalParams,
-  ServerTrustGroupsCreateOrUpdateResponse,
-  ServerTrustGroupsDeleteOptionalParams
+  ServerTrustGroupsCreateOrUpdateResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -24,58 +19,24 @@ import {
 export interface ServerTrustGroups {
   /**
    * Lists a server trust group.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param locationName The name of the region where the resource is located.
-   * @param options The options parameters.
+   *
    */
-  listByLocation(
-    resourceGroupName: string,
-    locationName: string,
-    options?: ServerTrustGroupsListByLocationOptionalParams
-  ): PagedAsyncIterableIterator<ServerTrustGroup>;
+  listByLocation(): PagedAsyncIterableIterator<ServerTrustGroup>;
   /**
    * Gets a server trust groups by instance name.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param options The options parameters.
+   *
    */
-  listByInstance(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    options?: ServerTrustGroupsListByInstanceOptionalParams
-  ): PagedAsyncIterableIterator<ServerTrustGroup>;
+  listByInstance(): PagedAsyncIterableIterator<ServerTrustGroup>;
   /**
    * Gets a server trust group.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param locationName The name of the region where the resource is located.
-   * @param serverTrustGroupName The name of the server trust group.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    locationName: string,
-    serverTrustGroupName: string,
-    options?: ServerTrustGroupsGetOptionalParams
-  ): Promise<ServerTrustGroupsGetResponse>;
+  get(): Promise<ServerTrustGroupsGetResponse>;
   /**
    * Creates or updates a server trust group.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param locationName The name of the region where the resource is located.
-   * @param serverTrustGroupName The name of the server trust group.
-   * @param parameters The server trust group parameters.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdate(
-    resourceGroupName: string,
-    locationName: string,
-    serverTrustGroupName: string,
-    parameters: ServerTrustGroup,
-    options?: ServerTrustGroupsCreateOrUpdateOptionalParams
-  ): Promise<
+  beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<ServerTrustGroupsCreateOrUpdateResponse>,
       ServerTrustGroupsCreateOrUpdateResponse
@@ -83,46 +44,19 @@ export interface ServerTrustGroups {
   >;
   /**
    * Creates or updates a server trust group.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param locationName The name of the region where the resource is located.
-   * @param serverTrustGroupName The name of the server trust group.
-   * @param parameters The server trust group parameters.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    locationName: string,
-    serverTrustGroupName: string,
-    parameters: ServerTrustGroup,
-    options?: ServerTrustGroupsCreateOrUpdateOptionalParams
-  ): Promise<ServerTrustGroupsCreateOrUpdateResponse>;
+  beginCreateOrUpdateAndWait(): Promise<
+    ServerTrustGroupsCreateOrUpdateResponse
+  >;
   /**
    * Deletes a server trust group.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param locationName The name of the region where the resource is located.
-   * @param serverTrustGroupName The name of the server trust group.
-   * @param options The options parameters.
+   *
    */
-  beginDelete(
-    resourceGroupName: string,
-    locationName: string,
-    serverTrustGroupName: string,
-    options?: ServerTrustGroupsDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  beginDelete(): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes a server trust group.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param locationName The name of the region where the resource is located.
-   * @param serverTrustGroupName The name of the server trust group.
-   * @param options The options parameters.
+   *
    */
-  beginDeleteAndWait(
-    resourceGroupName: string,
-    locationName: string,
-    serverTrustGroupName: string,
-    options?: ServerTrustGroupsDeleteOptionalParams
-  ): Promise<void>;
+  beginDeleteAndWait(): Promise<void>;
 }

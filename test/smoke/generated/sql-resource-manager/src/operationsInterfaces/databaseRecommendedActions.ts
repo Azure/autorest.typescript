@@ -7,12 +7,8 @@
  */
 
 import {
-  DatabaseRecommendedActionsListByDatabaseAdvisorOptionalParams,
   DatabaseRecommendedActionsListByDatabaseAdvisorResponse,
-  DatabaseRecommendedActionsGetOptionalParams,
   DatabaseRecommendedActionsGetResponse,
-  RecommendedAction,
-  DatabaseRecommendedActionsUpdateOptionalParams,
   DatabaseRecommendedActionsUpdateResponse
 } from "../models";
 
@@ -20,56 +16,19 @@ import {
 export interface DatabaseRecommendedActions {
   /**
    * Gets list of Database Recommended Actions.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param advisorName The name of the Database Advisor.
-   * @param options The options parameters.
+   *
    */
-  listByDatabaseAdvisor(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    advisorName: string,
-    options?: DatabaseRecommendedActionsListByDatabaseAdvisorOptionalParams
-  ): Promise<DatabaseRecommendedActionsListByDatabaseAdvisorResponse>;
+  listByDatabaseAdvisor(): Promise<
+    DatabaseRecommendedActionsListByDatabaseAdvisorResponse
+  >;
   /**
    * Gets a database recommended action.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param advisorName The name of the Database Advisor.
-   * @param recommendedActionName The name of Database Recommended Action.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    advisorName: string,
-    recommendedActionName: string,
-    options?: DatabaseRecommendedActionsGetOptionalParams
-  ): Promise<DatabaseRecommendedActionsGetResponse>;
+  get(): Promise<DatabaseRecommendedActionsGetResponse>;
   /**
    * Updates a database recommended action.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param advisorName The name of the Database Advisor.
-   * @param recommendedActionName The name of Database Recommended Action.
-   * @param parameters The requested recommended action resource state.
-   * @param options The options parameters.
+   *
    */
-  update(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    advisorName: string,
-    recommendedActionName: string,
-    parameters: RecommendedAction,
-    options?: DatabaseRecommendedActionsUpdateOptionalParams
-  ): Promise<DatabaseRecommendedActionsUpdateResponse>;
+  update(): Promise<DatabaseRecommendedActionsUpdateResponse>;
 }

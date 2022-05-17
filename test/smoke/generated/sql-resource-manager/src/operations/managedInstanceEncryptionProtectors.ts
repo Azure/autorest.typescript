@@ -16,14 +16,8 @@ import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
   ManagedInstanceEncryptionProtector,
-  ManagedInstanceEncryptionProtectorsListByInstanceNextOptionalParams,
-  ManagedInstanceEncryptionProtectorsListByInstanceOptionalParams,
-  EncryptionProtectorName,
-  ManagedInstanceEncryptionProtectorsRevalidateOptionalParams,
   ManagedInstanceEncryptionProtectorsListByInstanceResponse,
-  ManagedInstanceEncryptionProtectorsGetOptionalParams,
   ManagedInstanceEncryptionProtectorsGetResponse,
-  ManagedInstanceEncryptionProtectorsCreateOrUpdateOptionalParams,
   ManagedInstanceEncryptionProtectorsCreateOrUpdateResponse,
   ManagedInstanceEncryptionProtectorsListByInstanceNextResponse
 } from "../models";
@@ -44,21 +38,12 @@ export class ManagedInstanceEncryptionProtectorsImpl
 
   /**
    * Gets a list of managed instance encryption protectors
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param options The options parameters.
+   *
    */
-  public listByInstance(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    options?: ManagedInstanceEncryptionProtectorsListByInstanceOptionalParams
-  ): PagedAsyncIterableIterator<ManagedInstanceEncryptionProtector> {
-    const iter = this.listByInstancePagingAll(
-      resourceGroupName,
-      managedInstanceName,
-      options
-    );
+  public listByInstance(): PagedAsyncIterableIterator<
+    ManagedInstanceEncryptionProtector
+  > {
+    const iter = this.listByInstancePagingAll();
     return {
       next() {
         return iter.next();
@@ -67,206 +52,68 @@ export class ManagedInstanceEncryptionProtectorsImpl
         return this;
       },
       byPage: () => {
-        return this.listByInstancePagingPage(
-          resourceGroupName,
-          managedInstanceName,
-          options
-        );
+        return this.listByInstancePagingPage();
       }
     };
   }
 
-  private async *listByInstancePagingPage(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    options?: ManagedInstanceEncryptionProtectorsListByInstanceOptionalParams
-  ): AsyncIterableIterator<ManagedInstanceEncryptionProtector[]> {
-    let result = await this._listByInstance(
-      resourceGroupName,
-      managedInstanceName,
-      options
-    );
+  private async *listByInstancePagingPage(): AsyncIterableIterator<
+    ManagedInstanceEncryptionProtector[]
+  > {
+    let result = await this._listByInstance();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listByInstanceNext(
-        resourceGroupName,
-        managedInstanceName,
-        continuationToken,
-        options
-      );
+      result = await this._listByInstanceNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listByInstancePagingAll(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    options?: ManagedInstanceEncryptionProtectorsListByInstanceOptionalParams
-  ): AsyncIterableIterator<ManagedInstanceEncryptionProtector> {
-    for await (const page of this.listByInstancePagingPage(
-      resourceGroupName,
-      managedInstanceName,
-      options
-    )) {
+  private async *listByInstancePagingAll(): AsyncIterableIterator<
+    ManagedInstanceEncryptionProtector
+  > {
+    for await (const page of this.listByInstancePagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Revalidates an existing encryption protector.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param encryptionProtectorName The name of the encryption protector to be updated.
-   * @param options The options parameters.
+   *
    */
-  async beginRevalidate(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    encryptionProtectorName: EncryptionProtectorName,
-    options?: ManagedInstanceEncryptionProtectorsRevalidateOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<void> => {
-      return this.client.sendOperationRequest(args, spec);
-    };
-    const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return {
-        flatResponse,
-        rawResponse: {
-          statusCode: currentRawResponse!.status,
-          body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
-      };
-    };
-
-    const lro = new LroImpl(
-      sendOperation,
-      {
-        resourceGroupName,
-        managedInstanceName,
-        encryptionProtectorName,
-        options
-      },
-      revalidateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
-    });
-    await poller.poll();
-    return poller;
-  }
+  async beginRevalidate(): Promise<
+    PollerLike<PollOperationState<void>, void>
+  > {}
 
   /**
    * Revalidates an existing encryption protector.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param encryptionProtectorName The name of the encryption protector to be updated.
-   * @param options The options parameters.
+   *
    */
-  async beginRevalidateAndWait(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    encryptionProtectorName: EncryptionProtectorName,
-    options?: ManagedInstanceEncryptionProtectorsRevalidateOptionalParams
-  ): Promise<void> {
-    const poller = await this.beginRevalidate(
-      resourceGroupName,
-      managedInstanceName,
-      encryptionProtectorName,
-      options
-    );
+  async beginRevalidateAndWait(): Promise<void> {
+    const poller = await this.beginRevalidate();
     return poller.pollUntilDone();
   }
 
   /**
    * Gets a list of managed instance encryption protectors
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param options The options parameters.
+   *
    */
-  private _listByInstance(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    options?: ManagedInstanceEncryptionProtectorsListByInstanceOptionalParams
-  ): Promise<ManagedInstanceEncryptionProtectorsListByInstanceResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, managedInstanceName, options },
-      listByInstanceOperationSpec
-    );
-  }
+  private _listByInstance(): Promise<
+    ManagedInstanceEncryptionProtectorsListByInstanceResponse
+  > {}
 
   /**
    * Gets a managed instance encryption protector.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param encryptionProtectorName The name of the encryption protector to be retrieved.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    encryptionProtectorName: EncryptionProtectorName,
-    options?: ManagedInstanceEncryptionProtectorsGetOptionalParams
-  ): Promise<ManagedInstanceEncryptionProtectorsGetResponse> {
-    return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        encryptionProtectorName,
-        options
-      },
-      getOperationSpec
-    );
-  }
+  get(): Promise<ManagedInstanceEncryptionProtectorsGetResponse> {}
 
   /**
    * Updates an existing encryption protector.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param encryptionProtectorName The name of the encryption protector to be updated.
-   * @param parameters The requested encryption protector resource state.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdate(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    encryptionProtectorName: EncryptionProtectorName,
-    parameters: ManagedInstanceEncryptionProtector,
-    options?: ManagedInstanceEncryptionProtectorsCreateOrUpdateOptionalParams
-  ): Promise<
+  async beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<
         ManagedInstanceEncryptionProtectorsCreateOrUpdateResponse
@@ -319,7 +166,6 @@ export class ManagedInstanceEncryptionProtectorsImpl
         resourceGroupName,
         managedInstanceName,
         encryptionProtectorName,
-        parameters,
         options
       },
       createOrUpdateOperationSpec
@@ -334,109 +180,26 @@ export class ManagedInstanceEncryptionProtectorsImpl
 
   /**
    * Updates an existing encryption protector.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param encryptionProtectorName The name of the encryption protector to be updated.
-   * @param parameters The requested encryption protector resource state.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    encryptionProtectorName: EncryptionProtectorName,
-    parameters: ManagedInstanceEncryptionProtector,
-    options?: ManagedInstanceEncryptionProtectorsCreateOrUpdateOptionalParams
-  ): Promise<ManagedInstanceEncryptionProtectorsCreateOrUpdateResponse> {
-    const poller = await this.beginCreateOrUpdate(
-      resourceGroupName,
-      managedInstanceName,
-      encryptionProtectorName,
-      parameters,
-      options
-    );
+  async beginCreateOrUpdateAndWait(): Promise<
+    ManagedInstanceEncryptionProtectorsCreateOrUpdateResponse
+  > {
+    const poller = await this.beginCreateOrUpdate();
     return poller.pollUntilDone();
   }
 
   /**
    * ListByInstanceNext
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param nextLink The nextLink from the previous successful call to the ListByInstance method.
-   * @param options The options parameters.
+   *
    */
-  private _listByInstanceNext(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    nextLink: string,
-    options?: ManagedInstanceEncryptionProtectorsListByInstanceNextOptionalParams
-  ): Promise<ManagedInstanceEncryptionProtectorsListByInstanceNextResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, managedInstanceName, nextLink, options },
-      listByInstanceNextOperationSpec
-    );
-  }
+  private _listByInstanceNext(): Promise<
+    ManagedInstanceEncryptionProtectorsListByInstanceNextResponse
+  > {}
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const revalidateOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/encryptionProtector/{encryptionProtectorName}/revalidate",
-  httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.encryptionProtectorName,
-    Parameters.managedInstanceName
-  ],
-  serializer
-};
-const listByInstanceOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/encryptionProtector",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ManagedInstanceEncryptionProtectorListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.managedInstanceName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/encryptionProtector/{encryptionProtectorName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ManagedInstanceEncryptionProtector
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.encryptionProtectorName,
-    Parameters.managedInstanceName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
 const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/encryptionProtector/{encryptionProtectorName}",
@@ -467,25 +230,5 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const listByInstanceNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ManagedInstanceEncryptionProtectorListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.nextLink,
-    Parameters.managedInstanceName
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };

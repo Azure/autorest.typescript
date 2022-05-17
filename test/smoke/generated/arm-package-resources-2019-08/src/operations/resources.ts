@@ -16,31 +16,13 @@ import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
   GenericResourceExpanded,
-  ResourcesListByResourceGroupNextOptionalParams,
-  ResourcesListByResourceGroupOptionalParams,
-  ResourcesListNextOptionalParams,
-  ResourcesListOptionalParams,
   ResourcesListByResourceGroupResponse,
-  ResourcesMoveInfo,
-  ResourcesMoveResourcesOptionalParams,
-  ResourcesValidateMoveResourcesOptionalParams,
   ResourcesListResponse,
-  ResourcesCheckExistenceOptionalParams,
-  ResourcesDeleteOptionalParams,
-  GenericResource,
-  ResourcesCreateOrUpdateOptionalParams,
   ResourcesCreateOrUpdateResponse,
-  ResourcesUpdateOptionalParams,
   ResourcesUpdateResponse,
-  ResourcesGetOptionalParams,
   ResourcesGetResponse,
-  ResourcesCheckExistenceByIdOptionalParams,
-  ResourcesDeleteByIdOptionalParams,
-  ResourcesCreateOrUpdateByIdOptionalParams,
   ResourcesCreateOrUpdateByIdResponse,
-  ResourcesUpdateByIdOptionalParams,
   ResourcesUpdateByIdResponse,
-  ResourcesGetByIdOptionalParams,
   ResourcesGetByIdResponse,
   ResourcesListByResourceGroupNextResponse,
   ResourcesListNextResponse
@@ -61,14 +43,12 @@ export class ResourcesImpl implements Resources {
 
   /**
    * Get all the resources for a resource group.
-   * @param resourceGroupName The resource group with the resources to get.
-   * @param options The options parameters.
+   *
    */
-  public listByResourceGroup(
-    resourceGroupName: string,
-    options?: ResourcesListByResourceGroupOptionalParams
-  ): PagedAsyncIterableIterator<GenericResourceExpanded> {
-    const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
+  public listByResourceGroup(): PagedAsyncIterableIterator<
+    GenericResourceExpanded
+  > {
+    const iter = this.listByResourceGroupPagingAll();
     return {
       next() {
         return iter.next();
@@ -77,49 +57,38 @@ export class ResourcesImpl implements Resources {
         return this;
       },
       byPage: () => {
-        return this.listByResourceGroupPagingPage(resourceGroupName, options);
+        return this.listByResourceGroupPagingPage();
       }
     };
   }
 
-  private async *listByResourceGroupPagingPage(
-    resourceGroupName: string,
-    options?: ResourcesListByResourceGroupOptionalParams
-  ): AsyncIterableIterator<GenericResourceExpanded[]> {
-    let result = await this._listByResourceGroup(resourceGroupName, options);
+  private async *listByResourceGroupPagingPage(): AsyncIterableIterator<
+    GenericResourceExpanded[]
+  > {
+    let result = await this._listByResourceGroup();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listByResourceGroupNext(
-        resourceGroupName,
-        continuationToken,
-        options
-      );
+      result = await this._listByResourceGroupNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listByResourceGroupPagingAll(
-    resourceGroupName: string,
-    options?: ResourcesListByResourceGroupOptionalParams
-  ): AsyncIterableIterator<GenericResourceExpanded> {
-    for await (const page of this.listByResourceGroupPagingPage(
-      resourceGroupName,
-      options
-    )) {
+  private async *listByResourceGroupPagingAll(): AsyncIterableIterator<
+    GenericResourceExpanded
+  > {
+    for await (const page of this.listByResourceGroupPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Get all the resources in a subscription.
-   * @param options The options parameters.
+   *
    */
-  public list(
-    options?: ResourcesListOptionalParams
-  ): PagedAsyncIterableIterator<GenericResourceExpanded> {
-    const iter = this.listPagingAll(options);
+  public list(): PagedAsyncIterableIterator<GenericResourceExpanded> {
+    const iter = this.listPagingAll();
     return {
       next() {
         return iter.next();
@@ -128,61 +97,50 @@ export class ResourcesImpl implements Resources {
         return this;
       },
       byPage: () => {
-        return this.listPagingPage(options);
+        return this.listPagingPage();
       }
     };
   }
 
-  private async *listPagingPage(
-    options?: ResourcesListOptionalParams
-  ): AsyncIterableIterator<GenericResourceExpanded[]> {
-    let result = await this._list(options);
+  private async *listPagingPage(): AsyncIterableIterator<
+    GenericResourceExpanded[]
+  > {
+    let result = await this._list();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listNext(continuationToken, options);
+      result = await this._listNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listPagingAll(
-    options?: ResourcesListOptionalParams
-  ): AsyncIterableIterator<GenericResourceExpanded> {
-    for await (const page of this.listPagingPage(options)) {
+  private async *listPagingAll(): AsyncIterableIterator<
+    GenericResourceExpanded
+  > {
+    for await (const page of this.listPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Get all the resources for a resource group.
-   * @param resourceGroupName The resource group with the resources to get.
-   * @param options The options parameters.
+   *
    */
-  private _listByResourceGroup(
-    resourceGroupName: string,
-    options?: ResourcesListByResourceGroupOptionalParams
-  ): Promise<ResourcesListByResourceGroupResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, options },
-      listByResourceGroupOperationSpec
-    );
-  }
+  private _listByResourceGroup(): Promise<
+    ResourcesListByResourceGroupResponse
+  > {}
 
   /**
    * The resources to move must be in the same source resource group. The target resource group may be in
    * a different subscription. When moving resources, both the source group and the target group are
    * locked for the duration of the operation. Write and delete operations are blocked on the groups
    * until the move completes.
-   * @param sourceResourceGroupName The name of the resource group containing the resources to move.
-   * @param parameters Parameters for moving resources.
-   * @param options The options parameters.
+   *
    */
-  async beginMoveResources(
-    sourceResourceGroupName: string,
-    parameters: ResourcesMoveInfo,
-    options?: ResourcesMoveResourcesOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  async beginMoveResources(): Promise<
+    PollerLike<PollOperationState<void>, void>
+  > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
@@ -224,7 +182,7 @@ export class ResourcesImpl implements Resources {
 
     const lro = new LroImpl(
       sendOperation,
-      { sourceResourceGroupName, parameters, options },
+      { sourceResourceGroupName, options },
       moveResourcesOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -240,20 +198,10 @@ export class ResourcesImpl implements Resources {
    * a different subscription. When moving resources, both the source group and the target group are
    * locked for the duration of the operation. Write and delete operations are blocked on the groups
    * until the move completes.
-   * @param sourceResourceGroupName The name of the resource group containing the resources to move.
-   * @param parameters Parameters for moving resources.
-   * @param options The options parameters.
+   *
    */
-  async beginMoveResourcesAndWait(
-    sourceResourceGroupName: string,
-    parameters: ResourcesMoveInfo,
-    options?: ResourcesMoveResourcesOptionalParams
-  ): Promise<void> {
-    const poller = await this.beginMoveResources(
-      sourceResourceGroupName,
-      parameters,
-      options
-    );
+  async beginMoveResourcesAndWait(): Promise<void> {
+    const poller = await this.beginMoveResources();
     return poller.pollUntilDone();
   }
 
@@ -263,16 +211,11 @@ export class ResourcesImpl implements Resources {
    * subscription. If validation succeeds, it returns HTTP response code 204 (no content). If validation
    * fails, it returns HTTP response code 409 (Conflict) with an error message. Retrieve the URL in the
    * Location header value to check the result of the long-running operation.
-   * @param sourceResourceGroupName The name of the resource group containing the resources to validate
-   *                                for move.
-   * @param parameters Parameters for moving resources.
-   * @param options The options parameters.
+   *
    */
-  async beginValidateMoveResources(
-    sourceResourceGroupName: string,
-    parameters: ResourcesMoveInfo,
-    options?: ResourcesValidateMoveResourcesOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  async beginValidateMoveResources(): Promise<
+    PollerLike<PollOperationState<void>, void>
+  > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
@@ -314,7 +257,7 @@ export class ResourcesImpl implements Resources {
 
     const lro = new LroImpl(
       sendOperation,
-      { sourceResourceGroupName, parameters, options },
+      { sourceResourceGroupName, options },
       validateMoveResourcesOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -331,202 +274,45 @@ export class ResourcesImpl implements Resources {
    * subscription. If validation succeeds, it returns HTTP response code 204 (no content). If validation
    * fails, it returns HTTP response code 409 (Conflict) with an error message. Retrieve the URL in the
    * Location header value to check the result of the long-running operation.
-   * @param sourceResourceGroupName The name of the resource group containing the resources to validate
-   *                                for move.
-   * @param parameters Parameters for moving resources.
-   * @param options The options parameters.
+   *
    */
-  async beginValidateMoveResourcesAndWait(
-    sourceResourceGroupName: string,
-    parameters: ResourcesMoveInfo,
-    options?: ResourcesValidateMoveResourcesOptionalParams
-  ): Promise<void> {
-    const poller = await this.beginValidateMoveResources(
-      sourceResourceGroupName,
-      parameters,
-      options
-    );
+  async beginValidateMoveResourcesAndWait(): Promise<void> {
+    const poller = await this.beginValidateMoveResources();
     return poller.pollUntilDone();
   }
 
   /**
    * Get all the resources in a subscription.
-   * @param options The options parameters.
+   *
    */
-  private _list(
-    options?: ResourcesListOptionalParams
-  ): Promise<ResourcesListResponse> {
-    return this.client.sendOperationRequest({ options }, listOperationSpec);
-  }
+  private _list(): Promise<ResourcesListResponse> {}
 
   /**
    * Checks whether a resource exists.
-   * @param resourceGroupName The name of the resource group containing the resource to check. The name
-   *                          is case insensitive.
-   * @param resourceProviderNamespace The resource provider of the resource to check.
-   * @param parentResourcePath The parent resource identity.
-   * @param resourceType The resource type.
-   * @param resourceName The name of the resource to check whether it exists.
-   * @param apiVersion The API version to use for the operation.
-   * @param options The options parameters.
+   *
    */
-  checkExistence(
-    resourceGroupName: string,
-    resourceProviderNamespace: string,
-    parentResourcePath: string,
-    resourceType: string,
-    resourceName: string,
-    apiVersion: string,
-    options?: ResourcesCheckExistenceOptionalParams
-  ): Promise<void> {
-    return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        resourceProviderNamespace,
-        parentResourcePath,
-        resourceType,
-        resourceName,
-        apiVersion,
-        options
-      },
-      checkExistenceOperationSpec
-    );
-  }
+  checkExistence(): Promise<void> {}
 
   /**
    * Deletes a resource.
-   * @param resourceGroupName The name of the resource group that contains the resource to delete. The
-   *                          name is case insensitive.
-   * @param resourceProviderNamespace The namespace of the resource provider.
-   * @param parentResourcePath The parent resource identity.
-   * @param resourceType The resource type.
-   * @param resourceName The name of the resource to delete.
-   * @param apiVersion The API version to use for the operation.
-   * @param options The options parameters.
+   *
    */
-  async beginDelete(
-    resourceGroupName: string,
-    resourceProviderNamespace: string,
-    parentResourcePath: string,
-    resourceType: string,
-    resourceName: string,
-    apiVersion: string,
-    options?: ResourcesDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<void> => {
-      return this.client.sendOperationRequest(args, spec);
-    };
-    const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return {
-        flatResponse,
-        rawResponse: {
-          statusCode: currentRawResponse!.status,
-          body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
-      };
-    };
-
-    const lro = new LroImpl(
-      sendOperation,
-      {
-        resourceGroupName,
-        resourceProviderNamespace,
-        parentResourcePath,
-        resourceType,
-        resourceName,
-        apiVersion,
-        options
-      },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
-    });
-    await poller.poll();
-    return poller;
-  }
+  async beginDelete(): Promise<PollerLike<PollOperationState<void>, void>> {}
 
   /**
    * Deletes a resource.
-   * @param resourceGroupName The name of the resource group that contains the resource to delete. The
-   *                          name is case insensitive.
-   * @param resourceProviderNamespace The namespace of the resource provider.
-   * @param parentResourcePath The parent resource identity.
-   * @param resourceType The resource type.
-   * @param resourceName The name of the resource to delete.
-   * @param apiVersion The API version to use for the operation.
-   * @param options The options parameters.
+   *
    */
-  async beginDeleteAndWait(
-    resourceGroupName: string,
-    resourceProviderNamespace: string,
-    parentResourcePath: string,
-    resourceType: string,
-    resourceName: string,
-    apiVersion: string,
-    options?: ResourcesDeleteOptionalParams
-  ): Promise<void> {
-    const poller = await this.beginDelete(
-      resourceGroupName,
-      resourceProviderNamespace,
-      parentResourcePath,
-      resourceType,
-      resourceName,
-      apiVersion,
-      options
-    );
+  async beginDeleteAndWait(): Promise<void> {
+    const poller = await this.beginDelete();
     return poller.pollUntilDone();
   }
 
   /**
    * Creates a resource.
-   * @param resourceGroupName The name of the resource group for the resource. The name is case
-   *                          insensitive.
-   * @param resourceProviderNamespace The namespace of the resource provider.
-   * @param parentResourcePath The parent resource identity.
-   * @param resourceType The resource type of the resource to create.
-   * @param resourceName The name of the resource to create.
-   * @param apiVersion The API version to use for the operation.
-   * @param parameters Parameters for creating or updating the resource.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdate(
-    resourceGroupName: string,
-    resourceProviderNamespace: string,
-    parentResourcePath: string,
-    resourceType: string,
-    resourceName: string,
-    apiVersion: string,
-    parameters: GenericResource,
-    options?: ResourcesCreateOrUpdateOptionalParams
-  ): Promise<
+  async beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<ResourcesCreateOrUpdateResponse>,
       ResourcesCreateOrUpdateResponse
@@ -580,7 +366,6 @@ export class ResourcesImpl implements Resources {
         resourceType,
         resourceName,
         apiVersion,
-        parameters,
         options
       },
       createOrUpdateOperationSpec
@@ -595,61 +380,18 @@ export class ResourcesImpl implements Resources {
 
   /**
    * Creates a resource.
-   * @param resourceGroupName The name of the resource group for the resource. The name is case
-   *                          insensitive.
-   * @param resourceProviderNamespace The namespace of the resource provider.
-   * @param parentResourcePath The parent resource identity.
-   * @param resourceType The resource type of the resource to create.
-   * @param resourceName The name of the resource to create.
-   * @param apiVersion The API version to use for the operation.
-   * @param parameters Parameters for creating or updating the resource.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    resourceProviderNamespace: string,
-    parentResourcePath: string,
-    resourceType: string,
-    resourceName: string,
-    apiVersion: string,
-    parameters: GenericResource,
-    options?: ResourcesCreateOrUpdateOptionalParams
-  ): Promise<ResourcesCreateOrUpdateResponse> {
-    const poller = await this.beginCreateOrUpdate(
-      resourceGroupName,
-      resourceProviderNamespace,
-      parentResourcePath,
-      resourceType,
-      resourceName,
-      apiVersion,
-      parameters,
-      options
-    );
+  async beginCreateOrUpdateAndWait(): Promise<ResourcesCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate();
     return poller.pollUntilDone();
   }
 
   /**
    * Updates a resource.
-   * @param resourceGroupName The name of the resource group for the resource. The name is case
-   *                          insensitive.
-   * @param resourceProviderNamespace The namespace of the resource provider.
-   * @param parentResourcePath The parent resource identity.
-   * @param resourceType The resource type of the resource to update.
-   * @param resourceName The name of the resource to update.
-   * @param apiVersion The API version to use for the operation.
-   * @param parameters Parameters for updating the resource.
-   * @param options The options parameters.
+   *
    */
-  async beginUpdate(
-    resourceGroupName: string,
-    resourceProviderNamespace: string,
-    parentResourcePath: string,
-    resourceType: string,
-    resourceName: string,
-    apiVersion: string,
-    parameters: GenericResource,
-    options?: ResourcesUpdateOptionalParams
-  ): Promise<
+  async beginUpdate(): Promise<
     PollerLike<
       PollOperationState<ResourcesUpdateResponse>,
       ResourcesUpdateResponse
@@ -703,7 +445,6 @@ export class ResourcesImpl implements Resources {
         resourceType,
         resourceName,
         apiVersion,
-        parameters,
         options
       },
       updateOperationSpec
@@ -718,189 +459,47 @@ export class ResourcesImpl implements Resources {
 
   /**
    * Updates a resource.
-   * @param resourceGroupName The name of the resource group for the resource. The name is case
-   *                          insensitive.
-   * @param resourceProviderNamespace The namespace of the resource provider.
-   * @param parentResourcePath The parent resource identity.
-   * @param resourceType The resource type of the resource to update.
-   * @param resourceName The name of the resource to update.
-   * @param apiVersion The API version to use for the operation.
-   * @param parameters Parameters for updating the resource.
-   * @param options The options parameters.
+   *
    */
-  async beginUpdateAndWait(
-    resourceGroupName: string,
-    resourceProviderNamespace: string,
-    parentResourcePath: string,
-    resourceType: string,
-    resourceName: string,
-    apiVersion: string,
-    parameters: GenericResource,
-    options?: ResourcesUpdateOptionalParams
-  ): Promise<ResourcesUpdateResponse> {
-    const poller = await this.beginUpdate(
-      resourceGroupName,
-      resourceProviderNamespace,
-      parentResourcePath,
-      resourceType,
-      resourceName,
-      apiVersion,
-      parameters,
-      options
-    );
+  async beginUpdateAndWait(): Promise<ResourcesUpdateResponse> {
+    const poller = await this.beginUpdate();
     return poller.pollUntilDone();
   }
 
   /**
    * Gets a resource.
-   * @param resourceGroupName The name of the resource group containing the resource to get. The name is
-   *                          case insensitive.
-   * @param resourceProviderNamespace The namespace of the resource provider.
-   * @param parentResourcePath The parent resource identity.
-   * @param resourceType The resource type of the resource.
-   * @param resourceName The name of the resource to get.
-   * @param apiVersion The API version to use for the operation.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    resourceProviderNamespace: string,
-    parentResourcePath: string,
-    resourceType: string,
-    resourceName: string,
-    apiVersion: string,
-    options?: ResourcesGetOptionalParams
-  ): Promise<ResourcesGetResponse> {
-    return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        resourceProviderNamespace,
-        parentResourcePath,
-        resourceType,
-        resourceName,
-        apiVersion,
-        options
-      },
-      getOperationSpec
-    );
-  }
+  get(): Promise<ResourcesGetResponse> {}
 
   /**
    * Checks by ID whether a resource exists.
-   * @param resourceId The fully qualified ID of the resource, including the resource name and resource
-   *                   type. Use the format,
-   *                   /subscriptions/{guid}/resourceGroups/{resource-group-name}/{resource-provider-namespace}/{resource-type}/{resource-name}
-   * @param apiVersion The API version to use for the operation.
-   * @param options The options parameters.
+   *
    */
-  checkExistenceById(
-    resourceId: string,
-    apiVersion: string,
-    options?: ResourcesCheckExistenceByIdOptionalParams
-  ): Promise<void> {
-    return this.client.sendOperationRequest(
-      { resourceId, apiVersion, options },
-      checkExistenceByIdOperationSpec
-    );
-  }
+  checkExistenceById(): Promise<void> {}
 
   /**
    * Deletes a resource by ID.
-   * @param resourceId The fully qualified ID of the resource, including the resource name and resource
-   *                   type. Use the format,
-   *                   /subscriptions/{guid}/resourceGroups/{resource-group-name}/{resource-provider-namespace}/{resource-type}/{resource-name}
-   * @param apiVersion The API version to use for the operation.
-   * @param options The options parameters.
+   *
    */
-  async beginDeleteById(
-    resourceId: string,
-    apiVersion: string,
-    options?: ResourcesDeleteByIdOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<void> => {
-      return this.client.sendOperationRequest(args, spec);
-    };
-    const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return {
-        flatResponse,
-        rawResponse: {
-          statusCode: currentRawResponse!.status,
-          body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
-      };
-    };
-
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceId, apiVersion, options },
-      deleteByIdOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
-    });
-    await poller.poll();
-    return poller;
-  }
+  async beginDeleteById(): Promise<
+    PollerLike<PollOperationState<void>, void>
+  > {}
 
   /**
    * Deletes a resource by ID.
-   * @param resourceId The fully qualified ID of the resource, including the resource name and resource
-   *                   type. Use the format,
-   *                   /subscriptions/{guid}/resourceGroups/{resource-group-name}/{resource-provider-namespace}/{resource-type}/{resource-name}
-   * @param apiVersion The API version to use for the operation.
-   * @param options The options parameters.
+   *
    */
-  async beginDeleteByIdAndWait(
-    resourceId: string,
-    apiVersion: string,
-    options?: ResourcesDeleteByIdOptionalParams
-  ): Promise<void> {
-    const poller = await this.beginDeleteById(resourceId, apiVersion, options);
+  async beginDeleteByIdAndWait(): Promise<void> {
+    const poller = await this.beginDeleteById();
     return poller.pollUntilDone();
   }
 
   /**
    * Create a resource by ID.
-   * @param resourceId The fully qualified ID of the resource, including the resource name and resource
-   *                   type. Use the format,
-   *                   /subscriptions/{guid}/resourceGroups/{resource-group-name}/{resource-provider-namespace}/{resource-type}/{resource-name}
-   * @param apiVersion The API version to use for the operation.
-   * @param parameters Create or update resource parameters.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdateById(
-    resourceId: string,
-    apiVersion: string,
-    parameters: GenericResource,
-    options?: ResourcesCreateOrUpdateByIdOptionalParams
-  ): Promise<
+  async beginCreateOrUpdateById(): Promise<
     PollerLike<
       PollOperationState<ResourcesCreateOrUpdateByIdResponse>,
       ResourcesCreateOrUpdateByIdResponse
@@ -947,7 +546,7 @@ export class ResourcesImpl implements Resources {
 
     const lro = new LroImpl(
       sendOperation,
-      { resourceId, apiVersion, parameters, options },
+      { resourceId, apiVersion, options },
       createOrUpdateByIdOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -960,43 +559,20 @@ export class ResourcesImpl implements Resources {
 
   /**
    * Create a resource by ID.
-   * @param resourceId The fully qualified ID of the resource, including the resource name and resource
-   *                   type. Use the format,
-   *                   /subscriptions/{guid}/resourceGroups/{resource-group-name}/{resource-provider-namespace}/{resource-type}/{resource-name}
-   * @param apiVersion The API version to use for the operation.
-   * @param parameters Create or update resource parameters.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdateByIdAndWait(
-    resourceId: string,
-    apiVersion: string,
-    parameters: GenericResource,
-    options?: ResourcesCreateOrUpdateByIdOptionalParams
-  ): Promise<ResourcesCreateOrUpdateByIdResponse> {
-    const poller = await this.beginCreateOrUpdateById(
-      resourceId,
-      apiVersion,
-      parameters,
-      options
-    );
+  async beginCreateOrUpdateByIdAndWait(): Promise<
+    ResourcesCreateOrUpdateByIdResponse
+  > {
+    const poller = await this.beginCreateOrUpdateById();
     return poller.pollUntilDone();
   }
 
   /**
    * Updates a resource by ID.
-   * @param resourceId The fully qualified ID of the resource, including the resource name and resource
-   *                   type. Use the format,
-   *                   /subscriptions/{guid}/resourceGroups/{resource-group-name}/{resource-provider-namespace}/{resource-type}/{resource-name}
-   * @param apiVersion The API version to use for the operation.
-   * @param parameters Update resource parameters.
-   * @param options The options parameters.
+   *
    */
-  async beginUpdateById(
-    resourceId: string,
-    apiVersion: string,
-    parameters: GenericResource,
-    options?: ResourcesUpdateByIdOptionalParams
-  ): Promise<
+  async beginUpdateById(): Promise<
     PollerLike<
       PollOperationState<ResourcesUpdateByIdResponse>,
       ResourcesUpdateByIdResponse
@@ -1043,7 +619,7 @@ export class ResourcesImpl implements Resources {
 
     const lro = new LroImpl(
       sendOperation,
-      { resourceId, apiVersion, parameters, options },
+      { resourceId, apiVersion, options },
       updateByIdOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -1056,108 +632,36 @@ export class ResourcesImpl implements Resources {
 
   /**
    * Updates a resource by ID.
-   * @param resourceId The fully qualified ID of the resource, including the resource name and resource
-   *                   type. Use the format,
-   *                   /subscriptions/{guid}/resourceGroups/{resource-group-name}/{resource-provider-namespace}/{resource-type}/{resource-name}
-   * @param apiVersion The API version to use for the operation.
-   * @param parameters Update resource parameters.
-   * @param options The options parameters.
+   *
    */
-  async beginUpdateByIdAndWait(
-    resourceId: string,
-    apiVersion: string,
-    parameters: GenericResource,
-    options?: ResourcesUpdateByIdOptionalParams
-  ): Promise<ResourcesUpdateByIdResponse> {
-    const poller = await this.beginUpdateById(
-      resourceId,
-      apiVersion,
-      parameters,
-      options
-    );
+  async beginUpdateByIdAndWait(): Promise<ResourcesUpdateByIdResponse> {
+    const poller = await this.beginUpdateById();
     return poller.pollUntilDone();
   }
 
   /**
    * Gets a resource by ID.
-   * @param resourceId The fully qualified ID of the resource, including the resource name and resource
-   *                   type. Use the format,
-   *                   /subscriptions/{guid}/resourceGroups/{resource-group-name}/{resource-provider-namespace}/{resource-type}/{resource-name}
-   * @param apiVersion The API version to use for the operation.
-   * @param options The options parameters.
+   *
    */
-  getById(
-    resourceId: string,
-    apiVersion: string,
-    options?: ResourcesGetByIdOptionalParams
-  ): Promise<ResourcesGetByIdResponse> {
-    return this.client.sendOperationRequest(
-      { resourceId, apiVersion, options },
-      getByIdOperationSpec
-    );
-  }
+  getById(): Promise<ResourcesGetByIdResponse> {}
 
   /**
    * ListByResourceGroupNext
-   * @param resourceGroupName The resource group with the resources to get.
-   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
-   * @param options The options parameters.
+   *
    */
-  private _listByResourceGroupNext(
-    resourceGroupName: string,
-    nextLink: string,
-    options?: ResourcesListByResourceGroupNextOptionalParams
-  ): Promise<ResourcesListByResourceGroupNextResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options },
-      listByResourceGroupNextOperationSpec
-    );
-  }
+  private _listByResourceGroupNext(): Promise<
+    ResourcesListByResourceGroupNextResponse
+  > {}
 
   /**
    * ListNext
-   * @param nextLink The nextLink from the previous successful call to the List method.
-   * @param options The options parameters.
+   *
    */
-  private _listNext(
-    nextLink: string,
-    options?: ResourcesListNextOptionalParams
-  ): Promise<ResourcesListNextResponse> {
-    return this.client.sendOperationRequest(
-      { nextLink, options },
-      listNextOperationSpec
-    );
-  }
+  private _listNext(): Promise<ResourcesListNextResponse> {}
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listByResourceGroupOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/resources",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ResourceListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [
-    Parameters.apiVersion,
-    Parameters.filter,
-    Parameters.top,
-    Parameters.expand
-  ],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
 const moveResourcesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{sourceResourceGroupName}/moveResources",
@@ -1204,77 +708,6 @@ const validateMoveResourcesOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const listOperationSpec: coreClient.OperationSpec = {
-  path: "/subscriptions/{subscriptionId}/resources",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ResourceListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [
-    Parameters.apiVersion,
-    Parameters.filter,
-    Parameters.top,
-    Parameters.expand
-  ],
-  urlParameters: [Parameters.$host, Parameters.subscriptionId],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const checkExistenceOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourcePath}/{resourceType}/{resourceName}",
-  httpMethod: "HEAD",
-  responses: {
-    204: {},
-    404: {},
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion1],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.resourceProviderNamespace,
-    Parameters.parentResourcePath,
-    Parameters.resourceType,
-    Parameters.resourceName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const deleteOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourcePath}/{resourceType}/{resourceName}",
-  httpMethod: "DELETE",
-  responses: {
-    200: {},
-    201: {},
-    202: {},
-    204: {},
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion1],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.resourceProviderNamespace,
-    Parameters.parentResourcePath,
-    Parameters.resourceType,
-    Parameters.resourceName
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };
 const createOrUpdateOperationSpec: coreClient.OperationSpec = {
@@ -1349,63 +782,6 @@ const updateOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourcePath}/{resourceType}/{resourceName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.GenericResource
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion1],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.resourceProviderNamespace,
-    Parameters.parentResourcePath,
-    Parameters.resourceType,
-    Parameters.resourceName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const checkExistenceByIdOperationSpec: coreClient.OperationSpec = {
-  path: "/{resourceId}",
-  httpMethod: "HEAD",
-  responses: {
-    204: {},
-    404: {},
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion1],
-  urlParameters: [Parameters.$host, Parameters.resourceId],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const deleteByIdOperationSpec: coreClient.OperationSpec = {
-  path: "/{resourceId}",
-  httpMethod: "DELETE",
-  responses: {
-    200: {},
-    201: {},
-    202: {},
-    204: {},
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion1],
-  urlParameters: [Parameters.$host, Parameters.resourceId],
-  headerParameters: [Parameters.accept],
-  serializer
-};
 const createOrUpdateByIdOperationSpec: coreClient.OperationSpec = {
   path: "/{resourceId}",
   httpMethod: "PUT",
@@ -1458,72 +834,5 @@ const updateByIdOperationSpec: coreClient.OperationSpec = {
   urlParameters: [Parameters.$host, Parameters.resourceId],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const getByIdOperationSpec: coreClient.OperationSpec = {
-  path: "/{resourceId}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.GenericResource
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion1],
-  urlParameters: [Parameters.$host, Parameters.resourceId],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ResourceListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [
-    Parameters.apiVersion,
-    Parameters.filter,
-    Parameters.top,
-    Parameters.expand
-  ],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.nextLink,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ResourceListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [
-    Parameters.apiVersion,
-    Parameters.filter,
-    Parameters.top,
-    Parameters.expand
-  ],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.nextLink,
-    Parameters.subscriptionId
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };

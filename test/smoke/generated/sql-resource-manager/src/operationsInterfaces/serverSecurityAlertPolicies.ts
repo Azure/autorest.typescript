@@ -10,11 +10,7 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ServerSecurityAlertPolicy,
-  ServerSecurityAlertPoliciesListByServerOptionalParams,
-  SecurityAlertPolicyName,
-  ServerSecurityAlertPoliciesGetOptionalParams,
   ServerSecurityAlertPoliciesGetResponse,
-  ServerSecurityAlertPoliciesCreateOrUpdateOptionalParams,
   ServerSecurityAlertPoliciesCreateOrUpdateResponse
 } from "../models";
 
@@ -23,46 +19,19 @@ import {
 export interface ServerSecurityAlertPolicies {
   /**
    * Get the server's threat detection policies.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  listByServer(
-    resourceGroupName: string,
-    serverName: string,
-    options?: ServerSecurityAlertPoliciesListByServerOptionalParams
-  ): PagedAsyncIterableIterator<ServerSecurityAlertPolicy>;
+  listByServer(): PagedAsyncIterableIterator<ServerSecurityAlertPolicy>;
   /**
    * Get a server's security alert policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param securityAlertPolicyName The name of the security alert policy.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    securityAlertPolicyName: SecurityAlertPolicyName,
-    options?: ServerSecurityAlertPoliciesGetOptionalParams
-  ): Promise<ServerSecurityAlertPoliciesGetResponse>;
+  get(): Promise<ServerSecurityAlertPoliciesGetResponse>;
   /**
    * Creates or updates a threat detection policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param securityAlertPolicyName The name of the threat detection policy.
-   * @param parameters The server security alert policy.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    securityAlertPolicyName: SecurityAlertPolicyName,
-    parameters: ServerSecurityAlertPolicy,
-    options?: ServerSecurityAlertPoliciesCreateOrUpdateOptionalParams
-  ): Promise<
+  beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<ServerSecurityAlertPoliciesCreateOrUpdateResponse>,
       ServerSecurityAlertPoliciesCreateOrUpdateResponse
@@ -70,18 +39,9 @@ export interface ServerSecurityAlertPolicies {
   >;
   /**
    * Creates or updates a threat detection policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param securityAlertPolicyName The name of the threat detection policy.
-   * @param parameters The server security alert policy.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    securityAlertPolicyName: SecurityAlertPolicyName,
-    parameters: ServerSecurityAlertPolicy,
-    options?: ServerSecurityAlertPoliciesCreateOrUpdateOptionalParams
-  ): Promise<ServerSecurityAlertPoliciesCreateOrUpdateResponse>;
+  beginCreateOrUpdateAndWait(): Promise<
+    ServerSecurityAlertPoliciesCreateOrUpdateResponse
+  >;
 }

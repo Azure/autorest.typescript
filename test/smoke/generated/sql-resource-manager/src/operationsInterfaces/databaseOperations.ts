@@ -7,43 +7,19 @@
  */
 
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import {
-  DatabaseOperation,
-  DatabaseOperationsListByDatabaseOptionalParams,
-  DatabaseOperationsCancelOptionalParams
-} from "../models";
+import { DatabaseOperation } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a DatabaseOperations. */
 export interface DatabaseOperations {
   /**
    * Gets a list of operations performed on the database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param options The options parameters.
+   *
    */
-  listByDatabase(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: DatabaseOperationsListByDatabaseOptionalParams
-  ): PagedAsyncIterableIterator<DatabaseOperation>;
+  listByDatabase(): PagedAsyncIterableIterator<DatabaseOperation>;
   /**
    * Cancels the asynchronous operation on the database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param operationId The operation identifier.
-   * @param options The options parameters.
+   *
    */
-  cancel(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    operationId: string,
-    options?: DatabaseOperationsCancelOptionalParams
-  ): Promise<void>;
+  cancel(): Promise<void>;
 }

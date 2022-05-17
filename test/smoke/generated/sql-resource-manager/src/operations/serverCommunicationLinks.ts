@@ -16,11 +16,7 @@ import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
   ServerCommunicationLink,
-  ServerCommunicationLinksListByServerOptionalParams,
-  ServerCommunicationLinksDeleteOptionalParams,
-  ServerCommunicationLinksGetOptionalParams,
   ServerCommunicationLinksGetResponse,
-  ServerCommunicationLinksCreateOrUpdateOptionalParams,
   ServerCommunicationLinksCreateOrUpdateResponse,
   ServerCommunicationLinksListByServerResponse
 } from "../models";
@@ -40,21 +36,10 @@ export class ServerCommunicationLinksImpl implements ServerCommunicationLinks {
 
   /**
    * Gets a list of server communication links.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  public listByServer(
-    resourceGroupName: string,
-    serverName: string,
-    options?: ServerCommunicationLinksListByServerOptionalParams
-  ): PagedAsyncIterableIterator<ServerCommunicationLink> {
-    const iter = this.listByServerPagingAll(
-      resourceGroupName,
-      serverName,
-      options
-    );
+  public listByServer(): PagedAsyncIterableIterator<ServerCommunicationLink> {
+    const iter = this.listByServerPagingAll();
     return {
       next() {
         return iter.next();
@@ -63,98 +48,43 @@ export class ServerCommunicationLinksImpl implements ServerCommunicationLinks {
         return this;
       },
       byPage: () => {
-        return this.listByServerPagingPage(
-          resourceGroupName,
-          serverName,
-          options
-        );
+        return this.listByServerPagingPage();
       }
     };
   }
 
-  private async *listByServerPagingPage(
-    resourceGroupName: string,
-    serverName: string,
-    options?: ServerCommunicationLinksListByServerOptionalParams
-  ): AsyncIterableIterator<ServerCommunicationLink[]> {
-    let result = await this._listByServer(
-      resourceGroupName,
-      serverName,
-      options
-    );
+  private async *listByServerPagingPage(): AsyncIterableIterator<
+    ServerCommunicationLink[]
+  > {
+    let result = await this._listByServer();
     yield result.value || [];
   }
 
-  private async *listByServerPagingAll(
-    resourceGroupName: string,
-    serverName: string,
-    options?: ServerCommunicationLinksListByServerOptionalParams
-  ): AsyncIterableIterator<ServerCommunicationLink> {
-    for await (const page of this.listByServerPagingPage(
-      resourceGroupName,
-      serverName,
-      options
-    )) {
+  private async *listByServerPagingAll(): AsyncIterableIterator<
+    ServerCommunicationLink
+  > {
+    for await (const page of this.listByServerPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Deletes a server communication link.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param communicationLinkName The name of the server communication link.
-   * @param options The options parameters.
+   *
    */
-  delete(
-    resourceGroupName: string,
-    serverName: string,
-    communicationLinkName: string,
-    options?: ServerCommunicationLinksDeleteOptionalParams
-  ): Promise<void> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, communicationLinkName, options },
-      deleteOperationSpec
-    );
-  }
+  delete(): Promise<void> {}
 
   /**
    * Returns a server communication link.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param communicationLinkName The name of the server communication link.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    communicationLinkName: string,
-    options?: ServerCommunicationLinksGetOptionalParams
-  ): Promise<ServerCommunicationLinksGetResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, communicationLinkName, options },
-      getOperationSpec
-    );
-  }
+  get(): Promise<ServerCommunicationLinksGetResponse> {}
 
   /**
    * Creates a server communication link.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param communicationLinkName The name of the server communication link.
-   * @param parameters The required parameters for creating a server communication link.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    communicationLinkName: string,
-    parameters: ServerCommunicationLink,
-    options?: ServerCommunicationLinksCreateOrUpdateOptionalParams
-  ): Promise<
+  async beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<ServerCommunicationLinksCreateOrUpdateResponse>,
       ServerCommunicationLinksCreateOrUpdateResponse
@@ -201,13 +131,7 @@ export class ServerCommunicationLinksImpl implements ServerCommunicationLinks {
 
     const lro = new LroImpl(
       sendOperation,
-      {
-        resourceGroupName,
-        serverName,
-        communicationLinkName,
-        parameters,
-        options
-      },
+      { resourceGroupName, serverName, communicationLinkName, options },
       createOrUpdateOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -220,86 +144,26 @@ export class ServerCommunicationLinksImpl implements ServerCommunicationLinks {
 
   /**
    * Creates a server communication link.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param communicationLinkName The name of the server communication link.
-   * @param parameters The required parameters for creating a server communication link.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    communicationLinkName: string,
-    parameters: ServerCommunicationLink,
-    options?: ServerCommunicationLinksCreateOrUpdateOptionalParams
-  ): Promise<ServerCommunicationLinksCreateOrUpdateResponse> {
-    const poller = await this.beginCreateOrUpdate(
-      resourceGroupName,
-      serverName,
-      communicationLinkName,
-      parameters,
-      options
-    );
+  async beginCreateOrUpdateAndWait(): Promise<
+    ServerCommunicationLinksCreateOrUpdateResponse
+  > {
+    const poller = await this.beginCreateOrUpdate();
     return poller.pollUntilDone();
   }
 
   /**
    * Gets a list of server communication links.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  private _listByServer(
-    resourceGroupName: string,
-    serverName: string,
-    options?: ServerCommunicationLinksListByServerOptionalParams
-  ): Promise<ServerCommunicationLinksListByServerResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, options },
-      listByServerOperationSpec
-    );
-  }
+  private _listByServer(): Promise<
+    ServerCommunicationLinksListByServerResponse
+  > {}
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const deleteOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/communicationLinks/{communicationLinkName}",
-  httpMethod: "DELETE",
-  responses: { 200: {} },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.communicationLinkName
-  ],
-  serializer
-};
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/communicationLinks/{communicationLinkName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ServerCommunicationLink
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.communicationLinkName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
 const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/communicationLinks/{communicationLinkName}",
@@ -329,24 +193,5 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const listByServerOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/communicationLinks",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ServerCommunicationLinkListResult
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };

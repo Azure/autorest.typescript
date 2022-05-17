@@ -13,7 +13,6 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
-import { TdeCertificate, TdeCertificatesCreateOptionalParams } from "../models";
 
 /** Class containing TdeCertificates operations. */
 export class TdeCertificatesImpl implements TdeCertificates {
@@ -29,18 +28,9 @@ export class TdeCertificatesImpl implements TdeCertificates {
 
   /**
    * Creates a TDE certificate for a given server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param parameters The requested TDE certificate to be created or updated.
-   * @param options The options parameters.
+   *
    */
-  async beginCreate(
-    resourceGroupName: string,
-    serverName: string,
-    parameters: TdeCertificate,
-    options?: TdeCertificatesCreateOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  async beginCreate(): Promise<PollerLike<PollOperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
@@ -82,7 +72,7 @@ export class TdeCertificatesImpl implements TdeCertificates {
 
     const lro = new LroImpl(
       sendOperation,
-      { resourceGroupName, serverName, parameters, options },
+      { resourceGroupName, serverName, options },
       createOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -95,24 +85,10 @@ export class TdeCertificatesImpl implements TdeCertificates {
 
   /**
    * Creates a TDE certificate for a given server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param parameters The requested TDE certificate to be created or updated.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    parameters: TdeCertificate,
-    options?: TdeCertificatesCreateOptionalParams
-  ): Promise<void> {
-    const poller = await this.beginCreate(
-      resourceGroupName,
-      serverName,
-      parameters,
-      options
-    );
+  async beginCreateAndWait(): Promise<void> {
+    const poller = await this.beginCreate();
     return poller.pollUntilDone();
   }
 }

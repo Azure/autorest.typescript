@@ -16,30 +16,14 @@ import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
   SyncDatabaseIdProperties,
-  SyncGroupsListSyncDatabaseIdsNextOptionalParams,
-  SyncGroupsListSyncDatabaseIdsOptionalParams,
   SyncFullSchemaProperties,
-  SyncGroupsListHubSchemasNextOptionalParams,
-  SyncGroupsListHubSchemasOptionalParams,
   SyncGroupLogProperties,
-  SyncGroupsType,
-  SyncGroupsListLogsNextOptionalParams,
-  SyncGroupsListLogsOptionalParams,
   SyncGroup,
-  SyncGroupsListByDatabaseNextOptionalParams,
-  SyncGroupsListByDatabaseOptionalParams,
   SyncGroupsListSyncDatabaseIdsResponse,
-  SyncGroupsRefreshHubSchemaOptionalParams,
   SyncGroupsListHubSchemasResponse,
   SyncGroupsListLogsResponse,
-  SyncGroupsCancelSyncOptionalParams,
-  SyncGroupsTriggerSyncOptionalParams,
-  SyncGroupsGetOptionalParams,
   SyncGroupsGetResponse,
-  SyncGroupsCreateOrUpdateOptionalParams,
   SyncGroupsCreateOrUpdateResponse,
-  SyncGroupsDeleteOptionalParams,
-  SyncGroupsUpdateOptionalParams,
   SyncGroupsUpdateResponse,
   SyncGroupsListByDatabaseResponse,
   SyncGroupsListSyncDatabaseIdsNextResponse,
@@ -63,14 +47,12 @@ export class SyncGroupsImpl implements SyncGroups {
 
   /**
    * Gets a collection of sync database ids.
-   * @param locationName The name of the region where the resource is located.
-   * @param options The options parameters.
+   *
    */
-  public listSyncDatabaseIds(
-    locationName: string,
-    options?: SyncGroupsListSyncDatabaseIdsOptionalParams
-  ): PagedAsyncIterableIterator<SyncDatabaseIdProperties> {
-    const iter = this.listSyncDatabaseIdsPagingAll(locationName, options);
+  public listSyncDatabaseIds(): PagedAsyncIterableIterator<
+    SyncDatabaseIdProperties
+  > {
+    const iter = this.listSyncDatabaseIdsPagingAll();
     return {
       next() {
         return iter.next();
@@ -79,64 +61,40 @@ export class SyncGroupsImpl implements SyncGroups {
         return this;
       },
       byPage: () => {
-        return this.listSyncDatabaseIdsPagingPage(locationName, options);
+        return this.listSyncDatabaseIdsPagingPage();
       }
     };
   }
 
-  private async *listSyncDatabaseIdsPagingPage(
-    locationName: string,
-    options?: SyncGroupsListSyncDatabaseIdsOptionalParams
-  ): AsyncIterableIterator<SyncDatabaseIdProperties[]> {
-    let result = await this._listSyncDatabaseIds(locationName, options);
+  private async *listSyncDatabaseIdsPagingPage(): AsyncIterableIterator<
+    SyncDatabaseIdProperties[]
+  > {
+    let result = await this._listSyncDatabaseIds();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listSyncDatabaseIdsNext(
-        locationName,
-        continuationToken,
-        options
-      );
+      result = await this._listSyncDatabaseIdsNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listSyncDatabaseIdsPagingAll(
-    locationName: string,
-    options?: SyncGroupsListSyncDatabaseIdsOptionalParams
-  ): AsyncIterableIterator<SyncDatabaseIdProperties> {
-    for await (const page of this.listSyncDatabaseIdsPagingPage(
-      locationName,
-      options
-    )) {
+  private async *listSyncDatabaseIdsPagingAll(): AsyncIterableIterator<
+    SyncDatabaseIdProperties
+  > {
+    for await (const page of this.listSyncDatabaseIdsPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Gets a collection of hub database schemas.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database on which the sync group is hosted.
-   * @param syncGroupName The name of the sync group.
-   * @param options The options parameters.
+   *
    */
-  public listHubSchemas(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    syncGroupName: string,
-    options?: SyncGroupsListHubSchemasOptionalParams
-  ): PagedAsyncIterableIterator<SyncFullSchemaProperties> {
-    const iter = this.listHubSchemasPagingAll(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      syncGroupName,
-      options
-    );
+  public listHubSchemas(): PagedAsyncIterableIterator<
+    SyncFullSchemaProperties
+  > {
+    const iter = this.listHubSchemasPagingAll();
     return {
       next() {
         return iter.next();
@@ -145,97 +103,38 @@ export class SyncGroupsImpl implements SyncGroups {
         return this;
       },
       byPage: () => {
-        return this.listHubSchemasPagingPage(
-          resourceGroupName,
-          serverName,
-          databaseName,
-          syncGroupName,
-          options
-        );
+        return this.listHubSchemasPagingPage();
       }
     };
   }
 
-  private async *listHubSchemasPagingPage(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    syncGroupName: string,
-    options?: SyncGroupsListHubSchemasOptionalParams
-  ): AsyncIterableIterator<SyncFullSchemaProperties[]> {
-    let result = await this._listHubSchemas(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      syncGroupName,
-      options
-    );
+  private async *listHubSchemasPagingPage(): AsyncIterableIterator<
+    SyncFullSchemaProperties[]
+  > {
+    let result = await this._listHubSchemas();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listHubSchemasNext(
-        resourceGroupName,
-        serverName,
-        databaseName,
-        syncGroupName,
-        continuationToken,
-        options
-      );
+      result = await this._listHubSchemasNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listHubSchemasPagingAll(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    syncGroupName: string,
-    options?: SyncGroupsListHubSchemasOptionalParams
-  ): AsyncIterableIterator<SyncFullSchemaProperties> {
-    for await (const page of this.listHubSchemasPagingPage(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      syncGroupName,
-      options
-    )) {
+  private async *listHubSchemasPagingAll(): AsyncIterableIterator<
+    SyncFullSchemaProperties
+  > {
+    for await (const page of this.listHubSchemasPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Gets a collection of sync group logs.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database on which the sync group is hosted.
-   * @param syncGroupName The name of the sync group.
-   * @param startTime Get logs generated after this time.
-   * @param endTime Get logs generated before this time.
-   * @param typeParam The types of logs to retrieve.
-   * @param options The options parameters.
+   *
    */
-  public listLogs(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    syncGroupName: string,
-    startTime: string,
-    endTime: string,
-    typeParam: SyncGroupsType,
-    options?: SyncGroupsListLogsOptionalParams
-  ): PagedAsyncIterableIterator<SyncGroupLogProperties> {
-    const iter = this.listLogsPagingAll(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      syncGroupName,
-      startTime,
-      endTime,
-      typeParam,
-      options
-    );
+  public listLogs(): PagedAsyncIterableIterator<SyncGroupLogProperties> {
+    const iter = this.listLogsPagingAll();
     return {
       next() {
         return iter.next();
@@ -244,103 +143,38 @@ export class SyncGroupsImpl implements SyncGroups {
         return this;
       },
       byPage: () => {
-        return this.listLogsPagingPage(
-          resourceGroupName,
-          serverName,
-          databaseName,
-          syncGroupName,
-          startTime,
-          endTime,
-          typeParam,
-          options
-        );
+        return this.listLogsPagingPage();
       }
     };
   }
 
-  private async *listLogsPagingPage(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    syncGroupName: string,
-    startTime: string,
-    endTime: string,
-    typeParam: SyncGroupsType,
-    options?: SyncGroupsListLogsOptionalParams
-  ): AsyncIterableIterator<SyncGroupLogProperties[]> {
-    let result = await this._listLogs(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      syncGroupName,
-      startTime,
-      endTime,
-      typeParam,
-      options
-    );
+  private async *listLogsPagingPage(): AsyncIterableIterator<
+    SyncGroupLogProperties[]
+  > {
+    let result = await this._listLogs();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listLogsNext(
-        resourceGroupName,
-        serverName,
-        databaseName,
-        syncGroupName,
-        startTime,
-        endTime,
-        continuationToken,
-        typeParam,
-        options
-      );
+      result = await this._listLogsNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listLogsPagingAll(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    syncGroupName: string,
-    startTime: string,
-    endTime: string,
-    typeParam: SyncGroupsType,
-    options?: SyncGroupsListLogsOptionalParams
-  ): AsyncIterableIterator<SyncGroupLogProperties> {
-    for await (const page of this.listLogsPagingPage(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      syncGroupName,
-      startTime,
-      endTime,
-      typeParam,
-      options
-    )) {
+  private async *listLogsPagingAll(): AsyncIterableIterator<
+    SyncGroupLogProperties
+  > {
+    for await (const page of this.listLogsPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Lists sync groups under a hub database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database on which the sync group is hosted.
-   * @param options The options parameters.
+   *
    */
-  public listByDatabase(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: SyncGroupsListByDatabaseOptionalParams
-  ): PagedAsyncIterableIterator<SyncGroup> {
-    const iter = this.listByDatabasePagingAll(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      options
-    );
+  public listByDatabase(): PagedAsyncIterableIterator<SyncGroup> {
+    const iter = this.listByDatabasePagingAll();
     return {
       next() {
         return iter.next();
@@ -349,311 +183,90 @@ export class SyncGroupsImpl implements SyncGroups {
         return this;
       },
       byPage: () => {
-        return this.listByDatabasePagingPage(
-          resourceGroupName,
-          serverName,
-          databaseName,
-          options
-        );
+        return this.listByDatabasePagingPage();
       }
     };
   }
 
-  private async *listByDatabasePagingPage(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: SyncGroupsListByDatabaseOptionalParams
-  ): AsyncIterableIterator<SyncGroup[]> {
-    let result = await this._listByDatabase(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      options
-    );
+  private async *listByDatabasePagingPage(): AsyncIterableIterator<
+    SyncGroup[]
+  > {
+    let result = await this._listByDatabase();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listByDatabaseNext(
-        resourceGroupName,
-        serverName,
-        databaseName,
-        continuationToken,
-        options
-      );
+      result = await this._listByDatabaseNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listByDatabasePagingAll(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: SyncGroupsListByDatabaseOptionalParams
-  ): AsyncIterableIterator<SyncGroup> {
-    for await (const page of this.listByDatabasePagingPage(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      options
-    )) {
+  private async *listByDatabasePagingAll(): AsyncIterableIterator<SyncGroup> {
+    for await (const page of this.listByDatabasePagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Gets a collection of sync database ids.
-   * @param locationName The name of the region where the resource is located.
-   * @param options The options parameters.
+   *
    */
-  private _listSyncDatabaseIds(
-    locationName: string,
-    options?: SyncGroupsListSyncDatabaseIdsOptionalParams
-  ): Promise<SyncGroupsListSyncDatabaseIdsResponse> {
-    return this.client.sendOperationRequest(
-      { locationName, options },
-      listSyncDatabaseIdsOperationSpec
-    );
-  }
+  private _listSyncDatabaseIds(): Promise<
+    SyncGroupsListSyncDatabaseIdsResponse
+  > {}
 
   /**
    * Refreshes a hub database schema.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database on which the sync group is hosted.
-   * @param syncGroupName The name of the sync group.
-   * @param options The options parameters.
+   *
    */
-  async beginRefreshHubSchema(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    syncGroupName: string,
-    options?: SyncGroupsRefreshHubSchemaOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<void> => {
-      return this.client.sendOperationRequest(args, spec);
-    };
-    const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return {
-        flatResponse,
-        rawResponse: {
-          statusCode: currentRawResponse!.status,
-          body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
-      };
-    };
-
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, serverName, databaseName, syncGroupName, options },
-      refreshHubSchemaOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
-    });
-    await poller.poll();
-    return poller;
-  }
+  async beginRefreshHubSchema(): Promise<
+    PollerLike<PollOperationState<void>, void>
+  > {}
 
   /**
    * Refreshes a hub database schema.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database on which the sync group is hosted.
-   * @param syncGroupName The name of the sync group.
-   * @param options The options parameters.
+   *
    */
-  async beginRefreshHubSchemaAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    syncGroupName: string,
-    options?: SyncGroupsRefreshHubSchemaOptionalParams
-  ): Promise<void> {
-    const poller = await this.beginRefreshHubSchema(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      syncGroupName,
-      options
-    );
+  async beginRefreshHubSchemaAndWait(): Promise<void> {
+    const poller = await this.beginRefreshHubSchema();
     return poller.pollUntilDone();
   }
 
   /**
    * Gets a collection of hub database schemas.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database on which the sync group is hosted.
-   * @param syncGroupName The name of the sync group.
-   * @param options The options parameters.
+   *
    */
-  private _listHubSchemas(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    syncGroupName: string,
-    options?: SyncGroupsListHubSchemasOptionalParams
-  ): Promise<SyncGroupsListHubSchemasResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, databaseName, syncGroupName, options },
-      listHubSchemasOperationSpec
-    );
-  }
+  private _listHubSchemas(): Promise<SyncGroupsListHubSchemasResponse> {}
 
   /**
    * Gets a collection of sync group logs.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database on which the sync group is hosted.
-   * @param syncGroupName The name of the sync group.
-   * @param startTime Get logs generated after this time.
-   * @param endTime Get logs generated before this time.
-   * @param typeParam The types of logs to retrieve.
-   * @param options The options parameters.
+   *
    */
-  private _listLogs(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    syncGroupName: string,
-    startTime: string,
-    endTime: string,
-    typeParam: SyncGroupsType,
-    options?: SyncGroupsListLogsOptionalParams
-  ): Promise<SyncGroupsListLogsResponse> {
-    return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        syncGroupName,
-        startTime,
-        endTime,
-        typeParam,
-        options
-      },
-      listLogsOperationSpec
-    );
-  }
+  private _listLogs(): Promise<SyncGroupsListLogsResponse> {}
 
   /**
    * Cancels a sync group synchronization.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database on which the sync group is hosted.
-   * @param syncGroupName The name of the sync group.
-   * @param options The options parameters.
+   *
    */
-  cancelSync(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    syncGroupName: string,
-    options?: SyncGroupsCancelSyncOptionalParams
-  ): Promise<void> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, databaseName, syncGroupName, options },
-      cancelSyncOperationSpec
-    );
-  }
+  cancelSync(): Promise<void> {}
 
   /**
    * Triggers a sync group synchronization.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database on which the sync group is hosted.
-   * @param syncGroupName The name of the sync group.
-   * @param options The options parameters.
+   *
    */
-  triggerSync(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    syncGroupName: string,
-    options?: SyncGroupsTriggerSyncOptionalParams
-  ): Promise<void> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, databaseName, syncGroupName, options },
-      triggerSyncOperationSpec
-    );
-  }
+  triggerSync(): Promise<void> {}
 
   /**
    * Gets a sync group.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database on which the sync group is hosted.
-   * @param syncGroupName The name of the sync group.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    syncGroupName: string,
-    options?: SyncGroupsGetOptionalParams
-  ): Promise<SyncGroupsGetResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, databaseName, syncGroupName, options },
-      getOperationSpec
-    );
-  }
+  get(): Promise<SyncGroupsGetResponse> {}
 
   /**
    * Creates or updates a sync group.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database on which the sync group is hosted.
-   * @param syncGroupName The name of the sync group.
-   * @param parameters The requested sync group resource state.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    syncGroupName: string,
-    parameters: SyncGroup,
-    options?: SyncGroupsCreateOrUpdateOptionalParams
-  ): Promise<
+  async beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<SyncGroupsCreateOrUpdateResponse>,
       SyncGroupsCreateOrUpdateResponse
@@ -700,14 +313,7 @@ export class SyncGroupsImpl implements SyncGroups {
 
     const lro = new LroImpl(
       sendOperation,
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        syncGroupName,
-        parameters,
-        options
-      },
+      { resourceGroupName, serverName, databaseName, syncGroupName, options },
       createOrUpdateOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -720,145 +326,35 @@ export class SyncGroupsImpl implements SyncGroups {
 
   /**
    * Creates or updates a sync group.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database on which the sync group is hosted.
-   * @param syncGroupName The name of the sync group.
-   * @param parameters The requested sync group resource state.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    syncGroupName: string,
-    parameters: SyncGroup,
-    options?: SyncGroupsCreateOrUpdateOptionalParams
-  ): Promise<SyncGroupsCreateOrUpdateResponse> {
-    const poller = await this.beginCreateOrUpdate(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      syncGroupName,
-      parameters,
-      options
-    );
+  async beginCreateOrUpdateAndWait(): Promise<
+    SyncGroupsCreateOrUpdateResponse
+  > {
+    const poller = await this.beginCreateOrUpdate();
     return poller.pollUntilDone();
   }
 
   /**
    * Deletes a sync group.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database on which the sync group is hosted.
-   * @param syncGroupName The name of the sync group.
-   * @param options The options parameters.
+   *
    */
-  async beginDelete(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    syncGroupName: string,
-    options?: SyncGroupsDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<void> => {
-      return this.client.sendOperationRequest(args, spec);
-    };
-    const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return {
-        flatResponse,
-        rawResponse: {
-          statusCode: currentRawResponse!.status,
-          body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
-      };
-    };
-
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, serverName, databaseName, syncGroupName, options },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
-    });
-    await poller.poll();
-    return poller;
-  }
+  async beginDelete(): Promise<PollerLike<PollOperationState<void>, void>> {}
 
   /**
    * Deletes a sync group.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database on which the sync group is hosted.
-   * @param syncGroupName The name of the sync group.
-   * @param options The options parameters.
+   *
    */
-  async beginDeleteAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    syncGroupName: string,
-    options?: SyncGroupsDeleteOptionalParams
-  ): Promise<void> {
-    const poller = await this.beginDelete(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      syncGroupName,
-      options
-    );
+  async beginDeleteAndWait(): Promise<void> {
+    const poller = await this.beginDelete();
     return poller.pollUntilDone();
   }
 
   /**
    * Updates a sync group.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database on which the sync group is hosted.
-   * @param syncGroupName The name of the sync group.
-   * @param parameters The requested sync group resource state.
-   * @param options The options parameters.
+   *
    */
-  async beginUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    syncGroupName: string,
-    parameters: SyncGroup,
-    options?: SyncGroupsUpdateOptionalParams
-  ): Promise<
+  async beginUpdate(): Promise<
     PollerLike<
       PollOperationState<SyncGroupsUpdateResponse>,
       SyncGroupsUpdateResponse
@@ -905,14 +401,7 @@ export class SyncGroupsImpl implements SyncGroups {
 
     const lro = new LroImpl(
       sendOperation,
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        syncGroupName,
-        parameters,
-        options
-      },
+      { resourceGroupName, serverName, databaseName, syncGroupName, options },
       updateOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -925,305 +414,52 @@ export class SyncGroupsImpl implements SyncGroups {
 
   /**
    * Updates a sync group.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database on which the sync group is hosted.
-   * @param syncGroupName The name of the sync group.
-   * @param parameters The requested sync group resource state.
-   * @param options The options parameters.
+   *
    */
-  async beginUpdateAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    syncGroupName: string,
-    parameters: SyncGroup,
-    options?: SyncGroupsUpdateOptionalParams
-  ): Promise<SyncGroupsUpdateResponse> {
-    const poller = await this.beginUpdate(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      syncGroupName,
-      parameters,
-      options
-    );
+  async beginUpdateAndWait(): Promise<SyncGroupsUpdateResponse> {
+    const poller = await this.beginUpdate();
     return poller.pollUntilDone();
   }
 
   /**
    * Lists sync groups under a hub database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database on which the sync group is hosted.
-   * @param options The options parameters.
+   *
    */
-  private _listByDatabase(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: SyncGroupsListByDatabaseOptionalParams
-  ): Promise<SyncGroupsListByDatabaseResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, databaseName, options },
-      listByDatabaseOperationSpec
-    );
-  }
+  private _listByDatabase(): Promise<SyncGroupsListByDatabaseResponse> {}
 
   /**
    * ListSyncDatabaseIdsNext
-   * @param locationName The name of the region where the resource is located.
-   * @param nextLink The nextLink from the previous successful call to the ListSyncDatabaseIds method.
-   * @param options The options parameters.
+   *
    */
-  private _listSyncDatabaseIdsNext(
-    locationName: string,
-    nextLink: string,
-    options?: SyncGroupsListSyncDatabaseIdsNextOptionalParams
-  ): Promise<SyncGroupsListSyncDatabaseIdsNextResponse> {
-    return this.client.sendOperationRequest(
-      { locationName, nextLink, options },
-      listSyncDatabaseIdsNextOperationSpec
-    );
-  }
+  private _listSyncDatabaseIdsNext(): Promise<
+    SyncGroupsListSyncDatabaseIdsNextResponse
+  > {}
 
   /**
    * ListHubSchemasNext
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database on which the sync group is hosted.
-   * @param syncGroupName The name of the sync group.
-   * @param nextLink The nextLink from the previous successful call to the ListHubSchemas method.
-   * @param options The options parameters.
+   *
    */
-  private _listHubSchemasNext(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    syncGroupName: string,
-    nextLink: string,
-    options?: SyncGroupsListHubSchemasNextOptionalParams
-  ): Promise<SyncGroupsListHubSchemasNextResponse> {
-    return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        syncGroupName,
-        nextLink,
-        options
-      },
-      listHubSchemasNextOperationSpec
-    );
-  }
+  private _listHubSchemasNext(): Promise<
+    SyncGroupsListHubSchemasNextResponse
+  > {}
 
   /**
    * ListLogsNext
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database on which the sync group is hosted.
-   * @param syncGroupName The name of the sync group.
-   * @param startTime Get logs generated after this time.
-   * @param endTime Get logs generated before this time.
-   * @param nextLink The nextLink from the previous successful call to the ListLogs method.
-   * @param typeParam The types of logs to retrieve.
-   * @param options The options parameters.
+   *
    */
-  private _listLogsNext(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    syncGroupName: string,
-    startTime: string,
-    endTime: string,
-    nextLink: string,
-    typeParam: SyncGroupsType,
-    options?: SyncGroupsListLogsNextOptionalParams
-  ): Promise<SyncGroupsListLogsNextResponse> {
-    return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        syncGroupName,
-        startTime,
-        endTime,
-        nextLink,
-        typeParam,
-        options
-      },
-      listLogsNextOperationSpec
-    );
-  }
+  private _listLogsNext(): Promise<SyncGroupsListLogsNextResponse> {}
 
   /**
    * ListByDatabaseNext
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database on which the sync group is hosted.
-   * @param nextLink The nextLink from the previous successful call to the ListByDatabase method.
-   * @param options The options parameters.
+   *
    */
-  private _listByDatabaseNext(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    nextLink: string,
-    options?: SyncGroupsListByDatabaseNextOptionalParams
-  ): Promise<SyncGroupsListByDatabaseNextResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, databaseName, nextLink, options },
-      listByDatabaseNextOperationSpec
-    );
-  }
+  private _listByDatabaseNext(): Promise<
+    SyncGroupsListByDatabaseNextResponse
+  > {}
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listSyncDatabaseIdsOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Sql/locations/{locationName}/syncDatabaseIds",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.SyncDatabaseIdListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.locationName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const refreshHubSchemaOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/syncGroups/{syncGroupName}/refreshHubSchema",
-  httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.databaseName,
-    Parameters.syncGroupName
-  ],
-  serializer
-};
-const listHubSchemasOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/syncGroups/{syncGroupName}/hubSchemas",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.SyncFullSchemaPropertiesListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.databaseName,
-    Parameters.syncGroupName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listLogsOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/syncGroups/{syncGroupName}/logs",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.SyncGroupLogListResult
-    },
-    default: {}
-  },
-  queryParameters: [
-    Parameters.apiVersion2,
-    Parameters.startTime1,
-    Parameters.endTime1,
-    Parameters.typeParam,
-    Parameters.continuationToken
-  ],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.databaseName,
-    Parameters.syncGroupName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const cancelSyncOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/syncGroups/{syncGroupName}/cancelSync",
-  httpMethod: "POST",
-  responses: { 200: {}, default: {} },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.databaseName,
-    Parameters.syncGroupName
-  ],
-  serializer
-};
-const triggerSyncOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/syncGroups/{syncGroupName}/triggerSync",
-  httpMethod: "POST",
-  responses: { 200: {}, default: {} },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.databaseName,
-    Parameters.syncGroupName
-  ],
-  serializer
-};
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/syncGroups/{syncGroupName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.SyncGroup
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.databaseName,
-    Parameters.syncGroupName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
 const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/syncGroups/{syncGroupName}",
@@ -1257,22 +493,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/syncGroups/{syncGroupName}",
-  httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.databaseName,
-    Parameters.syncGroupName
-  ],
-  serializer
-};
 const updateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/syncGroups/{syncGroupName}",
@@ -1304,116 +524,5 @@ const updateOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const listByDatabaseOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/syncGroups",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.SyncGroupListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.databaseName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listSyncDatabaseIdsNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.SyncDatabaseIdListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.nextLink,
-    Parameters.locationName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listHubSchemasNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.SyncFullSchemaPropertiesListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.databaseName,
-    Parameters.nextLink,
-    Parameters.syncGroupName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listLogsNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.SyncGroupLogListResult
-    },
-    default: {}
-  },
-  queryParameters: [
-    Parameters.apiVersion2,
-    Parameters.startTime1,
-    Parameters.endTime1,
-    Parameters.typeParam,
-    Parameters.continuationToken
-  ],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.databaseName,
-    Parameters.nextLink,
-    Parameters.syncGroupName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByDatabaseNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.SyncGroupListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.databaseName,
-    Parameters.nextLink
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };

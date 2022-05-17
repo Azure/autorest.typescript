@@ -58,18 +58,6 @@ export const apiVersion: OperationQueryParameter = {
   }
 };
 
-export const nextLink: OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
 export const scope: OperationURLParameter = {
   parameterPath: "scope",
   mapper: {

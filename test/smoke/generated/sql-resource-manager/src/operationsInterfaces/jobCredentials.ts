@@ -9,12 +9,8 @@
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import {
   JobCredential,
-  JobCredentialsListByAgentOptionalParams,
-  JobCredentialsGetOptionalParams,
   JobCredentialsGetResponse,
-  JobCredentialsCreateOrUpdateOptionalParams,
-  JobCredentialsCreateOrUpdateResponse,
-  JobCredentialsDeleteOptionalParams
+  JobCredentialsCreateOrUpdateResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -22,66 +18,22 @@ import {
 export interface JobCredentials {
   /**
    * Gets a list of jobs credentials.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param jobAgentName The name of the job agent.
-   * @param options The options parameters.
+   *
    */
-  listByAgent(
-    resourceGroupName: string,
-    serverName: string,
-    jobAgentName: string,
-    options?: JobCredentialsListByAgentOptionalParams
-  ): PagedAsyncIterableIterator<JobCredential>;
+  listByAgent(): PagedAsyncIterableIterator<JobCredential>;
   /**
    * Gets a jobs credential.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param jobAgentName The name of the job agent.
-   * @param credentialName The name of the credential.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    jobAgentName: string,
-    credentialName: string,
-    options?: JobCredentialsGetOptionalParams
-  ): Promise<JobCredentialsGetResponse>;
+  get(): Promise<JobCredentialsGetResponse>;
   /**
    * Creates or updates a job credential.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param jobAgentName The name of the job agent.
-   * @param credentialName The name of the credential.
-   * @param parameters The requested job credential state.
-   * @param options The options parameters.
+   *
    */
-  createOrUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    jobAgentName: string,
-    credentialName: string,
-    parameters: JobCredential,
-    options?: JobCredentialsCreateOrUpdateOptionalParams
-  ): Promise<JobCredentialsCreateOrUpdateResponse>;
+  createOrUpdate(): Promise<JobCredentialsCreateOrUpdateResponse>;
   /**
    * Deletes a job credential.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param jobAgentName The name of the job agent.
-   * @param credentialName The name of the credential.
-   * @param options The options parameters.
+   *
    */
-  delete(
-    resourceGroupName: string,
-    serverName: string,
-    jobAgentName: string,
-    credentialName: string,
-    options?: JobCredentialsDeleteOptionalParams
-  ): Promise<void>;
+  delete(): Promise<void>;
 }

@@ -10,12 +10,8 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualNetworkRule,
-  VirtualNetworkRulesListByServerOptionalParams,
-  VirtualNetworkRulesGetOptionalParams,
   VirtualNetworkRulesGetResponse,
-  VirtualNetworkRulesCreateOrUpdateOptionalParams,
-  VirtualNetworkRulesCreateOrUpdateResponse,
-  VirtualNetworkRulesDeleteOptionalParams
+  VirtualNetworkRulesCreateOrUpdateResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -23,46 +19,19 @@ import {
 export interface VirtualNetworkRules {
   /**
    * Gets a list of virtual network rules in a server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  listByServer(
-    resourceGroupName: string,
-    serverName: string,
-    options?: VirtualNetworkRulesListByServerOptionalParams
-  ): PagedAsyncIterableIterator<VirtualNetworkRule>;
+  listByServer(): PagedAsyncIterableIterator<VirtualNetworkRule>;
   /**
    * Gets a virtual network rule.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param virtualNetworkRuleName The name of the virtual network rule.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    virtualNetworkRuleName: string,
-    options?: VirtualNetworkRulesGetOptionalParams
-  ): Promise<VirtualNetworkRulesGetResponse>;
+  get(): Promise<VirtualNetworkRulesGetResponse>;
   /**
    * Creates or updates an existing virtual network rule.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param virtualNetworkRuleName The name of the virtual network rule.
-   * @param parameters The requested virtual Network Rule Resource state.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    virtualNetworkRuleName: string,
-    parameters: VirtualNetworkRule,
-    options?: VirtualNetworkRulesCreateOrUpdateOptionalParams
-  ): Promise<
+  beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<VirtualNetworkRulesCreateOrUpdateResponse>,
       VirtualNetworkRulesCreateOrUpdateResponse
@@ -70,46 +39,19 @@ export interface VirtualNetworkRules {
   >;
   /**
    * Creates or updates an existing virtual network rule.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param virtualNetworkRuleName The name of the virtual network rule.
-   * @param parameters The requested virtual Network Rule Resource state.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    virtualNetworkRuleName: string,
-    parameters: VirtualNetworkRule,
-    options?: VirtualNetworkRulesCreateOrUpdateOptionalParams
-  ): Promise<VirtualNetworkRulesCreateOrUpdateResponse>;
+  beginCreateOrUpdateAndWait(): Promise<
+    VirtualNetworkRulesCreateOrUpdateResponse
+  >;
   /**
    * Deletes the virtual network rule with the given name.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param virtualNetworkRuleName The name of the virtual network rule.
-   * @param options The options parameters.
+   *
    */
-  beginDelete(
-    resourceGroupName: string,
-    serverName: string,
-    virtualNetworkRuleName: string,
-    options?: VirtualNetworkRulesDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  beginDelete(): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes the virtual network rule with the given name.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param virtualNetworkRuleName The name of the virtual network rule.
-   * @param options The options parameters.
+   *
    */
-  beginDeleteAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    virtualNetworkRuleName: string,
-    options?: VirtualNetworkRulesDeleteOptionalParams
-  ): Promise<void>;
+  beginDeleteAndWait(): Promise<void>;
 }

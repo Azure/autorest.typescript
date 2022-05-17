@@ -10,47 +10,27 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { ElasticPoolActivities } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import {
   ElasticPoolActivity,
-  ElasticPoolActivitiesListByElasticPoolOptionalParams,
   ElasticPoolActivitiesListByElasticPoolResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing ElasticPoolActivities operations. */
 export class ElasticPoolActivitiesImpl implements ElasticPoolActivities {
-  private readonly client: SqlManagementClient;
-
   /**
    * Initialize a new instance of the class ElasticPoolActivities class.
    * @param client Reference to the service client
    */
-  constructor(client: SqlManagementClient) {
-    this.client = client;
-  }
+  constructor(client: SqlManagementClient) {}
 
   /**
    * Returns elastic pool activities.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param elasticPoolName The name of the elastic pool for which to get the current activity.
-   * @param options The options parameters.
+   *
    */
-  public listByElasticPool(
-    resourceGroupName: string,
-    serverName: string,
-    elasticPoolName: string,
-    options?: ElasticPoolActivitiesListByElasticPoolOptionalParams
-  ): PagedAsyncIterableIterator<ElasticPoolActivity> {
-    const iter = this.listByElasticPoolPagingAll(
-      resourceGroupName,
-      serverName,
-      elasticPoolName,
-      options
-    );
+  public listByElasticPool(): PagedAsyncIterableIterator<ElasticPoolActivity> {
+    const iter = this.listByElasticPoolPagingAll();
     return {
       next() {
         return iter.next();
@@ -59,87 +39,32 @@ export class ElasticPoolActivitiesImpl implements ElasticPoolActivities {
         return this;
       },
       byPage: () => {
-        return this.listByElasticPoolPagingPage(
-          resourceGroupName,
-          serverName,
-          elasticPoolName,
-          options
-        );
+        return this.listByElasticPoolPagingPage();
       }
     };
   }
 
-  private async *listByElasticPoolPagingPage(
-    resourceGroupName: string,
-    serverName: string,
-    elasticPoolName: string,
-    options?: ElasticPoolActivitiesListByElasticPoolOptionalParams
-  ): AsyncIterableIterator<ElasticPoolActivity[]> {
-    let result = await this._listByElasticPool(
-      resourceGroupName,
-      serverName,
-      elasticPoolName,
-      options
-    );
+  private async *listByElasticPoolPagingPage(): AsyncIterableIterator<
+    ElasticPoolActivity[]
+  > {
+    let result = await this._listByElasticPool();
     yield result.value || [];
   }
 
-  private async *listByElasticPoolPagingAll(
-    resourceGroupName: string,
-    serverName: string,
-    elasticPoolName: string,
-    options?: ElasticPoolActivitiesListByElasticPoolOptionalParams
-  ): AsyncIterableIterator<ElasticPoolActivity> {
-    for await (const page of this.listByElasticPoolPagingPage(
-      resourceGroupName,
-      serverName,
-      elasticPoolName,
-      options
-    )) {
+  private async *listByElasticPoolPagingAll(): AsyncIterableIterator<
+    ElasticPoolActivity
+  > {
+    for await (const page of this.listByElasticPoolPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Returns elastic pool activities.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param elasticPoolName The name of the elastic pool for which to get the current activity.
-   * @param options The options parameters.
+   *
    */
-  private _listByElasticPool(
-    resourceGroupName: string,
-    serverName: string,
-    elasticPoolName: string,
-    options?: ElasticPoolActivitiesListByElasticPoolOptionalParams
-  ): Promise<ElasticPoolActivitiesListByElasticPoolResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, elasticPoolName, options },
-      listByElasticPoolOperationSpec
-    );
-  }
+  private _listByElasticPool(): Promise<
+    ElasticPoolActivitiesListByElasticPoolResponse
+  > {}
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
-
-const listByElasticPoolOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/elasticPools/{elasticPoolName}/elasticPoolActivity",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ElasticPoolActivityListResult
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.elasticPoolName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};

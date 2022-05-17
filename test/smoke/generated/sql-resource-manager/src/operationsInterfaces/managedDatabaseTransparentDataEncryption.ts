@@ -9,11 +9,7 @@
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import {
   ManagedTransparentDataEncryption,
-  ManagedDatabaseTransparentDataEncryptionListByDatabaseOptionalParams,
-  TransparentDataEncryptionName,
-  ManagedDatabaseTransparentDataEncryptionGetOptionalParams,
   ManagedDatabaseTransparentDataEncryptionGetResponse,
-  ManagedDatabaseTransparentDataEncryptionCreateOrUpdateOptionalParams,
   ManagedDatabaseTransparentDataEncryptionCreateOrUpdateResponse
 } from "../models";
 
@@ -22,52 +18,21 @@ import {
 export interface ManagedDatabaseTransparentDataEncryption {
   /**
    * Gets a list of managed database's transparent data encryptions.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the managed database for which the transparent data encryption is
-   *                     defined.
-   * @param options The options parameters.
+   *
    */
-  listByDatabase(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    options?: ManagedDatabaseTransparentDataEncryptionListByDatabaseOptionalParams
-  ): PagedAsyncIterableIterator<ManagedTransparentDataEncryption>;
+  listByDatabase(): PagedAsyncIterableIterator<
+    ManagedTransparentDataEncryption
+  >;
   /**
    * Gets a managed database's transparent data encryption.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the managed database for which the transparent data encryption is
-   *                     defined.
-   * @param tdeName The name of the transparent data encryption configuration.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    tdeName: TransparentDataEncryptionName,
-    options?: ManagedDatabaseTransparentDataEncryptionGetOptionalParams
-  ): Promise<ManagedDatabaseTransparentDataEncryptionGetResponse>;
+  get(): Promise<ManagedDatabaseTransparentDataEncryptionGetResponse>;
   /**
    * Updates a database's transparent data encryption configuration.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the managed database for which the security alert policy is defined.
-   * @param tdeName The name of the transparent data encryption configuration.
-   * @param parameters The database transparent data encryption.
-   * @param options The options parameters.
+   *
    */
-  createOrUpdate(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    tdeName: TransparentDataEncryptionName,
-    parameters: ManagedTransparentDataEncryption,
-    options?: ManagedDatabaseTransparentDataEncryptionCreateOrUpdateOptionalParams
-  ): Promise<ManagedDatabaseTransparentDataEncryptionCreateOrUpdateResponse>;
+  createOrUpdate(): Promise<
+    ManagedDatabaseTransparentDataEncryptionCreateOrUpdateResponse
+  >;
 }

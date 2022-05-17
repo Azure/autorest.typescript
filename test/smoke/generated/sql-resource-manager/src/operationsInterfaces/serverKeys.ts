@@ -10,12 +10,8 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ServerKey,
-  ServerKeysListByServerOptionalParams,
-  ServerKeysGetOptionalParams,
   ServerKeysGetResponse,
-  ServerKeysCreateOrUpdateOptionalParams,
-  ServerKeysCreateOrUpdateResponse,
-  ServerKeysDeleteOptionalParams
+  ServerKeysCreateOrUpdateResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -23,49 +19,19 @@ import {
 export interface ServerKeys {
   /**
    * Gets a list of server keys.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  listByServer(
-    resourceGroupName: string,
-    serverName: string,
-    options?: ServerKeysListByServerOptionalParams
-  ): PagedAsyncIterableIterator<ServerKey>;
+  listByServer(): PagedAsyncIterableIterator<ServerKey>;
   /**
    * Gets a server key.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param keyName The name of the server key to be retrieved.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    keyName: string,
-    options?: ServerKeysGetOptionalParams
-  ): Promise<ServerKeysGetResponse>;
+  get(): Promise<ServerKeysGetResponse>;
   /**
    * Creates or updates a server key.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param keyName The name of the server key to be operated on (updated or created). The key name is
-   *                required to be in the format of 'vault_key_version'. For example, if the keyId is
-   *                https://YourVaultName.vault.azure.net/keys/YourKeyName/YourKeyVersion, then the server key name
-   *                should be formatted as: YourVaultName_YourKeyName_YourKeyVersion
-   * @param parameters The requested server key resource state.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    keyName: string,
-    parameters: ServerKey,
-    options?: ServerKeysCreateOrUpdateOptionalParams
-  ): Promise<
+  beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<ServerKeysCreateOrUpdateResponse>,
       ServerKeysCreateOrUpdateResponse
@@ -73,49 +39,17 @@ export interface ServerKeys {
   >;
   /**
    * Creates or updates a server key.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param keyName The name of the server key to be operated on (updated or created). The key name is
-   *                required to be in the format of 'vault_key_version'. For example, if the keyId is
-   *                https://YourVaultName.vault.azure.net/keys/YourKeyName/YourKeyVersion, then the server key name
-   *                should be formatted as: YourVaultName_YourKeyName_YourKeyVersion
-   * @param parameters The requested server key resource state.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    keyName: string,
-    parameters: ServerKey,
-    options?: ServerKeysCreateOrUpdateOptionalParams
-  ): Promise<ServerKeysCreateOrUpdateResponse>;
+  beginCreateOrUpdateAndWait(): Promise<ServerKeysCreateOrUpdateResponse>;
   /**
    * Deletes the server key with the given name.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param keyName The name of the server key to be deleted.
-   * @param options The options parameters.
+   *
    */
-  beginDelete(
-    resourceGroupName: string,
-    serverName: string,
-    keyName: string,
-    options?: ServerKeysDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  beginDelete(): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes the server key with the given name.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param keyName The name of the server key to be deleted.
-   * @param options The options parameters.
+   *
    */
-  beginDeleteAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    keyName: string,
-    options?: ServerKeysDeleteOptionalParams
-  ): Promise<void>;
+  beginDeleteAndWait(): Promise<void>;
 }

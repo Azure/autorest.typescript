@@ -14,23 +14,10 @@ import * as Parameters from "../models/parameters";
 import { PolicyClient } from "../policyClient";
 import {
   PolicyDefinition,
-  PolicyDefinitionsListNextOptionalParams,
-  PolicyDefinitionsListOptionalParams,
-  PolicyDefinitionsListBuiltInNextOptionalParams,
-  PolicyDefinitionsListBuiltInOptionalParams,
-  PolicyDefinitionsListByManagementGroupNextOptionalParams,
-  PolicyDefinitionsListByManagementGroupOptionalParams,
-  PolicyDefinitionsCreateOrUpdateOptionalParams,
   PolicyDefinitionsCreateOrUpdateResponse,
-  PolicyDefinitionsDeleteOptionalParams,
-  PolicyDefinitionsGetOptionalParams,
   PolicyDefinitionsGetResponse,
-  PolicyDefinitionsGetBuiltInOptionalParams,
   PolicyDefinitionsGetBuiltInResponse,
-  PolicyDefinitionsCreateOrUpdateAtManagementGroupOptionalParams,
   PolicyDefinitionsCreateOrUpdateAtManagementGroupResponse,
-  PolicyDefinitionsDeleteAtManagementGroupOptionalParams,
-  PolicyDefinitionsGetAtManagementGroupOptionalParams,
   PolicyDefinitionsGetAtManagementGroupResponse,
   PolicyDefinitionsListResponse,
   PolicyDefinitionsListBuiltInResponse,
@@ -55,12 +42,10 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
 
   /**
    * This operation retrieves a list of all the policy definitions in a given subscription.
-   * @param options The options parameters.
+   *
    */
-  public list(
-    options?: PolicyDefinitionsListOptionalParams
-  ): PagedAsyncIterableIterator<PolicyDefinition> {
-    const iter = this.listPagingAll(options);
+  public list(): PagedAsyncIterableIterator<PolicyDefinition> {
+    const iter = this.listPagingAll();
     return {
       next() {
         return iter.next();
@@ -69,40 +54,34 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
         return this;
       },
       byPage: () => {
-        return this.listPagingPage(options);
+        return this.listPagingPage();
       }
     };
   }
 
-  private async *listPagingPage(
-    options?: PolicyDefinitionsListOptionalParams
-  ): AsyncIterableIterator<PolicyDefinition[]> {
-    let result = await this._list(options);
+  private async *listPagingPage(): AsyncIterableIterator<PolicyDefinition[]> {
+    let result = await this._list();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listNext(continuationToken, options);
+      result = await this._listNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listPagingAll(
-    options?: PolicyDefinitionsListOptionalParams
-  ): AsyncIterableIterator<PolicyDefinition> {
-    for await (const page of this.listPagingPage(options)) {
+  private async *listPagingAll(): AsyncIterableIterator<PolicyDefinition> {
+    for await (const page of this.listPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * This operation retrieves a list of all the built-in policy definitions.
-   * @param options The options parameters.
+   *
    */
-  public listBuiltIn(
-    options?: PolicyDefinitionsListBuiltInOptionalParams
-  ): PagedAsyncIterableIterator<PolicyDefinition> {
-    const iter = this.listBuiltInPagingAll(options);
+  public listBuiltIn(): PagedAsyncIterableIterator<PolicyDefinition> {
+    const iter = this.listBuiltInPagingAll();
     return {
       next() {
         return iter.next();
@@ -111,45 +90,38 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
         return this;
       },
       byPage: () => {
-        return this.listBuiltInPagingPage(options);
+        return this.listBuiltInPagingPage();
       }
     };
   }
 
-  private async *listBuiltInPagingPage(
-    options?: PolicyDefinitionsListBuiltInOptionalParams
-  ): AsyncIterableIterator<PolicyDefinition[]> {
-    let result = await this._listBuiltIn(options);
+  private async *listBuiltInPagingPage(): AsyncIterableIterator<
+    PolicyDefinition[]
+  > {
+    let result = await this._listBuiltIn();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listBuiltInNext(continuationToken, options);
+      result = await this._listBuiltInNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listBuiltInPagingAll(
-    options?: PolicyDefinitionsListBuiltInOptionalParams
-  ): AsyncIterableIterator<PolicyDefinition> {
-    for await (const page of this.listBuiltInPagingPage(options)) {
+  private async *listBuiltInPagingAll(): AsyncIterableIterator<
+    PolicyDefinition
+  > {
+    for await (const page of this.listBuiltInPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * This operation retrieves a list of all the policy definitions in a given management group.
-   * @param managementGroupId The ID of the management group.
-   * @param options The options parameters.
+   *
    */
-  public listByManagementGroup(
-    managementGroupId: string,
-    options?: PolicyDefinitionsListByManagementGroupOptionalParams
-  ): PagedAsyncIterableIterator<PolicyDefinition> {
-    const iter = this.listByManagementGroupPagingAll(
-      managementGroupId,
-      options
-    );
+  public listByManagementGroup(): PagedAsyncIterableIterator<PolicyDefinition> {
+    const iter = this.listByManagementGroupPagingAll();
     return {
       next() {
         return iter.next();
@@ -158,241 +130,130 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
         return this;
       },
       byPage: () => {
-        return this.listByManagementGroupPagingPage(managementGroupId, options);
+        return this.listByManagementGroupPagingPage();
       }
     };
   }
 
-  private async *listByManagementGroupPagingPage(
-    managementGroupId: string,
-    options?: PolicyDefinitionsListByManagementGroupOptionalParams
-  ): AsyncIterableIterator<PolicyDefinition[]> {
-    let result = await this._listByManagementGroup(managementGroupId, options);
+  private async *listByManagementGroupPagingPage(): AsyncIterableIterator<
+    PolicyDefinition[]
+  > {
+    let result = await this._listByManagementGroup();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listByManagementGroupNext(
-        managementGroupId,
-        continuationToken,
-        options
-      );
+      result = await this._listByManagementGroupNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listByManagementGroupPagingAll(
-    managementGroupId: string,
-    options?: PolicyDefinitionsListByManagementGroupOptionalParams
-  ): AsyncIterableIterator<PolicyDefinition> {
-    for await (const page of this.listByManagementGroupPagingPage(
-      managementGroupId,
-      options
-    )) {
+  private async *listByManagementGroupPagingAll(): AsyncIterableIterator<
+    PolicyDefinition
+  > {
+    for await (const page of this.listByManagementGroupPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * This operation creates or updates a policy definition in the given subscription with the given name.
-   * @param policyDefinitionName The name of the policy definition to create.
-   * @param parameters The policy definition properties.
-   * @param options The options parameters.
+   *
    */
-  createOrUpdate(
-    policyDefinitionName: string,
-    parameters: PolicyDefinition,
-    options?: PolicyDefinitionsCreateOrUpdateOptionalParams
-  ): Promise<PolicyDefinitionsCreateOrUpdateResponse> {
+  createOrUpdate(): Promise<PolicyDefinitionsCreateOrUpdateResponse> {
     return this.client.sendOperationRequest(
-      { policyDefinitionName, parameters, options },
+      { policyDefinitionName, options },
       createOrUpdateOperationSpec
     );
   }
 
   /**
    * This operation deletes the policy definition in the given subscription with the given name.
-   * @param policyDefinitionName The name of the policy definition to delete.
-   * @param options The options parameters.
+   *
    */
-  delete(
-    policyDefinitionName: string,
-    options?: PolicyDefinitionsDeleteOptionalParams
-  ): Promise<void> {
-    return this.client.sendOperationRequest(
-      { policyDefinitionName, options },
-      deleteOperationSpec
-    );
-  }
+  delete(): Promise<void> {}
 
   /**
    * This operation retrieves the policy definition in the given subscription with the given name.
-   * @param policyDefinitionName The name of the policy definition to get.
-   * @param options The options parameters.
+   *
    */
-  get(
-    policyDefinitionName: string,
-    options?: PolicyDefinitionsGetOptionalParams
-  ): Promise<PolicyDefinitionsGetResponse> {
-    return this.client.sendOperationRequest(
-      { policyDefinitionName, options },
-      getOperationSpec
-    );
-  }
+  get(): Promise<PolicyDefinitionsGetResponse> {}
 
   /**
    * This operation retrieves the built-in policy definition with the given name.
-   * @param policyDefinitionName The name of the built-in policy definition to get.
-   * @param options The options parameters.
+   *
    */
-  getBuiltIn(
-    policyDefinitionName: string,
-    options?: PolicyDefinitionsGetBuiltInOptionalParams
-  ): Promise<PolicyDefinitionsGetBuiltInResponse> {
-    return this.client.sendOperationRequest(
-      { policyDefinitionName, options },
-      getBuiltInOperationSpec
-    );
-  }
+  getBuiltIn(): Promise<PolicyDefinitionsGetBuiltInResponse> {}
 
   /**
    * This operation creates or updates a policy definition in the given management group with the given
    * name.
-   * @param policyDefinitionName The name of the policy definition to create.
-   * @param managementGroupId The ID of the management group.
-   * @param parameters The policy definition properties.
-   * @param options The options parameters.
+   *
    */
-  createOrUpdateAtManagementGroup(
-    policyDefinitionName: string,
-    managementGroupId: string,
-    parameters: PolicyDefinition,
-    options?: PolicyDefinitionsCreateOrUpdateAtManagementGroupOptionalParams
-  ): Promise<PolicyDefinitionsCreateOrUpdateAtManagementGroupResponse> {
+  createOrUpdateAtManagementGroup(): Promise<
+    PolicyDefinitionsCreateOrUpdateAtManagementGroupResponse
+  > {
     return this.client.sendOperationRequest(
-      { policyDefinitionName, managementGroupId, parameters, options },
+      { policyDefinitionName, managementGroupId, options },
       createOrUpdateAtManagementGroupOperationSpec
     );
   }
 
   /**
    * This operation deletes the policy definition in the given management group with the given name.
-   * @param policyDefinitionName The name of the policy definition to delete.
-   * @param managementGroupId The ID of the management group.
-   * @param options The options parameters.
+   *
    */
-  deleteAtManagementGroup(
-    policyDefinitionName: string,
-    managementGroupId: string,
-    options?: PolicyDefinitionsDeleteAtManagementGroupOptionalParams
-  ): Promise<void> {
-    return this.client.sendOperationRequest(
-      { policyDefinitionName, managementGroupId, options },
-      deleteAtManagementGroupOperationSpec
-    );
-  }
+  deleteAtManagementGroup(): Promise<void> {}
 
   /**
    * This operation retrieves the policy definition in the given management group with the given name.
-   * @param policyDefinitionName The name of the policy definition to get.
-   * @param managementGroupId The ID of the management group.
-   * @param options The options parameters.
+   *
    */
-  getAtManagementGroup(
-    policyDefinitionName: string,
-    managementGroupId: string,
-    options?: PolicyDefinitionsGetAtManagementGroupOptionalParams
-  ): Promise<PolicyDefinitionsGetAtManagementGroupResponse> {
-    return this.client.sendOperationRequest(
-      { policyDefinitionName, managementGroupId, options },
-      getAtManagementGroupOperationSpec
-    );
-  }
+  getAtManagementGroup(): Promise<
+    PolicyDefinitionsGetAtManagementGroupResponse
+  > {}
 
   /**
    * This operation retrieves a list of all the policy definitions in a given subscription.
-   * @param options The options parameters.
+   *
    */
-  private _list(
-    options?: PolicyDefinitionsListOptionalParams
-  ): Promise<PolicyDefinitionsListResponse> {
-    return this.client.sendOperationRequest({ options }, listOperationSpec);
-  }
+  private _list(): Promise<PolicyDefinitionsListResponse> {}
 
   /**
    * This operation retrieves a list of all the built-in policy definitions.
-   * @param options The options parameters.
+   *
    */
-  private _listBuiltIn(
-    options?: PolicyDefinitionsListBuiltInOptionalParams
-  ): Promise<PolicyDefinitionsListBuiltInResponse> {
-    return this.client.sendOperationRequest(
-      { options },
-      listBuiltInOperationSpec
-    );
-  }
+  private _listBuiltIn(): Promise<PolicyDefinitionsListBuiltInResponse> {}
 
   /**
    * This operation retrieves a list of all the policy definitions in a given management group.
-   * @param managementGroupId The ID of the management group.
-   * @param options The options parameters.
+   *
    */
-  private _listByManagementGroup(
-    managementGroupId: string,
-    options?: PolicyDefinitionsListByManagementGroupOptionalParams
-  ): Promise<PolicyDefinitionsListByManagementGroupResponse> {
-    return this.client.sendOperationRequest(
-      { managementGroupId, options },
-      listByManagementGroupOperationSpec
-    );
-  }
+  private _listByManagementGroup(): Promise<
+    PolicyDefinitionsListByManagementGroupResponse
+  > {}
 
   /**
    * ListNext
-   * @param nextLink The nextLink from the previous successful call to the List method.
-   * @param options The options parameters.
+   *
    */
-  private _listNext(
-    nextLink: string,
-    options?: PolicyDefinitionsListNextOptionalParams
-  ): Promise<PolicyDefinitionsListNextResponse> {
-    return this.client.sendOperationRequest(
-      { nextLink, options },
-      listNextOperationSpec
-    );
-  }
+  private _listNext(): Promise<PolicyDefinitionsListNextResponse> {}
 
   /**
    * ListBuiltInNext
-   * @param nextLink The nextLink from the previous successful call to the ListBuiltIn method.
-   * @param options The options parameters.
+   *
    */
-  private _listBuiltInNext(
-    nextLink: string,
-    options?: PolicyDefinitionsListBuiltInNextOptionalParams
-  ): Promise<PolicyDefinitionsListBuiltInNextResponse> {
-    return this.client.sendOperationRequest(
-      { nextLink, options },
-      listBuiltInNextOperationSpec
-    );
-  }
+  private _listBuiltInNext(): Promise<
+    PolicyDefinitionsListBuiltInNextResponse
+  > {}
 
   /**
    * ListByManagementGroupNext
-   * @param managementGroupId The ID of the management group.
-   * @param nextLink The nextLink from the previous successful call to the ListByManagementGroup method.
-   * @param options The options parameters.
+   *
    */
-  private _listByManagementGroupNext(
-    managementGroupId: string,
-    nextLink: string,
-    options?: PolicyDefinitionsListByManagementGroupNextOptionalParams
-  ): Promise<PolicyDefinitionsListByManagementGroupNextResponse> {
-    return this.client.sendOperationRequest(
-      { managementGroupId, nextLink, options },
-      listByManagementGroupNextOperationSpec
-    );
-  }
+  private _listByManagementGroupNext(): Promise<
+    PolicyDefinitionsListByManagementGroupNextResponse
+  > {}
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
@@ -420,64 +281,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}",
-  httpMethod: "DELETE",
-  responses: {
-    200: {},
-    204: {},
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.policyDefinitionName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.PolicyDefinition
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.policyDefinitionName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const getBuiltInOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.PolicyDefinition
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.policyDefinitionName],
-  headerParameters: [Parameters.accept],
-  serializer
-};
 const createOrUpdateAtManagementGroupOperationSpec: coreClient.OperationSpec = {
   path:
     "/providers/Microsoft.Management/managementgroups/{managementGroupId}/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}",
@@ -499,152 +302,5 @@ const createOrUpdateAtManagementGroupOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const deleteAtManagementGroupOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/providers/Microsoft.Management/managementgroups/{managementGroupId}/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}",
-  httpMethod: "DELETE",
-  responses: {
-    200: {},
-    204: {},
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.managementGroupId,
-    Parameters.policyDefinitionName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const getAtManagementGroupOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/providers/Microsoft.Management/managementgroups/{managementGroupId}/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.PolicyDefinition
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.managementGroupId,
-    Parameters.policyDefinitionName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policyDefinitions",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.PolicyDefinitionListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.subscriptionId],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listBuiltInOperationSpec: coreClient.OperationSpec = {
-  path: "/providers/Microsoft.Authorization/policyDefinitions",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.PolicyDefinitionListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByManagementGroupOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/providers/Microsoft.Management/managementgroups/{managementGroupId}/providers/Microsoft.Authorization/policyDefinitions",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.PolicyDefinitionListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.managementGroupId],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.PolicyDefinitionListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.nextLink
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listBuiltInNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.PolicyDefinitionListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.nextLink],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByManagementGroupNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.PolicyDefinitionListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.managementGroupId,
-    Parameters.nextLink
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };

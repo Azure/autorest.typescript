@@ -10,11 +10,7 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ServerCommunicationLink,
-  ServerCommunicationLinksListByServerOptionalParams,
-  ServerCommunicationLinksDeleteOptionalParams,
-  ServerCommunicationLinksGetOptionalParams,
   ServerCommunicationLinksGetResponse,
-  ServerCommunicationLinksCreateOrUpdateOptionalParams,
   ServerCommunicationLinksCreateOrUpdateResponse
 } from "../models";
 
@@ -23,60 +19,24 @@ import {
 export interface ServerCommunicationLinks {
   /**
    * Gets a list of server communication links.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  listByServer(
-    resourceGroupName: string,
-    serverName: string,
-    options?: ServerCommunicationLinksListByServerOptionalParams
-  ): PagedAsyncIterableIterator<ServerCommunicationLink>;
+  listByServer(): PagedAsyncIterableIterator<ServerCommunicationLink>;
   /**
    * Deletes a server communication link.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param communicationLinkName The name of the server communication link.
-   * @param options The options parameters.
+   *
    */
-  delete(
-    resourceGroupName: string,
-    serverName: string,
-    communicationLinkName: string,
-    options?: ServerCommunicationLinksDeleteOptionalParams
-  ): Promise<void>;
+  delete(): Promise<void>;
   /**
    * Returns a server communication link.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param communicationLinkName The name of the server communication link.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    communicationLinkName: string,
-    options?: ServerCommunicationLinksGetOptionalParams
-  ): Promise<ServerCommunicationLinksGetResponse>;
+  get(): Promise<ServerCommunicationLinksGetResponse>;
   /**
    * Creates a server communication link.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param communicationLinkName The name of the server communication link.
-   * @param parameters The required parameters for creating a server communication link.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    communicationLinkName: string,
-    parameters: ServerCommunicationLink,
-    options?: ServerCommunicationLinksCreateOrUpdateOptionalParams
-  ): Promise<
+  beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<ServerCommunicationLinksCreateOrUpdateResponse>,
       ServerCommunicationLinksCreateOrUpdateResponse
@@ -84,18 +44,9 @@ export interface ServerCommunicationLinks {
   >;
   /**
    * Creates a server communication link.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param communicationLinkName The name of the server communication link.
-   * @param parameters The required parameters for creating a server communication link.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    communicationLinkName: string,
-    parameters: ServerCommunicationLink,
-    options?: ServerCommunicationLinksCreateOrUpdateOptionalParams
-  ): Promise<ServerCommunicationLinksCreateOrUpdateResponse>;
+  beginCreateOrUpdateAndWait(): Promise<
+    ServerCommunicationLinksCreateOrUpdateResponse
+  >;
 }

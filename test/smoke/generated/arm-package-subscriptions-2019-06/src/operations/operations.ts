@@ -10,12 +10,9 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { Operations } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
 import { SubscriptionClient } from "../subscriptionClient";
 import {
   Operation,
-  OperationsListNextOptionalParams,
-  OperationsListOptionalParams,
   OperationsListResponse,
   OperationsListNextResponse
 } from "../models";
@@ -23,24 +20,18 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing Operations operations. */
 export class OperationsImpl implements Operations {
-  private readonly client: SubscriptionClient;
-
   /**
    * Initialize a new instance of the class Operations class.
    * @param client Reference to the service client
    */
-  constructor(client: SubscriptionClient) {
-    this.client = client;
-  }
+  constructor(client: SubscriptionClient) {}
 
   /**
    * Lists all of the available Microsoft.Resources REST API operations.
-   * @param options The options parameters.
+   *
    */
-  public list(
-    options?: OperationsListOptionalParams
-  ): PagedAsyncIterableIterator<Operation> {
-    const iter = this.listPagingAll(options);
+  public list(): PagedAsyncIterableIterator<Operation> {
+    const iter = this.listPagingAll();
     return {
       next() {
         return iter.next();
@@ -49,83 +40,38 @@ export class OperationsImpl implements Operations {
         return this;
       },
       byPage: () => {
-        return this.listPagingPage(options);
+        return this.listPagingPage();
       }
     };
   }
 
-  private async *listPagingPage(
-    options?: OperationsListOptionalParams
-  ): AsyncIterableIterator<Operation[]> {
-    let result = await this._list(options);
+  private async *listPagingPage(): AsyncIterableIterator<Operation[]> {
+    let result = await this._list();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listNext(continuationToken, options);
+      result = await this._listNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listPagingAll(
-    options?: OperationsListOptionalParams
-  ): AsyncIterableIterator<Operation> {
-    for await (const page of this.listPagingPage(options)) {
+  private async *listPagingAll(): AsyncIterableIterator<Operation> {
+    for await (const page of this.listPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Lists all of the available Microsoft.Resources REST API operations.
-   * @param options The options parameters.
+   *
    */
-  private _list(
-    options?: OperationsListOptionalParams
-  ): Promise<OperationsListResponse> {
-    return this.client.sendOperationRequest({ options }, listOperationSpec);
-  }
+  private _list(): Promise<OperationsListResponse> {}
 
   /**
    * ListNext
-   * @param nextLink The nextLink from the previous successful call to the List method.
-   * @param options The options parameters.
+   *
    */
-  private _listNext(
-    nextLink: string,
-    options?: OperationsListNextOptionalParams
-  ): Promise<OperationsListNextResponse> {
-    return this.client.sendOperationRequest(
-      { nextLink, options },
-      listNextOperationSpec
-    );
-  }
+  private _listNext(): Promise<OperationsListNextResponse> {}
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
-
-const listOperationSpec: coreClient.OperationSpec = {
-  path: "/providers/Microsoft.Resources/operations",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.OperationListResult
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.OperationListResult
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.nextLink],
-  headerParameters: [Parameters.accept],
-  serializer
-};

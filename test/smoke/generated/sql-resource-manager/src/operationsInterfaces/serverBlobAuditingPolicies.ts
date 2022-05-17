@@ -10,10 +10,7 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ServerBlobAuditingPolicy,
-  ServerBlobAuditingPoliciesListByServerOptionalParams,
-  ServerBlobAuditingPoliciesGetOptionalParams,
   ServerBlobAuditingPoliciesGetResponse,
-  ServerBlobAuditingPoliciesCreateOrUpdateOptionalParams,
   ServerBlobAuditingPoliciesCreateOrUpdateResponse
 } from "../models";
 
@@ -22,42 +19,19 @@ import {
 export interface ServerBlobAuditingPolicies {
   /**
    * Lists auditing settings of a server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  listByServer(
-    resourceGroupName: string,
-    serverName: string,
-    options?: ServerBlobAuditingPoliciesListByServerOptionalParams
-  ): PagedAsyncIterableIterator<ServerBlobAuditingPolicy>;
+  listByServer(): PagedAsyncIterableIterator<ServerBlobAuditingPolicy>;
   /**
    * Gets a server's blob auditing policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    options?: ServerBlobAuditingPoliciesGetOptionalParams
-  ): Promise<ServerBlobAuditingPoliciesGetResponse>;
+  get(): Promise<ServerBlobAuditingPoliciesGetResponse>;
   /**
    * Creates or updates a server's blob auditing policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param parameters Properties of blob auditing policy
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    parameters: ServerBlobAuditingPolicy,
-    options?: ServerBlobAuditingPoliciesCreateOrUpdateOptionalParams
-  ): Promise<
+  beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<ServerBlobAuditingPoliciesCreateOrUpdateResponse>,
       ServerBlobAuditingPoliciesCreateOrUpdateResponse
@@ -65,16 +39,9 @@ export interface ServerBlobAuditingPolicies {
   >;
   /**
    * Creates or updates a server's blob auditing policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param parameters Properties of blob auditing policy
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    parameters: ServerBlobAuditingPolicy,
-    options?: ServerBlobAuditingPoliciesCreateOrUpdateOptionalParams
-  ): Promise<ServerBlobAuditingPoliciesCreateOrUpdateResponse>;
+  beginCreateOrUpdateAndWait(): Promise<
+    ServerBlobAuditingPoliciesCreateOrUpdateResponse
+  >;
 }

@@ -9,12 +9,8 @@
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import {
   JobTargetGroup,
-  JobTargetGroupsListByAgentOptionalParams,
-  JobTargetGroupsGetOptionalParams,
   JobTargetGroupsGetResponse,
-  JobTargetGroupsCreateOrUpdateOptionalParams,
-  JobTargetGroupsCreateOrUpdateResponse,
-  JobTargetGroupsDeleteOptionalParams
+  JobTargetGroupsCreateOrUpdateResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -22,66 +18,22 @@ import {
 export interface JobTargetGroups {
   /**
    * Gets all target groups in an agent.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param jobAgentName The name of the job agent.
-   * @param options The options parameters.
+   *
    */
-  listByAgent(
-    resourceGroupName: string,
-    serverName: string,
-    jobAgentName: string,
-    options?: JobTargetGroupsListByAgentOptionalParams
-  ): PagedAsyncIterableIterator<JobTargetGroup>;
+  listByAgent(): PagedAsyncIterableIterator<JobTargetGroup>;
   /**
    * Gets a target group.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param jobAgentName The name of the job agent.
-   * @param targetGroupName The name of the target group.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    jobAgentName: string,
-    targetGroupName: string,
-    options?: JobTargetGroupsGetOptionalParams
-  ): Promise<JobTargetGroupsGetResponse>;
+  get(): Promise<JobTargetGroupsGetResponse>;
   /**
    * Creates or updates a target group.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param jobAgentName The name of the job agent.
-   * @param targetGroupName The name of the target group.
-   * @param parameters The requested state of the target group.
-   * @param options The options parameters.
+   *
    */
-  createOrUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    jobAgentName: string,
-    targetGroupName: string,
-    parameters: JobTargetGroup,
-    options?: JobTargetGroupsCreateOrUpdateOptionalParams
-  ): Promise<JobTargetGroupsCreateOrUpdateResponse>;
+  createOrUpdate(): Promise<JobTargetGroupsCreateOrUpdateResponse>;
   /**
    * Deletes a target group.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param jobAgentName The name of the job agent.
-   * @param targetGroupName The name of the target group.
-   * @param options The options parameters.
+   *
    */
-  delete(
-    resourceGroupName: string,
-    serverName: string,
-    jobAgentName: string,
-    targetGroupName: string,
-    options?: JobTargetGroupsDeleteOptionalParams
-  ): Promise<void>;
+  delete(): Promise<void>;
 }

@@ -10,13 +10,8 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   LedgerDigestUploads,
-  LedgerDigestUploadsListByDatabaseOptionalParams,
-  LedgerDigestUploadsName,
-  LedgerDigestUploadsGetOptionalParams,
   LedgerDigestUploadsGetResponse,
-  LedgerDigestUploadsCreateOrUpdateOptionalParams,
   LedgerDigestUploadsCreateOrUpdateResponse,
-  LedgerDigestUploadsDisableOptionalParams,
   LedgerDigestUploadsDisableResponse
 } from "../models";
 
@@ -25,52 +20,19 @@ import {
 export interface LedgerDigestUploadsOperations {
   /**
    * Gets all ledger digest upload settings on a database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param options The options parameters.
+   *
    */
-  listByDatabase(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: LedgerDigestUploadsListByDatabaseOptionalParams
-  ): PagedAsyncIterableIterator<LedgerDigestUploads>;
+  listByDatabase(): PagedAsyncIterableIterator<LedgerDigestUploads>;
   /**
    * Gets the current ledger digest upload configuration for a database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param ledgerDigestUploads
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    ledgerDigestUploads: LedgerDigestUploadsName,
-    options?: LedgerDigestUploadsGetOptionalParams
-  ): Promise<LedgerDigestUploadsGetResponse>;
+  get(): Promise<LedgerDigestUploadsGetResponse>;
   /**
    * Enables upload ledger digests to an Azure Storage account or an Azure Confidential Ledger instance.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param ledgerDigestUploads
-   * @param parameters Azure SQL Database ledger digest upload settings.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    ledgerDigestUploads: LedgerDigestUploadsName,
-    parameters: LedgerDigestUploads,
-    options?: LedgerDigestUploadsCreateOrUpdateOptionalParams
-  ): Promise<
+  beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<LedgerDigestUploadsCreateOrUpdateResponse>,
       LedgerDigestUploadsCreateOrUpdateResponse
@@ -78,39 +40,17 @@ export interface LedgerDigestUploadsOperations {
   >;
   /**
    * Enables upload ledger digests to an Azure Storage account or an Azure Confidential Ledger instance.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param ledgerDigestUploads
-   * @param parameters Azure SQL Database ledger digest upload settings.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    ledgerDigestUploads: LedgerDigestUploadsName,
-    parameters: LedgerDigestUploads,
-    options?: LedgerDigestUploadsCreateOrUpdateOptionalParams
-  ): Promise<LedgerDigestUploadsCreateOrUpdateResponse>;
+  beginCreateOrUpdateAndWait(): Promise<
+    LedgerDigestUploadsCreateOrUpdateResponse
+  >;
   /**
    * Disables uploading ledger digests to an Azure Storage account or an Azure Confidential Ledger
    * instance.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param ledgerDigestUploads
-   * @param options The options parameters.
+   *
    */
-  beginDisable(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    ledgerDigestUploads: LedgerDigestUploadsName,
-    options?: LedgerDigestUploadsDisableOptionalParams
-  ): Promise<
+  beginDisable(): Promise<
     PollerLike<
       PollOperationState<LedgerDigestUploadsDisableResponse>,
       LedgerDigestUploadsDisableResponse
@@ -119,18 +59,7 @@ export interface LedgerDigestUploadsOperations {
   /**
    * Disables uploading ledger digests to an Azure Storage account or an Azure Confidential Ledger
    * instance.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param ledgerDigestUploads
-   * @param options The options parameters.
+   *
    */
-  beginDisableAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    ledgerDigestUploads: LedgerDigestUploadsName,
-    options?: LedgerDigestUploadsDisableOptionalParams
-  ): Promise<LedgerDigestUploadsDisableResponse>;
+  beginDisableAndWait(): Promise<LedgerDigestUploadsDisableResponse>;
 }

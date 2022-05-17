@@ -10,12 +10,9 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { Usages } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import {
   Usage,
-  UsagesListByInstancePoolNextOptionalParams,
-  UsagesListByInstancePoolOptionalParams,
   UsagesListByInstancePoolResponse,
   UsagesListByInstancePoolNextResponse
 } from "../models";
@@ -23,33 +20,18 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing Usages operations. */
 export class UsagesImpl implements Usages {
-  private readonly client: SqlManagementClient;
-
   /**
    * Initialize a new instance of the class Usages class.
    * @param client Reference to the service client
    */
-  constructor(client: SqlManagementClient) {
-    this.client = client;
-  }
+  constructor(client: SqlManagementClient) {}
 
   /**
    * Gets all instance pool usage metrics
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param instancePoolName The name of the instance pool to be retrieved.
-   * @param options The options parameters.
+   *
    */
-  public listByInstancePool(
-    resourceGroupName: string,
-    instancePoolName: string,
-    options?: UsagesListByInstancePoolOptionalParams
-  ): PagedAsyncIterableIterator<Usage> {
-    const iter = this.listByInstancePoolPagingAll(
-      resourceGroupName,
-      instancePoolName,
-      options
-    );
+  public listByInstancePool(): PagedAsyncIterableIterator<Usage> {
+    const iter = this.listByInstancePoolPagingAll();
     return {
       next() {
         return iter.next();
@@ -58,131 +40,42 @@ export class UsagesImpl implements Usages {
         return this;
       },
       byPage: () => {
-        return this.listByInstancePoolPagingPage(
-          resourceGroupName,
-          instancePoolName,
-          options
-        );
+        return this.listByInstancePoolPagingPage();
       }
     };
   }
 
-  private async *listByInstancePoolPagingPage(
-    resourceGroupName: string,
-    instancePoolName: string,
-    options?: UsagesListByInstancePoolOptionalParams
-  ): AsyncIterableIterator<Usage[]> {
-    let result = await this._listByInstancePool(
-      resourceGroupName,
-      instancePoolName,
-      options
-    );
+  private async *listByInstancePoolPagingPage(): AsyncIterableIterator<
+    Usage[]
+  > {
+    let result = await this._listByInstancePool();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listByInstancePoolNext(
-        resourceGroupName,
-        instancePoolName,
-        continuationToken,
-        options
-      );
+      result = await this._listByInstancePoolNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listByInstancePoolPagingAll(
-    resourceGroupName: string,
-    instancePoolName: string,
-    options?: UsagesListByInstancePoolOptionalParams
-  ): AsyncIterableIterator<Usage> {
-    for await (const page of this.listByInstancePoolPagingPage(
-      resourceGroupName,
-      instancePoolName,
-      options
-    )) {
+  private async *listByInstancePoolPagingAll(): AsyncIterableIterator<Usage> {
+    for await (const page of this.listByInstancePoolPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Gets all instance pool usage metrics
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param instancePoolName The name of the instance pool to be retrieved.
-   * @param options The options parameters.
+   *
    */
-  private _listByInstancePool(
-    resourceGroupName: string,
-    instancePoolName: string,
-    options?: UsagesListByInstancePoolOptionalParams
-  ): Promise<UsagesListByInstancePoolResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, instancePoolName, options },
-      listByInstancePoolOperationSpec
-    );
-  }
+  private _listByInstancePool(): Promise<UsagesListByInstancePoolResponse> {}
 
   /**
    * ListByInstancePoolNext
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param instancePoolName The name of the instance pool to be retrieved.
-   * @param nextLink The nextLink from the previous successful call to the ListByInstancePool method.
-   * @param options The options parameters.
+   *
    */
-  private _listByInstancePoolNext(
-    resourceGroupName: string,
-    instancePoolName: string,
-    nextLink: string,
-    options?: UsagesListByInstancePoolNextOptionalParams
-  ): Promise<UsagesListByInstancePoolNextResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, instancePoolName, nextLink, options },
-      listByInstancePoolNextOperationSpec
-    );
-  }
+  private _listByInstancePoolNext(): Promise<
+    UsagesListByInstancePoolNextResponse
+  > {}
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
-
-const listByInstancePoolOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/instancePools/{instancePoolName}/usages",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.UsageListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion3, Parameters.expandChildren],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.instancePoolName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByInstancePoolNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.UsageListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion3, Parameters.expandChildren],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.nextLink,
-    Parameters.instancePoolName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};

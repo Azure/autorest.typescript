@@ -14,8 +14,6 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import {
   DataMaskingRule,
-  DataMaskingRulesListByDatabaseOptionalParams,
-  DataMaskingRulesCreateOrUpdateOptionalParams,
   DataMaskingRulesCreateOrUpdateResponse,
   DataMaskingRulesListByDatabaseResponse
 } from "../models";
@@ -35,24 +33,10 @@ export class DataMaskingRulesImpl implements DataMaskingRules {
 
   /**
    * Gets a list of database data masking rules.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param options The options parameters.
+   *
    */
-  public listByDatabase(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: DataMaskingRulesListByDatabaseOptionalParams
-  ): PagedAsyncIterableIterator<DataMaskingRule> {
-    const iter = this.listByDatabasePagingAll(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      options
-    );
+  public listByDatabase(): PagedAsyncIterableIterator<DataMaskingRule> {
+    const iter = this.listByDatabasePagingAll();
     return {
       next() {
         return iter.next();
@@ -61,72 +45,37 @@ export class DataMaskingRulesImpl implements DataMaskingRules {
         return this;
       },
       byPage: () => {
-        return this.listByDatabasePagingPage(
-          resourceGroupName,
-          serverName,
-          databaseName,
-          options
-        );
+        return this.listByDatabasePagingPage();
       }
     };
   }
 
-  private async *listByDatabasePagingPage(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: DataMaskingRulesListByDatabaseOptionalParams
-  ): AsyncIterableIterator<DataMaskingRule[]> {
-    let result = await this._listByDatabase(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      options
-    );
+  private async *listByDatabasePagingPage(): AsyncIterableIterator<
+    DataMaskingRule[]
+  > {
+    let result = await this._listByDatabase();
     yield result.value || [];
   }
 
-  private async *listByDatabasePagingAll(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: DataMaskingRulesListByDatabaseOptionalParams
-  ): AsyncIterableIterator<DataMaskingRule> {
-    for await (const page of this.listByDatabasePagingPage(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      options
-    )) {
+  private async *listByDatabasePagingAll(): AsyncIterableIterator<
+    DataMaskingRule
+  > {
+    for await (const page of this.listByDatabasePagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Creates or updates a database data masking rule.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param dataMaskingRuleName The name of the data masking rule.
-   * @param parameters The required parameters for creating or updating a data masking rule.
-   * @param options The options parameters.
+   *
    */
-  createOrUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    dataMaskingRuleName: string,
-    parameters: DataMaskingRule,
-    options?: DataMaskingRulesCreateOrUpdateOptionalParams
-  ): Promise<DataMaskingRulesCreateOrUpdateResponse> {
+  createOrUpdate(): Promise<DataMaskingRulesCreateOrUpdateResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         serverName,
         databaseName,
         dataMaskingRuleName,
-        parameters,
         options
       },
       createOrUpdateOperationSpec
@@ -135,23 +84,9 @@ export class DataMaskingRulesImpl implements DataMaskingRules {
 
   /**
    * Gets a list of database data masking rules.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param options The options parameters.
+   *
    */
-  private _listByDatabase(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: DataMaskingRulesListByDatabaseOptionalParams
-  ): Promise<DataMaskingRulesListByDatabaseResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, databaseName, options },
-      listByDatabaseOperationSpec
-    );
-  }
+  private _listByDatabase(): Promise<DataMaskingRulesListByDatabaseResponse> {}
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
@@ -181,26 +116,5 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const listByDatabaseOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/dataMaskingPolicies/{dataMaskingPolicyName}/rules",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DataMaskingRuleListResult
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.databaseName,
-    Parameters.dataMaskingPolicyName
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };

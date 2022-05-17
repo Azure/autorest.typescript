@@ -9,9 +9,6 @@
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import {
   DataWarehouseUserActivities,
-  DataWarehouseUserActivitiesListByDatabaseOptionalParams,
-  DataWarehouseUserActivityName,
-  DataWarehouseUserActivitiesGetOptionalParams,
   DataWarehouseUserActivitiesGetResponse
 } from "../models";
 
@@ -20,32 +17,12 @@ import {
 export interface DataWarehouseUserActivitiesOperations {
   /**
    * List the user activities of a data warehouse which includes running and suspended queries
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param options The options parameters.
+   *
    */
-  listByDatabase(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: DataWarehouseUserActivitiesListByDatabaseOptionalParams
-  ): PagedAsyncIterableIterator<DataWarehouseUserActivities>;
+  listByDatabase(): PagedAsyncIterableIterator<DataWarehouseUserActivities>;
   /**
    * Gets the user activities of a data warehouse which includes running and suspended queries
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param dataWarehouseUserActivityName The activity name of the data warehouse.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    dataWarehouseUserActivityName: DataWarehouseUserActivityName,
-    options?: DataWarehouseUserActivitiesGetOptionalParams
-  ): Promise<DataWarehouseUserActivitiesGetResponse>;
+  get(): Promise<DataWarehouseUserActivitiesGetResponse>;
 }

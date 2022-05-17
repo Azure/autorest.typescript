@@ -12,12 +12,8 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import {
-  ServerAdvisorsListByServerOptionalParams,
   ServerAdvisorsListByServerResponse,
-  ServerAdvisorsGetOptionalParams,
   ServerAdvisorsGetResponse,
-  Advisor,
-  ServerAdvisorsUpdateOptionalParams,
   ServerAdvisorsUpdateResponse
 } from "../models";
 
@@ -35,60 +31,23 @@ export class ServerAdvisorsImpl implements ServerAdvisors {
 
   /**
    * Gets a list of server advisors.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  listByServer(
-    resourceGroupName: string,
-    serverName: string,
-    options?: ServerAdvisorsListByServerOptionalParams
-  ): Promise<ServerAdvisorsListByServerResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, options },
-      listByServerOperationSpec
-    );
-  }
+  listByServer(): Promise<ServerAdvisorsListByServerResponse> {}
 
   /**
    * Gets a server advisor.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param advisorName The name of the Server Advisor.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    advisorName: string,
-    options?: ServerAdvisorsGetOptionalParams
-  ): Promise<ServerAdvisorsGetResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, advisorName, options },
-      getOperationSpec
-    );
-  }
+  get(): Promise<ServerAdvisorsGetResponse> {}
 
   /**
    * Updates a server advisor.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param advisorName The name of the Server Advisor.
-   * @param parameters The requested advisor resource state.
-   * @param options The options parameters.
+   *
    */
-  update(
-    resourceGroupName: string,
-    serverName: string,
-    advisorName: string,
-    parameters: Advisor,
-    options?: ServerAdvisorsUpdateOptionalParams
-  ): Promise<ServerAdvisorsUpdateResponse> {
+  update(): Promise<ServerAdvisorsUpdateResponse> {
     return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, advisorName, parameters, options },
+      { resourceGroupName, serverName, advisorName, options },
       updateOperationSpec
     );
   }
@@ -96,52 +55,6 @@ export class ServerAdvisorsImpl implements ServerAdvisors {
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listByServerOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/advisors",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Composite", className: "Advisor" } }
-        }
-      }
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2, Parameters.expand],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/advisors/{advisorName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.Advisor
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.advisorName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
 const updateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/advisors/{advisorName}",

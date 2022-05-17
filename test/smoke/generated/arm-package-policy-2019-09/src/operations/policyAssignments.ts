@@ -14,29 +14,15 @@ import * as Parameters from "../models/parameters";
 import { PolicyClient } from "../policyClient";
 import {
   PolicyAssignment,
-  PolicyAssignmentsListForResourceGroupNextOptionalParams,
-  PolicyAssignmentsListForResourceGroupOptionalParams,
-  PolicyAssignmentsListForResourceNextOptionalParams,
-  PolicyAssignmentsListForResourceOptionalParams,
-  PolicyAssignmentsListForManagementGroupNextOptionalParams,
-  PolicyAssignmentsListForManagementGroupOptionalParams,
-  PolicyAssignmentsListNextOptionalParams,
-  PolicyAssignmentsListOptionalParams,
-  PolicyAssignmentsDeleteOptionalParams,
   PolicyAssignmentsDeleteResponse,
-  PolicyAssignmentsCreateOptionalParams,
   PolicyAssignmentsCreateResponse,
-  PolicyAssignmentsGetOptionalParams,
   PolicyAssignmentsGetResponse,
   PolicyAssignmentsListForResourceGroupResponse,
   PolicyAssignmentsListForResourceResponse,
   PolicyAssignmentsListForManagementGroupResponse,
   PolicyAssignmentsListResponse,
-  PolicyAssignmentsDeleteByIdOptionalParams,
   PolicyAssignmentsDeleteByIdResponse,
-  PolicyAssignmentsCreateByIdOptionalParams,
   PolicyAssignmentsCreateByIdResponse,
-  PolicyAssignmentsGetByIdOptionalParams,
   PolicyAssignmentsGetByIdResponse,
   PolicyAssignmentsListForResourceGroupNextResponse,
   PolicyAssignmentsListForResourceNextResponse,
@@ -68,14 +54,10 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
    * resources contained within the resource group. If $filter=policyDefinitionId eq '{value}' is
    * provided, the returned list includes all policy assignments of the policy definition whose id is
    * {value} that apply to the resource group.
-   * @param resourceGroupName The name of the resource group that contains policy assignments.
-   * @param options The options parameters.
+   *
    */
-  public listForResourceGroup(
-    resourceGroupName: string,
-    options?: PolicyAssignmentsListForResourceGroupOptionalParams
-  ): PagedAsyncIterableIterator<PolicyAssignment> {
-    const iter = this.listForResourceGroupPagingAll(resourceGroupName, options);
+  public listForResourceGroup(): PagedAsyncIterableIterator<PolicyAssignment> {
+    const iter = this.listForResourceGroupPagingAll();
     return {
       next() {
         return iter.next();
@@ -84,37 +66,28 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
         return this;
       },
       byPage: () => {
-        return this.listForResourceGroupPagingPage(resourceGroupName, options);
+        return this.listForResourceGroupPagingPage();
       }
     };
   }
 
-  private async *listForResourceGroupPagingPage(
-    resourceGroupName: string,
-    options?: PolicyAssignmentsListForResourceGroupOptionalParams
-  ): AsyncIterableIterator<PolicyAssignment[]> {
-    let result = await this._listForResourceGroup(resourceGroupName, options);
+  private async *listForResourceGroupPagingPage(): AsyncIterableIterator<
+    PolicyAssignment[]
+  > {
+    let result = await this._listForResourceGroup();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listForResourceGroupNext(
-        resourceGroupName,
-        continuationToken,
-        options
-      );
+      result = await this._listForResourceGroupNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listForResourceGroupPagingAll(
-    resourceGroupName: string,
-    options?: PolicyAssignmentsListForResourceGroupOptionalParams
-  ): AsyncIterableIterator<PolicyAssignment> {
-    for await (const page of this.listForResourceGroupPagingPage(
-      resourceGroupName,
-      options
-    )) {
+  private async *listForResourceGroupPagingAll(): AsyncIterableIterator<
+    PolicyAssignment
+  > {
+    for await (const page of this.listForResourceGroupPagingPage()) {
       yield* page;
     }
   }
@@ -140,31 +113,10 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
    * 'MyComputerName'). A convenient alternative to providing the namespace and type name separately is
    * to provide both in the {resourceType} parameter, format: ({resourceProviderNamespace} == '',
    * {parentResourcePath} == '', {resourceType} == 'Microsoft.Web/sites', {resourceName} == 'MyWebApp').
-   * @param resourceGroupName The name of the resource group containing the resource.
-   * @param resourceProviderNamespace The namespace of the resource provider. For example, the namespace
-   *                                  of a virtual machine is Microsoft.Compute (from Microsoft.Compute/virtualMachines)
-   * @param parentResourcePath The parent resource path. Use empty string if there is none.
-   * @param resourceType The resource type name. For example the type name of a web app is 'sites' (from
-   *                     Microsoft.Web/sites).
-   * @param resourceName The name of the resource.
-   * @param options The options parameters.
+   *
    */
-  public listForResource(
-    resourceGroupName: string,
-    resourceProviderNamespace: string,
-    parentResourcePath: string,
-    resourceType: string,
-    resourceName: string,
-    options?: PolicyAssignmentsListForResourceOptionalParams
-  ): PagedAsyncIterableIterator<PolicyAssignment> {
-    const iter = this.listForResourcePagingAll(
-      resourceGroupName,
-      resourceProviderNamespace,
-      parentResourcePath,
-      resourceType,
-      resourceName,
-      options
-    );
+  public listForResource(): PagedAsyncIterableIterator<PolicyAssignment> {
+    const iter = this.listForResourcePagingAll();
     return {
       next() {
         return iter.next();
@@ -173,67 +125,28 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
         return this;
       },
       byPage: () => {
-        return this.listForResourcePagingPage(
-          resourceGroupName,
-          resourceProviderNamespace,
-          parentResourcePath,
-          resourceType,
-          resourceName,
-          options
-        );
+        return this.listForResourcePagingPage();
       }
     };
   }
 
-  private async *listForResourcePagingPage(
-    resourceGroupName: string,
-    resourceProviderNamespace: string,
-    parentResourcePath: string,
-    resourceType: string,
-    resourceName: string,
-    options?: PolicyAssignmentsListForResourceOptionalParams
-  ): AsyncIterableIterator<PolicyAssignment[]> {
-    let result = await this._listForResource(
-      resourceGroupName,
-      resourceProviderNamespace,
-      parentResourcePath,
-      resourceType,
-      resourceName,
-      options
-    );
+  private async *listForResourcePagingPage(): AsyncIterableIterator<
+    PolicyAssignment[]
+  > {
+    let result = await this._listForResource();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listForResourceNext(
-        resourceGroupName,
-        resourceProviderNamespace,
-        parentResourcePath,
-        resourceType,
-        resourceName,
-        continuationToken,
-        options
-      );
+      result = await this._listForResourceNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listForResourcePagingAll(
-    resourceGroupName: string,
-    resourceProviderNamespace: string,
-    parentResourcePath: string,
-    resourceType: string,
-    resourceName: string,
-    options?: PolicyAssignmentsListForResourceOptionalParams
-  ): AsyncIterableIterator<PolicyAssignment> {
-    for await (const page of this.listForResourcePagingPage(
-      resourceGroupName,
-      resourceProviderNamespace,
-      parentResourcePath,
-      resourceType,
-      resourceName,
-      options
-    )) {
+  private async *listForResourcePagingAll(): AsyncIterableIterator<
+    PolicyAssignment
+  > {
+    for await (const page of this.listForResourcePagingPage()) {
       yield* page;
     }
   }
@@ -245,22 +158,12 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
    * are assigned to the management group or the management group's ancestors. If
    * $filter=policyDefinitionId eq '{value}' is provided, the returned list includes all policy
    * assignments of the policy definition whose id is {value} that apply to the management group.
-   * @param managementGroupId The ID of the management group.
-   * @param filter The filter to apply on the operation. Valid values for $filter are: 'atScope()' or
-   *               'policyDefinitionId eq '{value}''. A filter is required when listing policy assignments at
-   *               management group scope.
-   * @param options The options parameters.
+   *
    */
-  public listForManagementGroup(
-    managementGroupId: string,
-    filter: string,
-    options?: PolicyAssignmentsListForManagementGroupOptionalParams
-  ): PagedAsyncIterableIterator<PolicyAssignment> {
-    const iter = this.listForManagementGroupPagingAll(
-      managementGroupId,
-      filter,
-      options
-    );
+  public listForManagementGroup(): PagedAsyncIterableIterator<
+    PolicyAssignment
+  > {
+    const iter = this.listForManagementGroupPagingAll();
     return {
       next() {
         return iter.next();
@@ -269,49 +172,28 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
         return this;
       },
       byPage: () => {
-        return this.listForManagementGroupPagingPage(
-          managementGroupId,
-          filter,
-          options
-        );
+        return this.listForManagementGroupPagingPage();
       }
     };
   }
 
-  private async *listForManagementGroupPagingPage(
-    managementGroupId: string,
-    filter: string,
-    options?: PolicyAssignmentsListForManagementGroupOptionalParams
-  ): AsyncIterableIterator<PolicyAssignment[]> {
-    let result = await this._listForManagementGroup(
-      managementGroupId,
-      filter,
-      options
-    );
+  private async *listForManagementGroupPagingPage(): AsyncIterableIterator<
+    PolicyAssignment[]
+  > {
+    let result = await this._listForManagementGroup();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listForManagementGroupNext(
-        managementGroupId,
-        filter,
-        continuationToken,
-        options
-      );
+      result = await this._listForManagementGroupNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listForManagementGroupPagingAll(
-    managementGroupId: string,
-    filter: string,
-    options?: PolicyAssignmentsListForManagementGroupOptionalParams
-  ): AsyncIterableIterator<PolicyAssignment> {
-    for await (const page of this.listForManagementGroupPagingPage(
-      managementGroupId,
-      filter,
-      options
-    )) {
+  private async *listForManagementGroupPagingAll(): AsyncIterableIterator<
+    PolicyAssignment
+  > {
+    for await (const page of this.listForManagementGroupPagingPage()) {
       yield* page;
     }
   }
@@ -327,12 +209,10 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
    * applied to objects contained within the subscription. If $filter=policyDefinitionId eq '{value}' is
    * provided, the returned list includes all policy assignments of the policy definition whose id is
    * {value}.
-   * @param options The options parameters.
+   *
    */
-  public list(
-    options?: PolicyAssignmentsListOptionalParams
-  ): PagedAsyncIterableIterator<PolicyAssignment> {
-    const iter = this.listPagingAll(options);
+  public list(): PagedAsyncIterableIterator<PolicyAssignment> {
+    const iter = this.listPagingAll();
     return {
       next() {
         return iter.next();
@@ -341,28 +221,24 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
         return this;
       },
       byPage: () => {
-        return this.listPagingPage(options);
+        return this.listPagingPage();
       }
     };
   }
 
-  private async *listPagingPage(
-    options?: PolicyAssignmentsListOptionalParams
-  ): AsyncIterableIterator<PolicyAssignment[]> {
-    let result = await this._list(options);
+  private async *listPagingPage(): AsyncIterableIterator<PolicyAssignment[]> {
+    let result = await this._list();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listNext(continuationToken, options);
+      result = await this._listNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listPagingAll(
-    options?: PolicyAssignmentsListOptionalParams
-  ): AsyncIterableIterator<PolicyAssignment> {
-    for await (const page of this.listPagingPage(options)) {
+  private async *listPagingAll(): AsyncIterableIterator<PolicyAssignment> {
+    for await (const page of this.listPagingPage()) {
       yield* page;
     }
   }
@@ -371,70 +247,28 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
    * This operation deletes a policy assignment, given its name and the scope it was created in. The
    * scope of a policy assignment is the part of its ID preceding
    * '/providers/Microsoft.Authorization/policyAssignments/{policyAssignmentName}'.
-   * @param scope The scope of the policy assignment. Valid scopes are: management group (format:
-   *              '/providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-   *              '/subscriptions/{subscriptionId}'), resource group (format:
-   *              '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}', or resource (format:
-   *              '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/[{parentResourcePath}/]{resourceType}/{resourceName}'
-   * @param policyAssignmentName The name of the policy assignment to delete.
-   * @param options The options parameters.
+   *
    */
-  delete(
-    scope: string,
-    policyAssignmentName: string,
-    options?: PolicyAssignmentsDeleteOptionalParams
-  ): Promise<PolicyAssignmentsDeleteResponse> {
-    return this.client.sendOperationRequest(
-      { scope, policyAssignmentName, options },
-      deleteOperationSpec
-    );
-  }
+  delete(): Promise<PolicyAssignmentsDeleteResponse> {}
 
   /**
    *  This operation creates or updates a policy assignment with the given scope and name. Policy
    * assignments apply to all resources contained within their scope. For example, when you assign a
    * policy at resource group scope, that policy applies to all resources in the group.
-   * @param scope The scope of the policy assignment. Valid scopes are: management group (format:
-   *              '/providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-   *              '/subscriptions/{subscriptionId}'), resource group (format:
-   *              '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}', or resource (format:
-   *              '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/[{parentResourcePath}/]{resourceType}/{resourceName}'
-   * @param policyAssignmentName The name of the policy assignment.
-   * @param parameters Parameters for the policy assignment.
-   * @param options The options parameters.
+   *
    */
-  create(
-    scope: string,
-    policyAssignmentName: string,
-    parameters: PolicyAssignment,
-    options?: PolicyAssignmentsCreateOptionalParams
-  ): Promise<PolicyAssignmentsCreateResponse> {
+  create(): Promise<PolicyAssignmentsCreateResponse> {
     return this.client.sendOperationRequest(
-      { scope, policyAssignmentName, parameters, options },
+      { scope, policyAssignmentName, options },
       createOperationSpec
     );
   }
 
   /**
    * This operation retrieves a single policy assignment, given its name and the scope it was created at.
-   * @param scope The scope of the policy assignment. Valid scopes are: management group (format:
-   *              '/providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-   *              '/subscriptions/{subscriptionId}'), resource group (format:
-   *              '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}', or resource (format:
-   *              '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/[{parentResourcePath}/]{resourceType}/{resourceName}'
-   * @param policyAssignmentName The name of the policy assignment to get.
-   * @param options The options parameters.
+   *
    */
-  get(
-    scope: string,
-    policyAssignmentName: string,
-    options?: PolicyAssignmentsGetOptionalParams
-  ): Promise<PolicyAssignmentsGetResponse> {
-    return this.client.sendOperationRequest(
-      { scope, policyAssignmentName, options },
-      getOperationSpec
-    );
-  }
+  get(): Promise<PolicyAssignmentsGetResponse> {}
 
   /**
    * This operation retrieves the list of all policy assignments associated with the given resource group
@@ -447,18 +281,11 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
    * resources contained within the resource group. If $filter=policyDefinitionId eq '{value}' is
    * provided, the returned list includes all policy assignments of the policy definition whose id is
    * {value} that apply to the resource group.
-   * @param resourceGroupName The name of the resource group that contains policy assignments.
-   * @param options The options parameters.
+   *
    */
-  private _listForResourceGroup(
-    resourceGroupName: string,
-    options?: PolicyAssignmentsListForResourceGroupOptionalParams
-  ): Promise<PolicyAssignmentsListForResourceGroupResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, options },
-      listForResourceGroupOperationSpec
-    );
-  }
+  private _listForResourceGroup(): Promise<
+    PolicyAssignmentsListForResourceGroupResponse
+  > {}
 
   /**
    * This operation retrieves the list of all policy assignments associated with the specified resource
@@ -481,35 +308,11 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
    * 'MyComputerName'). A convenient alternative to providing the namespace and type name separately is
    * to provide both in the {resourceType} parameter, format: ({resourceProviderNamespace} == '',
    * {parentResourcePath} == '', {resourceType} == 'Microsoft.Web/sites', {resourceName} == 'MyWebApp').
-   * @param resourceGroupName The name of the resource group containing the resource.
-   * @param resourceProviderNamespace The namespace of the resource provider. For example, the namespace
-   *                                  of a virtual machine is Microsoft.Compute (from Microsoft.Compute/virtualMachines)
-   * @param parentResourcePath The parent resource path. Use empty string if there is none.
-   * @param resourceType The resource type name. For example the type name of a web app is 'sites' (from
-   *                     Microsoft.Web/sites).
-   * @param resourceName The name of the resource.
-   * @param options The options parameters.
+   *
    */
-  private _listForResource(
-    resourceGroupName: string,
-    resourceProviderNamespace: string,
-    parentResourcePath: string,
-    resourceType: string,
-    resourceName: string,
-    options?: PolicyAssignmentsListForResourceOptionalParams
-  ): Promise<PolicyAssignmentsListForResourceResponse> {
-    return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        resourceProviderNamespace,
-        parentResourcePath,
-        resourceType,
-        resourceName,
-        options
-      },
-      listForResourceOperationSpec
-    );
-  }
+  private _listForResource(): Promise<
+    PolicyAssignmentsListForResourceResponse
+  > {}
 
   /**
    * This operation retrieves the list of all policy assignments applicable to the management group that
@@ -518,22 +321,11 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
    * are assigned to the management group or the management group's ancestors. If
    * $filter=policyDefinitionId eq '{value}' is provided, the returned list includes all policy
    * assignments of the policy definition whose id is {value} that apply to the management group.
-   * @param managementGroupId The ID of the management group.
-   * @param filter The filter to apply on the operation. Valid values for $filter are: 'atScope()' or
-   *               'policyDefinitionId eq '{value}''. A filter is required when listing policy assignments at
-   *               management group scope.
-   * @param options The options parameters.
+   *
    */
-  private _listForManagementGroup(
-    managementGroupId: string,
-    filter: string,
-    options?: PolicyAssignmentsListForManagementGroupOptionalParams
-  ): Promise<PolicyAssignmentsListForManagementGroupResponse> {
-    return this.client.sendOperationRequest(
-      { managementGroupId, filter, options },
-      listForManagementGroupOperationSpec
-    );
-  }
+  private _listForManagementGroup(): Promise<
+    PolicyAssignmentsListForManagementGroupResponse
+  > {}
 
   /**
    * This operation retrieves the list of all policy assignments associated with the given subscription
@@ -546,13 +338,9 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
    * applied to objects contained within the subscription. If $filter=policyDefinitionId eq '{value}' is
    * provided, the returned list includes all policy assignments of the policy definition whose id is
    * {value}.
-   * @param options The options parameters.
+   *
    */
-  private _list(
-    options?: PolicyAssignmentsListOptionalParams
-  ): Promise<PolicyAssignmentsListResponse> {
-    return this.client.sendOperationRequest({ options }, listOperationSpec);
-  }
+  private _list(): Promise<PolicyAssignmentsListResponse> {}
 
   /**
    * This operation deletes the policy with the given ID. Policy assignment IDs have this format:
@@ -562,19 +350,9 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
    * '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}' (resource group), or
    * '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/[{parentResourcePath}/]{resourceType}/{resourceName}'
    * (resource).
-   * @param policyAssignmentId The ID of the policy assignment to delete. Use the format
-   *                           '{scope}/providers/Microsoft.Authorization/policyAssignments/{policyAssignmentName}'.
-   * @param options The options parameters.
+   *
    */
-  deleteById(
-    policyAssignmentId: string,
-    options?: PolicyAssignmentsDeleteByIdOptionalParams
-  ): Promise<PolicyAssignmentsDeleteByIdResponse> {
-    return this.client.sendOperationRequest(
-      { policyAssignmentId, options },
-      deleteByIdOperationSpec
-    );
-  }
+  deleteById(): Promise<PolicyAssignmentsDeleteByIdResponse> {}
 
   /**
    * This operation creates or updates the policy assignment with the given ID. Policy assignments made
@@ -586,18 +364,11 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
    * '/subscriptions/{subscriptionId}'), resource group (format:
    * '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}', or resource (format:
    * '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/[{parentResourcePath}/]{resourceType}/{resourceName}'.
-   * @param policyAssignmentId The ID of the policy assignment to create. Use the format
-   *                           '{scope}/providers/Microsoft.Authorization/policyAssignments/{policyAssignmentName}'.
-   * @param parameters Parameters for policy assignment.
-   * @param options The options parameters.
+   *
    */
-  createById(
-    policyAssignmentId: string,
-    parameters: PolicyAssignment,
-    options?: PolicyAssignmentsCreateByIdOptionalParams
-  ): Promise<PolicyAssignmentsCreateByIdResponse> {
+  createById(): Promise<PolicyAssignmentsCreateByIdResponse> {
     return this.client.sendOperationRequest(
-      { policyAssignmentId, parameters, options },
+      { policyAssignmentId, options },
       createByIdOperationSpec
     );
   }
@@ -610,133 +381,43 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
    * '/subscriptions/{subscriptionId}'), resource group (format:
    * '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}', or resource (format:
    * '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/[{parentResourcePath}/]{resourceType}/{resourceName}'.
-   * @param policyAssignmentId The ID of the policy assignment to get. Use the format
-   *                           '{scope}/providers/Microsoft.Authorization/policyAssignments/{policyAssignmentName}'.
-   * @param options The options parameters.
+   *
    */
-  getById(
-    policyAssignmentId: string,
-    options?: PolicyAssignmentsGetByIdOptionalParams
-  ): Promise<PolicyAssignmentsGetByIdResponse> {
-    return this.client.sendOperationRequest(
-      { policyAssignmentId, options },
-      getByIdOperationSpec
-    );
-  }
+  getById(): Promise<PolicyAssignmentsGetByIdResponse> {}
 
   /**
    * ListForResourceGroupNext
-   * @param resourceGroupName The name of the resource group that contains policy assignments.
-   * @param nextLink The nextLink from the previous successful call to the ListForResourceGroup method.
-   * @param options The options parameters.
+   *
    */
-  private _listForResourceGroupNext(
-    resourceGroupName: string,
-    nextLink: string,
-    options?: PolicyAssignmentsListForResourceGroupNextOptionalParams
-  ): Promise<PolicyAssignmentsListForResourceGroupNextResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options },
-      listForResourceGroupNextOperationSpec
-    );
-  }
+  private _listForResourceGroupNext(): Promise<
+    PolicyAssignmentsListForResourceGroupNextResponse
+  > {}
 
   /**
    * ListForResourceNext
-   * @param resourceGroupName The name of the resource group containing the resource.
-   * @param resourceProviderNamespace The namespace of the resource provider. For example, the namespace
-   *                                  of a virtual machine is Microsoft.Compute (from Microsoft.Compute/virtualMachines)
-   * @param parentResourcePath The parent resource path. Use empty string if there is none.
-   * @param resourceType The resource type name. For example the type name of a web app is 'sites' (from
-   *                     Microsoft.Web/sites).
-   * @param resourceName The name of the resource.
-   * @param nextLink The nextLink from the previous successful call to the ListForResource method.
-   * @param options The options parameters.
+   *
    */
-  private _listForResourceNext(
-    resourceGroupName: string,
-    resourceProviderNamespace: string,
-    parentResourcePath: string,
-    resourceType: string,
-    resourceName: string,
-    nextLink: string,
-    options?: PolicyAssignmentsListForResourceNextOptionalParams
-  ): Promise<PolicyAssignmentsListForResourceNextResponse> {
-    return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        resourceProviderNamespace,
-        parentResourcePath,
-        resourceType,
-        resourceName,
-        nextLink,
-        options
-      },
-      listForResourceNextOperationSpec
-    );
-  }
+  private _listForResourceNext(): Promise<
+    PolicyAssignmentsListForResourceNextResponse
+  > {}
 
   /**
    * ListForManagementGroupNext
-   * @param managementGroupId The ID of the management group.
-   * @param filter The filter to apply on the operation. Valid values for $filter are: 'atScope()' or
-   *               'policyDefinitionId eq '{value}''. A filter is required when listing policy assignments at
-   *               management group scope.
-   * @param nextLink The nextLink from the previous successful call to the ListForManagementGroup method.
-   * @param options The options parameters.
+   *
    */
-  private _listForManagementGroupNext(
-    managementGroupId: string,
-    filter: string,
-    nextLink: string,
-    options?: PolicyAssignmentsListForManagementGroupNextOptionalParams
-  ): Promise<PolicyAssignmentsListForManagementGroupNextResponse> {
-    return this.client.sendOperationRequest(
-      { managementGroupId, filter, nextLink, options },
-      listForManagementGroupNextOperationSpec
-    );
-  }
+  private _listForManagementGroupNext(): Promise<
+    PolicyAssignmentsListForManagementGroupNextResponse
+  > {}
 
   /**
    * ListNext
-   * @param nextLink The nextLink from the previous successful call to the List method.
-   * @param options The options parameters.
+   *
    */
-  private _listNext(
-    nextLink: string,
-    options?: PolicyAssignmentsListNextOptionalParams
-  ): Promise<PolicyAssignmentsListNextResponse> {
-    return this.client.sendOperationRequest(
-      { nextLink, options },
-      listNextOperationSpec
-    );
-  }
+  private _listNext(): Promise<PolicyAssignmentsListNextResponse> {}
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const deleteOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/{scope}/providers/Microsoft.Authorization/policyAssignments/{policyAssignmentName}",
-  httpMethod: "DELETE",
-  responses: {
-    200: {
-      bodyMapper: Mappers.PolicyAssignment
-    },
-    204: {},
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.scope,
-    Parameters.policyAssignmentName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
 const createOperationSpec: coreClient.OperationSpec = {
   path:
     "/{scope}/providers/Microsoft.Authorization/policyAssignments/{policyAssignmentName}",
@@ -760,124 +441,6 @@ const createOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/{scope}/providers/Microsoft.Authorization/policyAssignments/{policyAssignmentName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.PolicyAssignment
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.scope,
-    Parameters.policyAssignmentName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listForResourceGroupOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Authorization/policyAssignments",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.PolicyAssignmentListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.filter],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listForResourceOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourcePath}/{resourceType}/{resourceName}/providers/Microsoft.Authorization/policyAssignments",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.PolicyAssignmentListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.filter1],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId,
-    Parameters.resourceProviderNamespace,
-    Parameters.parentResourcePath,
-    Parameters.resourceType,
-    Parameters.resourceName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listForManagementGroupOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/providers/Microsoft.Management/managementgroups/{managementGroupId}/providers/Microsoft.Authorization/policyAssignments",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.PolicyAssignmentListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.filter2],
-  urlParameters: [Parameters.$host, Parameters.managementGroupId],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policyAssignments",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.PolicyAssignmentListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.filter1],
-  urlParameters: [Parameters.$host, Parameters.subscriptionId],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const deleteByIdOperationSpec: coreClient.OperationSpec = {
-  path: "/{policyAssignmentId}",
-  httpMethod: "DELETE",
-  responses: {
-    200: {
-      bodyMapper: Mappers.PolicyAssignment
-    },
-    204: {},
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.policyAssignmentId],
-  headerParameters: [Parameters.accept],
-  serializer
-};
 const createByIdOperationSpec: coreClient.OperationSpec = {
   path: "/{policyAssignmentId}",
   httpMethod: "PUT",
@@ -894,107 +457,5 @@ const createByIdOperationSpec: coreClient.OperationSpec = {
   urlParameters: [Parameters.$host, Parameters.policyAssignmentId],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const getByIdOperationSpec: coreClient.OperationSpec = {
-  path: "/{policyAssignmentId}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.PolicyAssignment
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.policyAssignmentId],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listForResourceGroupNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.PolicyAssignmentListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.filter],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId,
-    Parameters.nextLink
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listForResourceNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.PolicyAssignmentListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.filter1],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.resourceGroupName,
-    Parameters.subscriptionId,
-    Parameters.resourceProviderNamespace,
-    Parameters.parentResourcePath,
-    Parameters.resourceType,
-    Parameters.resourceName,
-    Parameters.nextLink
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listForManagementGroupNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.PolicyAssignmentListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.filter2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.managementGroupId,
-    Parameters.nextLink
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.PolicyAssignmentListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.filter1],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.nextLink
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };

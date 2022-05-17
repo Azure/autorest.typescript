@@ -12,10 +12,7 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import {
-  DatabaseAutomaticTuningGetOptionalParams,
   DatabaseAutomaticTuningGetResponse,
-  DatabaseAutomaticTuning,
-  DatabaseAutomaticTuningUpdateOptionalParams,
   DatabaseAutomaticTuningUpdateResponse
 } from "../models";
 
@@ -34,42 +31,17 @@ export class DatabaseAutomaticTuningOperationsImpl
 
   /**
    * Gets a database's automatic tuning.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: DatabaseAutomaticTuningGetOptionalParams
-  ): Promise<DatabaseAutomaticTuningGetResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, databaseName, options },
-      getOperationSpec
-    );
-  }
+  get(): Promise<DatabaseAutomaticTuningGetResponse> {}
 
   /**
    * Update automatic tuning properties for target database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param parameters The requested automatic tuning resource state.
-   * @param options The options parameters.
+   *
    */
-  update(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    parameters: DatabaseAutomaticTuning,
-    options?: DatabaseAutomaticTuningUpdateOptionalParams
-  ): Promise<DatabaseAutomaticTuningUpdateResponse> {
+  update(): Promise<DatabaseAutomaticTuningUpdateResponse> {
     return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, databaseName, parameters, options },
+      { resourceGroupName, serverName, databaseName, options },
       updateOperationSpec
     );
   }
@@ -77,27 +49,6 @@ export class DatabaseAutomaticTuningOperationsImpl
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/automaticTuning/current",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DatabaseAutomaticTuning
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.databaseName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
 const updateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/automaticTuning/current",

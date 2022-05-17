@@ -9,10 +9,7 @@
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import {
   ExtendedDatabaseBlobAuditingPolicy,
-  ExtendedDatabaseBlobAuditingPoliciesListByDatabaseOptionalParams,
-  ExtendedDatabaseBlobAuditingPoliciesGetOptionalParams,
   ExtendedDatabaseBlobAuditingPoliciesGetResponse,
-  ExtendedDatabaseBlobAuditingPoliciesCreateOrUpdateOptionalParams,
   ExtendedDatabaseBlobAuditingPoliciesCreateOrUpdateResponse
 } from "../models";
 
@@ -21,46 +18,21 @@ import {
 export interface ExtendedDatabaseBlobAuditingPolicies {
   /**
    * Lists extended auditing settings of a database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param options The options parameters.
+   *
    */
-  listByDatabase(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: ExtendedDatabaseBlobAuditingPoliciesListByDatabaseOptionalParams
-  ): PagedAsyncIterableIterator<ExtendedDatabaseBlobAuditingPolicy>;
+  listByDatabase(): PagedAsyncIterableIterator<
+    ExtendedDatabaseBlobAuditingPolicy
+  >;
   /**
    * Gets an extended database's blob auditing policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: ExtendedDatabaseBlobAuditingPoliciesGetOptionalParams
-  ): Promise<ExtendedDatabaseBlobAuditingPoliciesGetResponse>;
+  get(): Promise<ExtendedDatabaseBlobAuditingPoliciesGetResponse>;
   /**
    * Creates or updates an extended database's blob auditing policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param parameters The extended database blob auditing policy.
-   * @param options The options parameters.
+   *
    */
-  createOrUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    parameters: ExtendedDatabaseBlobAuditingPolicy,
-    options?: ExtendedDatabaseBlobAuditingPoliciesCreateOrUpdateOptionalParams
-  ): Promise<ExtendedDatabaseBlobAuditingPoliciesCreateOrUpdateResponse>;
+  createOrUpdate(): Promise<
+    ExtendedDatabaseBlobAuditingPoliciesCreateOrUpdateResponse
+  >;
 }

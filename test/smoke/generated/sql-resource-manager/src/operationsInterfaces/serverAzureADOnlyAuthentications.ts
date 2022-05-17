@@ -10,13 +10,8 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ServerAzureADOnlyAuthentication,
-  ServerAzureADOnlyAuthenticationsListByServerOptionalParams,
-  AuthenticationName,
-  ServerAzureADOnlyAuthenticationsGetOptionalParams,
   ServerAzureADOnlyAuthenticationsGetResponse,
-  ServerAzureADOnlyAuthenticationsCreateOrUpdateOptionalParams,
-  ServerAzureADOnlyAuthenticationsCreateOrUpdateResponse,
-  ServerAzureADOnlyAuthenticationsDeleteOptionalParams
+  ServerAzureADOnlyAuthenticationsCreateOrUpdateResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -24,48 +19,20 @@ import {
 export interface ServerAzureADOnlyAuthentications {
   /**
    * Gets a list of server Azure Active Directory only authentications.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  listByServer(
-    resourceGroupName: string,
-    serverName: string,
-    options?: ServerAzureADOnlyAuthenticationsListByServerOptionalParams
-  ): PagedAsyncIterableIterator<ServerAzureADOnlyAuthentication>;
+  listByServer(): PagedAsyncIterableIterator<ServerAzureADOnlyAuthentication>;
   /**
    * Gets a specific Azure Active Directory only authentication property.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param authenticationName The name of server azure active directory only authentication.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    authenticationName: AuthenticationName,
-    options?: ServerAzureADOnlyAuthenticationsGetOptionalParams
-  ): Promise<ServerAzureADOnlyAuthenticationsGetResponse>;
+  get(): Promise<ServerAzureADOnlyAuthenticationsGetResponse>;
   /**
    * Sets Server Active Directory only authentication property or updates an existing server Active
    * Directory only authentication property.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param authenticationName The name of server azure active directory only authentication.
-   * @param parameters The required parameters for creating or updating an Active Directory only
-   *                   authentication property.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    authenticationName: AuthenticationName,
-    parameters: ServerAzureADOnlyAuthentication,
-    options?: ServerAzureADOnlyAuthenticationsCreateOrUpdateOptionalParams
-  ): Promise<
+  beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<
         ServerAzureADOnlyAuthenticationsCreateOrUpdateResponse
@@ -76,47 +43,19 @@ export interface ServerAzureADOnlyAuthentications {
   /**
    * Sets Server Active Directory only authentication property or updates an existing server Active
    * Directory only authentication property.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param authenticationName The name of server azure active directory only authentication.
-   * @param parameters The required parameters for creating or updating an Active Directory only
-   *                   authentication property.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    authenticationName: AuthenticationName,
-    parameters: ServerAzureADOnlyAuthentication,
-    options?: ServerAzureADOnlyAuthenticationsCreateOrUpdateOptionalParams
-  ): Promise<ServerAzureADOnlyAuthenticationsCreateOrUpdateResponse>;
+  beginCreateOrUpdateAndWait(): Promise<
+    ServerAzureADOnlyAuthenticationsCreateOrUpdateResponse
+  >;
   /**
    * Deletes an existing server Active Directory only authentication property.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param authenticationName The name of server azure active directory only authentication.
-   * @param options The options parameters.
+   *
    */
-  beginDelete(
-    resourceGroupName: string,
-    serverName: string,
-    authenticationName: AuthenticationName,
-    options?: ServerAzureADOnlyAuthenticationsDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  beginDelete(): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes an existing server Active Directory only authentication property.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param authenticationName The name of server azure active directory only authentication.
-   * @param options The options parameters.
+   *
    */
-  beginDeleteAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    authenticationName: AuthenticationName,
-    options?: ServerAzureADOnlyAuthenticationsDeleteOptionalParams
-  ): Promise<void>;
+  beginDeleteAndWait(): Promise<void>;
 }

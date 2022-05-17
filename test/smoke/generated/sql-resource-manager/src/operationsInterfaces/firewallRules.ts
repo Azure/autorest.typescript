@@ -9,14 +9,8 @@
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import {
   FirewallRule,
-  FirewallRulesListByServerOptionalParams,
-  FirewallRulesGetOptionalParams,
   FirewallRulesGetResponse,
-  FirewallRulesCreateOrUpdateOptionalParams,
   FirewallRulesCreateOrUpdateResponse,
-  FirewallRulesDeleteOptionalParams,
-  FirewallRuleList,
-  FirewallRulesReplaceOptionalParams,
   FirewallRulesReplaceResponse
 } from "../models";
 
@@ -25,72 +19,27 @@ import {
 export interface FirewallRules {
   /**
    * Gets a list of firewall rules.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  listByServer(
-    resourceGroupName: string,
-    serverName: string,
-    options?: FirewallRulesListByServerOptionalParams
-  ): PagedAsyncIterableIterator<FirewallRule>;
+  listByServer(): PagedAsyncIterableIterator<FirewallRule>;
   /**
    * Gets a firewall rule.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param firewallRuleName The name of the firewall rule.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    firewallRuleName: string,
-    options?: FirewallRulesGetOptionalParams
-  ): Promise<FirewallRulesGetResponse>;
+  get(): Promise<FirewallRulesGetResponse>;
   /**
    * Creates or updates a firewall rule.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param firewallRuleName The name of the firewall rule.
-   * @param parameters The required parameters for creating or updating a firewall rule.
-   * @param options The options parameters.
+   *
    */
-  createOrUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    firewallRuleName: string,
-    parameters: FirewallRule,
-    options?: FirewallRulesCreateOrUpdateOptionalParams
-  ): Promise<FirewallRulesCreateOrUpdateResponse>;
+  createOrUpdate(): Promise<FirewallRulesCreateOrUpdateResponse>;
   /**
    * Deletes a firewall rule.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param firewallRuleName The name of the firewall rule.
-   * @param options The options parameters.
+   *
    */
-  delete(
-    resourceGroupName: string,
-    serverName: string,
-    firewallRuleName: string,
-    options?: FirewallRulesDeleteOptionalParams
-  ): Promise<void>;
+  delete(): Promise<void>;
   /**
    * Replaces all firewall rules on the server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param parameters A list of server firewall rules.
-   * @param options The options parameters.
+   *
    */
-  replace(
-    resourceGroupName: string,
-    serverName: string,
-    parameters: FirewallRuleList,
-    options?: FirewallRulesReplaceOptionalParams
-  ): Promise<FirewallRulesReplaceResponse>;
+  replace(): Promise<FirewallRulesReplaceResponse>;
 }

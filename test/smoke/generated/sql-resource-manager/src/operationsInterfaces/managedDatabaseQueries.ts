@@ -7,46 +7,19 @@
  */
 
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import {
-  QueryStatistics,
-  ManagedDatabaseQueriesListByQueryOptionalParams,
-  ManagedDatabaseQueriesGetOptionalParams,
-  ManagedDatabaseQueriesGetResponse
-} from "../models";
+import { QueryStatistics, ManagedDatabaseQueriesGetResponse } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a ManagedDatabaseQueries. */
 export interface ManagedDatabaseQueries {
   /**
    * Get query execution statistics by query id.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the database.
-   * @param queryId
-   * @param options The options parameters.
+   *
    */
-  listByQuery(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    queryId: string,
-    options?: ManagedDatabaseQueriesListByQueryOptionalParams
-  ): PagedAsyncIterableIterator<QueryStatistics>;
+  listByQuery(): PagedAsyncIterableIterator<QueryStatistics>;
   /**
    * Get query by query id.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the database.
-   * @param queryId
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    queryId: string,
-    options?: ManagedDatabaseQueriesGetOptionalParams
-  ): Promise<ManagedDatabaseQueriesGetResponse>;
+  get(): Promise<ManagedDatabaseQueriesGetResponse>;
 }

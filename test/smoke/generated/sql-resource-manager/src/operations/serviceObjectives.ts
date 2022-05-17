@@ -10,12 +10,9 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { ServiceObjectives } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import {
   ServiceObjective,
-  ServiceObjectivesListByServerOptionalParams,
-  ServiceObjectivesGetOptionalParams,
   ServiceObjectivesGetResponse,
   ServiceObjectivesListByServerResponse
 } from "../models";
@@ -23,33 +20,18 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing ServiceObjectives operations. */
 export class ServiceObjectivesImpl implements ServiceObjectives {
-  private readonly client: SqlManagementClient;
-
   /**
    * Initialize a new instance of the class ServiceObjectives class.
    * @param client Reference to the service client
    */
-  constructor(client: SqlManagementClient) {
-    this.client = client;
-  }
+  constructor(client: SqlManagementClient) {}
 
   /**
    * Returns database service objectives.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  public listByServer(
-    resourceGroupName: string,
-    serverName: string,
-    options?: ServiceObjectivesListByServerOptionalParams
-  ): PagedAsyncIterableIterator<ServiceObjective> {
-    const iter = this.listByServerPagingAll(
-      resourceGroupName,
-      serverName,
-      options
-    );
+  public listByServer(): PagedAsyncIterableIterator<ServiceObjective> {
+    const iter = this.listByServerPagingAll();
     return {
       next() {
         return iter.next();
@@ -58,119 +40,36 @@ export class ServiceObjectivesImpl implements ServiceObjectives {
         return this;
       },
       byPage: () => {
-        return this.listByServerPagingPage(
-          resourceGroupName,
-          serverName,
-          options
-        );
+        return this.listByServerPagingPage();
       }
     };
   }
 
-  private async *listByServerPagingPage(
-    resourceGroupName: string,
-    serverName: string,
-    options?: ServiceObjectivesListByServerOptionalParams
-  ): AsyncIterableIterator<ServiceObjective[]> {
-    let result = await this._listByServer(
-      resourceGroupName,
-      serverName,
-      options
-    );
+  private async *listByServerPagingPage(): AsyncIterableIterator<
+    ServiceObjective[]
+  > {
+    let result = await this._listByServer();
     yield result.value || [];
   }
 
-  private async *listByServerPagingAll(
-    resourceGroupName: string,
-    serverName: string,
-    options?: ServiceObjectivesListByServerOptionalParams
-  ): AsyncIterableIterator<ServiceObjective> {
-    for await (const page of this.listByServerPagingPage(
-      resourceGroupName,
-      serverName,
-      options
-    )) {
+  private async *listByServerPagingAll(): AsyncIterableIterator<
+    ServiceObjective
+  > {
+    for await (const page of this.listByServerPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Gets a database service objective.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param serviceObjectiveName The name of the service objective to retrieve.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    serviceObjectiveName: string,
-    options?: ServiceObjectivesGetOptionalParams
-  ): Promise<ServiceObjectivesGetResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, serviceObjectiveName, options },
-      getOperationSpec
-    );
-  }
+  get(): Promise<ServiceObjectivesGetResponse> {}
 
   /**
    * Returns database service objectives.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  private _listByServer(
-    resourceGroupName: string,
-    serverName: string,
-    options?: ServiceObjectivesListByServerOptionalParams
-  ): Promise<ServiceObjectivesListByServerResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, options },
-      listByServerOperationSpec
-    );
-  }
+  private _listByServer(): Promise<ServiceObjectivesListByServerResponse> {}
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
-
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/serviceObjectives/{serviceObjectiveName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ServiceObjective
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.serviceObjectiveName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByServerOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/serviceObjectives",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ServiceObjectiveListResult
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};

@@ -9,15 +9,9 @@
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import {
   Provider,
-  ProvidersListOptionalParams,
-  ProvidersListAtTenantScopeOptionalParams,
-  ProvidersUnregisterOptionalParams,
   ProvidersUnregisterResponse,
-  ProvidersRegisterOptionalParams,
   ProvidersRegisterResponse,
-  ProvidersGetOptionalParams,
   ProvidersGetResponse,
-  ProvidersGetAtTenantScopeOptionalParams,
   ProvidersGetAtTenantScopeResponse
 } from "../models";
 
@@ -26,52 +20,32 @@ import {
 export interface Providers {
   /**
    * Gets all resource providers for a subscription.
-   * @param options The options parameters.
+   *
    */
-  list(
-    options?: ProvidersListOptionalParams
-  ): PagedAsyncIterableIterator<Provider>;
+  list(): PagedAsyncIterableIterator<Provider>;
   /**
    * Gets all resource providers for the tenant.
-   * @param options The options parameters.
+   *
    */
-  listAtTenantScope(
-    options?: ProvidersListAtTenantScopeOptionalParams
-  ): PagedAsyncIterableIterator<Provider>;
+  listAtTenantScope(): PagedAsyncIterableIterator<Provider>;
   /**
    * Unregisters a subscription from a resource provider.
-   * @param resourceProviderNamespace The namespace of the resource provider to unregister.
-   * @param options The options parameters.
+   *
    */
-  unregister(
-    resourceProviderNamespace: string,
-    options?: ProvidersUnregisterOptionalParams
-  ): Promise<ProvidersUnregisterResponse>;
+  unregister(): Promise<ProvidersUnregisterResponse>;
   /**
    * Registers a subscription with a resource provider.
-   * @param resourceProviderNamespace The namespace of the resource provider to register.
-   * @param options The options parameters.
+   *
    */
-  register(
-    resourceProviderNamespace: string,
-    options?: ProvidersRegisterOptionalParams
-  ): Promise<ProvidersRegisterResponse>;
+  register(): Promise<ProvidersRegisterResponse>;
   /**
    * Gets the specified resource provider.
-   * @param resourceProviderNamespace The namespace of the resource provider.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceProviderNamespace: string,
-    options?: ProvidersGetOptionalParams
-  ): Promise<ProvidersGetResponse>;
+  get(): Promise<ProvidersGetResponse>;
   /**
    * Gets the specified resource provider at the tenant level.
-   * @param resourceProviderNamespace The namespace of the resource provider.
-   * @param options The options parameters.
+   *
    */
-  getAtTenantScope(
-    resourceProviderNamespace: string,
-    options?: ProvidersGetAtTenantScopeOptionalParams
-  ): Promise<ProvidersGetAtTenantScopeResponse>;
+  getAtTenantScope(): Promise<ProvidersGetAtTenantScopeResponse>;
 }

@@ -16,17 +16,8 @@ import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
   InstancePool,
-  InstancePoolsListByResourceGroupNextOptionalParams,
-  InstancePoolsListByResourceGroupOptionalParams,
-  InstancePoolsListNextOptionalParams,
-  InstancePoolsListOptionalParams,
-  InstancePoolsGetOptionalParams,
   InstancePoolsGetResponse,
-  InstancePoolsCreateOrUpdateOptionalParams,
   InstancePoolsCreateOrUpdateResponse,
-  InstancePoolsDeleteOptionalParams,
-  InstancePoolUpdate,
-  InstancePoolsUpdateOptionalParams,
   InstancePoolsUpdateResponse,
   InstancePoolsListByResourceGroupResponse,
   InstancePoolsListResponse,
@@ -49,15 +40,10 @@ export class InstancePoolsImpl implements InstancePools {
 
   /**
    * Gets a list of instance pools in the resource group
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param options The options parameters.
+   *
    */
-  public listByResourceGroup(
-    resourceGroupName: string,
-    options?: InstancePoolsListByResourceGroupOptionalParams
-  ): PagedAsyncIterableIterator<InstancePool> {
-    const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
+  public listByResourceGroup(): PagedAsyncIterableIterator<InstancePool> {
+    const iter = this.listByResourceGroupPagingAll();
     return {
       next() {
         return iter.next();
@@ -66,49 +52,38 @@ export class InstancePoolsImpl implements InstancePools {
         return this;
       },
       byPage: () => {
-        return this.listByResourceGroupPagingPage(resourceGroupName, options);
+        return this.listByResourceGroupPagingPage();
       }
     };
   }
 
-  private async *listByResourceGroupPagingPage(
-    resourceGroupName: string,
-    options?: InstancePoolsListByResourceGroupOptionalParams
-  ): AsyncIterableIterator<InstancePool[]> {
-    let result = await this._listByResourceGroup(resourceGroupName, options);
+  private async *listByResourceGroupPagingPage(): AsyncIterableIterator<
+    InstancePool[]
+  > {
+    let result = await this._listByResourceGroup();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listByResourceGroupNext(
-        resourceGroupName,
-        continuationToken,
-        options
-      );
+      result = await this._listByResourceGroupNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listByResourceGroupPagingAll(
-    resourceGroupName: string,
-    options?: InstancePoolsListByResourceGroupOptionalParams
-  ): AsyncIterableIterator<InstancePool> {
-    for await (const page of this.listByResourceGroupPagingPage(
-      resourceGroupName,
-      options
-    )) {
+  private async *listByResourceGroupPagingAll(): AsyncIterableIterator<
+    InstancePool
+  > {
+    for await (const page of this.listByResourceGroupPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Gets a list of all instance pools in the subscription.
-   * @param options The options parameters.
+   *
    */
-  public list(
-    options?: InstancePoolsListOptionalParams
-  ): PagedAsyncIterableIterator<InstancePool> {
-    const iter = this.listPagingAll(options);
+  public list(): PagedAsyncIterableIterator<InstancePool> {
+    const iter = this.listPagingAll();
     return {
       next() {
         return iter.next();
@@ -117,64 +92,39 @@ export class InstancePoolsImpl implements InstancePools {
         return this;
       },
       byPage: () => {
-        return this.listPagingPage(options);
+        return this.listPagingPage();
       }
     };
   }
 
-  private async *listPagingPage(
-    options?: InstancePoolsListOptionalParams
-  ): AsyncIterableIterator<InstancePool[]> {
-    let result = await this._list(options);
+  private async *listPagingPage(): AsyncIterableIterator<InstancePool[]> {
+    let result = await this._list();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listNext(continuationToken, options);
+      result = await this._listNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listPagingAll(
-    options?: InstancePoolsListOptionalParams
-  ): AsyncIterableIterator<InstancePool> {
-    for await (const page of this.listPagingPage(options)) {
+  private async *listPagingAll(): AsyncIterableIterator<InstancePool> {
+    for await (const page of this.listPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Gets an instance pool.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param instancePoolName The name of the instance pool to be retrieved.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    instancePoolName: string,
-    options?: InstancePoolsGetOptionalParams
-  ): Promise<InstancePoolsGetResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, instancePoolName, options },
-      getOperationSpec
-    );
-  }
+  get(): Promise<InstancePoolsGetResponse> {}
 
   /**
    * Creates or updates an instance pool.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param instancePoolName The name of the instance pool to be created or updated.
-   * @param parameters The requested instance pool resource state.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdate(
-    resourceGroupName: string,
-    instancePoolName: string,
-    parameters: InstancePool,
-    options?: InstancePoolsCreateOrUpdateOptionalParams
-  ): Promise<
+  async beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<InstancePoolsCreateOrUpdateResponse>,
       InstancePoolsCreateOrUpdateResponse
@@ -221,7 +171,7 @@ export class InstancePoolsImpl implements InstancePools {
 
     const lro = new LroImpl(
       sendOperation,
-      { resourceGroupName, instancePoolName, parameters, options },
+      { resourceGroupName, instancePoolName, options },
       createOrUpdateOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -234,125 +184,35 @@ export class InstancePoolsImpl implements InstancePools {
 
   /**
    * Creates or updates an instance pool.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param instancePoolName The name of the instance pool to be created or updated.
-   * @param parameters The requested instance pool resource state.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    instancePoolName: string,
-    parameters: InstancePool,
-    options?: InstancePoolsCreateOrUpdateOptionalParams
-  ): Promise<InstancePoolsCreateOrUpdateResponse> {
-    const poller = await this.beginCreateOrUpdate(
-      resourceGroupName,
-      instancePoolName,
-      parameters,
-      options
-    );
+  async beginCreateOrUpdateAndWait(): Promise<
+    InstancePoolsCreateOrUpdateResponse
+  > {
+    const poller = await this.beginCreateOrUpdate();
     return poller.pollUntilDone();
   }
 
   /**
    * Deletes an instance pool
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param instancePoolName The name of the instance pool to be deleted
-   * @param options The options parameters.
+   *
    */
-  async beginDelete(
-    resourceGroupName: string,
-    instancePoolName: string,
-    options?: InstancePoolsDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<void> => {
-      return this.client.sendOperationRequest(args, spec);
-    };
-    const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return {
-        flatResponse,
-        rawResponse: {
-          statusCode: currentRawResponse!.status,
-          body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
-      };
-    };
-
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, instancePoolName, options },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
-    });
-    await poller.poll();
-    return poller;
-  }
+  async beginDelete(): Promise<PollerLike<PollOperationState<void>, void>> {}
 
   /**
    * Deletes an instance pool
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param instancePoolName The name of the instance pool to be deleted
-   * @param options The options parameters.
+   *
    */
-  async beginDeleteAndWait(
-    resourceGroupName: string,
-    instancePoolName: string,
-    options?: InstancePoolsDeleteOptionalParams
-  ): Promise<void> {
-    const poller = await this.beginDelete(
-      resourceGroupName,
-      instancePoolName,
-      options
-    );
+  async beginDeleteAndWait(): Promise<void> {
+    const poller = await this.beginDelete();
     return poller.pollUntilDone();
   }
 
   /**
    * Updates an instance pool.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param instancePoolName The name of the instance pool to be updated.
-   * @param parameters The requested instance pool resource state.
-   * @param options The options parameters.
+   *
    */
-  async beginUpdate(
-    resourceGroupName: string,
-    instancePoolName: string,
-    parameters: InstancePoolUpdate,
-    options?: InstancePoolsUpdateOptionalParams
-  ): Promise<
+  async beginUpdate(): Promise<
     PollerLike<
       PollOperationState<InstancePoolsUpdateResponse>,
       InstancePoolsUpdateResponse
@@ -399,7 +259,7 @@ export class InstancePoolsImpl implements InstancePools {
 
     const lro = new LroImpl(
       sendOperation,
-      { resourceGroupName, instancePoolName, parameters, options },
+      { resourceGroupName, instancePoolName, options },
       updateOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -412,109 +272,44 @@ export class InstancePoolsImpl implements InstancePools {
 
   /**
    * Updates an instance pool.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param instancePoolName The name of the instance pool to be updated.
-   * @param parameters The requested instance pool resource state.
-   * @param options The options parameters.
+   *
    */
-  async beginUpdateAndWait(
-    resourceGroupName: string,
-    instancePoolName: string,
-    parameters: InstancePoolUpdate,
-    options?: InstancePoolsUpdateOptionalParams
-  ): Promise<InstancePoolsUpdateResponse> {
-    const poller = await this.beginUpdate(
-      resourceGroupName,
-      instancePoolName,
-      parameters,
-      options
-    );
+  async beginUpdateAndWait(): Promise<InstancePoolsUpdateResponse> {
+    const poller = await this.beginUpdate();
     return poller.pollUntilDone();
   }
 
   /**
    * Gets a list of instance pools in the resource group
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param options The options parameters.
+   *
    */
-  private _listByResourceGroup(
-    resourceGroupName: string,
-    options?: InstancePoolsListByResourceGroupOptionalParams
-  ): Promise<InstancePoolsListByResourceGroupResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, options },
-      listByResourceGroupOperationSpec
-    );
-  }
+  private _listByResourceGroup(): Promise<
+    InstancePoolsListByResourceGroupResponse
+  > {}
 
   /**
    * Gets a list of all instance pools in the subscription.
-   * @param options The options parameters.
+   *
    */
-  private _list(
-    options?: InstancePoolsListOptionalParams
-  ): Promise<InstancePoolsListResponse> {
-    return this.client.sendOperationRequest({ options }, listOperationSpec);
-  }
+  private _list(): Promise<InstancePoolsListResponse> {}
 
   /**
    * ListByResourceGroupNext
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
-   * @param options The options parameters.
+   *
    */
-  private _listByResourceGroupNext(
-    resourceGroupName: string,
-    nextLink: string,
-    options?: InstancePoolsListByResourceGroupNextOptionalParams
-  ): Promise<InstancePoolsListByResourceGroupNextResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, options },
-      listByResourceGroupNextOperationSpec
-    );
-  }
+  private _listByResourceGroupNext(): Promise<
+    InstancePoolsListByResourceGroupNextResponse
+  > {}
 
   /**
    * ListNext
-   * @param nextLink The nextLink from the previous successful call to the List method.
-   * @param options The options parameters.
+   *
    */
-  private _listNext(
-    nextLink: string,
-    options?: InstancePoolsListNextOptionalParams
-  ): Promise<InstancePoolsListNextResponse> {
-    return this.client.sendOperationRequest(
-      { nextLink, options },
-      listNextOperationSpec
-    );
-  }
+  private _listNext(): Promise<InstancePoolsListNextResponse> {}
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/instancePools/{instancePoolName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.InstancePool
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.instancePoolName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
 const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/instancePools/{instancePoolName}",
@@ -546,20 +341,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/instancePools/{instancePoolName}",
-  httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.instancePoolName
-  ],
-  serializer
-};
 const updateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/instancePools/{instancePoolName}",
@@ -589,75 +370,5 @@ const updateOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const listByResourceGroupOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/instancePools",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.InstancePoolListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listOperationSpec: coreClient.OperationSpec = {
-  path: "/subscriptions/{subscriptionId}/providers/Microsoft.Sql/instancePools",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.InstancePoolListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [Parameters.$host, Parameters.subscriptionId],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.InstancePoolListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.nextLink
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.InstancePoolListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.nextLink
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };

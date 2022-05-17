@@ -11,10 +11,6 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
-import {
-  RecommendedSensitivityLabelUpdateList,
-  RecommendedSensitivityLabelsUpdateOptionalParams
-} from "../models";
 
 /** Class containing RecommendedSensitivityLabels operations. */
 export class RecommendedSensitivityLabelsImpl
@@ -31,22 +27,11 @@ export class RecommendedSensitivityLabelsImpl
 
   /**
    * Update recommended sensitivity labels states of a given database using an operations batch.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param parameters A list of recommended sensitivity label update operations.
-   * @param options The options parameters.
+   *
    */
-  update(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    parameters: RecommendedSensitivityLabelUpdateList,
-    options?: RecommendedSensitivityLabelsUpdateOptionalParams
-  ): Promise<void> {
+  update(): Promise<void> {
     return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, databaseName, parameters, options },
+      { resourceGroupName, serverName, databaseName, options },
       updateOperationSpec
     );
   }

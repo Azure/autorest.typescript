@@ -10,13 +10,8 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   RestorePoint,
-  RestorePointsListByDatabaseOptionalParams,
-  CreateDatabaseRestorePointDefinition,
-  RestorePointsCreateOptionalParams,
   RestorePointsCreateResponse,
-  RestorePointsGetOptionalParams,
-  RestorePointsGetResponse,
-  RestorePointsDeleteOptionalParams
+  RestorePointsGetResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -24,34 +19,14 @@ import {
 export interface RestorePoints {
   /**
    * Gets a list of database restore points.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param options The options parameters.
+   *
    */
-  listByDatabase(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: RestorePointsListByDatabaseOptionalParams
-  ): PagedAsyncIterableIterator<RestorePoint>;
+  listByDatabase(): PagedAsyncIterableIterator<RestorePoint>;
   /**
    * Creates a restore point for a data warehouse.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param parameters The definition for creating the restore point of this database.
-   * @param options The options parameters.
+   *
    */
-  beginCreate(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    parameters: CreateDatabaseRestorePointDefinition,
-    options?: RestorePointsCreateOptionalParams
-  ): Promise<
+  beginCreate(): Promise<
     PollerLike<
       PollOperationState<RestorePointsCreateResponse>,
       RestorePointsCreateResponse
@@ -59,50 +34,17 @@ export interface RestorePoints {
   >;
   /**
    * Creates a restore point for a data warehouse.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param parameters The definition for creating the restore point of this database.
-   * @param options The options parameters.
+   *
    */
-  beginCreateAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    parameters: CreateDatabaseRestorePointDefinition,
-    options?: RestorePointsCreateOptionalParams
-  ): Promise<RestorePointsCreateResponse>;
+  beginCreateAndWait(): Promise<RestorePointsCreateResponse>;
   /**
    * Gets a restore point.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param restorePointName The name of the restore point.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    restorePointName: string,
-    options?: RestorePointsGetOptionalParams
-  ): Promise<RestorePointsGetResponse>;
+  get(): Promise<RestorePointsGetResponse>;
   /**
    * Deletes a restore point.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param restorePointName The name of the restore point.
-   * @param options The options parameters.
+   *
    */
-  delete(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    restorePointName: string,
-    options?: RestorePointsDeleteOptionalParams
-  ): Promise<void>;
+  delete(): Promise<void>;
 }

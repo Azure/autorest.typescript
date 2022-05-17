@@ -10,13 +10,8 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   BackupShortTermRetentionPolicy,
-  BackupShortTermRetentionPoliciesListByDatabaseOptionalParams,
-  ShortTermRetentionPolicyName,
-  BackupShortTermRetentionPoliciesGetOptionalParams,
   BackupShortTermRetentionPoliciesGetResponse,
-  BackupShortTermRetentionPoliciesCreateOrUpdateOptionalParams,
   BackupShortTermRetentionPoliciesCreateOrUpdateResponse,
-  BackupShortTermRetentionPoliciesUpdateOptionalParams,
   BackupShortTermRetentionPoliciesUpdateResponse
 } from "../models";
 
@@ -25,52 +20,19 @@ import {
 export interface BackupShortTermRetentionPolicies {
   /**
    * Gets a database's short term retention policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param options The options parameters.
+   *
    */
-  listByDatabase(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: BackupShortTermRetentionPoliciesListByDatabaseOptionalParams
-  ): PagedAsyncIterableIterator<BackupShortTermRetentionPolicy>;
+  listByDatabase(): PagedAsyncIterableIterator<BackupShortTermRetentionPolicy>;
   /**
    * Gets a database's short term retention policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param policyName The policy name. Should always be "default".
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    policyName: ShortTermRetentionPolicyName,
-    options?: BackupShortTermRetentionPoliciesGetOptionalParams
-  ): Promise<BackupShortTermRetentionPoliciesGetResponse>;
+  get(): Promise<BackupShortTermRetentionPoliciesGetResponse>;
   /**
    * Updates a database's short term retention policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param policyName The policy name. Should always be "default".
-   * @param parameters The short term retention policy info.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    policyName: ShortTermRetentionPolicyName,
-    parameters: BackupShortTermRetentionPolicy,
-    options?: BackupShortTermRetentionPoliciesCreateOrUpdateOptionalParams
-  ): Promise<
+  beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<
         BackupShortTermRetentionPoliciesCreateOrUpdateResponse
@@ -80,40 +42,16 @@ export interface BackupShortTermRetentionPolicies {
   >;
   /**
    * Updates a database's short term retention policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param policyName The policy name. Should always be "default".
-   * @param parameters The short term retention policy info.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    policyName: ShortTermRetentionPolicyName,
-    parameters: BackupShortTermRetentionPolicy,
-    options?: BackupShortTermRetentionPoliciesCreateOrUpdateOptionalParams
-  ): Promise<BackupShortTermRetentionPoliciesCreateOrUpdateResponse>;
+  beginCreateOrUpdateAndWait(): Promise<
+    BackupShortTermRetentionPoliciesCreateOrUpdateResponse
+  >;
   /**
    * Updates a database's short term retention policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param policyName The policy name. Should always be "default".
-   * @param parameters The short term retention policy info.
-   * @param options The options parameters.
+   *
    */
-  beginUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    policyName: ShortTermRetentionPolicyName,
-    parameters: BackupShortTermRetentionPolicy,
-    options?: BackupShortTermRetentionPoliciesUpdateOptionalParams
-  ): Promise<
+  beginUpdate(): Promise<
     PollerLike<
       PollOperationState<BackupShortTermRetentionPoliciesUpdateResponse>,
       BackupShortTermRetentionPoliciesUpdateResponse
@@ -121,20 +59,7 @@ export interface BackupShortTermRetentionPolicies {
   >;
   /**
    * Updates a database's short term retention policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param policyName The policy name. Should always be "default".
-   * @param parameters The short term retention policy info.
-   * @param options The options parameters.
+   *
    */
-  beginUpdateAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    policyName: ShortTermRetentionPolicyName,
-    parameters: BackupShortTermRetentionPolicy,
-    options?: BackupShortTermRetentionPoliciesUpdateOptionalParams
-  ): Promise<BackupShortTermRetentionPoliciesUpdateResponse>;
+  beginUpdateAndWait(): Promise<BackupShortTermRetentionPoliciesUpdateResponse>;
 }

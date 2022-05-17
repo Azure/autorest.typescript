@@ -9,10 +9,7 @@
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import {
   DatabaseBlobAuditingPolicy,
-  DatabaseBlobAuditingPoliciesListByDatabaseOptionalParams,
-  DatabaseBlobAuditingPoliciesGetOptionalParams,
   DatabaseBlobAuditingPoliciesGetResponse,
-  DatabaseBlobAuditingPoliciesCreateOrUpdateOptionalParams,
   DatabaseBlobAuditingPoliciesCreateOrUpdateResponse
 } from "../models";
 
@@ -21,46 +18,17 @@ import {
 export interface DatabaseBlobAuditingPolicies {
   /**
    * Lists auditing settings of a database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param options The options parameters.
+   *
    */
-  listByDatabase(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: DatabaseBlobAuditingPoliciesListByDatabaseOptionalParams
-  ): PagedAsyncIterableIterator<DatabaseBlobAuditingPolicy>;
+  listByDatabase(): PagedAsyncIterableIterator<DatabaseBlobAuditingPolicy>;
   /**
    * Gets a database's blob auditing policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: DatabaseBlobAuditingPoliciesGetOptionalParams
-  ): Promise<DatabaseBlobAuditingPoliciesGetResponse>;
+  get(): Promise<DatabaseBlobAuditingPoliciesGetResponse>;
   /**
    * Creates or updates a database's blob auditing policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param parameters The database blob auditing policy.
-   * @param options The options parameters.
+   *
    */
-  createOrUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    parameters: DatabaseBlobAuditingPolicy,
-    options?: DatabaseBlobAuditingPoliciesCreateOrUpdateOptionalParams
-  ): Promise<DatabaseBlobAuditingPoliciesCreateOrUpdateResponse>;
+  createOrUpdate(): Promise<DatabaseBlobAuditingPoliciesCreateOrUpdateResponse>;
 }

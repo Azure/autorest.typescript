@@ -9,8 +9,6 @@
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import {
   RestorableDroppedDatabase,
-  RestorableDroppedDatabasesListByServerOptionalParams,
-  RestorableDroppedDatabasesGetOptionalParams,
   RestorableDroppedDatabasesGetResponse
 } from "../models";
 
@@ -19,28 +17,12 @@ import {
 export interface RestorableDroppedDatabases {
   /**
    * Gets a list of restorable dropped databases.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  listByServer(
-    resourceGroupName: string,
-    serverName: string,
-    options?: RestorableDroppedDatabasesListByServerOptionalParams
-  ): PagedAsyncIterableIterator<RestorableDroppedDatabase>;
+  listByServer(): PagedAsyncIterableIterator<RestorableDroppedDatabase>;
   /**
    * Gets a restorable dropped database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param restorableDroppedDatabaseId
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    restorableDroppedDatabaseId: string,
-    options?: RestorableDroppedDatabasesGetOptionalParams
-  ): Promise<RestorableDroppedDatabasesGetResponse>;
+  get(): Promise<RestorableDroppedDatabasesGetResponse>;
 }

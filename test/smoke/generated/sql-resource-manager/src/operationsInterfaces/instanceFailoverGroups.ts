@@ -10,15 +10,9 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   InstanceFailoverGroup,
-  InstanceFailoverGroupsListByLocationOptionalParams,
-  InstanceFailoverGroupsGetOptionalParams,
   InstanceFailoverGroupsGetResponse,
-  InstanceFailoverGroupsCreateOrUpdateOptionalParams,
   InstanceFailoverGroupsCreateOrUpdateResponse,
-  InstanceFailoverGroupsDeleteOptionalParams,
-  InstanceFailoverGroupsFailoverOptionalParams,
   InstanceFailoverGroupsFailoverResponse,
-  InstanceFailoverGroupsForceFailoverAllowDataLossOptionalParams,
   InstanceFailoverGroupsForceFailoverAllowDataLossResponse
 } from "../models";
 
@@ -27,46 +21,19 @@ import {
 export interface InstanceFailoverGroups {
   /**
    * Lists the failover groups in a location.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param locationName The name of the region where the resource is located.
-   * @param options The options parameters.
+   *
    */
-  listByLocation(
-    resourceGroupName: string,
-    locationName: string,
-    options?: InstanceFailoverGroupsListByLocationOptionalParams
-  ): PagedAsyncIterableIterator<InstanceFailoverGroup>;
+  listByLocation(): PagedAsyncIterableIterator<InstanceFailoverGroup>;
   /**
    * Gets a failover group.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param locationName The name of the region where the resource is located.
-   * @param failoverGroupName The name of the failover group.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    locationName: string,
-    failoverGroupName: string,
-    options?: InstanceFailoverGroupsGetOptionalParams
-  ): Promise<InstanceFailoverGroupsGetResponse>;
+  get(): Promise<InstanceFailoverGroupsGetResponse>;
   /**
    * Creates or updates a failover group.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param locationName The name of the region where the resource is located.
-   * @param failoverGroupName The name of the failover group.
-   * @param parameters The failover group parameters.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdate(
-    resourceGroupName: string,
-    locationName: string,
-    failoverGroupName: string,
-    parameters: InstanceFailoverGroup,
-    options?: InstanceFailoverGroupsCreateOrUpdateOptionalParams
-  ): Promise<
+  beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<InstanceFailoverGroupsCreateOrUpdateResponse>,
       InstanceFailoverGroupsCreateOrUpdateResponse
@@ -74,62 +41,26 @@ export interface InstanceFailoverGroups {
   >;
   /**
    * Creates or updates a failover group.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param locationName The name of the region where the resource is located.
-   * @param failoverGroupName The name of the failover group.
-   * @param parameters The failover group parameters.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    locationName: string,
-    failoverGroupName: string,
-    parameters: InstanceFailoverGroup,
-    options?: InstanceFailoverGroupsCreateOrUpdateOptionalParams
-  ): Promise<InstanceFailoverGroupsCreateOrUpdateResponse>;
+  beginCreateOrUpdateAndWait(): Promise<
+    InstanceFailoverGroupsCreateOrUpdateResponse
+  >;
   /**
    * Deletes a failover group.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param locationName The name of the region where the resource is located.
-   * @param failoverGroupName The name of the failover group.
-   * @param options The options parameters.
+   *
    */
-  beginDelete(
-    resourceGroupName: string,
-    locationName: string,
-    failoverGroupName: string,
-    options?: InstanceFailoverGroupsDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  beginDelete(): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes a failover group.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param locationName The name of the region where the resource is located.
-   * @param failoverGroupName The name of the failover group.
-   * @param options The options parameters.
+   *
    */
-  beginDeleteAndWait(
-    resourceGroupName: string,
-    locationName: string,
-    failoverGroupName: string,
-    options?: InstanceFailoverGroupsDeleteOptionalParams
-  ): Promise<void>;
+  beginDeleteAndWait(): Promise<void>;
   /**
    * Fails over from the current primary managed instance to this managed instance.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param locationName The name of the region where the resource is located.
-   * @param failoverGroupName The name of the failover group.
-   * @param options The options parameters.
+   *
    */
-  beginFailover(
-    resourceGroupName: string,
-    locationName: string,
-    failoverGroupName: string,
-    options?: InstanceFailoverGroupsFailoverOptionalParams
-  ): Promise<
+  beginFailover(): Promise<
     PollerLike<
       PollOperationState<InstanceFailoverGroupsFailoverResponse>,
       InstanceFailoverGroupsFailoverResponse
@@ -137,33 +68,15 @@ export interface InstanceFailoverGroups {
   >;
   /**
    * Fails over from the current primary managed instance to this managed instance.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param locationName The name of the region where the resource is located.
-   * @param failoverGroupName The name of the failover group.
-   * @param options The options parameters.
+   *
    */
-  beginFailoverAndWait(
-    resourceGroupName: string,
-    locationName: string,
-    failoverGroupName: string,
-    options?: InstanceFailoverGroupsFailoverOptionalParams
-  ): Promise<InstanceFailoverGroupsFailoverResponse>;
+  beginFailoverAndWait(): Promise<InstanceFailoverGroupsFailoverResponse>;
   /**
    * Fails over from the current primary managed instance to this managed instance. This operation might
    * result in data loss.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param locationName The name of the region where the resource is located.
-   * @param failoverGroupName The name of the failover group.
-   * @param options The options parameters.
+   *
    */
-  beginForceFailoverAllowDataLoss(
-    resourceGroupName: string,
-    locationName: string,
-    failoverGroupName: string,
-    options?: InstanceFailoverGroupsForceFailoverAllowDataLossOptionalParams
-  ): Promise<
+  beginForceFailoverAllowDataLoss(): Promise<
     PollerLike<
       PollOperationState<
         InstanceFailoverGroupsForceFailoverAllowDataLossResponse
@@ -174,16 +87,9 @@ export interface InstanceFailoverGroups {
   /**
    * Fails over from the current primary managed instance to this managed instance. This operation might
    * result in data loss.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param locationName The name of the region where the resource is located.
-   * @param failoverGroupName The name of the failover group.
-   * @param options The options parameters.
+   *
    */
-  beginForceFailoverAllowDataLossAndWait(
-    resourceGroupName: string,
-    locationName: string,
-    failoverGroupName: string,
-    options?: InstanceFailoverGroupsForceFailoverAllowDataLossOptionalParams
-  ): Promise<InstanceFailoverGroupsForceFailoverAllowDataLossResponse>;
+  beginForceFailoverAllowDataLossAndWait(): Promise<
+    InstanceFailoverGroupsForceFailoverAllowDataLossResponse
+  >;
 }

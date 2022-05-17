@@ -10,74 +10,28 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   DeploymentExtended,
-  DeploymentsListAtScopeOptionalParams,
-  DeploymentsListAtTenantScopeOptionalParams,
-  DeploymentsListAtManagementGroupScopeOptionalParams,
-  DeploymentsListAtSubscriptionScopeOptionalParams,
-  DeploymentsListByResourceGroupOptionalParams,
-  DeploymentsDeleteAtScopeOptionalParams,
-  DeploymentsCheckExistenceAtScopeOptionalParams,
-  Deployment,
-  DeploymentsCreateOrUpdateAtScopeOptionalParams,
   DeploymentsCreateOrUpdateAtScopeResponse,
-  DeploymentsGetAtScopeOptionalParams,
   DeploymentsGetAtScopeResponse,
-  DeploymentsCancelAtScopeOptionalParams,
-  DeploymentsValidateAtScopeOptionalParams,
   DeploymentsValidateAtScopeResponse,
-  DeploymentsExportTemplateAtScopeOptionalParams,
   DeploymentsExportTemplateAtScopeResponse,
-  DeploymentsDeleteAtTenantScopeOptionalParams,
-  DeploymentsCheckExistenceAtTenantScopeOptionalParams,
-  ScopedDeployment,
-  DeploymentsCreateOrUpdateAtTenantScopeOptionalParams,
   DeploymentsCreateOrUpdateAtTenantScopeResponse,
-  DeploymentsGetAtTenantScopeOptionalParams,
   DeploymentsGetAtTenantScopeResponse,
-  DeploymentsCancelAtTenantScopeOptionalParams,
-  DeploymentsValidateAtTenantScopeOptionalParams,
   DeploymentsValidateAtTenantScopeResponse,
-  DeploymentsExportTemplateAtTenantScopeOptionalParams,
   DeploymentsExportTemplateAtTenantScopeResponse,
-  DeploymentsDeleteAtManagementGroupScopeOptionalParams,
-  DeploymentsCheckExistenceAtManagementGroupScopeOptionalParams,
-  DeploymentsCreateOrUpdateAtManagementGroupScopeOptionalParams,
   DeploymentsCreateOrUpdateAtManagementGroupScopeResponse,
-  DeploymentsGetAtManagementGroupScopeOptionalParams,
   DeploymentsGetAtManagementGroupScopeResponse,
-  DeploymentsCancelAtManagementGroupScopeOptionalParams,
-  DeploymentsValidateAtManagementGroupScopeOptionalParams,
   DeploymentsValidateAtManagementGroupScopeResponse,
-  DeploymentsExportTemplateAtManagementGroupScopeOptionalParams,
   DeploymentsExportTemplateAtManagementGroupScopeResponse,
-  DeploymentsDeleteAtSubscriptionScopeOptionalParams,
-  DeploymentsCheckExistenceAtSubscriptionScopeOptionalParams,
-  DeploymentsCreateOrUpdateAtSubscriptionScopeOptionalParams,
   DeploymentsCreateOrUpdateAtSubscriptionScopeResponse,
-  DeploymentsGetAtSubscriptionScopeOptionalParams,
   DeploymentsGetAtSubscriptionScopeResponse,
-  DeploymentsCancelAtSubscriptionScopeOptionalParams,
-  DeploymentsValidateAtSubscriptionScopeOptionalParams,
   DeploymentsValidateAtSubscriptionScopeResponse,
-  DeploymentWhatIf,
-  DeploymentsWhatIfAtSubscriptionScopeOptionalParams,
   DeploymentsWhatIfAtSubscriptionScopeResponse,
-  DeploymentsExportTemplateAtSubscriptionScopeOptionalParams,
   DeploymentsExportTemplateAtSubscriptionScopeResponse,
-  DeploymentsDeleteOptionalParams,
-  DeploymentsCheckExistenceOptionalParams,
-  DeploymentsCreateOrUpdateOptionalParams,
   DeploymentsCreateOrUpdateResponse,
-  DeploymentsGetOptionalParams,
   DeploymentsGetResponse,
-  DeploymentsCancelOptionalParams,
-  DeploymentsValidateOptionalParams,
   DeploymentsValidateResponse,
-  DeploymentsWhatIfOptionalParams,
   DeploymentsWhatIfResponse,
-  DeploymentsExportTemplateOptionalParams,
   DeploymentsExportTemplateResponse,
-  DeploymentsCalculateTemplateHashOptionalParams,
   DeploymentsCalculateTemplateHashResponse
 } from "../models";
 
@@ -86,46 +40,29 @@ import {
 export interface Deployments {
   /**
    * Get all the deployments at the given scope.
-   * @param scope The scope of a deployment.
-   * @param options The options parameters.
+   *
    */
-  listAtScope(
-    scope: string,
-    options?: DeploymentsListAtScopeOptionalParams
-  ): PagedAsyncIterableIterator<DeploymentExtended>;
+  listAtScope(): PagedAsyncIterableIterator<DeploymentExtended>;
   /**
    * Get all the deployments at the tenant scope.
-   * @param options The options parameters.
+   *
    */
-  listAtTenantScope(
-    options?: DeploymentsListAtTenantScopeOptionalParams
-  ): PagedAsyncIterableIterator<DeploymentExtended>;
+  listAtTenantScope(): PagedAsyncIterableIterator<DeploymentExtended>;
   /**
    * Get all the deployments for a management group.
-   * @param groupId The management group ID.
-   * @param options The options parameters.
+   *
    */
-  listAtManagementGroupScope(
-    groupId: string,
-    options?: DeploymentsListAtManagementGroupScopeOptionalParams
-  ): PagedAsyncIterableIterator<DeploymentExtended>;
+  listAtManagementGroupScope(): PagedAsyncIterableIterator<DeploymentExtended>;
   /**
    * Get all the deployments for a subscription.
-   * @param options The options parameters.
+   *
    */
-  listAtSubscriptionScope(
-    options?: DeploymentsListAtSubscriptionScopeOptionalParams
-  ): PagedAsyncIterableIterator<DeploymentExtended>;
+  listAtSubscriptionScope(): PagedAsyncIterableIterator<DeploymentExtended>;
   /**
    * Get all the deployments for a resource group.
-   * @param resourceGroupName The name of the resource group with the deployments to get. The name is
-   *                          case insensitive.
-   * @param options The options parameters.
+   *
    */
-  listByResourceGroup(
-    resourceGroupName: string,
-    options?: DeploymentsListByResourceGroupOptionalParams
-  ): PagedAsyncIterableIterator<DeploymentExtended>;
+  listByResourceGroup(): PagedAsyncIterableIterator<DeploymentExtended>;
   /**
    * A template deployment that is currently running cannot be deleted. Deleting a template deployment
    * removes the associated deployment operations. This is an asynchronous operation that returns a
@@ -134,15 +71,9 @@ export interface Deployments {
    * call to the URI in the Location header returns a status of 202. When the process finishes, the URI
    * in the Location header returns a status of 204 on success. If the asynchronous request failed, the
    * URI in the Location header returns an error-level status code.
-   * @param scope The scope of a deployment.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  beginDeleteAtScope(
-    scope: string,
-    deploymentName: string,
-    options?: DeploymentsDeleteAtScopeOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  beginDeleteAtScope(): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * A template deployment that is currently running cannot be deleted. Deleting a template deployment
    * removes the associated deployment operations. This is an asynchronous operation that returns a
@@ -151,39 +82,19 @@ export interface Deployments {
    * call to the URI in the Location header returns a status of 202. When the process finishes, the URI
    * in the Location header returns a status of 204 on success. If the asynchronous request failed, the
    * URI in the Location header returns an error-level status code.
-   * @param scope The scope of a deployment.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  beginDeleteAtScopeAndWait(
-    scope: string,
-    deploymentName: string,
-    options?: DeploymentsDeleteAtScopeOptionalParams
-  ): Promise<void>;
+  beginDeleteAtScopeAndWait(): Promise<void>;
   /**
    * Checks whether the deployment exists.
-   * @param scope The scope of a deployment.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  checkExistenceAtScope(
-    scope: string,
-    deploymentName: string,
-    options?: DeploymentsCheckExistenceAtScopeOptionalParams
-  ): Promise<void>;
+  checkExistenceAtScope(): Promise<void>;
   /**
    * You can provide the template and parameters directly in the request or link to JSON files.
-   * @param scope The scope of a deployment.
-   * @param deploymentName The name of the deployment.
-   * @param parameters Additional parameters supplied to the operation.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdateAtScope(
-    scope: string,
-    deploymentName: string,
-    parameters: Deployment,
-    options?: DeploymentsCreateOrUpdateAtScopeOptionalParams
-  ): Promise<
+  beginCreateOrUpdateAtScope(): Promise<
     PollerLike<
       PollOperationState<DeploymentsCreateOrUpdateAtScopeResponse>,
       DeploymentsCreateOrUpdateAtScopeResponse
@@ -191,66 +102,34 @@ export interface Deployments {
   >;
   /**
    * You can provide the template and parameters directly in the request or link to JSON files.
-   * @param scope The scope of a deployment.
-   * @param deploymentName The name of the deployment.
-   * @param parameters Additional parameters supplied to the operation.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdateAtScopeAndWait(
-    scope: string,
-    deploymentName: string,
-    parameters: Deployment,
-    options?: DeploymentsCreateOrUpdateAtScopeOptionalParams
-  ): Promise<DeploymentsCreateOrUpdateAtScopeResponse>;
+  beginCreateOrUpdateAtScopeAndWait(): Promise<
+    DeploymentsCreateOrUpdateAtScopeResponse
+  >;
   /**
    * Gets a deployment.
-   * @param scope The scope of a deployment.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  getAtScope(
-    scope: string,
-    deploymentName: string,
-    options?: DeploymentsGetAtScopeOptionalParams
-  ): Promise<DeploymentsGetAtScopeResponse>;
+  getAtScope(): Promise<DeploymentsGetAtScopeResponse>;
   /**
    * You can cancel a deployment only if the provisioningState is Accepted or Running. After the
    * deployment is canceled, the provisioningState is set to Canceled. Canceling a template deployment
    * stops the currently running template deployment and leaves the resources partially deployed.
-   * @param scope The scope of a deployment.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  cancelAtScope(
-    scope: string,
-    deploymentName: string,
-    options?: DeploymentsCancelAtScopeOptionalParams
-  ): Promise<void>;
+  cancelAtScope(): Promise<void>;
   /**
    * Validates whether the specified template is syntactically correct and will be accepted by Azure
    * Resource Manager..
-   * @param scope The scope of a deployment.
-   * @param deploymentName The name of the deployment.
-   * @param parameters Parameters to validate.
-   * @param options The options parameters.
+   *
    */
-  validateAtScope(
-    scope: string,
-    deploymentName: string,
-    parameters: Deployment,
-    options?: DeploymentsValidateAtScopeOptionalParams
-  ): Promise<DeploymentsValidateAtScopeResponse>;
+  validateAtScope(): Promise<DeploymentsValidateAtScopeResponse>;
   /**
    * Exports the template used for specified deployment.
-   * @param scope The scope of a deployment.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  exportTemplateAtScope(
-    scope: string,
-    deploymentName: string,
-    options?: DeploymentsExportTemplateAtScopeOptionalParams
-  ): Promise<DeploymentsExportTemplateAtScopeResponse>;
+  exportTemplateAtScope(): Promise<DeploymentsExportTemplateAtScopeResponse>;
   /**
    * A template deployment that is currently running cannot be deleted. Deleting a template deployment
    * removes the associated deployment operations. This is an asynchronous operation that returns a
@@ -259,13 +138,11 @@ export interface Deployments {
    * call to the URI in the Location header returns a status of 202. When the process finishes, the URI
    * in the Location header returns a status of 204 on success. If the asynchronous request failed, the
    * URI in the Location header returns an error-level status code.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  beginDeleteAtTenantScope(
-    deploymentName: string,
-    options?: DeploymentsDeleteAtTenantScopeOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  beginDeleteAtTenantScope(): Promise<
+    PollerLike<PollOperationState<void>, void>
+  >;
   /**
    * A template deployment that is currently running cannot be deleted. Deleting a template deployment
    * removes the associated deployment operations. This is an asynchronous operation that returns a
@@ -274,33 +151,19 @@ export interface Deployments {
    * call to the URI in the Location header returns a status of 202. When the process finishes, the URI
    * in the Location header returns a status of 204 on success. If the asynchronous request failed, the
    * URI in the Location header returns an error-level status code.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  beginDeleteAtTenantScopeAndWait(
-    deploymentName: string,
-    options?: DeploymentsDeleteAtTenantScopeOptionalParams
-  ): Promise<void>;
+  beginDeleteAtTenantScopeAndWait(): Promise<void>;
   /**
    * Checks whether the deployment exists.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  checkExistenceAtTenantScope(
-    deploymentName: string,
-    options?: DeploymentsCheckExistenceAtTenantScopeOptionalParams
-  ): Promise<void>;
+  checkExistenceAtTenantScope(): Promise<void>;
   /**
    * You can provide the template and parameters directly in the request or link to JSON files.
-   * @param deploymentName The name of the deployment.
-   * @param parameters Additional parameters supplied to the operation.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdateAtTenantScope(
-    deploymentName: string,
-    parameters: ScopedDeployment,
-    options?: DeploymentsCreateOrUpdateAtTenantScopeOptionalParams
-  ): Promise<
+  beginCreateOrUpdateAtTenantScope(): Promise<
     PollerLike<
       PollOperationState<DeploymentsCreateOrUpdateAtTenantScopeResponse>,
       DeploymentsCreateOrUpdateAtTenantScopeResponse
@@ -308,56 +171,36 @@ export interface Deployments {
   >;
   /**
    * You can provide the template and parameters directly in the request or link to JSON files.
-   * @param deploymentName The name of the deployment.
-   * @param parameters Additional parameters supplied to the operation.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdateAtTenantScopeAndWait(
-    deploymentName: string,
-    parameters: ScopedDeployment,
-    options?: DeploymentsCreateOrUpdateAtTenantScopeOptionalParams
-  ): Promise<DeploymentsCreateOrUpdateAtTenantScopeResponse>;
+  beginCreateOrUpdateAtTenantScopeAndWait(): Promise<
+    DeploymentsCreateOrUpdateAtTenantScopeResponse
+  >;
   /**
    * Gets a deployment.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  getAtTenantScope(
-    deploymentName: string,
-    options?: DeploymentsGetAtTenantScopeOptionalParams
-  ): Promise<DeploymentsGetAtTenantScopeResponse>;
+  getAtTenantScope(): Promise<DeploymentsGetAtTenantScopeResponse>;
   /**
    * You can cancel a deployment only if the provisioningState is Accepted or Running. After the
    * deployment is canceled, the provisioningState is set to Canceled. Canceling a template deployment
    * stops the currently running template deployment and leaves the resources partially deployed.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  cancelAtTenantScope(
-    deploymentName: string,
-    options?: DeploymentsCancelAtTenantScopeOptionalParams
-  ): Promise<void>;
+  cancelAtTenantScope(): Promise<void>;
   /**
    * Validates whether the specified template is syntactically correct and will be accepted by Azure
    * Resource Manager..
-   * @param deploymentName The name of the deployment.
-   * @param parameters Parameters to validate.
-   * @param options The options parameters.
+   *
    */
-  validateAtTenantScope(
-    deploymentName: string,
-    parameters: ScopedDeployment,
-    options?: DeploymentsValidateAtTenantScopeOptionalParams
-  ): Promise<DeploymentsValidateAtTenantScopeResponse>;
+  validateAtTenantScope(): Promise<DeploymentsValidateAtTenantScopeResponse>;
   /**
    * Exports the template used for specified deployment.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  exportTemplateAtTenantScope(
-    deploymentName: string,
-    options?: DeploymentsExportTemplateAtTenantScopeOptionalParams
-  ): Promise<DeploymentsExportTemplateAtTenantScopeResponse>;
+  exportTemplateAtTenantScope(): Promise<
+    DeploymentsExportTemplateAtTenantScopeResponse
+  >;
   /**
    * A template deployment that is currently running cannot be deleted. Deleting a template deployment
    * removes the associated deployment operations. This is an asynchronous operation that returns a
@@ -366,15 +209,11 @@ export interface Deployments {
    * call to the URI in the Location header returns a status of 202. When the process finishes, the URI
    * in the Location header returns a status of 204 on success. If the asynchronous request failed, the
    * URI in the Location header returns an error-level status code.
-   * @param groupId The management group ID.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  beginDeleteAtManagementGroupScope(
-    groupId: string,
-    deploymentName: string,
-    options?: DeploymentsDeleteAtManagementGroupScopeOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  beginDeleteAtManagementGroupScope(): Promise<
+    PollerLike<PollOperationState<void>, void>
+  >;
   /**
    * A template deployment that is currently running cannot be deleted. Deleting a template deployment
    * removes the associated deployment operations. This is an asynchronous operation that returns a
@@ -383,39 +222,19 @@ export interface Deployments {
    * call to the URI in the Location header returns a status of 202. When the process finishes, the URI
    * in the Location header returns a status of 204 on success. If the asynchronous request failed, the
    * URI in the Location header returns an error-level status code.
-   * @param groupId The management group ID.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  beginDeleteAtManagementGroupScopeAndWait(
-    groupId: string,
-    deploymentName: string,
-    options?: DeploymentsDeleteAtManagementGroupScopeOptionalParams
-  ): Promise<void>;
+  beginDeleteAtManagementGroupScopeAndWait(): Promise<void>;
   /**
    * Checks whether the deployment exists.
-   * @param groupId The management group ID.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  checkExistenceAtManagementGroupScope(
-    groupId: string,
-    deploymentName: string,
-    options?: DeploymentsCheckExistenceAtManagementGroupScopeOptionalParams
-  ): Promise<void>;
+  checkExistenceAtManagementGroupScope(): Promise<void>;
   /**
    * You can provide the template and parameters directly in the request or link to JSON files.
-   * @param groupId The management group ID.
-   * @param deploymentName The name of the deployment.
-   * @param parameters Additional parameters supplied to the operation.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdateAtManagementGroupScope(
-    groupId: string,
-    deploymentName: string,
-    parameters: ScopedDeployment,
-    options?: DeploymentsCreateOrUpdateAtManagementGroupScopeOptionalParams
-  ): Promise<
+  beginCreateOrUpdateAtManagementGroupScope(): Promise<
     PollerLike<
       PollOperationState<
         DeploymentsCreateOrUpdateAtManagementGroupScopeResponse
@@ -425,66 +244,40 @@ export interface Deployments {
   >;
   /**
    * You can provide the template and parameters directly in the request or link to JSON files.
-   * @param groupId The management group ID.
-   * @param deploymentName The name of the deployment.
-   * @param parameters Additional parameters supplied to the operation.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdateAtManagementGroupScopeAndWait(
-    groupId: string,
-    deploymentName: string,
-    parameters: ScopedDeployment,
-    options?: DeploymentsCreateOrUpdateAtManagementGroupScopeOptionalParams
-  ): Promise<DeploymentsCreateOrUpdateAtManagementGroupScopeResponse>;
+  beginCreateOrUpdateAtManagementGroupScopeAndWait(): Promise<
+    DeploymentsCreateOrUpdateAtManagementGroupScopeResponse
+  >;
   /**
    * Gets a deployment.
-   * @param groupId The management group ID.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  getAtManagementGroupScope(
-    groupId: string,
-    deploymentName: string,
-    options?: DeploymentsGetAtManagementGroupScopeOptionalParams
-  ): Promise<DeploymentsGetAtManagementGroupScopeResponse>;
+  getAtManagementGroupScope(): Promise<
+    DeploymentsGetAtManagementGroupScopeResponse
+  >;
   /**
    * You can cancel a deployment only if the provisioningState is Accepted or Running. After the
    * deployment is canceled, the provisioningState is set to Canceled. Canceling a template deployment
    * stops the currently running template deployment and leaves the resources partially deployed.
-   * @param groupId The management group ID.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  cancelAtManagementGroupScope(
-    groupId: string,
-    deploymentName: string,
-    options?: DeploymentsCancelAtManagementGroupScopeOptionalParams
-  ): Promise<void>;
+  cancelAtManagementGroupScope(): Promise<void>;
   /**
    * Validates whether the specified template is syntactically correct and will be accepted by Azure
    * Resource Manager..
-   * @param groupId The management group ID.
-   * @param deploymentName The name of the deployment.
-   * @param parameters Parameters to validate.
-   * @param options The options parameters.
+   *
    */
-  validateAtManagementGroupScope(
-    groupId: string,
-    deploymentName: string,
-    parameters: ScopedDeployment,
-    options?: DeploymentsValidateAtManagementGroupScopeOptionalParams
-  ): Promise<DeploymentsValidateAtManagementGroupScopeResponse>;
+  validateAtManagementGroupScope(): Promise<
+    DeploymentsValidateAtManagementGroupScopeResponse
+  >;
   /**
    * Exports the template used for specified deployment.
-   * @param groupId The management group ID.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  exportTemplateAtManagementGroupScope(
-    groupId: string,
-    deploymentName: string,
-    options?: DeploymentsExportTemplateAtManagementGroupScopeOptionalParams
-  ): Promise<DeploymentsExportTemplateAtManagementGroupScopeResponse>;
+  exportTemplateAtManagementGroupScope(): Promise<
+    DeploymentsExportTemplateAtManagementGroupScopeResponse
+  >;
   /**
    * A template deployment that is currently running cannot be deleted. Deleting a template deployment
    * removes the associated deployment operations. This is an asynchronous operation that returns a
@@ -493,13 +286,11 @@ export interface Deployments {
    * call to the URI in the Location header returns a status of 202. When the process finishes, the URI
    * in the Location header returns a status of 204 on success. If the asynchronous request failed, the
    * URI in the Location header returns an error-level status code.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  beginDeleteAtSubscriptionScope(
-    deploymentName: string,
-    options?: DeploymentsDeleteAtSubscriptionScopeOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  beginDeleteAtSubscriptionScope(): Promise<
+    PollerLike<PollOperationState<void>, void>
+  >;
   /**
    * A template deployment that is currently running cannot be deleted. Deleting a template deployment
    * removes the associated deployment operations. This is an asynchronous operation that returns a
@@ -508,33 +299,19 @@ export interface Deployments {
    * call to the URI in the Location header returns a status of 202. When the process finishes, the URI
    * in the Location header returns a status of 204 on success. If the asynchronous request failed, the
    * URI in the Location header returns an error-level status code.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  beginDeleteAtSubscriptionScopeAndWait(
-    deploymentName: string,
-    options?: DeploymentsDeleteAtSubscriptionScopeOptionalParams
-  ): Promise<void>;
+  beginDeleteAtSubscriptionScopeAndWait(): Promise<void>;
   /**
    * Checks whether the deployment exists.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  checkExistenceAtSubscriptionScope(
-    deploymentName: string,
-    options?: DeploymentsCheckExistenceAtSubscriptionScopeOptionalParams
-  ): Promise<void>;
+  checkExistenceAtSubscriptionScope(): Promise<void>;
   /**
    * You can provide the template and parameters directly in the request or link to JSON files.
-   * @param deploymentName The name of the deployment.
-   * @param parameters Additional parameters supplied to the operation.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdateAtSubscriptionScope(
-    deploymentName: string,
-    parameters: Deployment,
-    options?: DeploymentsCreateOrUpdateAtSubscriptionScopeOptionalParams
-  ): Promise<
+  beginCreateOrUpdateAtSubscriptionScope(): Promise<
     PollerLike<
       PollOperationState<DeploymentsCreateOrUpdateAtSubscriptionScopeResponse>,
       DeploymentsCreateOrUpdateAtSubscriptionScopeResponse
@@ -542,58 +319,36 @@ export interface Deployments {
   >;
   /**
    * You can provide the template and parameters directly in the request or link to JSON files.
-   * @param deploymentName The name of the deployment.
-   * @param parameters Additional parameters supplied to the operation.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdateAtSubscriptionScopeAndWait(
-    deploymentName: string,
-    parameters: Deployment,
-    options?: DeploymentsCreateOrUpdateAtSubscriptionScopeOptionalParams
-  ): Promise<DeploymentsCreateOrUpdateAtSubscriptionScopeResponse>;
+  beginCreateOrUpdateAtSubscriptionScopeAndWait(): Promise<
+    DeploymentsCreateOrUpdateAtSubscriptionScopeResponse
+  >;
   /**
    * Gets a deployment.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  getAtSubscriptionScope(
-    deploymentName: string,
-    options?: DeploymentsGetAtSubscriptionScopeOptionalParams
-  ): Promise<DeploymentsGetAtSubscriptionScopeResponse>;
+  getAtSubscriptionScope(): Promise<DeploymentsGetAtSubscriptionScopeResponse>;
   /**
    * You can cancel a deployment only if the provisioningState is Accepted or Running. After the
    * deployment is canceled, the provisioningState is set to Canceled. Canceling a template deployment
    * stops the currently running template deployment and leaves the resources partially deployed.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  cancelAtSubscriptionScope(
-    deploymentName: string,
-    options?: DeploymentsCancelAtSubscriptionScopeOptionalParams
-  ): Promise<void>;
+  cancelAtSubscriptionScope(): Promise<void>;
   /**
    * Validates whether the specified template is syntactically correct and will be accepted by Azure
    * Resource Manager..
-   * @param deploymentName The name of the deployment.
-   * @param parameters Parameters to validate.
-   * @param options The options parameters.
+   *
    */
-  validateAtSubscriptionScope(
-    deploymentName: string,
-    parameters: Deployment,
-    options?: DeploymentsValidateAtSubscriptionScopeOptionalParams
-  ): Promise<DeploymentsValidateAtSubscriptionScopeResponse>;
+  validateAtSubscriptionScope(): Promise<
+    DeploymentsValidateAtSubscriptionScopeResponse
+  >;
   /**
    * Returns changes that will be made by the deployment if executed at the scope of the subscription.
-   * @param deploymentName The name of the deployment.
-   * @param parameters Parameters to What If.
-   * @param options The options parameters.
+   *
    */
-  beginWhatIfAtSubscriptionScope(
-    deploymentName: string,
-    parameters: DeploymentWhatIf,
-    options?: DeploymentsWhatIfAtSubscriptionScopeOptionalParams
-  ): Promise<
+  beginWhatIfAtSubscriptionScope(): Promise<
     PollerLike<
       PollOperationState<DeploymentsWhatIfAtSubscriptionScopeResponse>,
       DeploymentsWhatIfAtSubscriptionScopeResponse
@@ -601,24 +356,18 @@ export interface Deployments {
   >;
   /**
    * Returns changes that will be made by the deployment if executed at the scope of the subscription.
-   * @param deploymentName The name of the deployment.
-   * @param parameters Parameters to What If.
-   * @param options The options parameters.
+   *
    */
-  beginWhatIfAtSubscriptionScopeAndWait(
-    deploymentName: string,
-    parameters: DeploymentWhatIf,
-    options?: DeploymentsWhatIfAtSubscriptionScopeOptionalParams
-  ): Promise<DeploymentsWhatIfAtSubscriptionScopeResponse>;
+  beginWhatIfAtSubscriptionScopeAndWait(): Promise<
+    DeploymentsWhatIfAtSubscriptionScopeResponse
+  >;
   /**
    * Exports the template used for specified deployment.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  exportTemplateAtSubscriptionScope(
-    deploymentName: string,
-    options?: DeploymentsExportTemplateAtSubscriptionScopeOptionalParams
-  ): Promise<DeploymentsExportTemplateAtSubscriptionScopeResponse>;
+  exportTemplateAtSubscriptionScope(): Promise<
+    DeploymentsExportTemplateAtSubscriptionScopeResponse
+  >;
   /**
    * A template deployment that is currently running cannot be deleted. Deleting a template deployment
    * removes the associated deployment operations. Deleting a template deployment does not affect the
@@ -628,16 +377,9 @@ export interface Deployments {
    * Location header returns a status of 202. When the process finishes, the URI in the Location header
    * returns a status of 204 on success. If the asynchronous request failed, the URI in the Location
    * header returns an error-level status code.
-   * @param resourceGroupName The name of the resource group with the deployment to delete. The name is
-   *                          case insensitive.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  beginDelete(
-    resourceGroupName: string,
-    deploymentName: string,
-    options?: DeploymentsDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  beginDelete(): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * A template deployment that is currently running cannot be deleted. Deleting a template deployment
    * removes the associated deployment operations. Deleting a template deployment does not affect the
@@ -647,42 +389,19 @@ export interface Deployments {
    * Location header returns a status of 202. When the process finishes, the URI in the Location header
    * returns a status of 204 on success. If the asynchronous request failed, the URI in the Location
    * header returns an error-level status code.
-   * @param resourceGroupName The name of the resource group with the deployment to delete. The name is
-   *                          case insensitive.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  beginDeleteAndWait(
-    resourceGroupName: string,
-    deploymentName: string,
-    options?: DeploymentsDeleteOptionalParams
-  ): Promise<void>;
+  beginDeleteAndWait(): Promise<void>;
   /**
    * Checks whether the deployment exists.
-   * @param resourceGroupName The name of the resource group with the deployment to check. The name is
-   *                          case insensitive.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  checkExistence(
-    resourceGroupName: string,
-    deploymentName: string,
-    options?: DeploymentsCheckExistenceOptionalParams
-  ): Promise<void>;
+  checkExistence(): Promise<void>;
   /**
    * You can provide the template and parameters directly in the request or link to JSON files.
-   * @param resourceGroupName The name of the resource group to deploy the resources to. The name is case
-   *                          insensitive. The resource group must already exist.
-   * @param deploymentName The name of the deployment.
-   * @param parameters Additional parameters supplied to the operation.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdate(
-    resourceGroupName: string,
-    deploymentName: string,
-    parameters: Deployment,
-    options?: DeploymentsCreateOrUpdateOptionalParams
-  ): Promise<
+  beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<DeploymentsCreateOrUpdateResponse>,
       DeploymentsCreateOrUpdateResponse
@@ -690,71 +409,32 @@ export interface Deployments {
   >;
   /**
    * You can provide the template and parameters directly in the request or link to JSON files.
-   * @param resourceGroupName The name of the resource group to deploy the resources to. The name is case
-   *                          insensitive. The resource group must already exist.
-   * @param deploymentName The name of the deployment.
-   * @param parameters Additional parameters supplied to the operation.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    deploymentName: string,
-    parameters: Deployment,
-    options?: DeploymentsCreateOrUpdateOptionalParams
-  ): Promise<DeploymentsCreateOrUpdateResponse>;
+  beginCreateOrUpdateAndWait(): Promise<DeploymentsCreateOrUpdateResponse>;
   /**
    * Gets a deployment.
-   * @param resourceGroupName The name of the resource group. The name is case insensitive.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    deploymentName: string,
-    options?: DeploymentsGetOptionalParams
-  ): Promise<DeploymentsGetResponse>;
+  get(): Promise<DeploymentsGetResponse>;
   /**
    * You can cancel a deployment only if the provisioningState is Accepted or Running. After the
    * deployment is canceled, the provisioningState is set to Canceled. Canceling a template deployment
    * stops the currently running template deployment and leaves the resource group partially deployed.
-   * @param resourceGroupName The name of the resource group. The name is case insensitive.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  cancel(
-    resourceGroupName: string,
-    deploymentName: string,
-    options?: DeploymentsCancelOptionalParams
-  ): Promise<void>;
+  cancel(): Promise<void>;
   /**
    * Validates whether the specified template is syntactically correct and will be accepted by Azure
    * Resource Manager..
-   * @param resourceGroupName The name of the resource group the template will be deployed to. The name
-   *                          is case insensitive.
-   * @param deploymentName The name of the deployment.
-   * @param parameters Parameters to validate.
-   * @param options The options parameters.
+   *
    */
-  validate(
-    resourceGroupName: string,
-    deploymentName: string,
-    parameters: Deployment,
-    options?: DeploymentsValidateOptionalParams
-  ): Promise<DeploymentsValidateResponse>;
+  validate(): Promise<DeploymentsValidateResponse>;
   /**
    * Returns changes that will be made by the deployment if executed at the scope of the resource group.
-   * @param resourceGroupName The name of the resource group the template will be deployed to. The name
-   *                          is case insensitive.
-   * @param deploymentName The name of the deployment.
-   * @param parameters Parameters to validate.
-   * @param options The options parameters.
+   *
    */
-  beginWhatIf(
-    resourceGroupName: string,
-    deploymentName: string,
-    parameters: DeploymentWhatIf,
-    options?: DeploymentsWhatIfOptionalParams
-  ): Promise<
+  beginWhatIf(): Promise<
     PollerLike<
       PollOperationState<DeploymentsWhatIfResponse>,
       DeploymentsWhatIfResponse
@@ -762,36 +442,17 @@ export interface Deployments {
   >;
   /**
    * Returns changes that will be made by the deployment if executed at the scope of the resource group.
-   * @param resourceGroupName The name of the resource group the template will be deployed to. The name
-   *                          is case insensitive.
-   * @param deploymentName The name of the deployment.
-   * @param parameters Parameters to validate.
-   * @param options The options parameters.
+   *
    */
-  beginWhatIfAndWait(
-    resourceGroupName: string,
-    deploymentName: string,
-    parameters: DeploymentWhatIf,
-    options?: DeploymentsWhatIfOptionalParams
-  ): Promise<DeploymentsWhatIfResponse>;
+  beginWhatIfAndWait(): Promise<DeploymentsWhatIfResponse>;
   /**
    * Exports the template used for specified deployment.
-   * @param resourceGroupName The name of the resource group. The name is case insensitive.
-   * @param deploymentName The name of the deployment.
-   * @param options The options parameters.
+   *
    */
-  exportTemplate(
-    resourceGroupName: string,
-    deploymentName: string,
-    options?: DeploymentsExportTemplateOptionalParams
-  ): Promise<DeploymentsExportTemplateResponse>;
+  exportTemplate(): Promise<DeploymentsExportTemplateResponse>;
   /**
    * Calculate the hash of the given template.
-   * @param template The template provided to calculate hash.
-   * @param options The options parameters.
+   *
    */
-  calculateTemplateHash(
-    template: Record<string, unknown>,
-    options?: DeploymentsCalculateTemplateHashOptionalParams
-  ): Promise<DeploymentsCalculateTemplateHashResponse>;
+  calculateTemplateHash(): Promise<DeploymentsCalculateTemplateHashResponse>;
 }

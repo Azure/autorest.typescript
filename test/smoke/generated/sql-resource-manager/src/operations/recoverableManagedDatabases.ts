@@ -10,14 +10,10 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { RecoverableManagedDatabases } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import {
   RecoverableManagedDatabase,
-  RecoverableManagedDatabasesListByInstanceNextOptionalParams,
-  RecoverableManagedDatabasesListByInstanceOptionalParams,
   RecoverableManagedDatabasesListByInstanceResponse,
-  RecoverableManagedDatabasesGetOptionalParams,
   RecoverableManagedDatabasesGetResponse,
   RecoverableManagedDatabasesListByInstanceNextResponse
 } from "../models";
@@ -26,33 +22,20 @@ import {
 /** Class containing RecoverableManagedDatabases operations. */
 export class RecoverableManagedDatabasesImpl
   implements RecoverableManagedDatabases {
-  private readonly client: SqlManagementClient;
-
   /**
    * Initialize a new instance of the class RecoverableManagedDatabases class.
    * @param client Reference to the service client
    */
-  constructor(client: SqlManagementClient) {
-    this.client = client;
-  }
+  constructor(client: SqlManagementClient) {}
 
   /**
    * Gets a list of recoverable managed databases.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param options The options parameters.
+   *
    */
-  public listByInstance(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    options?: RecoverableManagedDatabasesListByInstanceOptionalParams
-  ): PagedAsyncIterableIterator<RecoverableManagedDatabase> {
-    const iter = this.listByInstancePagingAll(
-      resourceGroupName,
-      managedInstanceName,
-      options
-    );
+  public listByInstance(): PagedAsyncIterableIterator<
+    RecoverableManagedDatabase
+  > {
+    const iter = this.listByInstancePagingAll();
     return {
       next() {
         return iter.next();
@@ -61,177 +44,52 @@ export class RecoverableManagedDatabasesImpl
         return this;
       },
       byPage: () => {
-        return this.listByInstancePagingPage(
-          resourceGroupName,
-          managedInstanceName,
-          options
-        );
+        return this.listByInstancePagingPage();
       }
     };
   }
 
-  private async *listByInstancePagingPage(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    options?: RecoverableManagedDatabasesListByInstanceOptionalParams
-  ): AsyncIterableIterator<RecoverableManagedDatabase[]> {
-    let result = await this._listByInstance(
-      resourceGroupName,
-      managedInstanceName,
-      options
-    );
+  private async *listByInstancePagingPage(): AsyncIterableIterator<
+    RecoverableManagedDatabase[]
+  > {
+    let result = await this._listByInstance();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listByInstanceNext(
-        resourceGroupName,
-        managedInstanceName,
-        continuationToken,
-        options
-      );
+      result = await this._listByInstanceNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listByInstancePagingAll(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    options?: RecoverableManagedDatabasesListByInstanceOptionalParams
-  ): AsyncIterableIterator<RecoverableManagedDatabase> {
-    for await (const page of this.listByInstancePagingPage(
-      resourceGroupName,
-      managedInstanceName,
-      options
-    )) {
+  private async *listByInstancePagingAll(): AsyncIterableIterator<
+    RecoverableManagedDatabase
+  > {
+    for await (const page of this.listByInstancePagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Gets a list of recoverable managed databases.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param options The options parameters.
+   *
    */
-  private _listByInstance(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    options?: RecoverableManagedDatabasesListByInstanceOptionalParams
-  ): Promise<RecoverableManagedDatabasesListByInstanceResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, managedInstanceName, options },
-      listByInstanceOperationSpec
-    );
-  }
+  private _listByInstance(): Promise<
+    RecoverableManagedDatabasesListByInstanceResponse
+  > {}
 
   /**
    * Gets a recoverable managed database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param recoverableDatabaseName
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    recoverableDatabaseName: string,
-    options?: RecoverableManagedDatabasesGetOptionalParams
-  ): Promise<RecoverableManagedDatabasesGetResponse> {
-    return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        recoverableDatabaseName,
-        options
-      },
-      getOperationSpec
-    );
-  }
+  get(): Promise<RecoverableManagedDatabasesGetResponse> {}
 
   /**
    * ListByInstanceNext
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param nextLink The nextLink from the previous successful call to the ListByInstance method.
-   * @param options The options parameters.
+   *
    */
-  private _listByInstanceNext(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    nextLink: string,
-    options?: RecoverableManagedDatabasesListByInstanceNextOptionalParams
-  ): Promise<RecoverableManagedDatabasesListByInstanceNextResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, managedInstanceName, nextLink, options },
-      listByInstanceNextOperationSpec
-    );
-  }
+  private _listByInstanceNext(): Promise<
+    RecoverableManagedDatabasesListByInstanceNextResponse
+  > {}
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
-
-const listByInstanceOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/recoverableDatabases",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.RecoverableManagedDatabaseListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.managedInstanceName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/recoverableDatabases/{recoverableDatabaseName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.RecoverableManagedDatabase
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.managedInstanceName,
-    Parameters.recoverableDatabaseName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByInstanceNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.RecoverableManagedDatabaseListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.nextLink,
-    Parameters.managedInstanceName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};

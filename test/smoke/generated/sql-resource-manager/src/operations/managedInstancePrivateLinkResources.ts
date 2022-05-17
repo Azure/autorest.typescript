@@ -10,14 +10,10 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { ManagedInstancePrivateLinkResources } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import {
   ManagedInstancePrivateLink,
-  ManagedInstancePrivateLinkResourcesListByManagedInstanceNextOptionalParams,
-  ManagedInstancePrivateLinkResourcesListByManagedInstanceOptionalParams,
   ManagedInstancePrivateLinkResourcesListByManagedInstanceResponse,
-  ManagedInstancePrivateLinkResourcesGetOptionalParams,
   ManagedInstancePrivateLinkResourcesGetResponse,
   ManagedInstancePrivateLinkResourcesListByManagedInstanceNextResponse
 } from "../models";
@@ -26,33 +22,20 @@ import {
 /** Class containing ManagedInstancePrivateLinkResources operations. */
 export class ManagedInstancePrivateLinkResourcesImpl
   implements ManagedInstancePrivateLinkResources {
-  private readonly client: SqlManagementClient;
-
   /**
    * Initialize a new instance of the class ManagedInstancePrivateLinkResources class.
    * @param client Reference to the service client
    */
-  constructor(client: SqlManagementClient) {
-    this.client = client;
-  }
+  constructor(client: SqlManagementClient) {}
 
   /**
    * Gets the private link resources for SQL server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param options The options parameters.
+   *
    */
-  public listByManagedInstance(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    options?: ManagedInstancePrivateLinkResourcesListByManagedInstanceOptionalParams
-  ): PagedAsyncIterableIterator<ManagedInstancePrivateLink> {
-    const iter = this.listByManagedInstancePagingAll(
-      resourceGroupName,
-      managedInstanceName,
-      options
-    );
+  public listByManagedInstance(): PagedAsyncIterableIterator<
+    ManagedInstancePrivateLink
+  > {
+    const iter = this.listByManagedInstancePagingAll();
     return {
       next() {
         return iter.next();
@@ -61,174 +44,52 @@ export class ManagedInstancePrivateLinkResourcesImpl
         return this;
       },
       byPage: () => {
-        return this.listByManagedInstancePagingPage(
-          resourceGroupName,
-          managedInstanceName,
-          options
-        );
+        return this.listByManagedInstancePagingPage();
       }
     };
   }
 
-  private async *listByManagedInstancePagingPage(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    options?: ManagedInstancePrivateLinkResourcesListByManagedInstanceOptionalParams
-  ): AsyncIterableIterator<ManagedInstancePrivateLink[]> {
-    let result = await this._listByManagedInstance(
-      resourceGroupName,
-      managedInstanceName,
-      options
-    );
+  private async *listByManagedInstancePagingPage(): AsyncIterableIterator<
+    ManagedInstancePrivateLink[]
+  > {
+    let result = await this._listByManagedInstance();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listByManagedInstanceNext(
-        resourceGroupName,
-        managedInstanceName,
-        continuationToken,
-        options
-      );
+      result = await this._listByManagedInstanceNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listByManagedInstancePagingAll(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    options?: ManagedInstancePrivateLinkResourcesListByManagedInstanceOptionalParams
-  ): AsyncIterableIterator<ManagedInstancePrivateLink> {
-    for await (const page of this.listByManagedInstancePagingPage(
-      resourceGroupName,
-      managedInstanceName,
-      options
-    )) {
+  private async *listByManagedInstancePagingAll(): AsyncIterableIterator<
+    ManagedInstancePrivateLink
+  > {
+    for await (const page of this.listByManagedInstancePagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Gets the private link resources for SQL server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param options The options parameters.
+   *
    */
-  private _listByManagedInstance(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    options?: ManagedInstancePrivateLinkResourcesListByManagedInstanceOptionalParams
-  ): Promise<ManagedInstancePrivateLinkResourcesListByManagedInstanceResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, managedInstanceName, options },
-      listByManagedInstanceOperationSpec
-    );
-  }
+  private _listByManagedInstance(): Promise<
+    ManagedInstancePrivateLinkResourcesListByManagedInstanceResponse
+  > {}
 
   /**
    * Gets a private link resource for SQL server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param groupName The name of the private link resource.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    groupName: string,
-    options?: ManagedInstancePrivateLinkResourcesGetOptionalParams
-  ): Promise<ManagedInstancePrivateLinkResourcesGetResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, managedInstanceName, groupName, options },
-      getOperationSpec
-    );
-  }
+  get(): Promise<ManagedInstancePrivateLinkResourcesGetResponse> {}
 
   /**
    * ListByManagedInstanceNext
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param nextLink The nextLink from the previous successful call to the ListByManagedInstance method.
-   * @param options The options parameters.
+   *
    */
-  private _listByManagedInstanceNext(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    nextLink: string,
-    options?: ManagedInstancePrivateLinkResourcesListByManagedInstanceNextOptionalParams
-  ): Promise<
+  private _listByManagedInstanceNext(): Promise<
     ManagedInstancePrivateLinkResourcesListByManagedInstanceNextResponse
-  > {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, managedInstanceName, nextLink, options },
-      listByManagedInstanceNextOperationSpec
-    );
-  }
+  > {}
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
-
-const listByManagedInstanceOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/privateLinkResources",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ManagedInstancePrivateLinkListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.managedInstanceName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/privateLinkResources/{groupName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ManagedInstancePrivateLink
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.managedInstanceName,
-    Parameters.groupName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByManagedInstanceNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ManagedInstancePrivateLinkListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.nextLink,
-    Parameters.managedInstanceName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};

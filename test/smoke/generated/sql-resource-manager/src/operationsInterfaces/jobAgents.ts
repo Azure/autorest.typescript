@@ -10,14 +10,8 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   JobAgent,
-  JobAgentsListByServerOptionalParams,
-  JobAgentsGetOptionalParams,
   JobAgentsGetResponse,
-  JobAgentsCreateOrUpdateOptionalParams,
   JobAgentsCreateOrUpdateResponse,
-  JobAgentsDeleteOptionalParams,
-  JobAgentUpdate,
-  JobAgentsUpdateOptionalParams,
   JobAgentsUpdateResponse
 } from "../models";
 
@@ -26,46 +20,19 @@ import {
 export interface JobAgents {
   /**
    * Gets a list of job agents in a server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  listByServer(
-    resourceGroupName: string,
-    serverName: string,
-    options?: JobAgentsListByServerOptionalParams
-  ): PagedAsyncIterableIterator<JobAgent>;
+  listByServer(): PagedAsyncIterableIterator<JobAgent>;
   /**
    * Gets a job agent.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param jobAgentName The name of the job agent to be retrieved.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    jobAgentName: string,
-    options?: JobAgentsGetOptionalParams
-  ): Promise<JobAgentsGetResponse>;
+  get(): Promise<JobAgentsGetResponse>;
   /**
    * Creates or updates a job agent.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param jobAgentName The name of the job agent to be created or updated.
-   * @param parameters The requested job agent resource state.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    jobAgentName: string,
-    parameters: JobAgent,
-    options?: JobAgentsCreateOrUpdateOptionalParams
-  ): Promise<
+  beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<JobAgentsCreateOrUpdateResponse>,
       JobAgentsCreateOrUpdateResponse
@@ -73,64 +40,24 @@ export interface JobAgents {
   >;
   /**
    * Creates or updates a job agent.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param jobAgentName The name of the job agent to be created or updated.
-   * @param parameters The requested job agent resource state.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    jobAgentName: string,
-    parameters: JobAgent,
-    options?: JobAgentsCreateOrUpdateOptionalParams
-  ): Promise<JobAgentsCreateOrUpdateResponse>;
+  beginCreateOrUpdateAndWait(): Promise<JobAgentsCreateOrUpdateResponse>;
   /**
    * Deletes a job agent.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param jobAgentName The name of the job agent to be deleted.
-   * @param options The options parameters.
+   *
    */
-  beginDelete(
-    resourceGroupName: string,
-    serverName: string,
-    jobAgentName: string,
-    options?: JobAgentsDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  beginDelete(): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes a job agent.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param jobAgentName The name of the job agent to be deleted.
-   * @param options The options parameters.
+   *
    */
-  beginDeleteAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    jobAgentName: string,
-    options?: JobAgentsDeleteOptionalParams
-  ): Promise<void>;
+  beginDeleteAndWait(): Promise<void>;
   /**
    * Updates a job agent.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param jobAgentName The name of the job agent to be updated.
-   * @param parameters The update to the job agent.
-   * @param options The options parameters.
+   *
    */
-  beginUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    jobAgentName: string,
-    parameters: JobAgentUpdate,
-    options?: JobAgentsUpdateOptionalParams
-  ): Promise<
+  beginUpdate(): Promise<
     PollerLike<
       PollOperationState<JobAgentsUpdateResponse>,
       JobAgentsUpdateResponse
@@ -138,18 +65,7 @@ export interface JobAgents {
   >;
   /**
    * Updates a job agent.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param jobAgentName The name of the job agent to be updated.
-   * @param parameters The update to the job agent.
-   * @param options The options parameters.
+   *
    */
-  beginUpdateAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    jobAgentName: string,
-    parameters: JobAgentUpdate,
-    options?: JobAgentsUpdateOptionalParams
-  ): Promise<JobAgentsUpdateResponse>;
+  beginUpdateAndWait(): Promise<JobAgentsUpdateResponse>;
 }

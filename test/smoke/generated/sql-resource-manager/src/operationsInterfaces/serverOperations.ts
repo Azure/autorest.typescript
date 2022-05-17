@@ -7,24 +7,14 @@
  */
 
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import {
-  ServerOperation,
-  ServerOperationsListByServerOptionalParams
-} from "../models";
+import { ServerOperation } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a ServerOperations. */
 export interface ServerOperations {
   /**
    * Gets a list of operations performed on the server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  listByServer(
-    resourceGroupName: string,
-    serverName: string,
-    options?: ServerOperationsListByServerOptionalParams
-  ): PagedAsyncIterableIterator<ServerOperation>;
+  listByServer(): PagedAsyncIterableIterator<ServerOperation>;
 }

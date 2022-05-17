@@ -10,13 +10,9 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { ElasticPoolOperations } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import {
   ElasticPoolOperation,
-  ElasticPoolOperationsListByElasticPoolNextOptionalParams,
-  ElasticPoolOperationsListByElasticPoolOptionalParams,
-  ElasticPoolOperationsCancelOptionalParams,
   ElasticPoolOperationsListByElasticPoolResponse,
   ElasticPoolOperationsListByElasticPoolNextResponse
 } from "../models";
@@ -24,36 +20,18 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing ElasticPoolOperations operations. */
 export class ElasticPoolOperationsImpl implements ElasticPoolOperations {
-  private readonly client: SqlManagementClient;
-
   /**
    * Initialize a new instance of the class ElasticPoolOperations class.
    * @param client Reference to the service client
    */
-  constructor(client: SqlManagementClient) {
-    this.client = client;
-  }
+  constructor(client: SqlManagementClient) {}
 
   /**
    * Gets a list of operations performed on the elastic pool.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param elasticPoolName
-   * @param options The options parameters.
+   *
    */
-  public listByElasticPool(
-    resourceGroupName: string,
-    serverName: string,
-    elasticPoolName: string,
-    options?: ElasticPoolOperationsListByElasticPoolOptionalParams
-  ): PagedAsyncIterableIterator<ElasticPoolOperation> {
-    const iter = this.listByElasticPoolPagingAll(
-      resourceGroupName,
-      serverName,
-      elasticPoolName,
-      options
-    );
+  public listByElasticPool(): PagedAsyncIterableIterator<ElasticPoolOperation> {
+    const iter = this.listByElasticPoolPagingAll();
     return {
       next() {
         return iter.next();
@@ -62,181 +40,52 @@ export class ElasticPoolOperationsImpl implements ElasticPoolOperations {
         return this;
       },
       byPage: () => {
-        return this.listByElasticPoolPagingPage(
-          resourceGroupName,
-          serverName,
-          elasticPoolName,
-          options
-        );
+        return this.listByElasticPoolPagingPage();
       }
     };
   }
 
-  private async *listByElasticPoolPagingPage(
-    resourceGroupName: string,
-    serverName: string,
-    elasticPoolName: string,
-    options?: ElasticPoolOperationsListByElasticPoolOptionalParams
-  ): AsyncIterableIterator<ElasticPoolOperation[]> {
-    let result = await this._listByElasticPool(
-      resourceGroupName,
-      serverName,
-      elasticPoolName,
-      options
-    );
+  private async *listByElasticPoolPagingPage(): AsyncIterableIterator<
+    ElasticPoolOperation[]
+  > {
+    let result = await this._listByElasticPool();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listByElasticPoolNext(
-        resourceGroupName,
-        serverName,
-        elasticPoolName,
-        continuationToken,
-        options
-      );
+      result = await this._listByElasticPoolNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listByElasticPoolPagingAll(
-    resourceGroupName: string,
-    serverName: string,
-    elasticPoolName: string,
-    options?: ElasticPoolOperationsListByElasticPoolOptionalParams
-  ): AsyncIterableIterator<ElasticPoolOperation> {
-    for await (const page of this.listByElasticPoolPagingPage(
-      resourceGroupName,
-      serverName,
-      elasticPoolName,
-      options
-    )) {
+  private async *listByElasticPoolPagingAll(): AsyncIterableIterator<
+    ElasticPoolOperation
+  > {
+    for await (const page of this.listByElasticPoolPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Cancels the asynchronous operation on the elastic pool.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param elasticPoolName
-   * @param operationId The operation identifier.
-   * @param options The options parameters.
+   *
    */
-  cancel(
-    resourceGroupName: string,
-    serverName: string,
-    elasticPoolName: string,
-    operationId: string,
-    options?: ElasticPoolOperationsCancelOptionalParams
-  ): Promise<void> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, elasticPoolName, operationId, options },
-      cancelOperationSpec
-    );
-  }
+  cancel(): Promise<void> {}
 
   /**
    * Gets a list of operations performed on the elastic pool.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param elasticPoolName
-   * @param options The options parameters.
+   *
    */
-  private _listByElasticPool(
-    resourceGroupName: string,
-    serverName: string,
-    elasticPoolName: string,
-    options?: ElasticPoolOperationsListByElasticPoolOptionalParams
-  ): Promise<ElasticPoolOperationsListByElasticPoolResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, elasticPoolName, options },
-      listByElasticPoolOperationSpec
-    );
-  }
+  private _listByElasticPool(): Promise<
+    ElasticPoolOperationsListByElasticPoolResponse
+  > {}
 
   /**
    * ListByElasticPoolNext
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param elasticPoolName
-   * @param nextLink The nextLink from the previous successful call to the ListByElasticPool method.
-   * @param options The options parameters.
+   *
    */
-  private _listByElasticPoolNext(
-    resourceGroupName: string,
-    serverName: string,
-    elasticPoolName: string,
-    nextLink: string,
-    options?: ElasticPoolOperationsListByElasticPoolNextOptionalParams
-  ): Promise<ElasticPoolOperationsListByElasticPoolNextResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, elasticPoolName, nextLink, options },
-      listByElasticPoolNextOperationSpec
-    );
-  }
+  private _listByElasticPoolNext(): Promise<
+    ElasticPoolOperationsListByElasticPoolNextResponse
+  > {}
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
-
-const cancelOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/elasticPools/{elasticPoolName}/operations/{operationId}/cancel",
-  httpMethod: "POST",
-  responses: { 200: {}, default: {} },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.elasticPoolName,
-    Parameters.operationId
-  ],
-  serializer
-};
-const listByElasticPoolOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/elasticPools/{elasticPoolName}/operations",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ElasticPoolOperationListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.elasticPoolName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByElasticPoolNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ElasticPoolOperationListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.elasticPoolName,
-    Parameters.nextLink
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};

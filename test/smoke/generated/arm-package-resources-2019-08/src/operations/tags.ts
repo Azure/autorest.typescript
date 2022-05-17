@@ -10,18 +10,11 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { Tags } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
 import { ResourceManagementClient } from "../resourceManagementClient";
 import {
   TagDetails,
-  TagsListNextOptionalParams,
-  TagsListOptionalParams,
-  TagsDeleteValueOptionalParams,
-  TagsCreateOrUpdateValueOptionalParams,
   TagsCreateOrUpdateValueResponse,
-  TagsCreateOrUpdateOptionalParams,
   TagsCreateOrUpdateResponse,
-  TagsDeleteOptionalParams,
   TagsListResponse,
   TagsListNextResponse
 } from "../models";
@@ -29,24 +22,18 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing Tags operations. */
 export class TagsImpl implements Tags {
-  private readonly client: ResourceManagementClient;
-
   /**
    * Initialize a new instance of the class Tags class.
    * @param client Reference to the service client
    */
-  constructor(client: ResourceManagementClient) {
-    this.client = client;
-  }
+  constructor(client: ResourceManagementClient) {}
 
   /**
    * Gets the names and values of all resource tags that are defined in a subscription.
-   * @param options The options parameters.
+   *
    */
-  public list(
-    options?: TagsListOptionalParams
-  ): PagedAsyncIterableIterator<TagDetails> {
-    const iter = this.listPagingAll(options);
+  public list(): PagedAsyncIterableIterator<TagDetails> {
+    const iter = this.listPagingAll();
     return {
       next() {
         return iter.next();
@@ -55,242 +42,64 @@ export class TagsImpl implements Tags {
         return this;
       },
       byPage: () => {
-        return this.listPagingPage(options);
+        return this.listPagingPage();
       }
     };
   }
 
-  private async *listPagingPage(
-    options?: TagsListOptionalParams
-  ): AsyncIterableIterator<TagDetails[]> {
-    let result = await this._list(options);
+  private async *listPagingPage(): AsyncIterableIterator<TagDetails[]> {
+    let result = await this._list();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listNext(continuationToken, options);
+      result = await this._listNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listPagingAll(
-    options?: TagsListOptionalParams
-  ): AsyncIterableIterator<TagDetails> {
-    for await (const page of this.listPagingPage(options)) {
+  private async *listPagingAll(): AsyncIterableIterator<TagDetails> {
+    for await (const page of this.listPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Deletes a tag value.
-   * @param tagName The name of the tag.
-   * @param tagValue The value of the tag to delete.
-   * @param options The options parameters.
+   *
    */
-  deleteValue(
-    tagName: string,
-    tagValue: string,
-    options?: TagsDeleteValueOptionalParams
-  ): Promise<void> {
-    return this.client.sendOperationRequest(
-      { tagName, tagValue, options },
-      deleteValueOperationSpec
-    );
-  }
+  deleteValue(): Promise<void> {}
 
   /**
    * Creates a tag value. The name of the tag must already exist.
-   * @param tagName The name of the tag.
-   * @param tagValue The value of the tag to create.
-   * @param options The options parameters.
+   *
    */
-  createOrUpdateValue(
-    tagName: string,
-    tagValue: string,
-    options?: TagsCreateOrUpdateValueOptionalParams
-  ): Promise<TagsCreateOrUpdateValueResponse> {
-    return this.client.sendOperationRequest(
-      { tagName, tagValue, options },
-      createOrUpdateValueOperationSpec
-    );
-  }
+  createOrUpdateValue(): Promise<TagsCreateOrUpdateValueResponse> {}
 
   /**
    * The tag name can have a maximum of 512 characters and is case insensitive. Tag names created by
    * Azure have prefixes of microsoft, azure, or windows. You cannot create tags with one of these
    * prefixes.
-   * @param tagName The name of the tag to create.
-   * @param options The options parameters.
+   *
    */
-  createOrUpdate(
-    tagName: string,
-    options?: TagsCreateOrUpdateOptionalParams
-  ): Promise<TagsCreateOrUpdateResponse> {
-    return this.client.sendOperationRequest(
-      { tagName, options },
-      createOrUpdateOperationSpec
-    );
-  }
+  createOrUpdate(): Promise<TagsCreateOrUpdateResponse> {}
 
   /**
    * You must remove all values from a resource tag before you can delete it.
-   * @param tagName The name of the tag.
-   * @param options The options parameters.
+   *
    */
-  delete(tagName: string, options?: TagsDeleteOptionalParams): Promise<void> {
-    return this.client.sendOperationRequest(
-      { tagName, options },
-      deleteOperationSpec
-    );
-  }
+  delete(): Promise<void> {}
 
   /**
    * Gets the names and values of all resource tags that are defined in a subscription.
-   * @param options The options parameters.
+   *
    */
-  private _list(options?: TagsListOptionalParams): Promise<TagsListResponse> {
-    return this.client.sendOperationRequest({ options }, listOperationSpec);
-  }
+  private _list(): Promise<TagsListResponse> {}
 
   /**
    * ListNext
-   * @param nextLink The nextLink from the previous successful call to the List method.
-   * @param options The options parameters.
+   *
    */
-  private _listNext(
-    nextLink: string,
-    options?: TagsListNextOptionalParams
-  ): Promise<TagsListNextResponse> {
-    return this.client.sendOperationRequest(
-      { nextLink, options },
-      listNextOperationSpec
-    );
-  }
+  private _listNext(): Promise<TagsListNextResponse> {}
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
-
-const deleteValueOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/tagNames/{tagName}/tagValues/{tagValue}",
-  httpMethod: "DELETE",
-  responses: {
-    200: {},
-    204: {},
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.tagName,
-    Parameters.tagValue
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const createOrUpdateValueOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/tagNames/{tagName}/tagValues/{tagValue}",
-  httpMethod: "PUT",
-  responses: {
-    200: {
-      bodyMapper: Mappers.TagValue
-    },
-    201: {
-      bodyMapper: Mappers.TagValue
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.tagName,
-    Parameters.tagValue
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const createOrUpdateOperationSpec: coreClient.OperationSpec = {
-  path: "/subscriptions/{subscriptionId}/tagNames/{tagName}",
-  httpMethod: "PUT",
-  responses: {
-    200: {
-      bodyMapper: Mappers.TagDetails
-    },
-    201: {
-      bodyMapper: Mappers.TagDetails
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.tagName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const deleteOperationSpec: coreClient.OperationSpec = {
-  path: "/subscriptions/{subscriptionId}/tagNames/{tagName}",
-  httpMethod: "DELETE",
-  responses: {
-    200: {},
-    204: {},
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.tagName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listOperationSpec: coreClient.OperationSpec = {
-  path: "/subscriptions/{subscriptionId}/tagNames",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.TagsListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.subscriptionId],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.TagsListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.nextLink,
-    Parameters.subscriptionId
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};

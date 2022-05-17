@@ -14,14 +14,7 @@ import * as Parameters from "../models/parameters";
 import { ManagementLinkClient } from "../managementLinkClient";
 import {
   ResourceLink,
-  ResourceLinksListAtSubscriptionNextOptionalParams,
-  ResourceLinksListAtSubscriptionOptionalParams,
-  ResourceLinksListAtSourceScopeNextOptionalParams,
-  ResourceLinksListAtSourceScopeOptionalParams,
-  ResourceLinksDeleteOptionalParams,
-  ResourceLinksCreateOrUpdateOptionalParams,
   ResourceLinksCreateOrUpdateResponse,
-  ResourceLinksGetOptionalParams,
   ResourceLinksGetResponse,
   ResourceLinksListAtSubscriptionResponse,
   ResourceLinksListAtSourceScopeResponse,
@@ -44,12 +37,10 @@ export class ResourceLinksImpl implements ResourceLinks {
 
   /**
    * Gets all the linked resources for the subscription.
-   * @param options The options parameters.
+   *
    */
-  public listAtSubscription(
-    options?: ResourceLinksListAtSubscriptionOptionalParams
-  ): PagedAsyncIterableIterator<ResourceLink> {
-    const iter = this.listAtSubscriptionPagingAll(options);
+  public listAtSubscription(): PagedAsyncIterableIterator<ResourceLink> {
+    const iter = this.listAtSubscriptionPagingAll();
     return {
       next() {
         return iter.next();
@@ -58,44 +49,38 @@ export class ResourceLinksImpl implements ResourceLinks {
         return this;
       },
       byPage: () => {
-        return this.listAtSubscriptionPagingPage(options);
+        return this.listAtSubscriptionPagingPage();
       }
     };
   }
 
-  private async *listAtSubscriptionPagingPage(
-    options?: ResourceLinksListAtSubscriptionOptionalParams
-  ): AsyncIterableIterator<ResourceLink[]> {
-    let result = await this._listAtSubscription(options);
+  private async *listAtSubscriptionPagingPage(): AsyncIterableIterator<
+    ResourceLink[]
+  > {
+    let result = await this._listAtSubscription();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listAtSubscriptionNext(continuationToken, options);
+      result = await this._listAtSubscriptionNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listAtSubscriptionPagingAll(
-    options?: ResourceLinksListAtSubscriptionOptionalParams
-  ): AsyncIterableIterator<ResourceLink> {
-    for await (const page of this.listAtSubscriptionPagingPage(options)) {
+  private async *listAtSubscriptionPagingAll(): AsyncIterableIterator<
+    ResourceLink
+  > {
+    for await (const page of this.listAtSubscriptionPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Gets a list of resource links at and below the specified source scope.
-   * @param scope The fully qualified ID of the scope for getting the resource links. For example, to
-   *              list resource links at and under a resource group, set the scope to
-   *              /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myGroup.
-   * @param options The options parameters.
+   *
    */
-  public listAtSourceScope(
-    scope: string,
-    options?: ResourceLinksListAtSourceScopeOptionalParams
-  ): PagedAsyncIterableIterator<ResourceLink> {
-    const iter = this.listAtSourceScopePagingAll(scope, options);
+  public listAtSourceScope(): PagedAsyncIterableIterator<ResourceLink> {
+    const iter = this.listAtSourceScopePagingAll();
     return {
       next() {
         return iter.next();
@@ -104,167 +89,90 @@ export class ResourceLinksImpl implements ResourceLinks {
         return this;
       },
       byPage: () => {
-        return this.listAtSourceScopePagingPage(scope, options);
+        return this.listAtSourceScopePagingPage();
       }
     };
   }
 
-  private async *listAtSourceScopePagingPage(
-    scope: string,
-    options?: ResourceLinksListAtSourceScopeOptionalParams
-  ): AsyncIterableIterator<ResourceLink[]> {
-    let result = await this._listAtSourceScope(scope, options);
+  private async *listAtSourceScopePagingPage(): AsyncIterableIterator<
+    ResourceLink[]
+  > {
+    let result = await this._listAtSourceScope();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listAtSourceScopeNext(
-        scope,
-        continuationToken,
-        options
-      );
+      result = await this._listAtSourceScopeNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listAtSourceScopePagingAll(
-    scope: string,
-    options?: ResourceLinksListAtSourceScopeOptionalParams
-  ): AsyncIterableIterator<ResourceLink> {
-    for await (const page of this.listAtSourceScopePagingPage(scope, options)) {
+  private async *listAtSourceScopePagingAll(): AsyncIterableIterator<
+    ResourceLink
+  > {
+    for await (const page of this.listAtSourceScopePagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Deletes a resource link with the specified ID.
-   * @param linkId The fully qualified ID of the resource link. Use the format,
-   *               /subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/{provider-namespace}/{resource-type}/{resource-name}/Microsoft.Resources/links/{link-name}.
-   *               For example,
-   *               /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myGroup/Microsoft.Web/sites/mySite/Microsoft.Resources/links/myLink
-   * @param options The options parameters.
+   *
    */
-  delete(
-    linkId: string,
-    options?: ResourceLinksDeleteOptionalParams
-  ): Promise<void> {
-    return this.client.sendOperationRequest(
-      { linkId, options },
-      deleteOperationSpec
-    );
-  }
+  delete(): Promise<void> {}
 
   /**
    * Creates or updates a resource link between the specified resources.
-   * @param linkId The fully qualified ID of the resource link. Use the format,
-   *               /subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/{provider-namespace}/{resource-type}/{resource-name}/Microsoft.Resources/links/{link-name}.
-   *               For example,
-   *               /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myGroup/Microsoft.Web/sites/mySite/Microsoft.Resources/links/myLink
-   * @param parameters Parameters for creating or updating a resource link.
-   * @param options The options parameters.
+   *
    */
-  createOrUpdate(
-    linkId: string,
-    parameters: ResourceLink,
-    options?: ResourceLinksCreateOrUpdateOptionalParams
-  ): Promise<ResourceLinksCreateOrUpdateResponse> {
+  createOrUpdate(): Promise<ResourceLinksCreateOrUpdateResponse> {
     return this.client.sendOperationRequest(
-      { linkId, parameters, options },
+      { linkId, options },
       createOrUpdateOperationSpec
     );
   }
 
   /**
    * Gets a resource link with the specified ID.
-   * @param linkId The fully qualified Id of the resource link. For example,
-   *               /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myGroup/Microsoft.Web/sites/mySite/Microsoft.Resources/links/myLink
-   * @param options The options parameters.
+   *
    */
-  get(
-    linkId: string,
-    options?: ResourceLinksGetOptionalParams
-  ): Promise<ResourceLinksGetResponse> {
-    return this.client.sendOperationRequest(
-      { linkId, options },
-      getOperationSpec
-    );
-  }
+  get(): Promise<ResourceLinksGetResponse> {}
 
   /**
    * Gets all the linked resources for the subscription.
-   * @param options The options parameters.
+   *
    */
-  private _listAtSubscription(
-    options?: ResourceLinksListAtSubscriptionOptionalParams
-  ): Promise<ResourceLinksListAtSubscriptionResponse> {
-    return this.client.sendOperationRequest(
-      { options },
-      listAtSubscriptionOperationSpec
-    );
-  }
+  private _listAtSubscription(): Promise<
+    ResourceLinksListAtSubscriptionResponse
+  > {}
 
   /**
    * Gets a list of resource links at and below the specified source scope.
-   * @param scope The fully qualified ID of the scope for getting the resource links. For example, to
-   *              list resource links at and under a resource group, set the scope to
-   *              /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myGroup.
-   * @param options The options parameters.
+   *
    */
-  private _listAtSourceScope(
-    scope: string,
-    options?: ResourceLinksListAtSourceScopeOptionalParams
-  ): Promise<ResourceLinksListAtSourceScopeResponse> {
-    return this.client.sendOperationRequest(
-      { scope, options },
-      listAtSourceScopeOperationSpec
-    );
-  }
+  private _listAtSourceScope(): Promise<
+    ResourceLinksListAtSourceScopeResponse
+  > {}
 
   /**
    * ListAtSubscriptionNext
-   * @param nextLink The nextLink from the previous successful call to the ListAtSubscription method.
-   * @param options The options parameters.
+   *
    */
-  private _listAtSubscriptionNext(
-    nextLink: string,
-    options?: ResourceLinksListAtSubscriptionNextOptionalParams
-  ): Promise<ResourceLinksListAtSubscriptionNextResponse> {
-    return this.client.sendOperationRequest(
-      { nextLink, options },
-      listAtSubscriptionNextOperationSpec
-    );
-  }
+  private _listAtSubscriptionNext(): Promise<
+    ResourceLinksListAtSubscriptionNextResponse
+  > {}
 
   /**
    * ListAtSourceScopeNext
-   * @param scope The fully qualified ID of the scope for getting the resource links. For example, to
-   *              list resource links at and under a resource group, set the scope to
-   *              /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myGroup.
-   * @param nextLink The nextLink from the previous successful call to the ListAtSourceScope method.
-   * @param options The options parameters.
+   *
    */
-  private _listAtSourceScopeNext(
-    scope: string,
-    nextLink: string,
-    options?: ResourceLinksListAtSourceScopeNextOptionalParams
-  ): Promise<ResourceLinksListAtSourceScopeNextResponse> {
-    return this.client.sendOperationRequest(
-      { scope, nextLink, options },
-      listAtSourceScopeNextOperationSpec
-    );
-  }
+  private _listAtSourceScopeNext(): Promise<
+    ResourceLinksListAtSourceScopeNextResponse
+  > {}
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const deleteOperationSpec: coreClient.OperationSpec = {
-  path: "/{linkId}",
-  httpMethod: "DELETE",
-  responses: { 200: {}, 204: {} },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.linkId],
-  serializer
-};
 const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path: "/{linkId}",
   httpMethod: "PUT",
@@ -281,74 +189,5 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   urlParameters: [Parameters.$host, Parameters.linkId],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const getOperationSpec: coreClient.OperationSpec = {
-  path: "/{linkId}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ResourceLink
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.linkId],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listAtSubscriptionOperationSpec: coreClient.OperationSpec = {
-  path: "/subscriptions/{subscriptionId}/providers/Microsoft.Resources/links",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ResourceLinkResult
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.filter],
-  urlParameters: [Parameters.$host, Parameters.subscriptionId],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listAtSourceScopeOperationSpec: coreClient.OperationSpec = {
-  path: "/{scope}/providers/Microsoft.Resources/links",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ResourceLinkResult
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.filter1],
-  urlParameters: [Parameters.$host, Parameters.scope],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listAtSubscriptionNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ResourceLinkResult
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.filter],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.nextLink,
-    Parameters.subscriptionId
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listAtSourceScopeNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ResourceLinkResult
-    }
-  },
-  queryParameters: [Parameters.apiVersion, Parameters.filter1],
-  urlParameters: [Parameters.$host, Parameters.nextLink, Parameters.scope],
-  headerParameters: [Parameters.accept],
   serializer
 };

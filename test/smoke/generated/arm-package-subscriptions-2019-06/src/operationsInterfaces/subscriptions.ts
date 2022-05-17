@@ -7,14 +7,7 @@
  */
 
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import {
-  Location,
-  SubscriptionsListLocationsOptionalParams,
-  Subscription,
-  SubscriptionsListOptionalParams,
-  SubscriptionsGetOptionalParams,
-  SubscriptionsGetResponse
-} from "../models";
+import { Location, Subscription, SubscriptionsGetResponse } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a Subscriptions. */
@@ -22,27 +15,17 @@ export interface Subscriptions {
   /**
    * This operation provides all the locations that are available for resource providers; however, each
    * resource provider may support a subset of this list.
-   * @param subscriptionId The ID of the target subscription.
-   * @param options The options parameters.
+   *
    */
-  listLocations(
-    subscriptionId: string,
-    options?: SubscriptionsListLocationsOptionalParams
-  ): PagedAsyncIterableIterator<Location>;
+  listLocations(): PagedAsyncIterableIterator<Location>;
   /**
    * Gets all subscriptions for a tenant.
-   * @param options The options parameters.
+   *
    */
-  list(
-    options?: SubscriptionsListOptionalParams
-  ): PagedAsyncIterableIterator<Subscription>;
+  list(): PagedAsyncIterableIterator<Subscription>;
   /**
    * Gets details about a specified subscription.
-   * @param subscriptionId The ID of the target subscription.
-   * @param options The options parameters.
+   *
    */
-  get(
-    subscriptionId: string,
-    options?: SubscriptionsGetOptionalParams
-  ): Promise<SubscriptionsGetResponse>;
+  get(): Promise<SubscriptionsGetResponse>;
 }

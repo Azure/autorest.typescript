@@ -12,10 +12,7 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import {
-  DataMaskingPolicy,
-  DataMaskingPoliciesCreateOrUpdateOptionalParams,
   DataMaskingPoliciesCreateOrUpdateResponse,
-  DataMaskingPoliciesGetOptionalParams,
   DataMaskingPoliciesGetResponse
 } from "../models";
 
@@ -33,45 +30,20 @@ export class DataMaskingPoliciesImpl implements DataMaskingPolicies {
 
   /**
    * Creates or updates a database data masking policy
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param parameters Parameters for creating or updating a data masking policy.
-   * @param options The options parameters.
+   *
    */
-  createOrUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    parameters: DataMaskingPolicy,
-    options?: DataMaskingPoliciesCreateOrUpdateOptionalParams
-  ): Promise<DataMaskingPoliciesCreateOrUpdateResponse> {
+  createOrUpdate(): Promise<DataMaskingPoliciesCreateOrUpdateResponse> {
     return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, databaseName, parameters, options },
+      { resourceGroupName, serverName, databaseName, options },
       createOrUpdateOperationSpec
     );
   }
 
   /**
    * Gets a database data masking policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: DataMaskingPoliciesGetOptionalParams
-  ): Promise<DataMaskingPoliciesGetResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, databaseName, options },
-      getOperationSpec
-    );
-  }
+  get(): Promise<DataMaskingPoliciesGetResponse> {}
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
@@ -97,26 +69,5 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/dataMaskingPolicies/{dataMaskingPolicyName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DataMaskingPolicy
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.databaseName,
-    Parameters.dataMaskingPolicyName
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };

@@ -13,10 +13,6 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
-import {
-  TdeCertificate,
-  ManagedInstanceTdeCertificatesCreateOptionalParams
-} from "../models";
 
 /** Class containing ManagedInstanceTdeCertificates operations. */
 export class ManagedInstanceTdeCertificatesImpl
@@ -33,18 +29,9 @@ export class ManagedInstanceTdeCertificatesImpl
 
   /**
    * Creates a TDE certificate for a given server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param parameters The requested TDE certificate to be created or updated.
-   * @param options The options parameters.
+   *
    */
-  async beginCreate(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    parameters: TdeCertificate,
-    options?: ManagedInstanceTdeCertificatesCreateOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  async beginCreate(): Promise<PollerLike<PollOperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
@@ -86,7 +73,7 @@ export class ManagedInstanceTdeCertificatesImpl
 
     const lro = new LroImpl(
       sendOperation,
-      { resourceGroupName, managedInstanceName, parameters, options },
+      { resourceGroupName, managedInstanceName, options },
       createOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -99,24 +86,10 @@ export class ManagedInstanceTdeCertificatesImpl
 
   /**
    * Creates a TDE certificate for a given server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param parameters The requested TDE certificate to be created or updated.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateAndWait(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    parameters: TdeCertificate,
-    options?: ManagedInstanceTdeCertificatesCreateOptionalParams
-  ): Promise<void> {
-    const poller = await this.beginCreate(
-      resourceGroupName,
-      managedInstanceName,
-      parameters,
-      options
-    );
+  async beginCreateAndWait(): Promise<void> {
+    const poller = await this.beginCreate();
     return poller.pollUntilDone();
   }
 }

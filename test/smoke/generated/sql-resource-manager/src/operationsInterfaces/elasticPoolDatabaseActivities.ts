@@ -7,26 +7,14 @@
  */
 
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import {
-  ElasticPoolDatabaseActivity,
-  ElasticPoolDatabaseActivitiesListByElasticPoolOptionalParams
-} from "../models";
+import { ElasticPoolDatabaseActivity } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a ElasticPoolDatabaseActivities. */
 export interface ElasticPoolDatabaseActivities {
   /**
    * Returns activity on databases inside of an elastic pool.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param elasticPoolName The name of the elastic pool.
-   * @param options The options parameters.
+   *
    */
-  listByElasticPool(
-    resourceGroupName: string,
-    serverName: string,
-    elasticPoolName: string,
-    options?: ElasticPoolDatabaseActivitiesListByElasticPoolOptionalParams
-  ): PagedAsyncIterableIterator<ElasticPoolDatabaseActivity>;
+  listByElasticPool(): PagedAsyncIterableIterator<ElasticPoolDatabaseActivity>;
 }

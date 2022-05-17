@@ -7,10 +7,7 @@
  */
 
 import {
-  ServerAutomaticTuningGetOptionalParams,
   ServerAutomaticTuningGetResponse,
-  ServerAutomaticTuning,
-  ServerAutomaticTuningUpdateOptionalParams,
   ServerAutomaticTuningUpdateResponse
 } from "../models";
 
@@ -18,28 +15,12 @@ import {
 export interface ServerAutomaticTuningOperations {
   /**
    * Retrieves server automatic tuning options.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    options?: ServerAutomaticTuningGetOptionalParams
-  ): Promise<ServerAutomaticTuningGetResponse>;
+  get(): Promise<ServerAutomaticTuningGetResponse>;
   /**
    * Update automatic tuning options on server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param parameters The requested automatic tuning resource state.
-   * @param options The options parameters.
+   *
    */
-  update(
-    resourceGroupName: string,
-    serverName: string,
-    parameters: ServerAutomaticTuning,
-    options?: ServerAutomaticTuningUpdateOptionalParams
-  ): Promise<ServerAutomaticTuningUpdateResponse>;
+  update(): Promise<ServerAutomaticTuningUpdateResponse>;
 }

@@ -10,21 +10,10 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Server,
-  ServersListByResourceGroupOptionalParams,
-  ServersListOptionalParams,
-  ServersGetOptionalParams,
   ServersGetResponse,
-  ServersCreateOrUpdateOptionalParams,
   ServersCreateOrUpdateResponse,
-  ServersDeleteOptionalParams,
-  ServerUpdate,
-  ServersUpdateOptionalParams,
   ServersUpdateResponse,
-  ImportNewDatabaseDefinition,
-  ServersImportDatabaseOptionalParams,
   ServersImportDatabaseResponse,
-  CheckNameAvailabilityRequest,
-  ServersCheckNameAvailabilityOptionalParams,
   ServersCheckNameAvailabilityResponse
 } from "../models";
 
@@ -33,45 +22,24 @@ import {
 export interface Servers {
   /**
    * Gets a list of servers in a resource groups.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param options The options parameters.
+   *
    */
-  listByResourceGroup(
-    resourceGroupName: string,
-    options?: ServersListByResourceGroupOptionalParams
-  ): PagedAsyncIterableIterator<Server>;
+  listByResourceGroup(): PagedAsyncIterableIterator<Server>;
   /**
    * Gets a list of all servers in the subscription.
-   * @param options The options parameters.
+   *
    */
-  list(options?: ServersListOptionalParams): PagedAsyncIterableIterator<Server>;
+  list(): PagedAsyncIterableIterator<Server>;
   /**
    * Gets a server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    options?: ServersGetOptionalParams
-  ): Promise<ServersGetResponse>;
+  get(): Promise<ServersGetResponse>;
   /**
    * Creates or updates a server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param parameters The requested server resource state.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    parameters: Server,
-    options?: ServersCreateOrUpdateOptionalParams
-  ): Promise<
+  beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<ServersCreateOrUpdateResponse>,
       ServersCreateOrUpdateResponse
@@ -79,86 +47,36 @@ export interface Servers {
   >;
   /**
    * Creates or updates a server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param parameters The requested server resource state.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    parameters: Server,
-    options?: ServersCreateOrUpdateOptionalParams
-  ): Promise<ServersCreateOrUpdateResponse>;
+  beginCreateOrUpdateAndWait(): Promise<ServersCreateOrUpdateResponse>;
   /**
    * Deletes a server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  beginDelete(
-    resourceGroupName: string,
-    serverName: string,
-    options?: ServersDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  beginDelete(): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes a server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  beginDeleteAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    options?: ServersDeleteOptionalParams
-  ): Promise<void>;
+  beginDeleteAndWait(): Promise<void>;
   /**
    * Updates a server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param parameters The requested server resource state.
-   * @param options The options parameters.
+   *
    */
-  beginUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    parameters: ServerUpdate,
-    options?: ServersUpdateOptionalParams
-  ): Promise<
+  beginUpdate(): Promise<
     PollerLike<PollOperationState<ServersUpdateResponse>, ServersUpdateResponse>
   >;
   /**
    * Updates a server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param parameters The requested server resource state.
-   * @param options The options parameters.
+   *
    */
-  beginUpdateAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    parameters: ServerUpdate,
-    options?: ServersUpdateOptionalParams
-  ): Promise<ServersUpdateResponse>;
+  beginUpdateAndWait(): Promise<ServersUpdateResponse>;
   /**
    * Imports a bacpac into a new database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param parameters The database import request parameters.
-   * @param options The options parameters.
+   *
    */
-  beginImportDatabase(
-    resourceGroupName: string,
-    serverName: string,
-    parameters: ImportNewDatabaseDefinition,
-    options?: ServersImportDatabaseOptionalParams
-  ): Promise<
+  beginImportDatabase(): Promise<
     PollerLike<
       PollOperationState<ServersImportDatabaseResponse>,
       ServersImportDatabaseResponse
@@ -166,25 +84,12 @@ export interface Servers {
   >;
   /**
    * Imports a bacpac into a new database.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param parameters The database import request parameters.
-   * @param options The options parameters.
+   *
    */
-  beginImportDatabaseAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    parameters: ImportNewDatabaseDefinition,
-    options?: ServersImportDatabaseOptionalParams
-  ): Promise<ServersImportDatabaseResponse>;
+  beginImportDatabaseAndWait(): Promise<ServersImportDatabaseResponse>;
   /**
    * Determines whether a resource can be created with the specified name.
-   * @param parameters The name availability request parameters.
-   * @param options The options parameters.
+   *
    */
-  checkNameAvailability(
-    parameters: CheckNameAvailabilityRequest,
-    options?: ServersCheckNameAvailabilityOptionalParams
-  ): Promise<ServersCheckNameAvailabilityResponse>;
+  checkNameAvailability(): Promise<ServersCheckNameAvailabilityResponse>;
 }

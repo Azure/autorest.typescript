@@ -10,12 +10,8 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   OutboundFirewallRule,
-  OutboundFirewallRulesListByServerOptionalParams,
-  OutboundFirewallRulesGetOptionalParams,
   OutboundFirewallRulesGetResponse,
-  OutboundFirewallRulesCreateOrUpdateOptionalParams,
-  OutboundFirewallRulesCreateOrUpdateResponse,
-  OutboundFirewallRulesDeleteOptionalParams
+  OutboundFirewallRulesCreateOrUpdateResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -23,46 +19,19 @@ import {
 export interface OutboundFirewallRules {
   /**
    * Gets all outbound firewall rules on a server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  listByServer(
-    resourceGroupName: string,
-    serverName: string,
-    options?: OutboundFirewallRulesListByServerOptionalParams
-  ): PagedAsyncIterableIterator<OutboundFirewallRule>;
+  listByServer(): PagedAsyncIterableIterator<OutboundFirewallRule>;
   /**
    * Gets an outbound firewall rule.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param outboundRuleFqdn
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    outboundRuleFqdn: string,
-    options?: OutboundFirewallRulesGetOptionalParams
-  ): Promise<OutboundFirewallRulesGetResponse>;
+  get(): Promise<OutboundFirewallRulesGetResponse>;
   /**
    * Create a outbound firewall rule with a given name.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param outboundRuleFqdn
-   * @param parameters An Azure SQL DB Server Outbound Firewall Rule.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    outboundRuleFqdn: string,
-    parameters: OutboundFirewallRule,
-    options?: OutboundFirewallRulesCreateOrUpdateOptionalParams
-  ): Promise<
+  beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<OutboundFirewallRulesCreateOrUpdateResponse>,
       OutboundFirewallRulesCreateOrUpdateResponse
@@ -70,46 +39,19 @@ export interface OutboundFirewallRules {
   >;
   /**
    * Create a outbound firewall rule with a given name.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param outboundRuleFqdn
-   * @param parameters An Azure SQL DB Server Outbound Firewall Rule.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    outboundRuleFqdn: string,
-    parameters: OutboundFirewallRule,
-    options?: OutboundFirewallRulesCreateOrUpdateOptionalParams
-  ): Promise<OutboundFirewallRulesCreateOrUpdateResponse>;
+  beginCreateOrUpdateAndWait(): Promise<
+    OutboundFirewallRulesCreateOrUpdateResponse
+  >;
   /**
    * Deletes a outbound firewall rule with a given name.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param outboundRuleFqdn
-   * @param options The options parameters.
+   *
    */
-  beginDelete(
-    resourceGroupName: string,
-    serverName: string,
-    outboundRuleFqdn: string,
-    options?: OutboundFirewallRulesDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  beginDelete(): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes a outbound firewall rule with a given name.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param outboundRuleFqdn
-   * @param options The options parameters.
+   *
    */
-  beginDeleteAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    outboundRuleFqdn: string,
-    options?: OutboundFirewallRulesDeleteOptionalParams
-  ): Promise<void>;
+  beginDeleteAndWait(): Promise<void>;
 }

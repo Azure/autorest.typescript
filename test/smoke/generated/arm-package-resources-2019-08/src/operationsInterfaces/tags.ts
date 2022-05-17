@@ -9,13 +9,8 @@
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import {
   TagDetails,
-  TagsListOptionalParams,
-  TagsDeleteValueOptionalParams,
-  TagsCreateOrUpdateValueOptionalParams,
   TagsCreateOrUpdateValueResponse,
-  TagsCreateOrUpdateOptionalParams,
-  TagsCreateOrUpdateResponse,
-  TagsDeleteOptionalParams
+  TagsCreateOrUpdateResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -23,48 +18,29 @@ import {
 export interface Tags {
   /**
    * Gets the names and values of all resource tags that are defined in a subscription.
-   * @param options The options parameters.
+   *
    */
-  list(
-    options?: TagsListOptionalParams
-  ): PagedAsyncIterableIterator<TagDetails>;
+  list(): PagedAsyncIterableIterator<TagDetails>;
   /**
    * Deletes a tag value.
-   * @param tagName The name of the tag.
-   * @param tagValue The value of the tag to delete.
-   * @param options The options parameters.
+   *
    */
-  deleteValue(
-    tagName: string,
-    tagValue: string,
-    options?: TagsDeleteValueOptionalParams
-  ): Promise<void>;
+  deleteValue(): Promise<void>;
   /**
    * Creates a tag value. The name of the tag must already exist.
-   * @param tagName The name of the tag.
-   * @param tagValue The value of the tag to create.
-   * @param options The options parameters.
+   *
    */
-  createOrUpdateValue(
-    tagName: string,
-    tagValue: string,
-    options?: TagsCreateOrUpdateValueOptionalParams
-  ): Promise<TagsCreateOrUpdateValueResponse>;
+  createOrUpdateValue(): Promise<TagsCreateOrUpdateValueResponse>;
   /**
    * The tag name can have a maximum of 512 characters and is case insensitive. Tag names created by
    * Azure have prefixes of microsoft, azure, or windows. You cannot create tags with one of these
    * prefixes.
-   * @param tagName The name of the tag to create.
-   * @param options The options parameters.
+   *
    */
-  createOrUpdate(
-    tagName: string,
-    options?: TagsCreateOrUpdateOptionalParams
-  ): Promise<TagsCreateOrUpdateResponse>;
+  createOrUpdate(): Promise<TagsCreateOrUpdateResponse>;
   /**
    * You must remove all values from a resource tag before you can delete it.
-   * @param tagName The name of the tag.
-   * @param options The options parameters.
+   *
    */
-  delete(tagName: string, options?: TagsDeleteOptionalParams): Promise<void>;
+  delete(): Promise<void>;
 }

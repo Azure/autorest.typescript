@@ -14,21 +14,9 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import {
   SensitivityLabel,
-  ManagedDatabaseSensitivityLabelsListCurrentByDatabaseNextOptionalParams,
-  ManagedDatabaseSensitivityLabelsListCurrentByDatabaseOptionalParams,
-  ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseNextOptionalParams,
-  ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseOptionalParams,
-  SensitivityLabelSource,
-  ManagedDatabaseSensitivityLabelsGetOptionalParams,
   ManagedDatabaseSensitivityLabelsGetResponse,
-  ManagedDatabaseSensitivityLabelsCreateOrUpdateOptionalParams,
   ManagedDatabaseSensitivityLabelsCreateOrUpdateResponse,
-  ManagedDatabaseSensitivityLabelsDeleteOptionalParams,
-  ManagedDatabaseSensitivityLabelsDisableRecommendationOptionalParams,
-  ManagedDatabaseSensitivityLabelsEnableRecommendationOptionalParams,
   ManagedDatabaseSensitivityLabelsListCurrentByDatabaseResponse,
-  SensitivityLabelUpdateList,
-  ManagedDatabaseSensitivityLabelsUpdateOptionalParams,
   ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseResponse,
   ManagedDatabaseSensitivityLabelsListCurrentByDatabaseNextResponse,
   ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseNextResponse
@@ -50,24 +38,10 @@ export class ManagedDatabaseSensitivityLabelsImpl
 
   /**
    * Gets the sensitivity labels of a given database
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the database.
-   * @param options The options parameters.
+   *
    */
-  public listCurrentByDatabase(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    options?: ManagedDatabaseSensitivityLabelsListCurrentByDatabaseOptionalParams
-  ): PagedAsyncIterableIterator<SensitivityLabel> {
-    const iter = this.listCurrentByDatabasePagingAll(
-      resourceGroupName,
-      managedInstanceName,
-      databaseName,
-      options
-    );
+  public listCurrentByDatabase(): PagedAsyncIterableIterator<SensitivityLabel> {
+    const iter = this.listCurrentByDatabasePagingAll();
     return {
       next() {
         return iter.next();
@@ -76,79 +50,40 @@ export class ManagedDatabaseSensitivityLabelsImpl
         return this;
       },
       byPage: () => {
-        return this.listCurrentByDatabasePagingPage(
-          resourceGroupName,
-          managedInstanceName,
-          databaseName,
-          options
-        );
+        return this.listCurrentByDatabasePagingPage();
       }
     };
   }
 
-  private async *listCurrentByDatabasePagingPage(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    options?: ManagedDatabaseSensitivityLabelsListCurrentByDatabaseOptionalParams
-  ): AsyncIterableIterator<SensitivityLabel[]> {
-    let result = await this._listCurrentByDatabase(
-      resourceGroupName,
-      managedInstanceName,
-      databaseName,
-      options
-    );
+  private async *listCurrentByDatabasePagingPage(): AsyncIterableIterator<
+    SensitivityLabel[]
+  > {
+    let result = await this._listCurrentByDatabase();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listCurrentByDatabaseNext(
-        resourceGroupName,
-        managedInstanceName,
-        databaseName,
-        continuationToken,
-        options
-      );
+      result = await this._listCurrentByDatabaseNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listCurrentByDatabasePagingAll(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    options?: ManagedDatabaseSensitivityLabelsListCurrentByDatabaseOptionalParams
-  ): AsyncIterableIterator<SensitivityLabel> {
-    for await (const page of this.listCurrentByDatabasePagingPage(
-      resourceGroupName,
-      managedInstanceName,
-      databaseName,
-      options
-    )) {
+  private async *listCurrentByDatabasePagingAll(): AsyncIterableIterator<
+    SensitivityLabel
+  > {
+    for await (const page of this.listCurrentByDatabasePagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Gets the sensitivity labels of a given database
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the database.
-   * @param options The options parameters.
+   *
    */
-  public listRecommendedByDatabase(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    options?: ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseOptionalParams
-  ): PagedAsyncIterableIterator<SensitivityLabel> {
-    const iter = this.listRecommendedByDatabasePagingAll(
-      resourceGroupName,
-      managedInstanceName,
-      databaseName,
-      options
-    );
+  public listRecommendedByDatabase(): PagedAsyncIterableIterator<
+    SensitivityLabel
+  > {
+    const iter = this.listRecommendedByDatabasePagingAll();
     return {
       next() {
         return iter.next();
@@ -157,118 +92,45 @@ export class ManagedDatabaseSensitivityLabelsImpl
         return this;
       },
       byPage: () => {
-        return this.listRecommendedByDatabasePagingPage(
-          resourceGroupName,
-          managedInstanceName,
-          databaseName,
-          options
-        );
+        return this.listRecommendedByDatabasePagingPage();
       }
     };
   }
 
-  private async *listRecommendedByDatabasePagingPage(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    options?: ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseOptionalParams
-  ): AsyncIterableIterator<SensitivityLabel[]> {
-    let result = await this._listRecommendedByDatabase(
-      resourceGroupName,
-      managedInstanceName,
-      databaseName,
-      options
-    );
+  private async *listRecommendedByDatabasePagingPage(): AsyncIterableIterator<
+    SensitivityLabel[]
+  > {
+    let result = await this._listRecommendedByDatabase();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listRecommendedByDatabaseNext(
-        resourceGroupName,
-        managedInstanceName,
-        databaseName,
-        continuationToken,
-        options
-      );
+      result = await this._listRecommendedByDatabaseNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listRecommendedByDatabasePagingAll(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    options?: ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseOptionalParams
-  ): AsyncIterableIterator<SensitivityLabel> {
-    for await (const page of this.listRecommendedByDatabasePagingPage(
-      resourceGroupName,
-      managedInstanceName,
-      databaseName,
-      options
-    )) {
+  private async *listRecommendedByDatabasePagingAll(): AsyncIterableIterator<
+    SensitivityLabel
+  > {
+    for await (const page of this.listRecommendedByDatabasePagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Gets the sensitivity label of a given column
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the database.
-   * @param schemaName The name of the schema.
-   * @param tableName The name of the table.
-   * @param columnName The name of the column.
-   * @param sensitivityLabelSource The source of the sensitivity label.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    schemaName: string,
-    tableName: string,
-    columnName: string,
-    sensitivityLabelSource: SensitivityLabelSource,
-    options?: ManagedDatabaseSensitivityLabelsGetOptionalParams
-  ): Promise<ManagedDatabaseSensitivityLabelsGetResponse> {
-    return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        databaseName,
-        schemaName,
-        tableName,
-        columnName,
-        sensitivityLabelSource,
-        options
-      },
-      getOperationSpec
-    );
-  }
+  get(): Promise<ManagedDatabaseSensitivityLabelsGetResponse> {}
 
   /**
    * Creates or updates the sensitivity label of a given column
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the database.
-   * @param schemaName The name of the schema.
-   * @param tableName The name of the table.
-   * @param columnName The name of the column.
-   * @param parameters The column sensitivity label resource.
-   * @param options The options parameters.
+   *
    */
-  createOrUpdate(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    schemaName: string,
-    tableName: string,
-    columnName: string,
-    parameters: SensitivityLabel,
-    options?: ManagedDatabaseSensitivityLabelsCreateOrUpdateOptionalParams
-  ): Promise<ManagedDatabaseSensitivityLabelsCreateOrUpdateResponse> {
+  createOrUpdate(): Promise<
+    ManagedDatabaseSensitivityLabelsCreateOrUpdateResponse
+  > {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -277,7 +139,6 @@ export class ManagedDatabaseSensitivityLabelsImpl
         schemaName,
         tableName,
         columnName,
-        parameters,
         options
       },
       createOrUpdateOperationSpec
@@ -286,266 +147,69 @@ export class ManagedDatabaseSensitivityLabelsImpl
 
   /**
    * Deletes the sensitivity label of a given column
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the database.
-   * @param schemaName The name of the schema.
-   * @param tableName The name of the table.
-   * @param columnName The name of the column.
-   * @param options The options parameters.
+   *
    */
-  delete(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    schemaName: string,
-    tableName: string,
-    columnName: string,
-    options?: ManagedDatabaseSensitivityLabelsDeleteOptionalParams
-  ): Promise<void> {
-    return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        databaseName,
-        schemaName,
-        tableName,
-        columnName,
-        options
-      },
-      deleteOperationSpec
-    );
-  }
+  delete(): Promise<void> {}
 
   /**
    * Disables sensitivity recommendations on a given column
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the database.
-   * @param schemaName The name of the schema.
-   * @param tableName The name of the table.
-   * @param columnName The name of the column.
-   * @param options The options parameters.
+   *
    */
-  disableRecommendation(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    schemaName: string,
-    tableName: string,
-    columnName: string,
-    options?: ManagedDatabaseSensitivityLabelsDisableRecommendationOptionalParams
-  ): Promise<void> {
-    return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        databaseName,
-        schemaName,
-        tableName,
-        columnName,
-        options
-      },
-      disableRecommendationOperationSpec
-    );
-  }
+  disableRecommendation(): Promise<void> {}
 
   /**
    * Enables sensitivity recommendations on a given column (recommendations are enabled by default on all
    * columns)
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the database.
-   * @param schemaName The name of the schema.
-   * @param tableName The name of the table.
-   * @param columnName The name of the column.
-   * @param options The options parameters.
+   *
    */
-  enableRecommendation(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    schemaName: string,
-    tableName: string,
-    columnName: string,
-    options?: ManagedDatabaseSensitivityLabelsEnableRecommendationOptionalParams
-  ): Promise<void> {
-    return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        databaseName,
-        schemaName,
-        tableName,
-        columnName,
-        options
-      },
-      enableRecommendationOperationSpec
-    );
-  }
+  enableRecommendation(): Promise<void> {}
 
   /**
    * Gets the sensitivity labels of a given database
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the database.
-   * @param options The options parameters.
+   *
    */
-  private _listCurrentByDatabase(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    options?: ManagedDatabaseSensitivityLabelsListCurrentByDatabaseOptionalParams
-  ): Promise<ManagedDatabaseSensitivityLabelsListCurrentByDatabaseResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, managedInstanceName, databaseName, options },
-      listCurrentByDatabaseOperationSpec
-    );
-  }
+  private _listCurrentByDatabase(): Promise<
+    ManagedDatabaseSensitivityLabelsListCurrentByDatabaseResponse
+  > {}
 
   /**
    * Update sensitivity labels of a given database using an operations batch.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the database.
-   * @param parameters A list of sensitivity label update operations.
-   * @param options The options parameters.
+   *
    */
-  update(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    parameters: SensitivityLabelUpdateList,
-    options?: ManagedDatabaseSensitivityLabelsUpdateOptionalParams
-  ): Promise<void> {
+  update(): Promise<void> {
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        databaseName,
-        parameters,
-        options
-      },
+      { resourceGroupName, managedInstanceName, databaseName, options },
       updateOperationSpec
     );
   }
 
   /**
    * Gets the sensitivity labels of a given database
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the database.
-   * @param options The options parameters.
+   *
    */
-  private _listRecommendedByDatabase(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    options?: ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseOptionalParams
-  ): Promise<
+  private _listRecommendedByDatabase(): Promise<
     ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseResponse
-  > {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, managedInstanceName, databaseName, options },
-      listRecommendedByDatabaseOperationSpec
-    );
-  }
+  > {}
 
   /**
    * ListCurrentByDatabaseNext
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the database.
-   * @param nextLink The nextLink from the previous successful call to the ListCurrentByDatabase method.
-   * @param options The options parameters.
+   *
    */
-  private _listCurrentByDatabaseNext(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    nextLink: string,
-    options?: ManagedDatabaseSensitivityLabelsListCurrentByDatabaseNextOptionalParams
-  ): Promise<
+  private _listCurrentByDatabaseNext(): Promise<
     ManagedDatabaseSensitivityLabelsListCurrentByDatabaseNextResponse
-  > {
-    return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        databaseName,
-        nextLink,
-        options
-      },
-      listCurrentByDatabaseNextOperationSpec
-    );
-  }
+  > {}
 
   /**
    * ListRecommendedByDatabaseNext
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the database.
-   * @param nextLink The nextLink from the previous successful call to the ListRecommendedByDatabase
-   *                 method.
-   * @param options The options parameters.
+   *
    */
-  private _listRecommendedByDatabaseNext(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    nextLink: string,
-    options?: ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseNextOptionalParams
-  ): Promise<
+  private _listRecommendedByDatabaseNext(): Promise<
     ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseNextResponse
-  > {
-    return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        databaseName,
-        nextLink,
-        options
-      },
-      listRecommendedByDatabaseNextOperationSpec
-    );
-  }
+  > {}
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/databases/{databaseName}/schemas/{schemaName}/tables/{tableName}/columns/{columnName}/sensitivityLabels/{sensitivityLabelSource}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.SensitivityLabel
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.databaseName,
-    Parameters.schemaName,
-    Parameters.tableName,
-    Parameters.columnName,
-    Parameters.managedInstanceName,
-    Parameters.sensitivityLabelSource
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
 const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/databases/{databaseName}/schemas/{schemaName}/tables/{tableName}/columns/{columnName}/sensitivityLabels/{sensitivityLabelSource}",
@@ -576,89 +240,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/databases/{databaseName}/schemas/{schemaName}/tables/{tableName}/columns/{columnName}/sensitivityLabels/{sensitivityLabelSource}",
-  httpMethod: "DELETE",
-  responses: { 200: {}, default: {} },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.databaseName,
-    Parameters.schemaName,
-    Parameters.tableName,
-    Parameters.columnName,
-    Parameters.managedInstanceName,
-    Parameters.sensitivityLabelSource1
-  ],
-  serializer
-};
-const disableRecommendationOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/databases/{databaseName}/schemas/{schemaName}/tables/{tableName}/columns/{columnName}/sensitivityLabels/{sensitivityLabelSource}/disable",
-  httpMethod: "POST",
-  responses: { 200: {}, default: {} },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.databaseName,
-    Parameters.schemaName,
-    Parameters.tableName,
-    Parameters.columnName,
-    Parameters.managedInstanceName,
-    Parameters.sensitivityLabelSource2
-  ],
-  serializer
-};
-const enableRecommendationOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/databases/{databaseName}/schemas/{schemaName}/tables/{tableName}/columns/{columnName}/sensitivityLabels/{sensitivityLabelSource}/enable",
-  httpMethod: "POST",
-  responses: { 200: {}, default: {} },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.databaseName,
-    Parameters.schemaName,
-    Parameters.tableName,
-    Parameters.columnName,
-    Parameters.managedInstanceName,
-    Parameters.sensitivityLabelSource2
-  ],
-  serializer
-};
-const listCurrentByDatabaseOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/databases/{databaseName}/currentSensitivityLabels",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.SensitivityLabelListResult
-    },
-    default: {}
-  },
-  queryParameters: [
-    Parameters.skipToken,
-    Parameters.apiVersion2,
-    Parameters.filter1,
-    Parameters.count
-  ],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.databaseName,
-    Parameters.managedInstanceName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
 const updateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/databases/{databaseName}/currentSensitivityLabels",
@@ -675,83 +256,5 @@ const updateOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const listRecommendedByDatabaseOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/databases/{databaseName}/recommendedSensitivityLabels",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.SensitivityLabelListResult
-    },
-    default: {}
-  },
-  queryParameters: [
-    Parameters.skipToken,
-    Parameters.apiVersion2,
-    Parameters.filter1,
-    Parameters.includeDisabledRecommendations
-  ],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.databaseName,
-    Parameters.managedInstanceName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listCurrentByDatabaseNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.SensitivityLabelListResult
-    },
-    default: {}
-  },
-  queryParameters: [
-    Parameters.skipToken,
-    Parameters.apiVersion2,
-    Parameters.filter1,
-    Parameters.count
-  ],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.databaseName,
-    Parameters.nextLink,
-    Parameters.managedInstanceName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listRecommendedByDatabaseNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.SensitivityLabelListResult
-    },
-    default: {}
-  },
-  queryParameters: [
-    Parameters.skipToken,
-    Parameters.apiVersion2,
-    Parameters.filter1,
-    Parameters.includeDisabledRecommendations
-  ],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.databaseName,
-    Parameters.nextLink,
-    Parameters.managedInstanceName
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };

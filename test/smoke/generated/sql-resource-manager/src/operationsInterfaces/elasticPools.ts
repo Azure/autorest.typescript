@@ -10,20 +10,11 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Metric,
-  ElasticPoolsListMetricsOptionalParams,
   MetricDefinition,
-  ElasticPoolsListMetricDefinitionsOptionalParams,
   ElasticPool,
-  ElasticPoolsListByServerOptionalParams,
-  ElasticPoolsGetOptionalParams,
   ElasticPoolsGetResponse,
-  ElasticPoolsCreateOrUpdateOptionalParams,
   ElasticPoolsCreateOrUpdateResponse,
-  ElasticPoolsDeleteOptionalParams,
-  ElasticPoolUpdate,
-  ElasticPoolsUpdateOptionalParams,
-  ElasticPoolsUpdateResponse,
-  ElasticPoolsFailoverOptionalParams
+  ElasticPoolsUpdateResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -31,76 +22,29 @@ import {
 export interface ElasticPools {
   /**
    * Returns elastic pool  metrics.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param elasticPoolName The name of the elastic pool.
-   * @param filter An OData filter expression that describes a subset of metrics to return.
-   * @param options The options parameters.
+   *
    */
-  listMetrics(
-    resourceGroupName: string,
-    serverName: string,
-    elasticPoolName: string,
-    filter: string,
-    options?: ElasticPoolsListMetricsOptionalParams
-  ): PagedAsyncIterableIterator<Metric>;
+  listMetrics(): PagedAsyncIterableIterator<Metric>;
   /**
    * Returns elastic pool metric definitions.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param elasticPoolName The name of the elastic pool.
-   * @param options The options parameters.
+   *
    */
-  listMetricDefinitions(
-    resourceGroupName: string,
-    serverName: string,
-    elasticPoolName: string,
-    options?: ElasticPoolsListMetricDefinitionsOptionalParams
-  ): PagedAsyncIterableIterator<MetricDefinition>;
+  listMetricDefinitions(): PagedAsyncIterableIterator<MetricDefinition>;
   /**
    * Gets all elastic pools in a server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  listByServer(
-    resourceGroupName: string,
-    serverName: string,
-    options?: ElasticPoolsListByServerOptionalParams
-  ): PagedAsyncIterableIterator<ElasticPool>;
+  listByServer(): PagedAsyncIterableIterator<ElasticPool>;
   /**
    * Gets an elastic pool.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param elasticPoolName The name of the elastic pool.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    elasticPoolName: string,
-    options?: ElasticPoolsGetOptionalParams
-  ): Promise<ElasticPoolsGetResponse>;
+  get(): Promise<ElasticPoolsGetResponse>;
   /**
    * Creates or updates an elastic pool.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param elasticPoolName The name of the elastic pool.
-   * @param parameters The elastic pool parameters.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    elasticPoolName: string,
-    parameters: ElasticPool,
-    options?: ElasticPoolsCreateOrUpdateOptionalParams
-  ): Promise<
+  beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<ElasticPoolsCreateOrUpdateResponse>,
       ElasticPoolsCreateOrUpdateResponse
@@ -108,64 +52,24 @@ export interface ElasticPools {
   >;
   /**
    * Creates or updates an elastic pool.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param elasticPoolName The name of the elastic pool.
-   * @param parameters The elastic pool parameters.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    elasticPoolName: string,
-    parameters: ElasticPool,
-    options?: ElasticPoolsCreateOrUpdateOptionalParams
-  ): Promise<ElasticPoolsCreateOrUpdateResponse>;
+  beginCreateOrUpdateAndWait(): Promise<ElasticPoolsCreateOrUpdateResponse>;
   /**
    * Deletes an elastic pool.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param elasticPoolName The name of the elastic pool.
-   * @param options The options parameters.
+   *
    */
-  beginDelete(
-    resourceGroupName: string,
-    serverName: string,
-    elasticPoolName: string,
-    options?: ElasticPoolsDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  beginDelete(): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes an elastic pool.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param elasticPoolName The name of the elastic pool.
-   * @param options The options parameters.
+   *
    */
-  beginDeleteAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    elasticPoolName: string,
-    options?: ElasticPoolsDeleteOptionalParams
-  ): Promise<void>;
+  beginDeleteAndWait(): Promise<void>;
   /**
    * Updates an elastic pool.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param elasticPoolName The name of the elastic pool.
-   * @param parameters The elastic pool update parameters.
-   * @param options The options parameters.
+   *
    */
-  beginUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    elasticPoolName: string,
-    parameters: ElasticPoolUpdate,
-    options?: ElasticPoolsUpdateOptionalParams
-  ): Promise<
+  beginUpdate(): Promise<
     PollerLike<
       PollOperationState<ElasticPoolsUpdateResponse>,
       ElasticPoolsUpdateResponse
@@ -173,46 +77,17 @@ export interface ElasticPools {
   >;
   /**
    * Updates an elastic pool.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param elasticPoolName The name of the elastic pool.
-   * @param parameters The elastic pool update parameters.
-   * @param options The options parameters.
+   *
    */
-  beginUpdateAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    elasticPoolName: string,
-    parameters: ElasticPoolUpdate,
-    options?: ElasticPoolsUpdateOptionalParams
-  ): Promise<ElasticPoolsUpdateResponse>;
+  beginUpdateAndWait(): Promise<ElasticPoolsUpdateResponse>;
   /**
    * Failovers an elastic pool.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param elasticPoolName The name of the elastic pool to failover.
-   * @param options The options parameters.
+   *
    */
-  beginFailover(
-    resourceGroupName: string,
-    serverName: string,
-    elasticPoolName: string,
-    options?: ElasticPoolsFailoverOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  beginFailover(): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Failovers an elastic pool.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param elasticPoolName The name of the elastic pool to failover.
-   * @param options The options parameters.
+   *
    */
-  beginFailoverAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    elasticPoolName: string,
-    options?: ElasticPoolsFailoverOptionalParams
-  ): Promise<void>;
+  beginFailoverAndWait(): Promise<void>;
 }

@@ -6,20 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
-  CapabilitiesListByLocationOptionalParams,
-  CapabilitiesListByLocationResponse
-} from "../models";
+import { CapabilitiesListByLocationResponse } from "../models";
 
 /** Interface representing a Capabilities. */
 export interface Capabilities {
   /**
    * Gets the subscription capabilities available for the specified location.
-   * @param locationName The location name whose capabilities are retrieved.
-   * @param options The options parameters.
+   *
    */
-  listByLocation(
-    locationName: string,
-    options?: CapabilitiesListByLocationOptionalParams
-  ): Promise<CapabilitiesListByLocationResponse>;
+  listByLocation(): Promise<CapabilitiesListByLocationResponse>;
 }

@@ -10,10 +10,6 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ImportExportExtensionsOperationResult,
-  DatabaseExtensionsListByDatabaseOptionalParams,
-  DatabaseExtensionsGetOptionalParams,
-  DatabaseExtensions,
-  DatabaseExtensionsCreateOrUpdateOptionalParams,
   DatabaseExtensionsCreateOrUpdateResponse
 } from "../models";
 
@@ -22,52 +18,21 @@ import {
 export interface DatabaseExtensionsOperations {
   /**
    * List database extension. This will return an empty list as it is not supported.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param options The options parameters.
+   *
    */
-  listByDatabase(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: DatabaseExtensionsListByDatabaseOptionalParams
-  ): PagedAsyncIterableIterator<ImportExportExtensionsOperationResult>;
+  listByDatabase(): PagedAsyncIterableIterator<
+    ImportExportExtensionsOperationResult
+  >;
   /**
    * Gets a database extension. This will return resource not found as it is not supported.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param extensionName
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    extensionName: string,
-    options?: DatabaseExtensionsGetOptionalParams
-  ): Promise<void>;
+  get(): Promise<void>;
   /**
    * Perform a database extension operation, like polybase import
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param extensionName
-   * @param parameters The database import request parameters.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    extensionName: string,
-    parameters: DatabaseExtensions,
-    options?: DatabaseExtensionsCreateOrUpdateOptionalParams
-  ): Promise<
+  beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<DatabaseExtensionsCreateOrUpdateResponse>,
       DatabaseExtensionsCreateOrUpdateResponse
@@ -75,20 +40,9 @@ export interface DatabaseExtensionsOperations {
   >;
   /**
    * Perform a database extension operation, like polybase import
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param extensionName
-   * @param parameters The database import request parameters.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    extensionName: string,
-    parameters: DatabaseExtensions,
-    options?: DatabaseExtensionsCreateOrUpdateOptionalParams
-  ): Promise<DatabaseExtensionsCreateOrUpdateResponse>;
+  beginCreateOrUpdateAndWait(): Promise<
+    DatabaseExtensionsCreateOrUpdateResponse
+  >;
 }

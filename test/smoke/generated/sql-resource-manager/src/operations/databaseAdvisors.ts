@@ -12,12 +12,8 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import {
-  DatabaseAdvisorsListByDatabaseOptionalParams,
   DatabaseAdvisorsListByDatabaseResponse,
-  DatabaseAdvisorsGetOptionalParams,
   DatabaseAdvisorsGetResponse,
-  Advisor,
-  DatabaseAdvisorsUpdateOptionalParams,
   DatabaseAdvisorsUpdateResponse
 } from "../models";
 
@@ -35,73 +31,23 @@ export class DatabaseAdvisorsImpl implements DatabaseAdvisors {
 
   /**
    * Gets a list of database advisors.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param options The options parameters.
+   *
    */
-  listByDatabase(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: DatabaseAdvisorsListByDatabaseOptionalParams
-  ): Promise<DatabaseAdvisorsListByDatabaseResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, databaseName, options },
-      listByDatabaseOperationSpec
-    );
-  }
+  listByDatabase(): Promise<DatabaseAdvisorsListByDatabaseResponse> {}
 
   /**
    * Gets a database advisor.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param advisorName The name of the Database Advisor.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    advisorName: string,
-    options?: DatabaseAdvisorsGetOptionalParams
-  ): Promise<DatabaseAdvisorsGetResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, databaseName, advisorName, options },
-      getOperationSpec
-    );
-  }
+  get(): Promise<DatabaseAdvisorsGetResponse> {}
 
   /**
    * Updates a database advisor.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param advisorName The name of the Database Advisor.
-   * @param parameters The requested advisor resource state.
-   * @param options The options parameters.
+   *
    */
-  update(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    advisorName: string,
-    parameters: Advisor,
-    options?: DatabaseAdvisorsUpdateOptionalParams
-  ): Promise<DatabaseAdvisorsUpdateResponse> {
+  update(): Promise<DatabaseAdvisorsUpdateResponse> {
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        advisorName,
-        parameters,
-        options
-      },
+      { resourceGroupName, serverName, databaseName, advisorName, options },
       updateOperationSpec
     );
   }
@@ -109,54 +55,6 @@ export class DatabaseAdvisorsImpl implements DatabaseAdvisors {
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listByDatabaseOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/advisors",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Composite", className: "Advisor" } }
-        }
-      }
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2, Parameters.expand],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.databaseName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/advisors/{advisorName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.Advisor
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.databaseName,
-    Parameters.advisorName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
 const updateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/advisors/{advisorName}",

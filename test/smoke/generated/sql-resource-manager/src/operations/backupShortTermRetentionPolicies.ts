@@ -16,14 +16,8 @@ import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
   BackupShortTermRetentionPolicy,
-  BackupShortTermRetentionPoliciesListByDatabaseNextOptionalParams,
-  BackupShortTermRetentionPoliciesListByDatabaseOptionalParams,
-  ShortTermRetentionPolicyName,
-  BackupShortTermRetentionPoliciesGetOptionalParams,
   BackupShortTermRetentionPoliciesGetResponse,
-  BackupShortTermRetentionPoliciesCreateOrUpdateOptionalParams,
   BackupShortTermRetentionPoliciesCreateOrUpdateResponse,
-  BackupShortTermRetentionPoliciesUpdateOptionalParams,
   BackupShortTermRetentionPoliciesUpdateResponse,
   BackupShortTermRetentionPoliciesListByDatabaseResponse,
   BackupShortTermRetentionPoliciesListByDatabaseNextResponse
@@ -45,24 +39,12 @@ export class BackupShortTermRetentionPoliciesImpl
 
   /**
    * Gets a database's short term retention policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param options The options parameters.
+   *
    */
-  public listByDatabase(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: BackupShortTermRetentionPoliciesListByDatabaseOptionalParams
-  ): PagedAsyncIterableIterator<BackupShortTermRetentionPolicy> {
-    const iter = this.listByDatabasePagingAll(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      options
-    );
+  public listByDatabase(): PagedAsyncIterableIterator<
+    BackupShortTermRetentionPolicy
+  > {
+    const iter = this.listByDatabasePagingAll();
     return {
       next() {
         return iter.next();
@@ -71,99 +53,43 @@ export class BackupShortTermRetentionPoliciesImpl
         return this;
       },
       byPage: () => {
-        return this.listByDatabasePagingPage(
-          resourceGroupName,
-          serverName,
-          databaseName,
-          options
-        );
+        return this.listByDatabasePagingPage();
       }
     };
   }
 
-  private async *listByDatabasePagingPage(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: BackupShortTermRetentionPoliciesListByDatabaseOptionalParams
-  ): AsyncIterableIterator<BackupShortTermRetentionPolicy[]> {
-    let result = await this._listByDatabase(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      options
-    );
+  private async *listByDatabasePagingPage(): AsyncIterableIterator<
+    BackupShortTermRetentionPolicy[]
+  > {
+    let result = await this._listByDatabase();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listByDatabaseNext(
-        resourceGroupName,
-        serverName,
-        databaseName,
-        continuationToken,
-        options
-      );
+      result = await this._listByDatabaseNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listByDatabasePagingAll(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: BackupShortTermRetentionPoliciesListByDatabaseOptionalParams
-  ): AsyncIterableIterator<BackupShortTermRetentionPolicy> {
-    for await (const page of this.listByDatabasePagingPage(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      options
-    )) {
+  private async *listByDatabasePagingAll(): AsyncIterableIterator<
+    BackupShortTermRetentionPolicy
+  > {
+    for await (const page of this.listByDatabasePagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Gets a database's short term retention policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param policyName The policy name. Should always be "default".
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    policyName: ShortTermRetentionPolicyName,
-    options?: BackupShortTermRetentionPoliciesGetOptionalParams
-  ): Promise<BackupShortTermRetentionPoliciesGetResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, databaseName, policyName, options },
-      getOperationSpec
-    );
-  }
+  get(): Promise<BackupShortTermRetentionPoliciesGetResponse> {}
 
   /**
    * Updates a database's short term retention policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param policyName The policy name. Should always be "default".
-   * @param parameters The short term retention policy info.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    policyName: ShortTermRetentionPolicyName,
-    parameters: BackupShortTermRetentionPolicy,
-    options?: BackupShortTermRetentionPoliciesCreateOrUpdateOptionalParams
-  ): Promise<
+  async beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<
         BackupShortTermRetentionPoliciesCreateOrUpdateResponse
@@ -212,14 +138,7 @@ export class BackupShortTermRetentionPoliciesImpl
 
     const lro = new LroImpl(
       sendOperation,
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        policyName,
-        parameters,
-        options
-      },
+      { resourceGroupName, serverName, databaseName, policyName, options },
       createOrUpdateOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -232,51 +151,20 @@ export class BackupShortTermRetentionPoliciesImpl
 
   /**
    * Updates a database's short term retention policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param policyName The policy name. Should always be "default".
-   * @param parameters The short term retention policy info.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    policyName: ShortTermRetentionPolicyName,
-    parameters: BackupShortTermRetentionPolicy,
-    options?: BackupShortTermRetentionPoliciesCreateOrUpdateOptionalParams
-  ): Promise<BackupShortTermRetentionPoliciesCreateOrUpdateResponse> {
-    const poller = await this.beginCreateOrUpdate(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      policyName,
-      parameters,
-      options
-    );
+  async beginCreateOrUpdateAndWait(): Promise<
+    BackupShortTermRetentionPoliciesCreateOrUpdateResponse
+  > {
+    const poller = await this.beginCreateOrUpdate();
     return poller.pollUntilDone();
   }
 
   /**
    * Updates a database's short term retention policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param policyName The policy name. Should always be "default".
-   * @param parameters The short term retention policy info.
-   * @param options The options parameters.
+   *
    */
-  async beginUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    policyName: ShortTermRetentionPolicyName,
-    parameters: BackupShortTermRetentionPolicy,
-    options?: BackupShortTermRetentionPoliciesUpdateOptionalParams
-  ): Promise<
+  async beginUpdate(): Promise<
     PollerLike<
       PollOperationState<BackupShortTermRetentionPoliciesUpdateResponse>,
       BackupShortTermRetentionPoliciesUpdateResponse
@@ -323,14 +211,7 @@ export class BackupShortTermRetentionPoliciesImpl
 
     const lro = new LroImpl(
       sendOperation,
-      {
-        resourceGroupName,
-        serverName,
-        databaseName,
-        policyName,
-        parameters,
-        options
-      },
+      { resourceGroupName, serverName, databaseName, policyName, options },
       updateOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -343,100 +224,34 @@ export class BackupShortTermRetentionPoliciesImpl
 
   /**
    * Updates a database's short term retention policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param policyName The policy name. Should always be "default".
-   * @param parameters The short term retention policy info.
-   * @param options The options parameters.
+   *
    */
-  async beginUpdateAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    policyName: ShortTermRetentionPolicyName,
-    parameters: BackupShortTermRetentionPolicy,
-    options?: BackupShortTermRetentionPoliciesUpdateOptionalParams
-  ): Promise<BackupShortTermRetentionPoliciesUpdateResponse> {
-    const poller = await this.beginUpdate(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      policyName,
-      parameters,
-      options
-    );
+  async beginUpdateAndWait(): Promise<
+    BackupShortTermRetentionPoliciesUpdateResponse
+  > {
+    const poller = await this.beginUpdate();
     return poller.pollUntilDone();
   }
 
   /**
    * Gets a database's short term retention policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param options The options parameters.
+   *
    */
-  private _listByDatabase(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    options?: BackupShortTermRetentionPoliciesListByDatabaseOptionalParams
-  ): Promise<BackupShortTermRetentionPoliciesListByDatabaseResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, databaseName, options },
-      listByDatabaseOperationSpec
-    );
-  }
+  private _listByDatabase(): Promise<
+    BackupShortTermRetentionPoliciesListByDatabaseResponse
+  > {}
 
   /**
    * ListByDatabaseNext
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param databaseName The name of the database.
-   * @param nextLink The nextLink from the previous successful call to the ListByDatabase method.
-   * @param options The options parameters.
+   *
    */
-  private _listByDatabaseNext(
-    resourceGroupName: string,
-    serverName: string,
-    databaseName: string,
-    nextLink: string,
-    options?: BackupShortTermRetentionPoliciesListByDatabaseNextOptionalParams
-  ): Promise<BackupShortTermRetentionPoliciesListByDatabaseNextResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, databaseName, nextLink, options },
-      listByDatabaseNextOperationSpec
-    );
-  }
+  private _listByDatabaseNext(): Promise<
+    BackupShortTermRetentionPoliciesListByDatabaseNextResponse
+  > {}
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/backupShortTermRetentionPolicies/{policyName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.BackupShortTermRetentionPolicy
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion3],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.databaseName,
-    Parameters.policyName3
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
 const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/backupShortTermRetentionPolicies/{policyName}",
@@ -501,47 +316,5 @@ const updateOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const listByDatabaseOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/backupShortTermRetentionPolicies",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.BackupShortTermRetentionPolicyListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion3],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.databaseName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByDatabaseNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.BackupShortTermRetentionPolicyListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion3],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.databaseName,
-    Parameters.nextLink
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };

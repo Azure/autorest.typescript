@@ -9,8 +9,6 @@
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import {
   PrivateLinkResource,
-  PrivateLinkResourcesListByServerOptionalParams,
-  PrivateLinkResourcesGetOptionalParams,
   PrivateLinkResourcesGetResponse
 } from "../models";
 
@@ -19,28 +17,12 @@ import {
 export interface PrivateLinkResources {
   /**
    * Gets the private link resources for SQL server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  listByServer(
-    resourceGroupName: string,
-    serverName: string,
-    options?: PrivateLinkResourcesListByServerOptionalParams
-  ): PagedAsyncIterableIterator<PrivateLinkResource>;
+  listByServer(): PagedAsyncIterableIterator<PrivateLinkResource>;
   /**
    * Gets a private link resource for SQL server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param groupName The name of the private link resource.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    groupName: string,
-    options?: PrivateLinkResourcesGetOptionalParams
-  ): Promise<PrivateLinkResourcesGetResponse>;
+  get(): Promise<PrivateLinkResourcesGetResponse>;
 }

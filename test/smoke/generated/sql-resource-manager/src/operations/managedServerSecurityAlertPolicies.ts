@@ -16,12 +16,7 @@ import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
   ManagedServerSecurityAlertPolicy,
-  ManagedServerSecurityAlertPoliciesListByInstanceNextOptionalParams,
-  ManagedServerSecurityAlertPoliciesListByInstanceOptionalParams,
-  SecurityAlertPolicyName,
-  ManagedServerSecurityAlertPoliciesGetOptionalParams,
   ManagedServerSecurityAlertPoliciesGetResponse,
-  ManagedServerSecurityAlertPoliciesCreateOrUpdateOptionalParams,
   ManagedServerSecurityAlertPoliciesCreateOrUpdateResponse,
   ManagedServerSecurityAlertPoliciesListByInstanceResponse,
   ManagedServerSecurityAlertPoliciesListByInstanceNextResponse
@@ -43,21 +38,12 @@ export class ManagedServerSecurityAlertPoliciesImpl
 
   /**
    * Get the managed server's threat detection policies.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param options The options parameters.
+   *
    */
-  public listByInstance(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    options?: ManagedServerSecurityAlertPoliciesListByInstanceOptionalParams
-  ): PagedAsyncIterableIterator<ManagedServerSecurityAlertPolicy> {
-    const iter = this.listByInstancePagingAll(
-      resourceGroupName,
-      managedInstanceName,
-      options
-    );
+  public listByInstance(): PagedAsyncIterableIterator<
+    ManagedServerSecurityAlertPolicy
+  > {
+    const iter = this.listByInstancePagingAll();
     return {
       next() {
         return iter.next();
@@ -66,94 +52,43 @@ export class ManagedServerSecurityAlertPoliciesImpl
         return this;
       },
       byPage: () => {
-        return this.listByInstancePagingPage(
-          resourceGroupName,
-          managedInstanceName,
-          options
-        );
+        return this.listByInstancePagingPage();
       }
     };
   }
 
-  private async *listByInstancePagingPage(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    options?: ManagedServerSecurityAlertPoliciesListByInstanceOptionalParams
-  ): AsyncIterableIterator<ManagedServerSecurityAlertPolicy[]> {
-    let result = await this._listByInstance(
-      resourceGroupName,
-      managedInstanceName,
-      options
-    );
+  private async *listByInstancePagingPage(): AsyncIterableIterator<
+    ManagedServerSecurityAlertPolicy[]
+  > {
+    let result = await this._listByInstance();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listByInstanceNext(
-        resourceGroupName,
-        managedInstanceName,
-        continuationToken,
-        options
-      );
+      result = await this._listByInstanceNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listByInstancePagingAll(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    options?: ManagedServerSecurityAlertPoliciesListByInstanceOptionalParams
-  ): AsyncIterableIterator<ManagedServerSecurityAlertPolicy> {
-    for await (const page of this.listByInstancePagingPage(
-      resourceGroupName,
-      managedInstanceName,
-      options
-    )) {
+  private async *listByInstancePagingAll(): AsyncIterableIterator<
+    ManagedServerSecurityAlertPolicy
+  > {
+    for await (const page of this.listByInstancePagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Get a managed server's threat detection policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param securityAlertPolicyName The name of the security alert policy.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    securityAlertPolicyName: SecurityAlertPolicyName,
-    options?: ManagedServerSecurityAlertPoliciesGetOptionalParams
-  ): Promise<ManagedServerSecurityAlertPoliciesGetResponse> {
-    return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        managedInstanceName,
-        securityAlertPolicyName,
-        options
-      },
-      getOperationSpec
-    );
-  }
+  get(): Promise<ManagedServerSecurityAlertPoliciesGetResponse> {}
 
   /**
    * Creates or updates a threat detection policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param securityAlertPolicyName The name of the security alert policy.
-   * @param parameters The managed server security alert policy.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdate(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    securityAlertPolicyName: SecurityAlertPolicyName,
-    parameters: ManagedServerSecurityAlertPolicy,
-    options?: ManagedServerSecurityAlertPoliciesCreateOrUpdateOptionalParams
-  ): Promise<
+  async beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<
         ManagedServerSecurityAlertPoliciesCreateOrUpdateResponse
@@ -206,7 +141,6 @@ export class ManagedServerSecurityAlertPoliciesImpl
         resourceGroupName,
         managedInstanceName,
         securityAlertPolicyName,
-        parameters,
         options
       },
       createOrUpdateOperationSpec
@@ -221,92 +155,34 @@ export class ManagedServerSecurityAlertPoliciesImpl
 
   /**
    * Creates or updates a threat detection policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param securityAlertPolicyName The name of the security alert policy.
-   * @param parameters The managed server security alert policy.
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    securityAlertPolicyName: SecurityAlertPolicyName,
-    parameters: ManagedServerSecurityAlertPolicy,
-    options?: ManagedServerSecurityAlertPoliciesCreateOrUpdateOptionalParams
-  ): Promise<ManagedServerSecurityAlertPoliciesCreateOrUpdateResponse> {
-    const poller = await this.beginCreateOrUpdate(
-      resourceGroupName,
-      managedInstanceName,
-      securityAlertPolicyName,
-      parameters,
-      options
-    );
+  async beginCreateOrUpdateAndWait(): Promise<
+    ManagedServerSecurityAlertPoliciesCreateOrUpdateResponse
+  > {
+    const poller = await this.beginCreateOrUpdate();
     return poller.pollUntilDone();
   }
 
   /**
    * Get the managed server's threat detection policies.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param options The options parameters.
+   *
    */
-  private _listByInstance(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    options?: ManagedServerSecurityAlertPoliciesListByInstanceOptionalParams
-  ): Promise<ManagedServerSecurityAlertPoliciesListByInstanceResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, managedInstanceName, options },
-      listByInstanceOperationSpec
-    );
-  }
+  private _listByInstance(): Promise<
+    ManagedServerSecurityAlertPoliciesListByInstanceResponse
+  > {}
 
   /**
    * ListByInstanceNext
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param nextLink The nextLink from the previous successful call to the ListByInstance method.
-   * @param options The options parameters.
+   *
    */
-  private _listByInstanceNext(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    nextLink: string,
-    options?: ManagedServerSecurityAlertPoliciesListByInstanceNextOptionalParams
-  ): Promise<ManagedServerSecurityAlertPoliciesListByInstanceNextResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, managedInstanceName, nextLink, options },
-      listByInstanceNextOperationSpec
-    );
-  }
+  private _listByInstanceNext(): Promise<
+    ManagedServerSecurityAlertPoliciesListByInstanceNextResponse
+  > {}
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/securityAlertPolicies/{securityAlertPolicyName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ManagedServerSecurityAlertPolicy
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.securityAlertPolicyName,
-    Parameters.managedInstanceName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
 const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/securityAlertPolicies/{securityAlertPolicyName}",
@@ -337,45 +213,5 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const listByInstanceOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/securityAlertPolicies",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ManagedServerSecurityAlertPolicyListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.managedInstanceName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByInstanceNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ManagedServerSecurityAlertPolicyListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.nextLink,
-    Parameters.managedInstanceName
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };

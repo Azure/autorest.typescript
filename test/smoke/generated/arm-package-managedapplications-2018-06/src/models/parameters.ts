@@ -128,18 +128,6 @@ export const applicationId: OperationURLParameter = {
   skipEncoding: true
 };
 
-export const nextLink: OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
 export const applicationDefinitionName: OperationURLParameter = {
   parameterPath: "applicationDefinitionName",
   mapper: {

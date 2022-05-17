@@ -16,11 +16,7 @@ import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
   ExtendedServerBlobAuditingPolicy,
-  ExtendedServerBlobAuditingPoliciesListByServerNextOptionalParams,
-  ExtendedServerBlobAuditingPoliciesListByServerOptionalParams,
-  ExtendedServerBlobAuditingPoliciesGetOptionalParams,
   ExtendedServerBlobAuditingPoliciesGetResponse,
-  ExtendedServerBlobAuditingPoliciesCreateOrUpdateOptionalParams,
   ExtendedServerBlobAuditingPoliciesCreateOrUpdateResponse,
   ExtendedServerBlobAuditingPoliciesListByServerResponse,
   ExtendedServerBlobAuditingPoliciesListByServerNextResponse
@@ -42,21 +38,12 @@ export class ExtendedServerBlobAuditingPoliciesImpl
 
   /**
    * Lists extended auditing settings of a server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  public listByServer(
-    resourceGroupName: string,
-    serverName: string,
-    options?: ExtendedServerBlobAuditingPoliciesListByServerOptionalParams
-  ): PagedAsyncIterableIterator<ExtendedServerBlobAuditingPolicy> {
-    const iter = this.listByServerPagingAll(
-      resourceGroupName,
-      serverName,
-      options
-    );
+  public listByServer(): PagedAsyncIterableIterator<
+    ExtendedServerBlobAuditingPolicy
+  > {
+    const iter = this.listByServerPagingAll();
     return {
       next() {
         return iter.next();
@@ -65,85 +52,43 @@ export class ExtendedServerBlobAuditingPoliciesImpl
         return this;
       },
       byPage: () => {
-        return this.listByServerPagingPage(
-          resourceGroupName,
-          serverName,
-          options
-        );
+        return this.listByServerPagingPage();
       }
     };
   }
 
-  private async *listByServerPagingPage(
-    resourceGroupName: string,
-    serverName: string,
-    options?: ExtendedServerBlobAuditingPoliciesListByServerOptionalParams
-  ): AsyncIterableIterator<ExtendedServerBlobAuditingPolicy[]> {
-    let result = await this._listByServer(
-      resourceGroupName,
-      serverName,
-      options
-    );
+  private async *listByServerPagingPage(): AsyncIterableIterator<
+    ExtendedServerBlobAuditingPolicy[]
+  > {
+    let result = await this._listByServer();
     yield result.value || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._listByServerNext(
-        resourceGroupName,
-        serverName,
-        continuationToken,
-        options
-      );
+      result = await this._listByServerNext();
       continuationToken = result.nextLink;
       yield result.value || [];
     }
   }
 
-  private async *listByServerPagingAll(
-    resourceGroupName: string,
-    serverName: string,
-    options?: ExtendedServerBlobAuditingPoliciesListByServerOptionalParams
-  ): AsyncIterableIterator<ExtendedServerBlobAuditingPolicy> {
-    for await (const page of this.listByServerPagingPage(
-      resourceGroupName,
-      serverName,
-      options
-    )) {
+  private async *listByServerPagingAll(): AsyncIterableIterator<
+    ExtendedServerBlobAuditingPolicy
+  > {
+    for await (const page of this.listByServerPagingPage()) {
       yield* page;
     }
   }
 
   /**
    * Gets an extended server's blob auditing policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    serverName: string,
-    options?: ExtendedServerBlobAuditingPoliciesGetOptionalParams
-  ): Promise<ExtendedServerBlobAuditingPoliciesGetResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, options },
-      getOperationSpec
-    );
-  }
+  get(): Promise<ExtendedServerBlobAuditingPoliciesGetResponse> {}
 
   /**
    * Creates or updates an extended server's blob auditing policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param parameters Properties of extended blob auditing policy
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdate(
-    resourceGroupName: string,
-    serverName: string,
-    parameters: ExtendedServerBlobAuditingPolicy,
-    options?: ExtendedServerBlobAuditingPoliciesCreateOrUpdateOptionalParams
-  ): Promise<
+  async beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<
         ExtendedServerBlobAuditingPoliciesCreateOrUpdateResponse
@@ -192,7 +137,7 @@ export class ExtendedServerBlobAuditingPoliciesImpl
 
     const lro = new LroImpl(
       sendOperation,
-      { resourceGroupName, serverName, parameters, options },
+      { resourceGroupName, serverName, options },
       createOrUpdateOperationSpec
     );
     const poller = new LroEngine(lro, {
@@ -205,89 +150,34 @@ export class ExtendedServerBlobAuditingPoliciesImpl
 
   /**
    * Creates or updates an extended server's blob auditing policy.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param parameters Properties of extended blob auditing policy
-   * @param options The options parameters.
+   *
    */
-  async beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    serverName: string,
-    parameters: ExtendedServerBlobAuditingPolicy,
-    options?: ExtendedServerBlobAuditingPoliciesCreateOrUpdateOptionalParams
-  ): Promise<ExtendedServerBlobAuditingPoliciesCreateOrUpdateResponse> {
-    const poller = await this.beginCreateOrUpdate(
-      resourceGroupName,
-      serverName,
-      parameters,
-      options
-    );
+  async beginCreateOrUpdateAndWait(): Promise<
+    ExtendedServerBlobAuditingPoliciesCreateOrUpdateResponse
+  > {
+    const poller = await this.beginCreateOrUpdate();
     return poller.pollUntilDone();
   }
 
   /**
    * Lists extended auditing settings of a server.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param options The options parameters.
+   *
    */
-  private _listByServer(
-    resourceGroupName: string,
-    serverName: string,
-    options?: ExtendedServerBlobAuditingPoliciesListByServerOptionalParams
-  ): Promise<ExtendedServerBlobAuditingPoliciesListByServerResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, options },
-      listByServerOperationSpec
-    );
-  }
+  private _listByServer(): Promise<
+    ExtendedServerBlobAuditingPoliciesListByServerResponse
+  > {}
 
   /**
    * ListByServerNext
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param serverName The name of the server.
-   * @param nextLink The nextLink from the previous successful call to the ListByServer method.
-   * @param options The options parameters.
+   *
    */
-  private _listByServerNext(
-    resourceGroupName: string,
-    serverName: string,
-    nextLink: string,
-    options?: ExtendedServerBlobAuditingPoliciesListByServerNextOptionalParams
-  ): Promise<ExtendedServerBlobAuditingPoliciesListByServerNextResponse> {
-    return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, nextLink, options },
-      listByServerNextOperationSpec
-    );
-  }
+  private _listByServerNext(): Promise<
+    ExtendedServerBlobAuditingPoliciesListByServerNextResponse
+  > {}
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/extendedAuditingSettings/{blobAuditingPolicyName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ExtendedServerBlobAuditingPolicy
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.blobAuditingPolicyName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
 const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/extendedAuditingSettings/{blobAuditingPolicyName}",
@@ -318,45 +208,5 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
-};
-const listByServerOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/extendedAuditingSettings",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ExtendedServerBlobAuditingPolicyListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listByServerNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ExtendedServerBlobAuditingPolicyListResult
-    },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.nextLink
-  ],
-  headerParameters: [Parameters.accept],
   serializer
 };

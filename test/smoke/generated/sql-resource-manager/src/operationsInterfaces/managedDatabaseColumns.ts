@@ -7,67 +7,24 @@
  */
 
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import {
-  DatabaseColumn,
-  ManagedDatabaseColumnsListByDatabaseOptionalParams,
-  ManagedDatabaseColumnsListByTableOptionalParams,
-  ManagedDatabaseColumnsGetOptionalParams,
-  ManagedDatabaseColumnsGetResponse
-} from "../models";
+import { DatabaseColumn, ManagedDatabaseColumnsGetResponse } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a ManagedDatabaseColumns. */
 export interface ManagedDatabaseColumns {
   /**
    * List managed database columns
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the database.
-   * @param options The options parameters.
+   *
    */
-  listByDatabase(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    options?: ManagedDatabaseColumnsListByDatabaseOptionalParams
-  ): PagedAsyncIterableIterator<DatabaseColumn>;
+  listByDatabase(): PagedAsyncIterableIterator<DatabaseColumn>;
   /**
    * List managed database columns
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the database.
-   * @param schemaName The name of the schema.
-   * @param tableName The name of the table.
-   * @param options The options parameters.
+   *
    */
-  listByTable(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    schemaName: string,
-    tableName: string,
-    options?: ManagedDatabaseColumnsListByTableOptionalParams
-  ): PagedAsyncIterableIterator<DatabaseColumn>;
+  listByTable(): PagedAsyncIterableIterator<DatabaseColumn>;
   /**
    * Get managed database column
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param databaseName The name of the database.
-   * @param schemaName The name of the schema.
-   * @param tableName The name of the table.
-   * @param columnName The name of the column.
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    databaseName: string,
-    schemaName: string,
-    tableName: string,
-    columnName: string,
-    options?: ManagedDatabaseColumnsGetOptionalParams
-  ): Promise<ManagedDatabaseColumnsGetResponse>;
+  get(): Promise<ManagedDatabaseColumnsGetResponse>;
 }

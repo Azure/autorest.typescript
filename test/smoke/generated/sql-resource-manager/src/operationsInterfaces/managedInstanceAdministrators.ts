@@ -10,13 +10,8 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ManagedInstanceAdministrator,
-  ManagedInstanceAdministratorsListByInstanceOptionalParams,
-  AdministratorName,
-  ManagedInstanceAdministratorsGetOptionalParams,
   ManagedInstanceAdministratorsGetResponse,
-  ManagedInstanceAdministratorsCreateOrUpdateOptionalParams,
-  ManagedInstanceAdministratorsCreateOrUpdateResponse,
-  ManagedInstanceAdministratorsDeleteOptionalParams
+  ManagedInstanceAdministratorsCreateOrUpdateResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -24,46 +19,19 @@ import {
 export interface ManagedInstanceAdministrators {
   /**
    * Gets a list of managed instance administrators.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param options The options parameters.
+   *
    */
-  listByInstance(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    options?: ManagedInstanceAdministratorsListByInstanceOptionalParams
-  ): PagedAsyncIterableIterator<ManagedInstanceAdministrator>;
+  listByInstance(): PagedAsyncIterableIterator<ManagedInstanceAdministrator>;
   /**
    * Gets a managed instance administrator.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param administratorName
-   * @param options The options parameters.
+   *
    */
-  get(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    administratorName: AdministratorName,
-    options?: ManagedInstanceAdministratorsGetOptionalParams
-  ): Promise<ManagedInstanceAdministratorsGetResponse>;
+  get(): Promise<ManagedInstanceAdministratorsGetResponse>;
   /**
    * Creates or updates a managed instance administrator.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param administratorName
-   * @param parameters The requested administrator parameters.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdate(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    administratorName: AdministratorName,
-    parameters: ManagedInstanceAdministrator,
-    options?: ManagedInstanceAdministratorsCreateOrUpdateOptionalParams
-  ): Promise<
+  beginCreateOrUpdate(): Promise<
     PollerLike<
       PollOperationState<ManagedInstanceAdministratorsCreateOrUpdateResponse>,
       ManagedInstanceAdministratorsCreateOrUpdateResponse
@@ -71,46 +39,19 @@ export interface ManagedInstanceAdministrators {
   >;
   /**
    * Creates or updates a managed instance administrator.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param administratorName
-   * @param parameters The requested administrator parameters.
-   * @param options The options parameters.
+   *
    */
-  beginCreateOrUpdateAndWait(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    administratorName: AdministratorName,
-    parameters: ManagedInstanceAdministrator,
-    options?: ManagedInstanceAdministratorsCreateOrUpdateOptionalParams
-  ): Promise<ManagedInstanceAdministratorsCreateOrUpdateResponse>;
+  beginCreateOrUpdateAndWait(): Promise<
+    ManagedInstanceAdministratorsCreateOrUpdateResponse
+  >;
   /**
    * Deletes a managed instance administrator.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param administratorName
-   * @param options The options parameters.
+   *
    */
-  beginDelete(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    administratorName: AdministratorName,
-    options?: ManagedInstanceAdministratorsDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  beginDelete(): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes a managed instance administrator.
-   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-   *                          this value from the Azure Resource Manager API or the portal.
-   * @param managedInstanceName The name of the managed instance.
-   * @param administratorName
-   * @param options The options parameters.
+   *
    */
-  beginDeleteAndWait(
-    resourceGroupName: string,
-    managedInstanceName: string,
-    administratorName: AdministratorName,
-    options?: ManagedInstanceAdministratorsDeleteOptionalParams
-  ): Promise<void>;
+  beginDeleteAndWait(): Promise<void>;
 }
