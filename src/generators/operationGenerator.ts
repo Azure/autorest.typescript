@@ -681,7 +681,7 @@ function writeOperationBody(
       clientDetails,
       isInline
     );
-  } else if (Object.keys(overloadDeclarations).length === 1){
+  } else if (Object.keys(overloadDeclarations).length > 1){
     // This condition implies that the user can specify a contentType,
     // and this contentType can change how the request is serialized.
     writeMultiMediaTypeOperationBody(
