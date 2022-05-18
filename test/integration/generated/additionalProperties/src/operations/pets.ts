@@ -12,23 +12,11 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { AdditionalPropertiesClient } from "../additionalPropertiesClient";
 import {
-  PetAPTrue,
-  PetsCreateAPTrueOptionalParams,
   PetsCreateAPTrueResponse,
-  CatAPTrue,
-  PetsCreateCatAPTrueOptionalParams,
   PetsCreateCatAPTrueResponse,
-  PetAPObject,
-  PetsCreateAPObjectOptionalParams,
   PetsCreateAPObjectResponse,
-  PetAPString,
-  PetsCreateAPStringOptionalParams,
   PetsCreateAPStringResponse,
-  PetAPInProperties,
-  PetsCreateAPInPropertiesOptionalParams,
   PetsCreateAPInPropertiesResponse,
-  PetAPInPropertiesWithAPString,
-  PetsCreateAPInPropertiesWithAPStringOptionalParams,
   PetsCreateAPInPropertiesWithAPStringResponse
 } from "../models";
 
@@ -46,90 +34,68 @@ export class PetsImpl implements Pets {
 
   /**
    * Create a Pet which contains more properties than what is defined.
-   * @param createParameters
-   * @param options The options parameters.
+   *
    */
-  createAPTrue(
-    createParameters: PetAPTrue,
-    options?: PetsCreateAPTrueOptionalParams
-  ): Promise<PetsCreateAPTrueResponse> {
+  createAPTrue(): Promise<PetsCreateAPTrueResponse> {
     return this.client.sendOperationRequest(
-      { createParameters, options },
+      { options },
       createAPTrueOperationSpec
     );
   }
 
   /**
    * Create a CatAPTrue which contains more properties than what is defined.
-   * @param createParameters
-   * @param options The options parameters.
+   *
    */
-  createCatAPTrue(
-    createParameters: CatAPTrue,
-    options?: PetsCreateCatAPTrueOptionalParams
-  ): Promise<PetsCreateCatAPTrueResponse> {
+  createCatAPTrue(): Promise<PetsCreateCatAPTrueResponse> {
     return this.client.sendOperationRequest(
-      { createParameters, options },
+      { options },
       createCatAPTrueOperationSpec
     );
   }
 
   /**
    * Create a Pet which contains more properties than what is defined.
-   * @param createParameters
-   * @param options The options parameters.
+   *
    */
-  createAPObject(
-    createParameters: PetAPObject,
-    options?: PetsCreateAPObjectOptionalParams
-  ): Promise<PetsCreateAPObjectResponse> {
+  createAPObject(): Promise<PetsCreateAPObjectResponse> {
     return this.client.sendOperationRequest(
-      { createParameters, options },
+      { options },
       createAPObjectOperationSpec
     );
   }
 
   /**
    * Create a Pet which contains more properties than what is defined.
-   * @param createParameters
-   * @param options The options parameters.
+   *
    */
-  createAPString(
-    createParameters: PetAPString,
-    options?: PetsCreateAPStringOptionalParams
-  ): Promise<PetsCreateAPStringResponse> {
+  createAPString(): Promise<PetsCreateAPStringResponse> {
     return this.client.sendOperationRequest(
-      { createParameters, options },
+      { options },
       createAPStringOperationSpec
     );
   }
 
   /**
    * Create a Pet which contains more properties than what is defined.
-   * @param createParameters
-   * @param options The options parameters.
+   *
    */
-  createAPInProperties(
-    createParameters: PetAPInProperties,
-    options?: PetsCreateAPInPropertiesOptionalParams
-  ): Promise<PetsCreateAPInPropertiesResponse> {
+  createAPInProperties(): Promise<PetsCreateAPInPropertiesResponse> {
     return this.client.sendOperationRequest(
-      { createParameters, options },
+      { options },
       createAPInPropertiesOperationSpec
     );
   }
 
   /**
    * Create a Pet which contains more properties than what is defined.
-   * @param createParameters
-   * @param options The options parameters.
+   *
    */
-  createAPInPropertiesWithAPString(
-    createParameters: PetAPInPropertiesWithAPString,
-    options?: PetsCreateAPInPropertiesWithAPStringOptionalParams
-  ): Promise<PetsCreateAPInPropertiesWithAPStringResponse> {
+  createAPInPropertiesWithAPString(): Promise<
+    PetsCreateAPInPropertiesWithAPStringResponse
+  > {
     return this.client.sendOperationRequest(
-      { createParameters, options },
+      { options },
       createAPInPropertiesWithAPStringOperationSpec
     );
   }

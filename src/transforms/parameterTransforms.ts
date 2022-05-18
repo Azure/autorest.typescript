@@ -152,7 +152,7 @@ const extractOperationParameters = (codeModel: CodeModel) =>
                 requestParams.push({
                   operationName,
                   parameter,
-                  targetMediaType: request.protocol.http?.knownMediaType
+                  targetMediaType: mediaType.split('/').last as KnownMediaType
                 });
                 if (parameter.required) {
                   if ((parameter as any)['targetProperty'] !== undefined) {

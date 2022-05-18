@@ -741,7 +741,7 @@ function writeOptionalParameters(
             ...optionalGroupDeclarations,
             ...optionalParams
               .filter(
-                p => !p.targetMediaType || p.targetMediaType === mediaType
+                p => !p.targetMediaType || !mediaType.endsWith(p.targetMediaType) 
               )
               .map<PropertySignatureStructure>(buildParamDetails)
           ])

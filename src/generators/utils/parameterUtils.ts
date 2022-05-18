@@ -82,6 +82,13 @@ export function filterOperationParameters(
   const groupedFilter = (param: ParameterDetails) =>
     !!(includeGroupedParameters || !param.parameter.groupedBy);
 
+  const isGrouped = groupedFilter(parameters[0]);
+  const isGlobal = globalFilter(parameters[0]);
+  const isIn = isInOperation(parameters[0]);
+  const isOptional = optionalFilter(parameters[0]);
+  const isConstant = constantFilter(parameters[0]);
+  const isClient = clientParamFilter(parameters[0]);
+
   return parameters.filter(
     param =>
       groupedFilter(param) &&
@@ -126,7 +133,7 @@ export function getOperationParameterSignatures(
     // filter out parameters that belong to a different media type
     const requestParameters = operationParameters.filter(
       ({ targetMediaType }) =>
-        !targetMediaType || requestMediaType === targetMediaType
+        !targetMediaType || !requestMediaType.endsWith(targetMediaType)
     );
 
     // Convert parameters into TypeScript parameter declarations.

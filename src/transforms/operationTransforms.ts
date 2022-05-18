@@ -561,7 +561,7 @@ function getGroupedParameters(
     // Consider the media type as a match if none was provided, or they actually match.
     // This is important when an operation supports multiple media types.
     const matchesMediaType =
-      !mediaType || !p.targetMediaType || p.targetMediaType === mediaType;
+      !mediaType || !p.targetMediaType || mediaType.endsWith(p.targetMediaType);
     return Boolean(matchesOperation && matchesMediaType);
   });
   const hasFormDataParameters =
