@@ -53,11 +53,11 @@
     "dependencies": {
         "@autorest/codemodel": "^4.18.2",
         "@autorest/extension-base": "^3.4.1",
+        "@autorest/testmodeler": "^2.2.5",
         "@azure-rest/core-client": "1.0.0-alpha.20220421.2",
         "@azure-tools/codegen": "^2.5.294",
         "@azure/core-client": "^1.5.0",
         "@azure/core-http": "^1.2.4",
-        "@autorest/testmodeler": "^2.2.5",
         "@azure/core-http-compat": "^1.2.0",
         "@azure/core-lro": "^2.1.0",
         "@azure/core-paging": "^1.2.0",
