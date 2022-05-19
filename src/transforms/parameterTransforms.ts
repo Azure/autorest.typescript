@@ -28,7 +28,8 @@ import {
 import { isEqual, isNil } from "lodash";
 import {
   getTypeForSchema,
-  getSchemaTypeDocumentation
+  getSchemaTypeDocumentation,
+  getSecurityInfoFromModel
 } from "../utils/schemaHelpers";
 import { getStringForValue } from "../utils/valueHelpers";
 import { ClientOptions } from "../models/clientDetails";
@@ -104,7 +105,7 @@ export function transformParameters(
   options: ClientOptions
 ): ParameterDetails[] {
   let parameters: ParameterDetails[] = [];
-  const { addCredentials } = getAutorestOptions();
+  const { addCredentials } = getSecurityInfoFromModel(codeModel.security);
 
   const hasXmlMetadata = !!options.mediaTypes?.has(KnownMediaType.Xml);
   extractOperationParameters(codeModel).forEach(p =>

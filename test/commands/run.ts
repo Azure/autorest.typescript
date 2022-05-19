@@ -19,7 +19,8 @@ export async function runAutorest(
     outputPath,
     packageDetails,
     addCredentials,
-    credentialScopes,
+    security,
+    securityScopes,
     disablePagingAsyncIterators,
     hideClients,
     ignoreNullableOnOptional,
@@ -31,8 +32,10 @@ export async function runAutorest(
     isTestPackage,
     generateTest,
     coreHttpCompatMode,
-    azureArm
+    azureArm,
+    lenientModelDeduplication
   } = options;
+  console.log(options);
   let autorestCommand = `autorest${/^win/.test(process.platform) ? ".cmd" : ""
     }`;
   let commandArguments: string[] = [`--typescript`];
@@ -43,9 +46,13 @@ export async function runAutorest(
       `--tracing-info.packagePrefix="${tracingInfo.packagePrefix}"`
     );
   }
-  if (credentialScopes !== undefined && credentialScopes.length > 0) {
-    commandArguments.push(`--credential-scopes=${credentialScopes.join(",")}`);
-  }
+  if (securityScopes !== undefined && Array.isArray(securityScopes) && securityScopes.length > 0) {
+    securityScopes.forEach(item => {
+      commandArguments.push(`--security-scopes=${item}`);
+    });
+  } else if(securityScopes !== undefined){
+    commandArguments.push(`--security-scopes=${securityScopes}`);
+  } 
   let inputFileCommand: string = `${swaggerPath}`;
   if (!swaggerPath.endsWith(".md")) {
     inputFileCommand = `--input-file=${inputFileCommand}`;
@@ -108,6 +115,15 @@ export async function runAutorest(
 
   if (addCredentials !== undefined) {
     commandArguments.push(`--add-credentials=${!!addCredentials}`);
+  }
+
+
+  if (security !== undefined) {
+    commandArguments.push(`--security=${security}`);
+  }
+
+  if (lenientModelDeduplication) {
+    commandArguments.push("--modelerfour.lenient-model-deduplication=true");
   }
 
   if (packageDetails.version !== "") {

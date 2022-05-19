@@ -71,7 +71,6 @@ export const PetDef: coreClient.CompositeMapper = {
 };
 
 export const NotFoundErrorBase: coreClient.CompositeMapper = {
-  serializedName: "NotFoundErrorBase",
   type: {
     name: "Composite",
     className: "NotFoundErrorBase",
@@ -100,7 +99,6 @@ export const NotFoundErrorBase: coreClient.CompositeMapper = {
 };
 
 export const PetActionError: coreClient.CompositeMapper = {
-  serializedName: "PetActionError",
   type: {
     name: "Composite",
     className: "PetActionError",
@@ -208,8 +206,8 @@ export const PetHungryOrThirstyError: coreClient.CompositeMapper = {
 };
 
 export let discriminators = {
-  "BaseError.NotFoundErrorBase": NotFoundErrorBase,
-  "PetAction.PetActionError": PetActionError,
+  "BaseError.undefined": NotFoundErrorBase,
+  "PetAction.undefined": PetActionError,
   "BaseError.InvalidResourceLink": LinkNotFound,
   "BaseError.AnimalNotFound": AnimalNotFound,
   "PetAction.PetSadError": PetSadError,

@@ -51,7 +51,7 @@
         "LICENSE"
     ],
     "dependencies": {
-        "@autorest/codemodel": "^4.17.0",
+        "@autorest/codemodel": "^4.18.2",
         "@autorest/extension-base": "^3.4.1",
         "@azure-rest/core-client": "1.0.0-alpha.20220421.2",
         "@azure-tools/codegen": "^2.5.294",
