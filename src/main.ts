@@ -24,7 +24,7 @@ export async function processRequest(host: AutorestExtensionHost) {
       : await generateTypeScriptLibrary(session.model, host);
     session.info(`Autorest.Typescript took ${Date.now() - start}ms`);
   } catch (err) {
-    session.error("An error was encountered while handling a request:", err);
+    session.error("An error was encountered while handling a request:", err as string[]);
     throw err;
   }
 }
