@@ -3,6 +3,7 @@ steps:
     inputs:
       versionSpec: "14.x"
     displayName: "Use Node 14"
+    script: "npm i g npm@8.3.1"
   - script: |
       npm install
       npm run build
