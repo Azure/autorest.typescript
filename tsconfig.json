@@ -22,7 +22,8 @@
     "outDir": "dist",
     "rootDir": ".",
     "downlevelIteration": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "useUnknownInCatchVariables": false
   },
   "include": ["src"],
   "exclude": ["dist", "resources", "node_modules", "**/*.d.ts", "generated"]
