@@ -228,7 +228,7 @@ export interface IntegrationRuntimeDebugResource
 export interface IntegrationRuntimeBase extends Record<string, unknown> {
   /** Integration runtime description. */
   description?: string;
-  type: "IntegrationRuntime" | "Managed" | "SelfHosted";
+  type: "Managed" | "SelfHosted";
 }
 
 export interface SubResourceDebugResource {
@@ -279,7 +279,6 @@ export interface DatasetBase extends Record<string, unknown> {
   /** The folder that this Dataset is in. If not specified, Dataset will appear at the root level. */
   folder?: DatasetFolder;
   type:
-    | "Dataset"
     | "AmazonS3Object"
     | "Avro"
     | "Excel"
@@ -420,7 +419,6 @@ export interface LinkedServiceBase extends Record<string, unknown> {
   /** List of tags that can be used for describing the linked service. */
   annotations?: Array<any>;
   type:
-    | "LinkedService"
     | "AzureStorage"
     | "AzureBlobStorage"
     | "AzureTableStorage"
@@ -771,7 +769,6 @@ export interface ActivityBase extends Record<string, unknown> {
   /** Activity user properties. */
   userProperties?: Array<UserProperty>;
   type:
-    | "Activity"
     | "Container"
     | "Execution"
     | "Copy"
@@ -1059,7 +1056,6 @@ export interface TriggerBase extends Record<string, unknown> {
   /** List of tags that can be used for describing the trigger. */
   annotations?: Array<any>;
   type:
-    | "Trigger"
     | "RerunTumblingWindowTrigger"
     | "MultiplePipelineTrigger"
     | "ScheduleTrigger"
@@ -1415,7 +1411,6 @@ export interface DatasetLocationBase extends Record<string, unknown> {
   /** Specify the file name of dataset. Type: string (or Expression with resultType string). */
   fileName?: any;
   type:
-    | "DatasetLocation"
     | "AzureBlobStorageLocation"
     | "AzureBlobFSLocation"
     | "AzureDataLakeStoreLocation"
@@ -1493,7 +1488,6 @@ export interface DatasetStorageFormatBase extends Record<string, unknown> {
   /** Deserializer. Type: string (or Expression with resultType string). */
   deserializer?: any;
   type:
-    | "DatasetStorageFormat"
     | "TextFormat"
     | "JsonFormat"
     | "AvroFormat"
@@ -5148,7 +5142,6 @@ export interface StoreReadSettingsBase extends Record<string, unknown> {
   /** The maximum concurrent connection count for the source data store. Type: integer (or Expression with resultType integer). */
   maxConcurrentConnections?: any;
   type:
-    | "StoreReadSettings"
     | "AzureBlobStorageReadSettings"
     | "AzureBlobFSReadSettings"
     | "AzureDataLakeStoreReadSettings"
@@ -5320,7 +5313,6 @@ export interface StoreWriteSettingsBase extends Record<string, unknown> {
   /** The type of copy behavior for copy sink. */
   copyBehavior?: any;
   type:
-    | "StoreWriteSettings"
     | "SftpWriteSettings"
     | "AzureBlobStorageWriteSettings"
     | "AzureBlobFSWriteSettings"
@@ -5477,7 +5469,6 @@ export interface AzureFileStorageWriteSettings extends StoreWriteSettingsBase {
 
 export interface FormatReadSettingsBase extends Record<string, unknown> {
   type:
-    | "FormatReadSettings"
     | "DelimitedTextReadSettings"
     | "JsonReadSettings"
     | "XmlReadSettings"
@@ -5485,11 +5476,7 @@ export interface FormatReadSettingsBase extends Record<string, unknown> {
 }
 
 export interface CompressionReadSettingsBase extends Record<string, unknown> {
-  type:
-    | "CompressionReadSettings"
-    | "ZipDeflateReadSettings"
-    | "TarReadSettings"
-    | "TarGZipReadSettings";
+  type: "ZipDeflateReadSettings" | "TarReadSettings" | "TarGZipReadSettings";
 }
 
 export interface ZipDeflateReadSettings extends CompressionReadSettingsBase {
@@ -5546,7 +5533,6 @@ export interface BinaryReadSettings extends FormatReadSettingsBase {
 
 export interface FormatWriteSettingsBase extends Record<string, unknown> {
   type:
-    | "FormatWriteSettings"
     | "AvroWriteSettings"
     | "OrcWriteSettings"
     | "ParquetWriteSettings"
@@ -5616,7 +5602,6 @@ export interface CopySourceBase extends Record<string, unknown> {
   /** The maximum concurrent connection count for the source data store. Type: integer (or Expression with resultType integer). */
   maxConcurrentConnections?: any;
   type:
-    | "CopySource"
     | "AvroSource"
     | "ExcelSource"
     | "ParquetSource"
@@ -5788,7 +5773,6 @@ export interface CopySinkBase extends Record<string, unknown> {
   /** The maximum concurrent connection count for the sink data store. Type: integer (or Expression with resultType integer). */
   maxConcurrentConnections?: any;
   type:
-    | "CopySink"
     | "DelimitedTextSink"
     | "JsonSink"
     | "OrcSink"
@@ -6893,10 +6877,7 @@ export interface SnowflakeExportCopyCommand extends ExportSettingsBase {
 }
 
 export interface ExportSettingsBase extends Record<string, unknown> {
-  type:
-    | "ExportSettings"
-    | "SnowflakeExportCopyCommand"
-    | "AzureDatabricksDeltaLakeExportCommand";
+  type: "SnowflakeExportCopyCommand" | "AzureDatabricksDeltaLakeExportCommand";
 }
 
 export interface AzureDatabricksDeltaLakeSource extends CopySourceBase {
@@ -6934,10 +6915,7 @@ export interface AzureDatabricksDeltaLakeImportCommand
 }
 
 export interface ImportSettingsBase extends Record<string, unknown> {
-  type:
-    | "ImportSettings"
-    | "AzureDatabricksDeltaLakeImportCommand"
-    | "SnowflakeImportCopyCommand";
+  type: "AzureDatabricksDeltaLakeImportCommand" | "SnowflakeImportCopyCommand";
 }
 
 export interface NotebookParameter {
@@ -8436,11 +8414,9 @@ export interface LinkedIntegrationRuntimeRbacAuthorization
 
 export type DataFlow = MappingDataFlow | Flowlet;
 export type IntegrationRuntime =
-  | IntegrationRuntimeBase
   | ManagedIntegrationRuntime
   | SelfHostedIntegrationRuntime;
 export type Dataset =
-  | DatasetBase
   | AmazonS3Dataset
   | AvroDataset
   | ExcelDataset
@@ -8537,7 +8513,6 @@ export type Dataset =
   | SharePointOnlineListResourceDataset
   | AzureDatabricksDeltaLakeDataset;
 export type LinkedService =
-  | LinkedServiceBase
   | AzureStorageLinkedService
   | AzureBlobStorageLinkedService
   | AzureTableStorageLinkedService
@@ -8639,7 +8614,6 @@ export type LinkedService =
   | SnowflakeLinkedService
   | SharePointOnlineListLinkedService;
 export type Activity =
-  | ActivityBase
   | ControlActivity
   | ExecutionActivity
   | CopyActivity
@@ -8680,7 +8654,6 @@ export type Activity =
   | SynapseSparkJobDefinitionActivity
   | SqlPoolStoredProcedureActivity;
 export type Trigger =
-  | TriggerBase
   | RerunTumblingWindowTrigger
   | MultiplePipelineTrigger
   | ScheduleTrigger
@@ -8691,7 +8664,6 @@ export type Trigger =
   | ChainingTrigger;
 export type SecretBase = SecureString | AzureKeyVaultSecretReference;
 export type DatasetLocation =
-  | DatasetLocationBase
   | AzureBlobStorageLocation
   | AzureBlobFSLocation
   | AzureDataLakeStoreLocation
@@ -8704,7 +8676,6 @@ export type DatasetLocation =
   | HttpServerLocation
   | HdfsLocation;
 export type DatasetStorageFormat =
-  | DatasetStorageFormatBase
   | TextFormat
   | JsonFormat
   | AvroFormat
@@ -8755,7 +8726,6 @@ export type ExecutionActivity =
   | SynapseNotebookActivity
   | SynapseSparkJobDefinitionActivity;
 export type StoreReadSettings =
-  | StoreReadSettingsBase
   | AzureBlobStorageReadSettings
   | AzureBlobFSReadSettings
   | AzureDataLakeStoreReadSettings
@@ -8768,7 +8738,6 @@ export type StoreReadSettings =
   | HttpReadSettings
   | HdfsReadSettings;
 export type StoreWriteSettings =
-  | StoreWriteSettingsBase
   | SftpWriteSettings
   | AzureBlobStorageWriteSettings
   | AzureBlobFSWriteSettings
@@ -8776,25 +8745,21 @@ export type StoreWriteSettings =
   | FileServerWriteSettings
   | AzureFileStorageWriteSettings;
 export type FormatReadSettings =
-  | FormatReadSettingsBase
   | DelimitedTextReadSettings
   | JsonReadSettings
   | XmlReadSettings
   | BinaryReadSettings;
 export type CompressionReadSettings =
-  | CompressionReadSettingsBase
   | ZipDeflateReadSettings
   | TarReadSettings
   | TarGZipReadSettings;
 export type FormatWriteSettings =
-  | FormatWriteSettingsBase
   | AvroWriteSettings
   | OrcWriteSettings
   | ParquetWriteSettings
   | DelimitedTextWriteSettings
   | JsonWriteSettings;
 export type CopySource =
-  | CopySourceBase
   | AvroSource
   | ExcelSource
   | ParquetSource
@@ -8891,7 +8856,6 @@ export type CopySource =
   | AzureDatabricksDeltaLakeSource
   | SharePointOnlineListSource;
 export type CopySink =
-  | CopySinkBase
   | DelimitedTextSink
   | JsonSink
   | OrcSink
@@ -8990,11 +8954,9 @@ export type TabularSource =
   | GoogleAdWordsSource
   | AmazonRedshiftSource;
 export type ExportSettings =
-  | ExportSettingsBase
   | SnowflakeExportCopyCommand
   | AzureDatabricksDeltaLakeExportCommand;
 export type ImportSettings =
-  | ImportSettingsBase
   | AzureDatabricksDeltaLakeImportCommand
   | SnowflakeImportCopyCommand;
 export type MultiplePipelineTrigger =

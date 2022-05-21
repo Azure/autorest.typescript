@@ -35,7 +35,6 @@ export async function runAutorest(
     azureArm,
     lenientModelDeduplication
   } = options;
-  console.log(options);
   let autorestCommand = `autorest${/^win/.test(process.platform) ? ".cmd" : ""
     }`;
   let commandArguments: string[] = [`--typescript`];

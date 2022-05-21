@@ -518,7 +518,6 @@ export const EnvironmentVariable: coreClient.CompositeMapper = {
 };
 
 export const DeploymentScript: coreClient.CompositeMapper = {
-  serializedName: "DeploymentScript",
   type: {
     name: "Composite",
     className: "DeploymentScript",
@@ -893,7 +892,7 @@ export const AzureCliScript: coreClient.CompositeMapper = {
 };
 
 export let discriminators = {
-  "AzureResourceBase.DeploymentScript": DeploymentScript,
+  "AzureResourceBase.undefined": DeploymentScript,
   "AzureResourceBase.AzurePowerShell": AzurePowerShellScript,
   "AzureResourceBase.AzureCLI": AzureCliScript
 };
