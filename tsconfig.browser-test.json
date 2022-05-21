@@ -20,7 +20,8 @@
     "experimentalDecorators": true,
     "newLine": "LF",
     "outDir": "./test-browser",
-    "rootDir": "./test"
+    "rootDir": "./test",
+    "useUnknownInCatchVariables": false
   },
   "include": ["test/**/*.ts"],
   "exclude": [

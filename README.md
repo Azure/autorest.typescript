@@ -78,7 +78,7 @@ typescript-scope/emitter:
 output-artifact: typescript-files
 ```
 
-```yaml !$(generate-test)
+```yaml !$(generate-sample)
 pipeline:
   typescript: # <- name of plugin
     input: modelerfour/identity
@@ -90,9 +90,9 @@ pipeline:
 
 ```
 
-```yaml $(generate-test)
+```yaml $(generate-sample)
 use-extension:
-  "@autorest/testmodeler": "1.0.4"
+  "@autorest/testmodeler": "2.2.5"
 
 try-require:
     - ./readme.test.md

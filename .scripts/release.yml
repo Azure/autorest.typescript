@@ -35,7 +35,7 @@ stages:
                   steps:
                     - task: NodeTool@0
                       inputs:
-                        versionSpec: "14.x"
+                        versionSpec: "16.x"
                       displayName: "Install Node.js"
                     - script: |
                         cd package
@@ -56,7 +56,7 @@ stages:
                   steps:
                     - task: NodeTool@0
                       inputs:
-                        versionSpec: "14.x"
+                        versionSpec: "16.x"
                       displayName: "Install Node.js"
                     - script: |
                         cd $(Pipeline.Workspace)/packages
@@ -84,7 +84,7 @@ stages:
               steps:
                 - task: NodeTool@0
                   inputs:
-                    versionSpec: "14.x"
+                    versionSpec: "16.x"
                   displayName: "Install Node.js"
                 - script: |
                     tar zxvf $(Pipeline.Workspace)/packages/$(TAR_NAME)
@@ -108,7 +108,7 @@ stages:
               steps:
                 - task: NodeTool@0
                   inputs:
-                    versionSpec: "14.x"
+                    versionSpec: "16.x"
                   displayName: "Install Node.js"
                 - script: |
                     cd $(Pipeline.Workspace)/packages
