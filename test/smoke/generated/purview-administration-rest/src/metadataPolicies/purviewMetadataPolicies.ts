@@ -15,7 +15,7 @@ export function createClient(
   options = {
     ...options,
     credentials: {
-      scopes: ["user_impersonation"]
+      scopes: ["https://purview.azure.net/.default"]
     }
   };
 

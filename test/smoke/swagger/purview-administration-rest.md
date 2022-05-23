@@ -31,7 +31,8 @@ package-version: 1.0.0-beta.2
 rest-level-client: true
 openapi-type: data-plane
 add-credentials: true
-credential-scopes: "https://purview.azure.net/.default"
+security: AADToken
+security-scopes: "https://purview.azure.net/.default"
 dependency-info: 
   link: "https://docs.microsoft.com/azure/purview/create-catalog-portal#add-a-security-principal-to-a-data-plane-role"
   description: "enable AAD authentication on your Purview resource"

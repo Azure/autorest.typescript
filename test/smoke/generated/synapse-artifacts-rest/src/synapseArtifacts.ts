@@ -2,14 +2,22 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
+import { TokenCredential } from "@azure/core-auth";
 import { SynapseArtifactsClient } from "./clientDefinitions";
 
 export default function createClient(
   endpoint: string,
+  credentials: TokenCredential,
   options: ClientOptions = {}
 ): SynapseArtifactsClient {
   const baseUrl = options.baseUrl ?? `${endpoint}`;
   options.apiVersion = options.apiVersion ?? "2021-11-01-preview";
+  options = {
+    ...options,
+    credentials: {
+      scopes: ["https://dev.azuresynapse.net/.default"]
+    }
+  };
 
   const userAgentInfo = `azsdk-js-synapse-artifacts-rest/1.0.0-beta.1`;
   const userAgentPrefix =
@@ -23,7 +31,11 @@ export default function createClient(
     }
   };
 
-  const client = getClient(baseUrl, options) as SynapseArtifactsClient;
+  const client = getClient(
+    baseUrl,
+    credentials,
+    options
+  ) as SynapseArtifactsClient;
 
   return {
     ...client,
