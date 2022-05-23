@@ -103,7 +103,7 @@ function getPolymorphicTypeAlias(
   const unionTypes: string[] = [];
 
   // If the object itself has a discriminatorValue add its base to the union
-  if (objectSchema.discriminatorValue) {
+  if (objectSchema.discriminator?.property.isDiscriminator) {
     unionTypes.push(`${baseName}Base`);
   }
 
@@ -250,7 +250,11 @@ function getDiscriminatorPropertyName(objectSchema: ObjectSchema) {
  * Calculates the discriminator values that a given object needs
  */
 function getDiscriminatorValue(objectSchema: ObjectSchema): string | undefined {
-  const discriminatorValue = objectSchema.discriminatorValue;
+  const discriminatorValue = objectSchema.discriminatorValue
+    ? objectSchema.discriminatorValue
+    : objectSchema.discriminator?.property.isDiscriminator
+    ? normalizeName(objectSchema.language.default.name, NameType.Property)
+    : undefined;
   const children = objectSchema.children?.immediate ?? [];
 
   // If the current object has a discriminatorValue but doesn't have any children
