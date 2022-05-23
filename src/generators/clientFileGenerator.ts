@@ -628,11 +628,11 @@ function writeDefaultOptions(
   hasLro: boolean,
   clientDetails: ClientDetails
 ) {
-  const { useCoreV2, packageDetails } = getAutorestOptions();
+  const { useCoreV2, packageDetails, addCredentials } = getAutorestOptions();
   const { credentialScopes } = getSecurityInfoFromModel(clientDetails.security);
 
   const credentialScopesValues = getCredentialScopesValue(credentialScopes);
-  const addScopes = credentialScopes && credentialScopes.length > 0
+  const addScopes = addCredentials && credentialScopes && credentialScopes.length > 0
     ? `if(!options.credentialScopes) {
     options.credentialScopes = ${credentialScopesValues}
   }`

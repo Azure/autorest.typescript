@@ -56,7 +56,7 @@ export class ResourcesClient extends coreClient.ServiceClient {
         : `${packageDetails}`;
 
     if (!options.credentialScopes) {
-      options.credentialScopes = ["user_impersonation"];
+      options.credentialScopes = ["https://management.azure.com/.default"];
     }
     const optionsWithDefaults = {
       ...defaults,
