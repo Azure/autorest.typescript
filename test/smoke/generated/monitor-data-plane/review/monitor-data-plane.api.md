@@ -4,6 +4,7 @@
 
 ```ts
 
+import * as coreAuth from '@azure/core-auth';
 import * as coreClient from '@azure/core-client';
 
 // @public (undocumented)
@@ -71,7 +72,7 @@ export type MetricsCreateResponse = AzureMetricsResult;
 export class MonitorClient extends coreClient.ServiceClient {
     // (undocumented)
     $host: string;
-    constructor(options?: MonitorClientOptionalParams);
+    constructor(credentials: coreAuth.TokenCredential, options?: MonitorClientOptionalParams);
     // (undocumented)
     metrics: Metrics;
 }

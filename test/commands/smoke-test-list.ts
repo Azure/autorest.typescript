@@ -17,7 +17,8 @@ export enum AutorestParams {
   GenerateSamples = "--generate-sample=true",
   MultiClient = "--multi-client",
   AzureSdkForJs = "--azure-sdk-for-js=false",
-  AzureArm = "--azure-arm"
+  AzureArm = "--azure-arm",
+  Security = "--security=AADToken"
 }
 
 const getArmReadmes = (): SpecDefinition[] => {
@@ -85,6 +86,9 @@ export const readmes: SpecDefinition[] = [
       "..",
       "./.tmp/specs/specification/monitor/data-plane/readme.md"
     ),
+    params: [
+      AutorestParams.Security
+    ],
     buildTag: "ci_2"
   },
   {

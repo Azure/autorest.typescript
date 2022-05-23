@@ -7,6 +7,7 @@
  */
 
 import * as coreClient from "@azure/core-client";
+import * as coreAuth from "@azure/core-auth";
 import { MetricsImpl } from "./operations";
 import { Metrics } from "./operationsInterfaces";
 import { MonitorClientOptionalParams } from "./models";
@@ -16,15 +17,24 @@ export class MonitorClient extends coreClient.ServiceClient {
 
   /**
    * Initializes a new instance of the MonitorClient class.
+   * @param credentials Subscription credentials which uniquely identify client subscription.
    * @param options The parameter options
    */
-  constructor(options?: MonitorClientOptionalParams) {
+  constructor(
+    credentials: coreAuth.TokenCredential,
+    options?: MonitorClientOptionalParams
+  ) {
+    if (credentials === undefined) {
+      throw new Error("'credentials' cannot be null");
+    }
+
     // Initializing default values for options
     if (!options) {
       options = {};
     }
     const defaults: MonitorClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
+      requestContentType: "application/json; charset=utf-8",
+      credential: credentials
     };
 
     const packageDetails = `azsdk-js-monitor-data-plane/1.0.0-beta.1`;
@@ -33,6 +43,9 @@ export class MonitorClient extends coreClient.ServiceClient {
         ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
         : `${packageDetails}`;
 
+    if (!options.credentialScopes) {
+      options.credentialScopes = ["https://management.azure.com/.default"];
+    }
     const optionsWithDefaults = {
       ...defaults,
       ...options,
