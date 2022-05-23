@@ -408,7 +408,7 @@ function writeConstructor(
       `this.addCustomApiVersionPolicy(${
         !apiVersionParam.required ||
         !!apiVersionParam.defaultValue ||
-          apiVersionParam.schemaType === SchemaType.Constant
+        apiVersionParam.schemaType === SchemaType.Constant
           ? "options."
           : ""
       }apiVersion);`
@@ -525,8 +525,17 @@ function getRequiredParamChecks(requiredParameters: ParameterDetails[]) {
 
 function getCredentialScopesValue(credentialScopes?: string | string[]) {
   if (Array.isArray(credentialScopes)) {
+    if (
+      credentialScopes.length === 1 &&
+      credentialScopes[0] === "user_impersonation"
+    ) {
+      return undefined;
+    }
     return `[${credentialScopes.map(scope => `"${scope}"`).join()}]`;
   } else if (typeof credentialScopes === "string") {
+    if (credentialScopes === "user_impersonation") {
+      return undefined;
+    }
     return `"${credentialScopes}"`;
   }
 
@@ -632,11 +641,15 @@ function writeDefaultOptions(
   const { credentialScopes } = getSecurityInfoFromModel(clientDetails.security);
 
   const credentialScopesValues = getCredentialScopesValue(credentialScopes);
-  const addScopes = addCredentials && credentialScopes && credentialScopes.length > 0
-    ? `if(!options.credentialScopes) {
+  const addScopes =
+    addCredentials &&
+    credentialScopes &&
+    credentialScopesValues &&
+    credentialScopes.length > 0
+      ? `if(!options.credentialScopes) {
     options.credentialScopes = ${credentialScopesValues}
   }`
-    : "";
+      : "";
 
   const defaults = !hasCredentials
     ? `const defaults: ${clientDetails.className}OptionalParams = {
