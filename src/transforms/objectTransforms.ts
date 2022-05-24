@@ -58,7 +58,11 @@ export function transformObject(
     hasAdditionalProperties: false,
     kind,
     name,
-    serializedName: metadata.serializedName,
+    serializedName: metadata.serializedName
+      ? metadata.serializedName
+      : kind === ObjectKind.Polymorphic
+      ? metadata.name
+      : undefined,
     description: metadata.description || undefined,
     schema,
     properties: schema.properties
@@ -92,7 +96,7 @@ export function transformProperty({
   return {
     name: normalizeName(
       metadata.name,
-      metadata.isTopLevelParameter? NameType.Parameter: NameType.Property,
+      metadata.isTopLevelParameter ? NameType.Parameter : NameType.Property,
       true /** shouldGuard */
     ),
     description,
@@ -289,7 +293,11 @@ function transformPolymorphicObject(
       ? {}
       : { [`"${discriminatorProperty}"`]: childDiscriminators };
   } else {
-    discriminatorPath = `${uberParentName}.${schema.discriminatorValue}`;
+    discriminatorPath = `${uberParentName}.${
+      schema.discriminatorValue
+        ? schema.discriminatorValue
+        : schema.language.default.name
+    }`;
     if (uberParent.discriminator) {
       const childDiscriminators = getChildrenDiscriminators(schema);
       discriminatorValues = {

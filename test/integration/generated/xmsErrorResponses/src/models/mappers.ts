@@ -208,8 +208,8 @@ export const PetHungryOrThirstyError: coreClient.CompositeMapper = {
 };
 
 export let discriminators = {
-  "BaseError.undefined": NotFoundErrorBase,
-  "PetAction.undefined": PetActionError,
+  "BaseError.NotFoundErrorBase": NotFoundErrorBase,
+  "PetAction.PetActionError": PetActionError,
   "BaseError.InvalidResourceLink": LinkNotFound,
   "BaseError.AnimalNotFound": AnimalNotFound,
   "PetAction.PetSadError": PetSadError,
