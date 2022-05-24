@@ -342,6 +342,7 @@ export const Pet: coreClient.CompositeMapper = {
 };
 
 export const Fish: coreClient.CompositeMapper = {
+  serializedName: "Fish",
   type: {
     name: "Composite",
     className: "Fish",
@@ -388,6 +389,7 @@ export const Fish: coreClient.CompositeMapper = {
 };
 
 export const DotFish: coreClient.CompositeMapper = {
+  serializedName: "DotFish",
   type: {
     name: "Composite",
     className: "DotFish",
@@ -484,6 +486,7 @@ export const ReadonlyObj: coreClient.CompositeMapper = {
 };
 
 export const MyBaseType: coreClient.CompositeMapper = {
+  serializedName: "MyBaseType",
   type: {
     name: "Composite",
     className: "MyBaseType",

@@ -71,6 +71,7 @@ export const PetDef: coreClient.CompositeMapper = {
 };
 
 export const NotFoundErrorBase: coreClient.CompositeMapper = {
+  serializedName: "NotFoundErrorBase",
   type: {
     name: "Composite",
     className: "NotFoundErrorBase",
@@ -99,6 +100,7 @@ export const NotFoundErrorBase: coreClient.CompositeMapper = {
 };
 
 export const PetActionError: coreClient.CompositeMapper = {
+  serializedName: "PetActionError",
   type: {
     name: "Composite",
     className: "PetActionError",

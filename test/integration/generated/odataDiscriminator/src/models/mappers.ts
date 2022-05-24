@@ -9,6 +9,7 @@
 import * as coreClient from "@azure/core-client";
 
 export const LexicalAnalyzer: coreClient.CompositeMapper = {
+  serializedName: "LexicalAnalyzer",
   type: {
     name: "Composite",
     className: "LexicalAnalyzer",

@@ -1,6 +1,7 @@
 import * as coreClient from "@azure/core-client";
 
 export const MethodRequest: coreClient.CompositeMapper = {
+  serializedName: "MethodRequest",
   type: {
     name: "Composite",
     className: "MethodRequest",
@@ -183,6 +184,7 @@ export const MediaGraphParameterDeclaration: coreClient.CompositeMapper = {
 };
 
 export const MediaGraphSource: coreClient.CompositeMapper = {
+  serializedName: "MediaGraphSource",
   type: {
     name: "Composite",
     className: "MediaGraphSource",
@@ -211,6 +213,7 @@ export const MediaGraphSource: coreClient.CompositeMapper = {
 };
 
 export const MediaGraphProcessor: coreClient.CompositeMapper = {
+  serializedName: "MediaGraphProcessor",
   type: {
     name: "Composite",
     className: "MediaGraphProcessor",
@@ -307,6 +310,7 @@ export const MediaGraphOutputSelector: coreClient.CompositeMapper = {
 };
 
 export const MediaGraphSink: coreClient.CompositeMapper = {
+  serializedName: "MediaGraphSink",
   type: {
     name: "Composite",
     className: "MediaGraphSink",
@@ -440,6 +444,7 @@ export const MediaGraphParameterDefinition: coreClient.CompositeMapper = {
 };
 
 export const MediaGraphEndpoint: coreClient.CompositeMapper = {
+  serializedName: "MediaGraphEndpoint",
   type: {
     name: "Composite",
     className: "MediaGraphEndpoint",
@@ -475,6 +480,7 @@ export const MediaGraphEndpoint: coreClient.CompositeMapper = {
 };
 
 export const MediaGraphCredentials: coreClient.CompositeMapper = {
+  serializedName: "MediaGraphCredentials",
   type: {
     name: "Composite",
     className: "MediaGraphCredentials",
@@ -496,6 +502,7 @@ export const MediaGraphCredentials: coreClient.CompositeMapper = {
 };
 
 export const MediaGraphCertificateSource: coreClient.CompositeMapper = {
+  serializedName: "MediaGraphCertificateSource",
   type: {
     name: "Composite",
     className: "MediaGraphCertificateSource",

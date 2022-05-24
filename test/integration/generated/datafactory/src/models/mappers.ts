@@ -393,6 +393,7 @@ export const FactoryIdentity: coreClient.CompositeMapper = {
 };
 
 export const FactoryRepoConfiguration: coreClient.CompositeMapper = {
+  serializedName: "FactoryRepoConfiguration",
   type: {
     name: "Composite",
     className: "FactoryRepoConfiguration",
@@ -879,6 +880,7 @@ export const IntegrationRuntimeListResponse: coreClient.CompositeMapper = {
 };
 
 export const IntegrationRuntime: coreClient.CompositeMapper = {
+  serializedName: "IntegrationRuntime",
   type: {
     name: "Composite",
     className: "IntegrationRuntime",
@@ -988,6 +990,7 @@ export const IntegrationRuntimeStatusResponse: coreClient.CompositeMapper = {
 };
 
 export const IntegrationRuntimeStatus: coreClient.CompositeMapper = {
+  serializedName: "IntegrationRuntimeStatus",
   type: {
     name: "Composite",
     className: "IntegrationRuntimeStatus",
@@ -1421,6 +1424,7 @@ export const SsisObjectMetadataListResponse: coreClient.CompositeMapper = {
 };
 
 export const SsisObjectMetadata: coreClient.CompositeMapper = {
+  serializedName: "SsisObjectMetadata",
   type: {
     name: "Composite",
     className: "SsisObjectMetadata",
@@ -1659,6 +1663,7 @@ export const LinkedServiceListResponse: coreClient.CompositeMapper = {
 };
 
 export const LinkedService: coreClient.CompositeMapper = {
+  serializedName: "LinkedService",
   type: {
     name: "Composite",
     className: "LinkedService",
@@ -1799,6 +1804,7 @@ export const DatasetListResponse: coreClient.CompositeMapper = {
 };
 
 export const Dataset: coreClient.CompositeMapper = {
+  serializedName: "Dataset",
   type: {
     name: "Composite",
     className: "Dataset",
@@ -1952,6 +1958,7 @@ export const PipelineListResponse: coreClient.CompositeMapper = {
 };
 
 export const Activity: coreClient.CompositeMapper = {
+  serializedName: "Activity",
   type: {
     name: "Composite",
     className: "Activity",
@@ -2596,6 +2603,7 @@ export const TriggerListResponse: coreClient.CompositeMapper = {
 };
 
 export const Trigger: coreClient.CompositeMapper = {
+  serializedName: "Trigger",
   type: {
     name: "Composite",
     className: "Trigger",
@@ -2829,6 +2837,7 @@ export const TriggerRun: coreClient.CompositeMapper = {
 };
 
 export const DataFlow: coreClient.CompositeMapper = {
+  serializedName: "DataFlow",
   type: {
     name: "Composite",
     className: "DataFlow",
@@ -3719,6 +3728,7 @@ export const Expression: coreClient.CompositeMapper = {
 };
 
 export const SecretBase: coreClient.CompositeMapper = {
+  serializedName: "SecretBase",
   type: {
     name: "Composite",
     className: "SecretBase",
@@ -3953,6 +3963,7 @@ export const CredentialReference: coreClient.CompositeMapper = {
 };
 
 export const Credential: coreClient.CompositeMapper = {
+  serializedName: "Credential",
   type: {
     name: "Composite",
     className: "Credential",
@@ -4022,6 +4033,7 @@ export const Transformation: coreClient.CompositeMapper = {
 };
 
 export const DatasetLocation: coreClient.CompositeMapper = {
+  serializedName: "DatasetLocation",
   type: {
     name: "Composite",
     className: "DatasetLocation",
@@ -4105,6 +4117,7 @@ export const DatasetSchemaDataElement: coreClient.CompositeMapper = {
 };
 
 export const DatasetStorageFormat: coreClient.CompositeMapper = {
+  serializedName: "DatasetStorageFormat",
   type: {
     name: "Composite",
     className: "DatasetStorageFormat",
@@ -4141,6 +4154,7 @@ export const DatasetStorageFormat: coreClient.CompositeMapper = {
 };
 
 export const DatasetCompression: coreClient.CompositeMapper = {
+  serializedName: "DatasetCompression",
   type: {
     name: "Composite",
     className: "DatasetCompression",
@@ -4485,6 +4499,7 @@ export const EntityReference: coreClient.CompositeMapper = {
 };
 
 export const CustomSetupBase: coreClient.CompositeMapper = {
+  serializedName: "CustomSetupBase",
   type: {
     name: "Composite",
     className: "CustomSetupBase",
@@ -4544,6 +4559,7 @@ export const IntegrationRuntimeCustomerVirtualNetwork: coreClient.CompositeMappe
 };
 
 export const LinkedIntegrationRuntimeType: coreClient.CompositeMapper = {
+  serializedName: "LinkedIntegrationRuntimeType",
   type: {
     name: "Composite",
     className: "LinkedIntegrationRuntimeType",
@@ -4947,6 +4963,7 @@ export const SqlAlwaysEncryptedProperties: coreClient.CompositeMapper = {
 };
 
 export const WebLinkedServiceTypeProperties: coreClient.CompositeMapper = {
+  serializedName: "WebLinkedServiceTypeProperties",
   type: {
     name: "Composite",
     className: "WebLinkedServiceTypeProperties",
@@ -5059,6 +5076,7 @@ export const ActivityPolicy: coreClient.CompositeMapper = {
 };
 
 export const StoreReadSettings: coreClient.CompositeMapper = {
+  serializedName: "StoreReadSettings",
   type: {
     name: "Composite",
     className: "StoreReadSettings",
@@ -5095,6 +5113,7 @@ export const StoreReadSettings: coreClient.CompositeMapper = {
 };
 
 export const StoreWriteSettings: coreClient.CompositeMapper = {
+  serializedName: "StoreWriteSettings",
   type: {
     name: "Composite",
     className: "StoreWriteSettings",
@@ -5170,6 +5189,7 @@ export const DistcpSettings: coreClient.CompositeMapper = {
 };
 
 export const FormatReadSettings: coreClient.CompositeMapper = {
+  serializedName: "FormatReadSettings",
   type: {
     name: "Composite",
     className: "FormatReadSettings",
@@ -5192,6 +5212,7 @@ export const FormatReadSettings: coreClient.CompositeMapper = {
 };
 
 export const CompressionReadSettings: coreClient.CompositeMapper = {
+  serializedName: "CompressionReadSettings",
   type: {
     name: "Composite",
     className: "CompressionReadSettings",
@@ -5214,6 +5235,7 @@ export const CompressionReadSettings: coreClient.CompositeMapper = {
 };
 
 export const FormatWriteSettings: coreClient.CompositeMapper = {
+  serializedName: "FormatWriteSettings",
   type: {
     name: "Composite",
     className: "FormatWriteSettings",
@@ -5236,6 +5258,7 @@ export const FormatWriteSettings: coreClient.CompositeMapper = {
 };
 
 export const CopySource: coreClient.CompositeMapper = {
+  serializedName: "CopySource",
   type: {
     name: "Composite",
     className: "CopySource",
@@ -5286,6 +5309,7 @@ export const CopySource: coreClient.CompositeMapper = {
 };
 
 export const CopySink: coreClient.CompositeMapper = {
+  serializedName: "CopySink",
   type: {
     name: "Composite",
     className: "CopySink",
@@ -5844,6 +5868,7 @@ export const RedshiftUnloadSettings: coreClient.CompositeMapper = {
 };
 
 export const ExportSettings: coreClient.CompositeMapper = {
+  serializedName: "ExportSettings",
   type: {
     name: "Composite",
     className: "ExportSettings",
@@ -5866,6 +5891,7 @@ export const ExportSettings: coreClient.CompositeMapper = {
 };
 
 export const ImportSettings: coreClient.CompositeMapper = {
+  serializedName: "ImportSettings",
   type: {
     name: "Composite",
     className: "ImportSettings",
@@ -6075,6 +6101,7 @@ export const AdditionalColumns: coreClient.CompositeMapper = {
 };
 
 export const CopyTranslator: coreClient.CompositeMapper = {
+  serializedName: "CopyTranslator",
   type: {
     name: "Composite",
     className: "CopyTranslator",
@@ -6836,6 +6863,7 @@ export const RetryPolicy: coreClient.CompositeMapper = {
 };
 
 export const DependencyReference: coreClient.CompositeMapper = {
+  serializedName: "DependencyReference",
   type: {
     name: "Composite",
     className: "DependencyReference",
