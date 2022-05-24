@@ -2103,21 +2103,21 @@ export interface FieldsListQueryParamProperties {
 }
 
 // @public (undocumented)
-export type GeoJsonObject = MultiPolygon | Point | Polygon;
+export type GeoJsonObject = GeoJsonObjectBase | MultiPolygon | Point | Polygon;
 
 // @public (undocumented)
 export interface GeoJsonObjectBase {
     // (undocumented)
-    type: "MultiPolygon" | "Point" | "Polygon";
+    type: "geoJsonObject" | "MultiPolygon" | "Point" | "Polygon";
 }
 
 // @public (undocumented)
-export type GeoJsonObjectOutput = MultiPolygonOutput | PointOutput | PolygonOutput;
+export type GeoJsonObjectOutput = GeoJsonObjectOutputBase | MultiPolygonOutput | PointOutput | PolygonOutput;
 
 // @public (undocumented)
 export interface GeoJsonObjectOutputBase {
     // (undocumented)
-    type: "MultiPolygon" | "Point" | "Polygon";
+    type: "geoJsonObject" | "MultiPolygon" | "Point" | "Polygon";
 }
 
 // @public

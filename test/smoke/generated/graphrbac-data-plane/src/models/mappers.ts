@@ -31,6 +31,7 @@ export const SignInName: coreClient.CompositeMapper = {
 };
 
 export const DirectoryObject: coreClient.CompositeMapper = {
+  serializedName: "DirectoryObject",
   type: {
     name: "Composite",
     className: "DirectoryObject",

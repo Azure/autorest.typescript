@@ -260,7 +260,7 @@ export interface DataFlowOutputBase {
   annotations?: Array<any>;
   /** The folder that this data flow is in. If not specified, Data flow will appear at the root level. */
   folder?: DataFlowFolderOutput;
-  type: "DataFlow" | "MappingDataFlow" | "Flowlet";
+  type: "dataFlow" | "MappingDataFlow" | "Flowlet";
 }
 
 export interface DataFlowFolderOutput {
@@ -294,7 +294,7 @@ export interface DataFlowListResponseOutput {
 export interface IntegrationRuntimeOutputBase extends Record<string, unknown> {
   /** Integration runtime description. */
   description?: string;
-  type: "IntegrationRuntime" | "Managed" | "SelfHosted";
+  type: "integrationRuntime" | "Managed" | "SelfHosted";
 }
 
 export interface CreateDataFlowDebugSessionResponseOutput {
@@ -347,7 +347,7 @@ export interface DatasetOutputBase extends Record<string, unknown> {
   /** The folder that this Dataset is in. If not specified, Dataset will appear at the root level. */
   folder?: DatasetFolderOutput;
   type:
-    | "Dataset"
+    | "dataset"
     | "AmazonS3Object"
     | "Avro"
     | "Excel"
@@ -483,7 +483,7 @@ export interface LinkedServiceOutputBase extends Record<string, unknown> {
   /** List of tags that can be used for describing the linked service. */
   annotations?: Array<any>;
   type:
-    | "LinkedService"
+    | "linkedService"
     | "AzureStorage"
     | "AzureBlobStorage"
     | "AzureTableStorage"
@@ -867,7 +867,7 @@ export interface ActivityOutputBase extends Record<string, unknown> {
   /** Activity user properties. */
   userProperties?: Array<UserPropertyOutput>;
   type:
-    | "Activity"
+    | "activity"
     | "Container"
     | "Execution"
     | "Copy"
@@ -1334,7 +1334,7 @@ export interface TriggerOutputBase extends Record<string, unknown> {
   /** List of tags that can be used for describing the trigger. */
   annotations?: Array<any>;
   type:
-    | "Trigger"
+    | "trigger"
     | "RerunTumblingWindowTrigger"
     | "MultiplePipelineTrigger"
     | "ScheduleTrigger"
@@ -1565,11 +1565,11 @@ export interface ExpressionOutput {
 export interface SecureStringOutput extends SecretBaseOutputBase {
   /** Value of secure string. */
   value: string;
-  type: "undefined";
+  type: "SecureString";
 }
 
 export interface SecretBaseOutputBase {
-  type: "SecretBase" | "SecureString" | "AzureKeyVaultSecret";
+  type: "secretBase" | "SecureString" | "AzureKeyVaultSecret";
 }
 
 export interface AzureKeyVaultSecretReferenceOutput
@@ -1580,7 +1580,7 @@ export interface AzureKeyVaultSecretReferenceOutput
   secretName: any;
   /** The version of the secret in Azure Key Vault. The default value is the latest version of the secret. Type: string (or Expression with resultType string). */
   secretVersion?: any;
-  type: "undefined";
+  type: "AzureKeyVaultSecret";
 }
 
 export interface PipelineReferenceOutput {
@@ -1627,7 +1627,7 @@ export interface RerunTriggerResourceOutput extends SubResourceOutput {
 export interface RerunTumblingWindowTriggerOutput extends TriggerOutputBase {
   /** Rerun Trigger properties. */
   typeProperties: RerunTumblingWindowTriggerTypePropertiesOutput;
-  type: "undefined";
+  type: "RerunTumblingWindowTrigger";
 }
 
 export interface RerunTumblingWindowTriggerTypePropertiesOutput {
@@ -1665,7 +1665,7 @@ export interface SqlPoolReferenceOutput {
 export interface MappingDataFlowOutput extends DataFlowOutputBase {
   /** Mapping data flow type properties. */
   typeProperties?: MappingDataFlowTypePropertiesOutput;
-  type: "undefined";
+  type: "MappingDataFlow";
 }
 
 export interface MappingDataFlowTypePropertiesOutput {
@@ -1707,7 +1707,7 @@ export interface DataFlowSinkOutput extends TransformationOutput {
 export interface FlowletOutput extends DataFlowOutputBase {
   /** Flowlet type properties. */
   typeProperties?: FlowletTypePropertiesOutput;
-  type: "undefined";
+  type: "Flowlet";
 }
 
 export interface FlowletTypePropertiesOutput {
@@ -1729,7 +1729,7 @@ export interface DatasetLocationOutputBase extends Record<string, unknown> {
   /** Specify the file name of dataset. Type: string (or Expression with resultType string). */
   fileName?: any;
   type:
-    | "DatasetLocation"
+    | "datasetLocation"
     | "AzureBlobStorageLocation"
     | "AzureBlobFSLocation"
     | "AzureDataLakeStoreLocation"
@@ -1747,18 +1747,18 @@ export interface AzureBlobStorageLocationOutput
   extends DatasetLocationOutputBase {
   /** Specify the container of azure blob. Type: string (or Expression with resultType string). */
   container?: any;
-  type: "undefined";
+  type: "AzureBlobStorageLocation";
 }
 
 export interface AzureBlobFSLocationOutput extends DatasetLocationOutputBase {
   /** Specify the fileSystem of azure blobFS. Type: string (or Expression with resultType string). */
   fileSystem?: any;
-  type: "undefined";
+  type: "AzureBlobFSLocation";
 }
 
 export interface AzureDataLakeStoreLocationOutput
   extends DatasetLocationOutputBase {
-  type: "undefined";
+  type: "AzureDataLakeStoreLocation";
 }
 
 export interface AmazonS3LocationOutput extends DatasetLocationOutputBase {
@@ -1766,16 +1766,16 @@ export interface AmazonS3LocationOutput extends DatasetLocationOutputBase {
   bucketName?: any;
   /** Specify the version of amazon S3. Type: string (or Expression with resultType string). */
   version?: any;
-  type: "undefined";
+  type: "AmazonS3Location";
 }
 
 export interface FileServerLocationOutput extends DatasetLocationOutputBase {
-  type: "undefined";
+  type: "FileServerLocation";
 }
 
 export interface AzureFileStorageLocationOutput
   extends DatasetLocationOutputBase {
-  type: "undefined";
+  type: "AzureFileStorageLocation";
 }
 
 export interface GoogleCloudStorageLocationOutput
@@ -1784,25 +1784,25 @@ export interface GoogleCloudStorageLocationOutput
   bucketName?: any;
   /** Specify the version of Google Cloud Storage. Type: string (or Expression with resultType string). */
   version?: any;
-  type: "undefined";
+  type: "GoogleCloudStorageLocation";
 }
 
 export interface FtpServerLocationOutput extends DatasetLocationOutputBase {
-  type: "undefined";
+  type: "FtpServerLocation";
 }
 
 export interface SftpLocationOutput extends DatasetLocationOutputBase {
-  type: "undefined";
+  type: "SftpLocation";
 }
 
 export interface HttpServerLocationOutput extends DatasetLocationOutputBase {
   /** Specify the relativeUrl of http server. Type: string (or Expression with resultType string) */
   relativeUrl?: any;
-  type: "undefined";
+  type: "HttpServerLocation";
 }
 
 export interface HdfsLocationOutput extends DatasetLocationOutputBase {
-  type: "undefined";
+  type: "HdfsLocation";
 }
 
 export interface DatasetStorageFormatOutputBase
@@ -1812,7 +1812,7 @@ export interface DatasetStorageFormatOutputBase
   /** Deserializer. Type: string (or Expression with resultType string). */
   deserializer?: any;
   type:
-    | "DatasetStorageFormat"
+    | "datasetStorageFormat"
     | "TextFormat"
     | "JsonFormat"
     | "AvroFormat"
@@ -1839,7 +1839,7 @@ export interface TextFormatOutput extends DatasetStorageFormatOutputBase {
   skipLineCount?: any;
   /** When used as input, treat the first row of data as headers. When used as output,write the headers into the output as the first row of data. The default value is false. Type: boolean (or Expression with resultType boolean). */
   firstRowAsHeader?: any;
-  type: "undefined";
+  type: "TextFormat";
 }
 
 export interface JsonFormatOutput extends DatasetStorageFormatOutputBase {
@@ -1853,19 +1853,19 @@ export interface JsonFormatOutput extends DatasetStorageFormatOutputBase {
   jsonNodeReference?: any;
   /** The JSONPath definition for each column mapping with a customized column name to extract data from JSON file. For fields under root object, start with "$"; for fields inside the array chosen by jsonNodeReference property, start from the array element. Example: {"Column1": "$.Column1Path", "Column2": "Column2PathInArray"}. Type: object (or Expression with resultType object). */
   jsonPathDefinition?: any;
-  type: "undefined";
+  type: "JsonFormat";
 }
 
 export interface AvroFormatOutput extends DatasetStorageFormatOutputBase {
-  type: "undefined";
+  type: "AvroFormat";
 }
 
 export interface OrcFormatOutput extends DatasetStorageFormatOutputBase {
-  type: "undefined";
+  type: "OrcFormat";
 }
 
 export interface ParquetFormatOutput extends DatasetStorageFormatOutputBase {
-  type: "undefined";
+  type: "ParquetFormat";
 }
 
 export interface DatasetCompressionOutput extends Record<string, unknown> {
@@ -1878,7 +1878,7 @@ export interface DatasetCompressionOutput extends Record<string, unknown> {
 export interface AmazonS3DatasetOutput extends DatasetOutputBase {
   /** Amazon S3 dataset properties. */
   typeProperties: AmazonS3DatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "AmazonS3Object";
 }
 
 export interface AmazonS3DatasetTypePropertiesOutput {
@@ -1903,7 +1903,7 @@ export interface AmazonS3DatasetTypePropertiesOutput {
 export interface AvroDatasetOutput extends DatasetOutputBase {
   /** Avro dataset properties. */
   typeProperties?: AvroDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "Avro";
 }
 
 export interface AvroDatasetTypePropertiesOutput {
@@ -1917,7 +1917,7 @@ export interface AvroDatasetTypePropertiesOutput {
 export interface ExcelDatasetOutput extends DatasetOutputBase {
   /** Excel dataset properties. */
   typeProperties?: ExcelDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "Excel";
 }
 
 export interface ExcelDatasetTypePropertiesOutput {
@@ -1938,7 +1938,7 @@ export interface ExcelDatasetTypePropertiesOutput {
 export interface ParquetDatasetOutput extends DatasetOutputBase {
   /** Parquet dataset properties. */
   typeProperties?: ParquetDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "Parquet";
 }
 
 export interface ParquetDatasetTypePropertiesOutput {
@@ -1951,7 +1951,7 @@ export interface ParquetDatasetTypePropertiesOutput {
 export interface DelimitedTextDatasetOutput extends DatasetOutputBase {
   /** Delimited text dataset properties. */
   typeProperties?: DelimitedTextDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "DelimitedText";
 }
 
 export interface DelimitedTextDatasetTypePropertiesOutput {
@@ -1980,7 +1980,7 @@ export interface DelimitedTextDatasetTypePropertiesOutput {
 export interface JsonDatasetOutput extends DatasetOutputBase {
   /** Json dataset properties. */
   typeProperties?: JsonDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "Json";
 }
 
 export interface JsonDatasetTypePropertiesOutput {
@@ -1995,7 +1995,7 @@ export interface JsonDatasetTypePropertiesOutput {
 export interface XmlDatasetOutput extends DatasetOutputBase {
   /** Xml dataset properties. */
   typeProperties?: XmlDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "Xml";
 }
 
 export interface XmlDatasetTypePropertiesOutput {
@@ -2012,7 +2012,7 @@ export interface XmlDatasetTypePropertiesOutput {
 export interface OrcDatasetOutput extends DatasetOutputBase {
   /** ORC dataset properties. */
   typeProperties?: OrcDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "Orc";
 }
 
 export interface OrcDatasetTypePropertiesOutput {
@@ -2025,7 +2025,7 @@ export interface OrcDatasetTypePropertiesOutput {
 export interface BinaryDatasetOutput extends DatasetOutputBase {
   /** Binary dataset properties. */
   typeProperties?: BinaryDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "Binary";
 }
 
 export interface BinaryDatasetTypePropertiesOutput {
@@ -2038,7 +2038,7 @@ export interface BinaryDatasetTypePropertiesOutput {
 export interface AzureBlobDatasetOutput extends DatasetOutputBase {
   /** Azure Blob dataset properties. */
   typeProperties?: AzureBlobDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "AzureBlob";
 }
 
 export interface AzureBlobDatasetTypePropertiesOutput {
@@ -2061,7 +2061,7 @@ export interface AzureBlobDatasetTypePropertiesOutput {
 export interface AzureTableDatasetOutput extends DatasetOutputBase {
   /** Azure Table dataset properties. */
   typeProperties: AzureTableDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "AzureTable";
 }
 
 export interface AzureTableDatasetTypePropertiesOutput {
@@ -2072,7 +2072,7 @@ export interface AzureTableDatasetTypePropertiesOutput {
 export interface AzureSqlTableDatasetOutput extends DatasetOutputBase {
   /** Azure SQL dataset properties. */
   typeProperties?: AzureSqlTableDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "AzureSqlTable";
 }
 
 export interface AzureSqlTableDatasetTypePropertiesOutput {
@@ -2087,7 +2087,7 @@ export interface AzureSqlTableDatasetTypePropertiesOutput {
 export interface AzureSqlMITableDatasetOutput extends DatasetOutputBase {
   /** Azure SQL Managed Instance dataset properties. */
   typeProperties?: AzureSqlMITableDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "AzureSqlMITable";
 }
 
 export interface AzureSqlMITableDatasetTypePropertiesOutput {
@@ -2102,7 +2102,7 @@ export interface AzureSqlMITableDatasetTypePropertiesOutput {
 export interface AzureSqlDWTableDatasetOutput extends DatasetOutputBase {
   /** Azure SQL Data Warehouse dataset properties. */
   typeProperties?: AzureSqlDWTableDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "AzureSqlDWTable";
 }
 
 export interface AzureSqlDWTableDatasetTypePropertiesOutput {
@@ -2117,7 +2117,7 @@ export interface AzureSqlDWTableDatasetTypePropertiesOutput {
 export interface CassandraTableDatasetOutput extends DatasetOutputBase {
   /** Cassandra dataset properties. */
   typeProperties?: CassandraTableDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "CassandraTable";
 }
 
 export interface CassandraTableDatasetTypePropertiesOutput {
@@ -2130,14 +2130,14 @@ export interface CassandraTableDatasetTypePropertiesOutput {
 export interface CustomDatasetOutput extends DatasetOutputBase {
   /** Custom dataset properties. */
   typeProperties?: any;
-  type: "undefined";
+  type: "CustomDataset";
 }
 
 export interface CosmosDbSqlApiCollectionDatasetOutput
   extends DatasetOutputBase {
   /** CosmosDB (SQL API) Collection dataset properties. */
   typeProperties: CosmosDbSqlApiCollectionDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "CosmosDbSqlApiCollection";
 }
 
 export interface CosmosDbSqlApiCollectionDatasetTypePropertiesOutput {
@@ -2148,7 +2148,7 @@ export interface CosmosDbSqlApiCollectionDatasetTypePropertiesOutput {
 export interface DocumentDbCollectionDatasetOutput extends DatasetOutputBase {
   /** DocumentDB Collection dataset properties. */
   typeProperties: DocumentDbCollectionDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "DocumentDbCollection";
 }
 
 export interface DocumentDbCollectionDatasetTypePropertiesOutput {
@@ -2159,7 +2159,7 @@ export interface DocumentDbCollectionDatasetTypePropertiesOutput {
 export interface DynamicsEntityDatasetOutput extends DatasetOutputBase {
   /** Dynamics entity dataset properties. */
   typeProperties?: DynamicsEntityDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "DynamicsEntity";
 }
 
 export interface DynamicsEntityDatasetTypePropertiesOutput {
@@ -2170,7 +2170,7 @@ export interface DynamicsEntityDatasetTypePropertiesOutput {
 export interface DynamicsCrmEntityDatasetOutput extends DatasetOutputBase {
   /** Dynamics CRM entity dataset properties. */
   typeProperties?: DynamicsCrmEntityDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "DynamicsCrmEntity";
 }
 
 export interface DynamicsCrmEntityDatasetTypePropertiesOutput {
@@ -2182,7 +2182,7 @@ export interface CommonDataServiceForAppsEntityDatasetOutput
   extends DatasetOutputBase {
   /** Common Data Service for Apps entity dataset properties. */
   typeProperties?: CommonDataServiceForAppsEntityDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "CommonDataServiceForAppsEntity";
 }
 
 export interface CommonDataServiceForAppsEntityDatasetTypePropertiesOutput {
@@ -2193,7 +2193,7 @@ export interface CommonDataServiceForAppsEntityDatasetTypePropertiesOutput {
 export interface AzureDataLakeStoreDatasetOutput extends DatasetOutputBase {
   /** Azure Data Lake Store dataset properties. */
   typeProperties?: AzureDataLakeStoreDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "AzureDataLakeStoreFile";
 }
 
 export interface AzureDataLakeStoreDatasetTypePropertiesOutput {
@@ -2210,7 +2210,7 @@ export interface AzureDataLakeStoreDatasetTypePropertiesOutput {
 export interface AzureBlobFSDatasetOutput extends DatasetOutputBase {
   /** Azure Data Lake Storage Gen2 dataset properties. */
   typeProperties?: AzureBlobFSDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "AzureBlobFSFile";
 }
 
 export interface AzureBlobFSDatasetTypePropertiesOutput {
@@ -2227,7 +2227,7 @@ export interface AzureBlobFSDatasetTypePropertiesOutput {
 export interface Office365DatasetOutput extends DatasetOutputBase {
   /** Office365 dataset properties. */
   typeProperties: Office365DatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "Office365Table";
 }
 
 export interface Office365DatasetTypePropertiesOutput {
@@ -2240,7 +2240,7 @@ export interface Office365DatasetTypePropertiesOutput {
 export interface FileShareDatasetOutput extends DatasetOutputBase {
   /** On-premises file system dataset properties. */
   typeProperties?: FileShareDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "FileShare";
 }
 
 export interface FileShareDatasetTypePropertiesOutput {
@@ -2263,7 +2263,7 @@ export interface FileShareDatasetTypePropertiesOutput {
 export interface MongoDbCollectionDatasetOutput extends DatasetOutputBase {
   /** MongoDB database dataset properties. */
   typeProperties: MongoDbCollectionDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "MongoDbCollection";
 }
 
 export interface MongoDbCollectionDatasetTypePropertiesOutput {
@@ -2274,7 +2274,7 @@ export interface MongoDbCollectionDatasetTypePropertiesOutput {
 export interface MongoDbAtlasCollectionDatasetOutput extends DatasetOutputBase {
   /** MongoDB Atlas database dataset properties. */
   typeProperties: MongoDbAtlasCollectionDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "MongoDbAtlasCollection";
 }
 
 export interface MongoDbAtlasCollectionDatasetTypePropertiesOutput {
@@ -2285,7 +2285,7 @@ export interface MongoDbAtlasCollectionDatasetTypePropertiesOutput {
 export interface MongoDbV2CollectionDatasetOutput extends DatasetOutputBase {
   /** MongoDB database dataset properties. */
   typeProperties: MongoDbV2CollectionDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "MongoDbV2Collection";
 }
 
 export interface MongoDbV2CollectionDatasetTypePropertiesOutput {
@@ -2297,7 +2297,7 @@ export interface CosmosDbMongoDbApiCollectionDatasetOutput
   extends DatasetOutputBase {
   /** CosmosDB (MongoDB API) database dataset properties. */
   typeProperties: CosmosDbMongoDbApiCollectionDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "CosmosDbMongoDbApiCollection";
 }
 
 export interface CosmosDbMongoDbApiCollectionDatasetTypePropertiesOutput {
@@ -2308,7 +2308,7 @@ export interface CosmosDbMongoDbApiCollectionDatasetTypePropertiesOutput {
 export interface ODataResourceDatasetOutput extends DatasetOutputBase {
   /** OData dataset properties. */
   typeProperties?: ODataResourceDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "ODataResource";
 }
 
 export interface ODataResourceDatasetTypePropertiesOutput {
@@ -2319,7 +2319,7 @@ export interface ODataResourceDatasetTypePropertiesOutput {
 export interface OracleTableDatasetOutput extends DatasetOutputBase {
   /** On-premises Oracle dataset properties. */
   typeProperties?: OracleTableDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "OracleTable";
 }
 
 export interface OracleTableDatasetTypePropertiesOutput {
@@ -2335,7 +2335,7 @@ export interface AmazonRdsForOracleTableDatasetOutput
   extends DatasetOutputBase {
   /** AmazonRdsForOracle dataset properties. */
   typeProperties?: AmazonRdsForOracleTableDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "AmazonRdsForOracleTable";
 }
 
 export interface AmazonRdsForOracleTableDatasetTypePropertiesOutput {
@@ -2348,7 +2348,7 @@ export interface AmazonRdsForOracleTableDatasetTypePropertiesOutput {
 export interface TeradataTableDatasetOutput extends DatasetOutputBase {
   /** Teradata dataset properties. */
   typeProperties?: TeradataTableDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "TeradataTable";
 }
 
 export interface TeradataTableDatasetTypePropertiesOutput {
@@ -2361,7 +2361,7 @@ export interface TeradataTableDatasetTypePropertiesOutput {
 export interface AzureMySqlTableDatasetOutput extends DatasetOutputBase {
   /** Azure MySQL database dataset properties. */
   typeProperties: AzureMySqlTableDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "AzureMySqlTable";
 }
 
 export interface AzureMySqlTableDatasetTypePropertiesOutput {
@@ -2374,7 +2374,7 @@ export interface AzureMySqlTableDatasetTypePropertiesOutput {
 export interface AmazonRedshiftTableDatasetOutput extends DatasetOutputBase {
   /** Amazon Redshift table dataset properties. */
   typeProperties?: AmazonRedshiftTableDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "AmazonRedshiftTable";
 }
 
 export interface AmazonRedshiftTableDatasetTypePropertiesOutput {
@@ -2389,7 +2389,7 @@ export interface AmazonRedshiftTableDatasetTypePropertiesOutput {
 export interface Db2TableDatasetOutput extends DatasetOutputBase {
   /** Db2 table dataset properties. */
   typeProperties?: Db2TableDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "Db2Table";
 }
 
 export interface Db2TableDatasetTypePropertiesOutput {
@@ -2404,7 +2404,7 @@ export interface Db2TableDatasetTypePropertiesOutput {
 export interface RelationalTableDatasetOutput extends DatasetOutputBase {
   /** Relational table dataset properties. */
   typeProperties?: RelationalTableDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "RelationalTable";
 }
 
 export interface RelationalTableDatasetTypePropertiesOutput {
@@ -2415,7 +2415,7 @@ export interface RelationalTableDatasetTypePropertiesOutput {
 export interface InformixTableDatasetOutput extends DatasetOutputBase {
   /** Informix table dataset properties. */
   typeProperties?: InformixTableDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "InformixTable";
 }
 
 export interface InformixTableDatasetTypePropertiesOutput {
@@ -2426,7 +2426,7 @@ export interface InformixTableDatasetTypePropertiesOutput {
 export interface OdbcTableDatasetOutput extends DatasetOutputBase {
   /** ODBC table dataset properties. */
   typeProperties?: OdbcTableDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "OdbcTable";
 }
 
 export interface OdbcTableDatasetTypePropertiesOutput {
@@ -2437,7 +2437,7 @@ export interface OdbcTableDatasetTypePropertiesOutput {
 export interface MySqlTableDatasetOutput extends DatasetOutputBase {
   /** MySQL table dataset properties. */
   typeProperties?: MySqlTableDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "MySqlTable";
 }
 
 export interface MySqlTableDatasetTypePropertiesOutput {
@@ -2448,7 +2448,7 @@ export interface MySqlTableDatasetTypePropertiesOutput {
 export interface PostgreSqlTableDatasetOutput extends DatasetOutputBase {
   /** PostgreSQL table dataset properties. */
   typeProperties?: PostgreSqlTableDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "PostgreSqlTable";
 }
 
 export interface PostgreSqlTableDatasetTypePropertiesOutput {
@@ -2463,7 +2463,7 @@ export interface PostgreSqlTableDatasetTypePropertiesOutput {
 export interface MicrosoftAccessTableDatasetOutput extends DatasetOutputBase {
   /** Microsoft Access table dataset properties. */
   typeProperties?: MicrosoftAccessTableDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "MicrosoftAccessTable";
 }
 
 export interface MicrosoftAccessTableDatasetTypePropertiesOutput {
@@ -2474,7 +2474,7 @@ export interface MicrosoftAccessTableDatasetTypePropertiesOutput {
 export interface SalesforceObjectDatasetOutput extends DatasetOutputBase {
   /** Salesforce object dataset properties. */
   typeProperties?: SalesforceObjectDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "SalesforceObject";
 }
 
 export interface SalesforceObjectDatasetTypePropertiesOutput {
@@ -2486,7 +2486,7 @@ export interface SalesforceServiceCloudObjectDatasetOutput
   extends DatasetOutputBase {
   /** Salesforce Service Cloud object dataset properties. */
   typeProperties?: SalesforceServiceCloudObjectDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "SalesforceServiceCloudObject";
 }
 
 export interface SalesforceServiceCloudObjectDatasetTypePropertiesOutput {
@@ -2497,7 +2497,7 @@ export interface SalesforceServiceCloudObjectDatasetTypePropertiesOutput {
 export interface SybaseTableDatasetOutput extends DatasetOutputBase {
   /** Sybase table dataset properties. */
   typeProperties?: SybaseTableDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "SybaseTable";
 }
 
 export interface SybaseTableDatasetTypePropertiesOutput {
@@ -2506,14 +2506,14 @@ export interface SybaseTableDatasetTypePropertiesOutput {
 }
 
 export interface SapBwCubeDatasetOutput extends DatasetOutputBase {
-  type: "undefined";
+  type: "SapBwCube";
 }
 
 export interface SapCloudForCustomerResourceDatasetOutput
   extends DatasetOutputBase {
   /** SAP Cloud For Customer OData resource dataset properties. */
   typeProperties: SapCloudForCustomerResourceDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "SapCloudForCustomerResource";
 }
 
 export interface SapCloudForCustomerResourceDatasetTypePropertiesOutput {
@@ -2524,7 +2524,7 @@ export interface SapCloudForCustomerResourceDatasetTypePropertiesOutput {
 export interface SapEccResourceDatasetOutput extends DatasetOutputBase {
   /** SAP ECC OData resource dataset properties. */
   typeProperties: SapEccResourceDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "SapEccResource";
 }
 
 export interface SapEccResourceDatasetTypePropertiesOutput {
@@ -2535,7 +2535,7 @@ export interface SapEccResourceDatasetTypePropertiesOutput {
 export interface SapHanaTableDatasetOutput extends DatasetOutputBase {
   /** SAP HANA Table properties. */
   typeProperties?: SapHanaTableDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "SapHanaTable";
 }
 
 export interface SapHanaTableDatasetTypePropertiesOutput {
@@ -2548,7 +2548,7 @@ export interface SapHanaTableDatasetTypePropertiesOutput {
 export interface SapOpenHubTableDatasetOutput extends DatasetOutputBase {
   /** Sap Business Warehouse Open Hub Destination Table properties. */
   typeProperties: SapOpenHubTableDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "SapOpenHubTable";
 }
 
 export interface SapOpenHubTableDatasetTypePropertiesOutput {
@@ -2563,7 +2563,7 @@ export interface SapOpenHubTableDatasetTypePropertiesOutput {
 export interface SqlServerTableDatasetOutput extends DatasetOutputBase {
   /** On-premises SQL Server dataset properties. */
   typeProperties?: SqlServerTableDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "SqlServerTable";
 }
 
 export interface SqlServerTableDatasetTypePropertiesOutput {
@@ -2579,7 +2579,7 @@ export interface AmazonRdsForSqlServerTableDatasetOutput
   extends DatasetOutputBase {
   /** The Amazon RDS for SQL Server dataset properties. */
   typeProperties?: AmazonRdsForSqlServerTableDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "AmazonRdsForSqlServerTable";
 }
 
 export interface AmazonRdsForSqlServerTableDatasetTypePropertiesOutput {
@@ -2592,7 +2592,7 @@ export interface AmazonRdsForSqlServerTableDatasetTypePropertiesOutput {
 export interface RestResourceDatasetOutput extends DatasetOutputBase {
   /** Properties specific to this dataset type. */
   typeProperties?: RestResourceDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "RestResource";
 }
 
 export interface RestResourceDatasetTypePropertiesOutput {
@@ -2611,7 +2611,7 @@ export interface RestResourceDatasetTypePropertiesOutput {
 export interface SapTableResourceDatasetOutput extends DatasetOutputBase {
   /** SAP Table Resource properties. */
   typeProperties: SapTableResourceDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "SapTableResource";
 }
 
 export interface SapTableResourceDatasetTypePropertiesOutput {
@@ -2622,7 +2622,7 @@ export interface SapTableResourceDatasetTypePropertiesOutput {
 export interface WebTableDatasetOutput extends DatasetOutputBase {
   /** Web table dataset properties. */
   typeProperties: WebTableDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "WebTable";
 }
 
 export interface WebTableDatasetTypePropertiesOutput {
@@ -2635,7 +2635,7 @@ export interface WebTableDatasetTypePropertiesOutput {
 export interface AzureSearchIndexDatasetOutput extends DatasetOutputBase {
   /** Properties specific to this dataset type. */
   typeProperties: AzureSearchIndexDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "AzureSearchIndex";
 }
 
 export interface AzureSearchIndexDatasetTypePropertiesOutput {
@@ -2646,7 +2646,7 @@ export interface AzureSearchIndexDatasetTypePropertiesOutput {
 export interface HttpDatasetOutput extends DatasetOutputBase {
   /** Properties specific to this dataset type. */
   typeProperties?: HttpDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "HttpFile";
 }
 
 export interface HttpDatasetTypePropertiesOutput {
@@ -2676,13 +2676,13 @@ export interface GenericDatasetTypePropertiesOutput {
 export interface AmazonMWSObjectDatasetOutput extends DatasetOutputBase {
   /** Properties specific to this dataset type. */
   typeProperties?: GenericDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "AmazonMWSObject";
 }
 
 export interface AzurePostgreSqlTableDatasetOutput extends DatasetOutputBase {
   /** Properties specific to this dataset type. */
   typeProperties?: AzurePostgreSqlTableDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "AzurePostgreSqlTable";
 }
 
 export interface AzurePostgreSqlTableDatasetTypePropertiesOutput {
@@ -2697,19 +2697,19 @@ export interface AzurePostgreSqlTableDatasetTypePropertiesOutput {
 export interface ConcurObjectDatasetOutput extends DatasetOutputBase {
   /** Properties specific to this dataset type. */
   typeProperties?: GenericDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "ConcurObject";
 }
 
 export interface CouchbaseTableDatasetOutput extends DatasetOutputBase {
   /** Properties specific to this dataset type. */
   typeProperties?: GenericDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "CouchbaseTable";
 }
 
 export interface DrillTableDatasetOutput extends DatasetOutputBase {
   /** Properties specific to this dataset type. */
   typeProperties?: DrillDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "DrillTable";
 }
 
 export interface DrillDatasetTypePropertiesOutput {
@@ -2724,13 +2724,13 @@ export interface DrillDatasetTypePropertiesOutput {
 export interface EloquaObjectDatasetOutput extends DatasetOutputBase {
   /** Properties specific to this dataset type. */
   typeProperties?: GenericDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "EloquaObject";
 }
 
 export interface GoogleBigQueryObjectDatasetOutput extends DatasetOutputBase {
   /** Properties specific to this dataset type. */
   typeProperties?: GoogleBigQueryDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "GoogleBigQueryObject";
 }
 
 export interface GoogleBigQueryDatasetTypePropertiesOutput {
@@ -2745,7 +2745,7 @@ export interface GoogleBigQueryDatasetTypePropertiesOutput {
 export interface GreenplumTableDatasetOutput extends DatasetOutputBase {
   /** Properties specific to this dataset type. */
   typeProperties?: GreenplumDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "GreenplumTable";
 }
 
 export interface GreenplumDatasetTypePropertiesOutput {
@@ -2760,13 +2760,13 @@ export interface GreenplumDatasetTypePropertiesOutput {
 export interface HBaseObjectDatasetOutput extends DatasetOutputBase {
   /** Properties specific to this dataset type. */
   typeProperties?: GenericDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "HBaseObject";
 }
 
 export interface HiveObjectDatasetOutput extends DatasetOutputBase {
   /** Properties specific to this dataset type. */
   typeProperties?: HiveDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "HiveObject";
 }
 
 export interface HiveDatasetTypePropertiesOutput {
@@ -2781,13 +2781,13 @@ export interface HiveDatasetTypePropertiesOutput {
 export interface HubspotObjectDatasetOutput extends DatasetOutputBase {
   /** Properties specific to this dataset type. */
   typeProperties?: GenericDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "HubspotObject";
 }
 
 export interface ImpalaObjectDatasetOutput extends DatasetOutputBase {
   /** Properties specific to this dataset type. */
   typeProperties?: ImpalaDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "ImpalaObject";
 }
 
 export interface ImpalaDatasetTypePropertiesOutput {
@@ -2802,43 +2802,43 @@ export interface ImpalaDatasetTypePropertiesOutput {
 export interface JiraObjectDatasetOutput extends DatasetOutputBase {
   /** Properties specific to this dataset type. */
   typeProperties?: GenericDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "JiraObject";
 }
 
 export interface MagentoObjectDatasetOutput extends DatasetOutputBase {
   /** Properties specific to this dataset type. */
   typeProperties?: GenericDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "MagentoObject";
 }
 
 export interface MariaDBTableDatasetOutput extends DatasetOutputBase {
   /** Properties specific to this dataset type. */
   typeProperties?: GenericDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "MariaDBTable";
 }
 
 export interface AzureMariaDBTableDatasetOutput extends DatasetOutputBase {
   /** Properties specific to this dataset type. */
   typeProperties?: GenericDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "AzureMariaDBTable";
 }
 
 export interface MarketoObjectDatasetOutput extends DatasetOutputBase {
   /** Properties specific to this dataset type. */
   typeProperties?: GenericDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "MarketoObject";
 }
 
 export interface PaypalObjectDatasetOutput extends DatasetOutputBase {
   /** Properties specific to this dataset type. */
   typeProperties?: GenericDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "PaypalObject";
 }
 
 export interface PhoenixObjectDatasetOutput extends DatasetOutputBase {
   /** Properties specific to this dataset type. */
   typeProperties?: PhoenixDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "PhoenixObject";
 }
 
 export interface PhoenixDatasetTypePropertiesOutput {
@@ -2853,7 +2853,7 @@ export interface PhoenixDatasetTypePropertiesOutput {
 export interface PrestoObjectDatasetOutput extends DatasetOutputBase {
   /** Properties specific to this dataset type. */
   typeProperties?: PrestoDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "PrestoObject";
 }
 
 export interface PrestoDatasetTypePropertiesOutput {
@@ -2868,25 +2868,25 @@ export interface PrestoDatasetTypePropertiesOutput {
 export interface QuickBooksObjectDatasetOutput extends DatasetOutputBase {
   /** Properties specific to this dataset type. */
   typeProperties?: GenericDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "QuickBooksObject";
 }
 
 export interface ServiceNowObjectDatasetOutput extends DatasetOutputBase {
   /** Properties specific to this dataset type. */
   typeProperties?: GenericDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "ServiceNowObject";
 }
 
 export interface ShopifyObjectDatasetOutput extends DatasetOutputBase {
   /** Properties specific to this dataset type. */
   typeProperties?: GenericDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "ShopifyObject";
 }
 
 export interface SparkObjectDatasetOutput extends DatasetOutputBase {
   /** Properties specific to this dataset type. */
   typeProperties?: SparkDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "SparkObject";
 }
 
 export interface SparkDatasetTypePropertiesOutput {
@@ -2901,25 +2901,25 @@ export interface SparkDatasetTypePropertiesOutput {
 export interface SquareObjectDatasetOutput extends DatasetOutputBase {
   /** Properties specific to this dataset type. */
   typeProperties?: GenericDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "SquareObject";
 }
 
 export interface XeroObjectDatasetOutput extends DatasetOutputBase {
   /** Properties specific to this dataset type. */
   typeProperties?: GenericDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "XeroObject";
 }
 
 export interface ZohoObjectDatasetOutput extends DatasetOutputBase {
   /** Properties specific to this dataset type. */
   typeProperties?: GenericDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "ZohoObject";
 }
 
 export interface NetezzaTableDatasetOutput extends DatasetOutputBase {
   /** Properties specific to this dataset type. */
   typeProperties?: NetezzaTableDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "NetezzaTable";
 }
 
 export interface NetezzaTableDatasetTypePropertiesOutput {
@@ -2934,7 +2934,7 @@ export interface NetezzaTableDatasetTypePropertiesOutput {
 export interface VerticaTableDatasetOutput extends DatasetOutputBase {
   /** Properties specific to this dataset type. */
   typeProperties?: VerticaDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "VerticaTable";
 }
 
 export interface VerticaDatasetTypePropertiesOutput {
@@ -2950,19 +2950,19 @@ export interface SalesforceMarketingCloudObjectDatasetOutput
   extends DatasetOutputBase {
   /** Properties specific to this dataset type. */
   typeProperties?: GenericDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "SalesforceMarketingCloudObject";
 }
 
 export interface ResponsysObjectDatasetOutput extends DatasetOutputBase {
   /** Properties specific to this dataset type. */
   typeProperties?: GenericDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "ResponsysObject";
 }
 
 export interface DynamicsAXResourceDatasetOutput extends DatasetOutputBase {
   /** Dynamics AX OData resource dataset properties. */
   typeProperties: DynamicsAXResourceDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "DynamicsAXResource";
 }
 
 export interface DynamicsAXResourceDatasetTypePropertiesOutput {
@@ -2974,13 +2974,13 @@ export interface OracleServiceCloudObjectDatasetOutput
   extends DatasetOutputBase {
   /** Properties specific to this dataset type. */
   typeProperties?: GenericDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "OracleServiceCloudObject";
 }
 
 export interface AzureDataExplorerTableDatasetOutput extends DatasetOutputBase {
   /** Azure Data Explorer (Kusto) dataset properties. */
   typeProperties: AzureDataExplorerDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "AzureDataExplorerTable";
 }
 
 export interface AzureDataExplorerDatasetTypePropertiesOutput {
@@ -2991,13 +2991,13 @@ export interface AzureDataExplorerDatasetTypePropertiesOutput {
 export interface GoogleAdWordsObjectDatasetOutput extends DatasetOutputBase {
   /** Properties specific to this dataset type. */
   typeProperties?: GenericDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "GoogleAdWordsObject";
 }
 
 export interface SnowflakeDatasetOutput extends DatasetOutputBase {
   /** Snowflake dataset properties. */
   typeProperties: SnowflakeDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "SnowflakeTable";
 }
 
 export interface SnowflakeDatasetTypePropertiesOutput {
@@ -3011,7 +3011,7 @@ export interface SharePointOnlineListResourceDatasetOutput
   extends DatasetOutputBase {
   /** Sharepoint online list dataset properties. */
   typeProperties?: SharePointOnlineListDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "SharePointOnlineListResource";
 }
 
 export interface SharePointOnlineListDatasetTypePropertiesOutput {
@@ -3023,7 +3023,7 @@ export interface AzureDatabricksDeltaLakeDatasetOutput
   extends DatasetOutputBase {
   /** Properties specific to this dataset type. */
   typeProperties?: AzureDatabricksDeltaLakeDatasetTypePropertiesOutput;
-  type: "undefined";
+  type: "AzureDatabricksDeltaLakeDataset";
 }
 
 export interface AzureDatabricksDeltaLakeDatasetTypePropertiesOutput {
@@ -3037,7 +3037,7 @@ export interface AzureStorageLinkedServiceOutput
   extends LinkedServiceOutputBase {
   /** Azure Storage linked service properties. */
   typeProperties: AzureStorageLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "AzureStorage";
 }
 
 export interface AzureStorageLinkedServiceTypePropertiesOutput {
@@ -3057,7 +3057,7 @@ export interface AzureBlobStorageLinkedServiceOutput
   extends LinkedServiceOutputBase {
   /** Azure Blob Storage linked service properties. */
   typeProperties: AzureBlobStorageLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "AzureBlobStorage";
 }
 
 export interface AzureBlobStorageLinkedServiceTypePropertiesOutput {
@@ -3089,13 +3089,13 @@ export interface AzureTableStorageLinkedServiceOutput
   extends LinkedServiceOutputBase {
   /** Azure Table Storage linked service properties. */
   typeProperties: AzureStorageLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "AzureTableStorage";
 }
 
 export interface AzureSqlDWLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Azure SQL Data Warehouse linked service properties. */
   typeProperties: AzureSqlDWLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "AzureSqlDW";
 }
 
 export interface AzureSqlDWLinkedServiceTypePropertiesOutput {
@@ -3118,7 +3118,7 @@ export interface AzureSqlDWLinkedServiceTypePropertiesOutput {
 export interface SqlServerLinkedServiceOutput extends LinkedServiceOutputBase {
   /** SQL Server linked service properties. */
   typeProperties: SqlServerLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "SqlServer";
 }
 
 export interface SqlServerLinkedServiceTypePropertiesOutput {
@@ -3136,7 +3136,7 @@ export interface AmazonRdsForSqlServerLinkedServiceOutput
   extends LinkedServiceOutputBase {
   /** Amazon RDS for SQL Server linked service properties. */
   typeProperties: AmazonRdsForSqlServerLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "AmazonRdsForSqlServer";
 }
 
 export interface AmazonRdsForSqlServerLinkedServiceTypePropertiesOutput {
@@ -3154,7 +3154,7 @@ export interface AzureSqlDatabaseLinkedServiceOutput
   extends LinkedServiceOutputBase {
   /** Azure SQL Database linked service properties. */
   typeProperties: AzureSqlDatabaseLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "AzureSqlDatabase";
 }
 
 export interface AzureSqlDatabaseLinkedServiceTypePropertiesOutput {
@@ -3177,7 +3177,7 @@ export interface AzureSqlDatabaseLinkedServiceTypePropertiesOutput {
 export interface AzureSqlMILinkedServiceOutput extends LinkedServiceOutputBase {
   /** Azure SQL Managed Instance linked service properties. */
   typeProperties: AzureSqlMILinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "AzureSqlMI";
 }
 
 export interface AzureSqlMILinkedServiceTypePropertiesOutput {
@@ -3200,7 +3200,7 @@ export interface AzureSqlMILinkedServiceTypePropertiesOutput {
 export interface AzureBatchLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Azure Batch linked service properties. */
   typeProperties: AzureBatchLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "AzureBatch";
 }
 
 export interface AzureBatchLinkedServiceTypePropertiesOutput {
@@ -3222,7 +3222,7 @@ export interface AzureKeyVaultLinkedServiceOutput
   extends LinkedServiceOutputBase {
   /** Azure Key Vault linked service properties. */
   typeProperties: AzureKeyVaultLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "AzureKeyVault";
 }
 
 export interface AzureKeyVaultLinkedServiceTypePropertiesOutput {
@@ -3233,7 +3233,7 @@ export interface AzureKeyVaultLinkedServiceTypePropertiesOutput {
 export interface CosmosDbLinkedServiceOutput extends LinkedServiceOutputBase {
   /** CosmosDB linked service properties. */
   typeProperties: CosmosDbLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "CosmosDb";
 }
 
 export interface CosmosDbLinkedServiceTypePropertiesOutput {
@@ -3252,7 +3252,7 @@ export interface CosmosDbLinkedServiceTypePropertiesOutput {
 export interface DynamicsLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Dynamics linked service properties. */
   typeProperties: DynamicsLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "Dynamics";
 }
 
 export interface DynamicsLinkedServiceTypePropertiesOutput {
@@ -3286,7 +3286,7 @@ export interface DynamicsCrmLinkedServiceOutput
   extends LinkedServiceOutputBase {
   /** Dynamics CRM linked service properties. */
   typeProperties: DynamicsCrmLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "DynamicsCrm";
 }
 
 export interface DynamicsCrmLinkedServiceTypePropertiesOutput {
@@ -3320,7 +3320,7 @@ export interface CommonDataServiceForAppsLinkedServiceOutput
   extends LinkedServiceOutputBase {
   /** Common Data Service for Apps linked service properties. */
   typeProperties: CommonDataServiceForAppsLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "CommonDataServiceForApps";
 }
 
 export interface CommonDataServiceForAppsLinkedServiceTypePropertiesOutput {
@@ -3353,7 +3353,7 @@ export interface CommonDataServiceForAppsLinkedServiceTypePropertiesOutput {
 export interface HDInsightLinkedServiceOutput extends LinkedServiceOutputBase {
   /** HDInsight linked service properties. */
   typeProperties: HDInsightLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "HDInsight";
 }
 
 export interface HDInsightLinkedServiceTypePropertiesOutput {
@@ -3378,7 +3378,7 @@ export interface HDInsightLinkedServiceTypePropertiesOutput {
 export interface FileServerLinkedServiceOutput extends LinkedServiceOutputBase {
   /** File system linked service properties. */
   typeProperties: FileServerLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "FileServer";
 }
 
 export interface FileServerLinkedServiceTypePropertiesOutput {
@@ -3396,7 +3396,7 @@ export interface AzureFileStorageLinkedServiceOutput
   extends LinkedServiceOutputBase {
   /** Azure File Storage linked service properties. */
   typeProperties: AzureFileStorageLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "AzureFileStorage";
 }
 
 export interface AzureFileStorageLinkedServiceTypePropertiesOutput {
@@ -3426,7 +3426,7 @@ export interface GoogleCloudStorageLinkedServiceOutput
   extends LinkedServiceOutputBase {
   /** Google Cloud Storage linked service properties. */
   typeProperties: GoogleCloudStorageLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "GoogleCloudStorage";
 }
 
 export interface GoogleCloudStorageLinkedServiceTypePropertiesOutput {
@@ -3443,7 +3443,7 @@ export interface GoogleCloudStorageLinkedServiceTypePropertiesOutput {
 export interface OracleLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Oracle database linked service properties. */
   typeProperties: OracleLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "Oracle";
 }
 
 export interface OracleLinkedServiceTypePropertiesOutput {
@@ -3459,7 +3459,7 @@ export interface AmazonRdsForOracleLinkedServiceOutput
   extends LinkedServiceOutputBase {
   /** AmazonRdsForOracle database linked service properties. */
   typeProperties: AmazonRdsForLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "AmazonRdsForOracle";
 }
 
 export interface AmazonRdsForLinkedServiceTypePropertiesOutput {
@@ -3474,7 +3474,7 @@ export interface AmazonRdsForLinkedServiceTypePropertiesOutput {
 export interface AzureMySqlLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Azure MySQL database linked service properties. */
   typeProperties: AzureMySqlLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "AzureMySql";
 }
 
 export interface AzureMySqlLinkedServiceTypePropertiesOutput {
@@ -3489,7 +3489,7 @@ export interface AzureMySqlLinkedServiceTypePropertiesOutput {
 export interface MySqlLinkedServiceOutput extends LinkedServiceOutputBase {
   /** MySQL linked service properties. */
   typeProperties: MySqlLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "MySql";
 }
 
 export interface MySqlLinkedServiceTypePropertiesOutput {
@@ -3504,7 +3504,7 @@ export interface MySqlLinkedServiceTypePropertiesOutput {
 export interface PostgreSqlLinkedServiceOutput extends LinkedServiceOutputBase {
   /** PostgreSQL linked service properties. */
   typeProperties: PostgreSqlLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "PostgreSql";
 }
 
 export interface PostgreSqlLinkedServiceTypePropertiesOutput {
@@ -3519,7 +3519,7 @@ export interface PostgreSqlLinkedServiceTypePropertiesOutput {
 export interface SybaseLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Sybase linked service properties. */
   typeProperties: SybaseLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "Sybase";
 }
 
 export interface SybaseLinkedServiceTypePropertiesOutput {
@@ -3542,7 +3542,7 @@ export interface SybaseLinkedServiceTypePropertiesOutput {
 export interface Db2LinkedServiceOutput extends LinkedServiceOutputBase {
   /** DB2 linked service properties. */
   typeProperties: Db2LinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "Db2";
 }
 
 export interface Db2LinkedServiceTypePropertiesOutput {
@@ -3569,7 +3569,7 @@ export interface Db2LinkedServiceTypePropertiesOutput {
 export interface TeradataLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Teradata linked service properties. */
   typeProperties: TeradataLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "Teradata";
 }
 
 export interface TeradataLinkedServiceTypePropertiesOutput {
@@ -3590,7 +3590,7 @@ export interface TeradataLinkedServiceTypePropertiesOutput {
 export interface AzureMLLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Azure ML Studio Web Service linked service properties. */
   typeProperties: AzureMLLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "AzureML";
 }
 
 export interface AzureMLLinkedServiceTypePropertiesOutput {
@@ -3614,7 +3614,7 @@ export interface AzureMLServiceLinkedServiceOutput
   extends LinkedServiceOutputBase {
   /** Azure ML Service linked service properties. */
   typeProperties: AzureMLServiceLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "AzureMLService";
 }
 
 export interface AzureMLServiceLinkedServiceTypePropertiesOutput {
@@ -3637,7 +3637,7 @@ export interface AzureMLServiceLinkedServiceTypePropertiesOutput {
 export interface OdbcLinkedServiceOutput extends LinkedServiceOutputBase {
   /** ODBC linked service properties. */
   typeProperties: OdbcLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "Odbc";
 }
 
 export interface OdbcLinkedServiceTypePropertiesOutput {
@@ -3658,7 +3658,7 @@ export interface OdbcLinkedServiceTypePropertiesOutput {
 export interface InformixLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Informix linked service properties. */
   typeProperties: InformixLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "Informix";
 }
 
 export interface InformixLinkedServiceTypePropertiesOutput {
@@ -3680,7 +3680,7 @@ export interface MicrosoftAccessLinkedServiceOutput
   extends LinkedServiceOutputBase {
   /** Microsoft Access linked service properties. */
   typeProperties: MicrosoftAccessLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "MicrosoftAccess";
 }
 
 export interface MicrosoftAccessLinkedServiceTypePropertiesOutput {
@@ -3701,7 +3701,7 @@ export interface MicrosoftAccessLinkedServiceTypePropertiesOutput {
 export interface HdfsLinkedServiceOutput extends LinkedServiceOutputBase {
   /** HDFS linked service properties. */
   typeProperties: HdfsLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "Hdfs";
 }
 
 export interface HdfsLinkedServiceTypePropertiesOutput {
@@ -3720,7 +3720,7 @@ export interface HdfsLinkedServiceTypePropertiesOutput {
 export interface ODataLinkedServiceOutput extends LinkedServiceOutputBase {
   /** OData linked service properties. */
   typeProperties: ODataLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "OData";
 }
 
 export interface ODataLinkedServiceTypePropertiesOutput {
@@ -3762,14 +3762,14 @@ export interface ODataLinkedServiceTypePropertiesOutput {
 export interface WebLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Web linked service properties. */
   typeProperties: WebLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "Web";
 }
 
 export interface WebLinkedServiceTypePropertiesOutputBase {
   /** The URL of the web service endpoint, e.g. http://www.microsoft.com . Type: string (or Expression with resultType string). */
   url: any;
   authenticationType:
-    | "WebLinkedServiceTypeProperties"
+    | "webLinkedServiceTypeProperties"
     | "Anonymous"
     | "Basic"
     | "ClientCertificate";
@@ -3777,7 +3777,7 @@ export interface WebLinkedServiceTypePropertiesOutputBase {
 
 export interface WebAnonymousAuthenticationOutput
   extends WebLinkedServiceTypePropertiesOutputBase {
-  authenticationType: "undefined";
+  authenticationType: "Anonymous";
 }
 
 export interface WebBasicAuthenticationOutput
@@ -3786,7 +3786,7 @@ export interface WebBasicAuthenticationOutput
   username: any;
   /** The password for Basic authentication. */
   password: SecretBaseOutput;
-  authenticationType: "undefined";
+  authenticationType: "Basic";
 }
 
 export interface WebClientCertificateAuthenticationOutput
@@ -3795,13 +3795,13 @@ export interface WebClientCertificateAuthenticationOutput
   pfx: SecretBaseOutput;
   /** Password for the PFX file. */
   password: SecretBaseOutput;
-  authenticationType: "undefined";
+  authenticationType: "ClientCertificate";
 }
 
 export interface CassandraLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Cassandra linked service properties. */
   typeProperties: CassandraLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "Cassandra";
 }
 
 export interface CassandraLinkedServiceTypePropertiesOutput {
@@ -3822,7 +3822,7 @@ export interface CassandraLinkedServiceTypePropertiesOutput {
 export interface MongoDbLinkedServiceOutput extends LinkedServiceOutputBase {
   /** MongoDB linked service properties. */
   typeProperties: MongoDbLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "MongoDb";
 }
 
 export interface MongoDbLinkedServiceTypePropertiesOutput {
@@ -3852,7 +3852,7 @@ export interface MongoDbAtlasLinkedServiceOutput
   extends LinkedServiceOutputBase {
   /** MongoDB Atlas linked service properties. */
   typeProperties: MongoDbAtlasLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "MongoDbAtlas";
 }
 
 export interface MongoDbAtlasLinkedServiceTypePropertiesOutput {
@@ -3865,7 +3865,7 @@ export interface MongoDbAtlasLinkedServiceTypePropertiesOutput {
 export interface MongoDbV2LinkedServiceOutput extends LinkedServiceOutputBase {
   /** MongoDB linked service properties. */
   typeProperties: MongoDbV2LinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "MongoDbV2";
 }
 
 export interface MongoDbV2LinkedServiceTypePropertiesOutput {
@@ -3879,7 +3879,7 @@ export interface CosmosDbMongoDbApiLinkedServiceOutput
   extends LinkedServiceOutputBase {
   /** CosmosDB (MongoDB API) linked service properties. */
   typeProperties: CosmosDbMongoDbApiLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "CosmosDbMongoDbApi";
 }
 
 export interface CosmosDbMongoDbApiLinkedServiceTypePropertiesOutput {
@@ -3893,7 +3893,7 @@ export interface AzureDataLakeStoreLinkedServiceOutput
   extends LinkedServiceOutputBase {
   /** Azure Data Lake Store linked service properties. */
   typeProperties: AzureDataLakeStoreLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "AzureDataLakeStore";
 }
 
 export interface AzureDataLakeStoreLinkedServiceTypePropertiesOutput {
@@ -3921,7 +3921,7 @@ export interface AzureBlobFSLinkedServiceOutput
   extends LinkedServiceOutputBase {
   /** Azure Data Lake Storage Gen2 linked service properties. */
   typeProperties: AzureBlobFSLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "AzureBlobFS";
 }
 
 export interface AzureBlobFSLinkedServiceTypePropertiesOutput {
@@ -3948,7 +3948,7 @@ export interface AzureBlobFSLinkedServiceTypePropertiesOutput {
 export interface Office365LinkedServiceOutput extends LinkedServiceOutputBase {
   /** Office365 linked service properties. */
   typeProperties: Office365LinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "Office365";
 }
 
 export interface Office365LinkedServiceTypePropertiesOutput {
@@ -3967,7 +3967,7 @@ export interface Office365LinkedServiceTypePropertiesOutput {
 export interface SalesforceLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Salesforce linked service properties. */
   typeProperties: SalesforceLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "Salesforce";
 }
 
 export interface SalesforceLinkedServiceTypePropertiesOutput {
@@ -3989,7 +3989,7 @@ export interface SalesforceServiceCloudLinkedServiceOutput
   extends LinkedServiceOutputBase {
   /** Salesforce Service Cloud linked service properties. */
   typeProperties: SalesforceServiceCloudLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "SalesforceServiceCloud";
 }
 
 export interface SalesforceServiceCloudLinkedServiceTypePropertiesOutput {
@@ -4013,7 +4013,7 @@ export interface SapCloudForCustomerLinkedServiceOutput
   extends LinkedServiceOutputBase {
   /** SAP Cloud for Customer linked service properties. */
   typeProperties: SapCloudForCustomerLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "SapCloudForCustomer";
 }
 
 export interface SapCloudForCustomerLinkedServiceTypePropertiesOutput {
@@ -4030,7 +4030,7 @@ export interface SapCloudForCustomerLinkedServiceTypePropertiesOutput {
 export interface SapEccLinkedServiceOutput extends LinkedServiceOutputBase {
   /** SAP ECC linked service properties. */
   typeProperties: SapEccLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "SapEcc";
 }
 
 export interface SapEccLinkedServiceTypePropertiesOutput {
@@ -4047,7 +4047,7 @@ export interface SapEccLinkedServiceTypePropertiesOutput {
 export interface SapOpenHubLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Properties specific to SAP Business Warehouse Open Hub Destination linked service type. */
   typeProperties: SapOpenHubLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "SapOpenHub";
 }
 
 export interface SapOpenHubLinkedServiceTypePropertiesOutput {
@@ -4079,7 +4079,7 @@ export interface RestServiceLinkedServiceOutput
   extends LinkedServiceOutputBase {
   /** Rest Service linked service properties. */
   typeProperties: RestServiceLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "RestService";
 }
 
 export interface RestServiceLinkedServiceTypePropertiesOutput {
@@ -4114,7 +4114,7 @@ export interface RestServiceLinkedServiceTypePropertiesOutput {
 export interface AmazonS3LinkedServiceOutput extends LinkedServiceOutputBase {
   /** Amazon S3 linked service properties. */
   typeProperties: AmazonS3LinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "AmazonS3";
 }
 
 export interface AmazonS3LinkedServiceTypePropertiesOutput {
@@ -4136,7 +4136,7 @@ export interface AmazonRedshiftLinkedServiceOutput
   extends LinkedServiceOutputBase {
   /** Amazon Redshift linked service properties. */
   typeProperties: AmazonRedshiftLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "AmazonRedshift";
 }
 
 export interface AmazonRedshiftLinkedServiceTypePropertiesOutput {
@@ -4158,14 +4158,14 @@ export interface CustomDataSourceLinkedServiceOutput
   extends LinkedServiceOutputBase {
   /** Custom linked service properties. */
   typeProperties: any;
-  type: "undefined";
+  type: "CustomDataSource";
 }
 
 export interface AzureSearchLinkedServiceOutput
   extends LinkedServiceOutputBase {
   /** Windows Azure Search Service linked service properties. */
   typeProperties: AzureSearchLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "AzureSearch";
 }
 
 export interface AzureSearchLinkedServiceTypePropertiesOutput {
@@ -4180,7 +4180,7 @@ export interface AzureSearchLinkedServiceTypePropertiesOutput {
 export interface HttpLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Properties specific to this linked service type. */
   typeProperties: HttpLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "HttpServer";
 }
 
 export interface HttpLinkedServiceTypePropertiesOutput {
@@ -4210,7 +4210,7 @@ export interface HttpLinkedServiceTypePropertiesOutput {
 export interface FtpServerLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Properties specific to this linked service type. */
   typeProperties: FtpServerLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "FtpServer";
 }
 
 export interface FtpServerLinkedServiceTypePropertiesOutput {
@@ -4235,7 +4235,7 @@ export interface FtpServerLinkedServiceTypePropertiesOutput {
 export interface SftpServerLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Properties specific to this linked service type. */
   typeProperties: SftpServerLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "Sftp";
 }
 
 export interface SftpServerLinkedServiceTypePropertiesOutput {
@@ -4266,7 +4266,7 @@ export interface SftpServerLinkedServiceTypePropertiesOutput {
 export interface SapBWLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Properties specific to this linked service type. */
   typeProperties: SapBWLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "SapBW";
 }
 
 export interface SapBWLinkedServiceTypePropertiesOutput {
@@ -4287,7 +4287,7 @@ export interface SapBWLinkedServiceTypePropertiesOutput {
 export interface SapHanaLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Properties specific to this linked service type. */
   typeProperties: SapHanaLinkedServicePropertiesOutput;
-  type: "undefined";
+  type: "SapHana";
 }
 
 export interface SapHanaLinkedServicePropertiesOutput {
@@ -4308,7 +4308,7 @@ export interface SapHanaLinkedServicePropertiesOutput {
 export interface AmazonMWSLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Amazon Marketplace Web Service linked service properties. */
   typeProperties: AmazonMWSLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "AmazonMWS";
 }
 
 export interface AmazonMWSLinkedServiceTypePropertiesOutput {
@@ -4338,7 +4338,7 @@ export interface AzurePostgreSqlLinkedServiceOutput
   extends LinkedServiceOutputBase {
   /** Azure PostgreSQL linked service properties. */
   typeProperties: AzurePostgreSqlLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "AzurePostgreSql";
 }
 
 export interface AzurePostgreSqlLinkedServiceTypePropertiesOutput {
@@ -4353,7 +4353,7 @@ export interface AzurePostgreSqlLinkedServiceTypePropertiesOutput {
 export interface ConcurLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Concur Service linked service properties. */
   typeProperties: ConcurLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "Concur";
 }
 
 export interface ConcurLinkedServiceTypePropertiesOutput {
@@ -4378,7 +4378,7 @@ export interface ConcurLinkedServiceTypePropertiesOutput {
 export interface CouchbaseLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Couchbase server linked service properties. */
   typeProperties: CouchbaseLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "Couchbase";
 }
 
 export interface CouchbaseLinkedServiceTypePropertiesOutput {
@@ -4393,7 +4393,7 @@ export interface CouchbaseLinkedServiceTypePropertiesOutput {
 export interface DrillLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Drill server linked service properties. */
   typeProperties: DrillLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "Drill";
 }
 
 export interface DrillLinkedServiceTypePropertiesOutput {
@@ -4408,7 +4408,7 @@ export interface DrillLinkedServiceTypePropertiesOutput {
 export interface EloquaLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Eloqua server linked service properties. */
   typeProperties: EloquaLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "Eloqua";
 }
 
 export interface EloquaLinkedServiceTypePropertiesOutput {
@@ -4432,7 +4432,7 @@ export interface GoogleBigQueryLinkedServiceOutput
   extends LinkedServiceOutputBase {
   /** Google BigQuery service linked service properties. */
   typeProperties: GoogleBigQueryLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "GoogleBigQuery";
 }
 
 export interface GoogleBigQueryLinkedServiceTypePropertiesOutput {
@@ -4465,7 +4465,7 @@ export interface GoogleBigQueryLinkedServiceTypePropertiesOutput {
 export interface GreenplumLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Greenplum Database linked service properties. */
   typeProperties: GreenplumLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "Greenplum";
 }
 
 export interface GreenplumLinkedServiceTypePropertiesOutput {
@@ -4480,7 +4480,7 @@ export interface GreenplumLinkedServiceTypePropertiesOutput {
 export interface HBaseLinkedServiceOutput extends LinkedServiceOutputBase {
   /** HBase server linked service properties. */
   typeProperties: HBaseLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "HBase";
 }
 
 export interface HBaseLinkedServiceTypePropertiesOutput {
@@ -4511,7 +4511,7 @@ export interface HBaseLinkedServiceTypePropertiesOutput {
 export interface HiveLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Hive Server linked service properties. */
   typeProperties: HiveLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "Hive";
 }
 
 export interface HiveLinkedServiceTypePropertiesOutput {
@@ -4558,7 +4558,7 @@ export interface HiveLinkedServiceTypePropertiesOutput {
 export interface HubspotLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Hubspot Service linked service properties. */
   typeProperties: HubspotLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "Hubspot";
 }
 
 export interface HubspotLinkedServiceTypePropertiesOutput {
@@ -4583,7 +4583,7 @@ export interface HubspotLinkedServiceTypePropertiesOutput {
 export interface ImpalaLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Impala server linked service properties. */
   typeProperties: ImpalaLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "Impala";
 }
 
 export interface ImpalaLinkedServiceTypePropertiesOutput {
@@ -4614,7 +4614,7 @@ export interface ImpalaLinkedServiceTypePropertiesOutput {
 export interface JiraLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Jira Service linked service properties. */
   typeProperties: JiraLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "Jira";
 }
 
 export interface JiraLinkedServiceTypePropertiesOutput {
@@ -4639,7 +4639,7 @@ export interface JiraLinkedServiceTypePropertiesOutput {
 export interface MagentoLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Magento server linked service properties. */
   typeProperties: MagentoLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "Magento";
 }
 
 export interface MagentoLinkedServiceTypePropertiesOutput {
@@ -4660,7 +4660,7 @@ export interface MagentoLinkedServiceTypePropertiesOutput {
 export interface MariaDBLinkedServiceOutput extends LinkedServiceOutputBase {
   /** MariaDB server linked service properties. */
   typeProperties: MariaDBLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "MariaDB";
 }
 
 export interface MariaDBLinkedServiceTypePropertiesOutput {
@@ -4676,7 +4676,7 @@ export interface AzureMariaDBLinkedServiceOutput
   extends LinkedServiceOutputBase {
   /** Azure Database for MariaDB linked service properties. */
   typeProperties: AzureMariaDBLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "AzureMariaDB";
 }
 
 export interface AzureMariaDBLinkedServiceTypePropertiesOutput {
@@ -4691,7 +4691,7 @@ export interface AzureMariaDBLinkedServiceTypePropertiesOutput {
 export interface MarketoLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Marketo server linked service properties. */
   typeProperties: MarketoLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "Marketo";
 }
 
 export interface MarketoLinkedServiceTypePropertiesOutput {
@@ -4714,7 +4714,7 @@ export interface MarketoLinkedServiceTypePropertiesOutput {
 export interface PaypalLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Paypal Service linked service properties. */
   typeProperties: PaypalLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "Paypal";
 }
 
 export interface PaypalLinkedServiceTypePropertiesOutput {
@@ -4737,7 +4737,7 @@ export interface PaypalLinkedServiceTypePropertiesOutput {
 export interface PhoenixLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Phoenix server linked service properties. */
   typeProperties: PhoenixLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "Phoenix";
 }
 
 export interface PhoenixLinkedServiceTypePropertiesOutput {
@@ -4773,7 +4773,7 @@ export interface PhoenixLinkedServiceTypePropertiesOutput {
 export interface PrestoLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Presto server linked service properties. */
   typeProperties: PrestoLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "Presto";
 }
 
 export interface PrestoLinkedServiceTypePropertiesOutput {
@@ -4810,7 +4810,7 @@ export interface PrestoLinkedServiceTypePropertiesOutput {
 export interface QuickBooksLinkedServiceOutput extends LinkedServiceOutputBase {
   /** QuickBooks server linked service properties. */
   typeProperties: QuickBooksLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "QuickBooks";
 }
 
 export interface QuickBooksLinkedServiceTypePropertiesOutput {
@@ -4837,7 +4837,7 @@ export interface QuickBooksLinkedServiceTypePropertiesOutput {
 export interface ServiceNowLinkedServiceOutput extends LinkedServiceOutputBase {
   /** ServiceNow server linked service properties. */
   typeProperties: ServiceNowLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "ServiceNow";
 }
 
 export interface ServiceNowLinkedServiceTypePropertiesOutput {
@@ -4866,7 +4866,7 @@ export interface ServiceNowLinkedServiceTypePropertiesOutput {
 export interface ShopifyLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Shopify Service linked service properties. */
   typeProperties: ShopifyLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "Shopify";
 }
 
 export interface ShopifyLinkedServiceTypePropertiesOutput {
@@ -4887,7 +4887,7 @@ export interface ShopifyLinkedServiceTypePropertiesOutput {
 export interface SparkLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Spark Server linked service properties. */
   typeProperties: SparkLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "Spark";
 }
 
 export interface SparkLinkedServiceTypePropertiesOutput {
@@ -4928,7 +4928,7 @@ export interface SparkLinkedServiceTypePropertiesOutput {
 export interface SquareLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Square Service linked service properties. */
   typeProperties: SquareLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "Square";
 }
 
 export interface SquareLinkedServiceTypePropertiesOutput {
@@ -4955,7 +4955,7 @@ export interface SquareLinkedServiceTypePropertiesOutput {
 export interface XeroLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Xero Service linked service properties. */
   typeProperties: XeroLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "Xero";
 }
 
 export interface XeroLinkedServiceTypePropertiesOutput {
@@ -4983,7 +4983,7 @@ export interface XeroLinkedServiceTypePropertiesOutput {
 export interface ZohoLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Zoho server linked service properties. */
   typeProperties: ZohoLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "Zoho";
 }
 
 export interface ZohoLinkedServiceTypePropertiesOutput {
@@ -5006,7 +5006,7 @@ export interface ZohoLinkedServiceTypePropertiesOutput {
 export interface VerticaLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Vertica linked service properties. */
   typeProperties: VerticaLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "Vertica";
 }
 
 export interface VerticaLinkedServiceTypePropertiesOutput {
@@ -5021,7 +5021,7 @@ export interface VerticaLinkedServiceTypePropertiesOutput {
 export interface NetezzaLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Netezza linked service properties. */
   typeProperties: NetezzaLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "Netezza";
 }
 
 export interface NetezzaLinkedServiceTypePropertiesOutput {
@@ -5037,7 +5037,7 @@ export interface SalesforceMarketingCloudLinkedServiceOutput
   extends LinkedServiceOutputBase {
   /** Salesforce Marketing Cloud linked service properties. */
   typeProperties: SalesforceMarketingCloudLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "SalesforceMarketingCloud";
 }
 
 export interface SalesforceMarketingCloudLinkedServiceTypePropertiesOutput {
@@ -5061,7 +5061,7 @@ export interface HDInsightOnDemandLinkedServiceOutput
   extends LinkedServiceOutputBase {
   /** HDInsight ondemand linked service properties. */
   typeProperties: HDInsightOnDemandLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "HDInsightOnDemand";
 }
 
 export interface HDInsightOnDemandLinkedServiceTypePropertiesOutput {
@@ -5148,7 +5148,7 @@ export interface AzureDataLakeAnalyticsLinkedServiceOutput
   extends LinkedServiceOutputBase {
   /** Azure Data Lake Analytics linked service properties. */
   typeProperties: AzureDataLakeAnalyticsLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "AzureDataLakeAnalytics";
 }
 
 export interface AzureDataLakeAnalyticsLinkedServiceTypePropertiesOutput {
@@ -5174,7 +5174,7 @@ export interface AzureDatabricksLinkedServiceOutput
   extends LinkedServiceOutputBase {
   /** Azure Databricks linked service properties. */
   typeProperties: AzureDatabricksLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "AzureDatabricks";
 }
 
 export interface AzureDatabricksLinkedServiceTypePropertiesOutput {
@@ -5220,7 +5220,7 @@ export interface AzureDatabricksDeltaLakeLinkedServiceOutput
   extends LinkedServiceOutputBase {
   /** Azure Databricks Delta Lake linked service properties. */
   typeProperties: AzureDatabricksDetltaLakeLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "AzureDatabricksDeltaLake";
 }
 
 export interface AzureDatabricksDetltaLakeLinkedServiceTypePropertiesOutput {
@@ -5237,7 +5237,7 @@ export interface AzureDatabricksDetltaLakeLinkedServiceTypePropertiesOutput {
 export interface ResponsysLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Responsys linked service properties. */
   typeProperties: ResponsysLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "Responsys";
 }
 
 export interface ResponsysLinkedServiceTypePropertiesOutput {
@@ -5260,7 +5260,7 @@ export interface ResponsysLinkedServiceTypePropertiesOutput {
 export interface DynamicsAXLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Dynamics AX linked service properties. */
   typeProperties: DynamicsAXLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "DynamicsAX";
 }
 
 export interface DynamicsAXLinkedServiceTypePropertiesOutput {
@@ -5282,7 +5282,7 @@ export interface OracleServiceCloudLinkedServiceOutput
   extends LinkedServiceOutputBase {
   /** Oracle Service Cloud linked service properties. */
   typeProperties: OracleServiceCloudLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "OracleServiceCloud";
 }
 
 export interface OracleServiceCloudLinkedServiceTypePropertiesOutput {
@@ -5306,7 +5306,7 @@ export interface GoogleAdWordsLinkedServiceOutput
   extends LinkedServiceOutputBase {
   /** Google AdWords service linked service properties. */
   typeProperties: GoogleAdWordsLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "GoogleAdWords";
 }
 
 export interface GoogleAdWordsLinkedServiceTypePropertiesOutput {
@@ -5339,7 +5339,7 @@ export interface GoogleAdWordsLinkedServiceTypePropertiesOutput {
 export interface SapTableLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Properties specific to this linked service type. */
   typeProperties: SapTableLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "SapTable";
 }
 
 export interface SapTableLinkedServiceTypePropertiesOutput {
@@ -5381,7 +5381,7 @@ export interface AzureDataExplorerLinkedServiceOutput
   extends LinkedServiceOutputBase {
   /** Azure Data Explorer (Kusto) linked service properties. */
   typeProperties: AzureDataExplorerLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "AzureDataExplorer";
 }
 
 export interface AzureDataExplorerLinkedServiceTypePropertiesOutput {
@@ -5401,7 +5401,7 @@ export interface AzureFunctionLinkedServiceOutput
   extends LinkedServiceOutputBase {
   /** Azure Function linked service properties. */
   typeProperties: AzureFunctionLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "AzureFunction";
 }
 
 export interface AzureFunctionLinkedServiceTypePropertiesOutput {
@@ -5416,7 +5416,7 @@ export interface AzureFunctionLinkedServiceTypePropertiesOutput {
 export interface SnowflakeLinkedServiceOutput extends LinkedServiceOutputBase {
   /** Snowflake linked service properties. */
   typeProperties: SnowflakeLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "Snowflake";
 }
 
 export interface SnowflakeLinkedServiceTypePropertiesOutput {
@@ -5432,7 +5432,7 @@ export interface SharePointOnlineListLinkedServiceOutput
   extends LinkedServiceOutputBase {
   /** SharePoint Online List linked service properties. */
   typeProperties: SharePointOnlineListLinkedServiceTypePropertiesOutput;
-  type: "undefined";
+  type: "SharePointOnlineList";
 }
 
 export interface SharePointOnlineListLinkedServiceTypePropertiesOutput {
@@ -5450,7 +5450,7 @@ export interface SharePointOnlineListLinkedServiceTypePropertiesOutput {
 
 export interface ControlActivityOutputBase extends ActivityOutputBase {
   type:
-    | "ControlActivity"
+    | "Container"
     | "ExecutePipeline"
     | "IfCondition"
     | "Switch"
@@ -5470,7 +5470,7 @@ export interface ExecutionActivityOutputBase extends ActivityOutputBase {
   /** Activity policy. */
   policy?: ActivityPolicyOutput;
   type:
-    | "ExecutionActivity"
+    | "Execution"
     | "Copy"
     | "HDInsightHive"
     | "HDInsightPig"
@@ -5515,7 +5515,7 @@ export interface StoreReadSettingsOutputBase extends Record<string, unknown> {
   /** The maximum concurrent connection count for the source data store. Type: integer (or Expression with resultType integer). */
   maxConcurrentConnections?: any;
   type:
-    | "StoreReadSettings"
+    | "storeReadSettings"
     | "AzureBlobStorageReadSettings"
     | "AzureBlobFSReadSettings"
     | "AzureDataLakeStoreReadSettings"
@@ -5551,7 +5551,7 @@ export interface AzureBlobStorageReadSettingsOutput
   modifiedDatetimeStart?: any;
   /** The end of file's modified datetime. Type: string (or Expression with resultType string). */
   modifiedDatetimeEnd?: any;
-  type: "undefined";
+  type: "AzureBlobStorageReadSettings";
 }
 
 export interface AzureBlobFSReadSettingsOutput
@@ -5574,7 +5574,7 @@ export interface AzureBlobFSReadSettingsOutput
   modifiedDatetimeStart?: any;
   /** The end of file's modified datetime. Type: string (or Expression with resultType string). */
   modifiedDatetimeEnd?: any;
-  type: "undefined";
+  type: "AzureBlobFSReadSettings";
 }
 
 export interface AzureDataLakeStoreReadSettingsOutput
@@ -5601,7 +5601,7 @@ export interface AzureDataLakeStoreReadSettingsOutput
   modifiedDatetimeStart?: any;
   /** The end of file's modified datetime. Type: string (or Expression with resultType string). */
   modifiedDatetimeEnd?: any;
-  type: "undefined";
+  type: "AzureDataLakeStoreReadSettings";
 }
 
 export interface AmazonS3ReadSettingsOutput
@@ -5626,7 +5626,7 @@ export interface AmazonS3ReadSettingsOutput
   modifiedDatetimeStart?: any;
   /** The end of file's modified datetime. Type: string (or Expression with resultType string). */
   modifiedDatetimeEnd?: any;
-  type: "undefined";
+  type: "AmazonS3ReadSettings";
 }
 
 export interface FileServerReadSettingsOutput
@@ -5651,7 +5651,7 @@ export interface FileServerReadSettingsOutput
   modifiedDatetimeEnd?: any;
   /** Specify a filter to be used to select a subset of files in the folderPath rather than all files. Type: string (or Expression with resultType string). */
   fileFilter?: any;
-  type: "undefined";
+  type: "FileServerReadSettings";
 }
 
 export interface AzureFileStorageReadSettingsOutput
@@ -5676,7 +5676,7 @@ export interface AzureFileStorageReadSettingsOutput
   modifiedDatetimeStart?: any;
   /** The end of file's modified datetime. Type: string (or Expression with resultType string). */
   modifiedDatetimeEnd?: any;
-  type: "undefined";
+  type: "AzureFileStorageReadSettings";
 }
 
 export interface SftpWriteSettingsOutput extends StoreWriteSettingsOutputBase {
@@ -5684,7 +5684,7 @@ export interface SftpWriteSettingsOutput extends StoreWriteSettingsOutputBase {
   operationTimeout?: any;
   /** Upload to temporary file(s) and rename. Disable this option if your SFTP server doesn't support rename operation. Type: boolean (or Expression with resultType boolean). */
   useTempFileRename?: any;
-  type: "undefined";
+  type: "SftpWriteSettings";
 }
 
 export interface StoreWriteSettingsOutputBase extends Record<string, unknown> {
@@ -5693,7 +5693,7 @@ export interface StoreWriteSettingsOutputBase extends Record<string, unknown> {
   /** The type of copy behavior for copy sink. */
   copyBehavior?: any;
   type:
-    | "StoreWriteSettings"
+    | "storeWriteSettings"
     | "SftpWriteSettings"
     | "AzureBlobStorageWriteSettings"
     | "AzureBlobFSWriteSettings"
@@ -5724,7 +5724,7 @@ export interface GoogleCloudStorageReadSettingsOutput
   modifiedDatetimeStart?: any;
   /** The end of file's modified datetime. Type: string (or Expression with resultType string). */
   modifiedDatetimeEnd?: any;
-  type: "undefined";
+  type: "GoogleCloudStorageReadSettings";
 }
 
 export interface FtpReadSettingsOutput extends StoreReadSettingsOutputBase {
@@ -5746,7 +5746,7 @@ export interface FtpReadSettingsOutput extends StoreReadSettingsOutputBase {
   useBinaryTransfer?: boolean;
   /** If true, disable parallel reading within each file. Default is false. Type: boolean (or Expression with resultType boolean). */
   disableChunking?: any;
-  type: "undefined";
+  type: "FtpReadSettings";
 }
 
 export interface SftpReadSettingsOutput extends StoreReadSettingsOutputBase {
@@ -5770,7 +5770,7 @@ export interface SftpReadSettingsOutput extends StoreReadSettingsOutputBase {
   modifiedDatetimeEnd?: any;
   /** If true, disable parallel reading within each file. Default is false. Type: boolean (or Expression with resultType boolean). */
   disableChunking?: any;
-  type: "undefined";
+  type: "SftpReadSettings";
 }
 
 export interface HttpReadSettingsOutput extends StoreReadSettingsOutputBase {
@@ -5786,7 +5786,7 @@ export interface HttpReadSettingsOutput extends StoreReadSettingsOutputBase {
   enablePartitionDiscovery?: boolean;
   /** Specify the root path where partition discovery starts from. Type: string (or Expression with resultType string). */
   partitionRootPath?: any;
-  type: "undefined";
+  type: "HttpReadSettings";
 }
 
 export interface HdfsReadSettingsOutput extends StoreReadSettingsOutputBase {
@@ -5810,7 +5810,7 @@ export interface HdfsReadSettingsOutput extends StoreReadSettingsOutputBase {
   distcpSettings?: DistcpSettingsOutput;
   /** Indicates whether the source files need to be deleted after copy completion. Default is false. Type: boolean (or Expression with resultType boolean). */
   deleteFilesAfterCompletion?: any;
-  type: "undefined";
+  type: "HdfsReadSettings";
 }
 
 export interface DistcpSettingsOutput {
@@ -5826,36 +5826,36 @@ export interface AzureBlobStorageWriteSettingsOutput
   extends StoreWriteSettingsOutputBase {
   /** Indicates the block size(MB) when writing data to blob. Type: integer (or Expression with resultType integer). */
   blockSizeInMB?: any;
-  type: "undefined";
+  type: "AzureBlobStorageWriteSettings";
 }
 
 export interface AzureBlobFSWriteSettingsOutput
   extends StoreWriteSettingsOutputBase {
   /** Indicates the block size(MB) when writing data to blob. Type: integer (or Expression with resultType integer). */
   blockSizeInMB?: any;
-  type: "undefined";
+  type: "AzureBlobFSWriteSettings";
 }
 
 export interface AzureDataLakeStoreWriteSettingsOutput
   extends StoreWriteSettingsOutputBase {
   /** Specifies the expiry time of the written files. The time is applied to the UTC time zone in the format of "2018-12-01T05:00:00Z". Default value is NULL. Type: integer (or Expression with resultType integer). */
   expiryDateTime?: any;
-  type: "undefined";
+  type: "AzureDataLakeStoreWriteSettings";
 }
 
 export interface FileServerWriteSettingsOutput
   extends StoreWriteSettingsOutputBase {
-  type: "undefined";
+  type: "FileServerWriteSettings";
 }
 
 export interface AzureFileStorageWriteSettingsOutput
   extends StoreWriteSettingsOutputBase {
-  type: "undefined";
+  type: "AzureFileStorageWriteSettings";
 }
 
 export interface FormatReadSettingsOutputBase extends Record<string, unknown> {
   type:
-    | "FormatReadSettings"
+    | "formatReadSettings"
     | "DelimitedTextReadSettings"
     | "JsonReadSettings"
     | "XmlReadSettings"
@@ -5865,7 +5865,7 @@ export interface FormatReadSettingsOutputBase extends Record<string, unknown> {
 export interface CompressionReadSettingsOutputBase
   extends Record<string, unknown> {
   type:
-    | "CompressionReadSettings"
+    | "compressionReadSettings"
     | "ZipDeflateReadSettings"
     | "TarReadSettings"
     | "TarGZipReadSettings";
@@ -5875,21 +5875,21 @@ export interface ZipDeflateReadSettingsOutput
   extends CompressionReadSettingsOutputBase {
   /** Preserve the zip file name as folder path. Type: boolean (or Expression with resultType boolean). */
   preserveZipFileNameAsFolder?: any;
-  type: "undefined";
+  type: "ZipDeflateReadSettings";
 }
 
 export interface TarReadSettingsOutput
   extends CompressionReadSettingsOutputBase {
   /** Preserve the compression file name as folder path. Type: boolean (or Expression with resultType boolean). */
   preserveCompressionFileNameAsFolder?: any;
-  type: "undefined";
+  type: "TarReadSettings";
 }
 
 export interface TarGZipReadSettingsOutput
   extends CompressionReadSettingsOutputBase {
   /** Preserve the compression file name as folder path. Type: boolean (or Expression with resultType boolean). */
   preserveCompressionFileNameAsFolder?: any;
-  type: "undefined";
+  type: "TarGZipReadSettings";
 }
 
 export interface DelimitedTextReadSettingsOutput
@@ -5898,13 +5898,13 @@ export interface DelimitedTextReadSettingsOutput
   skipLineCount?: any;
   /** Compression settings. */
   compressionProperties?: CompressionReadSettingsOutput;
-  type: "undefined";
+  type: "DelimitedTextReadSettings";
 }
 
 export interface JsonReadSettingsOutput extends FormatReadSettingsOutputBase {
   /** Compression settings. */
   compressionProperties?: CompressionReadSettingsOutput;
-  type: "undefined";
+  type: "JsonReadSettings";
 }
 
 export interface XmlReadSettingsOutput extends FormatReadSettingsOutputBase {
@@ -5918,18 +5918,18 @@ export interface XmlReadSettingsOutput extends FormatReadSettingsOutputBase {
   namespaces?: any;
   /** Namespace uri to prefix mappings to override the prefixes in column names when namespace is enabled, if no prefix is defined for a namespace uri, the prefix of xml element/attribute name in the xml data file will be used. Example: "{"http://www.example.com/xml":"prefix"}" Type: object (or Expression with resultType object). */
   namespacePrefixes?: any;
-  type: "undefined";
+  type: "XmlReadSettings";
 }
 
 export interface BinaryReadSettingsOutput extends FormatReadSettingsOutputBase {
   /** Compression settings. */
   compressionProperties?: CompressionReadSettingsOutput;
-  type: "undefined";
+  type: "BinaryReadSettings";
 }
 
 export interface FormatWriteSettingsOutputBase extends Record<string, unknown> {
   type:
-    | "FormatWriteSettings"
+    | "formatWriteSettings"
     | "AvroWriteSettings"
     | "OrcWriteSettings"
     | "ParquetWriteSettings"
@@ -5946,7 +5946,7 @@ export interface AvroWriteSettingsOutput extends FormatWriteSettingsOutputBase {
   maxRowsPerFile?: any;
   /** Specifies the file name pattern <fileNamePrefix>_<fileIndex>.<fileExtension> when copy from non-file based store without partitionOptions. Type: string (or Expression with resultType string). */
   fileNamePrefix?: any;
-  type: "undefined";
+  type: "AvroWriteSettings";
 }
 
 export interface OrcWriteSettingsOutput extends FormatWriteSettingsOutputBase {
@@ -5954,7 +5954,7 @@ export interface OrcWriteSettingsOutput extends FormatWriteSettingsOutputBase {
   maxRowsPerFile?: any;
   /** Specifies the file name pattern <fileNamePrefix>_<fileIndex>.<fileExtension> when copy from non-file based store without partitionOptions. Type: string (or Expression with resultType string). */
   fileNamePrefix?: any;
-  type: "undefined";
+  type: "OrcWriteSettings";
 }
 
 export interface ParquetWriteSettingsOutput
@@ -5963,7 +5963,7 @@ export interface ParquetWriteSettingsOutput
   maxRowsPerFile?: any;
   /** Specifies the file name pattern <fileNamePrefix>_<fileIndex>.<fileExtension> when copy from non-file based store without partitionOptions. Type: string (or Expression with resultType string). */
   fileNamePrefix?: any;
-  type: "undefined";
+  type: "ParquetWriteSettings";
 }
 
 export interface DelimitedTextWriteSettingsOutput
@@ -5976,13 +5976,13 @@ export interface DelimitedTextWriteSettingsOutput
   maxRowsPerFile?: any;
   /** Specifies the file name pattern <fileNamePrefix>_<fileIndex>.<fileExtension> when copy from non-file based store without partitionOptions. Type: string (or Expression with resultType string). */
   fileNamePrefix?: any;
-  type: "undefined";
+  type: "DelimitedTextWriteSettings";
 }
 
 export interface JsonWriteSettingsOutput extends FormatWriteSettingsOutputBase {
   /** File pattern of JSON. This setting controls the way a collection of JSON objects will be treated. The default value is 'setOfObjects'. It is case-sensitive. */
   filePattern?: any;
-  type: "undefined";
+  type: "JsonWriteSettings";
 }
 
 export interface AvroSourceOutput extends CopySourceOutputBase {
@@ -5990,7 +5990,7 @@ export interface AvroSourceOutput extends CopySourceOutputBase {
   storeSettings?: StoreReadSettingsOutput;
   /** Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects). */
   additionalColumns?: any;
-  type: "undefined";
+  type: "AvroSource";
 }
 
 export interface CopySourceOutputBase extends Record<string, unknown> {
@@ -6001,7 +6001,7 @@ export interface CopySourceOutputBase extends Record<string, unknown> {
   /** The maximum concurrent connection count for the source data store. Type: integer (or Expression with resultType integer). */
   maxConcurrentConnections?: any;
   type:
-    | "CopySource"
+    | "copySource"
     | "AvroSource"
     | "ExcelSource"
     | "ParquetSource"
@@ -6104,7 +6104,7 @@ export interface ExcelSourceOutput extends CopySourceOutputBase {
   storeSettings?: StoreReadSettingsOutput;
   /** Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects). */
   additionalColumns?: any;
-  type: "undefined";
+  type: "ExcelSource";
 }
 
 export interface ParquetSourceOutput extends CopySourceOutputBase {
@@ -6112,7 +6112,7 @@ export interface ParquetSourceOutput extends CopySourceOutputBase {
   storeSettings?: StoreReadSettingsOutput;
   /** Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects). */
   additionalColumns?: any;
-  type: "undefined";
+  type: "ParquetSource";
 }
 
 export interface DelimitedTextSourceOutput extends CopySourceOutputBase {
@@ -6122,7 +6122,7 @@ export interface DelimitedTextSourceOutput extends CopySourceOutputBase {
   formatSettings?: DelimitedTextReadSettingsOutput;
   /** Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects). */
   additionalColumns?: any;
-  type: "undefined";
+  type: "DelimitedTextSource";
 }
 
 export interface JsonSourceOutput extends CopySourceOutputBase {
@@ -6132,7 +6132,7 @@ export interface JsonSourceOutput extends CopySourceOutputBase {
   formatSettings?: JsonReadSettingsOutput;
   /** Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects). */
   additionalColumns?: any;
-  type: "undefined";
+  type: "JsonSource";
 }
 
 export interface XmlSourceOutput extends CopySourceOutputBase {
@@ -6142,7 +6142,7 @@ export interface XmlSourceOutput extends CopySourceOutputBase {
   formatSettings?: XmlReadSettingsOutput;
   /** Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects). */
   additionalColumns?: any;
-  type: "undefined";
+  type: "XmlSource";
 }
 
 export interface OrcSourceOutput extends CopySourceOutputBase {
@@ -6150,7 +6150,7 @@ export interface OrcSourceOutput extends CopySourceOutputBase {
   storeSettings?: StoreReadSettingsOutput;
   /** Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects). */
   additionalColumns?: any;
-  type: "undefined";
+  type: "OrcSource";
 }
 
 export interface DelimitedTextSinkOutput extends CopySinkOutputBase {
@@ -6158,7 +6158,7 @@ export interface DelimitedTextSinkOutput extends CopySinkOutputBase {
   storeSettings?: StoreWriteSettingsOutput;
   /** DelimitedText format settings. */
   formatSettings?: DelimitedTextWriteSettingsOutput;
-  type: "undefined";
+  type: "DelimitedTextSink";
 }
 
 export interface CopySinkOutputBase extends Record<string, unknown> {
@@ -6173,7 +6173,7 @@ export interface CopySinkOutputBase extends Record<string, unknown> {
   /** The maximum concurrent connection count for the sink data store. Type: integer (or Expression with resultType integer). */
   maxConcurrentConnections?: any;
   type:
-    | "CopySink"
+    | "copySink"
     | "DelimitedTextSink"
     | "JsonSink"
     | "OrcSink"
@@ -6218,7 +6218,7 @@ export interface JsonSinkOutput extends CopySinkOutputBase {
   storeSettings?: StoreWriteSettingsOutput;
   /** Json format settings. */
   formatSettings?: JsonWriteSettingsOutput;
-  type: "undefined";
+  type: "JsonSink";
 }
 
 export interface OrcSinkOutput extends CopySinkOutputBase {
@@ -6226,7 +6226,7 @@ export interface OrcSinkOutput extends CopySinkOutputBase {
   storeSettings?: StoreWriteSettingsOutput;
   /** ORC format settings. */
   formatSettings?: OrcWriteSettingsOutput;
-  type: "undefined";
+  type: "OrcSink";
 }
 
 export interface CopyActivityOutput extends ExecutionActivityOutputBase {
@@ -6236,7 +6236,7 @@ export interface CopyActivityOutput extends ExecutionActivityOutputBase {
   inputs?: Array<DatasetReferenceOutput>;
   /** List of outputs for the activity. */
   outputs?: Array<DatasetReferenceOutput>;
-  type: "undefined";
+  type: "Copy";
 }
 
 export interface CopyActivityTypePropertiesOutput {
@@ -6335,7 +6335,7 @@ export interface BinarySourceOutput extends CopySourceOutputBase {
   storeSettings?: StoreReadSettingsOutput;
   /** Binary format settings. */
   formatSettings?: BinaryReadSettingsOutput;
-  type: "undefined";
+  type: "BinarySource";
 }
 
 export interface TabularSourceOutputBase extends CopySourceOutputBase {
@@ -6410,7 +6410,7 @@ export interface AzureTableSourceOutput extends TabularSourceOutputBase {
   azureTableSourceQuery?: any;
   /** Azure Table source ignore table not found. Type: boolean (or Expression with resultType boolean). */
   azureTableSourceIgnoreTableNotFound?: any;
-  type: "undefined";
+  type: "AzureTableSource";
 }
 
 export interface BlobSourceOutput extends CopySourceOutputBase {
@@ -6420,7 +6420,7 @@ export interface BlobSourceOutput extends CopySourceOutputBase {
   skipHeaderLineCount?: any;
   /** If true, files under the folder path will be read recursively. Default is true. Type: boolean (or Expression with resultType boolean). */
   recursive?: any;
-  type: "undefined";
+  type: "BlobSource";
 }
 
 export interface DocumentDbCollectionSourceOutput extends CopySourceOutputBase {
@@ -6432,7 +6432,7 @@ export interface DocumentDbCollectionSourceOutput extends CopySourceOutputBase {
   queryTimeout?: any;
   /** Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects). */
   additionalColumns?: any;
-  type: "undefined";
+  type: "DocumentDbCollectionSource";
 }
 
 export interface CosmosDbSqlApiSourceOutput extends CopySourceOutputBase {
@@ -6446,7 +6446,7 @@ export interface CosmosDbSqlApiSourceOutput extends CopySourceOutputBase {
   detectDatetime?: any;
   /** Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects). */
   additionalColumns?: any;
-  type: "undefined";
+  type: "CosmosDbSqlApiSource";
 }
 
 export interface DynamicsSourceOutput extends CopySourceOutputBase {
@@ -6454,7 +6454,7 @@ export interface DynamicsSourceOutput extends CopySourceOutputBase {
   query?: any;
   /** Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects). */
   additionalColumns?: any;
-  type: "undefined";
+  type: "DynamicsSource";
 }
 
 export interface DynamicsCrmSourceOutput extends CopySourceOutputBase {
@@ -6462,7 +6462,7 @@ export interface DynamicsCrmSourceOutput extends CopySourceOutputBase {
   query?: any;
   /** Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects). */
   additionalColumns?: any;
-  type: "undefined";
+  type: "DynamicsCrmSource";
 }
 
 export interface CommonDataServiceForAppsSourceOutput
@@ -6471,7 +6471,7 @@ export interface CommonDataServiceForAppsSourceOutput
   query?: any;
   /** Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects). */
   additionalColumns?: any;
-  type: "undefined";
+  type: "CommonDataServiceForAppsSource";
 }
 
 export interface RelationalSourceOutput extends CopySourceOutputBase {
@@ -6479,13 +6479,13 @@ export interface RelationalSourceOutput extends CopySourceOutputBase {
   query?: any;
   /** Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects). */
   additionalColumns?: any;
-  type: "undefined";
+  type: "RelationalSource";
 }
 
 export interface InformixSourceOutput extends TabularSourceOutputBase {
   /** Database query. Type: string (or Expression with resultType string). */
   query?: any;
-  type: "undefined";
+  type: "InformixSource";
 }
 
 export interface MicrosoftAccessSourceOutput extends CopySourceOutputBase {
@@ -6493,43 +6493,43 @@ export interface MicrosoftAccessSourceOutput extends CopySourceOutputBase {
   query?: any;
   /** Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects). */
   additionalColumns?: any;
-  type: "undefined";
+  type: "MicrosoftAccessSource";
 }
 
 export interface Db2SourceOutput extends TabularSourceOutputBase {
   /** Database query. Type: string (or Expression with resultType string). */
   query?: any;
-  type: "undefined";
+  type: "Db2Source";
 }
 
 export interface OdbcSourceOutput extends TabularSourceOutputBase {
   /** Database query. Type: string (or Expression with resultType string). */
   query?: any;
-  type: "undefined";
+  type: "OdbcSource";
 }
 
 export interface MySqlSourceOutput extends TabularSourceOutputBase {
   /** Database query. Type: string (or Expression with resultType string). */
   query?: any;
-  type: "undefined";
+  type: "MySqlSource";
 }
 
 export interface PostgreSqlSourceOutput extends TabularSourceOutputBase {
   /** Database query. Type: string (or Expression with resultType string). */
   query?: any;
-  type: "undefined";
+  type: "PostgreSqlSource";
 }
 
 export interface SybaseSourceOutput extends TabularSourceOutputBase {
   /** Database query. Type: string (or Expression with resultType string). */
   query?: any;
-  type: "undefined";
+  type: "SybaseSource";
 }
 
 export interface SapBwSourceOutput extends TabularSourceOutputBase {
   /** MDX query. Type: string (or Expression with resultType string). */
   query?: any;
-  type: "undefined";
+  type: "SapBwSource";
 }
 
 export interface ODataSourceOutput extends CopySourceOutputBase {
@@ -6539,7 +6539,7 @@ export interface ODataSourceOutput extends CopySourceOutputBase {
   httpRequestTimeout?: any;
   /** Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects). */
   additionalColumns?: any;
-  type: "undefined";
+  type: "ODataSource";
 }
 
 export interface SalesforceSourceOutput extends TabularSourceOutputBase {
@@ -6547,7 +6547,7 @@ export interface SalesforceSourceOutput extends TabularSourceOutputBase {
   query?: any;
   /** The read behavior for the operation. Default is Query. */
   readBehavior?: "Query" | "QueryAll";
-  type: "undefined";
+  type: "SalesforceSource";
 }
 
 export interface SalesforceServiceCloudSourceOutput
@@ -6558,7 +6558,7 @@ export interface SalesforceServiceCloudSourceOutput
   readBehavior?: "Query" | "QueryAll";
   /** Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects). */
   additionalColumns?: any;
-  type: "undefined";
+  type: "SalesforceServiceCloudSource";
 }
 
 export interface SapCloudForCustomerSourceOutput
@@ -6567,7 +6567,7 @@ export interface SapCloudForCustomerSourceOutput
   query?: any;
   /** The timeout (TimeSpan) to get an HTTP response. It is the timeout to get a response, not the timeout to read response data. Default value: 00:05:00. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])). */
   httpRequestTimeout?: any;
-  type: "undefined";
+  type: "SapCloudForCustomerSource";
 }
 
 export interface SapEccSourceOutput extends TabularSourceOutputBase {
@@ -6575,7 +6575,7 @@ export interface SapEccSourceOutput extends TabularSourceOutputBase {
   query?: any;
   /** The timeout (TimeSpan) to get an HTTP response. It is the timeout to get a response, not the timeout to read response data. Default value: 00:05:00. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])). */
   httpRequestTimeout?: any;
-  type: "undefined";
+  type: "SapEccSource";
 }
 
 export interface SapHanaSourceOutput extends TabularSourceOutputBase {
@@ -6590,7 +6590,7 @@ export interface SapHanaSourceOutput extends TabularSourceOutputBase {
     | "SapHanaDynamicRange";
   /** The settings that will be leveraged for SAP HANA source partitioning. */
   partitionSettings?: SapHanaPartitionSettingsOutput;
-  type: "undefined";
+  type: "SapHanaSource";
 }
 
 export interface SapHanaPartitionSettingsOutput {
@@ -6607,7 +6607,7 @@ export interface SapOpenHubSourceOutput extends TabularSourceOutputBase {
   customRfcReadTableFunctionModule?: any;
   /** The single character that will be used as delimiter passed to SAP RFC as well as splitting the output data retrieved. Type: string (or Expression with resultType string). */
   sapDataColumnDelimiter?: any;
-  type: "undefined";
+  type: "SapOpenHubSource";
 }
 
 export interface SapTableSourceOutput extends TabularSourceOutputBase {
@@ -6635,7 +6635,7 @@ export interface SapTableSourceOutput extends TabularSourceOutputBase {
     | "PartitionOnTime";
   /** The settings that will be leveraged for SAP table source partitioning. */
   partitionSettings?: SapTablePartitionSettingsOutput;
-  type: "undefined";
+  type: "SapTableSource";
 }
 
 export interface SapTablePartitionSettingsOutput {
@@ -6660,7 +6660,7 @@ export interface RestSinkOutput extends CopySinkOutputBase {
   requestInterval?: any;
   /** Http Compression Type to Send data in compressed format with Optimal Compression Level, Default is None. And The Only Supported option is Gzip. */
   httpCompressionType?: any;
-  type: "undefined";
+  type: "RestSink";
 }
 
 export interface RestSourceOutput extends CopySourceOutputBase {
@@ -6678,7 +6678,7 @@ export interface RestSourceOutput extends CopySourceOutputBase {
   requestInterval?: any;
   /** Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects). */
   additionalColumns?: any;
-  type: "undefined";
+  type: "RestSource";
 }
 
 export interface SqlSourceOutput extends TabularSourceOutputBase {
@@ -6694,7 +6694,7 @@ export interface SqlSourceOutput extends TabularSourceOutputBase {
   partitionOption?: any;
   /** The settings that will be leveraged for Sql source partitioning. */
   partitionSettings?: SqlPartitionSettingsOutput;
-  type: "undefined";
+  type: "SqlSource";
 }
 
 export interface StoredProcedureParameterOutput {
@@ -6726,7 +6726,7 @@ export interface SqlServerSourceOutput extends TabularSourceOutputBase {
   partitionOption?: any;
   /** The settings that will be leveraged for Sql source partitioning. */
   partitionSettings?: SqlPartitionSettingsOutput;
-  type: "undefined";
+  type: "SqlServerSource";
 }
 
 export interface AmazonRdsForSqlServerSourceOutput
@@ -6743,7 +6743,7 @@ export interface AmazonRdsForSqlServerSourceOutput
   partitionOption?: any;
   /** The settings that will be leveraged for Sql source partitioning. */
   partitionSettings?: SqlPartitionSettingsOutput;
-  type: "undefined";
+  type: "AmazonRdsForSqlServerSource";
 }
 
 export interface AzureSqlSourceOutput extends TabularSourceOutputBase {
@@ -6759,7 +6759,7 @@ export interface AzureSqlSourceOutput extends TabularSourceOutputBase {
   partitionOption?: any;
   /** The settings that will be leveraged for Sql source partitioning. */
   partitionSettings?: SqlPartitionSettingsOutput;
-  type: "undefined";
+  type: "AzureSqlSource";
 }
 
 export interface SqlMISourceOutput extends TabularSourceOutputBase {
@@ -6775,7 +6775,7 @@ export interface SqlMISourceOutput extends TabularSourceOutputBase {
   partitionOption?: any;
   /** The settings that will be leveraged for Sql source partitioning. */
   partitionSettings?: SqlPartitionSettingsOutput;
-  type: "undefined";
+  type: "SqlMISource";
 }
 
 export interface SqlDWSourceOutput extends TabularSourceOutputBase {
@@ -6789,7 +6789,7 @@ export interface SqlDWSourceOutput extends TabularSourceOutputBase {
   partitionOption?: any;
   /** The settings that will be leveraged for Sql source partitioning. */
   partitionSettings?: SqlPartitionSettingsOutput;
-  type: "undefined";
+  type: "SqlDWSource";
 }
 
 export interface FileSystemSourceOutput extends CopySourceOutputBase {
@@ -6797,7 +6797,7 @@ export interface FileSystemSourceOutput extends CopySourceOutputBase {
   recursive?: any;
   /** Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects). */
   additionalColumns?: any;
-  type: "undefined";
+  type: "FileSystemSource";
 }
 
 export interface HdfsSourceOutput extends CopySourceOutputBase {
@@ -6805,13 +6805,13 @@ export interface HdfsSourceOutput extends CopySourceOutputBase {
   recursive?: any;
   /** Specifies Distcp-related settings. */
   distcpSettings?: DistcpSettingsOutput;
-  type: "undefined";
+  type: "HdfsSource";
 }
 
 export interface AzureMySqlSourceOutput extends TabularSourceOutputBase {
   /** Database query. Type: string (or Expression with resultType string). */
   query?: any;
-  type: "undefined";
+  type: "AzureMySqlSource";
 }
 
 export interface AzureDataExplorerSourceOutput extends CopySourceOutputBase {
@@ -6823,7 +6823,7 @@ export interface AzureDataExplorerSourceOutput extends CopySourceOutputBase {
   queryTimeout?: any;
   /** Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects). */
   additionalColumns?: any;
-  type: "undefined";
+  type: "AzureDataExplorerSource";
 }
 
 export interface OracleSourceOutput extends CopySourceOutputBase {
@@ -6837,7 +6837,7 @@ export interface OracleSourceOutput extends CopySourceOutputBase {
   partitionSettings?: OraclePartitionSettingsOutput;
   /** Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects). */
   additionalColumns?: any;
-  type: "undefined";
+  type: "OracleSource";
 }
 
 export interface OraclePartitionSettingsOutput {
@@ -6862,7 +6862,7 @@ export interface AmazonRdsForOracleSourceOutput extends CopySourceOutputBase {
   partitionSettings?: AmazonRdsForOraclePartitionSettingsOutput;
   /** Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects). */
   additionalColumns?: any;
-  type: "undefined";
+  type: "AmazonRdsForOracleSource";
 }
 
 export interface AmazonRdsForOraclePartitionSettingsOutput {
@@ -6883,7 +6883,7 @@ export interface TeradataSourceOutput extends TabularSourceOutputBase {
   partitionOption?: "None" | "Hash" | "DynamicRange";
   /** The settings that will be leveraged for teradata source partitioning. */
   partitionSettings?: TeradataPartitionSettingsOutput;
-  type: "undefined";
+  type: "TeradataSource";
 }
 
 export interface TeradataPartitionSettingsOutput {
@@ -6898,7 +6898,7 @@ export interface TeradataPartitionSettingsOutput {
 export interface WebSourceOutput extends CopySourceOutputBase {
   /** Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects). */
   additionalColumns?: any;
-  type: "undefined";
+  type: "WebSource";
 }
 
 export interface CassandraSourceOutput extends TabularSourceOutputBase {
@@ -6916,7 +6916,7 @@ export interface CassandraSourceOutput extends TabularSourceOutputBase {
     | "LOCAL_ONE"
     | "SERIAL"
     | "LOCAL_SERIAL";
-  type: "undefined";
+  type: "CassandraSource";
 }
 
 export interface MongoDbSourceOutput extends CopySourceOutputBase {
@@ -6924,7 +6924,7 @@ export interface MongoDbSourceOutput extends CopySourceOutputBase {
   query?: any;
   /** Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects). */
   additionalColumns?: any;
-  type: "undefined";
+  type: "MongoDbSource";
 }
 
 export interface MongoDbAtlasSourceOutput extends CopySourceOutputBase {
@@ -6938,7 +6938,7 @@ export interface MongoDbAtlasSourceOutput extends CopySourceOutputBase {
   queryTimeout?: any;
   /** Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects). */
   additionalColumns?: any;
-  type: "undefined";
+  type: "MongoDbAtlasSource";
 }
 
 export interface MongoDbCursorMethodsPropertiesOutput
@@ -6964,7 +6964,7 @@ export interface MongoDbV2SourceOutput extends CopySourceOutputBase {
   queryTimeout?: any;
   /** Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects). */
   additionalColumns?: any;
-  type: "undefined";
+  type: "MongoDbV2Source";
 }
 
 export interface CosmosDbMongoDbApiSourceOutput extends CopySourceOutputBase {
@@ -6978,7 +6978,7 @@ export interface CosmosDbMongoDbApiSourceOutput extends CopySourceOutputBase {
   queryTimeout?: any;
   /** Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects). */
   additionalColumns?: any;
-  type: "undefined";
+  type: "CosmosDbMongoDbApiSource";
 }
 
 export interface Office365SourceOutput extends CopySourceOutputBase {
@@ -6994,13 +6994,13 @@ export interface Office365SourceOutput extends CopySourceOutputBase {
   endTime?: any;
   /** The columns to be read out from the Office 365 table. Type: array of objects (or Expression with resultType array of objects). Example: [ { "name": "Id" }, { "name": "CreatedDateTime" } ] */
   outputColumns?: any;
-  type: "undefined";
+  type: "Office365Source";
 }
 
 export interface AzureDataLakeStoreSourceOutput extends CopySourceOutputBase {
   /** If true, files under the folder path will be read recursively. Default is true. Type: boolean (or Expression with resultType boolean). */
   recursive?: any;
-  type: "undefined";
+  type: "AzureDataLakeStoreSource";
 }
 
 export interface AzureBlobFSSourceOutput extends CopySourceOutputBase {
@@ -7010,187 +7010,187 @@ export interface AzureBlobFSSourceOutput extends CopySourceOutputBase {
   skipHeaderLineCount?: any;
   /** If true, files under the folder path will be read recursively. Default is true. Type: boolean (or Expression with resultType boolean). */
   recursive?: any;
-  type: "undefined";
+  type: "AzureBlobFSSource";
 }
 
 export interface HttpSourceOutput extends CopySourceOutputBase {
   /** Specifies the timeout for a HTTP client to get HTTP response from HTTP server. The default value is equivalent to System.Net.HttpWebRequest.Timeout. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])). */
   httpRequestTimeout?: any;
-  type: "undefined";
+  type: "HttpSource";
 }
 
 export interface AmazonMWSSourceOutput extends TabularSourceOutputBase {
   /** A query to retrieve data from source. Type: string (or Expression with resultType string). */
   query?: any;
-  type: "undefined";
+  type: "AmazonMWSSource";
 }
 
 export interface AzurePostgreSqlSourceOutput extends TabularSourceOutputBase {
   /** A query to retrieve data from source. Type: string (or Expression with resultType string). */
   query?: any;
-  type: "undefined";
+  type: "AzurePostgreSqlSource";
 }
 
 export interface AzurePostgreSqlSinkOutput extends CopySinkOutputBase {
   /** A query to execute before starting the copy. Type: string (or Expression with resultType string). */
   preCopyScript?: any;
-  type: "undefined";
+  type: "AzurePostgreSqlSink";
 }
 
 export interface AzureMySqlSinkOutput extends CopySinkOutputBase {
   /** A query to execute before starting the copy. Type: string (or Expression with resultType string). */
   preCopyScript?: any;
-  type: "undefined";
+  type: "AzureMySqlSink";
 }
 
 export interface ConcurSourceOutput extends TabularSourceOutputBase {
   /** A query to retrieve data from source. Type: string (or Expression with resultType string). */
   query?: any;
-  type: "undefined";
+  type: "ConcurSource";
 }
 
 export interface CouchbaseSourceOutput extends TabularSourceOutputBase {
   /** A query to retrieve data from source. Type: string (or Expression with resultType string). */
   query?: any;
-  type: "undefined";
+  type: "CouchbaseSource";
 }
 
 export interface DrillSourceOutput extends TabularSourceOutputBase {
   /** A query to retrieve data from source. Type: string (or Expression with resultType string). */
   query?: any;
-  type: "undefined";
+  type: "DrillSource";
 }
 
 export interface EloquaSourceOutput extends TabularSourceOutputBase {
   /** A query to retrieve data from source. Type: string (or Expression with resultType string). */
   query?: any;
-  type: "undefined";
+  type: "EloquaSource";
 }
 
 export interface GoogleBigQuerySourceOutput extends TabularSourceOutputBase {
   /** A query to retrieve data from source. Type: string (or Expression with resultType string). */
   query?: any;
-  type: "undefined";
+  type: "GoogleBigQuerySource";
 }
 
 export interface GreenplumSourceOutput extends TabularSourceOutputBase {
   /** A query to retrieve data from source. Type: string (or Expression with resultType string). */
   query?: any;
-  type: "undefined";
+  type: "GreenplumSource";
 }
 
 export interface HBaseSourceOutput extends TabularSourceOutputBase {
   /** A query to retrieve data from source. Type: string (or Expression with resultType string). */
   query?: any;
-  type: "undefined";
+  type: "HBaseSource";
 }
 
 export interface HiveSourceOutput extends TabularSourceOutputBase {
   /** A query to retrieve data from source. Type: string (or Expression with resultType string). */
   query?: any;
-  type: "undefined";
+  type: "HiveSource";
 }
 
 export interface HubspotSourceOutput extends TabularSourceOutputBase {
   /** A query to retrieve data from source. Type: string (or Expression with resultType string). */
   query?: any;
-  type: "undefined";
+  type: "HubspotSource";
 }
 
 export interface ImpalaSourceOutput extends TabularSourceOutputBase {
   /** A query to retrieve data from source. Type: string (or Expression with resultType string). */
   query?: any;
-  type: "undefined";
+  type: "ImpalaSource";
 }
 
 export interface JiraSourceOutput extends TabularSourceOutputBase {
   /** A query to retrieve data from source. Type: string (or Expression with resultType string). */
   query?: any;
-  type: "undefined";
+  type: "JiraSource";
 }
 
 export interface MagentoSourceOutput extends TabularSourceOutputBase {
   /** A query to retrieve data from source. Type: string (or Expression with resultType string). */
   query?: any;
-  type: "undefined";
+  type: "MagentoSource";
 }
 
 export interface MariaDBSourceOutput extends TabularSourceOutputBase {
   /** A query to retrieve data from source. Type: string (or Expression with resultType string). */
   query?: any;
-  type: "undefined";
+  type: "MariaDBSource";
 }
 
 export interface AzureMariaDBSourceOutput extends TabularSourceOutputBase {
   /** A query to retrieve data from source. Type: string (or Expression with resultType string). */
   query?: any;
-  type: "undefined";
+  type: "AzureMariaDBSource";
 }
 
 export interface MarketoSourceOutput extends TabularSourceOutputBase {
   /** A query to retrieve data from source. Type: string (or Expression with resultType string). */
   query?: any;
-  type: "undefined";
+  type: "MarketoSource";
 }
 
 export interface PaypalSourceOutput extends TabularSourceOutputBase {
   /** A query to retrieve data from source. Type: string (or Expression with resultType string). */
   query?: any;
-  type: "undefined";
+  type: "PaypalSource";
 }
 
 export interface PhoenixSourceOutput extends TabularSourceOutputBase {
   /** A query to retrieve data from source. Type: string (or Expression with resultType string). */
   query?: any;
-  type: "undefined";
+  type: "PhoenixSource";
 }
 
 export interface PrestoSourceOutput extends TabularSourceOutputBase {
   /** A query to retrieve data from source. Type: string (or Expression with resultType string). */
   query?: any;
-  type: "undefined";
+  type: "PrestoSource";
 }
 
 export interface QuickBooksSourceOutput extends TabularSourceOutputBase {
   /** A query to retrieve data from source. Type: string (or Expression with resultType string). */
   query?: any;
-  type: "undefined";
+  type: "QuickBooksSource";
 }
 
 export interface ServiceNowSourceOutput extends TabularSourceOutputBase {
   /** A query to retrieve data from source. Type: string (or Expression with resultType string). */
   query?: any;
-  type: "undefined";
+  type: "ServiceNowSource";
 }
 
 export interface ShopifySourceOutput extends TabularSourceOutputBase {
   /** A query to retrieve data from source. Type: string (or Expression with resultType string). */
   query?: any;
-  type: "undefined";
+  type: "ShopifySource";
 }
 
 export interface SparkSourceOutput extends TabularSourceOutputBase {
   /** A query to retrieve data from source. Type: string (or Expression with resultType string). */
   query?: any;
-  type: "undefined";
+  type: "SparkSource";
 }
 
 export interface SquareSourceOutput extends TabularSourceOutputBase {
   /** A query to retrieve data from source. Type: string (or Expression with resultType string). */
   query?: any;
-  type: "undefined";
+  type: "SquareSource";
 }
 
 export interface XeroSourceOutput extends TabularSourceOutputBase {
   /** A query to retrieve data from source. Type: string (or Expression with resultType string). */
   query?: any;
-  type: "undefined";
+  type: "XeroSource";
 }
 
 export interface ZohoSourceOutput extends TabularSourceOutputBase {
   /** A query to retrieve data from source. Type: string (or Expression with resultType string). */
   query?: any;
-  type: "undefined";
+  type: "ZohoSource";
 }
 
 export interface NetezzaSourceOutput extends TabularSourceOutputBase {
@@ -7200,7 +7200,7 @@ export interface NetezzaSourceOutput extends TabularSourceOutputBase {
   partitionOption?: "None" | "DataSlice" | "DynamicRange";
   /** The settings that will be leveraged for Netezza source partitioning. */
   partitionSettings?: NetezzaPartitionSettingsOutput;
-  type: "undefined";
+  type: "NetezzaSource";
 }
 
 export interface NetezzaPartitionSettingsOutput {
@@ -7215,20 +7215,20 @@ export interface NetezzaPartitionSettingsOutput {
 export interface VerticaSourceOutput extends TabularSourceOutputBase {
   /** A query to retrieve data from source. Type: string (or Expression with resultType string). */
   query?: any;
-  type: "undefined";
+  type: "VerticaSource";
 }
 
 export interface SalesforceMarketingCloudSourceOutput
   extends TabularSourceOutputBase {
   /** A query to retrieve data from source. Type: string (or Expression with resultType string). */
   query?: any;
-  type: "undefined";
+  type: "SalesforceMarketingCloudSource";
 }
 
 export interface ResponsysSourceOutput extends TabularSourceOutputBase {
   /** A query to retrieve data from source. Type: string (or Expression with resultType string). */
   query?: any;
-  type: "undefined";
+  type: "ResponsysSource";
 }
 
 export interface DynamicsAXSourceOutput extends TabularSourceOutputBase {
@@ -7236,20 +7236,20 @@ export interface DynamicsAXSourceOutput extends TabularSourceOutputBase {
   query?: any;
   /** The timeout (TimeSpan) to get an HTTP response. It is the timeout to get a response, not the timeout to read response data. Default value: 00:05:00. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])). */
   httpRequestTimeout?: any;
-  type: "undefined";
+  type: "DynamicsAXSource";
 }
 
 export interface OracleServiceCloudSourceOutput
   extends TabularSourceOutputBase {
   /** A query to retrieve data from source. Type: string (or Expression with resultType string). */
   query?: any;
-  type: "undefined";
+  type: "OracleServiceCloudSource";
 }
 
 export interface GoogleAdWordsSourceOutput extends TabularSourceOutputBase {
   /** A query to retrieve data from source. Type: string (or Expression with resultType string). */
   query?: any;
-  type: "undefined";
+  type: "GoogleAdWordsSource";
 }
 
 export interface AmazonRedshiftSourceOutput extends TabularSourceOutputBase {
@@ -7257,7 +7257,7 @@ export interface AmazonRedshiftSourceOutput extends TabularSourceOutputBase {
   query?: any;
   /** The Amazon S3 settings needed for the interim Amazon S3 when copying from Amazon Redshift with unload. With this, data from Amazon Redshift source will be unloaded into S3 first and then copied into the targeted sink from the interim S3. */
   redshiftUnloadSettings?: RedshiftUnloadSettingsOutput;
-  type: "undefined";
+  type: "AmazonRedshiftSource";
 }
 
 export interface RedshiftUnloadSettingsOutput {
@@ -7272,7 +7272,7 @@ export interface SnowflakeSourceOutput extends CopySourceOutputBase {
   query?: any;
   /** Snowflake export settings. */
   exportSettings?: SnowflakeExportCopyCommandOutput;
-  type: "undefined";
+  type: "SnowflakeSource";
 }
 
 export interface SnowflakeExportCopyCommandOutput
@@ -7281,12 +7281,12 @@ export interface SnowflakeExportCopyCommandOutput
   additionalCopyOptions?: Record<string, any>;
   /** Additional format options directly passed to snowflake Copy Command. Type: key value pairs (value should be string type) (or Expression with resultType object). Example: "additionalFormatOptions": { "OVERWRITE": "TRUE", "MAX_FILE_SIZE": "'FALSE'" } */
   additionalFormatOptions?: Record<string, any>;
-  type: "undefined";
+  type: "SnowflakeExportCopyCommand";
 }
 
 export interface ExportSettingsOutputBase extends Record<string, unknown> {
   type:
-    | "ExportSettings"
+    | "exportSettings"
     | "SnowflakeExportCopyCommand"
     | "AzureDatabricksDeltaLakeExportCommand";
 }
@@ -7297,7 +7297,7 @@ export interface AzureDatabricksDeltaLakeSourceOutput
   query?: any;
   /** Azure Databricks Delta Lake export settings. */
   exportSettings?: AzureDatabricksDeltaLakeExportCommandOutput;
-  type: "undefined";
+  type: "AzureDatabricksDeltaLakeSource";
 }
 
 export interface AzureDatabricksDeltaLakeExportCommandOutput
@@ -7306,7 +7306,7 @@ export interface AzureDatabricksDeltaLakeExportCommandOutput
   dateFormat?: any;
   /** Specify the timestamp format for the csv in Azure Databricks Delta Lake Copy. Type: string (or Expression with resultType string). */
   timestampFormat?: any;
-  type: "undefined";
+  type: "AzureDatabricksDeltaLakeExportCommand";
 }
 
 export interface AzureDatabricksDeltaLakeSinkOutput extends CopySinkOutputBase {
@@ -7314,7 +7314,7 @@ export interface AzureDatabricksDeltaLakeSinkOutput extends CopySinkOutputBase {
   preCopyScript?: any;
   /** Azure Databricks Delta Lake import settings. */
   importSettings?: AzureDatabricksDeltaLakeImportCommandOutput;
-  type: "undefined";
+  type: "AzureDatabricksDeltaLakeSink";
 }
 
 export interface AzureDatabricksDeltaLakeImportCommandOutput
@@ -7323,12 +7323,12 @@ export interface AzureDatabricksDeltaLakeImportCommandOutput
   dateFormat?: any;
   /** Specify the timestamp format for csv in Azure Databricks Delta Lake Copy. Type: string (or Expression with resultType string). */
   timestampFormat?: any;
-  type: "undefined";
+  type: "AzureDatabricksDeltaLakeImportCommand";
 }
 
 export interface ImportSettingsOutputBase extends Record<string, unknown> {
   type:
-    | "ImportSettings"
+    | "importSettings"
     | "AzureDatabricksDeltaLakeImportCommand"
     | "SnowflakeImportCopyCommand";
 }
@@ -7345,11 +7345,11 @@ export interface SapCloudForCustomerSinkOutput extends CopySinkOutputBase {
   writeBehavior?: "Insert" | "Update";
   /** The timeout (TimeSpan) to get an HTTP response. It is the timeout to get a response, not the timeout to read response data. Default value: 00:05:00. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])). */
   httpRequestTimeout?: any;
-  type: "undefined";
+  type: "SapCloudForCustomerSink";
 }
 
 export interface AzureQueueSinkOutput extends CopySinkOutputBase {
-  type: "undefined";
+  type: "AzureQueueSink";
 }
 
 export interface AzureTableSinkOutput extends CopySinkOutputBase {
@@ -7361,7 +7361,7 @@ export interface AzureTableSinkOutput extends CopySinkOutputBase {
   azureTableRowKeyName?: any;
   /** Azure Table insert type. Type: string (or Expression with resultType string). */
   azureTableInsertType?: any;
-  type: "undefined";
+  type: "AzureTableSink";
 }
 
 export interface AvroSinkOutput extends CopySinkOutputBase {
@@ -7369,7 +7369,7 @@ export interface AvroSinkOutput extends CopySinkOutputBase {
   storeSettings?: StoreWriteSettingsOutput;
   /** Avro format settings. */
   formatSettings?: AvroWriteSettingsOutput;
-  type: "undefined";
+  type: "AvroSink";
 }
 
 export interface ParquetSinkOutput extends CopySinkOutputBase {
@@ -7377,13 +7377,13 @@ export interface ParquetSinkOutput extends CopySinkOutputBase {
   storeSettings?: StoreWriteSettingsOutput;
   /** Parquet format settings. */
   formatSettings?: ParquetWriteSettingsOutput;
-  type: "undefined";
+  type: "ParquetSink";
 }
 
 export interface BinarySinkOutput extends CopySinkOutputBase {
   /** Binary store settings. */
   storeSettings?: StoreWriteSettingsOutput;
-  type: "undefined";
+  type: "BinarySink";
 }
 
 export interface BlobSinkOutput extends CopySinkOutputBase {
@@ -7395,13 +7395,13 @@ export interface BlobSinkOutput extends CopySinkOutputBase {
   blobWriterAddHeader?: any;
   /** The type of copy behavior for copy sink. */
   copyBehavior?: any;
-  type: "undefined";
+  type: "BlobSink";
 }
 
 export interface FileSystemSinkOutput extends CopySinkOutputBase {
   /** The type of copy behavior for copy sink. */
   copyBehavior?: any;
-  type: "undefined";
+  type: "FileSystemSink";
 }
 
 export interface DocumentDbCollectionSinkOutput extends CopySinkOutputBase {
@@ -7409,13 +7409,13 @@ export interface DocumentDbCollectionSinkOutput extends CopySinkOutputBase {
   nestingSeparator?: any;
   /** Describes how to write data to Azure Cosmos DB. Type: string (or Expression with resultType string). Allowed values: insert and upsert. */
   writeBehavior?: any;
-  type: "undefined";
+  type: "DocumentDbCollectionSink";
 }
 
 export interface CosmosDbSqlApiSinkOutput extends CopySinkOutputBase {
   /** Describes how to write data to Azure Cosmos DB. Type: string (or Expression with resultType string). Allowed values: insert and upsert. */
   writeBehavior?: any;
-  type: "undefined";
+  type: "CosmosDbSqlApiSink";
 }
 
 export interface SqlSinkOutput extends CopySinkOutputBase {
@@ -7431,7 +7431,7 @@ export interface SqlSinkOutput extends CopySinkOutputBase {
   storedProcedureTableTypeParameterName?: any;
   /** The option to handle sink table, such as autoCreate. For now only 'autoCreate' value is supported. Type: string (or Expression with resultType string). */
   tableOption?: any;
-  type: "undefined";
+  type: "SqlSink";
 }
 
 export interface SqlServerSinkOutput extends CopySinkOutputBase {
@@ -7447,7 +7447,7 @@ export interface SqlServerSinkOutput extends CopySinkOutputBase {
   storedProcedureTableTypeParameterName?: any;
   /** The option to handle sink table, such as autoCreate. For now only 'autoCreate' value is supported. Type: string (or Expression with resultType string). */
   tableOption?: any;
-  type: "undefined";
+  type: "SqlServerSink";
 }
 
 export interface AzureSqlSinkOutput extends CopySinkOutputBase {
@@ -7463,7 +7463,7 @@ export interface AzureSqlSinkOutput extends CopySinkOutputBase {
   storedProcedureTableTypeParameterName?: any;
   /** The option to handle sink table, such as autoCreate. For now only 'autoCreate' value is supported. Type: string (or Expression with resultType string). */
   tableOption?: any;
-  type: "undefined";
+  type: "AzureSqlSink";
 }
 
 export interface SqlMISinkOutput extends CopySinkOutputBase {
@@ -7479,7 +7479,7 @@ export interface SqlMISinkOutput extends CopySinkOutputBase {
   storedProcedureTableTypeParameterName?: any;
   /** The option to handle sink table, such as autoCreate. For now only 'autoCreate' value is supported. Type: string (or Expression with resultType string). */
   tableOption?: any;
-  type: "undefined";
+  type: "SqlMISink";
 }
 
 export interface SqlDWSinkOutput extends CopySinkOutputBase {
@@ -7495,7 +7495,7 @@ export interface SqlDWSinkOutput extends CopySinkOutputBase {
   copyCommandSettings?: DWCopyCommandSettingsOutput;
   /** The option to handle sink table, such as autoCreate. For now only 'autoCreate' value is supported. Type: string (or Expression with resultType string). */
   tableOption?: any;
-  type: "undefined";
+  type: "SqlDWSink";
 }
 
 export interface PolybaseSettingsOutput extends Record<string, unknown> {
@@ -7528,7 +7528,7 @@ export interface SnowflakeSinkOutput extends CopySinkOutputBase {
   preCopyScript?: any;
   /** Snowflake import settings. */
   importSettings?: SnowflakeImportCopyCommandOutput;
-  type: "undefined";
+  type: "SnowflakeSink";
 }
 
 export interface SnowflakeImportCopyCommandOutput
@@ -7537,13 +7537,13 @@ export interface SnowflakeImportCopyCommandOutput
   additionalCopyOptions?: Record<string, any>;
   /** Additional format options directly passed to snowflake Copy Command. Type: key value pairs (value should be string type) (or Expression with resultType object). Example: "additionalFormatOptions": { "FORCE": "TRUE", "LOAD_UNCERTAIN_FILES": "'FALSE'" } */
   additionalFormatOptions?: Record<string, any>;
-  type: "undefined";
+  type: "SnowflakeImportCopyCommand";
 }
 
 export interface OracleSinkOutput extends CopySinkOutputBase {
   /** SQL pre-copy script. Type: string (or Expression with resultType string). */
   preCopyScript?: any;
-  type: "undefined";
+  type: "OracleSink";
 }
 
 export interface AzureDataLakeStoreSinkOutput extends CopySinkOutputBase {
@@ -7551,37 +7551,37 @@ export interface AzureDataLakeStoreSinkOutput extends CopySinkOutputBase {
   copyBehavior?: any;
   /** Single File Parallel. */
   enableAdlsSingleFileParallel?: any;
-  type: "undefined";
+  type: "AzureDataLakeStoreSink";
 }
 
 export interface AzureBlobFSSinkOutput extends CopySinkOutputBase {
   /** The type of copy behavior for copy sink. */
   copyBehavior?: any;
-  type: "undefined";
+  type: "AzureBlobFSSink";
 }
 
 export interface AzureSearchIndexSinkOutput extends CopySinkOutputBase {
   /** Specify the write behavior when upserting documents into Azure Search Index. */
   writeBehavior?: "Merge" | "Upload";
-  type: "undefined";
+  type: "AzureSearchIndexSink";
 }
 
 export interface OdbcSinkOutput extends CopySinkOutputBase {
   /** A query to execute before starting the copy. Type: string (or Expression with resultType string). */
   preCopyScript?: any;
-  type: "undefined";
+  type: "OdbcSink";
 }
 
 export interface InformixSinkOutput extends CopySinkOutputBase {
   /** A query to execute before starting the copy. Type: string (or Expression with resultType string). */
   preCopyScript?: any;
-  type: "undefined";
+  type: "InformixSink";
 }
 
 export interface MicrosoftAccessSinkOutput extends CopySinkOutputBase {
   /** A query to execute before starting the copy. Type: string (or Expression with resultType string). */
   preCopyScript?: any;
-  type: "undefined";
+  type: "MicrosoftAccessSink";
 }
 
 export interface DynamicsSinkOutput extends CopySinkOutputBase {
@@ -7591,7 +7591,7 @@ export interface DynamicsSinkOutput extends CopySinkOutputBase {
   ignoreNullValues?: any;
   /** The logical name of the alternate key which will be used when upserting records. Type: string (or Expression with resultType string). */
   alternateKeyName?: any;
-  type: "undefined";
+  type: "DynamicsSink";
 }
 
 export interface DynamicsCrmSinkOutput extends CopySinkOutputBase {
@@ -7601,7 +7601,7 @@ export interface DynamicsCrmSinkOutput extends CopySinkOutputBase {
   ignoreNullValues?: any;
   /** The logical name of the alternate key which will be used when upserting records. Type: string (or Expression with resultType string). */
   alternateKeyName?: any;
-  type: "undefined";
+  type: "DynamicsCrmSink";
 }
 
 export interface CommonDataServiceForAppsSinkOutput extends CopySinkOutputBase {
@@ -7611,7 +7611,7 @@ export interface CommonDataServiceForAppsSinkOutput extends CopySinkOutputBase {
   ignoreNullValues?: any;
   /** The logical name of the alternate key which will be used when upserting records. Type: string (or Expression with resultType string). */
   alternateKeyName?: any;
-  type: "undefined";
+  type: "CommonDataServiceForAppsSink";
 }
 
 export interface AzureDataExplorerSinkOutput extends CopySinkOutputBase {
@@ -7621,7 +7621,7 @@ export interface AzureDataExplorerSinkOutput extends CopySinkOutputBase {
   ingestionMappingAsJson?: any;
   /** If set to true, any aggregation will be skipped. Default is false. Type: boolean. */
   flushImmediately?: any;
-  type: "undefined";
+  type: "AzureDataExplorerSink";
 }
 
 export interface SalesforceSinkOutput extends CopySinkOutputBase {
@@ -7631,7 +7631,7 @@ export interface SalesforceSinkOutput extends CopySinkOutputBase {
   externalIdFieldName?: any;
   /** The flag indicating whether or not to ignore null values from input dataset (except key fields) during write operation. Default value is false. If set it to true, it means ADF will leave the data in the destination object unchanged when doing upsert/update operation and insert defined default value when doing insert operation, versus ADF will update the data in the destination object to NULL when doing upsert/update operation and insert NULL value when doing insert operation. Type: boolean (or Expression with resultType boolean). */
   ignoreNullValues?: any;
-  type: "undefined";
+  type: "SalesforceSink";
 }
 
 export interface SalesforceServiceCloudSinkOutput extends CopySinkOutputBase {
@@ -7641,20 +7641,20 @@ export interface SalesforceServiceCloudSinkOutput extends CopySinkOutputBase {
   externalIdFieldName?: any;
   /** The flag indicating whether or not to ignore null values from input dataset (except key fields) during write operation. Default value is false. If set it to true, it means ADF will leave the data in the destination object unchanged when doing upsert/update operation and insert defined default value when doing insert operation, versus ADF will update the data in the destination object to NULL when doing upsert/update operation and insert NULL value when doing insert operation. Type: boolean (or Expression with resultType boolean). */
   ignoreNullValues?: any;
-  type: "undefined";
+  type: "SalesforceServiceCloudSink";
 }
 
 export interface CosmosDbMongoDbApiSinkOutput extends CopySinkOutputBase {
   /** Specifies whether the document with same key to be overwritten (upsert) rather than throw exception (insert). The default value is "insert". Type: string (or Expression with resultType string). Type: string (or Expression with resultType string). */
   writeBehavior?: any;
-  type: "undefined";
+  type: "CosmosDbMongoDbApiSink";
 }
 
 export interface HDInsightHiveActivityOutput
   extends ExecutionActivityOutputBase {
   /** HDInsight Hive activity properties. */
   typeProperties: HDInsightHiveActivityTypePropertiesOutput;
-  type: "undefined";
+  type: "HDInsightHive";
 }
 
 export interface HDInsightHiveActivityTypePropertiesOutput {
@@ -7680,7 +7680,7 @@ export interface HDInsightPigActivityOutput
   extends ExecutionActivityOutputBase {
   /** HDInsight Pig activity properties. */
   typeProperties: HDInsightPigActivityTypePropertiesOutput;
-  type: "undefined";
+  type: "HDInsightPig";
 }
 
 export interface HDInsightPigActivityTypePropertiesOutput {
@@ -7702,7 +7702,7 @@ export interface HDInsightMapReduceActivityOutput
   extends ExecutionActivityOutputBase {
   /** HDInsight MapReduce activity properties. */
   typeProperties: HDInsightMapReduceActivityTypePropertiesOutput;
-  type: "undefined";
+  type: "HDInsightMapReduce";
 }
 
 export interface HDInsightMapReduceActivityTypePropertiesOutput {
@@ -7728,7 +7728,7 @@ export interface HDInsightStreamingActivityOutput
   extends ExecutionActivityOutputBase {
   /** HDInsight streaming activity properties. */
   typeProperties: HDInsightStreamingActivityTypePropertiesOutput;
-  type: "undefined";
+  type: "HDInsightStreaming";
 }
 
 export interface HDInsightStreamingActivityTypePropertiesOutput {
@@ -7762,7 +7762,7 @@ export interface HDInsightSparkActivityOutput
   extends ExecutionActivityOutputBase {
   /** HDInsight spark activity properties. */
   typeProperties: HDInsightSparkActivityTypePropertiesOutput;
-  type: "undefined";
+  type: "HDInsightSpark";
 }
 
 export interface HDInsightSparkActivityTypePropertiesOutput {
@@ -7788,7 +7788,7 @@ export interface ExecuteSsisPackageActivityOutput
   extends ExecutionActivityOutputBase {
   /** Execute SSIS package activity properties. */
   typeProperties: ExecuteSsisPackageActivityTypePropertiesOutput;
-  type: "undefined";
+  type: "ExecuteSSISPackage";
 }
 
 export interface ExecuteSsisPackageActivityTypePropertiesOutput {
@@ -7912,7 +7912,7 @@ export interface SsisLogLocationTypePropertiesOutput {
 export interface CustomActivityOutput extends ExecutionActivityOutputBase {
   /** Custom activity properties. */
   typeProperties: CustomActivityTypePropertiesOutput;
-  type: "undefined";
+  type: "Custom";
 }
 
 export interface CustomActivityTypePropertiesOutput {
@@ -7943,7 +7943,7 @@ export interface SqlServerStoredProcedureActivityOutput
   extends ExecutionActivityOutputBase {
   /** SQL stored procedure activity properties. */
   typeProperties: SqlServerStoredProcedureActivityTypePropertiesOutput;
-  type: "undefined";
+  type: "SqlServerStoredProcedure";
 }
 
 export interface SqlServerStoredProcedureActivityTypePropertiesOutput {
@@ -7957,7 +7957,7 @@ export interface ExecutePipelineActivityOutput
   extends ControlActivityOutputBase {
   /** Execute pipeline activity properties. */
   typeProperties: ExecutePipelineActivityTypePropertiesOutput;
-  type: "undefined";
+  type: "ExecutePipeline";
 }
 
 export interface ExecutePipelineActivityTypePropertiesOutput {
@@ -7972,7 +7972,7 @@ export interface ExecutePipelineActivityTypePropertiesOutput {
 export interface DeleteActivityOutput extends ExecutionActivityOutputBase {
   /** Delete activity properties. */
   typeProperties: DeleteActivityTypePropertiesOutput;
-  type: "undefined";
+  type: "Delete";
 }
 
 export interface DeleteActivityTypePropertiesOutput {
@@ -7994,7 +7994,7 @@ export interface AzureDataExplorerCommandActivityOutput
   extends ExecutionActivityOutputBase {
   /** Azure Data Explorer command activity properties. */
   typeProperties: AzureDataExplorerCommandActivityTypePropertiesOutput;
-  type: "undefined";
+  type: "AzureDataExplorerCommand";
 }
 
 export interface AzureDataExplorerCommandActivityTypePropertiesOutput {
@@ -8007,7 +8007,7 @@ export interface AzureDataExplorerCommandActivityTypePropertiesOutput {
 export interface LookupActivityOutput extends ExecutionActivityOutputBase {
   /** Lookup activity properties. */
   typeProperties: LookupActivityTypePropertiesOutput;
-  type: "undefined";
+  type: "Lookup";
 }
 
 export interface LookupActivityTypePropertiesOutput {
@@ -8022,7 +8022,7 @@ export interface LookupActivityTypePropertiesOutput {
 export interface WebActivityOutput extends ExecutionActivityOutputBase {
   /** Web activity properties. */
   typeProperties: WebActivityTypePropertiesOutput;
-  type: "undefined";
+  type: "WebActivity";
 }
 
 export interface WebActivityTypePropertiesOutput {
@@ -8060,7 +8060,7 @@ export interface WebActivityAuthenticationOutput {
 export interface GetMetadataActivityOutput extends ExecutionActivityOutputBase {
   /** GetMetadata activity properties. */
   typeProperties: GetMetadataActivityTypePropertiesOutput;
-  type: "undefined";
+  type: "GetMetadata";
 }
 
 export interface GetMetadataActivityTypePropertiesOutput {
@@ -8077,7 +8077,7 @@ export interface GetMetadataActivityTypePropertiesOutput {
 export interface IfConditionActivityOutput extends ControlActivityOutputBase {
   /** IfCondition activity properties. */
   typeProperties: IfConditionActivityTypePropertiesOutput;
-  type: "undefined";
+  type: "IfCondition";
 }
 
 export interface IfConditionActivityTypePropertiesOutput {
@@ -8092,7 +8092,7 @@ export interface IfConditionActivityTypePropertiesOutput {
 export interface SwitchActivityOutput extends ControlActivityOutputBase {
   /** Switch activity properties. */
   typeProperties: SwitchActivityTypePropertiesOutput;
-  type: "undefined";
+  type: "Switch";
 }
 
 export interface SwitchActivityTypePropertiesOutput {
@@ -8114,7 +8114,7 @@ export interface SwitchCaseOutput {
 export interface ForEachActivityOutput extends ControlActivityOutputBase {
   /** ForEach activity properties. */
   typeProperties: ForEachActivityTypePropertiesOutput;
-  type: "undefined";
+  type: "ForEach";
 }
 
 export interface ForEachActivityTypePropertiesOutput {
@@ -8132,7 +8132,7 @@ export interface AzureMLBatchExecutionActivityOutput
   extends ExecutionActivityOutputBase {
   /** Azure ML Batch Execution activity properties. */
   typeProperties: AzureMLBatchExecutionActivityTypePropertiesOutput;
-  type: "undefined";
+  type: "AzureMLBatchExecution";
 }
 
 export interface AzureMLBatchExecutionActivityTypePropertiesOutput {
@@ -8155,7 +8155,7 @@ export interface AzureMLUpdateResourceActivityOutput
   extends ExecutionActivityOutputBase {
   /** Azure ML Update Resource management activity properties. */
   typeProperties: AzureMLUpdateResourceActivityTypePropertiesOutput;
-  type: "undefined";
+  type: "AzureMLUpdateResource";
 }
 
 export interface AzureMLUpdateResourceActivityTypePropertiesOutput {
@@ -8171,7 +8171,7 @@ export interface AzureMLExecutePipelineActivityOutput
   extends ExecutionActivityOutputBase {
   /** Azure ML Execute Pipeline activity properties. */
   typeProperties: AzureMLExecutePipelineActivityTypePropertiesOutput;
-  type: "undefined";
+  type: "AzureMLExecutePipeline";
 }
 
 export interface AzureMLExecutePipelineActivityTypePropertiesOutput {
@@ -8191,7 +8191,7 @@ export interface DataLakeAnalyticsUsqlActivityOutput
   extends ExecutionActivityOutputBase {
   /** Data Lake Analytics U-SQL activity properties. */
   typeProperties: DataLakeAnalyticsUsqlActivityTypePropertiesOutput;
-  type: "undefined";
+  type: "DataLakeAnalyticsU-SQL";
 }
 
 export interface DataLakeAnalyticsUsqlActivityTypePropertiesOutput {
@@ -8214,7 +8214,7 @@ export interface DataLakeAnalyticsUsqlActivityTypePropertiesOutput {
 export interface WaitActivityOutput extends ControlActivityOutputBase {
   /** Wait activity properties. */
   typeProperties: WaitActivityTypePropertiesOutput;
-  type: "undefined";
+  type: "Wait";
 }
 
 export interface WaitActivityTypePropertiesOutput {
@@ -8225,7 +8225,7 @@ export interface WaitActivityTypePropertiesOutput {
 export interface UntilActivityOutput extends ControlActivityOutputBase {
   /** Until activity properties. */
   typeProperties: UntilActivityTypePropertiesOutput;
-  type: "undefined";
+  type: "Until";
 }
 
 export interface UntilActivityTypePropertiesOutput {
@@ -8240,7 +8240,7 @@ export interface UntilActivityTypePropertiesOutput {
 export interface ValidationActivityOutput extends ControlActivityOutputBase {
   /** Validation activity properties. */
   typeProperties: ValidationActivityTypePropertiesOutput;
-  type: "undefined";
+  type: "Validation";
 }
 
 export interface ValidationActivityTypePropertiesOutput {
@@ -8259,7 +8259,7 @@ export interface ValidationActivityTypePropertiesOutput {
 export interface FilterActivityOutput extends ControlActivityOutputBase {
   /** Filter activity properties. */
   typeProperties: FilterActivityTypePropertiesOutput;
-  type: "undefined";
+  type: "Filter";
 }
 
 export interface FilterActivityTypePropertiesOutput {
@@ -8273,7 +8273,7 @@ export interface DatabricksNotebookActivityOutput
   extends ExecutionActivityOutputBase {
   /** Databricks Notebook activity properties. */
   typeProperties: DatabricksNotebookActivityTypePropertiesOutput;
-  type: "undefined";
+  type: "DatabricksNotebook";
 }
 
 export interface DatabricksNotebookActivityTypePropertiesOutput {
@@ -8289,7 +8289,7 @@ export interface DatabricksSparkJarActivityOutput
   extends ExecutionActivityOutputBase {
   /** Databricks SparkJar activity properties. */
   typeProperties: DatabricksSparkJarActivityTypePropertiesOutput;
-  type: "undefined";
+  type: "DatabricksSparkJar";
 }
 
 export interface DatabricksSparkJarActivityTypePropertiesOutput {
@@ -8305,7 +8305,7 @@ export interface DatabricksSparkPythonActivityOutput
   extends ExecutionActivityOutputBase {
   /** Databricks SparkPython activity properties. */
   typeProperties: DatabricksSparkPythonActivityTypePropertiesOutput;
-  type: "undefined";
+  type: "DatabricksSparkPython";
 }
 
 export interface DatabricksSparkPythonActivityTypePropertiesOutput {
@@ -8320,7 +8320,7 @@ export interface DatabricksSparkPythonActivityTypePropertiesOutput {
 export interface SetVariableActivityOutput extends ControlActivityOutputBase {
   /** Set Variable activity properties. */
   typeProperties: SetVariableActivityTypePropertiesOutput;
-  type: "undefined";
+  type: "SetVariable";
 }
 
 export interface SetVariableActivityTypePropertiesOutput {
@@ -8334,7 +8334,7 @@ export interface AppendVariableActivityOutput
   extends ControlActivityOutputBase {
   /** Append Variable activity properties. */
   typeProperties: AppendVariableActivityTypePropertiesOutput;
-  type: "undefined";
+  type: "AppendVariable";
 }
 
 export interface AppendVariableActivityTypePropertiesOutput {
@@ -8348,7 +8348,7 @@ export interface AzureFunctionActivityOutput
   extends ExecutionActivityOutputBase {
   /** Azure Function activity properties. */
   typeProperties: AzureFunctionActivityTypePropertiesOutput;
-  type: "undefined";
+  type: "AzureFunctionActivity";
 }
 
 export interface AzureFunctionActivityTypePropertiesOutput {
@@ -8365,7 +8365,7 @@ export interface AzureFunctionActivityTypePropertiesOutput {
 export interface WebHookActivityOutput extends ControlActivityOutputBase {
   /** WebHook activity properties. */
   typeProperties: WebHookActivityTypePropertiesOutput;
-  type: "undefined";
+  type: "WebHook";
 }
 
 export interface WebHookActivityTypePropertiesOutput {
@@ -8389,7 +8389,7 @@ export interface ExecuteDataFlowActivityOutput
   extends ExecutionActivityOutputBase {
   /** Execute data flow activity properties. */
   typeProperties: ExecuteDataFlowActivityTypePropertiesOutput;
-  type: "undefined";
+  type: "ExecuteDataFlow";
 }
 
 export interface ExecuteDataFlowActivityTypePropertiesOutput {
@@ -8421,14 +8421,14 @@ export interface SharePointOnlineListSourceOutput extends CopySourceOutputBase {
   query?: any;
   /** The wait time to get a response from SharePoint Online. Default value is 5 minutes (00:05:00). Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])). */
   httpRequestTimeout?: any;
-  type: "undefined";
+  type: "SharePointOnlineListSource";
 }
 
 export interface SynapseNotebookActivityOutput
   extends ExecutionActivityOutputBase {
   /** Execute Synapse notebook activity properties. */
   typeProperties: SynapseNotebookActivityTypePropertiesOutput;
-  type: "undefined";
+  type: "SynapseNotebook";
 }
 
 export interface SynapseNotebookActivityTypePropertiesOutput {
@@ -8442,7 +8442,7 @@ export interface SynapseSparkJobDefinitionActivityOutput
   extends ExecutionActivityOutputBase {
   /** Execute spark job activity properties. */
   typeProperties: SynapseSparkJobActivityTypePropertiesOutput;
-  type: "undefined";
+  type: "SparkJob";
 }
 
 export interface SynapseSparkJobActivityTypePropertiesOutput {
@@ -8458,7 +8458,7 @@ export interface SqlPoolStoredProcedureActivityOutput
   sqlPool: SqlPoolReferenceOutput;
   /** Execute SQL pool stored procedure activity properties. */
   typeProperties: SqlPoolStoredProcedureActivityTypePropertiesOutput;
-  type: "undefined";
+  type: "SqlPoolStoredProcedure";
 }
 
 export interface SqlPoolStoredProcedureActivityTypePropertiesOutput {
@@ -8483,7 +8483,7 @@ export interface ScheduleTriggerOutput
   extends MultiplePipelineTriggerOutputBase {
   /** Schedule Trigger properties. */
   typeProperties: ScheduleTriggerTypePropertiesOutput;
-  type: "undefined";
+  type: "ScheduleTrigger";
 }
 
 export interface ScheduleTriggerTypePropertiesOutput {
@@ -8553,7 +8553,7 @@ export interface RecurrenceScheduleOccurrenceOutput
 export interface BlobTriggerOutput extends MultiplePipelineTriggerOutputBase {
   /** Blob Trigger properties. */
   typeProperties: BlobTriggerTypePropertiesOutput;
-  type: "undefined";
+  type: "BlobTrigger";
 }
 
 export interface BlobTriggerTypePropertiesOutput {
@@ -8569,7 +8569,7 @@ export interface BlobEventsTriggerOutput
   extends MultiplePipelineTriggerOutputBase {
   /** Blob Events Trigger properties. */
   typeProperties: BlobEventsTriggerTypePropertiesOutput;
-  type: "undefined";
+  type: "BlobEventsTrigger";
 }
 
 export interface BlobEventsTriggerTypePropertiesOutput {
@@ -8591,7 +8591,7 @@ export interface CustomEventsTriggerOutput
   extends MultiplePipelineTriggerOutputBase {
   /** Custom Events Trigger properties. */
   typeProperties: CustomEventsTriggerTypePropertiesOutput;
-  type: "undefined";
+  type: "CustomEventsTrigger";
 }
 
 export interface CustomEventsTriggerTypePropertiesOutput {
@@ -8610,7 +8610,7 @@ export interface TumblingWindowTriggerOutput extends TriggerOutputBase {
   pipeline: TriggerPipelineReferenceOutput;
   /** Tumbling Window Trigger properties. */
   typeProperties: TumblingWindowTriggerTypePropertiesOutput;
-  type: "undefined";
+  type: "TumblingWindowTrigger";
 }
 
 export interface TumblingWindowTriggerTypePropertiesOutput {
@@ -8641,7 +8641,7 @@ export interface RetryPolicyOutput {
 
 export interface DependencyReferenceOutputBase {
   type:
-    | "DependencyReference"
+    | "dependencyReference"
     | "TriggerDependencyReference"
     | "TumblingWindowTriggerDependencyReference"
     | "SelfDependencyTumblingWindowTriggerReference";
@@ -8669,7 +8669,7 @@ export interface TumblingWindowTriggerDependencyReferenceOutput
   offset?: string;
   /** The size of the window when evaluating the dependency. If undefined the frequency of the tumbling window will be used. */
   size?: string;
-  type: "undefined";
+  type: "TumblingWindowTriggerDependencyReference";
 }
 
 export interface SelfDependencyTumblingWindowTriggerReferenceOutput
@@ -8678,7 +8678,7 @@ export interface SelfDependencyTumblingWindowTriggerReferenceOutput
   offset: string;
   /** The size of the window when evaluating the dependency. If undefined the frequency of the tumbling window will be used. */
   size?: string;
-  type: "undefined";
+  type: "SelfDependencyTumblingWindowTriggerReference";
 }
 
 export interface ChainingTriggerOutput extends TriggerOutputBase {
@@ -8686,7 +8686,7 @@ export interface ChainingTriggerOutput extends TriggerOutputBase {
   pipeline: TriggerPipelineReferenceOutput;
   /** Chaining Trigger properties. */
   typeProperties: ChainingTriggerTypePropertiesOutput;
-  type: "undefined";
+  type: "ChainingTrigger";
 }
 
 export interface ChainingTriggerTypePropertiesOutput {
@@ -8714,7 +8714,7 @@ export interface ManagedIntegrationRuntimeOutput
   typeProperties: ManagedIntegrationRuntimeTypePropertiesOutput;
   /** Managed Virtual Network reference. */
   managedVirtualNetwork?: ManagedVirtualNetworkReferenceOutput;
-  type: "undefined";
+  type: "Managed";
 }
 
 export interface ManagedIntegrationRuntimeTypePropertiesOutput {
@@ -8814,7 +8814,7 @@ export interface EntityReferenceOutput {
 }
 
 export interface CustomSetupBaseOutput {
-  type: "CustomSetupBase";
+  type: "customSetupBase";
 }
 
 export interface ManagedVirtualNetworkReferenceOutput {
@@ -8828,7 +8828,7 @@ export interface SelfHostedIntegrationRuntimeOutput
   extends IntegrationRuntimeOutputBase {
   /** When this property is not null, means this is a linked integration runtime. The property is used to access original integration runtime. */
   typeProperties?: SelfHostedIntegrationRuntimeTypePropertiesOutput;
-  type: "undefined";
+  type: "SelfHosted";
 }
 
 export interface SelfHostedIntegrationRuntimeTypePropertiesOutput {
@@ -8837,21 +8837,21 @@ export interface SelfHostedIntegrationRuntimeTypePropertiesOutput {
 }
 
 export interface LinkedIntegrationRuntimeTypeOutputBase {
-  authorizationType: "LinkedIntegrationRuntimeType" | "Key" | "RBAC";
+  authorizationType: "linkedIntegrationRuntimeType" | "Key" | "RBAC";
 }
 
 export interface LinkedIntegrationRuntimeKeyAuthorizationOutput
   extends LinkedIntegrationRuntimeTypeOutputBase {
   /** The key used for authorization. */
   key: SecureStringOutput;
-  authorizationType: "undefined";
+  authorizationType: "Key";
 }
 
 export interface LinkedIntegrationRuntimeRbacAuthorizationOutput
   extends LinkedIntegrationRuntimeTypeOutputBase {
   /** The resource identifier of the integration runtime to be shared. */
   resourceId: string;
-  authorizationType: "undefined";
+  authorizationType: "RBAC";
 }
 
 export type DataFlowOutput =

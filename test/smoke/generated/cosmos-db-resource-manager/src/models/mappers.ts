@@ -425,6 +425,7 @@ export const DatabaseRestoreResource: coreClient.CompositeMapper = {
 };
 
 export const BackupPolicy: coreClient.CompositeMapper = {
+  serializedName: "BackupPolicy",
   type: {
     name: "Composite",
     className: "BackupPolicy",

@@ -4620,6 +4620,7 @@ export const FirewallPolicyListResult: coreClient.CompositeMapper = {
 };
 
 export const FirewallPolicyRuleCollection: coreClient.CompositeMapper = {
+  serializedName: "FirewallPolicyRuleCollection",
   type: {
     name: "Composite",
     className: "FirewallPolicyRuleCollection",
@@ -14129,6 +14130,7 @@ export const FirewallPolicyNatRuleCollectionAction: coreClient.CompositeMapper =
 };
 
 export const FirewallPolicyRule: coreClient.CompositeMapper = {
+  serializedName: "FirewallPolicyRule",
   type: {
     name: "Composite",
     className: "FirewallPolicyRule",
