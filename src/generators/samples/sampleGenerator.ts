@@ -33,7 +33,7 @@ export function generateSamples(
   }
   for (const sampleGroup of sampleGroups as SampleGroup[]) {
     try {
-      const file = fs.readFileSync(path.join(__dirname, "../static/samples.ts.hbs"), {
+      const file = fs.readFileSync(path.join(__dirname, "samples.ts.hbs"), {
         encoding: "utf-8"
       });
 

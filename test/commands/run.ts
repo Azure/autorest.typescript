@@ -31,7 +31,8 @@ export async function runAutorest(
     isTestPackage,
     generateTest,
     coreHttpCompatMode,
-    azureArm
+    azureArm,
+    generateSample
   } = options;
   let autorestCommand = `autorest${/^win/.test(process.platform) ? ".cmd" : ""
     }`;
@@ -112,6 +113,10 @@ export async function runAutorest(
 
   if (packageDetails.version !== "") {
     commandArguments.push(`--package-version=${packageDetails.version}`);
+  }
+
+  if (generateSample) {
+    commandArguments.push(`--generate-sample=${generateSample}`);
   }
 
   commandArguments.push(
