@@ -32,6 +32,7 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
   const azureOutputDirectory = await getAzureOutputDirectoryPath(host);
   const headAsBoolean = await getHeadAsBoolean(host);
   const isTestPackage = await getIsTestPackage(host);
+  const generateSample = await getGenerateSample(host);
   const generateTest = await getGenerateTest(host);
   const batch = await getBatch(host);
   const multiClient = await getMultiClient(host);
@@ -66,6 +67,7 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
     generateTest,
     batch,
     multiClient,
+    generateSample,
     azureSdkForJs,
     productDocLink,
     coreHttpCompatMode,
@@ -90,6 +92,13 @@ async function getHeadAsBoolean(host: AutorestExtensionHost): Promise<boolean> {
 async function getIsTestPackage(host: AutorestExtensionHost): Promise<boolean> {
   const isTestPackage = await host.getValue("is-test-package");
   return isTestPackage === null ? false : Boolean(isTestPackage);
+}
+
+async function getGenerateSample(
+  host: AutorestExtensionHost
+): Promise<boolean> {
+  const generateSample = await host.getValue("generate-sample");
+  return generateSample === undefined || generateSample === null ? false : Boolean(generateSample);
 }
 
 async function getGenerateTest(host: AutorestExtensionHost): Promise<boolean> {
@@ -141,7 +150,11 @@ async function getGenerateMetadata(host: AutorestExtensionHost) {
 }
 
 async function getLicenseHeader(host: AutorestExtensionHost): Promise<boolean> {
-  return (await host.getValue("license-header")) || false;
+  const license: boolean | undefined = await host.getValue("license-header");
+  if (license === undefined) {
+    return true;
+  }
+  return license;
 }
 
 async function getTitle(

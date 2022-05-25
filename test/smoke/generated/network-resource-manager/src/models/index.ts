@@ -7002,7 +7002,7 @@ export type ContainerNetworkInterfaceConfiguration = SubResource & {
 };
 
 /** Reference to container resource in remote resource provider. */
-export type Container = SubResource & {};
+export type Container = SubResource;
 
 /** Container network interface child resource. */
 export type ContainerNetworkInterface = SubResource & {
@@ -8410,7 +8410,7 @@ export type BastionHost = Resource & {
 };
 
 /** Describes a Virtual Machine. */
-export type Vm = Resource & {};
+export type Vm = Resource;
 
 /** Custom IP prefix resource. */
 export type CustomIpPrefix = Resource & {
@@ -9695,10 +9695,10 @@ export type WebApplicationFirewallPolicy = Resource & {
 };
 
 /** The visibility list of the private link service. */
-export type PrivateLinkServicePropertiesVisibility = ResourceSet & {};
+export type PrivateLinkServicePropertiesVisibility = ResourceSet;
 
 /** The auto-approval list of the private link service. */
-export type PrivateLinkServicePropertiesAutoApproval = ResourceSet & {};
+export type PrivateLinkServicePropertiesAutoApproval = ResourceSet;
 
 /** Firewall Policy NAT Rule Collection. */
 export type FirewallPolicyNatRuleCollection = FirewallPolicyRuleCollection & {

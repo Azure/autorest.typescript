@@ -1056,7 +1056,7 @@ export type MhsmPrivateLinkResource = ManagedHsmResource & {
 };
 
 /** The secret management attributes. */
-export type SecretAttributes = Attributes & {};
+export type SecretAttributes = Attributes;
 
 /** Defines headers for PrivateEndpointConnections_put operation. */
 export interface PrivateEndpointConnectionsPutHeaders {

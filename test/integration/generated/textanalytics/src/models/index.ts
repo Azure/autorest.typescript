@@ -549,19 +549,19 @@ export type AnalyzeJobState = AnalyzeJobMetadata &
     statistics?: TextDocumentBatchStatistics;
   };
 
-export type TasksStateTasksDetails = TaskState & {};
+export type TasksStateTasksDetails = TaskState;
 
 export type TasksStateTasksEntityRecognitionTasksItem = TaskState &
-  Components15Gvwi3SchemasTasksstatePropertiesTasksPropertiesEntityrecognitiontasksItemsAllof1 & {};
+  Components15Gvwi3SchemasTasksstatePropertiesTasksPropertiesEntityrecognitiontasksItemsAllof1;
 
 export type TasksStateTasksEntityRecognitionPiiTasksItem = TaskState &
-  Components15X8E9LSchemasTasksstatePropertiesTasksPropertiesEntityrecognitionpiitasksItemsAllof1 & {};
+  Components15X8E9LSchemasTasksstatePropertiesTasksPropertiesEntityrecognitionpiitasksItemsAllof1;
 
 export type TasksStateTasksKeyPhraseExtractionTasksItem = TaskState &
-  Components1D9IzucSchemasTasksstatePropertiesTasksPropertiesKeyphraseextractiontasksItemsAllof1 & {};
+  Components1D9IzucSchemasTasksstatePropertiesTasksPropertiesKeyphraseextractiontasksItemsAllof1;
 
 export type TasksStateTasksEntityLinkingTasksItem = TaskState &
-  ComponentsIfu7BjSchemasTasksstatePropertiesTasksPropertiesEntitylinkingtasksItemsAllof1 & {};
+  ComponentsIfu7BjSchemasTasksstatePropertiesTasksPropertiesEntitylinkingtasksItemsAllof1;
 
 export type HealthcareEntity = Entity & {
   assertion?: HealthcareAssertion;

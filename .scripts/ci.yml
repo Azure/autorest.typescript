@@ -57,18 +57,18 @@ stages:
           - template: globals.yml
         strategy:
           matrix:
-            macOS_Node12:
+            macOS_Node16:
               Pool:
               OSVmImage: "macOS-10.15"
-              NodeTestVersion: "12.x"
-            Browser_Linux_Node12:
+              NodeTestVersion: "16.x"
+            Browser_Linux_Node16:
               Pool: ${{ parameters.LinuxPool }}
               OSVmImage:
-              NodeTestVersion: "12.x"
+              NodeTestVersion: "16.x"
             Linux_Node14:
               Pool: ${{ parameters.LinuxPool }}
               OSVmImage: "ubuntu-18.04"
-              NodeTestVersion: "14.x"
+              NodeTestVersion: "16.x"
             Linux_Node16:
               Pool: ${{ parameters.LinuxPool }}
               OSVmImage: "ubuntu-18.04"
@@ -89,18 +89,18 @@ stages:
           - template: globals.yml
         strategy:
           matrix:
-            macOS_Node12:
+            macOS_Node16:
               Pool:
               OSVmImage: "macOS-10.15"
-              NodeTestVersion: "12.x"
-            Browser_Linux_Node12:
+              NodeTestVersion: "16.x"
+            Browser_Linux_Node16:
               Pool: ${{ parameters.LinuxPool }}
               OSVmImage:
-              NodeTestVersion: "12.x"
+              NodeTestVersion: "16.x"
             Linux_Node14:
               Pool: ${{ parameters.LinuxPool }}
               OSVmImage: "ubuntu-18.04"
-              NodeTestVersion: "14.x"
+              NodeTestVersion: "16.x"
             Linux_Node16:
               Pool: ${{ parameters.LinuxPool }}
               OSVmImage: "ubuntu-18.04"
@@ -124,18 +124,18 @@ stages:
           - template: globals.yml
         strategy:
           matrix:
-            macOS_Node12:
+            macOS_Node16:
               Pool:
               OSVmImage: "macOS-10.15"
-              NodeTestVersion: "12.x"
-            Browser_Linux_Node12:
+              NodeTestVersion: "16.x"
+            Browser_Linux_Node16:
               Pool: ${{ parameters.LinuxPool }}
               OSVmImage:
-              NodeTestVersion: "12.x"
+              NodeTestVersion: "16.x"
             Linux_Node14:
               Pool: ${{ parameters.LinuxPool }}
               OSVmImage: "ubuntu-18.04"
-              NodeTestVersion: "14.x"
+              NodeTestVersion: "16.x"
             Linux_Node16:
               Pool: ${{ parameters.LinuxPool }}
               OSVmImage: "ubuntu-18.04"

@@ -3971,7 +3971,7 @@ export interface SecurityEventsFilterParameters {
 }
 
 /** ARM proxy resource. */
-export type ProxyResource = Resource & {};
+export type ProxyResource = Resource;
 
 /** ARM tracked top level resource. */
 export type TrackedResource = Resource & {
@@ -3982,7 +3982,7 @@ export type TrackedResource = Resource & {
 };
 
 /** ARM proxy resource. */
-export type ProxyResourceWithWritableName = ResourceWithWritableName & {};
+export type ProxyResourceWithWritableName = ResourceWithWritableName;
 
 /** A recoverable database */
 export type RecoverableDatabase = ProxyResource & {
@@ -4977,7 +4977,7 @@ export type DatabaseColumn = ProxyResource & {
 };
 
 /** A database schema resource. */
-export type DatabaseSchema = ProxyResource & {};
+export type DatabaseSchema = ProxyResource;
 
 /** A database security alert policy. */
 export type DatabaseSecurityAlertPolicy = ProxyResource & {
@@ -5389,7 +5389,7 @@ export type JobTargetGroup = ProxyResource & {
 };
 
 /** A job version. */
-export type JobVersion = ProxyResource & {};
+export type JobVersion = ProxyResource;
 
 /** A long term retention policy. */
 export type LongTermRetentionPolicy = ProxyResource & {
