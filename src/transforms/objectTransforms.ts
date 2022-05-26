@@ -236,6 +236,9 @@ function transformPolymorphicObject(
   uberParents: ObjectDetails[]
 ): PolymorphicObjectDetails {
   const schema = objectDetails.schema;
+  if (schema.language.default.name === "DotFish") {
+    schema;
+  }
   let uberParent: ObjectSchema | undefined = objectDetails.schema;
   const allParents = getSchemaParents(schema);
   if (allParents && allParents.length) {
@@ -280,6 +283,7 @@ function transformPolymorphicObject(
     ).name;
 
     const childDiscriminators = getChildrenDiscriminators(schema);
+    childDiscriminators.push(schema.language.default.name);
 
     const propertyToMark = objectDetails.properties.find(
       p => p.name === discriminatorProperty
@@ -302,7 +306,12 @@ function transformPolymorphicObject(
       const childDiscriminators = getChildrenDiscriminators(schema);
       discriminatorValues = {
         [getLanguageMetadata(uberParent.discriminator.property.language)
-          .name]: [schema.discriminatorValue!, ...childDiscriminators]
+          .name]: [
+          schema.discriminatorValue
+            ? schema.discriminatorValue
+            : schema.language.default.name,
+          ...childDiscriminators
+        ]
       };
     }
   }

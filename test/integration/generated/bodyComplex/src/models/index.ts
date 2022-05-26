@@ -147,28 +147,28 @@ export type Cat = Pet & {
 
 export type Salmon = Fish & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
-  fishtype: "salmon" | "smart_salmon" | "Salmon";
+  fishtype: "salmon" | "smart_salmon";
   location?: string;
   iswild?: boolean;
 };
 
 export type Shark = Fish & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
-  fishtype: "shark" | "sawshark" | "goblin" | "cookiecuttershark" | "Shark";
+  fishtype: "shark" | "sawshark" | "goblin" | "cookiecuttershark";
   age?: number;
   birthday: Date;
 };
 
 export type DotSalmon = DotFish & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
-  fishType: "DotSalmon" | "DotSalmon";
+  fishType: "DotSalmon";
   location?: string;
   iswild?: boolean;
 };
 
 export type MyDerivedType = MyBaseType & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
-  kind: "Kind1" | "MyDerivedType";
+  kind: "Kind1";
   propD1?: string;
 };
 
@@ -178,7 +178,7 @@ export type Siamese = Cat & {
 
 export type SmartSalmon = Salmon & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
-  fishtype: "smart_salmon" | "SmartSalmon";
+  fishtype: "smart_salmon";
   /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
   collegeDegree?: string;
@@ -186,13 +186,13 @@ export type SmartSalmon = Salmon & {
 
 export type Sawshark = Shark & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
-  fishtype: "sawshark" | "Sawshark";
+  fishtype: "sawshark";
   picture?: Uint8Array;
 };
 
 export type Goblinshark = Shark & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
-  fishtype: "goblin" | "Goblinshark";
+  fishtype: "goblin";
   jawsize?: number;
   /** Colors possible */
   color?: GoblinSharkColor;
@@ -200,7 +200,7 @@ export type Goblinshark = Shark & {
 
 export type Cookiecuttershark = Shark & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
-  fishtype: "cookiecuttershark" | "Cookiecuttershark";
+  fishtype: "cookiecuttershark";
 };
 
 /** Known values of {@link CMYKColors} that the service accepts. */
