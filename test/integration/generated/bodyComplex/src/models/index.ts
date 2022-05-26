@@ -103,7 +103,8 @@ export interface Fish {
     | "shark"
     | "sawshark"
     | "goblin"
-    | "cookiecuttershark";
+    | "cookiecuttershark"
+    | "Fish";
   species?: string;
   length: number;
   siblings?: FishUnion[];
@@ -111,7 +112,7 @@ export interface Fish {
 
 export interface DotFish {
   /** Polymorphic discriminator, which specifies the different types this object can be */
-  fishType: "DotSalmon";
+  fishType: "DotSalmon" | "DotFish";
   species?: string;
 }
 
@@ -130,7 +131,7 @@ export interface ReadonlyObj {
 
 export interface MyBaseType {
   /** Polymorphic discriminator, which specifies the different types this object can be */
-  kind: "Kind1";
+  kind: "Kind1" | "MyBaseType";
   propB1?: string;
   propBH1?: string;
 }
@@ -146,28 +147,28 @@ export type Cat = Pet & {
 
 export type Salmon = Fish & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
-  fishtype: "salmon" | "smart_salmon";
+  fishtype: "salmon" | "smart_salmon" | "Salmon";
   location?: string;
   iswild?: boolean;
 };
 
 export type Shark = Fish & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
-  fishtype: "shark" | "sawshark" | "goblin" | "cookiecuttershark";
+  fishtype: "shark" | "sawshark" | "goblin" | "cookiecuttershark" | "Shark";
   age?: number;
   birthday: Date;
 };
 
 export type DotSalmon = DotFish & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
-  fishType: "DotSalmon";
+  fishType: "DotSalmon" | "DotSalmon";
   location?: string;
   iswild?: boolean;
 };
 
 export type MyDerivedType = MyBaseType & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
-  kind: "Kind1";
+  kind: "Kind1" | "MyDerivedType";
   propD1?: string;
 };
 
@@ -177,7 +178,7 @@ export type Siamese = Cat & {
 
 export type SmartSalmon = Salmon & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
-  fishtype: "smart_salmon";
+  fishtype: "smart_salmon" | "SmartSalmon";
   /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
   collegeDegree?: string;
@@ -185,13 +186,13 @@ export type SmartSalmon = Salmon & {
 
 export type Sawshark = Shark & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
-  fishtype: "sawshark";
+  fishtype: "sawshark" | "Sawshark";
   picture?: Uint8Array;
 };
 
 export type Goblinshark = Shark & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
-  fishtype: "goblin";
+  fishtype: "goblin" | "Goblinshark";
   jawsize?: number;
   /** Colors possible */
   color?: GoblinSharkColor;
@@ -199,7 +200,7 @@ export type Goblinshark = Shark & {
 
 export type Cookiecuttershark = Shark & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
-  fishtype: "cookiecuttershark";
+  fishtype: "cookiecuttershark" | "Cookiecuttershark";
 };
 
 /** Known values of {@link CMYKColors} that the service accepts. */

@@ -242,14 +242,14 @@ export function getSecurityInfoFromModel(security: Security) {
       });
     } else if (
       credentialKeyHeaderName === "" &&
-      securitySchema.type === "ApiKey" &&
+      securitySchema.type === "Key" &&
       (securitySchema as KeySecurityScheme).in === ParameterLocation.Header
     ) {
       credentialKeyHeaderName = (securitySchema as KeySecurityScheme).name;
     } else if (
       credentialKeyHeaderName !== "" &&
       credentialKeyHeaderName !== (securitySchema as KeySecurityScheme).name &&
-      securitySchema.type === "ApiKey" &&
+      securitySchema.type === "Key" &&
       (securitySchema as KeySecurityScheme).in === ParameterLocation.Header
     ) {
       logger.warning(

@@ -253,7 +253,7 @@ function getDiscriminatorValue(objectSchema: ObjectSchema): string | undefined {
   const discriminatorValue = objectSchema.discriminatorValue
     ? objectSchema.discriminatorValue
     : objectSchema.discriminator?.property.isDiscriminator
-    ? normalizeName(objectSchema.language.default.name, NameType.Property)
+    ? objectSchema.language.default.name
     : undefined;
   const children = objectSchema.children?.immediate ?? [];
 

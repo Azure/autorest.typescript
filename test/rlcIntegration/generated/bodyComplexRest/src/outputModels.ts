@@ -101,7 +101,7 @@ export interface FishOutputBase {
   length: number;
   siblings?: Array<FishOutput>;
   fishtype:
-    | "fish"
+    | "Fish"
     | "salmon"
     | "smart_salmon"
     | "shark"
@@ -112,7 +112,7 @@ export interface FishOutputBase {
 
 export interface DotFishOutputBase {
   species?: string;
-  "fish.type": "dotFish" | "DotSalmon";
+  "fish.type": "DotFish" | "DotSalmon";
 }
 
 export interface DotFishMarketOutput {
@@ -142,7 +142,7 @@ export interface ReadonlyObjOutput {
 export interface MyBaseTypeOutputBase {
   propB1?: string;
   helper?: MyBaseHelperTypeOutput;
-  kind: "myBaseType" | "Kind1";
+  kind: "MyBaseType" | "Kind1";
 }
 
 export interface MyBaseHelperTypeOutput {

@@ -200,7 +200,7 @@ export interface DataFlowBase {
   annotations?: Array<any>;
   /** The folder that this data flow is in. If not specified, Data flow will appear at the root level. */
   folder?: DataFlowFolder;
-  type: "dataFlow" | "MappingDataFlow" | "Flowlet";
+  type: "DataFlow" | "MappingDataFlow" | "Flowlet";
 }
 
 export interface DataFlowFolder {
@@ -228,7 +228,7 @@ export interface IntegrationRuntimeDebugResource
 export interface IntegrationRuntimeBase extends Record<string, unknown> {
   /** Integration runtime description. */
   description?: string;
-  type: "integrationRuntime" | "Managed" | "SelfHosted";
+  type: "IntegrationRuntime" | "Managed" | "SelfHosted";
 }
 
 export interface SubResourceDebugResource {
@@ -279,7 +279,7 @@ export interface DatasetBase extends Record<string, unknown> {
   /** The folder that this Dataset is in. If not specified, Dataset will appear at the root level. */
   folder?: DatasetFolder;
   type:
-    | "dataset"
+    | "Dataset"
     | "AmazonS3Object"
     | "Avro"
     | "Excel"
@@ -420,7 +420,7 @@ export interface LinkedServiceBase extends Record<string, unknown> {
   /** List of tags that can be used for describing the linked service. */
   annotations?: Array<any>;
   type:
-    | "linkedService"
+    | "LinkedService"
     | "AzureStorage"
     | "AzureBlobStorage"
     | "AzureTableStorage"
@@ -771,7 +771,7 @@ export interface ActivityBase extends Record<string, unknown> {
   /** Activity user properties. */
   userProperties?: Array<UserProperty>;
   type:
-    | "activity"
+    | "Activity"
     | "Container"
     | "Execution"
     | "Copy"
@@ -1059,7 +1059,7 @@ export interface TriggerBase extends Record<string, unknown> {
   /** List of tags that can be used for describing the trigger. */
   annotations?: Array<any>;
   type:
-    | "trigger"
+    | "Trigger"
     | "RerunTumblingWindowTrigger"
     | "MultiplePipelineTrigger"
     | "ScheduleTrigger"
@@ -1256,7 +1256,7 @@ export interface SecureString extends SecretBaseBase {
 }
 
 export interface SecretBaseBase {
-  type: "secretBase" | "SecureString" | "AzureKeyVaultSecret";
+  type: "SecretBase" | "SecureString" | "AzureKeyVaultSecret";
 }
 
 export interface AzureKeyVaultSecretReference extends SecretBaseBase {
@@ -1415,7 +1415,7 @@ export interface DatasetLocationBase extends Record<string, unknown> {
   /** Specify the file name of dataset. Type: string (or Expression with resultType string). */
   fileName?: any;
   type:
-    | "datasetLocation"
+    | "DatasetLocation"
     | "AzureBlobStorageLocation"
     | "AzureBlobFSLocation"
     | "AzureDataLakeStoreLocation"
@@ -1493,7 +1493,7 @@ export interface DatasetStorageFormatBase extends Record<string, unknown> {
   /** Deserializer. Type: string (or Expression with resultType string). */
   deserializer?: any;
   type:
-    | "datasetStorageFormat"
+    | "DatasetStorageFormat"
     | "TextFormat"
     | "JsonFormat"
     | "AvroFormat"
@@ -3427,7 +3427,7 @@ export interface WebLinkedServiceTypePropertiesBase {
   /** The URL of the web service endpoint, e.g. http://www.microsoft.com . Type: string (or Expression with resultType string). */
   url: any;
   authenticationType:
-    | "webLinkedServiceTypeProperties"
+    | "WebLinkedServiceTypeProperties"
     | "Anonymous"
     | "Basic"
     | "ClientCertificate";
@@ -5152,7 +5152,7 @@ export interface StoreReadSettingsBase extends Record<string, unknown> {
   /** The maximum concurrent connection count for the source data store. Type: integer (or Expression with resultType integer). */
   maxConcurrentConnections?: any;
   type:
-    | "storeReadSettings"
+    | "StoreReadSettings"
     | "AzureBlobStorageReadSettings"
     | "AzureBlobFSReadSettings"
     | "AzureDataLakeStoreReadSettings"
@@ -5324,7 +5324,7 @@ export interface StoreWriteSettingsBase extends Record<string, unknown> {
   /** The type of copy behavior for copy sink. */
   copyBehavior?: any;
   type:
-    | "storeWriteSettings"
+    | "StoreWriteSettings"
     | "SftpWriteSettings"
     | "AzureBlobStorageWriteSettings"
     | "AzureBlobFSWriteSettings"
@@ -5481,7 +5481,7 @@ export interface AzureFileStorageWriteSettings extends StoreWriteSettingsBase {
 
 export interface FormatReadSettingsBase extends Record<string, unknown> {
   type:
-    | "formatReadSettings"
+    | "FormatReadSettings"
     | "DelimitedTextReadSettings"
     | "JsonReadSettings"
     | "XmlReadSettings"
@@ -5490,7 +5490,7 @@ export interface FormatReadSettingsBase extends Record<string, unknown> {
 
 export interface CompressionReadSettingsBase extends Record<string, unknown> {
   type:
-    | "compressionReadSettings"
+    | "CompressionReadSettings"
     | "ZipDeflateReadSettings"
     | "TarReadSettings"
     | "TarGZipReadSettings";
@@ -5550,7 +5550,7 @@ export interface BinaryReadSettings extends FormatReadSettingsBase {
 
 export interface FormatWriteSettingsBase extends Record<string, unknown> {
   type:
-    | "formatWriteSettings"
+    | "FormatWriteSettings"
     | "AvroWriteSettings"
     | "OrcWriteSettings"
     | "ParquetWriteSettings"
@@ -5620,7 +5620,7 @@ export interface CopySourceBase extends Record<string, unknown> {
   /** The maximum concurrent connection count for the source data store. Type: integer (or Expression with resultType integer). */
   maxConcurrentConnections?: any;
   type:
-    | "copySource"
+    | "CopySource"
     | "AvroSource"
     | "ExcelSource"
     | "ParquetSource"
@@ -5792,7 +5792,7 @@ export interface CopySinkBase extends Record<string, unknown> {
   /** The maximum concurrent connection count for the sink data store. Type: integer (or Expression with resultType integer). */
   maxConcurrentConnections?: any;
   type:
-    | "copySink"
+    | "CopySink"
     | "DelimitedTextSink"
     | "JsonSink"
     | "OrcSink"
@@ -6898,7 +6898,7 @@ export interface SnowflakeExportCopyCommand extends ExportSettingsBase {
 
 export interface ExportSettingsBase extends Record<string, unknown> {
   type:
-    | "exportSettings"
+    | "ExportSettings"
     | "SnowflakeExportCopyCommand"
     | "AzureDatabricksDeltaLakeExportCommand";
 }
@@ -6939,7 +6939,7 @@ export interface AzureDatabricksDeltaLakeImportCommand
 
 export interface ImportSettingsBase extends Record<string, unknown> {
   type:
-    | "importSettings"
+    | "ImportSettings"
     | "AzureDatabricksDeltaLakeImportCommand"
     | "SnowflakeImportCopyCommand";
 }
@@ -8227,7 +8227,7 @@ export interface RetryPolicy {
 
 export interface DependencyReferenceBase {
   type:
-    | "dependencyReference"
+    | "DependencyReference"
     | "TriggerDependencyReference"
     | "TumblingWindowTriggerDependencyReference"
     | "SelfDependencyTumblingWindowTriggerReference";
@@ -8399,7 +8399,7 @@ export interface EntityReference {
 }
 
 export interface CustomSetupBase {
-  type: "customSetupBase";
+  type: "CustomSetupBase";
 }
 
 export interface ManagedVirtualNetworkReference {
@@ -8421,7 +8421,7 @@ export interface SelfHostedIntegrationRuntimeTypeProperties {
 }
 
 export interface LinkedIntegrationRuntimeTypeBase {
-  authorizationType: "linkedIntegrationRuntimeType" | "Key" | "RBAC";
+  authorizationType: "LinkedIntegrationRuntimeType" | "Key" | "RBAC";
 }
 
 export interface LinkedIntegrationRuntimeKeyAuthorization

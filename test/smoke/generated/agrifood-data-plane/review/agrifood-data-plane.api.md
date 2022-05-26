@@ -2108,7 +2108,7 @@ export type GeoJsonObject = GeoJsonObjectBase | MultiPolygon | Point | Polygon;
 // @public (undocumented)
 export interface GeoJsonObjectBase {
     // (undocumented)
-    type: "geoJsonObject" | "MultiPolygon" | "Point" | "Polygon";
+    type: "GeoJsonObject" | "MultiPolygon" | "Point" | "Polygon";
 }
 
 // @public (undocumented)
@@ -2117,7 +2117,7 @@ export type GeoJsonObjectOutput = GeoJsonObjectOutputBase | MultiPolygonOutput |
 // @public (undocumented)
 export interface GeoJsonObjectOutputBase {
     // (undocumented)
-    type: "geoJsonObject" | "MultiPolygon" | "Point" | "Polygon";
+    type: "GeoJsonObject" | "MultiPolygon" | "Point" | "Polygon";
 }
 
 // @public

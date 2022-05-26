@@ -25,7 +25,7 @@ import { getLanguageMetadata } from "../utils/languageHelpers";
 import { generateMethodShortcutImplementation } from "./generateMethodShortcuts";
 import { Paths } from "./interfaces";
 import { pathDictionary } from "./generateClientDefinition";
-import { getSecurityInfoFromModel } from "../utils/schemaHelpers"
+import { getSecurityInfoFromModel } from "../utils/schemaHelpers";
 
 export function generateClient(model: CodeModel, project: Project) {
   const name = normalizeName(
@@ -51,19 +51,31 @@ export function generateClient(model: CodeModel, project: Project) {
     credentialScopes,
     credentialKeyHeaderName
   } = getSecurityInfoFromModel(model.security);
-  const credentialTypes = addCredentials ? ["TokenCredential"] : [];
+  const credentialTypes =
+    credentialScopes && credentialScopes.length > 0 ? ["TokenCredential"] : [];
 
   if (credentialKeyHeaderName) {
     credentialTypes.push("KeyCredential");
   }
 
   const commonClientParams = [
-    ...(uriParameter ? [{ name: uriParameter, type: "string" }] : []),
-    ...(addCredentials === false || !credentialScopes || credentialScopes.length === 0
+    ...(uriParameter
+      ? [
+          {
+            name: uriParameter,
+            type: "string"
+          }
+        ]
+      : []),
+    ...(addCredentials === false ||
+    ((!credentialScopes || credentialScopes.length === 0) &&
+      !credentialKeyHeaderName)
       ? []
       : [{ name: "credentials", type: credentialTypes.join(" | ") }])
   ];
-  const clientInterfaceName = clientName.endsWith("Client")? `${clientName}`: `${clientName}Client`;
+  const clientInterfaceName = clientName.endsWith("Client")
+    ? `${clientName}`
+    : `${clientName}Client`;
 
   const functionStatement = {
     isExported: true,
@@ -89,7 +101,11 @@ export function generateClient(model: CodeModel, project: Project) {
     }
   ]);
 
-  if (addCredentials && credentialScopes && credentialScopes.length > 0) {
+  if (
+    addCredentials &&
+    ((credentialScopes && credentialScopes.length > 0) ||
+      credentialKeyHeaderName)
+  ) {
     clientFile.addImportDeclarations([
       {
         namedImports: credentialTypes,

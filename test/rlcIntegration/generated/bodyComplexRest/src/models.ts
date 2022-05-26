@@ -96,7 +96,7 @@ export interface FishBase {
   length: number;
   siblings?: Array<Fish>;
   fishtype:
-    | "fish"
+    | "Fish"
     | "salmon"
     | "smart_salmon"
     | "shark"
