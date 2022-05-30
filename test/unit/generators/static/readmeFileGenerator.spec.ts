@@ -79,7 +79,7 @@ describe("readmeFileGenerator", () => {
         /(\r\n|\n|\r)/gm,
         " "
       );
-      writeFileSync(path.join(__dirname, "files/case-hlcReadme2.md"), getFirstFileContent(project));
+      writeFileSync(path.join(__dirname, "files/case-hlcReadme.md"), getFirstFileContent(project));
       assert.strictEqual(actualContents, expectedContends);
     });
 
