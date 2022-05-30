@@ -103,8 +103,7 @@ export interface Fish {
     | "shark"
     | "sawshark"
     | "goblin"
-    | "cookiecuttershark"
-    | "Fish";
+    | "cookiecuttershark";
   species?: string;
   length: number;
   siblings?: FishUnion[];
@@ -112,7 +111,7 @@ export interface Fish {
 
 export interface DotFish {
   /** Polymorphic discriminator, which specifies the different types this object can be */
-  fishType: "DotSalmon" | "DotFish";
+  fishType: "DotSalmon";
   species?: string;
 }
 
@@ -131,7 +130,7 @@ export interface ReadonlyObj {
 
 export interface MyBaseType {
   /** Polymorphic discriminator, which specifies the different types this object can be */
-  kind: "Kind1" | "MyBaseType";
+  kind: "Kind1";
   propB1?: string;
   propBH1?: string;
 }

@@ -449,13 +449,11 @@ const clientOptions = {
 
           assert.deepStrictEqual(result.fishes, [
             {
-              fishType: "DotFish",
               location: "australia",
               iswild: false,
               species: "king"
             },
             {
-              fishType: "DotFish",
               location: "canada",
               iswild: true,
               species: "king"

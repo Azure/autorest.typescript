@@ -393,7 +393,6 @@ export const FactoryIdentity: coreClient.CompositeMapper = {
 };
 
 export const FactoryRepoConfiguration: coreClient.CompositeMapper = {
-  serializedName: "FactoryRepoConfiguration",
   type: {
     name: "Composite",
     className: "FactoryRepoConfiguration",
@@ -1424,7 +1423,6 @@ export const SsisObjectMetadataListResponse: coreClient.CompositeMapper = {
 };
 
 export const SsisObjectMetadata: coreClient.CompositeMapper = {
-  serializedName: "SsisObjectMetadata",
   type: {
     name: "Composite",
     className: "SsisObjectMetadata",
@@ -2837,7 +2835,6 @@ export const TriggerRun: coreClient.CompositeMapper = {
 };
 
 export const DataFlow: coreClient.CompositeMapper = {
-  serializedName: "DataFlow",
   type: {
     name: "Composite",
     className: "DataFlow",
@@ -3728,7 +3725,6 @@ export const Expression: coreClient.CompositeMapper = {
 };
 
 export const SecretBase: coreClient.CompositeMapper = {
-  serializedName: "SecretBase",
   type: {
     name: "Composite",
     className: "SecretBase",
@@ -4499,7 +4495,6 @@ export const EntityReference: coreClient.CompositeMapper = {
 };
 
 export const CustomSetupBase: coreClient.CompositeMapper = {
-  serializedName: "CustomSetupBase",
   type: {
     name: "Composite",
     className: "CustomSetupBase",
@@ -4559,7 +4554,6 @@ export const IntegrationRuntimeCustomerVirtualNetwork: coreClient.CompositeMappe
 };
 
 export const LinkedIntegrationRuntimeType: coreClient.CompositeMapper = {
-  serializedName: "LinkedIntegrationRuntimeType",
   type: {
     name: "Composite",
     className: "LinkedIntegrationRuntimeType",
@@ -4963,7 +4957,6 @@ export const SqlAlwaysEncryptedProperties: coreClient.CompositeMapper = {
 };
 
 export const WebLinkedServiceTypeProperties: coreClient.CompositeMapper = {
-  serializedName: "WebLinkedServiceTypeProperties",
   type: {
     name: "Composite",
     className: "WebLinkedServiceTypeProperties",
@@ -6863,7 +6856,6 @@ export const RetryPolicy: coreClient.CompositeMapper = {
 };
 
 export const DependencyReference: coreClient.CompositeMapper = {
-  serializedName: "DependencyReference",
   type: {
     name: "Composite",
     className: "DependencyReference",
