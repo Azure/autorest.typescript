@@ -145,7 +145,6 @@ export interface Cookiecuttershark extends SharkBase {
 }
 
 export type Fish =
-  | FishBase
   | Salmon
   | SmartSalmon
   | Shark

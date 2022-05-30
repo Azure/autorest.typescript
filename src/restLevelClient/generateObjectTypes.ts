@@ -103,7 +103,7 @@ function getPolymorphicTypeAlias(
   const unionTypes: string[] = [];
 
   // If the object itself has a discriminatorValue add its base to the union
-  if (objectSchema.discriminator?.property.isDiscriminator) {
+  if (objectSchema.discriminatorValue) {
     unionTypes.push(`${baseName}Base`);
   }
 

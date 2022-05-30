@@ -185,16 +185,15 @@ export interface MyDerivedTypeOutput extends MyBaseTypeOutputBase {
 }
 
 export type FishOutput =
-  | FishOutputBase
   | SalmonOutput
   | SmartSalmonOutput
   | SharkOutput
   | SawsharkOutput
   | GoblinsharkOutput
   | CookiecuttersharkOutput;
-export type DotFishOutput = DotFishOutputBase | DotSalmonOutput;
+export type DotFishOutput = DotSalmonOutput;
 export type SalmonOutput = SalmonOutputBase | SmartSalmonOutput;
-export type MyBaseTypeOutput = MyBaseTypeOutputBase | MyDerivedTypeOutput;
+export type MyBaseTypeOutput = MyDerivedTypeOutput;
 export type SharkOutput =
   | SharkOutputBase
   | SawsharkOutput
