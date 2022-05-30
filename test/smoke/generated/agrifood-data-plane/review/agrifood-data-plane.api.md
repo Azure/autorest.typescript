@@ -2104,7 +2104,7 @@ export interface FieldsListQueryParamProperties {
 }
 
 // @public (undocumented)
-export type GeoJsonObject = GeoJsonObjectBase | MultiPolygon | Point | Polygon;
+export type GeoJsonObject = MultiPolygon | Point | Polygon;
 
 // @public (undocumented)
 export interface GeoJsonObjectBase {
@@ -2113,7 +2113,7 @@ export interface GeoJsonObjectBase {
 }
 
 // @public (undocumented)
-export type GeoJsonObjectOutput = GeoJsonObjectOutputBase | MultiPolygonOutput | PointOutput | PolygonOutput;
+export type GeoJsonObjectOutput = MultiPolygonOutput | PointOutput | PolygonOutput;
 
 // @public (undocumented)
 export interface GeoJsonObjectOutputBase {

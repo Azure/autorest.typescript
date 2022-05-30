@@ -8438,13 +8438,11 @@ export interface LinkedIntegrationRuntimeRbacAuthorization
   authorizationType: "RBAC";
 }
 
-export type DataFlow = DataFlowBase | MappingDataFlow | Flowlet;
+export type DataFlow = MappingDataFlow | Flowlet;
 export type IntegrationRuntime =
-  | IntegrationRuntimeBase
   | ManagedIntegrationRuntime
   | SelfHostedIntegrationRuntime;
 export type Dataset =
-  | DatasetBase
   | AmazonS3Dataset
   | AvroDataset
   | ExcelDataset
@@ -8541,7 +8539,6 @@ export type Dataset =
   | SharePointOnlineListResourceDataset
   | AzureDatabricksDeltaLakeDataset;
 export type LinkedService =
-  | LinkedServiceBase
   | AzureStorageLinkedService
   | AzureBlobStorageLinkedService
   | AzureTableStorageLinkedService
@@ -8643,7 +8640,6 @@ export type LinkedService =
   | SnowflakeLinkedService
   | SharePointOnlineListLinkedService;
 export type Activity =
-  | ActivityBase
   | ControlActivity
   | ExecutionActivity
   | CopyActivity
@@ -8684,7 +8680,6 @@ export type Activity =
   | SynapseSparkJobDefinitionActivity
   | SqlPoolStoredProcedureActivity;
 export type Trigger =
-  | TriggerBase
   | RerunTumblingWindowTrigger
   | MultiplePipelineTrigger
   | ScheduleTrigger
@@ -8693,12 +8688,8 @@ export type Trigger =
   | CustomEventsTrigger
   | TumblingWindowTrigger
   | ChainingTrigger;
-export type SecretBase =
-  | SecretBaseBase
-  | SecureString
-  | AzureKeyVaultSecretReference;
+export type SecretBase = SecureString | AzureKeyVaultSecretReference;
 export type DatasetLocation =
-  | DatasetLocationBase
   | AzureBlobStorageLocation
   | AzureBlobFSLocation
   | AzureDataLakeStoreLocation
@@ -8711,14 +8702,12 @@ export type DatasetLocation =
   | HttpServerLocation
   | HdfsLocation;
 export type DatasetStorageFormat =
-  | DatasetStorageFormatBase
   | TextFormat
   | JsonFormat
   | AvroFormat
   | OrcFormat
   | ParquetFormat;
 export type WebLinkedServiceTypeProperties =
-  | WebLinkedServiceTypePropertiesBase
   | WebAnonymousAuthentication
   | WebBasicAuthentication
   | WebClientCertificateAuthentication;
@@ -8763,7 +8752,6 @@ export type ExecutionActivity =
   | SynapseNotebookActivity
   | SynapseSparkJobDefinitionActivity;
 export type StoreReadSettings =
-  | StoreReadSettingsBase
   | AzureBlobStorageReadSettings
   | AzureBlobFSReadSettings
   | AzureDataLakeStoreReadSettings
@@ -8776,7 +8764,6 @@ export type StoreReadSettings =
   | HttpReadSettings
   | HdfsReadSettings;
 export type StoreWriteSettings =
-  | StoreWriteSettingsBase
   | SftpWriteSettings
   | AzureBlobStorageWriteSettings
   | AzureBlobFSWriteSettings
@@ -8784,25 +8771,21 @@ export type StoreWriteSettings =
   | FileServerWriteSettings
   | AzureFileStorageWriteSettings;
 export type FormatReadSettings =
-  | FormatReadSettingsBase
   | DelimitedTextReadSettings
   | JsonReadSettings
   | XmlReadSettings
   | BinaryReadSettings;
 export type CompressionReadSettings =
-  | CompressionReadSettingsBase
   | ZipDeflateReadSettings
   | TarReadSettings
   | TarGZipReadSettings;
 export type FormatWriteSettings =
-  | FormatWriteSettingsBase
   | AvroWriteSettings
   | OrcWriteSettings
   | ParquetWriteSettings
   | DelimitedTextWriteSettings
   | JsonWriteSettings;
 export type CopySource =
-  | CopySourceBase
   | AvroSource
   | ExcelSource
   | ParquetSource
@@ -8899,7 +8882,6 @@ export type CopySource =
   | AzureDatabricksDeltaLakeSource
   | SharePointOnlineListSource;
 export type CopySink =
-  | CopySinkBase
   | DelimitedTextSink
   | JsonSink
   | OrcSink
@@ -8998,11 +8980,9 @@ export type TabularSource =
   | GoogleAdWordsSource
   | AmazonRedshiftSource;
 export type ExportSettings =
-  | ExportSettingsBase
   | SnowflakeExportCopyCommand
   | AzureDatabricksDeltaLakeExportCommand;
 export type ImportSettings =
-  | ImportSettingsBase
   | AzureDatabricksDeltaLakeImportCommand
   | SnowflakeImportCopyCommand;
 export type MultiplePipelineTrigger =
@@ -9012,7 +8992,6 @@ export type MultiplePipelineTrigger =
   | BlobEventsTrigger
   | CustomEventsTrigger;
 export type DependencyReference =
-  | DependencyReferenceBase
   | TriggerDependencyReference
   | TumblingWindowTriggerDependencyReference
   | SelfDependencyTumblingWindowTriggerReference;
@@ -9020,6 +8999,5 @@ export type TriggerDependencyReference =
   | TriggerDependencyReferenceBase
   | TumblingWindowTriggerDependencyReference;
 export type LinkedIntegrationRuntimeType =
-  | LinkedIntegrationRuntimeTypeBase
   | LinkedIntegrationRuntimeKeyAuthorization
   | LinkedIntegrationRuntimeRbacAuthorization;

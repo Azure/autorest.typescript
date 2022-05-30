@@ -8854,16 +8854,11 @@ export interface LinkedIntegrationRuntimeRbacAuthorizationOutput
   authorizationType: "RBAC";
 }
 
-export type DataFlowOutput =
-  | DataFlowOutputBase
-  | MappingDataFlowOutput
-  | FlowletOutput;
+export type DataFlowOutput = MappingDataFlowOutput | FlowletOutput;
 export type IntegrationRuntimeOutput =
-  | IntegrationRuntimeOutputBase
   | ManagedIntegrationRuntimeOutput
   | SelfHostedIntegrationRuntimeOutput;
 export type DatasetOutput =
-  | DatasetOutputBase
   | AmazonS3DatasetOutput
   | AvroDatasetOutput
   | ExcelDatasetOutput
@@ -8960,7 +8955,6 @@ export type DatasetOutput =
   | SharePointOnlineListResourceDatasetOutput
   | AzureDatabricksDeltaLakeDatasetOutput;
 export type LinkedServiceOutput =
-  | LinkedServiceOutputBase
   | AzureStorageLinkedServiceOutput
   | AzureBlobStorageLinkedServiceOutput
   | AzureTableStorageLinkedServiceOutput
@@ -9062,7 +9056,6 @@ export type LinkedServiceOutput =
   | SnowflakeLinkedServiceOutput
   | SharePointOnlineListLinkedServiceOutput;
 export type ActivityOutput =
-  | ActivityOutputBase
   | ControlActivityOutput
   | ExecutionActivityOutput
   | CopyActivityOutput
@@ -9103,7 +9096,6 @@ export type ActivityOutput =
   | SynapseSparkJobDefinitionActivityOutput
   | SqlPoolStoredProcedureActivityOutput;
 export type TriggerOutput =
-  | TriggerOutputBase
   | RerunTumblingWindowTriggerOutput
   | MultiplePipelineTriggerOutput
   | ScheduleTriggerOutput
@@ -9113,11 +9105,9 @@ export type TriggerOutput =
   | TumblingWindowTriggerOutput
   | ChainingTriggerOutput;
 export type SecretBaseOutput =
-  | SecretBaseOutputBase
   | SecureStringOutput
   | AzureKeyVaultSecretReferenceOutput;
 export type DatasetLocationOutput =
-  | DatasetLocationOutputBase
   | AzureBlobStorageLocationOutput
   | AzureBlobFSLocationOutput
   | AzureDataLakeStoreLocationOutput
@@ -9130,14 +9120,12 @@ export type DatasetLocationOutput =
   | HttpServerLocationOutput
   | HdfsLocationOutput;
 export type DatasetStorageFormatOutput =
-  | DatasetStorageFormatOutputBase
   | TextFormatOutput
   | JsonFormatOutput
   | AvroFormatOutput
   | OrcFormatOutput
   | ParquetFormatOutput;
 export type WebLinkedServiceTypePropertiesOutput =
-  | WebLinkedServiceTypePropertiesOutputBase
   | WebAnonymousAuthenticationOutput
   | WebBasicAuthenticationOutput
   | WebClientCertificateAuthenticationOutput;
@@ -9182,7 +9170,6 @@ export type ExecutionActivityOutput =
   | SynapseNotebookActivityOutput
   | SynapseSparkJobDefinitionActivityOutput;
 export type StoreReadSettingsOutput =
-  | StoreReadSettingsOutputBase
   | AzureBlobStorageReadSettingsOutput
   | AzureBlobFSReadSettingsOutput
   | AzureDataLakeStoreReadSettingsOutput
@@ -9195,7 +9182,6 @@ export type StoreReadSettingsOutput =
   | HttpReadSettingsOutput
   | HdfsReadSettingsOutput;
 export type StoreWriteSettingsOutput =
-  | StoreWriteSettingsOutputBase
   | SftpWriteSettingsOutput
   | AzureBlobStorageWriteSettingsOutput
   | AzureBlobFSWriteSettingsOutput
@@ -9203,25 +9189,21 @@ export type StoreWriteSettingsOutput =
   | FileServerWriteSettingsOutput
   | AzureFileStorageWriteSettingsOutput;
 export type FormatReadSettingsOutput =
-  | FormatReadSettingsOutputBase
   | DelimitedTextReadSettingsOutput
   | JsonReadSettingsOutput
   | XmlReadSettingsOutput
   | BinaryReadSettingsOutput;
 export type CompressionReadSettingsOutput =
-  | CompressionReadSettingsOutputBase
   | ZipDeflateReadSettingsOutput
   | TarReadSettingsOutput
   | TarGZipReadSettingsOutput;
 export type FormatWriteSettingsOutput =
-  | FormatWriteSettingsOutputBase
   | AvroWriteSettingsOutput
   | OrcWriteSettingsOutput
   | ParquetWriteSettingsOutput
   | DelimitedTextWriteSettingsOutput
   | JsonWriteSettingsOutput;
 export type CopySourceOutput =
-  | CopySourceOutputBase
   | AvroSourceOutput
   | ExcelSourceOutput
   | ParquetSourceOutput
@@ -9318,7 +9300,6 @@ export type CopySourceOutput =
   | AzureDatabricksDeltaLakeSourceOutput
   | SharePointOnlineListSourceOutput;
 export type CopySinkOutput =
-  | CopySinkOutputBase
   | DelimitedTextSinkOutput
   | JsonSinkOutput
   | OrcSinkOutput
@@ -9417,11 +9398,9 @@ export type TabularSourceOutput =
   | GoogleAdWordsSourceOutput
   | AmazonRedshiftSourceOutput;
 export type ExportSettingsOutput =
-  | ExportSettingsOutputBase
   | SnowflakeExportCopyCommandOutput
   | AzureDatabricksDeltaLakeExportCommandOutput;
 export type ImportSettingsOutput =
-  | ImportSettingsOutputBase
   | AzureDatabricksDeltaLakeImportCommandOutput
   | SnowflakeImportCopyCommandOutput;
 export type MultiplePipelineTriggerOutput =
@@ -9431,7 +9410,6 @@ export type MultiplePipelineTriggerOutput =
   | BlobEventsTriggerOutput
   | CustomEventsTriggerOutput;
 export type DependencyReferenceOutput =
-  | DependencyReferenceOutputBase
   | TriggerDependencyReferenceOutput
   | TumblingWindowTriggerDependencyReferenceOutput
   | SelfDependencyTumblingWindowTriggerReferenceOutput;
@@ -9439,6 +9417,5 @@ export type TriggerDependencyReferenceOutput =
   | TriggerDependencyReferenceOutputBase
   | TumblingWindowTriggerDependencyReferenceOutput;
 export type LinkedIntegrationRuntimeTypeOutput =
-  | LinkedIntegrationRuntimeTypeOutputBase
   | LinkedIntegrationRuntimeKeyAuthorizationOutput
   | LinkedIntegrationRuntimeRbacAuthorizationOutput;

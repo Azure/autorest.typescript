@@ -880,4 +880,4 @@ export interface PolygonCoordinates {
   coordinates: Array<Array<Array<number>>>;
 }
 
-export type GeoJsonObject = GeoJsonObjectBase | MultiPolygon | Point | Polygon;
+export type GeoJsonObject = MultiPolygon | Point | Polygon;
