@@ -16,7 +16,7 @@ Key links:
 
 ### Prerequisites
 
-- You must have an [Azure subscription](https://azure.microsoft.com/en-us/free/) to use this package.
+- You must have an [Azure subscription](https://azure.microsoft.com/free/) to use this package.
 
 ### Install the `@msinternal/agrifood-data-plane` package
 
