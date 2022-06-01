@@ -23,7 +23,7 @@ import { generateRollupConfig } from "./generators/static/rollupConfigFileGenera
 import { generateOperations } from "./generators/operationGenerator";
 import { generateOperationsInterfaces } from "./generators/operationInterfaceGenerator";
 import { generateSampleEnv } from "./generators/samples/sampleEnvGenerator";
-import { generateSamples } from "./generators/samples/sampleGenerator";
+import { generateHLCSamples } from "./generators/samples/hlcSampleGenerator";
 import { generateParameters } from "./generators/parametersGenerator";
 import { generateLroFiles } from "./generators/LROGenerator";
 import { generateTracingFile } from "./generators/tracingFileGenerator";
@@ -96,7 +96,7 @@ export async function generateTypeScriptLibrary(
     clientDetails?.samples?.length &&
     clientDetails?.samples?.length > 0
   ) {
-    generateSamples(clientDetails, project);
+    generateHLCSamples(clientDetails, project);
     generateSampleEnv(project);
   }
   generateParameters(clientDetails, project);

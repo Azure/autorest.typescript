@@ -8,6 +8,8 @@ import { getAutorestOptions, getSession } from "../../autorestSession";
 import { hasPagingOperations } from "../../utils/extractPaginationDetails";
 import { hasPollingOperations } from "../../restLevelClient/helpers/hasPollingOperations";
 import { NameType, normalizeName } from "../../utils/nameUtils";
+import { TestCodeModel, TestModel } from "@autorest/testmodeler";
+import { CodeModel } from "@autorest/codemodel";
 
 export function generatePackageJson(
   project: Project,
@@ -52,10 +54,17 @@ function restLevelPackage(packageDetails: PackageDetails) {
   const {
     azureArm,
     generateTest,
+    generateSample,
     azureOutputDirectory,
     azureSdkForJs
   } = getAutorestOptions();
   const { model } = getSession();
+  const clientPackageName = packageDetails.name;
+  let apiRefUrlQueryParameter: string = "";
+  if (packageDetails.version.includes("beta")) {
+    apiRefUrlQueryParameter = "?view=azure-node-preview";
+  }
+  const description = packageDetails.description;
   const hasPaging = hasPagingOperations(model);
   const hasLRO = hasPollingOperations(model);
   const packageInfo: Record<string, any> = {
@@ -234,6 +243,22 @@ function restLevelPackage(packageDetails: PackageDetails) {
       "./dist-esm/test/public/utils/env.js":
         "./dist-esm/test/public/utils/env.browser.js"
     };
+  }
+
+  if (
+    generateSample &&
+    (model as TestCodeModel)?.testModel?.mockTest?.exampleGroups &&
+    (model as TestCodeModel).testModel!.mockTest!.exampleGroups.length > 0
+  ) {
+    packageInfo["//sampleConfiguration"] = {
+      productName: description,
+      productSlugs: ["azure"],
+      disableDocsMs: true,
+      apiRefLink: `https://docs.microsoft.com/javascript/api/${clientPackageName}${apiRefUrlQueryParameter}`
+    };
+    if (azureSdkForJs) {
+      packageInfo.scripts["execute:samples"] = "dev-tool samples run samples-dev";
+    }
   }
 
   return packageInfo;
