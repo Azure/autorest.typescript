@@ -8,8 +8,7 @@ import { getAutorestOptions, getSession } from "../../autorestSession";
 import { hasPagingOperations } from "../../utils/extractPaginationDetails";
 import { hasPollingOperations } from "../../restLevelClient/helpers/hasPollingOperations";
 import { NameType, normalizeName } from "../../utils/nameUtils";
-import { TestCodeModel, TestModel } from "@autorest/testmodeler";
-import { CodeModel } from "@autorest/codemodel";
+import { TestCodeModel } from "@autorest/testmodeler/dist/src/core/model";
 
 export function generatePackageJson(
   project: Project,
