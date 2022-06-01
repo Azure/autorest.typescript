@@ -17,7 +17,7 @@ Key links:
 
 ### Prerequisites
 
-- You must have an [Azure subscription](https://docs.microsoft.com/en-us/azure/cognitive-services/authentication?tabs=powershell#authenticate-with-an-authentication-token) and follow [these](https://docs.microsoft.com/azure/purview/create-catalog-portal#add-a-security-principal-to-a-data-plane-role) instructions to use this package.
+- You must have an [Azure subscription](https://azure.microsoft.com/en-us/free/) and follow [these](https://docs.microsoft.com/azure/purview/create-catalog-portal#add-a-security-principal-to-a-data-plane-role) instructions to use this package.
 
 ### Install the `@msinternal/purview-administration-rest` package
 
@@ -29,7 +29,7 @@ npm install @msinternal/purview-administration-rest
 
 ### Create and authenticate a `PurviewAccount`
 
-To use an [Azure Active Directory (AAD) token credential](https://docs.microsoft.com/en-us/azure/cognitive-services/authentication?tabs=powershell#authenticate-with-an-authentication-token),
+To use an [Azure Active Directory (AAD) token credential](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token),
 provide an instance of the desired credential type obtained from the
 [@azure/identity](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/identity/identity#credentials) library.
 
