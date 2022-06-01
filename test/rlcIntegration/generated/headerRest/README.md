@@ -17,7 +17,7 @@ Key links:
 
 ### Prerequisites
 
-- You must have an [Azure subscription](https://docs.microsoft.com/en-us/azure/cognitive-services/authentication?tabs=powershell#authenticate-with-an-authentication-token) to use this package.
+- You must have an [Azure subscription](https://azure.microsoft.com/free/) to use this package.
 
 ### Install the `@msinternal/header-rest` package
 
@@ -29,7 +29,7 @@ npm install @msinternal/header-rest
 
 ### Create and authenticate a `HeaderRestClient`
 
-To use an [Azure Active Directory (AAD) token credential](https://docs.microsoft.com/en-us/azure/cognitive-services/authentication?tabs=powershell#authenticate-with-an-authentication-token),
+To use an [Azure Active Directory (AAD) token credential](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token),
 provide an instance of the desired credential type obtained from the
 [@azure/identity](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/identity/identity#credentials) library.
 
@@ -37,7 +37,7 @@ To authenticate with AAD, you must first `npm` install [`@azure/identity`](https
 
 After setup, you can choose which type of [credential](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/identity/identity#credentials) from `@azure/identity` to use.
 As an example, [DefaultAzureCredential](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/identity/identity#defaultazurecredential)
-can be used to authenticate the client:
+can be used to authenticate the client.
 
 Set the values of the client ID, tenant ID, and client secret of the AAD application as environment variables:
 AZURE_CLIENT_ID, AZURE_TENANT_ID, AZURE_CLIENT_SECRET
