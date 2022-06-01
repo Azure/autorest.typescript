@@ -107,5 +107,11 @@
   },
   "browser": {
     "./dist-esm/test/public/utils/env.js": "./dist-esm/test/public/utils/env.browser.js"
+  },
+  "//sampleConfiguration": {
+    "productName": "",
+    "productSlugs": ["azure"],
+    "disableDocsMs": true,
+    "apiRefLink": "https://docs.microsoft.com/javascript/api/@msinternal/body-string-rest"
   }
 }
