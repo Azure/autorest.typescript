@@ -36,7 +36,7 @@ To use an [Azure Active Directory (AAD) token credential](https://github.com/Azu
 provide an instance of the desired credential type obtained from the
 [@azure/identity](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/identity/identity#credentials) library.
 
-To authenticate with AAD, you must first `npm` install [`@azure/identity`](https://www.npmjs.com/package/@azure/identity) and
+To authenticate with AAD, you must first `npm` install [`@azure/identity`](https://www.npmjs.com/package/@azure/identity)  and
 [enable AAD authentication on your Purview resource](https://docs.microsoft.com/en-us/azure/purview/create-catalog-portal#add-a-security-principal-to-a-data-plane-role)
 
 After setup, you can choose which type of [credential](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/identity/identity#credentials) from `@azure/identity` to use.
