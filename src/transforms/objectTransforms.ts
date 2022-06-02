@@ -6,7 +6,8 @@ import {
   ObjectSchema,
   ComplexSchema,
   Property,
-  GroupProperty
+  GroupProperty,
+  Language
 } from "@autorest/codemodel";
 import {
   ObjectDetails,
@@ -58,11 +59,7 @@ export function transformObject(
     hasAdditionalProperties: false,
     kind,
     name,
-    serializedName: metadata.serializedName
-      ? metadata.serializedName
-      : kind === ObjectKind.Polymorphic
-      ? metadata.name
-      : undefined,
+    serializedName: getObjectSerializedName(metadata, kind),
     description: metadata.description || undefined,
     schema,
     properties: schema.properties
@@ -71,6 +68,14 @@ export function transformObject(
   };
 
   return getAdditionalObjectDetails(objectDetails, uberParents);
+}
+
+function getObjectSerializedName(metadata: Language, kind: ObjectKind) {
+  return metadata.serializedName
+    ? metadata.serializedName
+    : kind === ObjectKind.Polymorphic
+    ? metadata.name
+    : undefined;
 }
 
 export function transformProperty({

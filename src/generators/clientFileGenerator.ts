@@ -641,15 +641,15 @@ function writeDefaultOptions(
   const { credentialScopes } = getSecurityInfoFromModel(clientDetails.security);
 
   const credentialScopesValues = getCredentialScopesValue(credentialScopes);
-  const addScopes =
-    addCredentials &&
-    credentialScopes &&
-    credentialScopesValues &&
-    credentialScopes.length > 0
-      ? `if(!options.credentialScopes) {
+  const addScopes = isAddScopes(
+    addCredentials,
+    credentialScopes,
+    credentialScopesValues
+  )
+    ? `if(!options.credentialScopes) {
     options.credentialScopes = ${credentialScopesValues}
   }`
-      : "";
+    : "";
 
   const defaults = !hasCredentials
     ? `const defaults: ${clientDetails.className}OptionalParams = {
@@ -668,6 +668,19 @@ function writeDefaultOptions(
         packageDetails,
         clientDetails
       );
+}
+
+function isAddScopes(
+  addCredentials?: boolean,
+  credentialScopes?: string[],
+  credentialScopesValues?: string
+) {
+  return (
+    addCredentials &&
+    credentialScopes &&
+    credentialScopesValues &&
+    credentialScopes.length > 0
+  );
 }
 
 function getEndpointStatement({ endpoint }: EndpointDetails) {
