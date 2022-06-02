@@ -5,7 +5,7 @@ import createClient, {
 {{#if hasCredentials }}
 import { DefaultAzureCredential } from "@azure/identity";
 {{/if}}
-import dotenv from "dotenv";
+import * as dotenv from "dotenv";
 
 dotenv.config();
 

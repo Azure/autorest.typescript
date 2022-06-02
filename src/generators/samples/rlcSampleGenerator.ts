@@ -46,7 +46,8 @@ function createSampleData(model: TestCodeModel) {
         getLanguageMetadata(model.language).name,
         NameType.File
     );
-    const clientClassName = getLanguageMetadata(model.language).name;
+    const clientName = getLanguageMetadata(model.language).name;
+    const clientInterfaceName = clientName.endsWith("Client") ? `${clientName}` : `${clientName}Client`;
     const { parameterName } = transformBaseUrl(model);
     const hasUriParameter = !!parameterName, hasCredentials = addCredentials;
     const clientParameters = [];
@@ -62,7 +63,7 @@ function createSampleData(model: TestCodeModel) {
     return {
         filename: `${clientFileName}Sample`,
         clientParamAssignments,
-        clientClassName,
+        clientClassName: clientInterfaceName,
         clientPackageName: `${packageDetails.name}`,
         clientParameterNames: clientParameters.join(","),
         hasCredentials

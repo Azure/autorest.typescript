@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import createClient, { LRORestClient } from "@msinternal/lro-rest";
-import dotenv from "dotenv";
+import * as dotenv from "dotenv";
 
 dotenv.config();
 

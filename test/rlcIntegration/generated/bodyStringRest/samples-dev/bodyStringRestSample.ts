@@ -1,8 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import createClient, { BodyStringRest } from "@msinternal/body-string-rest";
-import dotenv from "dotenv";
+import createClient, {
+  BodyStringRestClient
+} from "@msinternal/body-string-rest";
+import * as dotenv from "dotenv";
 
 dotenv.config();
 
@@ -11,7 +13,7 @@ dotenv.config();
  *
  */
 async function main() {
-  const client: BodyStringRest = createClient();
+  const client: BodyStringRestClient = createClient();
   const result = !!client ? "Success" : "Fail";
   console.log(result, " to create client.");
   // Add your own code here
