@@ -883,7 +883,8 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     isTestPackage: true,
     restLevelClient: true,
-    azureSdkForJs: false
+    azureSdkForJs: false,
+    generateSample: true
   },
   bodyStringRest: {
     swaggerOrConfig: "body-string.json",
