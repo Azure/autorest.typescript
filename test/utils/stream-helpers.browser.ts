@@ -12,9 +12,10 @@ export function readStreamToBuffer(
 }
 
 export function stringToStream(text: string): ReadableStream {
+  const encoder = new TextEncoder();
   return new ReadableStream({
     start(controller) {
-      controller.enqueue(text);
+      controller.enqueue(encoder.encode(text));
       controller.close();
     }
   });

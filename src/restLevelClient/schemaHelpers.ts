@@ -124,7 +124,7 @@ export function primitiveSchemaToType(
     case SchemaType.Binary:
       return schemaUse.includes(SchemaContext.Output)
         ? "Uint8Array"
-        : "string | Uint8Array | ReadableStream | NodeJS.ReadableStream";
+        : "string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream";
     case SchemaType.Boolean:
       return "boolean";
     case SchemaType.Choice:
