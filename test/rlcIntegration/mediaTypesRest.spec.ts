@@ -1,7 +1,5 @@
-import MediaTypes, {
-  MediaTypesClient
-} from "./generated/mediaTypesRest/src";
-
+import MediaTypes, { MediaTypesClient } from "./generated/mediaTypesRest/src";
+import { stringToStream } from "../utils/stream-helpers";
 import { assert } from "chai";
 
 describe("Media types Rest", () => {
@@ -11,11 +9,10 @@ describe("Media types Rest", () => {
     client = MediaTypes({ allowInsecureConnection: true });
   });
 
-  // Issue https://github.com/Azure/autorest.typescript/issues/1242
   it("should handle /analyze with application/pdf", async () => {
     const result = await client.path("/mediatypes/analyze").post({
       contentType: "application/pdf",
-      body: "PDF"
+      body: stringToStream("PDF")
     });
 
     assert.equal(result.status, "200");

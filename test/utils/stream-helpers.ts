@@ -1,6 +1,14 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import { Readable } from "stream";
+
+export function stringToStream(
+  text: string
+): NodeJS.ReadableStream | ReadableStream {
+  return Readable.from([text]);
+}
+
 /**
  * Reads data from a stream into a Buffer.
  * @param stream Node.js Readable stream.

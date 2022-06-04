@@ -11,6 +11,15 @@ export function readStreamToBuffer(
   throw new Error("NYI");
 }
 
+export function stringToStream(text: string): ReadableStream {
+  return new ReadableStream({
+    start(controller) {
+      controller.enqueue(text);
+      controller.close();
+    }
+  });
+}
+
 /**
  * Counts the number of bytes read from a stream.
  * @param stream Node.js Readable stream.

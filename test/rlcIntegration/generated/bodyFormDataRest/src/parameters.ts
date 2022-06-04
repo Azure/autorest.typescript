@@ -13,7 +13,7 @@ export interface UploadFileFormBody {
    *
    * Value may contain any sequence of octets
    */
-  fileContent: string | Uint8Array;
+  fileContent: string | Uint8Array | ReadableStream | NodeJS.ReadableStream;
   /** File name to upload. Name has to be spelled exactly as written here. */
   fileName: string;
 }
@@ -33,7 +33,7 @@ export interface UploadFileViaBodyBodyParam {
    *
    * Value may contain any sequence of octets
    */
-  body: string | Uint8Array;
+  body: string | Uint8Array | ReadableStream | NodeJS.ReadableStream;
 }
 
 export interface UploadFileViaBodyMediaTypesParam {
@@ -51,7 +51,9 @@ export interface UploadFilesBodyParam {
 
 export interface UploadFilesFormBody {
   /** Files to upload. */
-  fileContent: Array<string | Uint8Array>;
+  fileContent: Array<
+    string | Uint8Array | ReadableStream | NodeJS.ReadableStream
+  >;
 }
 
 export interface UploadFilesMediaTypesParam {
