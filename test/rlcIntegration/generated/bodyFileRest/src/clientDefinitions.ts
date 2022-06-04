@@ -14,27 +14,27 @@ import {
   GetEmptyFile200Response,
   GetEmptyFiledefaultResponse
 } from "./responses";
-import { Client } from "@azure-rest/core-client";
+import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface GetFile {
   /** Get file */
   get(
     options?: GetFileParameters
-  ): Promise<GetFile200Response | GetFiledefaultResponse>;
+  ): StreamableMethod<GetFile200Response | GetFiledefaultResponse>;
 }
 
 export interface GetFileLarge {
   /** Get a large file */
   get(
     options?: GetFileLargeParameters
-  ): Promise<GetFileLarge200Response | GetFileLargedefaultResponse>;
+  ): StreamableMethod<GetFileLarge200Response | GetFileLargedefaultResponse>;
 }
 
 export interface GetEmptyFile {
   /** Get empty file */
   get(
     options?: GetEmptyFileParameters
-  ): Promise<GetEmptyFile200Response | GetEmptyFiledefaultResponse>;
+  ): StreamableMethod<GetEmptyFile200Response | GetEmptyFiledefaultResponse>;
 }
 
 export interface Routes {
