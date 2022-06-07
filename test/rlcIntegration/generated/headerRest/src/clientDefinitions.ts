@@ -92,20 +92,22 @@ import {
   CustomRequestId200Response,
   CustomRequestIddefaultResponse
 } from "./responses";
-import { Client } from "@azure-rest/core-client";
+import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface ParamExistingKey {
   /** Send a post request with header value "User-Agent": "overwrite" */
   post(
     options?: ParamExistingKeyParameters
-  ): Promise<ParamExistingKey200Response | ParamExistingKeydefaultResponse>;
+  ): StreamableMethod<
+    ParamExistingKey200Response | ParamExistingKeydefaultResponse
+  >;
 }
 
 export interface ResponseExistingKey {
   /** Get a response with header value "User-Agent": "overwrite" */
   post(
     options?: ResponseExistingKeyParameters
-  ): Promise<
+  ): StreamableMethod<
     ResponseExistingKey200Response | ResponseExistingKeydefaultResponse
   >;
 }
@@ -114,14 +116,16 @@ export interface ParamProtectedKey {
   /** Send a post request with header value "Content-Type": "text/html" */
   post(
     options?: ParamProtectedKeyParameters
-  ): Promise<ParamProtectedKey200Response | ParamProtectedKeydefaultResponse>;
+  ): StreamableMethod<
+    ParamProtectedKey200Response | ParamProtectedKeydefaultResponse
+  >;
 }
 
 export interface ResponseProtectedKey {
   /** Get a response with header value "Content-Type": "text/html" */
   post(
     options?: ResponseProtectedKeyParameters
-  ): Promise<
+  ): StreamableMethod<
     ResponseProtectedKey200Response | ResponseProtectedKeydefaultResponse
   >;
 }
@@ -130,119 +134,127 @@ export interface ParamInteger {
   /** Send a post request with header values "scenario": "positive", "value": 1 or "scenario": "negative", "value": -2 */
   post(
     options?: ParamIntegerParameters
-  ): Promise<ParamInteger200Response | ParamIntegerdefaultResponse>;
+  ): StreamableMethod<ParamInteger200Response | ParamIntegerdefaultResponse>;
 }
 
 export interface ResponseInteger {
   /** Get a response with header value "value": 1 or -2 */
   post(
     options?: ResponseIntegerParameters
-  ): Promise<ResponseInteger200Response | ResponseIntegerdefaultResponse>;
+  ): StreamableMethod<
+    ResponseInteger200Response | ResponseIntegerdefaultResponse
+  >;
 }
 
 export interface ParamLong {
   /** Send a post request with header values "scenario": "positive", "value": 105 or "scenario": "negative", "value": -2 */
   post(
     options?: ParamLongParameters
-  ): Promise<ParamLong200Response | ParamLongdefaultResponse>;
+  ): StreamableMethod<ParamLong200Response | ParamLongdefaultResponse>;
 }
 
 export interface ResponseLong {
   /** Get a response with header value "value": 105 or -2 */
   post(
     options?: ResponseLongParameters
-  ): Promise<ResponseLong200Response | ResponseLongdefaultResponse>;
+  ): StreamableMethod<ResponseLong200Response | ResponseLongdefaultResponse>;
 }
 
 export interface ParamFloat {
   /** Send a post request with header values "scenario": "positive", "value": 0.07 or "scenario": "negative", "value": -3.0 */
   post(
     options?: ParamFloatParameters
-  ): Promise<ParamFloat200Response | ParamFloatdefaultResponse>;
+  ): StreamableMethod<ParamFloat200Response | ParamFloatdefaultResponse>;
 }
 
 export interface ResponseFloat {
   /** Get a response with header value "value": 0.07 or -3.0 */
   post(
     options?: ResponseFloatParameters
-  ): Promise<ResponseFloat200Response | ResponseFloatdefaultResponse>;
+  ): StreamableMethod<ResponseFloat200Response | ResponseFloatdefaultResponse>;
 }
 
 export interface ParamDouble {
   /** Send a post request with header values "scenario": "positive", "value": 7e120 or "scenario": "negative", "value": -3.0 */
   post(
     options?: ParamDoubleParameters
-  ): Promise<ParamDouble200Response | ParamDoubledefaultResponse>;
+  ): StreamableMethod<ParamDouble200Response | ParamDoubledefaultResponse>;
 }
 
 export interface ResponseDouble {
   /** Get a response with header value "value": 7e120 or -3.0 */
   post(
     options?: ResponseDoubleParameters
-  ): Promise<ResponseDouble200Response | ResponseDoubledefaultResponse>;
+  ): StreamableMethod<
+    ResponseDouble200Response | ResponseDoubledefaultResponse
+  >;
 }
 
 export interface ParamBool {
   /** Send a post request with header values "scenario": "true", "value": true or "scenario": "false", "value": false */
   post(
     options?: ParamBoolParameters
-  ): Promise<ParamBool200Response | ParamBooldefaultResponse>;
+  ): StreamableMethod<ParamBool200Response | ParamBooldefaultResponse>;
 }
 
 export interface ResponseBool {
   /** Get a response with header value "value": true or false */
   post(
     options?: ResponseBoolParameters
-  ): Promise<ResponseBool200Response | ResponseBooldefaultResponse>;
+  ): StreamableMethod<ResponseBool200Response | ResponseBooldefaultResponse>;
 }
 
 export interface ParamString {
   /** Send a post request with header values "scenario": "valid", "value": "The quick brown fox jumps over the lazy dog" or "scenario": "null", "value": null or "scenario": "empty", "value": "" */
   post(
     options?: ParamStringParameters
-  ): Promise<ParamString200Response | ParamStringdefaultResponse>;
+  ): StreamableMethod<ParamString200Response | ParamStringdefaultResponse>;
 }
 
 export interface ResponseString {
   /** Get a response with header values "The quick brown fox jumps over the lazy dog" or null or "" */
   post(
     options?: ResponseStringParameters
-  ): Promise<ResponseString200Response | ResponseStringdefaultResponse>;
+  ): StreamableMethod<
+    ResponseString200Response | ResponseStringdefaultResponse
+  >;
 }
 
 export interface ParamDate {
   /** Send a post request with header values "scenario": "valid", "value": "2010-01-01" or "scenario": "min", "value": "0001-01-01" */
   post(
     options?: ParamDateParameters
-  ): Promise<ParamDate200Response | ParamDatedefaultResponse>;
+  ): StreamableMethod<ParamDate200Response | ParamDatedefaultResponse>;
 }
 
 export interface ResponseDate {
   /** Get a response with header values "2010-01-01" or "0001-01-01" */
   post(
     options?: ResponseDateParameters
-  ): Promise<ResponseDate200Response | ResponseDatedefaultResponse>;
+  ): StreamableMethod<ResponseDate200Response | ResponseDatedefaultResponse>;
 }
 
 export interface ParamDatetime {
   /** Send a post request with header values "scenario": "valid", "value": "2010-01-01T12:34:56Z" or "scenario": "min", "value": "0001-01-01T00:00:00Z" */
   post(
     options?: ParamDatetimeParameters
-  ): Promise<ParamDatetime200Response | ParamDatetimedefaultResponse>;
+  ): StreamableMethod<ParamDatetime200Response | ParamDatetimedefaultResponse>;
 }
 
 export interface ResponseDatetime {
   /** Get a response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z" */
   post(
     options?: ResponseDatetimeParameters
-  ): Promise<ResponseDatetime200Response | ResponseDatetimedefaultResponse>;
+  ): StreamableMethod<
+    ResponseDatetime200Response | ResponseDatetimedefaultResponse
+  >;
 }
 
 export interface ParamDatetimeRfc1123 {
   /** Send a post request with header values "scenario": "valid", "value": "Wed, 01 Jan 2010 12:34:56 GMT" or "scenario": "min", "value": "Mon, 01 Jan 0001 00:00:00 GMT" */
   post(
     options?: ParamDatetimeRfc1123Parameters
-  ): Promise<
+  ): StreamableMethod<
     ParamDatetimeRfc1123200Response | ParamDatetimeRfc1123defaultResponse
   >;
 }
@@ -251,7 +263,7 @@ export interface ResponseDatetimeRfc1123 {
   /** Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT" */
   post(
     options?: ResponseDatetimeRfc1123Parameters
-  ): Promise<
+  ): StreamableMethod<
     ResponseDatetimeRfc1123200Response | ResponseDatetimeRfc1123defaultResponse
   >;
 }
@@ -260,49 +272,53 @@ export interface ParamDuration {
   /** Send a post request with header values "scenario": "valid", "value": "P123DT22H14M12.011S" */
   post(
     options?: ParamDurationParameters
-  ): Promise<ParamDuration200Response | ParamDurationdefaultResponse>;
+  ): StreamableMethod<ParamDuration200Response | ParamDurationdefaultResponse>;
 }
 
 export interface ResponseDuration {
   /** Get a response with header values "P123DT22H14M12.011S" */
   post(
     options?: ResponseDurationParameters
-  ): Promise<ResponseDuration200Response | ResponseDurationdefaultResponse>;
+  ): StreamableMethod<
+    ResponseDuration200Response | ResponseDurationdefaultResponse
+  >;
 }
 
 export interface ParamByte {
   /** Send a post request with header values "scenario": "valid", "value": "啊齄丂狛狜隣郎隣兀﨩" */
   post(
     options?: ParamByteParameters
-  ): Promise<ParamByte200Response | ParamBytedefaultResponse>;
+  ): StreamableMethod<ParamByte200Response | ParamBytedefaultResponse>;
 }
 
 export interface ResponseByte {
   /** Get a response with header values "啊齄丂狛狜隣郎隣兀﨩" */
   post(
     options?: ResponseByteParameters
-  ): Promise<ResponseByte200Response | ResponseBytedefaultResponse>;
+  ): StreamableMethod<ResponseByte200Response | ResponseBytedefaultResponse>;
 }
 
 export interface ParamEnum {
   /** Send a post request with header values "scenario": "valid", "value": "GREY" or "scenario": "null", "value": null */
   post(
     options?: ParamEnumParameters
-  ): Promise<ParamEnum200Response | ParamEnumdefaultResponse>;
+  ): StreamableMethod<ParamEnum200Response | ParamEnumdefaultResponse>;
 }
 
 export interface ResponseEnum {
   /** Get a response with header values "GREY" or null */
   post(
     options?: ResponseEnumParameters
-  ): Promise<ResponseEnum200Response | ResponseEnumdefaultResponse>;
+  ): StreamableMethod<ResponseEnum200Response | ResponseEnumdefaultResponse>;
 }
 
 export interface CustomRequestId {
   /** Send x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request */
   post(
     options?: CustomRequestIdParameters
-  ): Promise<CustomRequestId200Response | CustomRequestIddefaultResponse>;
+  ): StreamableMethod<
+    CustomRequestId200Response | CustomRequestIddefaultResponse
+  >;
 }
 
 export interface Routes {

@@ -13,7 +13,7 @@ import {
   GetPages200Response,
   Lro200Response
 } from "./responses";
-import { Client } from "@azure-rest/core-client";
+import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 /** Contains operations for Client operations */
 export interface ClientOperations {
@@ -21,36 +21,36 @@ export interface ClientOperations {
   getModel(
     mode: string,
     options?: GetModelParameters
-  ): Promise<GetModel200Response>;
+  ): StreamableMethod<GetModel200Response>;
   /** Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to take a model instead, and put in 'model' as mode. */
   postModel(
     mode: string,
     options: PostModelParameters
-  ): Promise<PostModel200Response>;
+  ): StreamableMethod<PostModel200Response>;
   /** Get pages that you will either return to users in pages of raw bodies, or pages of models following growup. */
   getPages(
     mode: string,
     options?: GetPagesParameters
-  ): Promise<GetPages200Response>;
+  ): StreamableMethod<GetPages200Response>;
   /** Long running put request that will either return to end users a final payload of a raw body, or a final payload of a model after the SDK has grown up. */
-  lro(mode: string, options?: LroParameters): Promise<Lro200Response>;
+  lro(mode: string, options?: LroParameters): StreamableMethod<Lro200Response>;
 }
 
 export interface GetModel {
   /** Get models that you will either return to end users as a raw body, or with a model added during grow up. */
-  get(options?: GetModelParameters): Promise<GetModel200Response>;
+  get(options?: GetModelParameters): StreamableMethod<GetModel200Response>;
   /** Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to take a model instead, and put in 'model' as mode. */
-  post(options: PostModelParameters): Promise<PostModel200Response>;
+  post(options: PostModelParameters): StreamableMethod<PostModel200Response>;
 }
 
 export interface GetPages {
   /** Get pages that you will either return to users in pages of raw bodies, or pages of models following growup. */
-  get(options?: GetPagesParameters): Promise<GetPages200Response>;
+  get(options?: GetPagesParameters): StreamableMethod<GetPages200Response>;
 }
 
 export interface Lro {
   /** Long running put request that will either return to end users a final payload of a raw body, or a final payload of a model after the SDK has grown up. */
-  put(options?: LroParameters): Promise<Lro200Response>;
+  put(options?: LroParameters): StreamableMethod<Lro200Response>;
 }
 
 export interface Routes {

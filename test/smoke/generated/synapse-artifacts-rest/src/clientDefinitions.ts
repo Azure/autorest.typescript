@@ -336,14 +336,16 @@ import {
   WorkspaceGet200Response,
   WorkspaceGetdefaultResponse
 } from "./responses";
-import { Client } from "@azure-rest/core-client";
+import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 /** Contains operations for KqlScripts operations */
 export interface KqlScriptsOperations {
   /** Get all KQL scripts */
   getAll(
     options?: KqlScriptsGetAllParameters
-  ): Promise<KqlScriptsGetAll200Response | KqlScriptsGetAlldefaultResponse>;
+  ): StreamableMethod<
+    KqlScriptsGetAll200Response | KqlScriptsGetAlldefaultResponse
+  >;
 }
 
 /** Contains operations for KqlScript operations */
@@ -352,7 +354,7 @@ export interface KqlScriptOperations {
   createOrUpdate(
     kqlScriptName: string,
     options: KqlScriptCreateOrUpdateParameters
-  ): Promise<
+  ): StreamableMethod<
     | KqlScriptCreateOrUpdate200Response
     | KqlScriptCreateOrUpdate202Response
     | KqlScriptCreateOrUpdatedefaultResponse
@@ -361,12 +363,14 @@ export interface KqlScriptOperations {
   getByName(
     kqlScriptName: string,
     options?: KqlScriptGetByNameParameters
-  ): Promise<KqlScriptGetByName200Response | KqlScriptGetByNamedefaultResponse>;
+  ): StreamableMethod<
+    KqlScriptGetByName200Response | KqlScriptGetByNamedefaultResponse
+  >;
   /** Delete KQL script by name */
   deleteByName(
     kqlScriptName: string,
     options?: KqlScriptDeleteByNameParameters
-  ): Promise<
+  ): StreamableMethod<
     | KqlScriptDeleteByName200Response
     | KqlScriptDeleteByName202Response
     | KqlScriptDeleteByName204Response
@@ -376,7 +380,7 @@ export interface KqlScriptOperations {
   rename(
     kqlScriptName: string,
     options: KqlScriptRenameParameters
-  ): Promise<
+  ): StreamableMethod<
     | KqlScriptRename200Response
     | KqlScriptRename202Response
     | KqlScriptRenamedefaultResponse
@@ -389,12 +393,14 @@ export interface MetastoreOperations {
   register(
     id: string,
     options: MetastoreRegisterParameters
-  ): Promise<MetastoreRegister201Response | MetastoreRegisterdefaultResponse>;
+  ): StreamableMethod<
+    MetastoreRegister201Response | MetastoreRegisterdefaultResponse
+  >;
   /** Gets status of the database */
   getDatabaseOperations(
     id: string,
     options?: MetastoreGetDatabaseOperationsParameters
-  ): Promise<
+  ): StreamableMethod<
     | MetastoreGetDatabaseOperations200Response
     | MetastoreGetDatabaseOperationsdefaultResponse
   >;
@@ -402,12 +408,16 @@ export interface MetastoreOperations {
   update(
     id: string,
     options: MetastoreUpdateParameters
-  ): Promise<MetastoreUpdate201Response | MetastoreUpdatedefaultResponse>;
+  ): StreamableMethod<
+    MetastoreUpdate201Response | MetastoreUpdatedefaultResponse
+  >;
   /** Remove files in Syms */
   delete(
     id: string,
     options?: MetastoreDeleteParameters
-  ): Promise<MetastoreDelete204Response | MetastoreDeletedefaultResponse>;
+  ): StreamableMethod<
+    MetastoreDelete204Response | MetastoreDeletedefaultResponse
+  >;
 }
 
 /** Contains operations for SparkConfiguration operations */
@@ -415,7 +425,7 @@ export interface SparkConfigurationOperations {
   /** Lists sparkconfigurations. */
   getSparkConfigurationsByWorkspace(
     options?: SparkConfigurationGetSparkConfigurationsByWorkspaceParameters
-  ): Promise<
+  ): StreamableMethod<
     | SparkConfigurationGetSparkConfigurationsByWorkspace200Response
     | SparkConfigurationGetSparkConfigurationsByWorkspacedefaultResponse
   >;
@@ -423,7 +433,7 @@ export interface SparkConfigurationOperations {
   createOrUpdateSparkConfiguration(
     sparkConfigurationName: string,
     options: SparkConfigurationCreateOrUpdateSparkConfigurationParameters
-  ): Promise<
+  ): StreamableMethod<
     | SparkConfigurationCreateOrUpdateSparkConfiguration200Response
     | SparkConfigurationCreateOrUpdateSparkConfiguration202Response
     | SparkConfigurationCreateOrUpdateSparkConfigurationdefaultResponse
@@ -432,7 +442,7 @@ export interface SparkConfigurationOperations {
   getSparkConfiguration(
     sparkConfigurationName: string,
     options?: SparkConfigurationGetSparkConfigurationParameters
-  ): Promise<
+  ): StreamableMethod<
     | SparkConfigurationGetSparkConfiguration200Response
     | SparkConfigurationGetSparkConfiguration304Response
     | SparkConfigurationGetSparkConfigurationdefaultResponse
@@ -441,7 +451,7 @@ export interface SparkConfigurationOperations {
   deleteSparkConfiguration(
     sparkConfigurationName: string,
     options?: SparkConfigurationDeleteSparkConfigurationParameters
-  ): Promise<
+  ): StreamableMethod<
     | SparkConfigurationDeleteSparkConfiguration200Response
     | SparkConfigurationDeleteSparkConfiguration202Response
     | SparkConfigurationDeleteSparkConfiguration204Response
@@ -451,7 +461,7 @@ export interface SparkConfigurationOperations {
   renameSparkConfiguration(
     sparkConfigurationName: string,
     options: SparkConfigurationRenameSparkConfigurationParameters
-  ): Promise<
+  ): StreamableMethod<
     | SparkConfigurationRenameSparkConfiguration200Response
     | SparkConfigurationRenameSparkConfiguration202Response
     | SparkConfigurationRenameSparkConfigurationdefaultResponse
@@ -463,12 +473,16 @@ export interface BigDataPoolsOperations {
   /** List Big Data Pools */
   list(
     options?: BigDataPoolsListParameters
-  ): Promise<BigDataPoolsList200Response | BigDataPoolsListdefaultResponse>;
+  ): StreamableMethod<
+    BigDataPoolsList200Response | BigDataPoolsListdefaultResponse
+  >;
   /** Get Big Data Pool */
   get(
     bigDataPoolName: string,
     options?: BigDataPoolsGetParameters
-  ): Promise<BigDataPoolsGet200Response | BigDataPoolsGetdefaultResponse>;
+  ): StreamableMethod<
+    BigDataPoolsGet200Response | BigDataPoolsGetdefaultResponse
+  >;
 }
 
 /** Contains operations for DataFlow operations */
@@ -477,7 +491,7 @@ export interface DataFlowOperations {
   createOrUpdateDataFlow(
     dataFlowName: string,
     options: DataFlowCreateOrUpdateDataFlowParameters
-  ): Promise<
+  ): StreamableMethod<
     | DataFlowCreateOrUpdateDataFlow200Response
     | DataFlowCreateOrUpdateDataFlow202Response
     | DataFlowCreateOrUpdateDataFlowdefaultResponse
@@ -486,14 +500,14 @@ export interface DataFlowOperations {
   getDataFlow(
     dataFlowName: string,
     options?: DataFlowGetDataFlowParameters
-  ): Promise<
+  ): StreamableMethod<
     DataFlowGetDataFlow200Response | DataFlowGetDataFlowdefaultResponse
   >;
   /** Deletes a data flow. */
   deleteDataFlow(
     dataFlowName: string,
     options?: DataFlowDeleteDataFlowParameters
-  ): Promise<
+  ): StreamableMethod<
     | DataFlowDeleteDataFlow200Response
     | DataFlowDeleteDataFlow202Response
     | DataFlowDeleteDataFlow204Response
@@ -503,7 +517,7 @@ export interface DataFlowOperations {
   renameDataFlow(
     dataFlowName: string,
     options: DataFlowRenameDataFlowParameters
-  ): Promise<
+  ): StreamableMethod<
     | DataFlowRenameDataFlow200Response
     | DataFlowRenameDataFlow202Response
     | DataFlowRenameDataFlowdefaultResponse
@@ -511,7 +525,7 @@ export interface DataFlowOperations {
   /** Lists data flows. */
   getDataFlowsByWorkspace(
     options?: DataFlowGetDataFlowsByWorkspaceParameters
-  ): Promise<
+  ): StreamableMethod<
     | DataFlowGetDataFlowsByWorkspace200Response
     | DataFlowGetDataFlowsByWorkspacedefaultResponse
   >;
@@ -522,7 +536,7 @@ export interface DataFlowDebugSessionOperations {
   /** Creates a data flow debug session. */
   createDataFlowDebugSession(
     options: DataFlowDebugSessionCreateDataFlowDebugSessionParameters
-  ): Promise<
+  ): StreamableMethod<
     | DataFlowDebugSessionCreateDataFlowDebugSession200Response
     | DataFlowDebugSessionCreateDataFlowDebugSession202Response
     | DataFlowDebugSessionCreateDataFlowDebugSessiondefaultResponse
@@ -530,28 +544,28 @@ export interface DataFlowDebugSessionOperations {
   /** Query all active data flow debug sessions. */
   queryDataFlowDebugSessionsByWorkspace(
     options?: DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspaceParameters
-  ): Promise<
+  ): StreamableMethod<
     | DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspace200Response
     | DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspacedefaultResponse
   >;
   /** Add a data flow into debug session. */
   addDataFlow(
     options: DataFlowDebugSessionAddDataFlowParameters
-  ): Promise<
+  ): StreamableMethod<
     | DataFlowDebugSessionAddDataFlow200Response
     | DataFlowDebugSessionAddDataFlowdefaultResponse
   >;
   /** Deletes a data flow debug session. */
   deleteDataFlowDebugSession(
     options: DataFlowDebugSessionDeleteDataFlowDebugSessionParameters
-  ): Promise<
+  ): StreamableMethod<
     | DataFlowDebugSessionDeleteDataFlowDebugSession200Response
     | DataFlowDebugSessionDeleteDataFlowDebugSessiondefaultResponse
   >;
   /** Execute a data flow debug command. */
   executeCommand(
     options: DataFlowDebugSessionExecuteCommandParameters
-  ): Promise<
+  ): StreamableMethod<
     | DataFlowDebugSessionExecuteCommand200Response
     | DataFlowDebugSessionExecuteCommand202Response
     | DataFlowDebugSessionExecuteCommanddefaultResponse
@@ -563,7 +577,7 @@ export interface DatasetOperations {
   /** Lists datasets. */
   getDatasetsByWorkspace(
     options?: DatasetGetDatasetsByWorkspaceParameters
-  ): Promise<
+  ): StreamableMethod<
     | DatasetGetDatasetsByWorkspace200Response
     | DatasetGetDatasetsByWorkspacedefaultResponse
   >;
@@ -571,7 +585,7 @@ export interface DatasetOperations {
   createOrUpdateDataset(
     datasetName: string,
     options: DatasetCreateOrUpdateDatasetParameters
-  ): Promise<
+  ): StreamableMethod<
     | DatasetCreateOrUpdateDataset200Response
     | DatasetCreateOrUpdateDataset202Response
     | DatasetCreateOrUpdateDatasetdefaultResponse
@@ -580,7 +594,7 @@ export interface DatasetOperations {
   getDataset(
     datasetName: string,
     options?: DatasetGetDatasetParameters
-  ): Promise<
+  ): StreamableMethod<
     | DatasetGetDataset200Response
     | DatasetGetDataset304Response
     | DatasetGetDatasetdefaultResponse
@@ -589,7 +603,7 @@ export interface DatasetOperations {
   deleteDataset(
     datasetName: string,
     options?: DatasetDeleteDatasetParameters
-  ): Promise<
+  ): StreamableMethod<
     | DatasetDeleteDataset200Response
     | DatasetDeleteDataset202Response
     | DatasetDeleteDataset204Response
@@ -599,7 +613,7 @@ export interface DatasetOperations {
   renameDataset(
     datasetName: string,
     options: DatasetRenameDatasetParameters
-  ): Promise<
+  ): StreamableMethod<
     | DatasetRenameDataset200Response
     | DatasetRenameDataset202Response
     | DatasetRenameDatasetdefaultResponse
@@ -611,7 +625,9 @@ export interface WorkspaceGitRepoManagementOperations {
   /** Get the GitHub access token. */
   getGitHubAccessToken(
     options: WorkspaceGitRepoManagementGetGitHubAccessTokenParameters
-  ): Promise<WorkspaceGitRepoManagementGetGitHubAccessToken200Response>;
+  ): StreamableMethod<
+    WorkspaceGitRepoManagementGetGitHubAccessToken200Response
+  >;
 }
 
 /** Contains operations for IntegrationRuntimes operations */
@@ -619,14 +635,14 @@ export interface IntegrationRuntimesOperations {
   /** List Integration Runtimes */
   list(
     options?: IntegrationRuntimesListParameters
-  ): Promise<
+  ): StreamableMethod<
     IntegrationRuntimesList200Response | IntegrationRuntimesListdefaultResponse
   >;
   /** Get Integration Runtime */
   get(
     integrationRuntimeName: string,
     options?: IntegrationRuntimesGetParameters
-  ): Promise<
+  ): StreamableMethod<
     IntegrationRuntimesGet200Response | IntegrationRuntimesGetdefaultResponse
   >;
 }
@@ -636,12 +652,12 @@ export interface LibraryOperations {
   /** Lists Library. */
   list(
     options?: LibraryListParameters
-  ): Promise<LibraryList200Response | LibraryListdefaultResponse>;
+  ): StreamableMethod<LibraryList200Response | LibraryListdefaultResponse>;
   /** Flush Library */
   flush(
     libraryName: string,
     options?: LibraryFlushParameters
-  ): Promise<
+  ): StreamableMethod<
     | LibraryFlush200Response
     | LibraryFlush202Response
     | LibraryFlushdefaultResponse
@@ -650,7 +666,7 @@ export interface LibraryOperations {
   getOperationResult(
     operationId: string,
     options?: LibraryGetOperationResultParameters
-  ): Promise<
+  ): StreamableMethod<
     | LibraryGetOperationResult200Response
     | LibraryGetOperationResult202Response
     | LibraryGetOperationResultdefaultResponse
@@ -659,7 +675,7 @@ export interface LibraryOperations {
   delete(
     libraryName: string,
     options?: LibraryDeleteParameters
-  ): Promise<
+  ): StreamableMethod<
     | LibraryDelete200Response
     | LibraryDelete202Response
     | LibraryDelete409Response
@@ -669,7 +685,7 @@ export interface LibraryOperations {
   get(
     libraryName: string,
     options?: LibraryGetParameters
-  ): Promise<
+  ): StreamableMethod<
     LibraryGet200Response | LibraryGet304Response | LibraryGetdefaultResponse
   >;
   /** Creates a library with the library name. */
@@ -677,23 +693,23 @@ export interface LibraryOperations {
     libraryName: string,
     options?: LibraryCreateParameters | LibraryAppendParameters
   ):
-    | Promise<
+    | StreamableMethod<
         | LibraryCreate200Response
         | LibraryCreate202Response
         | LibraryCreatedefaultResponse
       >
-    | Promise<LibraryAppend201Response | LibraryAppenddefaultResponse>;
+    | StreamableMethod<LibraryAppend201Response | LibraryAppenddefaultResponse>;
   /** Creates a library with the library name. */
   append(
     libraryName: string,
     options?: LibraryCreateParameters | LibraryAppendParameters
   ):
-    | Promise<
+    | StreamableMethod<
         | LibraryCreate200Response
         | LibraryCreate202Response
         | LibraryCreatedefaultResponse
       >
-    | Promise<LibraryAppend201Response | LibraryAppenddefaultResponse>;
+    | StreamableMethod<LibraryAppend201Response | LibraryAppenddefaultResponse>;
 }
 
 /** Contains operations for LinkedService operations */
@@ -701,7 +717,7 @@ export interface LinkedServiceOperations {
   /** Lists linked services. */
   getLinkedServicesByWorkspace(
     options?: LinkedServiceGetLinkedServicesByWorkspaceParameters
-  ): Promise<
+  ): StreamableMethod<
     | LinkedServiceGetLinkedServicesByWorkspace200Response
     | LinkedServiceGetLinkedServicesByWorkspacedefaultResponse
   >;
@@ -709,7 +725,7 @@ export interface LinkedServiceOperations {
   createOrUpdateLinkedService(
     linkedServiceName: string,
     options: LinkedServiceCreateOrUpdateLinkedServiceParameters
-  ): Promise<
+  ): StreamableMethod<
     | LinkedServiceCreateOrUpdateLinkedService200Response
     | LinkedServiceCreateOrUpdateLinkedService202Response
     | LinkedServiceCreateOrUpdateLinkedServicedefaultResponse
@@ -718,7 +734,7 @@ export interface LinkedServiceOperations {
   getLinkedService(
     linkedServiceName: string,
     options?: LinkedServiceGetLinkedServiceParameters
-  ): Promise<
+  ): StreamableMethod<
     | LinkedServiceGetLinkedService200Response
     | LinkedServiceGetLinkedService304Response
     | LinkedServiceGetLinkedServicedefaultResponse
@@ -727,7 +743,7 @@ export interface LinkedServiceOperations {
   deleteLinkedService(
     linkedServiceName: string,
     options?: LinkedServiceDeleteLinkedServiceParameters
-  ): Promise<
+  ): StreamableMethod<
     | LinkedServiceDeleteLinkedService200Response
     | LinkedServiceDeleteLinkedService202Response
     | LinkedServiceDeleteLinkedService204Response
@@ -737,7 +753,7 @@ export interface LinkedServiceOperations {
   renameLinkedService(
     linkedServiceName: string,
     options: LinkedServiceRenameLinkedServiceParameters
-  ): Promise<
+  ): StreamableMethod<
     | LinkedServiceRenameLinkedService200Response
     | LinkedServiceRenameLinkedService202Response
     | LinkedServiceRenameLinkedServicedefaultResponse
@@ -749,14 +765,14 @@ export interface NotebookOperations {
   /** Lists Notebooks. */
   getNotebooksByWorkspace(
     options?: NotebookGetNotebooksByWorkspaceParameters
-  ): Promise<
+  ): StreamableMethod<
     | NotebookGetNotebooksByWorkspace200Response
     | NotebookGetNotebooksByWorkspacedefaultResponse
   >;
   /** Lists a summary of Notebooks. */
   getNotebookSummaryByWorkSpace(
     options?: NotebookGetNotebookSummaryByWorkSpaceParameters
-  ): Promise<
+  ): StreamableMethod<
     | NotebookGetNotebookSummaryByWorkSpace200Response
     | NotebookGetNotebookSummaryByWorkSpacedefaultResponse
   >;
@@ -764,7 +780,7 @@ export interface NotebookOperations {
   createOrUpdateNotebook(
     notebookName: string,
     options: NotebookCreateOrUpdateNotebookParameters
-  ): Promise<
+  ): StreamableMethod<
     | NotebookCreateOrUpdateNotebook200Response
     | NotebookCreateOrUpdateNotebook202Response
     | NotebookCreateOrUpdateNotebookdefaultResponse
@@ -773,7 +789,7 @@ export interface NotebookOperations {
   getNotebook(
     notebookName: string,
     options?: NotebookGetNotebookParameters
-  ): Promise<
+  ): StreamableMethod<
     | NotebookGetNotebook200Response
     | NotebookGetNotebook304Response
     | NotebookGetNotebookdefaultResponse
@@ -782,7 +798,7 @@ export interface NotebookOperations {
   deleteNotebook(
     notebookName: string,
     options?: NotebookDeleteNotebookParameters
-  ): Promise<
+  ): StreamableMethod<
     | NotebookDeleteNotebook200Response
     | NotebookDeleteNotebook202Response
     | NotebookDeleteNotebook204Response
@@ -792,7 +808,7 @@ export interface NotebookOperations {
   renameNotebook(
     notebookName: string,
     options: NotebookRenameNotebookParameters
-  ): Promise<
+  ): StreamableMethod<
     | NotebookRenameNotebook200Response
     | NotebookRenameNotebook202Response
     | NotebookRenameNotebookdefaultResponse
@@ -805,7 +821,7 @@ export interface NotebookOperationResultOperations {
   get(
     operationId: string,
     options?: NotebookOperationResultGetParameters
-  ): Promise<
+  ): StreamableMethod<
     | NotebookOperationResultGet200Response
     | NotebookOperationResultGet201Response
     | NotebookOperationResultGet202Response
@@ -819,7 +835,7 @@ export interface PipelineOperationsOperations {
   /** Lists pipelines. */
   getPipelinesByWorkspace(
     options?: PipelineGetPipelinesByWorkspaceParameters
-  ): Promise<
+  ): StreamableMethod<
     | PipelineGetPipelinesByWorkspace200Response
     | PipelineGetPipelinesByWorkspacedefaultResponse
   >;
@@ -827,7 +843,7 @@ export interface PipelineOperationsOperations {
   createOrUpdatePipeline(
     pipelineName: string,
     options: PipelineCreateOrUpdatePipelineParameters
-  ): Promise<
+  ): StreamableMethod<
     | PipelineCreateOrUpdatePipeline200Response
     | PipelineCreateOrUpdatePipeline202Response
     | PipelineCreateOrUpdatePipelinedefaultResponse
@@ -836,7 +852,7 @@ export interface PipelineOperationsOperations {
   getPipeline(
     pipelineName: string,
     options?: PipelineGetPipelineParameters
-  ): Promise<
+  ): StreamableMethod<
     | PipelineGetPipeline200Response
     | PipelineGetPipeline304Response
     | PipelineGetPipelinedefaultResponse
@@ -845,7 +861,7 @@ export interface PipelineOperationsOperations {
   deletePipeline(
     pipelineName: string,
     options?: PipelineDeletePipelineParameters
-  ): Promise<
+  ): StreamableMethod<
     | PipelineDeletePipeline200Response
     | PipelineDeletePipeline202Response
     | PipelineDeletePipeline204Response
@@ -855,7 +871,7 @@ export interface PipelineOperationsOperations {
   renamePipeline(
     pipelineName: string,
     options: PipelineRenamePipelineParameters
-  ): Promise<
+  ): StreamableMethod<
     | PipelineRenamePipeline200Response
     | PipelineRenamePipeline202Response
     | PipelineRenamePipelinedefaultResponse
@@ -864,7 +880,7 @@ export interface PipelineOperationsOperations {
   createPipelineRun(
     pipelineName: string,
     options?: PipelineCreatePipelineRunParameters
-  ): Promise<
+  ): StreamableMethod<
     | PipelineCreatePipelineRun202Response
     | PipelineCreatePipelineRundefaultResponse
   >;
@@ -875,7 +891,7 @@ export interface PipelineRunOperations {
   /** Query pipeline runs in the workspace based on input filter conditions. */
   queryPipelineRunsByWorkspace(
     options: PipelineRunQueryPipelineRunsByWorkspaceParameters
-  ): Promise<
+  ): StreamableMethod<
     | PipelineRunQueryPipelineRunsByWorkspace200Response
     | PipelineRunQueryPipelineRunsByWorkspacedefaultResponse
   >;
@@ -883,7 +899,7 @@ export interface PipelineRunOperations {
   getPipelineRun(
     runId: string,
     options?: PipelineRunGetPipelineRunParameters
-  ): Promise<
+  ): StreamableMethod<
     | PipelineRunGetPipelineRun200Response
     | PipelineRunGetPipelineRundefaultResponse
   >;
@@ -892,7 +908,7 @@ export interface PipelineRunOperations {
     pipelineName: string,
     runId: string,
     options: PipelineRunQueryActivityRunsParameters
-  ): Promise<
+  ): StreamableMethod<
     | PipelineRunQueryActivityRuns200Response
     | PipelineRunQueryActivityRunsdefaultResponse
   >;
@@ -900,7 +916,7 @@ export interface PipelineRunOperations {
   cancelPipelineRun(
     runId: string,
     options?: PipelineRunCancelPipelineRunParameters
-  ): Promise<
+  ): StreamableMethod<
     | PipelineRunCancelPipelineRun200Response
     | PipelineRunCancelPipelineRundefaultResponse
   >;
@@ -911,7 +927,7 @@ export interface SparkJobDefinitionOperations {
   /** Lists spark job definitions. */
   getSparkJobDefinitionsByWorkspace(
     options?: SparkJobDefinitionGetSparkJobDefinitionsByWorkspaceParameters
-  ): Promise<
+  ): StreamableMethod<
     | SparkJobDefinitionGetSparkJobDefinitionsByWorkspace200Response
     | SparkJobDefinitionGetSparkJobDefinitionsByWorkspacedefaultResponse
   >;
@@ -919,7 +935,7 @@ export interface SparkJobDefinitionOperations {
   createOrUpdateSparkJobDefinition(
     sparkJobDefinitionName: string,
     options: SparkJobDefinitionCreateOrUpdateSparkJobDefinitionParameters
-  ): Promise<
+  ): StreamableMethod<
     | SparkJobDefinitionCreateOrUpdateSparkJobDefinition200Response
     | SparkJobDefinitionCreateOrUpdateSparkJobDefinition202Response
     | SparkJobDefinitionCreateOrUpdateSparkJobDefinitiondefaultResponse
@@ -928,7 +944,7 @@ export interface SparkJobDefinitionOperations {
   getSparkJobDefinition(
     sparkJobDefinitionName: string,
     options?: SparkJobDefinitionGetSparkJobDefinitionParameters
-  ): Promise<
+  ): StreamableMethod<
     | SparkJobDefinitionGetSparkJobDefinition200Response
     | SparkJobDefinitionGetSparkJobDefinition304Response
     | SparkJobDefinitionGetSparkJobDefinitiondefaultResponse
@@ -937,7 +953,7 @@ export interface SparkJobDefinitionOperations {
   deleteSparkJobDefinition(
     sparkJobDefinitionName: string,
     options?: SparkJobDefinitionDeleteSparkJobDefinitionParameters
-  ): Promise<
+  ): StreamableMethod<
     | SparkJobDefinitionDeleteSparkJobDefinition200Response
     | SparkJobDefinitionDeleteSparkJobDefinition202Response
     | SparkJobDefinitionDeleteSparkJobDefinition204Response
@@ -947,7 +963,7 @@ export interface SparkJobDefinitionOperations {
   executeSparkJobDefinition(
     sparkJobDefinitionName: string,
     options?: SparkJobDefinitionExecuteSparkJobDefinitionParameters
-  ): Promise<
+  ): StreamableMethod<
     | SparkJobDefinitionExecuteSparkJobDefinition200Response
     | SparkJobDefinitionExecuteSparkJobDefinition202Response
     | SparkJobDefinitionExecuteSparkJobDefinitiondefaultResponse
@@ -956,7 +972,7 @@ export interface SparkJobDefinitionOperations {
   renameSparkJobDefinition(
     sparkJobDefinitionName: string,
     options: SparkJobDefinitionRenameSparkJobDefinitionParameters
-  ): Promise<
+  ): StreamableMethod<
     | SparkJobDefinitionRenameSparkJobDefinition200Response
     | SparkJobDefinitionRenameSparkJobDefinition202Response
     | SparkJobDefinitionRenameSparkJobDefinitiondefaultResponse
@@ -964,7 +980,7 @@ export interface SparkJobDefinitionOperations {
   /** Debug the spark job definition. */
   debugSparkJobDefinition(
     options: SparkJobDefinitionDebugSparkJobDefinitionParameters
-  ): Promise<
+  ): StreamableMethod<
     | SparkJobDefinitionDebugSparkJobDefinition200Response
     | SparkJobDefinitionDebugSparkJobDefinition202Response
     | SparkJobDefinitionDebugSparkJobDefinitiondefaultResponse
@@ -976,12 +992,12 @@ export interface SqlPoolsOperations {
   /** List Sql Pools */
   list(
     options?: SqlPoolsListParameters
-  ): Promise<SqlPoolsList200Response | SqlPoolsListdefaultResponse>;
+  ): StreamableMethod<SqlPoolsList200Response | SqlPoolsListdefaultResponse>;
   /** Get Sql Pool */
   get(
     sqlPoolName: string,
     options?: SqlPoolsGetParameters
-  ): Promise<SqlPoolsGet200Response | SqlPoolsGetdefaultResponse>;
+  ): StreamableMethod<SqlPoolsGet200Response | SqlPoolsGetdefaultResponse>;
 }
 
 /** Contains operations for SqlScript operations */
@@ -989,7 +1005,7 @@ export interface SqlScriptOperations {
   /** Lists sql scripts. */
   getSqlScriptsByWorkspace(
     options?: SqlScriptGetSqlScriptsByWorkspaceParameters
-  ): Promise<
+  ): StreamableMethod<
     | SqlScriptGetSqlScriptsByWorkspace200Response
     | SqlScriptGetSqlScriptsByWorkspacedefaultResponse
   >;
@@ -997,7 +1013,7 @@ export interface SqlScriptOperations {
   createOrUpdateSqlScript(
     sqlScriptName: string,
     options: SqlScriptCreateOrUpdateSqlScriptParameters
-  ): Promise<
+  ): StreamableMethod<
     | SqlScriptCreateOrUpdateSqlScript200Response
     | SqlScriptCreateOrUpdateSqlScript202Response
     | SqlScriptCreateOrUpdateSqlScriptdefaultResponse
@@ -1006,7 +1022,7 @@ export interface SqlScriptOperations {
   getSqlScript(
     sqlScriptName: string,
     options?: SqlScriptGetSqlScriptParameters
-  ): Promise<
+  ): StreamableMethod<
     | SqlScriptGetSqlScript200Response
     | SqlScriptGetSqlScript304Response
     | SqlScriptGetSqlScriptdefaultResponse
@@ -1015,7 +1031,7 @@ export interface SqlScriptOperations {
   deleteSqlScript(
     sqlScriptName: string,
     options?: SqlScriptDeleteSqlScriptParameters
-  ): Promise<
+  ): StreamableMethod<
     | SqlScriptDeleteSqlScript200Response
     | SqlScriptDeleteSqlScript202Response
     | SqlScriptDeleteSqlScript204Response
@@ -1025,7 +1041,7 @@ export interface SqlScriptOperations {
   renameSqlScript(
     sqlScriptName: string,
     options: SqlScriptRenameSqlScriptParameters
-  ): Promise<
+  ): StreamableMethod<
     | SqlScriptRenameSqlScript200Response
     | SqlScriptRenameSqlScript202Response
     | SqlScriptRenameSqlScriptdefaultResponse
@@ -1037,7 +1053,7 @@ export interface TriggerOperations {
   /** Lists triggers. */
   getTriggersByWorkspace(
     options?: TriggerGetTriggersByWorkspaceParameters
-  ): Promise<
+  ): StreamableMethod<
     | TriggerGetTriggersByWorkspace200Response
     | TriggerGetTriggersByWorkspacedefaultResponse
   >;
@@ -1045,7 +1061,7 @@ export interface TriggerOperations {
   createOrUpdateTrigger(
     triggerName: string,
     options: TriggerCreateOrUpdateTriggerParameters
-  ): Promise<
+  ): StreamableMethod<
     | TriggerCreateOrUpdateTrigger200Response
     | TriggerCreateOrUpdateTrigger202Response
     | TriggerCreateOrUpdateTriggerdefaultResponse
@@ -1054,7 +1070,7 @@ export interface TriggerOperations {
   getTrigger(
     triggerName: string,
     options?: TriggerGetTriggerParameters
-  ): Promise<
+  ): StreamableMethod<
     | TriggerGetTrigger200Response
     | TriggerGetTrigger304Response
     | TriggerGetTriggerdefaultResponse
@@ -1063,7 +1079,7 @@ export interface TriggerOperations {
   deleteTrigger(
     triggerName: string,
     options?: TriggerDeleteTriggerParameters
-  ): Promise<
+  ): StreamableMethod<
     | TriggerDeleteTrigger200Response
     | TriggerDeleteTrigger202Response
     | TriggerDeleteTrigger204Response
@@ -1073,7 +1089,7 @@ export interface TriggerOperations {
   subscribeTriggerToEvents(
     triggerName: string,
     options?: TriggerSubscribeTriggerToEventsParameters
-  ): Promise<
+  ): StreamableMethod<
     | TriggerSubscribeTriggerToEvents200Response
     | TriggerSubscribeTriggerToEvents202Response
     | TriggerSubscribeTriggerToEventsdefaultResponse
@@ -1082,7 +1098,7 @@ export interface TriggerOperations {
   getEventSubscriptionStatus(
     triggerName: string,
     options?: TriggerGetEventSubscriptionStatusParameters
-  ): Promise<
+  ): StreamableMethod<
     | TriggerGetEventSubscriptionStatus200Response
     | TriggerGetEventSubscriptionStatusdefaultResponse
   >;
@@ -1090,7 +1106,7 @@ export interface TriggerOperations {
   unsubscribeTriggerFromEvents(
     triggerName: string,
     options?: TriggerUnsubscribeTriggerFromEventsParameters
-  ): Promise<
+  ): StreamableMethod<
     | TriggerUnsubscribeTriggerFromEvents200Response
     | TriggerUnsubscribeTriggerFromEvents202Response
     | TriggerUnsubscribeTriggerFromEventsdefaultResponse
@@ -1099,14 +1115,16 @@ export interface TriggerOperations {
   startTrigger(
     triggerName: string,
     options?: TriggerStartTriggerParameters
-  ): Promise<
+  ): StreamableMethod<
     TriggerStartTrigger200Response | TriggerStartTriggerdefaultResponse
   >;
   /** Stops a trigger. */
   stopTrigger(
     triggerName: string,
     options?: TriggerStopTriggerParameters
-  ): Promise<TriggerStopTrigger200Response | TriggerStopTriggerdefaultResponse>;
+  ): StreamableMethod<
+    TriggerStopTrigger200Response | TriggerStopTriggerdefaultResponse
+  >;
 }
 
 /** Contains operations for TriggerRun operations */
@@ -1116,7 +1134,7 @@ export interface TriggerRunOperations {
     triggerName: string,
     runId: string,
     options?: TriggerRunRerunTriggerInstanceParameters
-  ): Promise<
+  ): StreamableMethod<
     | TriggerRunRerunTriggerInstance200Response
     | TriggerRunRerunTriggerInstancedefaultResponse
   >;
@@ -1125,14 +1143,14 @@ export interface TriggerRunOperations {
     triggerName: string,
     runId: string,
     options?: TriggerRunCancelTriggerInstanceParameters
-  ): Promise<
+  ): StreamableMethod<
     | TriggerRunCancelTriggerInstance200Response
     | TriggerRunCancelTriggerInstancedefaultResponse
   >;
   /** Query trigger runs. */
   queryTriggerRunsByWorkspace(
     options: TriggerRunQueryTriggerRunsByWorkspaceParameters
-  ): Promise<
+  ): StreamableMethod<
     | TriggerRunQueryTriggerRunsByWorkspace200Response
     | TriggerRunQueryTriggerRunsByWorkspacedefaultResponse
   >;
@@ -1143,21 +1161,23 @@ export interface WorkspaceOperations {
   /** Get Workspace */
   get(
     options?: WorkspaceGetParameters
-  ): Promise<WorkspaceGet200Response | WorkspaceGetdefaultResponse>;
+  ): StreamableMethod<WorkspaceGet200Response | WorkspaceGetdefaultResponse>;
 }
 
 export interface KqlScriptsGetAll {
   /** Get all KQL scripts */
   get(
     options?: KqlScriptsGetAllParameters
-  ): Promise<KqlScriptsGetAll200Response | KqlScriptsGetAlldefaultResponse>;
+  ): StreamableMethod<
+    KqlScriptsGetAll200Response | KqlScriptsGetAlldefaultResponse
+  >;
 }
 
 export interface KqlScriptCreateOrUpdate {
   /** Creates or updates a KQL Script */
   put(
     options: KqlScriptCreateOrUpdateParameters
-  ): Promise<
+  ): StreamableMethod<
     | KqlScriptCreateOrUpdate200Response
     | KqlScriptCreateOrUpdate202Response
     | KqlScriptCreateOrUpdatedefaultResponse
@@ -1165,11 +1185,13 @@ export interface KqlScriptCreateOrUpdate {
   /** Get KQL script by name */
   get(
     options?: KqlScriptGetByNameParameters
-  ): Promise<KqlScriptGetByName200Response | KqlScriptGetByNamedefaultResponse>;
+  ): StreamableMethod<
+    KqlScriptGetByName200Response | KqlScriptGetByNamedefaultResponse
+  >;
   /** Delete KQL script by name */
   delete(
     options?: KqlScriptDeleteByNameParameters
-  ): Promise<
+  ): StreamableMethod<
     | KqlScriptDeleteByName200Response
     | KqlScriptDeleteByName202Response
     | KqlScriptDeleteByName204Response
@@ -1181,7 +1203,7 @@ export interface KqlScriptRename {
   /** Rename KQL script */
   post(
     options: KqlScriptRenameParameters
-  ): Promise<
+  ): StreamableMethod<
     | KqlScriptRename200Response
     | KqlScriptRename202Response
     | KqlScriptRenamedefaultResponse
@@ -1192,11 +1214,13 @@ export interface MetastoreRegister {
   /** Register files in Syms */
   put(
     options: MetastoreRegisterParameters
-  ): Promise<MetastoreRegister201Response | MetastoreRegisterdefaultResponse>;
+  ): StreamableMethod<
+    MetastoreRegister201Response | MetastoreRegisterdefaultResponse
+  >;
   /** Gets status of the database */
   get(
     options?: MetastoreGetDatabaseOperationsParameters
-  ): Promise<
+  ): StreamableMethod<
     | MetastoreGetDatabaseOperations200Response
     | MetastoreGetDatabaseOperationsdefaultResponse
   >;
@@ -1206,21 +1230,25 @@ export interface MetastoreUpdate {
   /** Update files in Syms */
   put(
     options: MetastoreUpdateParameters
-  ): Promise<MetastoreUpdate201Response | MetastoreUpdatedefaultResponse>;
+  ): StreamableMethod<
+    MetastoreUpdate201Response | MetastoreUpdatedefaultResponse
+  >;
 }
 
 export interface MetastoreDelete {
   /** Remove files in Syms */
   delete(
     options?: MetastoreDeleteParameters
-  ): Promise<MetastoreDelete204Response | MetastoreDeletedefaultResponse>;
+  ): StreamableMethod<
+    MetastoreDelete204Response | MetastoreDeletedefaultResponse
+  >;
 }
 
 export interface SparkConfigurationGetSparkConfigurationsByWorkspace {
   /** Lists sparkconfigurations. */
   get(
     options?: SparkConfigurationGetSparkConfigurationsByWorkspaceParameters
-  ): Promise<
+  ): StreamableMethod<
     | SparkConfigurationGetSparkConfigurationsByWorkspace200Response
     | SparkConfigurationGetSparkConfigurationsByWorkspacedefaultResponse
   >;
@@ -1230,7 +1258,7 @@ export interface SparkConfigurationCreateOrUpdateSparkConfiguration {
   /** Creates or updates a sparkconfiguration. */
   put(
     options: SparkConfigurationCreateOrUpdateSparkConfigurationParameters
-  ): Promise<
+  ): StreamableMethod<
     | SparkConfigurationCreateOrUpdateSparkConfiguration200Response
     | SparkConfigurationCreateOrUpdateSparkConfiguration202Response
     | SparkConfigurationCreateOrUpdateSparkConfigurationdefaultResponse
@@ -1238,7 +1266,7 @@ export interface SparkConfigurationCreateOrUpdateSparkConfiguration {
   /** Gets a sparkConfiguration. */
   get(
     options?: SparkConfigurationGetSparkConfigurationParameters
-  ): Promise<
+  ): StreamableMethod<
     | SparkConfigurationGetSparkConfiguration200Response
     | SparkConfigurationGetSparkConfiguration304Response
     | SparkConfigurationGetSparkConfigurationdefaultResponse
@@ -1246,7 +1274,7 @@ export interface SparkConfigurationCreateOrUpdateSparkConfiguration {
   /** Deletes a sparkConfiguration. */
   delete(
     options?: SparkConfigurationDeleteSparkConfigurationParameters
-  ): Promise<
+  ): StreamableMethod<
     | SparkConfigurationDeleteSparkConfiguration200Response
     | SparkConfigurationDeleteSparkConfiguration202Response
     | SparkConfigurationDeleteSparkConfiguration204Response
@@ -1258,7 +1286,7 @@ export interface SparkConfigurationRenameSparkConfiguration {
   /** Renames a sparkConfiguration. */
   post(
     options: SparkConfigurationRenameSparkConfigurationParameters
-  ): Promise<
+  ): StreamableMethod<
     | SparkConfigurationRenameSparkConfiguration200Response
     | SparkConfigurationRenameSparkConfiguration202Response
     | SparkConfigurationRenameSparkConfigurationdefaultResponse
@@ -1269,21 +1297,25 @@ export interface BigDataPoolsList {
   /** List Big Data Pools */
   get(
     options?: BigDataPoolsListParameters
-  ): Promise<BigDataPoolsList200Response | BigDataPoolsListdefaultResponse>;
+  ): StreamableMethod<
+    BigDataPoolsList200Response | BigDataPoolsListdefaultResponse
+  >;
 }
 
 export interface BigDataPoolsGet {
   /** Get Big Data Pool */
   get(
     options?: BigDataPoolsGetParameters
-  ): Promise<BigDataPoolsGet200Response | BigDataPoolsGetdefaultResponse>;
+  ): StreamableMethod<
+    BigDataPoolsGet200Response | BigDataPoolsGetdefaultResponse
+  >;
 }
 
 export interface DataFlowCreateOrUpdateDataFlow {
   /** Creates or updates a data flow. */
   put(
     options: DataFlowCreateOrUpdateDataFlowParameters
-  ): Promise<
+  ): StreamableMethod<
     | DataFlowCreateOrUpdateDataFlow200Response
     | DataFlowCreateOrUpdateDataFlow202Response
     | DataFlowCreateOrUpdateDataFlowdefaultResponse
@@ -1291,13 +1323,13 @@ export interface DataFlowCreateOrUpdateDataFlow {
   /** Gets a data flow. */
   get(
     options?: DataFlowGetDataFlowParameters
-  ): Promise<
+  ): StreamableMethod<
     DataFlowGetDataFlow200Response | DataFlowGetDataFlowdefaultResponse
   >;
   /** Deletes a data flow. */
   delete(
     options?: DataFlowDeleteDataFlowParameters
-  ): Promise<
+  ): StreamableMethod<
     | DataFlowDeleteDataFlow200Response
     | DataFlowDeleteDataFlow202Response
     | DataFlowDeleteDataFlow204Response
@@ -1309,7 +1341,7 @@ export interface DataFlowRenameDataFlow {
   /** Renames a dataflow. */
   post(
     options: DataFlowRenameDataFlowParameters
-  ): Promise<
+  ): StreamableMethod<
     | DataFlowRenameDataFlow200Response
     | DataFlowRenameDataFlow202Response
     | DataFlowRenameDataFlowdefaultResponse
@@ -1320,7 +1352,7 @@ export interface DataFlowGetDataFlowsByWorkspace {
   /** Lists data flows. */
   get(
     options?: DataFlowGetDataFlowsByWorkspaceParameters
-  ): Promise<
+  ): StreamableMethod<
     | DataFlowGetDataFlowsByWorkspace200Response
     | DataFlowGetDataFlowsByWorkspacedefaultResponse
   >;
@@ -1330,7 +1362,7 @@ export interface DataFlowDebugSessionCreateDataFlowDebugSession {
   /** Creates a data flow debug session. */
   post(
     options: DataFlowDebugSessionCreateDataFlowDebugSessionParameters
-  ): Promise<
+  ): StreamableMethod<
     | DataFlowDebugSessionCreateDataFlowDebugSession200Response
     | DataFlowDebugSessionCreateDataFlowDebugSession202Response
     | DataFlowDebugSessionCreateDataFlowDebugSessiondefaultResponse
@@ -1341,7 +1373,7 @@ export interface DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspace {
   /** Query all active data flow debug sessions. */
   post(
     options?: DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspaceParameters
-  ): Promise<
+  ): StreamableMethod<
     | DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspace200Response
     | DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspacedefaultResponse
   >;
@@ -1351,7 +1383,7 @@ export interface DataFlowDebugSessionAddDataFlow {
   /** Add a data flow into debug session. */
   post(
     options: DataFlowDebugSessionAddDataFlowParameters
-  ): Promise<
+  ): StreamableMethod<
     | DataFlowDebugSessionAddDataFlow200Response
     | DataFlowDebugSessionAddDataFlowdefaultResponse
   >;
@@ -1361,7 +1393,7 @@ export interface DataFlowDebugSessionDeleteDataFlowDebugSession {
   /** Deletes a data flow debug session. */
   post(
     options: DataFlowDebugSessionDeleteDataFlowDebugSessionParameters
-  ): Promise<
+  ): StreamableMethod<
     | DataFlowDebugSessionDeleteDataFlowDebugSession200Response
     | DataFlowDebugSessionDeleteDataFlowDebugSessiondefaultResponse
   >;
@@ -1371,7 +1403,7 @@ export interface DataFlowDebugSessionExecuteCommand {
   /** Execute a data flow debug command. */
   post(
     options: DataFlowDebugSessionExecuteCommandParameters
-  ): Promise<
+  ): StreamableMethod<
     | DataFlowDebugSessionExecuteCommand200Response
     | DataFlowDebugSessionExecuteCommand202Response
     | DataFlowDebugSessionExecuteCommanddefaultResponse
@@ -1382,7 +1414,7 @@ export interface DatasetGetDatasetsByWorkspace {
   /** Lists datasets. */
   get(
     options?: DatasetGetDatasetsByWorkspaceParameters
-  ): Promise<
+  ): StreamableMethod<
     | DatasetGetDatasetsByWorkspace200Response
     | DatasetGetDatasetsByWorkspacedefaultResponse
   >;
@@ -1392,7 +1424,7 @@ export interface DatasetCreateOrUpdateDataset {
   /** Creates or updates a dataset. */
   put(
     options: DatasetCreateOrUpdateDatasetParameters
-  ): Promise<
+  ): StreamableMethod<
     | DatasetCreateOrUpdateDataset200Response
     | DatasetCreateOrUpdateDataset202Response
     | DatasetCreateOrUpdateDatasetdefaultResponse
@@ -1400,7 +1432,7 @@ export interface DatasetCreateOrUpdateDataset {
   /** Gets a dataset. */
   get(
     options?: DatasetGetDatasetParameters
-  ): Promise<
+  ): StreamableMethod<
     | DatasetGetDataset200Response
     | DatasetGetDataset304Response
     | DatasetGetDatasetdefaultResponse
@@ -1408,7 +1440,7 @@ export interface DatasetCreateOrUpdateDataset {
   /** Deletes a dataset. */
   delete(
     options?: DatasetDeleteDatasetParameters
-  ): Promise<
+  ): StreamableMethod<
     | DatasetDeleteDataset200Response
     | DatasetDeleteDataset202Response
     | DatasetDeleteDataset204Response
@@ -1420,7 +1452,7 @@ export interface DatasetRenameDataset {
   /** Renames a dataset. */
   post(
     options: DatasetRenameDatasetParameters
-  ): Promise<
+  ): StreamableMethod<
     | DatasetRenameDataset200Response
     | DatasetRenameDataset202Response
     | DatasetRenameDatasetdefaultResponse
@@ -1431,14 +1463,16 @@ export interface WorkspaceGitRepoManagementGetGitHubAccessToken {
   /** Get the GitHub access token. */
   post(
     options: WorkspaceGitRepoManagementGetGitHubAccessTokenParameters
-  ): Promise<WorkspaceGitRepoManagementGetGitHubAccessToken200Response>;
+  ): StreamableMethod<
+    WorkspaceGitRepoManagementGetGitHubAccessToken200Response
+  >;
 }
 
 export interface IntegrationRuntimesList {
   /** List Integration Runtimes */
   get(
     options?: IntegrationRuntimesListParameters
-  ): Promise<
+  ): StreamableMethod<
     IntegrationRuntimesList200Response | IntegrationRuntimesListdefaultResponse
   >;
 }
@@ -1447,7 +1481,7 @@ export interface IntegrationRuntimesGet {
   /** Get Integration Runtime */
   get(
     options?: IntegrationRuntimesGetParameters
-  ): Promise<
+  ): StreamableMethod<
     IntegrationRuntimesGet200Response | IntegrationRuntimesGetdefaultResponse
   >;
 }
@@ -1456,14 +1490,14 @@ export interface LibraryList {
   /** Lists Library. */
   get(
     options?: LibraryListParameters
-  ): Promise<LibraryList200Response | LibraryListdefaultResponse>;
+  ): StreamableMethod<LibraryList200Response | LibraryListdefaultResponse>;
 }
 
 export interface LibraryFlush {
   /** Flush Library */
   post(
     options?: LibraryFlushParameters
-  ): Promise<
+  ): StreamableMethod<
     | LibraryFlush200Response
     | LibraryFlush202Response
     | LibraryFlushdefaultResponse
@@ -1474,7 +1508,7 @@ export interface LibraryGetOperationResult {
   /** Get Operation result for Library */
   get(
     options?: LibraryGetOperationResultParameters
-  ): Promise<
+  ): StreamableMethod<
     | LibraryGetOperationResult200Response
     | LibraryGetOperationResult202Response
     | LibraryGetOperationResultdefaultResponse
@@ -1485,7 +1519,7 @@ export interface LibraryDelete {
   /** Delete Library */
   delete(
     options?: LibraryDeleteParameters
-  ): Promise<
+  ): StreamableMethod<
     | LibraryDelete200Response
     | LibraryDelete202Response
     | LibraryDelete409Response
@@ -1494,26 +1528,26 @@ export interface LibraryDelete {
   /** Get Library */
   get(
     options?: LibraryGetParameters
-  ): Promise<
+  ): StreamableMethod<
     LibraryGet200Response | LibraryGet304Response | LibraryGetdefaultResponse
   >;
   /** Creates a library with the library name. */
   put(
     options?: LibraryCreateParameters | LibraryAppendParameters
   ):
-    | Promise<
+    | StreamableMethod<
         | LibraryCreate200Response
         | LibraryCreate202Response
         | LibraryCreatedefaultResponse
       >
-    | Promise<LibraryAppend201Response | LibraryAppenddefaultResponse>;
+    | StreamableMethod<LibraryAppend201Response | LibraryAppenddefaultResponse>;
 }
 
 export interface LinkedServiceGetLinkedServicesByWorkspace {
   /** Lists linked services. */
   get(
     options?: LinkedServiceGetLinkedServicesByWorkspaceParameters
-  ): Promise<
+  ): StreamableMethod<
     | LinkedServiceGetLinkedServicesByWorkspace200Response
     | LinkedServiceGetLinkedServicesByWorkspacedefaultResponse
   >;
@@ -1523,7 +1557,7 @@ export interface LinkedServiceCreateOrUpdateLinkedService {
   /** Creates or updates a linked service. */
   put(
     options: LinkedServiceCreateOrUpdateLinkedServiceParameters
-  ): Promise<
+  ): StreamableMethod<
     | LinkedServiceCreateOrUpdateLinkedService200Response
     | LinkedServiceCreateOrUpdateLinkedService202Response
     | LinkedServiceCreateOrUpdateLinkedServicedefaultResponse
@@ -1531,7 +1565,7 @@ export interface LinkedServiceCreateOrUpdateLinkedService {
   /** Gets a linked service. */
   get(
     options?: LinkedServiceGetLinkedServiceParameters
-  ): Promise<
+  ): StreamableMethod<
     | LinkedServiceGetLinkedService200Response
     | LinkedServiceGetLinkedService304Response
     | LinkedServiceGetLinkedServicedefaultResponse
@@ -1539,7 +1573,7 @@ export interface LinkedServiceCreateOrUpdateLinkedService {
   /** Deletes a linked service. */
   delete(
     options?: LinkedServiceDeleteLinkedServiceParameters
-  ): Promise<
+  ): StreamableMethod<
     | LinkedServiceDeleteLinkedService200Response
     | LinkedServiceDeleteLinkedService202Response
     | LinkedServiceDeleteLinkedService204Response
@@ -1551,7 +1585,7 @@ export interface LinkedServiceRenameLinkedService {
   /** Renames a linked service. */
   post(
     options: LinkedServiceRenameLinkedServiceParameters
-  ): Promise<
+  ): StreamableMethod<
     | LinkedServiceRenameLinkedService200Response
     | LinkedServiceRenameLinkedService202Response
     | LinkedServiceRenameLinkedServicedefaultResponse
@@ -1562,7 +1596,7 @@ export interface NotebookGetNotebooksByWorkspace {
   /** Lists Notebooks. */
   get(
     options?: NotebookGetNotebooksByWorkspaceParameters
-  ): Promise<
+  ): StreamableMethod<
     | NotebookGetNotebooksByWorkspace200Response
     | NotebookGetNotebooksByWorkspacedefaultResponse
   >;
@@ -1572,7 +1606,7 @@ export interface NotebookGetNotebookSummaryByWorkSpace {
   /** Lists a summary of Notebooks. */
   get(
     options?: NotebookGetNotebookSummaryByWorkSpaceParameters
-  ): Promise<
+  ): StreamableMethod<
     | NotebookGetNotebookSummaryByWorkSpace200Response
     | NotebookGetNotebookSummaryByWorkSpacedefaultResponse
   >;
@@ -1582,7 +1616,7 @@ export interface NotebookCreateOrUpdateNotebook {
   /** Creates or updates a Note Book. */
   put(
     options: NotebookCreateOrUpdateNotebookParameters
-  ): Promise<
+  ): StreamableMethod<
     | NotebookCreateOrUpdateNotebook200Response
     | NotebookCreateOrUpdateNotebook202Response
     | NotebookCreateOrUpdateNotebookdefaultResponse
@@ -1590,7 +1624,7 @@ export interface NotebookCreateOrUpdateNotebook {
   /** Gets a Note Book. */
   get(
     options?: NotebookGetNotebookParameters
-  ): Promise<
+  ): StreamableMethod<
     | NotebookGetNotebook200Response
     | NotebookGetNotebook304Response
     | NotebookGetNotebookdefaultResponse
@@ -1598,7 +1632,7 @@ export interface NotebookCreateOrUpdateNotebook {
   /** Deletes a Note book. */
   delete(
     options?: NotebookDeleteNotebookParameters
-  ): Promise<
+  ): StreamableMethod<
     | NotebookDeleteNotebook200Response
     | NotebookDeleteNotebook202Response
     | NotebookDeleteNotebook204Response
@@ -1610,7 +1644,7 @@ export interface NotebookRenameNotebook {
   /** Renames a notebook. */
   post(
     options: NotebookRenameNotebookParameters
-  ): Promise<
+  ): StreamableMethod<
     | NotebookRenameNotebook200Response
     | NotebookRenameNotebook202Response
     | NotebookRenameNotebookdefaultResponse
@@ -1621,7 +1655,7 @@ export interface NotebookOperationResultGet {
   /** Get notebook operation result */
   get(
     options?: NotebookOperationResultGetParameters
-  ): Promise<
+  ): StreamableMethod<
     | NotebookOperationResultGet200Response
     | NotebookOperationResultGet201Response
     | NotebookOperationResultGet202Response
@@ -1634,7 +1668,7 @@ export interface PipelineGetPipelinesByWorkspace {
   /** Lists pipelines. */
   get(
     options?: PipelineGetPipelinesByWorkspaceParameters
-  ): Promise<
+  ): StreamableMethod<
     | PipelineGetPipelinesByWorkspace200Response
     | PipelineGetPipelinesByWorkspacedefaultResponse
   >;
@@ -1644,7 +1678,7 @@ export interface PipelineCreateOrUpdatePipeline {
   /** Creates or updates a pipeline. */
   put(
     options: PipelineCreateOrUpdatePipelineParameters
-  ): Promise<
+  ): StreamableMethod<
     | PipelineCreateOrUpdatePipeline200Response
     | PipelineCreateOrUpdatePipeline202Response
     | PipelineCreateOrUpdatePipelinedefaultResponse
@@ -1652,7 +1686,7 @@ export interface PipelineCreateOrUpdatePipeline {
   /** Gets a pipeline. */
   get(
     options?: PipelineGetPipelineParameters
-  ): Promise<
+  ): StreamableMethod<
     | PipelineGetPipeline200Response
     | PipelineGetPipeline304Response
     | PipelineGetPipelinedefaultResponse
@@ -1660,7 +1694,7 @@ export interface PipelineCreateOrUpdatePipeline {
   /** Deletes a pipeline. */
   delete(
     options?: PipelineDeletePipelineParameters
-  ): Promise<
+  ): StreamableMethod<
     | PipelineDeletePipeline200Response
     | PipelineDeletePipeline202Response
     | PipelineDeletePipeline204Response
@@ -1672,7 +1706,7 @@ export interface PipelineRenamePipeline {
   /** Renames a pipeline. */
   post(
     options: PipelineRenamePipelineParameters
-  ): Promise<
+  ): StreamableMethod<
     | PipelineRenamePipeline200Response
     | PipelineRenamePipeline202Response
     | PipelineRenamePipelinedefaultResponse
@@ -1683,7 +1717,7 @@ export interface PipelineCreatePipelineRun {
   /** Creates a run of a pipeline. */
   post(
     options?: PipelineCreatePipelineRunParameters
-  ): Promise<
+  ): StreamableMethod<
     | PipelineCreatePipelineRun202Response
     | PipelineCreatePipelineRundefaultResponse
   >;
@@ -1693,7 +1727,7 @@ export interface PipelineRunQueryPipelineRunsByWorkspace {
   /** Query pipeline runs in the workspace based on input filter conditions. */
   post(
     options: PipelineRunQueryPipelineRunsByWorkspaceParameters
-  ): Promise<
+  ): StreamableMethod<
     | PipelineRunQueryPipelineRunsByWorkspace200Response
     | PipelineRunQueryPipelineRunsByWorkspacedefaultResponse
   >;
@@ -1703,7 +1737,7 @@ export interface PipelineRunGetPipelineRun {
   /** Get a pipeline run by its run ID. */
   get(
     options?: PipelineRunGetPipelineRunParameters
-  ): Promise<
+  ): StreamableMethod<
     | PipelineRunGetPipelineRun200Response
     | PipelineRunGetPipelineRundefaultResponse
   >;
@@ -1713,7 +1747,7 @@ export interface PipelineRunQueryActivityRuns {
   /** Query activity runs based on input filter conditions. */
   post(
     options: PipelineRunQueryActivityRunsParameters
-  ): Promise<
+  ): StreamableMethod<
     | PipelineRunQueryActivityRuns200Response
     | PipelineRunQueryActivityRunsdefaultResponse
   >;
@@ -1723,7 +1757,7 @@ export interface PipelineRunCancelPipelineRun {
   /** Cancel a pipeline run by its run ID. */
   post(
     options?: PipelineRunCancelPipelineRunParameters
-  ): Promise<
+  ): StreamableMethod<
     | PipelineRunCancelPipelineRun200Response
     | PipelineRunCancelPipelineRundefaultResponse
   >;
@@ -1733,7 +1767,7 @@ export interface SparkJobDefinitionGetSparkJobDefinitionsByWorkspace {
   /** Lists spark job definitions. */
   get(
     options?: SparkJobDefinitionGetSparkJobDefinitionsByWorkspaceParameters
-  ): Promise<
+  ): StreamableMethod<
     | SparkJobDefinitionGetSparkJobDefinitionsByWorkspace200Response
     | SparkJobDefinitionGetSparkJobDefinitionsByWorkspacedefaultResponse
   >;
@@ -1743,7 +1777,7 @@ export interface SparkJobDefinitionCreateOrUpdateSparkJobDefinition {
   /** Creates or updates a Spark Job Definition. */
   put(
     options: SparkJobDefinitionCreateOrUpdateSparkJobDefinitionParameters
-  ): Promise<
+  ): StreamableMethod<
     | SparkJobDefinitionCreateOrUpdateSparkJobDefinition200Response
     | SparkJobDefinitionCreateOrUpdateSparkJobDefinition202Response
     | SparkJobDefinitionCreateOrUpdateSparkJobDefinitiondefaultResponse
@@ -1751,7 +1785,7 @@ export interface SparkJobDefinitionCreateOrUpdateSparkJobDefinition {
   /** Gets a Spark Job Definition. */
   get(
     options?: SparkJobDefinitionGetSparkJobDefinitionParameters
-  ): Promise<
+  ): StreamableMethod<
     | SparkJobDefinitionGetSparkJobDefinition200Response
     | SparkJobDefinitionGetSparkJobDefinition304Response
     | SparkJobDefinitionGetSparkJobDefinitiondefaultResponse
@@ -1759,7 +1793,7 @@ export interface SparkJobDefinitionCreateOrUpdateSparkJobDefinition {
   /** Deletes a Spark Job Definition. */
   delete(
     options?: SparkJobDefinitionDeleteSparkJobDefinitionParameters
-  ): Promise<
+  ): StreamableMethod<
     | SparkJobDefinitionDeleteSparkJobDefinition200Response
     | SparkJobDefinitionDeleteSparkJobDefinition202Response
     | SparkJobDefinitionDeleteSparkJobDefinition204Response
@@ -1771,7 +1805,7 @@ export interface SparkJobDefinitionExecuteSparkJobDefinition {
   /** Executes the spark job definition. */
   post(
     options?: SparkJobDefinitionExecuteSparkJobDefinitionParameters
-  ): Promise<
+  ): StreamableMethod<
     | SparkJobDefinitionExecuteSparkJobDefinition200Response
     | SparkJobDefinitionExecuteSparkJobDefinition202Response
     | SparkJobDefinitionExecuteSparkJobDefinitiondefaultResponse
@@ -1782,7 +1816,7 @@ export interface SparkJobDefinitionRenameSparkJobDefinition {
   /** Renames a sparkJobDefinition. */
   post(
     options: SparkJobDefinitionRenameSparkJobDefinitionParameters
-  ): Promise<
+  ): StreamableMethod<
     | SparkJobDefinitionRenameSparkJobDefinition200Response
     | SparkJobDefinitionRenameSparkJobDefinition202Response
     | SparkJobDefinitionRenameSparkJobDefinitiondefaultResponse
@@ -1793,7 +1827,7 @@ export interface SparkJobDefinitionDebugSparkJobDefinition {
   /** Debug the spark job definition. */
   post(
     options: SparkJobDefinitionDebugSparkJobDefinitionParameters
-  ): Promise<
+  ): StreamableMethod<
     | SparkJobDefinitionDebugSparkJobDefinition200Response
     | SparkJobDefinitionDebugSparkJobDefinition202Response
     | SparkJobDefinitionDebugSparkJobDefinitiondefaultResponse
@@ -1804,21 +1838,21 @@ export interface SqlPoolsList {
   /** List Sql Pools */
   get(
     options?: SqlPoolsListParameters
-  ): Promise<SqlPoolsList200Response | SqlPoolsListdefaultResponse>;
+  ): StreamableMethod<SqlPoolsList200Response | SqlPoolsListdefaultResponse>;
 }
 
 export interface SqlPoolsGet {
   /** Get Sql Pool */
   get(
     options?: SqlPoolsGetParameters
-  ): Promise<SqlPoolsGet200Response | SqlPoolsGetdefaultResponse>;
+  ): StreamableMethod<SqlPoolsGet200Response | SqlPoolsGetdefaultResponse>;
 }
 
 export interface SqlScriptGetSqlScriptsByWorkspace {
   /** Lists sql scripts. */
   get(
     options?: SqlScriptGetSqlScriptsByWorkspaceParameters
-  ): Promise<
+  ): StreamableMethod<
     | SqlScriptGetSqlScriptsByWorkspace200Response
     | SqlScriptGetSqlScriptsByWorkspacedefaultResponse
   >;
@@ -1828,7 +1862,7 @@ export interface SqlScriptCreateOrUpdateSqlScript {
   /** Creates or updates a Sql Script. */
   put(
     options: SqlScriptCreateOrUpdateSqlScriptParameters
-  ): Promise<
+  ): StreamableMethod<
     | SqlScriptCreateOrUpdateSqlScript200Response
     | SqlScriptCreateOrUpdateSqlScript202Response
     | SqlScriptCreateOrUpdateSqlScriptdefaultResponse
@@ -1836,7 +1870,7 @@ export interface SqlScriptCreateOrUpdateSqlScript {
   /** Gets a sql script. */
   get(
     options?: SqlScriptGetSqlScriptParameters
-  ): Promise<
+  ): StreamableMethod<
     | SqlScriptGetSqlScript200Response
     | SqlScriptGetSqlScript304Response
     | SqlScriptGetSqlScriptdefaultResponse
@@ -1844,7 +1878,7 @@ export interface SqlScriptCreateOrUpdateSqlScript {
   /** Deletes a Sql Script. */
   delete(
     options?: SqlScriptDeleteSqlScriptParameters
-  ): Promise<
+  ): StreamableMethod<
     | SqlScriptDeleteSqlScript200Response
     | SqlScriptDeleteSqlScript202Response
     | SqlScriptDeleteSqlScript204Response
@@ -1856,7 +1890,7 @@ export interface SqlScriptRenameSqlScript {
   /** Renames a sqlScript. */
   post(
     options: SqlScriptRenameSqlScriptParameters
-  ): Promise<
+  ): StreamableMethod<
     | SqlScriptRenameSqlScript200Response
     | SqlScriptRenameSqlScript202Response
     | SqlScriptRenameSqlScriptdefaultResponse
@@ -1867,7 +1901,7 @@ export interface TriggerGetTriggersByWorkspace {
   /** Lists triggers. */
   get(
     options?: TriggerGetTriggersByWorkspaceParameters
-  ): Promise<
+  ): StreamableMethod<
     | TriggerGetTriggersByWorkspace200Response
     | TriggerGetTriggersByWorkspacedefaultResponse
   >;
@@ -1877,7 +1911,7 @@ export interface TriggerCreateOrUpdateTrigger {
   /** Creates or updates a trigger. */
   put(
     options: TriggerCreateOrUpdateTriggerParameters
-  ): Promise<
+  ): StreamableMethod<
     | TriggerCreateOrUpdateTrigger200Response
     | TriggerCreateOrUpdateTrigger202Response
     | TriggerCreateOrUpdateTriggerdefaultResponse
@@ -1885,7 +1919,7 @@ export interface TriggerCreateOrUpdateTrigger {
   /** Gets a trigger. */
   get(
     options?: TriggerGetTriggerParameters
-  ): Promise<
+  ): StreamableMethod<
     | TriggerGetTrigger200Response
     | TriggerGetTrigger304Response
     | TriggerGetTriggerdefaultResponse
@@ -1893,7 +1927,7 @@ export interface TriggerCreateOrUpdateTrigger {
   /** Deletes a trigger. */
   delete(
     options?: TriggerDeleteTriggerParameters
-  ): Promise<
+  ): StreamableMethod<
     | TriggerDeleteTrigger200Response
     | TriggerDeleteTrigger202Response
     | TriggerDeleteTrigger204Response
@@ -1905,7 +1939,7 @@ export interface TriggerSubscribeTriggerToEvents {
   /** Subscribe event trigger to events. */
   post(
     options?: TriggerSubscribeTriggerToEventsParameters
-  ): Promise<
+  ): StreamableMethod<
     | TriggerSubscribeTriggerToEvents200Response
     | TriggerSubscribeTriggerToEvents202Response
     | TriggerSubscribeTriggerToEventsdefaultResponse
@@ -1916,7 +1950,7 @@ export interface TriggerGetEventSubscriptionStatus {
   /** Get a trigger's event subscription status. */
   post(
     options?: TriggerGetEventSubscriptionStatusParameters
-  ): Promise<
+  ): StreamableMethod<
     | TriggerGetEventSubscriptionStatus200Response
     | TriggerGetEventSubscriptionStatusdefaultResponse
   >;
@@ -1926,7 +1960,7 @@ export interface TriggerUnsubscribeTriggerFromEvents {
   /** Unsubscribe event trigger from events. */
   post(
     options?: TriggerUnsubscribeTriggerFromEventsParameters
-  ): Promise<
+  ): StreamableMethod<
     | TriggerUnsubscribeTriggerFromEvents200Response
     | TriggerUnsubscribeTriggerFromEvents202Response
     | TriggerUnsubscribeTriggerFromEventsdefaultResponse
@@ -1937,7 +1971,7 @@ export interface TriggerStartTrigger {
   /** Starts a trigger. */
   post(
     options?: TriggerStartTriggerParameters
-  ): Promise<
+  ): StreamableMethod<
     TriggerStartTrigger200Response | TriggerStartTriggerdefaultResponse
   >;
 }
@@ -1946,14 +1980,16 @@ export interface TriggerStopTrigger {
   /** Stops a trigger. */
   post(
     options?: TriggerStopTriggerParameters
-  ): Promise<TriggerStopTrigger200Response | TriggerStopTriggerdefaultResponse>;
+  ): StreamableMethod<
+    TriggerStopTrigger200Response | TriggerStopTriggerdefaultResponse
+  >;
 }
 
 export interface TriggerRunRerunTriggerInstance {
   /** Rerun single trigger instance by runId. */
   post(
     options?: TriggerRunRerunTriggerInstanceParameters
-  ): Promise<
+  ): StreamableMethod<
     | TriggerRunRerunTriggerInstance200Response
     | TriggerRunRerunTriggerInstancedefaultResponse
   >;
@@ -1963,7 +1999,7 @@ export interface TriggerRunCancelTriggerInstance {
   /** Cancel single trigger instance by runId. */
   post(
     options?: TriggerRunCancelTriggerInstanceParameters
-  ): Promise<
+  ): StreamableMethod<
     | TriggerRunCancelTriggerInstance200Response
     | TriggerRunCancelTriggerInstancedefaultResponse
   >;
@@ -1973,7 +2009,7 @@ export interface TriggerRunQueryTriggerRunsByWorkspace {
   /** Query trigger runs. */
   post(
     options: TriggerRunQueryTriggerRunsByWorkspaceParameters
-  ): Promise<
+  ): StreamableMethod<
     | TriggerRunQueryTriggerRunsByWorkspace200Response
     | TriggerRunQueryTriggerRunsByWorkspacedefaultResponse
   >;
@@ -1983,7 +2019,7 @@ export interface WorkspaceGet {
   /** Get Workspace */
   get(
     options?: WorkspaceGetParameters
-  ): Promise<WorkspaceGet200Response | WorkspaceGetdefaultResponse>;
+  ): StreamableMethod<WorkspaceGet200Response | WorkspaceGetdefaultResponse>;
 }
 
 export interface Routes {

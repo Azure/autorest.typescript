@@ -3,7 +3,6 @@ import {
   ArraySchema,
   ChoiceSchema,
   ConstantSchema,
-  DateTimeSchema,
   DictionarySchema,
   isObjectSchema,
   ObjectSchema,
@@ -125,7 +124,7 @@ export function primitiveSchemaToType(
     case SchemaType.Binary:
       return schemaUse.includes(SchemaContext.Output)
         ? "Uint8Array"
-        : "string | Uint8Array";
+        : "string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream";
     case SchemaType.Boolean:
       return "boolean";
     case SchemaType.Choice:
@@ -137,7 +136,7 @@ export function primitiveSchemaToType(
       const value = (schema as ConstantSchema).value.value;
       return typeof value === "string"
         ? (schema as ConstantSchema)?.valueType?.type === SchemaType.DateTime
-          ? `"${(new Date(`${value}`)).toISOString()}"`
+          ? `"${new Date(`${value}`).toISOString()}"`
           : `"${value}"`
         : value;
   }

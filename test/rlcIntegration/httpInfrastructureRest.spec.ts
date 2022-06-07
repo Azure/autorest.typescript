@@ -5,6 +5,7 @@ import { assert } from "chai";
 import { PipelinePolicy } from "@azure/core-rest-pipeline";
 import { isNode } from "@azure/core-util";
 import { addCookiePolicies } from "../utils/cookies";
+import { Context } from "mocha";
 
 describe("Http infrastructure rest Client", () => {
   let client: HttpInfrastructureRestClient;
@@ -281,7 +282,10 @@ describe("Http infrastructure rest Client", () => {
       assert.equal(response.status, "200");
     });
 
-    it("get300 should return 200", async () => {
+    it("get300 should return 200", async function(this: Context) {
+      if (!isNode) {
+        this.skip(); // Not supported on browser
+      }
       const response = await client.httpRedirects.get300();
       assert.equal(response.status, "200");
     });
@@ -301,7 +305,10 @@ describe("Http infrastructure rest Client", () => {
       assert.equal(response.status, "200");
     });
 
-    it("head300 should return 200", async () => {
+    it("head300 should return 200", async function(this: Context) {
+      if (!isNode) {
+        this.skip(); // Not supported on browser
+      }
       const response = await client.httpRedirects.head300();
       assert.equal(response.status, "200");
     });

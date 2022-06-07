@@ -18,18 +18,20 @@ import {
   BinaryBodyWithThreeContentTypes200Response,
   PutTextAndJsonBody200Response
 } from "./responses";
-import { Client } from "@azure-rest/core-client";
+import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface AnalyzeBody {
   /** Analyze body, that could be different media types. */
-  post(options?: AnalyzeBodyParameters): Promise<AnalyzeBody200Response>;
+  post(
+    options?: AnalyzeBodyParameters
+  ): StreamableMethod<AnalyzeBody200Response>;
 }
 
 export interface AnalyzeBodyNoAcceptHeader {
   /** Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept type. */
   post(
     options?: AnalyzeBodyNoAcceptHeaderParameters
-  ): Promise<
+  ): StreamableMethod<
     | AnalyzeBodyNoAcceptHeader202Response
     | AnalyzeBodyNoAcceptHeaderdefaultResponse
   >;
@@ -39,28 +41,28 @@ export interface ContentTypeWithEncoding {
   /** Pass in contentType 'text/plain; charset=UTF-8' to pass test. Value for input does not matter */
   post(
     options?: ContentTypeWithEncodingParameters
-  ): Promise<ContentTypeWithEncoding200Response>;
+  ): StreamableMethod<ContentTypeWithEncoding200Response>;
 }
 
 export interface BinaryBodyWithTwoContentTypes {
   /** Binary body with two content types. Pass in of {'hello': 'world'} for the application/json content type, and a byte stream of 'hello, world!' for application/octet-stream. */
   post(
     options: BinaryBodyWithTwoContentTypesParameters
-  ): Promise<BinaryBodyWithTwoContentTypes200Response>;
+  ): StreamableMethod<BinaryBodyWithTwoContentTypes200Response>;
 }
 
 export interface BinaryBodyWithThreeContentTypes {
   /** Binary body with three content types. Pass in string 'hello, world' with content type 'text/plain', {'hello': world'} with content type 'application/json' and a byte string for 'application/octet-stream'. */
   post(
     options: BinaryBodyWithThreeContentTypesParameters
-  ): Promise<BinaryBodyWithThreeContentTypes200Response>;
+  ): StreamableMethod<BinaryBodyWithThreeContentTypes200Response>;
 }
 
 export interface PutTextAndJsonBody {
   /** Body that's either text/plain or application/json */
   post(
     options: PutTextAndJsonBodyParameters
-  ): Promise<PutTextAndJsonBody200Response>;
+  ): StreamableMethod<PutTextAndJsonBody200Response>;
 }
 
 export interface Routes {
