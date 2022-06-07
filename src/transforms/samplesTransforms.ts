@@ -188,7 +188,7 @@ import {
                   methodParameter.exampleValue.schema.type === SchemaType.Any
                 ) {
                   bodySchemaName = "Record<string, unknown>";
-                } else {
+                } else if (methodParameter.exampleValue.schema.type !== SchemaType.Dictionary) {
                   importedTypeSet.add(parameterTypeName);
                 }
                 paramAssignment =
