@@ -1,6 +1,6 @@
 import { assert } from "chai";
 import BodyFile, { BodyFileClient } from "./generated/bodyFileRest/src";
-import { countBytesFromStream } from "../utils/stream-helpers";
+import { countBytesFromStream, readFirstChunk } from "../utils/stream-helpers";
 import {
   HttpBrowserStreamResponse,
   HttpNodeStreamResponse
@@ -58,6 +58,7 @@ describe("BodyFile Client", () => {
       throw error;
     }
 
-    assert.equal(await countBytesFromStream(result.body!), 3145728000);
-  }).timeout(10000);
+    const byteCount = await countBytesFromStream(result.body!);
+    assert.equal(byteCount, 3145728000);
+  }).timeout(30000);
 });
