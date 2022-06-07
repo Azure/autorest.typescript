@@ -68,8 +68,7 @@ export function generateClient(model: CodeModel, project: Project) {
         ]
       : []),
     ...(addCredentials === false ||
-    ((!credentialScopes || credentialScopes.length === 0) &&
-      !credentialKeyHeaderName)
+    !isSecurityInfoDefined(credentialScopes, credentialKeyHeaderName)
       ? []
       : [{ name: "credentials", type: credentialTypes.join(" | ") }])
   ];
@@ -103,8 +102,7 @@ export function generateClient(model: CodeModel, project: Project) {
 
   if (
     addCredentials &&
-    ((credentialScopes && credentialScopes.length > 0) ||
-      credentialKeyHeaderName)
+    isSecurityInfoDefined(credentialScopes, credentialKeyHeaderName)
   ) {
     clientFile.addImportDeclarations([
       {
@@ -119,6 +117,15 @@ export function generateClient(model: CodeModel, project: Project) {
       moduleSpecifier: "./clientDefinitions"
     }
   ]);
+}
+
+function isSecurityInfoDefined(
+  credentialScopes: string[],
+  credentialKeyHeaderName: string
+) {
+  return (
+    (credentialScopes && credentialScopes.length > 0) || credentialKeyHeaderName
+  );
 }
 
 function getClientFactoryBody(
