@@ -3386,11 +3386,9 @@ export const ManagedVirtualNetworkListResponse: coreClient.CompositeMapper = {
 };
 
 export const ManagedVirtualNetwork: coreClient.CompositeMapper = {
-  serializedName: "ManagedVirtualNetwork",
   type: {
     name: "Composite",
     className: "ManagedVirtualNetwork",
-    uberParent: "ManagedVirtualNetwork",
     additionalProperties: { type: { name: "Object" } },
     modelProperties: {
       vNetId: {
@@ -3410,8 +3408,6 @@ export const ManagedVirtualNetwork: coreClient.CompositeMapper = {
     }
   }
 };
-ManagedVirtualNetwork.type.polymorphicDiscriminator =
-  ManagedVirtualNetwork.type.polymorphicDiscriminator;
 
 export const ManagedPrivateEndpointListResponse: coreClient.CompositeMapper = {
   type: {
@@ -3442,11 +3438,9 @@ export const ManagedPrivateEndpointListResponse: coreClient.CompositeMapper = {
 };
 
 export const ManagedPrivateEndpoint: coreClient.CompositeMapper = {
-  serializedName: "ManagedPrivateEndpoint",
   type: {
     name: "Composite",
     className: "ManagedPrivateEndpoint",
-    uberParent: "ManagedPrivateEndpoint",
     additionalProperties: { type: { name: "Object" } },
     modelProperties: {
       connectionState: {
@@ -3496,8 +3490,6 @@ export const ManagedPrivateEndpoint: coreClient.CompositeMapper = {
     }
   }
 };
-ManagedPrivateEndpoint.type.polymorphicDiscriminator =
-  ManagedPrivateEndpoint.type.polymorphicDiscriminator;
 
 export const ConnectionStateProperties: coreClient.CompositeMapper = {
   type: {
@@ -27009,8 +27001,6 @@ export let discriminators = {
   Activity: Activity,
   Trigger: Trigger,
   DataFlow: DataFlow,
-  "ManagedVirtualNetwork.ManagedVirtualNetwork": ManagedVirtualNetwork,
-  "ManagedPrivateEndpoint.ManagedPrivateEndpoint": ManagedPrivateEndpoint,
   SecretBase: SecretBase,
   Credential: Credential,
   DatasetLocation: DatasetLocation,

@@ -54,7 +54,7 @@ export async function generateRestLevelClient() {
   }
 
   performCodeModelMutations(model);
-  generateReadmeFile(model.language, model.info, project);
+  generateReadmeFile(model, project);
   generatePackageJson(project);
   generateLicenseFile(project);
   generateTsConfig(project);

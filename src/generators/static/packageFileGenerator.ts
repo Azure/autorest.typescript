@@ -8,6 +8,7 @@ import { getAutorestOptions, getSession } from "../../autorestSession";
 import { hasPagingOperations } from "../../utils/extractPaginationDetails";
 import { hasPollingOperations } from "../../restLevelClient/helpers/hasPollingOperations";
 import { NameType, normalizeName } from "../../utils/nameUtils";
+import { getSecurityInfoFromModel } from "../../utils/schemaHelpers";
 
 export function generatePackageJson(
   project: Project,
@@ -263,7 +264,6 @@ function regularAutorestPackage(
     tracingInfo,
     disablePagingAsyncIterators,
     azureArm,
-    addCredentials,
     azureOutputDirectory,
     generateTest,
     generateSample,
@@ -271,6 +271,7 @@ function regularAutorestPackage(
     azureSdkForJs
   } = getAutorestOptions();
   const { model } = getSession();
+  const { addCredentials } = getSecurityInfoFromModel(model.security);
   const hasLro = hasPollingOperations(model);
   const hasAsyncIterators =
     !disablePagingAsyncIterators && clientDetails.options.hasPaging;

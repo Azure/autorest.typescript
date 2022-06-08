@@ -198,7 +198,7 @@ export interface BoundaryOutput {
 }
 
 export interface GeoJsonObjectOutputBase {
-  type: "MultiPolygon" | "Point" | "Polygon";
+  type: "GeoJsonObject" | "MultiPolygon" | "Point" | "Polygon";
 }
 
 export interface CascadeDeleteJobOutput {

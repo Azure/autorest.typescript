@@ -10,6 +10,7 @@ import { EndpointDetails } from "../transforms/urlTransforms";
 import { KnownMediaType } from "@azure-tools/codegen";
 import { Info } from "@autorest/codemodel";
 import { SampleGroup } from "./sampleDetails";
+import { Security } from "@autorest/codemodel";
 
 export interface ClientOptions {
   mediaTypes?: Set<KnownMediaType>;
@@ -40,4 +41,5 @@ export interface ClientDetails {
   endpoint: EndpointDetails;
   samples?: SampleGroup[];
   allTypes: string[];
+  security: Security
 }

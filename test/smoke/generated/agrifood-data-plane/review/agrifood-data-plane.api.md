@@ -9,6 +9,7 @@
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
+import { KeyCredential } from '@azure/core-auth';
 import { LroEngineOptions } from '@azure/core-lro';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
@@ -884,7 +885,7 @@ export interface CascadeDeleteJobOutput {
 }
 
 // @public (undocumented)
-function createClient(Endpoint: string, options?: ClientOptions): AzureAgriFoodPlatformDataPlaneServiceClient;
+function createClient(Endpoint: string, credentials: KeyCredential, options?: ClientOptions): AzureAgriFoodPlatformDataPlaneServiceClient;
 export default createClient;
 
 // @public (undocumented)
@@ -2111,7 +2112,7 @@ export type GeoJsonObject = MultiPolygon | Point | Polygon;
 // @public (undocumented)
 export interface GeoJsonObjectBase {
     // (undocumented)
-    type: "MultiPolygon" | "Point" | "Polygon";
+    type: "GeoJsonObject" | "MultiPolygon" | "Point" | "Polygon";
 }
 
 // @public (undocumented)
@@ -2120,7 +2121,7 @@ export type GeoJsonObjectOutput = MultiPolygonOutput | PointOutput | PolygonOutp
 // @public (undocumented)
 export interface GeoJsonObjectOutputBase {
     // (undocumented)
-    type: "MultiPolygon" | "Point" | "Polygon";
+    type: "GeoJsonObject" | "MultiPolygon" | "Point" | "Polygon";
 }
 
 // @public

@@ -200,7 +200,7 @@ export interface DataFlowBase {
   annotations?: Array<any>;
   /** The folder that this data flow is in. If not specified, Data flow will appear at the root level. */
   folder?: DataFlowFolder;
-  type: "MappingDataFlow" | "Flowlet";
+  type: "DataFlow" | "MappingDataFlow" | "Flowlet";
 }
 
 export interface DataFlowFolder {
@@ -1256,7 +1256,7 @@ export interface SecureString extends SecretBaseBase {
 }
 
 export interface SecretBaseBase {
-  type: "SecureString" | "AzureKeyVaultSecret";
+  type: "SecretBase" | "SecureString" | "AzureKeyVaultSecret";
 }
 
 export interface AzureKeyVaultSecretReference extends SecretBaseBase {
@@ -3426,7 +3426,11 @@ export interface WebLinkedService extends LinkedServiceBase {
 export interface WebLinkedServiceTypePropertiesBase {
   /** The URL of the web service endpoint, e.g. http://www.microsoft.com . Type: string (or Expression with resultType string). */
   url: any;
-  authenticationType: "Anonymous" | "Basic" | "ClientCertificate";
+  authenticationType:
+    | "WebLinkedServiceTypeProperties"
+    | "Anonymous"
+    | "Basic"
+    | "ClientCertificate";
 }
 
 export interface WebAnonymousAuthentication
@@ -8223,6 +8227,7 @@ export interface RetryPolicy {
 
 export interface DependencyReferenceBase {
   type:
+    | "DependencyReference"
     | "TriggerDependencyReference"
     | "TumblingWindowTriggerDependencyReference"
     | "SelfDependencyTumblingWindowTriggerReference";
@@ -8394,8 +8399,7 @@ export interface EntityReference {
 }
 
 export interface CustomSetupBase {
-  /** The type of custom setup. */
-  type: string;
+  type: "CustomSetupBase";
 }
 
 export interface ManagedVirtualNetworkReference {
@@ -8417,7 +8421,7 @@ export interface SelfHostedIntegrationRuntimeTypeProperties {
 }
 
 export interface LinkedIntegrationRuntimeTypeBase {
-  authorizationType: "Key" | "RBAC";
+  authorizationType: "LinkedIntegrationRuntimeType" | "Key" | "RBAC";
 }
 
 export interface LinkedIntegrationRuntimeKeyAuthorization
@@ -8436,11 +8440,9 @@ export interface LinkedIntegrationRuntimeRbacAuthorization
 
 export type DataFlow = MappingDataFlow | Flowlet;
 export type IntegrationRuntime =
-  | IntegrationRuntimeBase
   | ManagedIntegrationRuntime
   | SelfHostedIntegrationRuntime;
 export type Dataset =
-  | DatasetBase
   | AmazonS3Dataset
   | AvroDataset
   | ExcelDataset
@@ -8537,7 +8539,6 @@ export type Dataset =
   | SharePointOnlineListResourceDataset
   | AzureDatabricksDeltaLakeDataset;
 export type LinkedService =
-  | LinkedServiceBase
   | AzureStorageLinkedService
   | AzureBlobStorageLinkedService
   | AzureTableStorageLinkedService
@@ -8639,7 +8640,6 @@ export type LinkedService =
   | SnowflakeLinkedService
   | SharePointOnlineListLinkedService;
 export type Activity =
-  | ActivityBase
   | ControlActivity
   | ExecutionActivity
   | CopyActivity
@@ -8680,7 +8680,6 @@ export type Activity =
   | SynapseSparkJobDefinitionActivity
   | SqlPoolStoredProcedureActivity;
 export type Trigger =
-  | TriggerBase
   | RerunTumblingWindowTrigger
   | MultiplePipelineTrigger
   | ScheduleTrigger
@@ -8691,7 +8690,6 @@ export type Trigger =
   | ChainingTrigger;
 export type SecretBase = SecureString | AzureKeyVaultSecretReference;
 export type DatasetLocation =
-  | DatasetLocationBase
   | AzureBlobStorageLocation
   | AzureBlobFSLocation
   | AzureDataLakeStoreLocation
@@ -8704,7 +8702,6 @@ export type DatasetLocation =
   | HttpServerLocation
   | HdfsLocation;
 export type DatasetStorageFormat =
-  | DatasetStorageFormatBase
   | TextFormat
   | JsonFormat
   | AvroFormat
@@ -8755,7 +8752,6 @@ export type ExecutionActivity =
   | SynapseNotebookActivity
   | SynapseSparkJobDefinitionActivity;
 export type StoreReadSettings =
-  | StoreReadSettingsBase
   | AzureBlobStorageReadSettings
   | AzureBlobFSReadSettings
   | AzureDataLakeStoreReadSettings
@@ -8768,7 +8764,6 @@ export type StoreReadSettings =
   | HttpReadSettings
   | HdfsReadSettings;
 export type StoreWriteSettings =
-  | StoreWriteSettingsBase
   | SftpWriteSettings
   | AzureBlobStorageWriteSettings
   | AzureBlobFSWriteSettings
@@ -8776,25 +8771,21 @@ export type StoreWriteSettings =
   | FileServerWriteSettings
   | AzureFileStorageWriteSettings;
 export type FormatReadSettings =
-  | FormatReadSettingsBase
   | DelimitedTextReadSettings
   | JsonReadSettings
   | XmlReadSettings
   | BinaryReadSettings;
 export type CompressionReadSettings =
-  | CompressionReadSettingsBase
   | ZipDeflateReadSettings
   | TarReadSettings
   | TarGZipReadSettings;
 export type FormatWriteSettings =
-  | FormatWriteSettingsBase
   | AvroWriteSettings
   | OrcWriteSettings
   | ParquetWriteSettings
   | DelimitedTextWriteSettings
   | JsonWriteSettings;
 export type CopySource =
-  | CopySourceBase
   | AvroSource
   | ExcelSource
   | ParquetSource
@@ -8891,7 +8882,6 @@ export type CopySource =
   | AzureDatabricksDeltaLakeSource
   | SharePointOnlineListSource;
 export type CopySink =
-  | CopySinkBase
   | DelimitedTextSink
   | JsonSink
   | OrcSink
@@ -8990,11 +8980,9 @@ export type TabularSource =
   | GoogleAdWordsSource
   | AmazonRedshiftSource;
 export type ExportSettings =
-  | ExportSettingsBase
   | SnowflakeExportCopyCommand
   | AzureDatabricksDeltaLakeExportCommand;
 export type ImportSettings =
-  | ImportSettingsBase
   | AzureDatabricksDeltaLakeImportCommand
   | SnowflakeImportCopyCommand;
 export type MultiplePipelineTrigger =

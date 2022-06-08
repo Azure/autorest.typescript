@@ -2,7 +2,9 @@ import {
   CodeModel,
   Operation,
   ParameterLocation,
-  ImplementationLocation
+  ImplementationLocation,
+  OAuth2SecurityScheme,
+  KeySecurityScheme
 } from "@autorest/codemodel";
 
 import {
@@ -23,6 +25,7 @@ import { getLanguageMetadata } from "../utils/languageHelpers";
 import { generateMethodShortcutImplementation } from "./generateMethodShortcuts";
 import { Paths } from "./interfaces";
 import { pathDictionary } from "./generateClientDefinition";
+import { getSecurityInfoFromModel } from "../utils/schemaHelpers";
 
 export function generateClient(model: CodeModel, project: Project) {
   const name = normalizeName(
@@ -42,20 +45,36 @@ export function generateClient(model: CodeModel, project: Project) {
   const clientName = getLanguageMetadata(model.language).name;
   const uriParameter = getClientUriParameter();
 
-  const { addCredentials, credentialKeyHeaderName, multiClient, batch, credentialScopes } = getAutorestOptions();
-  const credentialTypes = addCredentials ? ["TokenCredential"] : [];
+  const { multiClient, batch } = getAutorestOptions();
+  const {
+    addCredentials,
+    credentialScopes,
+    credentialKeyHeaderName
+  } = getSecurityInfoFromModel(model.security);
+  const credentialTypes =
+    credentialScopes && credentialScopes.length > 0 ? ["TokenCredential"] : [];
 
   if (credentialKeyHeaderName) {
     credentialTypes.push("KeyCredential");
   }
 
   const commonClientParams = [
-    ...(uriParameter ? [{ name: uriParameter, type: "string" }] : []),
-    ...(addCredentials === false || !credentialScopes || credentialScopes.length === 0
+    ...(uriParameter
+      ? [
+          {
+            name: uriParameter,
+            type: "string"
+          }
+        ]
+      : []),
+    ...(addCredentials === false ||
+    !isSecurityInfoDefined(credentialScopes, credentialKeyHeaderName)
       ? []
       : [{ name: "credentials", type: credentialTypes.join(" | ") }])
   ];
-  const clientInterfaceName = clientName.endsWith("Client")? `${clientName}`: `${clientName}Client`;
+  const clientInterfaceName = clientName.endsWith("Client")
+    ? `${clientName}`
+    : `${clientName}Client`;
 
   const functionStatement = {
     isExported: true,
@@ -81,7 +100,10 @@ export function generateClient(model: CodeModel, project: Project) {
     }
   ]);
 
-  if (addCredentials && credentialScopes && credentialScopes.length > 0) {
+  if (
+    addCredentials &&
+    isSecurityInfoDefined(credentialScopes, credentialKeyHeaderName)
+  ) {
     clientFile.addImportDeclarations([
       {
         namedImports: credentialTypes,
@@ -95,6 +117,15 @@ export function generateClient(model: CodeModel, project: Project) {
       moduleSpecifier: "./clientDefinitions"
     }
   ]);
+}
+
+function isSecurityInfoDefined(
+  credentialScopes: string[],
+  credentialKeyHeaderName: string
+) {
+  return (
+    (credentialScopes && credentialScopes.length > 0) || credentialKeyHeaderName
+  );
 }
 
 function getClientFactoryBody(
@@ -153,7 +184,10 @@ function getClientFactoryBody(
     declarations: [{ name: "baseUrl", initializer: baseUrl }]
   };
 
-  const { credentialScopes, credentialKeyHeaderName } = getAutorestOptions();
+  const {
+    credentialScopes,
+    credentialKeyHeaderName
+  } = getSecurityInfoFromModel(model.security);
 
   const scopesString =
     credentialScopes && credentialScopes.length

@@ -10,6 +10,8 @@ description: Purview Account Client
 output-folder: ../generated/purview-administration-rest
 source-code-folder-path: ./src/account
 input-file: https://raw.githubusercontent.com/Azure/azure-rest-api-specs/main/specification/purview/data-plane/Azure.Analytics.Purview.Account/preview/2019-11-01-preview/account.json
+security: AADToken
+security-scopes: "https://purview.azure.net/.default"
 ```
 
 ```yaml $(purview-metadata) == true
@@ -18,6 +20,8 @@ description: Purview Metadata Policies Client
 output-folder: ../generated/purview-administration-rest
 source-code-folder-path: ./src/metadataPolicies
 input-file:  https://raw.githubusercontent.com/Azure/azure-rest-api-specs/main/specification/purview/data-plane/Azure.Analytics.Purview.MetadataPolicies/preview/2021-07-01-preview/purviewMetadataPolicy.json
+security: AzureKey
+security-header-name: CustomAuth
 ```
 
 
@@ -31,7 +35,7 @@ package-version: 1.0.0-beta.2
 rest-level-client: true
 openapi-type: data-plane
 add-credentials: true
-credential-scopes: "https://purview.azure.net/.default"
+
 dependency-info: 
   link: "https://docs.microsoft.com/azure/purview/create-catalog-portal#add-a-security-principal-to-a-data-plane-role"
   description: "enable AAD authentication on your Purview resource"

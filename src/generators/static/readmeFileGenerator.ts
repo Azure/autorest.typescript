@@ -6,9 +6,10 @@ import * as hbs from "handlebars";
 import * as fs from "fs";
 import * as path from "path";
 import { getAutorestOptions } from "../../autorestSession";
-import { Info, Languages } from "@autorest/codemodel";
+import { CodeModel, Info, Languages } from "@autorest/codemodel";
 import { getLanguageMetadata } from "../../utils/languageHelpers";
 import { normalizeName, NameType } from "../../utils/nameUtils";
+import { getSecurityInfoFromModel } from "../../utils/schemaHelpers";
 
 /**
  * Meta data information about the service, the package, and the client.
@@ -67,13 +68,11 @@ interface Metadata {
  * @returns inferred metadata about the service, the package, and the client
  */
 function createMetadata(
-  codeModelLanguage: Languages,
-  codeModelInfo: Info
+  codeModel: CodeModel
 ): Metadata {
   const {
     packageDetails,
     azureOutputDirectory,
-    addCredentials,
     azureArm,
     isTestPackage,
     productDocLink,
@@ -81,6 +80,7 @@ function createMetadata(
     multiClient,
     batch
   } = getAutorestOptions();
+  const { addCredentials } = getSecurityInfoFromModel(codeModel.security);
 
   const azureHuh = packageDetails?.scopeName === "azure" || packageDetails?.scopeName === "azure-rest";
   const repoURL = azureHuh
@@ -96,7 +96,7 @@ function createMetadata(
   const packageDirectoryName = names?.[1];
 
   const clientPackageName = packageDetails?.name;
-  const { clientClassName, serviceTitle } = getClientAndServiceName(codeModelLanguage, codeModelInfo);
+  const { clientClassName, serviceTitle } = getClientAndServiceName(codeModel.language, codeModel.info);
   const simpleServiceName =
     /**
      * It is a required convention in Azure swaggers for their titles to end with
@@ -138,7 +138,7 @@ function createMetadata(
       `https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-js%2Fsdk%2F${packageParentDirectoryName}%2F${packageDirectoryName}%2FREADME.png`
       : undefined,
     clientDescriptiveName: `${serviceName} client`,
-    description: codeModelInfo?.description,
+    description: codeModel.info?.description,
     apiRefURL: azureHuh
       ? `https://docs.microsoft.com/javascript/api/${clientPackageName}${apiRefUrlQueryParameter}`
       : undefined,
@@ -157,8 +157,7 @@ function createMetadata(
 }
 
 export function generateReadmeFile(
-  codeModelLanguage: Languages,
-  codeModelInfo: Info,
+  codeModel: CodeModel,
   project: Project
 ) {
   const {
@@ -170,7 +169,7 @@ export function generateReadmeFile(
     return;
   }
 
-  const metadata = createMetadata(codeModelLanguage, codeModelInfo);
+  const metadata = createMetadata(codeModel);
   const templateFile = !restLevelClient ? "hlcREADME.md.hbs" : "rlcREADME.md.hbs";
   const file = fs.readFileSync(path.join(__dirname, templateFile), {
     encoding: "utf-8"
