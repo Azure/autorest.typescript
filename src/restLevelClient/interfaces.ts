@@ -6,6 +6,11 @@ export type PathParameter = {
   description?: string;
 };
 
+export interface ResponseTypes {
+  success: string[];
+  error: string[];
+}
+
 export type Methods = {
   [key: string]: [
     {
@@ -13,6 +18,8 @@ export type Methods = {
       description: string;
       hasOptionalOptions: boolean;
       returnType: string;
+      successStatus: string[];
+      responseTypes: ResponseTypes;
     }
   ];
 };

@@ -87,7 +87,7 @@ interface AccountsGetAccessKeysdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseModelOutput_2;
     // (undocumented)
-    status: "500";
+    status: "default";
 }
 
 // @public (undocumented)
@@ -112,7 +112,7 @@ interface AccountsGetAccountPropertiesdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseModelOutput_2;
     // (undocumented)
-    status: "500";
+    status: "default";
 }
 
 // @public (undocumented)
@@ -148,7 +148,7 @@ interface AccountsRegenerateAccessKeydefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseModelOutput_2;
     // (undocumented)
-    status: "500";
+    status: "default";
 }
 
 // @public (undocumented)
@@ -178,7 +178,7 @@ interface AccountsUpdateAccountPropertiesdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseModelOutput_2;
     // (undocumented)
-    status: "500";
+    status: "default";
 }
 
 // @public (undocumented)
@@ -363,7 +363,7 @@ interface CollectionsCreateOrUpdateCollectiondefaultResponse extends HttpRespons
     // (undocumented)
     body: ErrorResponseModelOutput_2;
     // (undocumented)
-    status: "500";
+    status: "default";
 }
 
 // @public (undocumented)
@@ -387,7 +387,7 @@ interface CollectionsDeleteCollectiondefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseModelOutput_2;
     // (undocumented)
-    status: "500";
+    status: "default";
 }
 
 // @public (undocumented)
@@ -413,7 +413,7 @@ interface CollectionsGetCollectiondefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseModelOutput_2;
     // (undocumented)
-    status: "500";
+    status: "default";
 }
 
 // @public (undocumented)
@@ -437,7 +437,7 @@ interface CollectionsGetCollectionPathdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseModelOutput_2;
     // (undocumented)
-    status: "500";
+    status: "default";
 }
 
 // @public (undocumented)
@@ -461,7 +461,7 @@ interface CollectionsListChildCollectionNamesdefaultResponse extends HttpRespons
     // (undocumented)
     body: ErrorResponseModelOutput_2;
     // (undocumented)
-    status: "500";
+    status: "default";
 }
 
 // @public (undocumented)
@@ -497,7 +497,7 @@ interface CollectionsListCollectionsdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseModelOutput_2;
     // (undocumented)
-    status: "500";
+    status: "default";
 }
 
 // @public (undocumented)
@@ -763,7 +763,7 @@ interface MetadataPolicyGetdefaultResponse extends HttpResponse {
     // (undocumented)
     headers: RawHttpHeaders & MetadataPolicyGetdefaultHeaders;
     // (undocumented)
-    status: "500";
+    status: "default";
 }
 
 // @public (undocumented)
@@ -794,7 +794,7 @@ interface MetadataPolicyListAlldefaultResponse extends HttpResponse {
     // (undocumented)
     headers: RawHttpHeaders & MetadataPolicyListAlldefaultHeaders;
     // (undocumented)
-    status: "500";
+    status: "default";
 }
 
 // @public (undocumented)
@@ -877,7 +877,7 @@ interface MetadataPolicyUpdatedefaultResponse extends HttpResponse {
     // (undocumented)
     headers: RawHttpHeaders & MetadataPolicyUpdatedefaultHeaders;
     // (undocumented)
-    status: "500";
+    status: "default";
 }
 
 // @public (undocumented)
@@ -941,7 +941,7 @@ interface MetadataRolesListdefaultResponse extends HttpResponse {
     // (undocumented)
     headers: RawHttpHeaders & MetadataRolesListdefaultHeaders;
     // (undocumented)
-    status: "500";
+    status: "default";
 }
 
 // @public (undocumented)
@@ -1390,7 +1390,7 @@ interface ResourceSetRulesCreateOrUpdateResourceSetRuledefaultResponse extends H
     // (undocumented)
     body: ErrorResponseModelOutput_2;
     // (undocumented)
-    status: "500";
+    status: "default";
 }
 
 // @public (undocumented)
@@ -1422,7 +1422,7 @@ interface ResourceSetRulesDeleteResourceSetRuledefaultResponse extends HttpRespo
     // (undocumented)
     body: ErrorResponseModelOutput_2;
     // (undocumented)
-    status: "500";
+    status: "default";
 }
 
 // @public (undocumented)
@@ -1448,7 +1448,7 @@ interface ResourceSetRulesGetResourceSetRuledefaultResponse extends HttpResponse
     // (undocumented)
     body: ErrorResponseModelOutput_2;
     // (undocumented)
-    status: "500";
+    status: "default";
 }
 
 // @public (undocumented)
@@ -1472,7 +1472,7 @@ interface ResourceSetRulesListResourceSetRulesdefaultResponse extends HttpRespon
     // (undocumented)
     body: ErrorResponseModelOutput_2;
     // (undocumented)
-    status: "500";
+    status: "default";
 }
 
 // @public (undocumented)

@@ -1,7 +1,8 @@
 import LRORest, {
   LRORestClient,
   getLongRunningPoller,
-  Product
+  Product,
+  isUnexpected
 } from "./generated/lroRest/src";
 import { assert } from "chai";
 import { PipelineRequest } from "@azure/core-rest-pipeline";
@@ -32,7 +33,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      if (result.status !== "200") {
+      if (isUnexpected(result) || result.status === "204") {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
         throw new Error(error);
@@ -51,7 +52,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      if (result.status !== "200") {
+      if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
         throw new Error(error);
@@ -71,7 +72,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      if (result.status !== "200") {
+      if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
         throw new Error(error);
@@ -112,7 +113,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      if (result.status !== "200") {
+      if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
         throw new Error(error);
@@ -155,7 +156,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      if (result.status === "500") {
+      if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
         throw new Error(error);
@@ -219,7 +220,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      if (result.status === "500") {
+      if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
         throw new Error(error);
@@ -239,7 +240,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      if (result.status === "500") {
+      if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
         throw new Error(error);
@@ -260,7 +261,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      if (result.status === "500") {
+      if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
         throw new Error(error);
@@ -280,7 +281,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      if (result.status === "500") {
+      if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
         throw new Error(error);
@@ -299,7 +300,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      if (result.status !== "200") {
+      if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
         throw new Error(error);
@@ -338,7 +339,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      if (result.status !== "200") {
+      if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
         throw new Error(error);
@@ -357,7 +358,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      if (result.status !== "200") {
+      if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
         throw new Error(error);
@@ -375,7 +376,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      if (result.status !== "200") {
+      if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
         throw new Error(error);
@@ -420,7 +421,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      if (result.status === "500") {
+      if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
         throw new Error(error);
@@ -441,7 +442,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      if (result.status === "500") {
+      if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
         throw new Error(error);
@@ -458,7 +459,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      if (result.status === "500") {
+      if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
         throw new Error(error);
@@ -477,7 +478,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      if (result.status === "500") {
+      if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
         throw new Error(error);
@@ -562,7 +563,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      if (result.status === "500") {
+      if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
         throw new Error(error);
@@ -580,7 +581,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      if (result.status === "500") {
+      if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
         throw new Error(error);
@@ -598,7 +599,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      if (result.status !== "200") {
+      if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
         throw new Error(error);
@@ -637,7 +638,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      if (result.status === "500") {
+      if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
         throw new Error(error);
@@ -657,7 +658,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      if (result.status === "500") {
+      if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
         throw new Error(error);
@@ -678,7 +679,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      if (result.status === "500") {
+      if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
         throw new Error(error);
@@ -718,7 +719,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      if (result.status === "500") {
+      if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
         throw new Error(error);
@@ -738,7 +739,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      if (result.status === "500") {
+      if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
         throw new Error(error);
@@ -756,7 +757,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      if (result.status === "500") {
+      if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
         throw new Error(error);
@@ -795,7 +796,7 @@ describe("LRO Rest Client", () => {
 
       const result = await poller.pollUntilDone();
 
-      if (result.status === "500") {
+      if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
         throw new Error(error);
@@ -841,7 +842,7 @@ describe("LRO Rest Client", () => {
 
       const result = await poller.pollUntilDone();
 
-      if (result.status === "500") {
+      if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
         throw new Error(error);
@@ -870,7 +871,7 @@ describe("LRO Rest Client", () => {
 
       const result = await poller.pollUntilDone();
 
-      if (result.status === "500") {
+      if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
         throw new Error(error);
@@ -894,7 +895,7 @@ describe("LRO Rest Client", () => {
 
       const result = await poller.pollUntilDone();
 
-      if (result.status === "500") {
+      if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
         throw new Error(error);
@@ -919,7 +920,7 @@ describe("LRO Rest Client", () => {
 
       const result = await poller.pollUntilDone();
 
-      if (result.status === "500") {
+      if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
         throw new Error(error);
@@ -1340,7 +1341,7 @@ describe("LRO Rest Client", () => {
 
       const result = await poller.pollUntilDone();
 
-      if (result.status === "500") {
+      if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
         throw new Error(error);
@@ -1362,7 +1363,7 @@ describe("LRO Rest Client", () => {
 
       const result = await poller.pollUntilDone();
 
-      if (result.status === "500") {
+      if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
         throw new Error(error);
@@ -1383,7 +1384,7 @@ describe("LRO Rest Client", () => {
 
       const result = await poller.pollUntilDone();
 
-      if (result.status === "500") {
+      if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
         throw new Error(error);
@@ -1404,7 +1405,7 @@ describe("LRO Rest Client", () => {
 
       const result = await poller.pollUntilDone();
 
-      if (result.status === "500") {
+      if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
         throw new Error(error);
@@ -1423,7 +1424,7 @@ describe("LRO Rest Client", () => {
 
       const result = await poller.pollUntilDone();
 
-      if (result.status === "500") {
+      if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
         throw new Error(error);
@@ -1442,7 +1443,7 @@ describe("LRO Rest Client", () => {
 
       const result = await poller.pollUntilDone();
 
-      if (result.status === "500") {
+      if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
         throw new Error(error);
@@ -1461,7 +1462,7 @@ describe("LRO Rest Client", () => {
 
       const result = await poller.pollUntilDone();
 
-      if (result.status === "500") {
+      if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
         throw new Error(error);
