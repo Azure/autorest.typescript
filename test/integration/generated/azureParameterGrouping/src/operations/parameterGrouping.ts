@@ -17,7 +17,8 @@ import {
   ParameterGroupingPostOptionalOptionalParams,
   ParameterGroupingPostReservedWordsOptionalParams,
   ParameterGroupingPostMultiParamGroupsOptionalParams,
-  ParameterGroupingPostSharedParameterGroupObjectOptionalParams
+  ParameterGroupingPostSharedParameterGroupObjectOptionalParams,
+  ParameterGroupingGroupWithConstantOptionalParams
 } from "../models";
 
 /** Class containing ParameterGrouping operations. */
@@ -96,6 +97,19 @@ export class ParameterGroupingImpl implements ParameterGrouping {
     return this.client.sendOperationRequest(
       { options },
       postSharedParameterGroupObjectOperationSpec
+    );
+  }
+
+  /**
+   * Parameter group with a constant. Pass in 'foo' for groupedConstant and 'bar' for groupedParameter.
+   * @param options The options parameters.
+   */
+  groupWithConstant(
+    options?: ParameterGroupingGroupWithConstantOptionalParams
+  ): Promise<void> {
+    return this.client.sendOperationRequest(
+      { options },
+      groupWithConstantOperationSpec
     );
   }
 }
@@ -180,5 +194,22 @@ const postSharedParameterGroupObjectOperationSpec: coreClient.OperationSpec = {
   queryParameters: [Parameters.queryOne],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.headerOne],
+  serializer
+};
+const groupWithConstantOperationSpec: coreClient.OperationSpec = {
+  path: "/parameterGrouping/groupWithConstant",
+  httpMethod: "PUT",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  urlParameters: [Parameters.$host],
+  headerParameters: [
+    Parameters.accept,
+    Parameters.groupedConstant,
+    Parameters.groupedParameter
+  ],
   serializer
 };

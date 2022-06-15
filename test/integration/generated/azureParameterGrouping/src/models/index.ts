@@ -52,6 +52,14 @@ export interface ParameterGroupingPostMultiParamGroupsSecondParamGroup {
   queryTwo?: number;
 }
 
+/** Parameter group */
+export interface Grouper {
+  /** A grouped parameter that is a constant. */
+  groupedConstant?: "foo";
+  /** Optional parameter part of a parameter grouping. */
+  groupedParameter?: string;
+}
+
 /** Optional parameters. */
 export interface ParameterGroupingPostRequiredOptionalParams
   extends coreClient.OperationOptions {
@@ -88,6 +96,13 @@ export interface ParameterGroupingPostSharedParameterGroupObjectOptionalParams
   extends coreClient.OperationOptions {
   /** Parameter group */
   firstParameterGroup?: FirstParameterGroup;
+}
+
+/** Optional parameters. */
+export interface ParameterGroupingGroupWithConstantOptionalParams
+  extends coreClient.OperationOptions {
+  /** Parameter group */
+  grouper?: Grouper;
 }
 
 /** Optional parameters. */

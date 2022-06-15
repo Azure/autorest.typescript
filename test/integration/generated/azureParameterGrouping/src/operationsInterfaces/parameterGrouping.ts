@@ -12,7 +12,8 @@ import {
   ParameterGroupingPostOptionalOptionalParams,
   ParameterGroupingPostReservedWordsOptionalParams,
   ParameterGroupingPostMultiParamGroupsOptionalParams,
-  ParameterGroupingPostSharedParameterGroupObjectOptionalParams
+  ParameterGroupingPostSharedParameterGroupObjectOptionalParams,
+  ParameterGroupingGroupWithConstantOptionalParams
 } from "../models";
 
 /** Interface representing a ParameterGrouping. */
@@ -53,5 +54,12 @@ export interface ParameterGrouping {
    */
   postSharedParameterGroupObject(
     options?: ParameterGroupingPostSharedParameterGroupObjectOptionalParams
+  ): Promise<void>;
+  /**
+   * Parameter group with a constant. Pass in 'foo' for groupedConstant and 'bar' for groupedParameter.
+   * @param options The options parameters.
+   */
+  groupWithConstant(
+    options?: ParameterGroupingGroupWithConstantOptionalParams
   ): Promise<void>;
 }
