@@ -197,3 +197,25 @@ export const queryTwo: OperationQueryParameter = {
     }
   }
 };
+
+export const groupedConstant: OperationParameter = {
+  parameterPath: ["options", "grouper", "groupedConstant"],
+  mapper: {
+    defaultValue: "foo",
+    isConstant: true,
+    serializedName: "groupedConstant",
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const groupedParameter: OperationParameter = {
+  parameterPath: ["options", "grouper", "groupedParameter"],
+  mapper: {
+    serializedName: "groupedParameter",
+    type: {
+      name: "String"
+    }
+  }
+};
