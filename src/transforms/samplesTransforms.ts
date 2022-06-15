@@ -187,7 +187,36 @@ export async function getAllExamples(
                 SchemaType.AnyObject ||
                 methodParameter.exampleValue.schema.type === SchemaType.Any
               ) {
+<<<<<<< HEAD
                 bodySchemaName = "Record<string, unknown>";
+=======
+                continue;
+              }
+              const parameterName = normalizeName(
+                getLanguageMetadata(methodParameter.exampleValue.language).name,
+                NameType.Parameter,
+                true
+              );
+              const parameterTypeDetails = getTypeForSchema(
+                methodParameter.exampleValue.schema
+              );
+              const parameterTypeName = parameterTypeDetails.typeName;
+              let paramAssignment = "";
+              if (methodParameter.parameter.protocol?.http?.["in"] === "body") {
+                let bodySchemaName = parameterTypeName;
+                if (
+                  methodParameter.exampleValue.schema.type ===
+                    SchemaType.AnyObject ||
+                  methodParameter.exampleValue.schema.type === SchemaType.Any
+                ) {
+                  bodySchemaName = "Record<string, unknown>";
+                } else if (methodParameter.exampleValue.schema.type !== SchemaType.Dictionary) {
+                  importedTypeSet.add(parameterTypeName);
+                }
+                paramAssignment =
+                  `const ${parameterName}: ${bodySchemaName} = ` +
+                  getParameterAssignment(methodParameter.exampleValue);
+>>>>>>> main
               } else {
                 importedTypeSet.add(parameterTypeName);
               }

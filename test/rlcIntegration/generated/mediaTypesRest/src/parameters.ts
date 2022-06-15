@@ -10,7 +10,11 @@ export interface AnalyzeBodyBodyParam {
    *
    * Value may contain any sequence of octets
    */
-  body?: string | Uint8Array;
+  body?:
+    | string
+    | Uint8Array
+    | ReadableStream<Uint8Array>
+    | NodeJS.ReadableStream;
 }
 
 export interface AnalyzeBodyMediaTypesParam {
@@ -45,7 +49,11 @@ export interface AnalyzeBodyNoAcceptHeaderBodyParam {
    *
    * Value may contain any sequence of octets
    */
-  body?: string | Uint8Array;
+  body?:
+    | string
+    | Uint8Array
+    | ReadableStream<Uint8Array>
+    | NodeJS.ReadableStream;
 }
 
 export interface AnalyzeBodyNoAcceptHeaderMediaTypesParam {
@@ -94,7 +102,11 @@ export interface BinaryBodyWithTwoContentTypesBodyParam {
    *
    * Value may contain any sequence of octets
    */
-  body: string | Uint8Array;
+  body:
+    | string
+    | Uint8Array
+    | ReadableStream<Uint8Array>
+    | NodeJS.ReadableStream;
 }
 
 export interface BinaryBodyWithTwoContentTypesMediaTypesParam {
@@ -112,7 +124,11 @@ export interface BinaryBodyWithThreeContentTypesBodyParam {
    *
    * Value may contain any sequence of octets
    */
-  body: string | Uint8Array;
+  body:
+    | string
+    | Uint8Array
+    | ReadableStream<Uint8Array>
+    | NodeJS.ReadableStream;
 }
 
 export interface BinaryBodyWithThreeContentTypesMediaTypesParam {

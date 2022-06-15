@@ -13,8 +13,9 @@ export interface AutorestOptions {
   rlcShortcut?: boolean;
   azureArm?: boolean;
   addCredentials?: boolean;
-  credentialKeyHeaderName?: string;
-  credentialScopes?: string[];
+  security?: string;
+  securityHeaderName?: string;
+  securityScopes?: string | string[];
   srcPath: string;
   outputPath?: string;
   title?: string;
@@ -39,6 +40,7 @@ export interface AutorestOptions {
   productDocLink?: string;
   coreHttpCompatMode?: boolean;
   dependencyInfo?: DependencyInfo;
+  lenientModelDeduplication?: boolean;
 }
 
 let host: AutorestExtensionHost;

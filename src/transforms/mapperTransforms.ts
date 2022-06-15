@@ -175,6 +175,7 @@ function buildMapper(
   const serializedName =
     getDiscriminatorValue(schema) ||
     options.serializedName ||
+    (schema as ObjectSchema).discriminator && !isUberParent(schema as ObjectSchema) && getLanguageMetadata(schema.language).name ||
     // Fallback to name only for XML schemas since they need a name, otherwise don't
     (options.hasXmlMetadata && getLanguageMetadata(schema.language).name);
 

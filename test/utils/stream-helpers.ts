@@ -1,6 +1,14 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import { Readable } from "stream";
+
+export function stringToStream(
+  text: string
+): NodeJS.ReadableStream | ReadableStream {
+  return Readable.from([text]);
+}
+
 /**
  * Reads data from a stream into a Buffer.
  * @param stream Node.js Readable stream.
@@ -35,6 +43,29 @@ export function countBytesFromStream(
     stream.on("error", reject);
     stream.on("data", function(chunk: Buffer) {
       byteCount += chunk.length;
+    });
+    stream.on("end", function() {
+      resolve(byteCount);
+    });
+  });
+}
+
+/**
+ * Get the count of the first chunk of the stream
+ * @param stream Node.js Readable stream.
+ */
+export function readFirstChunk(
+  stream: NodeJS.ReadableStream | ReadableStream
+): Promise<number> {
+  if (!isNodeReadableStream(stream)) {
+    throw new Error("Browser streams are not supported in NodeJS");
+  }
+  return new Promise<number>((resolve, reject) => {
+    let byteCount = 0;
+    stream.on("error", reject);
+    stream.on("data", function(chunk: Buffer) {
+      byteCount += chunk.length;
+      resolve(byteCount);
     });
     stream.on("end", function() {
       resolve(byteCount);

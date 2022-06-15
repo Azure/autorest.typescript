@@ -8,7 +8,9 @@ import {
   CodeModel,
   ChoiceSchema,
   SealedChoiceSchema,
-  SchemaType
+  SchemaType,
+  OAuth2SecurityScheme,
+  KeySecurityScheme
 } from "@autorest/codemodel";
 import { normalizeName, NameType } from "../utils/nameUtils";
 import { getStringForValue } from "../utils/valueHelpers";
@@ -121,7 +123,8 @@ export async function transformCodeModel(
     parameters,
     options,
     endpoint: baseUrl,
-    allTypes: []
+    allTypes: [],
+    security: codeModel.security
   };
 }
 

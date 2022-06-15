@@ -48,20 +48,20 @@ import {
   ResourceSetRulesListResourceSetRules200Response,
   ResourceSetRulesListResourceSetRulesdefaultResponse
 } from "./responses";
-import { Client } from "@azure-rest/core-client";
+import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface AccountsGetAccountProperties {
   /** Get an account */
   get(
     options?: AccountsGetAccountPropertiesParameters
-  ): Promise<
+  ): StreamableMethod<
     | AccountsGetAccountProperties200Response
     | AccountsGetAccountPropertiesdefaultResponse
   >;
   /** Updates an account */
   patch(
     options: AccountsUpdateAccountPropertiesParameters
-  ): Promise<
+  ): StreamableMethod<
     | AccountsUpdateAccountProperties200Response
     | AccountsUpdateAccountPropertiesdefaultResponse
   >;
@@ -71,7 +71,7 @@ export interface AccountsGetAccessKeys {
   /** List the authorization keys associated with this account. */
   post(
     options?: AccountsGetAccessKeysParameters
-  ): Promise<
+  ): StreamableMethod<
     AccountsGetAccessKeys200Response | AccountsGetAccessKeysdefaultResponse
   >;
 }
@@ -80,7 +80,7 @@ export interface AccountsRegenerateAccessKey {
   /** Regenerate the authorization keys associated with this data catalog. */
   post(
     options: AccountsRegenerateAccessKeyParameters
-  ): Promise<
+  ): StreamableMethod<
     | AccountsRegenerateAccessKey200Response
     | AccountsRegenerateAccessKeydefaultResponse
   >;
@@ -90,21 +90,21 @@ export interface CollectionsGetCollection {
   /** Get a collection */
   get(
     options?: CollectionsGetCollectionParameters
-  ): Promise<
+  ): StreamableMethod<
     | CollectionsGetCollection200Response
     | CollectionsGetCollectiondefaultResponse
   >;
   /** Creates or updates a collection entity. */
   put(
     options: CollectionsCreateOrUpdateCollectionParameters
-  ): Promise<
+  ): StreamableMethod<
     | CollectionsCreateOrUpdateCollection200Response
     | CollectionsCreateOrUpdateCollectiondefaultResponse
   >;
   /** Deletes a Collection entity. */
   delete(
     options?: CollectionsDeleteCollectionParameters
-  ): Promise<
+  ): StreamableMethod<
     | CollectionsDeleteCollection204Response
     | CollectionsDeleteCollectiondefaultResponse
   >;
@@ -114,7 +114,7 @@ export interface CollectionsListCollections {
   /** List the collections in the account. */
   get(
     options?: CollectionsListCollectionsParameters
-  ): Promise<
+  ): StreamableMethod<
     | CollectionsListCollections200Response
     | CollectionsListCollectionsdefaultResponse
   >;
@@ -124,7 +124,7 @@ export interface CollectionsListChildCollectionNames {
   /** Lists the child collections names in the collection. */
   get(
     options?: CollectionsListChildCollectionNamesParameters
-  ): Promise<
+  ): StreamableMethod<
     | CollectionsListChildCollectionNames200Response
     | CollectionsListChildCollectionNamesdefaultResponse
   >;
@@ -134,7 +134,7 @@ export interface CollectionsGetCollectionPath {
   /** Gets the parent name and parent friendly name chains that represent the collection path. */
   get(
     options?: CollectionsGetCollectionPathParameters
-  ): Promise<
+  ): StreamableMethod<
     | CollectionsGetCollectionPath200Response
     | CollectionsGetCollectionPathdefaultResponse
   >;
@@ -144,21 +144,21 @@ export interface ResourceSetRulesGetResourceSetRule {
   /** Get a resource set config service model. */
   get(
     options?: ResourceSetRulesGetResourceSetRuleParameters
-  ): Promise<
+  ): StreamableMethod<
     | ResourceSetRulesGetResourceSetRule200Response
     | ResourceSetRulesGetResourceSetRuledefaultResponse
   >;
   /** Creates or updates an resource set config. */
   put(
     options: ResourceSetRulesCreateOrUpdateResourceSetRuleParameters
-  ): Promise<
+  ): StreamableMethod<
     | ResourceSetRulesCreateOrUpdateResourceSetRule200Response
     | ResourceSetRulesCreateOrUpdateResourceSetRuledefaultResponse
   >;
   /** Deletes a ResourceSetRuleConfig resource. */
   delete(
     options?: ResourceSetRulesDeleteResourceSetRuleParameters
-  ): Promise<
+  ): StreamableMethod<
     | ResourceSetRulesDeleteResourceSetRule200Response
     | ResourceSetRulesDeleteResourceSetRule204Response
     | ResourceSetRulesDeleteResourceSetRuledefaultResponse
@@ -169,7 +169,7 @@ export interface ResourceSetRulesListResourceSetRules {
   /** Get a resource set config service model. */
   get(
     options?: ResourceSetRulesListResourceSetRulesParameters
-  ): Promise<
+  ): StreamableMethod<
     | ResourceSetRulesListResourceSetRules200Response
     | ResourceSetRulesListResourceSetRulesdefaultResponse
   >;

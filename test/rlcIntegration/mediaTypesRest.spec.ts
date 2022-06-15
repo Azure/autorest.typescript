@@ -1,8 +1,8 @@
-import MediaTypes, {
-  MediaTypesClient
-} from "./generated/mediaTypesRest/src";
-
+import MediaTypes, { MediaTypesClient } from "./generated/mediaTypesRest/src";
+import { stringToStream } from "../utils/stream-helpers";
 import { assert } from "chai";
+import { Context } from "mocha";
+import { isNode } from "@azure/core-util";
 
 describe("Media types Rest", () => {
   let client: MediaTypesClient;
@@ -11,11 +11,15 @@ describe("Media types Rest", () => {
     client = MediaTypes({ allowInsecureConnection: true });
   });
 
-  // Issue https://github.com/Azure/autorest.typescript/issues/1242
-  it("should handle /analyze with application/pdf", async () => {
+  it("should handle /analyze with application/pdf", async function(this: Context) {
+    if (!isNode) {
+      // Browsers don't support streaming request bodies yet. There are a few issues tracking
+      // implementation, for example https://bugs.chromium.org/p/chromium/issues/detail?id=688906
+      this.skip();
+    }
     const result = await client.path("/mediatypes/analyze").post({
       contentType: "application/pdf",
-      body: "PDF"
+      body: stringToStream("PDF")
     });
 
     assert.equal(result.status, "200");

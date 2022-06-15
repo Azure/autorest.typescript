@@ -203,7 +203,7 @@ import {
   PathItemsGetLocalPathItemQueryNull200Response,
   PathItemsGetLocalPathItemQueryNulldefaultResponse
 } from "./responses";
-import { Client } from "@azure-rest/core-client";
+import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 /** Contains operations for Paths operations */
 export interface PathsOperations {
@@ -211,28 +211,28 @@ export interface PathsOperations {
   getBooleanTrue(
     boolPath: true,
     options?: PathsGetBooleanTrueParameters
-  ): Promise<
+  ): StreamableMethod<
     PathsGetBooleanTrue200Response | PathsGetBooleanTruedefaultResponse
   >;
   /** Get false Boolean value on path */
   getBooleanFalse(
     boolPath: false,
     options?: PathsGetBooleanFalseParameters
-  ): Promise<
+  ): StreamableMethod<
     PathsGetBooleanFalse200Response | PathsGetBooleanFalsedefaultResponse
   >;
   /** Get '1000000' integer value */
   getIntOneMillion(
     intPath: 1000000,
     options?: PathsGetIntOneMillionParameters
-  ): Promise<
+  ): StreamableMethod<
     PathsGetIntOneMillion200Response | PathsGetIntOneMilliondefaultResponse
   >;
   /** Get '-1000000' integer value */
   getIntNegativeOneMillion(
     intPath: -1000000,
     options?: PathsGetIntNegativeOneMillionParameters
-  ): Promise<
+  ): StreamableMethod<
     | PathsGetIntNegativeOneMillion200Response
     | PathsGetIntNegativeOneMilliondefaultResponse
   >;
@@ -240,12 +240,14 @@ export interface PathsOperations {
   getTenBillion(
     longPath: 10000000000,
     options?: PathsGetTenBillionParameters
-  ): Promise<PathsGetTenBillion200Response | PathsGetTenBilliondefaultResponse>;
+  ): StreamableMethod<
+    PathsGetTenBillion200Response | PathsGetTenBilliondefaultResponse
+  >;
   /** Get '-10000000000' 64 bit integer value */
   getNegativeTenBillion(
     longPath: -10000000000,
     options?: PathsGetNegativeTenBillionParameters
-  ): Promise<
+  ): StreamableMethod<
     | PathsGetNegativeTenBillion200Response
     | PathsGetNegativeTenBilliondefaultResponse
   >;
@@ -253,7 +255,7 @@ export interface PathsOperations {
   floatScientificPositive(
     floatPath: 103400000000000000000,
     options?: PathsFloatScientificPositiveParameters
-  ): Promise<
+  ): StreamableMethod<
     | PathsFloatScientificPositive200Response
     | PathsFloatScientificPositivedefaultResponse
   >;
@@ -261,7 +263,7 @@ export interface PathsOperations {
   floatScientificNegative(
     floatPath: -1.034e-20,
     options?: PathsFloatScientificNegativeParameters
-  ): Promise<
+  ): StreamableMethod<
     | PathsFloatScientificNegative200Response
     | PathsFloatScientificNegativedefaultResponse
   >;
@@ -269,7 +271,7 @@ export interface PathsOperations {
   doubleDecimalPositive(
     doublePath: 9999999.999,
     options?: PathsDoubleDecimalPositiveParameters
-  ): Promise<
+  ): StreamableMethod<
     | PathsDoubleDecimalPositive200Response
     | PathsDoubleDecimalPositivedefaultResponse
   >;
@@ -277,7 +279,7 @@ export interface PathsOperations {
   doubleDecimalNegative(
     doublePath: -9999999.999,
     options?: PathsDoubleDecimalNegativeParameters
-  ): Promise<
+  ): StreamableMethod<
     | PathsDoubleDecimalNegative200Response
     | PathsDoubleDecimalNegativedefaultResponse
   >;
@@ -285,19 +287,21 @@ export interface PathsOperations {
   stringUnicode(
     stringPath: "啊齄丂狛狜隣郎隣兀﨩",
     options?: PathsStringUnicodeParameters
-  ): Promise<PathsStringUnicode200Response | PathsStringUnicodedefaultResponse>;
+  ): StreamableMethod<
+    PathsStringUnicode200Response | PathsStringUnicodedefaultResponse
+  >;
   /** Get 'begin!*'();:@ &=+$,/?#[]end */
   stringUrlEncoded(
     stringPath: "begin!*'();:@ &=+$,/?#[]end",
     options?: PathsStringUrlEncodedParameters
-  ): Promise<
+  ): StreamableMethod<
     PathsStringUrlEncoded200Response | PathsStringUrlEncodeddefaultResponse
   >;
   /** https://tools.ietf.org/html/rfc3986#appendix-A 'path' accept any 'pchar' not encoded */
   stringUrlNonEncoded(
     stringPath: "begin!*'();:@&=+$,end",
     options?: PathsStringUrlNonEncodedParameters
-  ): Promise<
+  ): StreamableMethod<
     | PathsStringUrlNonEncoded200Response
     | PathsStringUrlNonEncodeddefaultResponse
   >;
@@ -305,74 +309,94 @@ export interface PathsOperations {
   stringEmpty(
     stringPath: "",
     options?: PathsStringEmptyParameters
-  ): Promise<PathsStringEmpty200Response | PathsStringEmptydefaultResponse>;
+  ): StreamableMethod<
+    PathsStringEmpty200Response | PathsStringEmptydefaultResponse
+  >;
   /** Get null (should throw) */
   stringNull(
     stringPath: string,
     options?: PathsStringNullParameters
-  ): Promise<PathsStringNull400Response | PathsStringNulldefaultResponse>;
+  ): StreamableMethod<
+    PathsStringNull400Response | PathsStringNulldefaultResponse
+  >;
   /** Get using uri with 'green color' in path parameter */
   enumValid(
     enumPath: "red color" | "green color" | "blue color",
     options?: PathsEnumValidParameters
-  ): Promise<PathsEnumValid200Response | PathsEnumValiddefaultResponse>;
+  ): StreamableMethod<
+    PathsEnumValid200Response | PathsEnumValiddefaultResponse
+  >;
   /** Get null (should throw on the client before the request is sent on wire) */
   enumNull(
     enumPath: "red color" | "green color" | "blue color",
     options?: PathsEnumNullParameters
-  ): Promise<PathsEnumNull400Response | PathsEnumNulldefaultResponse>;
+  ): StreamableMethod<PathsEnumNull400Response | PathsEnumNulldefaultResponse>;
   /** Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array */
   byteMultiByte(
     bytePath: string,
     options?: PathsByteMultiByteParameters
-  ): Promise<PathsByteMultiByte200Response | PathsByteMultiBytedefaultResponse>;
+  ): StreamableMethod<
+    PathsByteMultiByte200Response | PathsByteMultiBytedefaultResponse
+  >;
   /** Get '' as byte array */
   byteEmpty(
     bytePath: "",
     options?: PathsByteEmptyParameters
-  ): Promise<PathsByteEmpty200Response | PathsByteEmptydefaultResponse>;
+  ): StreamableMethod<
+    PathsByteEmpty200Response | PathsByteEmptydefaultResponse
+  >;
   /** Get null as byte array (should throw) */
   byteNull(
     bytePath: string,
     options?: PathsByteNullParameters
-  ): Promise<PathsByteNull400Response | PathsByteNulldefaultResponse>;
+  ): StreamableMethod<PathsByteNull400Response | PathsByteNulldefaultResponse>;
   /** Get '2012-01-01' as date */
   dateValid(
     datePath: "2012-01-01",
     options?: PathsDateValidParameters
-  ): Promise<PathsDateValid200Response | PathsDateValiddefaultResponse>;
+  ): StreamableMethod<
+    PathsDateValid200Response | PathsDateValiddefaultResponse
+  >;
   /** Get null as date - this should throw or be unusable on the client side, depending on date representation */
   dateNull(
     datePath: Date | string,
     options?: PathsDateNullParameters
-  ): Promise<PathsDateNull400Response | PathsDateNulldefaultResponse>;
+  ): StreamableMethod<PathsDateNull400Response | PathsDateNulldefaultResponse>;
   /** Get '2012-01-01T01:01:01Z' as date-time */
   dateTimeValid(
     dateTimePath: "2012-01-01T01:01:01.000Z",
     options?: PathsDateTimeValidParameters
-  ): Promise<PathsDateTimeValid200Response | PathsDateTimeValiddefaultResponse>;
+  ): StreamableMethod<
+    PathsDateTimeValid200Response | PathsDateTimeValiddefaultResponse
+  >;
   /** Get null as date-time, should be disallowed or throw depending on representation of date-time */
   dateTimeNull(
     dateTimePath: Date | string,
     options?: PathsDateTimeNullParameters
-  ): Promise<PathsDateTimeNull400Response | PathsDateTimeNulldefaultResponse>;
+  ): StreamableMethod<
+    PathsDateTimeNull400Response | PathsDateTimeNulldefaultResponse
+  >;
   /** Get 'lorem' encoded value as 'bG9yZW0' (base64url) */
   base64Url(
     base64UrlPath: string,
     options?: PathsBase64UrlParameters
-  ): Promise<PathsBase64Url200Response | PathsBase64UrldefaultResponse>;
+  ): StreamableMethod<
+    PathsBase64Url200Response | PathsBase64UrldefaultResponse
+  >;
   /** Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format */
   arrayCsvInPath(
     arrayPath: Array<string>,
     options?: PathsArrayCsvInPathParameters
-  ): Promise<
+  ): StreamableMethod<
     PathsArrayCsvInPath200Response | PathsArrayCsvInPathdefaultResponse
   >;
   /** Get the date 2016-04-13 encoded value as '1460505600' (Unix time) */
   unixTimeUrl(
     unixTimeUrlPath: string,
     options?: PathsUnixTimeUrlParameters
-  ): Promise<PathsUnixTimeUrl200Response | PathsUnixTimeUrldefaultResponse>;
+  ): StreamableMethod<
+    PathsUnixTimeUrl200Response | PathsUnixTimeUrldefaultResponse
+  >;
 }
 
 /** Contains operations for Queries operations */
@@ -380,199 +404,223 @@ export interface QueriesOperations {
   /** Get true Boolean value on path */
   getBooleanTrue(
     options: QueriesGetBooleanTrueParameters
-  ): Promise<
+  ): StreamableMethod<
     QueriesGetBooleanTrue200Response | QueriesGetBooleanTruedefaultResponse
   >;
   /** Get false Boolean value on path */
   getBooleanFalse(
     options: QueriesGetBooleanFalseParameters
-  ): Promise<
+  ): StreamableMethod<
     QueriesGetBooleanFalse200Response | QueriesGetBooleanFalsedefaultResponse
   >;
   /** Get null Boolean value on query (query string should be absent) */
   getBooleanNull(
     options?: QueriesGetBooleanNullParameters
-  ): Promise<
+  ): StreamableMethod<
     QueriesGetBooleanNull200Response | QueriesGetBooleanNulldefaultResponse
   >;
   /** Get '1000000' integer value */
   getIntOneMillion(
     options: QueriesGetIntOneMillionParameters
-  ): Promise<
+  ): StreamableMethod<
     QueriesGetIntOneMillion200Response | QueriesGetIntOneMilliondefaultResponse
   >;
   /** Get '-1000000' integer value */
   getIntNegativeOneMillion(
     options: QueriesGetIntNegativeOneMillionParameters
-  ): Promise<
+  ): StreamableMethod<
     | QueriesGetIntNegativeOneMillion200Response
     | QueriesGetIntNegativeOneMilliondefaultResponse
   >;
   /** Get null integer value (no query parameter) */
   getIntNull(
     options?: QueriesGetIntNullParameters
-  ): Promise<QueriesGetIntNull200Response | QueriesGetIntNulldefaultResponse>;
+  ): StreamableMethod<
+    QueriesGetIntNull200Response | QueriesGetIntNulldefaultResponse
+  >;
   /** Get '10000000000' 64 bit integer value */
   getTenBillion(
     options: QueriesGetTenBillionParameters
-  ): Promise<
+  ): StreamableMethod<
     QueriesGetTenBillion200Response | QueriesGetTenBilliondefaultResponse
   >;
   /** Get '-10000000000' 64 bit integer value */
   getNegativeTenBillion(
     options: QueriesGetNegativeTenBillionParameters
-  ): Promise<
+  ): StreamableMethod<
     | QueriesGetNegativeTenBillion200Response
     | QueriesGetNegativeTenBilliondefaultResponse
   >;
   /** Get 'null 64 bit integer value (no query param in uri) */
   getLongNull(
     options?: QueriesGetLongNullParameters
-  ): Promise<QueriesGetLongNull200Response | QueriesGetLongNulldefaultResponse>;
+  ): StreamableMethod<
+    QueriesGetLongNull200Response | QueriesGetLongNulldefaultResponse
+  >;
   /** Get '1.034E+20' numeric value */
   floatScientificPositive(
     options: QueriesFloatScientificPositiveParameters
-  ): Promise<
+  ): StreamableMethod<
     | QueriesFloatScientificPositive200Response
     | QueriesFloatScientificPositivedefaultResponse
   >;
   /** Get '-1.034E-20' numeric value */
   floatScientificNegative(
     options: QueriesFloatScientificNegativeParameters
-  ): Promise<
+  ): StreamableMethod<
     | QueriesFloatScientificNegative200Response
     | QueriesFloatScientificNegativedefaultResponse
   >;
   /** Get null numeric value (no query parameter) */
   floatNull(
     options?: QueriesFloatNullParameters
-  ): Promise<QueriesFloatNull200Response | QueriesFloatNulldefaultResponse>;
+  ): StreamableMethod<
+    QueriesFloatNull200Response | QueriesFloatNulldefaultResponse
+  >;
   /** Get '9999999.999' numeric value */
   doubleDecimalPositive(
     options: QueriesDoubleDecimalPositiveParameters
-  ): Promise<
+  ): StreamableMethod<
     | QueriesDoubleDecimalPositive200Response
     | QueriesDoubleDecimalPositivedefaultResponse
   >;
   /** Get '-9999999.999' numeric value */
   doubleDecimalNegative(
     options: QueriesDoubleDecimalNegativeParameters
-  ): Promise<
+  ): StreamableMethod<
     | QueriesDoubleDecimalNegative200Response
     | QueriesDoubleDecimalNegativedefaultResponse
   >;
   /** Get null numeric value (no query parameter) */
   doubleNull(
     options?: QueriesDoubleNullParameters
-  ): Promise<QueriesDoubleNull200Response | QueriesDoubleNulldefaultResponse>;
+  ): StreamableMethod<
+    QueriesDoubleNull200Response | QueriesDoubleNulldefaultResponse
+  >;
   /** Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value */
   stringUnicode(
     options: QueriesStringUnicodeParameters
-  ): Promise<
+  ): StreamableMethod<
     QueriesStringUnicode200Response | QueriesStringUnicodedefaultResponse
   >;
   /** Get 'begin!*'();:@ &=+$,/?#[]end */
   stringUrlEncoded(
     options: QueriesStringUrlEncodedParameters
-  ): Promise<
+  ): StreamableMethod<
     QueriesStringUrlEncoded200Response | QueriesStringUrlEncodeddefaultResponse
   >;
   /** Get '' */
   stringEmpty(
     options: QueriesStringEmptyParameters
-  ): Promise<QueriesStringEmpty200Response | QueriesStringEmptydefaultResponse>;
+  ): StreamableMethod<
+    QueriesStringEmpty200Response | QueriesStringEmptydefaultResponse
+  >;
   /** Get null (no query parameter in url) */
   stringNull(
     options?: QueriesStringNullParameters
-  ): Promise<QueriesStringNull200Response | QueriesStringNulldefaultResponse>;
+  ): StreamableMethod<
+    QueriesStringNull200Response | QueriesStringNulldefaultResponse
+  >;
   /** Get using uri with query parameter 'green color' */
   enumValid(
     options?: QueriesEnumValidParameters
-  ): Promise<QueriesEnumValid200Response | QueriesEnumValiddefaultResponse>;
+  ): StreamableMethod<
+    QueriesEnumValid200Response | QueriesEnumValiddefaultResponse
+  >;
   /** Get null (no query parameter in url) */
   enumNull(
     options?: QueriesEnumNullParameters
-  ): Promise<QueriesEnumNull200Response | QueriesEnumNulldefaultResponse>;
+  ): StreamableMethod<
+    QueriesEnumNull200Response | QueriesEnumNulldefaultResponse
+  >;
   /** Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array */
   byteMultiByte(
     options?: QueriesByteMultiByteParameters
-  ): Promise<
+  ): StreamableMethod<
     QueriesByteMultiByte200Response | QueriesByteMultiBytedefaultResponse
   >;
   /** Get '' as byte array */
   byteEmpty(
     options: QueriesByteEmptyParameters
-  ): Promise<QueriesByteEmpty200Response | QueriesByteEmptydefaultResponse>;
+  ): StreamableMethod<
+    QueriesByteEmpty200Response | QueriesByteEmptydefaultResponse
+  >;
   /** Get null as byte array (no query parameters in uri) */
   byteNull(
     options?: QueriesByteNullParameters
-  ): Promise<QueriesByteNull200Response | QueriesByteNulldefaultResponse>;
+  ): StreamableMethod<
+    QueriesByteNull200Response | QueriesByteNulldefaultResponse
+  >;
   /** Get '2012-01-01' as date */
   dateValid(
     options: QueriesDateValidParameters
-  ): Promise<QueriesDateValid200Response | QueriesDateValiddefaultResponse>;
+  ): StreamableMethod<
+    QueriesDateValid200Response | QueriesDateValiddefaultResponse
+  >;
   /** Get null as date - this should result in no query parameters in uri */
   dateNull(
     options?: QueriesDateNullParameters
-  ): Promise<QueriesDateNull200Response | QueriesDateNulldefaultResponse>;
+  ): StreamableMethod<
+    QueriesDateNull200Response | QueriesDateNulldefaultResponse
+  >;
   /** Get '2012-01-01T01:01:01Z' as date-time */
   dateTimeValid(
     options: QueriesDateTimeValidParameters
-  ): Promise<
+  ): StreamableMethod<
     QueriesDateTimeValid200Response | QueriesDateTimeValiddefaultResponse
   >;
   /** Get null as date-time, should result in no query parameters in uri */
   dateTimeNull(
     options?: QueriesDateTimeNullParameters
-  ): Promise<
+  ): StreamableMethod<
     QueriesDateTimeNull200Response | QueriesDateTimeNulldefaultResponse
   >;
   /** Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format */
   arrayStringCsvValid(
     options?: QueriesArrayStringCsvValidParameters
-  ): Promise<
+  ): StreamableMethod<
     | QueriesArrayStringCsvValid200Response
     | QueriesArrayStringCsvValiddefaultResponse
   >;
   /** Get a null array of string using the csv-array format */
   arrayStringCsvNull(
     options?: QueriesArrayStringCsvNullParameters
-  ): Promise<
+  ): StreamableMethod<
     | QueriesArrayStringCsvNull200Response
     | QueriesArrayStringCsvNulldefaultResponse
   >;
   /** Get an empty array [] of string using the csv-array format */
   arrayStringCsvEmpty(
     options?: QueriesArrayStringCsvEmptyParameters
-  ): Promise<
+  ): StreamableMethod<
     | QueriesArrayStringCsvEmpty200Response
     | QueriesArrayStringCsvEmptydefaultResponse
   >;
   /** Array query has no defined collection format, should default to csv. Pass in ['hello', 'nihao', 'bonjour'] for the 'arrayQuery' parameter to the service */
   arrayStringNoCollectionFormatEmpty(
     options?: QueriesArrayStringNoCollectionFormatEmptyParameters
-  ): Promise<
+  ): StreamableMethod<
     | QueriesArrayStringNoCollectionFormatEmpty200Response
     | QueriesArrayStringNoCollectionFormatEmptydefaultResponse
   >;
   /** Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the ssv-array format */
   arrayStringSsvValid(
     options?: QueriesArrayStringSsvValidParameters
-  ): Promise<
+  ): StreamableMethod<
     | QueriesArrayStringSsvValid200Response
     | QueriesArrayStringSsvValiddefaultResponse
   >;
   /** Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the tsv-array format */
   arrayStringTsvValid(
     options?: QueriesArrayStringTsvValidParameters
-  ): Promise<
+  ): StreamableMethod<
     | QueriesArrayStringTsvValid200Response
     | QueriesArrayStringTsvValiddefaultResponse
   >;
   /** Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the pipes-array format */
   arrayStringPipesValid(
     options?: QueriesArrayStringPipesValidParameters
-  ): Promise<
+  ): StreamableMethod<
     | QueriesArrayStringPipesValid200Response
     | QueriesArrayStringPipesValiddefaultResponse
   >;
@@ -586,7 +634,7 @@ export interface PathItemsOperations {
     pathItemStringPath: string,
     localStringPath: string,
     options?: PathItemsGetAllWithValuesParameters
-  ): Promise<
+  ): StreamableMethod<
     | PathItemsGetAllWithValues200Response
     | PathItemsGetAllWithValuesdefaultResponse
   >;
@@ -596,7 +644,7 @@ export interface PathItemsOperations {
     pathItemStringPath: string,
     localStringPath: string,
     options?: PathItemsGetGlobalQueryNullParameters
-  ): Promise<
+  ): StreamableMethod<
     | PathItemsGetGlobalQueryNull200Response
     | PathItemsGetGlobalQueryNulldefaultResponse
   >;
@@ -606,7 +654,7 @@ export interface PathItemsOperations {
     pathItemStringPath: string,
     localStringPath: string,
     options?: PathItemsGetGlobalAndLocalQueryNullParameters
-  ): Promise<
+  ): StreamableMethod<
     | PathItemsGetGlobalAndLocalQueryNull200Response
     | PathItemsGetGlobalAndLocalQueryNulldefaultResponse
   >;
@@ -616,7 +664,7 @@ export interface PathItemsOperations {
     pathItemStringPath: string,
     localStringPath: string,
     options?: PathItemsGetLocalPathItemQueryNullParameters
-  ): Promise<
+  ): StreamableMethod<
     | PathItemsGetLocalPathItemQueryNull200Response
     | PathItemsGetLocalPathItemQueryNulldefaultResponse
   >;
@@ -626,7 +674,7 @@ export interface PathsGetBooleanTrue {
   /** Get true Boolean value on path */
   get(
     options?: PathsGetBooleanTrueParameters
-  ): Promise<
+  ): StreamableMethod<
     PathsGetBooleanTrue200Response | PathsGetBooleanTruedefaultResponse
   >;
 }
@@ -635,7 +683,7 @@ export interface PathsGetBooleanFalse {
   /** Get false Boolean value on path */
   get(
     options?: PathsGetBooleanFalseParameters
-  ): Promise<
+  ): StreamableMethod<
     PathsGetBooleanFalse200Response | PathsGetBooleanFalsedefaultResponse
   >;
 }
@@ -644,7 +692,7 @@ export interface PathsGetIntOneMillion {
   /** Get '1000000' integer value */
   get(
     options?: PathsGetIntOneMillionParameters
-  ): Promise<
+  ): StreamableMethod<
     PathsGetIntOneMillion200Response | PathsGetIntOneMilliondefaultResponse
   >;
 }
@@ -653,7 +701,7 @@ export interface PathsGetIntNegativeOneMillion {
   /** Get '-1000000' integer value */
   get(
     options?: PathsGetIntNegativeOneMillionParameters
-  ): Promise<
+  ): StreamableMethod<
     | PathsGetIntNegativeOneMillion200Response
     | PathsGetIntNegativeOneMilliondefaultResponse
   >;
@@ -663,14 +711,16 @@ export interface PathsGetTenBillion {
   /** Get '10000000000' 64 bit integer value */
   get(
     options?: PathsGetTenBillionParameters
-  ): Promise<PathsGetTenBillion200Response | PathsGetTenBilliondefaultResponse>;
+  ): StreamableMethod<
+    PathsGetTenBillion200Response | PathsGetTenBilliondefaultResponse
+  >;
 }
 
 export interface PathsGetNegativeTenBillion {
   /** Get '-10000000000' 64 bit integer value */
   get(
     options?: PathsGetNegativeTenBillionParameters
-  ): Promise<
+  ): StreamableMethod<
     | PathsGetNegativeTenBillion200Response
     | PathsGetNegativeTenBilliondefaultResponse
   >;
@@ -680,7 +730,7 @@ export interface PathsFloatScientificPositive {
   /** Get '1.034E+20' numeric value */
   get(
     options?: PathsFloatScientificPositiveParameters
-  ): Promise<
+  ): StreamableMethod<
     | PathsFloatScientificPositive200Response
     | PathsFloatScientificPositivedefaultResponse
   >;
@@ -690,7 +740,7 @@ export interface PathsFloatScientificNegative {
   /** Get '-1.034E-20' numeric value */
   get(
     options?: PathsFloatScientificNegativeParameters
-  ): Promise<
+  ): StreamableMethod<
     | PathsFloatScientificNegative200Response
     | PathsFloatScientificNegativedefaultResponse
   >;
@@ -700,7 +750,7 @@ export interface PathsDoubleDecimalPositive {
   /** Get '9999999.999' numeric value */
   get(
     options?: PathsDoubleDecimalPositiveParameters
-  ): Promise<
+  ): StreamableMethod<
     | PathsDoubleDecimalPositive200Response
     | PathsDoubleDecimalPositivedefaultResponse
   >;
@@ -710,7 +760,7 @@ export interface PathsDoubleDecimalNegative {
   /** Get '-9999999.999' numeric value */
   get(
     options?: PathsDoubleDecimalNegativeParameters
-  ): Promise<
+  ): StreamableMethod<
     | PathsDoubleDecimalNegative200Response
     | PathsDoubleDecimalNegativedefaultResponse
   >;
@@ -720,14 +770,16 @@ export interface PathsStringUnicode {
   /** Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value */
   get(
     options?: PathsStringUnicodeParameters
-  ): Promise<PathsStringUnicode200Response | PathsStringUnicodedefaultResponse>;
+  ): StreamableMethod<
+    PathsStringUnicode200Response | PathsStringUnicodedefaultResponse
+  >;
 }
 
 export interface PathsStringUrlEncoded {
   /** Get 'begin!*'();:@ &=+$,/?#[]end */
   get(
     options?: PathsStringUrlEncodedParameters
-  ): Promise<
+  ): StreamableMethod<
     PathsStringUrlEncoded200Response | PathsStringUrlEncodeddefaultResponse
   >;
 }
@@ -736,7 +788,7 @@ export interface PathsStringUrlNonEncoded {
   /** https://tools.ietf.org/html/rfc3986#appendix-A 'path' accept any 'pchar' not encoded */
   get(
     options?: PathsStringUrlNonEncodedParameters
-  ): Promise<
+  ): StreamableMethod<
     | PathsStringUrlNonEncoded200Response
     | PathsStringUrlNonEncodeddefaultResponse
   >;
@@ -746,91 +798,109 @@ export interface PathsStringEmpty {
   /** Get '' */
   get(
     options?: PathsStringEmptyParameters
-  ): Promise<PathsStringEmpty200Response | PathsStringEmptydefaultResponse>;
+  ): StreamableMethod<
+    PathsStringEmpty200Response | PathsStringEmptydefaultResponse
+  >;
 }
 
 export interface PathsStringNull {
   /** Get null (should throw) */
   get(
     options?: PathsStringNullParameters
-  ): Promise<PathsStringNull400Response | PathsStringNulldefaultResponse>;
+  ): StreamableMethod<
+    PathsStringNull400Response | PathsStringNulldefaultResponse
+  >;
 }
 
 export interface PathsEnumValid {
   /** Get using uri with 'green color' in path parameter */
   get(
     options?: PathsEnumValidParameters
-  ): Promise<PathsEnumValid200Response | PathsEnumValiddefaultResponse>;
+  ): StreamableMethod<
+    PathsEnumValid200Response | PathsEnumValiddefaultResponse
+  >;
 }
 
 export interface PathsEnumNull {
   /** Get null (should throw on the client before the request is sent on wire) */
   get(
     options?: PathsEnumNullParameters
-  ): Promise<PathsEnumNull400Response | PathsEnumNulldefaultResponse>;
+  ): StreamableMethod<PathsEnumNull400Response | PathsEnumNulldefaultResponse>;
 }
 
 export interface PathsByteMultiByte {
   /** Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array */
   get(
     options?: PathsByteMultiByteParameters
-  ): Promise<PathsByteMultiByte200Response | PathsByteMultiBytedefaultResponse>;
+  ): StreamableMethod<
+    PathsByteMultiByte200Response | PathsByteMultiBytedefaultResponse
+  >;
 }
 
 export interface PathsByteEmpty {
   /** Get '' as byte array */
   get(
     options?: PathsByteEmptyParameters
-  ): Promise<PathsByteEmpty200Response | PathsByteEmptydefaultResponse>;
+  ): StreamableMethod<
+    PathsByteEmpty200Response | PathsByteEmptydefaultResponse
+  >;
 }
 
 export interface PathsByteNull {
   /** Get null as byte array (should throw) */
   get(
     options?: PathsByteNullParameters
-  ): Promise<PathsByteNull400Response | PathsByteNulldefaultResponse>;
+  ): StreamableMethod<PathsByteNull400Response | PathsByteNulldefaultResponse>;
 }
 
 export interface PathsDateValid {
   /** Get '2012-01-01' as date */
   get(
     options?: PathsDateValidParameters
-  ): Promise<PathsDateValid200Response | PathsDateValiddefaultResponse>;
+  ): StreamableMethod<
+    PathsDateValid200Response | PathsDateValiddefaultResponse
+  >;
 }
 
 export interface PathsDateNull {
   /** Get null as date - this should throw or be unusable on the client side, depending on date representation */
   get(
     options?: PathsDateNullParameters
-  ): Promise<PathsDateNull400Response | PathsDateNulldefaultResponse>;
+  ): StreamableMethod<PathsDateNull400Response | PathsDateNulldefaultResponse>;
 }
 
 export interface PathsDateTimeValid {
   /** Get '2012-01-01T01:01:01Z' as date-time */
   get(
     options?: PathsDateTimeValidParameters
-  ): Promise<PathsDateTimeValid200Response | PathsDateTimeValiddefaultResponse>;
+  ): StreamableMethod<
+    PathsDateTimeValid200Response | PathsDateTimeValiddefaultResponse
+  >;
 }
 
 export interface PathsDateTimeNull {
   /** Get null as date-time, should be disallowed or throw depending on representation of date-time */
   get(
     options?: PathsDateTimeNullParameters
-  ): Promise<PathsDateTimeNull400Response | PathsDateTimeNulldefaultResponse>;
+  ): StreamableMethod<
+    PathsDateTimeNull400Response | PathsDateTimeNulldefaultResponse
+  >;
 }
 
 export interface PathsBase64Url {
   /** Get 'lorem' encoded value as 'bG9yZW0' (base64url) */
   get(
     options?: PathsBase64UrlParameters
-  ): Promise<PathsBase64Url200Response | PathsBase64UrldefaultResponse>;
+  ): StreamableMethod<
+    PathsBase64Url200Response | PathsBase64UrldefaultResponse
+  >;
 }
 
 export interface PathsArrayCsvInPath {
   /** Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format */
   get(
     options?: PathsArrayCsvInPathParameters
-  ): Promise<
+  ): StreamableMethod<
     PathsArrayCsvInPath200Response | PathsArrayCsvInPathdefaultResponse
   >;
 }
@@ -839,14 +909,16 @@ export interface PathsUnixTimeUrl {
   /** Get the date 2016-04-13 encoded value as '1460505600' (Unix time) */
   get(
     options?: PathsUnixTimeUrlParameters
-  ): Promise<PathsUnixTimeUrl200Response | PathsUnixTimeUrldefaultResponse>;
+  ): StreamableMethod<
+    PathsUnixTimeUrl200Response | PathsUnixTimeUrldefaultResponse
+  >;
 }
 
 export interface QueriesGetBooleanTrue {
   /** Get true Boolean value on path */
   get(
     options: QueriesGetBooleanTrueParameters
-  ): Promise<
+  ): StreamableMethod<
     QueriesGetBooleanTrue200Response | QueriesGetBooleanTruedefaultResponse
   >;
 }
@@ -855,7 +927,7 @@ export interface QueriesGetBooleanFalse {
   /** Get false Boolean value on path */
   get(
     options: QueriesGetBooleanFalseParameters
-  ): Promise<
+  ): StreamableMethod<
     QueriesGetBooleanFalse200Response | QueriesGetBooleanFalsedefaultResponse
   >;
 }
@@ -864,7 +936,7 @@ export interface QueriesGetBooleanNull {
   /** Get null Boolean value on query (query string should be absent) */
   get(
     options?: QueriesGetBooleanNullParameters
-  ): Promise<
+  ): StreamableMethod<
     QueriesGetBooleanNull200Response | QueriesGetBooleanNulldefaultResponse
   >;
 }
@@ -873,7 +945,7 @@ export interface QueriesGetIntOneMillion {
   /** Get '1000000' integer value */
   get(
     options: QueriesGetIntOneMillionParameters
-  ): Promise<
+  ): StreamableMethod<
     QueriesGetIntOneMillion200Response | QueriesGetIntOneMilliondefaultResponse
   >;
 }
@@ -882,7 +954,7 @@ export interface QueriesGetIntNegativeOneMillion {
   /** Get '-1000000' integer value */
   get(
     options: QueriesGetIntNegativeOneMillionParameters
-  ): Promise<
+  ): StreamableMethod<
     | QueriesGetIntNegativeOneMillion200Response
     | QueriesGetIntNegativeOneMilliondefaultResponse
   >;
@@ -892,14 +964,16 @@ export interface QueriesGetIntNull {
   /** Get null integer value (no query parameter) */
   get(
     options?: QueriesGetIntNullParameters
-  ): Promise<QueriesGetIntNull200Response | QueriesGetIntNulldefaultResponse>;
+  ): StreamableMethod<
+    QueriesGetIntNull200Response | QueriesGetIntNulldefaultResponse
+  >;
 }
 
 export interface QueriesGetTenBillion {
   /** Get '10000000000' 64 bit integer value */
   get(
     options: QueriesGetTenBillionParameters
-  ): Promise<
+  ): StreamableMethod<
     QueriesGetTenBillion200Response | QueriesGetTenBilliondefaultResponse
   >;
 }
@@ -908,7 +982,7 @@ export interface QueriesGetNegativeTenBillion {
   /** Get '-10000000000' 64 bit integer value */
   get(
     options: QueriesGetNegativeTenBillionParameters
-  ): Promise<
+  ): StreamableMethod<
     | QueriesGetNegativeTenBillion200Response
     | QueriesGetNegativeTenBilliondefaultResponse
   >;
@@ -918,14 +992,16 @@ export interface QueriesGetLongNull {
   /** Get 'null 64 bit integer value (no query param in uri) */
   get(
     options?: QueriesGetLongNullParameters
-  ): Promise<QueriesGetLongNull200Response | QueriesGetLongNulldefaultResponse>;
+  ): StreamableMethod<
+    QueriesGetLongNull200Response | QueriesGetLongNulldefaultResponse
+  >;
 }
 
 export interface QueriesFloatScientificPositive {
   /** Get '1.034E+20' numeric value */
   get(
     options: QueriesFloatScientificPositiveParameters
-  ): Promise<
+  ): StreamableMethod<
     | QueriesFloatScientificPositive200Response
     | QueriesFloatScientificPositivedefaultResponse
   >;
@@ -935,7 +1011,7 @@ export interface QueriesFloatScientificNegative {
   /** Get '-1.034E-20' numeric value */
   get(
     options: QueriesFloatScientificNegativeParameters
-  ): Promise<
+  ): StreamableMethod<
     | QueriesFloatScientificNegative200Response
     | QueriesFloatScientificNegativedefaultResponse
   >;
@@ -945,14 +1021,16 @@ export interface QueriesFloatNull {
   /** Get null numeric value (no query parameter) */
   get(
     options?: QueriesFloatNullParameters
-  ): Promise<QueriesFloatNull200Response | QueriesFloatNulldefaultResponse>;
+  ): StreamableMethod<
+    QueriesFloatNull200Response | QueriesFloatNulldefaultResponse
+  >;
 }
 
 export interface QueriesDoubleDecimalPositive {
   /** Get '9999999.999' numeric value */
   get(
     options: QueriesDoubleDecimalPositiveParameters
-  ): Promise<
+  ): StreamableMethod<
     | QueriesDoubleDecimalPositive200Response
     | QueriesDoubleDecimalPositivedefaultResponse
   >;
@@ -962,7 +1040,7 @@ export interface QueriesDoubleDecimalNegative {
   /** Get '-9999999.999' numeric value */
   get(
     options: QueriesDoubleDecimalNegativeParameters
-  ): Promise<
+  ): StreamableMethod<
     | QueriesDoubleDecimalNegative200Response
     | QueriesDoubleDecimalNegativedefaultResponse
   >;
@@ -972,14 +1050,16 @@ export interface QueriesDoubleNull {
   /** Get null numeric value (no query parameter) */
   get(
     options?: QueriesDoubleNullParameters
-  ): Promise<QueriesDoubleNull200Response | QueriesDoubleNulldefaultResponse>;
+  ): StreamableMethod<
+    QueriesDoubleNull200Response | QueriesDoubleNulldefaultResponse
+  >;
 }
 
 export interface QueriesStringUnicode {
   /** Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value */
   get(
     options: QueriesStringUnicodeParameters
-  ): Promise<
+  ): StreamableMethod<
     QueriesStringUnicode200Response | QueriesStringUnicodedefaultResponse
   >;
 }
@@ -988,7 +1068,7 @@ export interface QueriesStringUrlEncoded {
   /** Get 'begin!*'();:@ &=+$,/?#[]end */
   get(
     options: QueriesStringUrlEncodedParameters
-  ): Promise<
+  ): StreamableMethod<
     QueriesStringUrlEncoded200Response | QueriesStringUrlEncodeddefaultResponse
   >;
 }
@@ -997,35 +1077,43 @@ export interface QueriesStringEmpty {
   /** Get '' */
   get(
     options: QueriesStringEmptyParameters
-  ): Promise<QueriesStringEmpty200Response | QueriesStringEmptydefaultResponse>;
+  ): StreamableMethod<
+    QueriesStringEmpty200Response | QueriesStringEmptydefaultResponse
+  >;
 }
 
 export interface QueriesStringNull {
   /** Get null (no query parameter in url) */
   get(
     options?: QueriesStringNullParameters
-  ): Promise<QueriesStringNull200Response | QueriesStringNulldefaultResponse>;
+  ): StreamableMethod<
+    QueriesStringNull200Response | QueriesStringNulldefaultResponse
+  >;
 }
 
 export interface QueriesEnumValid {
   /** Get using uri with query parameter 'green color' */
   get(
     options?: QueriesEnumValidParameters
-  ): Promise<QueriesEnumValid200Response | QueriesEnumValiddefaultResponse>;
+  ): StreamableMethod<
+    QueriesEnumValid200Response | QueriesEnumValiddefaultResponse
+  >;
 }
 
 export interface QueriesEnumNull {
   /** Get null (no query parameter in url) */
   get(
     options?: QueriesEnumNullParameters
-  ): Promise<QueriesEnumNull200Response | QueriesEnumNulldefaultResponse>;
+  ): StreamableMethod<
+    QueriesEnumNull200Response | QueriesEnumNulldefaultResponse
+  >;
 }
 
 export interface QueriesByteMultiByte {
   /** Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array */
   get(
     options?: QueriesByteMultiByteParameters
-  ): Promise<
+  ): StreamableMethod<
     QueriesByteMultiByte200Response | QueriesByteMultiBytedefaultResponse
   >;
 }
@@ -1034,35 +1122,43 @@ export interface QueriesByteEmpty {
   /** Get '' as byte array */
   get(
     options: QueriesByteEmptyParameters
-  ): Promise<QueriesByteEmpty200Response | QueriesByteEmptydefaultResponse>;
+  ): StreamableMethod<
+    QueriesByteEmpty200Response | QueriesByteEmptydefaultResponse
+  >;
 }
 
 export interface QueriesByteNull {
   /** Get null as byte array (no query parameters in uri) */
   get(
     options?: QueriesByteNullParameters
-  ): Promise<QueriesByteNull200Response | QueriesByteNulldefaultResponse>;
+  ): StreamableMethod<
+    QueriesByteNull200Response | QueriesByteNulldefaultResponse
+  >;
 }
 
 export interface QueriesDateValid {
   /** Get '2012-01-01' as date */
   get(
     options: QueriesDateValidParameters
-  ): Promise<QueriesDateValid200Response | QueriesDateValiddefaultResponse>;
+  ): StreamableMethod<
+    QueriesDateValid200Response | QueriesDateValiddefaultResponse
+  >;
 }
 
 export interface QueriesDateNull {
   /** Get null as date - this should result in no query parameters in uri */
   get(
     options?: QueriesDateNullParameters
-  ): Promise<QueriesDateNull200Response | QueriesDateNulldefaultResponse>;
+  ): StreamableMethod<
+    QueriesDateNull200Response | QueriesDateNulldefaultResponse
+  >;
 }
 
 export interface QueriesDateTimeValid {
   /** Get '2012-01-01T01:01:01Z' as date-time */
   get(
     options: QueriesDateTimeValidParameters
-  ): Promise<
+  ): StreamableMethod<
     QueriesDateTimeValid200Response | QueriesDateTimeValiddefaultResponse
   >;
 }
@@ -1071,7 +1167,7 @@ export interface QueriesDateTimeNull {
   /** Get null as date-time, should result in no query parameters in uri */
   get(
     options?: QueriesDateTimeNullParameters
-  ): Promise<
+  ): StreamableMethod<
     QueriesDateTimeNull200Response | QueriesDateTimeNulldefaultResponse
   >;
 }
@@ -1080,7 +1176,7 @@ export interface QueriesArrayStringCsvValid {
   /** Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format */
   get(
     options?: QueriesArrayStringCsvValidParameters
-  ): Promise<
+  ): StreamableMethod<
     | QueriesArrayStringCsvValid200Response
     | QueriesArrayStringCsvValiddefaultResponse
   >;
@@ -1090,7 +1186,7 @@ export interface QueriesArrayStringCsvNull {
   /** Get a null array of string using the csv-array format */
   get(
     options?: QueriesArrayStringCsvNullParameters
-  ): Promise<
+  ): StreamableMethod<
     | QueriesArrayStringCsvNull200Response
     | QueriesArrayStringCsvNulldefaultResponse
   >;
@@ -1100,7 +1196,7 @@ export interface QueriesArrayStringCsvEmpty {
   /** Get an empty array [] of string using the csv-array format */
   get(
     options?: QueriesArrayStringCsvEmptyParameters
-  ): Promise<
+  ): StreamableMethod<
     | QueriesArrayStringCsvEmpty200Response
     | QueriesArrayStringCsvEmptydefaultResponse
   >;
@@ -1110,7 +1206,7 @@ export interface QueriesArrayStringNoCollectionFormatEmpty {
   /** Array query has no defined collection format, should default to csv. Pass in ['hello', 'nihao', 'bonjour'] for the 'arrayQuery' parameter to the service */
   get(
     options?: QueriesArrayStringNoCollectionFormatEmptyParameters
-  ): Promise<
+  ): StreamableMethod<
     | QueriesArrayStringNoCollectionFormatEmpty200Response
     | QueriesArrayStringNoCollectionFormatEmptydefaultResponse
   >;
@@ -1120,7 +1216,7 @@ export interface QueriesArrayStringSsvValid {
   /** Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the ssv-array format */
   get(
     options?: QueriesArrayStringSsvValidParameters
-  ): Promise<
+  ): StreamableMethod<
     | QueriesArrayStringSsvValid200Response
     | QueriesArrayStringSsvValiddefaultResponse
   >;
@@ -1130,7 +1226,7 @@ export interface QueriesArrayStringTsvValid {
   /** Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the tsv-array format */
   get(
     options?: QueriesArrayStringTsvValidParameters
-  ): Promise<
+  ): StreamableMethod<
     | QueriesArrayStringTsvValid200Response
     | QueriesArrayStringTsvValiddefaultResponse
   >;
@@ -1140,7 +1236,7 @@ export interface QueriesArrayStringPipesValid {
   /** Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the pipes-array format */
   get(
     options?: QueriesArrayStringPipesValidParameters
-  ): Promise<
+  ): StreamableMethod<
     | QueriesArrayStringPipesValid200Response
     | QueriesArrayStringPipesValiddefaultResponse
   >;
@@ -1150,7 +1246,7 @@ export interface PathItemsGetAllWithValues {
   /** send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery' */
   get(
     options?: PathItemsGetAllWithValuesParameters
-  ): Promise<
+  ): StreamableMethod<
     | PathItemsGetAllWithValues200Response
     | PathItemsGetAllWithValuesdefaultResponse
   >;
@@ -1160,7 +1256,7 @@ export interface PathItemsGetGlobalQueryNull {
   /** send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery' */
   get(
     options?: PathItemsGetGlobalQueryNullParameters
-  ): Promise<
+  ): StreamableMethod<
     | PathItemsGetGlobalQueryNull200Response
     | PathItemsGetGlobalQueryNulldefaultResponse
   >;
@@ -1170,7 +1266,7 @@ export interface PathItemsGetGlobalAndLocalQueryNull {
   /** send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery=null */
   get(
     options?: PathItemsGetGlobalAndLocalQueryNullParameters
-  ): Promise<
+  ): StreamableMethod<
     | PathItemsGetGlobalAndLocalQueryNull200Response
     | PathItemsGetGlobalAndLocalQueryNulldefaultResponse
   >;
@@ -1180,7 +1276,7 @@ export interface PathItemsGetLocalPathItemQueryNull {
   /** send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery=null, localStringQuery=null */
   get(
     options?: PathItemsGetLocalPathItemQueryNullParameters
-  ): Promise<
+  ): StreamableMethod<
     | PathItemsGetLocalPathItemQueryNull200Response
     | PathItemsGetLocalPathItemQueryNulldefaultResponse
   >;

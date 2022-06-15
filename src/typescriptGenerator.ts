@@ -78,7 +78,7 @@ export async function generateTypeScriptLibrary(
   // Skip metadata generation if `generate-metadata` is explicitly false
   generatePackageJson(project, clientDetails);
   generateLicenseFile(project);
-  generateReadmeFile(codeModel.language, codeModel.info, project);
+  generateReadmeFile(codeModel, project);
   if (generateTest) {
     generateSampleTestFile(project);
   }

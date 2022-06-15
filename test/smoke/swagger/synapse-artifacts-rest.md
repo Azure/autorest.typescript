@@ -17,7 +17,8 @@ package-version: 1.0.0-beta.1
 rest-level-client: true
 openapi-type: data-plane
 add-credentials: true
-credential-scopes: "https://dev.azuresynapse.net/.default"
+security: AADToken
+security-scopes: "https://dev.azuresynapse.net/.default"
 tag: package-artifacts-composite-v3
 rlc-shortcut: true
 modelerfour:

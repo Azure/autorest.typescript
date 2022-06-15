@@ -346,7 +346,11 @@ export interface LibraryAppendBodyParam {
    *
    * Value may contain any sequence of octets
    */
-  body: string | Uint8Array;
+  body:
+    | string
+    | Uint8Array
+    | ReadableStream<Uint8Array>
+    | NodeJS.ReadableStream;
 }
 
 export interface LibraryAppendQueryParamProperties {

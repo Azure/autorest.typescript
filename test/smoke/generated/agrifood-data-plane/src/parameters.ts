@@ -224,7 +224,11 @@ export interface AttachmentsCreateOrUpdateFormBody {
    *
    * Value may contain any sequence of octets
    */
-  file?: string | Uint8Array;
+  file?:
+    | string
+    | Uint8Array
+    | ReadableStream<Uint8Array>
+    | NodeJS.ReadableStream;
   /** Farmer id for this attachment. */
   FarmerId?: string;
   /** Associated Resource id for this attachment. */

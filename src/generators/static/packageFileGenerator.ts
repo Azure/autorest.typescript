@@ -9,6 +9,7 @@ import { hasPagingOperations } from "../../utils/extractPaginationDetails";
 import { hasPollingOperations } from "../../restLevelClient/helpers/hasPollingOperations";
 import { NameType, normalizeName } from "../../utils/nameUtils";
 import { TestCodeModel } from "@autorest/testmodeler/dist/src/core/model";
+import { getSecurityInfoFromModel } from "../../utils/schemaHelpers";
 
 export function generatePackageJson(
   project: Project,
@@ -140,7 +141,7 @@ function restLevelPackage(packageDetails: PackageDetails) {
     autoPublish: false,
     dependencies: {
       "@azure/core-auth": "^1.3.0",
-      "@azure-rest/core-client": "1.0.0-beta.9",
+      "@azure-rest/core-client": "1.0.0-beta.10",
       "@azure/core-rest-pipeline": "^1.8.0",
       "@azure/logger": "^1.0.0",
       tslib: "^2.2.0",
@@ -215,18 +216,28 @@ function restLevelPackage(packageDetails: PackageDetails) {
     packageInfo.devDependencies["karma"] = "^6.2.0";
     packageInfo.devDependencies["nyc"] = "^14.0.0";
     packageInfo.devDependencies["source-map-support"] = "^0.5.9";
-    packageInfo.scripts["test"] = "npm run clean && npm run build:test && npm run unit-test";
-    packageInfo.scripts["test:node"] = "npm run clean && npm run build:test && npm run unit-test:node";
-    packageInfo.scripts["test:browser"] = "npm run clean && npm run build:test && npm run unit-test:browser";
-    packageInfo.scripts["build:browser"] = "tsc -p . && cross-env ONLY_BROWSER=true rollup -c 2>&1";
-    packageInfo.scripts["build:node"] = "tsc -p . && cross-env ONLY_NODE=true rollup -c 2>&1";
+    packageInfo.scripts["test"] =
+      "npm run clean && npm run build:test && npm run unit-test";
+    packageInfo.scripts["test:node"] =
+      "npm run clean && npm run build:test && npm run unit-test:node";
+    packageInfo.scripts["test:browser"] =
+      "npm run clean && npm run build:test && npm run unit-test:browser";
+    packageInfo.scripts["build:browser"] =
+      "tsc -p . && cross-env ONLY_BROWSER=true rollup -c 2>&1";
+    packageInfo.scripts["build:node"] =
+      "tsc -p . && cross-env ONLY_NODE=true rollup -c 2>&1";
     packageInfo.scripts["build:test"] = "tsc -p . && rollup -c 2>&1";
-    packageInfo.scripts["unit-test"] = "npm run unit-test:node && npm run unit-test:browser";
-    packageInfo.scripts["unit-test:node"] = "mocha -r esm --require ts-node/register --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 1200000 --full-trace \"test/{,!(browser)/**/}*.spec.ts\"";
+    packageInfo.scripts["unit-test"] =
+      "npm run unit-test:node && npm run unit-test:browser";
+    packageInfo.scripts["unit-test:node"] =
+      'mocha -r esm --require ts-node/register --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 1200000 --full-trace "test/{,!(browser)/**/}*.spec.ts"';
     packageInfo.scripts["unit-test:browser"] = "karma start --single-run";
-    packageInfo.scripts["integration-test:browser"] = "karma start --single-run";
-    packageInfo.scripts["integration-test:node"] = "nyc mocha -r esm --require source-map-support/register --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 5000000 --full-trace \"dist-esm/test/{,!(browser)/**/}*.spec.js\"";
-    packageInfo.scripts["integration-test"] = "npm run integration-test:node && npm run integration-test:browser";
+    packageInfo.scripts["integration-test:browser"] =
+      "karma start --single-run";
+    packageInfo.scripts["integration-test:node"] =
+      'nyc mocha -r esm --require source-map-support/register --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 5000000 --full-trace "dist-esm/test/{,!(browser)/**/}*.spec.js"';
+    packageInfo.scripts["integration-test"] =
+      "npm run integration-test:node && npm run integration-test:browser";
     if (azureSdkForJs) {
       packageInfo.scripts["build:test"] = "tsc -p . && dev-tool run bundle";
       packageInfo.scripts["integration-test:browser"] =
@@ -277,7 +288,6 @@ function regularAutorestPackage(
     tracingInfo,
     disablePagingAsyncIterators,
     azureArm,
-    addCredentials,
     azureOutputDirectory,
     generateTest,
     generateSample,
@@ -285,6 +295,7 @@ function regularAutorestPackage(
     azureSdkForJs
   } = getAutorestOptions();
   const { model } = getSession();
+  const { addCredentials } = getSecurityInfoFromModel(model.security);
   const hasLro = hasPollingOperations(model);
   const hasAsyncIterators =
     !disablePagingAsyncIterators && clientDetails.options.hasPaging;

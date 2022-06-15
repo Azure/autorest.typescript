@@ -68,20 +68,22 @@ import {
   GetPagingModelWithItemNameWithXMSClientName200Response,
   GetPagingModelWithItemNameWithXMSClientNamedefaultResponse
 } from "./responses";
-import { Client } from "@azure-rest/core-client";
+import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface GetNoItemNamePages {
   /** A paging operation that must return result of the default 'value' node. */
   get(
     options?: GetNoItemNamePagesParameters
-  ): Promise<GetNoItemNamePages200Response | GetNoItemNamePagesdefaultResponse>;
+  ): StreamableMethod<
+    GetNoItemNamePages200Response | GetNoItemNamePagesdefaultResponse
+  >;
 }
 
 export interface GetNullNextLinkNamePages {
   /** A paging operation that must ignore any kind of nextLink, and stop after page 1. */
   get(
     options?: GetNullNextLinkNamePagesParameters
-  ): Promise<
+  ): StreamableMethod<
     | GetNullNextLinkNamePages200Response
     | GetNullNextLinkNamePagesdefaultResponse
   >;
@@ -91,42 +93,52 @@ export interface GetSinglePages {
   /** A paging operation that finishes on the first call without a nextlink */
   get(
     options?: GetSinglePagesParameters
-  ): Promise<GetSinglePages200Response | GetSinglePagesdefaultResponse>;
+  ): StreamableMethod<
+    GetSinglePages200Response | GetSinglePagesdefaultResponse
+  >;
 }
 
 export interface FirstResponseEmpty {
   /** A paging operation whose first response's items list is empty, but still returns a next link. Second (and final) call, will give you an items list of 1. */
   get(
     options?: FirstResponseEmptyParameters
-  ): Promise<FirstResponseEmpty200Response | FirstResponseEmptydefaultResponse>;
+  ): StreamableMethod<
+    FirstResponseEmpty200Response | FirstResponseEmptydefaultResponse
+  >;
 }
 
 export interface GetMultiplePages {
   /** A paging operation that includes a nextLink that has 10 pages */
   get(
     options?: GetMultiplePagesParameters
-  ): Promise<GetMultiplePages200Response | GetMultiplePagesdefaultResponse>;
+  ): StreamableMethod<
+    GetMultiplePages200Response | GetMultiplePagesdefaultResponse
+  >;
 }
 
 export interface GetWithQueryParams {
   /** A paging operation that includes a next operation. It has a different query parameter from it's next operation nextOperationWithQueryParams. Returns a ProductResult */
   get(
     options: GetWithQueryParamsParameters
-  ): Promise<GetWithQueryParams200Response | GetWithQueryParamsdefaultResponse>;
+  ): StreamableMethod<
+    GetWithQueryParams200Response | GetWithQueryParamsdefaultResponse
+  >;
 }
 
 export interface DuplicateParams {
   /** Define `filter` as a query param for all calls. However, the returned next link will also include the `filter` as part of it. Make sure you don't end up duplicating the `filter` param in the url sent. */
   get(
     options?: DuplicateParamsParameters
-  ): Promise<DuplicateParams200Response | DuplicateParamsdefaultResponse>;
+  ): StreamableMethod<
+    DuplicateParams200Response | DuplicateParamsdefaultResponse
+  >;
 }
 
 export interface NextOperationWithQueryParams {
   /** Next operation for getWithQueryParams. Pass in next=True to pass test. Returns a ProductResult */
   get(
     options: NextOperationWithQueryParamsParameters
-  ): Promise<
+  ): StreamableMethod<
     | NextOperationWithQueryParams200Response
     | NextOperationWithQueryParamsdefaultResponse
   >;
@@ -136,7 +148,7 @@ export interface GetOdataMultiplePages {
   /** A paging operation that includes a nextLink in odata format that has 10 pages */
   get(
     options?: GetOdataMultiplePagesParameters
-  ): Promise<
+  ): StreamableMethod<
     GetOdataMultiplePages200Response | GetOdataMultiplePagesdefaultResponse
   >;
 }
@@ -145,7 +157,7 @@ export interface GetMultiplePagesWithOffset {
   /** A paging operation that includes a nextLink that has 10 pages */
   get(
     options?: GetMultiplePagesWithOffsetParameters
-  ): Promise<
+  ): StreamableMethod<
     | GetMultiplePagesWithOffset200Response
     | GetMultiplePagesWithOffsetdefaultResponse
   >;
@@ -155,7 +167,7 @@ export interface GetMultiplePagesRetryFirst {
   /** A paging operation that fails on the first call with 500 and then retries and then get a response including a nextLink that has 10 pages */
   get(
     options?: GetMultiplePagesRetryFirstParameters
-  ): Promise<
+  ): StreamableMethod<
     | GetMultiplePagesRetryFirst200Response
     | GetMultiplePagesRetryFirstdefaultResponse
   >;
@@ -165,7 +177,7 @@ export interface GetMultiplePagesRetrySecond {
   /** A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails first with 500. The client should retry and finish all 10 pages eventually. */
   get(
     options?: GetMultiplePagesRetrySecondParameters
-  ): Promise<
+  ): StreamableMethod<
     | GetMultiplePagesRetrySecond200Response
     | GetMultiplePagesRetrySeconddefaultResponse
   >;
@@ -175,7 +187,7 @@ export interface GetSinglePagesFailure {
   /** A paging operation that receives a 400 on the first call */
   get(
     options?: GetSinglePagesFailureParameters
-  ): Promise<
+  ): StreamableMethod<
     GetSinglePagesFailure200Response | GetSinglePagesFailuredefaultResponse
   >;
 }
@@ -184,7 +196,7 @@ export interface GetMultiplePagesFailure {
   /** A paging operation that receives a 400 on the second call */
   get(
     options?: GetMultiplePagesFailureParameters
-  ): Promise<
+  ): StreamableMethod<
     GetMultiplePagesFailure200Response | GetMultiplePagesFailuredefaultResponse
   >;
 }
@@ -193,7 +205,7 @@ export interface GetMultiplePagesFailureUri {
   /** A paging operation that receives an invalid nextLink */
   get(
     options?: GetMultiplePagesFailureUriParameters
-  ): Promise<
+  ): StreamableMethod<
     | GetMultiplePagesFailureUri200Response
     | GetMultiplePagesFailureUridefaultResponse
   >;
@@ -203,7 +215,7 @@ export interface GetMultiplePagesFragmentNextLink {
   /** A paging operation that doesn't return a full URL, just a fragment */
   get(
     options: GetMultiplePagesFragmentNextLinkParameters
-  ): Promise<
+  ): StreamableMethod<
     | GetMultiplePagesFragmentNextLink200Response
     | GetMultiplePagesFragmentNextLinkdefaultResponse
   >;
@@ -213,7 +225,7 @@ export interface GetMultiplePagesFragmentWithGroupingNextLink {
   /** A paging operation that doesn't return a full URL, just a fragment with parameters grouped */
   get(
     options: GetMultiplePagesFragmentWithGroupingNextLinkParameters
-  ): Promise<
+  ): StreamableMethod<
     | GetMultiplePagesFragmentWithGroupingNextLink200Response
     | GetMultiplePagesFragmentWithGroupingNextLinkdefaultResponse
   >;
@@ -223,7 +235,7 @@ export interface GetMultiplePagesLRO {
   /** A long-running paging operation that includes a nextLink that has 10 pages */
   post(
     options?: GetMultiplePagesLROParameters
-  ): Promise<
+  ): StreamableMethod<
     GetMultiplePagesLRO202Response | GetMultiplePagesLROdefaultResponse
   >;
 }
@@ -232,14 +244,14 @@ export interface NextFragment {
   /** A paging operation that doesn't return a full URL, just a fragment */
   get(
     options: NextFragmentParameters
-  ): Promise<NextFragment200Response | NextFragmentdefaultResponse>;
+  ): StreamableMethod<NextFragment200Response | NextFragmentdefaultResponse>;
 }
 
 export interface NextFragmentWithGrouping {
   /** A paging operation that doesn't return a full URL, just a fragment */
   get(
     options: NextFragmentWithGroupingParameters
-  ): Promise<
+  ): StreamableMethod<
     | NextFragmentWithGrouping200Response
     | NextFragmentWithGroupingdefaultResponse
   >;
@@ -249,7 +261,7 @@ export interface GetPagingModelWithItemNameWithXMSClientName {
   /** A paging operation that returns a paging model whose item name is is overriden by x-ms-client-name 'indexes'. */
   get(
     options?: GetPagingModelWithItemNameWithXMSClientNameParameters
-  ): Promise<
+  ): StreamableMethod<
     | GetPagingModelWithItemNameWithXMSClientName200Response
     | GetPagingModelWithItemNameWithXMSClientNamedefaultResponse
   >;

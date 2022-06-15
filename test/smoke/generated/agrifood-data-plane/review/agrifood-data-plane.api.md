@@ -4,15 +4,19 @@
 
 ```ts
 
+/// <reference types="node" />
+
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
+import { KeyCredential } from '@azure/core-auth';
 import { LroEngineOptions } from '@azure/core-lro';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { PollerLike } from '@azure/core-lro';
 import { PollOperationState } from '@azure/core-lro';
 import { RequestParameters } from '@azure-rest/core-client';
+import { StreamableMethod } from '@azure-rest/core-client';
 
 // @public (undocumented)
 export interface ApplicationData {
@@ -96,9 +100,9 @@ export type ApplicationDataDeleteParameters = RequestParameters;
 
 // @public (undocumented)
 export interface ApplicationDataGet {
-    delete(options?: ApplicationDataDeleteParameters): Promise<ApplicationDataDelete204Response | ApplicationDataDeletedefaultResponse>;
-    get(options?: ApplicationDataGetParameters): Promise<ApplicationDataGet200Response | ApplicationDataGetdefaultResponse>;
-    patch(options?: ApplicationDataCreateOrUpdateParameters): Promise<ApplicationDataCreateOrUpdate200Response | ApplicationDataCreateOrUpdate201Response | ApplicationDataCreateOrUpdatedefaultResponse>;
+    delete(options?: ApplicationDataDeleteParameters): StreamableMethod<ApplicationDataDelete204Response | ApplicationDataDeletedefaultResponse>;
+    get(options?: ApplicationDataGetParameters): StreamableMethod<ApplicationDataGet200Response | ApplicationDataGetdefaultResponse>;
+    patch(options?: ApplicationDataCreateOrUpdateParameters): StreamableMethod<ApplicationDataCreateOrUpdate200Response | ApplicationDataCreateOrUpdate201Response | ApplicationDataCreateOrUpdatedefaultResponse>;
 }
 
 // @public
@@ -122,7 +126,7 @@ export type ApplicationDataGetParameters = RequestParameters;
 
 // @public (undocumented)
 export interface ApplicationDataList {
-    get(options?: ApplicationDataListParameters): Promise<ApplicationDataList200Response | ApplicationDataListdefaultResponse>;
+    get(options?: ApplicationDataListParameters): StreamableMethod<ApplicationDataList200Response | ApplicationDataListdefaultResponse>;
 }
 
 // @public
@@ -135,7 +139,7 @@ export interface ApplicationDataList200Response extends HttpResponse {
 
 // @public (undocumented)
 export interface ApplicationDataListByFarmerId {
-    get(options?: ApplicationDataListByFarmerIdParameters): Promise<ApplicationDataListByFarmerId200Response | ApplicationDataListByFarmerIddefaultResponse>;
+    get(options?: ApplicationDataListByFarmerIdParameters): StreamableMethod<ApplicationDataListByFarmerId200Response | ApplicationDataListByFarmerIddefaultResponse>;
 }
 
 // @public
@@ -343,7 +347,7 @@ export interface AttachmentsCreateOrUpdateFormBody {
     Description?: string;
     ETag?: string;
     FarmerId?: string;
-    file?: string | Uint8Array;
+    file?: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream;
     Id?: string;
     ModifiedDateTime?: string;
     Name?: string;
@@ -382,7 +386,7 @@ export type AttachmentsDeleteParameters = RequestParameters;
 
 // @public (undocumented)
 export interface AttachmentsDownload {
-    get(options?: AttachmentsDownloadParameters): Promise<AttachmentsDownload200Response | AttachmentsDownloaddefaultResponse>;
+    get(options?: AttachmentsDownloadParameters): StreamableMethod<AttachmentsDownload200Response | AttachmentsDownloaddefaultResponse>;
 }
 
 // @public
@@ -405,9 +409,9 @@ export type AttachmentsDownloadParameters = RequestParameters;
 
 // @public (undocumented)
 export interface AttachmentsGet {
-    delete(options?: AttachmentsDeleteParameters): Promise<AttachmentsDelete204Response | AttachmentsDeletedefaultResponse>;
-    get(options?: AttachmentsGetParameters): Promise<AttachmentsGet200Response | AttachmentsGetdefaultResponse>;
-    patch(options?: AttachmentsCreateOrUpdateParameters): Promise<AttachmentsCreateOrUpdate200Response | AttachmentsCreateOrUpdate201Response | AttachmentsCreateOrUpdatedefaultResponse>;
+    delete(options?: AttachmentsDeleteParameters): StreamableMethod<AttachmentsDelete204Response | AttachmentsDeletedefaultResponse>;
+    get(options?: AttachmentsGetParameters): StreamableMethod<AttachmentsGet200Response | AttachmentsGetdefaultResponse>;
+    patch(options?: AttachmentsCreateOrUpdateParameters): StreamableMethod<AttachmentsCreateOrUpdate200Response | AttachmentsCreateOrUpdate201Response | AttachmentsCreateOrUpdatedefaultResponse>;
 }
 
 // @public
@@ -431,7 +435,7 @@ export type AttachmentsGetParameters = RequestParameters;
 
 // @public (undocumented)
 export interface AttachmentsListByFarmerId {
-    get(options?: AttachmentsListByFarmerIdParameters): Promise<AttachmentsListByFarmerId200Response | AttachmentsListByFarmerIddefaultResponse>;
+    get(options?: AttachmentsListByFarmerIdParameters): StreamableMethod<AttachmentsListByFarmerId200Response | AttachmentsListByFarmerIddefaultResponse>;
 }
 
 // @public
@@ -569,9 +573,9 @@ export type BoundariesDeleteParameters = RequestParameters;
 
 // @public (undocumented)
 export interface BoundariesGet {
-    delete(options?: BoundariesDeleteParameters): Promise<BoundariesDelete204Response | BoundariesDeletedefaultResponse>;
-    get(options?: BoundariesGetParameters): Promise<BoundariesGet200Response | BoundariesGetdefaultResponse>;
-    patch(options?: BoundariesCreateOrUpdateParameters): Promise<BoundariesCreateOrUpdate200Response | BoundariesCreateOrUpdate201Response | BoundariesCreateOrUpdatedefaultResponse>;
+    delete(options?: BoundariesDeleteParameters): StreamableMethod<BoundariesDelete204Response | BoundariesDeletedefaultResponse>;
+    get(options?: BoundariesGetParameters): StreamableMethod<BoundariesGet200Response | BoundariesGetdefaultResponse>;
+    patch(options?: BoundariesCreateOrUpdateParameters): StreamableMethod<BoundariesCreateOrUpdate200Response | BoundariesCreateOrUpdate201Response | BoundariesCreateOrUpdatedefaultResponse>;
 }
 
 // @public
@@ -584,8 +588,8 @@ export interface BoundariesGet200Response extends HttpResponse {
 
 // @public (undocumented)
 export interface BoundariesGetCascadeDeleteJobDetails {
-    get(options?: BoundariesGetCascadeDeleteJobDetailsParameters): Promise<BoundariesGetCascadeDeleteJobDetails200Response | BoundariesGetCascadeDeleteJobDetailsdefaultResponse>;
-    put(options: BoundariesCreateCascadeDeleteJobParameters): Promise<BoundariesCreateCascadeDeleteJob202Response | BoundariesCreateCascadeDeleteJobdefaultResponse>;
+    get(options?: BoundariesGetCascadeDeleteJobDetailsParameters): StreamableMethod<BoundariesGetCascadeDeleteJobDetails200Response | BoundariesGetCascadeDeleteJobDetailsdefaultResponse>;
+    put(options: BoundariesCreateCascadeDeleteJobParameters): StreamableMethod<BoundariesCreateCascadeDeleteJob202Response | BoundariesCreateCascadeDeleteJobdefaultResponse>;
 }
 
 // @public
@@ -617,7 +621,7 @@ export interface BoundariesGetdefaultResponse extends HttpResponse {
 
 // @public (undocumented)
 export interface BoundariesGetOverlap {
-    get(options: BoundariesGetOverlapParameters): Promise<BoundariesGetOverlap200Response | BoundariesGetOverlapdefaultResponse>;
+    get(options: BoundariesGetOverlapParameters): StreamableMethod<BoundariesGetOverlap200Response | BoundariesGetOverlapdefaultResponse>;
 }
 
 // @public
@@ -656,8 +660,8 @@ export type BoundariesGetParameters = RequestParameters;
 
 // @public (undocumented)
 export interface BoundariesList {
-    get(options?: BoundariesListParameters): Promise<BoundariesList200Response | BoundariesListdefaultResponse>;
-    post(options?: BoundariesSearchParameters): Promise<BoundariesSearch200Response | BoundariesSearchdefaultResponse>;
+    get(options?: BoundariesListParameters): StreamableMethod<BoundariesList200Response | BoundariesListdefaultResponse>;
+    post(options?: BoundariesSearchParameters): StreamableMethod<BoundariesSearch200Response | BoundariesSearchdefaultResponse>;
 }
 
 // @public
@@ -670,8 +674,8 @@ export interface BoundariesList200Response extends HttpResponse {
 
 // @public (undocumented)
 export interface BoundariesListByFarmerId {
-    get(options?: BoundariesListByFarmerIdParameters): Promise<BoundariesListByFarmerId200Response | BoundariesListByFarmerIddefaultResponse>;
-    post(options?: BoundariesSearchByFarmerIdParameters): Promise<BoundariesSearchByFarmerId200Response | BoundariesSearchByFarmerIddefaultResponse>;
+    get(options?: BoundariesListByFarmerIdParameters): StreamableMethod<BoundariesListByFarmerId200Response | BoundariesListByFarmerIddefaultResponse>;
+    post(options?: BoundariesSearchByFarmerIdParameters): StreamableMethod<BoundariesSearchByFarmerId200Response | BoundariesSearchByFarmerIddefaultResponse>;
 }
 
 // @public
@@ -881,7 +885,7 @@ export interface CascadeDeleteJobOutput {
 }
 
 // @public (undocumented)
-function createClient(Endpoint: string, options?: ClientOptions): AzureAgriFoodPlatformDataPlaneServiceClient;
+function createClient(Endpoint: string, credentials: KeyCredential, options?: ClientOptions): AzureAgriFoodPlatformDataPlaneServiceClient;
 export default createClient;
 
 // @public (undocumented)
@@ -975,9 +979,9 @@ export type CropsDeleteParameters = RequestParameters;
 
 // @public (undocumented)
 export interface CropsGet {
-    delete(options?: CropsDeleteParameters): Promise<CropsDelete204Response | CropsDeletedefaultResponse>;
-    get(options?: CropsGetParameters): Promise<CropsGet200Response | CropsGetdefaultResponse>;
-    patch(options?: CropsCreateOrUpdateParameters): Promise<CropsCreateOrUpdate200Response | CropsCreateOrUpdate201Response | CropsCreateOrUpdatedefaultResponse>;
+    delete(options?: CropsDeleteParameters): StreamableMethod<CropsDelete204Response | CropsDeletedefaultResponse>;
+    get(options?: CropsGetParameters): StreamableMethod<CropsGet200Response | CropsGetdefaultResponse>;
+    patch(options?: CropsCreateOrUpdateParameters): StreamableMethod<CropsCreateOrUpdate200Response | CropsCreateOrUpdate201Response | CropsCreateOrUpdatedefaultResponse>;
 }
 
 // @public
@@ -1001,7 +1005,7 @@ export type CropsGetParameters = RequestParameters;
 
 // @public (undocumented)
 export interface CropsList {
-    get(options?: CropsListParameters): Promise<CropsList200Response | CropsListdefaultResponse>;
+    get(options?: CropsListParameters): StreamableMethod<CropsList200Response | CropsListdefaultResponse>;
 }
 
 // @public
@@ -1102,9 +1106,9 @@ export type CropVarietiesDeleteParameters = RequestParameters;
 
 // @public (undocumented)
 export interface CropVarietiesGet {
-    delete(options?: CropVarietiesDeleteParameters): Promise<CropVarietiesDelete204Response | CropVarietiesDeletedefaultResponse>;
-    get(options?: CropVarietiesGetParameters): Promise<CropVarietiesGet200Response | CropVarietiesGetdefaultResponse>;
-    patch(options?: CropVarietiesCreateOrUpdateParameters): Promise<CropVarietiesCreateOrUpdate200Response | CropVarietiesCreateOrUpdate201Response | CropVarietiesCreateOrUpdatedefaultResponse>;
+    delete(options?: CropVarietiesDeleteParameters): StreamableMethod<CropVarietiesDelete204Response | CropVarietiesDeletedefaultResponse>;
+    get(options?: CropVarietiesGetParameters): StreamableMethod<CropVarietiesGet200Response | CropVarietiesGetdefaultResponse>;
+    patch(options?: CropVarietiesCreateOrUpdateParameters): StreamableMethod<CropVarietiesCreateOrUpdate200Response | CropVarietiesCreateOrUpdate201Response | CropVarietiesCreateOrUpdatedefaultResponse>;
 }
 
 // @public
@@ -1128,7 +1132,7 @@ export type CropVarietiesGetParameters = RequestParameters;
 
 // @public (undocumented)
 export interface CropVarietiesList {
-    get(options?: CropVarietiesListParameters): Promise<CropVarietiesList200Response | CropVarietiesListdefaultResponse>;
+    get(options?: CropVarietiesListParameters): StreamableMethod<CropVarietiesList200Response | CropVarietiesListdefaultResponse>;
 }
 
 // @public
@@ -1141,7 +1145,7 @@ export interface CropVarietiesList200Response extends HttpResponse {
 
 // @public (undocumented)
 export interface CropVarietiesListByCropId {
-    get(options?: CropVarietiesListByCropIdParameters): Promise<CropVarietiesListByCropId200Response | CropVarietiesListByCropIddefaultResponse>;
+    get(options?: CropVarietiesListByCropIdParameters): StreamableMethod<CropVarietiesListByCropId200Response | CropVarietiesListByCropIddefaultResponse>;
 }
 
 // @public
@@ -1404,9 +1408,9 @@ export type FarmersDeleteParameters = RequestParameters;
 
 // @public (undocumented)
 export interface FarmersGet {
-    delete(options?: FarmersDeleteParameters): Promise<FarmersDelete204Response | FarmersDeletedefaultResponse>;
-    get(options?: FarmersGetParameters): Promise<FarmersGet200Response | FarmersGetdefaultResponse>;
-    patch(options?: FarmersCreateOrUpdateParameters): Promise<FarmersCreateOrUpdate200Response | FarmersCreateOrUpdate201Response | FarmersCreateOrUpdatedefaultResponse>;
+    delete(options?: FarmersDeleteParameters): StreamableMethod<FarmersDelete204Response | FarmersDeletedefaultResponse>;
+    get(options?: FarmersGetParameters): StreamableMethod<FarmersGet200Response | FarmersGetdefaultResponse>;
+    patch(options?: FarmersCreateOrUpdateParameters): StreamableMethod<FarmersCreateOrUpdate200Response | FarmersCreateOrUpdate201Response | FarmersCreateOrUpdatedefaultResponse>;
 }
 
 // @public
@@ -1419,8 +1423,8 @@ export interface FarmersGet200Response extends HttpResponse {
 
 // @public (undocumented)
 export interface FarmersGetCascadeDeleteJobDetails {
-    get(options?: FarmersGetCascadeDeleteJobDetailsParameters): Promise<FarmersGetCascadeDeleteJobDetails200Response | FarmersGetCascadeDeleteJobDetailsdefaultResponse>;
-    put(options: FarmersCreateCascadeDeleteJobParameters): Promise<FarmersCreateCascadeDeleteJob202Response | FarmersCreateCascadeDeleteJobdefaultResponse>;
+    get(options?: FarmersGetCascadeDeleteJobDetailsParameters): StreamableMethod<FarmersGetCascadeDeleteJobDetails200Response | FarmersGetCascadeDeleteJobDetailsdefaultResponse>;
+    put(options: FarmersCreateCascadeDeleteJobParameters): StreamableMethod<FarmersCreateCascadeDeleteJob202Response | FarmersCreateCascadeDeleteJobdefaultResponse>;
 }
 
 // @public
@@ -1455,7 +1459,7 @@ export type FarmersGetParameters = RequestParameters;
 
 // @public (undocumented)
 export interface FarmersList {
-    get(options?: FarmersListParameters): Promise<FarmersList200Response | FarmersListdefaultResponse>;
+    get(options?: FarmersListParameters): StreamableMethod<FarmersList200Response | FarmersListdefaultResponse>;
 }
 
 // @public
@@ -1544,8 +1548,8 @@ export interface FarmOperationDataIngestionJobOutput {
 
 // @public (undocumented)
 export interface FarmOperationsCreateDataIngestionJob {
-    get(options?: FarmOperationsGetDataIngestionJobDetailsParameters): Promise<FarmOperationsGetDataIngestionJobDetails200Response | FarmOperationsGetDataIngestionJobDetailsdefaultResponse>;
-    put(options?: FarmOperationsCreateDataIngestionJobParameters): Promise<FarmOperationsCreateDataIngestionJob202Response | FarmOperationsCreateDataIngestionJobdefaultResponse>;
+    get(options?: FarmOperationsGetDataIngestionJobDetailsParameters): StreamableMethod<FarmOperationsGetDataIngestionJobDetails200Response | FarmOperationsGetDataIngestionJobDetailsdefaultResponse>;
+    put(options?: FarmOperationsCreateDataIngestionJobParameters): StreamableMethod<FarmOperationsCreateDataIngestionJob202Response | FarmOperationsCreateDataIngestionJobdefaultResponse>;
 }
 
 // @public
@@ -1698,9 +1702,9 @@ export type FarmsDeleteParameters = RequestParameters;
 
 // @public (undocumented)
 export interface FarmsGet {
-    delete(options?: FarmsDeleteParameters): Promise<FarmsDelete204Response | FarmsDeletedefaultResponse>;
-    get(options?: FarmsGetParameters): Promise<FarmsGet200Response | FarmsGetdefaultResponse>;
-    patch(options?: FarmsCreateOrUpdateParameters): Promise<FarmsCreateOrUpdate200Response | FarmsCreateOrUpdate201Response | FarmsCreateOrUpdatedefaultResponse>;
+    delete(options?: FarmsDeleteParameters): StreamableMethod<FarmsDelete204Response | FarmsDeletedefaultResponse>;
+    get(options?: FarmsGetParameters): StreamableMethod<FarmsGet200Response | FarmsGetdefaultResponse>;
+    patch(options?: FarmsCreateOrUpdateParameters): StreamableMethod<FarmsCreateOrUpdate200Response | FarmsCreateOrUpdate201Response | FarmsCreateOrUpdatedefaultResponse>;
 }
 
 // @public
@@ -1713,8 +1717,8 @@ export interface FarmsGet200Response extends HttpResponse {
 
 // @public (undocumented)
 export interface FarmsGetCascadeDeleteJobDetails {
-    get(options?: FarmsGetCascadeDeleteJobDetailsParameters): Promise<FarmsGetCascadeDeleteJobDetails200Response | FarmsGetCascadeDeleteJobDetailsdefaultResponse>;
-    put(options: FarmsCreateCascadeDeleteJobParameters): Promise<FarmsCreateCascadeDeleteJob202Response | FarmsCreateCascadeDeleteJobdefaultResponse>;
+    get(options?: FarmsGetCascadeDeleteJobDetailsParameters): StreamableMethod<FarmsGetCascadeDeleteJobDetails200Response | FarmsGetCascadeDeleteJobDetailsdefaultResponse>;
+    put(options: FarmsCreateCascadeDeleteJobParameters): StreamableMethod<FarmsCreateCascadeDeleteJob202Response | FarmsCreateCascadeDeleteJobdefaultResponse>;
 }
 
 // @public
@@ -1749,7 +1753,7 @@ export type FarmsGetParameters = RequestParameters;
 
 // @public (undocumented)
 export interface FarmsList {
-    get(options?: FarmsListParameters): Promise<FarmsList200Response | FarmsListdefaultResponse>;
+    get(options?: FarmsListParameters): StreamableMethod<FarmsList200Response | FarmsListdefaultResponse>;
 }
 
 // @public
@@ -1762,7 +1766,7 @@ export interface FarmsList200Response extends HttpResponse {
 
 // @public (undocumented)
 export interface FarmsListByFarmerId {
-    get(options?: FarmsListByFarmerIdParameters): Promise<FarmsListByFarmerId200Response | FarmsListByFarmerIddefaultResponse>;
+    get(options?: FarmsListByFarmerIdParameters): StreamableMethod<FarmsListByFarmerId200Response | FarmsListByFarmerIddefaultResponse>;
 }
 
 // @public
@@ -1963,9 +1967,9 @@ export type FieldsDeleteParameters = RequestParameters;
 
 // @public (undocumented)
 export interface FieldsGet {
-    delete(options?: FieldsDeleteParameters): Promise<FieldsDelete204Response | FieldsDeletedefaultResponse>;
-    get(options?: FieldsGetParameters): Promise<FieldsGet200Response | FieldsGetdefaultResponse>;
-    patch(options?: FieldsCreateOrUpdateParameters): Promise<FieldsCreateOrUpdate200Response | FieldsCreateOrUpdate201Response | FieldsCreateOrUpdatedefaultResponse>;
+    delete(options?: FieldsDeleteParameters): StreamableMethod<FieldsDelete204Response | FieldsDeletedefaultResponse>;
+    get(options?: FieldsGetParameters): StreamableMethod<FieldsGet200Response | FieldsGetdefaultResponse>;
+    patch(options?: FieldsCreateOrUpdateParameters): StreamableMethod<FieldsCreateOrUpdate200Response | FieldsCreateOrUpdate201Response | FieldsCreateOrUpdatedefaultResponse>;
 }
 
 // @public
@@ -1978,8 +1982,8 @@ export interface FieldsGet200Response extends HttpResponse {
 
 // @public (undocumented)
 export interface FieldsGetCascadeDeleteJobDetails {
-    get(options?: FieldsGetCascadeDeleteJobDetailsParameters): Promise<FieldsGetCascadeDeleteJobDetails200Response | FieldsGetCascadeDeleteJobDetailsdefaultResponse>;
-    put(options: FieldsCreateCascadeDeleteJobParameters): Promise<FieldsCreateCascadeDeleteJob202Response | FieldsCreateCascadeDeleteJobdefaultResponse>;
+    get(options?: FieldsGetCascadeDeleteJobDetailsParameters): StreamableMethod<FieldsGetCascadeDeleteJobDetails200Response | FieldsGetCascadeDeleteJobDetailsdefaultResponse>;
+    put(options: FieldsCreateCascadeDeleteJobParameters): StreamableMethod<FieldsCreateCascadeDeleteJob202Response | FieldsCreateCascadeDeleteJobdefaultResponse>;
 }
 
 // @public
@@ -2014,7 +2018,7 @@ export type FieldsGetParameters = RequestParameters;
 
 // @public (undocumented)
 export interface FieldsList {
-    get(options?: FieldsListParameters): Promise<FieldsList200Response | FieldsListdefaultResponse>;
+    get(options?: FieldsListParameters): StreamableMethod<FieldsList200Response | FieldsListdefaultResponse>;
 }
 
 // @public
@@ -2027,7 +2031,7 @@ export interface FieldsList200Response extends HttpResponse {
 
 // @public (undocumented)
 export interface FieldsListByFarmerId {
-    get(options?: FieldsListByFarmerIdParameters): Promise<FieldsListByFarmerId200Response | FieldsListByFarmerIddefaultResponse>;
+    get(options?: FieldsListByFarmerIdParameters): StreamableMethod<FieldsListByFarmerId200Response | FieldsListByFarmerIddefaultResponse>;
 }
 
 // @public
@@ -2108,7 +2112,7 @@ export type GeoJsonObject = MultiPolygon | Point | Polygon;
 // @public (undocumented)
 export interface GeoJsonObjectBase {
     // (undocumented)
-    type: "MultiPolygon" | "Point" | "Polygon";
+    type: "GeoJsonObject" | "MultiPolygon" | "Point" | "Polygon";
 }
 
 // @public (undocumented)
@@ -2117,7 +2121,7 @@ export type GeoJsonObjectOutput = MultiPolygonOutput | PointOutput | PolygonOutp
 // @public (undocumented)
 export interface GeoJsonObjectOutputBase {
     // (undocumented)
-    type: "MultiPolygon" | "Point" | "Polygon";
+    type: "GeoJsonObject" | "MultiPolygon" | "Point" | "Polygon";
 }
 
 // @public
@@ -2218,9 +2222,9 @@ export type HarvestDataDeleteParameters = RequestParameters;
 
 // @public (undocumented)
 export interface HarvestDataGet {
-    delete(options?: HarvestDataDeleteParameters): Promise<HarvestDataDelete204Response | HarvestDataDeletedefaultResponse>;
-    get(options?: HarvestDataGetParameters): Promise<HarvestDataGet200Response | HarvestDataGetdefaultResponse>;
-    patch(options?: HarvestDataCreateOrUpdateParameters): Promise<HarvestDataCreateOrUpdate200Response | HarvestDataCreateOrUpdate201Response | HarvestDataCreateOrUpdatedefaultResponse>;
+    delete(options?: HarvestDataDeleteParameters): StreamableMethod<HarvestDataDelete204Response | HarvestDataDeletedefaultResponse>;
+    get(options?: HarvestDataGetParameters): StreamableMethod<HarvestDataGet200Response | HarvestDataGetdefaultResponse>;
+    patch(options?: HarvestDataCreateOrUpdateParameters): StreamableMethod<HarvestDataCreateOrUpdate200Response | HarvestDataCreateOrUpdate201Response | HarvestDataCreateOrUpdatedefaultResponse>;
 }
 
 // @public
@@ -2244,7 +2248,7 @@ export type HarvestDataGetParameters = RequestParameters;
 
 // @public (undocumented)
 export interface HarvestDataList {
-    get(options?: HarvestDataListParameters): Promise<HarvestDataList200Response | HarvestDataListdefaultResponse>;
+    get(options?: HarvestDataListParameters): StreamableMethod<HarvestDataList200Response | HarvestDataListdefaultResponse>;
 }
 
 // @public
@@ -2257,7 +2261,7 @@ export interface HarvestDataList200Response extends HttpResponse {
 
 // @public (undocumented)
 export interface HarvestDataListByFarmerId {
-    get(options?: HarvestDataListByFarmerIdParameters): Promise<HarvestDataListByFarmerId200Response | HarvestDataListByFarmerIddefaultResponse>;
+    get(options?: HarvestDataListByFarmerIdParameters): StreamableMethod<HarvestDataListByFarmerId200Response | HarvestDataListByFarmerIddefaultResponse>;
 }
 
 // @public
@@ -2443,8 +2447,8 @@ export interface ImageFileOutput {
 
 // @public (undocumented)
 export interface ImageProcessingCreateRasterizeJob {
-    get(options?: ImageProcessingGetRasterizeJobParameters): Promise<ImageProcessingGetRasterizeJob200Response>;
-    put(options?: ImageProcessingCreateRasterizeJobParameters): Promise<ImageProcessingCreateRasterizeJob202Response | ImageProcessingCreateRasterizeJobdefaultResponse>;
+    get(options?: ImageProcessingGetRasterizeJobParameters): StreamableMethod<ImageProcessingGetRasterizeJob200Response>;
+    put(options?: ImageProcessingCreateRasterizeJobParameters): StreamableMethod<ImageProcessingCreateRasterizeJob202Response | ImageProcessingCreateRasterizeJobdefaultResponse>;
 }
 
 // @public
@@ -2672,9 +2676,9 @@ export type OAuthProvidersDeleteParameters = RequestParameters;
 
 // @public (undocumented)
 export interface OAuthProvidersGet {
-    delete(options?: OAuthProvidersDeleteParameters): Promise<OAuthProvidersDelete204Response | OAuthProvidersDeletedefaultResponse>;
-    get(options?: OAuthProvidersGetParameters): Promise<OAuthProvidersGet200Response | OAuthProvidersGetdefaultResponse>;
-    patch(options?: OAuthProvidersCreateOrUpdateParameters): Promise<OAuthProvidersCreateOrUpdate200Response | OAuthProvidersCreateOrUpdate201Response | OAuthProvidersCreateOrUpdatedefaultResponse>;
+    delete(options?: OAuthProvidersDeleteParameters): StreamableMethod<OAuthProvidersDelete204Response | OAuthProvidersDeletedefaultResponse>;
+    get(options?: OAuthProvidersGetParameters): StreamableMethod<OAuthProvidersGet200Response | OAuthProvidersGetdefaultResponse>;
+    patch(options?: OAuthProvidersCreateOrUpdateParameters): StreamableMethod<OAuthProvidersCreateOrUpdate200Response | OAuthProvidersCreateOrUpdate201Response | OAuthProvidersCreateOrUpdatedefaultResponse>;
 }
 
 // @public
@@ -2698,7 +2702,7 @@ export type OAuthProvidersGetParameters = RequestParameters;
 
 // @public (undocumented)
 export interface OAuthProvidersList {
-    get(options?: OAuthProvidersListParameters): Promise<OAuthProvidersList200Response | OAuthProvidersListdefaultResponse>;
+    get(options?: OAuthProvidersListParameters): StreamableMethod<OAuthProvidersList200Response | OAuthProvidersListdefaultResponse>;
 }
 
 // @public
@@ -2790,8 +2794,8 @@ export interface OAuthTokensCreateCascadeDeleteJobQueryParamProperties {
 
 // @public (undocumented)
 export interface OAuthTokensGetCascadeDeleteJobDetails {
-    get(options?: OAuthTokensGetCascadeDeleteJobDetailsParameters): Promise<OAuthTokensGetCascadeDeleteJobDetails200Response | OAuthTokensGetCascadeDeleteJobDetailsdefaultResponse>;
-    put(options: OAuthTokensCreateCascadeDeleteJobParameters): Promise<OAuthTokensCreateCascadeDeleteJob202Response | OAuthTokensCreateCascadeDeleteJobdefaultResponse>;
+    get(options?: OAuthTokensGetCascadeDeleteJobDetailsParameters): StreamableMethod<OAuthTokensGetCascadeDeleteJobDetails200Response | OAuthTokensGetCascadeDeleteJobDetailsdefaultResponse>;
+    put(options: OAuthTokensCreateCascadeDeleteJobParameters): StreamableMethod<OAuthTokensCreateCascadeDeleteJob202Response | OAuthTokensCreateCascadeDeleteJobdefaultResponse>;
 }
 
 // @public
@@ -2815,7 +2819,7 @@ export type OAuthTokensGetCascadeDeleteJobDetailsParameters = RequestParameters;
 
 // @public (undocumented)
 export interface OAuthTokensGetOAuthConnectionLink {
-    post(options?: OAuthTokensGetOAuthConnectionLinkParameters): Promise<OAuthTokensGetOAuthConnectionLink200Response | OAuthTokensGetOAuthConnectionLinkdefaultResponse>;
+    post(options?: OAuthTokensGetOAuthConnectionLinkParameters): StreamableMethod<OAuthTokensGetOAuthConnectionLink200Response | OAuthTokensGetOAuthConnectionLinkdefaultResponse>;
 }
 
 // @public
@@ -2849,7 +2853,7 @@ export type OAuthTokensGetOAuthConnectionLinkParameters = OAuthTokensGetOAuthCon
 
 // @public (undocumented)
 export interface OAuthTokensList {
-    get(options?: OAuthTokensListParameters): Promise<OAuthTokensList200Response | OAuthTokensListdefaultResponse>;
+    get(options?: OAuthTokensListParameters): StreamableMethod<OAuthTokensList200Response | OAuthTokensListdefaultResponse>;
 }
 
 // @public
@@ -2988,9 +2992,9 @@ export type PlantingDataDeleteParameters = RequestParameters;
 
 // @public (undocumented)
 export interface PlantingDataGet {
-    delete(options?: PlantingDataDeleteParameters): Promise<PlantingDataDelete204Response | PlantingDataDeletedefaultResponse>;
-    get(options?: PlantingDataGetParameters): Promise<PlantingDataGet200Response | PlantingDataGetdefaultResponse>;
-    patch(options?: PlantingDataCreateOrUpdateParameters): Promise<PlantingDataCreateOrUpdate200Response | PlantingDataCreateOrUpdate201Response | PlantingDataCreateOrUpdatedefaultResponse>;
+    delete(options?: PlantingDataDeleteParameters): StreamableMethod<PlantingDataDelete204Response | PlantingDataDeletedefaultResponse>;
+    get(options?: PlantingDataGetParameters): StreamableMethod<PlantingDataGet200Response | PlantingDataGetdefaultResponse>;
+    patch(options?: PlantingDataCreateOrUpdateParameters): StreamableMethod<PlantingDataCreateOrUpdate200Response | PlantingDataCreateOrUpdate201Response | PlantingDataCreateOrUpdatedefaultResponse>;
 }
 
 // @public
@@ -3014,7 +3018,7 @@ export type PlantingDataGetParameters = RequestParameters;
 
 // @public (undocumented)
 export interface PlantingDataList {
-    get(options?: PlantingDataListParameters): Promise<PlantingDataList200Response | PlantingDataListdefaultResponse>;
+    get(options?: PlantingDataListParameters): StreamableMethod<PlantingDataList200Response | PlantingDataListdefaultResponse>;
 }
 
 // @public
@@ -3027,7 +3031,7 @@ export interface PlantingDataList200Response extends HttpResponse {
 
 // @public (undocumented)
 export interface PlantingDataListByFarmerId {
-    get(options?: PlantingDataListByFarmerIdParameters): Promise<PlantingDataListByFarmerId200Response | PlantingDataListByFarmerIddefaultResponse>;
+    get(options?: PlantingDataListByFarmerIdParameters): StreamableMethod<PlantingDataListByFarmerId200Response | PlantingDataListByFarmerIddefaultResponse>;
 }
 
 // @public
@@ -3368,8 +3372,8 @@ export interface SceneOutput {
 
 // @public (undocumented)
 export interface ScenesCreateSatelliteDataIngestionJob {
-    get(options?: ScenesGetSatelliteDataIngestionJobDetailsParameters): Promise<ScenesGetSatelliteDataIngestionJobDetails200Response | ScenesGetSatelliteDataIngestionJobDetailsdefaultResponse>;
-    put(options?: ScenesCreateSatelliteDataIngestionJobParameters): Promise<ScenesCreateSatelliteDataIngestionJob202Response | ScenesCreateSatelliteDataIngestionJobdefaultResponse>;
+    get(options?: ScenesGetSatelliteDataIngestionJobDetailsParameters): StreamableMethod<ScenesGetSatelliteDataIngestionJobDetails200Response | ScenesGetSatelliteDataIngestionJobDetailsdefaultResponse>;
+    put(options?: ScenesCreateSatelliteDataIngestionJobParameters): StreamableMethod<ScenesCreateSatelliteDataIngestionJob202Response | ScenesCreateSatelliteDataIngestionJobdefaultResponse>;
 }
 
 // @public
@@ -3403,7 +3407,7 @@ export type ScenesCreateSatelliteDataIngestionJobParameters = ScenesCreateSatell
 
 // @public (undocumented)
 export interface ScenesDownload {
-    get(options: ScenesDownloadParameters): Promise<ScenesDownload200Response | ScenesDownloaddefaultResponse>;
+    get(options: ScenesDownloadParameters): StreamableMethod<ScenesDownload200Response | ScenesDownloaddefaultResponse>;
 }
 
 // @public
@@ -3456,7 +3460,7 @@ export type ScenesGetSatelliteDataIngestionJobDetailsParameters = RequestParamet
 
 // @public (undocumented)
 export interface ScenesList {
-    get(options: ScenesListParameters): Promise<ScenesList200Response | ScenesListdefaultResponse>;
+    get(options: ScenesListParameters): StreamableMethod<ScenesList200Response | ScenesListdefaultResponse>;
 }
 
 // @public
@@ -3682,9 +3686,9 @@ export type SeasonalFieldsDeleteParameters = RequestParameters;
 
 // @public (undocumented)
 export interface SeasonalFieldsGet {
-    delete(options?: SeasonalFieldsDeleteParameters): Promise<SeasonalFieldsDelete204Response | SeasonalFieldsDeletedefaultResponse>;
-    get(options?: SeasonalFieldsGetParameters): Promise<SeasonalFieldsGet200Response | SeasonalFieldsGetdefaultResponse>;
-    patch(options?: SeasonalFieldsCreateOrUpdateParameters): Promise<SeasonalFieldsCreateOrUpdate200Response | SeasonalFieldsCreateOrUpdate201Response | SeasonalFieldsCreateOrUpdatedefaultResponse>;
+    delete(options?: SeasonalFieldsDeleteParameters): StreamableMethod<SeasonalFieldsDelete204Response | SeasonalFieldsDeletedefaultResponse>;
+    get(options?: SeasonalFieldsGetParameters): StreamableMethod<SeasonalFieldsGet200Response | SeasonalFieldsGetdefaultResponse>;
+    patch(options?: SeasonalFieldsCreateOrUpdateParameters): StreamableMethod<SeasonalFieldsCreateOrUpdate200Response | SeasonalFieldsCreateOrUpdate201Response | SeasonalFieldsCreateOrUpdatedefaultResponse>;
 }
 
 // @public
@@ -3697,8 +3701,8 @@ export interface SeasonalFieldsGet200Response extends HttpResponse {
 
 // @public (undocumented)
 export interface SeasonalFieldsGetCascadeDeleteJobDetails {
-    get(options?: SeasonalFieldsGetCascadeDeleteJobDetailsParameters): Promise<SeasonalFieldsGetCascadeDeleteJobDetails200Response | SeasonalFieldsGetCascadeDeleteJobDetailsdefaultResponse>;
-    put(options: SeasonalFieldsCreateCascadeDeleteJobParameters): Promise<SeasonalFieldsCreateCascadeDeleteJob202Response | SeasonalFieldsCreateCascadeDeleteJobdefaultResponse>;
+    get(options?: SeasonalFieldsGetCascadeDeleteJobDetailsParameters): StreamableMethod<SeasonalFieldsGetCascadeDeleteJobDetails200Response | SeasonalFieldsGetCascadeDeleteJobDetailsdefaultResponse>;
+    put(options: SeasonalFieldsCreateCascadeDeleteJobParameters): StreamableMethod<SeasonalFieldsCreateCascadeDeleteJob202Response | SeasonalFieldsCreateCascadeDeleteJobdefaultResponse>;
 }
 
 // @public
@@ -3733,7 +3737,7 @@ export type SeasonalFieldsGetParameters = RequestParameters;
 
 // @public (undocumented)
 export interface SeasonalFieldsList {
-    get(options?: SeasonalFieldsListParameters): Promise<SeasonalFieldsList200Response | SeasonalFieldsListdefaultResponse>;
+    get(options?: SeasonalFieldsListParameters): StreamableMethod<SeasonalFieldsList200Response | SeasonalFieldsListdefaultResponse>;
 }
 
 // @public
@@ -3746,7 +3750,7 @@ export interface SeasonalFieldsList200Response extends HttpResponse {
 
 // @public (undocumented)
 export interface SeasonalFieldsListByFarmerId {
-    get(options?: SeasonalFieldsListByFarmerIdParameters): Promise<SeasonalFieldsListByFarmerId200Response | SeasonalFieldsListByFarmerIddefaultResponse>;
+    get(options?: SeasonalFieldsListByFarmerIdParameters): StreamableMethod<SeasonalFieldsListByFarmerId200Response | SeasonalFieldsListByFarmerIddefaultResponse>;
 }
 
 // @public
@@ -3925,9 +3929,9 @@ export type SeasonsDeleteParameters = RequestParameters;
 
 // @public (undocumented)
 export interface SeasonsGet {
-    delete(options?: SeasonsDeleteParameters): Promise<SeasonsDelete204Response | SeasonsDeletedefaultResponse>;
-    get(options?: SeasonsGetParameters): Promise<SeasonsGet200Response | SeasonsGetdefaultResponse>;
-    patch(options?: SeasonsCreateOrUpdateParameters): Promise<SeasonsCreateOrUpdate200Response | SeasonsCreateOrUpdate201Response | SeasonsCreateOrUpdatedefaultResponse>;
+    delete(options?: SeasonsDeleteParameters): StreamableMethod<SeasonsDelete204Response | SeasonsDeletedefaultResponse>;
+    get(options?: SeasonsGetParameters): StreamableMethod<SeasonsGet200Response | SeasonsGetdefaultResponse>;
+    patch(options?: SeasonsCreateOrUpdateParameters): StreamableMethod<SeasonsCreateOrUpdate200Response | SeasonsCreateOrUpdate201Response | SeasonsCreateOrUpdatedefaultResponse>;
 }
 
 // @public
@@ -3951,7 +3955,7 @@ export type SeasonsGetParameters = RequestParameters;
 
 // @public (undocumented)
 export interface SeasonsList {
-    get(options?: SeasonsListParameters): Promise<SeasonsList200Response | SeasonsListdefaultResponse>;
+    get(options?: SeasonsListParameters): StreamableMethod<SeasonsList200Response | SeasonsListdefaultResponse>;
 }
 
 // @public
@@ -4079,9 +4083,9 @@ export type TillageDataDeleteParameters = RequestParameters;
 
 // @public (undocumented)
 export interface TillageDataGet {
-    delete(options?: TillageDataDeleteParameters): Promise<TillageDataDelete204Response | TillageDataDeletedefaultResponse>;
-    get(options?: TillageDataGetParameters): Promise<TillageDataGet200Response | TillageDataGetdefaultResponse>;
-    patch(options?: TillageDataCreateOrUpdateParameters): Promise<TillageDataCreateOrUpdate200Response | TillageDataCreateOrUpdate201Response | TillageDataCreateOrUpdatedefaultResponse>;
+    delete(options?: TillageDataDeleteParameters): StreamableMethod<TillageDataDelete204Response | TillageDataDeletedefaultResponse>;
+    get(options?: TillageDataGetParameters): StreamableMethod<TillageDataGet200Response | TillageDataGetdefaultResponse>;
+    patch(options?: TillageDataCreateOrUpdateParameters): StreamableMethod<TillageDataCreateOrUpdate200Response | TillageDataCreateOrUpdate201Response | TillageDataCreateOrUpdatedefaultResponse>;
 }
 
 // @public
@@ -4105,7 +4109,7 @@ export type TillageDataGetParameters = RequestParameters;
 
 // @public (undocumented)
 export interface TillageDataList {
-    get(options?: TillageDataListParameters): Promise<TillageDataList200Response | TillageDataListdefaultResponse>;
+    get(options?: TillageDataListParameters): StreamableMethod<TillageDataList200Response | TillageDataListdefaultResponse>;
 }
 
 // @public
@@ -4118,7 +4122,7 @@ export interface TillageDataList200Response extends HttpResponse {
 
 // @public (undocumented)
 export interface TillageDataListByFarmerId {
-    get(options?: TillageDataListByFarmerIdParameters): Promise<TillageDataListByFarmerId200Response | TillageDataListByFarmerIddefaultResponse>;
+    get(options?: TillageDataListByFarmerIdParameters): StreamableMethod<TillageDataListByFarmerId200Response | TillageDataListByFarmerIddefaultResponse>;
 }
 
 // @public
@@ -4439,8 +4443,8 @@ export interface WeatherDataOutput {
 
 // @public (undocumented)
 export interface WeatherGetDataDeleteJobDetails {
-    get(options?: WeatherGetDataDeleteJobDetailsParameters): Promise<WeatherGetDataDeleteJobDetails200Response | WeatherGetDataDeleteJobDetailsdefaultResponse>;
-    put(options?: WeatherCreateDataDeleteJobParameters): Promise<WeatherCreateDataDeleteJob202Response | WeatherCreateDataDeleteJobdefaultResponse>;
+    get(options?: WeatherGetDataDeleteJobDetailsParameters): StreamableMethod<WeatherGetDataDeleteJobDetails200Response | WeatherGetDataDeleteJobDetailsdefaultResponse>;
+    put(options?: WeatherCreateDataDeleteJobParameters): StreamableMethod<WeatherCreateDataDeleteJob202Response | WeatherCreateDataDeleteJobdefaultResponse>;
 }
 
 // @public
@@ -4464,8 +4468,8 @@ export type WeatherGetDataDeleteJobDetailsParameters = RequestParameters;
 
 // @public (undocumented)
 export interface WeatherGetDataIngestionJobDetails {
-    get(options?: WeatherGetDataIngestionJobDetailsParameters): Promise<WeatherGetDataIngestionJobDetails200Response | WeatherGetDataIngestionJobDetailsdefaultResponse>;
-    put(options?: WeatherCreateDataIngestionJobParameters): Promise<WeatherCreateDataIngestionJob202Response | WeatherCreateDataIngestionJobdefaultResponse>;
+    get(options?: WeatherGetDataIngestionJobDetailsParameters): StreamableMethod<WeatherGetDataIngestionJobDetails200Response | WeatherGetDataIngestionJobDetailsdefaultResponse>;
+    put(options?: WeatherCreateDataIngestionJobParameters): StreamableMethod<WeatherCreateDataIngestionJob202Response | WeatherCreateDataIngestionJobdefaultResponse>;
 }
 
 // @public
@@ -4489,7 +4493,7 @@ export type WeatherGetDataIngestionJobDetailsParameters = RequestParameters;
 
 // @public (undocumented)
 export interface WeatherList {
-    get(options: WeatherListParameters): Promise<WeatherList200Response | WeatherListdefaultResponse>;
+    get(options: WeatherListParameters): StreamableMethod<WeatherList200Response | WeatherListdefaultResponse>;
 }
 
 // @public

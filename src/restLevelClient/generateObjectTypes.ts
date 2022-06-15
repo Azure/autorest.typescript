@@ -250,7 +250,11 @@ function getDiscriminatorPropertyName(objectSchema: ObjectSchema) {
  * Calculates the discriminator values that a given object needs
  */
 function getDiscriminatorValue(objectSchema: ObjectSchema): string | undefined {
-  const discriminatorValue = objectSchema.discriminatorValue;
+  const discriminatorValue = objectSchema.discriminatorValue
+    ? objectSchema.discriminatorValue
+    : objectSchema.discriminator?.property.isDiscriminator
+    ? objectSchema.language.default.name
+    : undefined;
   const children = objectSchema.children?.immediate ?? [];
 
   // If the current object has a discriminatorValue but doesn't have any children

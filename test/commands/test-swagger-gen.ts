@@ -8,8 +8,9 @@ interface SwaggerConfig {
   clientName: string;
   packageName: string;
   addCredentials?: boolean;
+  security?: string,
   licenseHeader?: boolean;
-  credentialScopes?: string;
+  securityScopes?: string;
   tracing?: TracingInfo;
   disableAsyncIterators?: boolean;
   hideClients?: boolean;
@@ -24,6 +25,7 @@ interface SwaggerConfig {
   generateTest?: boolean;
   coreHttpCompatMode?: boolean;
   generateSample?: boolean;
+  lenientModelDeduplication?: boolean
 }
 
 const package_version = "1.0.0-preview1";
@@ -89,8 +91,8 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "azure-special-properties",
     licenseHeader: true,
     addCredentials: true,
-    credentialScopes:
-      "https://microsoft.com/.default,http://microsoft.com/.default",
+    security: "AADToken",
+    securityScopes: "https://microsoft.com/.default,http://microsoft.com/.default",
     useCoreV2: true,
     allowInsecureConnection: true,
     isTestPackage: true
@@ -341,7 +343,8 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     useCoreV2: true,
     allowInsecureConnection: true,
     addCredentials: false,
-    isTestPackage: true
+    isTestPackage: true,
+    lenientModelDeduplication: true
   },
   mediaTypesWithTracing: {
     swaggerOrConfig: "media_types.json",
@@ -355,7 +358,8 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     useCoreV2: true,
     allowInsecureConnection: true,
     addCredentials: false,
-    isTestPackage: true
+    isTestPackage: true,
+    lenientModelDeduplication: true
   },
   mediaTypesV3: {
     swaggerOrConfig: "test/integration/swaggers/media-types-v3.json",
@@ -774,7 +778,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     useCoreV2: true,
     allowInsecureConnection: true,
     addCredentials: false,
-    isTestPackage: true
+    isTestPackage: true,
   },
   healthcareapis: {
     swaggerOrConfig: "test/integration/swaggers/healthcareapis.md",
@@ -813,6 +817,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     useCoreV2: true,
     allowInsecureConnection: true,
     addCredentials: true,
+    security: "AADToken",
     isTestPackage: true
   },
   resources: {
@@ -823,6 +828,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     useCoreV2: true,
     allowInsecureConnection: true,
     addCredentials: true,
+    security: "AADToken",
     headAsBoolean: true,
     isTestPackage: true
   },
@@ -1063,13 +1069,14 @@ const generateSwaggers = async (
   for (let name of swaggers) {
     const {
       addCredentials,
+      security,
       clientName,
       swaggerOrConfig,
       packageName,
       licenseHeader,
       tracing,
       disableAsyncIterators,
-      credentialScopes,
+      securityScopes,
       hideClients,
       ignoreNullableOnOptional,
       useCoreV2,
@@ -1099,7 +1106,8 @@ const generateSwaggers = async (
       {
         tracingInfo: tracing,
         disablePagingAsyncIterators: disableAsyncIterators,
-        credentialScopes: credentialScopes ? [credentialScopes] : undefined,
+        security,
+        securityScopes: security && securityScopes && security.length > 0 ? securityScopes : undefined,
         srcPath: "",
         licenseHeader: !!licenseHeader,
         addCredentials,
