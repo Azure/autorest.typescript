@@ -6,7 +6,8 @@ import {
   HttpNodeStreamResponse
 } from "@azure-rest/core-client";
 import { isNode } from "@azure/core-util";
-import {} from "./generated/bodyFileRest/src";
+import { isUnexpected } from "./generated/bodyFileRest/src";
+
 describe("BodyFile Client", () => {
   let client: BodyFileClient;
 
@@ -50,12 +51,6 @@ describe("BodyFile Client", () => {
         .path("/files/stream/verylarge")
         .get()
         .asBrowserStream();
-    }
-
-    if (isUnexpected(result)) {
-      const error = `Unexpected response: ${result.status}`;
-      assert.fail(error);
-      throw error;
     }
 
     const byteCount = await countBytesFromStream(result.body!);
