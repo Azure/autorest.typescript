@@ -51,7 +51,6 @@
     "unit-test": "echo skipped",
     "unit-test:node": "echo skipped",
     "unit-test:browser": "echo skipped",
-    "docs": "echo skip",
     "build": "npm run clean && tsc -p . && dev-tool run bundle && mkdirp ./review && api-extractor run --local"
   },
   "sideEffects": false,
