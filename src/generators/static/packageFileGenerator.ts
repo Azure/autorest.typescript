@@ -134,8 +134,7 @@ function restLevelPackage(packageDetails: PackageDetails) {
       "unit-test": "echo skipped",
       "unit-test:node": "echo skipped",
       "unit-test:browser": "echo skipped",
-      docs:
-        "typedoc --excludePrivate --excludeExternals  --out ./dist/docs ./src"
+      docs: "echo skip"
     },
     sideEffects: false,
     autoPublish: false,
@@ -162,7 +161,6 @@ function restLevelPackage(packageDetails: PackageDetails) {
       prettier: "2.2.1",
       rimraf: "^3.0.0",
       "source-map-support": "^0.5.9",
-      typedoc: "0.15.2",
       typescript: "~4.2.0"
     }
   };
