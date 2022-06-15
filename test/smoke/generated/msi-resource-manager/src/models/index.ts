@@ -82,18 +82,18 @@ export interface UserAssignedIdentitiesListResult {
 }
 
 /** The resource model definition for a Azure Resource Manager proxy resource. It will not have tags and a location */
-export type ProxyResource = Resource;
+export interface ProxyResource extends Resource {}
 
 /** The resource model definition for an Azure Resource Manager tracked top level resource which has 'tags' and a 'location' */
-export type TrackedResource = Resource & {
+export interface TrackedResource extends Resource {
   /** Resource tags. */
   tags?: { [propertyName: string]: string };
   /** The geo-location where the resource lives */
   location: string;
-};
+}
 
 /** Describes an identity resource. */
-export type IdentityUpdate = Resource & {
+export interface IdentityUpdate extends Resource {
   /** The geo-location where the resource lives */
   location?: string;
   /** Resource tags */
@@ -113,10 +113,10 @@ export type IdentityUpdate = Resource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly clientId?: string;
-};
+}
 
 /** Describes a system assigned identity resource. */
-export type SystemAssignedIdentity = ProxyResource & {
+export interface SystemAssignedIdentity extends ProxyResource {
   /** The geo-location where the resource lives */
   location: string;
   /** Resource tags */
@@ -141,10 +141,10 @@ export type SystemAssignedIdentity = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly clientSecretUrl?: string;
-};
+}
 
 /** Describes an identity resource. */
-export type Identity = TrackedResource & {
+export interface Identity extends TrackedResource {
   /**
    * The id of the tenant which the identity belongs to.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -160,7 +160,7 @@ export type Identity = TrackedResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly clientId?: string;
-};
+}
 
 /** Optional parameters. */
 export interface SystemAssignedIdentitiesGetByScopeOptionalParams

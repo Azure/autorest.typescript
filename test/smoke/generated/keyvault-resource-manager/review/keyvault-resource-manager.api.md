@@ -149,17 +149,18 @@ export type JsonWebKeyOperation = string;
 export type JsonWebKeyType = string;
 
 // @public
-export type Key = Resource & {
+export interface Key extends Resource {
     attributes?: KeyAttributes;
-    kty?: JsonWebKeyType;
+    curveName?: JsonWebKeyCurveName;
+    // (undocumented)
     keyOps?: JsonWebKeyOperation[];
     keySize?: number;
-    curveName?: JsonWebKeyCurveName;
     readonly keyUri?: string;
     readonly keyUriWithVersion?: string;
-    rotationPolicy?: RotationPolicy;
+    kty?: JsonWebKeyType;
     releasePolicy?: KeyReleasePolicy;
-};
+    rotationPolicy?: RotationPolicy;
+}
 
 // @public
 export interface KeyAttributes {
@@ -625,9 +626,9 @@ export interface LogSpecification {
 }
 
 // @public
-export type ManagedHsm = ManagedHsmResource & {
+export interface ManagedHsm extends ManagedHsmResource {
     properties?: ManagedHsmProperties;
-};
+}
 
 // @public
 export interface ManagedHsmError {
@@ -823,12 +824,12 @@ export interface MhsmPrivateEndpoint {
 }
 
 // @public
-export type MhsmPrivateEndpointConnection = ManagedHsmResource & {
+export interface MhsmPrivateEndpointConnection extends ManagedHsmResource {
     etag?: string;
     privateEndpoint?: MhsmPrivateEndpoint;
     privateLinkServiceConnectionState?: MhsmPrivateLinkServiceConnectionState;
     provisioningState?: PrivateEndpointConnectionProvisioningState;
-};
+}
 
 // @public
 export interface MhsmPrivateEndpointConnectionItem {
@@ -902,11 +903,11 @@ export interface MhsmPrivateEndpointConnectionsPutOptionalParams extends coreCli
 export type MhsmPrivateEndpointConnectionsPutResponse = MhsmPrivateEndpointConnectionsPutHeaders & MhsmPrivateEndpointConnection;
 
 // @public
-export type MhsmPrivateLinkResource = ManagedHsmResource & {
+export interface MhsmPrivateLinkResource extends ManagedHsmResource {
     readonly groupId?: string;
     readonly requiredMembers?: string[];
     requiredZoneNames?: string[];
-};
+}
 
 // @public
 export interface MhsmPrivateLinkResourceListResult {
@@ -1008,12 +1009,12 @@ export interface PrivateEndpoint {
 }
 
 // @public
-export type PrivateEndpointConnection = Resource & {
+export interface PrivateEndpointConnection extends Resource {
     etag?: string;
     privateEndpoint?: PrivateEndpoint;
     privateLinkServiceConnectionState?: PrivateLinkServiceConnectionState;
     provisioningState?: PrivateEndpointConnectionProvisioningState;
-};
+}
 
 // @public
 export interface PrivateEndpointConnectionItem {
@@ -1095,11 +1096,11 @@ export type PrivateEndpointConnectionsPutResponse = PrivateEndpointConnectionsPu
 export type PrivateEndpointServiceConnectionStatus = string;
 
 // @public
-export type PrivateLinkResource = Resource & {
+export interface PrivateLinkResource extends Resource {
     readonly groupId?: string;
     readonly requiredMembers?: string[];
     requiredZoneNames?: string[];
-};
+}
 
 // @public
 export interface PrivateLinkResourceListResult {
@@ -1158,12 +1159,13 @@ export interface RotationPolicy {
 }
 
 // @public
-export type Secret = Resource & {
+export interface Secret extends Resource {
     properties: SecretProperties;
-};
+}
 
 // @public
-export type SecretAttributes = Attributes;
+export interface SecretAttributes extends Attributes {
+}
 
 // @public
 export interface SecretCreateOrUpdateParameters {
