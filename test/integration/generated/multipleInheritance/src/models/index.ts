@@ -22,18 +22,17 @@ export interface Feline {
   hisses?: boolean;
 }
 
-export type Horse = Pet & {
+export interface Horse extends Pet {
   isAShowHorse?: boolean;
-};
+}
 
-export type Cat = Pet &
-  Feline & {
-    likesMilk?: boolean;
-  };
+export interface Cat extends Pet, Feline {
+  likesMilk?: boolean;
+}
 
-export type Kitten = Cat & {
+export interface Kitten extends Cat {
   eatsMiceYet?: boolean;
-};
+}
 
 /** Optional parameters. */
 export interface GetHorseOptionalParams extends coreClient.OperationOptions {}

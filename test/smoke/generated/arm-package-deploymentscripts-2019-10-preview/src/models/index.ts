@@ -231,7 +231,7 @@ export interface EnvironmentVariable {
 }
 
 /** Deployment script object. */
-export type DeploymentScript = AzureResourceBase & {
+export interface DeploymentScript extends AzureResourceBase {
   /** Managed identity to be used for this deployment script. Currently, only user-assigned MSI is supported. */
   identity: ManagedServiceIdentity;
   /** The location of the ACI and the storage account for the deployment script. */
@@ -245,39 +245,41 @@ export type DeploymentScript = AzureResourceBase & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly systemData?: SystemData;
-};
+}
 
 /** Deployment script parameters to be updated. */
-export type DeploymentScriptUpdateParameter = AzureResourceBase & {
+export interface DeploymentScriptUpdateParameter extends AzureResourceBase {
   /** Resource tags to be updated. */
   tags?: { [propertyName: string]: string };
-};
+}
 
 /** Script execution log object. */
-export type ScriptLog = AzureResourceBase & {
+export interface ScriptLog extends AzureResourceBase {
   /**
    * Script execution logs in text format.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly log?: string;
-};
+}
 
 /** Properties of the Azure PowerShell script object. */
-export type AzurePowerShellScriptProperties = DeploymentScriptPropertiesBase &
-  ScriptConfigurationBase & {
-    /** Azure PowerShell module version to be used. */
-    azPowerShellVersion: string;
-  };
+export interface AzurePowerShellScriptProperties
+  extends DeploymentScriptPropertiesBase,
+    ScriptConfigurationBase {
+  /** Azure PowerShell module version to be used. */
+  azPowerShellVersion: string;
+}
 
 /** Properties of the Azure CLI script object. */
-export type AzureCliScriptProperties = DeploymentScriptPropertiesBase &
-  ScriptConfigurationBase & {
-    /** Azure CLI module version to be used. */
-    azCliVersion: string;
-  };
+export interface AzureCliScriptProperties
+  extends DeploymentScriptPropertiesBase,
+    ScriptConfigurationBase {
+  /** Azure CLI module version to be used. */
+  azCliVersion: string;
+}
 
 /** Object model for the Azure PowerShell script. */
-export type AzurePowerShellScript = DeploymentScript & {
+export interface AzurePowerShellScript extends DeploymentScript {
   /** Container settings. */
   containerSettings?: ContainerConfiguration;
   /** Storage Account settings. */
@@ -317,10 +319,10 @@ export type AzurePowerShellScript = DeploymentScript & {
   timeout?: string;
   /** Azure PowerShell module version to be used. */
   azPowerShellVersion: string;
-};
+}
 
 /** Object model for the Azure CLI script. */
-export type AzureCliScript = DeploymentScript & {
+export interface AzureCliScript extends DeploymentScript {
   /** Container settings. */
   containerSettings?: ContainerConfiguration;
   /** Storage Account settings. */
@@ -360,7 +362,7 @@ export type AzureCliScript = DeploymentScript & {
   timeout?: string;
   /** Azure CLI module version to be used. */
   azCliVersion: string;
-};
+}
 
 /** Known values of {@link ManagedServiceIdentityType} that the service accepts. */
 export enum KnownManagedServiceIdentityType {

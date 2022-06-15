@@ -28,42 +28,42 @@ export interface PetAction {
   actionResponse?: string;
 }
 
-export type PetDef = Animal & {
+export interface PetDef extends Animal {
   /**
    * Gets the Pet by id.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
-};
+}
 
-export type NotFoundErrorBase = BaseError & {
+export interface NotFoundErrorBase extends BaseError {
   reason?: string;
   whatNotFound: string;
-};
+}
 
-export type PetActionError = PetAction & {
+export interface PetActionError extends PetAction {
   errorType: string;
   /** the error message */
   errorMessage?: string;
-};
+}
 
-export type LinkNotFound = NotFoundErrorBase & {
+export interface LinkNotFound extends NotFoundErrorBase {
   whatSubAddress?: string;
-};
+}
 
-export type AnimalNotFound = NotFoundErrorBase & {
+export interface AnimalNotFound extends NotFoundErrorBase {
   name?: string;
-};
+}
 
-export type PetSadError = PetActionError & {
+export interface PetSadError extends PetActionError {
   /** why is the pet sad */
   reason?: string;
-};
+}
 
-export type PetHungryOrThirstyError = PetSadError & {
+export interface PetHungryOrThirstyError extends PetSadError {
   /** is the pet hungry or thirsty or both */
   hungryOrThirsty?: string;
-};
+}
 
 /** Optional parameters. */
 export interface PetGetPetByIdOptionalParams
