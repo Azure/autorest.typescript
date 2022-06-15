@@ -91,13 +91,15 @@ export async function generateTypeScriptLibrary(
   generateMappers(clientDetails, project);
   generateOperations(clientDetails, project);
   generateOperationsInterfaces(clientDetails, project);
+  if (generateSample || generateTest) {
+    generateSampleEnv(project);
+  }
   if (
     generateSample &&
     clientDetails?.samples?.length &&
     clientDetails?.samples?.length > 0
   ) {
     generateHLCSamples(clientDetails, project);
-    generateSampleEnv(project);
   }
   generateParameters(clientDetails, project);
   generateIndexFile(project, clientDetails);

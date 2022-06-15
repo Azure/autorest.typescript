@@ -37,7 +37,7 @@ import { generateRLCSamples } from "../generators/samples/rlcSampleGenerator";
 export async function generateRestLevelClient() {
   const host = getHost();
   const { model } = getSession();
-  const { outputPath, srcPath, generateSample } = getAutorestOptions();
+  const { outputPath, srcPath, generateSample, generateTest } = getAutorestOptions();
 
   const project = new Project({
     useInMemoryFileSystem: true,
@@ -77,8 +77,10 @@ export async function generateRestLevelClient() {
   generateIndexFile(project);
 
   generateTopLevelIndexFile(model, project);
-  if (generateSample) {
+  if (generateSample || generateTest) {
     generateSampleEnv(project);
+  }
+  if (generateSample) {
     generateRLCSamples(model, project);
   }
 
