@@ -133,8 +133,7 @@ function restLevelPackage(packageDetails: PackageDetails) {
       test: 'echo "Error: no test specified" && exit 1',
       "unit-test": "echo skipped",
       "unit-test:node": "echo skipped",
-      "unit-test:browser": "echo skipped",
-      docs: "echo skip"
+      "unit-test:browser": "echo skipped"
     },
     sideEffects: false,
     autoPublish: false,
@@ -265,7 +264,8 @@ function restLevelPackage(packageDetails: PackageDetails) {
       apiRefLink: `https://docs.microsoft.com/javascript/api/${clientPackageName}${apiRefUrlQueryParameter}`
     };
     if (azureSdkForJs) {
-      packageInfo.scripts["execute:samples"] = "dev-tool samples run samples-dev";
+      packageInfo.scripts["execute:samples"] =
+        "dev-tool samples run samples-dev";
     }
   }
 
@@ -403,8 +403,7 @@ function regularAutorestPackage(
       "unit-test:browser": "echo skipped",
       "integration-test": "echo skipped",
       "integration-test:node": "echo skipped",
-      "integration-test:browser": "echo skipped",
-      docs: "echo skipped"
+      "integration-test:browser": "echo skipped"
     },
     sideEffects: false,
     "//metadata": {
