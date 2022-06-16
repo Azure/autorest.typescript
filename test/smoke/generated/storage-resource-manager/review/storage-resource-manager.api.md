@@ -966,321 +966,229 @@ export type Kind = string;
 
 // @public
 export enum KnownAccountImmutabilityPolicyState {
-    // (undocumented)
     Disabled = "Disabled",
-    // (undocumented)
     Locked = "Locked",
-    // (undocumented)
     Unlocked = "Unlocked"
 }
 
 // @public
 export enum KnownBlobInventoryPolicyName {
-    // (undocumented)
     Default = "default"
 }
 
 // @public
 export enum KnownBlobRestoreProgressStatus {
-    // (undocumented)
     Complete = "Complete",
-    // (undocumented)
     Failed = "Failed",
-    // (undocumented)
     InProgress = "InProgress"
 }
 
 // @public
 export enum KnownBypass {
-    // (undocumented)
     AzureServices = "AzureServices",
-    // (undocumented)
     Logging = "Logging",
-    // (undocumented)
     Metrics = "Metrics",
-    // (undocumented)
     None = "None"
 }
 
 // @public
 export enum KnownCorsRuleAllowedMethodsItem {
-    // (undocumented)
     Delete = "DELETE",
-    // (undocumented)
     GET = "GET",
-    // (undocumented)
     Head = "HEAD",
-    // (undocumented)
     Merge = "MERGE",
-    // (undocumented)
     Options = "OPTIONS",
-    // (undocumented)
     Post = "POST",
-    // (undocumented)
     PUT = "PUT"
 }
 
 // @public
 export enum KnownCreatedByType {
-    // (undocumented)
     Application = "Application",
-    // (undocumented)
     Key = "Key",
-    // (undocumented)
     ManagedIdentity = "ManagedIdentity",
-    // (undocumented)
     User = "User"
 }
 
 // @public
 export enum KnownDefaultSharePermission {
-    // (undocumented)
     None = "None",
-    // (undocumented)
     StorageFileDataSmbShareContributor = "StorageFileDataSmbShareContributor",
-    // (undocumented)
     StorageFileDataSmbShareElevatedContributor = "StorageFileDataSmbShareElevatedContributor",
-    // (undocumented)
     StorageFileDataSmbShareReader = "StorageFileDataSmbShareReader"
 }
 
 // @public
 export enum KnownDirectoryServiceOptions {
-    // (undocumented)
     Aadds = "AADDS",
-    // (undocumented)
     AD = "AD",
-    // (undocumented)
     None = "None"
 }
 
 // @public
 export enum KnownEnabledProtocols {
-    // (undocumented)
     NFS = "NFS",
-    // (undocumented)
     SMB = "SMB"
 }
 
 // @public
 export enum KnownEncryptionScopeSource {
-    // (undocumented)
     MicrosoftKeyVault = "Microsoft.KeyVault",
-    // (undocumented)
     MicrosoftStorage = "Microsoft.Storage"
 }
 
 // @public
 export enum KnownEncryptionScopeState {
-    // (undocumented)
     Disabled = "Disabled",
-    // (undocumented)
     Enabled = "Enabled"
 }
 
 // @public
 export enum KnownExpirationAction {
-    // (undocumented)
     Log = "Log"
 }
 
 // @public
 export enum KnownExtendedLocationTypes {
-    // (undocumented)
     EdgeZone = "EdgeZone"
 }
 
 // @public
 export enum KnownFormat {
-    // (undocumented)
     Csv = "Csv",
-    // (undocumented)
     Parquet = "Parquet"
 }
 
 // @public
 export enum KnownGeoReplicationStatus {
-    // (undocumented)
     Bootstrap = "Bootstrap",
-    // (undocumented)
     Live = "Live",
-    // (undocumented)
     Unavailable = "Unavailable"
 }
 
 // @public
 export enum KnownIdentityType {
-    // (undocumented)
     None = "None",
-    // (undocumented)
     SystemAssigned = "SystemAssigned",
-    // (undocumented)
     SystemAssignedUserAssigned = "SystemAssigned,UserAssigned",
-    // (undocumented)
     UserAssigned = "UserAssigned"
 }
 
 // @public
 export enum KnownImmutabilityPolicyState {
-    // (undocumented)
     Locked = "Locked",
-    // (undocumented)
     Unlocked = "Unlocked"
 }
 
 // @public
 export enum KnownImmutabilityPolicyUpdateType {
-    // (undocumented)
     Extend = "extend",
-    // (undocumented)
     Lock = "lock",
-    // (undocumented)
     Put = "put"
 }
 
 // @public
 export enum KnownInventoryRuleType {
-    // (undocumented)
     Inventory = "Inventory"
 }
 
 // @public
 export enum KnownKeySource {
-    // (undocumented)
     MicrosoftKeyvault = "Microsoft.Keyvault",
-    // (undocumented)
     MicrosoftStorage = "Microsoft.Storage"
 }
 
 // @public
 export enum KnownKeyType {
-    // (undocumented)
     Account = "Account",
-    // (undocumented)
     Service = "Service"
 }
 
 // @public
 export enum KnownKind {
-    // (undocumented)
     BlobStorage = "BlobStorage",
-    // (undocumented)
     BlockBlobStorage = "BlockBlobStorage",
-    // (undocumented)
     FileStorage = "FileStorage",
-    // (undocumented)
     Storage = "Storage",
-    // (undocumented)
     StorageV2 = "StorageV2"
 }
 
 // @public
 export enum KnownLargeFileSharesState {
-    // (undocumented)
     Disabled = "Disabled",
-    // (undocumented)
     Enabled = "Enabled"
 }
 
 // @public
 export enum KnownLeaseContainerRequestAction {
-    // (undocumented)
     Acquire = "Acquire",
-    // (undocumented)
     Break = "Break",
-    // (undocumented)
     Change = "Change",
-    // (undocumented)
     Release = "Release",
-    // (undocumented)
     Renew = "Renew"
 }
 
 // @public
 export enum KnownLeaseDuration {
-    // (undocumented)
     Fixed = "Fixed",
-    // (undocumented)
     Infinite = "Infinite"
 }
 
 // @public
 export enum KnownLeaseShareAction {
-    // (undocumented)
     Acquire = "Acquire",
-    // (undocumented)
     Break = "Break",
-    // (undocumented)
     Change = "Change",
-    // (undocumented)
     Release = "Release",
-    // (undocumented)
     Renew = "Renew"
 }
 
 // @public
 export enum KnownLeaseState {
-    // (undocumented)
     Available = "Available",
-    // (undocumented)
     Breaking = "Breaking",
-    // (undocumented)
     Broken = "Broken",
-    // (undocumented)
     Expired = "Expired",
-    // (undocumented)
     Leased = "Leased"
 }
 
 // @public
 export enum KnownLeaseStatus {
-    // (undocumented)
     Locked = "Locked",
-    // (undocumented)
     Unlocked = "Unlocked"
 }
 
 // @public
 export enum KnownListContainersInclude {
-    // (undocumented)
     Deleted = "deleted"
 }
 
 // @public
 export enum KnownManagementPolicyName {
-    // (undocumented)
     Default = "default"
 }
 
 // @public
 export enum KnownMigrationState {
-    // (undocumented)
     Completed = "Completed",
-    // (undocumented)
     InProgress = "InProgress"
 }
 
 // @public
 export enum KnownMinimumTlsVersion {
-    // (undocumented)
     TLS10 = "TLS1_0",
-    // (undocumented)
     TLS11 = "TLS1_1",
-    // (undocumented)
     TLS12 = "TLS1_2"
 }
 
 // @public
 export enum KnownName {
-    // (undocumented)
     AccessTimeTracking = "AccessTimeTracking"
 }
 
 // @public
 export enum KnownObjectType {
-    // (undocumented)
     Blob = "Blob",
-    // (undocumented)
     Container = "Container"
 }
 
@@ -1306,71 +1214,52 @@ export enum KnownPermissions {
 
 // @public
 export enum KnownPrivateEndpointConnectionProvisioningState {
-    // (undocumented)
     Creating = "Creating",
-    // (undocumented)
     Deleting = "Deleting",
-    // (undocumented)
     Failed = "Failed",
-    // (undocumented)
     Succeeded = "Succeeded"
 }
 
 // @public
 export enum KnownPrivateEndpointServiceConnectionStatus {
-    // (undocumented)
     Approved = "Approved",
-    // (undocumented)
     Pending = "Pending",
-    // (undocumented)
     Rejected = "Rejected"
 }
 
 // @public
 export enum KnownPublicNetworkAccess {
-    // (undocumented)
     Disabled = "Disabled",
-    // (undocumented)
     Enabled = "Enabled"
 }
 
 // @public
 export enum KnownReasonCode {
-    // (undocumented)
     NotAvailableForSubscription = "NotAvailableForSubscription",
-    // (undocumented)
     QuotaId = "QuotaId"
 }
 
 // @public
 export enum KnownRootSquashType {
-    // (undocumented)
     AllSquash = "AllSquash",
-    // (undocumented)
     NoRootSquash = "NoRootSquash",
-    // (undocumented)
     RootSquash = "RootSquash"
 }
 
 // @public
 export enum KnownRoutingChoice {
-    // (undocumented)
     InternetRouting = "InternetRouting",
-    // (undocumented)
     MicrosoftRouting = "MicrosoftRouting"
 }
 
 // @public
 export enum KnownRuleType {
-    // (undocumented)
     Lifecycle = "Lifecycle"
 }
 
 // @public
 export enum KnownSchedule {
-    // (undocumented)
     Daily = "Daily",
-    // (undocumented)
     Weekly = "Weekly"
 }
 
@@ -1388,13 +1277,9 @@ export enum KnownServices {
 
 // @public
 export enum KnownShareAccessTier {
-    // (undocumented)
     Cool = "Cool",
-    // (undocumented)
     Hot = "Hot",
-    // (undocumented)
     Premium = "Premium",
-    // (undocumented)
     TransactionOptimized = "TransactionOptimized"
 }
 
@@ -1422,35 +1307,22 @@ export enum KnownSignedResourceTypes {
 
 // @public
 export enum KnownSkuName {
-    // (undocumented)
     PremiumLRS = "Premium_LRS",
-    // (undocumented)
     PremiumZRS = "Premium_ZRS",
-    // (undocumented)
     StandardGRS = "Standard_GRS",
-    // (undocumented)
     StandardGzrs = "Standard_GZRS",
-    // (undocumented)
     StandardLRS = "Standard_LRS",
-    // (undocumented)
     StandardRagrs = "Standard_RAGRS",
-    // (undocumented)
     StandardRagzrs = "Standard_RAGZRS",
-    // (undocumented)
     StandardZRS = "Standard_ZRS"
 }
 
 // @public
 export enum KnownState {
-    // (undocumented)
     Deprovisioning = "Deprovisioning",
-    // (undocumented)
     Failed = "Failed",
-    // (undocumented)
     NetworkSourceDeleted = "NetworkSourceDeleted",
-    // (undocumented)
     Provisioning = "Provisioning",
-    // (undocumented)
     Succeeded = "Succeeded"
 }
 

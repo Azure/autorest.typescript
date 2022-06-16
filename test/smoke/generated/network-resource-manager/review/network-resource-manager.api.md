@@ -5033,1873 +5033,1275 @@ export type IssueType = string;
 
 // @public
 export enum KnownAccess {
-    // (undocumented)
     Allow = "Allow",
-    // (undocumented)
     Deny = "Deny"
 }
 
 // @public
 export enum KnownApplicationGatewayBackendHealthServerHealth {
-    // (undocumented)
     Down = "Down",
-    // (undocumented)
     Draining = "Draining",
-    // (undocumented)
     Partial = "Partial",
-    // (undocumented)
     Unknown = "Unknown",
-    // (undocumented)
     Up = "Up"
 }
 
 // @public
 export enum KnownApplicationGatewayCookieBasedAffinity {
-    // (undocumented)
     Disabled = "Disabled",
-    // (undocumented)
     Enabled = "Enabled"
 }
 
 // @public
 export enum KnownApplicationGatewayCustomErrorStatusCode {
-    // (undocumented)
     HttpStatus403 = "HttpStatus403",
-    // (undocumented)
     HttpStatus502 = "HttpStatus502"
 }
 
 // @public
 export enum KnownApplicationGatewayFirewallMode {
-    // (undocumented)
     Detection = "Detection",
-    // (undocumented)
     Prevention = "Prevention"
 }
 
 // @public
 export enum KnownApplicationGatewayLoadDistributionAlgorithm {
-    // (undocumented)
     IpHash = "IpHash",
-    // (undocumented)
     LeastConnections = "LeastConnections",
-    // (undocumented)
     RoundRobin = "RoundRobin"
 }
 
 // @public
 export enum KnownApplicationGatewayOperationalState {
-    // (undocumented)
     Running = "Running",
-    // (undocumented)
     Starting = "Starting",
-    // (undocumented)
     Stopped = "Stopped",
-    // (undocumented)
     Stopping = "Stopping"
 }
 
 // @public
 export enum KnownApplicationGatewayProtocol {
-    // (undocumented)
     Http = "Http",
-    // (undocumented)
     Https = "Https"
 }
 
 // @public
 export enum KnownApplicationGatewayRedirectType {
-    // (undocumented)
     Found = "Found",
-    // (undocumented)
     Permanent = "Permanent",
-    // (undocumented)
     SeeOther = "SeeOther",
-    // (undocumented)
     Temporary = "Temporary"
 }
 
 // @public
 export enum KnownApplicationGatewayRequestRoutingRuleType {
-    // (undocumented)
     Basic = "Basic",
-    // (undocumented)
     PathBasedRouting = "PathBasedRouting"
 }
 
 // @public
 export enum KnownApplicationGatewaySkuName {
-    // (undocumented)
     StandardLarge = "Standard_Large",
-    // (undocumented)
     StandardMedium = "Standard_Medium",
-    // (undocumented)
     StandardSmall = "Standard_Small",
-    // (undocumented)
     StandardV2 = "Standard_v2",
-    // (undocumented)
     WAFLarge = "WAF_Large",
-    // (undocumented)
     WAFMedium = "WAF_Medium",
-    // (undocumented)
     WAFV2 = "WAF_v2"
 }
 
 // @public
 export enum KnownApplicationGatewaySslCipherSuite {
-    // (undocumented)
     TLSDHEDSSWith3DESEDECBCSHA = "TLS_DHE_DSS_WITH_3DES_EDE_CBC_SHA",
-    // (undocumented)
     TLSDHEDSSWithAES128CBCSHA = "TLS_DHE_DSS_WITH_AES_128_CBC_SHA",
-    // (undocumented)
     TLSDHEDSSWithAES128CBCSHA256 = "TLS_DHE_DSS_WITH_AES_128_CBC_SHA256",
-    // (undocumented)
     TLSDHEDSSWithAES256CBCSHA = "TLS_DHE_DSS_WITH_AES_256_CBC_SHA",
-    // (undocumented)
     TLSDHEDSSWithAES256CBCSHA256 = "TLS_DHE_DSS_WITH_AES_256_CBC_SHA256",
-    // (undocumented)
     TLSDHERSAWithAES128CBCSHA = "TLS_DHE_RSA_WITH_AES_128_CBC_SHA",
-    // (undocumented)
     TLSDHERSAWithAES128GCMSHA256 = "TLS_DHE_RSA_WITH_AES_128_GCM_SHA256",
-    // (undocumented)
     TLSDHERSAWithAES256CBCSHA = "TLS_DHE_RSA_WITH_AES_256_CBC_SHA",
-    // (undocumented)
     TLSDHERSAWithAES256GCMSHA384 = "TLS_DHE_RSA_WITH_AES_256_GCM_SHA384",
-    // (undocumented)
     TLSEcdheEcdsaWithAES128CBCSHA = "TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA",
-    // (undocumented)
     TLSEcdheEcdsaWithAES128CBCSHA256 = "TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256",
-    // (undocumented)
     TLSEcdheEcdsaWithAES128GCMSHA256 = "TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256",
-    // (undocumented)
     TLSEcdheEcdsaWithAES256CBCSHA = "TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA",
-    // (undocumented)
     TLSEcdheEcdsaWithAES256CBCSHA384 = "TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384",
-    // (undocumented)
     TLSEcdheEcdsaWithAES256GCMSHA384 = "TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384",
-    // (undocumented)
     TLSEcdheRSAWithAES128CBCSHA = "TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA",
-    // (undocumented)
     TLSEcdheRSAWithAES128CBCSHA256 = "TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256",
-    // (undocumented)
     TLSEcdheRSAWithAES128GCMSHA256 = "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256",
-    // (undocumented)
     TLSEcdheRSAWithAES256CBCSHA = "TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA",
-    // (undocumented)
     TLSEcdheRSAWithAES256CBCSHA384 = "TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384",
-    // (undocumented)
     TLSEcdheRSAWithAES256GCMSHA384 = "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384",
-    // (undocumented)
     TLSRSAWith3DESEDECBCSHA = "TLS_RSA_WITH_3DES_EDE_CBC_SHA",
-    // (undocumented)
     TLSRSAWithAES128CBCSHA = "TLS_RSA_WITH_AES_128_CBC_SHA",
-    // (undocumented)
     TLSRSAWithAES128CBCSHA256 = "TLS_RSA_WITH_AES_128_CBC_SHA256",
-    // (undocumented)
     TLSRSAWithAES128GCMSHA256 = "TLS_RSA_WITH_AES_128_GCM_SHA256",
-    // (undocumented)
     TLSRSAWithAES256CBCSHA = "TLS_RSA_WITH_AES_256_CBC_SHA",
-    // (undocumented)
     TLSRSAWithAES256CBCSHA256 = "TLS_RSA_WITH_AES_256_CBC_SHA256",
-    // (undocumented)
     TLSRSAWithAES256GCMSHA384 = "TLS_RSA_WITH_AES_256_GCM_SHA384"
 }
 
 // @public
 export enum KnownApplicationGatewaySslPolicyName {
-    // (undocumented)
     AppGwSslPolicy20150501 = "AppGwSslPolicy20150501",
-    // (undocumented)
     AppGwSslPolicy20170401 = "AppGwSslPolicy20170401",
-    // (undocumented)
     AppGwSslPolicy20170401S = "AppGwSslPolicy20170401S"
 }
 
 // @public
 export enum KnownApplicationGatewaySslPolicyType {
-    // (undocumented)
     Custom = "Custom",
-    // (undocumented)
     Predefined = "Predefined"
 }
 
 // @public
 export enum KnownApplicationGatewaySslProtocol {
-    // (undocumented)
     TLSv10 = "TLSv1_0",
-    // (undocumented)
     TLSv11 = "TLSv1_1",
-    // (undocumented)
     TLSv12 = "TLSv1_2"
 }
 
 // @public
 export enum KnownApplicationGatewayTier {
-    // (undocumented)
     Standard = "Standard",
-    // (undocumented)
     StandardV2 = "Standard_v2",
-    // (undocumented)
     WAF = "WAF",
-    // (undocumented)
     WAFV2 = "WAF_v2"
 }
 
 // @public
 export enum KnownAssociationType {
-    // (undocumented)
     Associated = "Associated",
-    // (undocumented)
     Contains = "Contains"
 }
 
 // @public
 export enum KnownAuthenticationMethod {
-    // (undocumented)
     EapmschaPv2 = "EAPMSCHAPv2",
-    // (undocumented)
     Eaptls = "EAPTLS"
 }
 
 // @public
 export enum KnownAuthorizationUseStatus {
-    // (undocumented)
     Available = "Available",
-    // (undocumented)
     InUse = "InUse"
 }
 
 // @public
 export enum KnownAzureFirewallApplicationRuleProtocolType {
-    // (undocumented)
     Http = "Http",
-    // (undocumented)
     Https = "Https",
-    // (undocumented)
     Mssql = "Mssql"
 }
 
 // @public
 export enum KnownAzureFirewallNatRCActionType {
-    // (undocumented)
     Dnat = "Dnat",
-    // (undocumented)
     Snat = "Snat"
 }
 
 // @public
 export enum KnownAzureFirewallNetworkRuleProtocol {
-    // (undocumented)
     Any = "Any",
-    // (undocumented)
     Icmp = "ICMP",
-    // (undocumented)
     TCP = "TCP",
-    // (undocumented)
     UDP = "UDP"
 }
 
 // @public
 export enum KnownAzureFirewallRCActionType {
-    // (undocumented)
     Allow = "Allow",
-    // (undocumented)
     Deny = "Deny"
 }
 
 // @public
 export enum KnownAzureFirewallSkuName {
-    // (undocumented)
     AzfwHub = "AZFW_Hub",
-    // (undocumented)
     AzfwVnet = "AZFW_VNet"
 }
 
 // @public
 export enum KnownAzureFirewallSkuTier {
-    // (undocumented)
     Basic = "Basic",
-    // (undocumented)
     Premium = "Premium",
-    // (undocumented)
     Standard = "Standard"
 }
 
 // @public
 export enum KnownAzureFirewallThreatIntelMode {
-    // (undocumented)
     Alert = "Alert",
-    // (undocumented)
     Deny = "Deny",
-    // (undocumented)
     Off = "Off"
 }
 
 // @public
 export enum KnownBastionConnectProtocol {
-    // (undocumented)
     RDP = "RDP",
-    // (undocumented)
     SSH = "SSH"
 }
 
 // @public
 export enum KnownBastionHostSkuName {
-    // (undocumented)
     Basic = "Basic",
-    // (undocumented)
     Standard = "Standard"
 }
 
 // @public
 export enum KnownBgpPeerState {
-    // (undocumented)
     Connected = "Connected",
-    // (undocumented)
     Connecting = "Connecting",
-    // (undocumented)
     Idle = "Idle",
-    // (undocumented)
     Stopped = "Stopped",
-    // (undocumented)
     Unknown = "Unknown"
 }
 
 // @public
 export enum KnownCircuitConnectionStatus {
-    // (undocumented)
     Connected = "Connected",
-    // (undocumented)
     Connecting = "Connecting",
-    // (undocumented)
     Disconnected = "Disconnected"
 }
 
 // @public
 export enum KnownCommissionedState {
-    // (undocumented)
     Commissioned = "Commissioned",
-    // (undocumented)
     Commissioning = "Commissioning",
-    // (undocumented)
     Decommissioning = "Decommissioning",
-    // (undocumented)
     Deprovisioning = "Deprovisioning",
-    // (undocumented)
     Provisioned = "Provisioned",
-    // (undocumented)
     Provisioning = "Provisioning"
 }
 
 // @public
 export enum KnownConnectionMonitorEndpointFilterItemType {
-    // (undocumented)
     AgentAddress = "AgentAddress"
 }
 
 // @public
 export enum KnownConnectionMonitorEndpointFilterType {
-    // (undocumented)
     Include = "Include"
 }
 
 // @public
 export enum KnownConnectionMonitorSourceStatus {
-    // (undocumented)
     Active = "Active",
-    // (undocumented)
     Inactive = "Inactive",
-    // (undocumented)
     Unknown = "Unknown"
 }
 
 // @public
 export enum KnownConnectionMonitorTestConfigurationProtocol {
-    // (undocumented)
     Http = "Http",
-    // (undocumented)
     Icmp = "Icmp",
-    // (undocumented)
     Tcp = "Tcp"
 }
 
 // @public
 export enum KnownConnectionMonitorType {
-    // (undocumented)
     MultiEndpoint = "MultiEndpoint",
-    // (undocumented)
     SingleSourceDestination = "SingleSourceDestination"
 }
 
 // @public
 export enum KnownConnectionState {
-    // (undocumented)
     Reachable = "Reachable",
-    // (undocumented)
     Unknown = "Unknown",
-    // (undocumented)
     Unreachable = "Unreachable"
 }
 
 // @public
 export enum KnownConnectionStatus {
-    // (undocumented)
     Connected = "Connected",
-    // (undocumented)
     Degraded = "Degraded",
-    // (undocumented)
     Disconnected = "Disconnected",
-    // (undocumented)
     Unknown = "Unknown"
 }
 
 // @public
 export enum KnownCoverageLevel {
-    // (undocumented)
     AboveAverage = "AboveAverage",
-    // (undocumented)
     Average = "Average",
-    // (undocumented)
     BelowAverage = "BelowAverage",
-    // (undocumented)
     Default = "Default",
-    // (undocumented)
     Full = "Full",
-    // (undocumented)
     Low = "Low"
 }
 
 // @public
 export enum KnownDdosCustomPolicyProtocol {
-    // (undocumented)
     Syn = "Syn",
-    // (undocumented)
     Tcp = "Tcp",
-    // (undocumented)
     Udp = "Udp"
 }
 
 // @public
 export enum KnownDdosCustomPolicyTriggerSensitivityOverride {
-    // (undocumented)
     Default = "Default",
-    // (undocumented)
     High = "High",
-    // (undocumented)
     Low = "Low",
-    // (undocumented)
     Relaxed = "Relaxed"
 }
 
 // @public
 export enum KnownDdosSettingsProtectionCoverage {
-    // (undocumented)
     Basic = "Basic",
-    // (undocumented)
     Standard = "Standard"
 }
 
 // @public
 export enum KnownDeleteOptions {
-    // (undocumented)
     Delete = "Delete",
-    // (undocumented)
     Detach = "Detach"
 }
 
 // @public
 export enum KnownDestinationPortBehavior {
-    // (undocumented)
     ListenIfAvailable = "ListenIfAvailable",
-    // (undocumented)
     None = "None"
 }
 
 // @public
 export enum KnownDhGroup {
-    // (undocumented)
     DHGroup1 = "DHGroup1",
-    // (undocumented)
     DHGroup14 = "DHGroup14",
-    // (undocumented)
     DHGroup2 = "DHGroup2",
-    // (undocumented)
     DHGroup2048 = "DHGroup2048",
-    // (undocumented)
     DHGroup24 = "DHGroup24",
-    // (undocumented)
     ECP256 = "ECP256",
-    // (undocumented)
     ECP384 = "ECP384",
-    // (undocumented)
     None = "None"
 }
 
 // @public
 export enum KnownDirection {
-    // (undocumented)
     Inbound = "Inbound",
-    // (undocumented)
     Outbound = "Outbound"
 }
 
 // @public
 export enum KnownEffectiveRouteSource {
-    // (undocumented)
     Default = "Default",
-    // (undocumented)
     Unknown = "Unknown",
-    // (undocumented)
     User = "User",
-    // (undocumented)
     VirtualNetworkGateway = "VirtualNetworkGateway"
 }
 
 // @public
 export enum KnownEffectiveRouteState {
-    // (undocumented)
     Active = "Active",
-    // (undocumented)
     Invalid = "Invalid"
 }
 
 // @public
 export enum KnownEffectiveSecurityRuleProtocol {
-    // (undocumented)
     All = "All",
-    // (undocumented)
     Tcp = "Tcp",
-    // (undocumented)
     Udp = "Udp"
 }
 
 // @public
 export enum KnownEndpointType {
-    // (undocumented)
     AzureSubnet = "AzureSubnet",
-    // (undocumented)
     AzureVM = "AzureVM",
-    // (undocumented)
     AzureVNet = "AzureVNet",
-    // (undocumented)
     ExternalAddress = "ExternalAddress",
-    // (undocumented)
     MMAWorkspaceMachine = "MMAWorkspaceMachine",
-    // (undocumented)
     MMAWorkspaceNetwork = "MMAWorkspaceNetwork"
 }
 
 // @public
 export enum KnownEvaluationState {
-    // (undocumented)
     Completed = "Completed",
-    // (undocumented)
     InProgress = "InProgress",
-    // (undocumented)
     NotStarted = "NotStarted"
 }
 
 // @public
 export enum KnownExpressRouteCircuitPeeringAdvertisedPublicPrefixState {
-    // (undocumented)
     Configured = "Configured",
-    // (undocumented)
     Configuring = "Configuring",
-    // (undocumented)
     NotConfigured = "NotConfigured",
-    // (undocumented)
     ValidationNeeded = "ValidationNeeded"
 }
 
 // @public
 export enum KnownExpressRouteCircuitPeeringState {
-    // (undocumented)
     Disabled = "Disabled",
-    // (undocumented)
     Enabled = "Enabled"
 }
 
 // @public
 export enum KnownExpressRouteCircuitSkuFamily {
-    // (undocumented)
     MeteredData = "MeteredData",
-    // (undocumented)
     UnlimitedData = "UnlimitedData"
 }
 
 // @public
 export enum KnownExpressRouteCircuitSkuTier {
-    // (undocumented)
     Basic = "Basic",
-    // (undocumented)
     Local = "Local",
-    // (undocumented)
     Premium = "Premium",
-    // (undocumented)
     Standard = "Standard"
 }
 
 // @public
 export enum KnownExpressRouteLinkAdminState {
-    // (undocumented)
     Disabled = "Disabled",
-    // (undocumented)
     Enabled = "Enabled"
 }
 
 // @public
 export enum KnownExpressRouteLinkConnectorType {
-    // (undocumented)
     LC = "LC",
-    // (undocumented)
     SC = "SC"
 }
 
 // @public
 export enum KnownExpressRouteLinkMacSecCipher {
-    // (undocumented)
     GcmAes128 = "GcmAes128",
-    // (undocumented)
     GcmAes256 = "GcmAes256",
-    // (undocumented)
     GcmAesXpn128 = "GcmAesXpn128",
-    // (undocumented)
     GcmAesXpn256 = "GcmAesXpn256"
 }
 
 // @public
 export enum KnownExpressRouteLinkMacSecSciState {
-    // (undocumented)
     Disabled = "Disabled",
-    // (undocumented)
     Enabled = "Enabled"
 }
 
 // @public
 export enum KnownExpressRoutePeeringState {
-    // (undocumented)
     Disabled = "Disabled",
-    // (undocumented)
     Enabled = "Enabled"
 }
 
 // @public
 export enum KnownExpressRoutePeeringType {
-    // (undocumented)
     AzurePrivatePeering = "AzurePrivatePeering",
-    // (undocumented)
     AzurePublicPeering = "AzurePublicPeering",
-    // (undocumented)
     MicrosoftPeering = "MicrosoftPeering"
 }
 
 // @public
 export enum KnownExpressRoutePortsEncapsulation {
-    // (undocumented)
     Dot1Q = "Dot1Q",
-    // (undocumented)
     QinQ = "QinQ"
 }
 
 // @public
 export enum KnownExtendedLocationTypes {
-    // (undocumented)
     EdgeZone = "EdgeZone"
 }
 
 // @public
 export enum KnownFirewallPolicyFilterRuleCollectionActionType {
-    // (undocumented)
     Allow = "Allow",
-    // (undocumented)
     Deny = "Deny"
 }
 
 // @public
 export enum KnownFirewallPolicyIntrusionDetectionProtocol {
-    // (undocumented)
     ANY = "ANY",
-    // (undocumented)
     Icmp = "ICMP",
-    // (undocumented)
     TCP = "TCP",
-    // (undocumented)
     UDP = "UDP"
 }
 
 // @public
 export enum KnownFirewallPolicyIntrusionDetectionStateType {
-    // (undocumented)
     Alert = "Alert",
-    // (undocumented)
     Deny = "Deny",
-    // (undocumented)
     Off = "Off"
 }
 
 // @public
 export enum KnownFirewallPolicyNatRuleCollectionActionType {
-    // (undocumented)
     Dnat = "DNAT"
 }
 
 // @public
 export enum KnownFirewallPolicyRuleApplicationProtocolType {
-    // (undocumented)
     Http = "Http",
-    // (undocumented)
     Https = "Https"
 }
 
 // @public
 export enum KnownFirewallPolicyRuleCollectionType {
-    // (undocumented)
     FirewallPolicyFilterRuleCollection = "FirewallPolicyFilterRuleCollection",
-    // (undocumented)
     FirewallPolicyNatRuleCollection = "FirewallPolicyNatRuleCollection"
 }
 
 // @public
 export enum KnownFirewallPolicyRuleNetworkProtocol {
-    // (undocumented)
     Any = "Any",
-    // (undocumented)
     Icmp = "ICMP",
-    // (undocumented)
     TCP = "TCP",
-    // (undocumented)
     UDP = "UDP"
 }
 
 // @public
 export enum KnownFirewallPolicyRuleType {
-    // (undocumented)
     ApplicationRule = "ApplicationRule",
-    // (undocumented)
     NatRule = "NatRule",
-    // (undocumented)
     NetworkRule = "NetworkRule"
 }
 
 // @public
 export enum KnownFirewallPolicySkuTier {
-    // (undocumented)
     Basic = "Basic",
-    // (undocumented)
     Premium = "Premium",
-    // (undocumented)
     Standard = "Standard"
 }
 
 // @public
 export enum KnownFlowLogFormatType {
-    // (undocumented)
     Json = "JSON"
 }
 
 // @public
 export enum KnownGatewayLoadBalancerTunnelInterfaceType {
-    // (undocumented)
     External = "External",
-    // (undocumented)
     Internal = "Internal",
-    // (undocumented)
     None = "None"
 }
 
 // @public
 export enum KnownGatewayLoadBalancerTunnelProtocol {
-    // (undocumented)
     Native = "Native",
-    // (undocumented)
     None = "None",
-    // (undocumented)
     Vxlan = "VXLAN"
 }
 
 // @public
 export enum KnownHttpConfigurationMethod {
-    // (undocumented)
     Get = "Get",
-    // (undocumented)
     Post = "Post"
 }
 
 // @public
 export enum KnownHttpMethod {
-    // (undocumented)
     Get = "Get"
 }
 
 // @public
 export enum KnownHubBgpConnectionStatus {
-    // (undocumented)
     Connected = "Connected",
-    // (undocumented)
     Connecting = "Connecting",
-    // (undocumented)
     NotConnected = "NotConnected",
-    // (undocumented)
     Unknown = "Unknown"
 }
 
 // @public
 export enum KnownHubVirtualNetworkConnectionStatus {
-    // (undocumented)
     Connected = "Connected",
-    // (undocumented)
     Connecting = "Connecting",
-    // (undocumented)
     NotConnected = "NotConnected",
-    // (undocumented)
     Unknown = "Unknown"
 }
 
 // @public
 export enum KnownIkeEncryption {
-    // (undocumented)
     AES128 = "AES128",
-    // (undocumented)
     AES192 = "AES192",
-    // (undocumented)
     AES256 = "AES256",
-    // (undocumented)
     DES = "DES",
-    // (undocumented)
     DES3 = "DES3",
-    // (undocumented)
     Gcmaes128 = "GCMAES128",
-    // (undocumented)
     Gcmaes256 = "GCMAES256"
 }
 
 // @public
 export enum KnownIkeIntegrity {
-    // (undocumented)
     Gcmaes128 = "GCMAES128",
-    // (undocumented)
     Gcmaes256 = "GCMAES256",
-    // (undocumented)
     MD5 = "MD5",
-    // (undocumented)
     SHA1 = "SHA1",
-    // (undocumented)
     SHA256 = "SHA256",
-    // (undocumented)
     SHA384 = "SHA384"
 }
 
 // @public
 export enum KnownInboundSecurityRulesProtocol {
-    // (undocumented)
     TCP = "TCP",
-    // (undocumented)
     UDP = "UDP"
 }
 
 // @public
 export enum KnownIPAllocationMethod {
-    // (undocumented)
     Dynamic = "Dynamic",
-    // (undocumented)
     Static = "Static"
 }
 
 // @public
 export enum KnownIpAllocationType {
-    // (undocumented)
     Hypernet = "Hypernet",
-    // (undocumented)
     Undefined = "Undefined"
 }
 
 // @public
 export enum KnownIpFlowProtocol {
-    // (undocumented)
     TCP = "TCP",
-    // (undocumented)
     UDP = "UDP"
 }
 
 // @public
 export enum KnownIpsecEncryption {
-    // (undocumented)
     AES128 = "AES128",
-    // (undocumented)
     AES192 = "AES192",
-    // (undocumented)
     AES256 = "AES256",
-    // (undocumented)
     DES = "DES",
-    // (undocumented)
     DES3 = "DES3",
-    // (undocumented)
     Gcmaes128 = "GCMAES128",
-    // (undocumented)
     Gcmaes192 = "GCMAES192",
-    // (undocumented)
     Gcmaes256 = "GCMAES256",
-    // (undocumented)
     None = "None"
 }
 
 // @public
 export enum KnownIpsecIntegrity {
-    // (undocumented)
     Gcmaes128 = "GCMAES128",
-    // (undocumented)
     Gcmaes192 = "GCMAES192",
-    // (undocumented)
     Gcmaes256 = "GCMAES256",
-    // (undocumented)
     MD5 = "MD5",
-    // (undocumented)
     SHA1 = "SHA1",
-    // (undocumented)
     SHA256 = "SHA256"
 }
 
 // @public
 export enum KnownIPVersion {
-    // (undocumented)
     IPv4 = "IPv4",
-    // (undocumented)
     IPv6 = "IPv6"
 }
 
 // @public
 export enum KnownIssueType {
-    // (undocumented)
     AgentStopped = "AgentStopped",
-    // (undocumented)
     DnsResolution = "DnsResolution",
-    // (undocumented)
     GuestFirewall = "GuestFirewall",
-    // (undocumented)
     NetworkSecurityRule = "NetworkSecurityRule",
-    // (undocumented)
     Platform = "Platform",
-    // (undocumented)
     PortThrottled = "PortThrottled",
-    // (undocumented)
     SocketBind = "SocketBind",
-    // (undocumented)
     Unknown = "Unknown",
-    // (undocumented)
     UserDefinedRoute = "UserDefinedRoute"
 }
 
 // @public
 export enum KnownLoadBalancerOutboundRuleProtocol {
-    // (undocumented)
     All = "All",
-    // (undocumented)
     Tcp = "Tcp",
-    // (undocumented)
     Udp = "Udp"
 }
 
 // @public
 export enum KnownLoadBalancerSkuName {
-    // (undocumented)
     Basic = "Basic",
-    // (undocumented)
     Gateway = "Gateway",
-    // (undocumented)
     Standard = "Standard"
 }
 
 // @public
 export enum KnownLoadBalancerSkuTier {
-    // (undocumented)
     Global = "Global",
-    // (undocumented)
     Regional = "Regional"
 }
 
 // @public
 export enum KnownLoadDistribution {
-    // (undocumented)
     Default = "Default",
-    // (undocumented)
     SourceIP = "SourceIP",
-    // (undocumented)
     SourceIPProtocol = "SourceIPProtocol"
 }
 
 // @public
 export enum KnownManagedRuleEnabledState {
-    // (undocumented)
     Disabled = "Disabled"
 }
 
 // @public
 export enum KnownNatGatewaySkuName {
-    // (undocumented)
     Standard = "Standard"
 }
 
 // @public
 export enum KnownNetworkInterfaceMigrationPhase {
-    // (undocumented)
     Abort = "Abort",
-    // (undocumented)
     Commit = "Commit",
-    // (undocumented)
     Committed = "Committed",
-    // (undocumented)
     None = "None",
-    // (undocumented)
     Prepare = "Prepare"
 }
 
 // @public
 export enum KnownNetworkInterfaceNicType {
-    // (undocumented)
     Elastic = "Elastic",
-    // (undocumented)
     Standard = "Standard"
 }
 
 // @public
 export enum KnownNetworkOperationStatus {
-    // (undocumented)
     Failed = "Failed",
-    // (undocumented)
     InProgress = "InProgress",
-    // (undocumented)
     Succeeded = "Succeeded"
 }
 
 // @public
 export enum KnownNextHopType {
-    // (undocumented)
     HyperNetGateway = "HyperNetGateway",
-    // (undocumented)
     Internet = "Internet",
-    // (undocumented)
     None = "None",
-    // (undocumented)
     VirtualAppliance = "VirtualAppliance",
-    // (undocumented)
     VirtualNetworkGateway = "VirtualNetworkGateway",
-    // (undocumented)
     VnetLocal = "VnetLocal"
 }
 
 // @public
 export enum KnownOfficeTrafficCategory {
-    // (undocumented)
     All = "All",
-    // (undocumented)
     None = "None",
-    // (undocumented)
     Optimize = "Optimize",
-    // (undocumented)
     OptimizeAndAllow = "OptimizeAndAllow"
 }
 
 // @public
 export enum KnownOrderByOrder {
-    // (undocumented)
     Ascending = "Ascending",
-    // (undocumented)
     Descending = "Descending"
 }
 
 // @public
 export enum KnownOrigin {
-    // (undocumented)
     Inbound = "Inbound",
-    // (undocumented)
     Local = "Local",
-    // (undocumented)
     Outbound = "Outbound"
 }
 
 // @public
 export enum KnownOutputType {
-    // (undocumented)
     Workspace = "Workspace"
 }
 
 // @public
 export enum KnownOwaspCrsExclusionEntryMatchVariable {
-    // (undocumented)
     RequestArgKeys = "RequestArgKeys",
-    // (undocumented)
     RequestArgNames = "RequestArgNames",
-    // (undocumented)
     RequestArgValues = "RequestArgValues",
-    // (undocumented)
     RequestCookieKeys = "RequestCookieKeys",
-    // (undocumented)
     RequestCookieNames = "RequestCookieNames",
-    // (undocumented)
     RequestCookieValues = "RequestCookieValues",
-    // (undocumented)
     RequestHeaderKeys = "RequestHeaderKeys",
-    // (undocumented)
     RequestHeaderNames = "RequestHeaderNames",
-    // (undocumented)
     RequestHeaderValues = "RequestHeaderValues"
 }
 
 // @public
 export enum KnownOwaspCrsExclusionEntrySelectorMatchOperator {
-    // (undocumented)
     Contains = "Contains",
-    // (undocumented)
     EndsWith = "EndsWith",
-    // (undocumented)
     Equals = "Equals",
-    // (undocumented)
     EqualsAny = "EqualsAny",
-    // (undocumented)
     StartsWith = "StartsWith"
 }
 
 // @public
 export enum KnownPcError {
-    // (undocumented)
     AgentStopped = "AgentStopped",
-    // (undocumented)
     CaptureFailed = "CaptureFailed",
-    // (undocumented)
     InternalError = "InternalError",
-    // (undocumented)
     LocalFileFailed = "LocalFileFailed",
-    // (undocumented)
     StorageFailed = "StorageFailed"
 }
 
 // @public
 export enum KnownPcProtocol {
-    // (undocumented)
     Any = "Any",
-    // (undocumented)
     TCP = "TCP",
-    // (undocumented)
     UDP = "UDP"
 }
 
 // @public
 export enum KnownPcStatus {
-    // (undocumented)
     Error = "Error",
-    // (undocumented)
     NotStarted = "NotStarted",
-    // (undocumented)
     Running = "Running",
-    // (undocumented)
     Stopped = "Stopped",
-    // (undocumented)
     Unknown = "Unknown"
 }
 
 // @public
 export enum KnownPfsGroup {
-    // (undocumented)
     ECP256 = "ECP256",
-    // (undocumented)
     ECP384 = "ECP384",
-    // (undocumented)
     None = "None",
-    // (undocumented)
     PFS1 = "PFS1",
-    // (undocumented)
     PFS14 = "PFS14",
-    // (undocumented)
     PFS2 = "PFS2",
-    // (undocumented)
     PFS2048 = "PFS2048",
-    // (undocumented)
     PFS24 = "PFS24",
-    // (undocumented)
     Pfsmm = "PFSMM"
 }
 
 // @public
 export enum KnownPreferredIPVersion {
-    // (undocumented)
     IPv4 = "IPv4",
-    // (undocumented)
     IPv6 = "IPv6"
 }
 
 // @public
 export enum KnownPreferredRoutingGateway {
-    // (undocumented)
     ExpressRoute = "ExpressRoute",
-    // (undocumented)
     None = "None",
-    // (undocumented)
     VpnGateway = "VpnGateway"
 }
 
 // @public
 export enum KnownProbeProtocol {
-    // (undocumented)
     Http = "Http",
-    // (undocumented)
     Https = "Https",
-    // (undocumented)
     Tcp = "Tcp"
 }
 
 // @public
 export enum KnownProcessorArchitecture {
-    // (undocumented)
     Amd64 = "Amd64",
-    // (undocumented)
     X86 = "X86"
 }
 
 // @public
 export enum KnownProtocol {
-    // (undocumented)
     Http = "Http",
-    // (undocumented)
     Https = "Https",
-    // (undocumented)
     Icmp = "Icmp",
-    // (undocumented)
     Tcp = "Tcp"
 }
 
 // @public
 export enum KnownProtocolType {
-    // (undocumented)
     Ah = "Ah",
-    // (undocumented)
     All = "All",
-    // (undocumented)
     DoNotUse = "DoNotUse",
-    // (undocumented)
     Esp = "Esp",
-    // (undocumented)
     Gre = "Gre",
-    // (undocumented)
     Icmp = "Icmp",
-    // (undocumented)
     Tcp = "Tcp",
-    // (undocumented)
     Udp = "Udp",
-    // (undocumented)
     Vxlan = "Vxlan"
 }
 
 // @public
 export enum KnownProvisioningState {
-    // (undocumented)
     Deleting = "Deleting",
-    // (undocumented)
     Failed = "Failed",
-    // (undocumented)
     Succeeded = "Succeeded",
-    // (undocumented)
     Updating = "Updating"
 }
 
 // @public
 export enum KnownPublicIPAddressMigrationPhase {
-    // (undocumented)
     Abort = "Abort",
-    // (undocumented)
     Commit = "Commit",
-    // (undocumented)
     Committed = "Committed",
-    // (undocumented)
     None = "None",
-    // (undocumented)
     Prepare = "Prepare"
 }
 
 // @public
 export enum KnownPublicIPAddressSkuName {
-    // (undocumented)
     Basic = "Basic",
-    // (undocumented)
     Standard = "Standard"
 }
 
 // @public
 export enum KnownPublicIPAddressSkuTier {
-    // (undocumented)
     Global = "Global",
-    // (undocumented)
     Regional = "Regional"
 }
 
 // @public
 export enum KnownPublicIPPrefixSkuName {
-    // (undocumented)
     Standard = "Standard"
 }
 
 // @public
 export enum KnownPublicIPPrefixSkuTier {
-    // (undocumented)
     Global = "Global",
-    // (undocumented)
     Regional = "Regional"
 }
 
 // @public
 export enum KnownRouteFilterRuleType {
-    // (undocumented)
     Community = "Community"
 }
 
 // @public
 export enum KnownRouteNextHopType {
-    // (undocumented)
     Internet = "Internet",
-    // (undocumented)
     None = "None",
-    // (undocumented)
     VirtualAppliance = "VirtualAppliance",
-    // (undocumented)
     VirtualNetworkGateway = "VirtualNetworkGateway",
-    // (undocumented)
     VnetLocal = "VnetLocal"
 }
 
 // @public
 export enum KnownRoutingState {
-    // (undocumented)
     Failed = "Failed",
-    // (undocumented)
     None = "None",
-    // (undocumented)
     Provisioned = "Provisioned",
-    // (undocumented)
     Provisioning = "Provisioning"
 }
 
 // @public
 export enum KnownSecurityPartnerProviderConnectionStatus {
-    // (undocumented)
     Connected = "Connected",
-    // (undocumented)
     NotConnected = "NotConnected",
-    // (undocumented)
     PartiallyConnected = "PartiallyConnected",
-    // (undocumented)
     Unknown = "Unknown"
 }
 
 // @public
 export enum KnownSecurityProviderName {
-    // (undocumented)
     Checkpoint = "Checkpoint",
-    // (undocumented)
     IBoss = "IBoss",
-    // (undocumented)
     ZScaler = "ZScaler"
 }
 
 // @public
 export enum KnownSecurityRuleAccess {
-    // (undocumented)
     Allow = "Allow",
-    // (undocumented)
     Deny = "Deny"
 }
 
 // @public
 export enum KnownSecurityRuleDirection {
-    // (undocumented)
     Inbound = "Inbound",
-    // (undocumented)
     Outbound = "Outbound"
 }
 
 // @public
 export enum KnownSecurityRuleProtocol {
-    // (undocumented)
     Ah = "Ah",
-    // (undocumented)
     Asterisk = "*",
-    // (undocumented)
     Esp = "Esp",
-    // (undocumented)
     Icmp = "Icmp",
-    // (undocumented)
     Tcp = "Tcp",
-    // (undocumented)
     Udp = "Udp"
 }
 
 // @public
 export enum KnownServiceProviderProvisioningState {
-    // (undocumented)
     Deprovisioning = "Deprovisioning",
-    // (undocumented)
     NotProvisioned = "NotProvisioned",
-    // (undocumented)
     Provisioned = "Provisioned",
-    // (undocumented)
     Provisioning = "Provisioning"
 }
 
 // @public
 export enum KnownSeverity {
-    // (undocumented)
     Error = "Error",
-    // (undocumented)
     Warning = "Warning"
 }
 
 // @public
 export enum KnownSingleQueryResultDirection {
-    // (undocumented)
     One = 1,
-    // (undocumented)
     Two = 2,
-    // (undocumented)
     Zero = 0
 }
 
 // @public
 export enum KnownSingleQueryResultMode {
-    // (undocumented)
     One = 1,
-    // (undocumented)
     Two = 2,
-    // (undocumented)
     Zero = 0
 }
 
 // @public
 export enum KnownSingleQueryResultSeverity {
-    // (undocumented)
     One = 1,
-    // (undocumented)
     Three = 3,
-    // (undocumented)
     Two = 2
 }
 
 // @public
 export enum KnownSyncRemoteAddressSpace {
-    // (undocumented)
     True = "true"
 }
 
 // @public
 export enum KnownTransportProtocol {
-    // (undocumented)
     All = "All",
-    // (undocumented)
     Tcp = "Tcp",
-    // (undocumented)
     Udp = "Udp"
 }
 
 // @public
 export enum KnownTunnelConnectionStatus {
-    // (undocumented)
     Connected = "Connected",
-    // (undocumented)
     Connecting = "Connecting",
-    // (undocumented)
     NotConnected = "NotConnected",
-    // (undocumented)
     Unknown = "Unknown"
 }
 
 // @public
 export enum KnownUsageUnit {
-    // (undocumented)
     Count = "Count"
 }
 
 // @public
 export enum KnownVerbosityLevel {
-    // (undocumented)
     Full = "Full",
-    // (undocumented)
     Minimum = "Minimum",
-    // (undocumented)
     Normal = "Normal"
 }
 
 // @public
 export enum KnownVirtualNetworkEncryptionEnforcement {
-    // (undocumented)
     AllowUnencrypted = "AllowUnencrypted",
-    // (undocumented)
     DropUnencrypted = "DropUnencrypted"
 }
 
 // @public
 export enum KnownVirtualNetworkGatewayConnectionMode {
-    // (undocumented)
     Default = "Default",
-    // (undocumented)
     InitiatorOnly = "InitiatorOnly",
-    // (undocumented)
     ResponderOnly = "ResponderOnly"
 }
 
 // @public
 export enum KnownVirtualNetworkGatewayConnectionProtocol {
-    // (undocumented)
     IKEv1 = "IKEv1",
-    // (undocumented)
     IKEv2 = "IKEv2"
 }
 
 // @public
 export enum KnownVirtualNetworkGatewayConnectionStatus {
-    // (undocumented)
     Connected = "Connected",
-    // (undocumented)
     Connecting = "Connecting",
-    // (undocumented)
     NotConnected = "NotConnected",
-    // (undocumented)
     Unknown = "Unknown"
 }
 
 // @public
 export enum KnownVirtualNetworkGatewayConnectionType {
-    // (undocumented)
     ExpressRoute = "ExpressRoute",
-    // (undocumented)
     IPsec = "IPsec",
-    // (undocumented)
     Vnet2Vnet = "Vnet2Vnet",
-    // (undocumented)
     VPNClient = "VPNClient"
 }
 
 // @public
 export enum KnownVirtualNetworkGatewaySkuName {
-    // (undocumented)
     Basic = "Basic",
-    // (undocumented)
     ErGw1AZ = "ErGw1AZ",
-    // (undocumented)
     ErGw2AZ = "ErGw2AZ",
-    // (undocumented)
     ErGw3AZ = "ErGw3AZ",
-    // (undocumented)
     HighPerformance = "HighPerformance",
-    // (undocumented)
     Standard = "Standard",
-    // (undocumented)
     UltraPerformance = "UltraPerformance",
-    // (undocumented)
     VpnGw1 = "VpnGw1",
-    // (undocumented)
     VpnGw1AZ = "VpnGw1AZ",
-    // (undocumented)
     VpnGw2 = "VpnGw2",
-    // (undocumented)
     VpnGw2AZ = "VpnGw2AZ",
-    // (undocumented)
     VpnGw3 = "VpnGw3",
-    // (undocumented)
     VpnGw3AZ = "VpnGw3AZ",
-    // (undocumented)
     VpnGw4 = "VpnGw4",
-    // (undocumented)
     VpnGw4AZ = "VpnGw4AZ",
-    // (undocumented)
     VpnGw5 = "VpnGw5",
-    // (undocumented)
     VpnGw5AZ = "VpnGw5AZ"
 }
 
 // @public
 export enum KnownVirtualNetworkGatewaySkuTier {
-    // (undocumented)
     Basic = "Basic",
-    // (undocumented)
     ErGw1AZ = "ErGw1AZ",
-    // (undocumented)
     ErGw2AZ = "ErGw2AZ",
-    // (undocumented)
     ErGw3AZ = "ErGw3AZ",
-    // (undocumented)
     HighPerformance = "HighPerformance",
-    // (undocumented)
     Standard = "Standard",
-    // (undocumented)
     UltraPerformance = "UltraPerformance",
-    // (undocumented)
     VpnGw1 = "VpnGw1",
-    // (undocumented)
     VpnGw1AZ = "VpnGw1AZ",
-    // (undocumented)
     VpnGw2 = "VpnGw2",
-    // (undocumented)
     VpnGw2AZ = "VpnGw2AZ",
-    // (undocumented)
     VpnGw3 = "VpnGw3",
-    // (undocumented)
     VpnGw3AZ = "VpnGw3AZ",
-    // (undocumented)
     VpnGw4 = "VpnGw4",
-    // (undocumented)
     VpnGw4AZ = "VpnGw4AZ",
-    // (undocumented)
     VpnGw5 = "VpnGw5",
-    // (undocumented)
     VpnGw5AZ = "VpnGw5AZ"
 }
 
 // @public
 export enum KnownVirtualNetworkGatewayType {
-    // (undocumented)
     ExpressRoute = "ExpressRoute",
-    // (undocumented)
     LocalGateway = "LocalGateway",
-    // (undocumented)
     Vpn = "Vpn"
 }
 
 // @public
 export enum KnownVirtualNetworkPeeringLevel {
-    // (undocumented)
     FullyInSync = "FullyInSync",
-    // (undocumented)
     LocalAndRemoteNotInSync = "LocalAndRemoteNotInSync",
-    // (undocumented)
     LocalNotInSync = "LocalNotInSync",
-    // (undocumented)
     RemoteNotInSync = "RemoteNotInSync"
 }
 
 // @public
 export enum KnownVirtualNetworkPeeringState {
-    // (undocumented)
     Connected = "Connected",
-    // (undocumented)
     Disconnected = "Disconnected",
-    // (undocumented)
     Initiated = "Initiated"
 }
 
 // @public
 export enum KnownVirtualNetworkPrivateEndpointNetworkPolicies {
-    // (undocumented)
     Disabled = "Disabled",
-    // (undocumented)
     Enabled = "Enabled"
 }
 
 // @public
 export enum KnownVirtualNetworkPrivateLinkServiceNetworkPolicies {
-    // (undocumented)
     Disabled = "Disabled",
-    // (undocumented)
     Enabled = "Enabled"
 }
 
 // @public
 export enum KnownVirtualWanSecurityProviderType {
-    // (undocumented)
     External = "External",
-    // (undocumented)
     Native = "Native"
 }
 
 // @public
 export enum KnownVpnAuthenticationType {
-    // (undocumented)
     AAD = "AAD",
-    // (undocumented)
     Certificate = "Certificate",
-    // (undocumented)
     Radius = "Radius"
 }
 
 // @public
 export enum KnownVpnClientProtocol {
-    // (undocumented)
     IkeV2 = "IkeV2",
-    // (undocumented)
     OpenVPN = "OpenVPN",
-    // (undocumented)
     Sstp = "SSTP"
 }
 
 // @public
 export enum KnownVpnConnectionStatus {
-    // (undocumented)
     Connected = "Connected",
-    // (undocumented)
     Connecting = "Connecting",
-    // (undocumented)
     NotConnected = "NotConnected",
-    // (undocumented)
     Unknown = "Unknown"
 }
 
 // @public
 export enum KnownVpnGatewayGeneration {
-    // (undocumented)
     Generation1 = "Generation1",
-    // (undocumented)
     Generation2 = "Generation2",
-    // (undocumented)
     None = "None"
 }
 
 // @public
 export enum KnownVpnGatewayTunnelingProtocol {
-    // (undocumented)
     IkeV2 = "IkeV2",
-    // (undocumented)
     OpenVPN = "OpenVPN"
 }
 
 // @public
 export enum KnownVpnLinkConnectionMode {
-    // (undocumented)
     Default = "Default",
-    // (undocumented)
     InitiatorOnly = "InitiatorOnly",
-    // (undocumented)
     ResponderOnly = "ResponderOnly"
 }
 
 // @public
 export enum KnownVpnNatRuleMode {
-    // (undocumented)
     EgressSnat = "EgressSnat",
-    // (undocumented)
     IngressSnat = "IngressSnat"
 }
 
 // @public
 export enum KnownVpnNatRuleType {
-    // (undocumented)
     Dynamic = "Dynamic",
-    // (undocumented)
     Static = "Static"
 }
 
 // @public
 export enum KnownVpnType {
-    // (undocumented)
     PolicyBased = "PolicyBased",
-    // (undocumented)
     RouteBased = "RouteBased"
 }
 
 // @public
 export enum KnownWebApplicationFirewallAction {
-    // (undocumented)
     Allow = "Allow",
-    // (undocumented)
     Block = "Block",
-    // (undocumented)
     Log = "Log"
 }
 
 // @public
 export enum KnownWebApplicationFirewallEnabledState {
-    // (undocumented)
     Disabled = "Disabled",
-    // (undocumented)
     Enabled = "Enabled"
 }
 
 // @public
 export enum KnownWebApplicationFirewallMatchVariable {
-    // (undocumented)
     PostArgs = "PostArgs",
-    // (undocumented)
     QueryString = "QueryString",
-    // (undocumented)
     RemoteAddr = "RemoteAddr",
-    // (undocumented)
     RequestBody = "RequestBody",
-    // (undocumented)
     RequestCookies = "RequestCookies",
-    // (undocumented)
     RequestHeaders = "RequestHeaders",
-    // (undocumented)
     RequestMethod = "RequestMethod",
-    // (undocumented)
     RequestUri = "RequestUri"
 }
 
 // @public
 export enum KnownWebApplicationFirewallMode {
-    // (undocumented)
     Detection = "Detection",
-    // (undocumented)
     Prevention = "Prevention"
 }
 
 // @public
 export enum KnownWebApplicationFirewallOperator {
-    // (undocumented)
     BeginsWith = "BeginsWith",
-    // (undocumented)
     Contains = "Contains",
-    // (undocumented)
     EndsWith = "EndsWith",
-    // (undocumented)
     Equal = "Equal",
-    // (undocumented)
     GeoMatch = "GeoMatch",
-    // (undocumented)
     GreaterThan = "GreaterThan",
-    // (undocumented)
     GreaterThanOrEqual = "GreaterThanOrEqual",
-    // (undocumented)
     IPMatch = "IPMatch",
-    // (undocumented)
     LessThan = "LessThan",
-    // (undocumented)
     LessThanOrEqual = "LessThanOrEqual",
-    // (undocumented)
     Regex = "Regex"
 }
 
 // @public
 export enum KnownWebApplicationFirewallPolicyResourceState {
-    // (undocumented)
     Creating = "Creating",
-    // (undocumented)
     Deleting = "Deleting",
-    // (undocumented)
     Disabled = "Disabled",
-    // (undocumented)
     Disabling = "Disabling",
-    // (undocumented)
     Enabled = "Enabled",
-    // (undocumented)
     Enabling = "Enabling"
 }
 
 // @public
 export enum KnownWebApplicationFirewallRuleType {
-    // (undocumented)
     Invalid = "Invalid",
-    // (undocumented)
     MatchRule = "MatchRule"
 }
 
 // @public
 export enum KnownWebApplicationFirewallTransform {
-    // (undocumented)
     HtmlEntityDecode = "HtmlEntityDecode",
-    // (undocumented)
     Lowercase = "Lowercase",
-    // (undocumented)
     RemoveNulls = "RemoveNulls",
-    // (undocumented)
     Trim = "Trim",
-    // (undocumented)
     UrlDecode = "UrlDecode",
-    // (undocumented)
     UrlEncode = "UrlEncode"
 }
 

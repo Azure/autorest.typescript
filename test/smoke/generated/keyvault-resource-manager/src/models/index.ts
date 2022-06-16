@@ -1092,9 +1092,13 @@ export interface MhsmPrivateEndpointConnectionsDeleteHeaders {
 
 /** Known values of {@link DeletionRecoveryLevel} that the service accepts. */
 export enum KnownDeletionRecoveryLevel {
+  /** Purgeable */
   Purgeable = "Purgeable",
+  /** RecoverablePurgeable */
   RecoverablePurgeable = "Recoverable+Purgeable",
+  /** Recoverable */
   Recoverable = "Recoverable",
+  /** RecoverableProtectedSubscription */
   RecoverableProtectedSubscription = "Recoverable+ProtectedSubscription"
 }
 
@@ -1112,9 +1116,13 @@ export type DeletionRecoveryLevel = string;
 
 /** Known values of {@link JsonWebKeyType} that the service accepts. */
 export enum KnownJsonWebKeyType {
+  /** EC */
   EC = "EC",
+  /** ECHSM */
   ECHSM = "EC-HSM",
+  /** RSA */
   RSA = "RSA",
+  /** RSAHSM */
   RSAHSM = "RSA-HSM"
 }
 
@@ -1132,13 +1140,21 @@ export type JsonWebKeyType = string;
 
 /** Known values of {@link JsonWebKeyOperation} that the service accepts. */
 export enum KnownJsonWebKeyOperation {
+  /** Encrypt */
   Encrypt = "encrypt",
+  /** Decrypt */
   Decrypt = "decrypt",
+  /** Sign */
   Sign = "sign",
+  /** Verify */
   Verify = "verify",
+  /** WrapKey */
   WrapKey = "wrapKey",
+  /** UnwrapKey */
   UnwrapKey = "unwrapKey",
+  /** Import */
   Import = "import",
+  /** Release */
   Release = "release"
 }
 
@@ -1160,9 +1176,13 @@ export type JsonWebKeyOperation = string;
 
 /** Known values of {@link JsonWebKeyCurveName} that the service accepts. */
 export enum KnownJsonWebKeyCurveName {
+  /** P256 */
   P256 = "P-256",
+  /** P384 */
   P384 = "P-384",
+  /** P521 */
   P521 = "P-521",
+  /** P256K */
   P256K = "P-256K"
 }
 
@@ -1180,6 +1200,7 @@ export type JsonWebKeyCurveName = string;
 
 /** Known values of {@link SkuFamily} that the service accepts. */
 export enum KnownSkuFamily {
+  /** A */
   A = "A"
 }
 
@@ -1194,26 +1215,47 @@ export type SkuFamily = string;
 
 /** Known values of {@link KeyPermissions} that the service accepts. */
 export enum KnownKeyPermissions {
+  /** All */
   All = "all",
+  /** Encrypt */
   Encrypt = "encrypt",
+  /** Decrypt */
   Decrypt = "decrypt",
+  /** WrapKey */
   WrapKey = "wrapKey",
+  /** UnwrapKey */
   UnwrapKey = "unwrapKey",
+  /** Sign */
   Sign = "sign",
+  /** Verify */
   Verify = "verify",
+  /** Get */
   Get = "get",
+  /** List */
   List = "list",
+  /** Create */
   Create = "create",
+  /** Update */
   Update = "update",
+  /** Import */
   Import = "import",
+  /** Delete */
   Delete = "delete",
+  /** Backup */
   Backup = "backup",
+  /** Restore */
   Restore = "restore",
+  /** Recover */
   Recover = "recover",
+  /** Purge */
   Purge = "purge",
+  /** Rotate */
   Rotate = "rotate",
+  /** Getrotationpolicy */
   Getrotationpolicy = "getrotationpolicy",
+  /** Setrotationpolicy */
   Setrotationpolicy = "setrotationpolicy",
+  /** Release */
   Release = "release"
 }
 
@@ -1248,14 +1290,23 @@ export type KeyPermissions = string;
 
 /** Known values of {@link SecretPermissions} that the service accepts. */
 export enum KnownSecretPermissions {
+  /** All */
   All = "all",
+  /** Get */
   Get = "get",
+  /** List */
   List = "list",
+  /** Set */
   Set = "set",
+  /** Delete */
   Delete = "delete",
+  /** Backup */
   Backup = "backup",
+  /** Restore */
   Restore = "restore",
+  /** Recover */
   Recover = "recover",
+  /** Purge */
   Purge = "purge"
 }
 
@@ -1278,22 +1329,39 @@ export type SecretPermissions = string;
 
 /** Known values of {@link CertificatePermissions} that the service accepts. */
 export enum KnownCertificatePermissions {
+  /** All */
   All = "all",
+  /** Get */
   Get = "get",
+  /** List */
   List = "list",
+  /** Delete */
   Delete = "delete",
+  /** Create */
   Create = "create",
+  /** Import */
   Import = "import",
+  /** Update */
   Update = "update",
+  /** Managecontacts */
   Managecontacts = "managecontacts",
+  /** Getissuers */
   Getissuers = "getissuers",
+  /** Listissuers */
   Listissuers = "listissuers",
+  /** Setissuers */
   Setissuers = "setissuers",
+  /** Deleteissuers */
   Deleteissuers = "deleteissuers",
+  /** Manageissuers */
   Manageissuers = "manageissuers",
+  /** Recover */
   Recover = "recover",
+  /** Purge */
   Purge = "purge",
+  /** Backup */
   Backup = "backup",
+  /** Restore */
   Restore = "restore"
 }
 
@@ -1324,20 +1392,35 @@ export type CertificatePermissions = string;
 
 /** Known values of {@link StoragePermissions} that the service accepts. */
 export enum KnownStoragePermissions {
+  /** All */
   All = "all",
+  /** Get */
   Get = "get",
+  /** List */
   List = "list",
+  /** Delete */
   Delete = "delete",
+  /** Set */
   Set = "set",
+  /** Update */
   Update = "update",
+  /** Regeneratekey */
   Regeneratekey = "regeneratekey",
+  /** Recover */
   Recover = "recover",
+  /** Purge */
   Purge = "purge",
+  /** Backup */
   Backup = "backup",
+  /** Restore */
   Restore = "restore",
+  /** Setsas */
   Setsas = "setsas",
+  /** Listsas */
   Listsas = "listsas",
+  /** Getsas */
   Getsas = "getsas",
+  /** Deletesas */
   Deletesas = "deletesas"
 }
 
@@ -1366,7 +1449,9 @@ export type StoragePermissions = string;
 
 /** Known values of {@link NetworkRuleBypassOptions} that the service accepts. */
 export enum KnownNetworkRuleBypassOptions {
+  /** AzureServices */
   AzureServices = "AzureServices",
+  /** None */
   None = "None"
 }
 
@@ -1382,7 +1467,9 @@ export type NetworkRuleBypassOptions = string;
 
 /** Known values of {@link NetworkRuleAction} that the service accepts. */
 export enum KnownNetworkRuleAction {
+  /** Allow */
   Allow = "Allow",
+  /** Deny */
   Deny = "Deny"
 }
 
@@ -1398,7 +1485,9 @@ export type NetworkRuleAction = string;
 
 /** Known values of {@link VaultProvisioningState} that the service accepts. */
 export enum KnownVaultProvisioningState {
+  /** Succeeded */
   Succeeded = "Succeeded",
+  /** RegisteringDns */
   RegisteringDns = "RegisteringDns"
 }
 
@@ -1414,9 +1503,13 @@ export type VaultProvisioningState = string;
 
 /** Known values of {@link PrivateEndpointServiceConnectionStatus} that the service accepts. */
 export enum KnownPrivateEndpointServiceConnectionStatus {
+  /** Pending */
   Pending = "Pending",
+  /** Approved */
   Approved = "Approved",
+  /** Rejected */
   Rejected = "Rejected",
+  /** Disconnected */
   Disconnected = "Disconnected"
 }
 
@@ -1434,6 +1527,7 @@ export type PrivateEndpointServiceConnectionStatus = string;
 
 /** Known values of {@link ActionsRequired} that the service accepts. */
 export enum KnownActionsRequired {
+  /** None */
   None = "None"
 }
 
@@ -1448,11 +1542,17 @@ export type ActionsRequired = string;
 
 /** Known values of {@link PrivateEndpointConnectionProvisioningState} that the service accepts. */
 export enum KnownPrivateEndpointConnectionProvisioningState {
+  /** Succeeded */
   Succeeded = "Succeeded",
+  /** Creating */
   Creating = "Creating",
+  /** Updating */
   Updating = "Updating",
+  /** Deleting */
   Deleting = "Deleting",
+  /** Failed */
   Failed = "Failed",
+  /** Disconnected */
   Disconnected = "Disconnected"
 }
 
@@ -1472,9 +1572,13 @@ export type PrivateEndpointConnectionProvisioningState = string;
 
 /** Known values of {@link IdentityType} that the service accepts. */
 export enum KnownIdentityType {
+  /** User */
   User = "User",
+  /** Application */
   Application = "Application",
+  /** ManagedIdentity */
   ManagedIdentity = "ManagedIdentity",
+  /** Key */
   Key = "Key"
 }
 
@@ -1528,7 +1632,9 @@ export type ProvisioningState = string;
 
 /** Known values of {@link PublicNetworkAccess} that the service accepts. */
 export enum KnownPublicNetworkAccess {
+  /** Enabled */
   Enabled = "Enabled",
+  /** Disabled */
   Disabled = "Disabled"
 }
 
@@ -1544,6 +1650,7 @@ export type PublicNetworkAccess = string;
 
 /** Known values of {@link ManagedHsmSkuFamily} that the service accepts. */
 export enum KnownManagedHsmSkuFamily {
+  /** B */
   B = "B"
 }
 

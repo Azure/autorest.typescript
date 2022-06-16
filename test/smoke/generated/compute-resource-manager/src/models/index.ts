@@ -5804,7 +5804,9 @@ export interface SharedGalleryImageVersion extends PirSharedGalleryResource {
 
 /** Known values of {@link ProximityPlacementGroupType} that the service accepts. */
 export enum KnownProximityPlacementGroupType {
+  /** Standard */
   Standard = "Standard",
+  /** Ultra */
   Ultra = "Ultra"
 }
 
@@ -5820,7 +5822,9 @@ export type ProximityPlacementGroupType = string;
 
 /** Known values of {@link HyperVGenerationTypes} that the service accepts. */
 export enum KnownHyperVGenerationTypes {
+  /** V1 */
   V1 = "V1",
+  /** V2 */
   V2 = "V2"
 }
 
@@ -5836,7 +5840,9 @@ export type HyperVGenerationTypes = string;
 
 /** Known values of {@link VmDiskTypes} that the service accepts. */
 export enum KnownVmDiskTypes {
+  /** None */
   None = "None",
+  /** Unmanaged */
   Unmanaged = "Unmanaged"
 }
 
@@ -5852,6 +5858,7 @@ export type VmDiskTypes = string;
 
 /** Known values of {@link ExtendedLocationTypes} that the service accepts. */
 export enum KnownExtendedLocationTypes {
+  /** EdgeZone */
   EdgeZone = "EdgeZone"
 }
 
@@ -5866,171 +5873,337 @@ export type ExtendedLocationTypes = string;
 
 /** Known values of {@link VirtualMachineSizeTypes} that the service accepts. */
 export enum KnownVirtualMachineSizeTypes {
+  /** BasicA0 */
   BasicA0 = "Basic_A0",
+  /** BasicA1 */
   BasicA1 = "Basic_A1",
+  /** BasicA2 */
   BasicA2 = "Basic_A2",
+  /** BasicA3 */
   BasicA3 = "Basic_A3",
+  /** BasicA4 */
   BasicA4 = "Basic_A4",
+  /** StandardA0 */
   StandardA0 = "Standard_A0",
+  /** StandardA1 */
   StandardA1 = "Standard_A1",
+  /** StandardA2 */
   StandardA2 = "Standard_A2",
+  /** StandardA3 */
   StandardA3 = "Standard_A3",
+  /** StandardA4 */
   StandardA4 = "Standard_A4",
+  /** StandardA5 */
   StandardA5 = "Standard_A5",
+  /** StandardA6 */
   StandardA6 = "Standard_A6",
+  /** StandardA7 */
   StandardA7 = "Standard_A7",
+  /** StandardA8 */
   StandardA8 = "Standard_A8",
+  /** StandardA9 */
   StandardA9 = "Standard_A9",
+  /** StandardA10 */
   StandardA10 = "Standard_A10",
+  /** StandardA11 */
   StandardA11 = "Standard_A11",
+  /** StandardA1V2 */
   StandardA1V2 = "Standard_A1_v2",
+  /** StandardA2V2 */
   StandardA2V2 = "Standard_A2_v2",
+  /** StandardA4V2 */
   StandardA4V2 = "Standard_A4_v2",
+  /** StandardA8V2 */
   StandardA8V2 = "Standard_A8_v2",
+  /** StandardA2MV2 */
   StandardA2MV2 = "Standard_A2m_v2",
+  /** StandardA4MV2 */
   StandardA4MV2 = "Standard_A4m_v2",
+  /** StandardA8MV2 */
   StandardA8MV2 = "Standard_A8m_v2",
+  /** StandardB1S */
   StandardB1S = "Standard_B1s",
+  /** StandardB1Ms */
   StandardB1Ms = "Standard_B1ms",
+  /** StandardB2S */
   StandardB2S = "Standard_B2s",
+  /** StandardB2Ms */
   StandardB2Ms = "Standard_B2ms",
+  /** StandardB4Ms */
   StandardB4Ms = "Standard_B4ms",
+  /** StandardB8Ms */
   StandardB8Ms = "Standard_B8ms",
+  /** StandardD1 */
   StandardD1 = "Standard_D1",
+  /** StandardD2 */
   StandardD2 = "Standard_D2",
+  /** StandardD3 */
   StandardD3 = "Standard_D3",
+  /** StandardD4 */
   StandardD4 = "Standard_D4",
+  /** StandardD11 */
   StandardD11 = "Standard_D11",
+  /** StandardD12 */
   StandardD12 = "Standard_D12",
+  /** StandardD13 */
   StandardD13 = "Standard_D13",
+  /** StandardD14 */
   StandardD14 = "Standard_D14",
+  /** StandardD1V2 */
   StandardD1V2 = "Standard_D1_v2",
+  /** StandardD2V2 */
   StandardD2V2 = "Standard_D2_v2",
+  /** StandardD3V2 */
   StandardD3V2 = "Standard_D3_v2",
+  /** StandardD4V2 */
   StandardD4V2 = "Standard_D4_v2",
+  /** StandardD5V2 */
   StandardD5V2 = "Standard_D5_v2",
+  /** StandardD2V3 */
   StandardD2V3 = "Standard_D2_v3",
+  /** StandardD4V3 */
   StandardD4V3 = "Standard_D4_v3",
+  /** StandardD8V3 */
   StandardD8V3 = "Standard_D8_v3",
+  /** StandardD16V3 */
   StandardD16V3 = "Standard_D16_v3",
+  /** StandardD32V3 */
   StandardD32V3 = "Standard_D32_v3",
+  /** StandardD64V3 */
   StandardD64V3 = "Standard_D64_v3",
+  /** StandardD2SV3 */
   StandardD2SV3 = "Standard_D2s_v3",
+  /** StandardD4SV3 */
   StandardD4SV3 = "Standard_D4s_v3",
+  /** StandardD8SV3 */
   StandardD8SV3 = "Standard_D8s_v3",
+  /** StandardD16SV3 */
   StandardD16SV3 = "Standard_D16s_v3",
+  /** StandardD32SV3 */
   StandardD32SV3 = "Standard_D32s_v3",
+  /** StandardD64SV3 */
   StandardD64SV3 = "Standard_D64s_v3",
+  /** StandardD11V2 */
   StandardD11V2 = "Standard_D11_v2",
+  /** StandardD12V2 */
   StandardD12V2 = "Standard_D12_v2",
+  /** StandardD13V2 */
   StandardD13V2 = "Standard_D13_v2",
+  /** StandardD14V2 */
   StandardD14V2 = "Standard_D14_v2",
+  /** StandardD15V2 */
   StandardD15V2 = "Standard_D15_v2",
+  /** StandardDS1 */
   StandardDS1 = "Standard_DS1",
+  /** StandardDS2 */
   StandardDS2 = "Standard_DS2",
+  /** StandardDS3 */
   StandardDS3 = "Standard_DS3",
+  /** StandardDS4 */
   StandardDS4 = "Standard_DS4",
+  /** StandardDS11 */
   StandardDS11 = "Standard_DS11",
+  /** StandardDS12 */
   StandardDS12 = "Standard_DS12",
+  /** StandardDS13 */
   StandardDS13 = "Standard_DS13",
+  /** StandardDS14 */
   StandardDS14 = "Standard_DS14",
+  /** StandardDS1V2 */
   StandardDS1V2 = "Standard_DS1_v2",
+  /** StandardDS2V2 */
   StandardDS2V2 = "Standard_DS2_v2",
+  /** StandardDS3V2 */
   StandardDS3V2 = "Standard_DS3_v2",
+  /** StandardDS4V2 */
   StandardDS4V2 = "Standard_DS4_v2",
+  /** StandardDS5V2 */
   StandardDS5V2 = "Standard_DS5_v2",
+  /** StandardDS11V2 */
   StandardDS11V2 = "Standard_DS11_v2",
+  /** StandardDS12V2 */
   StandardDS12V2 = "Standard_DS12_v2",
+  /** StandardDS13V2 */
   StandardDS13V2 = "Standard_DS13_v2",
+  /** StandardDS14V2 */
   StandardDS14V2 = "Standard_DS14_v2",
+  /** StandardDS15V2 */
   StandardDS15V2 = "Standard_DS15_v2",
+  /** StandardDS134V2 */
   StandardDS134V2 = "Standard_DS13-4_v2",
+  /** StandardDS132V2 */
   StandardDS132V2 = "Standard_DS13-2_v2",
+  /** StandardDS148V2 */
   StandardDS148V2 = "Standard_DS14-8_v2",
+  /** StandardDS144V2 */
   StandardDS144V2 = "Standard_DS14-4_v2",
+  /** StandardE2V3 */
   StandardE2V3 = "Standard_E2_v3",
+  /** StandardE4V3 */
   StandardE4V3 = "Standard_E4_v3",
+  /** StandardE8V3 */
   StandardE8V3 = "Standard_E8_v3",
+  /** StandardE16V3 */
   StandardE16V3 = "Standard_E16_v3",
+  /** StandardE32V3 */
   StandardE32V3 = "Standard_E32_v3",
+  /** StandardE64V3 */
   StandardE64V3 = "Standard_E64_v3",
+  /** StandardE2SV3 */
   StandardE2SV3 = "Standard_E2s_v3",
+  /** StandardE4SV3 */
   StandardE4SV3 = "Standard_E4s_v3",
+  /** StandardE8SV3 */
   StandardE8SV3 = "Standard_E8s_v3",
+  /** StandardE16SV3 */
   StandardE16SV3 = "Standard_E16s_v3",
+  /** StandardE32SV3 */
   StandardE32SV3 = "Standard_E32s_v3",
+  /** StandardE64SV3 */
   StandardE64SV3 = "Standard_E64s_v3",
+  /** StandardE3216V3 */
   StandardE3216V3 = "Standard_E32-16_v3",
+  /** StandardE328SV3 */
   StandardE328SV3 = "Standard_E32-8s_v3",
+  /** StandardE6432SV3 */
   StandardE6432SV3 = "Standard_E64-32s_v3",
+  /** StandardE6416SV3 */
   StandardE6416SV3 = "Standard_E64-16s_v3",
+  /** StandardF1 */
   StandardF1 = "Standard_F1",
+  /** StandardF2 */
   StandardF2 = "Standard_F2",
+  /** StandardF4 */
   StandardF4 = "Standard_F4",
+  /** StandardF8 */
   StandardF8 = "Standard_F8",
+  /** StandardF16 */
   StandardF16 = "Standard_F16",
+  /** StandardF1S */
   StandardF1S = "Standard_F1s",
+  /** StandardF2S */
   StandardF2S = "Standard_F2s",
+  /** StandardF4S */
   StandardF4S = "Standard_F4s",
+  /** StandardF8S */
   StandardF8S = "Standard_F8s",
+  /** StandardF16S */
   StandardF16S = "Standard_F16s",
+  /** StandardF2SV2 */
   StandardF2SV2 = "Standard_F2s_v2",
+  /** StandardF4SV2 */
   StandardF4SV2 = "Standard_F4s_v2",
+  /** StandardF8SV2 */
   StandardF8SV2 = "Standard_F8s_v2",
+  /** StandardF16SV2 */
   StandardF16SV2 = "Standard_F16s_v2",
+  /** StandardF32SV2 */
   StandardF32SV2 = "Standard_F32s_v2",
+  /** StandardF64SV2 */
   StandardF64SV2 = "Standard_F64s_v2",
+  /** StandardF72SV2 */
   StandardF72SV2 = "Standard_F72s_v2",
+  /** StandardG1 */
   StandardG1 = "Standard_G1",
+  /** StandardG2 */
   StandardG2 = "Standard_G2",
+  /** StandardG3 */
   StandardG3 = "Standard_G3",
+  /** StandardG4 */
   StandardG4 = "Standard_G4",
+  /** StandardG5 */
   StandardG5 = "Standard_G5",
+  /** StandardGS1 */
   StandardGS1 = "Standard_GS1",
+  /** StandardGS2 */
   StandardGS2 = "Standard_GS2",
+  /** StandardGS3 */
   StandardGS3 = "Standard_GS3",
+  /** StandardGS4 */
   StandardGS4 = "Standard_GS4",
+  /** StandardGS5 */
   StandardGS5 = "Standard_GS5",
+  /** StandardGS48 */
   StandardGS48 = "Standard_GS4-8",
+  /** StandardGS44 */
   StandardGS44 = "Standard_GS4-4",
+  /** StandardGS516 */
   StandardGS516 = "Standard_GS5-16",
+  /** StandardGS58 */
   StandardGS58 = "Standard_GS5-8",
+  /** StandardH8 */
   StandardH8 = "Standard_H8",
+  /** StandardH16 */
   StandardH16 = "Standard_H16",
+  /** StandardH8M */
   StandardH8M = "Standard_H8m",
+  /** StandardH16M */
   StandardH16M = "Standard_H16m",
+  /** StandardH16R */
   StandardH16R = "Standard_H16r",
+  /** StandardH16Mr */
   StandardH16Mr = "Standard_H16mr",
+  /** StandardL4S */
   StandardL4S = "Standard_L4s",
+  /** StandardL8S */
   StandardL8S = "Standard_L8s",
+  /** StandardL16S */
   StandardL16S = "Standard_L16s",
+  /** StandardL32S */
   StandardL32S = "Standard_L32s",
+  /** StandardM64S */
   StandardM64S = "Standard_M64s",
+  /** StandardM64Ms */
   StandardM64Ms = "Standard_M64ms",
+  /** StandardM128S */
   StandardM128S = "Standard_M128s",
+  /** StandardM128Ms */
   StandardM128Ms = "Standard_M128ms",
+  /** StandardM6432Ms */
   StandardM6432Ms = "Standard_M64-32ms",
+  /** StandardM6416Ms */
   StandardM6416Ms = "Standard_M64-16ms",
+  /** StandardM12864Ms */
   StandardM12864Ms = "Standard_M128-64ms",
+  /** StandardM12832Ms */
   StandardM12832Ms = "Standard_M128-32ms",
+  /** StandardNC6 */
   StandardNC6 = "Standard_NC6",
+  /** StandardNC12 */
   StandardNC12 = "Standard_NC12",
+  /** StandardNC24 */
   StandardNC24 = "Standard_NC24",
+  /** StandardNC24R */
   StandardNC24R = "Standard_NC24r",
+  /** StandardNC6SV2 */
   StandardNC6SV2 = "Standard_NC6s_v2",
+  /** StandardNC12SV2 */
   StandardNC12SV2 = "Standard_NC12s_v2",
+  /** StandardNC24SV2 */
   StandardNC24SV2 = "Standard_NC24s_v2",
+  /** StandardNC24RsV2 */
   StandardNC24RsV2 = "Standard_NC24rs_v2",
+  /** StandardNC6SV3 */
   StandardNC6SV3 = "Standard_NC6s_v3",
+  /** StandardNC12SV3 */
   StandardNC12SV3 = "Standard_NC12s_v3",
+  /** StandardNC24SV3 */
   StandardNC24SV3 = "Standard_NC24s_v3",
+  /** StandardNC24RsV3 */
   StandardNC24RsV3 = "Standard_NC24rs_v3",
+  /** StandardND6S */
   StandardND6S = "Standard_ND6s",
+  /** StandardND12S */
   StandardND12S = "Standard_ND12s",
+  /** StandardND24S */
   StandardND24S = "Standard_ND24s",
+  /** StandardND24Rs */
   StandardND24Rs = "Standard_ND24rs",
+  /** StandardNV6 */
   StandardNV6 = "Standard_NV6",
+  /** StandardNV12 */
   StandardNV12 = "Standard_NV12",
+  /** StandardNV24 */
   StandardNV24 = "Standard_NV24"
 }
 
@@ -6210,6 +6383,7 @@ export type VirtualMachineSizeTypes = string;
 
 /** Known values of {@link DiffDiskOptions} that the service accepts. */
 export enum KnownDiffDiskOptions {
+  /** Local */
   Local = "Local"
 }
 
@@ -6224,7 +6398,9 @@ export type DiffDiskOptions = string;
 
 /** Known values of {@link DiffDiskPlacement} that the service accepts. */
 export enum KnownDiffDiskPlacement {
+  /** CacheDisk */
   CacheDisk = "CacheDisk",
+  /** ResourceDisk */
   ResourceDisk = "ResourceDisk"
 }
 
@@ -6240,8 +6416,11 @@ export type DiffDiskPlacement = string;
 
 /** Known values of {@link DiskCreateOptionTypes} that the service accepts. */
 export enum KnownDiskCreateOptionTypes {
+  /** FromImage */
   FromImage = "FromImage",
+  /** Empty */
   Empty = "Empty",
+  /** Attach */
   Attach = "Attach"
 }
 
@@ -6258,11 +6437,17 @@ export type DiskCreateOptionTypes = string;
 
 /** Known values of {@link StorageAccountTypes} that the service accepts. */
 export enum KnownStorageAccountTypes {
+  /** StandardLRS */
   StandardLRS = "Standard_LRS",
+  /** PremiumLRS */
   PremiumLRS = "Premium_LRS",
+  /** StandardSSDLRS */
   StandardSSDLRS = "StandardSSD_LRS",
+  /** UltraSSDLRS */
   UltraSSDLRS = "UltraSSD_LRS",
+  /** PremiumZRS */
   PremiumZRS = "Premium_ZRS",
+  /** StandardSSDZRS */
   StandardSSDZRS = "StandardSSD_ZRS"
 }
 
@@ -6282,7 +6467,9 @@ export type StorageAccountTypes = string;
 
 /** Known values of {@link DiskDeleteOptionTypes} that the service accepts. */
 export enum KnownDiskDeleteOptionTypes {
+  /** Delete */
   Delete = "Delete",
+  /** Detach */
   Detach = "Detach"
 }
 
@@ -6298,6 +6485,7 @@ export type DiskDeleteOptionTypes = string;
 
 /** Known values of {@link DiskDetachOptionTypes} that the service accepts. */
 export enum KnownDiskDetachOptionTypes {
+  /** ForceDetach */
   ForceDetach = "ForceDetach"
 }
 
@@ -6312,8 +6500,11 @@ export type DiskDetachOptionTypes = string;
 
 /** Known values of {@link WindowsVMGuestPatchMode} that the service accepts. */
 export enum KnownWindowsVMGuestPatchMode {
+  /** Manual */
   Manual = "Manual",
+  /** AutomaticByOS */
   AutomaticByOS = "AutomaticByOS",
+  /** AutomaticByPlatform */
   AutomaticByPlatform = "AutomaticByPlatform"
 }
 
@@ -6330,7 +6521,9 @@ export type WindowsVMGuestPatchMode = string;
 
 /** Known values of {@link WindowsPatchAssessmentMode} that the service accepts. */
 export enum KnownWindowsPatchAssessmentMode {
+  /** ImageDefault */
   ImageDefault = "ImageDefault",
+  /** AutomaticByPlatform */
   AutomaticByPlatform = "AutomaticByPlatform"
 }
 
@@ -6346,7 +6539,9 @@ export type WindowsPatchAssessmentMode = string;
 
 /** Known values of {@link LinuxVMGuestPatchMode} that the service accepts. */
 export enum KnownLinuxVMGuestPatchMode {
+  /** ImageDefault */
   ImageDefault = "ImageDefault",
+  /** AutomaticByPlatform */
   AutomaticByPlatform = "AutomaticByPlatform"
 }
 
@@ -6362,7 +6557,9 @@ export type LinuxVMGuestPatchMode = string;
 
 /** Known values of {@link LinuxPatchAssessmentMode} that the service accepts. */
 export enum KnownLinuxPatchAssessmentMode {
+  /** ImageDefault */
   ImageDefault = "ImageDefault",
+  /** AutomaticByPlatform */
   AutomaticByPlatform = "AutomaticByPlatform"
 }
 
@@ -6378,7 +6575,9 @@ export type LinuxPatchAssessmentMode = string;
 
 /** Known values of {@link DeleteOptions} that the service accepts. */
 export enum KnownDeleteOptions {
+  /** Delete */
   Delete = "Delete",
+  /** Detach */
   Detach = "Detach"
 }
 
@@ -6394,6 +6593,7 @@ export type DeleteOptions = string;
 
 /** Known values of {@link NetworkApiVersion} that the service accepts. */
 export enum KnownNetworkApiVersion {
+  /** TwoThousandTwenty1101 */
   TwoThousandTwenty1101 = "2020-11-01"
 }
 
@@ -6408,7 +6608,9 @@ export type NetworkApiVersion = string;
 
 /** Known values of {@link IPVersions} that the service accepts. */
 export enum KnownIPVersions {
+  /** IPv4 */
   IPv4 = "IPv4",
+  /** IPv6 */
   IPv6 = "IPv6"
 }
 
@@ -6424,7 +6626,9 @@ export type IPVersions = string;
 
 /** Known values of {@link PublicIPAllocationMethod} that the service accepts. */
 export enum KnownPublicIPAllocationMethod {
+  /** Dynamic */
   Dynamic = "Dynamic",
+  /** Static */
   Static = "Static"
 }
 
@@ -6440,7 +6644,9 @@ export type PublicIPAllocationMethod = string;
 
 /** Known values of {@link PublicIPAddressSkuName} that the service accepts. */
 export enum KnownPublicIPAddressSkuName {
+  /** Basic */
   Basic = "Basic",
+  /** Standard */
   Standard = "Standard"
 }
 
@@ -6456,7 +6662,9 @@ export type PublicIPAddressSkuName = string;
 
 /** Known values of {@link PublicIPAddressSkuTier} that the service accepts. */
 export enum KnownPublicIPAddressSkuTier {
+  /** Regional */
   Regional = "Regional",
+  /** Global */
   Global = "Global"
 }
 
@@ -6472,6 +6680,7 @@ export type PublicIPAddressSkuTier = string;
 
 /** Known values of {@link SecurityTypes} that the service accepts. */
 export enum KnownSecurityTypes {
+  /** TrustedLaunch */
   TrustedLaunch = "TrustedLaunch"
 }
 
@@ -6486,8 +6695,11 @@ export type SecurityTypes = string;
 
 /** Known values of {@link VirtualMachinePriorityTypes} that the service accepts. */
 export enum KnownVirtualMachinePriorityTypes {
+  /** Regular */
   Regular = "Regular",
+  /** Low */
   Low = "Low",
+  /** Spot */
   Spot = "Spot"
 }
 
@@ -6504,7 +6716,9 @@ export type VirtualMachinePriorityTypes = string;
 
 /** Known values of {@link VirtualMachineEvictionPolicyTypes} that the service accepts. */
 export enum KnownVirtualMachineEvictionPolicyTypes {
+  /** Deallocate */
   Deallocate = "Deallocate",
+  /** Delete */
   Delete = "Delete"
 }
 
@@ -6520,7 +6734,9 @@ export type VirtualMachineEvictionPolicyTypes = string;
 
 /** Known values of {@link HyperVGenerationType} that the service accepts. */
 export enum KnownHyperVGenerationType {
+  /** V1 */
   V1 = "V1",
+  /** V2 */
   V2 = "V2"
 }
 
@@ -6536,10 +6752,15 @@ export type HyperVGenerationType = string;
 
 /** Known values of {@link PatchOperationStatus} that the service accepts. */
 export enum KnownPatchOperationStatus {
+  /** Unknown */
   Unknown = "Unknown",
+  /** InProgress */
   InProgress = "InProgress",
+  /** Failed */
   Failed = "Failed",
+  /** Succeeded */
   Succeeded = "Succeeded",
+  /** CompletedWithWarnings */
   CompletedWithWarnings = "CompletedWithWarnings"
 }
 
@@ -6558,7 +6779,9 @@ export type PatchOperationStatus = string;
 
 /** Known values of {@link IPVersion} that the service accepts. */
 export enum KnownIPVersion {
+  /** IPv4 */
   IPv4 = "IPv4",
+  /** IPv6 */
   IPv6 = "IPv6"
 }
 
@@ -6574,8 +6797,11 @@ export type IPVersion = string;
 
 /** Known values of {@link VirtualMachineScaleSetScaleInRules} that the service accepts. */
 export enum KnownVirtualMachineScaleSetScaleInRules {
+  /** Default */
   Default = "Default",
+  /** OldestVM */
   OldestVM = "OldestVM",
+  /** NewestVM */
   NewestVM = "NewestVM"
 }
 
@@ -6592,7 +6818,9 @@ export type VirtualMachineScaleSetScaleInRules = string;
 
 /** Known values of {@link OrchestrationMode} that the service accepts. */
 export enum KnownOrchestrationMode {
+  /** Uniform */
   Uniform = "Uniform",
+  /** Flexible */
   Flexible = "Flexible"
 }
 
@@ -6608,7 +6836,9 @@ export type OrchestrationMode = string;
 
 /** Known values of {@link OperatingSystemType} that the service accepts. */
 export enum KnownOperatingSystemType {
+  /** Windows */
   Windows = "Windows",
+  /** Linux */
   Linux = "Linux"
 }
 
@@ -6624,8 +6854,11 @@ export type OperatingSystemType = string;
 
 /** Known values of {@link ConsistencyModeTypes} that the service accepts. */
 export enum KnownConsistencyModeTypes {
+  /** CrashConsistent */
   CrashConsistent = "CrashConsistent",
+  /** FileSystemConsistent */
   FileSystemConsistent = "FileSystemConsistent",
+  /** ApplicationConsistent */
   ApplicationConsistent = "ApplicationConsistent"
 }
 
@@ -6642,6 +6875,7 @@ export type ConsistencyModeTypes = string;
 
 /** Known values of {@link RestorePointCollectionExpandOptions} that the service accepts. */
 export enum KnownRestorePointCollectionExpandOptions {
+  /** RestorePoints */
   RestorePoints = "restorePoints"
 }
 
@@ -6656,6 +6890,7 @@ export type RestorePointCollectionExpandOptions = string;
 
 /** Known values of {@link CapacityReservationGroupInstanceViewTypes} that the service accepts. */
 export enum KnownCapacityReservationGroupInstanceViewTypes {
+  /** InstanceView */
   InstanceView = "instanceView"
 }
 
@@ -6670,7 +6905,9 @@ export type CapacityReservationGroupInstanceViewTypes = string;
 
 /** Known values of {@link ExpandTypesForGetCapacityReservationGroups} that the service accepts. */
 export enum KnownExpandTypesForGetCapacityReservationGroups {
+  /** VirtualMachineScaleSetVMsRef */
   VirtualMachineScaleSetVMsRef = "virtualMachineScaleSetVMs/$ref",
+  /** VirtualMachinesRef */
   VirtualMachinesRef = "virtualMachines/$ref"
 }
 
@@ -6686,6 +6923,7 @@ export type ExpandTypesForGetCapacityReservationGroups = string;
 
 /** Known values of {@link CapacityReservationInstanceViewTypes} that the service accepts. */
 export enum KnownCapacityReservationInstanceViewTypes {
+  /** InstanceView */
   InstanceView = "instanceView"
 }
 
@@ -6700,9 +6938,13 @@ export type CapacityReservationInstanceViewTypes = string;
 
 /** Known values of {@link VMGuestPatchRebootBehavior} that the service accepts. */
 export enum KnownVMGuestPatchRebootBehavior {
+  /** Unknown */
   Unknown = "Unknown",
+  /** NeverReboots */
   NeverReboots = "NeverReboots",
+  /** AlwaysRequiresReboot */
   AlwaysRequiresReboot = "AlwaysRequiresReboot",
+  /** CanRequestReboot */
   CanRequestReboot = "CanRequestReboot"
 }
 
@@ -6720,7 +6962,9 @@ export type VMGuestPatchRebootBehavior = string;
 
 /** Known values of {@link PatchAssessmentState} that the service accepts. */
 export enum KnownPatchAssessmentState {
+  /** Unknown */
   Unknown = "Unknown",
+  /** Available */
   Available = "Available"
 }
 
@@ -6736,8 +6980,11 @@ export type PatchAssessmentState = string;
 
 /** Known values of {@link VMGuestPatchRebootSetting} that the service accepts. */
 export enum KnownVMGuestPatchRebootSetting {
+  /** IfRequired */
   IfRequired = "IfRequired",
+  /** Never */
   Never = "Never",
+  /** Always */
   Always = "Always"
 }
 
@@ -6754,13 +7001,21 @@ export type VMGuestPatchRebootSetting = string;
 
 /** Known values of {@link VMGuestPatchClassificationWindows} that the service accepts. */
 export enum KnownVMGuestPatchClassificationWindows {
+  /** Critical */
   Critical = "Critical",
+  /** Security */
   Security = "Security",
+  /** UpdateRollUp */
   UpdateRollUp = "UpdateRollUp",
+  /** FeaturePack */
   FeaturePack = "FeaturePack",
+  /** ServicePack */
   ServicePack = "ServicePack",
+  /** Definition */
   Definition = "Definition",
+  /** Tools */
   Tools = "Tools",
+  /** Updates */
   Updates = "Updates"
 }
 
@@ -6782,8 +7037,11 @@ export type VMGuestPatchClassificationWindows = string;
 
 /** Known values of {@link VMGuestPatchClassificationLinux} that the service accepts. */
 export enum KnownVMGuestPatchClassificationLinux {
+  /** Critical */
   Critical = "Critical",
+  /** Security */
   Security = "Security",
+  /** Other */
   Other = "Other"
 }
 
@@ -6800,11 +7058,17 @@ export type VMGuestPatchClassificationLinux = string;
 
 /** Known values of {@link VMGuestPatchRebootStatus} that the service accepts. */
 export enum KnownVMGuestPatchRebootStatus {
+  /** Unknown */
   Unknown = "Unknown",
+  /** NotNeeded */
   NotNeeded = "NotNeeded",
+  /** Required */
   Required = "Required",
+  /** Started */
   Started = "Started",
+  /** Failed */
   Failed = "Failed",
+  /** Completed */
   Completed = "Completed"
 }
 
@@ -6824,11 +7088,17 @@ export type VMGuestPatchRebootStatus = string;
 
 /** Known values of {@link PatchInstallationState} that the service accepts. */
 export enum KnownPatchInstallationState {
+  /** Unknown */
   Unknown = "Unknown",
+  /** Installed */
   Installed = "Installed",
+  /** Failed */
   Failed = "Failed",
+  /** Excluded */
   Excluded = "Excluded",
+  /** NotSelected */
   NotSelected = "NotSelected",
+  /** Pending */
   Pending = "Pending"
 }
 
@@ -6848,6 +7118,7 @@ export type PatchInstallationState = string;
 
 /** Known values of {@link ExpandTypesForGetVMScaleSets} that the service accepts. */
 export enum KnownExpandTypesForGetVMScaleSets {
+  /** UserData */
   UserData = "userData"
 }
 
@@ -6862,7 +7133,9 @@ export type ExpandTypesForGetVMScaleSets = string;
 
 /** Known values of {@link OrchestrationServiceNames} that the service accepts. */
 export enum KnownOrchestrationServiceNames {
+  /** AutomaticRepairs */
   AutomaticRepairs = "AutomaticRepairs",
+  /** DummyOrchestrationServiceName */
   DummyOrchestrationServiceName = "DummyOrchestrationServiceName"
 }
 
@@ -6878,8 +7151,11 @@ export type OrchestrationServiceNames = string;
 
 /** Known values of {@link OrchestrationServiceState} that the service accepts. */
 export enum KnownOrchestrationServiceState {
+  /** NotRunning */
   NotRunning = "NotRunning",
+  /** Running */
   Running = "Running",
+  /** Suspended */
   Suspended = "Suspended"
 }
 
@@ -6896,7 +7172,9 @@ export type OrchestrationServiceState = string;
 
 /** Known values of {@link OrchestrationServiceStateAction} that the service accepts. */
 export enum KnownOrchestrationServiceStateAction {
+  /** Resume */
   Resume = "Resume",
+  /** Suspend */
   Suspend = "Suspend"
 }
 
@@ -6912,12 +7190,19 @@ export type OrchestrationServiceStateAction = string;
 
 /** Known values of {@link ExecutionState} that the service accepts. */
 export enum KnownExecutionState {
+  /** Unknown */
   Unknown = "Unknown",
+  /** Pending */
   Pending = "Pending",
+  /** Running */
   Running = "Running",
+  /** Failed */
   Failed = "Failed",
+  /** Succeeded */
   Succeeded = "Succeeded",
+  /** TimedOut */
   TimedOut = "TimedOut",
+  /** Canceled */
   Canceled = "Canceled"
 }
 
@@ -6938,6 +7223,7 @@ export type ExecutionState = string;
 
 /** Known values of {@link ExtendedLocationType} that the service accepts. */
 export enum KnownExtendedLocationType {
+  /** EdgeZone */
   EdgeZone = "EdgeZone"
 }
 
@@ -6982,7 +7268,9 @@ export type DiskStorageAccountTypes = string;
 
 /** Known values of {@link HyperVGeneration} that the service accepts. */
 export enum KnownHyperVGeneration {
+  /** V1 */
   V1 = "V1",
+  /** V2 */
   V2 = "V2"
 }
 
@@ -7145,8 +7433,11 @@ export type PublicNetworkAccess = string;
 
 /** Known values of {@link AccessLevel} that the service accepts. */
 export enum KnownAccessLevel {
+  /** None */
   None = "None",
+  /** Read */
   Read = "Read",
+  /** Write */
   Write = "Write"
 }
 
@@ -7184,7 +7475,9 @@ export type SnapshotStorageAccountTypes = string;
 
 /** Known values of {@link DiskEncryptionSetIdentityType} that the service accepts. */
 export enum KnownDiskEncryptionSetIdentityType {
+  /** SystemAssigned */
   SystemAssigned = "SystemAssigned",
+  /** None */
   None = "None"
 }
 
@@ -7218,8 +7511,11 @@ export type DiskEncryptionSetType = string;
 
 /** Known values of {@link PrivateEndpointServiceConnectionStatus} that the service accepts. */
 export enum KnownPrivateEndpointServiceConnectionStatus {
+  /** Pending */
   Pending = "Pending",
+  /** Approved */
   Approved = "Approved",
+  /** Rejected */
   Rejected = "Rejected"
 }
 
@@ -7236,9 +7532,13 @@ export type PrivateEndpointServiceConnectionStatus = string;
 
 /** Known values of {@link PrivateEndpointConnectionProvisioningState} that the service accepts. */
 export enum KnownPrivateEndpointConnectionProvisioningState {
+  /** Succeeded */
   Succeeded = "Succeeded",
+  /** Creating */
   Creating = "Creating",
+  /** Deleting */
   Deleting = "Deleting",
+  /** Failed */
   Failed = "Failed"
 }
 
@@ -7256,11 +7556,17 @@ export type PrivateEndpointConnectionProvisioningState = string;
 
 /** Known values of {@link GalleryPropertiesProvisioningState} that the service accepts. */
 export enum KnownGalleryPropertiesProvisioningState {
+  /** Creating */
   Creating = "Creating",
+  /** Updating */
   Updating = "Updating",
+  /** Failed */
   Failed = "Failed",
+  /** Succeeded */
   Succeeded = "Succeeded",
+  /** Deleting */
   Deleting = "Deleting",
+  /** Migrating */
   Migrating = "Migrating"
 }
 
@@ -7280,7 +7586,9 @@ export type GalleryPropertiesProvisioningState = string;
 
 /** Known values of {@link GallerySharingPermissionTypes} that the service accepts. */
 export enum KnownGallerySharingPermissionTypes {
+  /** Private */
   Private = "Private",
+  /** Groups */
   Groups = "Groups"
 }
 
@@ -7296,7 +7604,9 @@ export type GallerySharingPermissionTypes = string;
 
 /** Known values of {@link SharingProfileGroupTypes} that the service accepts. */
 export enum KnownSharingProfileGroupTypes {
+  /** Subscriptions */
   Subscriptions = "Subscriptions",
+  /** AADTenants */
   AADTenants = "AADTenants"
 }
 
@@ -7312,6 +7622,7 @@ export type SharingProfileGroupTypes = string;
 
 /** Known values of {@link SelectPermissions} that the service accepts. */
 export enum KnownSelectPermissions {
+  /** Permissions */
   Permissions = "Permissions"
 }
 
@@ -7326,11 +7637,17 @@ export type SelectPermissions = string;
 
 /** Known values of {@link GalleryImagePropertiesProvisioningState} that the service accepts. */
 export enum KnownGalleryImagePropertiesProvisioningState {
+  /** Creating */
   Creating = "Creating",
+  /** Updating */
   Updating = "Updating",
+  /** Failed */
   Failed = "Failed",
+  /** Succeeded */
   Succeeded = "Succeeded",
+  /** Deleting */
   Deleting = "Deleting",
+  /** Migrating */
   Migrating = "Migrating"
 }
 
@@ -7350,8 +7667,11 @@ export type GalleryImagePropertiesProvisioningState = string;
 
 /** Known values of {@link StorageAccountType} that the service accepts. */
 export enum KnownStorageAccountType {
+  /** StandardLRS */
   StandardLRS = "Standard_LRS",
+  /** StandardZRS */
   StandardZRS = "Standard_ZRS",
+  /** PremiumLRS */
   PremiumLRS = "Premium_LRS"
 }
 
@@ -7368,7 +7688,9 @@ export type StorageAccountType = string;
 
 /** Known values of {@link ReplicationMode} that the service accepts. */
 export enum KnownReplicationMode {
+  /** Full */
   Full = "Full",
+  /** Shallow */
   Shallow = "Shallow"
 }
 
@@ -7384,11 +7706,17 @@ export type ReplicationMode = string;
 
 /** Known values of {@link GalleryImageVersionPropertiesProvisioningState} that the service accepts. */
 export enum KnownGalleryImageVersionPropertiesProvisioningState {
+  /** Creating */
   Creating = "Creating",
+  /** Updating */
   Updating = "Updating",
+  /** Failed */
   Failed = "Failed",
+  /** Succeeded */
   Succeeded = "Succeeded",
+  /** Deleting */
   Deleting = "Deleting",
+  /** Migrating */
   Migrating = "Migrating"
 }
 
@@ -7408,9 +7736,13 @@ export type GalleryImageVersionPropertiesProvisioningState = string;
 
 /** Known values of {@link AggregatedReplicationState} that the service accepts. */
 export enum KnownAggregatedReplicationState {
+  /** Unknown */
   Unknown = "Unknown",
+  /** InProgress */
   InProgress = "InProgress",
+  /** Completed */
   Completed = "Completed",
+  /** Failed */
   Failed = "Failed"
 }
 
@@ -7428,9 +7760,13 @@ export type AggregatedReplicationState = string;
 
 /** Known values of {@link ReplicationState} that the service accepts. */
 export enum KnownReplicationState {
+  /** Unknown */
   Unknown = "Unknown",
+  /** Replicating */
   Replicating = "Replicating",
+  /** Completed */
   Completed = "Completed",
+  /** Failed */
   Failed = "Failed"
 }
 
@@ -7448,6 +7784,7 @@ export type ReplicationState = string;
 
 /** Known values of {@link ReplicationStatusTypes} that the service accepts. */
 export enum KnownReplicationStatusTypes {
+  /** ReplicationStatus */
   ReplicationStatus = "ReplicationStatus"
 }
 
@@ -7462,11 +7799,17 @@ export type ReplicationStatusTypes = string;
 
 /** Known values of {@link GalleryApplicationVersionPropertiesProvisioningState} that the service accepts. */
 export enum KnownGalleryApplicationVersionPropertiesProvisioningState {
+  /** Creating */
   Creating = "Creating",
+  /** Updating */
   Updating = "Updating",
+  /** Failed */
   Failed = "Failed",
+  /** Succeeded */
   Succeeded = "Succeeded",
+  /** Deleting */
   Deleting = "Deleting",
+  /** Migrating */
   Migrating = "Migrating"
 }
 
@@ -7486,8 +7829,11 @@ export type GalleryApplicationVersionPropertiesProvisioningState = string;
 
 /** Known values of {@link SharingUpdateOperationTypes} that the service accepts. */
 export enum KnownSharingUpdateOperationTypes {
+  /** Add */
   Add = "Add",
+  /** Remove */
   Remove = "Remove",
+  /** Reset */
   Reset = "Reset"
 }
 
@@ -7504,6 +7850,7 @@ export type SharingUpdateOperationTypes = string;
 
 /** Known values of {@link SharedToValues} that the service accepts. */
 export enum KnownSharedToValues {
+  /** Tenant */
   Tenant = "tenant"
 }
 
@@ -7518,8 +7865,11 @@ export type SharedToValues = string;
 
 /** Known values of {@link CloudServiceUpgradeMode} that the service accepts. */
 export enum KnownCloudServiceUpgradeMode {
+  /** Auto */
   Auto = "Auto",
+  /** Manual */
   Manual = "Manual",
+  /** Simultaneous */
   Simultaneous = "Simultaneous"
 }
 
@@ -7536,7 +7886,9 @@ export type CloudServiceUpgradeMode = string;
 
 /** Known values of {@link AvailabilitySetSkuTypes} that the service accepts. */
 export enum KnownAvailabilitySetSkuTypes {
+  /** Classic */
   Classic = "Classic",
+  /** Aligned */
   Aligned = "Aligned"
 }
 
