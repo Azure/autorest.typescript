@@ -2494,8 +2494,11 @@ export interface PrivateEndpointConnection extends ProxyResource {
 
 /** Known values of {@link DatabaseAccountKind} that the service accepts. */
 export enum KnownDatabaseAccountKind {
+  /** GlobalDocumentDB */
   GlobalDocumentDB = "GlobalDocumentDB",
+  /** MongoDB */
   MongoDB = "MongoDB",
+  /** Parse */
   Parse = "Parse"
 }
 
@@ -2512,6 +2515,7 @@ export type DatabaseAccountKind = string;
 
 /** Known values of {@link ConnectorOffer} that the service accepts. */
 export enum KnownConnectorOffer {
+  /** Small */
   Small = "Small"
 }
 
@@ -2526,7 +2530,9 @@ export type ConnectorOffer = string;
 
 /** Known values of {@link PublicNetworkAccess} that the service accepts. */
 export enum KnownPublicNetworkAccess {
+  /** Enabled */
   Enabled = "Enabled",
+  /** Disabled */
   Disabled = "Disabled"
 }
 
@@ -2542,8 +2548,11 @@ export type PublicNetworkAccess = string;
 
 /** Known values of {@link ServerVersion} that the service accepts. */
 export enum KnownServerVersion {
+  /** Three2 */
   Three2 = "3.2",
+  /** Three6 */
   Three6 = "3.6",
+  /** Four0 */
   Four0 = "4.0"
 }
 
@@ -2560,7 +2569,9 @@ export type ServerVersion = string;
 
 /** Known values of {@link AnalyticalStorageSchemaType} that the service accepts. */
 export enum KnownAnalyticalStorageSchemaType {
+  /** WellDefined */
   WellDefined = "WellDefined",
+  /** FullFidelity */
   FullFidelity = "FullFidelity"
 }
 
@@ -2576,7 +2587,9 @@ export type AnalyticalStorageSchemaType = string;
 
 /** Known values of {@link CreateMode} that the service accepts. */
 export enum KnownCreateMode {
+  /** Default */
   Default = "Default",
+  /** Restore */
   Restore = "Restore"
 }
 
@@ -2592,6 +2605,7 @@ export type CreateMode = string;
 
 /** Known values of {@link RestoreMode} that the service accepts. */
 export enum KnownRestoreMode {
+  /** PointInTime */
   PointInTime = "PointInTime"
 }
 
@@ -2606,7 +2620,9 @@ export type RestoreMode = string;
 
 /** Known values of {@link BackupPolicyType} that the service accepts. */
 export enum KnownBackupPolicyType {
+  /** Periodic */
   Periodic = "Periodic",
+  /** Continuous */
   Continuous = "Continuous"
 }
 
@@ -2622,9 +2638,13 @@ export type BackupPolicyType = string;
 
 /** Known values of {@link BackupPolicyMigrationStatus} that the service accepts. */
 export enum KnownBackupPolicyMigrationStatus {
+  /** Invalid */
   Invalid = "Invalid",
+  /** InProgress */
   InProgress = "InProgress",
+  /** Completed */
   Completed = "Completed",
+  /** Failed */
   Failed = "Failed"
 }
 
@@ -2642,9 +2662,13 @@ export type BackupPolicyMigrationStatus = string;
 
 /** Known values of {@link CreatedByType} that the service accepts. */
 export enum KnownCreatedByType {
+  /** User */
   User = "User",
+  /** Application */
   Application = "Application",
+  /** ManagedIdentity */
   ManagedIdentity = "ManagedIdentity",
+  /** Key */
   Key = "Key"
 }
 
@@ -2662,9 +2686,13 @@ export type CreatedByType = string;
 
 /** Known values of {@link KeyKind} that the service accepts. */
 export enum KnownKeyKind {
+  /** Primary */
   Primary = "primary",
+  /** Secondary */
   Secondary = "secondary",
+  /** PrimaryReadonly */
   PrimaryReadonly = "primaryReadonly",
+  /** SecondaryReadonly */
   SecondaryReadonly = "secondaryReadonly"
 }
 
@@ -2682,12 +2710,19 @@ export type KeyKind = string;
 
 /** Known values of {@link UnitType} that the service accepts. */
 export enum KnownUnitType {
+  /** Count */
   Count = "Count",
+  /** Bytes */
   Bytes = "Bytes",
+  /** Seconds */
   Seconds = "Seconds",
+  /** Percent */
   Percent = "Percent",
+  /** CountPerSecond */
   CountPerSecond = "CountPerSecond",
+  /** BytesPerSecond */
   BytesPerSecond = "BytesPerSecond",
+  /** Milliseconds */
   Milliseconds = "Milliseconds"
 }
 
@@ -2708,11 +2743,17 @@ export type UnitType = string;
 
 /** Known values of {@link PrimaryAggregationType} that the service accepts. */
 export enum KnownPrimaryAggregationType {
+  /** None */
   None = "None",
+  /** Average */
   Average = "Average",
+  /** Total */
   Total = "Total",
+  /** Minimum */
   Minimum = "Minimum",
+  /** Maximum */
   Maximum = "Maximum",
+  /** Last */
   Last = "Last"
 }
 
@@ -2732,8 +2773,11 @@ export type PrimaryAggregationType = string;
 
 /** Known values of {@link IndexingMode} that the service accepts. */
 export enum KnownIndexingMode {
+  /** Consistent */
   Consistent = "consistent",
+  /** Lazy */
   Lazy = "lazy",
+  /** None */
   None = "none"
 }
 
@@ -2750,11 +2794,17 @@ export type IndexingMode = string;
 
 /** Known values of {@link DataType} that the service accepts. */
 export enum KnownDataType {
+  /** String */
   String = "String",
+  /** Number */
   Number = "Number",
+  /** Point */
   Point = "Point",
+  /** Polygon */
   Polygon = "Polygon",
+  /** LineString */
   LineString = "LineString",
+  /** MultiPolygon */
   MultiPolygon = "MultiPolygon"
 }
 
@@ -2774,8 +2824,11 @@ export type DataType = string;
 
 /** Known values of {@link IndexKind} that the service accepts. */
 export enum KnownIndexKind {
+  /** Hash */
   Hash = "Hash",
+  /** Range */
   Range = "Range",
+  /** Spatial */
   Spatial = "Spatial"
 }
 
@@ -2792,7 +2845,9 @@ export type IndexKind = string;
 
 /** Known values of {@link CompositePathSortOrder} that the service accepts. */
 export enum KnownCompositePathSortOrder {
+  /** Ascending */
   Ascending = "ascending",
+  /** Descending */
   Descending = "descending"
 }
 
@@ -2808,9 +2863,13 @@ export type CompositePathSortOrder = string;
 
 /** Known values of {@link SpatialType} that the service accepts. */
 export enum KnownSpatialType {
+  /** Point */
   Point = "Point",
+  /** LineString */
   LineString = "LineString",
+  /** Polygon */
   Polygon = "Polygon",
+  /** MultiPolygon */
   MultiPolygon = "MultiPolygon"
 }
 
@@ -2828,8 +2887,11 @@ export type SpatialType = string;
 
 /** Known values of {@link PartitionKind} that the service accepts. */
 export enum KnownPartitionKind {
+  /** Hash */
   Hash = "Hash",
+  /** Range */
   Range = "Range",
+  /** MultiHash */
   MultiHash = "MultiHash"
 }
 
@@ -2846,7 +2908,9 @@ export type PartitionKind = string;
 
 /** Known values of {@link ConflictResolutionMode} that the service accepts. */
 export enum KnownConflictResolutionMode {
+  /** LastWriterWins */
   LastWriterWins = "LastWriterWins",
+  /** Custom */
   Custom = "Custom"
 }
 
@@ -2862,7 +2926,9 @@ export type ConflictResolutionMode = string;
 
 /** Known values of {@link TriggerType} that the service accepts. */
 export enum KnownTriggerType {
+  /** Pre */
   Pre = "Pre",
+  /** Post */
   Post = "Post"
 }
 
@@ -2878,10 +2944,15 @@ export type TriggerType = string;
 
 /** Known values of {@link TriggerOperation} that the service accepts. */
 export enum KnownTriggerOperation {
+  /** All */
   All = "All",
+  /** Create */
   Create = "Create",
+  /** Update */
   Update = "Update",
+  /** Delete */
   Delete = "Delete",
+  /** Replace */
   Replace = "Replace"
 }
 
@@ -2900,8 +2971,11 @@ export type TriggerOperation = string;
 
 /** Known values of {@link BackupStorageRedundancy} that the service accepts. */
 export enum KnownBackupStorageRedundancy {
+  /** Geo */
   Geo = "Geo",
+  /** Local */
   Local = "Local",
+  /** Zone */
   Zone = "Zone"
 }
 
@@ -2918,6 +2992,7 @@ export type BackupStorageRedundancy = string;
 
 /** Known values of {@link NotebookWorkspaceName} that the service accepts. */
 export enum KnownNotebookWorkspaceName {
+  /** Default */
   Default = "default"
 }
 
@@ -2932,11 +3007,17 @@ export type NotebookWorkspaceName = string;
 
 /** Known values of {@link ApiType} that the service accepts. */
 export enum KnownApiType {
+  /** MongoDB */
   MongoDB = "MongoDB",
+  /** Gremlin */
   Gremlin = "Gremlin",
+  /** Cassandra */
   Cassandra = "Cassandra",
+  /** Table */
   Table = "Table",
+  /** Sql */
   Sql = "Sql",
+  /** GremlinV2 */
   GremlinV2 = "GremlinV2"
 }
 
@@ -2956,9 +3037,13 @@ export type ApiType = string;
 
 /** Known values of {@link OperationType} that the service accepts. */
 export enum KnownOperationType {
+  /** Create */
   Create = "Create",
+  /** Replace */
   Replace = "Replace",
+  /** Delete */
   Delete = "Delete",
+  /** SystemOperation */
   SystemOperation = "SystemOperation"
 }
 
@@ -2976,11 +3061,17 @@ export type OperationType = string;
 
 /** Known values of {@link ManagedCassandraProvisioningState} that the service accepts. */
 export enum KnownManagedCassandraProvisioningState {
+  /** Creating */
   Creating = "Creating",
+  /** Updating */
   Updating = "Updating",
+  /** Deleting */
   Deleting = "Deleting",
+  /** Succeeded */
   Succeeded = "Succeeded",
+  /** Failed */
   Failed = "Failed",
+  /** Canceled */
   Canceled = "Canceled"
 }
 
@@ -3000,7 +3091,9 @@ export type ManagedCassandraProvisioningState = string;
 
 /** Known values of {@link AuthenticationMethod} that the service accepts. */
 export enum KnownAuthenticationMethod {
+  /** None */
   None = "None",
+  /** Cassandra */
   Cassandra = "Cassandra"
 }
 
@@ -3016,7 +3109,9 @@ export type AuthenticationMethod = string;
 
 /** Known values of {@link ManagedCassandraResourceIdentityType} that the service accepts. */
 export enum KnownManagedCassandraResourceIdentityType {
+  /** SystemAssigned */
   SystemAssigned = "SystemAssigned",
+  /** None */
   None = "None"
 }
 
@@ -3032,11 +3127,17 @@ export type ManagedCassandraResourceIdentityType = string;
 
 /** Known values of {@link ConnectionState} that the service accepts. */
 export enum KnownConnectionState {
+  /** Unknown */
   Unknown = "Unknown",
+  /** OK */
   OK = "OK",
+  /** OperatorToDataCenterNetworkError */
   OperatorToDataCenterNetworkError = "OperatorToDataCenterNetworkError",
+  /** DatacenterToDatacenterNetworkError */
   DatacenterToDatacenterNetworkError = "DatacenterToDatacenterNetworkError",
+  /** InternalOperatorToDataCenterCertificateError */
   InternalOperatorToDataCenterCertificateError = "InternalOperatorToDataCenterCertificateError",
+  /** InternalError */
   InternalError = "InternalError"
 }
 
@@ -3056,10 +3157,15 @@ export type ConnectionState = string;
 
 /** Known values of {@link NodeState} that the service accepts. */
 export enum KnownNodeState {
+  /** Normal */
   Normal = "Normal",
+  /** Leaving */
   Leaving = "Leaving",
+  /** Joining */
   Joining = "Joining",
+  /** Moving */
   Moving = "Moving",
+  /** Stopped */
   Stopped = "Stopped"
 }
 
@@ -3078,7 +3184,9 @@ export type NodeState = string;
 
 /** Known values of {@link NodeStatus} that the service accepts. */
 export enum KnownNodeStatus {
+  /** Up */
   Up = "Up",
+  /** Down */
   Down = "Down"
 }
 

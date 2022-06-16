@@ -1494,345 +1494,237 @@ export type KeyKind = string;
 
 // @public
 export enum KnownAnalyticalStorageSchemaType {
-    // (undocumented)
     FullFidelity = "FullFidelity",
-    // (undocumented)
     WellDefined = "WellDefined"
 }
 
 // @public
 export enum KnownApiType {
-    // (undocumented)
     Cassandra = "Cassandra",
-    // (undocumented)
     Gremlin = "Gremlin",
-    // (undocumented)
     GremlinV2 = "GremlinV2",
-    // (undocumented)
     MongoDB = "MongoDB",
-    // (undocumented)
     Sql = "Sql",
-    // (undocumented)
     Table = "Table"
 }
 
 // @public
 export enum KnownAuthenticationMethod {
-    // (undocumented)
     Cassandra = "Cassandra",
-    // (undocumented)
     None = "None"
 }
 
 // @public
 export enum KnownBackupPolicyMigrationStatus {
-    // (undocumented)
     Completed = "Completed",
-    // (undocumented)
     Failed = "Failed",
-    // (undocumented)
     InProgress = "InProgress",
-    // (undocumented)
     Invalid = "Invalid"
 }
 
 // @public
 export enum KnownBackupPolicyType {
-    // (undocumented)
     Continuous = "Continuous",
-    // (undocumented)
     Periodic = "Periodic"
 }
 
 // @public
 export enum KnownBackupStorageRedundancy {
-    // (undocumented)
     Geo = "Geo",
-    // (undocumented)
     Local = "Local",
-    // (undocumented)
     Zone = "Zone"
 }
 
 // @public
 export enum KnownCompositePathSortOrder {
-    // (undocumented)
     Ascending = "ascending",
-    // (undocumented)
     Descending = "descending"
 }
 
 // @public
 export enum KnownConflictResolutionMode {
-    // (undocumented)
     Custom = "Custom",
-    // (undocumented)
     LastWriterWins = "LastWriterWins"
 }
 
 // @public
 export enum KnownConnectionState {
-    // (undocumented)
     DatacenterToDatacenterNetworkError = "DatacenterToDatacenterNetworkError",
-    // (undocumented)
     InternalError = "InternalError",
-    // (undocumented)
     InternalOperatorToDataCenterCertificateError = "InternalOperatorToDataCenterCertificateError",
-    // (undocumented)
     OK = "OK",
-    // (undocumented)
     OperatorToDataCenterNetworkError = "OperatorToDataCenterNetworkError",
-    // (undocumented)
     Unknown = "Unknown"
 }
 
 // @public
 export enum KnownConnectorOffer {
-    // (undocumented)
     Small = "Small"
 }
 
 // @public
 export enum KnownCreatedByType {
-    // (undocumented)
     Application = "Application",
-    // (undocumented)
     Key = "Key",
-    // (undocumented)
     ManagedIdentity = "ManagedIdentity",
-    // (undocumented)
     User = "User"
 }
 
 // @public
 export enum KnownCreateMode {
-    // (undocumented)
     Default = "Default",
-    // (undocumented)
     Restore = "Restore"
 }
 
 // @public
 export enum KnownDatabaseAccountKind {
-    // (undocumented)
     GlobalDocumentDB = "GlobalDocumentDB",
-    // (undocumented)
     MongoDB = "MongoDB",
-    // (undocumented)
     Parse = "Parse"
 }
 
 // @public
 export enum KnownDataType {
-    // (undocumented)
     LineString = "LineString",
-    // (undocumented)
     MultiPolygon = "MultiPolygon",
-    // (undocumented)
     Number = "Number",
-    // (undocumented)
     Point = "Point",
-    // (undocumented)
     Polygon = "Polygon",
-    // (undocumented)
     String = "String"
 }
 
 // @public
 export enum KnownIndexingMode {
-    // (undocumented)
     Consistent = "consistent",
-    // (undocumented)
     Lazy = "lazy",
-    // (undocumented)
     None = "none"
 }
 
 // @public
 export enum KnownIndexKind {
-    // (undocumented)
     Hash = "Hash",
-    // (undocumented)
     Range = "Range",
-    // (undocumented)
     Spatial = "Spatial"
 }
 
 // @public
 export enum KnownKeyKind {
-    // (undocumented)
     Primary = "primary",
-    // (undocumented)
     PrimaryReadonly = "primaryReadonly",
-    // (undocumented)
     Secondary = "secondary",
-    // (undocumented)
     SecondaryReadonly = "secondaryReadonly"
 }
 
 // @public
 export enum KnownManagedCassandraProvisioningState {
-    // (undocumented)
     Canceled = "Canceled",
-    // (undocumented)
     Creating = "Creating",
-    // (undocumented)
     Deleting = "Deleting",
-    // (undocumented)
     Failed = "Failed",
-    // (undocumented)
     Succeeded = "Succeeded",
-    // (undocumented)
     Updating = "Updating"
 }
 
 // @public
 export enum KnownManagedCassandraResourceIdentityType {
-    // (undocumented)
     None = "None",
-    // (undocumented)
     SystemAssigned = "SystemAssigned"
 }
 
 // @public
 export enum KnownNodeState {
-    // (undocumented)
     Joining = "Joining",
-    // (undocumented)
     Leaving = "Leaving",
-    // (undocumented)
     Moving = "Moving",
-    // (undocumented)
     Normal = "Normal",
-    // (undocumented)
     Stopped = "Stopped"
 }
 
 // @public
 export enum KnownNodeStatus {
-    // (undocumented)
     Down = "Down",
-    // (undocumented)
     Up = "Up"
 }
 
 // @public
 export enum KnownNotebookWorkspaceName {
-    // (undocumented)
     Default = "default"
 }
 
 // @public
 export enum KnownOperationType {
-    // (undocumented)
     Create = "Create",
-    // (undocumented)
     Delete = "Delete",
-    // (undocumented)
     Replace = "Replace",
-    // (undocumented)
     SystemOperation = "SystemOperation"
 }
 
 // @public
 export enum KnownPartitionKind {
-    // (undocumented)
     Hash = "Hash",
-    // (undocumented)
     MultiHash = "MultiHash",
-    // (undocumented)
     Range = "Range"
 }
 
 // @public
 export enum KnownPrimaryAggregationType {
-    // (undocumented)
     Average = "Average",
-    // (undocumented)
     Last = "Last",
-    // (undocumented)
     Maximum = "Maximum",
-    // (undocumented)
     Minimum = "Minimum",
-    // (undocumented)
     None = "None",
-    // (undocumented)
     Total = "Total"
 }
 
 // @public
 export enum KnownPublicNetworkAccess {
-    // (undocumented)
     Disabled = "Disabled",
-    // (undocumented)
     Enabled = "Enabled"
 }
 
 // @public
 export enum KnownRestoreMode {
-    // (undocumented)
     PointInTime = "PointInTime"
 }
 
 // @public
 export enum KnownServerVersion {
-    // (undocumented)
     Four0 = "4.0",
-    // (undocumented)
     Three2 = "3.2",
-    // (undocumented)
     Three6 = "3.6"
 }
 
 // @public
 export enum KnownSpatialType {
-    // (undocumented)
     LineString = "LineString",
-    // (undocumented)
     MultiPolygon = "MultiPolygon",
-    // (undocumented)
     Point = "Point",
-    // (undocumented)
     Polygon = "Polygon"
 }
 
 // @public
 export enum KnownTriggerOperation {
-    // (undocumented)
     All = "All",
-    // (undocumented)
     Create = "Create",
-    // (undocumented)
     Delete = "Delete",
-    // (undocumented)
     Replace = "Replace",
-    // (undocumented)
     Update = "Update"
 }
 
 // @public
 export enum KnownTriggerType {
-    // (undocumented)
     Post = "Post",
-    // (undocumented)
     Pre = "Pre"
 }
 
 // @public
 export enum KnownUnitType {
-    // (undocumented)
     Bytes = "Bytes",
-    // (undocumented)
     BytesPerSecond = "BytesPerSecond",
-    // (undocumented)
     Count = "Count",
-    // (undocumented)
     CountPerSecond = "CountPerSecond",
-    // (undocumented)
     Milliseconds = "Milliseconds",
-    // (undocumented)
     Percent = "Percent",
-    // (undocumented)
     Seconds = "Seconds"
 }
 

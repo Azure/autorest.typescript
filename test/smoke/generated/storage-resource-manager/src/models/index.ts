@@ -2309,13 +2309,21 @@ export interface FileSharesLeaseHeaders {
 
 /** Known values of {@link SkuName} that the service accepts. */
 export enum KnownSkuName {
+  /** StandardLRS */
   StandardLRS = "Standard_LRS",
+  /** StandardGRS */
   StandardGRS = "Standard_GRS",
+  /** StandardRagrs */
   StandardRagrs = "Standard_RAGRS",
+  /** StandardZRS */
   StandardZRS = "Standard_ZRS",
+  /** PremiumLRS */
   PremiumLRS = "Premium_LRS",
+  /** PremiumZRS */
   PremiumZRS = "Premium_ZRS",
+  /** StandardGzrs */
   StandardGzrs = "Standard_GZRS",
+  /** StandardRagzrs */
   StandardRagzrs = "Standard_RAGZRS"
 }
 
@@ -2337,10 +2345,15 @@ export type SkuName = string;
 
 /** Known values of {@link Kind} that the service accepts. */
 export enum KnownKind {
+  /** Storage */
   Storage = "Storage",
+  /** StorageV2 */
   StorageV2 = "StorageV2",
+  /** BlobStorage */
   BlobStorage = "BlobStorage",
+  /** FileStorage */
   FileStorage = "FileStorage",
+  /** BlockBlobStorage */
   BlockBlobStorage = "BlockBlobStorage"
 }
 
@@ -2359,7 +2372,9 @@ export type Kind = string;
 
 /** Known values of {@link ReasonCode} that the service accepts. */
 export enum KnownReasonCode {
+  /** QuotaId */
   QuotaId = "QuotaId",
+  /** NotAvailableForSubscription */
   NotAvailableForSubscription = "NotAvailableForSubscription"
 }
 
@@ -2375,6 +2390,7 @@ export type ReasonCode = string;
 
 /** Known values of {@link ExtendedLocationTypes} that the service accepts. */
 export enum KnownExtendedLocationTypes {
+  /** EdgeZone */
   EdgeZone = "EdgeZone"
 }
 
@@ -2389,9 +2405,13 @@ export type ExtendedLocationTypes = string;
 
 /** Known values of {@link IdentityType} that the service accepts. */
 export enum KnownIdentityType {
+  /** None */
   None = "None",
+  /** SystemAssigned */
   SystemAssigned = "SystemAssigned",
+  /** UserAssigned */
   UserAssigned = "UserAssigned",
+  /** SystemAssignedUserAssigned */
   SystemAssignedUserAssigned = "SystemAssigned,UserAssigned"
 }
 
@@ -2409,7 +2429,9 @@ export type IdentityType = string;
 
 /** Known values of {@link PublicNetworkAccess} that the service accepts. */
 export enum KnownPublicNetworkAccess {
+  /** Enabled */
   Enabled = "Enabled",
+  /** Disabled */
   Disabled = "Disabled"
 }
 
@@ -2425,6 +2447,7 @@ export type PublicNetworkAccess = string;
 
 /** Known values of {@link ExpirationAction} that the service accepts. */
 export enum KnownExpirationAction {
+  /** Log */
   Log = "Log"
 }
 
@@ -2439,7 +2462,9 @@ export type ExpirationAction = string;
 
 /** Known values of {@link KeyType} that the service accepts. */
 export enum KnownKeyType {
+  /** Service */
   Service = "Service",
+  /** Account */
   Account = "Account"
 }
 
@@ -2455,7 +2480,9 @@ export type KeyType = string;
 
 /** Known values of {@link KeySource} that the service accepts. */
 export enum KnownKeySource {
+  /** MicrosoftStorage */
   MicrosoftStorage = "Microsoft.Storage",
+  /** MicrosoftKeyvault */
   MicrosoftKeyvault = "Microsoft.Keyvault"
 }
 
@@ -2471,9 +2498,13 @@ export type KeySource = string;
 
 /** Known values of {@link Bypass} that the service accepts. */
 export enum KnownBypass {
+  /** None */
   None = "None",
+  /** Logging */
   Logging = "Logging",
+  /** Metrics */
   Metrics = "Metrics",
+  /** AzureServices */
   AzureServices = "AzureServices"
 }
 
@@ -2491,10 +2522,15 @@ export type Bypass = string;
 
 /** Known values of {@link State} that the service accepts. */
 export enum KnownState {
+  /** Provisioning */
   Provisioning = "Provisioning",
+  /** Deprovisioning */
   Deprovisioning = "Deprovisioning",
+  /** Succeeded */
   Succeeded = "Succeeded",
+  /** Failed */
   Failed = "Failed",
+  /** NetworkSourceDeleted */
   NetworkSourceDeleted = "NetworkSourceDeleted"
 }
 
@@ -2513,8 +2549,11 @@ export type State = string;
 
 /** Known values of {@link DirectoryServiceOptions} that the service accepts. */
 export enum KnownDirectoryServiceOptions {
+  /** None */
   None = "None",
+  /** Aadds */
   Aadds = "AADDS",
+  /** AD */
   AD = "AD"
 }
 
@@ -2531,9 +2570,13 @@ export type DirectoryServiceOptions = string;
 
 /** Known values of {@link DefaultSharePermission} that the service accepts. */
 export enum KnownDefaultSharePermission {
+  /** None */
   None = "None",
+  /** StorageFileDataSmbShareReader */
   StorageFileDataSmbShareReader = "StorageFileDataSmbShareReader",
+  /** StorageFileDataSmbShareContributor */
   StorageFileDataSmbShareContributor = "StorageFileDataSmbShareContributor",
+  /** StorageFileDataSmbShareElevatedContributor */
   StorageFileDataSmbShareElevatedContributor = "StorageFileDataSmbShareElevatedContributor"
 }
 
@@ -2551,7 +2594,9 @@ export type DefaultSharePermission = string;
 
 /** Known values of {@link LargeFileSharesState} that the service accepts. */
 export enum KnownLargeFileSharesState {
+  /** Disabled */
   Disabled = "Disabled",
+  /** Enabled */
   Enabled = "Enabled"
 }
 
@@ -2567,7 +2612,9 @@ export type LargeFileSharesState = string;
 
 /** Known values of {@link RoutingChoice} that the service accepts. */
 export enum KnownRoutingChoice {
+  /** MicrosoftRouting */
   MicrosoftRouting = "MicrosoftRouting",
+  /** InternetRouting */
   InternetRouting = "InternetRouting"
 }
 
@@ -2583,8 +2630,11 @@ export type RoutingChoice = string;
 
 /** Known values of {@link MinimumTlsVersion} that the service accepts. */
 export enum KnownMinimumTlsVersion {
+  /** TLS10 */
   TLS10 = "TLS1_0",
+  /** TLS11 */
   TLS11 = "TLS1_1",
+  /** TLS12 */
   TLS12 = "TLS1_2"
 }
 
@@ -2601,8 +2651,11 @@ export type MinimumTlsVersion = string;
 
 /** Known values of {@link AccountImmutabilityPolicyState} that the service accepts. */
 export enum KnownAccountImmutabilityPolicyState {
+  /** Unlocked */
   Unlocked = "Unlocked",
+  /** Locked */
   Locked = "Locked",
+  /** Disabled */
   Disabled = "Disabled"
 }
 
@@ -2619,8 +2672,11 @@ export type AccountImmutabilityPolicyState = string;
 
 /** Known values of {@link GeoReplicationStatus} that the service accepts. */
 export enum KnownGeoReplicationStatus {
+  /** Live */
   Live = "Live",
+  /** Bootstrap */
   Bootstrap = "Bootstrap",
+  /** Unavailable */
   Unavailable = "Unavailable"
 }
 
@@ -2637,8 +2693,11 @@ export type GeoReplicationStatus = string;
 
 /** Known values of {@link PrivateEndpointServiceConnectionStatus} that the service accepts. */
 export enum KnownPrivateEndpointServiceConnectionStatus {
+  /** Pending */
   Pending = "Pending",
+  /** Approved */
   Approved = "Approved",
+  /** Rejected */
   Rejected = "Rejected"
 }
 
@@ -2655,9 +2714,13 @@ export type PrivateEndpointServiceConnectionStatus = string;
 
 /** Known values of {@link PrivateEndpointConnectionProvisioningState} that the service accepts. */
 export enum KnownPrivateEndpointConnectionProvisioningState {
+  /** Succeeded */
   Succeeded = "Succeeded",
+  /** Creating */
   Creating = "Creating",
+  /** Deleting */
   Deleting = "Deleting",
+  /** Failed */
   Failed = "Failed"
 }
 
@@ -2675,8 +2738,11 @@ export type PrivateEndpointConnectionProvisioningState = string;
 
 /** Known values of {@link BlobRestoreProgressStatus} that the service accepts. */
 export enum KnownBlobRestoreProgressStatus {
+  /** InProgress */
   InProgress = "InProgress",
+  /** Complete */
   Complete = "Complete",
+  /** Failed */
   Failed = "Failed"
 }
 
@@ -2693,9 +2759,13 @@ export type BlobRestoreProgressStatus = string;
 
 /** Known values of {@link Services} that the service accepts. */
 export enum KnownServices {
+  /** B */
   B = "b",
+  /** Q */
   Q = "q",
+  /** T */
   T = "t",
+  /** F */
   F = "f"
 }
 
@@ -2713,8 +2783,11 @@ export type Services = string;
 
 /** Known values of {@link SignedResourceTypes} that the service accepts. */
 export enum KnownSignedResourceTypes {
+  /** S */
   S = "s",
+  /** C */
   C = "c",
+  /** O */
   O = "o"
 }
 
@@ -2731,13 +2804,21 @@ export type SignedResourceTypes = string;
 
 /** Known values of {@link Permissions} that the service accepts. */
 export enum KnownPermissions {
+  /** R */
   R = "r",
+  /** D */
   D = "d",
+  /** W */
   W = "w",
+  /** L */
   L = "l",
+  /** A */
   A = "a",
+  /** C */
   C = "c",
+  /** U */
   U = "u",
+  /** P */
   P = "p"
 }
 
@@ -2759,9 +2840,13 @@ export type Permissions = string;
 
 /** Known values of {@link SignedResource} that the service accepts. */
 export enum KnownSignedResource {
+  /** B */
   B = "b",
+  /** C */
   C = "c",
+  /** F */
   F = "f",
+  /** S */
   S = "s"
 }
 
@@ -2779,6 +2864,7 @@ export type SignedResource = string;
 
 /** Known values of {@link ManagementPolicyName} that the service accepts. */
 export enum KnownManagementPolicyName {
+  /** Default */
   Default = "default"
 }
 
@@ -2793,6 +2879,7 @@ export type ManagementPolicyName = string;
 
 /** Known values of {@link RuleType} that the service accepts. */
 export enum KnownRuleType {
+  /** Lifecycle */
   Lifecycle = "Lifecycle"
 }
 
@@ -2807,6 +2894,7 @@ export type RuleType = string;
 
 /** Known values of {@link BlobInventoryPolicyName} that the service accepts. */
 export enum KnownBlobInventoryPolicyName {
+  /** Default */
   Default = "default"
 }
 
@@ -2821,6 +2909,7 @@ export type BlobInventoryPolicyName = string;
 
 /** Known values of {@link InventoryRuleType} that the service accepts. */
 export enum KnownInventoryRuleType {
+  /** Inventory */
   Inventory = "Inventory"
 }
 
@@ -2835,7 +2924,9 @@ export type InventoryRuleType = string;
 
 /** Known values of {@link Format} that the service accepts. */
 export enum KnownFormat {
+  /** Csv */
   Csv = "Csv",
+  /** Parquet */
   Parquet = "Parquet"
 }
 
@@ -2851,7 +2942,9 @@ export type Format = string;
 
 /** Known values of {@link Schedule} that the service accepts. */
 export enum KnownSchedule {
+  /** Daily */
   Daily = "Daily",
+  /** Weekly */
   Weekly = "Weekly"
 }
 
@@ -2867,7 +2960,9 @@ export type Schedule = string;
 
 /** Known values of {@link ObjectType} that the service accepts. */
 export enum KnownObjectType {
+  /** Blob */
   Blob = "Blob",
+  /** Container */
   Container = "Container"
 }
 
@@ -2883,9 +2978,13 @@ export type ObjectType = string;
 
 /** Known values of {@link CreatedByType} that the service accepts. */
 export enum KnownCreatedByType {
+  /** User */
   User = "User",
+  /** Application */
   Application = "Application",
+  /** ManagedIdentity */
   ManagedIdentity = "ManagedIdentity",
+  /** Key */
   Key = "Key"
 }
 
@@ -2903,7 +3002,9 @@ export type CreatedByType = string;
 
 /** Known values of {@link EncryptionScopeSource} that the service accepts. */
 export enum KnownEncryptionScopeSource {
+  /** MicrosoftStorage */
   MicrosoftStorage = "Microsoft.Storage",
+  /** MicrosoftKeyVault */
   MicrosoftKeyVault = "Microsoft.KeyVault"
 }
 
@@ -2919,7 +3020,9 @@ export type EncryptionScopeSource = string;
 
 /** Known values of {@link EncryptionScopeState} that the service accepts. */
 export enum KnownEncryptionScopeState {
+  /** Enabled */
   Enabled = "Enabled",
+  /** Disabled */
   Disabled = "Disabled"
 }
 
@@ -2935,12 +3038,19 @@ export type EncryptionScopeState = string;
 
 /** Known values of {@link CorsRuleAllowedMethodsItem} that the service accepts. */
 export enum KnownCorsRuleAllowedMethodsItem {
+  /** Delete */
   Delete = "DELETE",
+  /** GET */
   GET = "GET",
+  /** Head */
   Head = "HEAD",
+  /** Merge */
   Merge = "MERGE",
+  /** Post */
   Post = "POST",
+  /** Options */
   Options = "OPTIONS",
+  /** PUT */
   PUT = "PUT"
 }
 
@@ -2961,6 +3071,7 @@ export type CorsRuleAllowedMethodsItem = string;
 
 /** Known values of {@link Name} that the service accepts. */
 export enum KnownName {
+  /** AccessTimeTracking */
   AccessTimeTracking = "AccessTimeTracking"
 }
 
@@ -2975,6 +3086,7 @@ export type Name = string;
 
 /** Known values of {@link ListContainersInclude} that the service accepts. */
 export enum KnownListContainersInclude {
+  /** Deleted */
   Deleted = "deleted"
 }
 
@@ -2989,7 +3101,9 @@ export type ListContainersInclude = string;
 
 /** Known values of {@link LeaseStatus} that the service accepts. */
 export enum KnownLeaseStatus {
+  /** Locked */
   Locked = "Locked",
+  /** Unlocked */
   Unlocked = "Unlocked"
 }
 
@@ -3005,10 +3119,15 @@ export type LeaseStatus = string;
 
 /** Known values of {@link LeaseState} that the service accepts. */
 export enum KnownLeaseState {
+  /** Available */
   Available = "Available",
+  /** Leased */
   Leased = "Leased",
+  /** Expired */
   Expired = "Expired",
+  /** Breaking */
   Breaking = "Breaking",
+  /** Broken */
   Broken = "Broken"
 }
 
@@ -3027,7 +3146,9 @@ export type LeaseState = string;
 
 /** Known values of {@link LeaseDuration} that the service accepts. */
 export enum KnownLeaseDuration {
+  /** Infinite */
   Infinite = "Infinite",
+  /** Fixed */
   Fixed = "Fixed"
 }
 
@@ -3043,7 +3164,9 @@ export type LeaseDuration = string;
 
 /** Known values of {@link ImmutabilityPolicyState} that the service accepts. */
 export enum KnownImmutabilityPolicyState {
+  /** Locked */
   Locked = "Locked",
+  /** Unlocked */
   Unlocked = "Unlocked"
 }
 
@@ -3059,8 +3182,11 @@ export type ImmutabilityPolicyState = string;
 
 /** Known values of {@link ImmutabilityPolicyUpdateType} that the service accepts. */
 export enum KnownImmutabilityPolicyUpdateType {
+  /** Put */
   Put = "put",
+  /** Lock */
   Lock = "lock",
+  /** Extend */
   Extend = "extend"
 }
 
@@ -3077,7 +3203,9 @@ export type ImmutabilityPolicyUpdateType = string;
 
 /** Known values of {@link MigrationState} that the service accepts. */
 export enum KnownMigrationState {
+  /** InProgress */
   InProgress = "InProgress",
+  /** Completed */
   Completed = "Completed"
 }
 
@@ -3093,10 +3221,15 @@ export type MigrationState = string;
 
 /** Known values of {@link LeaseContainerRequestAction} that the service accepts. */
 export enum KnownLeaseContainerRequestAction {
+  /** Acquire */
   Acquire = "Acquire",
+  /** Renew */
   Renew = "Renew",
+  /** Change */
   Change = "Change",
+  /** Release */
   Release = "Release",
+  /** Break */
   Break = "Break"
 }
 
@@ -3115,7 +3248,9 @@ export type LeaseContainerRequestAction = string;
 
 /** Known values of {@link EnabledProtocols} that the service accepts. */
 export enum KnownEnabledProtocols {
+  /** SMB */
   SMB = "SMB",
+  /** NFS */
   NFS = "NFS"
 }
 
@@ -3131,8 +3266,11 @@ export type EnabledProtocols = string;
 
 /** Known values of {@link RootSquashType} that the service accepts. */
 export enum KnownRootSquashType {
+  /** NoRootSquash */
   NoRootSquash = "NoRootSquash",
+  /** RootSquash */
   RootSquash = "RootSquash",
+  /** AllSquash */
   AllSquash = "AllSquash"
 }
 
@@ -3149,9 +3287,13 @@ export type RootSquashType = string;
 
 /** Known values of {@link ShareAccessTier} that the service accepts. */
 export enum KnownShareAccessTier {
+  /** TransactionOptimized */
   TransactionOptimized = "TransactionOptimized",
+  /** Hot */
   Hot = "Hot",
+  /** Cool */
   Cool = "Cool",
+  /** Premium */
   Premium = "Premium"
 }
 
@@ -3169,10 +3311,15 @@ export type ShareAccessTier = string;
 
 /** Known values of {@link LeaseShareAction} that the service accepts. */
 export enum KnownLeaseShareAction {
+  /** Acquire */
   Acquire = "Acquire",
+  /** Renew */
   Renew = "Renew",
+  /** Change */
   Change = "Change",
+  /** Release */
   Release = "Release",
+  /** Break */
   Break = "Break"
 }
 

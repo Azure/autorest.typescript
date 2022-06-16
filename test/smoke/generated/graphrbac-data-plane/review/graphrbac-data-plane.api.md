@@ -556,27 +556,20 @@ export interface KeyCredentialsUpdateParameters {
 
 // @public
 export enum KnownConsentType {
-    // (undocumented)
     AllPrincipals = "AllPrincipals",
-    // (undocumented)
     Principal = "Principal"
 }
 
 // @public
 export enum KnownGroupMembershipClaimTypes {
-    // (undocumented)
     All = "All",
-    // (undocumented)
     None = "None",
-    // (undocumented)
     SecurityGroup = "SecurityGroup"
 }
 
 // @public
 export enum KnownUserType {
-    // (undocumented)
     Guest = "Guest",
-    // (undocumented)
     Member = "Member"
 }
 

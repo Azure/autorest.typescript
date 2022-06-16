@@ -10324,8 +10324,11 @@ export interface DataFlowDebugSessionExecuteCommandHeaders {
 
 /** Known values of {@link FactoryIdentityType} that the service accepts. */
 export enum KnownFactoryIdentityType {
+  /** SystemAssigned */
   SystemAssigned = "SystemAssigned",
+  /** UserAssigned */
   UserAssigned = "UserAssigned",
+  /** SystemAssignedUserAssigned */
   SystemAssignedUserAssigned = "SystemAssigned,UserAssigned"
 }
 
@@ -10342,11 +10345,17 @@ export type FactoryIdentityType = string;
 
 /** Known values of {@link GlobalParameterType} that the service accepts. */
 export enum KnownGlobalParameterType {
+  /** Object */
   Object = "Object",
+  /** String */
   String = "String",
+  /** Int */
   Int = "Int",
+  /** Float */
   Float = "Float",
+  /** Bool */
   Bool = "Bool",
+  /** Array */
   Array = "Array"
 }
 
@@ -10366,7 +10375,9 @@ export type GlobalParameterType = string;
 
 /** Known values of {@link PublicNetworkAccess} that the service accepts. */
 export enum KnownPublicNetworkAccess {
+  /** Enabled */
   Enabled = "Enabled",
+  /** Disabled */
   Disabled = "Disabled"
 }
 
@@ -10382,7 +10393,9 @@ export type PublicNetworkAccess = string;
 
 /** Known values of {@link IntegrationRuntimeType} that the service accepts. */
 export enum KnownIntegrationRuntimeType {
+  /** Managed */
   Managed = "Managed",
+  /** SelfHosted */
   SelfHosted = "SelfHosted"
 }
 
@@ -10398,7 +10411,9 @@ export type IntegrationRuntimeType = string;
 
 /** Known values of {@link IntegrationRuntimeAutoUpdate} that the service accepts. */
 export enum KnownIntegrationRuntimeAutoUpdate {
+  /** On */
   On = "On",
+  /** Off */
   Off = "Off"
 }
 
@@ -10414,15 +10429,25 @@ export type IntegrationRuntimeAutoUpdate = string;
 
 /** Known values of {@link IntegrationRuntimeState} that the service accepts. */
 export enum KnownIntegrationRuntimeState {
+  /** Initial */
   Initial = "Initial",
+  /** Stopped */
   Stopped = "Stopped",
+  /** Started */
   Started = "Started",
+  /** Starting */
   Starting = "Starting",
+  /** Stopping */
   Stopping = "Stopping",
+  /** NeedRegistration */
   NeedRegistration = "NeedRegistration",
+  /** Online */
   Online = "Online",
+  /** Limited */
   Limited = "Limited",
+  /** Offline */
   Offline = "Offline",
+  /** AccessDenied */
   AccessDenied = "AccessDenied"
 }
 
@@ -10446,7 +10471,9 @@ export type IntegrationRuntimeState = string;
 
 /** Known values of {@link IntegrationRuntimeAuthKeyName} that the service accepts. */
 export enum KnownIntegrationRuntimeAuthKeyName {
+  /** AuthKey1 */
   AuthKey1 = "authKey1",
+  /** AuthKey2 */
   AuthKey2 = "authKey2"
 }
 
@@ -10462,9 +10489,13 @@ export type IntegrationRuntimeAuthKeyName = string;
 
 /** Known values of {@link SsisObjectMetadataType} that the service accepts. */
 export enum KnownSsisObjectMetadataType {
+  /** Folder */
   Folder = "Folder",
+  /** Project */
   Project = "Project",
+  /** Package */
   Package = "Package",
+  /** Environment */
   Environment = "Environment"
 }
 
@@ -10482,12 +10513,19 @@ export type SsisObjectMetadataType = string;
 
 /** Known values of {@link SelfHostedIntegrationRuntimeNodeStatus} that the service accepts. */
 export enum KnownSelfHostedIntegrationRuntimeNodeStatus {
+  /** NeedRegistration */
   NeedRegistration = "NeedRegistration",
+  /** Online */
   Online = "Online",
+  /** Limited */
   Limited = "Limited",
+  /** Offline */
   Offline = "Offline",
+  /** Upgrading */
   Upgrading = "Upgrading",
+  /** Initializing */
   Initializing = "Initializing",
+  /** InitializeFailed */
   InitializeFailed = "InitializeFailed"
 }
 
@@ -10508,8 +10546,11 @@ export type SelfHostedIntegrationRuntimeNodeStatus = string;
 
 /** Known values of {@link IntegrationRuntimeUpdateResult} that the service accepts. */
 export enum KnownIntegrationRuntimeUpdateResult {
+  /** None */
   None = "None",
+  /** Succeed */
   Succeed = "Succeed",
+  /** Fail */
   Fail = "Fail"
 }
 
@@ -10526,12 +10567,19 @@ export type IntegrationRuntimeUpdateResult = string;
 
 /** Known values of {@link ParameterType} that the service accepts. */
 export enum KnownParameterType {
+  /** Object */
   Object = "Object",
+  /** String */
   String = "String",
+  /** Int */
   Int = "Int",
+  /** Float */
   Float = "Float",
+  /** Bool */
   Bool = "Bool",
+  /** Array */
   Array = "Array",
+  /** SecureString */
   SecureString = "SecureString"
 }
 
@@ -10552,9 +10600,13 @@ export type ParameterType = string;
 
 /** Known values of {@link DependencyCondition} that the service accepts. */
 export enum KnownDependencyCondition {
+  /** Succeeded */
   Succeeded = "Succeeded",
+  /** Failed */
   Failed = "Failed",
+  /** Skipped */
   Skipped = "Skipped",
+  /** Completed */
   Completed = "Completed"
 }
 
@@ -10572,8 +10624,11 @@ export type DependencyCondition = string;
 
 /** Known values of {@link VariableType} that the service accepts. */
 export enum KnownVariableType {
+  /** String */
   String = "String",
+  /** Bool */
   Bool = "Bool",
+  /** Array */
   Array = "Array"
 }
 
@@ -10590,17 +10645,29 @@ export type VariableType = string;
 
 /** Known values of {@link RunQueryFilterOperand} that the service accepts. */
 export enum KnownRunQueryFilterOperand {
+  /** PipelineName */
   PipelineName = "PipelineName",
+  /** Status */
   Status = "Status",
+  /** RunStart */
   RunStart = "RunStart",
+  /** RunEnd */
   RunEnd = "RunEnd",
+  /** ActivityName */
   ActivityName = "ActivityName",
+  /** ActivityRunStart */
   ActivityRunStart = "ActivityRunStart",
+  /** ActivityRunEnd */
   ActivityRunEnd = "ActivityRunEnd",
+  /** ActivityType */
   ActivityType = "ActivityType",
+  /** TriggerName */
   TriggerName = "TriggerName",
+  /** TriggerRunTimestamp */
   TriggerRunTimestamp = "TriggerRunTimestamp",
+  /** RunGroupId */
   RunGroupId = "RunGroupId",
+  /** LatestOnly */
   LatestOnly = "LatestOnly"
 }
 
@@ -10626,9 +10693,13 @@ export type RunQueryFilterOperand = string;
 
 /** Known values of {@link RunQueryFilterOperator} that the service accepts. */
 export enum KnownRunQueryFilterOperator {
+  /** Equals */
   Equals = "Equals",
+  /** NotEquals */
   NotEquals = "NotEquals",
+  /** In */
   In = "In",
+  /** NotIn */
   NotIn = "NotIn"
 }
 
@@ -10646,14 +10717,23 @@ export type RunQueryFilterOperator = string;
 
 /** Known values of {@link RunQueryOrderByField} that the service accepts. */
 export enum KnownRunQueryOrderByField {
+  /** RunStart */
   RunStart = "RunStart",
+  /** RunEnd */
   RunEnd = "RunEnd",
+  /** PipelineName */
   PipelineName = "PipelineName",
+  /** Status */
   Status = "Status",
+  /** ActivityName */
   ActivityName = "ActivityName",
+  /** ActivityRunStart */
   ActivityRunStart = "ActivityRunStart",
+  /** ActivityRunEnd */
   ActivityRunEnd = "ActivityRunEnd",
+  /** TriggerName */
   TriggerName = "TriggerName",
+  /** TriggerRunTimestamp */
   TriggerRunTimestamp = "TriggerRunTimestamp"
 }
 
@@ -10676,7 +10756,9 @@ export type RunQueryOrderByField = string;
 
 /** Known values of {@link RunQueryOrder} that the service accepts. */
 export enum KnownRunQueryOrder {
+  /** ASC */
   ASC = "ASC",
+  /** Desc */
   Desc = "DESC"
 }
 
@@ -10692,8 +10774,11 @@ export type RunQueryOrder = string;
 
 /** Known values of {@link TriggerRuntimeState} that the service accepts. */
 export enum KnownTriggerRuntimeState {
+  /** Started */
   Started = "Started",
+  /** Stopped */
   Stopped = "Stopped",
+  /** Disabled */
   Disabled = "Disabled"
 }
 
@@ -10710,10 +10795,15 @@ export type TriggerRuntimeState = string;
 
 /** Known values of {@link EventSubscriptionStatus} that the service accepts. */
 export enum KnownEventSubscriptionStatus {
+  /** Enabled */
   Enabled = "Enabled",
+  /** Provisioning */
   Provisioning = "Provisioning",
+  /** Deprovisioning */
   Deprovisioning = "Deprovisioning",
+  /** Disabled */
   Disabled = "Disabled",
+  /** Unknown */
   Unknown = "Unknown"
 }
 
@@ -10732,8 +10822,11 @@ export type EventSubscriptionStatus = string;
 
 /** Known values of {@link TriggerRunStatus} that the service accepts. */
 export enum KnownTriggerRunStatus {
+  /** Succeeded */
   Succeeded = "Succeeded",
+  /** Failed */
   Failed = "Failed",
+  /** Inprogress */
   Inprogress = "Inprogress"
 }
 
@@ -10750,8 +10843,11 @@ export type TriggerRunStatus = string;
 
 /** Known values of {@link DataFlowDebugCommandType} that the service accepts. */
 export enum KnownDataFlowDebugCommandType {
+  /** ExecutePreviewQuery */
   ExecutePreviewQuery = "executePreviewQuery",
+  /** ExecuteStatisticsQuery */
   ExecuteStatisticsQuery = "executeStatisticsQuery",
+  /** ExecuteExpressionQuery */
   ExecuteExpressionQuery = "executeExpressionQuery"
 }
 
@@ -10768,8 +10864,11 @@ export type DataFlowDebugCommandType = string;
 
 /** Known values of {@link DataFlowComputeType} that the service accepts. */
 export enum KnownDataFlowComputeType {
+  /** General */
   General = "General",
+  /** MemoryOptimized */
   MemoryOptimized = "MemoryOptimized",
+  /** ComputeOptimized */
   ComputeOptimized = "ComputeOptimized"
 }
 
@@ -10786,9 +10885,13 @@ export type DataFlowComputeType = string;
 
 /** Known values of {@link IntegrationRuntimeSsisCatalogPricingTier} that the service accepts. */
 export enum KnownIntegrationRuntimeSsisCatalogPricingTier {
+  /** Basic */
   Basic = "Basic",
+  /** Standard */
   Standard = "Standard",
+  /** Premium */
   Premium = "Premium",
+  /** PremiumRS */
   PremiumRS = "PremiumRS"
 }
 
@@ -10806,7 +10909,9 @@ export type IntegrationRuntimeSsisCatalogPricingTier = string;
 
 /** Known values of {@link IntegrationRuntimeLicenseType} that the service accepts. */
 export enum KnownIntegrationRuntimeLicenseType {
+  /** BasePrice */
   BasePrice = "BasePrice",
+  /** LicenseIncluded */
   LicenseIncluded = "LicenseIncluded"
 }
 
@@ -10822,7 +10927,9 @@ export type IntegrationRuntimeLicenseType = string;
 
 /** Known values of {@link IntegrationRuntimeEntityReferenceType} that the service accepts. */
 export enum KnownIntegrationRuntimeEntityReferenceType {
+  /** IntegrationRuntimeReference */
   IntegrationRuntimeReference = "IntegrationRuntimeReference",
+  /** LinkedServiceReference */
   LinkedServiceReference = "LinkedServiceReference"
 }
 
@@ -10838,7 +10945,9 @@ export type IntegrationRuntimeEntityReferenceType = string;
 
 /** Known values of {@link IntegrationRuntimeEdition} that the service accepts. */
 export enum KnownIntegrationRuntimeEdition {
+  /** Standard */
   Standard = "Standard",
+  /** Enterprise */
   Enterprise = "Enterprise"
 }
 
@@ -10854,9 +10963,13 @@ export type IntegrationRuntimeEdition = string;
 
 /** Known values of {@link ManagedIntegrationRuntimeNodeStatus} that the service accepts. */
 export enum KnownManagedIntegrationRuntimeNodeStatus {
+  /** Starting */
   Starting = "Starting",
+  /** Available */
   Available = "Available",
+  /** Recycling */
   Recycling = "Recycling",
+  /** Unavailable */
   Unavailable = "Unavailable"
 }
 
@@ -10874,8 +10987,11 @@ export type ManagedIntegrationRuntimeNodeStatus = string;
 
 /** Known values of {@link IntegrationRuntimeInternalChannelEncryptionMode} that the service accepts. */
 export enum KnownIntegrationRuntimeInternalChannelEncryptionMode {
+  /** NotSet */
   NotSet = "NotSet",
+  /** SslEncrypted */
   SslEncrypted = "SslEncrypted",
+  /** NotEncrypted */
   NotEncrypted = "NotEncrypted"
 }
 
@@ -10892,8 +11008,11 @@ export type IntegrationRuntimeInternalChannelEncryptionMode = string;
 
 /** Known values of {@link SqlAlwaysEncryptedAkvAuthType} that the service accepts. */
 export enum KnownSqlAlwaysEncryptedAkvAuthType {
+  /** ServicePrincipal */
   ServicePrincipal = "ServicePrincipal",
+  /** ManagedIdentity */
   ManagedIdentity = "ManagedIdentity",
+  /** UserAssignedManagedIdentity */
   UserAssignedManagedIdentity = "UserAssignedManagedIdentity"
 }
 
@@ -10910,7 +11029,9 @@ export type SqlAlwaysEncryptedAkvAuthType = string;
 
 /** Known values of {@link CosmosDbServicePrincipalCredentialType} that the service accepts. */
 export enum KnownCosmosDbServicePrincipalCredentialType {
+  /** ServicePrincipalKey */
   ServicePrincipalKey = "ServicePrincipalKey",
+  /** ServicePrincipalCert */
   ServicePrincipalCert = "ServicePrincipalCert"
 }
 
@@ -10926,7 +11047,9 @@ export type CosmosDbServicePrincipalCredentialType = string;
 
 /** Known values of {@link CosmosDbConnectionMode} that the service accepts. */
 export enum KnownCosmosDbConnectionMode {
+  /** Gateway */
   Gateway = "Gateway",
+  /** Direct */
   Direct = "Direct"
 }
 
@@ -10942,7 +11065,9 @@ export type CosmosDbConnectionMode = string;
 
 /** Known values of {@link SybaseAuthenticationType} that the service accepts. */
 export enum KnownSybaseAuthenticationType {
+  /** Basic */
   Basic = "Basic",
+  /** Windows */
   Windows = "Windows"
 }
 
@@ -10958,6 +11083,7 @@ export type SybaseAuthenticationType = string;
 
 /** Known values of {@link Db2AuthenticationType} that the service accepts. */
 export enum KnownDb2AuthenticationType {
+  /** Basic */
   Basic = "Basic"
 }
 
@@ -10972,7 +11098,9 @@ export type Db2AuthenticationType = string;
 
 /** Known values of {@link TeradataAuthenticationType} that the service accepts. */
 export enum KnownTeradataAuthenticationType {
+  /** Basic */
   Basic = "Basic",
+  /** Windows */
   Windows = "Windows"
 }
 
@@ -10988,10 +11116,15 @@ export type TeradataAuthenticationType = string;
 
 /** Known values of {@link ODataAuthenticationType} that the service accepts. */
 export enum KnownODataAuthenticationType {
+  /** Basic */
   Basic = "Basic",
+  /** Anonymous */
   Anonymous = "Anonymous",
+  /** Windows */
   Windows = "Windows",
+  /** AadServicePrincipal */
   AadServicePrincipal = "AadServicePrincipal",
+  /** ManagedServiceIdentity */
   ManagedServiceIdentity = "ManagedServiceIdentity"
 }
 
@@ -11010,7 +11143,9 @@ export type ODataAuthenticationType = string;
 
 /** Known values of {@link ODataAadServicePrincipalCredentialType} that the service accepts. */
 export enum KnownODataAadServicePrincipalCredentialType {
+  /** ServicePrincipalKey */
   ServicePrincipalKey = "ServicePrincipalKey",
+  /** ServicePrincipalCert */
   ServicePrincipalCert = "ServicePrincipalCert"
 }
 
@@ -11026,8 +11161,11 @@ export type ODataAadServicePrincipalCredentialType = string;
 
 /** Known values of {@link WebAuthenticationType} that the service accepts. */
 export enum KnownWebAuthenticationType {
+  /** Basic */
   Basic = "Basic",
+  /** Anonymous */
   Anonymous = "Anonymous",
+  /** ClientCertificate */
   ClientCertificate = "ClientCertificate"
 }
 
@@ -11044,7 +11182,9 @@ export type WebAuthenticationType = string;
 
 /** Known values of {@link MongoDbAuthenticationType} that the service accepts. */
 export enum KnownMongoDbAuthenticationType {
+  /** Basic */
   Basic = "Basic",
+  /** Anonymous */
   Anonymous = "Anonymous"
 }
 
@@ -11060,9 +11200,13 @@ export type MongoDbAuthenticationType = string;
 
 /** Known values of {@link RestServiceAuthenticationType} that the service accepts. */
 export enum KnownRestServiceAuthenticationType {
+  /** Anonymous */
   Anonymous = "Anonymous",
+  /** Basic */
   Basic = "Basic",
+  /** AadServicePrincipal */
   AadServicePrincipal = "AadServicePrincipal",
+  /** ManagedServiceIdentity */
   ManagedServiceIdentity = "ManagedServiceIdentity"
 }
 
@@ -11080,10 +11224,15 @@ export type RestServiceAuthenticationType = string;
 
 /** Known values of {@link HttpAuthenticationType} that the service accepts. */
 export enum KnownHttpAuthenticationType {
+  /** Basic */
   Basic = "Basic",
+  /** Anonymous */
   Anonymous = "Anonymous",
+  /** Digest */
   Digest = "Digest",
+  /** Windows */
   Windows = "Windows",
+  /** ClientCertificate */
   ClientCertificate = "ClientCertificate"
 }
 
@@ -11102,7 +11251,9 @@ export type HttpAuthenticationType = string;
 
 /** Known values of {@link FtpAuthenticationType} that the service accepts. */
 export enum KnownFtpAuthenticationType {
+  /** Basic */
   Basic = "Basic",
+  /** Anonymous */
   Anonymous = "Anonymous"
 }
 
@@ -11118,8 +11269,11 @@ export type FtpAuthenticationType = string;
 
 /** Known values of {@link SftpAuthenticationType} that the service accepts. */
 export enum KnownSftpAuthenticationType {
+  /** Basic */
   Basic = "Basic",
+  /** SshPublicKey */
   SshPublicKey = "SshPublicKey",
+  /** MultiFactor */
   MultiFactor = "MultiFactor"
 }
 
@@ -11136,7 +11290,9 @@ export type SftpAuthenticationType = string;
 
 /** Known values of {@link SapHanaAuthenticationType} that the service accepts. */
 export enum KnownSapHanaAuthenticationType {
+  /** Basic */
   Basic = "Basic",
+  /** Windows */
   Windows = "Windows"
 }
 
@@ -11152,7 +11308,9 @@ export type SapHanaAuthenticationType = string;
 
 /** Known values of {@link GoogleBigQueryAuthenticationType} that the service accepts. */
 export enum KnownGoogleBigQueryAuthenticationType {
+  /** ServiceAuthentication */
   ServiceAuthentication = "ServiceAuthentication",
+  /** UserAuthentication */
   UserAuthentication = "UserAuthentication"
 }
 
@@ -11168,7 +11326,9 @@ export type GoogleBigQueryAuthenticationType = string;
 
 /** Known values of {@link HBaseAuthenticationType} that the service accepts. */
 export enum KnownHBaseAuthenticationType {
+  /** Anonymous */
   Anonymous = "Anonymous",
+  /** Basic */
   Basic = "Basic"
 }
 
@@ -11184,8 +11344,11 @@ export type HBaseAuthenticationType = string;
 
 /** Known values of {@link HiveServerType} that the service accepts. */
 export enum KnownHiveServerType {
+  /** HiveServer1 */
   HiveServer1 = "HiveServer1",
+  /** HiveServer2 */
   HiveServer2 = "HiveServer2",
+  /** HiveThriftServer */
   HiveThriftServer = "HiveThriftServer"
 }
 
@@ -11202,8 +11365,11 @@ export type HiveServerType = string;
 
 /** Known values of {@link HiveThriftTransportProtocol} that the service accepts. */
 export enum KnownHiveThriftTransportProtocol {
+  /** Binary */
   Binary = "Binary",
+  /** Sasl */
   Sasl = "SASL",
+  /** Http */
   Http = "HTTP "
 }
 
@@ -11220,9 +11386,13 @@ export type HiveThriftTransportProtocol = string;
 
 /** Known values of {@link HiveAuthenticationType} that the service accepts. */
 export enum KnownHiveAuthenticationType {
+  /** Anonymous */
   Anonymous = "Anonymous",
+  /** Username */
   Username = "Username",
+  /** UsernameAndPassword */
   UsernameAndPassword = "UsernameAndPassword",
+  /** WindowsAzureHDInsightService */
   WindowsAzureHDInsightService = "WindowsAzureHDInsightService"
 }
 
@@ -11240,8 +11410,11 @@ export type HiveAuthenticationType = string;
 
 /** Known values of {@link ImpalaAuthenticationType} that the service accepts. */
 export enum KnownImpalaAuthenticationType {
+  /** Anonymous */
   Anonymous = "Anonymous",
+  /** SaslUsername */
   SaslUsername = "SASLUsername",
+  /** UsernameAndPassword */
   UsernameAndPassword = "UsernameAndPassword"
 }
 
@@ -11258,8 +11431,11 @@ export type ImpalaAuthenticationType = string;
 
 /** Known values of {@link PhoenixAuthenticationType} that the service accepts. */
 export enum KnownPhoenixAuthenticationType {
+  /** Anonymous */
   Anonymous = "Anonymous",
+  /** UsernameAndPassword */
   UsernameAndPassword = "UsernameAndPassword",
+  /** WindowsAzureHDInsightService */
   WindowsAzureHDInsightService = "WindowsAzureHDInsightService"
 }
 
@@ -11276,7 +11452,9 @@ export type PhoenixAuthenticationType = string;
 
 /** Known values of {@link PrestoAuthenticationType} that the service accepts. */
 export enum KnownPrestoAuthenticationType {
+  /** Anonymous */
   Anonymous = "Anonymous",
+  /** Ldap */
   Ldap = "LDAP"
 }
 
@@ -11292,7 +11470,9 @@ export type PrestoAuthenticationType = string;
 
 /** Known values of {@link ServiceNowAuthenticationType} that the service accepts. */
 export enum KnownServiceNowAuthenticationType {
+  /** Basic */
   Basic = "Basic",
+  /** OAuth2 */
   OAuth2 = "OAuth2"
 }
 
@@ -11308,8 +11488,11 @@ export type ServiceNowAuthenticationType = string;
 
 /** Known values of {@link SparkServerType} that the service accepts. */
 export enum KnownSparkServerType {
+  /** SharkServer */
   SharkServer = "SharkServer",
+  /** SharkServer2 */
   SharkServer2 = "SharkServer2",
+  /** SparkThriftServer */
   SparkThriftServer = "SparkThriftServer"
 }
 
@@ -11326,8 +11509,11 @@ export type SparkServerType = string;
 
 /** Known values of {@link SparkThriftTransportProtocol} that the service accepts. */
 export enum KnownSparkThriftTransportProtocol {
+  /** Binary */
   Binary = "Binary",
+  /** Sasl */
   Sasl = "SASL",
+  /** Http */
   Http = "HTTP "
 }
 
@@ -11344,9 +11530,13 @@ export type SparkThriftTransportProtocol = string;
 
 /** Known values of {@link SparkAuthenticationType} that the service accepts. */
 export enum KnownSparkAuthenticationType {
+  /** Anonymous */
   Anonymous = "Anonymous",
+  /** Username */
   Username = "Username",
+  /** UsernameAndPassword */
   UsernameAndPassword = "UsernameAndPassword",
+  /** WindowsAzureHDInsightService */
   WindowsAzureHDInsightService = "WindowsAzureHDInsightService"
 }
 
@@ -11364,7 +11554,9 @@ export type SparkAuthenticationType = string;
 
 /** Known values of {@link GoogleAdWordsAuthenticationType} that the service accepts. */
 export enum KnownGoogleAdWordsAuthenticationType {
+  /** ServiceAuthentication */
   ServiceAuthentication = "ServiceAuthentication",
+  /** UserAuthentication */
   UserAuthentication = "UserAuthentication"
 }
 
@@ -11380,7 +11572,9 @@ export type GoogleAdWordsAuthenticationType = string;
 
 /** Known values of {@link SalesforceSourceReadBehavior} that the service accepts. */
 export enum KnownSalesforceSourceReadBehavior {
+  /** Query */
   Query = "Query",
+  /** QueryAll */
   QueryAll = "QueryAll"
 }
 
@@ -11396,12 +11590,19 @@ export type SalesforceSourceReadBehavior = string;
 
 /** Known values of {@link StoredProcedureParameterType} that the service accepts. */
 export enum KnownStoredProcedureParameterType {
+  /** String */
   String = "String",
+  /** Int */
   Int = "Int",
+  /** Int64 */
   Int64 = "Int64",
+  /** Decimal */
   Decimal = "Decimal",
+  /** Guid */
   Guid = "Guid",
+  /** Boolean */
   Boolean = "Boolean",
+  /** Date */
   Date = "Date"
 }
 
@@ -11422,15 +11623,25 @@ export type StoredProcedureParameterType = string;
 
 /** Known values of {@link CassandraSourceReadConsistencyLevels} that the service accepts. */
 export enum KnownCassandraSourceReadConsistencyLevels {
+  /** ALL */
   ALL = "ALL",
+  /** EachQuorum */
   EachQuorum = "EACH_QUORUM",
+  /** Quorum */
   Quorum = "QUORUM",
+  /** LocalQuorum */
   LocalQuorum = "LOCAL_QUORUM",
+  /** ONE */
   ONE = "ONE",
+  /** TWO */
   TWO = "TWO",
+  /** Three */
   Three = "THREE",
+  /** LocalONE */
   LocalONE = "LOCAL_ONE",
+  /** Serial */
   Serial = "SERIAL",
+  /** LocalSerial */
   LocalSerial = "LOCAL_SERIAL"
 }
 
@@ -11454,7 +11665,9 @@ export type CassandraSourceReadConsistencyLevels = string;
 
 /** Known values of {@link SapCloudForCustomerSinkWriteBehavior} that the service accepts. */
 export enum KnownSapCloudForCustomerSinkWriteBehavior {
+  /** Insert */
   Insert = "Insert",
+  /** Update */
   Update = "Update"
 }
 
@@ -11470,7 +11683,9 @@ export type SapCloudForCustomerSinkWriteBehavior = string;
 
 /** Known values of {@link PolybaseSettingsRejectType} that the service accepts. */
 export enum KnownPolybaseSettingsRejectType {
+  /** Value */
   Value = "value",
+  /** Percentage */
   Percentage = "percentage"
 }
 
@@ -11486,7 +11701,9 @@ export type PolybaseSettingsRejectType = string;
 
 /** Known values of {@link AzureSearchIndexWriteBehaviorType} that the service accepts. */
 export enum KnownAzureSearchIndexWriteBehaviorType {
+  /** Merge */
   Merge = "Merge",
+  /** Upload */
   Upload = "Upload"
 }
 
@@ -11502,6 +11719,7 @@ export type AzureSearchIndexWriteBehaviorType = string;
 
 /** Known values of {@link DynamicsSinkWriteBehavior} that the service accepts. */
 export enum KnownDynamicsSinkWriteBehavior {
+  /** Upsert */
   Upsert = "Upsert"
 }
 
@@ -11516,7 +11734,9 @@ export type DynamicsSinkWriteBehavior = string;
 
 /** Known values of {@link SalesforceSinkWriteBehavior} that the service accepts. */
 export enum KnownSalesforceSinkWriteBehavior {
+  /** Insert */
   Insert = "Insert",
+  /** Upsert */
   Upsert = "Upsert"
 }
 
@@ -11532,8 +11752,11 @@ export type SalesforceSinkWriteBehavior = string;
 
 /** Known values of {@link HDInsightActivityDebugInfoOption} that the service accepts. */
 export enum KnownHDInsightActivityDebugInfoOption {
+  /** None */
   None = "None",
+  /** Always */
   Always = "Always",
+  /** Failure */
   Failure = "Failure"
 }
 
@@ -11550,9 +11773,13 @@ export type HDInsightActivityDebugInfoOption = string;
 
 /** Known values of {@link SsisPackageLocationType} that the service accepts. */
 export enum KnownSsisPackageLocationType {
+  /** Ssisdb */
   Ssisdb = "SSISDB",
+  /** File */
   File = "File",
+  /** InlinePackage */
   InlinePackage = "InlinePackage",
+  /** PackageStore */
   PackageStore = "PackageStore"
 }
 
@@ -11570,6 +11797,7 @@ export type SsisPackageLocationType = string;
 
 /** Known values of {@link SsisLogLocationType} that the service accepts. */
 export enum KnownSsisLogLocationType {
+  /** File */
   File = "File"
 }
 
@@ -11584,9 +11812,13 @@ export type SsisLogLocationType = string;
 
 /** Known values of {@link WebActivityMethod} that the service accepts. */
 export enum KnownWebActivityMethod {
+  /** GET */
   GET = "GET",
+  /** Post */
   Post = "POST",
+  /** PUT */
   PUT = "PUT",
+  /** Delete */
   Delete = "DELETE"
 }
 
@@ -11604,12 +11836,19 @@ export type WebActivityMethod = string;
 
 /** Known values of {@link AzureFunctionActivityMethod} that the service accepts. */
 export enum KnownAzureFunctionActivityMethod {
+  /** GET */
   GET = "GET",
+  /** Post */
   Post = "POST",
+  /** PUT */
   PUT = "PUT",
+  /** Delete */
   Delete = "DELETE",
+  /** Options */
   Options = "OPTIONS",
+  /** Head */
   Head = "HEAD",
+  /** Trace */
   Trace = "TRACE"
 }
 
@@ -11630,6 +11869,7 @@ export type AzureFunctionActivityMethod = string;
 
 /** Known values of {@link WebHookActivityMethod} that the service accepts. */
 export enum KnownWebHookActivityMethod {
+  /** Post */
   Post = "POST"
 }
 
@@ -11644,12 +11884,19 @@ export type WebHookActivityMethod = string;
 
 /** Known values of {@link RecurrenceFrequency} that the service accepts. */
 export enum KnownRecurrenceFrequency {
+  /** NotSpecified */
   NotSpecified = "NotSpecified",
+  /** Minute */
   Minute = "Minute",
+  /** Hour */
   Hour = "Hour",
+  /** Day */
   Day = "Day",
+  /** Week */
   Week = "Week",
+  /** Month */
   Month = "Month",
+  /** Year */
   Year = "Year"
 }
 
@@ -11670,7 +11917,9 @@ export type RecurrenceFrequency = string;
 
 /** Known values of {@link BlobEventTypes} that the service accepts. */
 export enum KnownBlobEventTypes {
+  /** MicrosoftStorageBlobCreated */
   MicrosoftStorageBlobCreated = "Microsoft.Storage.BlobCreated",
+  /** MicrosoftStorageBlobDeleted */
   MicrosoftStorageBlobDeleted = "Microsoft.Storage.BlobDeleted"
 }
 
@@ -11686,8 +11935,11 @@ export type BlobEventTypes = string;
 
 /** Known values of {@link TumblingWindowFrequency} that the service accepts. */
 export enum KnownTumblingWindowFrequency {
+  /** Minute */
   Minute = "Minute",
+  /** Hour */
   Hour = "Hour",
+  /** Month */
   Month = "Month"
 }
 
@@ -11704,7 +11956,9 @@ export type TumblingWindowFrequency = string;
 
 /** Known values of {@link JsonFormatFilePattern} that the service accepts. */
 export enum KnownJsonFormatFilePattern {
+  /** SetOfObjects */
   SetOfObjects = "setOfObjects",
+  /** ArrayOfObjects */
   ArrayOfObjects = "arrayOfObjects"
 }
 
@@ -11720,7 +11974,9 @@ export type JsonFormatFilePattern = string;
 
 /** Known values of {@link DatasetCompressionLevel} that the service accepts. */
 export enum KnownDatasetCompressionLevel {
+  /** Optimal */
   Optimal = "Optimal",
+  /** Fastest */
   Fastest = "Fastest"
 }
 
@@ -11736,10 +11992,15 @@ export type DatasetCompressionLevel = string;
 
 /** Known values of {@link AvroCompressionCodec} that the service accepts. */
 export enum KnownAvroCompressionCodec {
+  /** None */
   None = "none",
+  /** Deflate */
   Deflate = "deflate",
+  /** Snappy */
   Snappy = "snappy",
+  /** Xz */
   Xz = "xz",
+  /** Bzip2 */
   Bzip2 = "bzip2"
 }
 
@@ -11758,15 +12019,25 @@ export type AvroCompressionCodec = string;
 
 /** Known values of {@link CompressionCodec} that the service accepts. */
 export enum KnownCompressionCodec {
+  /** None */
   None = "none",
+  /** Lzo */
   Lzo = "lzo",
+  /** Bzip2 */
   Bzip2 = "bzip2",
+  /** Gzip */
   Gzip = "gzip",
+  /** Deflate */
   Deflate = "deflate",
+  /** ZipDeflate */
   ZipDeflate = "zipDeflate",
+  /** Snappy */
   Snappy = "snappy",
+  /** Lz4 */
   Lz4 = "lz4",
+  /** Tar */
   Tar = "tar",
+  /** TarGZip */
   TarGZip = "tarGZip"
 }
 
@@ -11790,9 +12061,13 @@ export type CompressionCodec = string;
 
 /** Known values of {@link OrcCompressionCodec} that the service accepts. */
 export enum KnownOrcCompressionCodec {
+  /** None */
   None = "none",
+  /** Zlib */
   Zlib = "zlib",
+  /** Snappy */
   Snappy = "snappy",
+  /** Lzo */
   Lzo = "lzo"
 }
 
@@ -11810,7 +12085,9 @@ export type OrcCompressionCodec = string;
 
 /** Known values of {@link DynamicsDeploymentType} that the service accepts. */
 export enum KnownDynamicsDeploymentType {
+  /** Online */
   Online = "Online",
+  /** OnPremisesWithIfd */
   OnPremisesWithIfd = "OnPremisesWithIfd"
 }
 
@@ -11826,8 +12103,11 @@ export type DynamicsDeploymentType = string;
 
 /** Known values of {@link DynamicsAuthenticationType} that the service accepts. */
 export enum KnownDynamicsAuthenticationType {
+  /** Office365 */
   Office365 = "Office365",
+  /** Ifd */
   Ifd = "Ifd",
+  /** AADServicePrincipal */
   AADServicePrincipal = "AADServicePrincipal"
 }
 
@@ -11844,7 +12124,9 @@ export type DynamicsAuthenticationType = string;
 
 /** Known values of {@link ServicePrincipalCredentialType} that the service accepts. */
 export enum KnownServicePrincipalCredentialType {
+  /** ServicePrincipalKey */
   ServicePrincipalKey = "ServicePrincipalKey",
+  /** ServicePrincipalCert */
   ServicePrincipalCert = "ServicePrincipalCert"
 }
 
@@ -11860,8 +12142,11 @@ export type ServicePrincipalCredentialType = string;
 
 /** Known values of {@link HdiNodeTypes} that the service accepts. */
 export enum KnownHdiNodeTypes {
+  /** Headnode */
   Headnode = "Headnode",
+  /** Workernode */
   Workernode = "Workernode",
+  /** Zookeeper */
   Zookeeper = "Zookeeper"
 }
 
@@ -11878,7 +12163,9 @@ export type HdiNodeTypes = string;
 
 /** Known values of {@link JsonWriteFilePattern} that the service accepts. */
 export enum KnownJsonWriteFilePattern {
+  /** SetOfObjects */
   SetOfObjects = "setOfObjects",
+  /** ArrayOfObjects */
   ArrayOfObjects = "arrayOfObjects"
 }
 
@@ -11894,8 +12181,11 @@ export type JsonWriteFilePattern = string;
 
 /** Known values of {@link AmazonRdsForOraclePartitionOption} that the service accepts. */
 export enum KnownAmazonRdsForOraclePartitionOption {
+  /** None */
   None = "None",
+  /** PhysicalPartitionsOfTable */
   PhysicalPartitionsOfTable = "PhysicalPartitionsOfTable",
+  /** DynamicRange */
   DynamicRange = "DynamicRange"
 }
 
@@ -11912,8 +12202,11 @@ export type AmazonRdsForOraclePartitionOption = string;
 
 /** Known values of {@link CopyBehaviorType} that the service accepts. */
 export enum KnownCopyBehaviorType {
+  /** PreserveHierarchy */
   PreserveHierarchy = "PreserveHierarchy",
+  /** FlattenHierarchy */
   FlattenHierarchy = "FlattenHierarchy",
+  /** MergeFiles */
   MergeFiles = "MergeFiles"
 }
 
@@ -11930,8 +12223,11 @@ export type CopyBehaviorType = string;
 
 /** Known values of {@link SqlWriteBehaviorEnum} that the service accepts. */
 export enum KnownSqlWriteBehaviorEnum {
+  /** Insert */
   Insert = "Insert",
+  /** Upsert */
   Upsert = "Upsert",
+  /** StoredProcedure */
   StoredProcedure = "StoredProcedure"
 }
 
@@ -11948,7 +12244,9 @@ export type SqlWriteBehaviorEnum = string;
 
 /** Known values of {@link SqlDWWriteBehaviorEnum} that the service accepts. */
 export enum KnownSqlDWWriteBehaviorEnum {
+  /** Insert */
   Insert = "Insert",
+  /** Upsert */
   Upsert = "Upsert"
 }
 
@@ -11964,8 +12262,11 @@ export type SqlDWWriteBehaviorEnum = string;
 
 /** Known values of {@link SqlPartitionOption} that the service accepts. */
 export enum KnownSqlPartitionOption {
+  /** None */
   None = "None",
+  /** PhysicalPartitionsOfTable */
   PhysicalPartitionsOfTable = "PhysicalPartitionsOfTable",
+  /** DynamicRange */
   DynamicRange = "DynamicRange"
 }
 
@@ -11982,8 +12283,11 @@ export type SqlPartitionOption = string;
 
 /** Known values of {@link SapHanaPartitionOption} that the service accepts. */
 export enum KnownSapHanaPartitionOption {
+  /** None */
   None = "None",
+  /** PhysicalPartitionsOfTable */
   PhysicalPartitionsOfTable = "PhysicalPartitionsOfTable",
+  /** SapHanaDynamicRange */
   SapHanaDynamicRange = "SapHanaDynamicRange"
 }
 
@@ -12000,11 +12304,17 @@ export type SapHanaPartitionOption = string;
 
 /** Known values of {@link SapTablePartitionOption} that the service accepts. */
 export enum KnownSapTablePartitionOption {
+  /** None */
   None = "None",
+  /** PartitionOnInt */
   PartitionOnInt = "PartitionOnInt",
+  /** PartitionOnCalendarYear */
   PartitionOnCalendarYear = "PartitionOnCalendarYear",
+  /** PartitionOnCalendarMonth */
   PartitionOnCalendarMonth = "PartitionOnCalendarMonth",
+  /** PartitionOnCalendarDate */
   PartitionOnCalendarDate = "PartitionOnCalendarDate",
+  /** PartitionOnTime */
   PartitionOnTime = "PartitionOnTime"
 }
 
@@ -12024,8 +12334,11 @@ export type SapTablePartitionOption = string;
 
 /** Known values of {@link OraclePartitionOption} that the service accepts. */
 export enum KnownOraclePartitionOption {
+  /** None */
   None = "None",
+  /** PhysicalPartitionsOfTable */
   PhysicalPartitionsOfTable = "PhysicalPartitionsOfTable",
+  /** DynamicRange */
   DynamicRange = "DynamicRange"
 }
 
@@ -12042,8 +12355,11 @@ export type OraclePartitionOption = string;
 
 /** Known values of {@link TeradataPartitionOption} that the service accepts. */
 export enum KnownTeradataPartitionOption {
+  /** None */
   None = "None",
+  /** Hash */
   Hash = "Hash",
+  /** DynamicRange */
   DynamicRange = "DynamicRange"
 }
 
@@ -12060,8 +12376,11 @@ export type TeradataPartitionOption = string;
 
 /** Known values of {@link NetezzaPartitionOption} that the service accepts. */
 export enum KnownNetezzaPartitionOption {
+  /** None */
   None = "None",
+  /** DataSlice */
   DataSlice = "DataSlice",
+  /** DynamicRange */
   DynamicRange = "DynamicRange"
 }
 

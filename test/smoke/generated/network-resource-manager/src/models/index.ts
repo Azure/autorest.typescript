@@ -9829,12 +9829,19 @@ export interface NetworkRule extends FirewallPolicyRule {
 
 /** Known values of {@link ApplicationGatewaySkuName} that the service accepts. */
 export enum KnownApplicationGatewaySkuName {
+  /** StandardSmall */
   StandardSmall = "Standard_Small",
+  /** StandardMedium */
   StandardMedium = "Standard_Medium",
+  /** StandardLarge */
   StandardLarge = "Standard_Large",
+  /** WAFMedium */
   WAFMedium = "WAF_Medium",
+  /** WAFLarge */
   WAFLarge = "WAF_Large",
+  /** StandardV2 */
   StandardV2 = "Standard_v2",
+  /** WAFV2 */
   WAFV2 = "WAF_v2"
 }
 
@@ -9855,9 +9862,13 @@ export type ApplicationGatewaySkuName = string;
 
 /** Known values of {@link ApplicationGatewayTier} that the service accepts. */
 export enum KnownApplicationGatewayTier {
+  /** Standard */
   Standard = "Standard",
+  /** WAF */
   WAF = "WAF",
+  /** StandardV2 */
   StandardV2 = "Standard_v2",
+  /** WAFV2 */
   WAFV2 = "WAF_v2"
 }
 
@@ -9875,8 +9886,11 @@ export type ApplicationGatewayTier = string;
 
 /** Known values of {@link ApplicationGatewaySslProtocol} that the service accepts. */
 export enum KnownApplicationGatewaySslProtocol {
+  /** TLSv10 */
   TLSv10 = "TLSv1_0",
+  /** TLSv11 */
   TLSv11 = "TLSv1_1",
+  /** TLSv12 */
   TLSv12 = "TLSv1_2"
 }
 
@@ -9893,7 +9907,9 @@ export type ApplicationGatewaySslProtocol = string;
 
 /** Known values of {@link ApplicationGatewaySslPolicyType} that the service accepts. */
 export enum KnownApplicationGatewaySslPolicyType {
+  /** Predefined */
   Predefined = "Predefined",
+  /** Custom */
   Custom = "Custom"
 }
 
@@ -9909,8 +9925,11 @@ export type ApplicationGatewaySslPolicyType = string;
 
 /** Known values of {@link ApplicationGatewaySslPolicyName} that the service accepts. */
 export enum KnownApplicationGatewaySslPolicyName {
+  /** AppGwSslPolicy20150501 */
   AppGwSslPolicy20150501 = "AppGwSslPolicy20150501",
+  /** AppGwSslPolicy20170401 */
   AppGwSslPolicy20170401 = "AppGwSslPolicy20170401",
+  /** AppGwSslPolicy20170401S */
   AppGwSslPolicy20170401S = "AppGwSslPolicy20170401S"
 }
 
@@ -9927,33 +9946,61 @@ export type ApplicationGatewaySslPolicyName = string;
 
 /** Known values of {@link ApplicationGatewaySslCipherSuite} that the service accepts. */
 export enum KnownApplicationGatewaySslCipherSuite {
+  /** TLSEcdheRSAWithAES256CBCSHA384 */
   TLSEcdheRSAWithAES256CBCSHA384 = "TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384",
+  /** TLSEcdheRSAWithAES128CBCSHA256 */
   TLSEcdheRSAWithAES128CBCSHA256 = "TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256",
+  /** TLSEcdheRSAWithAES256CBCSHA */
   TLSEcdheRSAWithAES256CBCSHA = "TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA",
+  /** TLSEcdheRSAWithAES128CBCSHA */
   TLSEcdheRSAWithAES128CBCSHA = "TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA",
+  /** TLSDHERSAWithAES256GCMSHA384 */
   TLSDHERSAWithAES256GCMSHA384 = "TLS_DHE_RSA_WITH_AES_256_GCM_SHA384",
+  /** TLSDHERSAWithAES128GCMSHA256 */
   TLSDHERSAWithAES128GCMSHA256 = "TLS_DHE_RSA_WITH_AES_128_GCM_SHA256",
+  /** TLSDHERSAWithAES256CBCSHA */
   TLSDHERSAWithAES256CBCSHA = "TLS_DHE_RSA_WITH_AES_256_CBC_SHA",
+  /** TLSDHERSAWithAES128CBCSHA */
   TLSDHERSAWithAES128CBCSHA = "TLS_DHE_RSA_WITH_AES_128_CBC_SHA",
+  /** TLSRSAWithAES256GCMSHA384 */
   TLSRSAWithAES256GCMSHA384 = "TLS_RSA_WITH_AES_256_GCM_SHA384",
+  /** TLSRSAWithAES128GCMSHA256 */
   TLSRSAWithAES128GCMSHA256 = "TLS_RSA_WITH_AES_128_GCM_SHA256",
+  /** TLSRSAWithAES256CBCSHA256 */
   TLSRSAWithAES256CBCSHA256 = "TLS_RSA_WITH_AES_256_CBC_SHA256",
+  /** TLSRSAWithAES128CBCSHA256 */
   TLSRSAWithAES128CBCSHA256 = "TLS_RSA_WITH_AES_128_CBC_SHA256",
+  /** TLSRSAWithAES256CBCSHA */
   TLSRSAWithAES256CBCSHA = "TLS_RSA_WITH_AES_256_CBC_SHA",
+  /** TLSRSAWithAES128CBCSHA */
   TLSRSAWithAES128CBCSHA = "TLS_RSA_WITH_AES_128_CBC_SHA",
+  /** TLSEcdheEcdsaWithAES256GCMSHA384 */
   TLSEcdheEcdsaWithAES256GCMSHA384 = "TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384",
+  /** TLSEcdheEcdsaWithAES128GCMSHA256 */
   TLSEcdheEcdsaWithAES128GCMSHA256 = "TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256",
+  /** TLSEcdheEcdsaWithAES256CBCSHA384 */
   TLSEcdheEcdsaWithAES256CBCSHA384 = "TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384",
+  /** TLSEcdheEcdsaWithAES128CBCSHA256 */
   TLSEcdheEcdsaWithAES128CBCSHA256 = "TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256",
+  /** TLSEcdheEcdsaWithAES256CBCSHA */
   TLSEcdheEcdsaWithAES256CBCSHA = "TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA",
+  /** TLSEcdheEcdsaWithAES128CBCSHA */
   TLSEcdheEcdsaWithAES128CBCSHA = "TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA",
+  /** TLSDHEDSSWithAES256CBCSHA256 */
   TLSDHEDSSWithAES256CBCSHA256 = "TLS_DHE_DSS_WITH_AES_256_CBC_SHA256",
+  /** TLSDHEDSSWithAES128CBCSHA256 */
   TLSDHEDSSWithAES128CBCSHA256 = "TLS_DHE_DSS_WITH_AES_128_CBC_SHA256",
+  /** TLSDHEDSSWithAES256CBCSHA */
   TLSDHEDSSWithAES256CBCSHA = "TLS_DHE_DSS_WITH_AES_256_CBC_SHA",
+  /** TLSDHEDSSWithAES128CBCSHA */
   TLSDHEDSSWithAES128CBCSHA = "TLS_DHE_DSS_WITH_AES_128_CBC_SHA",
+  /** TLSRSAWith3DESEDECBCSHA */
   TLSRSAWith3DESEDECBCSHA = "TLS_RSA_WITH_3DES_EDE_CBC_SHA",
+  /** TLSDHEDSSWith3DESEDECBCSHA */
   TLSDHEDSSWith3DESEDECBCSHA = "TLS_DHE_DSS_WITH_3DES_EDE_CBC_SHA",
+  /** TLSEcdheRSAWithAES128GCMSHA256 */
   TLSEcdheRSAWithAES128GCMSHA256 = "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256",
+  /** TLSEcdheRSAWithAES256GCMSHA384 */
   TLSEcdheRSAWithAES256GCMSHA384 = "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384"
 }
 
@@ -9995,9 +10042,13 @@ export type ApplicationGatewaySslCipherSuite = string;
 
 /** Known values of {@link ApplicationGatewayOperationalState} that the service accepts. */
 export enum KnownApplicationGatewayOperationalState {
+  /** Stopped */
   Stopped = "Stopped",
+  /** Starting */
   Starting = "Starting",
+  /** Running */
   Running = "Running",
+  /** Stopping */
   Stopping = "Stopping"
 }
 
@@ -10015,9 +10066,13 @@ export type ApplicationGatewayOperationalState = string;
 
 /** Known values of {@link ProvisioningState} that the service accepts. */
 export enum KnownProvisioningState {
+  /** Succeeded */
   Succeeded = "Succeeded",
+  /** Updating */
   Updating = "Updating",
+  /** Deleting */
   Deleting = "Deleting",
+  /** Failed */
   Failed = "Failed"
 }
 
@@ -10035,7 +10090,9 @@ export type ProvisioningState = string;
 
 /** Known values of {@link IPAllocationMethod} that the service accepts. */
 export enum KnownIPAllocationMethod {
+  /** Static */
   Static = "Static",
+  /** Dynamic */
   Dynamic = "Dynamic"
 }
 
@@ -10051,7 +10108,9 @@ export type IPAllocationMethod = string;
 
 /** Known values of {@link ApplicationGatewayProtocol} that the service accepts. */
 export enum KnownApplicationGatewayProtocol {
+  /** Http */
   Http = "Http",
+  /** Https */
   Https = "Https"
 }
 
@@ -10067,7 +10126,9 @@ export type ApplicationGatewayProtocol = string;
 
 /** Known values of {@link IPVersion} that the service accepts. */
 export enum KnownIPVersion {
+  /** IPv4 */
   IPv4 = "IPv4",
+  /** IPv6 */
   IPv6 = "IPv6"
 }
 
@@ -10083,11 +10144,17 @@ export type IPVersion = string;
 
 /** Known values of {@link SecurityRuleProtocol} that the service accepts. */
 export enum KnownSecurityRuleProtocol {
+  /** Tcp */
   Tcp = "Tcp",
+  /** Udp */
   Udp = "Udp",
+  /** Icmp */
   Icmp = "Icmp",
+  /** Esp */
   Esp = "Esp",
+  /** Asterisk */
   Asterisk = "*",
+  /** Ah */
   Ah = "Ah"
 }
 
@@ -10107,7 +10174,9 @@ export type SecurityRuleProtocol = string;
 
 /** Known values of {@link SecurityRuleAccess} that the service accepts. */
 export enum KnownSecurityRuleAccess {
+  /** Allow */
   Allow = "Allow",
+  /** Deny */
   Deny = "Deny"
 }
 
@@ -10123,7 +10192,9 @@ export type SecurityRuleAccess = string;
 
 /** Known values of {@link SecurityRuleDirection} that the service accepts. */
 export enum KnownSecurityRuleDirection {
+  /** Inbound */
   Inbound = "Inbound",
+  /** Outbound */
   Outbound = "Outbound"
 }
 
@@ -10139,6 +10210,7 @@ export type SecurityRuleDirection = string;
 
 /** Known values of {@link ExtendedLocationTypes} that the service accepts. */
 export enum KnownExtendedLocationTypes {
+  /** EdgeZone */
   EdgeZone = "EdgeZone"
 }
 
@@ -10153,7 +10225,9 @@ export type ExtendedLocationTypes = string;
 
 /** Known values of {@link NetworkInterfaceNicType} that the service accepts. */
 export enum KnownNetworkInterfaceNicType {
+  /** Standard */
   Standard = "Standard",
+  /** Elastic */
   Elastic = "Elastic"
 }
 
@@ -10169,10 +10243,15 @@ export type NetworkInterfaceNicType = string;
 
 /** Known values of {@link NetworkInterfaceMigrationPhase} that the service accepts. */
 export enum KnownNetworkInterfaceMigrationPhase {
+  /** None */
   None = "None",
+  /** Prepare */
   Prepare = "Prepare",
+  /** Commit */
   Commit = "Commit",
+  /** Abort */
   Abort = "Abort",
+  /** Committed */
   Committed = "Committed"
 }
 
@@ -10191,6 +10270,7 @@ export type NetworkInterfaceMigrationPhase = string;
 
 /** Known values of {@link FlowLogFormatType} that the service accepts. */
 export enum KnownFlowLogFormatType {
+  /** Json */
   Json = "JSON"
 }
 
@@ -10205,10 +10285,15 @@ export type FlowLogFormatType = string;
 
 /** Known values of {@link RouteNextHopType} that the service accepts. */
 export enum KnownRouteNextHopType {
+  /** VirtualNetworkGateway */
   VirtualNetworkGateway = "VirtualNetworkGateway",
+  /** VnetLocal */
   VnetLocal = "VnetLocal",
+  /** Internet */
   Internet = "Internet",
+  /** VirtualAppliance */
   VirtualAppliance = "VirtualAppliance",
+  /** None */
   None = "None"
 }
 
@@ -10227,7 +10312,9 @@ export type RouteNextHopType = string;
 
 /** Known values of {@link PublicIPAddressSkuName} that the service accepts. */
 export enum KnownPublicIPAddressSkuName {
+  /** Basic */
   Basic = "Basic",
+  /** Standard */
   Standard = "Standard"
 }
 
@@ -10243,7 +10330,9 @@ export type PublicIPAddressSkuName = string;
 
 /** Known values of {@link PublicIPAddressSkuTier} that the service accepts. */
 export enum KnownPublicIPAddressSkuTier {
+  /** Regional */
   Regional = "Regional",
+  /** Global */
   Global = "Global"
 }
 
@@ -10259,7 +10348,9 @@ export type PublicIPAddressSkuTier = string;
 
 /** Known values of {@link DdosSettingsProtectionCoverage} that the service accepts. */
 export enum KnownDdosSettingsProtectionCoverage {
+  /** Basic */
   Basic = "Basic",
+  /** Standard */
   Standard = "Standard"
 }
 
@@ -10275,6 +10366,7 @@ export type DdosSettingsProtectionCoverage = string;
 
 /** Known values of {@link NatGatewaySkuName} that the service accepts. */
 export enum KnownNatGatewaySkuName {
+  /** Standard */
   Standard = "Standard"
 }
 
@@ -10289,10 +10381,15 @@ export type NatGatewaySkuName = string;
 
 /** Known values of {@link PublicIPAddressMigrationPhase} that the service accepts. */
 export enum KnownPublicIPAddressMigrationPhase {
+  /** None */
   None = "None",
+  /** Prepare */
   Prepare = "Prepare",
+  /** Commit */
   Commit = "Commit",
+  /** Abort */
   Abort = "Abort",
+  /** Committed */
   Committed = "Committed"
 }
 
@@ -10311,7 +10408,9 @@ export type PublicIPAddressMigrationPhase = string;
 
 /** Known values of {@link DeleteOptions} that the service accepts. */
 export enum KnownDeleteOptions {
+  /** Delete */
   Delete = "Delete",
+  /** Detach */
   Detach = "Detach"
 }
 
@@ -10327,7 +10426,9 @@ export type DeleteOptions = string;
 
 /** Known values of {@link VirtualNetworkPrivateEndpointNetworkPolicies} that the service accepts. */
 export enum KnownVirtualNetworkPrivateEndpointNetworkPolicies {
+  /** Enabled */
   Enabled = "Enabled",
+  /** Disabled */
   Disabled = "Disabled"
 }
 
@@ -10343,7 +10444,9 @@ export type VirtualNetworkPrivateEndpointNetworkPolicies = string;
 
 /** Known values of {@link VirtualNetworkPrivateLinkServiceNetworkPolicies} that the service accepts. */
 export enum KnownVirtualNetworkPrivateLinkServiceNetworkPolicies {
+  /** Enabled */
   Enabled = "Enabled",
+  /** Disabled */
   Disabled = "Disabled"
 }
 
@@ -10359,8 +10462,11 @@ export type VirtualNetworkPrivateLinkServiceNetworkPolicies = string;
 
 /** Known values of {@link GatewayLoadBalancerTunnelProtocol} that the service accepts. */
 export enum KnownGatewayLoadBalancerTunnelProtocol {
+  /** None */
   None = "None",
+  /** Native */
   Native = "Native",
+  /** Vxlan */
   Vxlan = "VXLAN"
 }
 
@@ -10377,8 +10483,11 @@ export type GatewayLoadBalancerTunnelProtocol = string;
 
 /** Known values of {@link GatewayLoadBalancerTunnelInterfaceType} that the service accepts. */
 export enum KnownGatewayLoadBalancerTunnelInterfaceType {
+  /** None */
   None = "None",
+  /** Internal */
   Internal = "Internal",
+  /** External */
   External = "External"
 }
 
@@ -10395,8 +10504,11 @@ export type GatewayLoadBalancerTunnelInterfaceType = string;
 
 /** Known values of {@link TransportProtocol} that the service accepts. */
 export enum KnownTransportProtocol {
+  /** Udp */
   Udp = "Udp",
+  /** Tcp */
   Tcp = "Tcp",
+  /** All */
   All = "All"
 }
 
@@ -10413,7 +10525,9 @@ export type TransportProtocol = string;
 
 /** Known values of {@link ApplicationGatewayCookieBasedAffinity} that the service accepts. */
 export enum KnownApplicationGatewayCookieBasedAffinity {
+  /** Enabled */
   Enabled = "Enabled",
+  /** Disabled */
   Disabled = "Disabled"
 }
 
@@ -10429,7 +10543,9 @@ export type ApplicationGatewayCookieBasedAffinity = string;
 
 /** Known values of {@link ApplicationGatewayCustomErrorStatusCode} that the service accepts. */
 export enum KnownApplicationGatewayCustomErrorStatusCode {
+  /** HttpStatus403 */
   HttpStatus403 = "HttpStatus403",
+  /** HttpStatus502 */
   HttpStatus502 = "HttpStatus502"
 }
 
@@ -10445,7 +10561,9 @@ export type ApplicationGatewayCustomErrorStatusCode = string;
 
 /** Known values of {@link ApplicationGatewayRequestRoutingRuleType} that the service accepts. */
 export enum KnownApplicationGatewayRequestRoutingRuleType {
+  /** Basic */
   Basic = "Basic",
+  /** PathBasedRouting */
   PathBasedRouting = "PathBasedRouting"
 }
 
@@ -10461,9 +10579,13 @@ export type ApplicationGatewayRequestRoutingRuleType = string;
 
 /** Known values of {@link ApplicationGatewayRedirectType} that the service accepts. */
 export enum KnownApplicationGatewayRedirectType {
+  /** Permanent */
   Permanent = "Permanent",
+  /** Found */
   Found = "Found",
+  /** SeeOther */
   SeeOther = "SeeOther",
+  /** Temporary */
   Temporary = "Temporary"
 }
 
@@ -10481,7 +10603,9 @@ export type ApplicationGatewayRedirectType = string;
 
 /** Known values of {@link ApplicationGatewayFirewallMode} that the service accepts. */
 export enum KnownApplicationGatewayFirewallMode {
+  /** Detection */
   Detection = "Detection",
+  /** Prevention */
   Prevention = "Prevention"
 }
 
@@ -10497,8 +10621,11 @@ export type ApplicationGatewayFirewallMode = string;
 
 /** Known values of {@link ApplicationGatewayLoadDistributionAlgorithm} that the service accepts. */
 export enum KnownApplicationGatewayLoadDistributionAlgorithm {
+  /** RoundRobin */
   RoundRobin = "RoundRobin",
+  /** LeastConnections */
   LeastConnections = "LeastConnections",
+  /** IpHash */
   IpHash = "IpHash"
 }
 
@@ -10515,10 +10642,15 @@ export type ApplicationGatewayLoadDistributionAlgorithm = string;
 
 /** Known values of {@link ApplicationGatewayBackendHealthServerHealth} that the service accepts. */
 export enum KnownApplicationGatewayBackendHealthServerHealth {
+  /** Unknown */
   Unknown = "Unknown",
+  /** Up */
   Up = "Up",
+  /** Down */
   Down = "Down",
+  /** Partial */
   Partial = "Partial",
+  /** Draining */
   Draining = "Draining"
 }
 
@@ -10537,7 +10669,9 @@ export type ApplicationGatewayBackendHealthServerHealth = string;
 
 /** Known values of {@link AzureFirewallRCActionType} that the service accepts. */
 export enum KnownAzureFirewallRCActionType {
+  /** Allow */
   Allow = "Allow",
+  /** Deny */
   Deny = "Deny"
 }
 
@@ -10553,8 +10687,11 @@ export type AzureFirewallRCActionType = string;
 
 /** Known values of {@link AzureFirewallApplicationRuleProtocolType} that the service accepts. */
 export enum KnownAzureFirewallApplicationRuleProtocolType {
+  /** Http */
   Http = "Http",
+  /** Https */
   Https = "Https",
+  /** Mssql */
   Mssql = "Mssql"
 }
 
@@ -10571,7 +10708,9 @@ export type AzureFirewallApplicationRuleProtocolType = string;
 
 /** Known values of {@link AzureFirewallNatRCActionType} that the service accepts. */
 export enum KnownAzureFirewallNatRCActionType {
+  /** Snat */
   Snat = "Snat",
+  /** Dnat */
   Dnat = "Dnat"
 }
 
@@ -10587,9 +10726,13 @@ export type AzureFirewallNatRCActionType = string;
 
 /** Known values of {@link AzureFirewallNetworkRuleProtocol} that the service accepts. */
 export enum KnownAzureFirewallNetworkRuleProtocol {
+  /** TCP */
   TCP = "TCP",
+  /** UDP */
   UDP = "UDP",
+  /** Any */
   Any = "Any",
+  /** Icmp */
   Icmp = "ICMP"
 }
 
@@ -10607,8 +10750,11 @@ export type AzureFirewallNetworkRuleProtocol = string;
 
 /** Known values of {@link AzureFirewallThreatIntelMode} that the service accepts. */
 export enum KnownAzureFirewallThreatIntelMode {
+  /** Alert */
   Alert = "Alert",
+  /** Deny */
   Deny = "Deny",
+  /** Off */
   Off = "Off"
 }
 
@@ -10625,7 +10771,9 @@ export type AzureFirewallThreatIntelMode = string;
 
 /** Known values of {@link AzureFirewallSkuName} that the service accepts. */
 export enum KnownAzureFirewallSkuName {
+  /** AzfwVnet */
   AzfwVnet = "AZFW_VNet",
+  /** AzfwHub */
   AzfwHub = "AZFW_Hub"
 }
 
@@ -10641,8 +10789,11 @@ export type AzureFirewallSkuName = string;
 
 /** Known values of {@link AzureFirewallSkuTier} that the service accepts. */
 export enum KnownAzureFirewallSkuTier {
+  /** Standard */
   Standard = "Standard",
+  /** Premium */
   Premium = "Premium",
+  /** Basic */
   Basic = "Basic"
 }
 
@@ -10659,7 +10810,9 @@ export type AzureFirewallSkuTier = string;
 
 /** Known values of {@link BastionHostSkuName} that the service accepts. */
 export enum KnownBastionHostSkuName {
+  /** Basic */
   Basic = "Basic",
+  /** Standard */
   Standard = "Standard"
 }
 
@@ -10675,7 +10828,9 @@ export type BastionHostSkuName = string;
 
 /** Known values of {@link BastionConnectProtocol} that the service accepts. */
 export enum KnownBastionConnectProtocol {
+  /** SSH */
   SSH = "SSH",
+  /** RDP */
   RDP = "RDP"
 }
 
@@ -10691,11 +10846,17 @@ export type BastionConnectProtocol = string;
 
 /** Known values of {@link CommissionedState} that the service accepts. */
 export enum KnownCommissionedState {
+  /** Provisioning */
   Provisioning = "Provisioning",
+  /** Provisioned */
   Provisioned = "Provisioned",
+  /** Commissioning */
   Commissioning = "Commissioning",
+  /** Commissioned */
   Commissioned = "Commissioned",
+  /** Decommissioning */
   Decommissioning = "Decommissioning",
+  /** Deprovisioning */
   Deprovisioning = "Deprovisioning"
 }
 
@@ -10715,8 +10876,11 @@ export type CommissionedState = string;
 
 /** Known values of {@link DdosCustomPolicyProtocol} that the service accepts. */
 export enum KnownDdosCustomPolicyProtocol {
+  /** Tcp */
   Tcp = "Tcp",
+  /** Udp */
   Udp = "Udp",
+  /** Syn */
   Syn = "Syn"
 }
 
@@ -10733,9 +10897,13 @@ export type DdosCustomPolicyProtocol = string;
 
 /** Known values of {@link DdosCustomPolicyTriggerSensitivityOverride} that the service accepts. */
 export enum KnownDdosCustomPolicyTriggerSensitivityOverride {
+  /** Relaxed */
   Relaxed = "Relaxed",
+  /** Low */
   Low = "Low",
+  /** Default */
   Default = "Default",
+  /** High */
   High = "High"
 }
 
@@ -10753,14 +10921,23 @@ export type DdosCustomPolicyTriggerSensitivityOverride = string;
 
 /** Known values of {@link ProtocolType} that the service accepts. */
 export enum KnownProtocolType {
+  /** DoNotUse */
   DoNotUse = "DoNotUse",
+  /** Icmp */
   Icmp = "Icmp",
+  /** Tcp */
   Tcp = "Tcp",
+  /** Udp */
   Udp = "Udp",
+  /** Gre */
   Gre = "Gre",
+  /** Esp */
   Esp = "Esp",
+  /** Ah */
   Ah = "Ah",
+  /** Vxlan */
   Vxlan = "Vxlan",
+  /** All */
   All = "All"
 }
 
@@ -10783,7 +10960,9 @@ export type ProtocolType = string;
 
 /** Known values of {@link AuthorizationUseStatus} that the service accepts. */
 export enum KnownAuthorizationUseStatus {
+  /** Available */
   Available = "Available",
+  /** InUse */
   InUse = "InUse"
 }
 
@@ -10799,8 +10978,11 @@ export type AuthorizationUseStatus = string;
 
 /** Known values of {@link ExpressRoutePeeringType} that the service accepts. */
 export enum KnownExpressRoutePeeringType {
+  /** AzurePublicPeering */
   AzurePublicPeering = "AzurePublicPeering",
+  /** AzurePrivatePeering */
   AzurePrivatePeering = "AzurePrivatePeering",
+  /** MicrosoftPeering */
   MicrosoftPeering = "MicrosoftPeering"
 }
 
@@ -10817,7 +10999,9 @@ export type ExpressRoutePeeringType = string;
 
 /** Known values of {@link ExpressRoutePeeringState} that the service accepts. */
 export enum KnownExpressRoutePeeringState {
+  /** Disabled */
   Disabled = "Disabled",
+  /** Enabled */
   Enabled = "Enabled"
 }
 
@@ -10833,9 +11017,13 @@ export type ExpressRoutePeeringState = string;
 
 /** Known values of {@link ExpressRouteCircuitPeeringAdvertisedPublicPrefixState} that the service accepts. */
 export enum KnownExpressRouteCircuitPeeringAdvertisedPublicPrefixState {
+  /** NotConfigured */
   NotConfigured = "NotConfigured",
+  /** Configuring */
   Configuring = "Configuring",
+  /** Configured */
   Configured = "Configured",
+  /** ValidationNeeded */
   ValidationNeeded = "ValidationNeeded"
 }
 
@@ -10853,7 +11041,9 @@ export type ExpressRouteCircuitPeeringAdvertisedPublicPrefixState = string;
 
 /** Known values of {@link ExpressRouteCircuitPeeringState} that the service accepts. */
 export enum KnownExpressRouteCircuitPeeringState {
+  /** Disabled */
   Disabled = "Disabled",
+  /** Enabled */
   Enabled = "Enabled"
 }
 
@@ -10869,8 +11059,11 @@ export type ExpressRouteCircuitPeeringState = string;
 
 /** Known values of {@link CircuitConnectionStatus} that the service accepts. */
 export enum KnownCircuitConnectionStatus {
+  /** Connected */
   Connected = "Connected",
+  /** Connecting */
   Connecting = "Connecting",
+  /** Disconnected */
   Disconnected = "Disconnected"
 }
 
@@ -10887,9 +11080,13 @@ export type CircuitConnectionStatus = string;
 
 /** Known values of {@link ExpressRouteCircuitSkuTier} that the service accepts. */
 export enum KnownExpressRouteCircuitSkuTier {
+  /** Standard */
   Standard = "Standard",
+  /** Premium */
   Premium = "Premium",
+  /** Basic */
   Basic = "Basic",
+  /** Local */
   Local = "Local"
 }
 
@@ -10907,7 +11104,9 @@ export type ExpressRouteCircuitSkuTier = string;
 
 /** Known values of {@link ExpressRouteCircuitSkuFamily} that the service accepts. */
 export enum KnownExpressRouteCircuitSkuFamily {
+  /** UnlimitedData */
   UnlimitedData = "UnlimitedData",
+  /** MeteredData */
   MeteredData = "MeteredData"
 }
 
@@ -10923,9 +11122,13 @@ export type ExpressRouteCircuitSkuFamily = string;
 
 /** Known values of {@link ServiceProviderProvisioningState} that the service accepts. */
 export enum KnownServiceProviderProvisioningState {
+  /** NotProvisioned */
   NotProvisioned = "NotProvisioned",
+  /** Provisioning */
   Provisioning = "Provisioning",
+  /** Provisioned */
   Provisioned = "Provisioned",
+  /** Deprovisioning */
   Deprovisioning = "Deprovisioning"
 }
 
@@ -10943,7 +11146,9 @@ export type ServiceProviderProvisioningState = string;
 
 /** Known values of {@link ExpressRoutePortsEncapsulation} that the service accepts. */
 export enum KnownExpressRoutePortsEncapsulation {
+  /** Dot1Q */
   Dot1Q = "Dot1Q",
+  /** QinQ */
   QinQ = "QinQ"
 }
 
@@ -10959,7 +11164,9 @@ export type ExpressRoutePortsEncapsulation = string;
 
 /** Known values of {@link ExpressRouteLinkConnectorType} that the service accepts. */
 export enum KnownExpressRouteLinkConnectorType {
+  /** LC */
   LC = "LC",
+  /** SC */
   SC = "SC"
 }
 
@@ -10975,7 +11182,9 @@ export type ExpressRouteLinkConnectorType = string;
 
 /** Known values of {@link ExpressRouteLinkAdminState} that the service accepts. */
 export enum KnownExpressRouteLinkAdminState {
+  /** Enabled */
   Enabled = "Enabled",
+  /** Disabled */
   Disabled = "Disabled"
 }
 
@@ -10991,9 +11200,13 @@ export type ExpressRouteLinkAdminState = string;
 
 /** Known values of {@link ExpressRouteLinkMacSecCipher} that the service accepts. */
 export enum KnownExpressRouteLinkMacSecCipher {
+  /** GcmAes256 */
   GcmAes256 = "GcmAes256",
+  /** GcmAes128 */
   GcmAes128 = "GcmAes128",
+  /** GcmAesXpn128 */
   GcmAesXpn128 = "GcmAesXpn128",
+  /** GcmAesXpn256 */
   GcmAesXpn256 = "GcmAesXpn256"
 }
 
@@ -11011,7 +11224,9 @@ export type ExpressRouteLinkMacSecCipher = string;
 
 /** Known values of {@link ExpressRouteLinkMacSecSciState} that the service accepts. */
 export enum KnownExpressRouteLinkMacSecSciState {
+  /** Disabled */
   Disabled = "Disabled",
+  /** Enabled */
   Enabled = "Enabled"
 }
 
@@ -11027,8 +11242,11 @@ export type ExpressRouteLinkMacSecSciState = string;
 
 /** Known values of {@link FirewallPolicyIntrusionDetectionStateType} that the service accepts. */
 export enum KnownFirewallPolicyIntrusionDetectionStateType {
+  /** Off */
   Off = "Off",
+  /** Alert */
   Alert = "Alert",
+  /** Deny */
   Deny = "Deny"
 }
 
@@ -11045,9 +11263,13 @@ export type FirewallPolicyIntrusionDetectionStateType = string;
 
 /** Known values of {@link FirewallPolicyIntrusionDetectionProtocol} that the service accepts. */
 export enum KnownFirewallPolicyIntrusionDetectionProtocol {
+  /** TCP */
   TCP = "TCP",
+  /** UDP */
   UDP = "UDP",
+  /** Icmp */
   Icmp = "ICMP",
+  /** ANY */
   ANY = "ANY"
 }
 
@@ -11065,8 +11287,11 @@ export type FirewallPolicyIntrusionDetectionProtocol = string;
 
 /** Known values of {@link FirewallPolicySkuTier} that the service accepts. */
 export enum KnownFirewallPolicySkuTier {
+  /** Standard */
   Standard = "Standard",
+  /** Premium */
   Premium = "Premium",
+  /** Basic */
   Basic = "Basic"
 }
 
@@ -11083,7 +11308,9 @@ export type FirewallPolicySkuTier = string;
 
 /** Known values of {@link FirewallPolicyRuleCollectionType} that the service accepts. */
 export enum KnownFirewallPolicyRuleCollectionType {
+  /** FirewallPolicyNatRuleCollection */
   FirewallPolicyNatRuleCollection = "FirewallPolicyNatRuleCollection",
+  /** FirewallPolicyFilterRuleCollection */
   FirewallPolicyFilterRuleCollection = "FirewallPolicyFilterRuleCollection"
 }
 
@@ -11099,7 +11326,9 @@ export type FirewallPolicyRuleCollectionType = string;
 
 /** Known values of {@link OrderByOrder} that the service accepts. */
 export enum KnownOrderByOrder {
+  /** Ascending */
   Ascending = "Ascending",
+  /** Descending */
   Descending = "Descending"
 }
 
@@ -11115,8 +11344,11 @@ export type OrderByOrder = string;
 
 /** Known values of {@link SingleQueryResultMode} that the service accepts. */
 export enum KnownSingleQueryResultMode {
+  /** Zero */
   Zero = 0,
+  /** One */
   One = 1,
+  /** Two */
   Two = 2
 }
 
@@ -11133,8 +11365,11 @@ export type SingleQueryResultMode = number;
 
 /** Known values of {@link SingleQueryResultSeverity} that the service accepts. */
 export enum KnownSingleQueryResultSeverity {
+  /** One */
   One = 1,
+  /** Two */
   Two = 2,
+  /** Three */
   Three = 3
 }
 
@@ -11151,8 +11386,11 @@ export type SingleQueryResultSeverity = number;
 
 /** Known values of {@link SingleQueryResultDirection} that the service accepts. */
 export enum KnownSingleQueryResultDirection {
+  /** Zero */
   Zero = 0,
+  /** One */
   One = 1,
+  /** Two */
   Two = 2
 }
 
@@ -11169,7 +11407,9 @@ export type SingleQueryResultDirection = number;
 
 /** Known values of {@link IpAllocationType} that the service accepts. */
 export enum KnownIpAllocationType {
+  /** Undefined */
   Undefined = "Undefined",
+  /** Hypernet */
   Hypernet = "Hypernet"
 }
 
@@ -11185,8 +11425,11 @@ export type IpAllocationType = string;
 
 /** Known values of {@link LoadBalancerSkuName} that the service accepts. */
 export enum KnownLoadBalancerSkuName {
+  /** Basic */
   Basic = "Basic",
+  /** Standard */
   Standard = "Standard",
+  /** Gateway */
   Gateway = "Gateway"
 }
 
@@ -11203,7 +11446,9 @@ export type LoadBalancerSkuName = string;
 
 /** Known values of {@link LoadBalancerSkuTier} that the service accepts. */
 export enum KnownLoadBalancerSkuTier {
+  /** Regional */
   Regional = "Regional",
+  /** Global */
   Global = "Global"
 }
 
@@ -11219,8 +11464,11 @@ export type LoadBalancerSkuTier = string;
 
 /** Known values of {@link LoadDistribution} that the service accepts. */
 export enum KnownLoadDistribution {
+  /** Default */
   Default = "Default",
+  /** SourceIP */
   SourceIP = "SourceIP",
+  /** SourceIPProtocol */
   SourceIPProtocol = "SourceIPProtocol"
 }
 
@@ -11237,8 +11485,11 @@ export type LoadDistribution = string;
 
 /** Known values of {@link ProbeProtocol} that the service accepts. */
 export enum KnownProbeProtocol {
+  /** Http */
   Http = "Http",
+  /** Tcp */
   Tcp = "Tcp",
+  /** Https */
   Https = "Https"
 }
 
@@ -11255,8 +11506,11 @@ export type ProbeProtocol = string;
 
 /** Known values of {@link LoadBalancerOutboundRuleProtocol} that the service accepts. */
 export enum KnownLoadBalancerOutboundRuleProtocol {
+  /** Tcp */
   Tcp = "Tcp",
+  /** Udp */
   Udp = "Udp",
+  /** All */
   All = "All"
 }
 
@@ -11273,9 +11527,13 @@ export type LoadBalancerOutboundRuleProtocol = string;
 
 /** Known values of {@link EffectiveRouteSource} that the service accepts. */
 export enum KnownEffectiveRouteSource {
+  /** Unknown */
   Unknown = "Unknown",
+  /** User */
   User = "User",
+  /** VirtualNetworkGateway */
   VirtualNetworkGateway = "VirtualNetworkGateway",
+  /** Default */
   Default = "Default"
 }
 
@@ -11293,7 +11551,9 @@ export type EffectiveRouteSource = string;
 
 /** Known values of {@link EffectiveRouteState} that the service accepts. */
 export enum KnownEffectiveRouteState {
+  /** Active */
   Active = "Active",
+  /** Invalid */
   Invalid = "Invalid"
 }
 
@@ -11309,8 +11569,11 @@ export type EffectiveRouteState = string;
 
 /** Known values of {@link EffectiveSecurityRuleProtocol} that the service accepts. */
 export enum KnownEffectiveSecurityRuleProtocol {
+  /** Tcp */
   Tcp = "Tcp",
+  /** Udp */
   Udp = "Udp",
+  /** All */
   All = "All"
 }
 
@@ -11327,7 +11590,9 @@ export type EffectiveSecurityRuleProtocol = string;
 
 /** Known values of {@link InboundSecurityRulesProtocol} that the service accepts. */
 export enum KnownInboundSecurityRulesProtocol {
+  /** TCP */
   TCP = "TCP",
+  /** UDP */
   UDP = "UDP"
 }
 
@@ -11343,7 +11608,9 @@ export type InboundSecurityRulesProtocol = string;
 
 /** Known values of {@link AssociationType} that the service accepts. */
 export enum KnownAssociationType {
+  /** Associated */
   Associated = "Associated",
+  /** Contains */
   Contains = "Contains"
 }
 
@@ -11359,7 +11626,9 @@ export type AssociationType = string;
 
 /** Known values of {@link Direction} that the service accepts. */
 export enum KnownDirection {
+  /** Inbound */
   Inbound = "Inbound",
+  /** Outbound */
   Outbound = "Outbound"
 }
 
@@ -11375,7 +11644,9 @@ export type Direction = string;
 
 /** Known values of {@link IpFlowProtocol} that the service accepts. */
 export enum KnownIpFlowProtocol {
+  /** TCP */
   TCP = "TCP",
+  /** UDP */
   UDP = "UDP"
 }
 
@@ -11391,7 +11662,9 @@ export type IpFlowProtocol = string;
 
 /** Known values of {@link Access} that the service accepts. */
 export enum KnownAccess {
+  /** Allow */
   Allow = "Allow",
+  /** Deny */
   Deny = "Deny"
 }
 
@@ -11407,11 +11680,17 @@ export type Access = string;
 
 /** Known values of {@link NextHopType} that the service accepts. */
 export enum KnownNextHopType {
+  /** Internet */
   Internet = "Internet",
+  /** VirtualAppliance */
   VirtualAppliance = "VirtualAppliance",
+  /** VirtualNetworkGateway */
   VirtualNetworkGateway = "VirtualNetworkGateway",
+  /** VnetLocal */
   VnetLocal = "VnetLocal",
+  /** HyperNetGateway */
   HyperNetGateway = "HyperNetGateway",
+  /** None */
   None = "None"
 }
 
@@ -11431,8 +11710,11 @@ export type NextHopType = string;
 
 /** Known values of {@link PcProtocol} that the service accepts. */
 export enum KnownPcProtocol {
+  /** TCP */
   TCP = "TCP",
+  /** UDP */
   UDP = "UDP",
+  /** Any */
   Any = "Any"
 }
 
@@ -11449,10 +11731,15 @@ export type PcProtocol = string;
 
 /** Known values of {@link PcStatus} that the service accepts. */
 export enum KnownPcStatus {
+  /** NotStarted */
   NotStarted = "NotStarted",
+  /** Running */
   Running = "Running",
+  /** Stopped */
   Stopped = "Stopped",
+  /** Error */
   Error = "Error",
+  /** Unknown */
   Unknown = "Unknown"
 }
 
@@ -11471,10 +11758,15 @@ export type PcStatus = string;
 
 /** Known values of {@link PcError} that the service accepts. */
 export enum KnownPcError {
+  /** InternalError */
   InternalError = "InternalError",
+  /** AgentStopped */
   AgentStopped = "AgentStopped",
+  /** CaptureFailed */
   CaptureFailed = "CaptureFailed",
+  /** LocalFileFailed */
   LocalFileFailed = "LocalFileFailed",
+  /** StorageFailed */
   StorageFailed = "StorageFailed"
 }
 
@@ -11493,9 +11785,13 @@ export type PcError = string;
 
 /** Known values of {@link Protocol} that the service accepts. */
 export enum KnownProtocol {
+  /** Tcp */
   Tcp = "Tcp",
+  /** Http */
   Http = "Http",
+  /** Https */
   Https = "Https",
+  /** Icmp */
   Icmp = "Icmp"
 }
 
@@ -11513,6 +11809,7 @@ export type Protocol = string;
 
 /** Known values of {@link HttpMethod} that the service accepts. */
 export enum KnownHttpMethod {
+  /** Get */
   Get = "Get"
 }
 
@@ -11527,8 +11824,11 @@ export type HttpMethod = string;
 
 /** Known values of {@link Origin} that the service accepts. */
 export enum KnownOrigin {
+  /** Local */
   Local = "Local",
+  /** Inbound */
   Inbound = "Inbound",
+  /** Outbound */
   Outbound = "Outbound"
 }
 
@@ -11545,7 +11845,9 @@ export type Origin = string;
 
 /** Known values of {@link Severity} that the service accepts. */
 export enum KnownSeverity {
+  /** Error */
   Error = "Error",
+  /** Warning */
   Warning = "Warning"
 }
 
@@ -11561,14 +11863,23 @@ export type Severity = string;
 
 /** Known values of {@link IssueType} that the service accepts. */
 export enum KnownIssueType {
+  /** Unknown */
   Unknown = "Unknown",
+  /** AgentStopped */
   AgentStopped = "AgentStopped",
+  /** GuestFirewall */
   GuestFirewall = "GuestFirewall",
+  /** DnsResolution */
   DnsResolution = "DnsResolution",
+  /** SocketBind */
   SocketBind = "SocketBind",
+  /** NetworkSecurityRule */
   NetworkSecurityRule = "NetworkSecurityRule",
+  /** UserDefinedRoute */
   UserDefinedRoute = "UserDefinedRoute",
+  /** PortThrottled */
   PortThrottled = "PortThrottled",
+  /** Platform */
   Platform = "Platform"
 }
 
@@ -11591,9 +11902,13 @@ export type IssueType = string;
 
 /** Known values of {@link ConnectionStatus} that the service accepts. */
 export enum KnownConnectionStatus {
+  /** Unknown */
   Unknown = "Unknown",
+  /** Connected */
   Connected = "Connected",
+  /** Disconnected */
   Disconnected = "Disconnected",
+  /** Degraded */
   Degraded = "Degraded"
 }
 
@@ -11611,8 +11926,11 @@ export type ConnectionStatus = string;
 
 /** Known values of {@link VerbosityLevel} that the service accepts. */
 export enum KnownVerbosityLevel {
+  /** Normal */
   Normal = "Normal",
+  /** Minimum */
   Minimum = "Minimum",
+  /** Full */
   Full = "Full"
 }
 
@@ -11629,11 +11947,17 @@ export type VerbosityLevel = string;
 
 /** Known values of {@link EndpointType} that the service accepts. */
 export enum KnownEndpointType {
+  /** AzureVM */
   AzureVM = "AzureVM",
+  /** AzureVNet */
   AzureVNet = "AzureVNet",
+  /** AzureSubnet */
   AzureSubnet = "AzureSubnet",
+  /** ExternalAddress */
   ExternalAddress = "ExternalAddress",
+  /** MMAWorkspaceMachine */
   MMAWorkspaceMachine = "MMAWorkspaceMachine",
+  /** MMAWorkspaceNetwork */
   MMAWorkspaceNetwork = "MMAWorkspaceNetwork"
 }
 
@@ -11653,6 +11977,7 @@ export type EndpointType = string;
 
 /** Known values of {@link ConnectionMonitorEndpointFilterType} that the service accepts. */
 export enum KnownConnectionMonitorEndpointFilterType {
+  /** Include */
   Include = "Include"
 }
 
@@ -11667,6 +11992,7 @@ export type ConnectionMonitorEndpointFilterType = string;
 
 /** Known values of {@link ConnectionMonitorEndpointFilterItemType} that the service accepts. */
 export enum KnownConnectionMonitorEndpointFilterItemType {
+  /** AgentAddress */
   AgentAddress = "AgentAddress"
 }
 
@@ -11681,11 +12007,17 @@ export type ConnectionMonitorEndpointFilterItemType = string;
 
 /** Known values of {@link CoverageLevel} that the service accepts. */
 export enum KnownCoverageLevel {
+  /** Default */
   Default = "Default",
+  /** Low */
   Low = "Low",
+  /** BelowAverage */
   BelowAverage = "BelowAverage",
+  /** Average */
   Average = "Average",
+  /** AboveAverage */
   AboveAverage = "AboveAverage",
+  /** Full */
   Full = "Full"
 }
 
@@ -11705,8 +12037,11 @@ export type CoverageLevel = string;
 
 /** Known values of {@link ConnectionMonitorTestConfigurationProtocol} that the service accepts. */
 export enum KnownConnectionMonitorTestConfigurationProtocol {
+  /** Tcp */
   Tcp = "Tcp",
+  /** Http */
   Http = "Http",
+  /** Icmp */
   Icmp = "Icmp"
 }
 
@@ -11723,7 +12058,9 @@ export type ConnectionMonitorTestConfigurationProtocol = string;
 
 /** Known values of {@link PreferredIPVersion} that the service accepts. */
 export enum KnownPreferredIPVersion {
+  /** IPv4 */
   IPv4 = "IPv4",
+  /** IPv6 */
   IPv6 = "IPv6"
 }
 
@@ -11739,7 +12076,9 @@ export type PreferredIPVersion = string;
 
 /** Known values of {@link HttpConfigurationMethod} that the service accepts. */
 export enum KnownHttpConfigurationMethod {
+  /** Get */
   Get = "Get",
+  /** Post */
   Post = "Post"
 }
 
@@ -11755,7 +12094,9 @@ export type HttpConfigurationMethod = string;
 
 /** Known values of {@link DestinationPortBehavior} that the service accepts. */
 export enum KnownDestinationPortBehavior {
+  /** None */
   None = "None",
+  /** ListenIfAvailable */
   ListenIfAvailable = "ListenIfAvailable"
 }
 
@@ -11771,6 +12112,7 @@ export type DestinationPortBehavior = string;
 
 /** Known values of {@link OutputType} that the service accepts. */
 export enum KnownOutputType {
+  /** Workspace */
   Workspace = "Workspace"
 }
 
@@ -11785,7 +12127,9 @@ export type OutputType = string;
 
 /** Known values of {@link ConnectionMonitorType} that the service accepts. */
 export enum KnownConnectionMonitorType {
+  /** MultiEndpoint */
   MultiEndpoint = "MultiEndpoint",
+  /** SingleSourceDestination */
   SingleSourceDestination = "SingleSourceDestination"
 }
 
@@ -11801,8 +12145,11 @@ export type ConnectionMonitorType = string;
 
 /** Known values of {@link ConnectionMonitorSourceStatus} that the service accepts. */
 export enum KnownConnectionMonitorSourceStatus {
+  /** Unknown */
   Unknown = "Unknown",
+  /** Active */
   Active = "Active",
+  /** Inactive */
   Inactive = "Inactive"
 }
 
@@ -11819,8 +12166,11 @@ export type ConnectionMonitorSourceStatus = string;
 
 /** Known values of {@link ConnectionState} that the service accepts. */
 export enum KnownConnectionState {
+  /** Reachable */
   Reachable = "Reachable",
+  /** Unreachable */
   Unreachable = "Unreachable",
+  /** Unknown */
   Unknown = "Unknown"
 }
 
@@ -11837,8 +12187,11 @@ export type ConnectionState = string;
 
 /** Known values of {@link EvaluationState} that the service accepts. */
 export enum KnownEvaluationState {
+  /** NotStarted */
   NotStarted = "NotStarted",
+  /** InProgress */
   InProgress = "InProgress",
+  /** Completed */
   Completed = "Completed"
 }
 
@@ -11855,6 +12208,7 @@ export type EvaluationState = string;
 
 /** Known values of {@link PublicIPPrefixSkuName} that the service accepts. */
 export enum KnownPublicIPPrefixSkuName {
+  /** Standard */
   Standard = "Standard"
 }
 
@@ -11869,7 +12223,9 @@ export type PublicIPPrefixSkuName = string;
 
 /** Known values of {@link PublicIPPrefixSkuTier} that the service accepts. */
 export enum KnownPublicIPPrefixSkuTier {
+  /** Regional */
   Regional = "Regional",
+  /** Global */
   Global = "Global"
 }
 
@@ -11885,6 +12241,7 @@ export type PublicIPPrefixSkuTier = string;
 
 /** Known values of {@link RouteFilterRuleType} that the service accepts. */
 export enum KnownRouteFilterRuleType {
+  /** Community */
   Community = "Community"
 }
 
@@ -11899,8 +12256,11 @@ export type RouteFilterRuleType = string;
 
 /** Known values of {@link SecurityProviderName} that the service accepts. */
 export enum KnownSecurityProviderName {
+  /** ZScaler */
   ZScaler = "ZScaler",
+  /** IBoss */
   IBoss = "IBoss",
+  /** Checkpoint */
   Checkpoint = "Checkpoint"
 }
 
@@ -11917,9 +12277,13 @@ export type SecurityProviderName = string;
 
 /** Known values of {@link SecurityPartnerProviderConnectionStatus} that the service accepts. */
 export enum KnownSecurityPartnerProviderConnectionStatus {
+  /** Unknown */
   Unknown = "Unknown",
+  /** PartiallyConnected */
   PartiallyConnected = "PartiallyConnected",
+  /** Connected */
   Connected = "Connected",
+  /** NotConnected */
   NotConnected = "NotConnected"
 }
 
@@ -11937,6 +12301,7 @@ export type SecurityPartnerProviderConnectionStatus = string;
 
 /** Known values of {@link UsageUnit} that the service accepts. */
 export enum KnownUsageUnit {
+  /** Count */
   Count = "Count"
 }
 
@@ -11951,7 +12316,9 @@ export type UsageUnit = string;
 
 /** Known values of {@link VirtualNetworkEncryptionEnforcement} that the service accepts. */
 export enum KnownVirtualNetworkEncryptionEnforcement {
+  /** DropUnencrypted */
   DropUnencrypted = "DropUnencrypted",
+  /** AllowUnencrypted */
   AllowUnencrypted = "AllowUnencrypted"
 }
 
@@ -11967,8 +12334,11 @@ export type VirtualNetworkEncryptionEnforcement = string;
 
 /** Known values of {@link VirtualNetworkPeeringState} that the service accepts. */
 export enum KnownVirtualNetworkPeeringState {
+  /** Initiated */
   Initiated = "Initiated",
+  /** Connected */
   Connected = "Connected",
+  /** Disconnected */
   Disconnected = "Disconnected"
 }
 
@@ -11985,9 +12355,13 @@ export type VirtualNetworkPeeringState = string;
 
 /** Known values of {@link VirtualNetworkPeeringLevel} that the service accepts. */
 export enum KnownVirtualNetworkPeeringLevel {
+  /** FullyInSync */
   FullyInSync = "FullyInSync",
+  /** RemoteNotInSync */
   RemoteNotInSync = "RemoteNotInSync",
+  /** LocalNotInSync */
   LocalNotInSync = "LocalNotInSync",
+  /** LocalAndRemoteNotInSync */
   LocalAndRemoteNotInSync = "LocalAndRemoteNotInSync"
 }
 
@@ -12005,6 +12379,7 @@ export type VirtualNetworkPeeringLevel = string;
 
 /** Known values of {@link SyncRemoteAddressSpace} that the service accepts. */
 export enum KnownSyncRemoteAddressSpace {
+  /** True */
   True = "true"
 }
 
@@ -12019,8 +12394,11 @@ export type SyncRemoteAddressSpace = string;
 
 /** Known values of {@link VirtualNetworkGatewayType} that the service accepts. */
 export enum KnownVirtualNetworkGatewayType {
+  /** Vpn */
   Vpn = "Vpn",
+  /** ExpressRoute */
   ExpressRoute = "ExpressRoute",
+  /** LocalGateway */
   LocalGateway = "LocalGateway"
 }
 
@@ -12037,7 +12415,9 @@ export type VirtualNetworkGatewayType = string;
 
 /** Known values of {@link VpnType} that the service accepts. */
 export enum KnownVpnType {
+  /** PolicyBased */
   PolicyBased = "PolicyBased",
+  /** RouteBased */
   RouteBased = "RouteBased"
 }
 
@@ -12053,8 +12433,11 @@ export type VpnType = string;
 
 /** Known values of {@link VpnGatewayGeneration} that the service accepts. */
 export enum KnownVpnGatewayGeneration {
+  /** None */
   None = "None",
+  /** Generation1 */
   Generation1 = "Generation1",
+  /** Generation2 */
   Generation2 = "Generation2"
 }
 
@@ -12071,22 +12454,39 @@ export type VpnGatewayGeneration = string;
 
 /** Known values of {@link VirtualNetworkGatewaySkuName} that the service accepts. */
 export enum KnownVirtualNetworkGatewaySkuName {
+  /** Basic */
   Basic = "Basic",
+  /** HighPerformance */
   HighPerformance = "HighPerformance",
+  /** Standard */
   Standard = "Standard",
+  /** UltraPerformance */
   UltraPerformance = "UltraPerformance",
+  /** VpnGw1 */
   VpnGw1 = "VpnGw1",
+  /** VpnGw2 */
   VpnGw2 = "VpnGw2",
+  /** VpnGw3 */
   VpnGw3 = "VpnGw3",
+  /** VpnGw4 */
   VpnGw4 = "VpnGw4",
+  /** VpnGw5 */
   VpnGw5 = "VpnGw5",
+  /** VpnGw1AZ */
   VpnGw1AZ = "VpnGw1AZ",
+  /** VpnGw2AZ */
   VpnGw2AZ = "VpnGw2AZ",
+  /** VpnGw3AZ */
   VpnGw3AZ = "VpnGw3AZ",
+  /** VpnGw4AZ */
   VpnGw4AZ = "VpnGw4AZ",
+  /** VpnGw5AZ */
   VpnGw5AZ = "VpnGw5AZ",
+  /** ErGw1AZ */
   ErGw1AZ = "ErGw1AZ",
+  /** ErGw2AZ */
   ErGw2AZ = "ErGw2AZ",
+  /** ErGw3AZ */
   ErGw3AZ = "ErGw3AZ"
 }
 
@@ -12117,22 +12517,39 @@ export type VirtualNetworkGatewaySkuName = string;
 
 /** Known values of {@link VirtualNetworkGatewaySkuTier} that the service accepts. */
 export enum KnownVirtualNetworkGatewaySkuTier {
+  /** Basic */
   Basic = "Basic",
+  /** HighPerformance */
   HighPerformance = "HighPerformance",
+  /** Standard */
   Standard = "Standard",
+  /** UltraPerformance */
   UltraPerformance = "UltraPerformance",
+  /** VpnGw1 */
   VpnGw1 = "VpnGw1",
+  /** VpnGw2 */
   VpnGw2 = "VpnGw2",
+  /** VpnGw3 */
   VpnGw3 = "VpnGw3",
+  /** VpnGw4 */
   VpnGw4 = "VpnGw4",
+  /** VpnGw5 */
   VpnGw5 = "VpnGw5",
+  /** VpnGw1AZ */
   VpnGw1AZ = "VpnGw1AZ",
+  /** VpnGw2AZ */
   VpnGw2AZ = "VpnGw2AZ",
+  /** VpnGw3AZ */
   VpnGw3AZ = "VpnGw3AZ",
+  /** VpnGw4AZ */
   VpnGw4AZ = "VpnGw4AZ",
+  /** VpnGw5AZ */
   VpnGw5AZ = "VpnGw5AZ",
+  /** ErGw1AZ */
   ErGw1AZ = "ErGw1AZ",
+  /** ErGw2AZ */
   ErGw2AZ = "ErGw2AZ",
+  /** ErGw3AZ */
   ErGw3AZ = "ErGw3AZ"
 }
 
@@ -12163,8 +12580,11 @@ export type VirtualNetworkGatewaySkuTier = string;
 
 /** Known values of {@link VpnClientProtocol} that the service accepts. */
 export enum KnownVpnClientProtocol {
+  /** IkeV2 */
   IkeV2 = "IkeV2",
+  /** Sstp */
   Sstp = "SSTP",
+  /** OpenVPN */
   OpenVPN = "OpenVPN"
 }
 
@@ -12181,8 +12601,11 @@ export type VpnClientProtocol = string;
 
 /** Known values of {@link VpnAuthenticationType} that the service accepts. */
 export enum KnownVpnAuthenticationType {
+  /** Certificate */
   Certificate = "Certificate",
+  /** Radius */
   Radius = "Radius",
+  /** AAD */
   AAD = "AAD"
 }
 
@@ -12199,14 +12622,23 @@ export type VpnAuthenticationType = string;
 
 /** Known values of {@link IpsecEncryption} that the service accepts. */
 export enum KnownIpsecEncryption {
+  /** None */
   None = "None",
+  /** DES */
   DES = "DES",
+  /** DES3 */
   DES3 = "DES3",
+  /** AES128 */
   AES128 = "AES128",
+  /** AES192 */
   AES192 = "AES192",
+  /** AES256 */
   AES256 = "AES256",
+  /** Gcmaes128 */
   Gcmaes128 = "GCMAES128",
+  /** Gcmaes192 */
   Gcmaes192 = "GCMAES192",
+  /** Gcmaes256 */
   Gcmaes256 = "GCMAES256"
 }
 
@@ -12229,11 +12661,17 @@ export type IpsecEncryption = string;
 
 /** Known values of {@link IpsecIntegrity} that the service accepts. */
 export enum KnownIpsecIntegrity {
+  /** MD5 */
   MD5 = "MD5",
+  /** SHA1 */
   SHA1 = "SHA1",
+  /** SHA256 */
   SHA256 = "SHA256",
+  /** Gcmaes128 */
   Gcmaes128 = "GCMAES128",
+  /** Gcmaes192 */
   Gcmaes192 = "GCMAES192",
+  /** Gcmaes256 */
   Gcmaes256 = "GCMAES256"
 }
 
@@ -12253,12 +12691,19 @@ export type IpsecIntegrity = string;
 
 /** Known values of {@link IkeEncryption} that the service accepts. */
 export enum KnownIkeEncryption {
+  /** DES */
   DES = "DES",
+  /** DES3 */
   DES3 = "DES3",
+  /** AES128 */
   AES128 = "AES128",
+  /** AES192 */
   AES192 = "AES192",
+  /** AES256 */
   AES256 = "AES256",
+  /** Gcmaes256 */
   Gcmaes256 = "GCMAES256",
+  /** Gcmaes128 */
   Gcmaes128 = "GCMAES128"
 }
 
@@ -12279,11 +12724,17 @@ export type IkeEncryption = string;
 
 /** Known values of {@link IkeIntegrity} that the service accepts. */
 export enum KnownIkeIntegrity {
+  /** MD5 */
   MD5 = "MD5",
+  /** SHA1 */
   SHA1 = "SHA1",
+  /** SHA256 */
   SHA256 = "SHA256",
+  /** SHA384 */
   SHA384 = "SHA384",
+  /** Gcmaes256 */
   Gcmaes256 = "GCMAES256",
+  /** Gcmaes128 */
   Gcmaes128 = "GCMAES128"
 }
 
@@ -12303,13 +12754,21 @@ export type IkeIntegrity = string;
 
 /** Known values of {@link DhGroup} that the service accepts. */
 export enum KnownDhGroup {
+  /** None */
   None = "None",
+  /** DHGroup1 */
   DHGroup1 = "DHGroup1",
+  /** DHGroup2 */
   DHGroup2 = "DHGroup2",
+  /** DHGroup14 */
   DHGroup14 = "DHGroup14",
+  /** DHGroup2048 */
   DHGroup2048 = "DHGroup2048",
+  /** ECP256 */
   ECP256 = "ECP256",
+  /** ECP384 */
   ECP384 = "ECP384",
+  /** DHGroup24 */
   DHGroup24 = "DHGroup24"
 }
 
@@ -12331,14 +12790,23 @@ export type DhGroup = string;
 
 /** Known values of {@link PfsGroup} that the service accepts. */
 export enum KnownPfsGroup {
+  /** None */
   None = "None",
+  /** PFS1 */
   PFS1 = "PFS1",
+  /** PFS2 */
   PFS2 = "PFS2",
+  /** PFS2048 */
   PFS2048 = "PFS2048",
+  /** ECP256 */
   ECP256 = "ECP256",
+  /** ECP384 */
   ECP384 = "ECP384",
+  /** PFS24 */
   PFS24 = "PFS24",
+  /** PFS14 */
   PFS14 = "PFS14",
+  /** Pfsmm */
   Pfsmm = "PFSMM"
 }
 
@@ -12361,7 +12829,9 @@ export type PfsGroup = string;
 
 /** Known values of {@link VpnNatRuleType} that the service accepts. */
 export enum KnownVpnNatRuleType {
+  /** Static */
   Static = "Static",
+  /** Dynamic */
   Dynamic = "Dynamic"
 }
 
@@ -12377,7 +12847,9 @@ export type VpnNatRuleType = string;
 
 /** Known values of {@link VpnNatRuleMode} that the service accepts. */
 export enum KnownVpnNatRuleMode {
+  /** EgressSnat */
   EgressSnat = "EgressSnat",
+  /** IngressSnat */
   IngressSnat = "IngressSnat"
 }
 
@@ -12393,9 +12865,13 @@ export type VpnNatRuleMode = string;
 
 /** Known values of {@link VirtualNetworkGatewayConnectionType} that the service accepts. */
 export enum KnownVirtualNetworkGatewayConnectionType {
+  /** IPsec */
   IPsec = "IPsec",
+  /** Vnet2Vnet */
   Vnet2Vnet = "Vnet2Vnet",
+  /** ExpressRoute */
   ExpressRoute = "ExpressRoute",
+  /** VPNClient */
   VPNClient = "VPNClient"
 }
 
@@ -12413,7 +12889,9 @@ export type VirtualNetworkGatewayConnectionType = string;
 
 /** Known values of {@link VirtualNetworkGatewayConnectionProtocol} that the service accepts. */
 export enum KnownVirtualNetworkGatewayConnectionProtocol {
+  /** IKEv2 */
   IKEv2 = "IKEv2",
+  /** IKEv1 */
   IKEv1 = "IKEv1"
 }
 
@@ -12429,8 +12907,11 @@ export type VirtualNetworkGatewayConnectionProtocol = string;
 
 /** Known values of {@link VirtualNetworkGatewayConnectionMode} that the service accepts. */
 export enum KnownVirtualNetworkGatewayConnectionMode {
+  /** Default */
   Default = "Default",
+  /** ResponderOnly */
   ResponderOnly = "ResponderOnly",
+  /** InitiatorOnly */
   InitiatorOnly = "InitiatorOnly"
 }
 
@@ -12447,9 +12928,13 @@ export type VirtualNetworkGatewayConnectionMode = string;
 
 /** Known values of {@link VirtualNetworkGatewayConnectionStatus} that the service accepts. */
 export enum KnownVirtualNetworkGatewayConnectionStatus {
+  /** Unknown */
   Unknown = "Unknown",
+  /** Connecting */
   Connecting = "Connecting",
+  /** Connected */
   Connected = "Connected",
+  /** NotConnected */
   NotConnected = "NotConnected"
 }
 
@@ -12467,7 +12952,9 @@ export type VirtualNetworkGatewayConnectionStatus = string;
 
 /** Known values of {@link ProcessorArchitecture} that the service accepts. */
 export enum KnownProcessorArchitecture {
+  /** Amd64 */
   Amd64 = "Amd64",
+  /** X86 */
   X86 = "X86"
 }
 
@@ -12483,7 +12970,9 @@ export type ProcessorArchitecture = string;
 
 /** Known values of {@link AuthenticationMethod} that the service accepts. */
 export enum KnownAuthenticationMethod {
+  /** Eaptls */
   Eaptls = "EAPTLS",
+  /** EapmschaPv2 */
   EapmschaPv2 = "EAPMSCHAPv2"
 }
 
@@ -12499,10 +12988,15 @@ export type AuthenticationMethod = string;
 
 /** Known values of {@link BgpPeerState} that the service accepts. */
 export enum KnownBgpPeerState {
+  /** Unknown */
   Unknown = "Unknown",
+  /** Stopped */
   Stopped = "Stopped",
+  /** Idle */
   Idle = "Idle",
+  /** Connecting */
   Connecting = "Connecting",
+  /** Connected */
   Connected = "Connected"
 }
 
@@ -12521,9 +13015,13 @@ export type BgpPeerState = string;
 
 /** Known values of {@link OfficeTrafficCategory} that the service accepts. */
 export enum KnownOfficeTrafficCategory {
+  /** Optimize */
   Optimize = "Optimize",
+  /** OptimizeAndAllow */
   OptimizeAndAllow = "OptimizeAndAllow",
+  /** All */
   All = "All",
+  /** None */
   None = "None"
 }
 
@@ -12541,7 +13039,9 @@ export type OfficeTrafficCategory = string;
 
 /** Known values of {@link VirtualWanSecurityProviderType} that the service accepts. */
 export enum KnownVirtualWanSecurityProviderType {
+  /** External */
   External = "External",
+  /** Native */
   Native = "Native"
 }
 
@@ -12557,7 +13057,9 @@ export type VirtualWanSecurityProviderType = string;
 
 /** Known values of {@link VpnGatewayTunnelingProtocol} that the service accepts. */
 export enum KnownVpnGatewayTunnelingProtocol {
+  /** IkeV2 */
   IkeV2 = "IkeV2",
+  /** OpenVPN */
   OpenVPN = "OpenVPN"
 }
 
@@ -12573,9 +13075,13 @@ export type VpnGatewayTunnelingProtocol = string;
 
 /** Known values of {@link RoutingState} that the service accepts. */
 export enum KnownRoutingState {
+  /** None */
   None = "None",
+  /** Provisioned */
   Provisioned = "Provisioned",
+  /** Provisioning */
   Provisioning = "Provisioning",
+  /** Failed */
   Failed = "Failed"
 }
 
@@ -12593,8 +13099,11 @@ export type RoutingState = string;
 
 /** Known values of {@link PreferredRoutingGateway} that the service accepts. */
 export enum KnownPreferredRoutingGateway {
+  /** ExpressRoute */
   ExpressRoute = "ExpressRoute",
+  /** VpnGateway */
   VpnGateway = "VpnGateway",
+  /** None */
   None = "None"
 }
 
@@ -12611,9 +13120,13 @@ export type PreferredRoutingGateway = string;
 
 /** Known values of {@link VpnConnectionStatus} that the service accepts. */
 export enum KnownVpnConnectionStatus {
+  /** Unknown */
   Unknown = "Unknown",
+  /** Connecting */
   Connecting = "Connecting",
+  /** Connected */
   Connected = "Connected",
+  /** NotConnected */
   NotConnected = "NotConnected"
 }
 
@@ -12631,8 +13144,11 @@ export type VpnConnectionStatus = string;
 
 /** Known values of {@link VpnLinkConnectionMode} that the service accepts. */
 export enum KnownVpnLinkConnectionMode {
+  /** Default */
   Default = "Default",
+  /** ResponderOnly */
   ResponderOnly = "ResponderOnly",
+  /** InitiatorOnly */
   InitiatorOnly = "InitiatorOnly"
 }
 
@@ -12649,9 +13165,13 @@ export type VpnLinkConnectionMode = string;
 
 /** Known values of {@link HubBgpConnectionStatus} that the service accepts. */
 export enum KnownHubBgpConnectionStatus {
+  /** Unknown */
   Unknown = "Unknown",
+  /** Connecting */
   Connecting = "Connecting",
+  /** Connected */
   Connected = "Connected",
+  /** NotConnected */
   NotConnected = "NotConnected"
 }
 
@@ -12669,7 +13189,9 @@ export type HubBgpConnectionStatus = string;
 
 /** Known values of {@link WebApplicationFirewallEnabledState} that the service accepts. */
 export enum KnownWebApplicationFirewallEnabledState {
+  /** Disabled */
   Disabled = "Disabled",
+  /** Enabled */
   Enabled = "Enabled"
 }
 
@@ -12685,7 +13207,9 @@ export type WebApplicationFirewallEnabledState = string;
 
 /** Known values of {@link WebApplicationFirewallMode} that the service accepts. */
 export enum KnownWebApplicationFirewallMode {
+  /** Prevention */
   Prevention = "Prevention",
+  /** Detection */
   Detection = "Detection"
 }
 
@@ -12701,7 +13225,9 @@ export type WebApplicationFirewallMode = string;
 
 /** Known values of {@link WebApplicationFirewallRuleType} that the service accepts. */
 export enum KnownWebApplicationFirewallRuleType {
+  /** MatchRule */
   MatchRule = "MatchRule",
+  /** Invalid */
   Invalid = "Invalid"
 }
 
@@ -12717,13 +13243,21 @@ export type WebApplicationFirewallRuleType = string;
 
 /** Known values of {@link WebApplicationFirewallMatchVariable} that the service accepts. */
 export enum KnownWebApplicationFirewallMatchVariable {
+  /** RemoteAddr */
   RemoteAddr = "RemoteAddr",
+  /** RequestMethod */
   RequestMethod = "RequestMethod",
+  /** QueryString */
   QueryString = "QueryString",
+  /** PostArgs */
   PostArgs = "PostArgs",
+  /** RequestUri */
   RequestUri = "RequestUri",
+  /** RequestHeaders */
   RequestHeaders = "RequestHeaders",
+  /** RequestBody */
   RequestBody = "RequestBody",
+  /** RequestCookies */
   RequestCookies = "RequestCookies"
 }
 
@@ -12745,16 +13279,27 @@ export type WebApplicationFirewallMatchVariable = string;
 
 /** Known values of {@link WebApplicationFirewallOperator} that the service accepts. */
 export enum KnownWebApplicationFirewallOperator {
+  /** IPMatch */
   IPMatch = "IPMatch",
+  /** Equal */
   Equal = "Equal",
+  /** Contains */
   Contains = "Contains",
+  /** LessThan */
   LessThan = "LessThan",
+  /** GreaterThan */
   GreaterThan = "GreaterThan",
+  /** LessThanOrEqual */
   LessThanOrEqual = "LessThanOrEqual",
+  /** GreaterThanOrEqual */
   GreaterThanOrEqual = "GreaterThanOrEqual",
+  /** BeginsWith */
   BeginsWith = "BeginsWith",
+  /** EndsWith */
   EndsWith = "EndsWith",
+  /** Regex */
   Regex = "Regex",
+  /** GeoMatch */
   GeoMatch = "GeoMatch"
 }
 
@@ -12779,11 +13324,17 @@ export type WebApplicationFirewallOperator = string;
 
 /** Known values of {@link WebApplicationFirewallTransform} that the service accepts. */
 export enum KnownWebApplicationFirewallTransform {
+  /** Lowercase */
   Lowercase = "Lowercase",
+  /** Trim */
   Trim = "Trim",
+  /** UrlDecode */
   UrlDecode = "UrlDecode",
+  /** UrlEncode */
   UrlEncode = "UrlEncode",
+  /** RemoveNulls */
   RemoveNulls = "RemoveNulls",
+  /** HtmlEntityDecode */
   HtmlEntityDecode = "HtmlEntityDecode"
 }
 
@@ -12803,8 +13354,11 @@ export type WebApplicationFirewallTransform = string;
 
 /** Known values of {@link WebApplicationFirewallAction} that the service accepts. */
 export enum KnownWebApplicationFirewallAction {
+  /** Allow */
   Allow = "Allow",
+  /** Block */
   Block = "Block",
+  /** Log */
   Log = "Log"
 }
 
@@ -12821,11 +13375,17 @@ export type WebApplicationFirewallAction = string;
 
 /** Known values of {@link WebApplicationFirewallPolicyResourceState} that the service accepts. */
 export enum KnownWebApplicationFirewallPolicyResourceState {
+  /** Creating */
   Creating = "Creating",
+  /** Enabling */
   Enabling = "Enabling",
+  /** Enabled */
   Enabled = "Enabled",
+  /** Disabling */
   Disabling = "Disabling",
+  /** Disabled */
   Disabled = "Disabled",
+  /** Deleting */
   Deleting = "Deleting"
 }
 
@@ -12845,14 +13405,23 @@ export type WebApplicationFirewallPolicyResourceState = string;
 
 /** Known values of {@link OwaspCrsExclusionEntryMatchVariable} that the service accepts. */
 export enum KnownOwaspCrsExclusionEntryMatchVariable {
+  /** RequestHeaderNames */
   RequestHeaderNames = "RequestHeaderNames",
+  /** RequestCookieNames */
   RequestCookieNames = "RequestCookieNames",
+  /** RequestArgNames */
   RequestArgNames = "RequestArgNames",
+  /** RequestHeaderKeys */
   RequestHeaderKeys = "RequestHeaderKeys",
+  /** RequestHeaderValues */
   RequestHeaderValues = "RequestHeaderValues",
+  /** RequestCookieKeys */
   RequestCookieKeys = "RequestCookieKeys",
+  /** RequestCookieValues */
   RequestCookieValues = "RequestCookieValues",
+  /** RequestArgKeys */
   RequestArgKeys = "RequestArgKeys",
+  /** RequestArgValues */
   RequestArgValues = "RequestArgValues"
 }
 
@@ -12875,10 +13444,15 @@ export type OwaspCrsExclusionEntryMatchVariable = string;
 
 /** Known values of {@link OwaspCrsExclusionEntrySelectorMatchOperator} that the service accepts. */
 export enum KnownOwaspCrsExclusionEntrySelectorMatchOperator {
+  /** Equals */
   Equals = "Equals",
+  /** Contains */
   Contains = "Contains",
+  /** StartsWith */
   StartsWith = "StartsWith",
+  /** EndsWith */
   EndsWith = "EndsWith",
+  /** EqualsAny */
   EqualsAny = "EqualsAny"
 }
 
@@ -12897,6 +13471,7 @@ export type OwaspCrsExclusionEntrySelectorMatchOperator = string;
 
 /** Known values of {@link ManagedRuleEnabledState} that the service accepts. */
 export enum KnownManagedRuleEnabledState {
+  /** Disabled */
   Disabled = "Disabled"
 }
 
@@ -12911,6 +13486,7 @@ export type ManagedRuleEnabledState = string;
 
 /** Known values of {@link FirewallPolicyNatRuleCollectionActionType} that the service accepts. */
 export enum KnownFirewallPolicyNatRuleCollectionActionType {
+  /** Dnat */
   Dnat = "DNAT"
 }
 
@@ -12925,8 +13501,11 @@ export type FirewallPolicyNatRuleCollectionActionType = string;
 
 /** Known values of {@link FirewallPolicyRuleType} that the service accepts. */
 export enum KnownFirewallPolicyRuleType {
+  /** ApplicationRule */
   ApplicationRule = "ApplicationRule",
+  /** NetworkRule */
   NetworkRule = "NetworkRule",
+  /** NatRule */
   NatRule = "NatRule"
 }
 
@@ -12943,7 +13522,9 @@ export type FirewallPolicyRuleType = string;
 
 /** Known values of {@link FirewallPolicyFilterRuleCollectionActionType} that the service accepts. */
 export enum KnownFirewallPolicyFilterRuleCollectionActionType {
+  /** Allow */
   Allow = "Allow",
+  /** Deny */
   Deny = "Deny"
 }
 
@@ -12959,7 +13540,9 @@ export type FirewallPolicyFilterRuleCollectionActionType = string;
 
 /** Known values of {@link FirewallPolicyRuleApplicationProtocolType} that the service accepts. */
 export enum KnownFirewallPolicyRuleApplicationProtocolType {
+  /** Http */
   Http = "Http",
+  /** Https */
   Https = "Https"
 }
 
@@ -12975,9 +13558,13 @@ export type FirewallPolicyRuleApplicationProtocolType = string;
 
 /** Known values of {@link FirewallPolicyRuleNetworkProtocol} that the service accepts. */
 export enum KnownFirewallPolicyRuleNetworkProtocol {
+  /** TCP */
   TCP = "TCP",
+  /** UDP */
   UDP = "UDP",
+  /** Any */
   Any = "Any",
+  /** Icmp */
   Icmp = "ICMP"
 }
 
@@ -12995,8 +13582,11 @@ export type FirewallPolicyRuleNetworkProtocol = string;
 
 /** Known values of {@link NetworkOperationStatus} that the service accepts. */
 export enum KnownNetworkOperationStatus {
+  /** InProgress */
   InProgress = "InProgress",
+  /** Succeeded */
   Succeeded = "Succeeded",
+  /** Failed */
   Failed = "Failed"
 }
 
@@ -13013,9 +13603,13 @@ export type NetworkOperationStatus = string;
 
 /** Known values of {@link TunnelConnectionStatus} that the service accepts. */
 export enum KnownTunnelConnectionStatus {
+  /** Unknown */
   Unknown = "Unknown",
+  /** Connecting */
   Connecting = "Connecting",
+  /** Connected */
   Connected = "Connected",
+  /** NotConnected */
   NotConnected = "NotConnected"
 }
 
@@ -13033,9 +13627,13 @@ export type TunnelConnectionStatus = string;
 
 /** Known values of {@link HubVirtualNetworkConnectionStatus} that the service accepts. */
 export enum KnownHubVirtualNetworkConnectionStatus {
+  /** Unknown */
   Unknown = "Unknown",
+  /** Connecting */
   Connecting = "Connecting",
+  /** Connected */
   Connected = "Connected",
+  /** NotConnected */
   NotConnected = "NotConnected"
 }
 

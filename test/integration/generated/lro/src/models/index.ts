@@ -566,16 +566,27 @@ export interface LROsCustomHeaderPostAsyncRetrySucceededHeaders {
 
 /** Known values of {@link ProductPropertiesProvisioningStateValues} that the service accepts. */
 export enum KnownProductPropertiesProvisioningStateValues {
+  /** Succeeded */
   Succeeded = "Succeeded",
+  /** Failed */
   Failed = "Failed",
+  /** Canceled */
   Canceled = "canceled",
+  /** Accepted */
   Accepted = "Accepted",
+  /** Creating */
   Creating = "Creating",
+  /** Created */
   Created = "Created",
+  /** Updating */
   Updating = "Updating",
+  /** Updated */
   Updated = "Updated",
+  /** Deleting */
   Deleting = "Deleting",
+  /** Deleted */
   Deleted = "Deleted",
+  /** OK */
   OK = "OK"
 }
 
@@ -600,16 +611,27 @@ export type ProductPropertiesProvisioningStateValues = string;
 
 /** Known values of {@link SubProductPropertiesProvisioningStateValues} that the service accepts. */
 export enum KnownSubProductPropertiesProvisioningStateValues {
+  /** Succeeded */
   Succeeded = "Succeeded",
+  /** Failed */
   Failed = "Failed",
+  /** Canceled */
   Canceled = "canceled",
+  /** Accepted */
   Accepted = "Accepted",
+  /** Creating */
   Creating = "Creating",
+  /** Created */
   Created = "Created",
+  /** Updating */
   Updating = "Updating",
+  /** Updated */
   Updated = "Updated",
+  /** Deleting */
   Deleting = "Deleting",
+  /** Deleted */
   Deleted = "Deleted",
+  /** OK */
   OK = "OK"
 }
 
@@ -634,16 +656,27 @@ export type SubProductPropertiesProvisioningStateValues = string;
 
 /** Known values of {@link OperationResultStatus} that the service accepts. */
 export enum KnownOperationResultStatus {
+  /** Succeeded */
   Succeeded = "Succeeded",
+  /** Failed */
   Failed = "Failed",
+  /** Canceled */
   Canceled = "canceled",
+  /** Accepted */
   Accepted = "Accepted",
+  /** Creating */
   Creating = "Creating",
+  /** Created */
   Created = "Created",
+  /** Updating */
   Updating = "Updating",
+  /** Updated */
   Updated = "Updated",
+  /** Deleting */
   Deleting = "Deleting",
+  /** Deleted */
   Deleted = "Deleted",
+  /** OK */
   OK = "OK"
 }
 

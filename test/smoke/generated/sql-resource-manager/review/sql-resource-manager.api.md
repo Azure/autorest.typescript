@@ -3037,1283 +3037,840 @@ export type JobVersionsListByJobResponse = JobVersionListResult;
 
 // @public
 export enum KnownAdministratorName {
-    // (undocumented)
     ActiveDirectory = "ActiveDirectory"
 }
 
 // @public
 export enum KnownAdministratorType {
-    // (undocumented)
     ActiveDirectory = "ActiveDirectory"
 }
 
 // @public
 export enum KnownAggregationFunctionType {
-    // (undocumented)
     Avg = "avg",
-    // (undocumented)
     Max = "max",
-    // (undocumented)
     Min = "min",
-    // (undocumented)
     Stdev = "stdev",
-    // (undocumented)
     Sum = "sum"
 }
 
 // @public
 export enum KnownAuthenticationName {
-    // (undocumented)
     Default = "Default"
 }
 
 // @public
 export enum KnownBackupStorageRedundancy {
-    // (undocumented)
     Geo = "Geo",
-    // (undocumented)
     GeoZone = "GeoZone",
-    // (undocumented)
     Local = "Local",
-    // (undocumented)
     Zone = "Zone"
 }
 
 // @public
 export enum KnownCapabilityGroup {
-    // (undocumented)
     SupportedEditions = "supportedEditions",
-    // (undocumented)
     SupportedElasticPoolEditions = "supportedElasticPoolEditions",
-    // (undocumented)
     SupportedInstancePoolEditions = "supportedInstancePoolEditions",
-    // (undocumented)
     SupportedManagedInstanceEditions = "supportedManagedInstanceEditions",
-    // (undocumented)
     SupportedManagedInstanceVersions = "supportedManagedInstanceVersions"
 }
 
 // @public
 export enum KnownCatalogCollationType {
-    // (undocumented)
     DatabaseDefault = "DATABASE_DEFAULT",
-    // (undocumented)
     SQLLatin1GeneralCP1CIAS = "SQL_Latin1_General_CP1_CI_AS"
 }
 
 // @public
 export enum KnownColumnDataType {
-    // (undocumented)
     Bigint = "bigint",
-    // (undocumented)
     Binary = "binary",
-    // (undocumented)
     Bit = "bit",
-    // (undocumented)
     Char = "char",
-    // (undocumented)
     Date = "date",
-    // (undocumented)
     Datetime = "datetime",
-    // (undocumented)
     Datetime2 = "datetime2",
-    // (undocumented)
     Datetimeoffset = "datetimeoffset",
-    // (undocumented)
     Decimal = "decimal",
-    // (undocumented)
     Float = "float",
-    // (undocumented)
     Geography = "geography",
-    // (undocumented)
     Geometry = "geometry",
-    // (undocumented)
     Hierarchyid = "hierarchyid",
-    // (undocumented)
     Image = "image",
-    // (undocumented)
     Int = "int",
-    // (undocumented)
     Money = "money",
-    // (undocumented)
     Nchar = "nchar",
-    // (undocumented)
     Ntext = "ntext",
-    // (undocumented)
     Numeric = "numeric",
-    // (undocumented)
     Nvarchar = "nvarchar",
-    // (undocumented)
     Real = "real",
-    // (undocumented)
     Smalldatetime = "smalldatetime",
-    // (undocumented)
     Smallint = "smallint",
-    // (undocumented)
     Smallmoney = "smallmoney",
-    // (undocumented)
     SqlVariant = "sql_variant",
-    // (undocumented)
     Sysname = "sysname",
-    // (undocumented)
     Text = "text",
-    // (undocumented)
     Time = "time",
-    // (undocumented)
     Timestamp = "timestamp",
-    // (undocumented)
     Tinyint = "tinyint",
-    // (undocumented)
     Uniqueidentifier = "uniqueidentifier",
-    // (undocumented)
     Varbinary = "varbinary",
-    // (undocumented)
     Varchar = "varchar",
-    // (undocumented)
     Xml = "xml"
 }
 
 // @public
 export enum KnownConnectionPolicyName {
-    // (undocumented)
     Default = "default"
 }
 
 // @public
 export enum KnownCreatedByType {
-    // (undocumented)
     Application = "Application",
-    // (undocumented)
     Key = "Key",
-    // (undocumented)
     ManagedIdentity = "ManagedIdentity",
-    // (undocumented)
     User = "User"
 }
 
 // @public
 export enum KnownCreateMode {
-    // (undocumented)
     Copy = "Copy",
-    // (undocumented)
     Default = "Default",
-    // (undocumented)
     OnlineSecondary = "OnlineSecondary",
-    // (undocumented)
     PointInTimeRestore = "PointInTimeRestore",
-    // (undocumented)
     Recovery = "Recovery",
-    // (undocumented)
     Restore = "Restore",
-    // (undocumented)
     RestoreExternalBackup = "RestoreExternalBackup",
-    // (undocumented)
     RestoreExternalBackupSecondary = "RestoreExternalBackupSecondary",
-    // (undocumented)
     RestoreLongTermRetentionBackup = "RestoreLongTermRetentionBackup",
-    // (undocumented)
     Secondary = "Secondary"
 }
 
 // @public
 export enum KnownDatabaseIdentityType {
-    // (undocumented)
     None = "None",
-    // (undocumented)
     UserAssigned = "UserAssigned"
 }
 
 // @public
 export enum KnownDatabaseLicenseType {
-    // (undocumented)
     BasePrice = "BasePrice",
-    // (undocumented)
     LicenseIncluded = "LicenseIncluded"
 }
 
 // @public
 export enum KnownDatabaseReadScale {
-    // (undocumented)
     Disabled = "Disabled",
-    // (undocumented)
     Enabled = "Enabled"
 }
 
 // @public
 export enum KnownDatabaseState {
-    // (undocumented)
     All = "All",
-    // (undocumented)
     Deleted = "Deleted",
-    // (undocumented)
     Live = "Live"
 }
 
 // @public
 export enum KnownDatabaseStatus {
-    // (undocumented)
     AutoClosed = "AutoClosed",
-    // (undocumented)
     Copying = "Copying",
-    // (undocumented)
     Creating = "Creating",
-    // (undocumented)
     Disabled = "Disabled",
-    // (undocumented)
     EmergencyMode = "EmergencyMode",
-    // (undocumented)
     Inaccessible = "Inaccessible",
-    // (undocumented)
     Offline = "Offline",
-    // (undocumented)
     OfflineChangingDwPerformanceTiers = "OfflineChangingDwPerformanceTiers",
-    // (undocumented)
     OfflineSecondary = "OfflineSecondary",
-    // (undocumented)
     Online = "Online",
-    // (undocumented)
     OnlineChangingDwPerformanceTiers = "OnlineChangingDwPerformanceTiers",
-    // (undocumented)
     Paused = "Paused",
-    // (undocumented)
     Pausing = "Pausing",
-    // (undocumented)
     Recovering = "Recovering",
-    // (undocumented)
     RecoveryPending = "RecoveryPending",
-    // (undocumented)
     Restoring = "Restoring",
-    // (undocumented)
     Resuming = "Resuming",
-    // (undocumented)
     Scaling = "Scaling",
-    // (undocumented)
     Shutdown = "Shutdown",
-    // (undocumented)
     Standby = "Standby",
-    // (undocumented)
     Starting = "Starting",
-    // (undocumented)
     Stopped = "Stopped",
-    // (undocumented)
     Stopping = "Stopping",
-    // (undocumented)
     Suspect = "Suspect"
 }
 
 // @public
 export enum KnownDataWarehouseUserActivityName {
-    // (undocumented)
     Current = "current"
 }
 
 // @public
 export enum KnownDayOfWeek {
-    // (undocumented)
     Friday = "Friday",
-    // (undocumented)
     Monday = "Monday",
-    // (undocumented)
     Saturday = "Saturday",
-    // (undocumented)
     Sunday = "Sunday",
-    // (undocumented)
     Thursday = "Thursday",
-    // (undocumented)
     Tuesday = "Tuesday",
-    // (undocumented)
     Wednesday = "Wednesday"
 }
 
 // @public
 export enum KnownDiffBackupIntervalInHours {
-    // (undocumented)
     Twelve = 12,
-    // (undocumented)
     TwentyFour = 24
 }
 
 // @public
 export enum KnownDnsRefreshConfigurationPropertiesStatus {
-    // (undocumented)
     Failed = "Failed",
-    // (undocumented)
     Succeeded = "Succeeded"
 }
 
 // @public
 export enum KnownElasticPoolLicenseType {
-    // (undocumented)
     BasePrice = "BasePrice",
-    // (undocumented)
     LicenseIncluded = "LicenseIncluded"
 }
 
 // @public
 export enum KnownElasticPoolState {
-    // (undocumented)
     Creating = "Creating",
-    // (undocumented)
     Disabled = "Disabled",
-    // (undocumented)
     Ready = "Ready"
 }
 
 // @public
 export enum KnownEncryptionProtectorName {
-    // (undocumented)
     Current = "current"
 }
 
 // @public
 export enum KnownFailoverGroupReplicationRole {
-    // (undocumented)
     Primary = "Primary",
-    // (undocumented)
     Secondary = "Secondary"
 }
 
 // @public
 export enum KnownGeoBackupPolicyName {
-    // (undocumented)
     Default = "Default"
 }
 
 // @public
 export enum KnownIdentityType {
-    // (undocumented)
     None = "None",
-    // (undocumented)
     SystemAssigned = "SystemAssigned",
-    // (undocumented)
     SystemAssignedUserAssigned = "SystemAssigned,UserAssigned",
-    // (undocumented)
     UserAssigned = "UserAssigned"
 }
 
 // @public
 export enum KnownInstanceFailoverGroupReplicationRole {
-    // (undocumented)
     Primary = "Primary",
-    // (undocumented)
     Secondary = "Secondary"
 }
 
 // @public
 export enum KnownInstancePoolLicenseType {
-    // (undocumented)
     BasePrice = "BasePrice",
-    // (undocumented)
     LicenseIncluded = "LicenseIncluded"
 }
 
 // @public
 export enum KnownJobAgentState {
-    // (undocumented)
     Creating = "Creating",
-    // (undocumented)
     Deleting = "Deleting",
-    // (undocumented)
     Disabled = "Disabled",
-    // (undocumented)
     Ready = "Ready",
-    // (undocumented)
     Updating = "Updating"
 }
 
 // @public
 export enum KnownJobExecutionLifecycle {
-    // (undocumented)
     Canceled = "Canceled",
-    // (undocumented)
     Created = "Created",
-    // (undocumented)
     Failed = "Failed",
-    // (undocumented)
     InProgress = "InProgress",
-    // (undocumented)
     Skipped = "Skipped",
-    // (undocumented)
     Succeeded = "Succeeded",
-    // (undocumented)
     SucceededWithSkipped = "SucceededWithSkipped",
-    // (undocumented)
     TimedOut = "TimedOut",
-    // (undocumented)
     WaitingForChildJobExecutions = "WaitingForChildJobExecutions",
-    // (undocumented)
     WaitingForRetry = "WaitingForRetry"
 }
 
 // @public
 export enum KnownJobStepActionSource {
-    // (undocumented)
     Inline = "Inline"
 }
 
 // @public
 export enum KnownJobStepActionType {
-    // (undocumented)
     TSql = "TSql"
 }
 
 // @public
 export enum KnownJobStepOutputType {
-    // (undocumented)
     SqlDatabase = "SqlDatabase"
 }
 
 // @public
 export enum KnownJobTargetType {
-    // (undocumented)
     SqlDatabase = "SqlDatabase",
-    // (undocumented)
     SqlElasticPool = "SqlElasticPool",
-    // (undocumented)
     SqlServer = "SqlServer",
-    // (undocumented)
     SqlShardMap = "SqlShardMap",
-    // (undocumented)
     TargetGroup = "TargetGroup"
 }
 
 // @public
 export enum KnownLedgerDigestUploadsName {
-    // (undocumented)
     Current = "current"
 }
 
 // @public
 export enum KnownLogSizeUnit {
-    // (undocumented)
     Gigabytes = "Gigabytes",
-    // (undocumented)
     Megabytes = "Megabytes",
-    // (undocumented)
     Percent = "Percent",
-    // (undocumented)
     Petabytes = "Petabytes",
-    // (undocumented)
     Terabytes = "Terabytes"
 }
 
 // @public
 export enum KnownLongTermRetentionPolicyName {
-    // (undocumented)
     Default = "default"
 }
 
 // @public
 export enum KnownManagedDatabaseCreateMode {
-    // (undocumented)
     Default = "Default",
-    // (undocumented)
     PointInTimeRestore = "PointInTimeRestore",
-    // (undocumented)
     Recovery = "Recovery",
-    // (undocumented)
     RestoreExternalBackup = "RestoreExternalBackup",
-    // (undocumented)
     RestoreLongTermRetentionBackup = "RestoreLongTermRetentionBackup"
 }
 
 // @public
 export enum KnownManagedDatabaseStatus {
-    // (undocumented)
     Creating = "Creating",
-    // (undocumented)
     Inaccessible = "Inaccessible",
-    // (undocumented)
     Offline = "Offline",
-    // (undocumented)
     Online = "Online",
-    // (undocumented)
     Restoring = "Restoring",
-    // (undocumented)
     Shutdown = "Shutdown",
-    // (undocumented)
     Updating = "Updating"
 }
 
 // @public
 export enum KnownManagedInstanceAdministratorType {
-    // (undocumented)
     ActiveDirectory = "ActiveDirectory"
 }
 
 // @public
 export enum KnownManagedInstanceLicenseType {
-    // (undocumented)
     BasePrice = "BasePrice",
-    // (undocumented)
     LicenseIncluded = "LicenseIncluded"
 }
 
 // @public
 export enum KnownManagedInstanceLongTermRetentionPolicyName {
-    // (undocumented)
     Default = "default"
 }
 
 // @public
 export enum KnownManagedInstancePropertiesProvisioningState {
-    // (undocumented)
     Accepted = "Accepted",
-    // (undocumented)
     Canceled = "Canceled",
-    // (undocumented)
     Created = "Created",
-    // (undocumented)
     Creating = "Creating",
-    // (undocumented)
     Deleted = "Deleted",
-    // (undocumented)
     Deleting = "Deleting",
-    // (undocumented)
     Failed = "Failed",
-    // (undocumented)
     NotSpecified = "NotSpecified",
-    // (undocumented)
     Registering = "Registering",
-    // (undocumented)
     Running = "Running",
-    // (undocumented)
     Succeeded = "Succeeded",
-    // (undocumented)
     TimedOut = "TimedOut",
-    // (undocumented)
     Unknown = "Unknown",
-    // (undocumented)
     Unrecognized = "Unrecognized",
-    // (undocumented)
     Updating = "Updating"
 }
 
 // @public
 export enum KnownManagedInstanceProxyOverride {
-    // (undocumented)
     Default = "Default",
-    // (undocumented)
     Proxy = "Proxy",
-    // (undocumented)
     Redirect = "Redirect"
 }
 
 // @public
 export enum KnownManagedServerCreateMode {
-    // (undocumented)
     Default = "Default",
-    // (undocumented)
     PointInTimeRestore = "PointInTimeRestore"
 }
 
 // @public
 export enum KnownManagedShortTermRetentionPolicyName {
-    // (undocumented)
     Default = "default"
 }
 
 // @public
 export enum KnownManagementOperationState {
-    // (undocumented)
     CancelInProgress = "CancelInProgress",
-    // (undocumented)
     Cancelled = "Cancelled",
-    // (undocumented)
     Failed = "Failed",
-    // (undocumented)
     InProgress = "InProgress",
-    // (undocumented)
     Pending = "Pending",
-    // (undocumented)
     Succeeded = "Succeeded"
 }
 
 // @public
 export enum KnownMaxSizeUnit {
-    // (undocumented)
     Gigabytes = "Gigabytes",
-    // (undocumented)
     Megabytes = "Megabytes",
-    // (undocumented)
     Petabytes = "Petabytes",
-    // (undocumented)
     Terabytes = "Terabytes"
 }
 
 // @public
 export enum KnownMetricType {
-    // (undocumented)
     Cpu = "cpu",
-    // (undocumented)
     Dtu = "dtu",
-    // (undocumented)
     Duration = "duration",
-    // (undocumented)
     Io = "io",
-    // (undocumented)
     LogIo = "logIo"
 }
 
 // @public
 export enum KnownOperationMode {
-    // (undocumented)
     PolybaseImport = "PolybaseImport"
 }
 
 // @public
 export enum KnownOperationOrigin {
-    // (undocumented)
     System = "system",
-    // (undocumented)
     User = "user"
 }
 
 // @public
 export enum KnownPauseDelayTimeUnit {
-    // (undocumented)
     Minutes = "Minutes"
 }
 
 // @public
 export enum KnownPerformanceLevelUnit {
-    // (undocumented)
     DTU = "DTU",
-    // (undocumented)
     VCores = "VCores"
 }
 
 // @public
 export enum KnownPrimaryAggregationType {
-    // (undocumented)
     Average = "Average",
-    // (undocumented)
     Count = "Count",
-    // (undocumented)
     Maximum = "Maximum",
-    // (undocumented)
     Minimum = "Minimum",
-    // (undocumented)
     None = "None",
-    // (undocumented)
     Total = "Total"
 }
 
 // @public
 export enum KnownPrincipalType {
-    // (undocumented)
     Application = "Application",
-    // (undocumented)
     Group = "Group",
-    // (undocumented)
     User = "User"
 }
 
 // @public
 export enum KnownPrivateEndpointProvisioningState {
-    // (undocumented)
     Approving = "Approving",
-    // (undocumented)
     Dropping = "Dropping",
-    // (undocumented)
     Failed = "Failed",
-    // (undocumented)
     Ready = "Ready",
-    // (undocumented)
     Rejecting = "Rejecting"
 }
 
 // @public
 export enum KnownPrivateLinkServiceConnectionStateActionsRequire {
-    // (undocumented)
     None = "None"
 }
 
 // @public
 export enum KnownPrivateLinkServiceConnectionStateStatus {
-    // (undocumented)
     Approved = "Approved",
-    // (undocumented)
     Disconnected = "Disconnected",
-    // (undocumented)
     Pending = "Pending",
-    // (undocumented)
     Rejected = "Rejected"
 }
 
 // @public
 export enum KnownProvisioningState {
-    // (undocumented)
     Canceled = "Canceled",
-    // (undocumented)
     Created = "Created",
-    // (undocumented)
     Failed = "Failed",
-    // (undocumented)
     InProgress = "InProgress",
-    // (undocumented)
     Succeeded = "Succeeded"
 }
 
 // @public
 export enum KnownQueryMetricUnitType {
-    // (undocumented)
     Count = "count",
-    // (undocumented)
     KB = "KB",
-    // (undocumented)
     Microseconds = "microseconds",
-    // (undocumented)
     Percentage = "percentage"
 }
 
 // @public
 export enum KnownQueryTimeGrainType {
-    // (undocumented)
     P1D = "P1D",
-    // (undocumented)
     PT1H = "PT1H"
 }
 
 // @public
 export enum KnownReadOnlyEndpointFailoverPolicy {
-    // (undocumented)
     Disabled = "Disabled",
-    // (undocumented)
     Enabled = "Enabled"
 }
 
 // @public
 export enum KnownReadWriteEndpointFailoverPolicy {
-    // (undocumented)
     Automatic = "Automatic",
-    // (undocumented)
     Manual = "Manual"
 }
 
 // @public
 export enum KnownRecommendedActionCurrentState {
-    // (undocumented)
     Active = "Active",
-    // (undocumented)
     Error = "Error",
-    // (undocumented)
     Executing = "Executing",
-    // (undocumented)
     Expired = "Expired",
-    // (undocumented)
     Ignored = "Ignored",
-    // (undocumented)
     Monitoring = "Monitoring",
-    // (undocumented)
     Pending = "Pending",
-    // (undocumented)
     PendingRevert = "PendingRevert",
-    // (undocumented)
     Resolved = "Resolved",
-    // (undocumented)
     RevertCancelled = "RevertCancelled",
-    // (undocumented)
     Reverted = "Reverted",
-    // (undocumented)
     Reverting = "Reverting",
-    // (undocumented)
     Success = "Success",
-    // (undocumented)
     Verifying = "Verifying"
 }
 
 // @public
 export enum KnownReplicationLinkType {
-    // (undocumented)
     GEO = "GEO",
-    // (undocumented)
     Named = "NAMED"
 }
 
 // @public
 export enum KnownReplicationState {
-    // (undocumented)
     CatchUP = "CATCH_UP",
-    // (undocumented)
     Pending = "PENDING",
-    // (undocumented)
     Seeding = "SEEDING",
-    // (undocumented)
     Suspended = "SUSPENDED"
 }
 
 // @public
 export enum KnownReplicaType {
-    // (undocumented)
     Primary = "Primary",
-    // (undocumented)
     ReadableSecondary = "ReadableSecondary"
 }
 
 // @public
 export enum KnownRestoreDetailsName {
-    // (undocumented)
     Default = "Default"
 }
 
 // @public
 export enum KnownSampleName {
-    // (undocumented)
     AdventureWorksLT = "AdventureWorksLT",
-    // (undocumented)
     WideWorldImportersFull = "WideWorldImportersFull",
-    // (undocumented)
     WideWorldImportersStd = "WideWorldImportersStd"
 }
 
 // @public
 export enum KnownSecondaryType {
-    // (undocumented)
     Geo = "Geo",
-    // (undocumented)
     Named = "Named"
 }
 
 // @public
 export enum KnownSecurityAlertPolicyName {
-    // (undocumented)
     Default = "Default"
 }
 
 // @public
 export enum KnownServerConnectionType {
-    // (undocumented)
     Default = "Default",
-    // (undocumented)
     Proxy = "Proxy",
-    // (undocumented)
     Redirect = "Redirect"
 }
 
 // @public
 export enum KnownServerKeyType {
-    // (undocumented)
     AzureKeyVault = "AzureKeyVault",
-    // (undocumented)
     ServiceManaged = "ServiceManaged"
 }
 
 // @public
 export enum KnownServerNetworkAccessFlag {
-    // (undocumented)
     Disabled = "Disabled",
-    // (undocumented)
     Enabled = "Enabled"
 }
 
 // @public
 export enum KnownServerTrustGroupPropertiesTrustScopesItem {
-    // (undocumented)
     GlobalTransactions = "GlobalTransactions",
-    // (undocumented)
     ServiceBroker = "ServiceBroker"
 }
 
 // @public
 export enum KnownServerWorkspaceFeature {
-    // (undocumented)
     Connected = "Connected",
-    // (undocumented)
     Disconnected = "Disconnected"
 }
 
 // @public
 export enum KnownServiceObjectiveName {
-    // (undocumented)
     Basic = "Basic",
-    // (undocumented)
     DS100 = "DS100",
-    // (undocumented)
     DS1000 = "DS1000",
-    // (undocumented)
     DS1200 = "DS1200",
-    // (undocumented)
     DS1500 = "DS1500",
-    // (undocumented)
     DS200 = "DS200",
-    // (undocumented)
     DS2000 = "DS2000",
-    // (undocumented)
     DS300 = "DS300",
-    // (undocumented)
     DS400 = "DS400",
-    // (undocumented)
     DS500 = "DS500",
-    // (undocumented)
     DS600 = "DS600",
-    // (undocumented)
     DW100 = "DW100",
-    // (undocumented)
     DW1000 = "DW1000",
-    // (undocumented)
     DW10000C = "DW10000c",
-    // (undocumented)
     DW1000C = "DW1000c",
-    // (undocumented)
     DW1200 = "DW1200",
-    // (undocumented)
     DW1500 = "DW1500",
-    // (undocumented)
     DW15000C = "DW15000c",
-    // (undocumented)
     DW1500C = "DW1500c",
-    // (undocumented)
     DW200 = "DW200",
-    // (undocumented)
     DW2000 = "DW2000",
-    // (undocumented)
     DW2000C = "DW2000c",
-    // (undocumented)
     DW2500C = "DW2500c",
-    // (undocumented)
     DW300 = "DW300",
-    // (undocumented)
     DW3000 = "DW3000",
-    // (undocumented)
     DW30000C = "DW30000c",
-    // (undocumented)
     DW3000C = "DW3000c",
-    // (undocumented)
     DW400 = "DW400",
-    // (undocumented)
     DW500 = "DW500",
-    // (undocumented)
     DW5000C = "DW5000c",
-    // (undocumented)
     DW600 = "DW600",
-    // (undocumented)
     DW6000 = "DW6000",
-    // (undocumented)
     DW6000C = "DW6000c",
-    // (undocumented)
     DW7500C = "DW7500c",
-    // (undocumented)
     ElasticPool = "ElasticPool",
-    // (undocumented)
     Free = "Free",
-    // (undocumented)
     P1 = "P1",
-    // (undocumented)
     P11 = "P11",
-    // (undocumented)
     P15 = "P15",
-    // (undocumented)
     P2 = "P2",
-    // (undocumented)
     P3 = "P3",
-    // (undocumented)
     P4 = "P4",
-    // (undocumented)
     P6 = "P6",
-    // (undocumented)
     PRS1 = "PRS1",
-    // (undocumented)
     PRS2 = "PRS2",
-    // (undocumented)
     PRS4 = "PRS4",
-    // (undocumented)
     PRS6 = "PRS6",
-    // (undocumented)
     S0 = "S0",
-    // (undocumented)
     S1 = "S1",
-    // (undocumented)
     S12 = "S12",
-    // (undocumented)
     S2 = "S2",
-    // (undocumented)
     S3 = "S3",
-    // (undocumented)
     S4 = "S4",
-    // (undocumented)
     S6 = "S6",
-    // (undocumented)
     S7 = "S7",
-    // (undocumented)
     S9 = "S9",
-    // (undocumented)
     System = "System",
-    // (undocumented)
     System0 = "System0",
-    // (undocumented)
     System1 = "System1",
-    // (undocumented)
     System2 = "System2",
-    // (undocumented)
     System2L = "System2L",
-    // (undocumented)
     System3 = "System3",
-    // (undocumented)
     System3L = "System3L",
-    // (undocumented)
     System4 = "System4",
-    // (undocumented)
     System4L = "System4L"
 }
 
 // @public
 export enum KnownServicePrincipalType {
-    // (undocumented)
     None = "None",
-    // (undocumented)
     SystemAssigned = "SystemAssigned"
 }
 
 // @public
 export enum KnownShortTermRetentionPolicyName {
-    // (undocumented)
     Default = "default"
 }
 
 // @public
 export enum KnownSqlAgentConfigurationPropertiesState {
-    // (undocumented)
     Disabled = "Disabled",
-    // (undocumented)
     Enabled = "Enabled"
 }
 
 // @public
 export enum KnownStorageCapabilityStorageAccountType {
-    // (undocumented)
     GRS = "GRS",
-    // (undocumented)
     LRS = "LRS",
-    // (undocumented)
     ZRS = "ZRS"
 }
 
 // @public
 export enum KnownStorageKeyType {
-    // (undocumented)
     SharedAccessKey = "SharedAccessKey",
-    // (undocumented)
     StorageAccessKey = "StorageAccessKey"
 }
 
 // @public
 export enum KnownSyncAgentState {
-    // (undocumented)
     NeverConnected = "NeverConnected",
-    // (undocumented)
     Offline = "Offline",
-    // (undocumented)
     Online = "Online"
 }
 
 // @public
 export enum KnownSyncConflictResolutionPolicy {
-    // (undocumented)
     HubWin = "HubWin",
-    // (undocumented)
     MemberWin = "MemberWin"
 }
 
 // @public
 export enum KnownSyncDirection {
-    // (undocumented)
     Bidirectional = "Bidirectional",
-    // (undocumented)
     OneWayHubToMember = "OneWayHubToMember",
-    // (undocumented)
     OneWayMemberToHub = "OneWayMemberToHub"
 }
 
 // @public
 export enum KnownSyncGroupLogType {
-    // (undocumented)
     All = "All",
-    // (undocumented)
     Error = "Error",
-    // (undocumented)
     Success = "Success",
-    // (undocumented)
     Warning = "Warning"
 }
 
 // @public
 export enum KnownSyncGroupState {
-    // (undocumented)
     Error = "Error",
-    // (undocumented)
     Good = "Good",
-    // (undocumented)
     NotReady = "NotReady",
-    // (undocumented)
     Progressing = "Progressing",
-    // (undocumented)
     Warning = "Warning"
 }
 
 // @public
 export enum KnownSyncGroupsType {
-    // (undocumented)
     All = "All",
-    // (undocumented)
     Error = "Error",
-    // (undocumented)
     Success = "Success",
-    // (undocumented)
     Warning = "Warning"
 }
 
 // @public
 export enum KnownSyncMemberDbType {
-    // (undocumented)
     AzureSqlDatabase = "AzureSqlDatabase",
-    // (undocumented)
     SqlServerDatabase = "SqlServerDatabase"
 }
 
 // @public
 export enum KnownSyncMemberState {
-    // (undocumented)
     DeProvisioned = "DeProvisioned",
-    // (undocumented)
     DeProvisionFailed = "DeProvisionFailed",
-    // (undocumented)
     DeProvisioning = "DeProvisioning",
-    // (undocumented)
     DisabledBackupRestore = "DisabledBackupRestore",
-    // (undocumented)
     DisabledTombstoneCleanup = "DisabledTombstoneCleanup",
-    // (undocumented)
     Provisioned = "Provisioned",
-    // (undocumented)
     ProvisionFailed = "ProvisionFailed",
-    // (undocumented)
     Provisioning = "Provisioning",
-    // (undocumented)
     ReprovisionFailed = "ReprovisionFailed",
-    // (undocumented)
     Reprovisioning = "Reprovisioning",
-    // (undocumented)
     SyncCancelled = "SyncCancelled",
-    // (undocumented)
     SyncCancelling = "SyncCancelling",
-    // (undocumented)
     SyncFailed = "SyncFailed",
-    // (undocumented)
     SyncInProgress = "SyncInProgress",
-    // (undocumented)
     SyncSucceeded = "SyncSucceeded",
-    // (undocumented)
     SyncSucceededWithWarnings = "SyncSucceededWithWarnings",
-    // (undocumented)
     UnProvisioned = "UnProvisioned",
-    // (undocumented)
     UnReprovisioned = "UnReprovisioned"
 }
 
 // @public
 export enum KnownTableTemporalType {
-    // (undocumented)
     HistoryTable = "HistoryTable",
-    // (undocumented)
     NonTemporalTable = "NonTemporalTable",
-    // (undocumented)
     SystemVersionedTemporalTable = "SystemVersionedTemporalTable"
 }
 
 // @public
 export enum KnownTransparentDataEncryptionName {
-    // (undocumented)
     Current = "current"
 }
 
 // @public
 export enum KnownUnitDefinitionType {
-    // (undocumented)
     Bytes = "Bytes",
-    // (undocumented)
     BytesPerSecond = "BytesPerSecond",
-    // (undocumented)
     Count = "Count",
-    // (undocumented)
     CountPerSecond = "CountPerSecond",
-    // (undocumented)
     Percent = "Percent",
-    // (undocumented)
     Seconds = "Seconds"
 }
 
 // @public
 export enum KnownUnitType {
-    // (undocumented)
     Bytes = "bytes",
-    // (undocumented)
     BytesPerSecond = "bytesPerSecond",
-    // (undocumented)
     Count = "count",
-    // (undocumented)
     CountPerSecond = "countPerSecond",
-    // (undocumented)
     Percent = "percent",
-    // (undocumented)
     Seconds = "seconds"
 }
 
 // @public
 export enum KnownUpsertManagedServerOperationStepStatus {
-    // (undocumented)
     Canceled = "Canceled",
-    // (undocumented)
     Completed = "Completed",
-    // (undocumented)
     Failed = "Failed",
-    // (undocumented)
     InProgress = "InProgress",
-    // (undocumented)
     NotStarted = "NotStarted",
-    // (undocumented)
     SlowedDown = "SlowedDown"
 }
 
 // @public
 export enum KnownVirtualNetworkRuleState {
-    // (undocumented)
     Deleting = "Deleting",
-    // (undocumented)
     Failed = "Failed",
-    // (undocumented)
     Initializing = "Initializing",
-    // (undocumented)
     InProgress = "InProgress",
-    // (undocumented)
     Ready = "Ready",
-    // (undocumented)
     Unknown = "Unknown"
 }
 
 // @public
 export enum KnownVulnerabilityAssessmentName {
-    // (undocumented)
     Default = "default"
 }
 
 // @public
 export enum KnownVulnerabilityAssessmentScanState {
-    // (undocumented)
     Failed = "Failed",
-    // (undocumented)
     FailedToRun = "FailedToRun",
-    // (undocumented)
     InProgress = "InProgress",
-    // (undocumented)
     Passed = "Passed"
 }
 
 // @public
 export enum KnownVulnerabilityAssessmentScanTriggerType {
-    // (undocumented)
     OnDemand = "OnDemand",
-    // (undocumented)
     Recurring = "Recurring"
 }
 

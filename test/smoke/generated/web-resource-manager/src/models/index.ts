@@ -7448,8 +7448,11 @@ export interface WebJob extends ProxyOnlyResource {
 
 /** Known values of {@link AppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewableReasonsItem} that the service accepts. */
 export enum KnownAppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewableReasonsItem {
+  /** RegistrationStatusNotSupportedForRenewal */
   RegistrationStatusNotSupportedForRenewal = "RegistrationStatusNotSupportedForRenewal",
+  /** ExpirationNotInRenewalTimeRange */
   ExpirationNotInRenewalTimeRange = "ExpirationNotInRenewalTimeRange",
+  /** SubscriptionNotActive */
   SubscriptionNotActive = "SubscriptionNotActive"
 }
 
@@ -7466,8 +7469,11 @@ export type AppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewabl
 
 /** Known values of {@link AppServiceCertificateOrderPatchResourcePropertiesAppServiceCertificateNotRenewableReasonsItem} that the service accepts. */
 export enum KnownAppServiceCertificateOrderPatchResourcePropertiesAppServiceCertificateNotRenewableReasonsItem {
+  /** RegistrationStatusNotSupportedForRenewal */
   RegistrationStatusNotSupportedForRenewal = "RegistrationStatusNotSupportedForRenewal",
+  /** ExpirationNotInRenewalTimeRange */
   ExpirationNotInRenewalTimeRange = "ExpirationNotInRenewalTimeRange",
+  /** SubscriptionNotActive */
   SubscriptionNotActive = "SubscriptionNotActive"
 }
 
@@ -7484,8 +7490,11 @@ export type AppServiceCertificateOrderPatchResourcePropertiesAppServiceCertifica
 
 /** Known values of {@link DomainPropertiesDomainNotRenewableReasonsItem} that the service accepts. */
 export enum KnownDomainPropertiesDomainNotRenewableReasonsItem {
+  /** RegistrationStatusNotSupportedForRenewal */
   RegistrationStatusNotSupportedForRenewal = "RegistrationStatusNotSupportedForRenewal",
+  /** ExpirationNotInRenewalTimeRange */
   ExpirationNotInRenewalTimeRange = "ExpirationNotInRenewalTimeRange",
+  /** SubscriptionNotActive */
   SubscriptionNotActive = "SubscriptionNotActive"
 }
 
@@ -7502,8 +7511,11 @@ export type DomainPropertiesDomainNotRenewableReasonsItem = string;
 
 /** Known values of {@link DomainPatchResourcePropertiesDomainNotRenewableReasonsItem} that the service accepts. */
 export enum KnownDomainPatchResourcePropertiesDomainNotRenewableReasonsItem {
+  /** RegistrationStatusNotSupportedForRenewal */
   RegistrationStatusNotSupportedForRenewal = "RegistrationStatusNotSupportedForRenewal",
+  /** ExpirationNotInRenewalTimeRange */
   ExpirationNotInRenewalTimeRange = "ExpirationNotInRenewalTimeRange",
+  /** SubscriptionNotActive */
   SubscriptionNotActive = "SubscriptionNotActive"
 }
 
@@ -7520,9 +7532,13 @@ export type DomainPatchResourcePropertiesDomainNotRenewableReasonsItem = string;
 
 /** Known values of {@link LoadBalancingMode} that the service accepts. */
 export enum KnownLoadBalancingMode {
+  /** None */
   None = "None",
+  /** Web */
   Web = "Web",
+  /** Publishing */
   Publishing = "Publishing",
+  /** WebPublishing */
   WebPublishing = "Web, Publishing"
 }
 
@@ -7540,19 +7556,33 @@ export type LoadBalancingMode = string;
 
 /** Known values of {@link ScmType} that the service accepts. */
 export enum KnownScmType {
+  /** None */
   None = "None",
+  /** Dropbox */
   Dropbox = "Dropbox",
+  /** Tfs */
   Tfs = "Tfs",
+  /** LocalGit */
   LocalGit = "LocalGit",
+  /** GitHub */
   GitHub = "GitHub",
+  /** CodePlexGit */
   CodePlexGit = "CodePlexGit",
+  /** CodePlexHg */
   CodePlexHg = "CodePlexHg",
+  /** BitbucketGit */
   BitbucketGit = "BitbucketGit",
+  /** BitbucketHg */
   BitbucketHg = "BitbucketHg",
+  /** ExternalGit */
   ExternalGit = "ExternalGit",
+  /** ExternalHg */
   ExternalHg = "ExternalHg",
+  /** OneDrive */
   OneDrive = "OneDrive",
+  /** VSO */
   VSO = "VSO",
+  /** Vstsrm */
   Vstsrm = "VSTSRM"
 }
 
@@ -7580,8 +7610,11 @@ export type ScmType = string;
 
 /** Known values of {@link IpFilterTag} that the service accepts. */
 export enum KnownIpFilterTag {
+  /** Default */
   Default = "Default",
+  /** XffProxy */
   XffProxy = "XffProxy",
+  /** ServiceTag */
   ServiceTag = "ServiceTag"
 }
 
@@ -7598,8 +7631,11 @@ export type IpFilterTag = string;
 
 /** Known values of {@link SupportedTlsVersions} that the service accepts. */
 export enum KnownSupportedTlsVersions {
+  /** One0 */
   One0 = "1.0",
+  /** One1 */
   One1 = "1.1",
+  /** One2 */
   One2 = "1.2"
 }
 
@@ -7616,8 +7652,11 @@ export type SupportedTlsVersions = string;
 
 /** Known values of {@link FtpsState} that the service accepts. */
 export enum KnownFtpsState {
+  /** AllAllowed */
   AllAllowed = "AllAllowed",
+  /** FtpsOnly */
   FtpsOnly = "FtpsOnly",
+  /** Disabled */
   Disabled = "Disabled"
 }
 
@@ -7634,8 +7673,11 @@ export type FtpsState = string;
 
 /** Known values of {@link RouteType} that the service accepts. */
 export enum KnownRouteType {
+  /** Default */
   Default = "DEFAULT",
+  /** Inherited */
   Inherited = "INHERITED",
+  /** Static */
   Static = "STATIC"
 }
 
@@ -7652,10 +7694,15 @@ export type RouteType = string;
 
 /** Known values of {@link Enum10} that the service accepts. */
 export enum KnownEnum10 {
+  /** Windows */
   Windows = "Windows",
+  /** Linux */
   Linux = "Linux",
+  /** WindowsFunctions */
   WindowsFunctions = "WindowsFunctions",
+  /** LinuxFunctions */
   LinuxFunctions = "LinuxFunctions",
+  /** All */
   All = "All"
 }
 
@@ -7674,8 +7721,11 @@ export type Enum10 = string;
 
 /** Known values of {@link Enum11} that the service accepts. */
 export enum KnownEnum11 {
+  /** Windows */
   Windows = "Windows",
+  /** Linux */
   Linux = "Linux",
+  /** All */
   All = "All"
 }
 
@@ -7692,8 +7742,11 @@ export type Enum11 = string;
 
 /** Known values of {@link Enum12} that the service accepts. */
 export enum KnownEnum12 {
+  /** Windows */
   Windows = "Windows",
+  /** Linux */
   Linux = "Linux",
+  /** All */
   All = "All"
 }
 
@@ -7710,8 +7763,11 @@ export type Enum12 = string;
 
 /** Known values of {@link Enum13} that the service accepts. */
 export enum KnownEnum13 {
+  /** Windows */
   Windows = "Windows",
+  /** Linux */
   Linux = "Linux",
+  /** All */
   All = "All"
 }
 
@@ -7728,8 +7784,11 @@ export type Enum13 = string;
 
 /** Known values of {@link Enum14} that the service accepts. */
 export enum KnownEnum14 {
+  /** Windows */
   Windows = "Windows",
+  /** Linux */
   Linux = "Linux",
+  /** All */
   All = "All"
 }
 
@@ -7746,10 +7805,15 @@ export type Enum14 = string;
 
 /** Known values of {@link Enum15} that the service accepts. */
 export enum KnownEnum15 {
+  /** Windows */
   Windows = "Windows",
+  /** Linux */
   Linux = "Linux",
+  /** WindowsFunctions */
   WindowsFunctions = "WindowsFunctions",
+  /** LinuxFunctions */
   LinuxFunctions = "LinuxFunctions",
+  /** All */
   All = "All"
 }
 
@@ -7768,8 +7832,11 @@ export type Enum15 = string;
 
 /** Known values of {@link ResourceScopeType} that the service accepts. */
 export enum KnownResourceScopeType {
+  /** ServerFarm */
   ServerFarm = "ServerFarm",
+  /** Subscription */
   Subscription = "Subscription",
+  /** WebSite */
   WebSite = "WebSite"
 }
 
@@ -7786,13 +7853,21 @@ export type ResourceScopeType = string;
 
 /** Known values of {@link CheckNameResourceTypes} that the service accepts. */
 export enum KnownCheckNameResourceTypes {
+  /** Site */
   Site = "Site",
+  /** Slot */
   Slot = "Slot",
+  /** HostingEnvironment */
   HostingEnvironment = "HostingEnvironment",
+  /** PublishingUser */
   PublishingUser = "PublishingUser",
+  /** MicrosoftWebSites */
   MicrosoftWebSites = "Microsoft.Web/sites",
+  /** MicrosoftWebSitesSlots */
   MicrosoftWebSitesSlots = "Microsoft.Web/sites/slots",
+  /** MicrosoftWebHostingEnvironments */
   MicrosoftWebHostingEnvironments = "Microsoft.Web/hostingEnvironments",
+  /** MicrosoftWebPublishingUsers */
   MicrosoftWebPublishingUsers = "Microsoft.Web/publishingUsers"
 }
 
@@ -7814,7 +7889,9 @@ export type CheckNameResourceTypes = string;
 
 /** Known values of {@link InAvailabilityReasonType} that the service accepts. */
 export enum KnownInAvailabilityReasonType {
+  /** Invalid */
   Invalid = "Invalid",
+  /** AlreadyExists */
   AlreadyExists = "AlreadyExists"
 }
 
@@ -7830,18 +7907,31 @@ export type InAvailabilityReasonType = string;
 
 /** Known values of {@link SkuName} that the service accepts. */
 export enum KnownSkuName {
+  /** Free */
   Free = "Free",
+  /** Shared */
   Shared = "Shared",
+  /** Basic */
   Basic = "Basic",
+  /** Standard */
   Standard = "Standard",
+  /** Premium */
   Premium = "Premium",
+  /** Dynamic */
   Dynamic = "Dynamic",
+  /** Isolated */
   Isolated = "Isolated",
+  /** IsolatedV2 */
   IsolatedV2 = "IsolatedV2",
+  /** PremiumV2 */
   PremiumV2 = "PremiumV2",
+  /** PremiumV3 */
   PremiumV3 = "PremiumV3",
+  /** PremiumContainer */
   PremiumContainer = "PremiumContainer",
+  /** ElasticPremium */
   ElasticPremium = "ElasticPremium",
+  /** ElasticIsolated */
   ElasticIsolated = "ElasticIsolated"
 }
 
@@ -7868,8 +7958,11 @@ export type SkuName = string;
 
 /** Known values of {@link ValidateResourceTypes} that the service accepts. */
 export enum KnownValidateResourceTypes {
+  /** ServerFarm */
   ServerFarm = "ServerFarm",
+  /** Site */
   Site = "Site",
+  /** MicrosoftWebHostingEnvironments */
   MicrosoftWebHostingEnvironments = "Microsoft.Web/hostingEnvironments"
 }
 
@@ -7886,12 +7979,19 @@ export type ValidateResourceTypes = string;
 
 /** Known values of {@link BuildStatus} that the service accepts. */
 export enum KnownBuildStatus {
+  /** WaitingForDeployment */
   WaitingForDeployment = "WaitingForDeployment",
+  /** Uploading */
   Uploading = "Uploading",
+  /** Deploying */
   Deploying = "Deploying",
+  /** Ready */
   Ready = "Ready",
+  /** Failed */
   Failed = "Failed",
+  /** Deleting */
   Deleting = "Deleting",
+  /** Detached */
   Detached = "Detached"
 }
 
@@ -7912,7 +8012,9 @@ export type BuildStatus = string;
 
 /** Known values of {@link TriggerTypes} that the service accepts. */
 export enum KnownTriggerTypes {
+  /** HttpTrigger */
   HttpTrigger = "HttpTrigger",
+  /** Unknown */
   Unknown = "Unknown"
 }
 
@@ -7928,11 +8030,17 @@ export type TriggerTypes = string;
 
 /** Known values of {@link CustomDomainStatus} that the service accepts. */
 export enum KnownCustomDomainStatus {
+  /** RetrievingValidationToken */
   RetrievingValidationToken = "RetrievingValidationToken",
+  /** Validating */
   Validating = "Validating",
+  /** Adding */
   Adding = "Adding",
+  /** Ready */
   Ready = "Ready",
+  /** Failed */
   Failed = "Failed",
+  /** Deleting */
   Deleting = "Deleting"
 }
 
@@ -7952,9 +8060,13 @@ export type CustomDomainStatus = string;
 
 /** Known values of {@link DatabaseType} that the service accepts. */
 export enum KnownDatabaseType {
+  /** SqlAzure */
   SqlAzure = "SqlAzure",
+  /** MySql */
   MySql = "MySql",
+  /** LocalMySql */
   LocalMySql = "LocalMySql",
+  /** PostgreSql */
   PostgreSql = "PostgreSql"
 }
 
@@ -7972,8 +8084,11 @@ export type DatabaseType = string;
 
 /** Known values of {@link PublishingProfileFormat} that the service accepts. */
 export enum KnownPublishingProfileFormat {
+  /** FileZilla3 */
   FileZilla3 = "FileZilla3",
+  /** WebDeploy */
   WebDeploy = "WebDeploy",
+  /** Ftp */
   Ftp = "Ftp"
 }
 

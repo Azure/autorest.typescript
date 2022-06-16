@@ -504,7 +504,7 @@ const writeExtensibleChoice = (
       members: choice.properties.map(p => ({
         name: p.name,
         value: p.value,
-        docs: p.description ? [p.description] : undefined
+        docs: [p.description ? p.description : p.name]
       }))
     });
   }

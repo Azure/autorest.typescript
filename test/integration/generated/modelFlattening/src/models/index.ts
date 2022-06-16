@@ -119,16 +119,27 @@ export interface FlattenParameterGroup {
 
 /** Known values of {@link FlattenedProductPropertiesProvisioningStateValues} that the service accepts. */
 export enum KnownFlattenedProductPropertiesProvisioningStateValues {
+  /** Succeeded */
   Succeeded = "Succeeded",
+  /** Failed */
   Failed = "Failed",
+  /** Canceled */
   Canceled = "canceled",
+  /** Accepted */
   Accepted = "Accepted",
+  /** Creating */
   Creating = "Creating",
+  /** Created */
   Created = "Created",
+  /** Updating */
   Updating = "Updating",
+  /** Updated */
   Updated = "Updated",
+  /** Deleting */
   Deleting = "Deleting",
+  /** Deleted */
   Deleted = "Deleted",
+  /** OK */
   OK = "OK"
 }
 

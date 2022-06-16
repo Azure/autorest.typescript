@@ -29,11 +29,8 @@ export type AuthorizationOperationsListResponse = OperationListResult;
 
 // @public
 export enum KnownLockLevel {
-    // (undocumented)
     CanNotDelete = "CanNotDelete",
-    // (undocumented)
     NotSpecified = "NotSpecified",
-    // (undocumented)
     ReadOnly = "ReadOnly"
 }
 

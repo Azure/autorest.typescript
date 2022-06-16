@@ -690,18 +690,31 @@ export interface IotFhirDestination extends LocationBasedResource {
 
 /** Known values of {@link ProvisioningState} that the service accepts. */
 export enum KnownProvisioningState {
+  /** Deleting */
   Deleting = "Deleting",
+  /** Succeeded */
   Succeeded = "Succeeded",
+  /** Creating */
   Creating = "Creating",
+  /** Accepted */
   Accepted = "Accepted",
+  /** Verifying */
   Verifying = "Verifying",
+  /** Updating */
   Updating = "Updating",
+  /** Failed */
   Failed = "Failed",
+  /** Canceled */
   Canceled = "Canceled",
+  /** Deprovisioned */
   Deprovisioned = "Deprovisioned",
+  /** Moving */
   Moving = "Moving",
+  /** Suspended */
   Suspended = "Suspended",
+  /** Warned */
   Warned = "Warned",
+  /** SystemMaintenance */
   SystemMaintenance = "SystemMaintenance"
 }
 
@@ -728,8 +741,11 @@ export type ProvisioningState = string;
 
 /** Known values of {@link PrivateEndpointServiceConnectionStatus} that the service accepts. */
 export enum KnownPrivateEndpointServiceConnectionStatus {
+  /** Pending */
   Pending = "Pending",
+  /** Approved */
   Approved = "Approved",
+  /** Rejected */
   Rejected = "Rejected"
 }
 
@@ -746,9 +762,13 @@ export type PrivateEndpointServiceConnectionStatus = string;
 
 /** Known values of {@link PrivateEndpointConnectionProvisioningState} that the service accepts. */
 export enum KnownPrivateEndpointConnectionProvisioningState {
+  /** Succeeded */
   Succeeded = "Succeeded",
+  /** Creating */
   Creating = "Creating",
+  /** Deleting */
   Deleting = "Deleting",
+  /** Failed */
   Failed = "Failed"
 }
 
@@ -766,7 +786,9 @@ export type PrivateEndpointConnectionProvisioningState = string;
 
 /** Known values of {@link PublicNetworkAccess} that the service accepts. */
 export enum KnownPublicNetworkAccess {
+  /** Enabled */
   Enabled = "Enabled",
+  /** Disabled */
   Disabled = "Disabled"
 }
 
@@ -782,9 +804,13 @@ export type PublicNetworkAccess = string;
 
 /** Known values of {@link CreatedByType} that the service accepts. */
 export enum KnownCreatedByType {
+  /** User */
   User = "User",
+  /** Application */
   Application = "Application",
+  /** ManagedIdentity */
   ManagedIdentity = "ManagedIdentity",
+  /** Key */
   Key = "Key"
 }
 
@@ -802,7 +828,9 @@ export type CreatedByType = string;
 
 /** Known values of {@link ManagedServiceIdentityType} that the service accepts. */
 export enum KnownManagedServiceIdentityType {
+  /** SystemAssigned */
   SystemAssigned = "SystemAssigned",
+  /** None */
   None = "None"
 }
 
@@ -818,7 +846,9 @@ export type ManagedServiceIdentityType = string;
 
 /** Known values of {@link IotIdentityResolutionType} that the service accepts. */
 export enum KnownIotIdentityResolutionType {
+  /** Create */
   Create = "Create",
+  /** Lookup */
   Lookup = "Lookup"
 }
 
@@ -834,7 +864,9 @@ export type IotIdentityResolutionType = string;
 
 /** Known values of {@link FhirServiceKind} that the service accepts. */
 export enum KnownFhirServiceKind {
+  /** FhirStu3 */
   FhirStu3 = "fhir-Stu3",
+  /** FhirR4 */
   FhirR4 = "fhir-R4"
 }
 
@@ -850,6 +882,7 @@ export type FhirServiceKind = string;
 
 /** Known values of {@link ActionType} that the service accepts. */
 export enum KnownActionType {
+  /** Internal */
   Internal = "Internal"
 }
 
@@ -864,10 +897,15 @@ export type ActionType = string;
 
 /** Known values of {@link OperationResultStatus} that the service accepts. */
 export enum KnownOperationResultStatus {
+  /** Canceled */
   Canceled = "Canceled",
+  /** Succeeded */
   Succeeded = "Succeeded",
+  /** Failed */
   Failed = "Failed",
+  /** Requested */
   Requested = "Requested",
+  /** Running */
   Running = "Running"
 }
 

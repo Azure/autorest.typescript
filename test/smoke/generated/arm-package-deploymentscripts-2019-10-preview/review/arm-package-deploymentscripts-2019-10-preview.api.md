@@ -252,53 +252,37 @@ export interface ErrorResponse {
 
 // @public
 export enum KnownCleanupOptions {
-    // (undocumented)
     Always = "Always",
-    // (undocumented)
     OnExpiration = "OnExpiration",
-    // (undocumented)
     OnSuccess = "OnSuccess"
 }
 
 // @public
 export enum KnownCreatedByType {
-    // (undocumented)
     Application = "Application",
-    // (undocumented)
     Key = "Key",
-    // (undocumented)
     ManagedIdentity = "ManagedIdentity",
-    // (undocumented)
     User = "User"
 }
 
 // @public
 export enum KnownManagedServiceIdentityType {
-    // (undocumented)
     UserAssigned = "UserAssigned"
 }
 
 // @public
 export enum KnownScriptProvisioningState {
-    // (undocumented)
     Canceled = "Canceled",
-    // (undocumented)
     Creating = "Creating",
-    // (undocumented)
     Failed = "Failed",
-    // (undocumented)
     ProvisioningResources = "ProvisioningResources",
-    // (undocumented)
     Running = "Running",
-    // (undocumented)
     Succeeded = "Succeeded"
 }
 
 // @public
 export enum KnownScriptType {
-    // (undocumented)
     AzureCLI = "AzureCLI",
-    // (undocumented)
     AzurePowerShell = "AzurePowerShell"
 }
 

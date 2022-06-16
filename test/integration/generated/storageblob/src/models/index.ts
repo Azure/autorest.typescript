@@ -656,19 +656,33 @@ export interface AppendPositionAccessConditions {
 
 /** Known values of {@link AccessTier} that the service accepts. */
 export enum KnownAccessTier {
+  /** P4 */
   P4 = "P4",
+  /** P6 */
   P6 = "P6",
+  /** P10 */
   P10 = "P10",
+  /** P15 */
   P15 = "P15",
+  /** P20 */
   P20 = "P20",
+  /** P30 */
   P30 = "P30",
+  /** P40 */
   P40 = "P40",
+  /** P50 */
   P50 = "P50",
+  /** P60 */
   P60 = "P60",
+  /** P70 */
   P70 = "P70",
+  /** P80 */
   P80 = "P80",
+  /** Hot */
   Hot = "Hot",
+  /** Cool */
   Cool = "Cool",
+  /** Archive */
   Archive = "Archive"
 }
 
@@ -696,7 +710,9 @@ export type AccessTier = string;
 
 /** Known values of {@link ArchiveStatus} that the service accepts. */
 export enum KnownArchiveStatus {
+  /** RehydratePendingToHot */
   RehydratePendingToHot = "rehydrate-pending-to-hot",
+  /** RehydratePendingToCool */
   RehydratePendingToCool = "rehydrate-pending-to-cool"
 }
 
@@ -712,7 +728,9 @@ export type ArchiveStatus = string;
 
 /** Known values of {@link RehydratePriority} that the service accepts. */
 export enum KnownRehydratePriority {
+  /** High */
   High = "High",
+  /** Standard */
   Standard = "Standard"
 }
 
@@ -728,7 +746,9 @@ export type RehydratePriority = string;
 
 /** Known values of {@link PublicAccessType} that the service accepts. */
 export enum KnownPublicAccessType {
+  /** Container */
   Container = "container",
+  /** Blob */
   Blob = "blob"
 }
 
@@ -744,8 +764,11 @@ export type PublicAccessType = string;
 
 /** Known values of {@link GeoReplicationStatusType} that the service accepts. */
 export enum KnownGeoReplicationStatusType {
+  /** Live */
   Live = "live",
+  /** Bootstrap */
   Bootstrap = "bootstrap",
+  /** Unavailable */
   Unavailable = "unavailable"
 }
 
@@ -762,117 +785,229 @@ export type GeoReplicationStatusType = string;
 
 /** Known values of {@link StorageErrorCode} that the service accepts. */
 export enum KnownStorageErrorCode {
+  /** AccountAlreadyExists */
   AccountAlreadyExists = "AccountAlreadyExists",
+  /** AccountBeingCreated */
   AccountBeingCreated = "AccountBeingCreated",
+  /** AccountIsDisabled */
   AccountIsDisabled = "AccountIsDisabled",
+  /** AuthenticationFailed */
   AuthenticationFailed = "AuthenticationFailed",
+  /** AuthorizationFailure */
   AuthorizationFailure = "AuthorizationFailure",
+  /** ConditionHeadersNotSupported */
   ConditionHeadersNotSupported = "ConditionHeadersNotSupported",
+  /** ConditionNotMet */
   ConditionNotMet = "ConditionNotMet",
+  /** EmptyMetadataKey */
   EmptyMetadataKey = "EmptyMetadataKey",
+  /** InsufficientAccountPermissions */
   InsufficientAccountPermissions = "InsufficientAccountPermissions",
+  /** InternalError */
   InternalError = "InternalError",
+  /** InvalidAuthenticationInfo */
   InvalidAuthenticationInfo = "InvalidAuthenticationInfo",
+  /** InvalidHeaderValue */
   InvalidHeaderValue = "InvalidHeaderValue",
+  /** InvalidHttpVerb */
   InvalidHttpVerb = "InvalidHttpVerb",
+  /** InvalidInput */
   InvalidInput = "InvalidInput",
+  /** InvalidMd5 */
   InvalidMd5 = "InvalidMd5",
+  /** InvalidMetadata */
   InvalidMetadata = "InvalidMetadata",
+  /** InvalidQueryParameterValue */
   InvalidQueryParameterValue = "InvalidQueryParameterValue",
+  /** InvalidRange */
   InvalidRange = "InvalidRange",
+  /** InvalidResourceName */
   InvalidResourceName = "InvalidResourceName",
+  /** InvalidUri */
   InvalidUri = "InvalidUri",
+  /** InvalidXmlDocument */
   InvalidXmlDocument = "InvalidXmlDocument",
+  /** InvalidXmlNodeValue */
   InvalidXmlNodeValue = "InvalidXmlNodeValue",
+  /** Md5Mismatch */
   Md5Mismatch = "Md5Mismatch",
+  /** MetadataTooLarge */
   MetadataTooLarge = "MetadataTooLarge",
+  /** MissingContentLengthHeader */
   MissingContentLengthHeader = "MissingContentLengthHeader",
+  /** MissingRequiredQueryParameter */
   MissingRequiredQueryParameter = "MissingRequiredQueryParameter",
+  /** MissingRequiredHeader */
   MissingRequiredHeader = "MissingRequiredHeader",
+  /** MissingRequiredXmlNode */
   MissingRequiredXmlNode = "MissingRequiredXmlNode",
+  /** MultipleConditionHeadersNotSupported */
   MultipleConditionHeadersNotSupported = "MultipleConditionHeadersNotSupported",
+  /** OperationTimedOut */
   OperationTimedOut = "OperationTimedOut",
+  /** OutOfRangeInput */
   OutOfRangeInput = "OutOfRangeInput",
+  /** OutOfRangeQueryParameterValue */
   OutOfRangeQueryParameterValue = "OutOfRangeQueryParameterValue",
+  /** RequestBodyTooLarge */
   RequestBodyTooLarge = "RequestBodyTooLarge",
+  /** ResourceTypeMismatch */
   ResourceTypeMismatch = "ResourceTypeMismatch",
+  /** RequestUrlFailedToParse */
   RequestUrlFailedToParse = "RequestUrlFailedToParse",
+  /** ResourceAlreadyExists */
   ResourceAlreadyExists = "ResourceAlreadyExists",
+  /** ResourceNotFound */
   ResourceNotFound = "ResourceNotFound",
+  /** ServerBusy */
   ServerBusy = "ServerBusy",
+  /** UnsupportedHeader */
   UnsupportedHeader = "UnsupportedHeader",
+  /** UnsupportedXmlNode */
   UnsupportedXmlNode = "UnsupportedXmlNode",
+  /** UnsupportedQueryParameter */
   UnsupportedQueryParameter = "UnsupportedQueryParameter",
+  /** UnsupportedHttpVerb */
   UnsupportedHttpVerb = "UnsupportedHttpVerb",
+  /** AppendPositionConditionNotMet */
   AppendPositionConditionNotMet = "AppendPositionConditionNotMet",
+  /** BlobAlreadyExists */
   BlobAlreadyExists = "BlobAlreadyExists",
+  /** BlobImmutableDueToPolicy */
   BlobImmutableDueToPolicy = "BlobImmutableDueToPolicy",
+  /** BlobNotFound */
   BlobNotFound = "BlobNotFound",
+  /** BlobOverwritten */
   BlobOverwritten = "BlobOverwritten",
+  /** BlobTierInadequateForContentLength */
   BlobTierInadequateForContentLength = "BlobTierInadequateForContentLength",
+  /** BlockCountExceedsLimit */
   BlockCountExceedsLimit = "BlockCountExceedsLimit",
+  /** BlockListTooLong */
   BlockListTooLong = "BlockListTooLong",
+  /** CannotChangeToLowerTier */
   CannotChangeToLowerTier = "CannotChangeToLowerTier",
+  /** CannotVerifyCopySource */
   CannotVerifyCopySource = "CannotVerifyCopySource",
+  /** ContainerAlreadyExists */
   ContainerAlreadyExists = "ContainerAlreadyExists",
+  /** ContainerBeingDeleted */
   ContainerBeingDeleted = "ContainerBeingDeleted",
+  /** ContainerDisabled */
   ContainerDisabled = "ContainerDisabled",
+  /** ContainerNotFound */
   ContainerNotFound = "ContainerNotFound",
+  /** ContentLengthLargerThanTierLimit */
   ContentLengthLargerThanTierLimit = "ContentLengthLargerThanTierLimit",
+  /** CopyAcrossAccountsNotSupported */
   CopyAcrossAccountsNotSupported = "CopyAcrossAccountsNotSupported",
+  /** CopyIdMismatch */
   CopyIdMismatch = "CopyIdMismatch",
+  /** FeatureVersionMismatch */
   FeatureVersionMismatch = "FeatureVersionMismatch",
+  /** IncrementalCopyBlobMismatch */
   IncrementalCopyBlobMismatch = "IncrementalCopyBlobMismatch",
+  /** IncrementalCopyOfEralierVersionSnapshotNotAllowed */
   IncrementalCopyOfEralierVersionSnapshotNotAllowed = "IncrementalCopyOfEralierVersionSnapshotNotAllowed",
+  /** IncrementalCopySourceMustBeSnapshot */
   IncrementalCopySourceMustBeSnapshot = "IncrementalCopySourceMustBeSnapshot",
+  /** InfiniteLeaseDurationRequired */
   InfiniteLeaseDurationRequired = "InfiniteLeaseDurationRequired",
+  /** InvalidBlobOrBlock */
   InvalidBlobOrBlock = "InvalidBlobOrBlock",
+  /** InvalidBlobTier */
   InvalidBlobTier = "InvalidBlobTier",
+  /** InvalidBlobType */
   InvalidBlobType = "InvalidBlobType",
+  /** InvalidBlockId */
   InvalidBlockId = "InvalidBlockId",
+  /** InvalidBlockList */
   InvalidBlockList = "InvalidBlockList",
+  /** InvalidOperation */
   InvalidOperation = "InvalidOperation",
+  /** InvalidPageRange */
   InvalidPageRange = "InvalidPageRange",
+  /** InvalidSourceBlobType */
   InvalidSourceBlobType = "InvalidSourceBlobType",
+  /** InvalidSourceBlobUrl */
   InvalidSourceBlobUrl = "InvalidSourceBlobUrl",
+  /** InvalidVersionForPageBlobOperation */
   InvalidVersionForPageBlobOperation = "InvalidVersionForPageBlobOperation",
+  /** LeaseAlreadyPresent */
   LeaseAlreadyPresent = "LeaseAlreadyPresent",
+  /** LeaseAlreadyBroken */
   LeaseAlreadyBroken = "LeaseAlreadyBroken",
+  /** LeaseIdMismatchWithBlobOperation */
   LeaseIdMismatchWithBlobOperation = "LeaseIdMismatchWithBlobOperation",
+  /** LeaseIdMismatchWithContainerOperation */
   LeaseIdMismatchWithContainerOperation = "LeaseIdMismatchWithContainerOperation",
+  /** LeaseIdMismatchWithLeaseOperation */
   LeaseIdMismatchWithLeaseOperation = "LeaseIdMismatchWithLeaseOperation",
+  /** LeaseIdMissing */
   LeaseIdMissing = "LeaseIdMissing",
+  /** LeaseIsBreakingAndCannotBeAcquired */
   LeaseIsBreakingAndCannotBeAcquired = "LeaseIsBreakingAndCannotBeAcquired",
+  /** LeaseIsBreakingAndCannotBeChanged */
   LeaseIsBreakingAndCannotBeChanged = "LeaseIsBreakingAndCannotBeChanged",
+  /** LeaseIsBrokenAndCannotBeRenewed */
   LeaseIsBrokenAndCannotBeRenewed = "LeaseIsBrokenAndCannotBeRenewed",
+  /** LeaseLost */
   LeaseLost = "LeaseLost",
+  /** LeaseNotPresentWithBlobOperation */
   LeaseNotPresentWithBlobOperation = "LeaseNotPresentWithBlobOperation",
+  /** LeaseNotPresentWithContainerOperation */
   LeaseNotPresentWithContainerOperation = "LeaseNotPresentWithContainerOperation",
+  /** LeaseNotPresentWithLeaseOperation */
   LeaseNotPresentWithLeaseOperation = "LeaseNotPresentWithLeaseOperation",
+  /** MaxBlobSizeConditionNotMet */
   MaxBlobSizeConditionNotMet = "MaxBlobSizeConditionNotMet",
+  /** NoAuthenticationInformation */
   NoAuthenticationInformation = "NoAuthenticationInformation",
+  /** NoPendingCopyOperation */
   NoPendingCopyOperation = "NoPendingCopyOperation",
+  /** OperationNotAllowedOnIncrementalCopyBlob */
   OperationNotAllowedOnIncrementalCopyBlob = "OperationNotAllowedOnIncrementalCopyBlob",
+  /** PendingCopyOperation */
   PendingCopyOperation = "PendingCopyOperation",
+  /** PreviousSnapshotCannotBeNewer */
   PreviousSnapshotCannotBeNewer = "PreviousSnapshotCannotBeNewer",
+  /** PreviousSnapshotNotFound */
   PreviousSnapshotNotFound = "PreviousSnapshotNotFound",
+  /** PreviousSnapshotOperationNotSupported */
   PreviousSnapshotOperationNotSupported = "PreviousSnapshotOperationNotSupported",
+  /** SequenceNumberConditionNotMet */
   SequenceNumberConditionNotMet = "SequenceNumberConditionNotMet",
+  /** SequenceNumberIncrementTooLarge */
   SequenceNumberIncrementTooLarge = "SequenceNumberIncrementTooLarge",
+  /** SnapshotCountExceeded */
   SnapshotCountExceeded = "SnapshotCountExceeded",
+  /** SnaphotOperationRateExceeded */
   SnaphotOperationRateExceeded = "SnaphotOperationRateExceeded",
+  /** SnapshotsPresent */
   SnapshotsPresent = "SnapshotsPresent",
+  /** SourceConditionNotMet */
   SourceConditionNotMet = "SourceConditionNotMet",
+  /** SystemInUse */
   SystemInUse = "SystemInUse",
+  /** TargetConditionNotMet */
   TargetConditionNotMet = "TargetConditionNotMet",
+  /** UnauthorizedBlobOverwrite */
   UnauthorizedBlobOverwrite = "UnauthorizedBlobOverwrite",
+  /** BlobBeingRehydrated */
   BlobBeingRehydrated = "BlobBeingRehydrated",
+  /** BlobArchived */
   BlobArchived = "BlobArchived",
+  /** BlobNotArchived */
   BlobNotArchived = "BlobNotArchived",
+  /** AuthorizationSourceIPMismatch */
   AuthorizationSourceIPMismatch = "AuthorizationSourceIPMismatch",
+  /** AuthorizationProtocolMismatch */
   AuthorizationProtocolMismatch = "AuthorizationProtocolMismatch",
+  /** AuthorizationPermissionMismatch */
   AuthorizationPermissionMismatch = "AuthorizationPermissionMismatch",
+  /** AuthorizationServiceMismatch */
   AuthorizationServiceMismatch = "AuthorizationServiceMismatch",
+  /** AuthorizationResourceTypeMismatch */
   AuthorizationResourceTypeMismatch = "AuthorizationResourceTypeMismatch"
 }
 
@@ -998,16 +1133,27 @@ export type StorageErrorCode = string;
 
 /** Known values of {@link PremiumPageBlobAccessTier} that the service accepts. */
 export enum KnownPremiumPageBlobAccessTier {
+  /** P4 */
   P4 = "P4",
+  /** P6 */
   P6 = "P6",
+  /** P10 */
   P10 = "P10",
+  /** P15 */
   P15 = "P15",
+  /** P20 */
   P20 = "P20",
+  /** P30 */
   P30 = "P30",
+  /** P40 */
   P40 = "P40",
+  /** P50 */
   P50 = "P50",
+  /** P60 */
   P60 = "P60",
+  /** P70 */
   P70 = "P70",
+  /** P80 */
   P80 = "P80"
 }
 
@@ -1032,9 +1178,13 @@ export type PremiumPageBlobAccessTier = string;
 
 /** Known values of {@link BlobExpiryOptions} that the service accepts. */
 export enum KnownBlobExpiryOptions {
+  /** NeverExpire */
   NeverExpire = "NeverExpire",
+  /** RelativeToCreation */
   RelativeToCreation = "RelativeToCreation",
+  /** RelativeToNow */
   RelativeToNow = "RelativeToNow",
+  /** Absolute */
   Absolute = "Absolute"
 }
 

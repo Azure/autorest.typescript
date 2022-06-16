@@ -747,7 +747,9 @@ export interface UserUpdateParameters extends UserBase {
 
 /** Known values of {@link UserType} that the service accepts. */
 export enum KnownUserType {
+  /** Member */
   Member = "Member",
+  /** Guest */
   Guest = "Guest"
 }
 
@@ -763,8 +765,11 @@ export type UserType = string;
 
 /** Known values of {@link GroupMembershipClaimTypes} that the service accepts. */
 export enum KnownGroupMembershipClaimTypes {
+  /** None */
   None = "None",
+  /** SecurityGroup */
   SecurityGroup = "SecurityGroup",
+  /** All */
   All = "All"
 }
 
@@ -781,7 +786,9 @@ export type GroupMembershipClaimTypes = string;
 
 /** Known values of {@link ConsentType} that the service accepts. */
 export enum KnownConsentType {
+  /** AllPrincipals */
   AllPrincipals = "AllPrincipals",
+  /** Principal */
   Principal = "Principal"
 }
 

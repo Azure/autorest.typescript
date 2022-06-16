@@ -3517,335 +3517,220 @@ export type KeyVaultSecretStatus = "Initialized" | "WaitingOnCertificateOrder" |
 
 // @public
 export enum KnownAppServiceCertificateOrderPatchResourcePropertiesAppServiceCertificateNotRenewableReasonsItem {
-    // (undocumented)
     ExpirationNotInRenewalTimeRange = "ExpirationNotInRenewalTimeRange",
-    // (undocumented)
     RegistrationStatusNotSupportedForRenewal = "RegistrationStatusNotSupportedForRenewal",
-    // (undocumented)
     SubscriptionNotActive = "SubscriptionNotActive"
 }
 
 // @public
 export enum KnownAppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewableReasonsItem {
-    // (undocumented)
     ExpirationNotInRenewalTimeRange = "ExpirationNotInRenewalTimeRange",
-    // (undocumented)
     RegistrationStatusNotSupportedForRenewal = "RegistrationStatusNotSupportedForRenewal",
-    // (undocumented)
     SubscriptionNotActive = "SubscriptionNotActive"
 }
 
 // @public
 export enum KnownBuildStatus {
-    // (undocumented)
     Deleting = "Deleting",
-    // (undocumented)
     Deploying = "Deploying",
-    // (undocumented)
     Detached = "Detached",
-    // (undocumented)
     Failed = "Failed",
-    // (undocumented)
     Ready = "Ready",
-    // (undocumented)
     Uploading = "Uploading",
-    // (undocumented)
     WaitingForDeployment = "WaitingForDeployment"
 }
 
 // @public
 export enum KnownCheckNameResourceTypes {
-    // (undocumented)
     HostingEnvironment = "HostingEnvironment",
-    // (undocumented)
     MicrosoftWebHostingEnvironments = "Microsoft.Web/hostingEnvironments",
-    // (undocumented)
     MicrosoftWebPublishingUsers = "Microsoft.Web/publishingUsers",
-    // (undocumented)
     MicrosoftWebSites = "Microsoft.Web/sites",
-    // (undocumented)
     MicrosoftWebSitesSlots = "Microsoft.Web/sites/slots",
-    // (undocumented)
     PublishingUser = "PublishingUser",
-    // (undocumented)
     Site = "Site",
-    // (undocumented)
     Slot = "Slot"
 }
 
 // @public
 export enum KnownCustomDomainStatus {
-    // (undocumented)
     Adding = "Adding",
-    // (undocumented)
     Deleting = "Deleting",
-    // (undocumented)
     Failed = "Failed",
-    // (undocumented)
     Ready = "Ready",
-    // (undocumented)
     RetrievingValidationToken = "RetrievingValidationToken",
-    // (undocumented)
     Validating = "Validating"
 }
 
 // @public
 export enum KnownDatabaseType {
-    // (undocumented)
     LocalMySql = "LocalMySql",
-    // (undocumented)
     MySql = "MySql",
-    // (undocumented)
     PostgreSql = "PostgreSql",
-    // (undocumented)
     SqlAzure = "SqlAzure"
 }
 
 // @public
 export enum KnownDomainPatchResourcePropertiesDomainNotRenewableReasonsItem {
-    // (undocumented)
     ExpirationNotInRenewalTimeRange = "ExpirationNotInRenewalTimeRange",
-    // (undocumented)
     RegistrationStatusNotSupportedForRenewal = "RegistrationStatusNotSupportedForRenewal",
-    // (undocumented)
     SubscriptionNotActive = "SubscriptionNotActive"
 }
 
 // @public
 export enum KnownDomainPropertiesDomainNotRenewableReasonsItem {
-    // (undocumented)
     ExpirationNotInRenewalTimeRange = "ExpirationNotInRenewalTimeRange",
-    // (undocumented)
     RegistrationStatusNotSupportedForRenewal = "RegistrationStatusNotSupportedForRenewal",
-    // (undocumented)
     SubscriptionNotActive = "SubscriptionNotActive"
 }
 
 // @public
 export enum KnownEnum10 {
-    // (undocumented)
     All = "All",
-    // (undocumented)
     Linux = "Linux",
-    // (undocumented)
     LinuxFunctions = "LinuxFunctions",
-    // (undocumented)
     Windows = "Windows",
-    // (undocumented)
     WindowsFunctions = "WindowsFunctions"
 }
 
 // @public
 export enum KnownEnum11 {
-    // (undocumented)
     All = "All",
-    // (undocumented)
     Linux = "Linux",
-    // (undocumented)
     Windows = "Windows"
 }
 
 // @public
 export enum KnownEnum12 {
-    // (undocumented)
     All = "All",
-    // (undocumented)
     Linux = "Linux",
-    // (undocumented)
     Windows = "Windows"
 }
 
 // @public
 export enum KnownEnum13 {
-    // (undocumented)
     All = "All",
-    // (undocumented)
     Linux = "Linux",
-    // (undocumented)
     Windows = "Windows"
 }
 
 // @public
 export enum KnownEnum14 {
-    // (undocumented)
     All = "All",
-    // (undocumented)
     Linux = "Linux",
-    // (undocumented)
     Windows = "Windows"
 }
 
 // @public
 export enum KnownEnum15 {
-    // (undocumented)
     All = "All",
-    // (undocumented)
     Linux = "Linux",
-    // (undocumented)
     LinuxFunctions = "LinuxFunctions",
-    // (undocumented)
     Windows = "Windows",
-    // (undocumented)
     WindowsFunctions = "WindowsFunctions"
 }
 
 // @public
 export enum KnownFtpsState {
-    // (undocumented)
     AllAllowed = "AllAllowed",
-    // (undocumented)
     Disabled = "Disabled",
-    // (undocumented)
     FtpsOnly = "FtpsOnly"
 }
 
 // @public
 export enum KnownInAvailabilityReasonType {
-    // (undocumented)
     AlreadyExists = "AlreadyExists",
-    // (undocumented)
     Invalid = "Invalid"
 }
 
 // @public
 export enum KnownIpFilterTag {
-    // (undocumented)
     Default = "Default",
-    // (undocumented)
     ServiceTag = "ServiceTag",
-    // (undocumented)
     XffProxy = "XffProxy"
 }
 
 // @public
 export enum KnownLoadBalancingMode {
-    // (undocumented)
     None = "None",
-    // (undocumented)
     Publishing = "Publishing",
-    // (undocumented)
     Web = "Web",
-    // (undocumented)
     WebPublishing = "Web, Publishing"
 }
 
 // @public
 export enum KnownPublishingProfileFormat {
-    // (undocumented)
     FileZilla3 = "FileZilla3",
-    // (undocumented)
     Ftp = "Ftp",
-    // (undocumented)
     WebDeploy = "WebDeploy"
 }
 
 // @public
 export enum KnownResourceScopeType {
-    // (undocumented)
     ServerFarm = "ServerFarm",
-    // (undocumented)
     Subscription = "Subscription",
-    // (undocumented)
     WebSite = "WebSite"
 }
 
 // @public
 export enum KnownRouteType {
-    // (undocumented)
     Default = "DEFAULT",
-    // (undocumented)
     Inherited = "INHERITED",
-    // (undocumented)
     Static = "STATIC"
 }
 
 // @public
 export enum KnownScmType {
-    // (undocumented)
     BitbucketGit = "BitbucketGit",
-    // (undocumented)
     BitbucketHg = "BitbucketHg",
-    // (undocumented)
     CodePlexGit = "CodePlexGit",
-    // (undocumented)
     CodePlexHg = "CodePlexHg",
-    // (undocumented)
     Dropbox = "Dropbox",
-    // (undocumented)
     ExternalGit = "ExternalGit",
-    // (undocumented)
     ExternalHg = "ExternalHg",
-    // (undocumented)
     GitHub = "GitHub",
-    // (undocumented)
     LocalGit = "LocalGit",
-    // (undocumented)
     None = "None",
-    // (undocumented)
     OneDrive = "OneDrive",
-    // (undocumented)
     Tfs = "Tfs",
-    // (undocumented)
     VSO = "VSO",
-    // (undocumented)
     Vstsrm = "VSTSRM"
 }
 
 // @public
 export enum KnownSkuName {
-    // (undocumented)
     Basic = "Basic",
-    // (undocumented)
     Dynamic = "Dynamic",
-    // (undocumented)
     ElasticIsolated = "ElasticIsolated",
-    // (undocumented)
     ElasticPremium = "ElasticPremium",
-    // (undocumented)
     Free = "Free",
-    // (undocumented)
     Isolated = "Isolated",
-    // (undocumented)
     IsolatedV2 = "IsolatedV2",
-    // (undocumented)
     Premium = "Premium",
-    // (undocumented)
     PremiumContainer = "PremiumContainer",
-    // (undocumented)
     PremiumV2 = "PremiumV2",
-    // (undocumented)
     PremiumV3 = "PremiumV3",
-    // (undocumented)
     Shared = "Shared",
-    // (undocumented)
     Standard = "Standard"
 }
 
 // @public
 export enum KnownSupportedTlsVersions {
-    // (undocumented)
     One0 = "1.0",
-    // (undocumented)
     One1 = "1.1",
-    // (undocumented)
     One2 = "1.2"
 }
 
 // @public
 export enum KnownTriggerTypes {
-    // (undocumented)
     HttpTrigger = "HttpTrigger",
-    // (undocumented)
     Unknown = "Unknown"
 }
 
 // @public
 export enum KnownValidateResourceTypes {
-    // (undocumented)
     MicrosoftWebHostingEnvironments = "Microsoft.Web/hostingEnvironments",
-    // (undocumented)
     ServerFarm = "ServerFarm",
-    // (undocumented)
     Site = "Site"
 }
 
