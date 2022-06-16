@@ -110,8 +110,8 @@ const writeClientModels = (
       baseClass: !useCoreV2
         ? "coreHttp.ServiceClientOptions"
         : coreHttpCompatMode
-        ? "coreHttpCompat.ExtendedServiceClientOptions"
-        : "coreClient.ServiceClientOptions"
+          ? "coreHttpCompat.ExtendedServiceClientOptions"
+          : "coreClient.ServiceClientOptions"
     }
   );
 };
@@ -405,11 +405,11 @@ function buildResponseType(
           docs: ["The underlying HTTP response."],
           type: innerResponseProperties.length
             ? Writers.intersectionType(
-                "coreHttp.HttpResponse",
-                Writers.objectType({
-                  properties: innerResponseProperties
-                })
-              )
+              "coreHttp.HttpResponse",
+              Writers.objectType({
+                properties: innerResponseProperties
+              })
+            )
             : "coreHttp.HttpResponse",
           leadingTrivia: writer => writer.blankLine()
         }
@@ -449,13 +449,13 @@ function buildResponseType(
   if (!useCoreV2) {
     return intersectionTypes.length > 1
       ? // Using apply instead of calling the method directly to be able to conditionally pass
-        // parameters, this way we don't have to have a nested if/else tree to decide which parameters
-        // to pass, we will pass any intersectionTypes availabe plus the innerType. When there are no intersection types
-        // we just return innerType
-        Writers.intersectionType.apply(
-          Writers,
-          intersectionTypes as IntersectionTypeParameters
-        )
+      // parameters, this way we don't have to have a nested if/else tree to decide which parameters
+      // to pass, we will pass any intersectionTypes availabe plus the innerType. When there are no intersection types
+      // we just return innerType
+      Writers.intersectionType.apply(
+        Writers,
+        intersectionTypes as IntersectionTypeParameters
+      )
       : (innerTypeWriter as WriterFunction);
   } else {
     if (intersectionTypes.length > 1) {
@@ -505,7 +505,7 @@ const writeExtensibleChoice = (
       members: choice.properties.map(p => ({
         name: p.name,
         value: p.value,
-        docs: p.description ? [p.description] : undefined
+        docs: [p.description ? p.description : p.name]
       }))
     });
   }
@@ -721,9 +721,9 @@ function writeOptionalParameters(
       isExported: true,
       extends: [
         baseClass ||
-          (!useCoreV2
-            ? "coreHttp.OperationOptions"
-            : "coreClient.OperationOptions")
+        (!useCoreV2
+          ? "coreHttp.OperationOptions"
+          : "coreClient.OperationOptions")
       ],
       properties: properties
     };
