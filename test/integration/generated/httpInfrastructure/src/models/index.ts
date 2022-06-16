@@ -25,9 +25,9 @@ export interface D {
   httpStatusCode?: string;
 }
 
-export type B = MyException & {
+export interface B extends MyException {
   textStatusCode?: string;
-};
+}
 
 /** Defines headers for HttpRedirects_head300 operation. */
 export interface HttpRedirectsHead300Headers {

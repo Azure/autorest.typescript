@@ -525,51 +525,54 @@ export interface SentenceAssessment {
   isNegated: boolean;
 }
 
-export type AnalyzeBatchInput = JobDescriptor &
-  JobManifest & {
-    /** Contains a set of input documents to be analyzed by the service. */
-    analysisInput: MultiLanguageBatchInput;
-  };
+export interface AnalyzeBatchInput extends JobDescriptor, JobManifest {
+  /** Contains a set of input documents to be analyzed by the service. */
+  analysisInput: MultiLanguageBatchInput;
+}
 
-export type AnalyzeJobMetadata = JobMetadata & {
+export interface AnalyzeJobMetadata extends JobMetadata {
   displayName?: string;
-};
+}
 
-export type HealthcareJobState = JobMetadata &
-  Pagination & {
-    results?: HealthcareResult;
-    errors?: TextAnalyticsError[];
-  };
+export interface HealthcareJobState extends JobMetadata, Pagination {
+  results?: HealthcareResult;
+  errors?: TextAnalyticsError[];
+}
 
-export type AnalyzeJobState = AnalyzeJobMetadata &
-  TasksState &
-  Pagination & {
-    errors?: TextAnalyticsError[];
-    /** if includeStatistics=true was specified in the request this field will contain information about the request payload. */
-    statistics?: TextDocumentBatchStatistics;
-  };
+export interface AnalyzeJobState
+  extends AnalyzeJobMetadata,
+    TasksState,
+    Pagination {
+  errors?: TextAnalyticsError[];
+  /** if includeStatistics=true was specified in the request this field will contain information about the request payload. */
+  statistics?: TextDocumentBatchStatistics;
+}
 
-export type TasksStateTasksDetails = TaskState;
+export interface TasksStateTasksDetails extends TaskState {}
 
-export type TasksStateTasksEntityRecognitionTasksItem = TaskState &
-  Components15Gvwi3SchemasTasksstatePropertiesTasksPropertiesEntityrecognitiontasksItemsAllof1;
+export interface TasksStateTasksEntityRecognitionTasksItem
+  extends TaskState,
+    Components15Gvwi3SchemasTasksstatePropertiesTasksPropertiesEntityrecognitiontasksItemsAllof1 {}
 
-export type TasksStateTasksEntityRecognitionPiiTasksItem = TaskState &
-  Components15X8E9LSchemasTasksstatePropertiesTasksPropertiesEntityrecognitionpiitasksItemsAllof1;
+export interface TasksStateTasksEntityRecognitionPiiTasksItem
+  extends TaskState,
+    Components15X8E9LSchemasTasksstatePropertiesTasksPropertiesEntityrecognitionpiitasksItemsAllof1 {}
 
-export type TasksStateTasksKeyPhraseExtractionTasksItem = TaskState &
-  Components1D9IzucSchemasTasksstatePropertiesTasksPropertiesKeyphraseextractiontasksItemsAllof1;
+export interface TasksStateTasksKeyPhraseExtractionTasksItem
+  extends TaskState,
+    Components1D9IzucSchemasTasksstatePropertiesTasksPropertiesKeyphraseextractiontasksItemsAllof1 {}
 
-export type TasksStateTasksEntityLinkingTasksItem = TaskState &
-  ComponentsIfu7BjSchemasTasksstatePropertiesTasksPropertiesEntitylinkingtasksItemsAllof1;
+export interface TasksStateTasksEntityLinkingTasksItem
+  extends TaskState,
+    ComponentsIfu7BjSchemasTasksstatePropertiesTasksPropertiesEntitylinkingtasksItemsAllof1 {}
 
-export type HealthcareEntity = Entity & {
+export interface HealthcareEntity extends Entity {
   assertion?: HealthcareAssertion;
   /** Preferred name for the entity. Example: 'histologically' would have a 'name' of 'histologic'. */
   name?: string;
   /** Entity references in known data sources. */
   links?: HealthcareEntityLink[];
-};
+}
 
 /** Defines headers for GeneratedClient_analyze operation. */
 export interface GeneratedClientAnalyzeHeaders {

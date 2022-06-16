@@ -266,22 +266,26 @@ export interface CassandraDataCentersUpdateOptionalParams extends coreClient.Ope
 export type CassandraDataCentersUpdateResponse = DataCenterResource;
 
 // @public
-export type CassandraKeyspaceCreateUpdateParameters = ARMResourceProperties & {
-    resource: CassandraKeyspaceResource;
+export interface CassandraKeyspaceCreateUpdateParameters extends ARMResourceProperties {
     options?: CreateUpdateOptions;
-};
+    resource: CassandraKeyspaceResource;
+}
 
 // @public (undocumented)
-export type CassandraKeyspaceGetPropertiesOptions = OptionsResource;
+export interface CassandraKeyspaceGetPropertiesOptions extends OptionsResource {
+}
 
 // @public (undocumented)
-export type CassandraKeyspaceGetPropertiesResource = CassandraKeyspaceResource & ExtendedResourceProperties;
+export interface CassandraKeyspaceGetPropertiesResource extends CassandraKeyspaceResource, ExtendedResourceProperties {
+}
 
 // @public
-export type CassandraKeyspaceGetResults = ARMResourceProperties & {
-    resource?: CassandraKeyspaceGetPropertiesResource;
+export interface CassandraKeyspaceGetResults extends ARMResourceProperties {
+    // (undocumented)
     options?: CassandraKeyspaceGetPropertiesOptions;
-};
+    // (undocumented)
+    resource?: CassandraKeyspaceGetPropertiesResource;
+}
 
 // @public
 export interface CassandraKeyspaceListResult {
@@ -462,22 +466,26 @@ export interface CassandraSchema {
 }
 
 // @public
-export type CassandraTableCreateUpdateParameters = ARMResourceProperties & {
-    resource: CassandraTableResource;
+export interface CassandraTableCreateUpdateParameters extends ARMResourceProperties {
     options?: CreateUpdateOptions;
-};
+    resource: CassandraTableResource;
+}
 
 // @public (undocumented)
-export type CassandraTableGetPropertiesOptions = OptionsResource;
+export interface CassandraTableGetPropertiesOptions extends OptionsResource {
+}
 
 // @public (undocumented)
-export type CassandraTableGetPropertiesResource = CassandraTableResource & ExtendedResourceProperties;
+export interface CassandraTableGetPropertiesResource extends CassandraTableResource, ExtendedResourceProperties {
+}
 
 // @public
-export type CassandraTableGetResults = ARMResourceProperties & {
-    resource?: CassandraTableGetPropertiesResource;
+export interface CassandraTableGetResults extends ARMResourceProperties {
+    // (undocumented)
     options?: CassandraTableGetPropertiesOptions;
-};
+    // (undocumented)
+    resource?: CassandraTableGetPropertiesResource;
+}
 
 // @public
 export interface CassandraTableListResult {
@@ -509,9 +517,9 @@ export interface ClusterKey {
 }
 
 // @public
-export type ClusterResource = ManagedCassandraARMResourceProperties & {
+export interface ClusterResource extends ManagedCassandraARMResourceProperties {
     properties?: ClusterResourceProperties;
-};
+}
 
 // @public
 export interface ClusterResourceProperties {
@@ -718,9 +726,9 @@ export interface ContinuousBackupRestoreLocation {
 }
 
 // @public
-export type ContinuousModeBackupPolicy = BackupPolicy & {
+export interface ContinuousModeBackupPolicy extends BackupPolicy {
     type: "Continuous";
-};
+}
 
 // @public
 export interface CorsPolicy {
@@ -837,78 +845,78 @@ export interface DatabaseAccountConnectionString {
 }
 
 // @public
-export type DatabaseAccountCreateUpdateParameters = ARMResourceProperties & {
-    kind?: DatabaseAccountKind;
-    identity?: ManagedServiceIdentity;
+export interface DatabaseAccountCreateUpdateParameters extends ARMResourceProperties {
+    analyticalStorageConfiguration?: AnalyticalStorageConfiguration;
+    apiProperties?: ApiProperties;
+    backupPolicy?: BackupPolicyUnion;
+    capabilities?: Capability[];
+    capacity?: Capacity;
+    connectorOffer?: ConnectorOffer;
     consistencyPolicy?: ConsistencyPolicy;
-    locations: Location_2[];
+    cors?: CorsPolicy[];
+    createMode?: CreateMode;
     databaseAccountOfferType: "Standard";
+    defaultIdentity?: string;
+    disableKeyBasedMetadataWriteAccess?: boolean;
+    disableLocalAuth?: boolean;
+    enableAnalyticalStorage?: boolean;
+    enableAutomaticFailover?: boolean;
+    enableCassandraConnector?: boolean;
+    enableFreeTier?: boolean;
+    enableMultipleWriteLocations?: boolean;
+    identity?: ManagedServiceIdentity;
     ipRules?: IpAddressOrRange[];
     isVirtualNetworkFilterEnabled?: boolean;
-    enableAutomaticFailover?: boolean;
-    capabilities?: Capability[];
-    virtualNetworkRules?: VirtualNetworkRule[];
-    enableMultipleWriteLocations?: boolean;
-    enableCassandraConnector?: boolean;
-    connectorOffer?: ConnectorOffer;
-    disableKeyBasedMetadataWriteAccess?: boolean;
     keyVaultKeyUri?: string;
-    defaultIdentity?: string;
-    publicNetworkAccess?: PublicNetworkAccess;
-    enableFreeTier?: boolean;
-    apiProperties?: ApiProperties;
-    enableAnalyticalStorage?: boolean;
-    analyticalStorageConfiguration?: AnalyticalStorageConfiguration;
-    createMode?: CreateMode;
-    backupPolicy?: BackupPolicyUnion;
-    cors?: CorsPolicy[];
+    kind?: DatabaseAccountKind;
+    locations: Location_2[];
     networkAclBypass?: NetworkAclBypass;
     networkAclBypassResourceIds?: string[];
-    disableLocalAuth?: boolean;
+    publicNetworkAccess?: PublicNetworkAccess;
     restoreParameters?: RestoreParameters;
-    capacity?: Capacity;
-};
+    virtualNetworkRules?: VirtualNetworkRule[];
+}
 
 // @public
-export type DatabaseAccountGetResults = ARMResourceProperties & {
-    kind?: DatabaseAccountKind;
-    identity?: ManagedServiceIdentity;
-    readonly systemData?: SystemData;
-    readonly provisioningState?: string;
-    readonly documentEndpoint?: string;
+export interface DatabaseAccountGetResults extends ARMResourceProperties {
+    analyticalStorageConfiguration?: AnalyticalStorageConfiguration;
+    apiProperties?: ApiProperties;
+    backupPolicy?: BackupPolicyUnion;
+    capabilities?: Capability[];
+    capacity?: Capacity;
+    connectorOffer?: ConnectorOffer;
+    consistencyPolicy?: ConsistencyPolicy;
+    cors?: CorsPolicy[];
+    createMode?: CreateMode;
     readonly databaseAccountOfferType?: "Standard";
+    defaultIdentity?: string;
+    disableKeyBasedMetadataWriteAccess?: boolean;
+    disableLocalAuth?: boolean;
+    readonly documentEndpoint?: string;
+    enableAnalyticalStorage?: boolean;
+    enableAutomaticFailover?: boolean;
+    enableCassandraConnector?: boolean;
+    enableFreeTier?: boolean;
+    enableMultipleWriteLocations?: boolean;
+    readonly failoverPolicies?: FailoverPolicy[];
+    identity?: ManagedServiceIdentity;
+    readonly instanceId?: string;
     ipRules?: IpAddressOrRange[];
     isVirtualNetworkFilterEnabled?: boolean;
-    enableAutomaticFailover?: boolean;
-    consistencyPolicy?: ConsistencyPolicy;
-    capabilities?: Capability[];
-    readonly writeLocations?: Location_2[];
-    readonly readLocations?: Location_2[];
-    readonly locations?: Location_2[];
-    readonly failoverPolicies?: FailoverPolicy[];
-    virtualNetworkRules?: VirtualNetworkRule[];
-    readonly privateEndpointConnections?: PrivateEndpointConnection[];
-    enableMultipleWriteLocations?: boolean;
-    enableCassandraConnector?: boolean;
-    connectorOffer?: ConnectorOffer;
-    disableKeyBasedMetadataWriteAccess?: boolean;
     keyVaultKeyUri?: string;
-    defaultIdentity?: string;
-    publicNetworkAccess?: PublicNetworkAccess;
-    enableFreeTier?: boolean;
-    apiProperties?: ApiProperties;
-    enableAnalyticalStorage?: boolean;
-    analyticalStorageConfiguration?: AnalyticalStorageConfiguration;
-    readonly instanceId?: string;
-    createMode?: CreateMode;
-    restoreParameters?: RestoreParameters;
-    backupPolicy?: BackupPolicyUnion;
-    cors?: CorsPolicy[];
+    kind?: DatabaseAccountKind;
+    readonly locations?: Location_2[];
     networkAclBypass?: NetworkAclBypass;
     networkAclBypassResourceIds?: string[];
-    disableLocalAuth?: boolean;
-    capacity?: Capacity;
-};
+    readonly privateEndpointConnections?: PrivateEndpointConnection[];
+    readonly provisioningState?: string;
+    publicNetworkAccess?: PublicNetworkAccess;
+    readonly readLocations?: Location_2[];
+    restoreParameters?: RestoreParameters;
+    readonly systemData?: SystemData;
+    virtualNetworkRules?: VirtualNetworkRule[];
+    readonly writeLocations?: Location_2[];
+}
 
 // @public
 export type DatabaseAccountKind = string;
@@ -919,10 +927,10 @@ export interface DatabaseAccountListConnectionStringsResult {
 }
 
 // @public
-export type DatabaseAccountListKeysResult = DatabaseAccountListReadOnlyKeysResult & {
+export interface DatabaseAccountListKeysResult extends DatabaseAccountListReadOnlyKeysResult {
     readonly primaryMasterKey?: string;
     readonly secondaryMasterKey?: string;
-};
+}
 
 // @public
 export interface DatabaseAccountListReadOnlyKeysResult {
@@ -1166,9 +1174,9 @@ export interface DatabaseRestoreResource {
 }
 
 // @public
-export type DataCenterResource = ARMProxyResource & {
+export interface DataCenterResource extends ARMProxyResource {
     properties?: DataCenterResourceProperties;
-};
+}
 
 // @public
 export interface DataCenterResourceProperties {
@@ -1223,22 +1231,26 @@ export interface FailoverPolicy {
 }
 
 // @public
-export type GremlinDatabaseCreateUpdateParameters = ARMResourceProperties & {
-    resource: GremlinDatabaseResource;
+export interface GremlinDatabaseCreateUpdateParameters extends ARMResourceProperties {
     options?: CreateUpdateOptions;
-};
+    resource: GremlinDatabaseResource;
+}
 
 // @public (undocumented)
-export type GremlinDatabaseGetPropertiesOptions = OptionsResource;
+export interface GremlinDatabaseGetPropertiesOptions extends OptionsResource {
+}
 
 // @public (undocumented)
-export type GremlinDatabaseGetPropertiesResource = GremlinDatabaseResource & ExtendedResourceProperties;
+export interface GremlinDatabaseGetPropertiesResource extends GremlinDatabaseResource, ExtendedResourceProperties {
+}
 
 // @public
-export type GremlinDatabaseGetResults = ARMResourceProperties & {
-    resource?: GremlinDatabaseGetPropertiesResource;
+export interface GremlinDatabaseGetResults extends ARMResourceProperties {
+    // (undocumented)
     options?: GremlinDatabaseGetPropertiesOptions;
-};
+    // (undocumented)
+    resource?: GremlinDatabaseGetPropertiesResource;
+}
 
 // @public
 export interface GremlinDatabaseListResult {
@@ -1251,22 +1263,26 @@ export interface GremlinDatabaseResource {
 }
 
 // @public
-export type GremlinGraphCreateUpdateParameters = ARMResourceProperties & {
-    resource: GremlinGraphResource;
+export interface GremlinGraphCreateUpdateParameters extends ARMResourceProperties {
     options?: CreateUpdateOptions;
-};
+    resource: GremlinGraphResource;
+}
 
 // @public (undocumented)
-export type GremlinGraphGetPropertiesOptions = OptionsResource;
+export interface GremlinGraphGetPropertiesOptions extends OptionsResource {
+}
 
 // @public (undocumented)
-export type GremlinGraphGetPropertiesResource = GremlinGraphResource & ExtendedResourceProperties;
+export interface GremlinGraphGetPropertiesResource extends GremlinGraphResource, ExtendedResourceProperties {
+}
 
 // @public
-export type GremlinGraphGetResults = ARMResourceProperties & {
-    resource?: GremlinGraphGetPropertiesResource;
+export interface GremlinGraphGetResults extends ARMResourceProperties {
+    // (undocumented)
     options?: GremlinGraphGetPropertiesOptions;
-};
+    // (undocumented)
+    resource?: GremlinGraphGetPropertiesResource;
+}
 
 // @public
 export interface GremlinGraphListResult {
@@ -1734,9 +1750,9 @@ interface Location_2 {
 export { Location_2 as Location }
 
 // @public
-export type LocationGetResult = ARMProxyResource & {
+export interface LocationGetResult extends ARMProxyResource {
     properties?: LocationProperties;
-};
+}
 
 // @public
 export interface LocationListResult {
@@ -1869,22 +1885,26 @@ export interface MetricValue {
 }
 
 // @public
-export type MongoDBCollectionCreateUpdateParameters = ARMResourceProperties & {
-    resource: MongoDBCollectionResource;
+export interface MongoDBCollectionCreateUpdateParameters extends ARMResourceProperties {
     options?: CreateUpdateOptions;
-};
+    resource: MongoDBCollectionResource;
+}
 
 // @public (undocumented)
-export type MongoDBCollectionGetPropertiesOptions = OptionsResource;
+export interface MongoDBCollectionGetPropertiesOptions extends OptionsResource {
+}
 
 // @public (undocumented)
-export type MongoDBCollectionGetPropertiesResource = MongoDBCollectionResource & ExtendedResourceProperties;
+export interface MongoDBCollectionGetPropertiesResource extends MongoDBCollectionResource, ExtendedResourceProperties {
+}
 
 // @public
-export type MongoDBCollectionGetResults = ARMResourceProperties & {
-    resource?: MongoDBCollectionGetPropertiesResource;
+export interface MongoDBCollectionGetResults extends ARMResourceProperties {
+    // (undocumented)
     options?: MongoDBCollectionGetPropertiesOptions;
-};
+    // (undocumented)
+    resource?: MongoDBCollectionGetPropertiesResource;
+}
 
 // @public
 export interface MongoDBCollectionListResult {
@@ -1902,22 +1922,26 @@ export interface MongoDBCollectionResource {
 }
 
 // @public
-export type MongoDBDatabaseCreateUpdateParameters = ARMResourceProperties & {
-    resource: MongoDBDatabaseResource;
+export interface MongoDBDatabaseCreateUpdateParameters extends ARMResourceProperties {
     options?: CreateUpdateOptions;
-};
+    resource: MongoDBDatabaseResource;
+}
 
 // @public (undocumented)
-export type MongoDBDatabaseGetPropertiesOptions = OptionsResource;
+export interface MongoDBDatabaseGetPropertiesOptions extends OptionsResource {
+}
 
 // @public (undocumented)
-export type MongoDBDatabaseGetPropertiesResource = MongoDBDatabaseResource & ExtendedResourceProperties;
+export interface MongoDBDatabaseGetPropertiesResource extends MongoDBDatabaseResource, ExtendedResourceProperties {
+}
 
 // @public
-export type MongoDBDatabaseGetResults = ARMResourceProperties & {
-    resource?: MongoDBDatabaseGetPropertiesResource;
+export interface MongoDBDatabaseGetResults extends ARMResourceProperties {
+    // (undocumented)
     options?: MongoDBDatabaseGetPropertiesOptions;
-};
+    // (undocumented)
+    resource?: MongoDBDatabaseGetPropertiesResource;
+}
 
 // @public
 export interface MongoDBDatabaseListResult {
@@ -2123,10 +2147,10 @@ export type NodeState = string;
 export type NodeStatus = string;
 
 // @public
-export type NotebookWorkspace = ARMProxyResource & {
+export interface NotebookWorkspace extends ARMProxyResource {
     readonly notebookServerEndpoint?: string;
     readonly status?: string;
-};
+}
 
 // @public
 export interface NotebookWorkspaceConnectionInfoResult {
@@ -2135,7 +2159,8 @@ export interface NotebookWorkspaceConnectionInfoResult {
 }
 
 // @public
-export type NotebookWorkspaceCreateUpdateParameters = ARMProxyResource;
+export interface NotebookWorkspaceCreateUpdateParameters extends ARMProxyResource {
+}
 
 // @public
 export interface NotebookWorkspaceListResult {
@@ -2284,10 +2309,10 @@ export type PartitionKeyRangeIdRegionListMetricsResponse = PartitionMetricListRe
 export type PartitionKind = string;
 
 // @public
-export type PartitionMetric = Metric & {
+export interface PartitionMetric extends Metric {
     readonly partitionId?: string;
     readonly partitionKeyRangeId?: string;
-};
+}
 
 // @public
 export interface PartitionMetricListResult {
@@ -2295,10 +2320,10 @@ export interface PartitionMetricListResult {
 }
 
 // @public
-export type PartitionUsage = Usage & {
+export interface PartitionUsage extends Usage {
     readonly partitionId?: string;
     readonly partitionKeyRangeId?: string;
-};
+}
 
 // @public
 export interface PartitionUsagesResult {
@@ -2333,7 +2358,7 @@ export interface PercentileMetricListResult {
 }
 
 // @public
-export type PercentileMetricValue = MetricValue & {
+export interface PercentileMetricValue extends MetricValue {
     readonly p10?: number;
     readonly p25?: number;
     readonly p50?: number;
@@ -2341,7 +2366,7 @@ export type PercentileMetricValue = MetricValue & {
     readonly p90?: number;
     readonly p95?: number;
     readonly p99?: number;
-};
+}
 
 // @public
 export interface PercentileSourceTarget {
@@ -2368,10 +2393,10 @@ export interface PercentileTargetListMetricsOptionalParams extends coreClient.Op
 export type PercentileTargetListMetricsResponse = PercentileMetricListResult;
 
 // @public
-export type PeriodicModeBackupPolicy = BackupPolicy & {
-    type: "Periodic";
+export interface PeriodicModeBackupPolicy extends BackupPolicy {
     periodicModeProperties?: PeriodicModeProperties;
-};
+    type: "Periodic";
+}
 
 // @public
 export interface PeriodicModeProperties {
@@ -2390,12 +2415,12 @@ export interface Permission {
 export type PrimaryAggregationType = string;
 
 // @public
-export type PrivateEndpointConnection = ProxyResource & {
+export interface PrivateEndpointConnection extends ProxyResource {
+    groupId?: string;
     privateEndpoint?: PrivateEndpointProperty;
     privateLinkServiceConnectionState?: PrivateLinkServiceConnectionStateProperty;
-    groupId?: string;
     provisioningState?: string;
-};
+}
 
 // @public
 export interface PrivateEndpointConnectionListResult {
@@ -2447,11 +2472,11 @@ export interface PrivateEndpointProperty {
 }
 
 // @public
-export type PrivateLinkResource = ARMProxyResource & {
+export interface PrivateLinkResource extends ARMProxyResource {
     readonly groupId?: string;
     readonly requiredMembers?: string[];
     readonly requiredZoneNames?: string[];
-};
+}
 
 // @public
 export interface PrivateLinkResourceListResult {
@@ -2486,7 +2511,8 @@ export interface PrivateLinkServiceConnectionStateProperty {
 }
 
 // @public
-export type ProxyResource = Resource;
+export interface ProxyResource extends Resource {
+}
 
 // @public
 export type PublicNetworkAccess = string;
@@ -2667,9 +2693,9 @@ export interface RestorableSqlContainerPropertiesResource {
 }
 
 // @public
-export type RestorableSqlContainerPropertiesResourceContainer = SqlContainerResource & ExtendedResourceProperties & {
+export interface RestorableSqlContainerPropertiesResourceContainer extends SqlContainerResource, ExtendedResourceProperties {
     readonly self?: string;
-};
+}
 
 // @public
 export interface RestorableSqlContainers {
@@ -2710,11 +2736,11 @@ export interface RestorableSqlDatabasePropertiesResource {
 }
 
 // @public
-export type RestorableSqlDatabasePropertiesResourceDatabase = SqlDatabaseResource & ExtendedResourceProperties & {
+export interface RestorableSqlDatabasePropertiesResourceDatabase extends SqlDatabaseResource, ExtendedResourceProperties {
     readonly colls?: string;
-    readonly users?: string;
     readonly self?: string;
-};
+    readonly users?: string;
+}
 
 // @public
 export interface RestorableSqlDatabases {
@@ -2784,22 +2810,26 @@ export interface SpatialSpec {
 export type SpatialType = string;
 
 // @public
-export type SqlContainerCreateUpdateParameters = ARMResourceProperties & {
-    resource: SqlContainerResource;
+export interface SqlContainerCreateUpdateParameters extends ARMResourceProperties {
     options?: CreateUpdateOptions;
-};
+    resource: SqlContainerResource;
+}
 
 // @public (undocumented)
-export type SqlContainerGetPropertiesOptions = OptionsResource;
+export interface SqlContainerGetPropertiesOptions extends OptionsResource {
+}
 
 // @public (undocumented)
-export type SqlContainerGetPropertiesResource = SqlContainerResource & ExtendedResourceProperties;
+export interface SqlContainerGetPropertiesResource extends SqlContainerResource, ExtendedResourceProperties {
+}
 
 // @public
-export type SqlContainerGetResults = ARMResourceProperties & {
-    resource?: SqlContainerGetPropertiesResource;
+export interface SqlContainerGetResults extends ARMResourceProperties {
+    // (undocumented)
     options?: SqlContainerGetPropertiesOptions;
-};
+    // (undocumented)
+    resource?: SqlContainerGetPropertiesResource;
+}
 
 // @public
 export interface SqlContainerListResult {
@@ -2818,25 +2848,28 @@ export interface SqlContainerResource {
 }
 
 // @public
-export type SqlDatabaseCreateUpdateParameters = ARMResourceProperties & {
-    resource: SqlDatabaseResource;
+export interface SqlDatabaseCreateUpdateParameters extends ARMResourceProperties {
     options?: CreateUpdateOptions;
-};
+    resource: SqlDatabaseResource;
+}
 
 // @public (undocumented)
-export type SqlDatabaseGetPropertiesOptions = OptionsResource;
+export interface SqlDatabaseGetPropertiesOptions extends OptionsResource {
+}
 
 // @public (undocumented)
-export type SqlDatabaseGetPropertiesResource = SqlDatabaseResource & ExtendedResourceProperties & {
+export interface SqlDatabaseGetPropertiesResource extends SqlDatabaseResource, ExtendedResourceProperties {
     colls?: string;
     users?: string;
-};
+}
 
 // @public
-export type SqlDatabaseGetResults = ARMResourceProperties & {
-    resource?: SqlDatabaseGetPropertiesResource;
+export interface SqlDatabaseGetResults extends ARMResourceProperties {
+    // (undocumented)
     options?: SqlDatabaseGetPropertiesOptions;
-};
+    // (undocumented)
+    resource?: SqlDatabaseGetPropertiesResource;
+}
 
 // @public
 export interface SqlDatabaseListResult {
@@ -3198,11 +3231,11 @@ export interface SqlRoleAssignmentCreateUpdateParameters {
 }
 
 // @public
-export type SqlRoleAssignmentGetResults = ARMProxyResource & {
+export interface SqlRoleAssignmentGetResults extends ARMProxyResource {
+    principalId?: string;
     roleDefinitionId?: string;
     scope?: string;
-    principalId?: string;
-};
+}
 
 // @public
 export interface SqlRoleAssignmentListResult {
@@ -3218,12 +3251,12 @@ export interface SqlRoleDefinitionCreateUpdateParameters {
 }
 
 // @public
-export type SqlRoleDefinitionGetResults = ARMProxyResource & {
-    roleName?: string;
-    typePropertiesType?: RoleDefinitionType;
+export interface SqlRoleDefinitionGetResults extends ARMProxyResource {
     assignableScopes?: string[];
     permissions?: Permission[];
-};
+    roleName?: string;
+    typePropertiesType?: RoleDefinitionType;
+}
 
 // @public
 export interface SqlRoleDefinitionListResult {
@@ -3231,18 +3264,20 @@ export interface SqlRoleDefinitionListResult {
 }
 
 // @public
-export type SqlStoredProcedureCreateUpdateParameters = ARMResourceProperties & {
-    resource: SqlStoredProcedureResource;
+export interface SqlStoredProcedureCreateUpdateParameters extends ARMResourceProperties {
     options?: CreateUpdateOptions;
-};
+    resource: SqlStoredProcedureResource;
+}
 
 // @public (undocumented)
-export type SqlStoredProcedureGetPropertiesResource = SqlStoredProcedureResource & ExtendedResourceProperties;
+export interface SqlStoredProcedureGetPropertiesResource extends SqlStoredProcedureResource, ExtendedResourceProperties {
+}
 
 // @public
-export type SqlStoredProcedureGetResults = ARMResourceProperties & {
+export interface SqlStoredProcedureGetResults extends ARMResourceProperties {
+    // (undocumented)
     resource?: SqlStoredProcedureGetPropertiesResource;
-};
+}
 
 // @public
 export interface SqlStoredProcedureListResult {
@@ -3256,18 +3291,20 @@ export interface SqlStoredProcedureResource {
 }
 
 // @public
-export type SqlTriggerCreateUpdateParameters = ARMResourceProperties & {
-    resource: SqlTriggerResource;
+export interface SqlTriggerCreateUpdateParameters extends ARMResourceProperties {
     options?: CreateUpdateOptions;
-};
+    resource: SqlTriggerResource;
+}
 
 // @public (undocumented)
-export type SqlTriggerGetPropertiesResource = SqlTriggerResource & ExtendedResourceProperties;
+export interface SqlTriggerGetPropertiesResource extends SqlTriggerResource, ExtendedResourceProperties {
+}
 
 // @public
-export type SqlTriggerGetResults = ARMResourceProperties & {
+export interface SqlTriggerGetResults extends ARMResourceProperties {
+    // (undocumented)
     resource?: SqlTriggerGetPropertiesResource;
-};
+}
 
 // @public
 export interface SqlTriggerListResult {
@@ -3283,18 +3320,20 @@ export interface SqlTriggerResource {
 }
 
 // @public
-export type SqlUserDefinedFunctionCreateUpdateParameters = ARMResourceProperties & {
-    resource: SqlUserDefinedFunctionResource;
+export interface SqlUserDefinedFunctionCreateUpdateParameters extends ARMResourceProperties {
     options?: CreateUpdateOptions;
-};
+    resource: SqlUserDefinedFunctionResource;
+}
 
 // @public (undocumented)
-export type SqlUserDefinedFunctionGetPropertiesResource = SqlUserDefinedFunctionResource & ExtendedResourceProperties;
+export interface SqlUserDefinedFunctionGetPropertiesResource extends SqlUserDefinedFunctionResource, ExtendedResourceProperties {
+}
 
 // @public
-export type SqlUserDefinedFunctionGetResults = ARMResourceProperties & {
+export interface SqlUserDefinedFunctionGetResults extends ARMResourceProperties {
+    // (undocumented)
     resource?: SqlUserDefinedFunctionGetPropertiesResource;
-};
+}
 
 // @public
 export interface SqlUserDefinedFunctionListResult {
@@ -3318,22 +3357,26 @@ export interface SystemData {
 }
 
 // @public
-export type TableCreateUpdateParameters = ARMResourceProperties & {
-    resource: TableResource;
+export interface TableCreateUpdateParameters extends ARMResourceProperties {
     options?: CreateUpdateOptions;
-};
+    resource: TableResource;
+}
 
 // @public (undocumented)
-export type TableGetPropertiesOptions = OptionsResource;
+export interface TableGetPropertiesOptions extends OptionsResource {
+}
 
 // @public (undocumented)
-export type TableGetPropertiesResource = TableResource & ExtendedResourceProperties;
+export interface TableGetPropertiesResource extends TableResource, ExtendedResourceProperties {
+}
 
 // @public
-export type TableGetResults = ARMResourceProperties & {
-    resource?: TableGetPropertiesResource;
+export interface TableGetResults extends ARMResourceProperties {
+    // (undocumented)
     options?: TableGetPropertiesOptions;
-};
+    // (undocumented)
+    resource?: TableGetPropertiesResource;
+}
 
 // @public
 export interface TableListResult {
@@ -3432,12 +3475,14 @@ export interface ThroughputPolicyResource {
 }
 
 // @public (undocumented)
-export type ThroughputSettingsGetPropertiesResource = ThroughputSettingsResource & ExtendedResourceProperties;
+export interface ThroughputSettingsGetPropertiesResource extends ThroughputSettingsResource, ExtendedResourceProperties {
+}
 
 // @public
-export type ThroughputSettingsGetResults = ARMResourceProperties & {
+export interface ThroughputSettingsGetResults extends ARMResourceProperties {
+    // (undocumented)
     resource?: ThroughputSettingsGetPropertiesResource;
-};
+}
 
 // @public
 export interface ThroughputSettingsResource {
@@ -3448,9 +3493,9 @@ export interface ThroughputSettingsResource {
 }
 
 // @public
-export type ThroughputSettingsUpdateParameters = ARMResourceProperties & {
+export interface ThroughputSettingsUpdateParameters extends ARMResourceProperties {
     resource: ThroughputSettingsResource;
-};
+}
 
 // @public
 export type TriggerOperation = string;

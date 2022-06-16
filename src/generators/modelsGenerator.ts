@@ -27,7 +27,6 @@ import { filterOperationParameters } from "./utils/parameterUtils";
 import {
   OperationDetails,
   OperationResponseDetails,
-  OperationGroupDetails
 } from "../models/operationDetails";
 import { ParameterDetails } from "../models/parameterDetails";
 import {
@@ -573,29 +572,14 @@ const writeObjects = (
 const writeObjectSignature = (modelsIndexFile: SourceFile) => (
   model: ObjectDetails
 ) => {
-  const properties = getPropertiesSignatures(model);
-  const parents = model.parents.map(p => p.name).join(" & ");
-
-  if (parents) {
-    modelsIndexFile.addTypeAlias({
-      name: model.name,
-      docs: model.description ? [model.description] : [],
-      isExported: true,
-      type: properties.length > 0 ? Writers.intersectionType(
-        parents,
-        Writers.objectType({ properties })
-      ) : parents,
-      leadingTrivia: writer => writer.blankLine()
-    });
-  } else {
-    modelsIndexFile.addInterface({
-      name: model.name,
-      docs: model.description ? [model.description] : [],
-      isExported: true,
-      properties,
-      leadingTrivia: writer => writer.blankLine()
-    });
-  }
+  modelsIndexFile.addInterface({
+    name: model.name,
+    docs: model.description ? [model.description] : [],
+    isExported: true,
+    extends: model.parents.map(p => p.name),
+    properties: getPropertiesSignatures(model),
+    leadingTrivia: writer => writer.blankLine()
+  });
 };
 
 /**
@@ -616,7 +600,6 @@ function writeUniontypes({ objects }: ClientDetails, modelsFile: SourceFile) {
             : c.name;
         })
       ];
-
       modelsFile.addTypeAlias({
         name: `${obj.name}Union`,
         isExported: true,
@@ -624,20 +607,6 @@ function writeUniontypes({ objects }: ClientDetails, modelsFile: SourceFile) {
         trailingTrivia: writer => writer.newLine()
       });
     });
-}
-
-/**
- * Checks if a polymorphic parent needs to be included in the Union type to represent its polymorphism
- * A parent needs to be in the union only if its name is in the list of allowed discriminator values
- * otherwise the parent should be excluded.
- * @param parent Plymorphic parent to check
- */
-function isPolymorphicParentInUnion(parent: PolymorphicObjectDetails): boolean {
-  return Object.keys(parent.discriminatorValues).some(property =>
-    parent.discriminatorValues[property].some(
-      discriminatorValue => discriminatorValue === parent.name
-    )
-  );
 }
 
 interface WriteOptionalParametersOptions {

@@ -24,6 +24,7 @@ interface SwaggerConfig {
   isTestPackage?: boolean;
   generateTest?: boolean;
   coreHttpCompatMode?: boolean;
+  generateSample?: boolean;
   lenientModelDeduplication?: boolean
 }
 
@@ -888,7 +889,8 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     isTestPackage: true,
     restLevelClient: true,
-    azureSdkForJs: false
+    azureSdkForJs: false,
+    generateSample: true
   },
   bodyStringRest: {
     swaggerOrConfig: "body-string.json",
@@ -899,7 +901,8 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     azureSdkForJs: false,
     licenseHeader: true,
     isTestPackage: true,
-    generateTest: true
+    generateTest: true,
+    generateSample: true
   },
   bodyComplexRest: {
     swaggerOrConfig: "test/integration/swaggers/bodyComplex.md",
@@ -1084,7 +1087,8 @@ const generateSwaggers = async (
       isTestPackage,
       generateTest,
       rlcShortcut,
-      coreHttpCompatMode
+      coreHttpCompatMode,
+      generateSample
     } = testSwaggers[name];
 
     let swaggerPath = swaggerOrConfig;
@@ -1129,7 +1133,8 @@ const generateSwaggers = async (
         headAsBoolean,
         isTestPackage,
         generateTest,
-        coreHttpCompatMode
+        coreHttpCompatMode,
+        generateSample
       },
       isDebugging
     );

@@ -285,36 +285,38 @@ export interface MediaGraphGrpcExtensionDataTransfer {
 }
 
 /** Represents the MediaGraphTopologySetRequest. */
-export type MediaGraphTopologySetRequest = MethodRequest & {
+export interface MediaGraphTopologySetRequest extends MethodRequest {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   methodName: "GraphTopologySet";
   /** The definition of a media graph topology. */
   graph: MediaGraphTopology;
-};
+}
 
 /** Represents the MediaGraphTopologySetRequest body. */
-export type MediaGraphTopologySetRequestBody = MethodRequest &
-  MediaGraphTopology & {
-    /** Polymorphic discriminator, which specifies the different types this object can be */
-    methodName: "MediaGraphTopologySetRequestBody";
-  };
+export interface MediaGraphTopologySetRequestBody
+  extends MethodRequest,
+    MediaGraphTopology {
+  /** Polymorphic discriminator, which specifies the different types this object can be */
+  methodName: "MediaGraphTopologySetRequestBody";
+}
 
 /** Represents the MediaGraphInstanceSetRequest. */
-export type MediaGraphInstanceSetRequest = MethodRequest & {
+export interface MediaGraphInstanceSetRequest extends MethodRequest {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   methodName: "GraphInstanceSet";
   /** Represents an instance of a media graph. */
   instance: MediaGraphInstance;
-};
+}
 
 /** Represents the MediaGraphInstanceSetRequest body. */
-export type MediaGraphInstanceSetRequestBody = MethodRequest &
-  MediaGraphInstance & {
-    /** Polymorphic discriminator, which specifies the different types this object can be */
-    methodName: "MediaGraphInstanceSetRequestBody";
-  };
+export interface MediaGraphInstanceSetRequestBody
+  extends MethodRequest,
+    MediaGraphInstance {
+  /** Polymorphic discriminator, which specifies the different types this object can be */
+  methodName: "MediaGraphInstanceSetRequestBody";
+}
 
-export type ItemNonSetRequestBase = MethodRequest & {
+export interface ItemNonSetRequestBase extends MethodRequest {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   methodName:
     | "ItemNonSetRequestBase"
@@ -326,40 +328,41 @@ export type ItemNonSetRequestBase = MethodRequest & {
     | "GraphInstanceDelete";
   /** method name */
   name: string;
-};
+}
 
 /** Represents the MediaGraphTopologyListRequest. */
-export type MediaGraphTopologyListRequest = MethodRequest & {
+export interface MediaGraphTopologyListRequest extends MethodRequest {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   methodName: "GraphTopologyList";
-};
+}
 
 /** Represents the MediaGraphInstanceListRequest. */
-export type MediaGraphInstanceListRequest = MethodRequest & {
+export interface MediaGraphInstanceListRequest extends MethodRequest {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   methodName: "GraphInstanceList";
-};
+}
 
 /** Enables a media graph to capture media from a RTSP server. */
-export type MediaGraphRtspSource = MediaGraphSource & {
+export interface MediaGraphRtspSource extends MediaGraphSource {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   "@type": "#Microsoft.Media.MediaGraphRtspSource";
   /** Underlying RTSP transport. This is used to enable or disable HTTP tunneling. */
   transport?: MediaGraphRtspTransport;
   /** RTSP endpoint of the stream that is being connected to. */
   endpoint: MediaGraphEndpointUnion;
-};
+}
 
 /** Enables a media graph to receive messages via routes declared in the IoT Edge deployment manifest. */
-export type MediaGraphIoTHubMessageSource = MediaGraphSource & {
+export interface MediaGraphIoTHubMessageSource extends MediaGraphSource {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   "@type": "#Microsoft.Media.MediaGraphIoTHubMessageSource";
   /** Name of the input path where messages can be routed to (via routes declared in the IoT Edge deployment manifest). */
   hubInputName?: string;
-};
+}
 
 /** A node that accepts raw video as input, and detects if there are moving objects present. If so, then it emits an event, and allows frames where motion was detected to pass through. Other frames are blocked/dropped. */
-export type MediaGraphMotionDetectionProcessor = MediaGraphProcessor & {
+export interface MediaGraphMotionDetectionProcessor
+  extends MediaGraphProcessor {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   "@type": "#Microsoft.Media.MediaGraphMotionDetectionProcessor";
   /** Enumeration that specifies the sensitivity of the motion detection processor. */
@@ -368,10 +371,10 @@ export type MediaGraphMotionDetectionProcessor = MediaGraphProcessor & {
   outputMotionRegion?: boolean;
   /** Event aggregation window duration, or 0 for no aggregation. */
   eventAggregationWindow?: string;
-};
+}
 
 /** Processor that allows for extensions outside of the Live Video Analytics Edge module to be integrated into the graph. It is the base class for various different kinds of extension processor types. */
-export type MediaGraphExtensionProcessorBase = MediaGraphProcessor & {
+export interface MediaGraphExtensionProcessorBase extends MediaGraphProcessor {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   "@type":
     | "#Microsoft.Media.MediaGraphExtensionProcessorBase"
@@ -384,10 +387,10 @@ export type MediaGraphExtensionProcessorBase = MediaGraphProcessor & {
   image: MediaGraphImage;
   /** Describes the sampling options to be applied when forwarding samples to the extension. */
   samplingOptions?: MediaGraphSamplingOptions;
-};
+}
 
 /** A signal gate determines when to block (gate) incoming media, and when to allow it through. It gathers input events over the activationEvaluationWindow, and determines whether to open or close the gate. */
-export type MediaGraphSignalGateProcessor = MediaGraphProcessor & {
+export interface MediaGraphSignalGateProcessor extends MediaGraphProcessor {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   "@type": "#Microsoft.Media.MediaGraphSignalGateProcessor";
   /** The period of time over which the gate gathers input events before evaluating them. */
@@ -398,18 +401,18 @@ export type MediaGraphSignalGateProcessor = MediaGraphProcessor & {
   minimumActivationTime?: string;
   /** The maximum period for which the gate remains open in the presence of subsequent events. */
   maximumActivationTime?: string;
-};
+}
 
 /** Enables a media graph to publish messages that can be delivered via routes declared in the IoT Edge deployment manifest. */
-export type MediaGraphIoTHubMessageSink = MediaGraphSink & {
+export interface MediaGraphIoTHubMessageSink extends MediaGraphSink {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   "@type": "#Microsoft.Media.MediaGraphIoTHubMessageSink";
   /** Name of the output path to which the media graph will publish message. These messages can then be delivered to desired destinations by declaring routes referencing the output path in the IoT Edge deployment manifest. */
   hubOutputName: string;
-};
+}
 
 /** Enables a media graph to write/store media (video and audio) to a file on the Edge device. */
-export type MediaGraphFileSink = MediaGraphSink & {
+export interface MediaGraphFileSink extends MediaGraphSink {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   "@type": "#Microsoft.Media.MediaGraphFileSink";
   /** Absolute directory for all outputs to the Edge device from this sink. */
@@ -418,10 +421,10 @@ export type MediaGraphFileSink = MediaGraphSink & {
   fileNamePattern: string;
   /** Maximum amount of disk space that can be used for storing files from this sink. */
   maximumSizeMiB: string;
-};
+}
 
 /** Enables a media graph to record media to an Azure Media Services asset for subsequent playback. */
-export type MediaGraphAssetSink = MediaGraphSink & {
+export interface MediaGraphAssetSink extends MediaGraphSink {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   "@type": "#Microsoft.Media.MediaGraphAssetSink";
   /** A name pattern when creating new assets. The pattern must include at least one system variable. See the documentation for available variables and additional examples. */
@@ -432,137 +435,144 @@ export type MediaGraphAssetSink = MediaGraphSink & {
   localMediaCachePath: string;
   /** Maximum amount of disk space that can be used for temporary caching of media. */
   localMediaCacheMaximumSizeMiB: string;
-};
+}
 
 /** An endpoint that the media graph can connect to, with no encryption in transit. */
-export type MediaGraphUnsecuredEndpoint = MediaGraphEndpoint & {
+export interface MediaGraphUnsecuredEndpoint extends MediaGraphEndpoint {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   "@type": "#Microsoft.Media.MediaGraphUnsecuredEndpoint";
-};
+}
 
 /** A TLS endpoint for media graph external connections. */
-export type MediaGraphTlsEndpoint = MediaGraphEndpoint & {
+export interface MediaGraphTlsEndpoint extends MediaGraphEndpoint {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   "@type": "#Microsoft.Media.MediaGraphTlsEndpoint";
   /** Trusted certificates when authenticating a TLS connection. Null designates that Azure Media Service's source of trust should be used. */
   trustedCertificates?: MediaGraphCertificateSourceUnion;
   /** Validation options to use when authenticating a TLS connection. By default, strict validation is used. */
   validationOptions?: MediaGraphTlsValidationOptions;
-};
+}
 
 /** Username/password credential pair. */
-export type MediaGraphUsernamePasswordCredentials = MediaGraphCredentials & {
+export interface MediaGraphUsernamePasswordCredentials
+  extends MediaGraphCredentials {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   "@type": "#Microsoft.Media.MediaGraphUsernamePasswordCredentials";
   /** Username for a username/password pair. */
   username: string;
   /** Password for a username/password pair. Please use a parameter so that the actual value is not returned on PUT or GET requests. */
   password: string;
-};
+}
 
 /** Http header service credentials. */
-export type MediaGraphHttpHeaderCredentials = MediaGraphCredentials & {
+export interface MediaGraphHttpHeaderCredentials extends MediaGraphCredentials {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   "@type": "#Microsoft.Media.MediaGraphHttpHeaderCredentials";
   /** HTTP header name. */
   headerName: string;
   /** HTTP header value. Please use a parameter so that the actual value is not returned on PUT or GET requests. */
   headerValue: string;
-};
+}
 
 /** A list of PEM formatted certificates. */
-export type MediaGraphPemCertificateList = MediaGraphCertificateSource & {
+export interface MediaGraphPemCertificateList
+  extends MediaGraphCertificateSource {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   "@type": "#Microsoft.Media.MediaGraphPemCertificateList";
   /** PEM formatted public certificates one per entry. */
   certificates: string[];
-};
+}
 
 /** Encoding settings for raw images. */
-export type MediaGraphImageFormatRaw = MediaGraphImageFormat & {
+export interface MediaGraphImageFormatRaw extends MediaGraphImageFormat {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   "@type": "#Microsoft.Media.MediaGraphImageFormatRaw";
   /** The pixel format that will be used to encode images. */
   pixelFormat: MediaGraphImageFormatRawPixelFormat;
-};
+}
 
 /** Encoding settings for Jpeg images. */
-export type MediaGraphImageFormatJpeg = MediaGraphImageFormat & {
+export interface MediaGraphImageFormatJpeg extends MediaGraphImageFormat {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   "@type": "#Microsoft.Media.MediaGraphImageFormatJpeg";
   /** The image quality. Value must be between 0 to 100 (best quality). */
   quality?: string;
-};
+}
 
 /** Encoding settings for Bmp images. */
-export type MediaGraphImageFormatBmp = MediaGraphImageFormat & {
+export interface MediaGraphImageFormatBmp extends MediaGraphImageFormat {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   "@type": "#Microsoft.Media.MediaGraphImageFormatBmp";
-};
+}
 
 /** Encoding settings for Png images. */
-export type MediaGraphImageFormatPng = MediaGraphImageFormat & {
+export interface MediaGraphImageFormatPng extends MediaGraphImageFormat {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   "@type": "#Microsoft.Media.MediaGraphImageFormatPng";
-};
+}
 
 /** Represents the MediaGraphTopologyGetRequest. */
-export type MediaGraphTopologyGetRequest = ItemNonSetRequestBase & {
+export interface MediaGraphTopologyGetRequest extends ItemNonSetRequestBase {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   methodName: "GraphTopologyGet";
-};
+}
 
 /** Represents the MediaGraphTopologyDeleteRequest. */
-export type MediaGraphTopologyDeleteRequest = ItemNonSetRequestBase & {
+export interface MediaGraphTopologyDeleteRequest extends ItemNonSetRequestBase {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   methodName: "GraphTopologyDelete";
-};
+}
 
 /** Represents the MediaGraphInstanceGetRequest. */
-export type MediaGraphInstanceGetRequest = ItemNonSetRequestBase & {
+export interface MediaGraphInstanceGetRequest extends ItemNonSetRequestBase {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   methodName: "GraphInstanceGet";
-};
+}
 
 /** Represents the MediaGraphInstanceActivateRequest. */
-export type MediaGraphInstanceActivateRequest = ItemNonSetRequestBase & {
+export interface MediaGraphInstanceActivateRequest
+  extends ItemNonSetRequestBase {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   methodName: "GraphInstanceActivate";
-};
+}
 
 /** Represents the MediaGraphInstanceDeactivateRequest. */
-export type MediaGraphInstanceDeActivateRequest = ItemNonSetRequestBase & {
+export interface MediaGraphInstanceDeActivateRequest
+  extends ItemNonSetRequestBase {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   methodName: "GraphInstanceDeactivate";
-};
+}
 
 /** Represents the MediaGraphInstanceDeleteRequest. */
-export type MediaGraphInstanceDeleteRequest = ItemNonSetRequestBase & {
+export interface MediaGraphInstanceDeleteRequest extends ItemNonSetRequestBase {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   methodName: "GraphInstanceDelete";
-};
+}
 
 /** A processor that allows the media graph to send video frames to a Cognitive Services Vision extension. Inference results are relayed to downstream nodes. */
-export type MediaGraphCognitiveServicesVisionExtension = MediaGraphExtensionProcessorBase & {
+export interface MediaGraphCognitiveServicesVisionExtension
+  extends MediaGraphExtensionProcessorBase {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   "@type": "#Microsoft.Media.MediaGraphCognitiveServicesVisionExtension";
-};
+}
 
 /** A processor that allows the media graph to send video frames to an external inference container over a gRPC connection. This can be done using shared memory (for high frame rates), or over the network. Inference results are relayed to downstream nodes. */
-export type MediaGraphGrpcExtension = MediaGraphExtensionProcessorBase & {
+export interface MediaGraphGrpcExtension
+  extends MediaGraphExtensionProcessorBase {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   "@type": "#Microsoft.Media.MediaGraphGrpcExtension";
   /** How media should be transferred to the inference engine. */
   dataTransfer: MediaGraphGrpcExtensionDataTransfer;
   /** Optional configuration to pass to the gRPC extension. */
   extensionConfiguration?: string;
-};
+}
 
 /** A processor that allows the media graph to send video frames (mostly at low frame rates e.g. <5 fps) to an external inference container over an HTTP-based RESTful API. Inference results are relayed to downstream nodes. */
-export type MediaGraphHttpExtension = MediaGraphExtensionProcessorBase & {
+export interface MediaGraphHttpExtension
+  extends MediaGraphExtensionProcessorBase {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   "@type": "#Microsoft.Media.MediaGraphHttpExtension";
-};
+}
 
 /** Known values of {@link MediaGraphParameterType} that the service accepts. */
 export enum KnownMediaGraphParameterType {

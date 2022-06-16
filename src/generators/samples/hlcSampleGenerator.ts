@@ -21,7 +21,7 @@ import { SampleGroup } from "../../models/sampleDetails";
  * @param clientDetails client details
  * @param project project for code generation
  */
-export function generateSamples(
+export function generateHLCSamples(
   clientDetails: ClientDetails,
   project: Project
 ): void {
@@ -33,7 +33,7 @@ export function generateSamples(
   }
   for (const sampleGroup of sampleGroups as SampleGroup[]) {
     try {
-      const file = fs.readFileSync(path.join(__dirname, "../static/samples.ts.hbs"), {
+      const file = fs.readFileSync(path.join(__dirname, "hlcSamples.ts.hbs"), {
         encoding: "utf-8"
       });
 

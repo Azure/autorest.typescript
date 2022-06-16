@@ -33,6 +33,7 @@ export async function runAutorest(
     generateTest,
     coreHttpCompatMode,
     azureArm,
+    generateSample,
     lenientModelDeduplication
   } = options;
   let autorestCommand = `autorest${/^win/.test(process.platform) ? ".cmd" : ""
@@ -49,9 +50,9 @@ export async function runAutorest(
     securityScopes.forEach(item => {
       commandArguments.push(`--security-scopes=${item}`);
     });
-  } else if(securityScopes !== undefined){
+  } else if (securityScopes !== undefined) {
     commandArguments.push(`--security-scopes=${securityScopes}`);
-  } 
+  }
   let inputFileCommand: string = `${swaggerPath}`;
   if (!swaggerPath.endsWith(".md")) {
     inputFileCommand = `--input-file=${inputFileCommand}`;
@@ -127,6 +128,10 @@ export async function runAutorest(
 
   if (packageDetails.version !== "") {
     commandArguments.push(`--package-version=${packageDetails.version}`);
+  }
+
+  if (generateSample) {
+    commandArguments.push(`--generate-sample=${generateSample}`);
   }
 
   commandArguments.push(

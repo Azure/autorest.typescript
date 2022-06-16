@@ -61,17 +61,17 @@ export interface OperationResultError {
   message?: string;
 }
 
-export type Product = Resource & {
+export interface Product extends Resource {
   provisioningState?: string;
   /** NOTE: This property will not be serialized. It can only be populated by the server. */
   readonly provisioningStateValues?: ProductPropertiesProvisioningStateValues;
-};
+}
 
-export type SubProduct = SubResource & {
+export interface SubProduct extends SubResource {
   provisioningState?: string;
   /** NOTE: This property will not be serialized. It can only be populated by the server. */
   readonly provisioningStateValues?: SubProductPropertiesProvisioningStateValues;
-};
+}
 
 /** Defines headers for LROs_patch200SucceededIgnoreHeaders operation. */
 export interface LROsPatch200SucceededIgnoreHeadersHeaders {
