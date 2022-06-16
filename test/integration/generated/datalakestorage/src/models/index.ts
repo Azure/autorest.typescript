@@ -382,9 +382,13 @@ export interface SourceModifiedAccessConditions {
 
 /** Known values of {@link PathExpiryOptions} that the service accepts. */
 export enum KnownPathExpiryOptions {
+  /** NeverExpire */
   NeverExpire = "NeverExpire",
+  /** RelativeToCreation */
   RelativeToCreation = "RelativeToCreation",
+  /** RelativeToNow */
   RelativeToNow = "RelativeToNow",
+  /** Absolute */
   Absolute = "Absolute"
 }
 

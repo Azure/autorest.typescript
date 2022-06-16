@@ -364,6 +364,7 @@ export type AzureCliScript = DeploymentScript & {
 
 /** Known values of {@link ManagedServiceIdentityType} that the service accepts. */
 export enum KnownManagedServiceIdentityType {
+  /** UserAssigned */
   UserAssigned = "UserAssigned"
 }
 
@@ -378,7 +379,9 @@ export type ManagedServiceIdentityType = string;
 
 /** Known values of {@link ScriptType} that the service accepts. */
 export enum KnownScriptType {
+  /** AzurePowerShell */
   AzurePowerShell = "AzurePowerShell",
+  /** AzureCLI */
   AzureCLI = "AzureCLI"
 }
 
@@ -394,9 +397,13 @@ export type ScriptType = string;
 
 /** Known values of {@link CreatedByType} that the service accepts. */
 export enum KnownCreatedByType {
+  /** User */
   User = "User",
+  /** Application */
   Application = "Application",
+  /** ManagedIdentity */
   ManagedIdentity = "ManagedIdentity",
+  /** Key */
   Key = "Key"
 }
 
@@ -414,8 +421,11 @@ export type CreatedByType = string;
 
 /** Known values of {@link CleanupOptions} that the service accepts. */
 export enum KnownCleanupOptions {
+  /** Always */
   Always = "Always",
+  /** OnSuccess */
   OnSuccess = "OnSuccess",
+  /** OnExpiration */
   OnExpiration = "OnExpiration"
 }
 
@@ -432,11 +442,17 @@ export type CleanupOptions = string;
 
 /** Known values of {@link ScriptProvisioningState} that the service accepts. */
 export enum KnownScriptProvisioningState {
+  /** Creating */
   Creating = "Creating",
+  /** ProvisioningResources */
   ProvisioningResources = "ProvisioningResources",
+  /** Running */
   Running = "Running",
+  /** Succeeded */
   Succeeded = "Succeeded",
+  /** Failed */
   Failed = "Failed",
+  /** Canceled */
   Canceled = "Canceled"
 }
 

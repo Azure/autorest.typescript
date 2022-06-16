@@ -7383,6 +7383,7 @@ export type FirewallRule = ProxyResourceWithWritableName & {
 
 /** Known values of {@link GeoBackupPolicyName} that the service accepts. */
 export enum KnownGeoBackupPolicyName {
+  /** Default */
   Default = "Default"
 }
 
@@ -7397,11 +7398,17 @@ export type GeoBackupPolicyName = string;
 
 /** Known values of {@link UnitType} that the service accepts. */
 export enum KnownUnitType {
+  /** Count */
   Count = "count",
+  /** Bytes */
   Bytes = "bytes",
+  /** Seconds */
   Seconds = "seconds",
+  /** Percent */
   Percent = "percent",
+  /** CountPerSecond */
   CountPerSecond = "countPerSecond",
+  /** BytesPerSecond */
   BytesPerSecond = "bytesPerSecond"
 }
 
@@ -7421,11 +7428,17 @@ export type UnitType = string;
 
 /** Known values of {@link PrimaryAggregationType} that the service accepts. */
 export enum KnownPrimaryAggregationType {
+  /** None */
   None = "None",
+  /** Average */
   Average = "Average",
+  /** Count */
   Count = "Count",
+  /** Minimum */
   Minimum = "Minimum",
+  /** Maximum */
   Maximum = "Maximum",
+  /** Total */
   Total = "Total"
 }
 
@@ -7445,11 +7458,17 @@ export type PrimaryAggregationType = string;
 
 /** Known values of {@link UnitDefinitionType} that the service accepts. */
 export enum KnownUnitDefinitionType {
+  /** Count */
   Count = "Count",
+  /** Bytes */
   Bytes = "Bytes",
+  /** Seconds */
   Seconds = "Seconds",
+  /** Percent */
   Percent = "Percent",
+  /** CountPerSecond */
   CountPerSecond = "CountPerSecond",
+  /** BytesPerSecond */
   BytesPerSecond = "BytesPerSecond"
 }
 
@@ -7469,19 +7488,33 @@ export type UnitDefinitionType = string;
 
 /** Known values of {@link RecommendedActionCurrentState} that the service accepts. */
 export enum KnownRecommendedActionCurrentState {
+  /** Active */
   Active = "Active",
+  /** Pending */
   Pending = "Pending",
+  /** Executing */
   Executing = "Executing",
+  /** Verifying */
   Verifying = "Verifying",
+  /** PendingRevert */
   PendingRevert = "PendingRevert",
+  /** RevertCancelled */
   RevertCancelled = "RevertCancelled",
+  /** Reverting */
   Reverting = "Reverting",
+  /** Reverted */
   Reverted = "Reverted",
+  /** Ignored */
   Ignored = "Ignored",
+  /** Expired */
   Expired = "Expired",
+  /** Monitoring */
   Monitoring = "Monitoring",
+  /** Resolved */
   Resolved = "Resolved",
+  /** Success */
   Success = "Success",
+  /** Error */
   Error = "Error"
 }
 
@@ -7509,39 +7542,73 @@ export type RecommendedActionCurrentState = string;
 
 /** Known values of {@link ColumnDataType} that the service accepts. */
 export enum KnownColumnDataType {
+  /** Image */
   Image = "image",
+  /** Text */
   Text = "text",
+  /** Uniqueidentifier */
   Uniqueidentifier = "uniqueidentifier",
+  /** Date */
   Date = "date",
+  /** Time */
   Time = "time",
+  /** Datetime2 */
   Datetime2 = "datetime2",
+  /** Datetimeoffset */
   Datetimeoffset = "datetimeoffset",
+  /** Tinyint */
   Tinyint = "tinyint",
+  /** Smallint */
   Smallint = "smallint",
+  /** Int */
   Int = "int",
+  /** Smalldatetime */
   Smalldatetime = "smalldatetime",
+  /** Real */
   Real = "real",
+  /** Money */
   Money = "money",
+  /** Datetime */
   Datetime = "datetime",
+  /** Float */
   Float = "float",
+  /** SqlVariant */
   SqlVariant = "sql_variant",
+  /** Ntext */
   Ntext = "ntext",
+  /** Bit */
   Bit = "bit",
+  /** Decimal */
   Decimal = "decimal",
+  /** Numeric */
   Numeric = "numeric",
+  /** Smallmoney */
   Smallmoney = "smallmoney",
+  /** Bigint */
   Bigint = "bigint",
+  /** Hierarchyid */
   Hierarchyid = "hierarchyid",
+  /** Geometry */
   Geometry = "geometry",
+  /** Geography */
   Geography = "geography",
+  /** Varbinary */
   Varbinary = "varbinary",
+  /** Varchar */
   Varchar = "varchar",
+  /** Binary */
   Binary = "binary",
+  /** Char */
   Char = "char",
+  /** Timestamp */
   Timestamp = "timestamp",
+  /** Nvarchar */
   Nvarchar = "nvarchar",
+  /** Nchar */
   Nchar = "nchar",
+  /** Xml */
   Xml = "xml",
+  /** Sysname */
   Sysname = "sysname"
 }
 
@@ -7589,8 +7656,11 @@ export type ColumnDataType = string;
 
 /** Known values of {@link TableTemporalType} that the service accepts. */
 export enum KnownTableTemporalType {
+  /** NonTemporalTable */
   NonTemporalTable = "NonTemporalTable",
+  /** HistoryTable */
   HistoryTable = "HistoryTable",
+  /** SystemVersionedTemporalTable */
   SystemVersionedTemporalTable = "SystemVersionedTemporalTable"
 }
 
@@ -7607,6 +7677,7 @@ export type TableTemporalType = string;
 
 /** Known values of {@link SecurityAlertPolicyName} that the service accepts. */
 export enum KnownSecurityAlertPolicyName {
+  /** Default */
   Default = "Default"
 }
 
@@ -7621,9 +7692,13 @@ export type SecurityAlertPolicyName = string;
 
 /** Known values of {@link CreatedByType} that the service accepts. */
 export enum KnownCreatedByType {
+  /** User */
   User = "User",
+  /** Application */
   Application = "Application",
+  /** ManagedIdentity */
   ManagedIdentity = "ManagedIdentity",
+  /** Key */
   Key = "Key"
 }
 
@@ -7641,6 +7716,7 @@ export type CreatedByType = string;
 
 /** Known values of {@link VulnerabilityAssessmentName} that the service accepts. */
 export enum KnownVulnerabilityAssessmentName {
+  /** Default */
   Default = "default"
 }
 
@@ -7655,7 +7731,9 @@ export type VulnerabilityAssessmentName = string;
 
 /** Known values of {@link VulnerabilityAssessmentScanTriggerType} that the service accepts. */
 export enum KnownVulnerabilityAssessmentScanTriggerType {
+  /** OnDemand */
   OnDemand = "OnDemand",
+  /** Recurring */
   Recurring = "Recurring"
 }
 
@@ -7671,9 +7749,13 @@ export type VulnerabilityAssessmentScanTriggerType = string;
 
 /** Known values of {@link VulnerabilityAssessmentScanState} that the service accepts. */
 export enum KnownVulnerabilityAssessmentScanState {
+  /** Passed */
   Passed = "Passed",
+  /** Failed */
   Failed = "Failed",
+  /** FailedToRun */
   FailedToRun = "FailedToRun",
+  /** InProgress */
   InProgress = "InProgress"
 }
 
@@ -7691,6 +7773,7 @@ export type VulnerabilityAssessmentScanState = string;
 
 /** Known values of {@link DataWarehouseUserActivityName} that the service accepts. */
 export enum KnownDataWarehouseUserActivityName {
+  /** Current */
   Current = "current"
 }
 
@@ -7705,8 +7788,11 @@ export type DataWarehouseUserActivityName = string;
 
 /** Known values of {@link ElasticPoolState} that the service accepts. */
 export enum KnownElasticPoolState {
+  /** Creating */
   Creating = "Creating",
+  /** Ready */
   Ready = "Ready",
+  /** Disabled */
   Disabled = "Disabled"
 }
 
@@ -7723,7 +7809,9 @@ export type ElasticPoolState = string;
 
 /** Known values of {@link ElasticPoolLicenseType} that the service accepts. */
 export enum KnownElasticPoolLicenseType {
+  /** LicenseIncluded */
   LicenseIncluded = "LicenseIncluded",
+  /** BasePrice */
   BasePrice = "BasePrice"
 }
 
@@ -7739,7 +7827,9 @@ export type ElasticPoolLicenseType = string;
 
 /** Known values of {@link ServerKeyType} that the service accepts. */
 export enum KnownServerKeyType {
+  /** ServiceManaged */
   ServiceManaged = "ServiceManaged",
+  /** AzureKeyVault */
   AzureKeyVault = "AzureKeyVault"
 }
 
@@ -7755,6 +7845,7 @@ export type ServerKeyType = string;
 
 /** Known values of {@link EncryptionProtectorName} that the service accepts. */
 export enum KnownEncryptionProtectorName {
+  /** Current */
   Current = "current"
 }
 
@@ -7769,7 +7860,9 @@ export type EncryptionProtectorName = string;
 
 /** Known values of {@link ReadWriteEndpointFailoverPolicy} that the service accepts. */
 export enum KnownReadWriteEndpointFailoverPolicy {
+  /** Manual */
   Manual = "Manual",
+  /** Automatic */
   Automatic = "Automatic"
 }
 
@@ -7785,7 +7878,9 @@ export type ReadWriteEndpointFailoverPolicy = string;
 
 /** Known values of {@link ReadOnlyEndpointFailoverPolicy} that the service accepts. */
 export enum KnownReadOnlyEndpointFailoverPolicy {
+  /** Disabled */
   Disabled = "Disabled",
+  /** Enabled */
   Enabled = "Enabled"
 }
 
@@ -7801,7 +7896,9 @@ export type ReadOnlyEndpointFailoverPolicy = string;
 
 /** Known values of {@link FailoverGroupReplicationRole} that the service accepts. */
 export enum KnownFailoverGroupReplicationRole {
+  /** Primary */
   Primary = "Primary",
+  /** Secondary */
   Secondary = "Secondary"
 }
 
@@ -7817,7 +7914,9 @@ export type FailoverGroupReplicationRole = string;
 
 /** Known values of {@link InstanceFailoverGroupReplicationRole} that the service accepts. */
 export enum KnownInstanceFailoverGroupReplicationRole {
+  /** Primary */
   Primary = "Primary",
+  /** Secondary */
   Secondary = "Secondary"
 }
 
@@ -7833,7 +7932,9 @@ export type InstanceFailoverGroupReplicationRole = string;
 
 /** Known values of {@link InstancePoolLicenseType} that the service accepts. */
 export enum KnownInstancePoolLicenseType {
+  /** LicenseIncluded */
   LicenseIncluded = "LicenseIncluded",
+  /** BasePrice */
   BasePrice = "BasePrice"
 }
 
@@ -7849,10 +7950,15 @@ export type InstancePoolLicenseType = string;
 
 /** Known values of {@link JobAgentState} that the service accepts. */
 export enum KnownJobAgentState {
+  /** Creating */
   Creating = "Creating",
+  /** Ready */
   Ready = "Ready",
+  /** Updating */
   Updating = "Updating",
+  /** Deleting */
   Deleting = "Deleting",
+  /** Disabled */
   Disabled = "Disabled"
 }
 
@@ -7871,15 +7977,25 @@ export type JobAgentState = string;
 
 /** Known values of {@link JobExecutionLifecycle} that the service accepts. */
 export enum KnownJobExecutionLifecycle {
+  /** Created */
   Created = "Created",
+  /** InProgress */
   InProgress = "InProgress",
+  /** WaitingForChildJobExecutions */
   WaitingForChildJobExecutions = "WaitingForChildJobExecutions",
+  /** WaitingForRetry */
   WaitingForRetry = "WaitingForRetry",
+  /** Succeeded */
   Succeeded = "Succeeded",
+  /** SucceededWithSkipped */
   SucceededWithSkipped = "SucceededWithSkipped",
+  /** Failed */
   Failed = "Failed",
+  /** TimedOut */
   TimedOut = "TimedOut",
+  /** Canceled */
   Canceled = "Canceled",
+  /** Skipped */
   Skipped = "Skipped"
 }
 
@@ -7903,10 +8019,15 @@ export type JobExecutionLifecycle = string;
 
 /** Known values of {@link ProvisioningState} that the service accepts. */
 export enum KnownProvisioningState {
+  /** Created */
   Created = "Created",
+  /** InProgress */
   InProgress = "InProgress",
+  /** Succeeded */
   Succeeded = "Succeeded",
+  /** Failed */
   Failed = "Failed",
+  /** Canceled */
   Canceled = "Canceled"
 }
 
@@ -7925,10 +8046,15 @@ export type ProvisioningState = string;
 
 /** Known values of {@link JobTargetType} that the service accepts. */
 export enum KnownJobTargetType {
+  /** TargetGroup */
   TargetGroup = "TargetGroup",
+  /** SqlDatabase */
   SqlDatabase = "SqlDatabase",
+  /** SqlElasticPool */
   SqlElasticPool = "SqlElasticPool",
+  /** SqlShardMap */
   SqlShardMap = "SqlShardMap",
+  /** SqlServer */
   SqlServer = "SqlServer"
 }
 
@@ -7947,6 +8073,7 @@ export type JobTargetType = string;
 
 /** Known values of {@link JobStepActionType} that the service accepts. */
 export enum KnownJobStepActionType {
+  /** TSql */
   TSql = "TSql"
 }
 
@@ -7961,6 +8088,7 @@ export type JobStepActionType = string;
 
 /** Known values of {@link JobStepActionSource} that the service accepts. */
 export enum KnownJobStepActionSource {
+  /** Inline */
   Inline = "Inline"
 }
 
@@ -7975,6 +8103,7 @@ export type JobStepActionSource = string;
 
 /** Known values of {@link JobStepOutputType} that the service accepts. */
 export enum KnownJobStepOutputType {
+  /** SqlDatabase */
   SqlDatabase = "SqlDatabase"
 }
 
@@ -7989,10 +8118,15 @@ export type JobStepOutputType = string;
 
 /** Known values of {@link CapabilityGroup} that the service accepts. */
 export enum KnownCapabilityGroup {
+  /** SupportedEditions */
   SupportedEditions = "supportedEditions",
+  /** SupportedElasticPoolEditions */
   SupportedElasticPoolEditions = "supportedElasticPoolEditions",
+  /** SupportedManagedInstanceVersions */
   SupportedManagedInstanceVersions = "supportedManagedInstanceVersions",
+  /** SupportedInstancePoolEditions */
   SupportedInstancePoolEditions = "supportedInstancePoolEditions",
+  /** SupportedManagedInstanceEditions */
   SupportedManagedInstanceEditions = "supportedManagedInstanceEditions"
 }
 
@@ -8011,9 +8145,13 @@ export type CapabilityGroup = string;
 
 /** Known values of {@link MaxSizeUnit} that the service accepts. */
 export enum KnownMaxSizeUnit {
+  /** Megabytes */
   Megabytes = "Megabytes",
+  /** Gigabytes */
   Gigabytes = "Gigabytes",
+  /** Terabytes */
   Terabytes = "Terabytes",
+  /** Petabytes */
   Petabytes = "Petabytes"
 }
 
@@ -8031,10 +8169,15 @@ export type MaxSizeUnit = string;
 
 /** Known values of {@link LogSizeUnit} that the service accepts. */
 export enum KnownLogSizeUnit {
+  /** Megabytes */
   Megabytes = "Megabytes",
+  /** Gigabytes */
   Gigabytes = "Gigabytes",
+  /** Terabytes */
   Terabytes = "Terabytes",
+  /** Petabytes */
   Petabytes = "Petabytes",
+  /** Percent */
   Percent = "Percent"
 }
 
@@ -8053,7 +8196,9 @@ export type LogSizeUnit = string;
 
 /** Known values of {@link PerformanceLevelUnit} that the service accepts. */
 export enum KnownPerformanceLevelUnit {
+  /** DTU */
   DTU = "DTU",
+  /** VCores */
   VCores = "VCores"
 }
 
@@ -8069,6 +8214,7 @@ export type PerformanceLevelUnit = string;
 
 /** Known values of {@link PauseDelayTimeUnit} that the service accepts. */
 export enum KnownPauseDelayTimeUnit {
+  /** Minutes */
   Minutes = "Minutes"
 }
 
@@ -8083,8 +8229,11 @@ export type PauseDelayTimeUnit = string;
 
 /** Known values of {@link StorageCapabilityStorageAccountType} that the service accepts. */
 export enum KnownStorageCapabilityStorageAccountType {
+  /** GRS */
   GRS = "GRS",
+  /** LRS */
   LRS = "LRS",
+  /** ZRS */
   ZRS = "ZRS"
 }
 
@@ -8101,6 +8250,7 @@ export type StorageCapabilityStorageAccountType = string;
 
 /** Known values of {@link LongTermRetentionPolicyName} that the service accepts. */
 export enum KnownLongTermRetentionPolicyName {
+  /** Default */
   Default = "default"
 }
 
@@ -8115,12 +8265,19 @@ export type LongTermRetentionPolicyName = string;
 
 /** Known values of {@link DayOfWeek} that the service accepts. */
 export enum KnownDayOfWeek {
+  /** Sunday */
   Sunday = "Sunday",
+  /** Monday */
   Monday = "Monday",
+  /** Tuesday */
   Tuesday = "Tuesday",
+  /** Wednesday */
   Wednesday = "Wednesday",
+  /** Thursday */
   Thursday = "Thursday",
+  /** Friday */
   Friday = "Friday",
+  /** Saturday */
   Saturday = "Saturday"
 }
 
@@ -8141,6 +8298,7 @@ export type DayOfWeek = string;
 
 /** Known values of {@link ManagedShortTermRetentionPolicyName} that the service accepts. */
 export enum KnownManagedShortTermRetentionPolicyName {
+  /** Default */
   Default = "default"
 }
 
@@ -8155,7 +8313,9 @@ export type ManagedShortTermRetentionPolicyName = string;
 
 /** Known values of {@link QueryTimeGrainType} that the service accepts. */
 export enum KnownQueryTimeGrainType {
+  /** PT1H */
   PT1H = "PT1H",
+  /** P1D */
   P1D = "P1D"
 }
 
@@ -8171,9 +8331,13 @@ export type QueryTimeGrainType = string;
 
 /** Known values of {@link QueryMetricUnitType} that the service accepts. */
 export enum KnownQueryMetricUnitType {
+  /** Percentage */
   Percentage = "percentage",
+  /** KB */
   KB = "KB",
+  /** Microseconds */
   Microseconds = "microseconds",
+  /** Count */
   Count = "count"
 }
 
@@ -8191,6 +8355,7 @@ export type QueryMetricUnitType = string;
 
 /** Known values of {@link RestoreDetailsName} that the service accepts. */
 export enum KnownRestoreDetailsName {
+  /** Default */
   Default = "Default"
 }
 
@@ -8205,12 +8370,19 @@ export type RestoreDetailsName = string;
 
 /** Known values of {@link ManagedDatabaseStatus} that the service accepts. */
 export enum KnownManagedDatabaseStatus {
+  /** Online */
   Online = "Online",
+  /** Offline */
   Offline = "Offline",
+  /** Shutdown */
   Shutdown = "Shutdown",
+  /** Creating */
   Creating = "Creating",
+  /** Inaccessible */
   Inaccessible = "Inaccessible",
+  /** Restoring */
   Restoring = "Restoring",
+  /** Updating */
   Updating = "Updating"
 }
 
@@ -8231,7 +8403,9 @@ export type ManagedDatabaseStatus = string;
 
 /** Known values of {@link CatalogCollationType} that the service accepts. */
 export enum KnownCatalogCollationType {
+  /** DatabaseDefault */
   DatabaseDefault = "DATABASE_DEFAULT",
+  /** SQLLatin1GeneralCP1CIAS */
   SQLLatin1GeneralCP1CIAS = "SQL_Latin1_General_CP1_CI_AS"
 }
 
@@ -8247,10 +8421,15 @@ export type CatalogCollationType = string;
 
 /** Known values of {@link ManagedDatabaseCreateMode} that the service accepts. */
 export enum KnownManagedDatabaseCreateMode {
+  /** Default */
   Default = "Default",
+  /** RestoreExternalBackup */
   RestoreExternalBackup = "RestoreExternalBackup",
+  /** PointInTimeRestore */
   PointInTimeRestore = "PointInTimeRestore",
+  /** Recovery */
   Recovery = "Recovery",
+  /** RestoreLongTermRetentionBackup */
   RestoreLongTermRetentionBackup = "RestoreLongTermRetentionBackup"
 }
 
@@ -8269,6 +8448,7 @@ export type ManagedDatabaseCreateMode = string;
 
 /** Known values of {@link TransparentDataEncryptionName} that the service accepts. */
 export enum KnownTransparentDataEncryptionName {
+  /** Current */
   Current = "current"
 }
 
@@ -8283,6 +8463,7 @@ export type TransparentDataEncryptionName = string;
 
 /** Known values of {@link ManagedInstanceAdministratorType} that the service accepts. */
 export enum KnownManagedInstanceAdministratorType {
+  /** ActiveDirectory */
   ActiveDirectory = "ActiveDirectory"
 }
 
@@ -8297,6 +8478,7 @@ export type ManagedInstanceAdministratorType = string;
 
 /** Known values of {@link AdministratorName} that the service accepts. */
 export enum KnownAdministratorName {
+  /** ActiveDirectory */
   ActiveDirectory = "ActiveDirectory"
 }
 
@@ -8311,6 +8493,7 @@ export type AdministratorName = string;
 
 /** Known values of {@link AuthenticationName} that the service accepts. */
 export enum KnownAuthenticationName {
+  /** Default */
   Default = "Default"
 }
 
@@ -8325,6 +8508,7 @@ export type AuthenticationName = string;
 
 /** Known values of {@link ManagedInstanceLongTermRetentionPolicyName} that the service accepts. */
 export enum KnownManagedInstanceLongTermRetentionPolicyName {
+  /** Default */
   Default = "default"
 }
 
@@ -8339,11 +8523,17 @@ export type ManagedInstanceLongTermRetentionPolicyName = string;
 
 /** Known values of {@link ManagementOperationState} that the service accepts. */
 export enum KnownManagementOperationState {
+  /** Pending */
   Pending = "Pending",
+  /** InProgress */
   InProgress = "InProgress",
+  /** Succeeded */
   Succeeded = "Succeeded",
+  /** Failed */
   Failed = "Failed",
+  /** CancelInProgress */
   CancelInProgress = "CancelInProgress",
+  /** Cancelled */
   Cancelled = "Cancelled"
 }
 
@@ -8363,11 +8553,17 @@ export type ManagementOperationState = string;
 
 /** Known values of {@link UpsertManagedServerOperationStepStatus} that the service accepts. */
 export enum KnownUpsertManagedServerOperationStepStatus {
+  /** NotStarted */
   NotStarted = "NotStarted",
+  /** InProgress */
   InProgress = "InProgress",
+  /** SlowedDown */
   SlowedDown = "SlowedDown",
+  /** Completed */
   Completed = "Completed",
+  /** Failed */
   Failed = "Failed",
+  /** Canceled */
   Canceled = "Canceled"
 }
 
@@ -8387,7 +8583,9 @@ export type UpsertManagedServerOperationStepStatus = string;
 
 /** Known values of {@link OperationOrigin} that the service accepts. */
 export enum KnownOperationOrigin {
+  /** User */
   User = "user",
+  /** System */
   System = "system"
 }
 
@@ -8403,9 +8601,13 @@ export type OperationOrigin = string;
 
 /** Known values of {@link PrivateLinkServiceConnectionStateStatus} that the service accepts. */
 export enum KnownPrivateLinkServiceConnectionStateStatus {
+  /** Approved */
   Approved = "Approved",
+  /** Pending */
   Pending = "Pending",
+  /** Rejected */
   Rejected = "Rejected",
+  /** Disconnected */
   Disconnected = "Disconnected"
 }
 
@@ -8423,6 +8625,7 @@ export type PrivateLinkServiceConnectionStateStatus = string;
 
 /** Known values of {@link PrivateLinkServiceConnectionStateActionsRequire} that the service accepts. */
 export enum KnownPrivateLinkServiceConnectionStateActionsRequire {
+  /** None */
   None = "None"
 }
 
@@ -8437,10 +8640,15 @@ export type PrivateLinkServiceConnectionStateActionsRequire = string;
 
 /** Known values of {@link PrivateEndpointProvisioningState} that the service accepts. */
 export enum KnownPrivateEndpointProvisioningState {
+  /** Approving */
   Approving = "Approving",
+  /** Ready */
   Ready = "Ready",
+  /** Dropping */
   Dropping = "Dropping",
+  /** Failed */
   Failed = "Failed",
+  /** Rejecting */
   Rejecting = "Rejecting"
 }
 
@@ -8459,6 +8667,7 @@ export type PrivateEndpointProvisioningState = string;
 
 /** Known values of {@link AdministratorType} that the service accepts. */
 export enum KnownAdministratorType {
+  /** ActiveDirectory */
   ActiveDirectory = "ActiveDirectory"
 }
 
@@ -8473,7 +8682,9 @@ export type AdministratorType = string;
 
 /** Known values of {@link ServerTrustGroupPropertiesTrustScopesItem} that the service accepts. */
 export enum KnownServerTrustGroupPropertiesTrustScopesItem {
+  /** GlobalTransactions */
   GlobalTransactions = "GlobalTransactions",
+  /** ServiceBroker */
   ServiceBroker = "ServiceBroker"
 }
 
@@ -8489,7 +8700,9 @@ export type ServerTrustGroupPropertiesTrustScopesItem = string;
 
 /** Known values of {@link SqlAgentConfigurationPropertiesState} that the service accepts. */
 export enum KnownSqlAgentConfigurationPropertiesState {
+  /** Enabled */
   Enabled = "Enabled",
+  /** Disabled */
   Disabled = "Disabled"
 }
 
@@ -8505,8 +8718,11 @@ export type SqlAgentConfigurationPropertiesState = string;
 
 /** Known values of {@link SyncAgentState} that the service accepts. */
 export enum KnownSyncAgentState {
+  /** Online */
   Online = "Online",
+  /** Offline */
   Offline = "Offline",
+  /** NeverConnected */
   NeverConnected = "NeverConnected"
 }
 
@@ -8523,7 +8739,9 @@ export type SyncAgentState = string;
 
 /** Known values of {@link SyncMemberDbType} that the service accepts. */
 export enum KnownSyncMemberDbType {
+  /** AzureSqlDatabase */
   AzureSqlDatabase = "AzureSqlDatabase",
+  /** SqlServerDatabase */
   SqlServerDatabase = "SqlServerDatabase"
 }
 
@@ -8539,9 +8757,13 @@ export type SyncMemberDbType = string;
 
 /** Known values of {@link SyncGroupsType} that the service accepts. */
 export enum KnownSyncGroupsType {
+  /** All */
   All = "All",
+  /** Error */
   Error = "Error",
+  /** Warning */
   Warning = "Warning",
+  /** Success */
   Success = "Success"
 }
 
@@ -8559,9 +8781,13 @@ export type SyncGroupsType = string;
 
 /** Known values of {@link SyncGroupLogType} that the service accepts. */
 export enum KnownSyncGroupLogType {
+  /** All */
   All = "All",
+  /** Error */
   Error = "Error",
+  /** Warning */
   Warning = "Warning",
+  /** Success */
   Success = "Success"
 }
 
@@ -8579,7 +8805,9 @@ export type SyncGroupLogType = string;
 
 /** Known values of {@link SyncConflictResolutionPolicy} that the service accepts. */
 export enum KnownSyncConflictResolutionPolicy {
+  /** HubWin */
   HubWin = "HubWin",
+  /** MemberWin */
   MemberWin = "MemberWin"
 }
 
@@ -8595,10 +8823,15 @@ export type SyncConflictResolutionPolicy = string;
 
 /** Known values of {@link SyncGroupState} that the service accepts. */
 export enum KnownSyncGroupState {
+  /** NotReady */
   NotReady = "NotReady",
+  /** Error */
   Error = "Error",
+  /** Warning */
   Warning = "Warning",
+  /** Progressing */
   Progressing = "Progressing",
+  /** Good */
   Good = "Good"
 }
 
@@ -8617,8 +8850,11 @@ export type SyncGroupState = string;
 
 /** Known values of {@link SyncDirection} that the service accepts. */
 export enum KnownSyncDirection {
+  /** Bidirectional */
   Bidirectional = "Bidirectional",
+  /** OneWayMemberToHub */
   OneWayMemberToHub = "OneWayMemberToHub",
+  /** OneWayHubToMember */
   OneWayHubToMember = "OneWayHubToMember"
 }
 
@@ -8635,23 +8871,41 @@ export type SyncDirection = string;
 
 /** Known values of {@link SyncMemberState} that the service accepts. */
 export enum KnownSyncMemberState {
+  /** SyncInProgress */
   SyncInProgress = "SyncInProgress",
+  /** SyncSucceeded */
   SyncSucceeded = "SyncSucceeded",
+  /** SyncFailed */
   SyncFailed = "SyncFailed",
+  /** DisabledTombstoneCleanup */
   DisabledTombstoneCleanup = "DisabledTombstoneCleanup",
+  /** DisabledBackupRestore */
   DisabledBackupRestore = "DisabledBackupRestore",
+  /** SyncSucceededWithWarnings */
   SyncSucceededWithWarnings = "SyncSucceededWithWarnings",
+  /** SyncCancelling */
   SyncCancelling = "SyncCancelling",
+  /** SyncCancelled */
   SyncCancelled = "SyncCancelled",
+  /** UnProvisioned */
   UnProvisioned = "UnProvisioned",
+  /** Provisioning */
   Provisioning = "Provisioning",
+  /** Provisioned */
   Provisioned = "Provisioned",
+  /** ProvisionFailed */
   ProvisionFailed = "ProvisionFailed",
+  /** DeProvisioning */
   DeProvisioning = "DeProvisioning",
+  /** DeProvisioned */
   DeProvisioned = "DeProvisioned",
+  /** DeProvisionFailed */
   DeProvisionFailed = "DeProvisionFailed",
+  /** Reprovisioning */
   Reprovisioning = "Reprovisioning",
+  /** ReprovisionFailed */
   ReprovisionFailed = "ReprovisionFailed",
+  /** UnReprovisioned */
   UnReprovisioned = "UnReprovisioned"
 }
 
@@ -8683,7 +8937,9 @@ export type SyncMemberState = string;
 
 /** Known values of {@link DnsRefreshConfigurationPropertiesStatus} that the service accepts. */
 export enum KnownDnsRefreshConfigurationPropertiesStatus {
+  /** Succeeded */
   Succeeded = "Succeeded",
+  /** Failed */
   Failed = "Failed"
 }
 
@@ -8699,11 +8955,17 @@ export type DnsRefreshConfigurationPropertiesStatus = string;
 
 /** Known values of {@link VirtualNetworkRuleState} that the service accepts. */
 export enum KnownVirtualNetworkRuleState {
+  /** Initializing */
   Initializing = "Initializing",
+  /** InProgress */
   InProgress = "InProgress",
+  /** Ready */
   Ready = "Ready",
+  /** Failed */
   Failed = "Failed",
+  /** Deleting */
   Deleting = "Deleting",
+  /** Unknown */
   Unknown = "Unknown"
 }
 
@@ -8723,6 +8985,7 @@ export type VirtualNetworkRuleState = string;
 
 /** Known values of {@link ShortTermRetentionPolicyName} that the service accepts. */
 export enum KnownShortTermRetentionPolicyName {
+  /** Default */
   Default = "default"
 }
 
@@ -8737,7 +9000,9 @@ export type ShortTermRetentionPolicyName = string;
 
 /** Known values of {@link DiffBackupIntervalInHours} that the service accepts. */
 export enum KnownDiffBackupIntervalInHours {
+  /** Twelve */
   Twelve = 12,
+  /** TwentyFour */
   TwentyFour = 24
 }
 
@@ -8753,6 +9018,7 @@ export type DiffBackupIntervalInHours = number;
 
 /** Known values of {@link OperationMode} that the service accepts. */
 export enum KnownOperationMode {
+  /** PolybaseImport */
   PolybaseImport = "PolybaseImport"
 }
 
@@ -8767,7 +9033,9 @@ export type OperationMode = string;
 
 /** Known values of {@link StorageKeyType} that the service accepts. */
 export enum KnownStorageKeyType {
+  /** SharedAccessKey */
   SharedAccessKey = "SharedAccessKey",
+  /** StorageAccessKey */
   StorageAccessKey = "StorageAccessKey"
 }
 
@@ -8783,6 +9051,7 @@ export type StorageKeyType = string;
 
 /** Known values of {@link LedgerDigestUploadsName} that the service accepts. */
 export enum KnownLedgerDigestUploadsName {
+  /** Current */
   Current = "current"
 }
 
@@ -8797,9 +9066,13 @@ export type LedgerDigestUploadsName = string;
 
 /** Known values of {@link ReplicationState} that the service accepts. */
 export enum KnownReplicationState {
+  /** Pending */
   Pending = "PENDING",
+  /** Seeding */
   Seeding = "SEEDING",
+  /** CatchUP */
   CatchUP = "CATCH_UP",
+  /** Suspended */
   Suspended = "SUSPENDED"
 }
 
@@ -8817,7 +9090,9 @@ export type ReplicationState = string;
 
 /** Known values of {@link ReplicationLinkType} that the service accepts. */
 export enum KnownReplicationLinkType {
+  /** GEO */
   GEO = "GEO",
+  /** Named */
   Named = "NAMED"
 }
 
@@ -8833,9 +9108,13 @@ export type ReplicationLinkType = string;
 
 /** Known values of {@link IdentityType} that the service accepts. */
 export enum KnownIdentityType {
+  /** None */
   None = "None",
+  /** SystemAssigned */
   SystemAssigned = "SystemAssigned",
+  /** UserAssigned */
   UserAssigned = "UserAssigned",
+  /** SystemAssignedUserAssigned */
   SystemAssignedUserAssigned = "SystemAssigned,UserAssigned"
 }
 
@@ -8853,7 +9132,9 @@ export type IdentityType = string;
 
 /** Known values of {@link ServerNetworkAccessFlag} that the service accepts. */
 export enum KnownServerNetworkAccessFlag {
+  /** Enabled */
   Enabled = "Enabled",
+  /** Disabled */
   Disabled = "Disabled"
 }
 
@@ -8869,7 +9150,9 @@ export type ServerNetworkAccessFlag = string;
 
 /** Known values of {@link ServerWorkspaceFeature} that the service accepts. */
 export enum KnownServerWorkspaceFeature {
+  /** Connected */
   Connected = "Connected",
+  /** Disconnected */
   Disconnected = "Disconnected"
 }
 
@@ -8885,8 +9168,11 @@ export type ServerWorkspaceFeature = string;
 
 /** Known values of {@link PrincipalType} that the service accepts. */
 export enum KnownPrincipalType {
+  /** User */
   User = "User",
+  /** Group */
   Group = "Group",
+  /** Application */
   Application = "Application"
 }
 
@@ -8903,7 +9189,9 @@ export type PrincipalType = string;
 
 /** Known values of {@link DatabaseIdentityType} that the service accepts. */
 export enum KnownDatabaseIdentityType {
+  /** None */
   None = "None",
+  /** UserAssigned */
   UserAssigned = "UserAssigned"
 }
 
@@ -8919,15 +9207,25 @@ export type DatabaseIdentityType = string;
 
 /** Known values of {@link CreateMode} that the service accepts. */
 export enum KnownCreateMode {
+  /** Default */
   Default = "Default",
+  /** Copy */
   Copy = "Copy",
+  /** Secondary */
   Secondary = "Secondary",
+  /** PointInTimeRestore */
   PointInTimeRestore = "PointInTimeRestore",
+  /** Restore */
   Restore = "Restore",
+  /** Recovery */
   Recovery = "Recovery",
+  /** RestoreExternalBackup */
   RestoreExternalBackup = "RestoreExternalBackup",
+  /** RestoreExternalBackupSecondary */
   RestoreExternalBackupSecondary = "RestoreExternalBackupSecondary",
+  /** RestoreLongTermRetentionBackup */
   RestoreLongTermRetentionBackup = "RestoreLongTermRetentionBackup",
+  /** OnlineSecondary */
   OnlineSecondary = "OnlineSecondary"
 }
 
@@ -8951,8 +9249,11 @@ export type CreateMode = string;
 
 /** Known values of {@link SampleName} that the service accepts. */
 export enum KnownSampleName {
+  /** AdventureWorksLT */
   AdventureWorksLT = "AdventureWorksLT",
+  /** WideWorldImportersStd */
   WideWorldImportersStd = "WideWorldImportersStd",
+  /** WideWorldImportersFull */
   WideWorldImportersFull = "WideWorldImportersFull"
 }
 
@@ -8969,29 +9270,53 @@ export type SampleName = string;
 
 /** Known values of {@link DatabaseStatus} that the service accepts. */
 export enum KnownDatabaseStatus {
+  /** Online */
   Online = "Online",
+  /** Restoring */
   Restoring = "Restoring",
+  /** RecoveryPending */
   RecoveryPending = "RecoveryPending",
+  /** Recovering */
   Recovering = "Recovering",
+  /** Suspect */
   Suspect = "Suspect",
+  /** Offline */
   Offline = "Offline",
+  /** Standby */
   Standby = "Standby",
+  /** Shutdown */
   Shutdown = "Shutdown",
+  /** EmergencyMode */
   EmergencyMode = "EmergencyMode",
+  /** AutoClosed */
   AutoClosed = "AutoClosed",
+  /** Copying */
   Copying = "Copying",
+  /** Creating */
   Creating = "Creating",
+  /** Inaccessible */
   Inaccessible = "Inaccessible",
+  /** OfflineSecondary */
   OfflineSecondary = "OfflineSecondary",
+  /** Pausing */
   Pausing = "Pausing",
+  /** Paused */
   Paused = "Paused",
+  /** Resuming */
   Resuming = "Resuming",
+  /** Scaling */
   Scaling = "Scaling",
+  /** OfflineChangingDwPerformanceTiers */
   OfflineChangingDwPerformanceTiers = "OfflineChangingDwPerformanceTiers",
+  /** OnlineChangingDwPerformanceTiers */
   OnlineChangingDwPerformanceTiers = "OnlineChangingDwPerformanceTiers",
+  /** Disabled */
   Disabled = "Disabled",
+  /** Stopping */
   Stopping = "Stopping",
+  /** Stopped */
   Stopped = "Stopped",
+  /** Starting */
   Starting = "Starting"
 }
 
@@ -9029,7 +9354,9 @@ export type DatabaseStatus = string;
 
 /** Known values of {@link DatabaseLicenseType} that the service accepts. */
 export enum KnownDatabaseLicenseType {
+  /** LicenseIncluded */
   LicenseIncluded = "LicenseIncluded",
+  /** BasePrice */
   BasePrice = "BasePrice"
 }
 
@@ -9045,7 +9372,9 @@ export type DatabaseLicenseType = string;
 
 /** Known values of {@link DatabaseReadScale} that the service accepts. */
 export enum KnownDatabaseReadScale {
+  /** Enabled */
   Enabled = "Enabled",
+  /** Disabled */
   Disabled = "Disabled"
 }
 
@@ -9061,7 +9390,9 @@ export type DatabaseReadScale = string;
 
 /** Known values of {@link SecondaryType} that the service accepts. */
 export enum KnownSecondaryType {
+  /** Geo */
   Geo = "Geo",
+  /** Named */
   Named = "Named"
 }
 
@@ -9077,9 +9408,13 @@ export type SecondaryType = string;
 
 /** Known values of {@link BackupStorageRedundancy} that the service accepts. */
 export enum KnownBackupStorageRedundancy {
+  /** Geo */
   Geo = "Geo",
+  /** Local */
   Local = "Local",
+  /** Zone */
   Zone = "Zone",
+  /** GeoZone */
   GeoZone = "GeoZone"
 }
 
@@ -9097,7 +9432,9 @@ export type BackupStorageRedundancy = string;
 
 /** Known values of {@link ReplicaType} that the service accepts. */
 export enum KnownReplicaType {
+  /** Primary */
   Primary = "Primary",
+  /** ReadableSecondary */
   ReadableSecondary = "ReadableSecondary"
 }
 
@@ -9113,8 +9450,11 @@ export type ReplicaType = string;
 
 /** Known values of {@link DatabaseState} that the service accepts. */
 export enum KnownDatabaseState {
+  /** All */
   All = "All",
+  /** Live */
   Live = "Live",
+  /** Deleted */
   Deleted = "Deleted"
 }
 
@@ -9131,20 +9471,35 @@ export type DatabaseState = string;
 
 /** Known values of {@link ManagedInstancePropertiesProvisioningState} that the service accepts. */
 export enum KnownManagedInstancePropertiesProvisioningState {
+  /** Creating */
   Creating = "Creating",
+  /** Deleting */
   Deleting = "Deleting",
+  /** Updating */
   Updating = "Updating",
+  /** Unknown */
   Unknown = "Unknown",
+  /** Succeeded */
   Succeeded = "Succeeded",
+  /** Failed */
   Failed = "Failed",
+  /** Accepted */
   Accepted = "Accepted",
+  /** Created */
   Created = "Created",
+  /** Deleted */
   Deleted = "Deleted",
+  /** Unrecognized */
   Unrecognized = "Unrecognized",
+  /** Running */
   Running = "Running",
+  /** Canceled */
   Canceled = "Canceled",
+  /** NotSpecified */
   NotSpecified = "NotSpecified",
+  /** Registering */
   Registering = "Registering",
+  /** TimedOut */
   TimedOut = "TimedOut"
 }
 
@@ -9173,7 +9528,9 @@ export type ManagedInstancePropertiesProvisioningState = string;
 
 /** Known values of {@link ManagedServerCreateMode} that the service accepts. */
 export enum KnownManagedServerCreateMode {
+  /** Default */
   Default = "Default",
+  /** PointInTimeRestore */
   PointInTimeRestore = "PointInTimeRestore"
 }
 
@@ -9189,7 +9546,9 @@ export type ManagedServerCreateMode = string;
 
 /** Known values of {@link ManagedInstanceLicenseType} that the service accepts. */
 export enum KnownManagedInstanceLicenseType {
+  /** LicenseIncluded */
   LicenseIncluded = "LicenseIncluded",
+  /** BasePrice */
   BasePrice = "BasePrice"
 }
 
@@ -9205,8 +9564,11 @@ export type ManagedInstanceLicenseType = string;
 
 /** Known values of {@link ManagedInstanceProxyOverride} that the service accepts. */
 export enum KnownManagedInstanceProxyOverride {
+  /** Proxy */
   Proxy = "Proxy",
+  /** Redirect */
   Redirect = "Redirect",
+  /** Default */
   Default = "Default"
 }
 
@@ -9223,7 +9585,9 @@ export type ManagedInstanceProxyOverride = string;
 
 /** Known values of {@link ServicePrincipalType} that the service accepts. */
 export enum KnownServicePrincipalType {
+  /** None */
   None = "None",
+  /** SystemAssigned */
   SystemAssigned = "SystemAssigned"
 }
 
@@ -9239,10 +9603,15 @@ export type ServicePrincipalType = string;
 
 /** Known values of {@link AggregationFunctionType} that the service accepts. */
 export enum KnownAggregationFunctionType {
+  /** Avg */
   Avg = "avg",
+  /** Min */
   Min = "min",
+  /** Max */
   Max = "max",
+  /** Stdev */
   Stdev = "stdev",
+  /** Sum */
   Sum = "sum"
 }
 
@@ -9261,10 +9630,15 @@ export type AggregationFunctionType = string;
 
 /** Known values of {@link MetricType} that the service accepts. */
 export enum KnownMetricType {
+  /** Cpu */
   Cpu = "cpu",
+  /** Io */
   Io = "io",
+  /** LogIo */
   LogIo = "logIo",
+  /** Duration */
   Duration = "duration",
+  /** Dtu */
   Dtu = "dtu"
 }
 
@@ -9283,6 +9657,7 @@ export type MetricType = string;
 
 /** Known values of {@link ConnectionPolicyName} that the service accepts. */
 export enum KnownConnectionPolicyName {
+  /** Default */
   Default = "default"
 }
 
@@ -9297,8 +9672,11 @@ export type ConnectionPolicyName = string;
 
 /** Known values of {@link ServerConnectionType} that the service accepts. */
 export enum KnownServerConnectionType {
+  /** Default */
   Default = "Default",
+  /** Redirect */
   Redirect = "Redirect",
+  /** Proxy */
   Proxy = "Proxy"
 }
 
@@ -9315,70 +9693,135 @@ export type ServerConnectionType = string;
 
 /** Known values of {@link ServiceObjectiveName} that the service accepts. */
 export enum KnownServiceObjectiveName {
+  /** System */
   System = "System",
+  /** System0 */
   System0 = "System0",
+  /** System1 */
   System1 = "System1",
+  /** System2 */
   System2 = "System2",
+  /** System3 */
   System3 = "System3",
+  /** System4 */
   System4 = "System4",
+  /** System2L */
   System2L = "System2L",
+  /** System3L */
   System3L = "System3L",
+  /** System4L */
   System4L = "System4L",
+  /** Free */
   Free = "Free",
+  /** Basic */
   Basic = "Basic",
+  /** S0 */
   S0 = "S0",
+  /** S1 */
   S1 = "S1",
+  /** S2 */
   S2 = "S2",
+  /** S3 */
   S3 = "S3",
+  /** S4 */
   S4 = "S4",
+  /** S6 */
   S6 = "S6",
+  /** S7 */
   S7 = "S7",
+  /** S9 */
   S9 = "S9",
+  /** S12 */
   S12 = "S12",
+  /** P1 */
   P1 = "P1",
+  /** P2 */
   P2 = "P2",
+  /** P3 */
   P3 = "P3",
+  /** P4 */
   P4 = "P4",
+  /** P6 */
   P6 = "P6",
+  /** P11 */
   P11 = "P11",
+  /** P15 */
   P15 = "P15",
+  /** PRS1 */
   PRS1 = "PRS1",
+  /** PRS2 */
   PRS2 = "PRS2",
+  /** PRS4 */
   PRS4 = "PRS4",
+  /** PRS6 */
   PRS6 = "PRS6",
+  /** DW100 */
   DW100 = "DW100",
+  /** DW200 */
   DW200 = "DW200",
+  /** DW300 */
   DW300 = "DW300",
+  /** DW400 */
   DW400 = "DW400",
+  /** DW500 */
   DW500 = "DW500",
+  /** DW600 */
   DW600 = "DW600",
+  /** DW1000 */
   DW1000 = "DW1000",
+  /** DW1200 */
   DW1200 = "DW1200",
+  /** DW1000C */
   DW1000C = "DW1000c",
+  /** DW1500 */
   DW1500 = "DW1500",
+  /** DW1500C */
   DW1500C = "DW1500c",
+  /** DW2000 */
   DW2000 = "DW2000",
+  /** DW2000C */
   DW2000C = "DW2000c",
+  /** DW3000 */
   DW3000 = "DW3000",
+  /** DW2500C */
   DW2500C = "DW2500c",
+  /** DW3000C */
   DW3000C = "DW3000c",
+  /** DW6000 */
   DW6000 = "DW6000",
+  /** DW5000C */
   DW5000C = "DW5000c",
+  /** DW6000C */
   DW6000C = "DW6000c",
+  /** DW7500C */
   DW7500C = "DW7500c",
+  /** DW10000C */
   DW10000C = "DW10000c",
+  /** DW15000C */
   DW15000C = "DW15000c",
+  /** DW30000C */
   DW30000C = "DW30000c",
+  /** DS100 */
   DS100 = "DS100",
+  /** DS200 */
   DS200 = "DS200",
+  /** DS300 */
   DS300 = "DS300",
+  /** DS400 */
   DS400 = "DS400",
+  /** DS500 */
   DS500 = "DS500",
+  /** DS600 */
   DS600 = "DS600",
+  /** DS1000 */
   DS1000 = "DS1000",
+  /** DS1200 */
   DS1200 = "DS1200",
+  /** DS1500 */
   DS1500 = "DS1500",
+  /** DS2000 */
   DS2000 = "DS2000",
+  /** ElasticPool */
   ElasticPool = "ElasticPool"
 }
 

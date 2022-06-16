@@ -204,9 +204,13 @@ export type Cookiecuttershark = Shark & {
 
 /** Known values of {@link CMYKColors} that the service accepts. */
 export enum KnownCMYKColors {
+  /** Cyan */
   Cyan = "cyan",
+  /** Magenta */
   Magenta = "Magenta",
+  /** Yellow */
   Yellow = "YELLOW",
+  /** BlacK */
   BlacK = "blacK"
 }
 
@@ -224,6 +228,7 @@ export type CMYKColors = string;
 
 /** Known values of {@link MyKind} that the service accepts. */
 export enum KnownMyKind {
+  /** Kind1 */
   Kind1 = "Kind1"
 }
 
@@ -238,8 +243,11 @@ export type MyKind = string;
 
 /** Known values of {@link GoblinSharkColor} that the service accepts. */
 export enum KnownGoblinSharkColor {
+  /** Pink */
   Pink = "pink",
+  /** Gray */
   Gray = "gray",
+  /** Brown */
   Brown = "brown",
   /** Uppercase RED */
   UpperRed = "RED",

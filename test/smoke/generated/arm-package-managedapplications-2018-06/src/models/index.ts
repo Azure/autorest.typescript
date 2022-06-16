@@ -217,16 +217,27 @@ export type ApplicationPatchable = GenericResource & {
 
 /** Known values of {@link ProvisioningState} that the service accepts. */
 export enum KnownProvisioningState {
+  /** Accepted */
   Accepted = "Accepted",
+  /** Running */
   Running = "Running",
+  /** Ready */
   Ready = "Ready",
+  /** Creating */
   Creating = "Creating",
+  /** Created */
   Created = "Created",
+  /** Deleting */
   Deleting = "Deleting",
+  /** Deleted */
   Deleted = "Deleted",
+  /** Canceled */
   Canceled = "Canceled",
+  /** Failed */
   Failed = "Failed",
+  /** Succeeded */
   Succeeded = "Succeeded",
+  /** Updating */
   Updating = "Updating"
 }
 

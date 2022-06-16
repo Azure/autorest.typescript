@@ -194,13 +194,21 @@ export interface AppConfigurationClientGetRevisionsNextHeaders {
 
 /** Known values of {@link Get6ItemsItem} that the service accepts. */
 export enum KnownGet6ItemsItem {
+  /** Key */
   Key = "key",
+  /** Label */
   Label = "label",
+  /** ContentType */
   ContentType = "content_type",
+  /** Value */
   Value = "value",
+  /** LastModified */
   LastModified = "last_modified",
+  /** Tags */
   Tags = "tags",
+  /** Locked */
   Locked = "locked",
+  /** Etag */
   Etag = "etag"
 }
 
@@ -222,13 +230,21 @@ export type Get6ItemsItem = string;
 
 /** Known values of {@link Head6ItemsItem} that the service accepts. */
 export enum KnownHead6ItemsItem {
+  /** Key */
   Key = "key",
+  /** Label */
   Label = "label",
+  /** ContentType */
   ContentType = "content_type",
+  /** Value */
   Value = "value",
+  /** LastModified */
   LastModified = "last_modified",
+  /** Tags */
   Tags = "tags",
+  /** Locked */
   Locked = "locked",
+  /** Etag */
   Etag = "etag"
 }
 
@@ -250,13 +266,21 @@ export type Head6ItemsItem = string;
 
 /** Known values of {@link Get7ItemsItem} that the service accepts. */
 export enum KnownGet7ItemsItem {
+  /** Key */
   Key = "key",
+  /** Label */
   Label = "label",
+  /** ContentType */
   ContentType = "content_type",
+  /** Value */
   Value = "value",
+  /** LastModified */
   LastModified = "last_modified",
+  /** Tags */
   Tags = "tags",
+  /** Locked */
   Locked = "locked",
+  /** Etag */
   Etag = "etag"
 }
 
@@ -278,13 +302,21 @@ export type Get7ItemsItem = string;
 
 /** Known values of {@link Head7ItemsItem} that the service accepts. */
 export enum KnownHead7ItemsItem {
+  /** Key */
   Key = "key",
+  /** Label */
   Label = "label",
+  /** ContentType */
   ContentType = "content_type",
+  /** Value */
   Value = "value",
+  /** LastModified */
   LastModified = "last_modified",
+  /** Tags */
   Tags = "tags",
+  /** Locked */
   Locked = "locked",
+  /** Etag */
   Etag = "etag"
 }
 
@@ -306,13 +338,21 @@ export type Head7ItemsItem = string;
 
 /** Known values of {@link Enum4} that the service accepts. */
 export enum KnownEnum4 {
+  /** Key */
   Key = "key",
+  /** Label */
   Label = "label",
+  /** ContentType */
   ContentType = "content_type",
+  /** Value */
   Value = "value",
+  /** LastModified */
   LastModified = "last_modified",
+  /** Tags */
   Tags = "tags",
+  /** Locked */
   Locked = "locked",
+  /** Etag */
   Etag = "etag"
 }
 
@@ -334,13 +374,21 @@ export type Enum4 = string;
 
 /** Known values of {@link Enum5} that the service accepts. */
 export enum KnownEnum5 {
+  /** Key */
   Key = "key",
+  /** Label */
   Label = "label",
+  /** ContentType */
   ContentType = "content_type",
+  /** Value */
   Value = "value",
+  /** LastModified */
   LastModified = "last_modified",
+  /** Tags */
   Tags = "tags",
+  /** Locked */
   Locked = "locked",
+  /** Etag */
   Etag = "etag"
 }
 

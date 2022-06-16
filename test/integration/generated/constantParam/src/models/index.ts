@@ -119,7 +119,9 @@ export interface ErrorResponse {
 
 /** Known values of {@link WarningCodeValue} that the service accepts. */
 export enum KnownWarningCodeValue {
+  /** LongWordsInDocument */
   LongWordsInDocument = "LongWordsInDocument",
+  /** DocumentTruncated */
   DocumentTruncated = "DocumentTruncated"
 }
 
@@ -135,14 +137,23 @@ export type WarningCodeValue = string;
 
 /** Known values of {@link InnerErrorCodeValue} that the service accepts. */
 export enum KnownInnerErrorCodeValue {
+  /** InvalidParameterValue */
   InvalidParameterValue = "InvalidParameterValue",
+  /** InvalidRequestBodyFormat */
   InvalidRequestBodyFormat = "InvalidRequestBodyFormat",
+  /** EmptyRequest */
   EmptyRequest = "EmptyRequest",
+  /** MissingInputRecords */
   MissingInputRecords = "MissingInputRecords",
+  /** InvalidDocument */
   InvalidDocument = "InvalidDocument",
+  /** ModelVersionIncorrect */
   ModelVersionIncorrect = "ModelVersionIncorrect",
+  /** InvalidDocumentBatch */
   InvalidDocumentBatch = "InvalidDocumentBatch",
+  /** UnsupportedLanguageCode */
   UnsupportedLanguageCode = "UnsupportedLanguageCode",
+  /** InvalidCountryHint */
   InvalidCountryHint = "InvalidCountryHint"
 }
 

@@ -17,7 +17,9 @@ export interface Product {
 
 /** Known values of {@link Enum0} that the service accepts. */
 export enum KnownEnum0 {
+  /** One */
   One = "one",
+  /** Two */
   Two = "two"
 }
 
@@ -33,7 +35,9 @@ export type Enum0 = string;
 
 /** Known values of {@link OS} that the service accepts. */
 export enum KnownOS {
+  /** Windows */
   Windows = "Windows",
+  /** Linux */
   Linux = "Linux"
 }
 

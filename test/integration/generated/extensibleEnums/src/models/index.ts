@@ -18,12 +18,19 @@ export interface PetDef {
 
 /** Known values of {@link DaysOfWeekExtensibleEnum} that the service accepts. */
 export enum KnownDaysOfWeekExtensibleEnum {
+  /** Monday */
   Monday = "Monday",
+  /** Tuesday */
   Tuesday = "Tuesday",
+  /** Wednesday */
   Wednesday = "Wednesday",
+  /** Thursday */
   Thursday = "Thursday",
+  /** Friday */
   Friday = "Friday",
+  /** Saturday */
   Saturday = "Saturday",
+  /** Sunday */
   Sunday = "Sunday"
 }
 

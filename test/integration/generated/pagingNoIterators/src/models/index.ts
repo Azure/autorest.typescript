@@ -86,16 +86,27 @@ export interface PagingGetMultiplePagesLroOptions {
 
 /** Known values of {@link OperationResultStatus} that the service accepts. */
 export enum KnownOperationResultStatus {
+  /** Succeeded */
   Succeeded = "Succeeded",
+  /** Failed */
   Failed = "Failed",
+  /** Canceled */
   Canceled = "canceled",
+  /** Accepted */
   Accepted = "Accepted",
+  /** Creating */
   Creating = "Creating",
+  /** Created */
   Created = "Created",
+  /** Updating */
   Updating = "Updating",
+  /** Updated */
   Updated = "Updated",
+  /** Deleting */
   Deleting = "Deleting",
+  /** Deleted */
   Deleted = "Deleted",
+  /** OK */
   OK = "OK"
 }
 
