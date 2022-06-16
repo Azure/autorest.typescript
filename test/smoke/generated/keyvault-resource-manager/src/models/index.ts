@@ -961,7 +961,7 @@ export interface SecretListResult {
 }
 
 /** The key resource. */
-export type Key = Resource & {
+export interface Key extends Resource {
   /** The attributes of the key. */
   attributes?: KeyAttributes;
   /** The type of the key. For valid values, see JsonWebKeyType. */
@@ -985,10 +985,10 @@ export type Key = Resource & {
   rotationPolicy?: RotationPolicy;
   /** Key release policy in response. It will be used for both output and input. Omitted if empty */
   releasePolicy?: KeyReleasePolicy;
-};
+}
 
 /** Private endpoint connection resource. */
-export type PrivateEndpointConnection = Resource & {
+export interface PrivateEndpointConnection extends Resource {
   /** Modified whenever there is a change in the state of private endpoint connection. */
   etag?: string;
   /** Properties of the private endpoint object. */
@@ -997,10 +997,10 @@ export type PrivateEndpointConnection = Resource & {
   privateLinkServiceConnectionState?: PrivateLinkServiceConnectionState;
   /** Provisioning state of the private endpoint connection. */
   provisioningState?: PrivateEndpointConnectionProvisioningState;
-};
+}
 
 /** A private link resource */
-export type PrivateLinkResource = Resource & {
+export interface PrivateLinkResource extends Resource {
   /**
    * Group identifier of private link resource.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -1013,22 +1013,22 @@ export type PrivateLinkResource = Resource & {
   readonly requiredMembers?: string[];
   /** Required DNS zone names of the the private link resource. */
   requiredZoneNames?: string[];
-};
+}
 
 /** Resource information with extended details. */
-export type Secret = Resource & {
+export interface Secret extends Resource {
   /** Properties of the secret */
   properties: SecretProperties;
-};
+}
 
 /** Resource information with extended details. */
-export type ManagedHsm = ManagedHsmResource & {
+export interface ManagedHsm extends ManagedHsmResource {
   /** Properties of the managed HSM */
   properties?: ManagedHsmProperties;
-};
+}
 
 /** Private endpoint connection resource. */
-export type MhsmPrivateEndpointConnection = ManagedHsmResource & {
+export interface MhsmPrivateEndpointConnection extends ManagedHsmResource {
   /** Modified whenever there is a change in the state of private endpoint connection. */
   etag?: string;
   /** Properties of the private endpoint object. */
@@ -1037,10 +1037,10 @@ export type MhsmPrivateEndpointConnection = ManagedHsmResource & {
   privateLinkServiceConnectionState?: MhsmPrivateLinkServiceConnectionState;
   /** Provisioning state of the private endpoint connection. */
   provisioningState?: PrivateEndpointConnectionProvisioningState;
-};
+}
 
 /** A private link resource */
-export type MhsmPrivateLinkResource = ManagedHsmResource & {
+export interface MhsmPrivateLinkResource extends ManagedHsmResource {
   /**
    * Group identifier of private link resource.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -1053,10 +1053,10 @@ export type MhsmPrivateLinkResource = ManagedHsmResource & {
   readonly requiredMembers?: string[];
   /** Required DNS zone names of the the private link resource. */
   requiredZoneNames?: string[];
-};
+}
 
 /** The secret management attributes. */
-export type SecretAttributes = Attributes;
+export interface SecretAttributes extends Attributes {}
 
 /** Defines headers for PrivateEndpointConnections_put operation. */
 export interface PrivateEndpointConnectionsPutHeaders {

@@ -368,7 +368,7 @@ export interface ContainerAccount {
 }
 
 /** Domain service. */
-export type DomainService = Resource & {
+export interface DomainService extends Resource {
   /**
    * Data Model Version
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -419,10 +419,10 @@ export type DomainService = Resource & {
   readonly provisioningState?: string;
   /** Configuration diagnostics data containing latest execution from client. */
   configDiagnostics?: ConfigDiagnostics;
-};
+}
 
 /** Resource for OuContainer. */
-export type OuContainer = Resource & {
+export interface OuContainer extends Resource {
   /**
    * Azure Active Directory tenant id
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -460,7 +460,7 @@ export type OuContainer = Resource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: string;
-};
+}
 
 /** Known values of {@link Ldaps} that the service accepts. */
 export enum KnownLdaps {

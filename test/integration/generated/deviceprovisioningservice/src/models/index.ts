@@ -474,14 +474,14 @@ export interface GroupIdInformationProperties {
 }
 
 /** The description of the provisioning service. */
-export type ProvisioningServiceDescription = Resource & {
+export interface ProvisioningServiceDescription extends Resource {
   /** The Etag field is *not* required. If it is provided in the response body, it must also be provided as a header per the normal ETag convention. */
   etag?: string;
   /** Service specific properties for a provisioning service */
   properties: IotDpsPropertiesDescription;
   /** Sku info for a provisioning Service. */
   sku: IotDpsSkuInfo;
-};
+}
 
 /** Known values of {@link CertificatePurpose} that the service accepts. */
 export enum KnownCertificatePurpose {

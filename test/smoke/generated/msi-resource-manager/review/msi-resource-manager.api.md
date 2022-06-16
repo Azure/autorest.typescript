@@ -22,22 +22,22 @@ export interface CloudErrorBody {
 }
 
 // @public
-export type Identity = TrackedResource & {
-    readonly tenantId?: string;
-    readonly principalId?: string;
+export interface Identity extends TrackedResource {
     readonly clientId?: string;
-};
+    readonly principalId?: string;
+    readonly tenantId?: string;
+}
 
 // @public
-export type IdentityUpdate = Resource & {
+export interface IdentityUpdate extends Resource {
+    readonly clientId?: string;
     location?: string;
+    readonly principalId?: string;
     tags?: {
         [propertyName: string]: string;
     };
     readonly tenantId?: string;
-    readonly principalId?: string;
-    readonly clientId?: string;
-};
+}
 
 // @public (undocumented)
 export class ManagedServiceIdentityClient extends coreClient.ServiceClient {
@@ -103,7 +103,8 @@ export interface OperationsListOptionalParams extends coreClient.OperationOption
 export type OperationsListResponse = OperationListResult;
 
 // @public
-export type ProxyResource = Resource;
+export interface ProxyResource extends Resource {
+}
 
 // @public
 export interface Resource {
@@ -125,24 +126,24 @@ export interface SystemAssignedIdentitiesGetByScopeOptionalParams extends coreCl
 export type SystemAssignedIdentitiesGetByScopeResponse = SystemAssignedIdentity;
 
 // @public
-export type SystemAssignedIdentity = ProxyResource & {
+export interface SystemAssignedIdentity extends ProxyResource {
+    readonly clientId?: string;
+    readonly clientSecretUrl?: string;
     location: string;
+    readonly principalId?: string;
     tags?: {
         [propertyName: string]: string;
     };
     readonly tenantId?: string;
-    readonly principalId?: string;
-    readonly clientId?: string;
-    readonly clientSecretUrl?: string;
-};
+}
 
 // @public
-export type TrackedResource = Resource & {
+export interface TrackedResource extends Resource {
+    location: string;
     tags?: {
         [propertyName: string]: string;
     };
-    location: string;
-};
+}
 
 // @public
 export interface UserAssignedIdentities {

@@ -3988,13 +3988,13 @@ export interface ManagedArtifact {
   id: string;
 }
 
-export type SubResourceWithColocationStatus = SubResource & {
+export interface SubResourceWithColocationStatus extends SubResource {
   /** Describes colocation status of a resource in the Proximity Placement Group. */
   colocationStatus?: InstanceViewStatus;
-};
+}
 
 /** Virtual machine image resource information. */
-export type VirtualMachineImageResource = SubResource & {
+export interface VirtualMachineImageResource extends SubResource {
   /** The name of the resource. */
   name: string;
   /** The supported Azure location of the resource. */
@@ -4003,10 +4003,10 @@ export type VirtualMachineImageResource = SubResource & {
   tags?: { [propertyName: string]: string };
   /** The extended location of the Virtual Machine. */
   extendedLocation?: ExtendedLocation;
-};
+}
 
 /** Specifies information about the image to use. You can specify information about platform images, marketplace images, or virtual machine images. This element is required when you want to use a platform image, marketplace image, or virtual machine image, but is not used in other creation operations. NOTE: Image reference publisher and offer can only be set when you create the scale set. */
-export type ImageReference = SubResource & {
+export interface ImageReference extends SubResource {
   /** The image publisher. */
   publisher?: string;
   /** Specifies the offer of the platform image or marketplace image used to create the virtual machine. */
@@ -4022,29 +4022,29 @@ export type ImageReference = SubResource & {
   readonly exactVersion?: string;
   /** Specified the shared gallery image unique id for vm deployment. This can be fetched from shared gallery image GET call. */
   sharedGalleryImageId?: string;
-};
+}
 
 /** Describes the parameter of customer managed disk encryption set resource id that can be specified for disk. <br><br> NOTE: The disk encryption set resource id can only be specified for managed disk. Please refer https://aka.ms/mdssewithcmkoverview for more details. */
-export type DiskEncryptionSetParameters = SubResource;
+export interface DiskEncryptionSetParameters extends SubResource {}
 
 /** The parameters of a managed disk. */
-export type ManagedDiskParameters = SubResource & {
+export interface ManagedDiskParameters extends SubResource {
   /** Specifies the storage account type for the managed disk. NOTE: UltraSSD_LRS can only be used with data disks, it cannot be used with OS Disk. */
   storageAccountType?: StorageAccountTypes;
   /** Specifies the customer managed disk encryption set resource id for the managed disk. */
   diskEncryptionSet?: DiskEncryptionSetParameters;
-};
+}
 
 /** Describes a network interface reference. */
-export type NetworkInterfaceReference = SubResource & {
+export interface NetworkInterfaceReference extends SubResource {
   /** Specifies the primary network interface in case the virtual machine has more than 1 network interface. */
   primary?: boolean;
   /** Specify what happens to the network interface when the VM is deleted */
   deleteOption?: DeleteOptions;
-};
+}
 
 /** Describes a virtual machine scale set network profile's IP configuration. */
-export type VirtualMachineScaleSetIPConfiguration = SubResource & {
+export interface VirtualMachineScaleSetIPConfiguration extends SubResource {
   /** The IP configuration name. */
   name: string;
   /** Specifies the identifier of the subnet. */
@@ -4063,10 +4063,11 @@ export type VirtualMachineScaleSetIPConfiguration = SubResource & {
   loadBalancerBackendAddressPools?: SubResource[];
   /** Specifies an array of references to inbound Nat pools of the load balancers. A scale set can reference inbound nat pools of one public and one internal load balancer. Multiple scale sets cannot use the same basic sku load balancer. */
   loadBalancerInboundNatPools?: SubResource[];
-};
+}
 
 /** Describes a virtual machine scale set network profile's network configurations. */
-export type VirtualMachineScaleSetNetworkConfiguration = SubResource & {
+export interface VirtualMachineScaleSetNetworkConfiguration
+  extends SubResource {
   /** The network configuration name. */
   name: string;
   /** Specifies the primary network interface in case the virtual machine has more than 1 network interface. */
@@ -4085,10 +4086,10 @@ export type VirtualMachineScaleSetNetworkConfiguration = SubResource & {
   enableIPForwarding?: boolean;
   /** Specify what happens to the network interface when the VM is deleted */
   deleteOption?: DeleteOptions;
-};
+}
 
 /** Output of virtual machine capture operation. */
-export type VirtualMachineCaptureResult = SubResource & {
+export interface VirtualMachineCaptureResult extends SubResource {
   /**
    * the schema of the captured virtual machine
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -4109,10 +4110,11 @@ export type VirtualMachineCaptureResult = SubResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly resources?: Record<string, unknown>[];
-};
+}
 
 /** Describes a virtual machine scale set network profile's IP configuration. NOTE: The subnet of a scale set may be modified as long as the original subnet and the new subnet are in the same virtual network */
-export type VirtualMachineScaleSetUpdateIPConfiguration = SubResource & {
+export interface VirtualMachineScaleSetUpdateIPConfiguration
+  extends SubResource {
   /** The IP configuration name. */
   name?: string;
   /** The subnet. */
@@ -4131,10 +4133,11 @@ export type VirtualMachineScaleSetUpdateIPConfiguration = SubResource & {
   loadBalancerBackendAddressPools?: SubResource[];
   /** The load balancer inbound nat pools. */
   loadBalancerInboundNatPools?: SubResource[];
-};
+}
 
 /** Describes a virtual machine scale set network profile's network configurations. */
-export type VirtualMachineScaleSetUpdateNetworkConfiguration = SubResource & {
+export interface VirtualMachineScaleSetUpdateNetworkConfiguration
+  extends SubResource {
   /** The network configuration name. */
   name?: string;
   /** Whether this is a primary NIC on a virtual machine. */
@@ -4153,10 +4156,10 @@ export type VirtualMachineScaleSetUpdateNetworkConfiguration = SubResource & {
   enableIPForwarding?: boolean;
   /** Specify what happens to the network interface when the VM is deleted */
   deleteOption?: DeleteOptions;
-};
+}
 
 /** Specifies information about the availability set that the virtual machine should be assigned to. Virtual machines specified in the same availability set are allocated to different nodes to maximize availability. For more information about availability sets, see [Availability sets overview](https://docs.microsoft.com/azure/virtual-machines/availability-set-overview). <br><br> For more information on Azure planned maintenance, see [Maintenance and updates for Virtual Machines in Azure](https://docs.microsoft.com/azure/virtual-machines/maintenance-and-updates) <br><br> Currently, a VM can only be added to availability set at creation time. An existing VM cannot be added to an availability set. */
-export type AvailabilitySet = Resource & {
+export interface AvailabilitySet extends Resource {
   /** Sku of the availability set, only name is required to be set. See AvailabilitySetSkuTypes for possible set of values. Use 'Aligned' for virtual machines with managed disks and 'Classic' for virtual machines with unmanaged disks. Default value is 'Classic'. */
   sku?: Sku;
   /** Update Domain count. */
@@ -4172,10 +4175,10 @@ export type AvailabilitySet = Resource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly statuses?: InstanceViewStatus[];
-};
+}
 
 /** Specifies information about the proximity placement group. */
-export type ProximityPlacementGroup = Resource & {
+export interface ProximityPlacementGroup extends Resource {
   /** Specifies the type of the proximity placement group. <br><br> Possible values are: <br><br> **Standard** : Co-locate resources within an Azure region or Availability Zone. <br><br> **Ultra** : For future use. */
   proximityPlacementGroupType?: ProximityPlacementGroupType;
   /**
@@ -4195,10 +4198,10 @@ export type ProximityPlacementGroup = Resource & {
   readonly availabilitySets?: SubResourceWithColocationStatus[];
   /** Describes colocation status of the Proximity Placement Group. */
   colocationStatus?: InstanceViewStatus;
-};
+}
 
 /** Specifies information about the dedicated host group that the dedicated hosts should be assigned to. <br><br> Currently, a dedicated host can only be added to a dedicated host group at creation time. An existing dedicated host cannot be added to another dedicated host group. */
-export type DedicatedHostGroup = Resource & {
+export interface DedicatedHostGroup extends Resource {
   /** Availability Zone to use for this host group. Only single zone is supported. The zone can be assigned only during creation. If not provided, the group supports all zones in the region. If provided, enforces each host in the group to be in the same zone. */
   zones?: string[];
   /** Number of fault domains that the host group can span. */
@@ -4215,10 +4218,10 @@ export type DedicatedHostGroup = Resource & {
   readonly instanceView?: DedicatedHostGroupInstanceView;
   /** Specifies whether virtual machines or virtual machine scale sets can be placed automatically on the dedicated host group. Automatic placement means resources are allocated on dedicated hosts, that are chosen by Azure, under the dedicated host group. The value is defaulted to 'false' when not provided. <br><br>Minimum api-version: 2020-06-01. */
   supportAutomaticPlacement?: boolean;
-};
+}
 
 /** Specifies information about the Dedicated host. */
-export type DedicatedHost = Resource & {
+export interface DedicatedHost extends Resource {
   /** SKU of the dedicated host for Hardware Generation and VM family. Only name is required to be set. List Microsoft.Compute SKUs for a list of possible values. */
   sku: Sku;
   /** Fault domain of the dedicated host within a dedicated host group. */
@@ -4252,16 +4255,16 @@ export type DedicatedHost = Resource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly instanceView?: DedicatedHostInstanceView;
-};
+}
 
 /** Specifies information about the SSH public key. */
-export type SshPublicKeyResource = Resource & {
+export interface SshPublicKeyResource extends Resource {
   /** SSH public key used to authenticate to a virtual machine through ssh. If this property is not initially provided when the resource is created, the publicKey property will be populated when generateKeyPair is called. If the public key is provided upon resource creation, the provided public key needs to be at least 2048-bit and in ssh-rsa format. */
   publicKey?: string;
-};
+}
 
 /** Describes a Virtual Machine Extension Image. */
-export type VirtualMachineExtensionImage = Resource & {
+export interface VirtualMachineExtensionImage extends Resource {
   /** The operating system this extension supports. */
   operatingSystem?: string;
   /** The type of role (IaaS or PaaS) this extension supports. */
@@ -4272,10 +4275,10 @@ export type VirtualMachineExtensionImage = Resource & {
   vmScaleSetEnabled?: boolean;
   /** Whether the handler can support multiple extensions. */
   supportsMultipleExtensions?: boolean;
-};
+}
 
 /** Describes a Virtual Machine Extension. */
-export type VirtualMachineExtension = Resource & {
+export interface VirtualMachineExtension extends Resource {
   /** How the extension handler should be forced to update even if the extension configuration has not changed. */
   forceUpdateTag?: string;
   /** The name of the extension handler publisher. */
@@ -4301,10 +4304,10 @@ export type VirtualMachineExtension = Resource & {
   instanceView?: VirtualMachineExtensionInstanceView;
   /** Indicates whether failures stemming from the extension will be suppressed (Operational failures such as not connecting to the VM will not be suppressed regardless of this value). The default is false. */
   suppressFailures?: boolean;
-};
+}
 
 /** Describes a Virtual Machine. */
-export type VirtualMachine = Resource & {
+export interface VirtualMachine extends Resource {
   /** Specifies information about the marketplace image used to create the virtual machine. This element is only used for marketplace images. Before you can use a marketplace image from an API, you must enable the image for programmatic use.  In the Azure portal, find the marketplace image that you want to use and then click **Want to deploy programmatically, Get Started ->**. Enter any required information and then click **Save**. */
   plan?: Plan;
   /**
@@ -4377,10 +4380,10 @@ export type VirtualMachine = Resource & {
   capacityReservation?: CapacityReservationProfile;
   /** Specifies the gallery applications that should be made available to the VM/VMSS */
   applicationProfile?: ApplicationProfile;
-};
+}
 
 /** Describes a Virtual Machine Scale Set. */
-export type VirtualMachineScaleSet = Resource & {
+export interface VirtualMachineScaleSet extends Resource {
   /** The virtual machine scale set sku. */
   sku?: Sku;
   /** Specifies information about the marketplace image used to create the virtual machine. This element is only used for marketplace images. Before you can use a marketplace image from an API, you must enable the image for programmatic use.  In the Azure portal, find the marketplace image that you want to use and then click **Want to deploy programmatically, Get Started ->**. Enter any required information and then click **Save**. */
@@ -4429,10 +4432,10 @@ export type VirtualMachineScaleSet = Resource & {
   orchestrationMode?: OrchestrationMode;
   /** Specifies the Spot Restore properties for the virtual machine scale set. */
   spotRestorePolicy?: SpotRestorePolicy;
-};
+}
 
 /** The source user image virtual hard disk. The virtual hard disk will be copied before being attached to the virtual machine. If SourceImage is provided, the destination virtual hard drive must not exist. */
-export type Image = Resource & {
+export interface Image extends Resource {
   /** The extended location of the Image. */
   extendedLocation?: ExtendedLocation;
   /** The source virtual machine from which Image is created. */
@@ -4446,10 +4449,10 @@ export type Image = Resource & {
   readonly provisioningState?: string;
   /** Specifies the HyperVGenerationType of the VirtualMachine created from the image. From API Version 2019-03-01 if the image source is a blob, then we need the user to specify the value, if the source is managed resource like disk or snapshot, we may require the user to specify the property if we cannot deduce it from the source managed resource. */
   hyperVGeneration?: HyperVGenerationTypes;
-};
+}
 
 /** Create or update Restore Point collection parameters. */
-export type RestorePointCollection = Resource & {
+export interface RestorePointCollection extends Resource {
   /** The properties of the source resource that this restore point collection is created from. */
   source?: RestorePointCollectionSourceProperties;
   /**
@@ -4467,10 +4470,10 @@ export type RestorePointCollection = Resource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly restorePoints?: RestorePoint[];
-};
+}
 
 /** Specifies information about the capacity reservation group that the capacity reservations should be assigned to. <br><br> Currently, a capacity reservation can only be added to a capacity reservation group at creation time. An existing capacity reservation cannot be added or moved to another capacity reservation group. */
-export type CapacityReservationGroup = Resource & {
+export interface CapacityReservationGroup extends Resource {
   /** Availability Zones to use for this capacity reservation group. The zones can be assigned only during creation. If not provided, the group supports only regional resources in the region. If provided, enforces each capacity reservation in the group to be in one of the zones. */
   zones?: string[];
   /**
@@ -4488,10 +4491,10 @@ export type CapacityReservationGroup = Resource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly instanceView?: CapacityReservationGroupInstanceView;
-};
+}
 
 /** Specifies information about the capacity reservation. */
-export type CapacityReservation = Resource & {
+export interface CapacityReservation extends Resource {
   /** SKU of the resource for which capacity needs be reserved. The SKU name and capacity is required to be set. Currently VM Skus with the capability called 'CapacityReservationSupported' set to true are supported. Refer to List Microsoft.Compute SKUs in a region (https://docs.microsoft.com/rest/api/compute/resourceskus/list) for supported values. */
   sku: Sku;
   /** Availability Zone to use for this capacity reservation. The zone has to be single value and also should be part for the list of zones specified during the capacity reservation group creation. The zone can be assigned only during creation. If not provided, the reservation supports only non-zonal deployments. If provided, enforces VM/VMSS using this capacity reservation to be in same zone. */
@@ -4521,10 +4524,10 @@ export type CapacityReservation = Resource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly instanceView?: CapacityReservationInstanceView;
-};
+}
 
 /** The status of the latest virtual machine scale set rolling upgrade. */
-export type RollingUpgradeStatusInfo = Resource & {
+export interface RollingUpgradeStatusInfo extends Resource {
   /**
    * The rolling upgrade policies applied for this upgrade.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -4545,10 +4548,10 @@ export type RollingUpgradeStatusInfo = Resource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly error?: ApiError;
-};
+}
 
 /** Describes a virtual machine scale set virtual machine. */
-export type VirtualMachineScaleSetVM = Resource & {
+export interface VirtualMachineScaleSetVM extends Resource {
   /**
    * The virtual machine instance ID.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -4620,10 +4623,10 @@ export type VirtualMachineScaleSetVM = Resource & {
   protectionPolicy?: VirtualMachineScaleSetVMProtectionPolicy;
   /** UserData for the VM, which must be base-64 encoded. Customer should not pass any secrets in here. <br><br>Minimum api-version: 2021-03-01 */
   userData?: string;
-};
+}
 
 /** Describes a Virtual Machine run command. */
-export type VirtualMachineRunCommand = Resource & {
+export interface VirtualMachineRunCommand extends Resource {
   /** The source of the run command script. */
   source?: VirtualMachineRunCommandScriptSource;
   /** The parameters used by the script. */
@@ -4652,10 +4655,10 @@ export type VirtualMachineRunCommand = Resource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly instanceView?: VirtualMachineRunCommandInstanceView;
-};
+}
 
 /** Disk resource. */
-export type Disk = Resource & {
+export interface Disk extends Resource {
   /**
    * A relative URI containing the ID of the VM that has the disk attached.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -4749,10 +4752,10 @@ export type Disk = Resource & {
   completionPercent?: number;
   /** Policy for controlling export on the disk. */
   publicNetworkAccess?: PublicNetworkAccess;
-};
+}
 
 /** Snapshot resource. */
-export type Snapshot = Resource & {
+export interface Snapshot extends Resource {
   /**
    * Unused. Always Null.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -4815,10 +4818,10 @@ export type Snapshot = Resource & {
   publicNetworkAccess?: PublicNetworkAccess;
   /** Percentage complete for the background copy when a resource is created via the CopyStart operation. */
   completionPercent?: number;
-};
+}
 
 /** disk encryption set resource. */
-export type DiskEncryptionSet = Resource & {
+export interface DiskEncryptionSet extends Resource {
   /** The managed identity for the disk encryption set. It should be given permission on the key vault before it can be used to encrypt disks. */
   identity?: EncryptionSetIdentity;
   /** The type of key used to encrypt the data of the disk. */
@@ -4847,10 +4850,10 @@ export type DiskEncryptionSet = Resource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly autoKeyRotationError?: ApiError;
-};
+}
 
 /** disk access resource. */
-export type DiskAccess = Resource & {
+export interface DiskAccess extends Resource {
   /** The extended location where the disk access will be created. Extended location cannot be changed. */
   extendedLocation?: ExtendedLocation;
   /**
@@ -4868,10 +4871,10 @@ export type DiskAccess = Resource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly timeCreated?: Date;
-};
+}
 
 /** Specifies information about the Shared Image Gallery that you want to create or update. */
-export type Gallery = Resource & {
+export interface Gallery extends Resource {
   /** The description of this Shared Image Gallery resource. This property is updatable. */
   description?: string;
   /** Describes the gallery unique name. */
@@ -4885,10 +4888,10 @@ export type Gallery = Resource & {
   sharingProfile?: SharingProfile;
   /** Contains information about the soft deletion policy of the gallery. */
   softDeletePolicy?: SoftDeletePolicy;
-};
+}
 
 /** Specifies information about the gallery image definition that you want to create or update. */
-export type GalleryImage = Resource & {
+export interface GalleryImage extends Resource {
   /** The description of this gallery image definition resource. This property is updatable. */
   description?: string;
   /** The Eula agreement for the gallery image definition. */
@@ -4920,10 +4923,10 @@ export type GalleryImage = Resource & {
   readonly provisioningState?: GalleryImagePropertiesProvisioningState;
   /** A list of gallery image features. */
   features?: GalleryImageFeature[];
-};
+}
 
 /** Specifies information about the gallery image version that you want to create or update. */
-export type GalleryImageVersion = Resource & {
+export interface GalleryImageVersion extends Resource {
   /** The publishing profile of a gallery image Version. */
   publishingProfile?: GalleryImageVersionPublishingProfile;
   /**
@@ -4938,10 +4941,10 @@ export type GalleryImageVersion = Resource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly replicationStatus?: ReplicationStatus;
-};
+}
 
 /** Specifies information about the gallery Application Definition that you want to create or update. */
-export type GalleryApplication = Resource & {
+export interface GalleryApplication extends Resource {
   /** The description of this gallery Application Definition resource. This property is updatable. */
   description?: string;
   /** The Eula agreement for the gallery Application Definition. */
@@ -4954,10 +4957,10 @@ export type GalleryApplication = Resource & {
   endOfLifeDate?: Date;
   /** This property allows you to specify the supported type of the OS that application is built for. <br><br> Possible values are: <br><br> **Windows** <br><br> **Linux** */
   supportedOSType?: OperatingSystemTypes;
-};
+}
 
 /** Specifies information about the gallery Application Version that you want to create or update. */
-export type GalleryApplicationVersion = Resource & {
+export interface GalleryApplicationVersion extends Resource {
   /** The publishing profile of a gallery image version. */
   publishingProfile?: GalleryApplicationVersionPublishingProfile;
   /**
@@ -4970,10 +4973,10 @@ export type GalleryApplicationVersion = Resource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly replicationStatus?: ReplicationStatus;
-};
+}
 
 /** Specifies information about the availability set that the virtual machine should be assigned to. Only tags may be updated. */
-export type AvailabilitySetUpdate = UpdateResource & {
+export interface AvailabilitySetUpdate extends UpdateResource {
   /** Sku of the availability set */
   sku?: Sku;
   /** Update Domain count. */
@@ -4989,13 +4992,13 @@ export type AvailabilitySetUpdate = UpdateResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly statuses?: InstanceViewStatus[];
-};
+}
 
 /** Specifies information about the proximity placement group. */
-export type ProximityPlacementGroupUpdate = UpdateResource;
+export interface ProximityPlacementGroupUpdate extends UpdateResource {}
 
 /** Specifies information about the dedicated host group that the dedicated host should be assigned to. Only tags may be updated. */
-export type DedicatedHostGroupUpdate = UpdateResource & {
+export interface DedicatedHostGroupUpdate extends UpdateResource {
   /** Availability Zone to use for this host group. Only single zone is supported. The zone can be assigned only during creation. If not provided, the group supports all zones in the region. If provided, enforces each host in the group to be in the same zone. */
   zones?: string[];
   /** Number of fault domains that the host group can span. */
@@ -5012,10 +5015,10 @@ export type DedicatedHostGroupUpdate = UpdateResource & {
   readonly instanceView?: DedicatedHostGroupInstanceView;
   /** Specifies whether virtual machines or virtual machine scale sets can be placed automatically on the dedicated host group. Automatic placement means resources are allocated on dedicated hosts, that are chosen by Azure, under the dedicated host group. The value is defaulted to 'false' when not provided. <br><br>Minimum api-version: 2020-06-01. */
   supportAutomaticPlacement?: boolean;
-};
+}
 
 /** Specifies information about the dedicated host. Only tags, autoReplaceOnFailure and licenseType may be updated. */
-export type DedicatedHostUpdate = UpdateResource & {
+export interface DedicatedHostUpdate extends UpdateResource {
   /** Fault domain of the dedicated host within a dedicated host group. */
   platformFaultDomain?: number;
   /** Specifies whether the dedicated host should be replaced automatically in case of a failure. The value is defaulted to 'true' when not provided. */
@@ -5047,16 +5050,16 @@ export type DedicatedHostUpdate = UpdateResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly instanceView?: DedicatedHostInstanceView;
-};
+}
 
 /** Specifies information about the SSH public key. */
-export type SshPublicKeyUpdateResource = UpdateResource & {
+export interface SshPublicKeyUpdateResource extends UpdateResource {
   /** SSH public key used to authenticate to a virtual machine through ssh. If this property is not initially provided when the resource is created, the publicKey property will be populated when generateKeyPair is called. If the public key is provided upon resource creation, the provided public key needs to be at least 2048-bit and in ssh-rsa format. */
   publicKey?: string;
-};
+}
 
 /** Describes a Virtual Machine Extension. */
-export type VirtualMachineExtensionUpdate = UpdateResource & {
+export interface VirtualMachineExtensionUpdate extends UpdateResource {
   /** How the extension handler should be forced to update even if the extension configuration has not changed. */
   forceUpdateTag?: string;
   /** The name of the extension handler publisher. */
@@ -5075,10 +5078,10 @@ export type VirtualMachineExtensionUpdate = UpdateResource & {
   protectedSettings?: Record<string, unknown>;
   /** Indicates whether failures stemming from the extension will be suppressed (Operational failures such as not connecting to the VM will not be suppressed regardless of this value). The default is false. */
   suppressFailures?: boolean;
-};
+}
 
 /** The source user image virtual hard disk. Only tags may be updated. */
-export type ImageUpdate = UpdateResource & {
+export interface ImageUpdate extends UpdateResource {
   /** The source virtual machine from which Image is created. */
   sourceVirtualMachine?: SubResource;
   /** Specifies the storage settings for the virtual machine disks. */
@@ -5090,10 +5093,10 @@ export type ImageUpdate = UpdateResource & {
   readonly provisioningState?: string;
   /** Specifies the HyperVGenerationType of the VirtualMachine created from the image. From API Version 2019-03-01 if the image source is a blob, then we need the user to specify the value, if the source is managed resource like disk or snapshot, we may require the user to specify the property if we cannot deduce it from the source managed resource. */
   hyperVGeneration?: HyperVGenerationTypes;
-};
+}
 
 /** Describes a Virtual Machine Update. */
-export type VirtualMachineUpdate = UpdateResource & {
+export interface VirtualMachineUpdate extends UpdateResource {
   /** Specifies information about the marketplace image used to create the virtual machine. This element is only used for marketplace images. Before you can use a marketplace image from an API, you must enable the image for programmatic use.  In the Azure portal, find the marketplace image that you want to use and then click **Want to deploy programmatically, Get Started ->**. Enter any required information and then click **Save**. */
   plan?: Plan;
   /** The identity of the virtual machine, if configured. */
@@ -5159,10 +5162,10 @@ export type VirtualMachineUpdate = UpdateResource & {
   capacityReservation?: CapacityReservationProfile;
   /** Specifies the gallery applications that should be made available to the VM/VMSS */
   applicationProfile?: ApplicationProfile;
-};
+}
 
 /** Update Restore Point collection parameters. */
-export type RestorePointCollectionUpdate = UpdateResource & {
+export interface RestorePointCollectionUpdate extends UpdateResource {
   /** The properties of the source resource that this restore point collection is created from. */
   source?: RestorePointCollectionSourceProperties;
   /**
@@ -5180,10 +5183,10 @@ export type RestorePointCollectionUpdate = UpdateResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly restorePoints?: RestorePoint[];
-};
+}
 
 /** Specifies information about the capacity reservation group. Only tags can be updated. */
-export type CapacityReservationGroupUpdate = UpdateResource & {
+export interface CapacityReservationGroupUpdate extends UpdateResource {
   /**
    * A list of all capacity reservation resource ids that belong to capacity reservation group.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -5199,10 +5202,10 @@ export type CapacityReservationGroupUpdate = UpdateResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly instanceView?: CapacityReservationGroupInstanceView;
-};
+}
 
 /** Specifies information about the capacity reservation. Only tags and sku.capacity can be updated. */
-export type CapacityReservationUpdate = UpdateResource & {
+export interface CapacityReservationUpdate extends UpdateResource {
   /** SKU of the resource for which capacity needs be reserved. The SKU name and capacity is required to be set. Currently VM Skus with the capability called 'CapacityReservationSupported' set to true are supported. Refer to List Microsoft.Compute SKUs in a region (https://docs.microsoft.com/rest/api/compute/resourceskus/list) for supported values. */
   sku?: Sku;
   /**
@@ -5230,10 +5233,10 @@ export type CapacityReservationUpdate = UpdateResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly instanceView?: CapacityReservationInstanceView;
-};
+}
 
 /** Describes a Virtual Machine Scale Set. */
-export type VirtualMachineScaleSetUpdate = UpdateResource & {
+export interface VirtualMachineScaleSetUpdate extends UpdateResource {
   /** The virtual machine scale set sku. */
   sku?: Sku;
   /** The purchase plan when deploying a virtual machine scale set from VM Marketplace images. */
@@ -5258,10 +5261,10 @@ export type VirtualMachineScaleSetUpdate = UpdateResource & {
   scaleInPolicy?: ScaleInPolicy;
   /** Specifies information about the proximity placement group that the virtual machine scale set should be assigned to. <br><br>Minimum api-version: 2018-04-01. */
   proximityPlacementGroup?: SubResource;
-};
+}
 
 /** Describes a Virtual Machine run command. */
-export type VirtualMachineRunCommandUpdate = UpdateResource & {
+export interface VirtualMachineRunCommandUpdate extends UpdateResource {
   /** The source of the run command script. */
   source?: VirtualMachineRunCommandScriptSource;
   /** The parameters used by the script. */
@@ -5290,10 +5293,10 @@ export type VirtualMachineRunCommandUpdate = UpdateResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly instanceView?: VirtualMachineRunCommandInstanceView;
-};
+}
 
 /** Describes a Virtual Machine Scale Set Extension. */
-export type VirtualMachineScaleSetExtension = SubResourceReadOnly & {
+export interface VirtualMachineScaleSetExtension extends SubResourceReadOnly {
   /** The name of the extension. */
   name?: string;
   /**
@@ -5326,10 +5329,11 @@ export type VirtualMachineScaleSetExtension = SubResourceReadOnly & {
   provisionAfterExtensions?: string[];
   /** Indicates whether failures stemming from the extension will be suppressed (Operational failures such as not connecting to the VM will not be suppressed regardless of this value). The default is false. */
   suppressFailures?: boolean;
-};
+}
 
 /** Describes a Virtual Machine Scale Set Extension. */
-export type VirtualMachineScaleSetExtensionUpdate = SubResourceReadOnly & {
+export interface VirtualMachineScaleSetExtensionUpdate
+  extends SubResourceReadOnly {
   /**
    * The name of the extension.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -5365,10 +5369,10 @@ export type VirtualMachineScaleSetExtensionUpdate = SubResourceReadOnly & {
   provisionAfterExtensions?: string[];
   /** Indicates whether failures stemming from the extension will be suppressed (Operational failures such as not connecting to the VM will not be suppressed regardless of this value). The default is false. */
   suppressFailures?: boolean;
-};
+}
 
 /** Describes a VMSS VM Extension. */
-export type VirtualMachineScaleSetVMExtension = SubResourceReadOnly & {
+export interface VirtualMachineScaleSetVMExtension extends SubResourceReadOnly {
   /**
    * The name of the extension.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -5404,10 +5408,11 @@ export type VirtualMachineScaleSetVMExtension = SubResourceReadOnly & {
   instanceView?: VirtualMachineExtensionInstanceView;
   /** Indicates whether failures stemming from the extension will be suppressed (Operational failures such as not connecting to the VM will not be suppressed regardless of this value). The default is false. */
   suppressFailures?: boolean;
-};
+}
 
 /** Describes a VMSS VM Extension. */
-export type VirtualMachineScaleSetVMExtensionUpdate = SubResourceReadOnly & {
+export interface VirtualMachineScaleSetVMExtensionUpdate
+  extends SubResourceReadOnly {
   /**
    * The name of the extension.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -5436,33 +5441,34 @@ export type VirtualMachineScaleSetVMExtensionUpdate = SubResourceReadOnly & {
   protectedSettings?: Record<string, unknown>;
   /** Indicates whether failures stemming from the extension will be suppressed (Operational failures such as not connecting to the VM will not be suppressed regardless of this value). The default is false. */
   suppressFailures?: boolean;
-};
+}
 
 /** The instance view of a dedicated host that includes the name of the dedicated host. It is used for the response to the instance view of a dedicated host group. */
-export type DedicatedHostInstanceViewWithName = DedicatedHostInstanceView & {
+export interface DedicatedHostInstanceViewWithName
+  extends DedicatedHostInstanceView {
   /**
    * The name of the dedicated host.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
-};
+}
 
 /** Describes an Operating System disk. */
-export type ImageOSDisk = ImageDisk & {
+export interface ImageOSDisk extends ImageDisk {
   /** This property allows you to specify the type of the OS that is included in the disk if creating a VM from a custom image. <br><br> Possible values are: <br><br> **Windows** <br><br> **Linux** */
   osType: OperatingSystemTypes;
   /** The OS State. */
   osState: OperatingSystemStateTypes;
-};
+}
 
 /** Describes a data disk. */
-export type ImageDataDisk = ImageDisk & {
+export interface ImageDataDisk extends ImageDisk {
   /** Specifies the logical unit number of the data disk. This value is used to identify data disks within the VM and therefore must be unique for each data disk attached to a VM. */
   lun: number;
-};
+}
 
 /** Restore Point details. */
-export type RestorePoint = ProxyResource & {
+export interface RestorePoint extends ProxyResource {
   /** List of disk resource ids that the customer wishes to exclude from the restore point. If no disks are specified, all disks will be included. */
   excludeDisks?: ApiEntityReference[];
   /**
@@ -5482,39 +5488,41 @@ export type RestorePoint = ProxyResource & {
   readonly consistencyMode?: ConsistencyModeTypes;
   /** Gets the creation time of the restore point. */
   timeCreated?: Date;
-};
+}
 
 /** The instance view of a capacity reservation that includes the name of the capacity reservation. It is used for the response to the instance view of a capacity reservation group. */
-export type CapacityReservationInstanceViewWithName = CapacityReservationInstanceView & {
+export interface CapacityReservationInstanceViewWithName
+  extends CapacityReservationInstanceView {
   /**
    * The name of the capacity reservation.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly name?: string;
-};
+}
 
 /** Describes a Virtual Machine Scale Set VM Reimage Parameters. */
-export type VirtualMachineScaleSetVMReimageParameters = VirtualMachineReimageParameters;
+export interface VirtualMachineScaleSetVMReimageParameters
+  extends VirtualMachineReimageParameters {}
 
 /** Api request input for LogAnalytics getRequestRateByInterval Api. */
-export type RequestRateByIntervalInput = LogAnalyticsInputBase & {
+export interface RequestRateByIntervalInput extends LogAnalyticsInputBase {
   /** Interval value in minutes used to create LogAnalytics call rate logs. */
   intervalLength: IntervalInMins;
-};
+}
 
 /** Api request input for LogAnalytics getThrottledRequests Api. */
-export type ThrottledRequestsInput = LogAnalyticsInputBase;
+export interface ThrottledRequestsInput extends LogAnalyticsInputBase {}
 
 /** Describes the properties of a Run Command. */
-export type RunCommandDocument = RunCommandDocumentBase & {
+export interface RunCommandDocument extends RunCommandDocumentBase {
   /** The script to be executed. */
   script: string[];
   /** The parameters used by the script. */
   parameters?: RunCommandParameterDefinition[];
-};
+}
 
 /** Properties of disk restore point */
-export type DiskRestorePoint = ProxyOnlyResource & {
+export interface DiskRestorePoint extends ProxyOnlyResource {
   /**
    * The timestamp of restorePoint creation
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -5561,10 +5569,10 @@ export type DiskRestorePoint = ProxyOnlyResource & {
   diskAccessId?: string;
   /** Percentage complete for the background copy when a resource is created via the CopyStart operation. */
   completionPercent?: number;
-};
+}
 
 /** Specifies information about the Shared Image Gallery that you want to update. */
-export type GalleryUpdate = UpdateResourceDefinition & {
+export interface GalleryUpdate extends UpdateResourceDefinition {
   /** The description of this Shared Image Gallery resource. This property is updatable. */
   description?: string;
   /** Describes the gallery unique name. */
@@ -5578,10 +5586,10 @@ export type GalleryUpdate = UpdateResourceDefinition & {
   sharingProfile?: SharingProfile;
   /** Contains information about the soft deletion policy of the gallery. */
   softDeletePolicy?: SoftDeletePolicy;
-};
+}
 
 /** Specifies information about the gallery image definition that you want to update. */
-export type GalleryImageUpdate = UpdateResourceDefinition & {
+export interface GalleryImageUpdate extends UpdateResourceDefinition {
   /** The description of this gallery image definition resource. This property is updatable. */
   description?: string;
   /** The Eula agreement for the gallery image definition. */
@@ -5613,10 +5621,10 @@ export type GalleryImageUpdate = UpdateResourceDefinition & {
   readonly provisioningState?: GalleryImagePropertiesProvisioningState;
   /** A list of gallery image features. */
   features?: GalleryImageFeature[];
-};
+}
 
 /** Specifies information about the gallery image version that you want to update. */
-export type GalleryImageVersionUpdate = UpdateResourceDefinition & {
+export interface GalleryImageVersionUpdate extends UpdateResourceDefinition {
   /** The publishing profile of a gallery image Version. */
   publishingProfile?: GalleryImageVersionPublishingProfile;
   /**
@@ -5631,10 +5639,10 @@ export type GalleryImageVersionUpdate = UpdateResourceDefinition & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly replicationStatus?: ReplicationStatus;
-};
+}
 
 /** Specifies information about the gallery Application Definition that you want to update. */
-export type GalleryApplicationUpdate = UpdateResourceDefinition & {
+export interface GalleryApplicationUpdate extends UpdateResourceDefinition {
   /** The description of this gallery Application Definition resource. This property is updatable. */
   description?: string;
   /** The Eula agreement for the gallery Application Definition. */
@@ -5647,10 +5655,11 @@ export type GalleryApplicationUpdate = UpdateResourceDefinition & {
   endOfLifeDate?: Date;
   /** This property allows you to specify the supported type of the OS that application is built for. <br><br> Possible values are: <br><br> **Windows** <br><br> **Linux** */
   supportedOSType?: OperatingSystemTypes;
-};
+}
 
 /** Specifies information about the gallery Application Version that you want to update. */
-export type GalleryApplicationVersionUpdate = UpdateResourceDefinition & {
+export interface GalleryApplicationVersionUpdate
+  extends UpdateResourceDefinition {
   /** The publishing profile of a gallery image version. */
   publishingProfile?: GalleryApplicationVersionPublishingProfile;
   /**
@@ -5663,49 +5672,51 @@ export type GalleryApplicationVersionUpdate = UpdateResourceDefinition & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly replicationStatus?: ReplicationStatus;
-};
+}
 
 /** The publishing profile of a gallery image Version. */
-export type GalleryImageVersionPublishingProfile = GalleryArtifactPublishingProfileBase;
+export interface GalleryImageVersionPublishingProfile
+  extends GalleryArtifactPublishingProfileBase {}
 
 /** The publishing profile of a gallery image version. */
-export type GalleryApplicationVersionPublishingProfile = GalleryArtifactPublishingProfileBase & {
+export interface GalleryApplicationVersionPublishingProfile
+  extends GalleryArtifactPublishingProfileBase {
   /** The source image from which the Image Version is going to be created. */
   source: UserArtifactSource;
   manageActions?: UserArtifactManage;
   /** Optional. Whether or not this application reports health. */
   enableHealthCheck?: boolean;
-};
+}
 
 /** Contains encryption settings for an OS disk image. */
-export type OSDiskImageEncryption = DiskImageEncryption;
+export interface OSDiskImageEncryption extends DiskImageEncryption {}
 
 /** Contains encryption settings for a data disk image. */
-export type DataDiskImageEncryption = DiskImageEncryption & {
+export interface DataDiskImageEncryption extends DiskImageEncryption {
   /** This property specifies the logical unit number of the data disk. This value is used to identify data disks within the Virtual Machine and therefore must be unique for each data disk attached to the Virtual Machine. */
   lun: number;
-};
+}
 
 /** This is the OS disk image. */
-export type GalleryOSDiskImage = GalleryDiskImage;
+export interface GalleryOSDiskImage extends GalleryDiskImage {}
 
 /** This is the data disk image. */
-export type GalleryDataDiskImage = GalleryDiskImage & {
+export interface GalleryDataDiskImage extends GalleryDiskImage {
   /** This property specifies the logical unit number of the data disk. This value is used to identify data disks within the Virtual Machine and therefore must be unique for each data disk attached to the Virtual Machine. */
   lun: number;
-};
+}
 
 /** Base information about the shared gallery resource in pir. */
-export type PirSharedGalleryResource = PirResource & {
+export interface PirSharedGalleryResource extends PirResource {
   /** The unique id of this shared gallery. */
   uniqueId?: string;
-};
+}
 
 /** Specifies information about the Community Gallery that you want to create or update. */
-export type CommunityGallery = PirCommunityGalleryResource;
+export interface CommunityGallery extends PirCommunityGalleryResource {}
 
 /** Specifies information about the gallery image definition that you want to create or update. */
-export type CommunityGalleryImage = PirCommunityGalleryResource & {
+export interface CommunityGalleryImage extends PirCommunityGalleryResource {
   /** This property allows you to specify the type of the OS that is included in the disk when creating a VM from a managed image. <br><br> Possible values are: <br><br> **Windows** <br><br> **Linux** */
   osType?: OperatingSystemTypes;
   /** This property allows the user to specify whether the virtual machines created under this image are 'Generalized' or 'Specialized'. */
@@ -5724,18 +5735,19 @@ export type CommunityGalleryImage = PirCommunityGalleryResource & {
   features?: GalleryImageFeature[];
   /** Describes the gallery image definition purchase plan. This is used by marketplace images. */
   purchasePlan?: ImagePurchasePlan;
-};
+}
 
 /** Specifies information about the gallery image version that you want to create or update. */
-export type CommunityGalleryImageVersion = PirCommunityGalleryResource & {
+export interface CommunityGalleryImageVersion
+  extends PirCommunityGalleryResource {
   /** The published date of the gallery image version Definition. This property can be used for decommissioning purposes. This property is updatable. */
   publishedDate?: Date;
   /** The end of life date of the gallery image version Definition. This property can be used for decommissioning purposes. This property is updatable. */
   endOfLifeDate?: Date;
-};
+}
 
 /** Describes a Virtual Machine Image. */
-export type VirtualMachineImage = VirtualMachineImageResource & {
+export interface VirtualMachineImage extends VirtualMachineImageResource {
   /** Used for establishing the purchase context of any 3rd Party artifact through MarketPlace. */
   plan?: PurchasePlan;
   /** Contains the os disk image information. */
@@ -5748,19 +5760,20 @@ export type VirtualMachineImage = VirtualMachineImageResource & {
   /** Specifies disallowed configuration for the VirtualMachine created from the image */
   disallowed?: DisallowedConfiguration;
   features?: VirtualMachineImageFeature[];
-};
+}
 
 /** Describes a Virtual Machine Scale Set VM Reimage Parameters. */
-export type VirtualMachineScaleSetReimageParameters = VirtualMachineScaleSetVMReimageParameters & {
+export interface VirtualMachineScaleSetReimageParameters
+  extends VirtualMachineScaleSetVMReimageParameters {
   /** The virtual machine scale set instance ids. Omitting the virtual machine scale set instance ids will result in the operation being performed on all virtual machines in the virtual machine scale set. */
   instanceIds?: string[];
-};
+}
 
 /** Specifies information about the Shared Gallery that you want to create or update. */
-export type SharedGallery = PirSharedGalleryResource;
+export interface SharedGallery extends PirSharedGalleryResource {}
 
 /** Specifies information about the gallery image definition that you want to create or update. */
-export type SharedGalleryImage = PirSharedGalleryResource & {
+export interface SharedGalleryImage extends PirSharedGalleryResource {
   /** This property allows you to specify the type of the OS that is included in the disk when creating a VM from a managed image. <br><br> Possible values are: <br><br> **Windows** <br><br> **Linux** */
   osType?: OperatingSystemTypes;
   /** This property allows the user to specify whether the virtual machines created under this image are 'Generalized' or 'Specialized'. */
@@ -5779,15 +5792,15 @@ export type SharedGalleryImage = PirSharedGalleryResource & {
   features?: GalleryImageFeature[];
   /** Describes the gallery image definition purchase plan. This is used by marketplace images. */
   purchasePlan?: ImagePurchasePlan;
-};
+}
 
 /** Specifies information about the gallery image version that you want to create or update. */
-export type SharedGalleryImageVersion = PirSharedGalleryResource & {
+export interface SharedGalleryImageVersion extends PirSharedGalleryResource {
   /** The published date of the gallery image version Definition. This property can be used for decommissioning purposes. This property is updatable. */
   publishedDate?: Date;
   /** The end of life date of the gallery image version Definition. This property can be used for decommissioning purposes. This property is updatable. */
   endOfLifeDate?: Date;
-};
+}
 
 /** Known values of {@link ProximityPlacementGroupType} that the service accepts. */
 export enum KnownProximityPlacementGroupType {

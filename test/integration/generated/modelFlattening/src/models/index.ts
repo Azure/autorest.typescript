@@ -71,22 +71,22 @@ export interface BaseProduct {
 }
 
 /** Flattened product. */
-export type FlattenedProduct = Resource & {
+export interface FlattenedProduct extends Resource {
   pName?: string;
   typePropertiesType?: string;
   /** NOTE: This property will not be serialized. It can only be populated by the server. */
   readonly provisioningStateValues?: FlattenedProductPropertiesProvisioningStateValues;
   provisioningState?: string;
-};
+}
 
 /** The product URL. */
-export type ProductUrl = GenericUrl & {
+export interface ProductUrl extends GenericUrl {
   /** URL value. */
   odataValue?: string;
-};
+}
 
 /** The product documentation. */
-export type SimpleProduct = BaseProduct & {
+export interface SimpleProduct extends BaseProduct {
   /** Display name of product. */
   maxProductDisplayName?: string;
   /** Capacity of product. For example, 4 people. */
@@ -95,7 +95,7 @@ export type SimpleProduct = BaseProduct & {
   genericValue?: string;
   /** URL value. */
   odataValue?: string;
-};
+}
 
 /** Parameter group */
 export interface FlattenParameterGroup {

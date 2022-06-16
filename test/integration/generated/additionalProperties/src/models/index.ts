@@ -61,9 +61,9 @@ export interface PetAPInPropertiesWithAPString {
   additionalProperties?: { [propertyName: string]: number };
 }
 
-export type CatAPTrue = PetAPTrue & {
+export interface CatAPTrue extends PetAPTrue {
   friendly?: boolean;
-};
+}
 
 /** Optional parameters. */
 export interface PetsCreateAPTrueOptionalParams

@@ -1580,7 +1580,7 @@ export interface ListTableResource {
 }
 
 /** The Private Endpoint Connection resource. */
-export type PrivateEndpointConnection = Resource & {
+export interface PrivateEndpointConnection extends Resource {
   /** The resource of private end point. */
   privateEndpoint?: PrivateEndpoint;
   /** A collection of information about the state of the connection between service consumer and provider. */
@@ -1590,21 +1590,21 @@ export type PrivateEndpointConnection = Resource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: PrivateEndpointConnectionProvisioningState;
-};
+}
 
 /** The resource model definition for an Azure Resource Manager tracked top level resource which has 'tags' and a 'location' */
-export type TrackedResource = Resource & {
+export interface TrackedResource extends Resource {
   /** Resource tags. */
   tags?: { [propertyName: string]: string };
   /** The geo-location where the resource lives */
   location: string;
-};
+}
 
 /** The resource model definition for a Azure Resource Manager proxy resource. It will not have tags and a location */
-export type ProxyResource = Resource;
+export interface ProxyResource extends Resource {}
 
 /** The Get Storage Account ManagementPolicies operation response. */
-export type ManagementPolicy = Resource & {
+export interface ManagementPolicy extends Resource {
   /**
    * Returns the date and time the ManagementPolicies was last modified.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -1612,10 +1612,10 @@ export type ManagementPolicy = Resource & {
   readonly lastModifiedTime?: Date;
   /** The Storage Account ManagementPolicy, in JSON format. See more details in: https://docs.microsoft.com/en-us/azure/storage/common/storage-lifecycle-managment-concepts. */
   policy?: ManagementPolicySchema;
-};
+}
 
 /** The storage account blob inventory policy. */
-export type BlobInventoryPolicy = Resource & {
+export interface BlobInventoryPolicy extends Resource {
   /**
    * Metadata pertaining to creation and last modification of the resource.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -1628,10 +1628,10 @@ export type BlobInventoryPolicy = Resource & {
   readonly lastModifiedTime?: Date;
   /** The storage account blob inventory policy object. It is composed of policy rules. */
   policy?: BlobInventoryPolicySchema;
-};
+}
 
 /** A private link resource */
-export type PrivateLinkResource = Resource & {
+export interface PrivateLinkResource extends Resource {
   /**
    * The private link resource group id.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -1644,10 +1644,10 @@ export type PrivateLinkResource = Resource & {
   readonly requiredMembers?: string[];
   /** The private link resource Private link DNS zone name. */
   requiredZoneNames?: string[];
-};
+}
 
 /** The replication policy between two storage accounts. Multiple rules can be defined in one policy. */
-export type ObjectReplicationPolicy = Resource & {
+export interface ObjectReplicationPolicy extends Resource {
   /**
    * A unique id for object replication policy.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -1664,10 +1664,10 @@ export type ObjectReplicationPolicy = Resource & {
   destinationAccount?: string;
   /** The storage account object replication rules. */
   rules?: ObjectReplicationPolicyRule[];
-};
+}
 
 /** The Encryption Scope resource. */
-export type EncryptionScope = Resource & {
+export interface EncryptionScope extends Resource {
   /** The provider for the encryption scope. Possible values (case-insensitive):  Microsoft.Storage, Microsoft.KeyVault. */
   source?: EncryptionScopeSource;
   /** The state of the encryption scope. Possible values (case-insensitive):  Enabled, Disabled. */
@@ -1686,10 +1686,10 @@ export type EncryptionScope = Resource & {
   keyVaultProperties?: EncryptionScopeKeyVaultProperties;
   /** A boolean indicating whether or not the service applies a secondary layer of encryption with platform managed keys for data at rest. */
   requireInfrastructureEncryption?: boolean;
-};
+}
 
 /** The properties of a storage account’s Blob service. */
-export type BlobServiceProperties = Resource & {
+export interface BlobServiceProperties extends Resource {
   /**
    * Sku name and tier.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -1713,19 +1713,19 @@ export type BlobServiceProperties = Resource & {
   containerDeleteRetentionPolicy?: DeleteRetentionPolicy;
   /** The blob service property to configure last access time based tracking policy. */
   lastAccessTimeTrackingPolicy?: LastAccessTimeTrackingPolicy;
-};
+}
 
 /** The resource model definition for an Azure Resource Manager resource with an etag. */
-export type AzureEntityResource = Resource & {
+export interface AzureEntityResource extends Resource {
   /**
    * Resource Etag.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
-};
+}
 
 /** The properties of File services in storage account. */
-export type FileServiceProperties = Resource & {
+export interface FileServiceProperties extends Resource {
   /**
    * Sku name and tier.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -1737,15 +1737,15 @@ export type FileServiceProperties = Resource & {
   shareDeleteRetentionPolicy?: DeleteRetentionPolicy;
   /** Protocol settings for file service */
   protocolSettings?: ProtocolSettings;
-};
+}
 
 /** The properties of a storage account’s Queue service. */
-export type QueueServiceProperties = Resource & {
+export interface QueueServiceProperties extends Resource {
   /** Specifies CORS rules for the Queue service. You can include up to five CorsRule elements in the request. If no CorsRule elements are included in the request body, all CORS rules will be deleted, and CORS will be disabled for the Queue service. */
   cors?: CorsRules;
-};
+}
 
-export type StorageQueue = Resource & {
+export interface StorageQueue extends Resource {
   /** A name-value pair that represents queue metadata. */
   metadata?: { [propertyName: string]: string };
   /**
@@ -1753,30 +1753,30 @@ export type StorageQueue = Resource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly approximateMessageCount?: number;
-};
+}
 
-export type ListQueue = Resource & {
+export interface ListQueue extends Resource {
   /** A name-value pair that represents queue metadata. */
   metadata?: { [propertyName: string]: string };
-};
+}
 
 /** The properties of a storage account’s Table service. */
-export type TableServiceProperties = Resource & {
+export interface TableServiceProperties extends Resource {
   /** Specifies CORS rules for the Table service. You can include up to five CorsRule elements in the request. If no CorsRule elements are included in the request body, all CORS rules will be deleted, and CORS will be disabled for the Table service. */
   cors?: CorsRules;
-};
+}
 
 /** Properties of the table, including Id, resource name, resource type. */
-export type Table = Resource & {
+export interface Table extends Resource {
   /**
    * Table name under the specified account
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly tableName?: string;
-};
+}
 
 /** The storage account. */
-export type StorageAccount = TrackedResource & {
+export interface StorageAccount extends TrackedResource {
   /**
    * Gets the SKU.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -1917,10 +1917,10 @@ export type StorageAccount = TrackedResource & {
   publicNetworkAccess?: PublicNetworkAccess;
   /** The property is immutable and can only be set to true at the account creation time. When set to true, it enables object level immutability for all the containers in the account by default. */
   immutableStorageWithVersioning?: ImmutableStorageAccount;
-};
+}
 
 /** Deleted storage account */
-export type DeletedAccount = ProxyResource & {
+export interface DeletedAccount extends ProxyResource {
   /**
    * Full resource id of the original storage account.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -1946,10 +1946,10 @@ export type DeletedAccount = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly deletionTime?: string;
-};
+}
 
 /** The blob container properties be listed out. */
-export type ListContainerItem = AzureEntityResource & {
+export interface ListContainerItem extends AzureEntityResource {
   /**
    * The version of the deleted blob container.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -2024,10 +2024,10 @@ export type ListContainerItem = AzureEntityResource & {
   enableNfsV3RootSquash?: boolean;
   /** Enable NFSv3 all squash on blob container. */
   enableNfsV3AllSquash?: boolean;
-};
+}
 
 /** Properties of the blob container, including Id, resource name, resource type, Etag. */
-export type BlobContainer = AzureEntityResource & {
+export interface BlobContainer extends AzureEntityResource {
   /**
    * The version of the deleted blob container.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -2102,10 +2102,10 @@ export type BlobContainer = AzureEntityResource & {
   enableNfsV3RootSquash?: boolean;
   /** Enable NFSv3 all squash on blob container. */
   enableNfsV3AllSquash?: boolean;
-};
+}
 
 /** The ImmutabilityPolicy property of a blob container, including Id, resource name, resource type, Etag. */
-export type ImmutabilityPolicy = AzureEntityResource & {
+export interface ImmutabilityPolicy extends AzureEntityResource {
   /** The immutability period for the blobs in the container since the policy creation, in days. */
   immutabilityPeriodSinceCreationInDays?: number;
   /**
@@ -2117,10 +2117,10 @@ export type ImmutabilityPolicy = AzureEntityResource & {
   allowProtectedAppendWrites?: boolean;
   /** This property can only be changed for unlocked time-based retention policies. When enabled, new blocks can be written to both 'Append and Bock Blobs' while maintaining immutability protection and compliance. Only new blocks can be added and any existing blocks cannot be modified or deleted. This property cannot be changed with ExtendImmutabilityPolicy API. The 'allowProtectedAppendWrites' and 'allowProtectedAppendWritesAll' properties are mutually exclusive. */
   allowProtectedAppendWritesAll?: boolean;
-};
+}
 
 /** The file share properties be listed out. */
-export type FileShareItem = AzureEntityResource & {
+export interface FileShareItem extends AzureEntityResource {
   /**
    * Returns the date and time the share was last modified.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -2193,10 +2193,10 @@ export type FileShareItem = AzureEntityResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly snapshotTime?: Date;
-};
+}
 
 /** Properties of the file share, including Id, resource name, resource type, Etag. */
-export type FileShare = AzureEntityResource & {
+export interface FileShare extends AzureEntityResource {
   /**
    * Returns the date and time the share was last modified.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -2269,7 +2269,7 @@ export type FileShare = AzureEntityResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly snapshotTime?: Date;
-};
+}
 
 /** Defines headers for BlobContainers_createOrUpdateImmutabilityPolicy operation. */
 export interface BlobContainersCreateOrUpdateImmutabilityPolicyHeaders {
