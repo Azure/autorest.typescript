@@ -92,7 +92,7 @@ export class ManagementLockClient extends coreClient.ServiceClient {
       ): Promise<PipelineResponse> {
         const param = request.url.split("?");
         if (param.length > 1) {
-          const newParams = param[1].split("&").map(item => {
+          const newParams = param[1].split("&").map((item) => {
             if (item.indexOf("api-version") > -1) {
               return "api-version=" + apiVersion;
             } else {
