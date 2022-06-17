@@ -1,4 +1,4 @@
-# Service client library for JavaScript
+# PurviewAccount client library for JavaScript
 
 Purview Account Client
 
@@ -21,7 +21,7 @@ Key links:
 
 ### Install the `@msinternal/purview-administration-rest` package
 
-Install the Service client REST client library for JavaScript with `npm`:
+Install the PurviewAccount client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/purview-administration-rest

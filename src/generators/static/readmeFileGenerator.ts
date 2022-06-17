@@ -107,7 +107,7 @@ function createMetadata(
     serviceTitle.match(/(.*)Client/)?.[1] ??
     clientClassName.match(/(.*)Client/)?.[1] ??
     serviceTitle.match(/(.*) Service/)?.[1] ??
-    "Service";
+    normalizeName(serviceTitle, NameType.Class);
   const serviceName = azureHuh
     ? simpleServiceName.startsWith("Azure")
       ? simpleServiceName

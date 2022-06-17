@@ -1,6 +1,6 @@
-# Service client library for JavaScript
+# PetStore client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in Node.js and in browsers) for Service client.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for PetStore client.
 
 This is a sample server Petstore server.  You can find out more about Swagger at <a href="http://swagger.io">http://swagger.io</a> or on irc.freenode.net, #swagger.  For this sample, you can use the api key "special-key" to test the authorization filters
 
@@ -27,5 +27,5 @@ To use this client library in the browser, first you need to use a bundler. For 
 
 ### PetStore
 
-`PetStore` is the primary interface for developers using the Service client library. Explore the methods on this client object to understand the different features of the Service service that you can access.
+`PetStore` is the primary interface for developers using the PetStore client library. Explore the methods on this client object to understand the different features of the PetStore service that you can access.
 
