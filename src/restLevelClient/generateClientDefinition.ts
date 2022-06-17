@@ -34,6 +34,7 @@ import {
   REST_CLIENT_RESERVED
 } from "./generateMethodShortcuts";
 import { Methods, PathParameter, Paths, ResponseTypes } from "./interfaces";
+import { isLongRunningOperation } from "./helpers/hasPollingOperations";
 export let pathDictionary: Paths = {};
 
 export function generatePathFirstClient(model: CodeModel, project: Project) {
@@ -85,7 +86,10 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
             pathDictionary[path] = {
               pathParameters,
               methods: {},
-              name: operationName
+              name: operationName,
+              annotations: {
+                isLongRunning: isLongRunningOperation(operation)
+              }
             };
           }
           const hasOptionalOptions = !hasRequiredOptions(operation);

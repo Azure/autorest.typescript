@@ -604,6 +604,11 @@ describe("LRO Rest Client", () => {
         assert.fail(error);
         throw new Error(error);
       }
+
+      if (result.status === "202") {
+        assert.fail(`Unexpected 202 status code`);
+      }
+
       assert.equal(result.body[0].id, "100");
       assert.equal(result.body[0].name, "foo");
     });

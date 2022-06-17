@@ -23,12 +23,10 @@ describe("BodyComplex Rest Client", () => {
     describe("Basic Types Operations", function() {
       it("should get and put valid basic type properties", async () => {
         const result = await client.path("/complex/basic/valid").get();
-
         try {
           if (isUnexpected(result)) {
-            const error = `Unexpected status code ${result.status}`;
+            const error = `Unexpected status code ${result.body.message}`;
             assert.fail(error);
-            throw error;
           }
 
           assert.strictEqual(result.body.id, 2);
