@@ -1,4 +1,4 @@
-# DPGCustomization client library for JavaScript
+# DpgCustomizationRest client library for JavaScript
 
 DPG Swagger that tests our ability to grow up.
 
@@ -21,7 +21,7 @@ Key links:
 
 ### Install the `@msinternal/dpg-customization-rest` package
 
-Install the DPGCustomization client REST client library for JavaScript with `npm`:
+Install the DpgCustomizationRest client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/dpg-customization-rest
