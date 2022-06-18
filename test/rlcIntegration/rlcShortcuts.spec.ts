@@ -1,13 +1,16 @@
 import { assert } from "chai";
+import { isUnexpected } from "./generated/multipleInheritanceRest/src";
 import MultipleInheritanceRestClient from "./generated/multipleInheritanceRest/src";
 import UrlRestClient from "./generated/urlRest/src";
 
 describe("Rest Client Shortcut methods", () => {
   it("should have a client level get method", async () => {
-    const client = MultipleInheritanceRestClient({ allowInsecureConnection: true });
+    const client = MultipleInheritanceRestClient({
+      allowInsecureConnection: true
+    });
     const result = await client.getFeline();
 
-    if (result.status !== "200") {
+    if (isUnexpected(result)) {
       const error = `Unexpected status code ${result.status}`;
       assert.fail(error);
       throw error;
@@ -17,7 +20,9 @@ describe("Rest Client Shortcut methods", () => {
   });
 
   it("should handle client level method with request payload", async () => {
-    const client = MultipleInheritanceRestClient({ allowInsecureConnection: true });
+    const client = MultipleInheritanceRestClient({
+      allowInsecureConnection: true
+    });
     const result = await client.putCat({
       body: { name: "Boots", likesMilk: false, hisses: false, meows: true }
     });

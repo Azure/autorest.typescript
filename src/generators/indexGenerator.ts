@@ -52,13 +52,13 @@ function generateRLCIndexForMultiClient(file: SourceFile) {
   file.addImportDeclaration({
     namespaceImport: "Client",
     moduleSpecifier: "./clientDefinitions"
-  })
+  });
 
-  const exports = ['Parameters', 'Responses', 'Client'];
+  const exports = ["Parameters", "Responses", "Client"];
   if (hasInputModels(model)) {
     file.addImportDeclaration({
       namespaceImport: "Models",
-      moduleSpecifier: "./models",
+      moduleSpecifier: "./models"
     });
     exports.push("Models");
   }
@@ -66,7 +66,7 @@ function generateRLCIndexForMultiClient(file: SourceFile) {
   if (hasOutputModels(model)) {
     file.addImportDeclaration({
       namespaceImport: "OutputModels",
-      moduleSpecifier: "./outputModels",
+      moduleSpecifier: "./outputModels"
     });
     exports.push("OutputModels");
   }
@@ -74,23 +74,23 @@ function generateRLCIndexForMultiClient(file: SourceFile) {
   if (hasPagingOperations(model)) {
     file.addImportDeclaration({
       namespaceImport: "PaginateHelper",
-      moduleSpecifier: './paginateHelper',
+      moduleSpecifier: "./paginateHelper"
     });
     exports.push("PaginateHelper");
   }
 
   if (hasPollingOperations(model)) {
     file.addImportDeclaration({
-      namespaceImport: 'PollingHelper',
-      moduleSpecifier: './pollingHelper',
-    })
+      namespaceImport: "PollingHelper",
+      moduleSpecifier: "./pollingHelper"
+    });
     exports.push("PollingHelper");
   }
 
   file.addExportDeclarations([
     {
       moduleSpecifier: `./${moduleName}`,
-      namedExports: [`${createClientFuncName}`],
+      namedExports: [`${createClientFuncName}`]
     },
     {
       namedExports: [...exports]
@@ -111,7 +111,7 @@ function generateRLCIndex(file: SourceFile) {
 
   file.addExportDeclarations([
     {
-      moduleSpecifier: `./${moduleName}`,
+      moduleSpecifier: `./${moduleName}`
     },
     {
       moduleSpecifier: "./parameters"
@@ -121,6 +121,9 @@ function generateRLCIndex(file: SourceFile) {
     },
     {
       moduleSpecifier: "./clientDefinitions"
+    },
+    {
+      moduleSpecifier: "./isUnexpected"
     }
   ]);
 

@@ -30,6 +30,7 @@ import * as path from "path";
 import * as fsextra from "fs-extra";
 import { generateSampleEnv } from "../generators/samples/sampleEnvGenerator";
 import { generateRLCSamples } from "../generators/samples/rlcSampleGenerator";
+import { generateIsUnexpectedHelper } from "./generateIsUnexpectedHelper";
 
 /**
  * Generates a Rest Level Client library
@@ -37,7 +38,12 @@ import { generateRLCSamples } from "../generators/samples/rlcSampleGenerator";
 export async function generateRestLevelClient() {
   const host = getHost();
   const { model } = getSession();
-  const { outputPath, srcPath, generateSample, generateTest } = getAutorestOptions();
+  const {
+    outputPath,
+    srcPath,
+    generateSample,
+    generateTest
+  } = getAutorestOptions();
 
   const project = new Project({
     useInMemoryFileSystem: true,
@@ -75,6 +81,7 @@ export async function generateRestLevelClient() {
   generatePathFirstClient(model, project);
   generateClient(model, project);
   generateIndexFile(project);
+  generateIsUnexpectedHelper(project);
 
   generateTopLevelIndexFile(model, project);
   if (generateSample || generateTest) {

@@ -51,12 +51,20 @@ export function getStatusCode(response: Response): string {
   // in M4, in reality it can only contain a single status code, hence we are always picking the first one.
   let statusCode = response.protocol.http?.statusCodes[0];
 
-  // Swagger can define a catch all status code "default" to get any other status code not explicitly defined
-  // however default is not a valid HTTP status code. We are setting 500 as a catch all status code instead
-  // which is a valid http status
-  // if (statusCode === "default") {
-  //   return `"500"`;
-  // }
-
   return `"${statusCode}"`;
+}
+
+/**
+ * Extracts all success status codes for a give operation
+ */
+export function gerOperationSuccessStatus(operation: Operation): string[] {
+  const responses = operation.responses ?? [];
+  const status: string[] = [];
+
+  for (const response of responses) {
+    let statusCode = response.protocol.http?.statusCodes[0];
+    status.push(statusCode);
+  }
+
+  return status;
 }
