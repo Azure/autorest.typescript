@@ -245,61 +245,71 @@ import {
 const responseMap: Record<string, string[]> = {
   "GET /kqlScripts": ["200"],
   "PUT /kqlScripts/{kqlScriptName}": ["200", "202"],
-  "GET /kqlScripts/{kqlScriptName}": ["200"],
+  "GET /kqlScripts/{kqlScriptName}": ["200", "202", "204"],
   "DELETE /kqlScripts/{kqlScriptName}": ["200", "202", "204"],
   "POST /kqlScripts/{kqlScriptName}/rename": ["200", "202"],
+  "GET /kqlScripts/{kqlScriptName}/rename": ["200", "202"],
   "PUT /metastore/create-database-operations/{id}": ["201"],
   "GET /metastore/create-database-operations/{id}": ["200"],
   "PUT /metastore/update-database-operations/{id}": ["201"],
   "DELETE /metastore/databases/{id}": ["204"],
   "GET /sparkconfigurations": ["200"],
   "PUT /sparkconfigurations/{sparkConfigurationName}": ["200", "202"],
-  "GET /sparkconfigurations/{sparkConfigurationName}": ["200", "304"],
+  "GET /sparkconfigurations/{sparkConfigurationName}": ["200", "202", "204"],
   "DELETE /sparkconfigurations/{sparkConfigurationName}": ["200", "202", "204"],
   "POST /sparkconfigurations/{sparkConfigurationName}/rename": ["200", "202"],
+  "GET /sparkconfigurations/{sparkConfigurationName}/rename": ["200", "202"],
   "GET /bigDataPools": ["200"],
   "GET /bigDataPools/{bigDataPoolName}": ["200"],
   "PUT /dataflows/{dataFlowName}": ["200", "202"],
-  "GET /dataflows/{dataFlowName}": ["200"],
+  "GET /dataflows/{dataFlowName}": ["200", "202", "204"],
   "DELETE /dataflows/{dataFlowName}": ["200", "202", "204"],
   "POST /dataflows/{dataFlowName}/rename": ["200", "202"],
+  "GET /dataflows/{dataFlowName}/rename": ["200", "202"],
   "GET /dataflows": ["200"],
   "POST /createDataFlowDebugSession": ["200", "202"],
+  "GET /createDataFlowDebugSession": ["200", "202"],
   "POST /queryDataFlowDebugSessions": ["200"],
   "POST /addDataFlowToDebugSession": ["200"],
   "POST /deleteDataFlowDebugSession": ["200"],
   "POST /executeDataFlowDebugCommand": ["200", "202"],
+  "GET /executeDataFlowDebugCommand": ["200", "202"],
   "GET /datasets": ["200"],
   "PUT /datasets/{datasetName}": ["200", "202"],
-  "GET /datasets/{datasetName}": ["200", "304"],
+  "GET /datasets/{datasetName}": ["200", "202", "204"],
   "DELETE /datasets/{datasetName}": ["200", "202", "204"],
   "POST /datasets/{datasetName}/rename": ["200", "202"],
+  "GET /datasets/{datasetName}/rename": ["200", "202"],
   "POST /getGitHubAccessToken": ["200"],
   "GET /integrationRuntimes": ["200"],
   "GET /integrationRuntimes/{integrationRuntimeName}": ["200"],
   "GET /libraries": ["200"],
   "POST /libraries/{libraryName}/flush": ["200", "202"],
+  "GET /libraries/{libraryName}/flush": ["200", "202"],
   "GET /libraryOperationResults/{operationId}": ["200", "202"],
   "DELETE /libraries/{libraryName}": ["200", "202", "409"],
-  "GET /libraries/{libraryName}": ["200", "304"],
+  "GET /libraries/{libraryName}": ["200", "202"],
   "PUT /libraries/{libraryName}": ["200", "202"],
   "GET /linkedservices": ["200"],
   "PUT /linkedservices/{linkedServiceName}": ["200", "202"],
-  "GET /linkedservices/{linkedServiceName}": ["200", "304"],
+  "GET /linkedservices/{linkedServiceName}": ["200", "202", "204"],
   "DELETE /linkedservices/{linkedServiceName}": ["200", "202", "204"],
   "POST /linkedservices/{linkedServiceName}/rename": ["200", "202"],
+  "GET /linkedservices/{linkedServiceName}/rename": ["200", "202"],
   "GET /notebooks": ["200"],
   "GET /notebooksSummary": ["200"],
   "PUT /notebooks/{notebookName}": ["200", "202"],
-  "GET /notebooks/{notebookName}": ["200", "304"],
+  "GET /notebooks/{notebookName}": ["200", "202", "204"],
   "DELETE /notebooks/{notebookName}": ["200", "202", "204"],
   "POST /notebooks/{notebookName}/rename": ["200", "202"],
+  "GET /notebooks/{notebookName}/rename": ["200", "202"],
   "GET /notebookOperationResults/{operationId}": ["200", "201", "202", "204"],
   "GET /pipelines": ["200"],
   "PUT /pipelines/{pipelineName}": ["200", "202"],
-  "GET /pipelines/{pipelineName}": ["200", "304"],
+  "GET /pipelines/{pipelineName}": ["200", "202", "204"],
   "DELETE /pipelines/{pipelineName}": ["200", "202", "204"],
   "POST /pipelines/{pipelineName}/rename": ["200", "202"],
+  "GET /pipelines/{pipelineName}/rename": ["200", "202"],
   "POST /pipelines/{pipelineName}/createRun": ["202"],
   "POST /queryPipelineRuns": ["200"],
   "GET /pipelineruns/{runId}": ["200"],
@@ -309,27 +319,35 @@ const responseMap: Record<string, string[]> = {
   "POST /pipelineruns/{runId}/cancel": ["200"],
   "GET /sparkJobDefinitions": ["200"],
   "PUT /sparkJobDefinitions/{sparkJobDefinitionName}": ["200", "202"],
-  "GET /sparkJobDefinitions/{sparkJobDefinitionName}": ["200", "304"],
+  "GET /sparkJobDefinitions/{sparkJobDefinitionName}": ["200", "202", "204"],
   "DELETE /sparkJobDefinitions/{sparkJobDefinitionName}": ["200", "202", "204"],
   "POST /sparkJobDefinitions/{sparkJobDefinitionName}/execute": ["200", "202"],
+  "GET /sparkJobDefinitions/{sparkJobDefinitionName}/execute": ["200", "202"],
   "POST /sparkJobDefinitions/{sparkJobDefinitionName}/rename": ["200", "202"],
+  "GET /sparkJobDefinitions/{sparkJobDefinitionName}/rename": ["200", "202"],
   "POST /debugSparkJobDefinition": ["200", "202"],
+  "GET /debugSparkJobDefinition": ["200", "202"],
   "GET /sqlPools": ["200"],
   "GET /sqlPools/{sqlPoolName}": ["200"],
   "GET /sqlScripts": ["200"],
   "PUT /sqlScripts/{sqlScriptName}": ["200", "202"],
-  "GET /sqlScripts/{sqlScriptName}": ["200", "304"],
+  "GET /sqlScripts/{sqlScriptName}": ["200", "202", "204"],
   "DELETE /sqlScripts/{sqlScriptName}": ["200", "202", "204"],
   "POST /sqlScripts/{sqlScriptName}/rename": ["200", "202"],
+  "GET /sqlScripts/{sqlScriptName}/rename": ["200", "202"],
   "GET /triggers": ["200"],
   "PUT /triggers/{triggerName}": ["200", "202"],
-  "GET /triggers/{triggerName}": ["200", "304"],
+  "GET /triggers/{triggerName}": ["200", "202", "204"],
   "DELETE /triggers/{triggerName}": ["200", "202", "204"],
   "POST /triggers/{triggerName}/subscribeToEvents": ["200", "202"],
+  "GET /triggers/{triggerName}/subscribeToEvents": ["200", "202"],
   "POST /triggers/{triggerName}/getEventSubscriptionStatus": ["200"],
   "POST /triggers/{triggerName}/unsubscribeFromEvents": ["200", "202"],
+  "GET /triggers/{triggerName}/unsubscribeFromEvents": ["200", "202"],
   "POST /triggers/{triggerName}/start": ["200"],
+  "GET /triggers/{triggerName}/start": ["200"],
   "POST /triggers/{triggerName}/stop": ["200"],
+  "GET /triggers/{triggerName}/stop": ["200"],
   "POST /triggers/{triggerName}/triggerRuns/{runId}/rerun": ["200"],
   "POST /triggers/{triggerName}/triggerRuns/{runId}/cancel": ["200"],
   "POST /queryTriggerRuns": ["200"],
@@ -1139,7 +1157,73 @@ export function isUnexpected(
   | TriggerRunCancelTriggerInstancedefaultResponse
   | TriggerRunQueryTriggerRunsByWorkspacedefaultResponse
   | WorkspaceGetdefaultResponse {
-  const url = new URL(response.request.url);
+  const lroOriginal = response.headers["x-ms-original-url"];
+  const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;
-  return responseMap[`${method} ${url.pathname}`].includes(response.status);
+  let pathDetails = responseMap[`${method} ${url.pathname}`];
+  if (!pathDetails) {
+    pathDetails = geParametrizedPathSuccess(url.pathname);
+  }
+  return !pathDetails.includes(response.status);
+}
+
+function geParametrizedPathSuccess(path: string): string[] {
+  const pathParts = path.split("/");
+
+  // Iterate the responseMap to find a match
+  for (const [key, value] of Object.entries(responseMap)) {
+    // Extracting the path from the map key which is in format
+    // GET /path/foo
+    const candidatePath = getPathFromMapKey(key);
+    // Get each part of the url path
+    const candidateParts = candidatePath.split("/");
+
+    // If the candidate and actual paths don't match in size
+    // we move on to the next candidate path
+    if (
+      candidateParts.length === pathParts.length &&
+      hasParametrizedPath(key)
+    ) {
+      // track if we have found a match to return the values found.
+      let found = true;
+      for (let i = 0; i < candidateParts.length; i++) {
+        if (
+          candidateParts[i].startsWith("{") &&
+          candidateParts[i].endsWith("}")
+        ) {
+          // If the current part of the candidate is a "template" part
+          // it is a match with the actual path part on hand
+          // skip as the parameterized part can match anything
+          continue;
+        }
+
+        // If the candidate part is not a template and
+        // the parts don't match mark the candidate as not found
+        // to move on with the next candidate path.
+        if (candidateParts[i] !== pathParts[i]) {
+          found = false;
+          break;
+        }
+      }
+
+      // We finished evaluating the current candidate parts
+      // if all parts matched we return the success values form
+      // the path mapping.
+      if (found) {
+        return value;
+      }
+    }
+  }
+
+  // No match was found, return an empty array.
+  return [];
+}
+
+function hasParametrizedPath(path: string): boolean {
+  return path.includes("/{");
+}
+
+function getPathFromMapKey(mapKey: string): string {
+  const pathStart = mapKey.indexOf("/");
+  return mapKey.slice(pathStart);
 }

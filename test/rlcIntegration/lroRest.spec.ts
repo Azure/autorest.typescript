@@ -5,7 +5,6 @@ import LRORest, {
   isUnexpected
 } from "./generated/lroRest/src";
 import { assert } from "chai";
-import { PipelineRequest } from "@azure/core-rest-pipeline";
 import { addCookiePolicies } from "../utils/cookies";
 
 function createClient() {
@@ -33,13 +32,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      if (isUnexpected(result) || result.status === "204") {
-        const error = `Unexpected status code ${result.status}`;
-        assert.fail(error);
-        throw new Error(error);
-      }
-
-      assert.equal(result.body.properties?.provisioningState, "Succeeded");
+      assert.equal(result.status, "200");
     });
 
     it("should handle initial response with terminal state without provisioning State", async () => {
@@ -156,20 +149,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      if (isUnexpected(result)) {
-        const error = `Unexpected status code ${result.status}`;
-        assert.fail(error);
-        throw new Error(error);
-      }
-
       assert.equal(result.status, "200");
-      assert.deepEqual(result.body, {
-        id: "100",
-        name: "foo",
-        properties: {
-          provisioningState: "Succeeded"
-        }
-      });
     });
 
     it("should handle post202NoRetry204", async () => {
@@ -220,12 +200,6 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      if (isUnexpected(result)) {
-        const error = `Unexpected status code ${result.status}`;
-        assert.fail(error);
-        throw new Error(error);
-      }
-
       assert.equal(result.status, "200");
       assert.deepEqual(result.body, { id: "100", name: "foo" });
     });
@@ -240,15 +214,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      if (isUnexpected(result)) {
-        const error = `Unexpected status code ${result.status}`;
-        assert.fail(error);
-        throw new Error(error);
-      }
-
-      assert.equal(result.body.id, "100");
-      assert.equal(result.body.name, "foo");
-      assert.equal(result.body.properties?.provisioningState, "Succeeded");
+      assert.equal(result.status, "200");
     });
 
     it("should handle putSubResource", async () => {
@@ -261,14 +227,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      if (isUnexpected(result)) {
-        const error = `Unexpected status code ${result.status}`;
-        assert.fail(error);
-        throw new Error(error);
-      }
-
-      assert.equal(result.body.id, "100");
-      assert.equal(result.body.properties?.provisioningState, "Succeeded");
+      assert.equal(result.status, "200");
     });
 
     it("should handle putNonResource", async () => {
@@ -281,13 +240,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      if (isUnexpected(result)) {
-        const error = `Unexpected status code ${result.status}`;
-        assert.fail(error);
-        throw new Error(error);
-      }
-      assert.equal(result.body.id, "100");
-      assert.equal(result.body.name, "sku");
+      assert.equal(result.status, "200");
     });
 
     it("should handle delete202Retry200", async () => {
@@ -300,11 +253,6 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      if (isUnexpected(result)) {
-        const error = `Unexpected status code ${result.status}`;
-        assert.fail(error);
-        throw new Error(error);
-      }
       assert.equal(result.status, "200");
     });
 
@@ -339,12 +287,6 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      if (isUnexpected(result)) {
-        const error = `Unexpected status code ${result.status}`;
-        assert.fail(error);
-        throw new Error(error);
-      }
-
       assert.equal(result.status, "200");
     });
 
@@ -421,13 +363,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      if (isUnexpected(result)) {
-        const error = `Unexpected status code ${result.status}`;
-        assert.fail(error);
-        throw new Error(error);
-      }
-      assert.equal(result.body.id, "100");
-      assert.equal(result.body.name, "foo");
+      assert.equal(result.status, "200");
     });
 
     it("should handle postDoubleHeadersFinalAzureHeaderGet", async () => {
@@ -442,13 +378,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      if (isUnexpected(result)) {
-        const error = `Unexpected status code ${result.status}`;
-        assert.fail(error);
-        throw new Error(error);
-      }
       assert.equal(result.status, "200");
-      assert.equal(result.body.id, "100");
     });
 
     it("should handle post200WithPayload", async () => {
@@ -478,13 +408,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      if (isUnexpected(result)) {
-        const error = `Unexpected status code ${result.status}`;
-        assert.fail(error);
-        throw new Error(error);
-      }
-
-      assert.equal(result.body.id, "100");
+      assert.equal(result.status, "200");
     });
 
     it("should handle deleteAsyncRetrySucceeded", async () => {
@@ -643,14 +567,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      if (isUnexpected(result)) {
-        const error = `Unexpected status code ${result.status}`;
-        assert.fail(error);
-        throw new Error(error);
-      }
-
-      assert.equal(result.body.name, "sku");
-      assert.equal(result.body.id, "100");
+      assert.equal(result.status, "200");
     });
 
     it("should handle putAsyncNoHeaderInRetry", async () => {
@@ -663,15 +580,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      if (isUnexpected(result)) {
-        const error = `Unexpected status code ${result.status}`;
-        assert.fail(error);
-        throw new Error(error);
-      }
-
-      assert.equal(result.body.name, "foo");
-      assert.equal(result.body.id, "100");
-      assert.deepEqual(result.body.properties?.provisioningState, "Succeeded");
+      assert.equal(result.status, "200");
     });
 
     it("should handle putAsyncNoRetrySucceeded", async () => {
@@ -724,14 +633,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      if (isUnexpected(result)) {
-        const error = `Unexpected status code ${result.status}`;
-        assert.fail(error);
-        throw new Error(error);
-      }
-
-      assert.equal(result.body.id, "100");
-      assert.equal(result.body.properties?.provisioningState, "Succeeded");
+      assert.equal(result.status, "200");
     });
 
     it("should handle deleteAsyncNoHeaderInRetry", async () => {
@@ -744,11 +646,6 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      if (isUnexpected(result)) {
-        const error = `Unexpected status code ${result.status}`;
-        assert.fail(error);
-        throw new Error(error);
-      }
       assert.equal(result.status, "200");
     });
 
@@ -924,13 +821,6 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-
-      if (isUnexpected(result)) {
-        const error = `Unexpected status code ${result.status}`;
-        assert.fail(error);
-        throw new Error(error);
-      }
-
       assert.equal(result.status, "200");
     });
   }).timeout(5000);
@@ -1409,12 +1299,6 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-
-      if (isUnexpected(result)) {
-        const error = `Unexpected status code ${result.status}`;
-        assert.fail(error);
-        throw new Error(error);
-      }
       assert.equal(result.status, "200");
     });
 
@@ -1428,12 +1312,6 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-
-      if (isUnexpected(result)) {
-        const error = `Unexpected status code ${result.status}`;
-        assert.fail(error);
-        throw new Error(error);
-      }
       assert.equal(result.status, "200");
     });
 
@@ -1447,12 +1325,6 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-
-      if (isUnexpected(result)) {
-        const error = `Unexpected status code ${result.status}`;
-        assert.fail(error);
-        throw new Error(error);
-      }
       assert.equal(result.status, "200");
     });
 
@@ -1466,12 +1338,6 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-
-      if (isUnexpected(result)) {
-        const error = `Unexpected status code ${result.status}`;
-        assert.fail(error);
-        throw new Error(error);
-      }
       assert.equal(result.status, "200");
     });
   });

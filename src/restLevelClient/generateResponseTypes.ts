@@ -147,7 +147,7 @@ function getResponseInterfaceProperties(
   const responseProperties: PropertySignatureStructure[] = [
     {
       name: "status",
-      type: statusCode === `"default"` ? `string` : statusCode,
+      type: statusCode === `"default"` ? `string & {}` : statusCode,
       kind: StructureKind.PropertySignature
     }
   ];

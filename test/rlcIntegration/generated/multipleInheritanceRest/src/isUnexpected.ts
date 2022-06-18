@@ -60,7 +60,12 @@ export function isUnexpected(
   | GetFelinedefaultResponse
   | GetCatdefaultResponse
   | GetKittendefaultResponse {
-  const url = new URL(response.request.url);
+  const lroOriginal = response.headers["x-ms-original-url"];
+  const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;
-  return responseMap[`${method} ${url.pathname}`].includes(response.status);
+  const pathDetails = responseMap[`${method} ${url.pathname}`];
+  if (!pathDetails) {
+    return true;
+  }
+  return !pathDetails.includes(response.status);
 }
