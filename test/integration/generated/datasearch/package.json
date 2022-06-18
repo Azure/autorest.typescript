@@ -84,8 +84,7 @@
     "unit-test:browser": "echo skipped",
     "integration-test": "npm run integration-test:node && npm run integration-test:browser",
     "integration-test:node": "mocha -r esm --require ts-node/register --timeout 1200000 --full-trace test/*.ts --reporter ../../../common/tools/mocha-multi-reporter.js",
-    "integration-test:browser": "echo skipped",
-    "docs": "echo skipped"
+    "integration-test:browser": "echo skipped"
   },
   "sideEffects": false,
   "//metadata": {
