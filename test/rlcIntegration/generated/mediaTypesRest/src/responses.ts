@@ -17,7 +17,7 @@ export interface AnalyzeBodyNoAcceptHeader202Response extends HttpResponse {
 
 /** Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept type. */
 export interface AnalyzeBodyNoAcceptHeaderdefaultResponse extends HttpResponse {
-  status: "500";
+  status: string;
   body: Record<string, unknown>;
 }
 

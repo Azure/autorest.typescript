@@ -23,7 +23,7 @@ export interface MetadataRolesListdefaultHeaders {
 
 /** Lists roles for Purview Account */
 export interface MetadataRolesListdefaultResponse extends HttpResponse {
-  status: "500";
+  status: string;
   body: ErrorResponseModelOutput;
   headers: RawHttpHeaders & MetadataRolesListdefaultHeaders;
 }
@@ -41,7 +41,7 @@ export interface MetadataPolicyListAlldefaultHeaders {
 
 /** List or Get metadata policies */
 export interface MetadataPolicyListAlldefaultResponse extends HttpResponse {
-  status: "500";
+  status: string;
   body: ErrorResponseModelOutput;
   headers: RawHttpHeaders & MetadataPolicyListAlldefaultHeaders;
 }
@@ -59,7 +59,7 @@ export interface MetadataPolicyUpdatedefaultHeaders {
 
 /** Updates a metadata policy */
 export interface MetadataPolicyUpdatedefaultResponse extends HttpResponse {
-  status: "500";
+  status: string;
   body: ErrorResponseModelOutput;
   headers: RawHttpHeaders & MetadataPolicyUpdatedefaultHeaders;
 }
@@ -77,7 +77,7 @@ export interface MetadataPolicyGetdefaultHeaders {
 
 /** Gets a metadata policy */
 export interface MetadataPolicyGetdefaultResponse extends HttpResponse {
-  status: "500";
+  status: string;
   body: ErrorResponseModelOutput;
   headers: RawHttpHeaders & MetadataPolicyGetdefaultHeaders;
 }

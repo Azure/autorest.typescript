@@ -68,7 +68,7 @@ export interface ApplicationDataCreateOrUpdatedefaultResponse extends HttpRespon
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -92,7 +92,7 @@ export interface ApplicationDataDeletedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -118,7 +118,7 @@ export interface ApplicationDataGetdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -155,7 +155,7 @@ export interface ApplicationDataListByFarmerIddefaultResponse extends HttpRespon
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -201,7 +201,7 @@ export interface ApplicationDataListdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -338,7 +338,7 @@ export interface AttachmentsCreateOrUpdatedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -378,7 +378,7 @@ export interface AttachmentsDeletedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -401,7 +401,7 @@ export interface AttachmentsDownloaddefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -427,7 +427,7 @@ export interface AttachmentsGetdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -451,7 +451,7 @@ export interface AttachmentsListByFarmerIddefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -497,7 +497,7 @@ export interface BoundariesCreateCascadeDeleteJobdefaultResponse extends HttpRes
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -541,7 +541,7 @@ export interface BoundariesCreateOrUpdatedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -565,7 +565,7 @@ export interface BoundariesDeletedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -605,7 +605,7 @@ export interface BoundariesGetCascadeDeleteJobDetailsdefaultResponse extends Htt
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -616,7 +616,7 @@ export interface BoundariesGetdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -637,7 +637,7 @@ export interface BoundariesGetOverlapdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -691,7 +691,7 @@ export interface BoundariesListByFarmerIddefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -727,7 +727,7 @@ export interface BoundariesListdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -789,7 +789,7 @@ export interface BoundariesSearchByFarmerIddefaultResponse extends HttpResponse 
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -805,7 +805,7 @@ export interface BoundariesSearchdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -947,7 +947,7 @@ export interface CropsCreateOrUpdatedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -971,7 +971,7 @@ export interface CropsDeletedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -997,7 +997,7 @@ export interface CropsGetdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1021,7 +1021,7 @@ export interface CropsListdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1074,7 +1074,7 @@ export interface CropVarietiesCreateOrUpdatedefaultResponse extends HttpResponse
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1098,7 +1098,7 @@ export interface CropVarietiesDeletedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1124,7 +1124,7 @@ export interface CropVarietiesGetdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1161,7 +1161,7 @@ export interface CropVarietiesListByCropIddefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1195,7 +1195,7 @@ export interface CropVarietiesListdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1333,7 +1333,7 @@ export interface FarmersCreateCascadeDeleteJobdefaultResponse extends HttpRespon
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1376,7 +1376,7 @@ export interface FarmersCreateOrUpdatedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1400,7 +1400,7 @@ export interface FarmersDeletedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1440,7 +1440,7 @@ export interface FarmersGetCascadeDeleteJobDetailsdefaultResponse extends HttpRe
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1451,7 +1451,7 @@ export interface FarmersGetdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1475,7 +1475,7 @@ export interface FarmersListdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1570,7 +1570,7 @@ export interface FarmOperationsCreateDataIngestionJobdefaultResponse extends Htt
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1594,7 +1594,7 @@ export interface FarmOperationsGetDataIngestionJobDetailsdefaultResponse extends
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1626,7 +1626,7 @@ export interface FarmsCreateCascadeDeleteJobdefaultResponse extends HttpResponse
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1670,7 +1670,7 @@ export interface FarmsCreateOrUpdatedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1694,7 +1694,7 @@ export interface FarmsDeletedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1734,7 +1734,7 @@ export interface FarmsGetCascadeDeleteJobDetailsdefaultResponse extends HttpResp
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1745,7 +1745,7 @@ export interface FarmsGetdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1782,7 +1782,7 @@ export interface FarmsListByFarmerIddefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1813,7 +1813,7 @@ export interface FarmsListdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1891,7 +1891,7 @@ export interface FieldsCreateCascadeDeleteJobdefaultResponse extends HttpRespons
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1935,7 +1935,7 @@ export interface FieldsCreateOrUpdatedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1959,7 +1959,7 @@ export interface FieldsDeletedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1999,7 +1999,7 @@ export interface FieldsGetCascadeDeleteJobDetailsdefaultResponse extends HttpRes
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -2010,7 +2010,7 @@ export interface FieldsGetdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -2047,7 +2047,7 @@ export interface FieldsListByFarmerIddefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -2079,7 +2079,7 @@ export interface FieldsListdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -2190,7 +2190,7 @@ export interface HarvestDataCreateOrUpdatedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -2214,7 +2214,7 @@ export interface HarvestDataDeletedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -2240,7 +2240,7 @@ export interface HarvestDataGetdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -2277,7 +2277,7 @@ export interface HarvestDataListByFarmerIddefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -2331,7 +2331,7 @@ export interface HarvestDataListdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -2469,7 +2469,7 @@ export interface ImageProcessingCreateRasterizeJobdefaultResponse extends HttpRe
     // (undocumented)
     body: Record<string, unknown>;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -2532,6 +2532,291 @@ export interface InnerErrorOutput extends Record<string, unknown> {
     code?: string;
     innererror?: InnerErrorOutput;
 }
+
+// @public (undocumented)
+export function isUnexpected(response: ApplicationDataListByFarmerId200Response | ApplicationDataListByFarmerIddefaultResponse): response is ApplicationDataListByFarmerIddefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: ApplicationDataList200Response | ApplicationDataListdefaultResponse): response is ApplicationDataListdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: ApplicationDataGet200Response | ApplicationDataGetdefaultResponse): response is ApplicationDataGetdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: ApplicationDataCreateOrUpdate200Response | ApplicationDataCreateOrUpdate201Response | ApplicationDataCreateOrUpdatedefaultResponse): response is ApplicationDataCreateOrUpdatedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: ApplicationDataDelete204Response | ApplicationDataDeletedefaultResponse): response is ApplicationDataDeletedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: AttachmentsListByFarmerId200Response | AttachmentsListByFarmerIddefaultResponse): response is AttachmentsListByFarmerIddefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: AttachmentsGet200Response | AttachmentsGetdefaultResponse): response is AttachmentsGetdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: AttachmentsCreateOrUpdate200Response | AttachmentsCreateOrUpdate201Response | AttachmentsCreateOrUpdatedefaultResponse): response is AttachmentsCreateOrUpdatedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: AttachmentsDelete204Response | AttachmentsDeletedefaultResponse): response is AttachmentsDeletedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: AttachmentsDownload200Response | AttachmentsDownloaddefaultResponse): response is AttachmentsDownloaddefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: BoundariesListByFarmerId200Response | BoundariesListByFarmerIddefaultResponse): response is BoundariesListByFarmerIddefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: BoundariesSearchByFarmerId200Response | BoundariesSearchByFarmerIddefaultResponse): response is BoundariesSearchByFarmerIddefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: BoundariesList200Response | BoundariesListdefaultResponse): response is BoundariesListdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: BoundariesSearch200Response | BoundariesSearchdefaultResponse): response is BoundariesSearchdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: BoundariesGetCascadeDeleteJobDetails200Response | BoundariesGetCascadeDeleteJobDetailsdefaultResponse): response is BoundariesGetCascadeDeleteJobDetailsdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: BoundariesCreateCascadeDeleteJob202Response | BoundariesCreateCascadeDeleteJobdefaultResponse): response is BoundariesCreateCascadeDeleteJobdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: BoundariesGet200Response | BoundariesGetdefaultResponse): response is BoundariesGetdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: BoundariesCreateOrUpdate200Response | BoundariesCreateOrUpdate201Response | BoundariesCreateOrUpdatedefaultResponse): response is BoundariesCreateOrUpdatedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: BoundariesDelete204Response | BoundariesDeletedefaultResponse): response is BoundariesDeletedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: BoundariesGetOverlap200Response | BoundariesGetOverlapdefaultResponse): response is BoundariesGetOverlapdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: CropsList200Response | CropsListdefaultResponse): response is CropsListdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: CropsGet200Response | CropsGetdefaultResponse): response is CropsGetdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: CropsCreateOrUpdate200Response | CropsCreateOrUpdate201Response | CropsCreateOrUpdatedefaultResponse): response is CropsCreateOrUpdatedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: CropsDelete204Response | CropsDeletedefaultResponse): response is CropsDeletedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: CropVarietiesListByCropId200Response | CropVarietiesListByCropIddefaultResponse): response is CropVarietiesListByCropIddefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: CropVarietiesList200Response | CropVarietiesListdefaultResponse): response is CropVarietiesListdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: CropVarietiesGet200Response | CropVarietiesGetdefaultResponse): response is CropVarietiesGetdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: CropVarietiesCreateOrUpdate200Response | CropVarietiesCreateOrUpdate201Response | CropVarietiesCreateOrUpdatedefaultResponse): response is CropVarietiesCreateOrUpdatedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: CropVarietiesDelete204Response | CropVarietiesDeletedefaultResponse): response is CropVarietiesDeletedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FarmersList200Response | FarmersListdefaultResponse): response is FarmersListdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FarmersGet200Response | FarmersGetdefaultResponse): response is FarmersGetdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FarmersCreateOrUpdate200Response | FarmersCreateOrUpdate201Response | FarmersCreateOrUpdatedefaultResponse): response is FarmersCreateOrUpdatedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FarmersDelete204Response | FarmersDeletedefaultResponse): response is FarmersDeletedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FarmersGetCascadeDeleteJobDetails200Response | FarmersGetCascadeDeleteJobDetailsdefaultResponse): response is FarmersGetCascadeDeleteJobDetailsdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FarmersCreateCascadeDeleteJob202Response | FarmersCreateCascadeDeleteJobdefaultResponse): response is FarmersCreateCascadeDeleteJobdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FarmOperationsCreateDataIngestionJob202Response | FarmOperationsCreateDataIngestionJobdefaultResponse): response is FarmOperationsCreateDataIngestionJobdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FarmOperationsGetDataIngestionJobDetails200Response | FarmOperationsGetDataIngestionJobDetailsdefaultResponse): response is FarmOperationsGetDataIngestionJobDetailsdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FarmsListByFarmerId200Response | FarmsListByFarmerIddefaultResponse): response is FarmsListByFarmerIddefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FarmsList200Response | FarmsListdefaultResponse): response is FarmsListdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FarmsGet200Response | FarmsGetdefaultResponse): response is FarmsGetdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FarmsCreateOrUpdate200Response | FarmsCreateOrUpdate201Response | FarmsCreateOrUpdatedefaultResponse): response is FarmsCreateOrUpdatedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FarmsDelete204Response | FarmsDeletedefaultResponse): response is FarmsDeletedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FarmsGetCascadeDeleteJobDetails200Response | FarmsGetCascadeDeleteJobDetailsdefaultResponse): response is FarmsGetCascadeDeleteJobDetailsdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FarmsCreateCascadeDeleteJob202Response | FarmsCreateCascadeDeleteJobdefaultResponse): response is FarmsCreateCascadeDeleteJobdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FieldsListByFarmerId200Response | FieldsListByFarmerIddefaultResponse): response is FieldsListByFarmerIddefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FieldsList200Response | FieldsListdefaultResponse): response is FieldsListdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FieldsGet200Response | FieldsGetdefaultResponse): response is FieldsGetdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FieldsCreateOrUpdate200Response | FieldsCreateOrUpdate201Response | FieldsCreateOrUpdatedefaultResponse): response is FieldsCreateOrUpdatedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FieldsDelete204Response | FieldsDeletedefaultResponse): response is FieldsDeletedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FieldsGetCascadeDeleteJobDetails200Response | FieldsGetCascadeDeleteJobDetailsdefaultResponse): response is FieldsGetCascadeDeleteJobDetailsdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FieldsCreateCascadeDeleteJob202Response | FieldsCreateCascadeDeleteJobdefaultResponse): response is FieldsCreateCascadeDeleteJobdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: HarvestDataListByFarmerId200Response | HarvestDataListByFarmerIddefaultResponse): response is HarvestDataListByFarmerIddefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: HarvestDataList200Response | HarvestDataListdefaultResponse): response is HarvestDataListdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: HarvestDataGet200Response | HarvestDataGetdefaultResponse): response is HarvestDataGetdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: HarvestDataCreateOrUpdate200Response | HarvestDataCreateOrUpdate201Response | HarvestDataCreateOrUpdatedefaultResponse): response is HarvestDataCreateOrUpdatedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: HarvestDataDelete204Response | HarvestDataDeletedefaultResponse): response is HarvestDataDeletedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: ImageProcessingCreateRasterizeJob202Response | ImageProcessingCreateRasterizeJobdefaultResponse): response is ImageProcessingCreateRasterizeJobdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: OAuthProvidersList200Response | OAuthProvidersListdefaultResponse): response is OAuthProvidersListdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: OAuthProvidersGet200Response | OAuthProvidersGetdefaultResponse): response is OAuthProvidersGetdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: OAuthProvidersCreateOrUpdate200Response | OAuthProvidersCreateOrUpdate201Response | OAuthProvidersCreateOrUpdatedefaultResponse): response is OAuthProvidersCreateOrUpdatedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: OAuthProvidersDelete204Response | OAuthProvidersDeletedefaultResponse): response is OAuthProvidersDeletedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: OAuthTokensList200Response | OAuthTokensListdefaultResponse): response is OAuthTokensListdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: OAuthTokensGetOAuthConnectionLink200Response | OAuthTokensGetOAuthConnectionLinkdefaultResponse): response is OAuthTokensGetOAuthConnectionLinkdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: OAuthTokensGetCascadeDeleteJobDetails200Response | OAuthTokensGetCascadeDeleteJobDetailsdefaultResponse): response is OAuthTokensGetCascadeDeleteJobDetailsdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: OAuthTokensCreateCascadeDeleteJob202Response | OAuthTokensCreateCascadeDeleteJobdefaultResponse): response is OAuthTokensCreateCascadeDeleteJobdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: PlantingDataListByFarmerId200Response | PlantingDataListByFarmerIddefaultResponse): response is PlantingDataListByFarmerIddefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: PlantingDataList200Response | PlantingDataListdefaultResponse): response is PlantingDataListdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: PlantingDataGet200Response | PlantingDataGetdefaultResponse): response is PlantingDataGetdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: PlantingDataCreateOrUpdate200Response | PlantingDataCreateOrUpdate201Response | PlantingDataCreateOrUpdatedefaultResponse): response is PlantingDataCreateOrUpdatedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: PlantingDataDelete204Response | PlantingDataDeletedefaultResponse): response is PlantingDataDeletedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: ScenesList200Response | ScenesListdefaultResponse): response is ScenesListdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: ScenesCreateSatelliteDataIngestionJob202Response | ScenesCreateSatelliteDataIngestionJobdefaultResponse): response is ScenesCreateSatelliteDataIngestionJobdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: ScenesGetSatelliteDataIngestionJobDetails200Response | ScenesGetSatelliteDataIngestionJobDetailsdefaultResponse): response is ScenesGetSatelliteDataIngestionJobDetailsdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: ScenesDownload200Response | ScenesDownloaddefaultResponse): response is ScenesDownloaddefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: SeasonalFieldsListByFarmerId200Response | SeasonalFieldsListByFarmerIddefaultResponse): response is SeasonalFieldsListByFarmerIddefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: SeasonalFieldsList200Response | SeasonalFieldsListdefaultResponse): response is SeasonalFieldsListdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: SeasonalFieldsGet200Response | SeasonalFieldsGetdefaultResponse): response is SeasonalFieldsGetdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: SeasonalFieldsCreateOrUpdate200Response | SeasonalFieldsCreateOrUpdate201Response | SeasonalFieldsCreateOrUpdatedefaultResponse): response is SeasonalFieldsCreateOrUpdatedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: SeasonalFieldsDelete204Response | SeasonalFieldsDeletedefaultResponse): response is SeasonalFieldsDeletedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: SeasonalFieldsGetCascadeDeleteJobDetails200Response | SeasonalFieldsGetCascadeDeleteJobDetailsdefaultResponse): response is SeasonalFieldsGetCascadeDeleteJobDetailsdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: SeasonalFieldsCreateCascadeDeleteJob202Response | SeasonalFieldsCreateCascadeDeleteJobdefaultResponse): response is SeasonalFieldsCreateCascadeDeleteJobdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: SeasonsList200Response | SeasonsListdefaultResponse): response is SeasonsListdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: SeasonsGet200Response | SeasonsGetdefaultResponse): response is SeasonsGetdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: SeasonsCreateOrUpdate200Response | SeasonsCreateOrUpdate201Response | SeasonsCreateOrUpdatedefaultResponse): response is SeasonsCreateOrUpdatedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: SeasonsDelete204Response | SeasonsDeletedefaultResponse): response is SeasonsDeletedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: TillageDataListByFarmerId200Response | TillageDataListByFarmerIddefaultResponse): response is TillageDataListByFarmerIddefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: TillageDataList200Response | TillageDataListdefaultResponse): response is TillageDataListdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: TillageDataGet200Response | TillageDataGetdefaultResponse): response is TillageDataGetdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: TillageDataCreateOrUpdate200Response | TillageDataCreateOrUpdate201Response | TillageDataCreateOrUpdatedefaultResponse): response is TillageDataCreateOrUpdatedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: TillageDataDelete204Response | TillageDataDeletedefaultResponse): response is TillageDataDeletedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: WeatherList200Response | WeatherListdefaultResponse): response is WeatherListdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: WeatherGetDataIngestionJobDetails200Response | WeatherGetDataIngestionJobDetailsdefaultResponse): response is WeatherGetDataIngestionJobDetailsdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: WeatherCreateDataIngestionJob202Response | WeatherCreateDataIngestionJobdefaultResponse): response is WeatherCreateDataIngestionJobdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: WeatherGetDataDeleteJobDetails200Response | WeatherGetDataDeleteJobDetailsdefaultResponse): response is WeatherGetDataDeleteJobDetailsdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: WeatherCreateDataDeleteJob202Response | WeatherCreateDataDeleteJobdefaultResponse): response is WeatherCreateDataDeleteJobdefaultResponse;
 
 // @public (undocumented)
 export interface LocationOutput {
@@ -2644,7 +2929,7 @@ export interface OAuthProvidersCreateOrUpdatedefaultResponse extends HttpRespons
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -2668,7 +2953,7 @@ export interface OAuthProvidersDeletedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -2694,7 +2979,7 @@ export interface OAuthProvidersGetdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -2718,7 +3003,7 @@ export interface OAuthProvidersListdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -2774,7 +3059,7 @@ export interface OAuthTokensCreateCascadeDeleteJobdefaultResponse extends HttpRe
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -2811,7 +3096,7 @@ export interface OAuthTokensGetCascadeDeleteJobDetailsdefaultResponse extends Ht
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -2840,7 +3125,7 @@ export interface OAuthTokensGetOAuthConnectionLinkdefaultResponse extends HttpRe
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -2869,7 +3154,7 @@ export interface OAuthTokensListdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -2960,7 +3245,7 @@ export interface PlantingDataCreateOrUpdatedefaultResponse extends HttpResponse 
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -2984,7 +3269,7 @@ export interface PlantingDataDeletedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -3010,7 +3295,7 @@ export interface PlantingDataGetdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -3047,7 +3332,7 @@ export interface PlantingDataListByFarmerIddefaultResponse extends HttpResponse 
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -3095,7 +3380,7 @@ export interface PlantingDataListdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -3394,7 +3679,7 @@ export interface ScenesCreateSatelliteDataIngestionJobdefaultResponse extends Ht
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -3422,7 +3707,7 @@ export interface ScenesDownloaddefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -3452,7 +3737,7 @@ export interface ScenesGetSatelliteDataIngestionJobDetailsdefaultResponse extend
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -3476,7 +3761,7 @@ export interface ScenesListdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -3610,7 +3895,7 @@ export interface SeasonalFieldsCreateCascadeDeleteJobdefaultResponse extends Htt
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -3654,7 +3939,7 @@ export interface SeasonalFieldsCreateOrUpdatedefaultResponse extends HttpRespons
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -3678,7 +3963,7 @@ export interface SeasonalFieldsDeletedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -3718,7 +4003,7 @@ export interface SeasonalFieldsGetCascadeDeleteJobDetailsdefaultResponse extends
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -3729,7 +4014,7 @@ export interface SeasonalFieldsGetdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -3766,7 +4051,7 @@ export interface SeasonalFieldsListByFarmerIddefaultResponse extends HttpRespons
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -3810,7 +4095,7 @@ export interface SeasonalFieldsListdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -3897,7 +4182,7 @@ export interface SeasonsCreateOrUpdatedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -3921,7 +4206,7 @@ export interface SeasonsDeletedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -3947,7 +4232,7 @@ export interface SeasonsGetdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -3971,7 +4256,7 @@ export interface SeasonsListdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -4051,7 +4336,7 @@ export interface TillageDataCreateOrUpdatedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -4075,7 +4360,7 @@ export interface TillageDataDeletedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -4101,7 +4386,7 @@ export interface TillageDataGetdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -4138,7 +4423,7 @@ export interface TillageDataListByFarmerIddefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -4184,7 +4469,7 @@ export interface TillageDataListdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -4273,7 +4558,7 @@ export interface WeatherCreateDataDeleteJobdefaultResponse extends HttpResponse 
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -4302,7 +4587,7 @@ export interface WeatherCreateDataIngestionJobdefaultResponse extends HttpRespon
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -4460,7 +4745,7 @@ export interface WeatherGetDataDeleteJobDetailsdefaultResponse extends HttpRespo
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -4485,7 +4770,7 @@ export interface WeatherGetDataIngestionJobDetailsdefaultResponse extends HttpRe
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -4509,7 +4794,7 @@ export interface WeatherListdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)

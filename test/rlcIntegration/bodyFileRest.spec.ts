@@ -1,11 +1,12 @@
 import { assert } from "chai";
 import BodyFile, { BodyFileClient } from "./generated/bodyFileRest/src";
-import { countBytesFromStream, readFirstChunk } from "../utils/stream-helpers";
+import { countBytesFromStream } from "../utils/stream-helpers";
 import {
   HttpBrowserStreamResponse,
   HttpNodeStreamResponse
 } from "@azure-rest/core-client";
 import { isNode } from "@azure/core-util";
+import { isUnexpected } from "./generated/bodyFileRest/src";
 
 describe("BodyFile Client", () => {
   let client: BodyFileClient;
@@ -17,7 +18,7 @@ describe("BodyFile Client", () => {
   it("should getFile", async () => {
     const result = await client.path("/files/stream/nonempty").get();
 
-    if (result.status !== "200") {
+    if (isUnexpected(result)) {
       const error = `Unexpected response: ${result.status}`;
       assert.fail(error);
       throw error;
@@ -28,7 +29,7 @@ describe("BodyFile Client", () => {
   it("should getFile", async () => {
     const result = await client.path("/files/stream/empty").get();
 
-    if (result.status !== "200") {
+    if (isUnexpected(result)) {
       const error = `Unexpected response: ${result.status}`;
       assert.fail(error);
       throw error;
@@ -50,12 +51,6 @@ describe("BodyFile Client", () => {
         .path("/files/stream/verylarge")
         .get()
         .asBrowserStream();
-    }
-
-    if (result.status !== "200") {
-      const error = `Unexpected response: ${result.status}`;
-      assert.fail(error);
-      throw error;
     }
 
     const byteCount = await countBytesFromStream(result.body!);

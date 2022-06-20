@@ -3,7 +3,8 @@ import Paging, {
   ProductOutput,
   PagingClient,
   paginate,
-  getLongRunningPoller
+  getLongRunningPoller,
+  isUnexpected
 } from "./generated/pagingRest/src";
 
 describe("Integration tests for Paging Rest Client", () => {
@@ -22,7 +23,7 @@ describe("Integration tests for Paging Rest Client", () => {
         .path("/paging/itemNameWithXMSClientName")
         .get();
 
-      if (initialResponse.status !== "200") {
+      if (isUnexpected(initialResponse)) {
         const error = `Unexpected status code ${initialResponse.status}`;
         assert.fail(error);
         throw error;
@@ -94,7 +95,7 @@ describe("Integration tests for Paging Rest Client", () => {
           queryParameters: { requiredQueryParameter: 100, queryConstant: true }
         });
 
-      if (response.status !== "200") {
+      if (isUnexpected(response)) {
         const error = `Unexpected status code ${response.status}`;
         assert.fail(error);
         throw error;
@@ -246,7 +247,7 @@ describe("Integration tests for Paging Rest Client", () => {
                   skipUrlEncoding: true
                 });
           firstRun = false;
-          if (result.status !== "200") {
+          if (isUnexpected(result)) {
             throw new Error("Unexpected status code");
           }
           const nextLink = result.body["odata.nextLink"];
@@ -302,7 +303,7 @@ describe("Integration tests for Paging Rest Client", () => {
                 .path("/paging/multiple/nextOperationWithQueryParams")
                 .get({ queryParameters: { queryConstant: true } });
           firstRun = false;
-          if (result.status !== "200") {
+          if (isUnexpected(result)) {
             throw new Error("Unexpected status code");
           }
           const nextLink = result.body["nextLink"];

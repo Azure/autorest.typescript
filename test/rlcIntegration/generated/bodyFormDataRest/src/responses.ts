@@ -13,7 +13,7 @@ export interface UploadFile200Response extends HttpResponse {
 
 /** Upload file */
 export interface UploadFiledefaultResponse extends HttpResponse {
-  status: "500";
+  status: string;
   body: ErrorModelOutput;
 }
 
@@ -26,7 +26,7 @@ export interface UploadFileViaBody200Response extends HttpResponse {
 
 /** Upload file */
 export interface UploadFileViaBodydefaultResponse extends HttpResponse {
-  status: "500";
+  status: string;
   body: ErrorModelOutput;
 }
 
@@ -39,6 +39,6 @@ export interface UploadFiles200Response extends HttpResponse {
 
 /** Upload multiple files */
 export interface UploadFilesdefaultResponse extends HttpResponse {
-  status: "500";
+  status: string;
   body: ErrorModelOutput;
 }

@@ -78,8 +78,7 @@
     "unit-test:browser": "echo skipped",
     "integration-test": "echo skipped",
     "integration-test:node": "echo skipped",
-    "integration-test:browser": "echo skipped",
-    "docs": "echo skipped"
+    "integration-test:browser": "echo skipped"
   },
   "sideEffects": false,
   "//metadata": {

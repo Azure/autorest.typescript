@@ -7,6 +7,7 @@ export * from "./paging";
 export * from "./parameters";
 export * from "./responses";
 export * from "./clientDefinitions";
+export * from "./isUnexpected";
 export * from "./outputModels";
 export * from "./paginateHelper";
 export * from "./pollingHelper";

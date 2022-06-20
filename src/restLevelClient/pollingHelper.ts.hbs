@@ -37,7 +37,10 @@ export function getLongRunningPoller<TResult extends HttpResponse>(
       const response = await client
         .pathUnchecked(path ?? initialResponse.request.url)
         .get();
-      return getLroResponse(response as TResult);
+      const lroResponse = getLroResponse(response as TResult);
+      lroResponse.rawResponse.headers["x-ms-original-url"] =
+        initialResponse.request.url;
+      return lroResponse;
     }
   };
 

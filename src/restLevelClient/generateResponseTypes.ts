@@ -19,11 +19,15 @@ import {
   StructureKind
 } from "ts-morph";
 import { NameType, normalizeName } from "../utils/nameUtils";
-import { getElementType, getFormatDocs, primitiveSchemaToType } from "./schemaHelpers";
+import {
+  getElementType,
+  getFormatDocs,
+  primitiveSchemaToType
+} from "./schemaHelpers";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { hasOutputModels } from "./helpers/modelHelpers";
 import { getAutorestOptions } from "../autorestSession";
-import * as path from 'path';
+import * as path from "path";
 
 export function generateResponseInterfaces(model: CodeModel, project: Project) {
   const { srcPath } = getAutorestOptions();
@@ -120,8 +124,6 @@ export function generateResponseInterfaces(model: CodeModel, project: Project) {
     }
   ]);
 
-
-
   if (hasOutputModels(model)) {
     responsesFile.addImportDeclarations([
       {
@@ -145,7 +147,7 @@ function getResponseInterfaceProperties(
   const responseProperties: PropertySignatureStructure[] = [
     {
       name: "status",
-      type: statusCode === `"default"` ? `"500"` : statusCode,
+      type: statusCode === `"default"` ? `string` : statusCode,
       kind: StructureKind.PropertySignature
     }
   ];
@@ -208,7 +210,10 @@ function getResponseHeaderInterfaceDefinition(
         return {
           name: `"${h.header.toLowerCase()}"`,
           ...(description && { docs: [{ description }] }),
-          type: primitiveSchemaToType(h.schema, [SchemaContext.Output, SchemaContext.Exception]),
+          type: primitiveSchemaToType(h.schema, [
+            SchemaContext.Output,
+            SchemaContext.Exception
+          ]),
           hasQuestionToken: true
         };
       })
