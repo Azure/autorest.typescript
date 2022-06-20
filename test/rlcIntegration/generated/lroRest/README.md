@@ -1,4 +1,4 @@
-# LroRest client library for JavaScript
+# LRORest client library for JavaScript
 
 Long-running Operation for AutoRest
 
@@ -21,7 +21,7 @@ Key links:
 
 ### Install the `@msinternal/lro-rest` package
 
-Install the LroRest client REST client library for JavaScript with `npm`:
+Install the LRORest client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/lro-rest

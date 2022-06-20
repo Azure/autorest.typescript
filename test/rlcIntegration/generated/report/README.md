@@ -1,6 +1,6 @@
-# ZzzReport client library for JavaScript
+# Report client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in Node.js and in browsers) for ZzzReport client.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for Report client.
 
 Test Infrastructure for AutoRest
 
@@ -27,5 +27,5 @@ To use this client library in the browser, first you need to use a bundler. For 
 
 ### ReportClient
 
-`ReportClient` is the primary interface for developers using the ZzzReport client library. Explore the methods on this client object to understand the different features of the ZzzReport service that you can access.
+`ReportClient` is the primary interface for developers using the Report client library. Explore the methods on this client object to understand the different features of the Report service that you can access.
 
