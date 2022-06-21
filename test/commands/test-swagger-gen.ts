@@ -8,7 +8,7 @@ interface SwaggerConfig {
   clientName: string;
   packageName: string;
   addCredentials?: boolean;
-  security?: string,
+  security?: string;
   licenseHeader?: boolean;
   securityScopes?: string;
   tracing?: TracingInfo;
@@ -25,7 +25,7 @@ interface SwaggerConfig {
   generateTest?: boolean;
   coreHttpCompatMode?: boolean;
   generateSample?: boolean;
-  lenientModelDeduplication?: boolean
+  lenientModelDeduplication?: boolean;
 }
 
 const package_version = "1.0.0-preview1";
@@ -92,7 +92,8 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     addCredentials: true,
     security: "AADToken",
-    securityScopes: "https://microsoft.com/.default,http://microsoft.com/.default",
+    securityScopes:
+      "https://microsoft.com/.default,http://microsoft.com/.default",
     useCoreV2: true,
     allowInsecureConnection: true,
     isTestPackage: true
@@ -778,7 +779,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     useCoreV2: true,
     allowInsecureConnection: true,
     addCredentials: false,
-    isTestPackage: true,
+    isTestPackage: true
   },
   healthcareapis: {
     swaggerOrConfig: "test/integration/swaggers/healthcareapis.md",
@@ -866,6 +867,19 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     swaggerOrConfig: "test/integration/swaggers/dataSearch.json",
     clientName: "DataSearchClient",
     packageName: "data-search",
+    licenseHeader: true,
+    useCoreV2: true,
+    allowInsecureConnection: true,
+    addCredentials: false,
+    isTestPackage: true,
+    generateTest: true,
+    coreHttpCompatMode: true,
+    azureSdkForJs: false
+  },
+  patterntest: {
+    swaggerOrConfig: "test/integration/swaggers/patterntest.yml",
+    clientName: "PatternTestClient",
+    packageName: "pattern-test",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -1107,7 +1121,10 @@ const generateSwaggers = async (
         tracingInfo: tracing,
         disablePagingAsyncIterators: disableAsyncIterators,
         security,
-        securityScopes: security && securityScopes && security.length > 0 ? securityScopes : undefined,
+        securityScopes:
+          security && securityScopes && security.length > 0
+            ? securityScopes
+            : undefined,
         srcPath: "",
         licenseHeader: !!licenseHeader,
         addCredentials,
