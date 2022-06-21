@@ -29,6 +29,8 @@ import { generateReadmeFile } from "../generators/static/readmeFileGenerator";
 import * as path from "path";
 import * as fsextra from "fs-extra";
 import { generateSampleEnv } from "../generators/samples/sampleEnvGenerator";
+import { generateRLCSamples } from "../generators/samples/rlcSampleGenerator";
+import { generateIsUnexpectedHelper } from "./generateIsUnexpectedHelper";
 
 /**
  * Generates a Rest Level Client library
@@ -36,7 +38,12 @@ import { generateSampleEnv } from "../generators/samples/sampleEnvGenerator";
 export async function generateRestLevelClient() {
   const host = getHost();
   const { model } = getSession();
-  const { outputPath, srcPath, generateTest } = getAutorestOptions();
+  const {
+    outputPath,
+    srcPath,
+    generateSample,
+    generateTest
+  } = getAutorestOptions();
 
   const project = new Project({
     useInMemoryFileSystem: true,
@@ -54,7 +61,7 @@ export async function generateRestLevelClient() {
   }
 
   performCodeModelMutations(model);
-  generateReadmeFile(model.language, model.info, project);
+  generateReadmeFile(model, project);
   generatePackageJson(project);
   generateLicenseFile(project);
   generateTsConfig(project);
@@ -74,11 +81,16 @@ export async function generateRestLevelClient() {
   generatePathFirstClient(model, project);
   generateClient(model, project);
   generateIndexFile(project);
+  generateIsUnexpectedHelper(project);
 
   generateTopLevelIndexFile(model, project);
-  if (generateTest) {
+  if (generateSample || generateTest) {
     generateSampleEnv(project);
   }
+  if (generateSample) {
+    generateRLCSamples(model, project);
+  }
+
   // Save the source files to the virtual filesystem
   project.saveSync();
   const fs = project.getFileSystem();

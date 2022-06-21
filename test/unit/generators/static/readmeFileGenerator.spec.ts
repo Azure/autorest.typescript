@@ -23,7 +23,7 @@ describe("readmeFileGenerator", () => {
       );
       const project = getEmptyProject();
       const codeModel = new CodeModel("testCodeModel");
-      generateReadmeFile(codeModel.language, codeModel.info, project);
+      generateReadmeFile(codeModel, project);
 
       // Save the source files to the virtual filesystem
       project.saveSync();
@@ -67,8 +67,9 @@ describe("readmeFileGenerator", () => {
         "getAutorestOptions",
         () => autorestOption
       );
+      codeModel.security.authenticationRequired = true;
       const project = getEmptyProject();
-      generateReadmeFile(codeModel.language, codeModel.info, project);
+      generateReadmeFile(codeModel, project);
 
       const expectedContends = readFileSync(
         path.join(__dirname, "files/case-hlcReadme.md"),
@@ -78,6 +79,7 @@ describe("readmeFileGenerator", () => {
         /(\r\n|\n|\r)/gm,
         " "
       );
+      writeFileSync(path.join(__dirname, "files/case-hlcReadme.md"), getFirstFileContent(project));
       assert.strictEqual(actualContents, expectedContends);
     });
 
@@ -124,7 +126,7 @@ describe("readmeFileGenerator", () => {
         () => autorestOption
       );
       const project = getEmptyProject();
-      generateReadmeFile(codeModel.language, codeModel.info, project);
+      generateReadmeFile(codeModel, project);
       const expectedContends = readFileSync(
         path.join(__dirname, "files/case-rlcReadme.md"),
         "utf-8"

@@ -135,78 +135,82 @@ export interface MyBaseType {
   propBH1?: string;
 }
 
-export type Dog = Pet & {
+export interface Dog extends Pet {
   food?: string;
-};
+}
 
-export type Cat = Pet & {
+export interface Cat extends Pet {
   color?: string;
   hates?: Dog[];
-};
+}
 
-export type Salmon = Fish & {
+export interface Salmon extends Fish {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   fishtype: "salmon" | "smart_salmon";
   location?: string;
   iswild?: boolean;
-};
+}
 
-export type Shark = Fish & {
+export interface Shark extends Fish {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   fishtype: "shark" | "sawshark" | "goblin" | "cookiecuttershark";
   age?: number;
   birthday: Date;
-};
+}
 
-export type DotSalmon = DotFish & {
+export interface DotSalmon extends DotFish {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   fishType: "DotSalmon";
   location?: string;
   iswild?: boolean;
-};
+}
 
-export type MyDerivedType = MyBaseType & {
+export interface MyDerivedType extends MyBaseType {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   kind: "Kind1";
   propD1?: string;
-};
+}
 
-export type Siamese = Cat & {
+export interface Siamese extends Cat {
   breed?: string;
-};
+}
 
-export type SmartSalmon = Salmon & {
+export interface SmartSalmon extends Salmon {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   fishtype: "smart_salmon";
   /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
   collegeDegree?: string;
-};
+}
 
-export type Sawshark = Shark & {
+export interface Sawshark extends Shark {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   fishtype: "sawshark";
   picture?: Uint8Array;
-};
+}
 
-export type Goblinshark = Shark & {
+export interface Goblinshark extends Shark {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   fishtype: "goblin";
   jawsize?: number;
   /** Colors possible */
   color?: GoblinSharkColor;
-};
+}
 
-export type Cookiecuttershark = Shark & {
+export interface Cookiecuttershark extends Shark {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   fishtype: "cookiecuttershark";
-};
+}
 
 /** Known values of {@link CMYKColors} that the service accepts. */
 export enum KnownCMYKColors {
+  /** Cyan */
   Cyan = "cyan",
+  /** Magenta */
   Magenta = "Magenta",
+  /** Yellow */
   Yellow = "YELLOW",
+  /** BlacK */
   BlacK = "blacK"
 }
 
@@ -224,6 +228,7 @@ export type CMYKColors = string;
 
 /** Known values of {@link MyKind} that the service accepts. */
 export enum KnownMyKind {
+  /** Kind1 */
   Kind1 = "Kind1"
 }
 
@@ -238,8 +243,11 @@ export type MyKind = string;
 
 /** Known values of {@link GoblinSharkColor} that the service accepts. */
 export enum KnownGoblinSharkColor {
+  /** Pink */
   Pink = "pink",
+  /** Gray */
   Gray = "gray",
+  /** Brown */
   Brown = "brown",
   /** Uppercase RED */
   UpperRed = "RED",

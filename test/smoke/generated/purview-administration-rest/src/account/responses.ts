@@ -23,7 +23,7 @@ export interface AccountsGetAccountProperties200Response extends HttpResponse {
 /** Get an account */
 export interface AccountsGetAccountPropertiesdefaultResponse
   extends HttpResponse {
-  status: "500";
+  status: string;
   body: ErrorResponseModelOutput;
 }
 
@@ -37,7 +37,7 @@ export interface AccountsUpdateAccountProperties200Response
 /** Updates an account */
 export interface AccountsUpdateAccountPropertiesdefaultResponse
   extends HttpResponse {
-  status: "500";
+  status: string;
   body: ErrorResponseModelOutput;
 }
 
@@ -49,7 +49,7 @@ export interface AccountsGetAccessKeys200Response extends HttpResponse {
 
 /** List the authorization keys associated with this account. */
 export interface AccountsGetAccessKeysdefaultResponse extends HttpResponse {
-  status: "500";
+  status: string;
   body: ErrorResponseModelOutput;
 }
 
@@ -62,7 +62,7 @@ export interface AccountsRegenerateAccessKey200Response extends HttpResponse {
 /** Regenerate the authorization keys associated with this data catalog. */
 export interface AccountsRegenerateAccessKeydefaultResponse
   extends HttpResponse {
-  status: "500";
+  status: string;
   body: ErrorResponseModelOutput;
 }
 
@@ -74,7 +74,7 @@ export interface CollectionsGetCollection200Response extends HttpResponse {
 
 /** Get a collection */
 export interface CollectionsGetCollectiondefaultResponse extends HttpResponse {
-  status: "500";
+  status: string;
   body: ErrorResponseModelOutput;
 }
 
@@ -88,7 +88,7 @@ export interface CollectionsCreateOrUpdateCollection200Response
 /** Creates or updates a collection entity. */
 export interface CollectionsCreateOrUpdateCollectiondefaultResponse
   extends HttpResponse {
-  status: "500";
+  status: string;
   body: ErrorResponseModelOutput;
 }
 
@@ -101,7 +101,7 @@ export interface CollectionsDeleteCollection204Response extends HttpResponse {
 /** Deletes a Collection entity. */
 export interface CollectionsDeleteCollectiondefaultResponse
   extends HttpResponse {
-  status: "500";
+  status: string;
   body: ErrorResponseModelOutput;
 }
 
@@ -114,7 +114,7 @@ export interface CollectionsListCollections200Response extends HttpResponse {
 /** List the collections in the account. */
 export interface CollectionsListCollectionsdefaultResponse
   extends HttpResponse {
-  status: "500";
+  status: string;
   body: ErrorResponseModelOutput;
 }
 
@@ -128,7 +128,7 @@ export interface CollectionsListChildCollectionNames200Response
 /** Lists the child collections names in the collection. */
 export interface CollectionsListChildCollectionNamesdefaultResponse
   extends HttpResponse {
-  status: "500";
+  status: string;
   body: ErrorResponseModelOutput;
 }
 
@@ -141,7 +141,7 @@ export interface CollectionsGetCollectionPath200Response extends HttpResponse {
 /** Gets the parent name and parent friendly name chains that represent the collection path. */
 export interface CollectionsGetCollectionPathdefaultResponse
   extends HttpResponse {
-  status: "500";
+  status: string;
   body: ErrorResponseModelOutput;
 }
 
@@ -155,7 +155,7 @@ export interface ResourceSetRulesGetResourceSetRule200Response
 /** Get a resource set config service model. */
 export interface ResourceSetRulesGetResourceSetRuledefaultResponse
   extends HttpResponse {
-  status: "500";
+  status: string;
   body: ErrorResponseModelOutput;
 }
 
@@ -169,7 +169,7 @@ export interface ResourceSetRulesCreateOrUpdateResourceSetRule200Response
 /** Creates or updates an resource set config. */
 export interface ResourceSetRulesCreateOrUpdateResourceSetRuledefaultResponse
   extends HttpResponse {
-  status: "500";
+  status: string;
   body: ErrorResponseModelOutput;
 }
 
@@ -190,7 +190,7 @@ export interface ResourceSetRulesDeleteResourceSetRule204Response
 /** Deletes a ResourceSetRuleConfig resource. */
 export interface ResourceSetRulesDeleteResourceSetRuledefaultResponse
   extends HttpResponse {
-  status: "500";
+  status: string;
   body: ErrorResponseModelOutput;
 }
 
@@ -204,6 +204,6 @@ export interface ResourceSetRulesListResourceSetRules200Response
 /** Get a resource set config service model. */
 export interface ResourceSetRulesListResourceSetRulesdefaultResponse
   extends HttpResponse {
-  status: "500";
+  status: string;
   body: ErrorResponseModelOutput;
 }

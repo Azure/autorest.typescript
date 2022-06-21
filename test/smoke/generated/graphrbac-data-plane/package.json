@@ -4,9 +4,7 @@
   "author": "Microsoft Corporation",
   "description": "A generated SDK for GraphRbacManagementClient.",
   "version": "1.0.0-beta.1",
-  "engines": {
-    "node": ">=12.0.0"
-  },
+  "engines": { "node": ">=12.0.0" },
   "dependencies": {
     "@azure/core-paging": "^1.2.0",
     "@azure/core-client": "^1.5.0",
@@ -14,13 +12,7 @@
     "@azure/core-rest-pipeline": "^1.8.0",
     "tslib": "^2.2.0"
   },
-  "keywords": [
-    "node",
-    "azure",
-    "typescript",
-    "browser",
-    "isomorphic"
-  ],
+  "keywords": ["node", "azure", "typescript", "browser", "isomorphic"],
   "license": "MIT",
   "main": "./dist/index.js",
   "module": "./dist-esm/index.js",
@@ -43,9 +35,7 @@
     "type": "git",
     "url": "https://github.com/Azure/azure-sdk-for-js.git"
   },
-  "bugs": {
-    "url": "https://github.com/Azure/azure-sdk-for-js/issues"
-  },
+  "bugs": { "url": "https://github.com/Azure/azure-sdk-for-js/issues" },
   "files": [
     "dist/**/*.js",
     "dist/**/*.js.map",
@@ -88,16 +78,12 @@
     "unit-test:browser": "echo skipped",
     "integration-test": "echo skipped",
     "integration-test:node": "echo skipped",
-    "integration-test:browser": "echo skipped",
-    "docs": "echo skipped"
+    "integration-test:browser": "echo skipped"
   },
   "sideEffects": false,
   "//metadata": {
     "constantPaths": [
-      {
-        "path": "src/graphRbacManagementClient.ts",
-        "prefix": "packageDetails"
-      }
+      { "path": "src/graphRbacManagementClient.ts", "prefix": "packageDetails" }
     ]
   },
   "autoPublish": true

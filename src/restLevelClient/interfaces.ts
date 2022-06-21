@@ -6,21 +6,34 @@ export type PathParameter = {
   description?: string;
 };
 
+export interface ResponseTypes {
+  success: string[];
+  error: string[];
+}
+
+export interface OperationMethod {
+  optionsName: string;
+  description: string;
+  hasOptionalOptions: boolean;
+  returnType: string;
+  successStatus: string[];
+  responseTypes: ResponseTypes;
+}
+
 export type Methods = {
-  [key: string]: [
-    {
-      optionsName: string;
-      description: string;
-      hasOptionalOptions: boolean;
-      returnType: string;
-    }
-  ];
+  [key: string]: [OperationMethod];
 };
 
-export type Paths = {
-  [key: string]: {
-    name: string;
-    pathParameters: PathParameter[];
-    methods: Methods;
-  };
-};
+export interface PathMetadata {
+  name: string;
+  pathParameters: PathParameter[];
+  methods: Methods;
+  annotations?: OperationAnnotations;
+}
+
+export type Paths = Record<string, PathMetadata>;
+
+export interface OperationAnnotations {
+  isLongRunning?: boolean;
+  isPageable?: boolean;
+}

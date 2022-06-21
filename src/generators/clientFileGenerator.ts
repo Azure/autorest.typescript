@@ -31,7 +31,7 @@ import { getAutorestOptions } from "../autorestSession";
 import { ParameterDetails } from "../models/parameterDetails";
 import { EndpointDetails } from "../transforms/urlTransforms";
 import { PackageDetails } from "../models/packageDetails";
-import { generateOperationJSDoc } from "./utils/docsUtils";
+import { getSecurityInfoFromModel } from "../utils/schemaHelpers";
 
 type OperationDeclarationDetails = { name: string; typeName: string };
 
@@ -40,10 +40,10 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
     useCoreV2,
     hideClients,
     srcPath,
-    addCredentials,
     packageDetails,
     coreHttpCompatMode
   } = getAutorestOptions();
+  const { addCredentials } = getSecurityInfoFromModel(clientDetails.security);
   const hasMappers = !!clientDetails.mappers.length;
 
   // Check if there are any client level operations
@@ -437,7 +437,7 @@ function writeCustomApiVersion(classDeclaration: ClassDeclaration) {
       if (param.length > 1) {
         const newParams = param[1].split('&').map((item) => {
           if(item.indexOf('api-version') > -1) {
-            return item.replace(/(?<==).*$/, apiVersion);
+            return "api-version=" + apiVersion;
           } else {
             return item;
           }
@@ -525,8 +525,17 @@ function getRequiredParamChecks(requiredParameters: ParameterDetails[]) {
 
 function getCredentialScopesValue(credentialScopes?: string | string[]) {
   if (Array.isArray(credentialScopes)) {
+    if (
+      credentialScopes.length === 1 &&
+      credentialScopes[0] === "user_impersonation"
+    ) {
+      return undefined;
+    }
     return `[${credentialScopes.map(scope => `"${scope}"`).join()}]`;
   } else if (typeof credentialScopes === "string") {
+    if (credentialScopes === "user_impersonation") {
+      return undefined;
+    }
     return `"${credentialScopes}"`;
   }
 
@@ -629,10 +638,15 @@ function writeDefaultOptions(
   hasLro: boolean,
   clientDetails: ClientDetails
 ) {
-  const { useCoreV2, credentialScopes, packageDetails } = getAutorestOptions();
+  const { useCoreV2, packageDetails, addCredentials } = getAutorestOptions();
+  const { credentialScopes } = getSecurityInfoFromModel(clientDetails.security);
 
   const credentialScopesValues = getCredentialScopesValue(credentialScopes);
-  const addScopes = credentialScopes
+  const addScopes = isAddScopes(
+    addCredentials,
+    credentialScopes,
+    credentialScopesValues
+  )
     ? `if(!options.credentialScopes) {
     options.credentialScopes = ${credentialScopesValues}
   }`
@@ -655,6 +669,19 @@ function writeDefaultOptions(
         packageDetails,
         clientDetails
       );
+}
+
+function isAddScopes(
+  addCredentials?: boolean,
+  credentialScopes?: string[],
+  credentialScopesValues?: string
+) {
+  return (
+    addCredentials &&
+    credentialScopes &&
+    credentialScopesValues &&
+    credentialScopes.length > 0
+  );
 }
 
 function getEndpointStatement({ endpoint }: EndpointDetails) {

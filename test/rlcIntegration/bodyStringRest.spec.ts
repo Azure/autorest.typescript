@@ -2,6 +2,7 @@ import { assert } from "chai";
 import BodyStringRest, {
   BodyStringRestClient
 } from "./generated/bodyStringRest/src";
+import { isUnexpected } from "./generated/bodyStringRest/src";
 
 describe("BodyStringRest", () => {
   let client: BodyStringRestClient;
@@ -90,7 +91,7 @@ describe("BodyStringRest", () => {
         .path("/string/base64Encoding")
         .get({ allowInsecureConnection: true });
 
-      if (result.status !== "200") {
+      if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
         throw error;
@@ -116,7 +117,7 @@ describe("BodyStringRest", () => {
       });
       assert.equal(result.status, "200");
 
-      if (result.status !== "200") {
+      if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
         throw error;
@@ -159,7 +160,7 @@ describe("BodyStringRest", () => {
         .path("/string/enum/ReferencedConstant")
         .get({ allowInsecureConnection: true });
 
-      if (result.status !== "200") {
+      if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
         throw error;

@@ -17,7 +17,7 @@ export interface GetNoItemNamePages200Response extends HttpResponse {
 
 /** A paging operation that must return result of the default 'value' node. */
 export interface GetNoItemNamePagesdefaultResponse extends HttpResponse {
-  status: "500";
+  status: string;
   body: Record<string, unknown>;
 }
 
@@ -29,7 +29,7 @@ export interface GetNullNextLinkNamePages200Response extends HttpResponse {
 
 /** A paging operation that must ignore any kind of nextLink, and stop after page 1. */
 export interface GetNullNextLinkNamePagesdefaultResponse extends HttpResponse {
-  status: "500";
+  status: string;
   body: Record<string, unknown>;
 }
 
@@ -41,7 +41,7 @@ export interface GetSinglePages200Response extends HttpResponse {
 
 /** A paging operation that finishes on the first call without a nextlink */
 export interface GetSinglePagesdefaultResponse extends HttpResponse {
-  status: "500";
+  status: string;
   body: Record<string, unknown>;
 }
 
@@ -53,7 +53,7 @@ export interface FirstResponseEmpty200Response extends HttpResponse {
 
 /** A paging operation whose first response's items list is empty, but still returns a next link. Second (and final) call, will give you an items list of 1. */
 export interface FirstResponseEmptydefaultResponse extends HttpResponse {
-  status: "500";
+  status: string;
   body: Record<string, unknown>;
 }
 
@@ -65,7 +65,7 @@ export interface GetMultiplePages200Response extends HttpResponse {
 
 /** A paging operation that includes a nextLink that has 10 pages */
 export interface GetMultiplePagesdefaultResponse extends HttpResponse {
-  status: "500";
+  status: string;
   body: Record<string, unknown>;
 }
 
@@ -77,7 +77,7 @@ export interface GetWithQueryParams200Response extends HttpResponse {
 
 /** A paging operation that includes a next operation. It has a different query parameter from it's next operation nextOperationWithQueryParams. Returns a ProductResult */
 export interface GetWithQueryParamsdefaultResponse extends HttpResponse {
-  status: "500";
+  status: string;
   body: Record<string, unknown>;
 }
 
@@ -89,7 +89,7 @@ export interface DuplicateParams200Response extends HttpResponse {
 
 /** Define `filter` as a query param for all calls. However, the returned next link will also include the `filter` as part of it. Make sure you don't end up duplicating the `filter` param in the url sent. */
 export interface DuplicateParamsdefaultResponse extends HttpResponse {
-  status: "500";
+  status: string;
   body: Record<string, unknown>;
 }
 
@@ -102,7 +102,7 @@ export interface NextOperationWithQueryParams200Response extends HttpResponse {
 /** Next operation for getWithQueryParams. Pass in next=True to pass test. Returns a ProductResult */
 export interface NextOperationWithQueryParamsdefaultResponse
   extends HttpResponse {
-  status: "500";
+  status: string;
   body: Record<string, unknown>;
 }
 
@@ -114,7 +114,7 @@ export interface GetOdataMultiplePages200Response extends HttpResponse {
 
 /** A paging operation that includes a nextLink in odata format that has 10 pages */
 export interface GetOdataMultiplePagesdefaultResponse extends HttpResponse {
-  status: "500";
+  status: string;
   body: Record<string, unknown>;
 }
 
@@ -127,7 +127,7 @@ export interface GetMultiplePagesWithOffset200Response extends HttpResponse {
 /** A paging operation that includes a nextLink that has 10 pages */
 export interface GetMultiplePagesWithOffsetdefaultResponse
   extends HttpResponse {
-  status: "500";
+  status: string;
   body: Record<string, unknown>;
 }
 
@@ -140,7 +140,7 @@ export interface GetMultiplePagesRetryFirst200Response extends HttpResponse {
 /** A paging operation that fails on the first call with 500 and then retries and then get a response including a nextLink that has 10 pages */
 export interface GetMultiplePagesRetryFirstdefaultResponse
   extends HttpResponse {
-  status: "500";
+  status: string;
   body: Record<string, unknown>;
 }
 
@@ -153,7 +153,7 @@ export interface GetMultiplePagesRetrySecond200Response extends HttpResponse {
 /** A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails first with 500. The client should retry and finish all 10 pages eventually. */
 export interface GetMultiplePagesRetrySeconddefaultResponse
   extends HttpResponse {
-  status: "500";
+  status: string;
   body: Record<string, unknown>;
 }
 
@@ -165,7 +165,7 @@ export interface GetSinglePagesFailure200Response extends HttpResponse {
 
 /** A paging operation that receives a 400 on the first call */
 export interface GetSinglePagesFailuredefaultResponse extends HttpResponse {
-  status: "500";
+  status: string;
   body: Record<string, unknown>;
 }
 
@@ -177,7 +177,7 @@ export interface GetMultiplePagesFailure200Response extends HttpResponse {
 
 /** A paging operation that receives a 400 on the second call */
 export interface GetMultiplePagesFailuredefaultResponse extends HttpResponse {
-  status: "500";
+  status: string;
   body: Record<string, unknown>;
 }
 
@@ -190,7 +190,7 @@ export interface GetMultiplePagesFailureUri200Response extends HttpResponse {
 /** A paging operation that receives an invalid nextLink */
 export interface GetMultiplePagesFailureUridefaultResponse
   extends HttpResponse {
-  status: "500";
+  status: string;
   body: Record<string, unknown>;
 }
 
@@ -204,7 +204,7 @@ export interface GetMultiplePagesFragmentNextLink200Response
 /** A paging operation that doesn't return a full URL, just a fragment */
 export interface GetMultiplePagesFragmentNextLinkdefaultResponse
   extends HttpResponse {
-  status: "500";
+  status: string;
   body: Record<string, unknown>;
 }
 
@@ -218,7 +218,7 @@ export interface GetMultiplePagesFragmentWithGroupingNextLink200Response
 /** A paging operation that doesn't return a full URL, just a fragment with parameters grouped */
 export interface GetMultiplePagesFragmentWithGroupingNextLinkdefaultResponse
   extends HttpResponse {
-  status: "500";
+  status: string;
   body: Record<string, unknown>;
 }
 
@@ -230,7 +230,7 @@ export interface GetMultiplePagesLRO202Response extends HttpResponse {
 
 /** A long-running paging operation that includes a nextLink that has 10 pages */
 export interface GetMultiplePagesLROdefaultResponse extends HttpResponse {
-  status: "500";
+  status: string;
   body: Record<string, unknown>;
 }
 
@@ -242,7 +242,7 @@ export interface NextFragment200Response extends HttpResponse {
 
 /** A paging operation that doesn't return a full URL, just a fragment */
 export interface NextFragmentdefaultResponse extends HttpResponse {
-  status: "500";
+  status: string;
   body: Record<string, unknown>;
 }
 
@@ -254,7 +254,7 @@ export interface NextFragmentWithGrouping200Response extends HttpResponse {
 
 /** A paging operation that doesn't return a full URL, just a fragment */
 export interface NextFragmentWithGroupingdefaultResponse extends HttpResponse {
-  status: "500";
+  status: string;
   body: Record<string, unknown>;
 }
 
@@ -268,6 +268,6 @@ export interface GetPagingModelWithItemNameWithXMSClientName200Response
 /** A paging operation that returns a paging model whose item name is is overriden by x-ms-client-name 'indexes'. */
 export interface GetPagingModelWithItemNameWithXMSClientNamedefaultResponse
   extends HttpResponse {
-  status: "500";
+  status: string;
   body: Record<string, unknown>;
 }

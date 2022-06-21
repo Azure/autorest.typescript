@@ -693,9 +693,9 @@ export interface DeploymentWhatIf {
 }
 
 // @public
-export type DeploymentWhatIfProperties = DeploymentProperties & {
+export interface DeploymentWhatIfProperties extends DeploymentProperties {
     whatIfSettings?: DeploymentWhatIfSettings;
-};
+}
 
 // @public
 export interface DeploymentWhatIfSettings {
@@ -724,21 +724,21 @@ export interface ExportTemplateRequest {
 }
 
 // @public
-export type GenericResource = Resource & {
-    plan?: Plan;
-    properties?: Record<string, unknown>;
+export interface GenericResource extends Resource {
+    identity?: Identity;
     kind?: string;
     managedBy?: string;
+    plan?: Plan;
+    properties?: Record<string, unknown>;
     sku?: Sku;
-    identity?: Identity;
-};
+}
 
 // @public
-export type GenericResourceExpanded = GenericResource & {
-    readonly createdTime?: Date;
+export interface GenericResourceExpanded extends GenericResource {
     readonly changedTime?: Date;
+    readonly createdTime?: Date;
     readonly provisioningState?: string;
-};
+}
 
 // @public
 export interface GenericResourceFilter {

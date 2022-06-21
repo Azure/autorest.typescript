@@ -8,7 +8,8 @@ import BodyComplexRest, {
   SalmonOutput,
   SawsharkOutput,
   SmartSalmon,
-  Siamese
+  Siamese,
+  isUnexpected
 } from "./generated/bodyComplexRest/src";
 
 describe("BodyComplex Rest Client", () => {
@@ -22,27 +23,24 @@ describe("BodyComplex Rest Client", () => {
     describe("Basic Types Operations", function() {
       it("should get and put valid basic type properties", async () => {
         const result = await client.path("/complex/basic/valid").get();
-
         try {
-          if (result.status !== "200") {
-            const error = `Unexpected status code ${result.status}`;
+          if (isUnexpected(result)) {
+            const error = `Unexpected status code ${result.body.message}`;
             assert.fail(error);
-            throw error;
           }
-  
+
           assert.strictEqual(result.body.id, 2);
           assert.strictEqual(result.body.name, "abc");
           assert.strictEqual(result.body.color, "YELLOW");
-  
+
           const resultPut = await client
             .path("/complex/basic/valid")
             .put({ body: { id: 2, name: "abc", color: "Magenta" } });
-  
+
           assert.equal(resultPut.status, "200");
         } catch (err) {
           assert.fail(err);
         }
-
       });
 
       it("should get null basic type properties", async () => {
@@ -50,7 +48,7 @@ describe("BodyComplex Rest Client", () => {
         try {
           const result = await client.path("/complex/basic/null").get();
 
-          if (result.status !== "200") {
+          if (isUnexpected(result)) {
             const error = `Unexpected status code ${result.status}`;
             assert.fail(error);
             throw error;
@@ -68,12 +66,12 @@ describe("BodyComplex Rest Client", () => {
         try {
           const result = await client.path("/complex/basic/empty").get();
 
-          if (result.status !== "200") {
+          if (isUnexpected(result)) {
             const error = `Unexpected status code ${result.status}`;
             assert.fail(error);
             throw error;
           }
-  
+
           assert.strictEqual(result.body.id, undefined);
           assert.strictEqual(result.body.name, undefined);
         } catch (err) {
@@ -89,7 +87,7 @@ describe("BodyComplex Rest Client", () => {
       it("should deserialize invalid basic types without throwing", async () => {
         const result = await client.path("/complex/basic/invalid").get();
 
-        if (result.status !== "200") {
+        if (isUnexpected(result)) {
           const error = `Unexpected status code ${result.status}`;
           assert.fail(error);
           throw error;
@@ -114,7 +112,7 @@ describe("BodyComplex Rest Client", () => {
       it("should handle getComplexPolymorphismDotSyntax", async () => {
         const result = await client.path("/complex/primitive/double").get();
 
-        if (result.status !== "200") {
+        if (isUnexpected(result)) {
           const error = `Unexpected status code ${result.status}`;
           assert.fail(error);
           throw error;
@@ -131,7 +129,7 @@ describe("BodyComplex Rest Client", () => {
       it("should get and put valid int properties", async () => {
         const result = await client.path("/complex/primitive/integer").get();
 
-        if (result.status !== "200") {
+        if (isUnexpected(result)) {
           const error = `Unexpected status code ${result.status}`;
           assert.fail(error);
           throw error;
@@ -149,7 +147,7 @@ describe("BodyComplex Rest Client", () => {
       it("should get and put valid long properties", async () => {
         const result = await client.path("/complex/primitive/long").get();
 
-        if (result.status !== "200") {
+        if (isUnexpected(result)) {
           const error = `Unexpected status code ${result.status}`;
           assert.fail(error);
           throw error;
@@ -170,7 +168,7 @@ describe("BodyComplex Rest Client", () => {
       it("should get and put valid float properties", async () => {
         const result = await client.path("/complex/primitive/float").get();
 
-        if (result.status !== "200") {
+        if (isUnexpected(result)) {
           const error = `Unexpected status code ${result.status}`;
           assert.fail(error);
           throw error;
@@ -191,7 +189,7 @@ describe("BodyComplex Rest Client", () => {
       it("should get and put valid bool properties", async () => {
         const result = await client.path("/complex/primitive/bool").get();
 
-        if (result.status !== "200") {
+        if (isUnexpected(result)) {
           const error = `Unexpected status code ${result.status}`;
           assert.fail(error);
           throw error;
@@ -213,7 +211,7 @@ describe("BodyComplex Rest Client", () => {
       it("should get and put valid string properties", async () => {
         const result = await client.path("/complex/primitive/string").get();
 
-        if (result.status !== "200") {
+        if (isUnexpected(result)) {
           const error = `Unexpected status code ${result.status}`;
           assert.fail(error);
           throw error;
@@ -236,7 +234,7 @@ describe("BodyComplex Rest Client", () => {
       it("should get and put valid date properties", async () => {
         const result = await client.path("/complex/primitive/date").get();
 
-        if (result.status !== "200") {
+        if (isUnexpected(result)) {
           const error = `Unexpected status code ${result.status}`;
           assert.fail(error);
           throw error;
@@ -257,7 +255,7 @@ describe("BodyComplex Rest Client", () => {
       it("should get and put valid date-time properties", async () => {
         const result = await client.path("/complex/primitive/datetime").get();
 
-        if (result.status !== "200") {
+        if (isUnexpected(result)) {
           const error = `Unexpected status code ${result.status}`;
           assert.fail(error);
           throw error;
@@ -283,7 +281,7 @@ describe("BodyComplex Rest Client", () => {
           .path("/complex/primitive/datetimerfc1123")
           .get();
 
-        if (result.status !== "200") {
+        if (isUnexpected(result)) {
           const error = `Unexpected status code ${result.status}`;
           assert.fail(error);
           throw error;
@@ -306,7 +304,7 @@ describe("BodyComplex Rest Client", () => {
         const durationString = "P123DT22H14M12.011S";
         const result = await client.path("/complex/primitive/duration").get();
 
-        if (result.status !== "200") {
+        if (isUnexpected(result)) {
           const error = `Unexpected status code ${result.status}`;
           assert.fail(error);
           throw error;
@@ -328,7 +326,7 @@ describe("BodyComplex Rest Client", () => {
 
         const result = await client.path("/complex/primitive/byte").get();
 
-        if (result.status !== "200") {
+        if (isUnexpected(result)) {
           const error = `Unexpected status code ${result.status}`;
           assert.fail(error);
           throw error;
@@ -357,7 +355,7 @@ describe("BodyComplex Rest Client", () => {
         ];
         const result = await client.path("/complex/array/valid").get();
 
-        if (result.status !== "200") {
+        if (isUnexpected(result)) {
           const error = `Unexpected status code ${result.status}`;
           assert.fail(error);
           throw error;
@@ -374,7 +372,7 @@ describe("BodyComplex Rest Client", () => {
 
       it("should get and put empty array type properties", async () => {
         const result = await client.path("/complex/array/empty").get();
-        if (result.status !== "200") {
+        if (isUnexpected(result)) {
           const error = `Unexpected status code ${result.status}`;
           assert.fail(error);
           throw error;
@@ -391,7 +389,7 @@ describe("BodyComplex Rest Client", () => {
 
       it("should get array type properties when the payload is empty", async () => {
         const result = await client.path("/complex/array/notprovided").get();
-        if (result.status !== "200") {
+        if (isUnexpected(result)) {
           const error = `Unexpected status code ${result.status}`;
           assert.fail(error);
           throw error;
@@ -413,7 +411,7 @@ describe("BodyComplex Rest Client", () => {
           .path("/complex/dictionary/typed/valid")
           .get();
 
-        if (result.status !== "200") {
+        if (isUnexpected(result)) {
           const error = `Unexpected status code ${result.status}`;
           assert.fail(error);
           throw error;
@@ -432,7 +430,7 @@ describe("BodyComplex Rest Client", () => {
           .path("/complex/dictionary/typed/empty")
           .get();
 
-        if (result.status !== "200") {
+        if (isUnexpected(result)) {
           const error = `Unexpected status code ${result.status}`;
           assert.fail(error);
           throw error;
@@ -450,7 +448,7 @@ describe("BodyComplex Rest Client", () => {
           .path("/complex/dictionary/typed/null")
           .get();
 
-        if (result.status !== "200") {
+        if (isUnexpected(result)) {
           const error = `Unexpected status code ${result.status}`;
           assert.fail(error);
           throw error;
@@ -464,7 +462,7 @@ describe("BodyComplex Rest Client", () => {
           .path("/complex/dictionary/typed/notprovided")
           .get();
 
-        if (result.status !== "200") {
+        if (isUnexpected(result)) {
           const error = `Unexpected status code ${result.status}`;
           assert.fail(error);
           throw error;
@@ -488,7 +486,7 @@ describe("BodyComplex Rest Client", () => {
       it("should get valid basic type properties", async () => {
         const result = await client.path("/complex/inheritance/valid").get();
 
-        if (result.status !== "200") {
+        if (isUnexpected(result)) {
           const error = `Unexpected status code ${result.status}`;
           assert.fail(error);
           throw error;
@@ -508,7 +506,7 @@ describe("BodyComplex Rest Client", () => {
           .path("/complex/readonlyproperty/valid")
           .get();
 
-        if (result.status !== "200") {
+        if (isUnexpected(result)) {
           const error = `Unexpected status code ${result.status}`;
           assert.fail(error);
           throw error;
@@ -568,7 +566,7 @@ describe("BodyComplex Rest Client", () => {
           .path("/complex/polymorphism/dotsyntax")
           .get();
 
-        if (result.status !== "200") {
+        if (isUnexpected(result)) {
           const error = `Unexpected status code ${result.status}`;
           assert.fail(error);
           throw error;
@@ -585,7 +583,7 @@ describe("BodyComplex Rest Client", () => {
           .path("/complex/polymorphism/composedWithoutDiscriminator")
           .get();
 
-        if (result.status !== "200") {
+        if (isUnexpected(result)) {
           const error = `Unexpected status code ${result.status}`;
           assert.fail(error);
           throw error;
@@ -636,7 +634,7 @@ describe("BodyComplex Rest Client", () => {
           .path("/complex/polymorphism/composedWithDiscriminator")
           .get();
 
-        if (result.status !== "200") {
+        if (isUnexpected(result)) {
           const error = `Unexpected status code ${result.status}`;
           assert.fail(error);
           throw error;
@@ -690,7 +688,7 @@ describe("BodyComplex Rest Client", () => {
       it("should get valid polymorphic properties", async function() {
         const result = await client.path("/complex/polymorphism/valid").get();
 
-        if (result.status !== "200") {
+        if (isUnexpected(result)) {
           const error = `Unexpected status code ${result.status}`;
           assert.fail(error);
           throw error;
@@ -860,7 +858,7 @@ describe("BodyComplex Rest Client", () => {
           .path("/complex/polymorphism/complicated")
           .get();
 
-        if (result.status !== "200") {
+        if (isUnexpected(result)) {
           const error = `Unexpected status code ${result.status}`;
           assert.fail(error);
           throw error;
@@ -923,7 +921,7 @@ describe("BodyComplex Rest Client", () => {
           .path("/complex/polymorphism/missingdiscriminator")
           .put({ body: regularSalmon as Salmon });
 
-        if (result.status !== "200") {
+        if (isUnexpected(result)) {
           const error = `Unexpected status code ${result.status}`;
           assert.fail(error);
           throw error;

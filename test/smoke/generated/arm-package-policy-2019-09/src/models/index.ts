@@ -286,9 +286,13 @@ export type EnforcementMode = string;
 
 /** Known values of {@link PolicyType} that the service accepts. */
 export enum KnownPolicyType {
+  /** NotSpecified */
   NotSpecified = "NotSpecified",
+  /** BuiltIn */
   BuiltIn = "BuiltIn",
+  /** Custom */
   Custom = "Custom",
+  /** Static */
   Static = "Static"
 }
 
@@ -306,12 +310,19 @@ export type PolicyType = string;
 
 /** Known values of {@link ParameterType} that the service accepts. */
 export enum KnownParameterType {
+  /** String */
   String = "String",
+  /** Array */
   Array = "Array",
+  /** Object */
   Object = "Object",
+  /** Boolean */
   Boolean = "Boolean",
+  /** Integer */
   Integer = "Integer",
+  /** Float */
   Float = "Float",
+  /** DateTime */
   DateTime = "DateTime"
 }
 

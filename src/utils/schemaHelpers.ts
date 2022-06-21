@@ -11,11 +11,17 @@ import {
   ArraySchema,
   DictionarySchema,
   SchemaResponse,
-  ComplexSchema
+  ComplexSchema,
+  OAuth2SecurityScheme,
+  KeySecurityScheme,
+  ParameterLocation,
+  Security
 } from "@autorest/codemodel";
 import { getStringForValue } from "./valueHelpers";
 import { getLanguageMetadata } from "./languageHelpers";
-import { normalizeName, NameType, normalizeTypeName } from "./nameUtils";
+import { normalizeName, NameType } from "./nameUtils";
+import { logger } from "./logger";
+import { getAutorestOptions } from "../autorestSession";
 
 /**
  * Extracts parents from an ObjectSchema
@@ -220,4 +226,45 @@ export function getSchemaTypeDocumentation(schema: Schema) {
     default:
       return "";
   }
+}
+
+export function getSecurityInfoFromModel(security: Security) {
+  const { addCredentials } = getAutorestOptions();
+  const credentialScopes: Set<string> = new Set<string>();
+  let credentialKeyHeaderName: string = "";
+  for (const securitySchema of security.schemes) {
+    if (securitySchema.type === "OAuth2") {
+      (securitySchema as OAuth2SecurityScheme).scopes.forEach(scope => {
+        const scopes = scope.split(',');
+        for(const scope of scopes) {
+          credentialScopes.add(scope);
+        }
+      });
+    } else if (
+      credentialKeyHeaderName === "" &&
+      securitySchema.type === "Key" &&
+      (securitySchema as KeySecurityScheme).in === ParameterLocation.Header
+    ) {
+      credentialKeyHeaderName = (securitySchema as KeySecurityScheme).name;
+    } else if (
+      credentialKeyHeaderName !== "" &&
+      credentialKeyHeaderName !== (securitySchema as KeySecurityScheme).name &&
+      securitySchema.type === "Key" &&
+      (securitySchema as KeySecurityScheme).in === ParameterLocation.Header
+    ) {
+      logger.warning(
+        `Set multiple headers for key credential has not been supported yet`
+      );
+    }
+  }
+  const scopes: string[] = [];
+  credentialScopes.forEach(item => {
+    scopes.push(item);
+  });
+  return {
+    addCredentials:
+      addCredentials === false ? false : security.authenticationRequired,
+    credentialScopes: scopes,
+    credentialKeyHeaderName: credentialKeyHeaderName
+  };
 }

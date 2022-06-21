@@ -4,15 +4,19 @@
 
 ```ts
 
+/// <reference types="node" />
+
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
+import { KeyCredential } from '@azure/core-auth';
 import { LroEngineOptions } from '@azure/core-lro';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { PollerLike } from '@azure/core-lro';
 import { PollOperationState } from '@azure/core-lro';
 import { RequestParameters } from '@azure-rest/core-client';
+import { StreamableMethod } from '@azure-rest/core-client';
 
 // @public (undocumented)
 export interface ApplicationData {
@@ -64,7 +68,7 @@ export interface ApplicationDataCreateOrUpdatedefaultResponse extends HttpRespon
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -88,7 +92,7 @@ export interface ApplicationDataDeletedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -96,9 +100,9 @@ export type ApplicationDataDeleteParameters = RequestParameters;
 
 // @public (undocumented)
 export interface ApplicationDataGet {
-    delete(options?: ApplicationDataDeleteParameters): Promise<ApplicationDataDelete204Response | ApplicationDataDeletedefaultResponse>;
-    get(options?: ApplicationDataGetParameters): Promise<ApplicationDataGet200Response | ApplicationDataGetdefaultResponse>;
-    patch(options?: ApplicationDataCreateOrUpdateParameters): Promise<ApplicationDataCreateOrUpdate200Response | ApplicationDataCreateOrUpdate201Response | ApplicationDataCreateOrUpdatedefaultResponse>;
+    delete(options?: ApplicationDataDeleteParameters): StreamableMethod<ApplicationDataDelete204Response | ApplicationDataDeletedefaultResponse>;
+    get(options?: ApplicationDataGetParameters): StreamableMethod<ApplicationDataGet200Response | ApplicationDataGetdefaultResponse>;
+    patch(options?: ApplicationDataCreateOrUpdateParameters): StreamableMethod<ApplicationDataCreateOrUpdate200Response | ApplicationDataCreateOrUpdate201Response | ApplicationDataCreateOrUpdatedefaultResponse>;
 }
 
 // @public
@@ -114,7 +118,7 @@ export interface ApplicationDataGetdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -122,7 +126,7 @@ export type ApplicationDataGetParameters = RequestParameters;
 
 // @public (undocumented)
 export interface ApplicationDataList {
-    get(options?: ApplicationDataListParameters): Promise<ApplicationDataList200Response | ApplicationDataListdefaultResponse>;
+    get(options?: ApplicationDataListParameters): StreamableMethod<ApplicationDataList200Response | ApplicationDataListdefaultResponse>;
 }
 
 // @public
@@ -135,7 +139,7 @@ export interface ApplicationDataList200Response extends HttpResponse {
 
 // @public (undocumented)
 export interface ApplicationDataListByFarmerId {
-    get(options?: ApplicationDataListByFarmerIdParameters): Promise<ApplicationDataListByFarmerId200Response | ApplicationDataListByFarmerIddefaultResponse>;
+    get(options?: ApplicationDataListByFarmerIdParameters): StreamableMethod<ApplicationDataListByFarmerId200Response | ApplicationDataListByFarmerIddefaultResponse>;
 }
 
 // @public
@@ -151,7 +155,7 @@ export interface ApplicationDataListByFarmerIddefaultResponse extends HttpRespon
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -197,7 +201,7 @@ export interface ApplicationDataListdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -334,7 +338,7 @@ export interface AttachmentsCreateOrUpdatedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -343,7 +347,7 @@ export interface AttachmentsCreateOrUpdateFormBody {
     Description?: string;
     ETag?: string;
     FarmerId?: string;
-    file?: string | Uint8Array;
+    file?: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream;
     Id?: string;
     ModifiedDateTime?: string;
     Name?: string;
@@ -374,7 +378,7 @@ export interface AttachmentsDeletedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -382,7 +386,7 @@ export type AttachmentsDeleteParameters = RequestParameters;
 
 // @public (undocumented)
 export interface AttachmentsDownload {
-    get(options?: AttachmentsDownloadParameters): Promise<AttachmentsDownload200Response | AttachmentsDownloaddefaultResponse>;
+    get(options?: AttachmentsDownloadParameters): StreamableMethod<AttachmentsDownload200Response | AttachmentsDownloaddefaultResponse>;
 }
 
 // @public
@@ -397,7 +401,7 @@ export interface AttachmentsDownloaddefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -405,9 +409,9 @@ export type AttachmentsDownloadParameters = RequestParameters;
 
 // @public (undocumented)
 export interface AttachmentsGet {
-    delete(options?: AttachmentsDeleteParameters): Promise<AttachmentsDelete204Response | AttachmentsDeletedefaultResponse>;
-    get(options?: AttachmentsGetParameters): Promise<AttachmentsGet200Response | AttachmentsGetdefaultResponse>;
-    patch(options?: AttachmentsCreateOrUpdateParameters): Promise<AttachmentsCreateOrUpdate200Response | AttachmentsCreateOrUpdate201Response | AttachmentsCreateOrUpdatedefaultResponse>;
+    delete(options?: AttachmentsDeleteParameters): StreamableMethod<AttachmentsDelete204Response | AttachmentsDeletedefaultResponse>;
+    get(options?: AttachmentsGetParameters): StreamableMethod<AttachmentsGet200Response | AttachmentsGetdefaultResponse>;
+    patch(options?: AttachmentsCreateOrUpdateParameters): StreamableMethod<AttachmentsCreateOrUpdate200Response | AttachmentsCreateOrUpdate201Response | AttachmentsCreateOrUpdatedefaultResponse>;
 }
 
 // @public
@@ -423,7 +427,7 @@ export interface AttachmentsGetdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -431,7 +435,7 @@ export type AttachmentsGetParameters = RequestParameters;
 
 // @public (undocumented)
 export interface AttachmentsListByFarmerId {
-    get(options?: AttachmentsListByFarmerIdParameters): Promise<AttachmentsListByFarmerId200Response | AttachmentsListByFarmerIddefaultResponse>;
+    get(options?: AttachmentsListByFarmerIdParameters): StreamableMethod<AttachmentsListByFarmerId200Response | AttachmentsListByFarmerIddefaultResponse>;
 }
 
 // @public
@@ -447,7 +451,7 @@ export interface AttachmentsListByFarmerIddefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -493,7 +497,7 @@ export interface BoundariesCreateCascadeDeleteJobdefaultResponse extends HttpRes
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -537,7 +541,7 @@ export interface BoundariesCreateOrUpdatedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -561,7 +565,7 @@ export interface BoundariesDeletedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -569,9 +573,9 @@ export type BoundariesDeleteParameters = RequestParameters;
 
 // @public (undocumented)
 export interface BoundariesGet {
-    delete(options?: BoundariesDeleteParameters): Promise<BoundariesDelete204Response | BoundariesDeletedefaultResponse>;
-    get(options?: BoundariesGetParameters): Promise<BoundariesGet200Response | BoundariesGetdefaultResponse>;
-    patch(options?: BoundariesCreateOrUpdateParameters): Promise<BoundariesCreateOrUpdate200Response | BoundariesCreateOrUpdate201Response | BoundariesCreateOrUpdatedefaultResponse>;
+    delete(options?: BoundariesDeleteParameters): StreamableMethod<BoundariesDelete204Response | BoundariesDeletedefaultResponse>;
+    get(options?: BoundariesGetParameters): StreamableMethod<BoundariesGet200Response | BoundariesGetdefaultResponse>;
+    patch(options?: BoundariesCreateOrUpdateParameters): StreamableMethod<BoundariesCreateOrUpdate200Response | BoundariesCreateOrUpdate201Response | BoundariesCreateOrUpdatedefaultResponse>;
 }
 
 // @public
@@ -584,8 +588,8 @@ export interface BoundariesGet200Response extends HttpResponse {
 
 // @public (undocumented)
 export interface BoundariesGetCascadeDeleteJobDetails {
-    get(options?: BoundariesGetCascadeDeleteJobDetailsParameters): Promise<BoundariesGetCascadeDeleteJobDetails200Response | BoundariesGetCascadeDeleteJobDetailsdefaultResponse>;
-    put(options: BoundariesCreateCascadeDeleteJobParameters): Promise<BoundariesCreateCascadeDeleteJob202Response | BoundariesCreateCascadeDeleteJobdefaultResponse>;
+    get(options?: BoundariesGetCascadeDeleteJobDetailsParameters): StreamableMethod<BoundariesGetCascadeDeleteJobDetails200Response | BoundariesGetCascadeDeleteJobDetailsdefaultResponse>;
+    put(options: BoundariesCreateCascadeDeleteJobParameters): StreamableMethod<BoundariesCreateCascadeDeleteJob202Response | BoundariesCreateCascadeDeleteJobdefaultResponse>;
 }
 
 // @public
@@ -601,7 +605,7 @@ export interface BoundariesGetCascadeDeleteJobDetailsdefaultResponse extends Htt
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -612,12 +616,12 @@ export interface BoundariesGetdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
 export interface BoundariesGetOverlap {
-    get(options: BoundariesGetOverlapParameters): Promise<BoundariesGetOverlap200Response | BoundariesGetOverlapdefaultResponse>;
+    get(options: BoundariesGetOverlapParameters): StreamableMethod<BoundariesGetOverlap200Response | BoundariesGetOverlapdefaultResponse>;
 }
 
 // @public
@@ -633,7 +637,7 @@ export interface BoundariesGetOverlapdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -656,8 +660,8 @@ export type BoundariesGetParameters = RequestParameters;
 
 // @public (undocumented)
 export interface BoundariesList {
-    get(options?: BoundariesListParameters): Promise<BoundariesList200Response | BoundariesListdefaultResponse>;
-    post(options?: BoundariesSearchParameters): Promise<BoundariesSearch200Response | BoundariesSearchdefaultResponse>;
+    get(options?: BoundariesListParameters): StreamableMethod<BoundariesList200Response | BoundariesListdefaultResponse>;
+    post(options?: BoundariesSearchParameters): StreamableMethod<BoundariesSearch200Response | BoundariesSearchdefaultResponse>;
 }
 
 // @public
@@ -670,8 +674,8 @@ export interface BoundariesList200Response extends HttpResponse {
 
 // @public (undocumented)
 export interface BoundariesListByFarmerId {
-    get(options?: BoundariesListByFarmerIdParameters): Promise<BoundariesListByFarmerId200Response | BoundariesListByFarmerIddefaultResponse>;
-    post(options?: BoundariesSearchByFarmerIdParameters): Promise<BoundariesSearchByFarmerId200Response | BoundariesSearchByFarmerIddefaultResponse>;
+    get(options?: BoundariesListByFarmerIdParameters): StreamableMethod<BoundariesListByFarmerId200Response | BoundariesListByFarmerIddefaultResponse>;
+    post(options?: BoundariesSearchByFarmerIdParameters): StreamableMethod<BoundariesSearchByFarmerId200Response | BoundariesSearchByFarmerIddefaultResponse>;
 }
 
 // @public
@@ -687,7 +691,7 @@ export interface BoundariesListByFarmerIddefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -723,7 +727,7 @@ export interface BoundariesListdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -785,7 +789,7 @@ export interface BoundariesSearchByFarmerIddefaultResponse extends HttpResponse 
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -801,7 +805,7 @@ export interface BoundariesSearchdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -881,7 +885,7 @@ export interface CascadeDeleteJobOutput {
 }
 
 // @public (undocumented)
-function createClient(Endpoint: string, options?: ClientOptions): AzureAgriFoodPlatformDataPlaneServiceClient;
+function createClient(Endpoint: string, credentials: KeyCredential, options?: ClientOptions): AzureAgriFoodPlatformDataPlaneServiceClient;
 export default createClient;
 
 // @public (undocumented)
@@ -943,7 +947,7 @@ export interface CropsCreateOrUpdatedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -967,7 +971,7 @@ export interface CropsDeletedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -975,9 +979,9 @@ export type CropsDeleteParameters = RequestParameters;
 
 // @public (undocumented)
 export interface CropsGet {
-    delete(options?: CropsDeleteParameters): Promise<CropsDelete204Response | CropsDeletedefaultResponse>;
-    get(options?: CropsGetParameters): Promise<CropsGet200Response | CropsGetdefaultResponse>;
-    patch(options?: CropsCreateOrUpdateParameters): Promise<CropsCreateOrUpdate200Response | CropsCreateOrUpdate201Response | CropsCreateOrUpdatedefaultResponse>;
+    delete(options?: CropsDeleteParameters): StreamableMethod<CropsDelete204Response | CropsDeletedefaultResponse>;
+    get(options?: CropsGetParameters): StreamableMethod<CropsGet200Response | CropsGetdefaultResponse>;
+    patch(options?: CropsCreateOrUpdateParameters): StreamableMethod<CropsCreateOrUpdate200Response | CropsCreateOrUpdate201Response | CropsCreateOrUpdatedefaultResponse>;
 }
 
 // @public
@@ -993,7 +997,7 @@ export interface CropsGetdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1001,7 +1005,7 @@ export type CropsGetParameters = RequestParameters;
 
 // @public (undocumented)
 export interface CropsList {
-    get(options?: CropsListParameters): Promise<CropsList200Response | CropsListdefaultResponse>;
+    get(options?: CropsListParameters): StreamableMethod<CropsList200Response | CropsListdefaultResponse>;
 }
 
 // @public
@@ -1017,7 +1021,7 @@ export interface CropsListdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1070,7 +1074,7 @@ export interface CropVarietiesCreateOrUpdatedefaultResponse extends HttpResponse
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1094,7 +1098,7 @@ export interface CropVarietiesDeletedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1102,9 +1106,9 @@ export type CropVarietiesDeleteParameters = RequestParameters;
 
 // @public (undocumented)
 export interface CropVarietiesGet {
-    delete(options?: CropVarietiesDeleteParameters): Promise<CropVarietiesDelete204Response | CropVarietiesDeletedefaultResponse>;
-    get(options?: CropVarietiesGetParameters): Promise<CropVarietiesGet200Response | CropVarietiesGetdefaultResponse>;
-    patch(options?: CropVarietiesCreateOrUpdateParameters): Promise<CropVarietiesCreateOrUpdate200Response | CropVarietiesCreateOrUpdate201Response | CropVarietiesCreateOrUpdatedefaultResponse>;
+    delete(options?: CropVarietiesDeleteParameters): StreamableMethod<CropVarietiesDelete204Response | CropVarietiesDeletedefaultResponse>;
+    get(options?: CropVarietiesGetParameters): StreamableMethod<CropVarietiesGet200Response | CropVarietiesGetdefaultResponse>;
+    patch(options?: CropVarietiesCreateOrUpdateParameters): StreamableMethod<CropVarietiesCreateOrUpdate200Response | CropVarietiesCreateOrUpdate201Response | CropVarietiesCreateOrUpdatedefaultResponse>;
 }
 
 // @public
@@ -1120,7 +1124,7 @@ export interface CropVarietiesGetdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1128,7 +1132,7 @@ export type CropVarietiesGetParameters = RequestParameters;
 
 // @public (undocumented)
 export interface CropVarietiesList {
-    get(options?: CropVarietiesListParameters): Promise<CropVarietiesList200Response | CropVarietiesListdefaultResponse>;
+    get(options?: CropVarietiesListParameters): StreamableMethod<CropVarietiesList200Response | CropVarietiesListdefaultResponse>;
 }
 
 // @public
@@ -1141,7 +1145,7 @@ export interface CropVarietiesList200Response extends HttpResponse {
 
 // @public (undocumented)
 export interface CropVarietiesListByCropId {
-    get(options?: CropVarietiesListByCropIdParameters): Promise<CropVarietiesListByCropId200Response | CropVarietiesListByCropIddefaultResponse>;
+    get(options?: CropVarietiesListByCropIdParameters): StreamableMethod<CropVarietiesListByCropId200Response | CropVarietiesListByCropIddefaultResponse>;
 }
 
 // @public
@@ -1157,7 +1161,7 @@ export interface CropVarietiesListByCropIddefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1191,7 +1195,7 @@ export interface CropVarietiesListdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1329,7 +1333,7 @@ export interface FarmersCreateCascadeDeleteJobdefaultResponse extends HttpRespon
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1372,7 +1376,7 @@ export interface FarmersCreateOrUpdatedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1396,7 +1400,7 @@ export interface FarmersDeletedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1404,9 +1408,9 @@ export type FarmersDeleteParameters = RequestParameters;
 
 // @public (undocumented)
 export interface FarmersGet {
-    delete(options?: FarmersDeleteParameters): Promise<FarmersDelete204Response | FarmersDeletedefaultResponse>;
-    get(options?: FarmersGetParameters): Promise<FarmersGet200Response | FarmersGetdefaultResponse>;
-    patch(options?: FarmersCreateOrUpdateParameters): Promise<FarmersCreateOrUpdate200Response | FarmersCreateOrUpdate201Response | FarmersCreateOrUpdatedefaultResponse>;
+    delete(options?: FarmersDeleteParameters): StreamableMethod<FarmersDelete204Response | FarmersDeletedefaultResponse>;
+    get(options?: FarmersGetParameters): StreamableMethod<FarmersGet200Response | FarmersGetdefaultResponse>;
+    patch(options?: FarmersCreateOrUpdateParameters): StreamableMethod<FarmersCreateOrUpdate200Response | FarmersCreateOrUpdate201Response | FarmersCreateOrUpdatedefaultResponse>;
 }
 
 // @public
@@ -1419,8 +1423,8 @@ export interface FarmersGet200Response extends HttpResponse {
 
 // @public (undocumented)
 export interface FarmersGetCascadeDeleteJobDetails {
-    get(options?: FarmersGetCascadeDeleteJobDetailsParameters): Promise<FarmersGetCascadeDeleteJobDetails200Response | FarmersGetCascadeDeleteJobDetailsdefaultResponse>;
-    put(options: FarmersCreateCascadeDeleteJobParameters): Promise<FarmersCreateCascadeDeleteJob202Response | FarmersCreateCascadeDeleteJobdefaultResponse>;
+    get(options?: FarmersGetCascadeDeleteJobDetailsParameters): StreamableMethod<FarmersGetCascadeDeleteJobDetails200Response | FarmersGetCascadeDeleteJobDetailsdefaultResponse>;
+    put(options: FarmersCreateCascadeDeleteJobParameters): StreamableMethod<FarmersCreateCascadeDeleteJob202Response | FarmersCreateCascadeDeleteJobdefaultResponse>;
 }
 
 // @public
@@ -1436,7 +1440,7 @@ export interface FarmersGetCascadeDeleteJobDetailsdefaultResponse extends HttpRe
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1447,7 +1451,7 @@ export interface FarmersGetdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1455,7 +1459,7 @@ export type FarmersGetParameters = RequestParameters;
 
 // @public (undocumented)
 export interface FarmersList {
-    get(options?: FarmersListParameters): Promise<FarmersList200Response | FarmersListdefaultResponse>;
+    get(options?: FarmersListParameters): StreamableMethod<FarmersList200Response | FarmersListdefaultResponse>;
 }
 
 // @public
@@ -1471,7 +1475,7 @@ export interface FarmersListdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1544,8 +1548,8 @@ export interface FarmOperationDataIngestionJobOutput {
 
 // @public (undocumented)
 export interface FarmOperationsCreateDataIngestionJob {
-    get(options?: FarmOperationsGetDataIngestionJobDetailsParameters): Promise<FarmOperationsGetDataIngestionJobDetails200Response | FarmOperationsGetDataIngestionJobDetailsdefaultResponse>;
-    put(options?: FarmOperationsCreateDataIngestionJobParameters): Promise<FarmOperationsCreateDataIngestionJob202Response | FarmOperationsCreateDataIngestionJobdefaultResponse>;
+    get(options?: FarmOperationsGetDataIngestionJobDetailsParameters): StreamableMethod<FarmOperationsGetDataIngestionJobDetails200Response | FarmOperationsGetDataIngestionJobDetailsdefaultResponse>;
+    put(options?: FarmOperationsCreateDataIngestionJobParameters): StreamableMethod<FarmOperationsCreateDataIngestionJob202Response | FarmOperationsCreateDataIngestionJobdefaultResponse>;
 }
 
 // @public
@@ -1566,7 +1570,7 @@ export interface FarmOperationsCreateDataIngestionJobdefaultResponse extends Htt
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1590,7 +1594,7 @@ export interface FarmOperationsGetDataIngestionJobDetailsdefaultResponse extends
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1622,7 +1626,7 @@ export interface FarmsCreateCascadeDeleteJobdefaultResponse extends HttpResponse
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1666,7 +1670,7 @@ export interface FarmsCreateOrUpdatedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1690,7 +1694,7 @@ export interface FarmsDeletedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1698,9 +1702,9 @@ export type FarmsDeleteParameters = RequestParameters;
 
 // @public (undocumented)
 export interface FarmsGet {
-    delete(options?: FarmsDeleteParameters): Promise<FarmsDelete204Response | FarmsDeletedefaultResponse>;
-    get(options?: FarmsGetParameters): Promise<FarmsGet200Response | FarmsGetdefaultResponse>;
-    patch(options?: FarmsCreateOrUpdateParameters): Promise<FarmsCreateOrUpdate200Response | FarmsCreateOrUpdate201Response | FarmsCreateOrUpdatedefaultResponse>;
+    delete(options?: FarmsDeleteParameters): StreamableMethod<FarmsDelete204Response | FarmsDeletedefaultResponse>;
+    get(options?: FarmsGetParameters): StreamableMethod<FarmsGet200Response | FarmsGetdefaultResponse>;
+    patch(options?: FarmsCreateOrUpdateParameters): StreamableMethod<FarmsCreateOrUpdate200Response | FarmsCreateOrUpdate201Response | FarmsCreateOrUpdatedefaultResponse>;
 }
 
 // @public
@@ -1713,8 +1717,8 @@ export interface FarmsGet200Response extends HttpResponse {
 
 // @public (undocumented)
 export interface FarmsGetCascadeDeleteJobDetails {
-    get(options?: FarmsGetCascadeDeleteJobDetailsParameters): Promise<FarmsGetCascadeDeleteJobDetails200Response | FarmsGetCascadeDeleteJobDetailsdefaultResponse>;
-    put(options: FarmsCreateCascadeDeleteJobParameters): Promise<FarmsCreateCascadeDeleteJob202Response | FarmsCreateCascadeDeleteJobdefaultResponse>;
+    get(options?: FarmsGetCascadeDeleteJobDetailsParameters): StreamableMethod<FarmsGetCascadeDeleteJobDetails200Response | FarmsGetCascadeDeleteJobDetailsdefaultResponse>;
+    put(options: FarmsCreateCascadeDeleteJobParameters): StreamableMethod<FarmsCreateCascadeDeleteJob202Response | FarmsCreateCascadeDeleteJobdefaultResponse>;
 }
 
 // @public
@@ -1730,7 +1734,7 @@ export interface FarmsGetCascadeDeleteJobDetailsdefaultResponse extends HttpResp
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1741,7 +1745,7 @@ export interface FarmsGetdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1749,7 +1753,7 @@ export type FarmsGetParameters = RequestParameters;
 
 // @public (undocumented)
 export interface FarmsList {
-    get(options?: FarmsListParameters): Promise<FarmsList200Response | FarmsListdefaultResponse>;
+    get(options?: FarmsListParameters): StreamableMethod<FarmsList200Response | FarmsListdefaultResponse>;
 }
 
 // @public
@@ -1762,7 +1766,7 @@ export interface FarmsList200Response extends HttpResponse {
 
 // @public (undocumented)
 export interface FarmsListByFarmerId {
-    get(options?: FarmsListByFarmerIdParameters): Promise<FarmsListByFarmerId200Response | FarmsListByFarmerIddefaultResponse>;
+    get(options?: FarmsListByFarmerIdParameters): StreamableMethod<FarmsListByFarmerId200Response | FarmsListByFarmerIddefaultResponse>;
 }
 
 // @public
@@ -1778,7 +1782,7 @@ export interface FarmsListByFarmerIddefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1809,7 +1813,7 @@ export interface FarmsListdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1887,7 +1891,7 @@ export interface FieldsCreateCascadeDeleteJobdefaultResponse extends HttpRespons
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1931,7 +1935,7 @@ export interface FieldsCreateOrUpdatedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1955,7 +1959,7 @@ export interface FieldsDeletedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1963,9 +1967,9 @@ export type FieldsDeleteParameters = RequestParameters;
 
 // @public (undocumented)
 export interface FieldsGet {
-    delete(options?: FieldsDeleteParameters): Promise<FieldsDelete204Response | FieldsDeletedefaultResponse>;
-    get(options?: FieldsGetParameters): Promise<FieldsGet200Response | FieldsGetdefaultResponse>;
-    patch(options?: FieldsCreateOrUpdateParameters): Promise<FieldsCreateOrUpdate200Response | FieldsCreateOrUpdate201Response | FieldsCreateOrUpdatedefaultResponse>;
+    delete(options?: FieldsDeleteParameters): StreamableMethod<FieldsDelete204Response | FieldsDeletedefaultResponse>;
+    get(options?: FieldsGetParameters): StreamableMethod<FieldsGet200Response | FieldsGetdefaultResponse>;
+    patch(options?: FieldsCreateOrUpdateParameters): StreamableMethod<FieldsCreateOrUpdate200Response | FieldsCreateOrUpdate201Response | FieldsCreateOrUpdatedefaultResponse>;
 }
 
 // @public
@@ -1978,8 +1982,8 @@ export interface FieldsGet200Response extends HttpResponse {
 
 // @public (undocumented)
 export interface FieldsGetCascadeDeleteJobDetails {
-    get(options?: FieldsGetCascadeDeleteJobDetailsParameters): Promise<FieldsGetCascadeDeleteJobDetails200Response | FieldsGetCascadeDeleteJobDetailsdefaultResponse>;
-    put(options: FieldsCreateCascadeDeleteJobParameters): Promise<FieldsCreateCascadeDeleteJob202Response | FieldsCreateCascadeDeleteJobdefaultResponse>;
+    get(options?: FieldsGetCascadeDeleteJobDetailsParameters): StreamableMethod<FieldsGetCascadeDeleteJobDetails200Response | FieldsGetCascadeDeleteJobDetailsdefaultResponse>;
+    put(options: FieldsCreateCascadeDeleteJobParameters): StreamableMethod<FieldsCreateCascadeDeleteJob202Response | FieldsCreateCascadeDeleteJobdefaultResponse>;
 }
 
 // @public
@@ -1995,7 +1999,7 @@ export interface FieldsGetCascadeDeleteJobDetailsdefaultResponse extends HttpRes
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -2006,7 +2010,7 @@ export interface FieldsGetdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -2014,7 +2018,7 @@ export type FieldsGetParameters = RequestParameters;
 
 // @public (undocumented)
 export interface FieldsList {
-    get(options?: FieldsListParameters): Promise<FieldsList200Response | FieldsListdefaultResponse>;
+    get(options?: FieldsListParameters): StreamableMethod<FieldsList200Response | FieldsListdefaultResponse>;
 }
 
 // @public
@@ -2027,7 +2031,7 @@ export interface FieldsList200Response extends HttpResponse {
 
 // @public (undocumented)
 export interface FieldsListByFarmerId {
-    get(options?: FieldsListByFarmerIdParameters): Promise<FieldsListByFarmerId200Response | FieldsListByFarmerIddefaultResponse>;
+    get(options?: FieldsListByFarmerIdParameters): StreamableMethod<FieldsListByFarmerId200Response | FieldsListByFarmerIddefaultResponse>;
 }
 
 // @public
@@ -2043,7 +2047,7 @@ export interface FieldsListByFarmerIddefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -2075,7 +2079,7 @@ export interface FieldsListdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -2108,7 +2112,7 @@ export type GeoJsonObject = MultiPolygon | Point | Polygon;
 // @public (undocumented)
 export interface GeoJsonObjectBase {
     // (undocumented)
-    type: "MultiPolygon" | "Point" | "Polygon";
+    type: "GeoJsonObject" | "MultiPolygon" | "Point" | "Polygon";
 }
 
 // @public (undocumented)
@@ -2117,7 +2121,7 @@ export type GeoJsonObjectOutput = MultiPolygonOutput | PointOutput | PolygonOutp
 // @public (undocumented)
 export interface GeoJsonObjectOutputBase {
     // (undocumented)
-    type: "MultiPolygon" | "Point" | "Polygon";
+    type: "GeoJsonObject" | "MultiPolygon" | "Point" | "Polygon";
 }
 
 // @public
@@ -2186,7 +2190,7 @@ export interface HarvestDataCreateOrUpdatedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -2210,7 +2214,7 @@ export interface HarvestDataDeletedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -2218,9 +2222,9 @@ export type HarvestDataDeleteParameters = RequestParameters;
 
 // @public (undocumented)
 export interface HarvestDataGet {
-    delete(options?: HarvestDataDeleteParameters): Promise<HarvestDataDelete204Response | HarvestDataDeletedefaultResponse>;
-    get(options?: HarvestDataGetParameters): Promise<HarvestDataGet200Response | HarvestDataGetdefaultResponse>;
-    patch(options?: HarvestDataCreateOrUpdateParameters): Promise<HarvestDataCreateOrUpdate200Response | HarvestDataCreateOrUpdate201Response | HarvestDataCreateOrUpdatedefaultResponse>;
+    delete(options?: HarvestDataDeleteParameters): StreamableMethod<HarvestDataDelete204Response | HarvestDataDeletedefaultResponse>;
+    get(options?: HarvestDataGetParameters): StreamableMethod<HarvestDataGet200Response | HarvestDataGetdefaultResponse>;
+    patch(options?: HarvestDataCreateOrUpdateParameters): StreamableMethod<HarvestDataCreateOrUpdate200Response | HarvestDataCreateOrUpdate201Response | HarvestDataCreateOrUpdatedefaultResponse>;
 }
 
 // @public
@@ -2236,7 +2240,7 @@ export interface HarvestDataGetdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -2244,7 +2248,7 @@ export type HarvestDataGetParameters = RequestParameters;
 
 // @public (undocumented)
 export interface HarvestDataList {
-    get(options?: HarvestDataListParameters): Promise<HarvestDataList200Response | HarvestDataListdefaultResponse>;
+    get(options?: HarvestDataListParameters): StreamableMethod<HarvestDataList200Response | HarvestDataListdefaultResponse>;
 }
 
 // @public
@@ -2257,7 +2261,7 @@ export interface HarvestDataList200Response extends HttpResponse {
 
 // @public (undocumented)
 export interface HarvestDataListByFarmerId {
-    get(options?: HarvestDataListByFarmerIdParameters): Promise<HarvestDataListByFarmerId200Response | HarvestDataListByFarmerIddefaultResponse>;
+    get(options?: HarvestDataListByFarmerIdParameters): StreamableMethod<HarvestDataListByFarmerId200Response | HarvestDataListByFarmerIddefaultResponse>;
 }
 
 // @public
@@ -2273,7 +2277,7 @@ export interface HarvestDataListByFarmerIddefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -2327,7 +2331,7 @@ export interface HarvestDataListdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -2443,8 +2447,8 @@ export interface ImageFileOutput {
 
 // @public (undocumented)
 export interface ImageProcessingCreateRasterizeJob {
-    get(options?: ImageProcessingGetRasterizeJobParameters): Promise<ImageProcessingGetRasterizeJob200Response>;
-    put(options?: ImageProcessingCreateRasterizeJobParameters): Promise<ImageProcessingCreateRasterizeJob202Response | ImageProcessingCreateRasterizeJobdefaultResponse>;
+    get(options?: ImageProcessingGetRasterizeJobParameters): StreamableMethod<ImageProcessingGetRasterizeJob200Response>;
+    put(options?: ImageProcessingCreateRasterizeJobParameters): StreamableMethod<ImageProcessingCreateRasterizeJob202Response | ImageProcessingCreateRasterizeJobdefaultResponse>;
 }
 
 // @public
@@ -2465,7 +2469,7 @@ export interface ImageProcessingCreateRasterizeJobdefaultResponse extends HttpRe
     // (undocumented)
     body: Record<string, unknown>;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -2528,6 +2532,291 @@ export interface InnerErrorOutput extends Record<string, unknown> {
     code?: string;
     innererror?: InnerErrorOutput;
 }
+
+// @public (undocumented)
+export function isUnexpected(response: ApplicationDataListByFarmerId200Response | ApplicationDataListByFarmerIddefaultResponse): response is ApplicationDataListByFarmerIddefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: ApplicationDataList200Response | ApplicationDataListdefaultResponse): response is ApplicationDataListdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: ApplicationDataGet200Response | ApplicationDataGetdefaultResponse): response is ApplicationDataGetdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: ApplicationDataCreateOrUpdate200Response | ApplicationDataCreateOrUpdate201Response | ApplicationDataCreateOrUpdatedefaultResponse): response is ApplicationDataCreateOrUpdatedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: ApplicationDataDelete204Response | ApplicationDataDeletedefaultResponse): response is ApplicationDataDeletedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: AttachmentsListByFarmerId200Response | AttachmentsListByFarmerIddefaultResponse): response is AttachmentsListByFarmerIddefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: AttachmentsGet200Response | AttachmentsGetdefaultResponse): response is AttachmentsGetdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: AttachmentsCreateOrUpdate200Response | AttachmentsCreateOrUpdate201Response | AttachmentsCreateOrUpdatedefaultResponse): response is AttachmentsCreateOrUpdatedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: AttachmentsDelete204Response | AttachmentsDeletedefaultResponse): response is AttachmentsDeletedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: AttachmentsDownload200Response | AttachmentsDownloaddefaultResponse): response is AttachmentsDownloaddefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: BoundariesListByFarmerId200Response | BoundariesListByFarmerIddefaultResponse): response is BoundariesListByFarmerIddefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: BoundariesSearchByFarmerId200Response | BoundariesSearchByFarmerIddefaultResponse): response is BoundariesSearchByFarmerIddefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: BoundariesList200Response | BoundariesListdefaultResponse): response is BoundariesListdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: BoundariesSearch200Response | BoundariesSearchdefaultResponse): response is BoundariesSearchdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: BoundariesGetCascadeDeleteJobDetails200Response | BoundariesGetCascadeDeleteJobDetailsdefaultResponse): response is BoundariesGetCascadeDeleteJobDetailsdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: BoundariesCreateCascadeDeleteJob202Response | BoundariesCreateCascadeDeleteJobdefaultResponse): response is BoundariesCreateCascadeDeleteJobdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: BoundariesGet200Response | BoundariesGetdefaultResponse): response is BoundariesGetdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: BoundariesCreateOrUpdate200Response | BoundariesCreateOrUpdate201Response | BoundariesCreateOrUpdatedefaultResponse): response is BoundariesCreateOrUpdatedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: BoundariesDelete204Response | BoundariesDeletedefaultResponse): response is BoundariesDeletedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: BoundariesGetOverlap200Response | BoundariesGetOverlapdefaultResponse): response is BoundariesGetOverlapdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: CropsList200Response | CropsListdefaultResponse): response is CropsListdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: CropsGet200Response | CropsGetdefaultResponse): response is CropsGetdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: CropsCreateOrUpdate200Response | CropsCreateOrUpdate201Response | CropsCreateOrUpdatedefaultResponse): response is CropsCreateOrUpdatedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: CropsDelete204Response | CropsDeletedefaultResponse): response is CropsDeletedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: CropVarietiesListByCropId200Response | CropVarietiesListByCropIddefaultResponse): response is CropVarietiesListByCropIddefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: CropVarietiesList200Response | CropVarietiesListdefaultResponse): response is CropVarietiesListdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: CropVarietiesGet200Response | CropVarietiesGetdefaultResponse): response is CropVarietiesGetdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: CropVarietiesCreateOrUpdate200Response | CropVarietiesCreateOrUpdate201Response | CropVarietiesCreateOrUpdatedefaultResponse): response is CropVarietiesCreateOrUpdatedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: CropVarietiesDelete204Response | CropVarietiesDeletedefaultResponse): response is CropVarietiesDeletedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FarmersList200Response | FarmersListdefaultResponse): response is FarmersListdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FarmersGet200Response | FarmersGetdefaultResponse): response is FarmersGetdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FarmersCreateOrUpdate200Response | FarmersCreateOrUpdate201Response | FarmersCreateOrUpdatedefaultResponse): response is FarmersCreateOrUpdatedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FarmersDelete204Response | FarmersDeletedefaultResponse): response is FarmersDeletedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FarmersGetCascadeDeleteJobDetails200Response | FarmersGetCascadeDeleteJobDetailsdefaultResponse): response is FarmersGetCascadeDeleteJobDetailsdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FarmersCreateCascadeDeleteJob202Response | FarmersCreateCascadeDeleteJobdefaultResponse): response is FarmersCreateCascadeDeleteJobdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FarmOperationsCreateDataIngestionJob202Response | FarmOperationsCreateDataIngestionJobdefaultResponse): response is FarmOperationsCreateDataIngestionJobdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FarmOperationsGetDataIngestionJobDetails200Response | FarmOperationsGetDataIngestionJobDetailsdefaultResponse): response is FarmOperationsGetDataIngestionJobDetailsdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FarmsListByFarmerId200Response | FarmsListByFarmerIddefaultResponse): response is FarmsListByFarmerIddefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FarmsList200Response | FarmsListdefaultResponse): response is FarmsListdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FarmsGet200Response | FarmsGetdefaultResponse): response is FarmsGetdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FarmsCreateOrUpdate200Response | FarmsCreateOrUpdate201Response | FarmsCreateOrUpdatedefaultResponse): response is FarmsCreateOrUpdatedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FarmsDelete204Response | FarmsDeletedefaultResponse): response is FarmsDeletedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FarmsGetCascadeDeleteJobDetails200Response | FarmsGetCascadeDeleteJobDetailsdefaultResponse): response is FarmsGetCascadeDeleteJobDetailsdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FarmsCreateCascadeDeleteJob202Response | FarmsCreateCascadeDeleteJobdefaultResponse): response is FarmsCreateCascadeDeleteJobdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FieldsListByFarmerId200Response | FieldsListByFarmerIddefaultResponse): response is FieldsListByFarmerIddefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FieldsList200Response | FieldsListdefaultResponse): response is FieldsListdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FieldsGet200Response | FieldsGetdefaultResponse): response is FieldsGetdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FieldsCreateOrUpdate200Response | FieldsCreateOrUpdate201Response | FieldsCreateOrUpdatedefaultResponse): response is FieldsCreateOrUpdatedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FieldsDelete204Response | FieldsDeletedefaultResponse): response is FieldsDeletedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FieldsGetCascadeDeleteJobDetails200Response | FieldsGetCascadeDeleteJobDetailsdefaultResponse): response is FieldsGetCascadeDeleteJobDetailsdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FieldsCreateCascadeDeleteJob202Response | FieldsCreateCascadeDeleteJobdefaultResponse): response is FieldsCreateCascadeDeleteJobdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: HarvestDataListByFarmerId200Response | HarvestDataListByFarmerIddefaultResponse): response is HarvestDataListByFarmerIddefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: HarvestDataList200Response | HarvestDataListdefaultResponse): response is HarvestDataListdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: HarvestDataGet200Response | HarvestDataGetdefaultResponse): response is HarvestDataGetdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: HarvestDataCreateOrUpdate200Response | HarvestDataCreateOrUpdate201Response | HarvestDataCreateOrUpdatedefaultResponse): response is HarvestDataCreateOrUpdatedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: HarvestDataDelete204Response | HarvestDataDeletedefaultResponse): response is HarvestDataDeletedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: ImageProcessingCreateRasterizeJob202Response | ImageProcessingCreateRasterizeJobdefaultResponse): response is ImageProcessingCreateRasterizeJobdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: OAuthProvidersList200Response | OAuthProvidersListdefaultResponse): response is OAuthProvidersListdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: OAuthProvidersGet200Response | OAuthProvidersGetdefaultResponse): response is OAuthProvidersGetdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: OAuthProvidersCreateOrUpdate200Response | OAuthProvidersCreateOrUpdate201Response | OAuthProvidersCreateOrUpdatedefaultResponse): response is OAuthProvidersCreateOrUpdatedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: OAuthProvidersDelete204Response | OAuthProvidersDeletedefaultResponse): response is OAuthProvidersDeletedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: OAuthTokensList200Response | OAuthTokensListdefaultResponse): response is OAuthTokensListdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: OAuthTokensGetOAuthConnectionLink200Response | OAuthTokensGetOAuthConnectionLinkdefaultResponse): response is OAuthTokensGetOAuthConnectionLinkdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: OAuthTokensGetCascadeDeleteJobDetails200Response | OAuthTokensGetCascadeDeleteJobDetailsdefaultResponse): response is OAuthTokensGetCascadeDeleteJobDetailsdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: OAuthTokensCreateCascadeDeleteJob202Response | OAuthTokensCreateCascadeDeleteJobdefaultResponse): response is OAuthTokensCreateCascadeDeleteJobdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: PlantingDataListByFarmerId200Response | PlantingDataListByFarmerIddefaultResponse): response is PlantingDataListByFarmerIddefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: PlantingDataList200Response | PlantingDataListdefaultResponse): response is PlantingDataListdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: PlantingDataGet200Response | PlantingDataGetdefaultResponse): response is PlantingDataGetdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: PlantingDataCreateOrUpdate200Response | PlantingDataCreateOrUpdate201Response | PlantingDataCreateOrUpdatedefaultResponse): response is PlantingDataCreateOrUpdatedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: PlantingDataDelete204Response | PlantingDataDeletedefaultResponse): response is PlantingDataDeletedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: ScenesList200Response | ScenesListdefaultResponse): response is ScenesListdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: ScenesCreateSatelliteDataIngestionJob202Response | ScenesCreateSatelliteDataIngestionJobdefaultResponse): response is ScenesCreateSatelliteDataIngestionJobdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: ScenesGetSatelliteDataIngestionJobDetails200Response | ScenesGetSatelliteDataIngestionJobDetailsdefaultResponse): response is ScenesGetSatelliteDataIngestionJobDetailsdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: ScenesDownload200Response | ScenesDownloaddefaultResponse): response is ScenesDownloaddefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: SeasonalFieldsListByFarmerId200Response | SeasonalFieldsListByFarmerIddefaultResponse): response is SeasonalFieldsListByFarmerIddefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: SeasonalFieldsList200Response | SeasonalFieldsListdefaultResponse): response is SeasonalFieldsListdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: SeasonalFieldsGet200Response | SeasonalFieldsGetdefaultResponse): response is SeasonalFieldsGetdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: SeasonalFieldsCreateOrUpdate200Response | SeasonalFieldsCreateOrUpdate201Response | SeasonalFieldsCreateOrUpdatedefaultResponse): response is SeasonalFieldsCreateOrUpdatedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: SeasonalFieldsDelete204Response | SeasonalFieldsDeletedefaultResponse): response is SeasonalFieldsDeletedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: SeasonalFieldsGetCascadeDeleteJobDetails200Response | SeasonalFieldsGetCascadeDeleteJobDetailsdefaultResponse): response is SeasonalFieldsGetCascadeDeleteJobDetailsdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: SeasonalFieldsCreateCascadeDeleteJob202Response | SeasonalFieldsCreateCascadeDeleteJobdefaultResponse): response is SeasonalFieldsCreateCascadeDeleteJobdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: SeasonsList200Response | SeasonsListdefaultResponse): response is SeasonsListdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: SeasonsGet200Response | SeasonsGetdefaultResponse): response is SeasonsGetdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: SeasonsCreateOrUpdate200Response | SeasonsCreateOrUpdate201Response | SeasonsCreateOrUpdatedefaultResponse): response is SeasonsCreateOrUpdatedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: SeasonsDelete204Response | SeasonsDeletedefaultResponse): response is SeasonsDeletedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: TillageDataListByFarmerId200Response | TillageDataListByFarmerIddefaultResponse): response is TillageDataListByFarmerIddefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: TillageDataList200Response | TillageDataListdefaultResponse): response is TillageDataListdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: TillageDataGet200Response | TillageDataGetdefaultResponse): response is TillageDataGetdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: TillageDataCreateOrUpdate200Response | TillageDataCreateOrUpdate201Response | TillageDataCreateOrUpdatedefaultResponse): response is TillageDataCreateOrUpdatedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: TillageDataDelete204Response | TillageDataDeletedefaultResponse): response is TillageDataDeletedefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: WeatherList200Response | WeatherListdefaultResponse): response is WeatherListdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: WeatherGetDataIngestionJobDetails200Response | WeatherGetDataIngestionJobDetailsdefaultResponse): response is WeatherGetDataIngestionJobDetailsdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: WeatherCreateDataIngestionJob202Response | WeatherCreateDataIngestionJobdefaultResponse): response is WeatherCreateDataIngestionJobdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: WeatherGetDataDeleteJobDetails200Response | WeatherGetDataDeleteJobDetailsdefaultResponse): response is WeatherGetDataDeleteJobDetailsdefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: WeatherCreateDataDeleteJob202Response | WeatherCreateDataDeleteJobdefaultResponse): response is WeatherCreateDataDeleteJobdefaultResponse;
 
 // @public (undocumented)
 export interface LocationOutput {
@@ -2640,7 +2929,7 @@ export interface OAuthProvidersCreateOrUpdatedefaultResponse extends HttpRespons
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -2664,7 +2953,7 @@ export interface OAuthProvidersDeletedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -2672,9 +2961,9 @@ export type OAuthProvidersDeleteParameters = RequestParameters;
 
 // @public (undocumented)
 export interface OAuthProvidersGet {
-    delete(options?: OAuthProvidersDeleteParameters): Promise<OAuthProvidersDelete204Response | OAuthProvidersDeletedefaultResponse>;
-    get(options?: OAuthProvidersGetParameters): Promise<OAuthProvidersGet200Response | OAuthProvidersGetdefaultResponse>;
-    patch(options?: OAuthProvidersCreateOrUpdateParameters): Promise<OAuthProvidersCreateOrUpdate200Response | OAuthProvidersCreateOrUpdate201Response | OAuthProvidersCreateOrUpdatedefaultResponse>;
+    delete(options?: OAuthProvidersDeleteParameters): StreamableMethod<OAuthProvidersDelete204Response | OAuthProvidersDeletedefaultResponse>;
+    get(options?: OAuthProvidersGetParameters): StreamableMethod<OAuthProvidersGet200Response | OAuthProvidersGetdefaultResponse>;
+    patch(options?: OAuthProvidersCreateOrUpdateParameters): StreamableMethod<OAuthProvidersCreateOrUpdate200Response | OAuthProvidersCreateOrUpdate201Response | OAuthProvidersCreateOrUpdatedefaultResponse>;
 }
 
 // @public
@@ -2690,7 +2979,7 @@ export interface OAuthProvidersGetdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -2698,7 +2987,7 @@ export type OAuthProvidersGetParameters = RequestParameters;
 
 // @public (undocumented)
 export interface OAuthProvidersList {
-    get(options?: OAuthProvidersListParameters): Promise<OAuthProvidersList200Response | OAuthProvidersListdefaultResponse>;
+    get(options?: OAuthProvidersListParameters): StreamableMethod<OAuthProvidersList200Response | OAuthProvidersListdefaultResponse>;
 }
 
 // @public
@@ -2714,7 +3003,7 @@ export interface OAuthProvidersListdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -2770,7 +3059,7 @@ export interface OAuthTokensCreateCascadeDeleteJobdefaultResponse extends HttpRe
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -2790,8 +3079,8 @@ export interface OAuthTokensCreateCascadeDeleteJobQueryParamProperties {
 
 // @public (undocumented)
 export interface OAuthTokensGetCascadeDeleteJobDetails {
-    get(options?: OAuthTokensGetCascadeDeleteJobDetailsParameters): Promise<OAuthTokensGetCascadeDeleteJobDetails200Response | OAuthTokensGetCascadeDeleteJobDetailsdefaultResponse>;
-    put(options: OAuthTokensCreateCascadeDeleteJobParameters): Promise<OAuthTokensCreateCascadeDeleteJob202Response | OAuthTokensCreateCascadeDeleteJobdefaultResponse>;
+    get(options?: OAuthTokensGetCascadeDeleteJobDetailsParameters): StreamableMethod<OAuthTokensGetCascadeDeleteJobDetails200Response | OAuthTokensGetCascadeDeleteJobDetailsdefaultResponse>;
+    put(options: OAuthTokensCreateCascadeDeleteJobParameters): StreamableMethod<OAuthTokensCreateCascadeDeleteJob202Response | OAuthTokensCreateCascadeDeleteJobdefaultResponse>;
 }
 
 // @public
@@ -2807,7 +3096,7 @@ export interface OAuthTokensGetCascadeDeleteJobDetailsdefaultResponse extends Ht
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -2815,7 +3104,7 @@ export type OAuthTokensGetCascadeDeleteJobDetailsParameters = RequestParameters;
 
 // @public (undocumented)
 export interface OAuthTokensGetOAuthConnectionLink {
-    post(options?: OAuthTokensGetOAuthConnectionLinkParameters): Promise<OAuthTokensGetOAuthConnectionLink200Response | OAuthTokensGetOAuthConnectionLinkdefaultResponse>;
+    post(options?: OAuthTokensGetOAuthConnectionLinkParameters): StreamableMethod<OAuthTokensGetOAuthConnectionLink200Response | OAuthTokensGetOAuthConnectionLinkdefaultResponse>;
 }
 
 // @public
@@ -2836,7 +3125,7 @@ export interface OAuthTokensGetOAuthConnectionLinkdefaultResponse extends HttpRe
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -2849,7 +3138,7 @@ export type OAuthTokensGetOAuthConnectionLinkParameters = OAuthTokensGetOAuthCon
 
 // @public (undocumented)
 export interface OAuthTokensList {
-    get(options?: OAuthTokensListParameters): Promise<OAuthTokensList200Response | OAuthTokensListdefaultResponse>;
+    get(options?: OAuthTokensListParameters): StreamableMethod<OAuthTokensList200Response | OAuthTokensListdefaultResponse>;
 }
 
 // @public
@@ -2865,7 +3154,7 @@ export interface OAuthTokensListdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -2956,7 +3245,7 @@ export interface PlantingDataCreateOrUpdatedefaultResponse extends HttpResponse 
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -2980,7 +3269,7 @@ export interface PlantingDataDeletedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -2988,9 +3277,9 @@ export type PlantingDataDeleteParameters = RequestParameters;
 
 // @public (undocumented)
 export interface PlantingDataGet {
-    delete(options?: PlantingDataDeleteParameters): Promise<PlantingDataDelete204Response | PlantingDataDeletedefaultResponse>;
-    get(options?: PlantingDataGetParameters): Promise<PlantingDataGet200Response | PlantingDataGetdefaultResponse>;
-    patch(options?: PlantingDataCreateOrUpdateParameters): Promise<PlantingDataCreateOrUpdate200Response | PlantingDataCreateOrUpdate201Response | PlantingDataCreateOrUpdatedefaultResponse>;
+    delete(options?: PlantingDataDeleteParameters): StreamableMethod<PlantingDataDelete204Response | PlantingDataDeletedefaultResponse>;
+    get(options?: PlantingDataGetParameters): StreamableMethod<PlantingDataGet200Response | PlantingDataGetdefaultResponse>;
+    patch(options?: PlantingDataCreateOrUpdateParameters): StreamableMethod<PlantingDataCreateOrUpdate200Response | PlantingDataCreateOrUpdate201Response | PlantingDataCreateOrUpdatedefaultResponse>;
 }
 
 // @public
@@ -3006,7 +3295,7 @@ export interface PlantingDataGetdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -3014,7 +3303,7 @@ export type PlantingDataGetParameters = RequestParameters;
 
 // @public (undocumented)
 export interface PlantingDataList {
-    get(options?: PlantingDataListParameters): Promise<PlantingDataList200Response | PlantingDataListdefaultResponse>;
+    get(options?: PlantingDataListParameters): StreamableMethod<PlantingDataList200Response | PlantingDataListdefaultResponse>;
 }
 
 // @public
@@ -3027,7 +3316,7 @@ export interface PlantingDataList200Response extends HttpResponse {
 
 // @public (undocumented)
 export interface PlantingDataListByFarmerId {
-    get(options?: PlantingDataListByFarmerIdParameters): Promise<PlantingDataListByFarmerId200Response | PlantingDataListByFarmerIddefaultResponse>;
+    get(options?: PlantingDataListByFarmerIdParameters): StreamableMethod<PlantingDataListByFarmerId200Response | PlantingDataListByFarmerIddefaultResponse>;
 }
 
 // @public
@@ -3043,7 +3332,7 @@ export interface PlantingDataListByFarmerIddefaultResponse extends HttpResponse 
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -3091,7 +3380,7 @@ export interface PlantingDataListdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -3368,8 +3657,8 @@ export interface SceneOutput {
 
 // @public (undocumented)
 export interface ScenesCreateSatelliteDataIngestionJob {
-    get(options?: ScenesGetSatelliteDataIngestionJobDetailsParameters): Promise<ScenesGetSatelliteDataIngestionJobDetails200Response | ScenesGetSatelliteDataIngestionJobDetailsdefaultResponse>;
-    put(options?: ScenesCreateSatelliteDataIngestionJobParameters): Promise<ScenesCreateSatelliteDataIngestionJob202Response | ScenesCreateSatelliteDataIngestionJobdefaultResponse>;
+    get(options?: ScenesGetSatelliteDataIngestionJobDetailsParameters): StreamableMethod<ScenesGetSatelliteDataIngestionJobDetails200Response | ScenesGetSatelliteDataIngestionJobDetailsdefaultResponse>;
+    put(options?: ScenesCreateSatelliteDataIngestionJobParameters): StreamableMethod<ScenesCreateSatelliteDataIngestionJob202Response | ScenesCreateSatelliteDataIngestionJobdefaultResponse>;
 }
 
 // @public
@@ -3390,7 +3679,7 @@ export interface ScenesCreateSatelliteDataIngestionJobdefaultResponse extends Ht
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -3403,7 +3692,7 @@ export type ScenesCreateSatelliteDataIngestionJobParameters = ScenesCreateSatell
 
 // @public (undocumented)
 export interface ScenesDownload {
-    get(options: ScenesDownloadParameters): Promise<ScenesDownload200Response | ScenesDownloaddefaultResponse>;
+    get(options: ScenesDownloadParameters): StreamableMethod<ScenesDownload200Response | ScenesDownloaddefaultResponse>;
 }
 
 // @public
@@ -3418,7 +3707,7 @@ export interface ScenesDownloaddefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -3448,7 +3737,7 @@ export interface ScenesGetSatelliteDataIngestionJobDetailsdefaultResponse extend
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -3456,7 +3745,7 @@ export type ScenesGetSatelliteDataIngestionJobDetailsParameters = RequestParamet
 
 // @public (undocumented)
 export interface ScenesList {
-    get(options: ScenesListParameters): Promise<ScenesList200Response | ScenesListdefaultResponse>;
+    get(options: ScenesListParameters): StreamableMethod<ScenesList200Response | ScenesListdefaultResponse>;
 }
 
 // @public
@@ -3472,7 +3761,7 @@ export interface ScenesListdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -3606,7 +3895,7 @@ export interface SeasonalFieldsCreateCascadeDeleteJobdefaultResponse extends Htt
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -3650,7 +3939,7 @@ export interface SeasonalFieldsCreateOrUpdatedefaultResponse extends HttpRespons
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -3674,7 +3963,7 @@ export interface SeasonalFieldsDeletedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -3682,9 +3971,9 @@ export type SeasonalFieldsDeleteParameters = RequestParameters;
 
 // @public (undocumented)
 export interface SeasonalFieldsGet {
-    delete(options?: SeasonalFieldsDeleteParameters): Promise<SeasonalFieldsDelete204Response | SeasonalFieldsDeletedefaultResponse>;
-    get(options?: SeasonalFieldsGetParameters): Promise<SeasonalFieldsGet200Response | SeasonalFieldsGetdefaultResponse>;
-    patch(options?: SeasonalFieldsCreateOrUpdateParameters): Promise<SeasonalFieldsCreateOrUpdate200Response | SeasonalFieldsCreateOrUpdate201Response | SeasonalFieldsCreateOrUpdatedefaultResponse>;
+    delete(options?: SeasonalFieldsDeleteParameters): StreamableMethod<SeasonalFieldsDelete204Response | SeasonalFieldsDeletedefaultResponse>;
+    get(options?: SeasonalFieldsGetParameters): StreamableMethod<SeasonalFieldsGet200Response | SeasonalFieldsGetdefaultResponse>;
+    patch(options?: SeasonalFieldsCreateOrUpdateParameters): StreamableMethod<SeasonalFieldsCreateOrUpdate200Response | SeasonalFieldsCreateOrUpdate201Response | SeasonalFieldsCreateOrUpdatedefaultResponse>;
 }
 
 // @public
@@ -3697,8 +3986,8 @@ export interface SeasonalFieldsGet200Response extends HttpResponse {
 
 // @public (undocumented)
 export interface SeasonalFieldsGetCascadeDeleteJobDetails {
-    get(options?: SeasonalFieldsGetCascadeDeleteJobDetailsParameters): Promise<SeasonalFieldsGetCascadeDeleteJobDetails200Response | SeasonalFieldsGetCascadeDeleteJobDetailsdefaultResponse>;
-    put(options: SeasonalFieldsCreateCascadeDeleteJobParameters): Promise<SeasonalFieldsCreateCascadeDeleteJob202Response | SeasonalFieldsCreateCascadeDeleteJobdefaultResponse>;
+    get(options?: SeasonalFieldsGetCascadeDeleteJobDetailsParameters): StreamableMethod<SeasonalFieldsGetCascadeDeleteJobDetails200Response | SeasonalFieldsGetCascadeDeleteJobDetailsdefaultResponse>;
+    put(options: SeasonalFieldsCreateCascadeDeleteJobParameters): StreamableMethod<SeasonalFieldsCreateCascadeDeleteJob202Response | SeasonalFieldsCreateCascadeDeleteJobdefaultResponse>;
 }
 
 // @public
@@ -3714,7 +4003,7 @@ export interface SeasonalFieldsGetCascadeDeleteJobDetailsdefaultResponse extends
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -3725,7 +4014,7 @@ export interface SeasonalFieldsGetdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -3733,7 +4022,7 @@ export type SeasonalFieldsGetParameters = RequestParameters;
 
 // @public (undocumented)
 export interface SeasonalFieldsList {
-    get(options?: SeasonalFieldsListParameters): Promise<SeasonalFieldsList200Response | SeasonalFieldsListdefaultResponse>;
+    get(options?: SeasonalFieldsListParameters): StreamableMethod<SeasonalFieldsList200Response | SeasonalFieldsListdefaultResponse>;
 }
 
 // @public
@@ -3746,7 +4035,7 @@ export interface SeasonalFieldsList200Response extends HttpResponse {
 
 // @public (undocumented)
 export interface SeasonalFieldsListByFarmerId {
-    get(options?: SeasonalFieldsListByFarmerIdParameters): Promise<SeasonalFieldsListByFarmerId200Response | SeasonalFieldsListByFarmerIddefaultResponse>;
+    get(options?: SeasonalFieldsListByFarmerIdParameters): StreamableMethod<SeasonalFieldsListByFarmerId200Response | SeasonalFieldsListByFarmerIddefaultResponse>;
 }
 
 // @public
@@ -3762,7 +4051,7 @@ export interface SeasonalFieldsListByFarmerIddefaultResponse extends HttpRespons
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -3806,7 +4095,7 @@ export interface SeasonalFieldsListdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -3893,7 +4182,7 @@ export interface SeasonsCreateOrUpdatedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -3917,7 +4206,7 @@ export interface SeasonsDeletedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -3925,9 +4214,9 @@ export type SeasonsDeleteParameters = RequestParameters;
 
 // @public (undocumented)
 export interface SeasonsGet {
-    delete(options?: SeasonsDeleteParameters): Promise<SeasonsDelete204Response | SeasonsDeletedefaultResponse>;
-    get(options?: SeasonsGetParameters): Promise<SeasonsGet200Response | SeasonsGetdefaultResponse>;
-    patch(options?: SeasonsCreateOrUpdateParameters): Promise<SeasonsCreateOrUpdate200Response | SeasonsCreateOrUpdate201Response | SeasonsCreateOrUpdatedefaultResponse>;
+    delete(options?: SeasonsDeleteParameters): StreamableMethod<SeasonsDelete204Response | SeasonsDeletedefaultResponse>;
+    get(options?: SeasonsGetParameters): StreamableMethod<SeasonsGet200Response | SeasonsGetdefaultResponse>;
+    patch(options?: SeasonsCreateOrUpdateParameters): StreamableMethod<SeasonsCreateOrUpdate200Response | SeasonsCreateOrUpdate201Response | SeasonsCreateOrUpdatedefaultResponse>;
 }
 
 // @public
@@ -3943,7 +4232,7 @@ export interface SeasonsGetdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -3951,7 +4240,7 @@ export type SeasonsGetParameters = RequestParameters;
 
 // @public (undocumented)
 export interface SeasonsList {
-    get(options?: SeasonsListParameters): Promise<SeasonsList200Response | SeasonsListdefaultResponse>;
+    get(options?: SeasonsListParameters): StreamableMethod<SeasonsList200Response | SeasonsListdefaultResponse>;
 }
 
 // @public
@@ -3967,7 +4256,7 @@ export interface SeasonsListdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -4047,7 +4336,7 @@ export interface TillageDataCreateOrUpdatedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -4071,7 +4360,7 @@ export interface TillageDataDeletedefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -4079,9 +4368,9 @@ export type TillageDataDeleteParameters = RequestParameters;
 
 // @public (undocumented)
 export interface TillageDataGet {
-    delete(options?: TillageDataDeleteParameters): Promise<TillageDataDelete204Response | TillageDataDeletedefaultResponse>;
-    get(options?: TillageDataGetParameters): Promise<TillageDataGet200Response | TillageDataGetdefaultResponse>;
-    patch(options?: TillageDataCreateOrUpdateParameters): Promise<TillageDataCreateOrUpdate200Response | TillageDataCreateOrUpdate201Response | TillageDataCreateOrUpdatedefaultResponse>;
+    delete(options?: TillageDataDeleteParameters): StreamableMethod<TillageDataDelete204Response | TillageDataDeletedefaultResponse>;
+    get(options?: TillageDataGetParameters): StreamableMethod<TillageDataGet200Response | TillageDataGetdefaultResponse>;
+    patch(options?: TillageDataCreateOrUpdateParameters): StreamableMethod<TillageDataCreateOrUpdate200Response | TillageDataCreateOrUpdate201Response | TillageDataCreateOrUpdatedefaultResponse>;
 }
 
 // @public
@@ -4097,7 +4386,7 @@ export interface TillageDataGetdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -4105,7 +4394,7 @@ export type TillageDataGetParameters = RequestParameters;
 
 // @public (undocumented)
 export interface TillageDataList {
-    get(options?: TillageDataListParameters): Promise<TillageDataList200Response | TillageDataListdefaultResponse>;
+    get(options?: TillageDataListParameters): StreamableMethod<TillageDataList200Response | TillageDataListdefaultResponse>;
 }
 
 // @public
@@ -4118,7 +4407,7 @@ export interface TillageDataList200Response extends HttpResponse {
 
 // @public (undocumented)
 export interface TillageDataListByFarmerId {
-    get(options?: TillageDataListByFarmerIdParameters): Promise<TillageDataListByFarmerId200Response | TillageDataListByFarmerIddefaultResponse>;
+    get(options?: TillageDataListByFarmerIdParameters): StreamableMethod<TillageDataListByFarmerId200Response | TillageDataListByFarmerIddefaultResponse>;
 }
 
 // @public
@@ -4134,7 +4423,7 @@ export interface TillageDataListByFarmerIddefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -4180,7 +4469,7 @@ export interface TillageDataListdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -4269,7 +4558,7 @@ export interface WeatherCreateDataDeleteJobdefaultResponse extends HttpResponse 
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -4298,7 +4587,7 @@ export interface WeatherCreateDataIngestionJobdefaultResponse extends HttpRespon
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -4439,8 +4728,8 @@ export interface WeatherDataOutput {
 
 // @public (undocumented)
 export interface WeatherGetDataDeleteJobDetails {
-    get(options?: WeatherGetDataDeleteJobDetailsParameters): Promise<WeatherGetDataDeleteJobDetails200Response | WeatherGetDataDeleteJobDetailsdefaultResponse>;
-    put(options?: WeatherCreateDataDeleteJobParameters): Promise<WeatherCreateDataDeleteJob202Response | WeatherCreateDataDeleteJobdefaultResponse>;
+    get(options?: WeatherGetDataDeleteJobDetailsParameters): StreamableMethod<WeatherGetDataDeleteJobDetails200Response | WeatherGetDataDeleteJobDetailsdefaultResponse>;
+    put(options?: WeatherCreateDataDeleteJobParameters): StreamableMethod<WeatherCreateDataDeleteJob202Response | WeatherCreateDataDeleteJobdefaultResponse>;
 }
 
 // @public
@@ -4456,7 +4745,7 @@ export interface WeatherGetDataDeleteJobDetailsdefaultResponse extends HttpRespo
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -4464,8 +4753,8 @@ export type WeatherGetDataDeleteJobDetailsParameters = RequestParameters;
 
 // @public (undocumented)
 export interface WeatherGetDataIngestionJobDetails {
-    get(options?: WeatherGetDataIngestionJobDetailsParameters): Promise<WeatherGetDataIngestionJobDetails200Response | WeatherGetDataIngestionJobDetailsdefaultResponse>;
-    put(options?: WeatherCreateDataIngestionJobParameters): Promise<WeatherCreateDataIngestionJob202Response | WeatherCreateDataIngestionJobdefaultResponse>;
+    get(options?: WeatherGetDataIngestionJobDetailsParameters): StreamableMethod<WeatherGetDataIngestionJobDetails200Response | WeatherGetDataIngestionJobDetailsdefaultResponse>;
+    put(options?: WeatherCreateDataIngestionJobParameters): StreamableMethod<WeatherCreateDataIngestionJob202Response | WeatherCreateDataIngestionJobdefaultResponse>;
 }
 
 // @public
@@ -4481,7 +4770,7 @@ export interface WeatherGetDataIngestionJobDetailsdefaultResponse extends HttpRe
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -4489,7 +4778,7 @@ export type WeatherGetDataIngestionJobDetailsParameters = RequestParameters;
 
 // @public (undocumented)
 export interface WeatherList {
-    get(options: WeatherListParameters): Promise<WeatherList200Response | WeatherListdefaultResponse>;
+    get(options: WeatherListParameters): StreamableMethod<WeatherList200Response | WeatherListdefaultResponse>;
 }
 
 // @public
@@ -4505,7 +4794,7 @@ export interface WeatherListdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)

@@ -20,8 +20,11 @@ export interface Product {
 
 /** Known values of {@link Enum0} that the service accepts. */
 export enum KnownEnum0 {
+  /** Foo1 */
   Foo1 = "foo1",
+  /** Foo2 */
   Foo2 = "foo2",
+  /** Foo3 */
   Foo3 = "foo3"
 }
 
@@ -38,8 +41,11 @@ export type Enum0 = string;
 
 /** Known values of {@link Enum1} that the service accepts. */
 export enum KnownEnum1 {
+  /** Foo1 */
   Foo1 = "foo1",
+  /** Foo2 */
   Foo2 = "foo2",
+  /** Foo3 */
   Foo3 = "foo3"
 }
 

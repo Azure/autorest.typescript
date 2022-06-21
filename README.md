@@ -55,7 +55,7 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 ```yaml
 version: 3.6.6
 use-extension:
-  "@autorest/modelerfour": "4.21.4"
+  "@autorest/modelerfour": "4.23.5"
 
 modelerfour:
   # this runs a pre-namer step to clean up names
@@ -70,6 +70,7 @@ modelerfour:
   group-parameters: true
   # Enable older inconsistent behavior that an enum with a single value would become a constant by default.
   seal-single-value-enum-by-default: true
+  legacy-request-body: true
 
 typescript-scope/emitter:
   input-artifact: typescript-files
@@ -77,7 +78,7 @@ typescript-scope/emitter:
 output-artifact: typescript-files
 ```
 
-```yaml !$(generate-test)
+```yaml !$(generate-sample)
 pipeline:
   typescript: # <- name of plugin
     input: modelerfour/identity
@@ -89,9 +90,9 @@ pipeline:
 
 ```
 
-```yaml $(generate-test)
+```yaml $(generate-sample)
 use-extension:
-  "@autorest/testmodeler": "1.0.4"
+  "@autorest/testmodeler": "2.2.5"
 
 try-require:
     - ./readme.test.md

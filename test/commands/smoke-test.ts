@@ -196,7 +196,7 @@ const verifyLibrary = async (spec: SpecDefinition): Promise<SmokeResult> => {
     await removeTransformsToLibraries(spec);
     success = true;
   } catch (e) {
-    logError(e);
+    logError(e as string);
   }
 
   return { readme: readmeUrl, success };

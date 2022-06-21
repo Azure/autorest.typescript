@@ -2,6 +2,7 @@ import BodyFormData, {
   BodyFormDataClient
 } from "./generated/bodyFormDataRest/src";
 import { assert } from "chai";
+import { isUnexpected } from "./generated/bodyFormDataRest/src";
 
 describe("Integration tests for BodyFormData", () => {
   let client: BodyFormDataClient;
@@ -32,7 +33,7 @@ describe("Integration tests for BodyFormData", () => {
 
     assert.equal(result.status, "200");
 
-    if (result.status !== "200") {
+    if (isUnexpected(result)) {
       const error = `Unexpected error ${result.status}`;
       assert.fail(error);
       throw error;
@@ -63,7 +64,7 @@ describe("Integration tests for BodyFormData", () => {
       contentType: "application/octet-stream"
     });
 
-    if (response.status !== "200") {
+    if (isUnexpected(response)) {
       const error = `Unexpected error ${response.status}`;
       assert.fail(error);
       throw error;

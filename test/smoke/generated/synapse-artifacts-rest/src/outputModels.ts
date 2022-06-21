@@ -260,7 +260,7 @@ export interface DataFlowOutputBase {
   annotations?: Array<any>;
   /** The folder that this data flow is in. If not specified, Data flow will appear at the root level. */
   folder?: DataFlowFolderOutput;
-  type: "MappingDataFlow" | "Flowlet";
+  type: "DataFlow" | "MappingDataFlow" | "Flowlet";
 }
 
 export interface DataFlowFolderOutput {
@@ -1569,7 +1569,7 @@ export interface SecureStringOutput extends SecretBaseOutputBase {
 }
 
 export interface SecretBaseOutputBase {
-  type: "SecureString" | "AzureKeyVaultSecret";
+  type: "SecretBase" | "SecureString" | "AzureKeyVaultSecret";
 }
 
 export interface AzureKeyVaultSecretReferenceOutput
@@ -3768,7 +3768,11 @@ export interface WebLinkedServiceOutput extends LinkedServiceOutputBase {
 export interface WebLinkedServiceTypePropertiesOutputBase {
   /** The URL of the web service endpoint, e.g. http://www.microsoft.com . Type: string (or Expression with resultType string). */
   url: any;
-  authenticationType: "Anonymous" | "Basic" | "ClientCertificate";
+  authenticationType:
+    | "WebLinkedServiceTypeProperties"
+    | "Anonymous"
+    | "Basic"
+    | "ClientCertificate";
 }
 
 export interface WebAnonymousAuthenticationOutput
@@ -8637,6 +8641,7 @@ export interface RetryPolicyOutput {
 
 export interface DependencyReferenceOutputBase {
   type:
+    | "DependencyReference"
     | "TriggerDependencyReference"
     | "TumblingWindowTriggerDependencyReference"
     | "SelfDependencyTumblingWindowTriggerReference";
@@ -8809,8 +8814,7 @@ export interface EntityReferenceOutput {
 }
 
 export interface CustomSetupBaseOutput {
-  /** The type of custom setup. */
-  type: string;
+  type: "CustomSetupBase";
 }
 
 export interface ManagedVirtualNetworkReferenceOutput {
@@ -8833,7 +8837,7 @@ export interface SelfHostedIntegrationRuntimeTypePropertiesOutput {
 }
 
 export interface LinkedIntegrationRuntimeTypeOutputBase {
-  authorizationType: "Key" | "RBAC";
+  authorizationType: "LinkedIntegrationRuntimeType" | "Key" | "RBAC";
 }
 
 export interface LinkedIntegrationRuntimeKeyAuthorizationOutput
@@ -8852,11 +8856,9 @@ export interface LinkedIntegrationRuntimeRbacAuthorizationOutput
 
 export type DataFlowOutput = MappingDataFlowOutput | FlowletOutput;
 export type IntegrationRuntimeOutput =
-  | IntegrationRuntimeOutputBase
   | ManagedIntegrationRuntimeOutput
   | SelfHostedIntegrationRuntimeOutput;
 export type DatasetOutput =
-  | DatasetOutputBase
   | AmazonS3DatasetOutput
   | AvroDatasetOutput
   | ExcelDatasetOutput
@@ -8953,7 +8955,6 @@ export type DatasetOutput =
   | SharePointOnlineListResourceDatasetOutput
   | AzureDatabricksDeltaLakeDatasetOutput;
 export type LinkedServiceOutput =
-  | LinkedServiceOutputBase
   | AzureStorageLinkedServiceOutput
   | AzureBlobStorageLinkedServiceOutput
   | AzureTableStorageLinkedServiceOutput
@@ -9055,7 +9056,6 @@ export type LinkedServiceOutput =
   | SnowflakeLinkedServiceOutput
   | SharePointOnlineListLinkedServiceOutput;
 export type ActivityOutput =
-  | ActivityOutputBase
   | ControlActivityOutput
   | ExecutionActivityOutput
   | CopyActivityOutput
@@ -9096,7 +9096,6 @@ export type ActivityOutput =
   | SynapseSparkJobDefinitionActivityOutput
   | SqlPoolStoredProcedureActivityOutput;
 export type TriggerOutput =
-  | TriggerOutputBase
   | RerunTumblingWindowTriggerOutput
   | MultiplePipelineTriggerOutput
   | ScheduleTriggerOutput
@@ -9109,7 +9108,6 @@ export type SecretBaseOutput =
   | SecureStringOutput
   | AzureKeyVaultSecretReferenceOutput;
 export type DatasetLocationOutput =
-  | DatasetLocationOutputBase
   | AzureBlobStorageLocationOutput
   | AzureBlobFSLocationOutput
   | AzureDataLakeStoreLocationOutput
@@ -9122,7 +9120,6 @@ export type DatasetLocationOutput =
   | HttpServerLocationOutput
   | HdfsLocationOutput;
 export type DatasetStorageFormatOutput =
-  | DatasetStorageFormatOutputBase
   | TextFormatOutput
   | JsonFormatOutput
   | AvroFormatOutput
@@ -9173,7 +9170,6 @@ export type ExecutionActivityOutput =
   | SynapseNotebookActivityOutput
   | SynapseSparkJobDefinitionActivityOutput;
 export type StoreReadSettingsOutput =
-  | StoreReadSettingsOutputBase
   | AzureBlobStorageReadSettingsOutput
   | AzureBlobFSReadSettingsOutput
   | AzureDataLakeStoreReadSettingsOutput
@@ -9186,7 +9182,6 @@ export type StoreReadSettingsOutput =
   | HttpReadSettingsOutput
   | HdfsReadSettingsOutput;
 export type StoreWriteSettingsOutput =
-  | StoreWriteSettingsOutputBase
   | SftpWriteSettingsOutput
   | AzureBlobStorageWriteSettingsOutput
   | AzureBlobFSWriteSettingsOutput
@@ -9194,25 +9189,21 @@ export type StoreWriteSettingsOutput =
   | FileServerWriteSettingsOutput
   | AzureFileStorageWriteSettingsOutput;
 export type FormatReadSettingsOutput =
-  | FormatReadSettingsOutputBase
   | DelimitedTextReadSettingsOutput
   | JsonReadSettingsOutput
   | XmlReadSettingsOutput
   | BinaryReadSettingsOutput;
 export type CompressionReadSettingsOutput =
-  | CompressionReadSettingsOutputBase
   | ZipDeflateReadSettingsOutput
   | TarReadSettingsOutput
   | TarGZipReadSettingsOutput;
 export type FormatWriteSettingsOutput =
-  | FormatWriteSettingsOutputBase
   | AvroWriteSettingsOutput
   | OrcWriteSettingsOutput
   | ParquetWriteSettingsOutput
   | DelimitedTextWriteSettingsOutput
   | JsonWriteSettingsOutput;
 export type CopySourceOutput =
-  | CopySourceOutputBase
   | AvroSourceOutput
   | ExcelSourceOutput
   | ParquetSourceOutput
@@ -9309,7 +9300,6 @@ export type CopySourceOutput =
   | AzureDatabricksDeltaLakeSourceOutput
   | SharePointOnlineListSourceOutput;
 export type CopySinkOutput =
-  | CopySinkOutputBase
   | DelimitedTextSinkOutput
   | JsonSinkOutput
   | OrcSinkOutput
@@ -9408,11 +9398,9 @@ export type TabularSourceOutput =
   | GoogleAdWordsSourceOutput
   | AmazonRedshiftSourceOutput;
 export type ExportSettingsOutput =
-  | ExportSettingsOutputBase
   | SnowflakeExportCopyCommandOutput
   | AzureDatabricksDeltaLakeExportCommandOutput;
 export type ImportSettingsOutput =
-  | ImportSettingsOutputBase
   | AzureDatabricksDeltaLakeImportCommandOutput
   | SnowflakeImportCopyCommandOutput;
 export type MultiplePipelineTriggerOutput =

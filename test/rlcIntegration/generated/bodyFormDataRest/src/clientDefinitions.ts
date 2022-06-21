@@ -14,24 +14,26 @@ import {
   UploadFiles200Response,
   UploadFilesdefaultResponse
 } from "./responses";
-import { Client } from "@azure-rest/core-client";
+import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface UploadFile {
   /** Upload file */
   post(
     options: UploadFileParameters
-  ): Promise<UploadFile200Response | UploadFiledefaultResponse>;
+  ): StreamableMethod<UploadFile200Response | UploadFiledefaultResponse>;
   /** Upload file */
   put(
     options: UploadFileViaBodyParameters
-  ): Promise<UploadFileViaBody200Response | UploadFileViaBodydefaultResponse>;
+  ): StreamableMethod<
+    UploadFileViaBody200Response | UploadFileViaBodydefaultResponse
+  >;
 }
 
 export interface UploadFiles {
   /** Upload multiple files */
   post(
     options: UploadFilesParameters
-  ): Promise<UploadFiles200Response | UploadFilesdefaultResponse>;
+  ): StreamableMethod<UploadFiles200Response | UploadFilesdefaultResponse>;
 }
 
 export interface Routes {

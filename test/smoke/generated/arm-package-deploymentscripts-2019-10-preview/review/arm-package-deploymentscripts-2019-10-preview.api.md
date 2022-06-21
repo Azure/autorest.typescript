@@ -11,56 +11,56 @@ import { PollerLike } from '@azure/core-lro';
 import { PollOperationState } from '@azure/core-lro';
 
 // @public
-export type AzureCliScript = DeploymentScript & {
-    containerSettings?: ContainerConfiguration;
-    storageAccountSettings?: StorageAccountConfiguration;
+export interface AzureCliScript extends DeploymentScript {
+    arguments?: string;
+    azCliVersion: string;
     cleanupPreference?: CleanupOptions;
-    readonly provisioningState?: ScriptProvisioningState;
-    readonly status?: ScriptStatus;
+    containerSettings?: ContainerConfiguration;
+    environmentVariables?: EnvironmentVariable[];
+    forceUpdateTag?: string;
     readonly outputs?: {
         [propertyName: string]: Record<string, unknown>;
     };
     primaryScriptUri?: string;
-    supportingScriptUris?: string[];
+    readonly provisioningState?: ScriptProvisioningState;
+    retentionInterval: string;
     scriptContent?: string;
+    readonly status?: ScriptStatus;
+    storageAccountSettings?: StorageAccountConfiguration;
+    supportingScriptUris?: string[];
+    timeout?: string;
+}
+
+// @public
+export interface AzureCliScriptProperties extends DeploymentScriptPropertiesBase, ScriptConfigurationBase {
+    azCliVersion: string;
+}
+
+// @public
+export interface AzurePowerShellScript extends DeploymentScript {
     arguments?: string;
+    azPowerShellVersion: string;
+    cleanupPreference?: CleanupOptions;
+    containerSettings?: ContainerConfiguration;
     environmentVariables?: EnvironmentVariable[];
     forceUpdateTag?: string;
-    retentionInterval: string;
-    timeout?: string;
-    azCliVersion: string;
-};
-
-// @public
-export type AzureCliScriptProperties = DeploymentScriptPropertiesBase & ScriptConfigurationBase & {
-    azCliVersion: string;
-};
-
-// @public
-export type AzurePowerShellScript = DeploymentScript & {
-    containerSettings?: ContainerConfiguration;
-    storageAccountSettings?: StorageAccountConfiguration;
-    cleanupPreference?: CleanupOptions;
-    readonly provisioningState?: ScriptProvisioningState;
-    readonly status?: ScriptStatus;
     readonly outputs?: {
         [propertyName: string]: Record<string, unknown>;
     };
     primaryScriptUri?: string;
-    supportingScriptUris?: string[];
-    scriptContent?: string;
-    arguments?: string;
-    environmentVariables?: EnvironmentVariable[];
-    forceUpdateTag?: string;
+    readonly provisioningState?: ScriptProvisioningState;
     retentionInterval: string;
+    scriptContent?: string;
+    readonly status?: ScriptStatus;
+    storageAccountSettings?: StorageAccountConfiguration;
+    supportingScriptUris?: string[];
     timeout?: string;
-    azPowerShellVersion: string;
-};
+}
 
 // @public
-export type AzurePowerShellScriptProperties = DeploymentScriptPropertiesBase & ScriptConfigurationBase & {
+export interface AzurePowerShellScriptProperties extends DeploymentScriptPropertiesBase, ScriptConfigurationBase {
     azPowerShellVersion: string;
-};
+}
 
 // @public
 export interface AzureResourceBase {
@@ -81,15 +81,15 @@ export interface ContainerConfiguration {
 export type CreatedByType = string;
 
 // @public
-export type DeploymentScript = AzureResourceBase & {
+export interface DeploymentScript extends AzureResourceBase {
     identity: ManagedServiceIdentity;
+    kind: ScriptType;
     location: string;
+    readonly systemData?: SystemData;
     tags?: {
         [propertyName: string]: string;
     };
-    kind: ScriptType;
-    readonly systemData?: SystemData;
-};
+}
 
 // @public
 export interface DeploymentScriptListResult {
@@ -222,11 +222,11 @@ export type DeploymentScriptsUpdateResponse = DeploymentScriptUnion;
 export type DeploymentScriptUnion = DeploymentScript | AzurePowerShellScript | AzureCliScript;
 
 // @public
-export type DeploymentScriptUpdateParameter = AzureResourceBase & {
+export interface DeploymentScriptUpdateParameter extends AzureResourceBase {
     tags?: {
         [propertyName: string]: string;
     };
-};
+}
 
 // @public
 export interface EnvironmentVariable {
@@ -252,53 +252,37 @@ export interface ErrorResponse {
 
 // @public
 export enum KnownCleanupOptions {
-    // (undocumented)
     Always = "Always",
-    // (undocumented)
     OnExpiration = "OnExpiration",
-    // (undocumented)
     OnSuccess = "OnSuccess"
 }
 
 // @public
 export enum KnownCreatedByType {
-    // (undocumented)
     Application = "Application",
-    // (undocumented)
     Key = "Key",
-    // (undocumented)
     ManagedIdentity = "ManagedIdentity",
-    // (undocumented)
     User = "User"
 }
 
 // @public
 export enum KnownManagedServiceIdentityType {
-    // (undocumented)
     UserAssigned = "UserAssigned"
 }
 
 // @public
 export enum KnownScriptProvisioningState {
-    // (undocumented)
     Canceled = "Canceled",
-    // (undocumented)
     Creating = "Creating",
-    // (undocumented)
     Failed = "Failed",
-    // (undocumented)
     ProvisioningResources = "ProvisioningResources",
-    // (undocumented)
     Running = "Running",
-    // (undocumented)
     Succeeded = "Succeeded"
 }
 
 // @public
 export enum KnownScriptType {
-    // (undocumented)
     AzureCLI = "AzureCLI",
-    // (undocumented)
     AzurePowerShell = "AzurePowerShell"
 }
 
@@ -326,9 +310,9 @@ export interface ScriptConfigurationBase {
 }
 
 // @public
-export type ScriptLog = AzureResourceBase & {
+export interface ScriptLog extends AzureResourceBase {
     readonly log?: string;
-};
+}
 
 // @public
 export interface ScriptLogsList {

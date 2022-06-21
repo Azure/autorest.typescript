@@ -4,7 +4,7 @@
 import { Project } from "ts-morph";
 import { getAutorestOptions } from "../../autorestSession";
 
-const highLevelTsConfig: Record<string, any>  = {
+const highLevelTsConfig: Record<string, any> = {
   compilerOptions: {
     module: "es6",
     moduleResolution: "node",
@@ -25,7 +25,7 @@ const highLevelTsConfig: Record<string, any>  = {
 };
 
 
-const restLevelTsConfigInAzureSdkForJs = {
+const restLevelTsConfigInAzureSdkForJs: Record<string, any> = {
   "extends": "../../../tsconfig.package",
   "compilerOptions": {
     "outDir": "./dist-esm",
@@ -34,7 +34,7 @@ const restLevelTsConfigInAzureSdkForJs = {
   "include": ["src/**/*.ts"]
 };
 
-const restLevelTsConfigNotInAzureSdkForJs ={
+const restLevelTsConfigNotInAzureSdkForJs: Record<string, any> = {
   "compilerOptions": {
     "target": "ES2017",
     "module": "es6",
@@ -70,7 +70,7 @@ export function generateTsConfig(project: Project) {
 
   const clientPackageName = packageDetails.name;
 
-  const restLevelTsConfig = azureSdkForJs? restLevelTsConfigInAzureSdkForJs : restLevelTsConfigNotInAzureSdkForJs;
+  const restLevelTsConfig = azureSdkForJs ? restLevelTsConfigInAzureSdkForJs : restLevelTsConfigNotInAzureSdkForJs;
 
   if (generateTest) {
     highLevelTsConfig.include.push("./test/**/*.ts");
@@ -81,6 +81,9 @@ export function generateTsConfig(project: Project) {
     highLevelTsConfig.include.push("samples-dev/**/*.ts");
     highLevelTsConfig.compilerOptions["paths"] = {};
     highLevelTsConfig.compilerOptions["paths"][clientPackageName] = ["./src/index"];
+    restLevelTsConfig.include.push("samples-dev/**/*.ts");
+    restLevelTsConfig.compilerOptions["paths"] = {};
+    restLevelTsConfig.compilerOptions["paths"][clientPackageName] = ["./src/index"];
   }
 
   const tsConfigContents = restLevelClient

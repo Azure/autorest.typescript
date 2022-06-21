@@ -2,12 +2,12 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { TokenCredential } from "@azure/core-auth";
+import { KeyCredential } from "@azure/core-auth";
 import { PurviewMetadataPoliciesClient } from "./clientDefinitions";
 
 export function createClient(
   Endpoint: string,
-  credentials: TokenCredential,
+  credentials: KeyCredential,
   options: ClientOptions = {}
 ): PurviewMetadataPoliciesClient {
   const baseUrl = options.baseUrl ?? `${Endpoint}/policyStore`;
@@ -15,7 +15,7 @@ export function createClient(
   options = {
     ...options,
     credentials: {
-      scopes: ["https://purview.azure.net/.default"]
+      apiKeyHeaderName: "CustomAuth"
     }
   };
 

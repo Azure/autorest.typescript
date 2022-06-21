@@ -20,7 +20,16 @@
     "experimentalDecorators": true,
     "newLine": "LF",
     "outDir": "./test-browser",
-    "rootDir": "./test"
+    "rootDir": "./test",
+    "useUnknownInCatchVariables": false,
+    "paths": {
+      "@msinternal/body-string-rest": [
+        "./test/rlcIntegration/generated/bodyStringRest/src/index"
+      ],
+      "@msinternal/lro-rest": [
+        "./test/rlcIntegration/generated/lroRest/src/index"
+      ]
+    }
   },
   "include": ["test/**/*.ts"],
   "exclude": [

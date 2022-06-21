@@ -107,7 +107,7 @@ export interface Boundary {
 }
 
 export interface GeoJsonObjectBase {
-  type: "MultiPolygon" | "Point" | "Polygon";
+  type: "GeoJsonObject" | "MultiPolygon" | "Point" | "Polygon";
 }
 
 export interface SearchBoundaryQuery {

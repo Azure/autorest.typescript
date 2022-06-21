@@ -6,7 +6,8 @@ import {
   ObjectSchema,
   ComplexSchema,
   Property,
-  GroupProperty
+  GroupProperty,
+  Language
 } from "@autorest/codemodel";
 import {
   ObjectDetails,
@@ -58,7 +59,7 @@ export function transformObject(
     hasAdditionalProperties: false,
     kind,
     name,
-    serializedName: metadata.serializedName,
+    serializedName: getObjectSerializedName(metadata, kind),
     description: metadata.description || undefined,
     schema,
     properties: schema.properties
@@ -67,6 +68,14 @@ export function transformObject(
   };
 
   return getAdditionalObjectDetails(objectDetails, uberParents);
+}
+
+function getObjectSerializedName(metadata: Language, kind: ObjectKind) {
+  return metadata.serializedName
+    ? metadata.serializedName
+    : kind === ObjectKind.Polymorphic
+    ? metadata.name
+    : undefined;
 }
 
 export function transformProperty({
@@ -92,7 +101,7 @@ export function transformProperty({
   return {
     name: normalizeName(
       metadata.name,
-      metadata.isTopLevelParameter? NameType.Parameter: NameType.Property,
+      metadata.isTopLevelParameter ? NameType.Parameter : NameType.Property,
       true /** shouldGuard */
     ),
     description,
@@ -289,12 +298,21 @@ function transformPolymorphicObject(
       ? {}
       : { [`"${discriminatorProperty}"`]: childDiscriminators };
   } else {
-    discriminatorPath = `${uberParentName}.${schema.discriminatorValue}`;
+    discriminatorPath = `${uberParentName}.${
+      schema.discriminatorValue
+        ? schema.discriminatorValue
+        : schema.language.default.name
+    }`;
     if (uberParent.discriminator) {
       const childDiscriminators = getChildrenDiscriminators(schema);
       discriminatorValues = {
         [getLanguageMetadata(uberParent.discriminator.property.language)
-          .name]: [schema.discriminatorValue!, ...childDiscriminators]
+          .name]: [
+          schema.discriminatorValue
+            ? schema.discriminatorValue
+            : schema.language.default.name,
+          ...childDiscriminators
+        ]
       };
     }
   }

@@ -27,7 +27,6 @@ import { filterOperationParameters } from "./utils/parameterUtils";
 import {
   OperationDetails,
   OperationResponseDetails,
-  OperationGroupDetails
 } from "../models/operationDetails";
 import { ParameterDetails } from "../models/parameterDetails";
 import {
@@ -110,8 +109,8 @@ const writeClientModels = (
       baseClass: !useCoreV2
         ? "coreHttp.ServiceClientOptions"
         : coreHttpCompatMode
-        ? "coreHttpCompat.ExtendedServiceClientOptions"
-        : "coreClient.ServiceClientOptions"
+          ? "coreHttpCompat.ExtendedServiceClientOptions"
+          : "coreClient.ServiceClientOptions"
     }
   );
 };
@@ -405,11 +404,11 @@ function buildResponseType(
           docs: ["The underlying HTTP response."],
           type: innerResponseProperties.length
             ? Writers.intersectionType(
-                "coreHttp.HttpResponse",
-                Writers.objectType({
-                  properties: innerResponseProperties
-                })
-              )
+              "coreHttp.HttpResponse",
+              Writers.objectType({
+                properties: innerResponseProperties
+              })
+            )
             : "coreHttp.HttpResponse",
           leadingTrivia: writer => writer.blankLine()
         }
@@ -449,13 +448,13 @@ function buildResponseType(
   if (!useCoreV2) {
     return intersectionTypes.length > 1
       ? // Using apply instead of calling the method directly to be able to conditionally pass
-        // parameters, this way we don't have to have a nested if/else tree to decide which parameters
-        // to pass, we will pass any intersectionTypes availabe plus the innerType. When there are no intersection types
-        // we just return innerType
-        Writers.intersectionType.apply(
-          Writers,
-          intersectionTypes as IntersectionTypeParameters
-        )
+      // parameters, this way we don't have to have a nested if/else tree to decide which parameters
+      // to pass, we will pass any intersectionTypes availabe plus the innerType. When there are no intersection types
+      // we just return innerType
+      Writers.intersectionType.apply(
+        Writers,
+        intersectionTypes as IntersectionTypeParameters
+      )
       : (innerTypeWriter as WriterFunction);
   } else {
     if (intersectionTypes.length > 1) {
@@ -505,7 +504,7 @@ const writeExtensibleChoice = (
       members: choice.properties.map(p => ({
         name: p.name,
         value: p.value,
-        docs: p.description ? [p.description] : undefined
+        docs: [p.description ? p.description : p.name]
       }))
     });
   }
@@ -573,29 +572,14 @@ const writeObjects = (
 const writeObjectSignature = (modelsIndexFile: SourceFile) => (
   model: ObjectDetails
 ) => {
-  const properties = getPropertiesSignatures(model);
-  const parents = model.parents.map(p => p.name).join(" & ");
-
-  if (parents) {
-    modelsIndexFile.addTypeAlias({
-      name: model.name,
-      docs: model.description ? [model.description] : [],
-      isExported: true,
-      type: Writers.intersectionType(
-        parents,
-        Writers.objectType({ properties })
-      ),
-      leadingTrivia: writer => writer.blankLine()
-    });
-  } else {
-    modelsIndexFile.addInterface({
-      name: model.name,
-      docs: model.description ? [model.description] : [],
-      isExported: true,
-      properties,
-      leadingTrivia: writer => writer.blankLine()
-    });
-  }
+  modelsIndexFile.addInterface({
+    name: model.name,
+    docs: model.description ? [model.description] : [],
+    isExported: true,
+    extends: model.parents.map(p => p.name),
+    properties: getPropertiesSignatures(model),
+    leadingTrivia: writer => writer.blankLine()
+  });
 };
 
 /**
@@ -616,7 +600,6 @@ function writeUniontypes({ objects }: ClientDetails, modelsFile: SourceFile) {
             : c.name;
         })
       ];
-
       modelsFile.addTypeAlias({
         name: `${obj.name}Union`,
         isExported: true,
@@ -624,20 +607,6 @@ function writeUniontypes({ objects }: ClientDetails, modelsFile: SourceFile) {
         trailingTrivia: writer => writer.newLine()
       });
     });
-}
-
-/**
- * Checks if a polymorphic parent needs to be included in the Union type to represent its polymorphism
- * A parent needs to be in the union only if its name is in the list of allowed discriminator values
- * otherwise the parent should be excluded.
- * @param parent Plymorphic parent to check
- */
-function isPolymorphicParentInUnion(parent: PolymorphicObjectDetails): boolean {
-  return Object.keys(parent.discriminatorValues).some(property =>
-    parent.discriminatorValues[property].some(
-      discriminatorValue => discriminatorValue === parent.name
-    )
-  );
 }
 
 interface WriteOptionalParametersOptions {
@@ -721,9 +690,9 @@ function writeOptionalParameters(
       isExported: true,
       extends: [
         baseClass ||
-          (!useCoreV2
-            ? "coreHttp.OperationOptions"
-            : "coreClient.OperationOptions")
+        (!useCoreV2
+          ? "coreHttp.OperationOptions"
+          : "coreClient.OperationOptions")
       ],
       properties: properties
     };

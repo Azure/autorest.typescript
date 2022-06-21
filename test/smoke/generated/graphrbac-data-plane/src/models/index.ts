@@ -522,7 +522,7 @@ export interface OAuth2PermissionGrant {
 }
 
 /** Active Directory user information. */
-export type User = DirectoryObject & {
+export interface User extends DirectoryObject {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   objectType: "User";
   /** This must be specified if you are using a federated domain for the user's userPrincipalName (UPN) property when creating a new user account. It is used to associate an on-premises Active Directory user account with their Azure AD user object. */
@@ -547,10 +547,10 @@ export type User = DirectoryObject & {
   mail?: string;
   /** The sign-in names of the user. */
   signInNames?: SignInName[];
-};
+}
 
 /** Active Directory application information. */
-export type Application = DirectoryObject & {
+export interface Application extends DirectoryObject {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   objectType: "Application";
   /** The application ID. */
@@ -617,10 +617,10 @@ export type Application = DirectoryObject & {
   signInAudience?: string;
   /** The primary Web page. */
   wwwHomepage?: string;
-};
+}
 
 /** Active Directory group information. */
-export type ADGroup = DirectoryObject & {
+export interface ADGroup extends DirectoryObject {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   objectType: "Group";
   /** The display name of the group. */
@@ -633,10 +633,10 @@ export type ADGroup = DirectoryObject & {
   securityEnabled?: boolean;
   /** The primary email address of the group. */
   mail?: string;
-};
+}
 
 /** Active Directory service principal information. */
-export type ServicePrincipal = DirectoryObject & {
+export interface ServicePrincipal extends DirectoryObject {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   objectType: "ServicePrincipal";
   /** whether or not the service principal account is enabled */
@@ -687,35 +687,36 @@ export type ServicePrincipal = DirectoryObject & {
   servicePrincipalType?: string;
   /** Optional list of tags that you can apply to your service principals. Not nullable. */
   tags?: string[];
-};
+}
 
 /** Request parameters for creating a new application. */
-export type ApplicationCreateParameters = ApplicationBase & {
+export interface ApplicationCreateParameters extends ApplicationBase {
   /** The display name of the application. */
   displayName: string;
   /** A collection of URIs for the application. */
   identifierUris?: string[];
-};
+}
 
 /** Request parameters for updating a new application. */
-export type ApplicationUpdateParameters = ApplicationBase & {
+export interface ApplicationUpdateParameters extends ApplicationBase {
   /** The display name of the application. */
   displayName?: string;
   /** A collection of URIs for the application. */
   identifierUris?: string[];
-};
+}
 
 /** Request parameters for creating a new service principal. */
-export type ServicePrincipalCreateParameters = ServicePrincipalBase & {
+export interface ServicePrincipalCreateParameters extends ServicePrincipalBase {
   /** The application ID. */
   appId: string;
-};
+}
 
 /** Request parameters for update an existing service principal. */
-export type ServicePrincipalUpdateParameters = ServicePrincipalBase & {};
+export interface ServicePrincipalUpdateParameters
+  extends ServicePrincipalBase {}
 
 /** Request parameters for creating a new work or school account user. */
-export type UserCreateParameters = UserBase & {
+export interface UserCreateParameters extends UserBase {
   /** Whether the account is enabled. */
   accountEnabled: boolean;
   /** The display name of the user. */
@@ -728,10 +729,10 @@ export type UserCreateParameters = UserBase & {
   mailNickname: string;
   /** The primary email address of the user. */
   mail?: string;
-};
+}
 
 /** Request parameters for updating an existing work or school account user. */
-export type UserUpdateParameters = UserBase & {
+export interface UserUpdateParameters extends UserBase {
   /** Whether the account is enabled. */
   accountEnabled?: boolean;
   /** The display name of the user. */
@@ -742,11 +743,13 @@ export type UserUpdateParameters = UserBase & {
   userPrincipalName?: string;
   /** The mail alias for the user. */
   mailNickname?: string;
-};
+}
 
 /** Known values of {@link UserType} that the service accepts. */
 export enum KnownUserType {
+  /** Member */
   Member = "Member",
+  /** Guest */
   Guest = "Guest"
 }
 
@@ -762,8 +765,11 @@ export type UserType = string;
 
 /** Known values of {@link GroupMembershipClaimTypes} that the service accepts. */
 export enum KnownGroupMembershipClaimTypes {
+  /** None */
   None = "None",
+  /** SecurityGroup */
   SecurityGroup = "SecurityGroup",
+  /** All */
   All = "All"
 }
 
@@ -780,7 +786,9 @@ export type GroupMembershipClaimTypes = string;
 
 /** Known values of {@link ConsentType} that the service accepts. */
 export enum KnownConsentType {
+  /** AllPrincipals */
   AllPrincipals = "AllPrincipals",
+  /** Principal */
   Principal = "Principal"
 }
 

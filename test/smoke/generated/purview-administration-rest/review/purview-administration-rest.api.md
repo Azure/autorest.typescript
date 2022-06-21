@@ -7,10 +7,12 @@
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
+import { KeyCredential } from '@azure/core-auth';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
+import { StreamableMethod } from '@azure-rest/core-client';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public (undocumented)
@@ -69,7 +71,7 @@ interface AccountPropertiesOutput {
 
 // @public (undocumented)
 interface AccountsGetAccessKeys {
-    post(options?: AccountsGetAccessKeysParameters): Promise<AccountsGetAccessKeys200Response | AccountsGetAccessKeysdefaultResponse>;
+    post(options?: AccountsGetAccessKeysParameters): StreamableMethod<AccountsGetAccessKeys200Response | AccountsGetAccessKeysdefaultResponse>;
 }
 
 // @public
@@ -85,7 +87,7 @@ interface AccountsGetAccessKeysdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseModelOutput_2;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -93,8 +95,8 @@ type AccountsGetAccessKeysParameters = RequestParameters;
 
 // @public (undocumented)
 interface AccountsGetAccountProperties {
-    get(options?: AccountsGetAccountPropertiesParameters): Promise<AccountsGetAccountProperties200Response | AccountsGetAccountPropertiesdefaultResponse>;
-    patch(options: AccountsUpdateAccountPropertiesParameters): Promise<AccountsUpdateAccountProperties200Response | AccountsUpdateAccountPropertiesdefaultResponse>;
+    get(options?: AccountsGetAccountPropertiesParameters): StreamableMethod<AccountsGetAccountProperties200Response | AccountsGetAccountPropertiesdefaultResponse>;
+    patch(options: AccountsUpdateAccountPropertiesParameters): StreamableMethod<AccountsUpdateAccountProperties200Response | AccountsUpdateAccountPropertiesdefaultResponse>;
 }
 
 // @public
@@ -110,7 +112,7 @@ interface AccountsGetAccountPropertiesdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseModelOutput_2;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -124,7 +126,7 @@ interface AccountSkuOutput {
 
 // @public (undocumented)
 interface AccountsRegenerateAccessKey {
-    post(options: AccountsRegenerateAccessKeyParameters): Promise<AccountsRegenerateAccessKey200Response | AccountsRegenerateAccessKeydefaultResponse>;
+    post(options: AccountsRegenerateAccessKeyParameters): StreamableMethod<AccountsRegenerateAccessKey200Response | AccountsRegenerateAccessKeydefaultResponse>;
 }
 
 // @public
@@ -146,7 +148,7 @@ interface AccountsRegenerateAccessKeydefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseModelOutput_2;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -176,7 +178,7 @@ interface AccountsUpdateAccountPropertiesdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseModelOutput_2;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -361,7 +363,7 @@ interface CollectionsCreateOrUpdateCollectiondefaultResponse extends HttpRespons
     // (undocumented)
     body: ErrorResponseModelOutput_2;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -385,7 +387,7 @@ interface CollectionsDeleteCollectiondefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseModelOutput_2;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -393,9 +395,9 @@ type CollectionsDeleteCollectionParameters = RequestParameters;
 
 // @public (undocumented)
 interface CollectionsGetCollection {
-    delete(options?: CollectionsDeleteCollectionParameters): Promise<CollectionsDeleteCollection204Response | CollectionsDeleteCollectiondefaultResponse>;
-    get(options?: CollectionsGetCollectionParameters): Promise<CollectionsGetCollection200Response | CollectionsGetCollectiondefaultResponse>;
-    put(options: CollectionsCreateOrUpdateCollectionParameters): Promise<CollectionsCreateOrUpdateCollection200Response | CollectionsCreateOrUpdateCollectiondefaultResponse>;
+    delete(options?: CollectionsDeleteCollectionParameters): StreamableMethod<CollectionsDeleteCollection204Response | CollectionsDeleteCollectiondefaultResponse>;
+    get(options?: CollectionsGetCollectionParameters): StreamableMethod<CollectionsGetCollection200Response | CollectionsGetCollectiondefaultResponse>;
+    put(options: CollectionsCreateOrUpdateCollectionParameters): StreamableMethod<CollectionsCreateOrUpdateCollection200Response | CollectionsCreateOrUpdateCollectiondefaultResponse>;
 }
 
 // @public
@@ -411,7 +413,7 @@ interface CollectionsGetCollectiondefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseModelOutput_2;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -419,7 +421,7 @@ type CollectionsGetCollectionParameters = RequestParameters;
 
 // @public (undocumented)
 interface CollectionsGetCollectionPath {
-    get(options?: CollectionsGetCollectionPathParameters): Promise<CollectionsGetCollectionPath200Response | CollectionsGetCollectionPathdefaultResponse>;
+    get(options?: CollectionsGetCollectionPathParameters): StreamableMethod<CollectionsGetCollectionPath200Response | CollectionsGetCollectionPathdefaultResponse>;
 }
 
 // @public
@@ -435,7 +437,7 @@ interface CollectionsGetCollectionPathdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseModelOutput_2;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -443,7 +445,7 @@ type CollectionsGetCollectionPathParameters = RequestParameters;
 
 // @public (undocumented)
 interface CollectionsListChildCollectionNames {
-    get(options?: CollectionsListChildCollectionNamesParameters): Promise<CollectionsListChildCollectionNames200Response | CollectionsListChildCollectionNamesdefaultResponse>;
+    get(options?: CollectionsListChildCollectionNamesParameters): StreamableMethod<CollectionsListChildCollectionNames200Response | CollectionsListChildCollectionNamesdefaultResponse>;
 }
 
 // @public
@@ -459,7 +461,7 @@ interface CollectionsListChildCollectionNamesdefaultResponse extends HttpRespons
     // (undocumented)
     body: ErrorResponseModelOutput_2;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -479,7 +481,7 @@ interface CollectionsListChildCollectionNamesQueryParamProperties {
 
 // @public (undocumented)
 interface CollectionsListCollections {
-    get(options?: CollectionsListCollectionsParameters): Promise<CollectionsListCollections200Response | CollectionsListCollectionsdefaultResponse>;
+    get(options?: CollectionsListCollectionsParameters): StreamableMethod<CollectionsListCollections200Response | CollectionsListCollectionsdefaultResponse>;
 }
 
 // @public
@@ -495,7 +497,7 @@ interface CollectionsListCollectionsdefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseModelOutput_2;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -562,7 +564,7 @@ interface ComplexReplacerConfigOutput {
 }
 
 // @public (undocumented)
-function createClient(Endpoint: string, credentials: TokenCredential, options?: ClientOptions): PurviewMetadataPoliciesClient;
+function createClient(Endpoint: string, credentials: KeyCredential, options?: ClientOptions): PurviewMetadataPoliciesClient;
 
 // @public (undocumented)
 function createClient_2(endpoint: string, credentials: TokenCredential, options?: ClientOptions): PurviewAccountClient;
@@ -761,7 +763,7 @@ interface MetadataPolicyGetdefaultResponse extends HttpResponse {
     // (undocumented)
     headers: RawHttpHeaders & MetadataPolicyGetdefaultHeaders;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -769,7 +771,7 @@ type MetadataPolicyGetParameters = RequestParameters;
 
 // @public (undocumented)
 interface MetadataPolicyListAll {
-    get(options?: MetadataPolicyListAllParameters): Promise<MetadataPolicyListAll200Response | MetadataPolicyListAlldefaultResponse>;
+    get(options?: MetadataPolicyListAllParameters): StreamableMethod<MetadataPolicyListAll200Response | MetadataPolicyListAlldefaultResponse>;
 }
 
 // @public
@@ -792,7 +794,7 @@ interface MetadataPolicyListAlldefaultResponse extends HttpResponse {
     // (undocumented)
     headers: RawHttpHeaders & MetadataPolicyListAlldefaultHeaders;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -846,8 +848,8 @@ interface MetadataPolicyPropertiesOutput {
 
 // @public (undocumented)
 interface MetadataPolicyUpdate {
-    get(options?: MetadataPolicyGetParameters): Promise<MetadataPolicyGet200Response | MetadataPolicyGetdefaultResponse>;
-    put(options?: MetadataPolicyUpdateParameters): Promise<MetadataPolicyUpdate200Response | MetadataPolicyUpdatedefaultResponse>;
+    get(options?: MetadataPolicyGetParameters): StreamableMethod<MetadataPolicyGet200Response | MetadataPolicyGetdefaultResponse>;
+    put(options?: MetadataPolicyUpdateParameters): StreamableMethod<MetadataPolicyUpdate200Response | MetadataPolicyUpdatedefaultResponse>;
 }
 
 // @public
@@ -875,7 +877,7 @@ interface MetadataPolicyUpdatedefaultResponse extends HttpResponse {
     // (undocumented)
     headers: RawHttpHeaders & MetadataPolicyUpdatedefaultHeaders;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -916,7 +918,7 @@ interface MetadataRolePropertiesOutput {
 
 // @public (undocumented)
 interface MetadataRolesList {
-    get(options?: MetadataRolesListParameters): Promise<MetadataRolesList200Response | MetadataRolesListdefaultResponse>;
+    get(options?: MetadataRolesListParameters): StreamableMethod<MetadataRolesList200Response | MetadataRolesListdefaultResponse>;
 }
 
 // @public
@@ -939,7 +941,7 @@ interface MetadataRolesListdefaultResponse extends HttpResponse {
     // (undocumented)
     headers: RawHttpHeaders & MetadataRolesListdefaultHeaders;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1388,7 +1390,7 @@ interface ResourceSetRulesCreateOrUpdateResourceSetRuledefaultResponse extends H
     // (undocumented)
     body: ErrorResponseModelOutput_2;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1420,7 +1422,7 @@ interface ResourceSetRulesDeleteResourceSetRuledefaultResponse extends HttpRespo
     // (undocumented)
     body: ErrorResponseModelOutput_2;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1428,9 +1430,9 @@ type ResourceSetRulesDeleteResourceSetRuleParameters = RequestParameters;
 
 // @public (undocumented)
 interface ResourceSetRulesGetResourceSetRule {
-    delete(options?: ResourceSetRulesDeleteResourceSetRuleParameters): Promise<ResourceSetRulesDeleteResourceSetRule200Response | ResourceSetRulesDeleteResourceSetRule204Response | ResourceSetRulesDeleteResourceSetRuledefaultResponse>;
-    get(options?: ResourceSetRulesGetResourceSetRuleParameters): Promise<ResourceSetRulesGetResourceSetRule200Response | ResourceSetRulesGetResourceSetRuledefaultResponse>;
-    put(options: ResourceSetRulesCreateOrUpdateResourceSetRuleParameters): Promise<ResourceSetRulesCreateOrUpdateResourceSetRule200Response | ResourceSetRulesCreateOrUpdateResourceSetRuledefaultResponse>;
+    delete(options?: ResourceSetRulesDeleteResourceSetRuleParameters): StreamableMethod<ResourceSetRulesDeleteResourceSetRule200Response | ResourceSetRulesDeleteResourceSetRule204Response | ResourceSetRulesDeleteResourceSetRuledefaultResponse>;
+    get(options?: ResourceSetRulesGetResourceSetRuleParameters): StreamableMethod<ResourceSetRulesGetResourceSetRule200Response | ResourceSetRulesGetResourceSetRuledefaultResponse>;
+    put(options: ResourceSetRulesCreateOrUpdateResourceSetRuleParameters): StreamableMethod<ResourceSetRulesCreateOrUpdateResourceSetRule200Response | ResourceSetRulesCreateOrUpdateResourceSetRuledefaultResponse>;
 }
 
 // @public
@@ -1446,7 +1448,7 @@ interface ResourceSetRulesGetResourceSetRuledefaultResponse extends HttpResponse
     // (undocumented)
     body: ErrorResponseModelOutput_2;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)
@@ -1454,7 +1456,7 @@ type ResourceSetRulesGetResourceSetRuleParameters = RequestParameters;
 
 // @public (undocumented)
 interface ResourceSetRulesListResourceSetRules {
-    get(options?: ResourceSetRulesListResourceSetRulesParameters): Promise<ResourceSetRulesListResourceSetRules200Response | ResourceSetRulesListResourceSetRulesdefaultResponse>;
+    get(options?: ResourceSetRulesListResourceSetRulesParameters): StreamableMethod<ResourceSetRulesListResourceSetRules200Response | ResourceSetRulesListResourceSetRulesdefaultResponse>;
 }
 
 // @public
@@ -1470,7 +1472,7 @@ interface ResourceSetRulesListResourceSetRulesdefaultResponse extends HttpRespon
     // (undocumented)
     body: ErrorResponseModelOutput_2;
     // (undocumented)
-    status: "500";
+    status: string;
 }
 
 // @public (undocumented)

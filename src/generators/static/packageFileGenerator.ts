@@ -8,6 +8,8 @@ import { getAutorestOptions, getSession } from "../../autorestSession";
 import { hasPagingOperations } from "../../utils/extractPaginationDetails";
 import { hasPollingOperations } from "../../restLevelClient/helpers/hasPollingOperations";
 import { NameType, normalizeName } from "../../utils/nameUtils";
+import { TestCodeModel } from "@autorest/testmodeler/dist/src/core/model";
+import { getSecurityInfoFromModel } from "../../utils/schemaHelpers";
 
 export function generatePackageJson(
   project: Project,
@@ -52,10 +54,17 @@ function restLevelPackage(packageDetails: PackageDetails) {
   const {
     azureArm,
     generateTest,
+    generateSample,
     azureOutputDirectory,
     azureSdkForJs
   } = getAutorestOptions();
   const { model } = getSession();
+  const clientPackageName = packageDetails.name;
+  let apiRefUrlQueryParameter: string = "";
+  if (packageDetails.version.includes("beta")) {
+    apiRefUrlQueryParameter = "?view=azure-node-preview";
+  }
+  const description = packageDetails.description;
   const hasPaging = hasPagingOperations(model);
   const hasLRO = hasPollingOperations(model);
   const packageInfo: Record<string, any> = {
@@ -124,15 +133,13 @@ function restLevelPackage(packageDetails: PackageDetails) {
       test: 'echo "Error: no test specified" && exit 1',
       "unit-test": "echo skipped",
       "unit-test:node": "echo skipped",
-      "unit-test:browser": "echo skipped",
-      docs:
-        "typedoc --excludePrivate --excludeExternals  --out ./dist/docs ./src"
+      "unit-test:browser": "echo skipped"
     },
     sideEffects: false,
     autoPublish: false,
     dependencies: {
       "@azure/core-auth": "^1.3.0",
-      "@azure-rest/core-client": "1.0.0-beta.9",
+      "@azure-rest/core-client": "1.0.0-beta.10",
       "@azure/core-rest-pipeline": "^1.8.0",
       "@azure/logger": "^1.0.0",
       tslib: "^2.2.0",
@@ -153,7 +160,6 @@ function restLevelPackage(packageDetails: PackageDetails) {
       prettier: "2.2.1",
       rimraf: "^3.0.0",
       "source-map-support": "^0.5.9",
-      typedoc: "0.15.2",
       typescript: "~4.2.0"
     }
   };
@@ -190,6 +196,7 @@ function restLevelPackage(packageDetails: PackageDetails) {
     packageInfo.devDependencies["mocha"] = "^7.1.1";
     packageInfo.devDependencies["mocha-junit-reporter"] = "^1.18.0";
     packageInfo.devDependencies["cross-env"] = "^7.0.2";
+    packageInfo.devDependencies["@types/chai"] = "^4.2.8";
     packageInfo.devDependencies["chai"] = "^4.2.0";
     packageInfo.devDependencies["cross-env"] = "^7.0.2";
     packageInfo.devDependencies["karma-chrome-launcher"] = "^3.0.0";
@@ -206,18 +213,28 @@ function restLevelPackage(packageDetails: PackageDetails) {
     packageInfo.devDependencies["karma"] = "^6.2.0";
     packageInfo.devDependencies["nyc"] = "^14.0.0";
     packageInfo.devDependencies["source-map-support"] = "^0.5.9";
-    packageInfo.scripts["test"] =  "npm run clean && npm run build:test && npm run unit-test";
-    packageInfo.scripts["test:node"] =  "npm run clean && npm run build:test && npm run unit-test:node";
-    packageInfo.scripts["test:browser"] =  "npm run clean && npm run build:test && npm run unit-test:browser";
-    packageInfo.scripts["build:browser"] =  "tsc -p . && cross-env ONLY_BROWSER=true rollup -c 2>&1";
-    packageInfo.scripts["build:node"] =  "tsc -p . && cross-env ONLY_NODE=true rollup -c 2>&1";
-    packageInfo.scripts["build:test"] =  "tsc -p . && rollup -c 2>&1";
-    packageInfo.scripts["unit-test"] = "npm run unit-test:node && npm run unit-test:browser";
-    packageInfo.scripts["unit-test:node"] = "mocha -r esm --require ts-node/register --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 1200000 --full-trace \"test/{,!(browser)/**/}*.spec.ts\"";
-    packageInfo.scripts["unit-test:browser"] =  "karma start --single-run";
-    packageInfo.scripts["integration-test:browser"] = "karma start --single-run";
-    packageInfo.scripts["integration-test:node"] = "nyc mocha -r esm --require source-map-support/register --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 5000000 --full-trace \"dist-esm/test/{,!(browser)/**/}*.spec.js\"";
-    packageInfo.scripts["integration-test"] = "npm run integration-test:node && npm run integration-test:browser";
+    packageInfo.scripts["test"] =
+      "npm run clean && npm run build:test && npm run unit-test";
+    packageInfo.scripts["test:node"] =
+      "npm run clean && npm run build:test && npm run unit-test:node";
+    packageInfo.scripts["test:browser"] =
+      "npm run clean && npm run build:test && npm run unit-test:browser";
+    packageInfo.scripts["build:browser"] =
+      "tsc -p . && cross-env ONLY_BROWSER=true rollup -c 2>&1";
+    packageInfo.scripts["build:node"] =
+      "tsc -p . && cross-env ONLY_NODE=true rollup -c 2>&1";
+    packageInfo.scripts["build:test"] = "tsc -p . && rollup -c 2>&1";
+    packageInfo.scripts["unit-test"] =
+      "npm run unit-test:node && npm run unit-test:browser";
+    packageInfo.scripts["unit-test:node"] =
+      'mocha -r esm --require ts-node/register --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 1200000 --full-trace "test/{,!(browser)/**/}*.spec.ts"';
+    packageInfo.scripts["unit-test:browser"] = "karma start --single-run";
+    packageInfo.scripts["integration-test:browser"] =
+      "karma start --single-run";
+    packageInfo.scripts["integration-test:node"] =
+      'nyc mocha -r esm --require source-map-support/register --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 5000000 --full-trace "dist-esm/test/{,!(browser)/**/}*.spec.js"';
+    packageInfo.scripts["integration-test"] =
+      "npm run integration-test:node && npm run integration-test:browser";
     if (azureSdkForJs) {
       packageInfo.scripts["build:test"] = "tsc -p . && dev-tool run bundle";
       packageInfo.scripts["integration-test:browser"] =
@@ -233,6 +250,23 @@ function restLevelPackage(packageDetails: PackageDetails) {
       "./dist-esm/test/public/utils/env.js":
         "./dist-esm/test/public/utils/env.browser.js"
     };
+  }
+
+  if (
+    generateSample &&
+    (model as TestCodeModel)?.testModel?.mockTest?.exampleGroups &&
+    (model as TestCodeModel).testModel!.mockTest!.exampleGroups.length > 0
+  ) {
+    packageInfo["//sampleConfiguration"] = {
+      productName: description,
+      productSlugs: ["azure"],
+      disableDocsMs: true,
+      apiRefLink: `https://docs.microsoft.com/javascript/api/${clientPackageName}${apiRefUrlQueryParameter}`
+    };
+    if (azureSdkForJs) {
+      packageInfo.scripts["execute:samples"] =
+        "dev-tool samples run samples-dev";
+    }
   }
 
   return packageInfo;
@@ -252,7 +286,6 @@ function regularAutorestPackage(
     tracingInfo,
     disablePagingAsyncIterators,
     azureArm,
-    addCredentials,
     azureOutputDirectory,
     generateTest,
     generateSample,
@@ -260,6 +293,7 @@ function regularAutorestPackage(
     azureSdkForJs
   } = getAutorestOptions();
   const { model } = getSession();
+  const { addCredentials } = getSecurityInfoFromModel(model.security);
   const hasLro = hasPollingOperations(model);
   const hasAsyncIterators =
     !disablePagingAsyncIterators && clientDetails.options.hasPaging;
@@ -369,8 +403,7 @@ function regularAutorestPackage(
       "unit-test:browser": "echo skipped",
       "integration-test": "echo skipped",
       "integration-test:node": "echo skipped",
-      "integration-test:browser": "echo skipped",
-      docs: "echo skipped"
+      "integration-test:browser": "echo skipped"
     },
     sideEffects: false,
     "//metadata": {
@@ -389,6 +422,8 @@ function regularAutorestPackage(
     packageInfo.devDependencies["@azure-tools/test-recorder"] = "^2.0.0";
     packageInfo.devDependencies["@azure-tools/test-credential"] = "^1.0.0";
     packageInfo.devDependencies["mocha"] = "^7.1.1";
+    packageInfo.devDependencies["@types/chai"] = "^4.2.8";
+    packageInfo.devDependencies["chai"] = "^4.2.0";
     packageInfo.devDependencies["cross-env"] = "^7.0.2";
     packageInfo.scripts["test"] = "npm run integration-test";
     packageInfo.scripts["unit-test"] =

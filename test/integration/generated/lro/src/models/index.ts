@@ -61,17 +61,17 @@ export interface OperationResultError {
   message?: string;
 }
 
-export type Product = Resource & {
+export interface Product extends Resource {
   provisioningState?: string;
   /** NOTE: This property will not be serialized. It can only be populated by the server. */
   readonly provisioningStateValues?: ProductPropertiesProvisioningStateValues;
-};
+}
 
-export type SubProduct = SubResource & {
+export interface SubProduct extends SubResource {
   provisioningState?: string;
   /** NOTE: This property will not be serialized. It can only be populated by the server. */
   readonly provisioningStateValues?: SubProductPropertiesProvisioningStateValues;
-};
+}
 
 /** Defines headers for LROs_patch200SucceededIgnoreHeaders operation. */
 export interface LROsPatch200SucceededIgnoreHeadersHeaders {
@@ -566,16 +566,27 @@ export interface LROsCustomHeaderPostAsyncRetrySucceededHeaders {
 
 /** Known values of {@link ProductPropertiesProvisioningStateValues} that the service accepts. */
 export enum KnownProductPropertiesProvisioningStateValues {
+  /** Succeeded */
   Succeeded = "Succeeded",
+  /** Failed */
   Failed = "Failed",
+  /** Canceled */
   Canceled = "canceled",
+  /** Accepted */
   Accepted = "Accepted",
+  /** Creating */
   Creating = "Creating",
+  /** Created */
   Created = "Created",
+  /** Updating */
   Updating = "Updating",
+  /** Updated */
   Updated = "Updated",
+  /** Deleting */
   Deleting = "Deleting",
+  /** Deleted */
   Deleted = "Deleted",
+  /** OK */
   OK = "OK"
 }
 
@@ -600,16 +611,27 @@ export type ProductPropertiesProvisioningStateValues = string;
 
 /** Known values of {@link SubProductPropertiesProvisioningStateValues} that the service accepts. */
 export enum KnownSubProductPropertiesProvisioningStateValues {
+  /** Succeeded */
   Succeeded = "Succeeded",
+  /** Failed */
   Failed = "Failed",
+  /** Canceled */
   Canceled = "canceled",
+  /** Accepted */
   Accepted = "Accepted",
+  /** Creating */
   Creating = "Creating",
+  /** Created */
   Created = "Created",
+  /** Updating */
   Updating = "Updating",
+  /** Updated */
   Updated = "Updated",
+  /** Deleting */
   Deleting = "Deleting",
+  /** Deleted */
   Deleted = "Deleted",
+  /** OK */
   OK = "OK"
 }
 
@@ -634,16 +656,27 @@ export type SubProductPropertiesProvisioningStateValues = string;
 
 /** Known values of {@link OperationResultStatus} that the service accepts. */
 export enum KnownOperationResultStatus {
+  /** Succeeded */
   Succeeded = "Succeeded",
+  /** Failed */
   Failed = "Failed",
+  /** Canceled */
   Canceled = "canceled",
+  /** Accepted */
   Accepted = "Accepted",
+  /** Creating */
   Creating = "Creating",
+  /** Created */
   Created = "Created",
+  /** Updating */
   Updating = "Updating",
+  /** Updated */
   Updated = "Updated",
+  /** Deleting */
   Deleting = "Deleting",
+  /** Deleted */
   Deleted = "Deleted",
+  /** OK */
   OK = "OK"
 }
 

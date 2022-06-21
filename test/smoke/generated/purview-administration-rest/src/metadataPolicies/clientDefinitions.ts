@@ -17,20 +17,22 @@ import {
   MetadataPolicyGet200Response,
   MetadataPolicyGetdefaultResponse
 } from "./responses";
-import { Client } from "@azure-rest/core-client";
+import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface MetadataRolesList {
   /** Lists roles for Purview Account */
   get(
     options?: MetadataRolesListParameters
-  ): Promise<MetadataRolesList200Response | MetadataRolesListdefaultResponse>;
+  ): StreamableMethod<
+    MetadataRolesList200Response | MetadataRolesListdefaultResponse
+  >;
 }
 
 export interface MetadataPolicyListAll {
   /** List or Get metadata policies */
   get(
     options?: MetadataPolicyListAllParameters
-  ): Promise<
+  ): StreamableMethod<
     MetadataPolicyListAll200Response | MetadataPolicyListAlldefaultResponse
   >;
 }
@@ -39,13 +41,15 @@ export interface MetadataPolicyUpdate {
   /** Updates a metadata policy */
   put(
     options?: MetadataPolicyUpdateParameters
-  ): Promise<
+  ): StreamableMethod<
     MetadataPolicyUpdate200Response | MetadataPolicyUpdatedefaultResponse
   >;
   /** Gets a metadata policy */
   get(
     options?: MetadataPolicyGetParameters
-  ): Promise<MetadataPolicyGet200Response | MetadataPolicyGetdefaultResponse>;
+  ): StreamableMethod<
+    MetadataPolicyGet200Response | MetadataPolicyGetdefaultResponse
+  >;
 }
 
 export interface Routes {

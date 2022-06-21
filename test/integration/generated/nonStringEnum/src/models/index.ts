@@ -10,10 +10,15 @@ import * as coreClient from "@azure/core-client";
 
 /** Known values of {@link IntEnum} that the service accepts. */
 export enum KnownIntEnum {
+  /** TwoHundred */
   TwoHundred = 200,
+  /** FourHundredThree */
   FourHundredThree = 403,
+  /** FourHundredFive */
   FourHundredFive = 405,
+  /** FourHundredSix */
   FourHundredSix = 406,
+  /** FourHundredTwentyNine */
   FourHundredTwentyNine = 429
 }
 
@@ -32,10 +37,15 @@ export type IntEnum = number;
 
 /** Known values of {@link FloatEnum} that the service accepts. */
 export enum KnownFloatEnum {
+  /** TwoHundred4 */
   TwoHundred4 = 200.4,
+  /** FourHundredThree4 */
   FourHundredThree4 = 403.4,
+  /** FourHundredFive3 */
   FourHundredFive3 = 405.3,
+  /** FourHundredSix2 */
   FourHundredSix2 = 406.2,
+  /** FourHundredTwentyNine1 */
   FourHundredTwentyNine1 = 429.1
 }
 

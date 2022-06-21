@@ -34,7 +34,7 @@ export interface PathHierarchyTokenizerV2 {
 }
 
 /** Flexibly separates text into terms via a regular expression pattern. This analyzer is implemented using Apache Lucene. */
-export type PatternAnalyzer = LexicalAnalyzer & {
+export interface PatternAnalyzer extends LexicalAnalyzer {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   odataType: "#Microsoft.Azure.Search.PatternAnalyzer";
   /** A value indicating whether terms should be lower-cased. Default is true. */
@@ -43,29 +43,31 @@ export type PatternAnalyzer = LexicalAnalyzer & {
   pattern?: string;
   /** A list of stopwords. */
   stopwords?: string[];
-};
+}
 
 /** Standard Apache Lucene analyzer; Composed of the standard tokenizer, lowercase filter and stop filter. */
-export type LuceneStandardAnalyzer = LexicalAnalyzer & {
+export interface LuceneStandardAnalyzer extends LexicalAnalyzer {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   odataType: "#Microsoft.Azure.Search.StandardAnalyzer";
   /** The maximum token length. Default is 255. Tokens longer than the maximum length are split. The maximum token length that can be used is 300 characters. */
   maxTokenLength?: number;
   /** A list of stopwords. */
   stopwords?: string[];
-};
+}
 
 /** Divides text at non-letters; Applies the lowercase and stopword token filters. This analyzer is implemented using Apache Lucene. */
-export type StopAnalyzer = LexicalAnalyzer & {
+export interface StopAnalyzer extends LexicalAnalyzer {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   odataType: "#Microsoft.Azure.Search.StopAnalyzer";
   /** A list of stopwords. */
   stopwords?: string[];
-};
+}
 
 /** Known values of {@link Enum0} that the service accepts. */
 export enum KnownEnum0 {
+  /** One */
   One = "one",
+  /** Two */
   Two = "two"
 }
 

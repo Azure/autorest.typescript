@@ -15,24 +15,23 @@ export interface AddOwnerParameters {
 }
 
 // @public
-export type ADGroup = DirectoryObject & {
-    objectType: "Group";
+export interface ADGroup extends DirectoryObject {
     displayName?: string;
+    mail?: string;
     mailEnabled?: boolean;
     mailNickname?: string;
+    objectType: "Group";
     securityEnabled?: boolean;
-    mail?: string;
-};
+}
 
 // @public
-export type Application = DirectoryObject & {
-    objectType: "Application";
-    appId?: string;
+export interface Application extends DirectoryObject {
     allowGuestsSignIn?: boolean;
     allowPassthroughUsers?: boolean;
+    appId?: string;
     appLogoUrl?: string;
-    appRoles?: AppRole[];
     appPermissions?: string[];
+    appRoles?: AppRole[];
     availableToOtherTenants?: boolean;
     displayName?: string;
     errorUrl?: string;
@@ -48,8 +47,9 @@ export type Application = DirectoryObject & {
     oauth2AllowUrlPathMatching?: boolean;
     oauth2Permissions?: OAuth2Permission[];
     oauth2RequirePostResponse?: boolean;
-    orgRestrictions?: string[];
+    objectType: "Application";
     optionalClaims?: OptionalClaims;
+    orgRestrictions?: string[];
     passwordCredentials?: PasswordCredential[];
     preAuthorizedApplications?: PreAuthorizedApplication[];
     publicClient?: boolean;
@@ -59,7 +59,7 @@ export type Application = DirectoryObject & {
     samlMetadataUrl?: string;
     signInAudience?: string;
     wwwHomepage?: string;
-};
+}
 
 // @public
 export interface ApplicationBase {
@@ -95,10 +95,10 @@ export interface ApplicationBase {
 }
 
 // @public
-export type ApplicationCreateParameters = ApplicationBase & {
+export interface ApplicationCreateParameters extends ApplicationBase {
     displayName: string;
     identifierUris?: string[];
-};
+}
 
 // @public
 export interface ApplicationListResult {
@@ -213,10 +213,10 @@ export interface ApplicationsUpdatePasswordCredentialsOptionalParams extends cor
 }
 
 // @public
-export type ApplicationUpdateParameters = ApplicationBase & {
+export interface ApplicationUpdateParameters extends ApplicationBase {
     displayName?: string;
     identifierUris?: string[];
-};
+}
 
 // @public (undocumented)
 export interface AppRole {
@@ -556,27 +556,20 @@ export interface KeyCredentialsUpdateParameters {
 
 // @public
 export enum KnownConsentType {
-    // (undocumented)
     AllPrincipals = "AllPrincipals",
-    // (undocumented)
     Principal = "Principal"
 }
 
 // @public
 export enum KnownGroupMembershipClaimTypes {
-    // (undocumented)
     All = "All",
-    // (undocumented)
     None = "None",
-    // (undocumented)
     SecurityGroup = "SecurityGroup"
 }
 
 // @public
 export enum KnownUserType {
-    // (undocumented)
     Guest = "Guest",
-    // (undocumented)
     Member = "Member"
 }
 
@@ -741,8 +734,7 @@ export interface ResourceAccess {
 }
 
 // @public
-export type ServicePrincipal = DirectoryObject & {
-    objectType: "ServicePrincipal";
+export interface ServicePrincipal extends DirectoryObject {
     accountEnabled?: boolean;
     alternativeNames?: string[];
     readonly appDisplayName?: string;
@@ -756,6 +748,7 @@ export type ServicePrincipal = DirectoryObject & {
     keyCredentials?: KeyCredential[];
     logoutUrl?: string;
     readonly oauth2Permissions?: OAuth2Permission[];
+    objectType: "ServicePrincipal";
     passwordCredentials?: PasswordCredential[];
     preferredTokenSigningKeyThumbprint?: string;
     publisherName?: string;
@@ -764,7 +757,7 @@ export type ServicePrincipal = DirectoryObject & {
     servicePrincipalNames?: string[];
     servicePrincipalType?: string;
     tags?: string[];
-};
+}
 
 // @public
 export interface ServicePrincipalBase {
@@ -777,9 +770,9 @@ export interface ServicePrincipalBase {
 }
 
 // @public
-export type ServicePrincipalCreateParameters = ServicePrincipalBase & {
+export interface ServicePrincipalCreateParameters extends ServicePrincipalBase {
     appId: string;
-};
+}
 
 // @public
 export interface ServicePrincipalListResult {
@@ -882,7 +875,8 @@ export interface ServicePrincipalsUpdatePasswordCredentialsOptionalParams extend
 }
 
 // @public
-export type ServicePrincipalUpdateParameters = ServicePrincipalBase & {};
+export interface ServicePrincipalUpdateParameters extends ServicePrincipalBase {
+}
 
 // @public
 export interface SignedInUser {
@@ -920,20 +914,20 @@ export interface SignInName {
 }
 
 // @public
-export type User = DirectoryObject & {
-    objectType: "User";
-    immutableId?: string;
-    usageLocation?: string;
-    givenName?: string;
-    surname?: string;
-    userType?: UserType;
+export interface User extends DirectoryObject {
     accountEnabled?: boolean;
     displayName?: string;
-    userPrincipalName?: string;
-    mailNickname?: string;
+    givenName?: string;
+    immutableId?: string;
     mail?: string;
+    mailNickname?: string;
+    objectType: "User";
     signInNames?: SignInName[];
-};
+    surname?: string;
+    usageLocation?: string;
+    userPrincipalName?: string;
+    userType?: UserType;
+}
 
 // @public (undocumented)
 export interface UserBase {
@@ -946,14 +940,14 @@ export interface UserBase {
 }
 
 // @public
-export type UserCreateParameters = UserBase & {
+export interface UserCreateParameters extends UserBase {
     accountEnabled: boolean;
     displayName: string;
+    mail?: string;
+    mailNickname: string;
     passwordProfile: PasswordProfile;
     userPrincipalName: string;
-    mailNickname: string;
-    mail?: string;
-};
+}
 
 // @public
 export interface UserGetMemberGroupsParameters {
@@ -1032,13 +1026,13 @@ export interface UsersUpdateOptionalParams extends coreClient.OperationOptions {
 export type UserType = string;
 
 // @public
-export type UserUpdateParameters = UserBase & {
+export interface UserUpdateParameters extends UserBase {
     accountEnabled?: boolean;
     displayName?: string;
+    mailNickname?: string;
     passwordProfile?: PasswordProfile;
     userPrincipalName?: string;
-    mailNickname?: string;
-};
+}
 
 // (No @packageDocumentation comment for this package)
 

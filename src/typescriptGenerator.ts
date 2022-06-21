@@ -8,6 +8,7 @@ import { CodeModel } from "@autorest/codemodel";
 import { Project, IndentationText } from "ts-morph";
 import { AutorestExtensionHost } from "@autorest/extension-base";
 import { transformCodeModel } from "./transforms/transforms";
+import { transformSamples } from './transforms/samplesTransforms';
 import { generateClient } from "./generators/clientFileGenerator";
 import { generateModels } from "./generators/modelsGenerator";
 import { generateMappers } from "./generators/mappersGenerator";
@@ -22,7 +23,7 @@ import { generateRollupConfig } from "./generators/static/rollupConfigFileGenera
 import { generateOperations } from "./generators/operationGenerator";
 import { generateOperationsInterfaces } from "./generators/operationInterfaceGenerator";
 import { generateSampleEnv } from "./generators/samples/sampleEnvGenerator";
-import { generateSamples } from "./generators/samples/sampleGenerator";
+import { generateHLCSamples } from "./generators/samples/hlcSampleGenerator";
 import { generateParameters } from "./generators/parametersGenerator";
 import { generateLroFiles } from "./generators/LROGenerator";
 import { generateTracingFile } from "./generators/tracingFileGenerator";
@@ -71,10 +72,13 @@ export async function generateTypeScriptLibrary(
   conflictResolver(clientDetails);
 
   generateModels(clientDetails, project);
+  if (generateSample) {
+    clientDetails.samples = await transformSamples(codeModel, clientDetails);
+  }
   // Skip metadata generation if `generate-metadata` is explicitly false
   generatePackageJson(project, clientDetails);
   generateLicenseFile(project);
-  generateReadmeFile(codeModel.language, codeModel.info, project);
+  generateReadmeFile(codeModel, project);
   if (generateTest) {
     generateSampleTestFile(project);
   }
@@ -87,13 +91,15 @@ export async function generateTypeScriptLibrary(
   generateMappers(clientDetails, project);
   generateOperations(clientDetails, project);
   generateOperationsInterfaces(clientDetails, project);
+  if (generateSample || generateTest) {
+    generateSampleEnv(project);
+  }
   if (
     generateSample &&
     clientDetails?.samples?.length &&
     clientDetails?.samples?.length > 0
   ) {
-    generateSamples(clientDetails, project);
-    generateSampleEnv(project);
+    generateHLCSamples(clientDetails, project);
   }
   generateParameters(clientDetails, project);
   generateIndexFile(project, clientDetails);

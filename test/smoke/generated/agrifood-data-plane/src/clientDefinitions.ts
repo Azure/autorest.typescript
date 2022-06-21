@@ -306,13 +306,13 @@ import {
   WeatherCreateDataDeleteJob202Response,
   WeatherCreateDataDeleteJobdefaultResponse
 } from "./responses";
-import { Client } from "@azure-rest/core-client";
+import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface ApplicationDataListByFarmerId {
   /** Returns a paginated list of application data resources under a particular farm. */
   get(
     options?: ApplicationDataListByFarmerIdParameters
-  ): Promise<
+  ): StreamableMethod<
     | ApplicationDataListByFarmerId200Response
     | ApplicationDataListByFarmerIddefaultResponse
   >;
@@ -322,7 +322,7 @@ export interface ApplicationDataList {
   /** Returns a paginated list of application data resources across all farmers. */
   get(
     options?: ApplicationDataListParameters
-  ): Promise<
+  ): StreamableMethod<
     ApplicationDataList200Response | ApplicationDataListdefaultResponse
   >;
 }
@@ -331,11 +331,13 @@ export interface ApplicationDataGet {
   /** Get a specified application data resource under a particular farmer. */
   get(
     options?: ApplicationDataGetParameters
-  ): Promise<ApplicationDataGet200Response | ApplicationDataGetdefaultResponse>;
+  ): StreamableMethod<
+    ApplicationDataGet200Response | ApplicationDataGetdefaultResponse
+  >;
   /** Creates or updates an application data resource under a particular farmer. */
   patch(
     options?: ApplicationDataCreateOrUpdateParameters
-  ): Promise<
+  ): StreamableMethod<
     | ApplicationDataCreateOrUpdate200Response
     | ApplicationDataCreateOrUpdate201Response
     | ApplicationDataCreateOrUpdatedefaultResponse
@@ -343,7 +345,7 @@ export interface ApplicationDataGet {
   /** Deletes a specified application data resource under a particular farmer. */
   delete(
     options?: ApplicationDataDeleteParameters
-  ): Promise<
+  ): StreamableMethod<
     ApplicationDataDelete204Response | ApplicationDataDeletedefaultResponse
   >;
 }
@@ -352,7 +354,7 @@ export interface AttachmentsListByFarmerId {
   /** Returns a paginated list of attachment resources under a particular farmer. */
   get(
     options?: AttachmentsListByFarmerIdParameters
-  ): Promise<
+  ): StreamableMethod<
     | AttachmentsListByFarmerId200Response
     | AttachmentsListByFarmerIddefaultResponse
   >;
@@ -362,11 +364,13 @@ export interface AttachmentsGet {
   /** Gets a specified attachment resource under a particular farmer. */
   get(
     options?: AttachmentsGetParameters
-  ): Promise<AttachmentsGet200Response | AttachmentsGetdefaultResponse>;
+  ): StreamableMethod<
+    AttachmentsGet200Response | AttachmentsGetdefaultResponse
+  >;
   /** Creates or updates an attachment resource under a particular farmer. */
   patch(
     options?: AttachmentsCreateOrUpdateParameters
-  ): Promise<
+  ): StreamableMethod<
     | AttachmentsCreateOrUpdate200Response
     | AttachmentsCreateOrUpdate201Response
     | AttachmentsCreateOrUpdatedefaultResponse
@@ -374,14 +378,16 @@ export interface AttachmentsGet {
   /** Deletes a specified attachment resource under a particular farmer. */
   delete(
     options?: AttachmentsDeleteParameters
-  ): Promise<AttachmentsDelete204Response | AttachmentsDeletedefaultResponse>;
+  ): StreamableMethod<
+    AttachmentsDelete204Response | AttachmentsDeletedefaultResponse
+  >;
 }
 
 export interface AttachmentsDownload {
   /** Downloads and returns attachment as response for the given input filePath. */
   get(
     options?: AttachmentsDownloadParameters
-  ): Promise<
+  ): StreamableMethod<
     AttachmentsDownload200Response | AttachmentsDownloaddefaultResponse
   >;
 }
@@ -390,14 +396,14 @@ export interface BoundariesListByFarmerId {
   /** Returns a paginated list of boundary resources under a particular farmer. */
   get(
     options?: BoundariesListByFarmerIdParameters
-  ): Promise<
+  ): StreamableMethod<
     | BoundariesListByFarmerId200Response
     | BoundariesListByFarmerIddefaultResponse
   >;
   /** Search for boundaries by fields and intersecting geometry. */
   post(
     options?: BoundariesSearchByFarmerIdParameters
-  ): Promise<
+  ): StreamableMethod<
     | BoundariesSearchByFarmerId200Response
     | BoundariesSearchByFarmerIddefaultResponse
   >;
@@ -407,25 +413,29 @@ export interface BoundariesList {
   /** Returns a paginated list of boundary resources across all farmers. */
   get(
     options?: BoundariesListParameters
-  ): Promise<BoundariesList200Response | BoundariesListdefaultResponse>;
+  ): StreamableMethod<
+    BoundariesList200Response | BoundariesListdefaultResponse
+  >;
   /** Search for boundaries across all farmers by fields and intersecting geometry. */
   post(
     options?: BoundariesSearchParameters
-  ): Promise<BoundariesSearch200Response | BoundariesSearchdefaultResponse>;
+  ): StreamableMethod<
+    BoundariesSearch200Response | BoundariesSearchdefaultResponse
+  >;
 }
 
 export interface BoundariesGetCascadeDeleteJobDetails {
   /** Get cascade delete job for specified boundary. */
   get(
     options?: BoundariesGetCascadeDeleteJobDetailsParameters
-  ): Promise<
+  ): StreamableMethod<
     | BoundariesGetCascadeDeleteJobDetails200Response
     | BoundariesGetCascadeDeleteJobDetailsdefaultResponse
   >;
   /** Create a cascade delete job for specified boundary. */
   put(
     options: BoundariesCreateCascadeDeleteJobParameters
-  ): Promise<
+  ): StreamableMethod<
     | BoundariesCreateCascadeDeleteJob202Response
     | BoundariesCreateCascadeDeleteJobdefaultResponse
   >;
@@ -435,11 +445,11 @@ export interface BoundariesGet {
   /** Gets a specified boundary resource under a particular farmer. */
   get(
     options?: BoundariesGetParameters
-  ): Promise<BoundariesGet200Response | BoundariesGetdefaultResponse>;
+  ): StreamableMethod<BoundariesGet200Response | BoundariesGetdefaultResponse>;
   /** Creates or updates a boundary resource. */
   patch(
     options?: BoundariesCreateOrUpdateParameters
-  ): Promise<
+  ): StreamableMethod<
     | BoundariesCreateOrUpdate200Response
     | BoundariesCreateOrUpdate201Response
     | BoundariesCreateOrUpdatedefaultResponse
@@ -447,14 +457,16 @@ export interface BoundariesGet {
   /** Deletes a specified boundary resource under a particular farmer. */
   delete(
     options?: BoundariesDeleteParameters
-  ): Promise<BoundariesDelete204Response | BoundariesDeletedefaultResponse>;
+  ): StreamableMethod<
+    BoundariesDelete204Response | BoundariesDeletedefaultResponse
+  >;
 }
 
 export interface BoundariesGetOverlap {
   /** Returns overlapping acreage between two boundary Ids. */
   get(
     options: BoundariesGetOverlapParameters
-  ): Promise<
+  ): StreamableMethod<
     BoundariesGetOverlap200Response | BoundariesGetOverlapdefaultResponse
   >;
 }
@@ -463,18 +475,18 @@ export interface CropsList {
   /** Returns a paginated list of crop resources. */
   get(
     options?: CropsListParameters
-  ): Promise<CropsList200Response | CropsListdefaultResponse>;
+  ): StreamableMethod<CropsList200Response | CropsListdefaultResponse>;
 }
 
 export interface CropsGet {
   /** Gets a specified crop resource. */
   get(
     options?: CropsGetParameters
-  ): Promise<CropsGet200Response | CropsGetdefaultResponse>;
+  ): StreamableMethod<CropsGet200Response | CropsGetdefaultResponse>;
   /** Creates or updates a crop resource. */
   patch(
     options?: CropsCreateOrUpdateParameters
-  ): Promise<
+  ): StreamableMethod<
     | CropsCreateOrUpdate200Response
     | CropsCreateOrUpdate201Response
     | CropsCreateOrUpdatedefaultResponse
@@ -482,14 +494,14 @@ export interface CropsGet {
   /** Deletes Crop for given crop id. */
   delete(
     options?: CropsDeleteParameters
-  ): Promise<CropsDelete204Response | CropsDeletedefaultResponse>;
+  ): StreamableMethod<CropsDelete204Response | CropsDeletedefaultResponse>;
 }
 
 export interface CropVarietiesListByCropId {
   /** Returns a paginated list of crop variety resources under a particular crop. */
   get(
     options?: CropVarietiesListByCropIdParameters
-  ): Promise<
+  ): StreamableMethod<
     | CropVarietiesListByCropId200Response
     | CropVarietiesListByCropIddefaultResponse
   >;
@@ -499,18 +511,22 @@ export interface CropVarietiesList {
   /** Returns a paginated list of crop variety resources across all crops. */
   get(
     options?: CropVarietiesListParameters
-  ): Promise<CropVarietiesList200Response | CropVarietiesListdefaultResponse>;
+  ): StreamableMethod<
+    CropVarietiesList200Response | CropVarietiesListdefaultResponse
+  >;
 }
 
 export interface CropVarietiesGet {
   /** Gets a specified crop variety resource under a particular crop. */
   get(
     options?: CropVarietiesGetParameters
-  ): Promise<CropVarietiesGet200Response | CropVarietiesGetdefaultResponse>;
+  ): StreamableMethod<
+    CropVarietiesGet200Response | CropVarietiesGetdefaultResponse
+  >;
   /** Creates or updates a crop variety resource. */
   patch(
     options?: CropVarietiesCreateOrUpdateParameters
-  ): Promise<
+  ): StreamableMethod<
     | CropVarietiesCreateOrUpdate200Response
     | CropVarietiesCreateOrUpdate201Response
     | CropVarietiesCreateOrUpdatedefaultResponse
@@ -518,7 +534,7 @@ export interface CropVarietiesGet {
   /** Deletes a specified crop variety resource under a particular crop. */
   delete(
     options?: CropVarietiesDeleteParameters
-  ): Promise<
+  ): StreamableMethod<
     CropVarietiesDelete204Response | CropVarietiesDeletedefaultResponse
   >;
 }
@@ -527,18 +543,18 @@ export interface FarmersList {
   /** Returns a paginated list of farmer resources. */
   get(
     options?: FarmersListParameters
-  ): Promise<FarmersList200Response | FarmersListdefaultResponse>;
+  ): StreamableMethod<FarmersList200Response | FarmersListdefaultResponse>;
 }
 
 export interface FarmersGet {
   /** Gets a specified farmer resource. */
   get(
     options?: FarmersGetParameters
-  ): Promise<FarmersGet200Response | FarmersGetdefaultResponse>;
+  ): StreamableMethod<FarmersGet200Response | FarmersGetdefaultResponse>;
   /** Creates or updates a farmer resource. */
   patch(
     options?: FarmersCreateOrUpdateParameters
-  ): Promise<
+  ): StreamableMethod<
     | FarmersCreateOrUpdate200Response
     | FarmersCreateOrUpdate201Response
     | FarmersCreateOrUpdatedefaultResponse
@@ -546,21 +562,21 @@ export interface FarmersGet {
   /** Deletes a specified farmer resource. */
   delete(
     options?: FarmersDeleteParameters
-  ): Promise<FarmersDelete204Response | FarmersDeletedefaultResponse>;
+  ): StreamableMethod<FarmersDelete204Response | FarmersDeletedefaultResponse>;
 }
 
 export interface FarmersGetCascadeDeleteJobDetails {
   /** Get a cascade delete job for specified farmer. */
   get(
     options?: FarmersGetCascadeDeleteJobDetailsParameters
-  ): Promise<
+  ): StreamableMethod<
     | FarmersGetCascadeDeleteJobDetails200Response
     | FarmersGetCascadeDeleteJobDetailsdefaultResponse
   >;
   /** Create a cascade delete job for specified farmer. */
   put(
     options: FarmersCreateCascadeDeleteJobParameters
-  ): Promise<
+  ): StreamableMethod<
     | FarmersCreateCascadeDeleteJob202Response
     | FarmersCreateCascadeDeleteJobdefaultResponse
   >;
@@ -570,14 +586,14 @@ export interface FarmOperationsCreateDataIngestionJob {
   /** Create a farm operation data ingestion job. */
   put(
     options?: FarmOperationsCreateDataIngestionJobParameters
-  ): Promise<
+  ): StreamableMethod<
     | FarmOperationsCreateDataIngestionJob202Response
     | FarmOperationsCreateDataIngestionJobdefaultResponse
   >;
   /** Get a farm operation data ingestion job. */
   get(
     options?: FarmOperationsGetDataIngestionJobDetailsParameters
-  ): Promise<
+  ): StreamableMethod<
     | FarmOperationsGetDataIngestionJobDetails200Response
     | FarmOperationsGetDataIngestionJobDetailsdefaultResponse
   >;
@@ -587,7 +603,7 @@ export interface FarmsListByFarmerId {
   /** Returns a paginated list of farm resources under a particular farmer. */
   get(
     options?: FarmsListByFarmerIdParameters
-  ): Promise<
+  ): StreamableMethod<
     FarmsListByFarmerId200Response | FarmsListByFarmerIddefaultResponse
   >;
 }
@@ -596,18 +612,18 @@ export interface FarmsList {
   /** Returns a paginated list of farm resources across all farmers. */
   get(
     options?: FarmsListParameters
-  ): Promise<FarmsList200Response | FarmsListdefaultResponse>;
+  ): StreamableMethod<FarmsList200Response | FarmsListdefaultResponse>;
 }
 
 export interface FarmsGet {
   /** Gets a specified farm resource under a particular farmer. */
   get(
     options?: FarmsGetParameters
-  ): Promise<FarmsGet200Response | FarmsGetdefaultResponse>;
+  ): StreamableMethod<FarmsGet200Response | FarmsGetdefaultResponse>;
   /** Creates or updates a farm resource under a particular farmer. */
   patch(
     options?: FarmsCreateOrUpdateParameters
-  ): Promise<
+  ): StreamableMethod<
     | FarmsCreateOrUpdate200Response
     | FarmsCreateOrUpdate201Response
     | FarmsCreateOrUpdatedefaultResponse
@@ -615,21 +631,21 @@ export interface FarmsGet {
   /** Deletes a specified farm resource under a particular farmer. */
   delete(
     options?: FarmsDeleteParameters
-  ): Promise<FarmsDelete204Response | FarmsDeletedefaultResponse>;
+  ): StreamableMethod<FarmsDelete204Response | FarmsDeletedefaultResponse>;
 }
 
 export interface FarmsGetCascadeDeleteJobDetails {
   /** Get a cascade delete job for specified farm. */
   get(
     options?: FarmsGetCascadeDeleteJobDetailsParameters
-  ): Promise<
+  ): StreamableMethod<
     | FarmsGetCascadeDeleteJobDetails200Response
     | FarmsGetCascadeDeleteJobDetailsdefaultResponse
   >;
   /** Create a cascade delete job for specified farm. */
   put(
     options: FarmsCreateCascadeDeleteJobParameters
-  ): Promise<
+  ): StreamableMethod<
     | FarmsCreateCascadeDeleteJob202Response
     | FarmsCreateCascadeDeleteJobdefaultResponse
   >;
@@ -639,7 +655,7 @@ export interface FieldsListByFarmerId {
   /** Returns a paginated list of field resources under a particular farmer. */
   get(
     options?: FieldsListByFarmerIdParameters
-  ): Promise<
+  ): StreamableMethod<
     FieldsListByFarmerId200Response | FieldsListByFarmerIddefaultResponse
   >;
 }
@@ -648,18 +664,18 @@ export interface FieldsList {
   /** Returns a paginated list of field resources across all farmers. */
   get(
     options?: FieldsListParameters
-  ): Promise<FieldsList200Response | FieldsListdefaultResponse>;
+  ): StreamableMethod<FieldsList200Response | FieldsListdefaultResponse>;
 }
 
 export interface FieldsGet {
   /** Gets a specified field resource under a particular farmer. */
   get(
     options?: FieldsGetParameters
-  ): Promise<FieldsGet200Response | FieldsGetdefaultResponse>;
+  ): StreamableMethod<FieldsGet200Response | FieldsGetdefaultResponse>;
   /** Creates or Updates a field resource under a particular farmer. */
   patch(
     options?: FieldsCreateOrUpdateParameters
-  ): Promise<
+  ): StreamableMethod<
     | FieldsCreateOrUpdate200Response
     | FieldsCreateOrUpdate201Response
     | FieldsCreateOrUpdatedefaultResponse
@@ -667,21 +683,21 @@ export interface FieldsGet {
   /** Deletes a specified field resource under a particular farmer. */
   delete(
     options?: FieldsDeleteParameters
-  ): Promise<FieldsDelete204Response | FieldsDeletedefaultResponse>;
+  ): StreamableMethod<FieldsDelete204Response | FieldsDeletedefaultResponse>;
 }
 
 export interface FieldsGetCascadeDeleteJobDetails {
   /** Get a cascade delete job for specified field. */
   get(
     options?: FieldsGetCascadeDeleteJobDetailsParameters
-  ): Promise<
+  ): StreamableMethod<
     | FieldsGetCascadeDeleteJobDetails200Response
     | FieldsGetCascadeDeleteJobDetailsdefaultResponse
   >;
   /** Create a cascade delete job for specified field. */
   put(
     options: FieldsCreateCascadeDeleteJobParameters
-  ): Promise<
+  ): StreamableMethod<
     | FieldsCreateCascadeDeleteJob202Response
     | FieldsCreateCascadeDeleteJobdefaultResponse
   >;
@@ -691,7 +707,7 @@ export interface HarvestDataListByFarmerId {
   /** Returns a paginated list of harvest data resources under a particular farm. */
   get(
     options?: HarvestDataListByFarmerIdParameters
-  ): Promise<
+  ): StreamableMethod<
     | HarvestDataListByFarmerId200Response
     | HarvestDataListByFarmerIddefaultResponse
   >;
@@ -701,18 +717,22 @@ export interface HarvestDataList {
   /** Returns a paginated list of harvest data resources across all farmers. */
   get(
     options?: HarvestDataListParameters
-  ): Promise<HarvestDataList200Response | HarvestDataListdefaultResponse>;
+  ): StreamableMethod<
+    HarvestDataList200Response | HarvestDataListdefaultResponse
+  >;
 }
 
 export interface HarvestDataGet {
   /** Get a specified harvest data resource under a particular farmer. */
   get(
     options?: HarvestDataGetParameters
-  ): Promise<HarvestDataGet200Response | HarvestDataGetdefaultResponse>;
+  ): StreamableMethod<
+    HarvestDataGet200Response | HarvestDataGetdefaultResponse
+  >;
   /** Creates or updates harvest data resource under a particular farmer. */
   patch(
     options?: HarvestDataCreateOrUpdateParameters
-  ): Promise<
+  ): StreamableMethod<
     | HarvestDataCreateOrUpdate200Response
     | HarvestDataCreateOrUpdate201Response
     | HarvestDataCreateOrUpdatedefaultResponse
@@ -720,39 +740,45 @@ export interface HarvestDataGet {
   /** Deletes a specified harvest data resource under a particular farmer. */
   delete(
     options?: HarvestDataDeleteParameters
-  ): Promise<HarvestDataDelete204Response | HarvestDataDeletedefaultResponse>;
+  ): StreamableMethod<
+    HarvestDataDelete204Response | HarvestDataDeletedefaultResponse
+  >;
 }
 
 export interface ImageProcessingCreateRasterizeJob {
   /** Create a ImageProcessing Rasterize job. */
   put(
     options?: ImageProcessingCreateRasterizeJobParameters
-  ): Promise<
+  ): StreamableMethod<
     | ImageProcessingCreateRasterizeJob202Response
     | ImageProcessingCreateRasterizeJobdefaultResponse
   >;
   /** Get ImageProcessing Rasterize job's details. */
   get(
     options?: ImageProcessingGetRasterizeJobParameters
-  ): Promise<ImageProcessingGetRasterizeJob200Response>;
+  ): StreamableMethod<ImageProcessingGetRasterizeJob200Response>;
 }
 
 export interface OAuthProvidersList {
   /** Returns a paginated list of oauthProvider resources. */
   get(
     options?: OAuthProvidersListParameters
-  ): Promise<OAuthProvidersList200Response | OAuthProvidersListdefaultResponse>;
+  ): StreamableMethod<
+    OAuthProvidersList200Response | OAuthProvidersListdefaultResponse
+  >;
 }
 
 export interface OAuthProvidersGet {
   /** Get a specified oauthProvider resource. */
   get(
     options?: OAuthProvidersGetParameters
-  ): Promise<OAuthProvidersGet200Response | OAuthProvidersGetdefaultResponse>;
+  ): StreamableMethod<
+    OAuthProvidersGet200Response | OAuthProvidersGetdefaultResponse
+  >;
   /** Creates or updates an oauthProvider resource. */
   patch(
     options?: OAuthProvidersCreateOrUpdateParameters
-  ): Promise<
+  ): StreamableMethod<
     | OAuthProvidersCreateOrUpdate200Response
     | OAuthProvidersCreateOrUpdate201Response
     | OAuthProvidersCreateOrUpdatedefaultResponse
@@ -760,7 +786,7 @@ export interface OAuthProvidersGet {
   /** Deletes an specified oauthProvider resource. */
   delete(
     options?: OAuthProvidersDeleteParameters
-  ): Promise<
+  ): StreamableMethod<
     OAuthProvidersDelete204Response | OAuthProvidersDeletedefaultResponse
   >;
 }
@@ -769,14 +795,16 @@ export interface OAuthTokensList {
   /** Returns a list of OAuthToken documents. */
   get(
     options?: OAuthTokensListParameters
-  ): Promise<OAuthTokensList200Response | OAuthTokensListdefaultResponse>;
+  ): StreamableMethod<
+    OAuthTokensList200Response | OAuthTokensListdefaultResponse
+  >;
 }
 
 export interface OAuthTokensGetOAuthConnectionLink {
   /** Returns Connection link needed in the OAuth flow. */
   post(
     options?: OAuthTokensGetOAuthConnectionLinkParameters
-  ): Promise<
+  ): StreamableMethod<
     | OAuthTokensGetOAuthConnectionLink200Response
     | OAuthTokensGetOAuthConnectionLinkdefaultResponse
   >;
@@ -786,14 +814,14 @@ export interface OAuthTokensGetCascadeDeleteJobDetails {
   /** Get cascade delete job details for OAuth tokens for specified job ID. */
   get(
     options?: OAuthTokensGetCascadeDeleteJobDetailsParameters
-  ): Promise<
+  ): StreamableMethod<
     | OAuthTokensGetCascadeDeleteJobDetails200Response
     | OAuthTokensGetCascadeDeleteJobDetailsdefaultResponse
   >;
   /** Create a cascade delete job for OAuth tokens. */
   put(
     options: OAuthTokensCreateCascadeDeleteJobParameters
-  ): Promise<
+  ): StreamableMethod<
     | OAuthTokensCreateCascadeDeleteJob202Response
     | OAuthTokensCreateCascadeDeleteJobdefaultResponse
   >;
@@ -803,7 +831,7 @@ export interface PlantingDataListByFarmerId {
   /** Returns a paginated list of planting data resources under a particular farm. */
   get(
     options?: PlantingDataListByFarmerIdParameters
-  ): Promise<
+  ): StreamableMethod<
     | PlantingDataListByFarmerId200Response
     | PlantingDataListByFarmerIddefaultResponse
   >;
@@ -813,18 +841,22 @@ export interface PlantingDataList {
   /** Returns a paginated list of planting data resources across all farmers. */
   get(
     options?: PlantingDataListParameters
-  ): Promise<PlantingDataList200Response | PlantingDataListdefaultResponse>;
+  ): StreamableMethod<
+    PlantingDataList200Response | PlantingDataListdefaultResponse
+  >;
 }
 
 export interface PlantingDataGet {
   /** Get a specified planting data resource under a particular farmer. */
   get(
     options?: PlantingDataGetParameters
-  ): Promise<PlantingDataGet200Response | PlantingDataGetdefaultResponse>;
+  ): StreamableMethod<
+    PlantingDataGet200Response | PlantingDataGetdefaultResponse
+  >;
   /** Creates or updates an planting data resource under a particular farmer. */
   patch(
     options?: PlantingDataCreateOrUpdateParameters
-  ): Promise<
+  ): StreamableMethod<
     | PlantingDataCreateOrUpdate200Response
     | PlantingDataCreateOrUpdate201Response
     | PlantingDataCreateOrUpdatedefaultResponse
@@ -832,28 +864,30 @@ export interface PlantingDataGet {
   /** Deletes a specified planting data resource under a particular farmer. */
   delete(
     options?: PlantingDataDeleteParameters
-  ): Promise<PlantingDataDelete204Response | PlantingDataDeletedefaultResponse>;
+  ): StreamableMethod<
+    PlantingDataDelete204Response | PlantingDataDeletedefaultResponse
+  >;
 }
 
 export interface ScenesList {
   /** Returns a paginated list of scene resources. */
   get(
     options: ScenesListParameters
-  ): Promise<ScenesList200Response | ScenesListdefaultResponse>;
+  ): StreamableMethod<ScenesList200Response | ScenesListdefaultResponse>;
 }
 
 export interface ScenesCreateSatelliteDataIngestionJob {
   /** Create a satellite data ingestion job. */
   put(
     options?: ScenesCreateSatelliteDataIngestionJobParameters
-  ): Promise<
+  ): StreamableMethod<
     | ScenesCreateSatelliteDataIngestionJob202Response
     | ScenesCreateSatelliteDataIngestionJobdefaultResponse
   >;
   /** Get a satellite data ingestion job. */
   get(
     options?: ScenesGetSatelliteDataIngestionJobDetailsParameters
-  ): Promise<
+  ): StreamableMethod<
     | ScenesGetSatelliteDataIngestionJobDetails200Response
     | ScenesGetSatelliteDataIngestionJobDetailsdefaultResponse
   >;
@@ -863,14 +897,16 @@ export interface ScenesDownload {
   /** Downloads and returns file stream as response for the given input filePath. */
   get(
     options: ScenesDownloadParameters
-  ): Promise<ScenesDownload200Response | ScenesDownloaddefaultResponse>;
+  ): StreamableMethod<
+    ScenesDownload200Response | ScenesDownloaddefaultResponse
+  >;
 }
 
 export interface SeasonalFieldsListByFarmerId {
   /** Returns a paginated list of seasonal field resources under a particular farmer. */
   get(
     options?: SeasonalFieldsListByFarmerIdParameters
-  ): Promise<
+  ): StreamableMethod<
     | SeasonalFieldsListByFarmerId200Response
     | SeasonalFieldsListByFarmerIddefaultResponse
   >;
@@ -880,18 +916,22 @@ export interface SeasonalFieldsList {
   /** Returns a paginated list of seasonal field resources across all farmers. */
   get(
     options?: SeasonalFieldsListParameters
-  ): Promise<SeasonalFieldsList200Response | SeasonalFieldsListdefaultResponse>;
+  ): StreamableMethod<
+    SeasonalFieldsList200Response | SeasonalFieldsListdefaultResponse
+  >;
 }
 
 export interface SeasonalFieldsGet {
   /** Gets a specified seasonal field resource under a particular farmer. */
   get(
     options?: SeasonalFieldsGetParameters
-  ): Promise<SeasonalFieldsGet200Response | SeasonalFieldsGetdefaultResponse>;
+  ): StreamableMethod<
+    SeasonalFieldsGet200Response | SeasonalFieldsGetdefaultResponse
+  >;
   /** Creates or Updates a seasonal field resource under a particular farmer. */
   patch(
     options?: SeasonalFieldsCreateOrUpdateParameters
-  ): Promise<
+  ): StreamableMethod<
     | SeasonalFieldsCreateOrUpdate200Response
     | SeasonalFieldsCreateOrUpdate201Response
     | SeasonalFieldsCreateOrUpdatedefaultResponse
@@ -899,7 +939,7 @@ export interface SeasonalFieldsGet {
   /** Deletes a specified seasonal-field resource under a particular farmer. */
   delete(
     options?: SeasonalFieldsDeleteParameters
-  ): Promise<
+  ): StreamableMethod<
     SeasonalFieldsDelete204Response | SeasonalFieldsDeletedefaultResponse
   >;
 }
@@ -908,14 +948,14 @@ export interface SeasonalFieldsGetCascadeDeleteJobDetails {
   /** Get cascade delete job for specified seasonal field. */
   get(
     options?: SeasonalFieldsGetCascadeDeleteJobDetailsParameters
-  ): Promise<
+  ): StreamableMethod<
     | SeasonalFieldsGetCascadeDeleteJobDetails200Response
     | SeasonalFieldsGetCascadeDeleteJobDetailsdefaultResponse
   >;
   /** Create a cascade delete job for specified seasonal field. */
   put(
     options: SeasonalFieldsCreateCascadeDeleteJobParameters
-  ): Promise<
+  ): StreamableMethod<
     | SeasonalFieldsCreateCascadeDeleteJob202Response
     | SeasonalFieldsCreateCascadeDeleteJobdefaultResponse
   >;
@@ -925,18 +965,18 @@ export interface SeasonsList {
   /** Returns a paginated list of season resources. */
   get(
     options?: SeasonsListParameters
-  ): Promise<SeasonsList200Response | SeasonsListdefaultResponse>;
+  ): StreamableMethod<SeasonsList200Response | SeasonsListdefaultResponse>;
 }
 
 export interface SeasonsGet {
   /** Gets a specified season resource. */
   get(
     options?: SeasonsGetParameters
-  ): Promise<SeasonsGet200Response | SeasonsGetdefaultResponse>;
+  ): StreamableMethod<SeasonsGet200Response | SeasonsGetdefaultResponse>;
   /** Creates or updates a season resource. */
   patch(
     options?: SeasonsCreateOrUpdateParameters
-  ): Promise<
+  ): StreamableMethod<
     | SeasonsCreateOrUpdate200Response
     | SeasonsCreateOrUpdate201Response
     | SeasonsCreateOrUpdatedefaultResponse
@@ -944,14 +984,14 @@ export interface SeasonsGet {
   /** Deletes a specified season resource. */
   delete(
     options?: SeasonsDeleteParameters
-  ): Promise<SeasonsDelete204Response | SeasonsDeletedefaultResponse>;
+  ): StreamableMethod<SeasonsDelete204Response | SeasonsDeletedefaultResponse>;
 }
 
 export interface TillageDataListByFarmerId {
   /** Returns a paginated list of tillage data resources under a particular farm. */
   get(
     options?: TillageDataListByFarmerIdParameters
-  ): Promise<
+  ): StreamableMethod<
     | TillageDataListByFarmerId200Response
     | TillageDataListByFarmerIddefaultResponse
   >;
@@ -961,18 +1001,22 @@ export interface TillageDataList {
   /** Returns a paginated list of tillage data resources across all farmers. */
   get(
     options?: TillageDataListParameters
-  ): Promise<TillageDataList200Response | TillageDataListdefaultResponse>;
+  ): StreamableMethod<
+    TillageDataList200Response | TillageDataListdefaultResponse
+  >;
 }
 
 export interface TillageDataGet {
   /** Get a specified tillage data resource under a particular farmer. */
   get(
     options?: TillageDataGetParameters
-  ): Promise<TillageDataGet200Response | TillageDataGetdefaultResponse>;
+  ): StreamableMethod<
+    TillageDataGet200Response | TillageDataGetdefaultResponse
+  >;
   /** Creates or updates an tillage data resource under a particular farmer. */
   patch(
     options?: TillageDataCreateOrUpdateParameters
-  ): Promise<
+  ): StreamableMethod<
     | TillageDataCreateOrUpdate200Response
     | TillageDataCreateOrUpdate201Response
     | TillageDataCreateOrUpdatedefaultResponse
@@ -980,28 +1024,30 @@ export interface TillageDataGet {
   /** Deletes a specified tillage data resource under a particular farmer. */
   delete(
     options?: TillageDataDeleteParameters
-  ): Promise<TillageDataDelete204Response | TillageDataDeletedefaultResponse>;
+  ): StreamableMethod<
+    TillageDataDelete204Response | TillageDataDeletedefaultResponse
+  >;
 }
 
 export interface WeatherList {
   /** Returns a paginated list of weather data. */
   get(
     options: WeatherListParameters
-  ): Promise<WeatherList200Response | WeatherListdefaultResponse>;
+  ): StreamableMethod<WeatherList200Response | WeatherListdefaultResponse>;
 }
 
 export interface WeatherGetDataIngestionJobDetails {
   /** Get weather ingestion job. */
   get(
     options?: WeatherGetDataIngestionJobDetailsParameters
-  ): Promise<
+  ): StreamableMethod<
     | WeatherGetDataIngestionJobDetails200Response
     | WeatherGetDataIngestionJobDetailsdefaultResponse
   >;
   /** Create a weather data ingestion job. */
   put(
     options?: WeatherCreateDataIngestionJobParameters
-  ): Promise<
+  ): StreamableMethod<
     | WeatherCreateDataIngestionJob202Response
     | WeatherCreateDataIngestionJobdefaultResponse
   >;
@@ -1011,14 +1057,14 @@ export interface WeatherGetDataDeleteJobDetails {
   /** Get weather data delete job. */
   get(
     options?: WeatherGetDataDeleteJobDetailsParameters
-  ): Promise<
+  ): StreamableMethod<
     | WeatherGetDataDeleteJobDetails200Response
     | WeatherGetDataDeleteJobDetailsdefaultResponse
   >;
   /** Create a weather data delete job. */
   put(
     options?: WeatherCreateDataDeleteJobParameters
-  ): Promise<
+  ): StreamableMethod<
     | WeatherCreateDataDeleteJob202Response
     | WeatherCreateDataDeleteJobdefaultResponse
   >;

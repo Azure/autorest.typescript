@@ -3971,21 +3971,22 @@ export interface SecurityEventsFilterParameters {
 }
 
 /** ARM proxy resource. */
-export type ProxyResource = Resource & {};
+export interface ProxyResource extends Resource {}
 
 /** ARM tracked top level resource. */
-export type TrackedResource = Resource & {
+export interface TrackedResource extends Resource {
   /** Resource location. */
   location: string;
   /** Resource tags. */
   tags?: { [propertyName: string]: string };
-};
+}
 
 /** ARM proxy resource. */
-export type ProxyResourceWithWritableName = ResourceWithWritableName & {};
+export interface ProxyResourceWithWritableName
+  extends ResourceWithWritableName {}
 
 /** A recoverable database */
-export type RecoverableDatabase = ProxyResource & {
+export interface RecoverableDatabase extends ProxyResource {
   /**
    * The edition of the database
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -4006,10 +4007,10 @@ export type RecoverableDatabase = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lastAvailableBackupDate?: Date;
-};
+}
 
 /** Represents a database data masking policy. */
-export type DataMaskingPolicy = ProxyResource & {
+export interface DataMaskingPolicy extends ProxyResource {
   /**
    * The location of the data masking policy.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -4034,10 +4035,10 @@ export type DataMaskingPolicy = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly maskingLevel?: string;
-};
+}
 
 /** Represents a database data masking rule. */
-export type DataMaskingRule = ProxyResource & {
+export interface DataMaskingRule extends ProxyResource {
   /**
    * The location of the data masking rule.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -4075,10 +4076,10 @@ export type DataMaskingRule = ProxyResource & {
   suffixSize?: string;
   /** If maskingFunction is set to Text, the character to use for masking the unexposed part of the string. Otherwise, this parameter will be ignored. */
   replacementString?: string;
-};
+}
 
 /** A database geo backup policy. */
-export type GeoBackupPolicy = ProxyResource & {
+export interface GeoBackupPolicy extends ProxyResource {
   /**
    * Kind of geo backup policy.  This is metadata used for the Azure portal experience.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -4096,10 +4097,10 @@ export type GeoBackupPolicy = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly storageType?: string;
-};
+}
 
 /** Server communication link. */
-export type ServerCommunicationLink = ProxyResource & {
+export interface ServerCommunicationLink extends ProxyResource {
   /**
    * Communication link location.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -4117,10 +4118,10 @@ export type ServerCommunicationLink = ProxyResource & {
   readonly state?: string;
   /** The name of the partner server. */
   partnerServer?: string;
-};
+}
 
 /** Represents a database service objective. */
-export type ServiceObjective = ProxyResource & {
+export interface ServiceObjective extends ProxyResource {
   /**
    * The name for the service objective.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -4146,10 +4147,10 @@ export type ServiceObjective = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly enabled?: boolean;
-};
+}
 
 /** Represents the activity on an elastic pool. */
-export type ElasticPoolActivity = ProxyResource & {
+export interface ElasticPoolActivity extends ProxyResource {
   /** The geo-location where the resource lives */
   location?: string;
   /**
@@ -4252,10 +4253,10 @@ export type ElasticPoolActivity = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly requestedDtuGuarantee?: number;
-};
+}
 
 /** Represents the activity on an elastic pool. */
-export type ElasticPoolDatabaseActivity = ProxyResource & {
+export interface ElasticPoolDatabaseActivity extends ProxyResource {
   /** The geo-location where the resource lives */
   location?: string;
   /**
@@ -4333,10 +4334,10 @@ export type ElasticPoolDatabaseActivity = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly state?: string;
-};
+}
 
 /** An extended database blob auditing policy. */
-export type ExtendedDatabaseBlobAuditingPolicy = ProxyResource & {
+export interface ExtendedDatabaseBlobAuditingPolicy extends ProxyResource {
   /** Specifies condition of where clause when creating an audit. */
   predicateExpression?: string;
   /** Specifies the number of days to keep in the audit logs in the storage account. */
@@ -4438,10 +4439,10 @@ export type ExtendedDatabaseBlobAuditingPolicy = ProxyResource & {
   storageAccountAccessKey?: string;
   /** Specifies the blob storage subscription Id. */
   storageAccountSubscriptionId?: string;
-};
+}
 
 /** An extended server blob auditing policy. */
-export type ExtendedServerBlobAuditingPolicy = ProxyResource & {
+export interface ExtendedServerBlobAuditingPolicy extends ProxyResource {
   /**
    * Specifies the state of devops audit. If state is Enabled, devops logs will be sent to Azure Monitor.
    * In order to send the events to Azure Monitor, specify 'State' as 'Enabled', 'IsAzureMonitorTargetEnabled' as true and 'IsDevopsAuditEnabled' as true
@@ -4557,10 +4558,10 @@ export type ExtendedServerBlobAuditingPolicy = ProxyResource & {
   storageAccountAccessKey?: string;
   /** Specifies the blob storage subscription Id. */
   storageAccountSubscriptionId?: string;
-};
+}
 
 /** A server blob auditing policy. */
-export type ServerBlobAuditingPolicy = ProxyResource & {
+export interface ServerBlobAuditingPolicy extends ProxyResource {
   /**
    * Specifies the state of devops audit. If state is Enabled, devops logs will be sent to Azure Monitor.
    * In order to send the events to Azure Monitor, specify 'State' as 'Enabled', 'IsAzureMonitorTargetEnabled' as true and 'IsDevopsAuditEnabled' as true
@@ -4674,10 +4675,10 @@ export type ServerBlobAuditingPolicy = ProxyResource & {
   storageAccountAccessKey?: string;
   /** Specifies the blob storage subscription Id. */
   storageAccountSubscriptionId?: string;
-};
+}
 
 /** A database blob auditing policy. */
-export type DatabaseBlobAuditingPolicy = ProxyResource & {
+export interface DatabaseBlobAuditingPolicy extends ProxyResource {
   /**
    * Resource kind.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -4782,10 +4783,10 @@ export type DatabaseBlobAuditingPolicy = ProxyResource & {
   storageAccountAccessKey?: string;
   /** Specifies the blob storage subscription Id. */
   storageAccountSubscriptionId?: string;
-};
+}
 
 /** Database, Server or Elastic Pool Recommended Action. */
-export type RecommendedAction = ProxyResource & {
+export interface RecommendedAction extends ProxyResource {
   /**
    * Resource kind.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -4908,10 +4909,10 @@ export type RecommendedAction = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly details?: { [propertyName: string]: Record<string, unknown> };
-};
+}
 
 /** Database, Server or Elastic Pool Advisor. */
-export type Advisor = ProxyResource & {
+export interface Advisor extends ProxyResource {
   /**
    * Resource kind.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -4949,10 +4950,10 @@ export type Advisor = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly recommendedActions?: RecommendedAction[];
-};
+}
 
 /** Database-level Automatic Tuning. */
-export type DatabaseAutomaticTuning = ProxyResource & {
+export interface DatabaseAutomaticTuning extends ProxyResource {
   /** Automatic tuning desired state. */
   desiredState?: AutomaticTuningMode;
   /**
@@ -4962,10 +4963,10 @@ export type DatabaseAutomaticTuning = ProxyResource & {
   readonly actualState?: AutomaticTuningMode;
   /** Automatic tuning options definition. */
   options?: { [propertyName: string]: AutomaticTuningOptions };
-};
+}
 
 /** A database column resource. */
-export type DatabaseColumn = ProxyResource & {
+export interface DatabaseColumn extends ProxyResource {
   /** The column data type. */
   columnType?: ColumnDataType;
   /** The table temporal type. */
@@ -4974,13 +4975,13 @@ export type DatabaseColumn = ProxyResource & {
   memoryOptimized?: boolean;
   /** Whether or not the column is computed. */
   isComputed?: boolean;
-};
+}
 
 /** A database schema resource. */
-export type DatabaseSchema = ProxyResource & {};
+export interface DatabaseSchema extends ProxyResource {}
 
 /** A database security alert policy. */
-export type DatabaseSecurityAlertPolicy = ProxyResource & {
+export interface DatabaseSecurityAlertPolicy extends ProxyResource {
   /**
    * SystemData of SecurityAlertPolicyResource.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -5005,24 +5006,25 @@ export type DatabaseSecurityAlertPolicy = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly creationTime?: Date;
-};
+}
 
 /** A database table resource. */
-export type DatabaseTable = ProxyResource & {
+export interface DatabaseTable extends ProxyResource {
   /** The table temporal type. */
   temporalType?: TableTemporalType;
   /** Whether or not the table is memory optimized. */
   memoryOptimized?: boolean;
-};
+}
 
 /** A database vulnerability assessment rule baseline. */
-export type DatabaseVulnerabilityAssessmentRuleBaseline = ProxyResource & {
+export interface DatabaseVulnerabilityAssessmentRuleBaseline
+  extends ProxyResource {
   /** The rule baseline result */
   baselineResults?: DatabaseVulnerabilityAssessmentRuleBaselineItem[];
-};
+}
 
 /** A database vulnerability assessment. */
-export type DatabaseVulnerabilityAssessment = ProxyResource & {
+export interface DatabaseVulnerabilityAssessment extends ProxyResource {
   /** A blob storage container path to hold the scan results (e.g. https://myStorage.blob.core.windows.net/VaScans/).  It is required if server level vulnerability assessment policy doesn't set */
   storageContainerPath?: string;
   /** A shared access signature (SAS Key) that has write access to the blob container specified in 'storageContainerPath' parameter. If 'storageAccountAccessKey' isn't specified, StorageContainerSasKey is required. */
@@ -5031,10 +5033,10 @@ export type DatabaseVulnerabilityAssessment = ProxyResource & {
   storageAccountAccessKey?: string;
   /** The recurring scans settings */
   recurringScans?: VulnerabilityAssessmentRecurringScansProperties;
-};
+}
 
 /** A vulnerability assessment scan record. */
-export type VulnerabilityAssessmentScanRecord = ProxyResource & {
+export interface VulnerabilityAssessmentScanRecord extends ProxyResource {
   /**
    * The scan ID.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -5075,28 +5077,29 @@ export type VulnerabilityAssessmentScanRecord = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly numberOfFailedSecurityChecks?: number;
-};
+}
 
 /** A database Vulnerability Assessment scan export resource. */
-export type DatabaseVulnerabilityAssessmentScansExport = ProxyResource & {
+export interface DatabaseVulnerabilityAssessmentScansExport
+  extends ProxyResource {
   /**
    * Location of the exported report (e.g. https://myStorage.blob.core.windows.net/VaScans/scans/serverName/databaseName/scan_scanId.xlsx).
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly exportedReportLocation?: string;
-};
+}
 
 /** User activities of a data warehouse */
-export type DataWarehouseUserActivities = ProxyResource & {
+export interface DataWarehouseUserActivities extends ProxyResource {
   /**
    * Count of running and suspended queries.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly activeQueriesCount?: number;
-};
+}
 
 /** A deleted server. */
-export type DeletedServer = ProxyResource & {
+export interface DeletedServer extends ProxyResource {
   /**
    * The version of the deleted server.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -5117,10 +5120,10 @@ export type DeletedServer = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly fullyQualifiedDomainName?: string;
-};
+}
 
 /** A elastic pool operation. */
-export type ElasticPoolOperation = ProxyResource & {
+export interface ElasticPoolOperation extends ProxyResource {
   /**
    * The name of the elastic pool the operation is being performed on.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -5191,10 +5194,10 @@ export type ElasticPoolOperation = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly isCancellable?: boolean;
-};
+}
 
 /** The server encryption protector. */
-export type EncryptionProtector = ProxyResource & {
+export interface EncryptionProtector extends ProxyResource {
   /**
    * Kind of encryption protector. This is metadata used for the Azure portal experience.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -5226,10 +5229,10 @@ export type EncryptionProtector = ProxyResource & {
   readonly thumbprint?: string;
   /** Key auto rotation opt-in flag. Either true or false. */
   autoRotationEnabled?: boolean;
-};
+}
 
 /** A failover group. */
-export type FailoverGroup = ProxyResource & {
+export interface FailoverGroup extends ProxyResource {
   /**
    * Resource location.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -5255,10 +5258,10 @@ export type FailoverGroup = ProxyResource & {
   partnerServers?: PartnerInfo[];
   /** List of databases in the failover group. */
   databases?: string[];
-};
+}
 
 /** An instance failover group. */
-export type InstanceFailoverGroup = ProxyResource & {
+export interface InstanceFailoverGroup extends ProxyResource {
   /** Read-write endpoint of the failover group instance. */
   readWriteEndpoint?: InstanceFailoverGroupReadWriteEndpoint;
   /** Read-only endpoint of the failover group instance. */
@@ -5277,18 +5280,18 @@ export type InstanceFailoverGroup = ProxyResource & {
   partnerRegions?: PartnerRegionInfo[];
   /** List of managed instance pairs in the failover group. */
   managedInstancePairs?: ManagedInstancePairInfo[];
-};
+}
 
 /** A stored credential that can be used by a job to connect to target databases. */
-export type JobCredential = ProxyResource & {
+export interface JobCredential extends ProxyResource {
   /** The credential user name. */
   username?: string;
   /** The credential password. */
   password?: string;
-};
+}
 
 /** An execution of a job */
-export type JobExecution = ProxyResource & {
+export interface JobExecution extends ProxyResource {
   /**
    * The job version number.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -5351,10 +5354,10 @@ export type JobExecution = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly target?: JobExecutionTarget;
-};
+}
 
 /** A job. */
-export type Job = ProxyResource & {
+export interface Job extends ProxyResource {
   /** User-defined description of the job. */
   description?: string;
   /**
@@ -5364,10 +5367,10 @@ export type Job = ProxyResource & {
   readonly version?: number;
   /** Schedule properties of the job. */
   schedule?: JobSchedule;
-};
+}
 
 /** A job step. */
-export type JobStep = ProxyResource & {
+export interface JobStep extends ProxyResource {
   /** The job step's index within the job. If not specified when creating the job step, it will be created as the last step. If not specified when updating the job step, the step id is not modified. */
   stepId?: number;
   /** The resource ID of the target group that the job step will be executed on. */
@@ -5380,19 +5383,19 @@ export type JobStep = ProxyResource & {
   output?: JobStepOutput;
   /** Execution options for the job step. */
   executionOptions?: JobStepExecutionOptions;
-};
+}
 
 /** A group of job targets. */
-export type JobTargetGroup = ProxyResource & {
+export interface JobTargetGroup extends ProxyResource {
   /** Members of the target group. */
   members?: JobTarget[];
-};
+}
 
 /** A job version. */
-export type JobVersion = ProxyResource & {};
+export interface JobVersion extends ProxyResource {}
 
 /** A long term retention policy. */
-export type LongTermRetentionPolicy = ProxyResource & {
+export interface LongTermRetentionPolicy extends ProxyResource {
   /** The weekly retention policy for an LTR backup in an ISO 8601 format. */
   weeklyRetention?: string;
   /** The monthly retention policy for an LTR backup in an ISO 8601 format. */
@@ -5401,10 +5404,10 @@ export type LongTermRetentionPolicy = ProxyResource & {
   yearlyRetention?: string;
   /** The week of year to take the yearly backup in an ISO 8601 format. */
   weekOfYear?: number;
-};
+}
 
 /** Maintenance window options. */
-export type MaintenanceWindowOptions = ProxyResource & {
+export interface MaintenanceWindowOptions extends ProxyResource {
   /** Whether maintenance windows are enabled for the database. */
   isEnabled?: boolean;
   /** Available maintenance cycles e.g. {Saturday, 0, 48*60}, {Wednesday, 0, 24*60}. */
@@ -5419,26 +5422,26 @@ export type MaintenanceWindowOptions = ProxyResource & {
   timeGranularityInMinutes?: number;
   /** Whether we allow multiple maintenance windows per cycle. */
   allowMultipleMaintenanceWindowsPerCycle?: boolean;
-};
+}
 
 /** Maintenance windows. */
-export type MaintenanceWindows = ProxyResource & {
+export interface MaintenanceWindows extends ProxyResource {
   timeRanges?: MaintenanceWindowTimeRange[];
-};
+}
 
 /** A short term retention policy. */
-export type ManagedBackupShortTermRetentionPolicy = ProxyResource & {
+export interface ManagedBackupShortTermRetentionPolicy extends ProxyResource {
   /** The backup retention period in days. This is how many days Point-in-Time Restore will be supported. */
   retentionDays?: number;
-};
+}
 
 /** Database query. */
-export type ManagedInstanceQuery = ProxyResource & {
+export interface ManagedInstanceQuery extends ProxyResource {
   /** Query text. */
   queryText?: string;
-};
+}
 
-export type QueryStatistics = ProxyResource & {
+export interface QueryStatistics extends ProxyResource {
   /**
    * Database name of the database in which this query was executed.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -5461,10 +5464,10 @@ export type QueryStatistics = ProxyResource & {
   readonly endTime?: string;
   /** List of intervals with appropriate metric data */
   intervals?: QueryMetricInterval[];
-};
+}
 
 /** A managed database restore details. */
-export type ManagedDatabaseRestoreDetailsResult = ProxyResource & {
+export interface ManagedDatabaseRestoreDetailsResult extends ProxyResource {
   /**
    * Restore status.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -5515,10 +5518,10 @@ export type ManagedDatabaseRestoreDetailsResult = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly blockReason?: string;
-};
+}
 
 /** A managed database security alert policy. */
-export type ManagedDatabaseSecurityAlertPolicy = ProxyResource & {
+export interface ManagedDatabaseSecurityAlertPolicy extends ProxyResource {
   /** Specifies the state of the policy, whether it is enabled or disabled or a policy has not been applied yet on the specific database. */
   state?: SecurityAlertPolicyState;
   /** Specifies an array of alerts that are disabled. Allowed values are: Sql_Injection, Sql_Injection_Vulnerability, Access_Anomaly, Data_Exfiltration, Unsafe_Action, Brute_Force */
@@ -5538,10 +5541,10 @@ export type ManagedDatabaseSecurityAlertPolicy = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly creationTime?: Date;
-};
+}
 
 /** A security event. */
-export type SecurityEvent = ProxyResource & {
+export interface SecurityEvent extends ProxyResource {
   /**
    * The time when the security event occurred.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -5587,10 +5590,10 @@ export type SecurityEvent = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly securityEventSqlInjectionAdditionalProperties?: SecurityEventSqlInjectionAdditionalProperties;
-};
+}
 
 /** A sensitivity label. */
-export type SensitivityLabel = ProxyResource & {
+export interface SensitivityLabel extends ProxyResource {
   /**
    * Resource that manages the sensitivity label.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -5625,10 +5628,10 @@ export type SensitivityLabel = ProxyResource & {
    */
   readonly isDisabled?: boolean;
   rank?: SensitivityLabelRank;
-};
+}
 
 /** A sensitivity label update operation. */
-export type SensitivityLabelUpdate = ProxyResource & {
+export interface SensitivityLabelUpdate extends ProxyResource {
   op?: SensitivityLabelUpdateKind;
   /** Schema name of the column to update. */
   schema?: string;
@@ -5638,10 +5641,10 @@ export type SensitivityLabelUpdate = ProxyResource & {
   column?: string;
   /** The sensitivity label information to apply on a column. */
   sensitivityLabel?: SensitivityLabel;
-};
+}
 
 /** A recommended sensitivity label update operation. */
-export type RecommendedSensitivityLabelUpdate = ProxyResource & {
+export interface RecommendedSensitivityLabelUpdate extends ProxyResource {
   op?: RecommendedSensitivityLabelUpdateKind;
   /** Schema name of the column to update. */
   schema?: string;
@@ -5649,16 +5652,16 @@ export type RecommendedSensitivityLabelUpdate = ProxyResource & {
   table?: string;
   /** Column name to update. */
   column?: string;
-};
+}
 
 /** A managed database transparent data encryption state. */
-export type ManagedTransparentDataEncryption = ProxyResource & {
+export interface ManagedTransparentDataEncryption extends ProxyResource {
   /** Specifies the state of the transparent data encryption. */
   state?: TransparentDataEncryptionState;
-};
+}
 
 /** An Azure SQL managed instance administrator. */
-export type ManagedInstanceAdministrator = ProxyResource & {
+export interface ManagedInstanceAdministrator extends ProxyResource {
   /** Type of the managed instance administrator. */
   administratorType?: ManagedInstanceAdministratorType;
   /** Login name of the managed instance administrator. */
@@ -5667,16 +5670,17 @@ export type ManagedInstanceAdministrator = ProxyResource & {
   sid?: string;
   /** Tenant ID of the managed instance administrator. */
   tenantId?: string;
-};
+}
 
 /** Azure Active Directory only authentication. */
-export type ManagedInstanceAzureADOnlyAuthentication = ProxyResource & {
+export interface ManagedInstanceAzureADOnlyAuthentication
+  extends ProxyResource {
   /** Azure Active Directory only Authentication enabled. */
   azureADOnlyAuthentication?: boolean;
-};
+}
 
 /** The managed instance encryption protector. */
-export type ManagedInstanceEncryptionProtector = ProxyResource & {
+export interface ManagedInstanceEncryptionProtector extends ProxyResource {
   /**
    * Kind of encryption protector. This is metadata used for the Azure portal experience.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -5698,10 +5702,10 @@ export type ManagedInstanceEncryptionProtector = ProxyResource & {
   readonly thumbprint?: string;
   /** Key auto rotation opt-in flag. Either true or false. */
   autoRotationEnabled?: boolean;
-};
+}
 
 /** A managed instance key. */
-export type ManagedInstanceKey = ProxyResource & {
+export interface ManagedInstanceKey extends ProxyResource {
   /**
    * Kind of encryption protector. This is metadata used for the Azure portal experience.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -5726,10 +5730,10 @@ export type ManagedInstanceKey = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly autoRotationEnabled?: boolean;
-};
+}
 
 /** A long term retention policy. */
-export type ManagedInstanceLongTermRetentionPolicy = ProxyResource & {
+export interface ManagedInstanceLongTermRetentionPolicy extends ProxyResource {
   /** The weekly retention policy for an LTR backup in an ISO 8601 format. */
   weeklyRetention?: string;
   /** The monthly retention policy for an LTR backup in an ISO 8601 format. */
@@ -5738,10 +5742,10 @@ export type ManagedInstanceLongTermRetentionPolicy = ProxyResource & {
   yearlyRetention?: string;
   /** The week of year to take the yearly backup in an ISO 8601 format. */
   weekOfYear?: number;
-};
+}
 
 /** A managed instance operation. */
-export type ManagedInstanceOperation = ProxyResource & {
+export interface ManagedInstanceOperation extends ProxyResource {
   /**
    * The name of the managed instance the operation is being performed on.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -5817,10 +5821,11 @@ export type ManagedInstanceOperation = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly operationSteps?: ManagedInstanceOperationSteps;
-};
+}
 
 /** A private endpoint connection */
-export type ManagedInstancePrivateEndpointConnection = ProxyResource & {
+export interface ManagedInstancePrivateEndpointConnection
+  extends ProxyResource {
   /** Private endpoint which the connection belongs to. */
   privateEndpoint?: ManagedInstancePrivateEndpointProperty;
   /** Connection State of the Private Endpoint Connection. */
@@ -5830,27 +5835,27 @@ export type ManagedInstancePrivateEndpointConnection = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: string;
-};
+}
 
 /** A private link resource */
-export type ManagedInstancePrivateLink = ProxyResource & {
+export interface ManagedInstancePrivateLink extends ProxyResource {
   /**
    * The private link resource group id.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly properties?: ManagedInstancePrivateLinkProperties;
-};
+}
 
 /** A TDE certificate that can be uploaded into a server. */
-export type TdeCertificate = ProxyResource & {
+export interface TdeCertificate extends ProxyResource {
   /** The base64 encoded certificate private blob. */
   privateBlob?: string;
   /** The certificate password. */
   certPassword?: string;
-};
+}
 
 /** A managed instance vulnerability assessment. */
-export type ManagedInstanceVulnerabilityAssessment = ProxyResource & {
+export interface ManagedInstanceVulnerabilityAssessment extends ProxyResource {
   /** A blob storage container path to hold the scan results (e.g. https://myStorage.blob.core.windows.net/VaScans/). */
   storageContainerPath?: string;
   /** A shared access signature (SAS Key) that has write access to the blob container specified in 'storageContainerPath' parameter. If 'storageAccountAccessKey' isn't specified, StorageContainerSasKey is required. Applies only if the storage account is not behind a Vnet or a firewall */
@@ -5859,10 +5864,10 @@ export type ManagedInstanceVulnerabilityAssessment = ProxyResource & {
   storageAccountAccessKey?: string;
   /** The recurring scans settings */
   recurringScans?: VulnerabilityAssessmentRecurringScansProperties;
-};
+}
 
 /** A managed server security alert policy. */
-export type ManagedServerSecurityAlertPolicy = ProxyResource & {
+export interface ManagedServerSecurityAlertPolicy extends ProxyResource {
   /**
    * SystemData of SecurityAlertPolicyResource.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -5887,10 +5892,10 @@ export type ManagedServerSecurityAlertPolicy = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly creationTime?: Date;
-};
+}
 
 /** A private endpoint connection */
-export type PrivateEndpointConnection = ProxyResource & {
+export interface PrivateEndpointConnection extends ProxyResource {
   /** Private endpoint which the connection belongs to. */
   privateEndpoint?: PrivateEndpointProperty;
   /** Connection state of the private endpoint connection. */
@@ -5900,28 +5905,28 @@ export type PrivateEndpointConnection = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: PrivateEndpointProvisioningState;
-};
+}
 
 /** A private link resource */
-export type PrivateLinkResource = ProxyResource & {
+export interface PrivateLinkResource extends ProxyResource {
   /**
    * The private link resource group id.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly properties?: PrivateLinkResourceProperties;
-};
+}
 
 /** A recoverable managed database resource. */
-export type RecoverableManagedDatabase = ProxyResource & {
+export interface RecoverableManagedDatabase extends ProxyResource {
   /**
    * The last available backup date.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly lastAvailableBackupDate?: string;
-};
+}
 
 /** Database restore points. */
-export type RestorePoint = ProxyResource & {
+export interface RestorePoint extends ProxyResource {
   /**
    * Resource location.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -5947,10 +5952,10 @@ export type RestorePoint = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly restorePointLabel?: string;
-};
+}
 
 /** Server-level Automatic Tuning. */
-export type ServerAutomaticTuning = ProxyResource & {
+export interface ServerAutomaticTuning extends ProxyResource {
   /** Automatic tuning desired state. */
   desiredState?: AutomaticTuningServerMode;
   /**
@@ -5960,10 +5965,10 @@ export type ServerAutomaticTuning = ProxyResource & {
   readonly actualState?: AutomaticTuningServerMode;
   /** Automatic tuning options definition. */
   options?: { [propertyName: string]: AutomaticTuningServerOptions };
-};
+}
 
 /** Azure Active Directory administrator. */
-export type ServerAzureADAdministrator = ProxyResource & {
+export interface ServerAzureADAdministrator extends ProxyResource {
   /** Type of the sever administrator. */
   administratorType?: AdministratorType;
   /** Login name of the server administrator. */
@@ -5977,16 +5982,16 @@ export type ServerAzureADAdministrator = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly azureADOnlyAuthentication?: boolean;
-};
+}
 
 /** Azure Active Directory only authentication. */
-export type ServerAzureADOnlyAuthentication = ProxyResource & {
+export interface ServerAzureADOnlyAuthentication extends ProxyResource {
   /** Azure Active Directory only Authentication enabled. */
   azureADOnlyAuthentication?: boolean;
-};
+}
 
 /** A server DevOps auditing settings. */
-export type ServerDevOpsAuditingSettings = ProxyResource & {
+export interface ServerDevOpsAuditingSettings extends ProxyResource {
   /**
    * SystemData of ServerDevOpsAuditSettingsResource.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -6021,19 +6026,19 @@ export type ServerDevOpsAuditingSettings = ProxyResource & {
   storageAccountAccessKey?: string;
   /** Specifies the blob storage subscription Id. */
   storageAccountSubscriptionId?: string;
-};
+}
 
 /** A server DNS alias. */
-export type ServerDnsAlias = ProxyResource & {
+export interface ServerDnsAlias extends ProxyResource {
   /**
    * The fully qualified DNS record for alias
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly azureDnsRecord?: string;
-};
+}
 
 /** A server key. */
-export type ServerKey = ProxyResource & {
+export interface ServerKey extends ProxyResource {
   /**
    * Kind of encryption protector. This is metadata used for the Azure portal experience.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -6068,10 +6073,10 @@ export type ServerKey = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly autoRotationEnabled?: boolean;
-};
+}
 
 /** A server operation. */
-export type ServerOperation = ProxyResource & {
+export interface ServerOperation extends ProxyResource {
   /**
    * The name of operation.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -6137,10 +6142,10 @@ export type ServerOperation = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly isCancellable?: boolean;
-};
+}
 
 /** A server security alert policy. */
-export type ServerSecurityAlertPolicy = ProxyResource & {
+export interface ServerSecurityAlertPolicy extends ProxyResource {
   /**
    * SystemData of SecurityAlertPolicyResource.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -6165,18 +6170,18 @@ export type ServerSecurityAlertPolicy = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly creationTime?: Date;
-};
+}
 
 /** A server trust group. */
-export type ServerTrustGroup = ProxyResource & {
+export interface ServerTrustGroup extends ProxyResource {
   /** Group members information for the server trust group. */
   groupMembers?: ServerInfo[];
   /** Trust scope of the server trust group. */
   trustScopes?: ServerTrustGroupPropertiesTrustScopesItem[];
-};
+}
 
 /** A server vulnerability assessment. */
-export type ServerVulnerabilityAssessment = ProxyResource & {
+export interface ServerVulnerabilityAssessment extends ProxyResource {
   /** A blob storage container path to hold the scan results (e.g. https://myStorage.blob.core.windows.net/VaScans/). */
   storageContainerPath?: string;
   /** A shared access signature (SAS Key) that has write access to the blob container specified in 'storageContainerPath' parameter. If 'storageAccountAccessKey' isn't specified, StorageContainerSasKey is required. Applies only if the storage account is not behind a Vnet or a firewall */
@@ -6185,16 +6190,16 @@ export type ServerVulnerabilityAssessment = ProxyResource & {
   storageAccountAccessKey?: string;
   /** The recurring scans settings */
   recurringScans?: VulnerabilityAssessmentRecurringScansProperties;
-};
+}
 
 /** A recoverable managed database resource. */
-export type SqlAgentConfiguration = ProxyResource & {
+export interface SqlAgentConfiguration extends ProxyResource {
   /** The state of Sql Agent. */
   state?: SqlAgentConfigurationPropertiesState;
-};
+}
 
 /** Usage Metric of a Subscription in a Location. */
-export type SubscriptionUsage = ProxyResource & {
+export interface SubscriptionUsage extends ProxyResource {
   /**
    * User-readable name of the metric.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -6215,10 +6220,10 @@ export type SubscriptionUsage = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly unit?: string;
-};
+}
 
 /** An Azure SQL Database sync agent. */
-export type SyncAgent = ProxyResource & {
+export interface SyncAgent extends ProxyResource {
   /**
    * Name of the sync agent.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -6251,10 +6256,10 @@ export type SyncAgent = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly version?: string;
-};
+}
 
 /** An Azure SQL Database sync agent linked database. */
-export type SyncAgentLinkedDatabase = ProxyResource & {
+export interface SyncAgentLinkedDatabase extends ProxyResource {
   /**
    * Type of the sync agent linked database.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -6285,10 +6290,10 @@ export type SyncAgentLinkedDatabase = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly userName?: string;
-};
+}
 
 /** An Azure SQL Database sync group. */
-export type SyncGroup = ProxyResource & {
+export interface SyncGroup extends ProxyResource {
   /** The name and capacity of the SKU. */
   sku?: Sku;
   /** Sync interval of the sync group. */
@@ -6324,10 +6329,10 @@ export type SyncGroup = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly privateEndpointName?: string;
-};
+}
 
 /** An Azure SQL Database sync member. */
-export type SyncMember = ProxyResource & {
+export interface SyncMember extends ProxyResource {
   /** Database type of the sync member. */
   databaseType?: SyncMemberDbType;
   /** ARM resource id of the sync agent in the sync member. */
@@ -6358,10 +6363,10 @@ export type SyncMember = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly syncState?: SyncMemberState;
-};
+}
 
 /** Time Zone. */
-export type TimeZone = ProxyResource & {
+export interface TimeZone extends ProxyResource {
   /**
    * The time zone id
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -6372,19 +6377,20 @@ export type TimeZone = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly displayName?: string;
-};
+}
 
 /** A recoverable managed database resource. */
-export type UpdateManagedInstanceDnsServersOperation = ProxyResource & {
+export interface UpdateManagedInstanceDnsServersOperation
+  extends ProxyResource {
   /**
    * The status of the DNS refresh operation.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly status?: DnsRefreshConfigurationPropertiesStatus;
-};
+}
 
 /** A virtual network rule. */
-export type VirtualNetworkRule = ProxyResource & {
+export interface VirtualNetworkRule extends ProxyResource {
   /** The ARM resource id of the virtual network subnet. */
   virtualNetworkSubnetId?: string;
   /** Create firewall rule before the virtual network has vnet service endpoint enabled. */
@@ -6394,10 +6400,10 @@ export type VirtualNetworkRule = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly state?: VirtualNetworkRuleState;
-};
+}
 
 /** Workload classifier operations for a data warehouse */
-export type WorkloadClassifier = ProxyResource & {
+export interface WorkloadClassifier extends ProxyResource {
   /** The workload classifier member name. */
   memberName?: string;
   /** The workload classifier label. */
@@ -6410,10 +6416,10 @@ export type WorkloadClassifier = ProxyResource & {
   endTime?: string;
   /** The workload classifier importance. */
   importance?: string;
-};
+}
 
 /** Workload group operations for a data warehouse */
-export type WorkloadGroup = ProxyResource & {
+export interface WorkloadGroup extends ProxyResource {
   /** The workload group minimum percentage resource. */
   minResourcePercent?: number;
   /** The workload group cap percentage resource. */
@@ -6426,24 +6432,25 @@ export type WorkloadGroup = ProxyResource & {
   importance?: string;
   /** The workload group query execution timeout. */
   queryExecutionTimeout?: number;
-};
+}
 
 /** A logical database transparent data encryption state. */
-export type LogicalDatabaseTransparentDataEncryption = ProxyResource & {
+export interface LogicalDatabaseTransparentDataEncryption
+  extends ProxyResource {
   /** Specifies the state of the transparent data encryption. */
   state?: TransparentDataEncryptionState;
-};
+}
 
 /** A short term retention policy. */
-export type BackupShortTermRetentionPolicy = ProxyResource & {
+export interface BackupShortTermRetentionPolicy extends ProxyResource {
   /** The backup retention period in days. This is how many days Point-in-Time Restore will be supported. */
   retentionDays?: number;
   /** The differential backup interval in hours. This is how many interval hours between each differential backup will be supported. This is only applicable to live databases but not dropped databases. */
   diffBackupIntervalInHours?: DiffBackupIntervalInHours;
-};
+}
 
 /** An export managed database operation result resource. */
-export type DatabaseExtensions = ProxyResource & {
+export interface DatabaseExtensions extends ProxyResource {
   /** Operation Mode. */
   operationMode?: OperationMode;
   /** Storage key type. */
@@ -6452,10 +6459,10 @@ export type DatabaseExtensions = ProxyResource & {
   storageKey?: string;
   /** Storage Uri. */
   storageUri?: string;
-};
+}
 
 /** An Extension operation result resource. */
-export type ImportExportExtensionsOperationResult = ProxyResource & {
+export interface ImportExportExtensionsOperationResult extends ProxyResource {
   /**
    * Request Id.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -6491,10 +6498,10 @@ export type ImportExportExtensionsOperationResult = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly errorMessage?: string;
-};
+}
 
 /** A database operation. */
-export type DatabaseOperation = ProxyResource & {
+export interface DatabaseOperation extends ProxyResource {
   /**
    * The name of the database the operation is being performed on.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -6565,10 +6572,10 @@ export type DatabaseOperation = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly isCancellable?: boolean;
-};
+}
 
 /** Usage metric of a database. */
-export type DatabaseUsage = ProxyResource & {
+export interface DatabaseUsage extends ProxyResource {
   /**
    * User-readable name of the metric.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -6589,10 +6596,10 @@ export type DatabaseUsage = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly unit?: string;
-};
+}
 
 /** Azure SQL Database ledger digest upload settings. */
-export type LedgerDigestUploads = ProxyResource & {
+export interface LedgerDigestUploads extends ProxyResource {
   /** The digest storage endpoint, which must be either an Azure blob storage endpoint or an URI for Azure Confidential Ledger. */
   digestStorageEndpoint?: string;
   /**
@@ -6600,19 +6607,19 @@ export type LedgerDigestUploads = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly state?: LedgerDigestUploadsState;
-};
+}
 
 /** An Azure SQL DB Server Outbound Firewall Rule. */
-export type OutboundFirewallRule = ProxyResource & {
+export interface OutboundFirewallRule extends ProxyResource {
   /**
    * The state of the outbound rule.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly provisioningState?: string;
-};
+}
 
 /** A replication link. */
-export type ReplicationLink = ProxyResource & {
+export interface ReplicationLink extends ProxyResource {
   /**
    * Resource partner server.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -6668,10 +6675,10 @@ export type ReplicationLink = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly linkType?: ReplicationLinkType;
-};
+}
 
 /** An ImportExport operation result resource. */
-export type ImportExportOperationResult = ProxyResource & {
+export interface ImportExportOperationResult extends ProxyResource {
   /**
    * Request Id.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -6722,10 +6729,10 @@ export type ImportExportOperationResult = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly privateEndpointConnections?: PrivateEndpointConnectionRequestStatus[];
-};
+}
 
 /** A LongTermRetentionBackup operation result resource. */
-export type LongTermRetentionBackupOperationResult = ProxyResource & {
+export interface LongTermRetentionBackupOperationResult extends ProxyResource {
   /**
    * Request Id.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -6761,10 +6768,10 @@ export type LongTermRetentionBackupOperationResult = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly message?: string;
-};
+}
 
 /** A long term retention backup. */
-export type LongTermRetentionBackup = ProxyResource & {
+export interface LongTermRetentionBackup extends ProxyResource {
   /**
    * The server name that the backup database belong to.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -6802,10 +6809,10 @@ export type LongTermRetentionBackup = ProxyResource & {
   readonly backupStorageRedundancy?: BackupStorageRedundancy;
   /** The storage redundancy type of the backup */
   requestedBackupStorageRedundancy?: BackupStorageRedundancy;
-};
+}
 
 /** A long term retention backup for a managed database. */
-export type ManagedInstanceLongTermRetentionBackup = ProxyResource & {
+export interface ManagedInstanceLongTermRetentionBackup extends ProxyResource {
   /**
    * The managed instance that the backup database belongs to.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -6841,10 +6848,10 @@ export type ManagedInstanceLongTermRetentionBackup = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly backupStorageRedundancy?: BackupStorageRedundancy;
-};
+}
 
 /** A restorable dropped database resource. */
-export type RestorableDroppedDatabase = ProxyResource & {
+export interface RestorableDroppedDatabase extends ProxyResource {
   /** The name and tier of the SKU. */
   sku?: Sku;
   /** Resource location. */
@@ -6881,10 +6888,10 @@ export type RestorableDroppedDatabase = ProxyResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly backupStorageRedundancy?: BackupStorageRedundancy;
-};
+}
 
 /** A server connection policy */
-export type ServerConnectionPolicy = ProxyResource & {
+export interface ServerConnectionPolicy extends ProxyResource {
   /**
    * Resource location.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -6897,10 +6904,10 @@ export type ServerConnectionPolicy = ProxyResource & {
   readonly kind?: string;
   /** The server connection type. */
   connectionType?: ServerConnectionType;
-};
+}
 
 /** An elastic pool. */
-export type ElasticPool = TrackedResource & {
+export interface ElasticPool extends TrackedResource {
   /**
    * The elastic pool SKU.
    *
@@ -6937,10 +6944,10 @@ export type ElasticPool = TrackedResource & {
   licenseType?: ElasticPoolLicenseType;
   /** Maintenance configuration id assigned to the elastic pool. This configuration defines the period when the maintenance updates will will occur. */
   maintenanceConfigurationId?: string;
-};
+}
 
 /** An Azure SQL instance pool. */
-export type InstancePool = TrackedResource & {
+export interface InstancePool extends TrackedResource {
   /** The name and tier of the SKU. */
   sku?: Sku;
   /** Resource ID of the subnet to place this instance pool in. */
@@ -6949,10 +6956,10 @@ export type InstancePool = TrackedResource & {
   vCores?: number;
   /** The license type. Possible values are 'LicenseIncluded' (price for SQL license is included) and 'BasePrice' (without SQL license price). */
   licenseType?: InstancePoolLicenseType;
-};
+}
 
 /** An Azure SQL job agent. */
-export type JobAgent = TrackedResource & {
+export interface JobAgent extends TrackedResource {
   /** The name and tier of the SKU. */
   sku?: Sku;
   /** Resource ID of the database to store job metadata in. */
@@ -6962,10 +6969,10 @@ export type JobAgent = TrackedResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly state?: JobAgentState;
-};
+}
 
 /** A managed database resource. */
-export type ManagedDatabase = TrackedResource & {
+export interface ManagedDatabase extends TrackedResource {
   /** Collation of the managed database. */
   collation?: string;
   /**
@@ -7015,10 +7022,10 @@ export type ManagedDatabase = TrackedResource & {
   autoCompleteRestore?: boolean;
   /** Last backup file name for restore of this managed database. */
   lastBackupName?: string;
-};
+}
 
 /** An Azure SQL virtual cluster. */
-export type VirtualCluster = TrackedResource & {
+export interface VirtualCluster extends TrackedResource {
   /**
    * Subnet resource ID for the virtual cluster.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -7033,10 +7040,10 @@ export type VirtualCluster = TrackedResource & {
   readonly childResources?: string[];
   /** Specifies maintenance configuration id to apply to this virtual cluster. */
   maintenanceConfigurationId?: string;
-};
+}
 
 /** An Azure SQL Database server. */
-export type Server = TrackedResource & {
+export interface Server extends TrackedResource {
   /** The Azure Active Directory identity of the server. */
   identity?: ResourceIdentity;
   /**
@@ -7084,10 +7091,10 @@ export type Server = TrackedResource & {
   administrators?: ServerExternalAdministrator;
   /** Whether or not to restrict outbound network access for this server.  Value is optional but if passed in, must be 'Enabled' or 'Disabled' */
   restrictOutboundNetworkAccess?: ServerNetworkAccessFlag;
-};
+}
 
 /** A database resource. */
-export type Database = TrackedResource & {
+export interface Database extends TrackedResource {
   /**
    * The database SKU.
    *
@@ -7253,10 +7260,10 @@ export type Database = TrackedResource & {
   federatedClientId?: string;
   /** The Primary Delegated Identity Client id used for per database CMK - for internal use only */
   primaryDelegatedIdentityClientId?: string;
-};
+}
 
 /** An Azure SQL managed instance. */
-export type ManagedInstance = TrackedResource & {
+export interface ManagedInstance extends TrackedResource {
   /** The Azure Active Directory identity of the managed instance. */
   identity?: ResourceIdentity;
   /** Managed instance SKU. Allowed values for sku.name: GP_Gen4, GP_Gen5, BC_Gen4, BC_Gen5 */
@@ -7347,10 +7354,10 @@ export type ManagedInstance = TrackedResource & {
   administrators?: ManagedInstanceExternalAdministrator;
   /** The managed instance's service principal. */
   servicePrincipal?: ServicePrincipal;
-};
+}
 
 /** A restorable dropped managed database resource. */
-export type RestorableDroppedManagedDatabase = TrackedResource & {
+export interface RestorableDroppedManagedDatabase extends TrackedResource {
   /**
    * The name of the database.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -7371,18 +7378,19 @@ export type RestorableDroppedManagedDatabase = TrackedResource & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly earliestRestoreDate?: Date;
-};
+}
 
 /** A server firewall rule. */
-export type FirewallRule = ProxyResourceWithWritableName & {
+export interface FirewallRule extends ProxyResourceWithWritableName {
   /** The start IP address of the firewall rule. Must be IPv4 format. Use value '0.0.0.0' for all Azure-internal IP addresses. */
   startIpAddress?: string;
   /** The end IP address of the firewall rule. Must be IPv4 format. Must be greater than or equal to startIpAddress. Use value '0.0.0.0' for all Azure-internal IP addresses. */
   endIpAddress?: string;
-};
+}
 
 /** Known values of {@link GeoBackupPolicyName} that the service accepts. */
 export enum KnownGeoBackupPolicyName {
+  /** Default */
   Default = "Default"
 }
 
@@ -7397,11 +7405,17 @@ export type GeoBackupPolicyName = string;
 
 /** Known values of {@link UnitType} that the service accepts. */
 export enum KnownUnitType {
+  /** Count */
   Count = "count",
+  /** Bytes */
   Bytes = "bytes",
+  /** Seconds */
   Seconds = "seconds",
+  /** Percent */
   Percent = "percent",
+  /** CountPerSecond */
   CountPerSecond = "countPerSecond",
+  /** BytesPerSecond */
   BytesPerSecond = "bytesPerSecond"
 }
 
@@ -7421,11 +7435,17 @@ export type UnitType = string;
 
 /** Known values of {@link PrimaryAggregationType} that the service accepts. */
 export enum KnownPrimaryAggregationType {
+  /** None */
   None = "None",
+  /** Average */
   Average = "Average",
+  /** Count */
   Count = "Count",
+  /** Minimum */
   Minimum = "Minimum",
+  /** Maximum */
   Maximum = "Maximum",
+  /** Total */
   Total = "Total"
 }
 
@@ -7445,11 +7465,17 @@ export type PrimaryAggregationType = string;
 
 /** Known values of {@link UnitDefinitionType} that the service accepts. */
 export enum KnownUnitDefinitionType {
+  /** Count */
   Count = "Count",
+  /** Bytes */
   Bytes = "Bytes",
+  /** Seconds */
   Seconds = "Seconds",
+  /** Percent */
   Percent = "Percent",
+  /** CountPerSecond */
   CountPerSecond = "CountPerSecond",
+  /** BytesPerSecond */
   BytesPerSecond = "BytesPerSecond"
 }
 
@@ -7469,19 +7495,33 @@ export type UnitDefinitionType = string;
 
 /** Known values of {@link RecommendedActionCurrentState} that the service accepts. */
 export enum KnownRecommendedActionCurrentState {
+  /** Active */
   Active = "Active",
+  /** Pending */
   Pending = "Pending",
+  /** Executing */
   Executing = "Executing",
+  /** Verifying */
   Verifying = "Verifying",
+  /** PendingRevert */
   PendingRevert = "PendingRevert",
+  /** RevertCancelled */
   RevertCancelled = "RevertCancelled",
+  /** Reverting */
   Reverting = "Reverting",
+  /** Reverted */
   Reverted = "Reverted",
+  /** Ignored */
   Ignored = "Ignored",
+  /** Expired */
   Expired = "Expired",
+  /** Monitoring */
   Monitoring = "Monitoring",
+  /** Resolved */
   Resolved = "Resolved",
+  /** Success */
   Success = "Success",
+  /** Error */
   Error = "Error"
 }
 
@@ -7509,39 +7549,73 @@ export type RecommendedActionCurrentState = string;
 
 /** Known values of {@link ColumnDataType} that the service accepts. */
 export enum KnownColumnDataType {
+  /** Image */
   Image = "image",
+  /** Text */
   Text = "text",
+  /** Uniqueidentifier */
   Uniqueidentifier = "uniqueidentifier",
+  /** Date */
   Date = "date",
+  /** Time */
   Time = "time",
+  /** Datetime2 */
   Datetime2 = "datetime2",
+  /** Datetimeoffset */
   Datetimeoffset = "datetimeoffset",
+  /** Tinyint */
   Tinyint = "tinyint",
+  /** Smallint */
   Smallint = "smallint",
+  /** Int */
   Int = "int",
+  /** Smalldatetime */
   Smalldatetime = "smalldatetime",
+  /** Real */
   Real = "real",
+  /** Money */
   Money = "money",
+  /** Datetime */
   Datetime = "datetime",
+  /** Float */
   Float = "float",
+  /** SqlVariant */
   SqlVariant = "sql_variant",
+  /** Ntext */
   Ntext = "ntext",
+  /** Bit */
   Bit = "bit",
+  /** Decimal */
   Decimal = "decimal",
+  /** Numeric */
   Numeric = "numeric",
+  /** Smallmoney */
   Smallmoney = "smallmoney",
+  /** Bigint */
   Bigint = "bigint",
+  /** Hierarchyid */
   Hierarchyid = "hierarchyid",
+  /** Geometry */
   Geometry = "geometry",
+  /** Geography */
   Geography = "geography",
+  /** Varbinary */
   Varbinary = "varbinary",
+  /** Varchar */
   Varchar = "varchar",
+  /** Binary */
   Binary = "binary",
+  /** Char */
   Char = "char",
+  /** Timestamp */
   Timestamp = "timestamp",
+  /** Nvarchar */
   Nvarchar = "nvarchar",
+  /** Nchar */
   Nchar = "nchar",
+  /** Xml */
   Xml = "xml",
+  /** Sysname */
   Sysname = "sysname"
 }
 
@@ -7589,8 +7663,11 @@ export type ColumnDataType = string;
 
 /** Known values of {@link TableTemporalType} that the service accepts. */
 export enum KnownTableTemporalType {
+  /** NonTemporalTable */
   NonTemporalTable = "NonTemporalTable",
+  /** HistoryTable */
   HistoryTable = "HistoryTable",
+  /** SystemVersionedTemporalTable */
   SystemVersionedTemporalTable = "SystemVersionedTemporalTable"
 }
 
@@ -7607,6 +7684,7 @@ export type TableTemporalType = string;
 
 /** Known values of {@link SecurityAlertPolicyName} that the service accepts. */
 export enum KnownSecurityAlertPolicyName {
+  /** Default */
   Default = "Default"
 }
 
@@ -7621,9 +7699,13 @@ export type SecurityAlertPolicyName = string;
 
 /** Known values of {@link CreatedByType} that the service accepts. */
 export enum KnownCreatedByType {
+  /** User */
   User = "User",
+  /** Application */
   Application = "Application",
+  /** ManagedIdentity */
   ManagedIdentity = "ManagedIdentity",
+  /** Key */
   Key = "Key"
 }
 
@@ -7641,6 +7723,7 @@ export type CreatedByType = string;
 
 /** Known values of {@link VulnerabilityAssessmentName} that the service accepts. */
 export enum KnownVulnerabilityAssessmentName {
+  /** Default */
   Default = "default"
 }
 
@@ -7655,7 +7738,9 @@ export type VulnerabilityAssessmentName = string;
 
 /** Known values of {@link VulnerabilityAssessmentScanTriggerType} that the service accepts. */
 export enum KnownVulnerabilityAssessmentScanTriggerType {
+  /** OnDemand */
   OnDemand = "OnDemand",
+  /** Recurring */
   Recurring = "Recurring"
 }
 
@@ -7671,9 +7756,13 @@ export type VulnerabilityAssessmentScanTriggerType = string;
 
 /** Known values of {@link VulnerabilityAssessmentScanState} that the service accepts. */
 export enum KnownVulnerabilityAssessmentScanState {
+  /** Passed */
   Passed = "Passed",
+  /** Failed */
   Failed = "Failed",
+  /** FailedToRun */
   FailedToRun = "FailedToRun",
+  /** InProgress */
   InProgress = "InProgress"
 }
 
@@ -7691,6 +7780,7 @@ export type VulnerabilityAssessmentScanState = string;
 
 /** Known values of {@link DataWarehouseUserActivityName} that the service accepts. */
 export enum KnownDataWarehouseUserActivityName {
+  /** Current */
   Current = "current"
 }
 
@@ -7705,8 +7795,11 @@ export type DataWarehouseUserActivityName = string;
 
 /** Known values of {@link ElasticPoolState} that the service accepts. */
 export enum KnownElasticPoolState {
+  /** Creating */
   Creating = "Creating",
+  /** Ready */
   Ready = "Ready",
+  /** Disabled */
   Disabled = "Disabled"
 }
 
@@ -7723,7 +7816,9 @@ export type ElasticPoolState = string;
 
 /** Known values of {@link ElasticPoolLicenseType} that the service accepts. */
 export enum KnownElasticPoolLicenseType {
+  /** LicenseIncluded */
   LicenseIncluded = "LicenseIncluded",
+  /** BasePrice */
   BasePrice = "BasePrice"
 }
 
@@ -7739,7 +7834,9 @@ export type ElasticPoolLicenseType = string;
 
 /** Known values of {@link ServerKeyType} that the service accepts. */
 export enum KnownServerKeyType {
+  /** ServiceManaged */
   ServiceManaged = "ServiceManaged",
+  /** AzureKeyVault */
   AzureKeyVault = "AzureKeyVault"
 }
 
@@ -7755,6 +7852,7 @@ export type ServerKeyType = string;
 
 /** Known values of {@link EncryptionProtectorName} that the service accepts. */
 export enum KnownEncryptionProtectorName {
+  /** Current */
   Current = "current"
 }
 
@@ -7769,7 +7867,9 @@ export type EncryptionProtectorName = string;
 
 /** Known values of {@link ReadWriteEndpointFailoverPolicy} that the service accepts. */
 export enum KnownReadWriteEndpointFailoverPolicy {
+  /** Manual */
   Manual = "Manual",
+  /** Automatic */
   Automatic = "Automatic"
 }
 
@@ -7785,7 +7885,9 @@ export type ReadWriteEndpointFailoverPolicy = string;
 
 /** Known values of {@link ReadOnlyEndpointFailoverPolicy} that the service accepts. */
 export enum KnownReadOnlyEndpointFailoverPolicy {
+  /** Disabled */
   Disabled = "Disabled",
+  /** Enabled */
   Enabled = "Enabled"
 }
 
@@ -7801,7 +7903,9 @@ export type ReadOnlyEndpointFailoverPolicy = string;
 
 /** Known values of {@link FailoverGroupReplicationRole} that the service accepts. */
 export enum KnownFailoverGroupReplicationRole {
+  /** Primary */
   Primary = "Primary",
+  /** Secondary */
   Secondary = "Secondary"
 }
 
@@ -7817,7 +7921,9 @@ export type FailoverGroupReplicationRole = string;
 
 /** Known values of {@link InstanceFailoverGroupReplicationRole} that the service accepts. */
 export enum KnownInstanceFailoverGroupReplicationRole {
+  /** Primary */
   Primary = "Primary",
+  /** Secondary */
   Secondary = "Secondary"
 }
 
@@ -7833,7 +7939,9 @@ export type InstanceFailoverGroupReplicationRole = string;
 
 /** Known values of {@link InstancePoolLicenseType} that the service accepts. */
 export enum KnownInstancePoolLicenseType {
+  /** LicenseIncluded */
   LicenseIncluded = "LicenseIncluded",
+  /** BasePrice */
   BasePrice = "BasePrice"
 }
 
@@ -7849,10 +7957,15 @@ export type InstancePoolLicenseType = string;
 
 /** Known values of {@link JobAgentState} that the service accepts. */
 export enum KnownJobAgentState {
+  /** Creating */
   Creating = "Creating",
+  /** Ready */
   Ready = "Ready",
+  /** Updating */
   Updating = "Updating",
+  /** Deleting */
   Deleting = "Deleting",
+  /** Disabled */
   Disabled = "Disabled"
 }
 
@@ -7871,15 +7984,25 @@ export type JobAgentState = string;
 
 /** Known values of {@link JobExecutionLifecycle} that the service accepts. */
 export enum KnownJobExecutionLifecycle {
+  /** Created */
   Created = "Created",
+  /** InProgress */
   InProgress = "InProgress",
+  /** WaitingForChildJobExecutions */
   WaitingForChildJobExecutions = "WaitingForChildJobExecutions",
+  /** WaitingForRetry */
   WaitingForRetry = "WaitingForRetry",
+  /** Succeeded */
   Succeeded = "Succeeded",
+  /** SucceededWithSkipped */
   SucceededWithSkipped = "SucceededWithSkipped",
+  /** Failed */
   Failed = "Failed",
+  /** TimedOut */
   TimedOut = "TimedOut",
+  /** Canceled */
   Canceled = "Canceled",
+  /** Skipped */
   Skipped = "Skipped"
 }
 
@@ -7903,10 +8026,15 @@ export type JobExecutionLifecycle = string;
 
 /** Known values of {@link ProvisioningState} that the service accepts. */
 export enum KnownProvisioningState {
+  /** Created */
   Created = "Created",
+  /** InProgress */
   InProgress = "InProgress",
+  /** Succeeded */
   Succeeded = "Succeeded",
+  /** Failed */
   Failed = "Failed",
+  /** Canceled */
   Canceled = "Canceled"
 }
 
@@ -7925,10 +8053,15 @@ export type ProvisioningState = string;
 
 /** Known values of {@link JobTargetType} that the service accepts. */
 export enum KnownJobTargetType {
+  /** TargetGroup */
   TargetGroup = "TargetGroup",
+  /** SqlDatabase */
   SqlDatabase = "SqlDatabase",
+  /** SqlElasticPool */
   SqlElasticPool = "SqlElasticPool",
+  /** SqlShardMap */
   SqlShardMap = "SqlShardMap",
+  /** SqlServer */
   SqlServer = "SqlServer"
 }
 
@@ -7947,6 +8080,7 @@ export type JobTargetType = string;
 
 /** Known values of {@link JobStepActionType} that the service accepts. */
 export enum KnownJobStepActionType {
+  /** TSql */
   TSql = "TSql"
 }
 
@@ -7961,6 +8095,7 @@ export type JobStepActionType = string;
 
 /** Known values of {@link JobStepActionSource} that the service accepts. */
 export enum KnownJobStepActionSource {
+  /** Inline */
   Inline = "Inline"
 }
 
@@ -7975,6 +8110,7 @@ export type JobStepActionSource = string;
 
 /** Known values of {@link JobStepOutputType} that the service accepts. */
 export enum KnownJobStepOutputType {
+  /** SqlDatabase */
   SqlDatabase = "SqlDatabase"
 }
 
@@ -7989,10 +8125,15 @@ export type JobStepOutputType = string;
 
 /** Known values of {@link CapabilityGroup} that the service accepts. */
 export enum KnownCapabilityGroup {
+  /** SupportedEditions */
   SupportedEditions = "supportedEditions",
+  /** SupportedElasticPoolEditions */
   SupportedElasticPoolEditions = "supportedElasticPoolEditions",
+  /** SupportedManagedInstanceVersions */
   SupportedManagedInstanceVersions = "supportedManagedInstanceVersions",
+  /** SupportedInstancePoolEditions */
   SupportedInstancePoolEditions = "supportedInstancePoolEditions",
+  /** SupportedManagedInstanceEditions */
   SupportedManagedInstanceEditions = "supportedManagedInstanceEditions"
 }
 
@@ -8011,9 +8152,13 @@ export type CapabilityGroup = string;
 
 /** Known values of {@link MaxSizeUnit} that the service accepts. */
 export enum KnownMaxSizeUnit {
+  /** Megabytes */
   Megabytes = "Megabytes",
+  /** Gigabytes */
   Gigabytes = "Gigabytes",
+  /** Terabytes */
   Terabytes = "Terabytes",
+  /** Petabytes */
   Petabytes = "Petabytes"
 }
 
@@ -8031,10 +8176,15 @@ export type MaxSizeUnit = string;
 
 /** Known values of {@link LogSizeUnit} that the service accepts. */
 export enum KnownLogSizeUnit {
+  /** Megabytes */
   Megabytes = "Megabytes",
+  /** Gigabytes */
   Gigabytes = "Gigabytes",
+  /** Terabytes */
   Terabytes = "Terabytes",
+  /** Petabytes */
   Petabytes = "Petabytes",
+  /** Percent */
   Percent = "Percent"
 }
 
@@ -8053,7 +8203,9 @@ export type LogSizeUnit = string;
 
 /** Known values of {@link PerformanceLevelUnit} that the service accepts. */
 export enum KnownPerformanceLevelUnit {
+  /** DTU */
   DTU = "DTU",
+  /** VCores */
   VCores = "VCores"
 }
 
@@ -8069,6 +8221,7 @@ export type PerformanceLevelUnit = string;
 
 /** Known values of {@link PauseDelayTimeUnit} that the service accepts. */
 export enum KnownPauseDelayTimeUnit {
+  /** Minutes */
   Minutes = "Minutes"
 }
 
@@ -8083,8 +8236,11 @@ export type PauseDelayTimeUnit = string;
 
 /** Known values of {@link StorageCapabilityStorageAccountType} that the service accepts. */
 export enum KnownStorageCapabilityStorageAccountType {
+  /** GRS */
   GRS = "GRS",
+  /** LRS */
   LRS = "LRS",
+  /** ZRS */
   ZRS = "ZRS"
 }
 
@@ -8101,6 +8257,7 @@ export type StorageCapabilityStorageAccountType = string;
 
 /** Known values of {@link LongTermRetentionPolicyName} that the service accepts. */
 export enum KnownLongTermRetentionPolicyName {
+  /** Default */
   Default = "default"
 }
 
@@ -8115,12 +8272,19 @@ export type LongTermRetentionPolicyName = string;
 
 /** Known values of {@link DayOfWeek} that the service accepts. */
 export enum KnownDayOfWeek {
+  /** Sunday */
   Sunday = "Sunday",
+  /** Monday */
   Monday = "Monday",
+  /** Tuesday */
   Tuesday = "Tuesday",
+  /** Wednesday */
   Wednesday = "Wednesday",
+  /** Thursday */
   Thursday = "Thursday",
+  /** Friday */
   Friday = "Friday",
+  /** Saturday */
   Saturday = "Saturday"
 }
 
@@ -8141,6 +8305,7 @@ export type DayOfWeek = string;
 
 /** Known values of {@link ManagedShortTermRetentionPolicyName} that the service accepts. */
 export enum KnownManagedShortTermRetentionPolicyName {
+  /** Default */
   Default = "default"
 }
 
@@ -8155,7 +8320,9 @@ export type ManagedShortTermRetentionPolicyName = string;
 
 /** Known values of {@link QueryTimeGrainType} that the service accepts. */
 export enum KnownQueryTimeGrainType {
+  /** PT1H */
   PT1H = "PT1H",
+  /** P1D */
   P1D = "P1D"
 }
 
@@ -8171,9 +8338,13 @@ export type QueryTimeGrainType = string;
 
 /** Known values of {@link QueryMetricUnitType} that the service accepts. */
 export enum KnownQueryMetricUnitType {
+  /** Percentage */
   Percentage = "percentage",
+  /** KB */
   KB = "KB",
+  /** Microseconds */
   Microseconds = "microseconds",
+  /** Count */
   Count = "count"
 }
 
@@ -8191,6 +8362,7 @@ export type QueryMetricUnitType = string;
 
 /** Known values of {@link RestoreDetailsName} that the service accepts. */
 export enum KnownRestoreDetailsName {
+  /** Default */
   Default = "Default"
 }
 
@@ -8205,12 +8377,19 @@ export type RestoreDetailsName = string;
 
 /** Known values of {@link ManagedDatabaseStatus} that the service accepts. */
 export enum KnownManagedDatabaseStatus {
+  /** Online */
   Online = "Online",
+  /** Offline */
   Offline = "Offline",
+  /** Shutdown */
   Shutdown = "Shutdown",
+  /** Creating */
   Creating = "Creating",
+  /** Inaccessible */
   Inaccessible = "Inaccessible",
+  /** Restoring */
   Restoring = "Restoring",
+  /** Updating */
   Updating = "Updating"
 }
 
@@ -8231,7 +8410,9 @@ export type ManagedDatabaseStatus = string;
 
 /** Known values of {@link CatalogCollationType} that the service accepts. */
 export enum KnownCatalogCollationType {
+  /** DatabaseDefault */
   DatabaseDefault = "DATABASE_DEFAULT",
+  /** SQLLatin1GeneralCP1CIAS */
   SQLLatin1GeneralCP1CIAS = "SQL_Latin1_General_CP1_CI_AS"
 }
 
@@ -8247,10 +8428,15 @@ export type CatalogCollationType = string;
 
 /** Known values of {@link ManagedDatabaseCreateMode} that the service accepts. */
 export enum KnownManagedDatabaseCreateMode {
+  /** Default */
   Default = "Default",
+  /** RestoreExternalBackup */
   RestoreExternalBackup = "RestoreExternalBackup",
+  /** PointInTimeRestore */
   PointInTimeRestore = "PointInTimeRestore",
+  /** Recovery */
   Recovery = "Recovery",
+  /** RestoreLongTermRetentionBackup */
   RestoreLongTermRetentionBackup = "RestoreLongTermRetentionBackup"
 }
 
@@ -8269,6 +8455,7 @@ export type ManagedDatabaseCreateMode = string;
 
 /** Known values of {@link TransparentDataEncryptionName} that the service accepts. */
 export enum KnownTransparentDataEncryptionName {
+  /** Current */
   Current = "current"
 }
 
@@ -8283,6 +8470,7 @@ export type TransparentDataEncryptionName = string;
 
 /** Known values of {@link ManagedInstanceAdministratorType} that the service accepts. */
 export enum KnownManagedInstanceAdministratorType {
+  /** ActiveDirectory */
   ActiveDirectory = "ActiveDirectory"
 }
 
@@ -8297,6 +8485,7 @@ export type ManagedInstanceAdministratorType = string;
 
 /** Known values of {@link AdministratorName} that the service accepts. */
 export enum KnownAdministratorName {
+  /** ActiveDirectory */
   ActiveDirectory = "ActiveDirectory"
 }
 
@@ -8311,6 +8500,7 @@ export type AdministratorName = string;
 
 /** Known values of {@link AuthenticationName} that the service accepts. */
 export enum KnownAuthenticationName {
+  /** Default */
   Default = "Default"
 }
 
@@ -8325,6 +8515,7 @@ export type AuthenticationName = string;
 
 /** Known values of {@link ManagedInstanceLongTermRetentionPolicyName} that the service accepts. */
 export enum KnownManagedInstanceLongTermRetentionPolicyName {
+  /** Default */
   Default = "default"
 }
 
@@ -8339,11 +8530,17 @@ export type ManagedInstanceLongTermRetentionPolicyName = string;
 
 /** Known values of {@link ManagementOperationState} that the service accepts. */
 export enum KnownManagementOperationState {
+  /** Pending */
   Pending = "Pending",
+  /** InProgress */
   InProgress = "InProgress",
+  /** Succeeded */
   Succeeded = "Succeeded",
+  /** Failed */
   Failed = "Failed",
+  /** CancelInProgress */
   CancelInProgress = "CancelInProgress",
+  /** Cancelled */
   Cancelled = "Cancelled"
 }
 
@@ -8363,11 +8560,17 @@ export type ManagementOperationState = string;
 
 /** Known values of {@link UpsertManagedServerOperationStepStatus} that the service accepts. */
 export enum KnownUpsertManagedServerOperationStepStatus {
+  /** NotStarted */
   NotStarted = "NotStarted",
+  /** InProgress */
   InProgress = "InProgress",
+  /** SlowedDown */
   SlowedDown = "SlowedDown",
+  /** Completed */
   Completed = "Completed",
+  /** Failed */
   Failed = "Failed",
+  /** Canceled */
   Canceled = "Canceled"
 }
 
@@ -8387,7 +8590,9 @@ export type UpsertManagedServerOperationStepStatus = string;
 
 /** Known values of {@link OperationOrigin} that the service accepts. */
 export enum KnownOperationOrigin {
+  /** User */
   User = "user",
+  /** System */
   System = "system"
 }
 
@@ -8403,9 +8608,13 @@ export type OperationOrigin = string;
 
 /** Known values of {@link PrivateLinkServiceConnectionStateStatus} that the service accepts. */
 export enum KnownPrivateLinkServiceConnectionStateStatus {
+  /** Approved */
   Approved = "Approved",
+  /** Pending */
   Pending = "Pending",
+  /** Rejected */
   Rejected = "Rejected",
+  /** Disconnected */
   Disconnected = "Disconnected"
 }
 
@@ -8423,6 +8632,7 @@ export type PrivateLinkServiceConnectionStateStatus = string;
 
 /** Known values of {@link PrivateLinkServiceConnectionStateActionsRequire} that the service accepts. */
 export enum KnownPrivateLinkServiceConnectionStateActionsRequire {
+  /** None */
   None = "None"
 }
 
@@ -8437,10 +8647,15 @@ export type PrivateLinkServiceConnectionStateActionsRequire = string;
 
 /** Known values of {@link PrivateEndpointProvisioningState} that the service accepts. */
 export enum KnownPrivateEndpointProvisioningState {
+  /** Approving */
   Approving = "Approving",
+  /** Ready */
   Ready = "Ready",
+  /** Dropping */
   Dropping = "Dropping",
+  /** Failed */
   Failed = "Failed",
+  /** Rejecting */
   Rejecting = "Rejecting"
 }
 
@@ -8459,6 +8674,7 @@ export type PrivateEndpointProvisioningState = string;
 
 /** Known values of {@link AdministratorType} that the service accepts. */
 export enum KnownAdministratorType {
+  /** ActiveDirectory */
   ActiveDirectory = "ActiveDirectory"
 }
 
@@ -8473,7 +8689,9 @@ export type AdministratorType = string;
 
 /** Known values of {@link ServerTrustGroupPropertiesTrustScopesItem} that the service accepts. */
 export enum KnownServerTrustGroupPropertiesTrustScopesItem {
+  /** GlobalTransactions */
   GlobalTransactions = "GlobalTransactions",
+  /** ServiceBroker */
   ServiceBroker = "ServiceBroker"
 }
 
@@ -8489,7 +8707,9 @@ export type ServerTrustGroupPropertiesTrustScopesItem = string;
 
 /** Known values of {@link SqlAgentConfigurationPropertiesState} that the service accepts. */
 export enum KnownSqlAgentConfigurationPropertiesState {
+  /** Enabled */
   Enabled = "Enabled",
+  /** Disabled */
   Disabled = "Disabled"
 }
 
@@ -8505,8 +8725,11 @@ export type SqlAgentConfigurationPropertiesState = string;
 
 /** Known values of {@link SyncAgentState} that the service accepts. */
 export enum KnownSyncAgentState {
+  /** Online */
   Online = "Online",
+  /** Offline */
   Offline = "Offline",
+  /** NeverConnected */
   NeverConnected = "NeverConnected"
 }
 
@@ -8523,7 +8746,9 @@ export type SyncAgentState = string;
 
 /** Known values of {@link SyncMemberDbType} that the service accepts. */
 export enum KnownSyncMemberDbType {
+  /** AzureSqlDatabase */
   AzureSqlDatabase = "AzureSqlDatabase",
+  /** SqlServerDatabase */
   SqlServerDatabase = "SqlServerDatabase"
 }
 
@@ -8539,9 +8764,13 @@ export type SyncMemberDbType = string;
 
 /** Known values of {@link SyncGroupsType} that the service accepts. */
 export enum KnownSyncGroupsType {
+  /** All */
   All = "All",
+  /** Error */
   Error = "Error",
+  /** Warning */
   Warning = "Warning",
+  /** Success */
   Success = "Success"
 }
 
@@ -8559,9 +8788,13 @@ export type SyncGroupsType = string;
 
 /** Known values of {@link SyncGroupLogType} that the service accepts. */
 export enum KnownSyncGroupLogType {
+  /** All */
   All = "All",
+  /** Error */
   Error = "Error",
+  /** Warning */
   Warning = "Warning",
+  /** Success */
   Success = "Success"
 }
 
@@ -8579,7 +8812,9 @@ export type SyncGroupLogType = string;
 
 /** Known values of {@link SyncConflictResolutionPolicy} that the service accepts. */
 export enum KnownSyncConflictResolutionPolicy {
+  /** HubWin */
   HubWin = "HubWin",
+  /** MemberWin */
   MemberWin = "MemberWin"
 }
 
@@ -8595,10 +8830,15 @@ export type SyncConflictResolutionPolicy = string;
 
 /** Known values of {@link SyncGroupState} that the service accepts. */
 export enum KnownSyncGroupState {
+  /** NotReady */
   NotReady = "NotReady",
+  /** Error */
   Error = "Error",
+  /** Warning */
   Warning = "Warning",
+  /** Progressing */
   Progressing = "Progressing",
+  /** Good */
   Good = "Good"
 }
 
@@ -8617,8 +8857,11 @@ export type SyncGroupState = string;
 
 /** Known values of {@link SyncDirection} that the service accepts. */
 export enum KnownSyncDirection {
+  /** Bidirectional */
   Bidirectional = "Bidirectional",
+  /** OneWayMemberToHub */
   OneWayMemberToHub = "OneWayMemberToHub",
+  /** OneWayHubToMember */
   OneWayHubToMember = "OneWayHubToMember"
 }
 
@@ -8635,23 +8878,41 @@ export type SyncDirection = string;
 
 /** Known values of {@link SyncMemberState} that the service accepts. */
 export enum KnownSyncMemberState {
+  /** SyncInProgress */
   SyncInProgress = "SyncInProgress",
+  /** SyncSucceeded */
   SyncSucceeded = "SyncSucceeded",
+  /** SyncFailed */
   SyncFailed = "SyncFailed",
+  /** DisabledTombstoneCleanup */
   DisabledTombstoneCleanup = "DisabledTombstoneCleanup",
+  /** DisabledBackupRestore */
   DisabledBackupRestore = "DisabledBackupRestore",
+  /** SyncSucceededWithWarnings */
   SyncSucceededWithWarnings = "SyncSucceededWithWarnings",
+  /** SyncCancelling */
   SyncCancelling = "SyncCancelling",
+  /** SyncCancelled */
   SyncCancelled = "SyncCancelled",
+  /** UnProvisioned */
   UnProvisioned = "UnProvisioned",
+  /** Provisioning */
   Provisioning = "Provisioning",
+  /** Provisioned */
   Provisioned = "Provisioned",
+  /** ProvisionFailed */
   ProvisionFailed = "ProvisionFailed",
+  /** DeProvisioning */
   DeProvisioning = "DeProvisioning",
+  /** DeProvisioned */
   DeProvisioned = "DeProvisioned",
+  /** DeProvisionFailed */
   DeProvisionFailed = "DeProvisionFailed",
+  /** Reprovisioning */
   Reprovisioning = "Reprovisioning",
+  /** ReprovisionFailed */
   ReprovisionFailed = "ReprovisionFailed",
+  /** UnReprovisioned */
   UnReprovisioned = "UnReprovisioned"
 }
 
@@ -8683,7 +8944,9 @@ export type SyncMemberState = string;
 
 /** Known values of {@link DnsRefreshConfigurationPropertiesStatus} that the service accepts. */
 export enum KnownDnsRefreshConfigurationPropertiesStatus {
+  /** Succeeded */
   Succeeded = "Succeeded",
+  /** Failed */
   Failed = "Failed"
 }
 
@@ -8699,11 +8962,17 @@ export type DnsRefreshConfigurationPropertiesStatus = string;
 
 /** Known values of {@link VirtualNetworkRuleState} that the service accepts. */
 export enum KnownVirtualNetworkRuleState {
+  /** Initializing */
   Initializing = "Initializing",
+  /** InProgress */
   InProgress = "InProgress",
+  /** Ready */
   Ready = "Ready",
+  /** Failed */
   Failed = "Failed",
+  /** Deleting */
   Deleting = "Deleting",
+  /** Unknown */
   Unknown = "Unknown"
 }
 
@@ -8723,6 +8992,7 @@ export type VirtualNetworkRuleState = string;
 
 /** Known values of {@link ShortTermRetentionPolicyName} that the service accepts. */
 export enum KnownShortTermRetentionPolicyName {
+  /** Default */
   Default = "default"
 }
 
@@ -8737,7 +9007,9 @@ export type ShortTermRetentionPolicyName = string;
 
 /** Known values of {@link DiffBackupIntervalInHours} that the service accepts. */
 export enum KnownDiffBackupIntervalInHours {
+  /** Twelve */
   Twelve = 12,
+  /** TwentyFour */
   TwentyFour = 24
 }
 
@@ -8753,6 +9025,7 @@ export type DiffBackupIntervalInHours = number;
 
 /** Known values of {@link OperationMode} that the service accepts. */
 export enum KnownOperationMode {
+  /** PolybaseImport */
   PolybaseImport = "PolybaseImport"
 }
 
@@ -8767,7 +9040,9 @@ export type OperationMode = string;
 
 /** Known values of {@link StorageKeyType} that the service accepts. */
 export enum KnownStorageKeyType {
+  /** SharedAccessKey */
   SharedAccessKey = "SharedAccessKey",
+  /** StorageAccessKey */
   StorageAccessKey = "StorageAccessKey"
 }
 
@@ -8783,6 +9058,7 @@ export type StorageKeyType = string;
 
 /** Known values of {@link LedgerDigestUploadsName} that the service accepts. */
 export enum KnownLedgerDigestUploadsName {
+  /** Current */
   Current = "current"
 }
 
@@ -8797,9 +9073,13 @@ export type LedgerDigestUploadsName = string;
 
 /** Known values of {@link ReplicationState} that the service accepts. */
 export enum KnownReplicationState {
+  /** Pending */
   Pending = "PENDING",
+  /** Seeding */
   Seeding = "SEEDING",
+  /** CatchUP */
   CatchUP = "CATCH_UP",
+  /** Suspended */
   Suspended = "SUSPENDED"
 }
 
@@ -8817,7 +9097,9 @@ export type ReplicationState = string;
 
 /** Known values of {@link ReplicationLinkType} that the service accepts. */
 export enum KnownReplicationLinkType {
+  /** GEO */
   GEO = "GEO",
+  /** Named */
   Named = "NAMED"
 }
 
@@ -8833,9 +9115,13 @@ export type ReplicationLinkType = string;
 
 /** Known values of {@link IdentityType} that the service accepts. */
 export enum KnownIdentityType {
+  /** None */
   None = "None",
+  /** SystemAssigned */
   SystemAssigned = "SystemAssigned",
+  /** UserAssigned */
   UserAssigned = "UserAssigned",
+  /** SystemAssignedUserAssigned */
   SystemAssignedUserAssigned = "SystemAssigned,UserAssigned"
 }
 
@@ -8853,7 +9139,9 @@ export type IdentityType = string;
 
 /** Known values of {@link ServerNetworkAccessFlag} that the service accepts. */
 export enum KnownServerNetworkAccessFlag {
+  /** Enabled */
   Enabled = "Enabled",
+  /** Disabled */
   Disabled = "Disabled"
 }
 
@@ -8869,7 +9157,9 @@ export type ServerNetworkAccessFlag = string;
 
 /** Known values of {@link ServerWorkspaceFeature} that the service accepts. */
 export enum KnownServerWorkspaceFeature {
+  /** Connected */
   Connected = "Connected",
+  /** Disconnected */
   Disconnected = "Disconnected"
 }
 
@@ -8885,8 +9175,11 @@ export type ServerWorkspaceFeature = string;
 
 /** Known values of {@link PrincipalType} that the service accepts. */
 export enum KnownPrincipalType {
+  /** User */
   User = "User",
+  /** Group */
   Group = "Group",
+  /** Application */
   Application = "Application"
 }
 
@@ -8903,7 +9196,9 @@ export type PrincipalType = string;
 
 /** Known values of {@link DatabaseIdentityType} that the service accepts. */
 export enum KnownDatabaseIdentityType {
+  /** None */
   None = "None",
+  /** UserAssigned */
   UserAssigned = "UserAssigned"
 }
 
@@ -8919,15 +9214,25 @@ export type DatabaseIdentityType = string;
 
 /** Known values of {@link CreateMode} that the service accepts. */
 export enum KnownCreateMode {
+  /** Default */
   Default = "Default",
+  /** Copy */
   Copy = "Copy",
+  /** Secondary */
   Secondary = "Secondary",
+  /** PointInTimeRestore */
   PointInTimeRestore = "PointInTimeRestore",
+  /** Restore */
   Restore = "Restore",
+  /** Recovery */
   Recovery = "Recovery",
+  /** RestoreExternalBackup */
   RestoreExternalBackup = "RestoreExternalBackup",
+  /** RestoreExternalBackupSecondary */
   RestoreExternalBackupSecondary = "RestoreExternalBackupSecondary",
+  /** RestoreLongTermRetentionBackup */
   RestoreLongTermRetentionBackup = "RestoreLongTermRetentionBackup",
+  /** OnlineSecondary */
   OnlineSecondary = "OnlineSecondary"
 }
 
@@ -8951,8 +9256,11 @@ export type CreateMode = string;
 
 /** Known values of {@link SampleName} that the service accepts. */
 export enum KnownSampleName {
+  /** AdventureWorksLT */
   AdventureWorksLT = "AdventureWorksLT",
+  /** WideWorldImportersStd */
   WideWorldImportersStd = "WideWorldImportersStd",
+  /** WideWorldImportersFull */
   WideWorldImportersFull = "WideWorldImportersFull"
 }
 
@@ -8969,29 +9277,53 @@ export type SampleName = string;
 
 /** Known values of {@link DatabaseStatus} that the service accepts. */
 export enum KnownDatabaseStatus {
+  /** Online */
   Online = "Online",
+  /** Restoring */
   Restoring = "Restoring",
+  /** RecoveryPending */
   RecoveryPending = "RecoveryPending",
+  /** Recovering */
   Recovering = "Recovering",
+  /** Suspect */
   Suspect = "Suspect",
+  /** Offline */
   Offline = "Offline",
+  /** Standby */
   Standby = "Standby",
+  /** Shutdown */
   Shutdown = "Shutdown",
+  /** EmergencyMode */
   EmergencyMode = "EmergencyMode",
+  /** AutoClosed */
   AutoClosed = "AutoClosed",
+  /** Copying */
   Copying = "Copying",
+  /** Creating */
   Creating = "Creating",
+  /** Inaccessible */
   Inaccessible = "Inaccessible",
+  /** OfflineSecondary */
   OfflineSecondary = "OfflineSecondary",
+  /** Pausing */
   Pausing = "Pausing",
+  /** Paused */
   Paused = "Paused",
+  /** Resuming */
   Resuming = "Resuming",
+  /** Scaling */
   Scaling = "Scaling",
+  /** OfflineChangingDwPerformanceTiers */
   OfflineChangingDwPerformanceTiers = "OfflineChangingDwPerformanceTiers",
+  /** OnlineChangingDwPerformanceTiers */
   OnlineChangingDwPerformanceTiers = "OnlineChangingDwPerformanceTiers",
+  /** Disabled */
   Disabled = "Disabled",
+  /** Stopping */
   Stopping = "Stopping",
+  /** Stopped */
   Stopped = "Stopped",
+  /** Starting */
   Starting = "Starting"
 }
 
@@ -9029,7 +9361,9 @@ export type DatabaseStatus = string;
 
 /** Known values of {@link DatabaseLicenseType} that the service accepts. */
 export enum KnownDatabaseLicenseType {
+  /** LicenseIncluded */
   LicenseIncluded = "LicenseIncluded",
+  /** BasePrice */
   BasePrice = "BasePrice"
 }
 
@@ -9045,7 +9379,9 @@ export type DatabaseLicenseType = string;
 
 /** Known values of {@link DatabaseReadScale} that the service accepts. */
 export enum KnownDatabaseReadScale {
+  /** Enabled */
   Enabled = "Enabled",
+  /** Disabled */
   Disabled = "Disabled"
 }
 
@@ -9061,7 +9397,9 @@ export type DatabaseReadScale = string;
 
 /** Known values of {@link SecondaryType} that the service accepts. */
 export enum KnownSecondaryType {
+  /** Geo */
   Geo = "Geo",
+  /** Named */
   Named = "Named"
 }
 
@@ -9077,9 +9415,13 @@ export type SecondaryType = string;
 
 /** Known values of {@link BackupStorageRedundancy} that the service accepts. */
 export enum KnownBackupStorageRedundancy {
+  /** Geo */
   Geo = "Geo",
+  /** Local */
   Local = "Local",
+  /** Zone */
   Zone = "Zone",
+  /** GeoZone */
   GeoZone = "GeoZone"
 }
 
@@ -9097,7 +9439,9 @@ export type BackupStorageRedundancy = string;
 
 /** Known values of {@link ReplicaType} that the service accepts. */
 export enum KnownReplicaType {
+  /** Primary */
   Primary = "Primary",
+  /** ReadableSecondary */
   ReadableSecondary = "ReadableSecondary"
 }
 
@@ -9113,8 +9457,11 @@ export type ReplicaType = string;
 
 /** Known values of {@link DatabaseState} that the service accepts. */
 export enum KnownDatabaseState {
+  /** All */
   All = "All",
+  /** Live */
   Live = "Live",
+  /** Deleted */
   Deleted = "Deleted"
 }
 
@@ -9131,20 +9478,35 @@ export type DatabaseState = string;
 
 /** Known values of {@link ManagedInstancePropertiesProvisioningState} that the service accepts. */
 export enum KnownManagedInstancePropertiesProvisioningState {
+  /** Creating */
   Creating = "Creating",
+  /** Deleting */
   Deleting = "Deleting",
+  /** Updating */
   Updating = "Updating",
+  /** Unknown */
   Unknown = "Unknown",
+  /** Succeeded */
   Succeeded = "Succeeded",
+  /** Failed */
   Failed = "Failed",
+  /** Accepted */
   Accepted = "Accepted",
+  /** Created */
   Created = "Created",
+  /** Deleted */
   Deleted = "Deleted",
+  /** Unrecognized */
   Unrecognized = "Unrecognized",
+  /** Running */
   Running = "Running",
+  /** Canceled */
   Canceled = "Canceled",
+  /** NotSpecified */
   NotSpecified = "NotSpecified",
+  /** Registering */
   Registering = "Registering",
+  /** TimedOut */
   TimedOut = "TimedOut"
 }
 
@@ -9173,7 +9535,9 @@ export type ManagedInstancePropertiesProvisioningState = string;
 
 /** Known values of {@link ManagedServerCreateMode} that the service accepts. */
 export enum KnownManagedServerCreateMode {
+  /** Default */
   Default = "Default",
+  /** PointInTimeRestore */
   PointInTimeRestore = "PointInTimeRestore"
 }
 
@@ -9189,7 +9553,9 @@ export type ManagedServerCreateMode = string;
 
 /** Known values of {@link ManagedInstanceLicenseType} that the service accepts. */
 export enum KnownManagedInstanceLicenseType {
+  /** LicenseIncluded */
   LicenseIncluded = "LicenseIncluded",
+  /** BasePrice */
   BasePrice = "BasePrice"
 }
 
@@ -9205,8 +9571,11 @@ export type ManagedInstanceLicenseType = string;
 
 /** Known values of {@link ManagedInstanceProxyOverride} that the service accepts. */
 export enum KnownManagedInstanceProxyOverride {
+  /** Proxy */
   Proxy = "Proxy",
+  /** Redirect */
   Redirect = "Redirect",
+  /** Default */
   Default = "Default"
 }
 
@@ -9223,7 +9592,9 @@ export type ManagedInstanceProxyOverride = string;
 
 /** Known values of {@link ServicePrincipalType} that the service accepts. */
 export enum KnownServicePrincipalType {
+  /** None */
   None = "None",
+  /** SystemAssigned */
   SystemAssigned = "SystemAssigned"
 }
 
@@ -9239,10 +9610,15 @@ export type ServicePrincipalType = string;
 
 /** Known values of {@link AggregationFunctionType} that the service accepts. */
 export enum KnownAggregationFunctionType {
+  /** Avg */
   Avg = "avg",
+  /** Min */
   Min = "min",
+  /** Max */
   Max = "max",
+  /** Stdev */
   Stdev = "stdev",
+  /** Sum */
   Sum = "sum"
 }
 
@@ -9261,10 +9637,15 @@ export type AggregationFunctionType = string;
 
 /** Known values of {@link MetricType} that the service accepts. */
 export enum KnownMetricType {
+  /** Cpu */
   Cpu = "cpu",
+  /** Io */
   Io = "io",
+  /** LogIo */
   LogIo = "logIo",
+  /** Duration */
   Duration = "duration",
+  /** Dtu */
   Dtu = "dtu"
 }
 
@@ -9283,6 +9664,7 @@ export type MetricType = string;
 
 /** Known values of {@link ConnectionPolicyName} that the service accepts. */
 export enum KnownConnectionPolicyName {
+  /** Default */
   Default = "default"
 }
 
@@ -9297,8 +9679,11 @@ export type ConnectionPolicyName = string;
 
 /** Known values of {@link ServerConnectionType} that the service accepts. */
 export enum KnownServerConnectionType {
+  /** Default */
   Default = "Default",
+  /** Redirect */
   Redirect = "Redirect",
+  /** Proxy */
   Proxy = "Proxy"
 }
 
@@ -9315,70 +9700,135 @@ export type ServerConnectionType = string;
 
 /** Known values of {@link ServiceObjectiveName} that the service accepts. */
 export enum KnownServiceObjectiveName {
+  /** System */
   System = "System",
+  /** System0 */
   System0 = "System0",
+  /** System1 */
   System1 = "System1",
+  /** System2 */
   System2 = "System2",
+  /** System3 */
   System3 = "System3",
+  /** System4 */
   System4 = "System4",
+  /** System2L */
   System2L = "System2L",
+  /** System3L */
   System3L = "System3L",
+  /** System4L */
   System4L = "System4L",
+  /** Free */
   Free = "Free",
+  /** Basic */
   Basic = "Basic",
+  /** S0 */
   S0 = "S0",
+  /** S1 */
   S1 = "S1",
+  /** S2 */
   S2 = "S2",
+  /** S3 */
   S3 = "S3",
+  /** S4 */
   S4 = "S4",
+  /** S6 */
   S6 = "S6",
+  /** S7 */
   S7 = "S7",
+  /** S9 */
   S9 = "S9",
+  /** S12 */
   S12 = "S12",
+  /** P1 */
   P1 = "P1",
+  /** P2 */
   P2 = "P2",
+  /** P3 */
   P3 = "P3",
+  /** P4 */
   P4 = "P4",
+  /** P6 */
   P6 = "P6",
+  /** P11 */
   P11 = "P11",
+  /** P15 */
   P15 = "P15",
+  /** PRS1 */
   PRS1 = "PRS1",
+  /** PRS2 */
   PRS2 = "PRS2",
+  /** PRS4 */
   PRS4 = "PRS4",
+  /** PRS6 */
   PRS6 = "PRS6",
+  /** DW100 */
   DW100 = "DW100",
+  /** DW200 */
   DW200 = "DW200",
+  /** DW300 */
   DW300 = "DW300",
+  /** DW400 */
   DW400 = "DW400",
+  /** DW500 */
   DW500 = "DW500",
+  /** DW600 */
   DW600 = "DW600",
+  /** DW1000 */
   DW1000 = "DW1000",
+  /** DW1200 */
   DW1200 = "DW1200",
+  /** DW1000C */
   DW1000C = "DW1000c",
+  /** DW1500 */
   DW1500 = "DW1500",
+  /** DW1500C */
   DW1500C = "DW1500c",
+  /** DW2000 */
   DW2000 = "DW2000",
+  /** DW2000C */
   DW2000C = "DW2000c",
+  /** DW3000 */
   DW3000 = "DW3000",
+  /** DW2500C */
   DW2500C = "DW2500c",
+  /** DW3000C */
   DW3000C = "DW3000c",
+  /** DW6000 */
   DW6000 = "DW6000",
+  /** DW5000C */
   DW5000C = "DW5000c",
+  /** DW6000C */
   DW6000C = "DW6000c",
+  /** DW7500C */
   DW7500C = "DW7500c",
+  /** DW10000C */
   DW10000C = "DW10000c",
+  /** DW15000C */
   DW15000C = "DW15000c",
+  /** DW30000C */
   DW30000C = "DW30000c",
+  /** DS100 */
   DS100 = "DS100",
+  /** DS200 */
   DS200 = "DS200",
+  /** DS300 */
   DS300 = "DS300",
+  /** DS400 */
   DS400 = "DS400",
+  /** DS500 */
   DS500 = "DS500",
+  /** DS600 */
   DS600 = "DS600",
+  /** DS1000 */
   DS1000 = "DS1000",
+  /** DS1200 */
   DS1200 = "DS1200",
+  /** DS1500 */
   DS1500 = "DS1500",
+  /** DS2000 */
   DS2000 = "DS2000",
+  /** ElasticPool */
   ElasticPool = "ElasticPool"
 }
 

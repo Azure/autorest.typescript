@@ -4,17 +4,17 @@ import {
   Message
 } from "@autorest/extension-base";
 import { assert } from "chai";
-import { getCredentialScopes } from "../../../src/utils/autorestOptions";
+import { getSecurityScopes } from "../../../src/utils/autorestOptions";
 
 describe("transformOptions", () => {
-  describe("getCredentialScopes", () => {
-    it("should throw an error if credentials is false but credential-scopes are provided", async () => {
+  describe.skip("getCredentialScopes", () => {
+    it("should throw an error if add-credentials is false but security-scopes are provided", async () => {
       const mockHost = {
         getValue: async (key: string) => {
           switch (key) {
             case "add-credentials":
               return false;
-            case "credential-scopes":
+            case "security-scopes":
               return "https://microsoft.com/.default";
             case "azure-arm":
               return false;
@@ -25,7 +25,7 @@ describe("transformOptions", () => {
         message: (message: Message) => {}
       } as AutorestExtensionHost;
       try {
-        await getCredentialScopes(mockHost);
+        await getSecurityScopes(mockHost);
         assert.fail("Expected to throw");
       } catch (error) {
         assert.include(
@@ -51,7 +51,7 @@ describe("transformOptions", () => {
         },
         message: (message: Message) => {}
       } as AutorestExtensionHost;
-      const scopes = await getCredentialScopes(mockHost);
+      const scopes = await getSecurityScopes(mockHost);
       assert.deepEqual(scopes, ["https://management.azure.com/.default"]);
     });
 
@@ -77,7 +77,7 @@ describe("transformOptions", () => {
           assert.equal(message.Channel, Channel.Warning);
         }
       } as AutorestExtensionHost;
-      const scopes = await getCredentialScopes(mockHost);
+      const scopes = await getSecurityScopes(mockHost);
       assert.equal(scopes, undefined);
     });
 
@@ -97,7 +97,7 @@ describe("transformOptions", () => {
         },
         message: (message: Message) => {}
       } as AutorestExtensionHost;
-      const scopes = await getCredentialScopes(mockHost);
+      const scopes = await getSecurityScopes(mockHost);
       assert.deepEqual(scopes, ["https://microsoft.com/.defaults"]);
     });
 
@@ -117,7 +117,7 @@ describe("transformOptions", () => {
         },
         message: (message: Message) => {}
       } as AutorestExtensionHost;
-      const scopes = await getCredentialScopes(mockHost);
+      const scopes = await getSecurityScopes(mockHost);
       assert.deepEqual(scopes, [
         "https://microsoft.com/.defaults",
         "http://microsoft.com/.defaults"

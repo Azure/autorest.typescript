@@ -474,18 +474,20 @@ export interface GroupIdInformationProperties {
 }
 
 /** The description of the provisioning service. */
-export type ProvisioningServiceDescription = Resource & {
+export interface ProvisioningServiceDescription extends Resource {
   /** The Etag field is *not* required. If it is provided in the response body, it must also be provided as a header per the normal ETag convention. */
   etag?: string;
   /** Service specific properties for a provisioning service */
   properties: IotDpsPropertiesDescription;
   /** Sku info for a provisioning Service. */
   sku: IotDpsSkuInfo;
-};
+}
 
 /** Known values of {@link CertificatePurpose} that the service accepts. */
 export enum KnownCertificatePurpose {
+  /** ClientAuthentication */
   ClientAuthentication = "clientAuthentication",
+  /** ServerAuthentication */
   ServerAuthentication = "serverAuthentication"
 }
 
@@ -501,17 +503,29 @@ export type CertificatePurpose = string;
 
 /** Known values of {@link State} that the service accepts. */
 export enum KnownState {
+  /** Activating */
   Activating = "Activating",
+  /** Active */
   Active = "Active",
+  /** Deleting */
   Deleting = "Deleting",
+  /** Deleted */
   Deleted = "Deleted",
+  /** ActivationFailed */
   ActivationFailed = "ActivationFailed",
+  /** DeletionFailed */
   DeletionFailed = "DeletionFailed",
+  /** Transitioning */
   Transitioning = "Transitioning",
+  /** Suspending */
   Suspending = "Suspending",
+  /** Suspended */
   Suspended = "Suspended",
+  /** Resuming */
   Resuming = "Resuming",
+  /** FailingOver */
   FailingOver = "FailingOver",
+  /** FailoverFailed */
   FailoverFailed = "FailoverFailed"
 }
 
@@ -537,7 +551,9 @@ export type State = string;
 
 /** Known values of {@link PublicNetworkAccess} that the service accepts. */
 export enum KnownPublicNetworkAccess {
+  /** Enabled */
   Enabled = "Enabled",
+  /** Disabled */
   Disabled = "Disabled"
 }
 
@@ -553,9 +569,13 @@ export type PublicNetworkAccess = string;
 
 /** Known values of {@link PrivateLinkServiceConnectionStatus} that the service accepts. */
 export enum KnownPrivateLinkServiceConnectionStatus {
+  /** Pending */
   Pending = "Pending",
+  /** Approved */
   Approved = "Approved",
+  /** Rejected */
   Rejected = "Rejected",
+  /** Disconnected */
   Disconnected = "Disconnected"
 }
 
@@ -573,8 +593,11 @@ export type PrivateLinkServiceConnectionStatus = string;
 
 /** Known values of {@link AllocationPolicy} that the service accepts. */
 export enum KnownAllocationPolicy {
+  /** Hashed */
   Hashed = "Hashed",
+  /** GeoLatency */
   GeoLatency = "GeoLatency",
+  /** Static */
   Static = "Static"
 }
 
@@ -591,11 +614,17 @@ export type AllocationPolicy = string;
 
 /** Known values of {@link AccessRightsDescription} that the service accepts. */
 export enum KnownAccessRightsDescription {
+  /** ServiceConfig */
   ServiceConfig = "ServiceConfig",
+  /** EnrollmentRead */
   EnrollmentRead = "EnrollmentRead",
+  /** EnrollmentWrite */
   EnrollmentWrite = "EnrollmentWrite",
+  /** DeviceConnect */
   DeviceConnect = "DeviceConnect",
+  /** RegistrationStatusRead */
   RegistrationStatusRead = "RegistrationStatusRead",
+  /** RegistrationStatusWrite */
   RegistrationStatusWrite = "RegistrationStatusWrite"
 }
 
@@ -615,6 +644,7 @@ export type AccessRightsDescription = string;
 
 /** Known values of {@link IotDpsSku} that the service accepts. */
 export enum KnownIotDpsSku {
+  /** S1 */
   S1 = "S1"
 }
 
@@ -629,7 +659,9 @@ export type IotDpsSku = string;
 
 /** Known values of {@link NameUnavailabilityReason} that the service accepts. */
 export enum KnownNameUnavailabilityReason {
+  /** Invalid */
   Invalid = "Invalid",
+  /** AlreadyExists */
   AlreadyExists = "AlreadyExists"
 }
 

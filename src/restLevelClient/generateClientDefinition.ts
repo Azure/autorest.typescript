@@ -2,11 +2,15 @@ import {
   CodeModel,
   Operation,
   ParameterLocation,
-  ImplementationLocation
+  ImplementationLocation,
+  Response
 } from "@autorest/codemodel";
 import { isEqual } from "lodash";
 
-import { getResponseTypeName } from "./operationHelpers";
+import {
+  gerOperationSuccessStatus,
+  getResponseTypeName
+} from "./operationHelpers";
 
 import {
   CallSignatureDeclarationStructure,
@@ -17,8 +21,7 @@ import {
 } from "ts-morph";
 import * as path from "path";
 
-import { getAutorestOptions, getSession } from "../autorestSession";
-import { transformBaseUrl } from "../transforms/urlTransforms";
+import { getAutorestOptions } from "../autorestSession";
 import { CasingConvention, NameType, normalizeName } from "../utils/nameUtils";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import {
@@ -30,7 +33,8 @@ import {
   generateMethodShortcuts,
   REST_CLIENT_RESERVED
 } from "./generateMethodShortcuts";
-import { Methods, PathParameter, Paths } from "./interfaces";
+import { Methods, PathParameter, Paths, ResponseTypes } from "./interfaces";
+import { isLongRunningOperation } from "./helpers/hasPollingOperations";
 export let pathDictionary: Paths = {};
 
 export function generatePathFirstClient(model: CodeModel, project: Project) {
@@ -82,7 +86,10 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
             pathDictionary[path] = {
               pathParameters,
               methods: {},
-              name: operationName
+              name: operationName,
+              annotations: {
+                isLongRunning: isLongRunningOperation(operation)
+              }
             };
           }
           const hasOptionalOptions = !hasRequiredOptions(operation);
@@ -91,11 +98,13 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
             description: operationDescription,
             optionsName: getOperationOptionsType(operation, importedParameters),
             hasOptionalOptions,
-            returnType: `Promise<${getOperationReturnType(
+            returnType: `StreamableMethod<${getOperationReturnType(
               operation,
               importedResponses,
               clientImports
-            )}>`
+            )}>`,
+            responseTypes: getResponseTypes(operation),
+            successStatus: gerOperationSuccessStatus(operation)
           };
 
           if (
@@ -191,6 +200,7 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
   }
 
   clientImports.add("Client");
+  clientImports.add("StreamableMethod");
   clientFile.addImportDeclarations([
     {
       namedImports: [...clientImports],
@@ -342,4 +352,35 @@ function generatePathFirstRouteMethodsDefinition(
     name: operationName,
     isExported: true
   });
+}
+
+/**
+ * This function computes all the response types error and success
+ * an operation can end up returning.
+ */
+function getResponseTypes(operation: Operation): ResponseTypes {
+  let returnTypes: ResponseTypes = {
+    error: [],
+    success: []
+  };
+  if (
+    (operation.responses && operation.responses.length) ||
+    (operation.exceptions && operation.exceptions.length)
+  ) {
+    function getResponseType(responses: Response[]) {
+      return responses
+        .filter(
+          r =>
+            r.protocol.http?.statusCodes && r.protocol.http?.statusCodes.length
+        )
+        .map(r => {
+          const responseName = getResponseTypeName(operation, r);
+          return responseName;
+        });
+    }
+
+    returnTypes.error = getResponseType(operation.exceptions ?? []);
+    returnTypes.success = getResponseType(operation.responses ?? []);
+  }
+  return returnTypes;
 }

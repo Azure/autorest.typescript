@@ -161,7 +161,7 @@ export interface SecretProperties {
 }
 
 /** The secret management attributes. */
-export type SecretAttributes = Attributes & {
+export interface SecretAttributes extends Attributes {
   /**
    * softDelete data retention days. Value should be >=7 and <=90 when softDelete enabled, otherwise 0.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -172,10 +172,10 @@ export type SecretAttributes = Attributes & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly recoveryLevel?: DeletionRecoveryLevel;
-};
+}
 
 /** A Deleted Secret consisting of its previous id, attributes and its tags, as well as information on when it will be purged. */
-export type DeletedSecretBundle = SecretBundle & {
+export interface DeletedSecretBundle extends SecretBundle {
   /** The url of the recovery object, used to identify and recover the deleted secret. */
   recoveryId?: string;
   /**
@@ -188,10 +188,10 @@ export type DeletedSecretBundle = SecretBundle & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly deletedDate?: Date;
-};
+}
 
 /** The deleted secret item containing metadata about the deleted secret. */
-export type DeletedSecretItem = SecretItem & {
+export interface DeletedSecretItem extends SecretItem {
   /** The url of the recovery object, used to identify and recover the deleted secret. */
   recoveryId?: string;
   /**
@@ -204,7 +204,7 @@ export type DeletedSecretItem = SecretItem & {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly deletedDate?: Date;
-};
+}
 
 /** Known values of {@link ApiVersion72Preview} that the service accepts. */
 export enum KnownApiVersion72Preview {

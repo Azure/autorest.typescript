@@ -277,7 +277,9 @@ export interface XmlGetHeadersHeaders {
 
 /** Known values of {@link PublicAccessType} that the service accepts. */
 export enum KnownPublicAccessType {
+  /** Container */
   Container = "container",
+  /** Blob */
   Blob = "blob"
 }
 
@@ -293,15 +295,25 @@ export type PublicAccessType = string;
 
 /** Known values of {@link AccessTier} that the service accepts. */
 export enum KnownAccessTier {
+  /** P4 */
   P4 = "P4",
+  /** P6 */
   P6 = "P6",
+  /** P10 */
   P10 = "P10",
+  /** P20 */
   P20 = "P20",
+  /** P30 */
   P30 = "P30",
+  /** P40 */
   P40 = "P40",
+  /** P50 */
   P50 = "P50",
+  /** Hot */
   Hot = "Hot",
+  /** Cool */
   Cool = "Cool",
+  /** Archive */
   Archive = "Archive"
 }
 
@@ -325,7 +337,9 @@ export type AccessTier = string;
 
 /** Known values of {@link ArchiveStatus} that the service accepts. */
 export enum KnownArchiveStatus {
+  /** RehydratePendingToHot */
   RehydratePendingToHot = "rehydrate-pending-to-hot",
+  /** RehydratePendingToCool */
   RehydratePendingToCool = "rehydrate-pending-to-cool"
 }
 
