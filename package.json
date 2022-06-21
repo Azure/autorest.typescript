@@ -37,7 +37,7 @@
         "test-version-tolerance": "mocha -r ts-node/register --timeout 2000 './test/version-tolerance/**/!(sampleTest).spec.ts'",
         "clone:specs": "git clone https://github.com/Azure/azure-rest-api-specs.git ./.tmp/specs",
         "smoke-test": "ts-node ./test/commands/smoke-test.ts",
-        "copyFiles": "cp src/**/*.hbs dist/ && cp src/**/**/*.hbs dist/ && cp src/generators/samples/*.hbs dist/src/generators/samples/ && cp src/generators/static/*.hbs dist/src/generators/static/ && cp src/generators/test/*.hbs dist/src/generators/test/ && cp src/restLevelClient/*.hbs dist/src/restLevelClient/"
+        "copyFiles": "ts-node ./src/utils/copyFiles.ts"
     },
     "browser": {
         "./test-browser/utils/stream-helpers.js": "./test-browser/utils/stream-helpers.browser.js",
