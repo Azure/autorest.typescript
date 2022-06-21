@@ -100,11 +100,11 @@ function createMetadata(codeModel: CodeModel): Metadata {
     codeModel.language,
     codeModel.info
   );
-  const simpleServiceNameTmp =
+  let simpleServiceName =
     batch && batch.length > 1
       ? normalizeName(packageDetails.nameWithoutScope, NameType.Class)
       : normalizeName(serviceTitle, NameType.Class);
-  const simpleServiceName =
+  simpleServiceName =
     /**
      * It is a required convention in Azure swaggers for their titles to end with
      * "Client".
@@ -114,7 +114,7 @@ function createMetadata(codeModel: CodeModel): Metadata {
     serviceTitle.match(/(.*)Client/)?.[1] ??
     clientClassName.match(/(.*)Client/)?.[1] ??
     serviceTitle.match(/(.*) Service/)?.[1] ??
-    simpleServiceNameTmp;
+    simpleServiceName;
 
   const serviceName = azureHuh
     ? simpleServiceName.startsWith("Azure")
