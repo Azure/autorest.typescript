@@ -425,9 +425,14 @@ function buildMapper(
     return "";
   }
 
-  // When mapper is a reference (string) we don't need to stringify the object
-  let mapperString =
-    typeof mapper === "string" ? mapper : JSON.stringify(mapper);
+  let mapperString = "";
+  if (typeof mapper === "string") {
+    // When mapper is a reference (string) we don't need to stringify the object
+    mapperString = mapper;
+  } else {
+    const { constraints, ...restMapper } = mapper;
+    mapperString = JSON.stringify(restMapper);
+  }
 
   return `${mapperName}: ${mapperString},`;
 }
