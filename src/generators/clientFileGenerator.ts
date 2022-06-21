@@ -617,8 +617,9 @@ function getTrack2DefaultContent(
           name: coreRestPipeline.bearerTokenAuthenticationPolicyName
         });
         this.pipeline.addPolicy(
+          credential: credentials,
           coreRestPipeline.bearerTokenAuthenticationPolicy({
-            scopes: \`\${optionsWithDefaults.baseUri}/.default\`,
+            scopes: \`\${optionsWithDefaults.credentialScopes}\`,
             challengeCallbacks: {
               authorizeRequestOnChallenge:
                 coreClient.authorizeRequestOnClaimChallenge
