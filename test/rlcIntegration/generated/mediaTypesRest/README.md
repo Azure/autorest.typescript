@@ -1,4 +1,4 @@
-# Service client library for JavaScript
+# MediaTypes client library for JavaScript
 
 Play with produces/consumes and media-types in general.
 
@@ -21,7 +21,7 @@ Key links:
 
 ### Install the `@msinternal/media-types-service-rest` package
 
-Install the Service client REST client library for JavaScript with `npm`:
+Install the MediaTypes client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/media-types-service-rest

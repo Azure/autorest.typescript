@@ -1,4 +1,4 @@
-# Service client library for JavaScript
+# BodyStringRest client library for JavaScript
 
 Test Infrastructure for AutoRest Swagger BAT
 
@@ -21,7 +21,7 @@ Key links:
 
 ### Install the `@msinternal/body-string-rest` package
 
-Install the Service client REST client library for JavaScript with `npm`:
+Install the BodyStringRest client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/body-string-rest

@@ -1,6 +1,6 @@
-# Service client library for JavaScript
+# RegexConstraint client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in Node.js and in browsers) for Service client.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for RegexConstraint client.
 
 
 
@@ -27,5 +27,5 @@ To use this client library in the browser, first you need to use a bundler. For 
 
 ### RegexConstraint
 
-`RegexConstraint` is the primary interface for developers using the Service client library. Explore the methods on this client object to understand the different features of the Service service that you can access.
+`RegexConstraint` is the primary interface for developers using the RegexConstraint client library. Explore the methods on this client object to understand the different features of the RegexConstraint service that you can access.
 
