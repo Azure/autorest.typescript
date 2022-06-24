@@ -1,3 +1,8 @@
+## 6.0.0-rc.1 (2022-06-24)
+- [Feature] Support security definitions in swagger. Please refer to [#1336](https://github.com/Azure/autorest.typescript/issues/1385) for further details.
+- [Feature] Add isUnexpected helper for RLC. Please refer to [#1418](https://github.com/Azure/autorest.typescript/pull/1418) for further details.
+- [BugFix] A few bugfixes. Please refer to [#1423](https://github.com/Azure/autorest.typescript/pull/1423) [#1424](https://github.com/Azure/autorest.typescript/pull/1424) [#1410](https://github.com/Azure/autorest.typescript/pull/1410) for further details.
+
 ## 6.0.0-beta.19 (2022-04-07)
 
 - [Feature] Support CAE Bearer Token Authentication Policy. Please refer to [#1336](https://github.com/Azure/autorest.typescript/pull/1336) for further details.
