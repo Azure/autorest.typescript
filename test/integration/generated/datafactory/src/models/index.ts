@@ -842,10 +842,10 @@ export interface IntegrationRuntimeListResponse {
 
 /** Azure Data Factory nested object which serves as a compute resource for activities. */
 export interface IntegrationRuntime {
-  /** Polymorphic discriminator, which specifies the different types this object can be */
-  type: "Managed" | "SelfHosted";
   /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
+  /** Type of integration runtime. */
+  type: IntegrationRuntimeType;
   /** Integration runtime description. */
   description?: string;
 }
@@ -895,10 +895,10 @@ export interface IntegrationRuntimeStatusResponse {
 
 /** Integration runtime status. */
 export interface IntegrationRuntimeStatus {
-  /** Polymorphic discriminator, which specifies the different types this object can be */
-  type: "Managed" | "SelfHosted";
   /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
+  /** Type of integration runtime. */
+  type: IntegrationRuntimeType;
   /**
    * The data factory name which the integration runtime belong to.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -1220,112 +1220,10 @@ export interface LinkedServiceListResponse {
 
 /** The Azure Data Factory nested object which contains the information and credential which can be used to connect with related store or compute resource. */
 export interface LinkedService {
-  /** Polymorphic discriminator, which specifies the different types this object can be */
-  type:
-    | "AzureStorage"
-    | "AzureBlobStorage"
-    | "AzureTableStorage"
-    | "AzureSqlDW"
-    | "SqlServer"
-    | "AmazonRdsForSqlServer"
-    | "AzureSqlDatabase"
-    | "AzureSqlMI"
-    | "AzureBatch"
-    | "AzureKeyVault"
-    | "CosmosDb"
-    | "Dynamics"
-    | "DynamicsCrm"
-    | "CommonDataServiceForApps"
-    | "HDInsight"
-    | "FileServer"
-    | "AzureFileStorage"
-    | "AmazonS3Compatible"
-    | "OracleCloudStorage"
-    | "GoogleCloudStorage"
-    | "Oracle"
-    | "AmazonRdsForOracle"
-    | "AzureMySql"
-    | "MySql"
-    | "PostgreSql"
-    | "Sybase"
-    | "Db2"
-    | "Teradata"
-    | "AzureML"
-    | "AzureMLService"
-    | "Odbc"
-    | "Informix"
-    | "MicrosoftAccess"
-    | "Hdfs"
-    | "OData"
-    | "Web"
-    | "Cassandra"
-    | "MongoDb"
-    | "MongoDbAtlas"
-    | "MongoDbV2"
-    | "CosmosDbMongoDbApi"
-    | "AzureDataLakeStore"
-    | "AzureBlobFS"
-    | "Office365"
-    | "Salesforce"
-    | "SalesforceServiceCloud"
-    | "SapCloudForCustomer"
-    | "SapEcc"
-    | "SapOpenHub"
-    | "RestService"
-    | "AmazonS3"
-    | "AmazonRedshift"
-    | "CustomDataSource"
-    | "AzureSearch"
-    | "HttpServer"
-    | "FtpServer"
-    | "Sftp"
-    | "SapBW"
-    | "SapHana"
-    | "AmazonMWS"
-    | "AzurePostgreSql"
-    | "Concur"
-    | "Couchbase"
-    | "Drill"
-    | "Eloqua"
-    | "GoogleBigQuery"
-    | "Greenplum"
-    | "HBase"
-    | "Hive"
-    | "Hubspot"
-    | "Impala"
-    | "Jira"
-    | "Magento"
-    | "MariaDB"
-    | "AzureMariaDB"
-    | "Marketo"
-    | "Paypal"
-    | "Phoenix"
-    | "Presto"
-    | "QuickBooks"
-    | "ServiceNow"
-    | "Shopify"
-    | "Spark"
-    | "Square"
-    | "Xero"
-    | "Zoho"
-    | "Vertica"
-    | "Netezza"
-    | "SalesforceMarketingCloud"
-    | "HDInsightOnDemand"
-    | "AzureDataLakeAnalytics"
-    | "AzureDatabricks"
-    | "AzureDatabricksDeltaLake"
-    | "Responsys"
-    | "DynamicsAX"
-    | "OracleServiceCloud"
-    | "GoogleAdWords"
-    | "SapTable"
-    | "AzureDataExplorer"
-    | "AzureFunction"
-    | "Snowflake"
-    | "SharePointOnlineList";
   /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
+  /** Type of linked service. */
+  type: string;
   /** The integration runtime reference. */
   connectVia?: IntegrationRuntimeReference;
   /** Linked service description. */
@@ -1364,105 +1262,10 @@ export interface DatasetListResponse {
 
 /** The Azure Data Factory nested object which identifies data within different data stores, such as tables, files, folders, and documents. */
 export interface Dataset {
-  /** Polymorphic discriminator, which specifies the different types this object can be */
-  type:
-    | "AmazonS3Object"
-    | "Avro"
-    | "Excel"
-    | "Parquet"
-    | "DelimitedText"
-    | "Json"
-    | "Xml"
-    | "Orc"
-    | "Binary"
-    | "AzureBlob"
-    | "AzureTable"
-    | "AzureSqlTable"
-    | "AzureSqlMITable"
-    | "AzureSqlDWTable"
-    | "CassandraTable"
-    | "CustomDataset"
-    | "CosmosDbSqlApiCollection"
-    | "DocumentDbCollection"
-    | "DynamicsEntity"
-    | "DynamicsCrmEntity"
-    | "CommonDataServiceForAppsEntity"
-    | "AzureDataLakeStoreFile"
-    | "AzureBlobFSFile"
-    | "Office365Table"
-    | "FileShare"
-    | "MongoDbCollection"
-    | "MongoDbAtlasCollection"
-    | "MongoDbV2Collection"
-    | "CosmosDbMongoDbApiCollection"
-    | "ODataResource"
-    | "OracleTable"
-    | "AmazonRdsForOracleTable"
-    | "TeradataTable"
-    | "AzureMySqlTable"
-    | "AmazonRedshiftTable"
-    | "Db2Table"
-    | "RelationalTable"
-    | "InformixTable"
-    | "OdbcTable"
-    | "MySqlTable"
-    | "PostgreSqlTable"
-    | "MicrosoftAccessTable"
-    | "SalesforceObject"
-    | "SalesforceServiceCloudObject"
-    | "SybaseTable"
-    | "SapBwCube"
-    | "SapCloudForCustomerResource"
-    | "SapEccResource"
-    | "SapHanaTable"
-    | "SapOpenHubTable"
-    | "SqlServerTable"
-    | "AmazonRdsForSqlServerTable"
-    | "RestResource"
-    | "SapTableResource"
-    | "WebTable"
-    | "AzureSearchIndex"
-    | "HttpFile"
-    | "AmazonMWSObject"
-    | "AzurePostgreSqlTable"
-    | "ConcurObject"
-    | "CouchbaseTable"
-    | "DrillTable"
-    | "EloquaObject"
-    | "GoogleBigQueryObject"
-    | "GreenplumTable"
-    | "HBaseObject"
-    | "HiveObject"
-    | "HubspotObject"
-    | "ImpalaObject"
-    | "JiraObject"
-    | "MagentoObject"
-    | "MariaDBTable"
-    | "AzureMariaDBTable"
-    | "MarketoObject"
-    | "PaypalObject"
-    | "PhoenixObject"
-    | "PrestoObject"
-    | "QuickBooksObject"
-    | "ServiceNowObject"
-    | "ShopifyObject"
-    | "SparkObject"
-    | "SquareObject"
-    | "XeroObject"
-    | "ZohoObject"
-    | "NetezzaTable"
-    | "VerticaTable"
-    | "SalesforceMarketingCloudObject"
-    | "ResponsysObject"
-    | "DynamicsAXResource"
-    | "OracleServiceCloudObject"
-    | "AzureDataExplorerTable"
-    | "GoogleAdWordsObject"
-    | "SnowflakeTable"
-    | "SharePointOnlineListResource"
-    | "AzureDatabricksDeltaLakeDataset";
   /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
+  /** Type of dataset. */
+  type: string;
   /** Dataset description. */
   description?: string;
   /** Columns that define the structure of the dataset. Type: array (or Expression with resultType array), itemType: DatasetDataElement. */
@@ -1505,49 +1308,12 @@ export interface PipelineListResponse {
 
 /** A pipeline activity. */
 export interface Activity {
-  /** Polymorphic discriminator, which specifies the different types this object can be */
-  type:
-    | "Container"
-    | "Execution"
-    | "Copy"
-    | "HDInsightHive"
-    | "HDInsightPig"
-    | "HDInsightMapReduce"
-    | "HDInsightStreaming"
-    | "HDInsightSpark"
-    | "ExecuteSSISPackage"
-    | "Custom"
-    | "SqlServerStoredProcedure"
-    | "ExecutePipeline"
-    | "Delete"
-    | "AzureDataExplorerCommand"
-    | "Lookup"
-    | "WebActivity"
-    | "GetMetadata"
-    | "IfCondition"
-    | "Switch"
-    | "ForEach"
-    | "AzureMLBatchExecution"
-    | "AzureMLUpdateResource"
-    | "AzureMLExecutePipeline"
-    | "DataLakeAnalyticsU-SQL"
-    | "Wait"
-    | "Until"
-    | "Validation"
-    | "Filter"
-    | "DatabricksNotebook"
-    | "DatabricksSparkJar"
-    | "DatabricksSparkPython"
-    | "SetVariable"
-    | "AppendVariable"
-    | "AzureFunctionActivity"
-    | "WebHook"
-    | "ExecuteDataFlow"
-    | "ExecuteWranglingDataflow";
   /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
   /** Activity name. */
   name: string;
+  /** Type of activity. */
+  type: string;
   /** Activity description. */
   description?: string;
   /** Activity depends on condition. */
@@ -1835,18 +1601,10 @@ export interface TriggerListResponse {
 
 /** Azure data factory nested object which contains information about creating pipeline run */
 export interface Trigger {
-  /** Polymorphic discriminator, which specifies the different types this object can be */
-  type:
-    | "MultiplePipelineTrigger"
-    | "ScheduleTrigger"
-    | "BlobTrigger"
-    | "BlobEventsTrigger"
-    | "CustomEventsTrigger"
-    | "TumblingWindowTrigger"
-    | "RerunTumblingWindowTrigger"
-    | "ChainingTrigger";
   /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
+  /** Trigger type. */
+  type: string;
   /** Trigger description. */
   description?: string;
   /**
@@ -2357,10 +2115,10 @@ export interface CredentialReference {
 
 /** The Azure Data Factory nested object which contains the information and credential which can be used to connect with related store or compute resource. */
 export interface Credential {
-  /** Polymorphic discriminator, which specifies the different types this object can be */
-  type: "ServicePrincipal" | "ManagedIdentity";
   /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
+  /** Type of credential. */
+  type: string;
   /** Credential description. */
   description?: string;
   /** List of tags that can be used for describing the Credential. */
@@ -2379,23 +2137,10 @@ export interface Transformation {
 
 /** Dataset location. */
 export interface DatasetLocation {
-  /** Polymorphic discriminator, which specifies the different types this object can be */
-  type:
-    | "AzureBlobStorageLocation"
-    | "AzureBlobFSLocation"
-    | "AzureDataLakeStoreLocation"
-    | "AmazonS3Location"
-    | "FileServerLocation"
-    | "AzureFileStorageLocation"
-    | "AmazonS3CompatibleLocation"
-    | "OracleCloudStorageLocation"
-    | "GoogleCloudStorageLocation"
-    | "FtpServerLocation"
-    | "SftpLocation"
-    | "HttpServerLocation"
-    | "HdfsLocation";
   /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
+  /** Type of dataset storage location. */
+  type: string;
   /** Specify the folder path of dataset. Type: string (or Expression with resultType string) */
   folderPath?: Record<string, unknown>;
   /** Specify the file name of dataset. Type: string (or Expression with resultType string). */
@@ -2422,15 +2167,10 @@ export interface DatasetSchemaDataElement {
 
 /** The format definition of a storage. */
 export interface DatasetStorageFormat {
-  /** Polymorphic discriminator, which specifies the different types this object can be */
-  type:
-    | "TextFormat"
-    | "JsonFormat"
-    | "AvroFormat"
-    | "OrcFormat"
-    | "ParquetFormat";
   /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
+  /** Type of dataset storage format. */
+  type: string;
   /** Serializer. Type: string (or Expression with resultType string). */
   serializer?: Record<string, unknown>;
   /** Deserializer. Type: string (or Expression with resultType string). */
@@ -2439,10 +2179,10 @@ export interface DatasetStorageFormat {
 
 /** The compression method used on a dataset. */
 export interface DatasetCompression {
-  /** Polymorphic discriminator, which specifies the different types this object can be */
-  type: "BZip2" | "GZip" | "Deflate" | "ZipDeflate" | "Tar" | "TarGZip";
   /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
+  /** Type of dataset compression. Type: string (or Expression with resultType string). */
+  type: Record<string, unknown>;
 }
 
 /** The compute resource properties for managed integration runtime. */
@@ -2802,23 +2542,10 @@ export interface ActivityPolicy {
 
 /** Connector read setting. */
 export interface StoreReadSettings {
-  /** Polymorphic discriminator, which specifies the different types this object can be */
-  type:
-    | "AzureBlobStorageReadSettings"
-    | "AzureBlobFSReadSettings"
-    | "AzureDataLakeStoreReadSettings"
-    | "AmazonS3ReadSettings"
-    | "FileServerReadSettings"
-    | "AzureFileStorageReadSettings"
-    | "AmazonS3CompatibleReadSettings"
-    | "OracleCloudStorageReadSettings"
-    | "GoogleCloudStorageReadSettings"
-    | "FtpReadSettings"
-    | "SftpReadSettings"
-    | "HttpReadSettings"
-    | "HdfsReadSettings";
   /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
+  /** The read setting type. */
+  type: string;
   /** The maximum concurrent connection count for the source data store. Type: integer (or Expression with resultType integer). */
   maxConcurrentConnections?: Record<string, unknown>;
   /** If true, disable data store metrics collection. Default is false. Type: boolean (or Expression with resultType boolean). */
@@ -2827,16 +2554,10 @@ export interface StoreReadSettings {
 
 /** Connector write settings. */
 export interface StoreWriteSettings {
-  /** Polymorphic discriminator, which specifies the different types this object can be */
-  type:
-    | "SftpWriteSettings"
-    | "AzureBlobStorageWriteSettings"
-    | "AzureBlobFSWriteSettings"
-    | "AzureDataLakeStoreWriteSettings"
-    | "FileServerWriteSettings"
-    | "AzureFileStorageWriteSettings";
   /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
+  /** The write setting type. */
+  type: string;
   /** The maximum concurrent connection count for the source data store. Type: integer (or Expression with resultType integer). */
   maxConcurrentConnections?: Record<string, unknown>;
   /** If true, disable data store metrics collection. Default is false. Type: boolean (or Expression with resultType boolean). */
@@ -2857,138 +2578,34 @@ export interface DistcpSettings {
 
 /** Format read settings. */
 export interface FormatReadSettings {
-  /** Polymorphic discriminator, which specifies the different types this object can be */
-  type:
-    | "DelimitedTextReadSettings"
-    | "JsonReadSettings"
-    | "XmlReadSettings"
-    | "BinaryReadSettings";
   /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
+  /** The read setting type. */
+  type: string;
 }
 
 /** Compression read settings. */
 export interface CompressionReadSettings {
-  /** Polymorphic discriminator, which specifies the different types this object can be */
-  type: "ZipDeflateReadSettings" | "TarReadSettings" | "TarGZipReadSettings";
   /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
+  /** The Compression setting type. */
+  type: string;
 }
 
 /** Format write settings. */
 export interface FormatWriteSettings {
-  /** Polymorphic discriminator, which specifies the different types this object can be */
-  type:
-    | "AvroWriteSettings"
-    | "OrcWriteSettings"
-    | "ParquetWriteSettings"
-    | "DelimitedTextWriteSettings"
-    | "JsonWriteSettings";
   /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
+  /** The write setting type. */
+  type: string;
 }
 
 /** A copy activity source. */
 export interface CopySource {
-  /** Polymorphic discriminator, which specifies the different types this object can be */
-  type:
-    | "AvroSource"
-    | "ExcelSource"
-    | "ParquetSource"
-    | "DelimitedTextSource"
-    | "JsonSource"
-    | "XmlSource"
-    | "OrcSource"
-    | "BinarySource"
-    | "TabularSource"
-    | "AzureTableSource"
-    | "BlobSource"
-    | "DocumentDbCollectionSource"
-    | "CosmosDbSqlApiSource"
-    | "DynamicsSource"
-    | "DynamicsCrmSource"
-    | "CommonDataServiceForAppsSource"
-    | "RelationalSource"
-    | "InformixSource"
-    | "MicrosoftAccessSource"
-    | "Db2Source"
-    | "OdbcSource"
-    | "MySqlSource"
-    | "PostgreSqlSource"
-    | "SybaseSource"
-    | "SapBwSource"
-    | "ODataSource"
-    | "SalesforceSource"
-    | "SalesforceServiceCloudSource"
-    | "SapCloudForCustomerSource"
-    | "SapEccSource"
-    | "SapHanaSource"
-    | "SapOpenHubSource"
-    | "SapTableSource"
-    | "RestSource"
-    | "SqlSource"
-    | "SqlServerSource"
-    | "AmazonRdsForSqlServerSource"
-    | "AzureSqlSource"
-    | "SqlMISource"
-    | "SqlDWSource"
-    | "FileSystemSource"
-    | "HdfsSource"
-    | "AzureMySqlSource"
-    | "AzureDataExplorerSource"
-    | "OracleSource"
-    | "AmazonRdsForOracleSource"
-    | "TeradataSource"
-    | "WebSource"
-    | "CassandraSource"
-    | "MongoDbSource"
-    | "MongoDbAtlasSource"
-    | "MongoDbV2Source"
-    | "CosmosDbMongoDbApiSource"
-    | "Office365Source"
-    | "AzureDataLakeStoreSource"
-    | "AzureBlobFSSource"
-    | "HttpSource"
-    | "AmazonMWSSource"
-    | "AzurePostgreSqlSource"
-    | "ConcurSource"
-    | "CouchbaseSource"
-    | "DrillSource"
-    | "EloquaSource"
-    | "GoogleBigQuerySource"
-    | "GreenplumSource"
-    | "HBaseSource"
-    | "HiveSource"
-    | "HubspotSource"
-    | "ImpalaSource"
-    | "JiraSource"
-    | "MagentoSource"
-    | "MariaDBSource"
-    | "AzureMariaDBSource"
-    | "MarketoSource"
-    | "PaypalSource"
-    | "PhoenixSource"
-    | "PrestoSource"
-    | "QuickBooksSource"
-    | "ServiceNowSource"
-    | "ShopifySource"
-    | "SparkSource"
-    | "SquareSource"
-    | "XeroSource"
-    | "ZohoSource"
-    | "NetezzaSource"
-    | "VerticaSource"
-    | "SalesforceMarketingCloudSource"
-    | "ResponsysSource"
-    | "DynamicsAXSource"
-    | "OracleServiceCloudSource"
-    | "GoogleAdWordsSource"
-    | "AmazonRedshiftSource"
-    | "SnowflakeSource"
-    | "AzureDatabricksDeltaLakeSource"
-    | "SharePointOnlineListSource";
   /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
+  /** Copy source type. */
+  type: string;
   /** Source retry count. Type: integer (or Expression with resultType integer). */
   sourceRetryCount?: Record<string, unknown>;
   /** Source retry wait. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])). */
@@ -3001,49 +2618,10 @@ export interface CopySource {
 
 /** A copy activity sink. */
 export interface CopySink {
-  /** Polymorphic discriminator, which specifies the different types this object can be */
-  type:
-    | "DelimitedTextSink"
-    | "JsonSink"
-    | "OrcSink"
-    | "RestSink"
-    | "AzurePostgreSqlSink"
-    | "AzureMySqlSink"
-    | "AzureDatabricksDeltaLakeSink"
-    | "SapCloudForCustomerSink"
-    | "AzureQueueSink"
-    | "AzureTableSink"
-    | "AvroSink"
-    | "ParquetSink"
-    | "BinarySink"
-    | "BlobSink"
-    | "FileSystemSink"
-    | "DocumentDbCollectionSink"
-    | "CosmosDbSqlApiSink"
-    | "SqlSink"
-    | "SqlServerSink"
-    | "AzureSqlSink"
-    | "SqlMISink"
-    | "SqlDWSink"
-    | "SnowflakeSink"
-    | "OracleSink"
-    | "AzureDataLakeStoreSink"
-    | "AzureBlobFSSink"
-    | "AzureSearchIndexSink"
-    | "OdbcSink"
-    | "InformixSink"
-    | "MicrosoftAccessSink"
-    | "DynamicsSink"
-    | "DynamicsCrmSink"
-    | "CommonDataServiceForAppsSink"
-    | "AzureDataExplorerSink"
-    | "SalesforceSink"
-    | "SalesforceServiceCloudSink"
-    | "MongoDbAtlasSink"
-    | "MongoDbV2Sink"
-    | "CosmosDbMongoDbApiSink";
   /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
+  /** Copy sink type. */
+  type: string;
   /** Write batch size. Type: integer (or Expression with resultType integer), minimum: 0. */
   writeBatchSize?: Record<string, unknown>;
   /** Write batch timeout. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])). */
@@ -3232,18 +2810,18 @@ export interface RedshiftUnloadSettings {
 
 /** Export command settings. */
 export interface ExportSettings {
-  /** Polymorphic discriminator, which specifies the different types this object can be */
-  type: "SnowflakeExportCopyCommand" | "AzureDatabricksDeltaLakeExportCommand";
   /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
+  /** The export setting type. */
+  type: string;
 }
 
 /** Import command settings. */
 export interface ImportSettings {
-  /** Polymorphic discriminator, which specifies the different types this object can be */
-  type: "AzureDatabricksDeltaLakeImportCommand" | "SnowflakeImportCopyCommand";
   /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
+  /** The import setting type. */
+  type: string;
 }
 
 /** Specify the name and value of custom metadata item. */
@@ -3312,10 +2890,10 @@ export interface AdditionalColumns {
 
 /** A copy activity translator. */
 export interface CopyTranslator {
-  /** Polymorphic discriminator, which specifies the different types this object can be */
-  type: "TabularTranslator";
   /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
+  /** Copy translator type. */
+  type: string;
 }
 
 /** Type conversion settings */

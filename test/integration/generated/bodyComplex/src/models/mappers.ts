@@ -763,8 +763,8 @@ export let discriminators = {
   "Fish.shark": Shark,
   "DotFish.DotSalmon": DotSalmon,
   "MyBaseType.Kind1": MyDerivedType,
-  "Fish.smart_salmon": SmartSalmon,
-  "Fish.sawshark": Sawshark,
-  "Fish.goblin": Goblinshark,
-  "Fish.cookiecuttershark": Cookiecuttershark
+  "Salmon.smart_salmon": SmartSalmon,
+  "Shark.sawshark": Sawshark,
+  "Shark.goblin": Goblinshark,
+  "Shark.cookiecuttershark": Cookiecuttershark
 };

@@ -280,6 +280,8 @@ export interface AzureCliScriptProperties
 
 /** Object model for the Azure PowerShell script. */
 export interface AzurePowerShellScript extends DeploymentScript {
+  /** Polymorphic discriminator, which specifies the different types this object can be */
+  kind: "AzurePowerShell";
   /** Container settings. */
   containerSettings?: ContainerConfiguration;
   /** Storage Account settings. */
@@ -323,6 +325,8 @@ export interface AzurePowerShellScript extends DeploymentScript {
 
 /** Object model for the Azure CLI script. */
 export interface AzureCliScript extends DeploymentScript {
+  /** Polymorphic discriminator, which specifies the different types this object can be */
+  kind: "AzureCLI";
   /** Container settings. */
   containerSettings?: ContainerConfiguration;
   /** Storage Account settings. */

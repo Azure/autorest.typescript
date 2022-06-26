@@ -1368,13 +1368,13 @@ export let discriminators = {
   "MediaGraphImageFormat.#Microsoft.Media.MediaGraphImageFormatJpeg": MediaGraphImageFormatJpeg,
   "MediaGraphImageFormat.#Microsoft.Media.MediaGraphImageFormatBmp": MediaGraphImageFormatBmp,
   "MediaGraphImageFormat.#Microsoft.Media.MediaGraphImageFormatPng": MediaGraphImageFormatPng,
-  "MethodRequest.GraphTopologyGet": MediaGraphTopologyGetRequest,
-  "MethodRequest.GraphTopologyDelete": MediaGraphTopologyDeleteRequest,
-  "MethodRequest.GraphInstanceGet": MediaGraphInstanceGetRequest,
-  "MethodRequest.GraphInstanceActivate": MediaGraphInstanceActivateRequest,
-  "MethodRequest.GraphInstanceDeactivate": MediaGraphInstanceDeActivateRequest,
-  "MethodRequest.GraphInstanceDelete": MediaGraphInstanceDeleteRequest,
-  "MediaGraphProcessor.#Microsoft.Media.MediaGraphCognitiveServicesVisionExtension": MediaGraphCognitiveServicesVisionExtension,
-  "MediaGraphProcessor.#Microsoft.Media.MediaGraphGrpcExtension": MediaGraphGrpcExtension,
-  "MediaGraphProcessor.#Microsoft.Media.MediaGraphHttpExtension": MediaGraphHttpExtension
+  "ItemNonSetRequestBase.GraphTopologyGet": MediaGraphTopologyGetRequest,
+  "ItemNonSetRequestBase.GraphTopologyDelete": MediaGraphTopologyDeleteRequest,
+  "ItemNonSetRequestBase.GraphInstanceGet": MediaGraphInstanceGetRequest,
+  "ItemNonSetRequestBase.GraphInstanceActivate": MediaGraphInstanceActivateRequest,
+  "ItemNonSetRequestBase.GraphInstanceDeactivate": MediaGraphInstanceDeActivateRequest,
+  "ItemNonSetRequestBase.GraphInstanceDelete": MediaGraphInstanceDeleteRequest,
+  "MediaGraphExtensionProcessorBase.#Microsoft.Media.MediaGraphCognitiveServicesVisionExtension": MediaGraphCognitiveServicesVisionExtension,
+  "MediaGraphExtensionProcessorBase.#Microsoft.Media.MediaGraphGrpcExtension": MediaGraphGrpcExtension,
+  "MediaGraphExtensionProcessorBase.#Microsoft.Media.MediaGraphHttpExtension": MediaGraphHttpExtension
 };

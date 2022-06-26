@@ -894,6 +894,6 @@ export const AzureCliScript: coreClient.CompositeMapper = {
 
 export let discriminators = {
   "AzureResourceBase.DeploymentScript": DeploymentScript,
-  "AzureResourceBase.AzurePowerShell": AzurePowerShellScript,
-  "AzureResourceBase.AzureCLI": AzureCliScript
+  "DeploymentScript.AzurePowerShell": AzurePowerShellScript,
+  "DeploymentScript.AzureCLI": AzureCliScript
 };

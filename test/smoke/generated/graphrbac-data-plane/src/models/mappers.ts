@@ -2282,7 +2282,7 @@ export const UserUpdateParameters: coreClient.CompositeMapper = {
 };
 
 export let discriminators = {
-  DirectoryObject: DirectoryObject,
+  "DirectoryObject.DirectoryObject": DirectoryObject,
   "DirectoryObject.User": User,
   "DirectoryObject.Application": Application,
   "DirectoryObject.Group": ADGroup,
