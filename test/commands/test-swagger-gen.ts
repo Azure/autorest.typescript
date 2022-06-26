@@ -892,6 +892,18 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
 };
 
 const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
+  bodyStringRest: {
+    swaggerOrConfig: "body-string.json",
+    clientName: "BodyStringRest",
+    packageName: "body-string-rest",
+    addCredentials: false,
+    restLevelClient: true,
+    azureSdkForJs: false,
+    licenseHeader: true,
+    isTestPackage: true,
+    generateTest: true,
+    generateSample: true
+  },
   // TEST REST LEVEL CLIENTS
   lroRest: {
     swaggerOrConfig: "lro.json",
@@ -904,18 +916,6 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true,
     restLevelClient: true,
     azureSdkForJs: false,
-    generateSample: true
-  },
-  bodyStringRest: {
-    swaggerOrConfig: "body-string.json",
-    clientName: "BodyStringRest",
-    packageName: "body-string-rest",
-    addCredentials: false,
-    restLevelClient: true,
-    azureSdkForJs: false,
-    licenseHeader: true,
-    isTestPackage: true,
-    generateTest: true,
     generateSample: true
   },
   bodyComplexRest: {
