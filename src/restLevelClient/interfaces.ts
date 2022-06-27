@@ -1,4 +1,5 @@
 import { Schema } from "@autorest/codemodel";
+// import { ExampleParameter } from "@autorest/testmodeler";
 
 export type PathParameter = {
   name: string;
@@ -38,8 +39,6 @@ export interface OperationAnnotations {
   isPageable?: boolean;
 }
 
-export type Method = "get" | "post" | "patch" | "put" | "delete";
-
 /**
  * A group of samples in operation_id level and they are used to generate in a sample file
  */
@@ -69,9 +68,9 @@ export interface RLCSampleDetail {
   path: string;
   // const Endpoint = "{Endpoint}"; 
   // const credential = new DefaultAzureCredential(); 
-  clientParamsInits: string[],
+  clientParamAssignments: string[],
   // const farmerId = "FARMER123"; 
-  pathParamsInits: string[];
+  pathParamAssignments: string[];
   // const options: Option = { 
   //   body: { 
   //     name: "John Smith", 
@@ -83,15 +82,15 @@ export interface RLCSampleDetail {
   //     }, 
   //   } 
   // }; 
-  methodParamsInits: string[],
+  methodParamAssignments: string[],
   // Endpoint, credential
   // const client = createClient(Endpoint, credential);
-  clientParamStr: string;
+  clientParamNames: string;
   // "/farmers/{farmerId}", farmerId
   // await client.path("/farmers/{farmerId}", farmerId).patch(options);
-  pathParamStr: string;
+  pathParamNames: string;
   // options
-  methodParamStr: "options" | "";
+  methodParamNames: "options" | "";
   // patch
   method: string;
   // const initialResponse = await client.path("/scenes/satellite/ingest-data/{jobId}", jobId).put(options);
@@ -106,3 +105,14 @@ export interface RLCSampleDetail {
   // }
   isPaging: boolean,
 } 
+
+export type SampleParameterPosition = 'client' | 'path' | 'method';
+
+export type SampleParameters = Record<SampleParameterPosition, SampleParameter[]>;
+
+export type TestSampleParameters = Record<SampleParameterPosition, any[]>;
+
+export interface SampleParameter {
+  name: string;
+  assignment?: string;
+}

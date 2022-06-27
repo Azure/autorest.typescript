@@ -892,6 +892,18 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
 };
 
 const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
+  dpgCustomization: {
+    swaggerOrConfig: "dpg-customization.json",
+    clientName: "DPGCustomizationClient",
+    packageName: "dpg-customization-rest",
+    licenseHeader: true,
+    restLevelClient: true,
+    rlcShortcut: true,
+    allowInsecureConnection: true,
+    addCredentials: false,
+    isTestPackage: true,
+    generateSample: true
+  },
   bodyStringRest: {
     swaggerOrConfig: "body-string.json",
     clientName: "BodyStringRest",
@@ -1024,17 +1036,6 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     swaggerOrConfig: "httpInfrastructure.json",
     clientName: "HttpInfrastructureRestClient",
     packageName: "http-infrastructure-rest",
-    licenseHeader: true,
-    restLevelClient: true,
-    rlcShortcut: true,
-    allowInsecureConnection: true,
-    addCredentials: false,
-    isTestPackage: true
-  },
-  dpgCustomization: {
-    swaggerOrConfig: "dpg-customization.json",
-    clientName: "DPGCustomizationClient",
-    packageName: "dpg-customization-rest",
     licenseHeader: true,
     restLevelClient: true,
     rlcShortcut: true,
