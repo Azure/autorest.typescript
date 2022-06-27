@@ -383,9 +383,7 @@ export const FactoryIdentity: coreClient.CompositeMapper = {
         serializedName: "userAssignedIdentities",
         type: {
           name: "Dictionary",
-          value: {
-            type: { name: "Dictionary", value: { type: { name: "any" } } }
-          }
+          value: { type: { name: "any" } }
         }
       }
     }
@@ -463,8 +461,7 @@ export const GlobalParameterSpecification: coreClient.CompositeMapper = {
         serializedName: "value",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -1707,8 +1704,7 @@ export const LinkedService: coreClient.CompositeMapper = {
           name: "Sequence",
           element: {
             type: {
-              name: "Dictionary",
-              value: { type: { name: "any" } }
+              name: "any"
             }
           }
         }
@@ -1741,9 +1737,7 @@ export const IntegrationRuntimeReference: coreClient.CompositeMapper = {
         serializedName: "parameters",
         type: {
           name: "Dictionary",
-          value: {
-            type: { name: "Dictionary", value: { type: { name: "any" } } }
-          }
+          value: { type: { name: "any" } }
         }
       }
     }
@@ -1765,8 +1759,7 @@ export const ParameterSpecification: coreClient.CompositeMapper = {
       defaultValue: {
         serializedName: "defaultValue",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -1829,15 +1822,13 @@ export const Dataset: coreClient.CompositeMapper = {
       structure: {
         serializedName: "structure",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       schema: {
         serializedName: "schema",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       linkedServiceName: {
@@ -1862,8 +1853,7 @@ export const Dataset: coreClient.CompositeMapper = {
           name: "Sequence",
           element: {
             type: {
-              name: "Dictionary",
-              value: { type: { name: "any" } }
+              name: "any"
             }
           }
         }
@@ -1903,9 +1893,7 @@ export const LinkedServiceReference: coreClient.CompositeMapper = {
         serializedName: "parameters",
         type: {
           name: "Dictionary",
-          value: {
-            type: { name: "Dictionary", value: { type: { name: "any" } } }
-          }
+          value: { type: { name: "any" } }
         }
       }
     }
@@ -2060,8 +2048,7 @@ export const UserProperty: coreClient.CompositeMapper = {
         serializedName: "value",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -2083,8 +2070,7 @@ export const VariableSpecification: coreClient.CompositeMapper = {
       defaultValue: {
         serializedName: "defaultValue",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -2130,8 +2116,7 @@ export const PipelineElapsedTimeMetricPolicy: coreClient.CompositeMapper = {
       duration: {
         serializedName: "duration",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -2548,24 +2533,21 @@ export const ActivityRun: coreClient.CompositeMapper = {
         serializedName: "input",
         readOnly: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       output: {
         serializedName: "output",
         readOnly: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       error: {
         serializedName: "error",
         readOnly: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -2638,8 +2620,7 @@ export const Trigger: coreClient.CompositeMapper = {
           name: "Sequence",
           element: {
             type: {
-              name: "Dictionary",
-              value: { type: { name: "any" } }
+              name: "any"
             }
           }
         }
@@ -2825,9 +2806,7 @@ export const TriggerRun: coreClient.CompositeMapper = {
         readOnly: true,
         type: {
           name: "Dictionary",
-          value: {
-            type: { name: "Dictionary", value: { type: { name: "any" } } }
-          }
+          value: { type: { name: "any" } }
         }
       }
     }
@@ -2863,8 +2842,7 @@ export const DataFlow: coreClient.CompositeMapper = {
           name: "Sequence",
           element: {
             type: {
-              name: "Dictionary",
-              value: { type: { name: "any" } }
+              name: "any"
             }
           }
         }
@@ -3172,8 +3150,7 @@ export const DataFlowStagingInfo: coreClient.CompositeMapper = {
       folderPath: {
         serializedName: "folderPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -3201,16 +3178,13 @@ export const DataFlowDebugPackageDebugSettings: coreClient.CompositeMapper = {
         serializedName: "parameters",
         type: {
           name: "Dictionary",
-          value: {
-            type: { name: "Dictionary", value: { type: { name: "any" } } }
-          }
+          value: { type: { name: "any" } }
         }
       },
       datasetParameters: {
         serializedName: "datasetParameters",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -3819,9 +3793,7 @@ export const TriggerPipelineReference: coreClient.CompositeMapper = {
         serializedName: "parameters",
         type: {
           name: "Dictionary",
-          value: {
-            type: { name: "Dictionary", value: { type: { name: "any" } } }
-          }
+          value: { type: { name: "any" } }
         }
       }
     }
@@ -3852,9 +3824,7 @@ export const DatasetReference: coreClient.CompositeMapper = {
         serializedName: "parameters",
         type: {
           name: "Dictionary",
-          value: {
-            type: { name: "Dictionary", value: { type: { name: "any" } } }
-          }
+          value: { type: { name: "any" } }
         }
       }
     }
@@ -3901,8 +3871,7 @@ export const DataFlowReference: coreClient.CompositeMapper = {
       datasetParameters: {
         serializedName: "datasetParameters",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -3989,8 +3958,7 @@ export const Credential: coreClient.CompositeMapper = {
           name: "Sequence",
           element: {
             type: {
-              name: "Dictionary",
-              value: { type: { name: "any" } }
+              name: "any"
             }
           }
         }
@@ -4050,15 +4018,13 @@ export const DatasetLocation: coreClient.CompositeMapper = {
       folderPath: {
         serializedName: "folderPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       fileName: {
         serializedName: "fileName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -4073,15 +4039,13 @@ export const DatasetDataElement: coreClient.CompositeMapper = {
       name: {
         serializedName: "name",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       type: {
         serializedName: "type",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -4097,15 +4061,13 @@ export const DatasetSchemaDataElement: coreClient.CompositeMapper = {
       name: {
         serializedName: "name",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       type: {
         serializedName: "type",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -4134,15 +4096,13 @@ export const DatasetStorageFormat: coreClient.CompositeMapper = {
       serializer: {
         serializedName: "serializer",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       deserializer: {
         serializedName: "deserializer",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -4165,8 +4125,7 @@ export const DatasetCompression: coreClient.CompositeMapper = {
         serializedName: "type",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -4934,8 +4893,7 @@ export const SqlAlwaysEncryptedProperties: coreClient.CompositeMapper = {
       servicePrincipalId: {
         serializedName: "servicePrincipalId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       servicePrincipalKey: {
@@ -4970,8 +4928,7 @@ export const WebLinkedServiceTypeProperties: coreClient.CompositeMapper = {
         serializedName: "url",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       authenticationType: {
@@ -5008,8 +4965,7 @@ export const ScriptAction: coreClient.CompositeMapper = {
         serializedName: "roles",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       parameters: {
@@ -5031,15 +4987,13 @@ export const ActivityPolicy: coreClient.CompositeMapper = {
       timeout: {
         serializedName: "timeout",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       retry: {
         serializedName: "retry",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       retryIntervalInSeconds: {
@@ -5090,15 +5044,13 @@ export const StoreReadSettings: coreClient.CompositeMapper = {
       maxConcurrentConnections: {
         serializedName: "maxConcurrentConnections",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       disableMetricsCollection: {
         serializedName: "disableMetricsCollection",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -5127,22 +5079,19 @@ export const StoreWriteSettings: coreClient.CompositeMapper = {
       maxConcurrentConnections: {
         serializedName: "maxConcurrentConnections",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       disableMetricsCollection: {
         serializedName: "disableMetricsCollection",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       copyBehavior: {
         serializedName: "copyBehavior",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -5158,23 +5107,20 @@ export const DistcpSettings: coreClient.CompositeMapper = {
         serializedName: "resourceManagerEndpoint",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       tempScriptPath: {
         serializedName: "tempScriptPath",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       distcpOptions: {
         serializedName: "distcpOptions",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -5272,29 +5218,25 @@ export const CopySource: coreClient.CompositeMapper = {
       sourceRetryCount: {
         serializedName: "sourceRetryCount",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       sourceRetryWait: {
         serializedName: "sourceRetryWait",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       maxConcurrentConnections: {
         serializedName: "maxConcurrentConnections",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       disableMetricsCollection: {
         serializedName: "disableMetricsCollection",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -5323,43 +5265,37 @@ export const CopySink: coreClient.CompositeMapper = {
       writeBatchSize: {
         serializedName: "writeBatchSize",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       writeBatchTimeout: {
         serializedName: "writeBatchTimeout",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       sinkRetryCount: {
         serializedName: "sinkRetryCount",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       sinkRetryWait: {
         serializedName: "sinkRetryWait",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       maxConcurrentConnections: {
         serializedName: "maxConcurrentConnections",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       disableMetricsCollection: {
         serializedName: "disableMetricsCollection",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -5382,15 +5318,13 @@ export const StagingSettings: coreClient.CompositeMapper = {
       path: {
         serializedName: "path",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       enableCompression: {
         serializedName: "enableCompression",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -5407,15 +5341,13 @@ export const RedirectIncompatibleRowSettings: coreClient.CompositeMapper = {
         serializedName: "linkedServiceName",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       path: {
         serializedName: "path",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -5438,22 +5370,19 @@ export const LogStorageSettings: coreClient.CompositeMapper = {
       path: {
         serializedName: "path",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       logLevel: {
         serializedName: "logLevel",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       enableReliableLogging: {
         serializedName: "enableReliableLogging",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -5468,8 +5397,7 @@ export const LogSettings: coreClient.CompositeMapper = {
       enableCopyActivityLog: {
         serializedName: "enableCopyActivityLog",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       copyActivityLogSettings: {
@@ -5498,15 +5426,13 @@ export const CopyActivityLogSettings: coreClient.CompositeMapper = {
       logLevel: {
         serializedName: "logLevel",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       enableReliableLogging: {
         serializedName: "enableReliableLogging",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -5528,8 +5454,7 @@ export const LogLocationSettings: coreClient.CompositeMapper = {
       path: {
         serializedName: "path",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -5544,15 +5469,13 @@ export const SkipErrorFile: coreClient.CompositeMapper = {
       fileMissing: {
         serializedName: "fileMissing",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       dataInconsistency: {
         serializedName: "dataInconsistency",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -5567,8 +5490,7 @@ export const SapHanaPartitionSettings: coreClient.CompositeMapper = {
       partitionColumnName: {
         serializedName: "partitionColumnName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -5583,29 +5505,25 @@ export const SapTablePartitionSettings: coreClient.CompositeMapper = {
       partitionColumnName: {
         serializedName: "partitionColumnName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       partitionUpperBound: {
         serializedName: "partitionUpperBound",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       partitionLowerBound: {
         serializedName: "partitionLowerBound",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       maxPartitionsNumber: {
         serializedName: "maxPartitionsNumber",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -5620,8 +5538,7 @@ export const StoredProcedureParameter: coreClient.CompositeMapper = {
       value: {
         serializedName: "value",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       type: {
@@ -5642,22 +5559,19 @@ export const SqlPartitionSettings: coreClient.CompositeMapper = {
       partitionColumnName: {
         serializedName: "partitionColumnName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       partitionUpperBound: {
         serializedName: "partitionUpperBound",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       partitionLowerBound: {
         serializedName: "partitionLowerBound",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -5672,29 +5586,25 @@ export const OraclePartitionSettings: coreClient.CompositeMapper = {
       partitionNames: {
         serializedName: "partitionNames",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       partitionColumnName: {
         serializedName: "partitionColumnName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       partitionUpperBound: {
         serializedName: "partitionUpperBound",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       partitionLowerBound: {
         serializedName: "partitionLowerBound",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -5709,29 +5619,25 @@ export const AmazonRdsForOraclePartitionSettings: coreClient.CompositeMapper = {
       partitionNames: {
         serializedName: "partitionNames",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       partitionColumnName: {
         serializedName: "partitionColumnName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       partitionUpperBound: {
         serializedName: "partitionUpperBound",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       partitionLowerBound: {
         serializedName: "partitionLowerBound",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -5746,22 +5652,19 @@ export const TeradataPartitionSettings: coreClient.CompositeMapper = {
       partitionColumnName: {
         serializedName: "partitionColumnName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       partitionUpperBound: {
         serializedName: "partitionUpperBound",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       partitionLowerBound: {
         serializedName: "partitionLowerBound",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -5777,29 +5680,25 @@ export const MongoDbCursorMethodsProperties: coreClient.CompositeMapper = {
       project: {
         serializedName: "project",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       sort: {
         serializedName: "sort",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       skip: {
         serializedName: "skip",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       limit: {
         serializedName: "limit",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -5814,22 +5713,19 @@ export const NetezzaPartitionSettings: coreClient.CompositeMapper = {
       partitionColumnName: {
         serializedName: "partitionColumnName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       partitionUpperBound: {
         serializedName: "partitionUpperBound",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       partitionLowerBound: {
         serializedName: "partitionLowerBound",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -5852,8 +5748,7 @@ export const RedshiftUnloadSettings: coreClient.CompositeMapper = {
         serializedName: "bucketName",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -5914,15 +5809,13 @@ export const MetadataItem: coreClient.CompositeMapper = {
       name: {
         serializedName: "name",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       value: {
         serializedName: "value",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -5937,22 +5830,19 @@ export const SqlUpsertSettings: coreClient.CompositeMapper = {
       useTempDB: {
         serializedName: "useTempDB",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       interimSchemaName: {
         serializedName: "interimSchemaName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       keys: {
         serializedName: "keys",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -5974,22 +5864,19 @@ export const PolybaseSettings: coreClient.CompositeMapper = {
       rejectValue: {
         serializedName: "rejectValue",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       rejectSampleValue: {
         serializedName: "rejectSampleValue",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       useTypeDefault: {
         serializedName: "useTypeDefault",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -6032,15 +5919,13 @@ export const DWCopyCommandDefaultValue: coreClient.CompositeMapper = {
       columnName: {
         serializedName: "columnName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       defaultValue: {
         serializedName: "defaultValue",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -6055,15 +5940,13 @@ export const SqlDWUpsertSettings: coreClient.CompositeMapper = {
       interimSchemaName: {
         serializedName: "interimSchemaName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       keys: {
         serializedName: "keys",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -6078,15 +5961,13 @@ export const AdditionalColumns: coreClient.CompositeMapper = {
       name: {
         serializedName: "name",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       value: {
         serializedName: "value",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -6124,43 +6005,37 @@ export const TypeConversionSettings: coreClient.CompositeMapper = {
       allowDataTruncation: {
         serializedName: "allowDataTruncation",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       treatBooleanAsNumber: {
         serializedName: "treatBooleanAsNumber",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       dateTimeFormat: {
         serializedName: "dateTimeFormat",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       dateTimeOffsetFormat: {
         serializedName: "dateTimeOffsetFormat",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       timeSpanFormat: {
         serializedName: "timeSpanFormat",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       culture: {
         serializedName: "culture",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -6175,8 +6050,7 @@ export const SsisPackageLocation: coreClient.CompositeMapper = {
       packagePath: {
         serializedName: "packagePath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       type: {
@@ -6202,8 +6076,7 @@ export const SsisPackageLocation: coreClient.CompositeMapper = {
       configurationPath: {
         serializedName: "typeProperties.configurationPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       configurationAccessCredential: {
@@ -6222,8 +6095,7 @@ export const SsisPackageLocation: coreClient.CompositeMapper = {
       packageContent: {
         serializedName: "typeProperties.packageContent",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       packageLastModifiedDate: {
@@ -6257,16 +6129,14 @@ export const SsisAccessCredential: coreClient.CompositeMapper = {
         serializedName: "domain",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       userName: {
         serializedName: "userName",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -6289,8 +6159,7 @@ export const SsisChildPackage: coreClient.CompositeMapper = {
         serializedName: "packagePath",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       packageName: {
@@ -6303,8 +6172,7 @@ export const SsisChildPackage: coreClient.CompositeMapper = {
         serializedName: "packageContent",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       packageLastModifiedDate: {
@@ -6326,16 +6194,14 @@ export const SsisExecutionCredential: coreClient.CompositeMapper = {
         serializedName: "domain",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       userName: {
         serializedName: "userName",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -6358,8 +6224,7 @@ export const SsisExecutionParameter: coreClient.CompositeMapper = {
         serializedName: "value",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -6375,8 +6240,7 @@ export const SsisPropertyOverride: coreClient.CompositeMapper = {
         serializedName: "value",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       isSensitive: {
@@ -6398,8 +6262,7 @@ export const SsisLogLocation: coreClient.CompositeMapper = {
         serializedName: "logPath",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       type: {
@@ -6419,8 +6282,7 @@ export const SsisLogLocation: coreClient.CompositeMapper = {
       logRefreshInterval: {
         serializedName: "typeProperties.logRefreshInterval",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -6481,8 +6343,7 @@ export const WebActivityAuthentication: coreClient.CompositeMapper = {
       username: {
         serializedName: "username",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -6495,15 +6356,13 @@ export const WebActivityAuthentication: coreClient.CompositeMapper = {
       resource: {
         serializedName: "resource",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       userTenant: {
         serializedName: "userTenant",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       credential: {
@@ -6553,8 +6412,7 @@ export const AzureMLWebServiceFile: coreClient.CompositeMapper = {
         serializedName: "filePath",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       linkedServiceName: {
@@ -6604,22 +6462,19 @@ export const ExecuteDataFlowActivityTypeProperties: coreClient.CompositeMapper =
       traceLevel: {
         serializedName: "traceLevel",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       continueOnError: {
         serializedName: "continueOnError",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       runConcurrently: {
         serializedName: "runConcurrently",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -6634,15 +6489,13 @@ export const ExecuteDataFlowActivityTypePropertiesCompute: coreClient.CompositeM
       computeType: {
         serializedName: "computeType",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       coreCount: {
         serializedName: "coreCount",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -6837,8 +6690,7 @@ export const RetryPolicy: coreClient.CompositeMapper = {
       count: {
         serializedName: "count",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       intervalInSeconds: {
@@ -7210,8 +7062,7 @@ export const PipelineResource: coreClient.CompositeMapper = {
           name: "Sequence",
           element: {
             type: {
-              name: "Dictionary",
-              value: { type: { name: "any" } }
+              name: "any"
             }
           }
         }
@@ -7220,9 +7071,7 @@ export const PipelineResource: coreClient.CompositeMapper = {
         serializedName: "properties.runDimensions",
         type: {
           name: "Dictionary",
-          value: {
-            type: { name: "Dictionary", value: { type: { name: "any" } } }
-          }
+          value: { type: { name: "any" } }
         }
       },
       folder: {
@@ -7726,8 +7575,7 @@ export const AzureStorageLinkedService: coreClient.CompositeMapper = {
       connectionString: {
         serializedName: "typeProperties.connectionString",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       accountKey: {
@@ -7740,8 +7588,7 @@ export const AzureStorageLinkedService: coreClient.CompositeMapper = {
       sasUri: {
         serializedName: "typeProperties.sasUri",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       sasToken: {
@@ -7774,8 +7621,7 @@ export const AzureBlobStorageLinkedService: coreClient.CompositeMapper = {
       connectionString: {
         serializedName: "typeProperties.connectionString",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       accountKey: {
@@ -7788,8 +7634,7 @@ export const AzureBlobStorageLinkedService: coreClient.CompositeMapper = {
       sasUri: {
         serializedName: "typeProperties.sasUri",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       sasToken: {
@@ -7808,8 +7653,7 @@ export const AzureBlobStorageLinkedService: coreClient.CompositeMapper = {
       servicePrincipalId: {
         serializedName: "typeProperties.servicePrincipalId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       servicePrincipalKey: {
@@ -7822,15 +7666,13 @@ export const AzureBlobStorageLinkedService: coreClient.CompositeMapper = {
       tenant: {
         serializedName: "typeProperties.tenant",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       azureCloudType: {
         serializedName: "typeProperties.azureCloudType",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       accountKind: {
@@ -7869,8 +7711,7 @@ export const AzureTableStorageLinkedService: coreClient.CompositeMapper = {
       connectionString: {
         serializedName: "typeProperties.connectionString",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       accountKey: {
@@ -7883,8 +7724,7 @@ export const AzureTableStorageLinkedService: coreClient.CompositeMapper = {
       sasUri: {
         serializedName: "typeProperties.sasUri",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       sasToken: {
@@ -7918,8 +7758,7 @@ export const AzureSqlDWLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.connectionString",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -7932,8 +7771,7 @@ export const AzureSqlDWLinkedService: coreClient.CompositeMapper = {
       servicePrincipalId: {
         serializedName: "typeProperties.servicePrincipalId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       servicePrincipalKey: {
@@ -7946,22 +7784,19 @@ export const AzureSqlDWLinkedService: coreClient.CompositeMapper = {
       tenant: {
         serializedName: "typeProperties.tenant",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       azureCloudType: {
         serializedName: "typeProperties.azureCloudType",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       credential: {
@@ -7989,15 +7824,13 @@ export const SqlServerLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.connectionString",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       userName: {
         serializedName: "typeProperties.userName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -8010,8 +7843,7 @@ export const SqlServerLinkedService: coreClient.CompositeMapper = {
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       alwaysEncryptedSettings: {
@@ -8039,15 +7871,13 @@ export const AmazonRdsForSqlServerLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.connectionString",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       userName: {
         serializedName: "typeProperties.userName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -8060,8 +7890,7 @@ export const AmazonRdsForSqlServerLinkedService: coreClient.CompositeMapper = {
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       alwaysEncryptedSettings: {
@@ -8089,8 +7918,7 @@ export const AzureSqlDatabaseLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.connectionString",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -8103,8 +7931,7 @@ export const AzureSqlDatabaseLinkedService: coreClient.CompositeMapper = {
       servicePrincipalId: {
         serializedName: "typeProperties.servicePrincipalId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       servicePrincipalKey: {
@@ -8117,22 +7944,19 @@ export const AzureSqlDatabaseLinkedService: coreClient.CompositeMapper = {
       tenant: {
         serializedName: "typeProperties.tenant",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       azureCloudType: {
         serializedName: "typeProperties.azureCloudType",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       alwaysEncryptedSettings: {
@@ -8167,8 +7991,7 @@ export const AzureSqlMILinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.connectionString",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -8181,8 +8004,7 @@ export const AzureSqlMILinkedService: coreClient.CompositeMapper = {
       servicePrincipalId: {
         serializedName: "typeProperties.servicePrincipalId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       servicePrincipalKey: {
@@ -8195,22 +8017,19 @@ export const AzureSqlMILinkedService: coreClient.CompositeMapper = {
       tenant: {
         serializedName: "typeProperties.tenant",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       azureCloudType: {
         serializedName: "typeProperties.azureCloudType",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       alwaysEncryptedSettings: {
@@ -8245,8 +8064,7 @@ export const AzureBatchLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.accountName",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       accessKey: {
@@ -8260,16 +8078,14 @@ export const AzureBatchLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.batchUri",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       poolName: {
         serializedName: "typeProperties.poolName",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       linkedServiceName: {
@@ -8282,8 +8098,7 @@ export const AzureBatchLinkedService: coreClient.CompositeMapper = {
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       credential: {
@@ -8311,8 +8126,7 @@ export const AzureKeyVaultLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.baseUrl",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       credential: {
@@ -8339,22 +8153,19 @@ export const CosmosDbLinkedService: coreClient.CompositeMapper = {
       connectionString: {
         serializedName: "typeProperties.connectionString",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       accountEndpoint: {
         serializedName: "typeProperties.accountEndpoint",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       database: {
         serializedName: "typeProperties.database",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       accountKey: {
@@ -8367,8 +8178,7 @@ export const CosmosDbLinkedService: coreClient.CompositeMapper = {
       servicePrincipalId: {
         serializedName: "typeProperties.servicePrincipalId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       servicePrincipalCredentialType: {
@@ -8387,15 +8197,13 @@ export const CosmosDbLinkedService: coreClient.CompositeMapper = {
       tenant: {
         serializedName: "typeProperties.tenant",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       azureCloudType: {
         serializedName: "typeProperties.azureCloudType",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       connectionMode: {
@@ -8407,8 +8215,7 @@ export const CosmosDbLinkedService: coreClient.CompositeMapper = {
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -8429,51 +8236,44 @@ export const DynamicsLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.deploymentType",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       hostName: {
         serializedName: "typeProperties.hostName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       port: {
         serializedName: "typeProperties.port",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       serviceUri: {
         serializedName: "typeProperties.serviceUri",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       organizationName: {
         serializedName: "typeProperties.organizationName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       authenticationType: {
         serializedName: "typeProperties.authenticationType",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       username: {
         serializedName: "typeProperties.username",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -8486,15 +8286,13 @@ export const DynamicsLinkedService: coreClient.CompositeMapper = {
       servicePrincipalId: {
         serializedName: "typeProperties.servicePrincipalId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       servicePrincipalCredentialType: {
         serializedName: "typeProperties.servicePrincipalCredentialType",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       servicePrincipalCredential: {
@@ -8507,8 +8305,7 @@ export const DynamicsLinkedService: coreClient.CompositeMapper = {
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -8529,51 +8326,44 @@ export const DynamicsCrmLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.deploymentType",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       hostName: {
         serializedName: "typeProperties.hostName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       port: {
         serializedName: "typeProperties.port",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       serviceUri: {
         serializedName: "typeProperties.serviceUri",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       organizationName: {
         serializedName: "typeProperties.organizationName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       authenticationType: {
         serializedName: "typeProperties.authenticationType",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       username: {
         serializedName: "typeProperties.username",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -8586,15 +8376,13 @@ export const DynamicsCrmLinkedService: coreClient.CompositeMapper = {
       servicePrincipalId: {
         serializedName: "typeProperties.servicePrincipalId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       servicePrincipalCredentialType: {
         serializedName: "typeProperties.servicePrincipalCredentialType",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       servicePrincipalCredential: {
@@ -8607,8 +8395,7 @@ export const DynamicsCrmLinkedService: coreClient.CompositeMapper = {
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -8629,51 +8416,44 @@ export const CommonDataServiceForAppsLinkedService: coreClient.CompositeMapper =
         serializedName: "typeProperties.deploymentType",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       hostName: {
         serializedName: "typeProperties.hostName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       port: {
         serializedName: "typeProperties.port",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       serviceUri: {
         serializedName: "typeProperties.serviceUri",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       organizationName: {
         serializedName: "typeProperties.organizationName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       authenticationType: {
         serializedName: "typeProperties.authenticationType",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       username: {
         serializedName: "typeProperties.username",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -8686,15 +8466,13 @@ export const CommonDataServiceForAppsLinkedService: coreClient.CompositeMapper =
       servicePrincipalId: {
         serializedName: "typeProperties.servicePrincipalId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       servicePrincipalCredentialType: {
         serializedName: "typeProperties.servicePrincipalCredentialType",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       servicePrincipalCredential: {
@@ -8707,8 +8485,7 @@ export const CommonDataServiceForAppsLinkedService: coreClient.CompositeMapper =
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -8729,15 +8506,13 @@ export const HDInsightLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.clusterUri",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       userName: {
         serializedName: "typeProperties.userName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -8764,22 +8539,19 @@ export const HDInsightLinkedService: coreClient.CompositeMapper = {
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       isEspEnabled: {
         serializedName: "typeProperties.isEspEnabled",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       fileSystem: {
         serializedName: "typeProperties.fileSystem",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -8800,15 +8572,13 @@ export const FileServerLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.host",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       userId: {
         serializedName: "typeProperties.userId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -8821,8 +8591,7 @@ export const FileServerLinkedService: coreClient.CompositeMapper = {
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -8842,15 +8611,13 @@ export const AzureFileStorageLinkedService: coreClient.CompositeMapper = {
       host: {
         serializedName: "typeProperties.host",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       userId: {
         serializedName: "typeProperties.userId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -8863,8 +8630,7 @@ export const AzureFileStorageLinkedService: coreClient.CompositeMapper = {
       connectionString: {
         serializedName: "typeProperties.connectionString",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       accountKey: {
@@ -8877,8 +8643,7 @@ export const AzureFileStorageLinkedService: coreClient.CompositeMapper = {
       sasUri: {
         serializedName: "typeProperties.sasUri",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       sasToken: {
@@ -8891,22 +8656,19 @@ export const AzureFileStorageLinkedService: coreClient.CompositeMapper = {
       fileShare: {
         serializedName: "typeProperties.fileShare",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       snapshot: {
         serializedName: "typeProperties.snapshot",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -8926,8 +8688,7 @@ export const AmazonS3CompatibleLinkedService: coreClient.CompositeMapper = {
       accessKeyId: {
         serializedName: "typeProperties.accessKeyId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       secretAccessKey: {
@@ -8940,22 +8701,19 @@ export const AmazonS3CompatibleLinkedService: coreClient.CompositeMapper = {
       serviceUrl: {
         serializedName: "typeProperties.serviceUrl",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       forcePathStyle: {
         serializedName: "typeProperties.forcePathStyle",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -8975,8 +8733,7 @@ export const OracleCloudStorageLinkedService: coreClient.CompositeMapper = {
       accessKeyId: {
         serializedName: "typeProperties.accessKeyId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       secretAccessKey: {
@@ -8989,15 +8746,13 @@ export const OracleCloudStorageLinkedService: coreClient.CompositeMapper = {
       serviceUrl: {
         serializedName: "typeProperties.serviceUrl",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -9017,8 +8772,7 @@ export const GoogleCloudStorageLinkedService: coreClient.CompositeMapper = {
       accessKeyId: {
         serializedName: "typeProperties.accessKeyId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       secretAccessKey: {
@@ -9031,15 +8785,13 @@ export const GoogleCloudStorageLinkedService: coreClient.CompositeMapper = {
       serviceUrl: {
         serializedName: "typeProperties.serviceUrl",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -9060,8 +8812,7 @@ export const OracleLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.connectionString",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -9074,8 +8825,7 @@ export const OracleLinkedService: coreClient.CompositeMapper = {
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -9096,8 +8846,7 @@ export const AmazonRdsForOracleLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.connectionString",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -9110,8 +8859,7 @@ export const AmazonRdsForOracleLinkedService: coreClient.CompositeMapper = {
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -9132,8 +8880,7 @@ export const AzureMySqlLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.connectionString",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -9146,8 +8893,7 @@ export const AzureMySqlLinkedService: coreClient.CompositeMapper = {
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -9168,8 +8914,7 @@ export const MySqlLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.connectionString",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -9182,8 +8927,7 @@ export const MySqlLinkedService: coreClient.CompositeMapper = {
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -9204,8 +8948,7 @@ export const PostgreSqlLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.connectionString",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -9218,8 +8961,7 @@ export const PostgreSqlLinkedService: coreClient.CompositeMapper = {
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -9240,23 +8982,20 @@ export const SybaseLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.server",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       database: {
         serializedName: "typeProperties.database",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       schema: {
         serializedName: "typeProperties.schema",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       authenticationType: {
@@ -9268,8 +9007,7 @@ export const SybaseLinkedService: coreClient.CompositeMapper = {
       username: {
         serializedName: "typeProperties.username",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -9282,8 +9020,7 @@ export const SybaseLinkedService: coreClient.CompositeMapper = {
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -9303,22 +9040,19 @@ export const Db2LinkedService: coreClient.CompositeMapper = {
       connectionString: {
         serializedName: "typeProperties.connectionString",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       server: {
         serializedName: "typeProperties.server",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       database: {
         serializedName: "typeProperties.database",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       authenticationType: {
@@ -9330,8 +9064,7 @@ export const Db2LinkedService: coreClient.CompositeMapper = {
       username: {
         serializedName: "typeProperties.username",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -9344,22 +9077,19 @@ export const Db2LinkedService: coreClient.CompositeMapper = {
       packageCollection: {
         serializedName: "typeProperties.packageCollection",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       certificateCommonName: {
         serializedName: "typeProperties.certificateCommonName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -9379,15 +9109,13 @@ export const TeradataLinkedService: coreClient.CompositeMapper = {
       connectionString: {
         serializedName: "typeProperties.connectionString",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       server: {
         serializedName: "typeProperties.server",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       authenticationType: {
@@ -9399,8 +9127,7 @@ export const TeradataLinkedService: coreClient.CompositeMapper = {
       username: {
         serializedName: "typeProperties.username",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -9413,8 +9140,7 @@ export const TeradataLinkedService: coreClient.CompositeMapper = {
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -9435,8 +9161,7 @@ export const AzureMLLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.mlEndpoint",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       apiKey: {
@@ -9449,15 +9174,13 @@ export const AzureMLLinkedService: coreClient.CompositeMapper = {
       updateResourceEndpoint: {
         serializedName: "typeProperties.updateResourceEndpoint",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       servicePrincipalId: {
         serializedName: "typeProperties.servicePrincipalId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       servicePrincipalKey: {
@@ -9470,22 +9193,19 @@ export const AzureMLLinkedService: coreClient.CompositeMapper = {
       tenant: {
         serializedName: "typeProperties.tenant",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       authentication: {
         serializedName: "typeProperties.authentication",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -9506,31 +9226,27 @@ export const AzureMLServiceLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.subscriptionId",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       resourceGroupName: {
         serializedName: "typeProperties.resourceGroupName",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       mlWorkspaceName: {
         serializedName: "typeProperties.mlWorkspaceName",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       servicePrincipalId: {
         serializedName: "typeProperties.servicePrincipalId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       servicePrincipalKey: {
@@ -9543,15 +9259,13 @@ export const AzureMLServiceLinkedService: coreClient.CompositeMapper = {
       tenant: {
         serializedName: "typeProperties.tenant",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -9572,15 +9286,13 @@ export const OdbcLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.connectionString",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       authenticationType: {
         serializedName: "typeProperties.authenticationType",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       credential: {
@@ -9593,8 +9305,7 @@ export const OdbcLinkedService: coreClient.CompositeMapper = {
       userName: {
         serializedName: "typeProperties.userName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -9607,8 +9318,7 @@ export const OdbcLinkedService: coreClient.CompositeMapper = {
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -9629,15 +9339,13 @@ export const InformixLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.connectionString",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       authenticationType: {
         serializedName: "typeProperties.authenticationType",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       credential: {
@@ -9650,8 +9358,7 @@ export const InformixLinkedService: coreClient.CompositeMapper = {
       userName: {
         serializedName: "typeProperties.userName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -9664,8 +9371,7 @@ export const InformixLinkedService: coreClient.CompositeMapper = {
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -9686,15 +9392,13 @@ export const MicrosoftAccessLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.connectionString",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       authenticationType: {
         serializedName: "typeProperties.authenticationType",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       credential: {
@@ -9707,8 +9411,7 @@ export const MicrosoftAccessLinkedService: coreClient.CompositeMapper = {
       userName: {
         serializedName: "typeProperties.userName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -9721,8 +9424,7 @@ export const MicrosoftAccessLinkedService: coreClient.CompositeMapper = {
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -9743,29 +9445,25 @@ export const HdfsLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.url",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       authenticationType: {
         serializedName: "typeProperties.authenticationType",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       userName: {
         serializedName: "typeProperties.userName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -9793,8 +9491,7 @@ export const ODataLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.url",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       authenticationType: {
@@ -9806,8 +9503,7 @@ export const ODataLinkedService: coreClient.CompositeMapper = {
       userName: {
         serializedName: "typeProperties.userName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -9820,36 +9516,31 @@ export const ODataLinkedService: coreClient.CompositeMapper = {
       authHeaders: {
         serializedName: "typeProperties.authHeaders",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       tenant: {
         serializedName: "typeProperties.tenant",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       servicePrincipalId: {
         serializedName: "typeProperties.servicePrincipalId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       azureCloudType: {
         serializedName: "typeProperties.azureCloudType",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       aadResourceId: {
         serializedName: "typeProperties.aadResourceId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       aadServicePrincipalCredentialType: {
@@ -9882,8 +9573,7 @@ export const ODataLinkedService: coreClient.CompositeMapper = {
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -9925,29 +9615,25 @@ export const CassandraLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.host",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       authenticationType: {
         serializedName: "typeProperties.authenticationType",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       port: {
         serializedName: "typeProperties.port",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       username: {
         serializedName: "typeProperties.username",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -9960,8 +9646,7 @@ export const CassandraLinkedService: coreClient.CompositeMapper = {
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -9982,8 +9667,7 @@ export const MongoDbLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.server",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       authenticationType: {
@@ -9996,15 +9680,13 @@ export const MongoDbLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.databaseName",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       username: {
         serializedName: "typeProperties.username",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -10017,36 +9699,31 @@ export const MongoDbLinkedService: coreClient.CompositeMapper = {
       authSource: {
         serializedName: "typeProperties.authSource",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       port: {
         serializedName: "typeProperties.port",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       enableSsl: {
         serializedName: "typeProperties.enableSsl",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       allowSelfSignedServerCert: {
         serializedName: "typeProperties.allowSelfSignedServerCert",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -10067,16 +9744,14 @@ export const MongoDbAtlasLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.connectionString",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       database: {
         serializedName: "typeProperties.database",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -10097,16 +9772,14 @@ export const MongoDbV2LinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.connectionString",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       database: {
         serializedName: "typeProperties.database",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -10126,24 +9799,21 @@ export const CosmosDbMongoDbApiLinkedService: coreClient.CompositeMapper = {
       isServerVersionAbove32: {
         serializedName: "typeProperties.isServerVersionAbove32",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       connectionString: {
         serializedName: "typeProperties.connectionString",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       database: {
         serializedName: "typeProperties.database",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -10164,15 +9834,13 @@ export const AzureDataLakeStoreLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.dataLakeStoreUri",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       servicePrincipalId: {
         serializedName: "typeProperties.servicePrincipalId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       servicePrincipalKey: {
@@ -10185,43 +9853,37 @@ export const AzureDataLakeStoreLinkedService: coreClient.CompositeMapper = {
       tenant: {
         serializedName: "typeProperties.tenant",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       azureCloudType: {
         serializedName: "typeProperties.azureCloudType",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       accountName: {
         serializedName: "typeProperties.accountName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       subscriptionId: {
         serializedName: "typeProperties.subscriptionId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       resourceGroupName: {
         serializedName: "typeProperties.resourceGroupName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       credential: {
@@ -10249,22 +9911,19 @@ export const AzureBlobFSLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.url",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       accountKey: {
         serializedName: "typeProperties.accountKey",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       servicePrincipalId: {
         serializedName: "typeProperties.servicePrincipalId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       servicePrincipalKey: {
@@ -10277,22 +9936,19 @@ export const AzureBlobFSLinkedService: coreClient.CompositeMapper = {
       tenant: {
         serializedName: "typeProperties.tenant",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       azureCloudType: {
         serializedName: "typeProperties.azureCloudType",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       credential: {
@@ -10320,24 +9976,21 @@ export const Office365LinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.office365TenantId",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       servicePrincipalTenantId: {
         serializedName: "typeProperties.servicePrincipalTenantId",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       servicePrincipalId: {
         serializedName: "typeProperties.servicePrincipalId",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       servicePrincipalKey: {
@@ -10350,8 +10003,7 @@ export const Office365LinkedService: coreClient.CompositeMapper = {
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -10371,15 +10023,13 @@ export const SalesforceLinkedService: coreClient.CompositeMapper = {
       environmentUrl: {
         serializedName: "typeProperties.environmentUrl",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       username: {
         serializedName: "typeProperties.username",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -10399,15 +10049,13 @@ export const SalesforceLinkedService: coreClient.CompositeMapper = {
       apiVersion: {
         serializedName: "typeProperties.apiVersion",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -10427,15 +10075,13 @@ export const SalesforceServiceCloudLinkedService: coreClient.CompositeMapper = {
       environmentUrl: {
         serializedName: "typeProperties.environmentUrl",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       username: {
         serializedName: "typeProperties.username",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -10455,22 +10101,19 @@ export const SalesforceServiceCloudLinkedService: coreClient.CompositeMapper = {
       apiVersion: {
         serializedName: "typeProperties.apiVersion",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       extendedProperties: {
         serializedName: "typeProperties.extendedProperties",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -10491,15 +10134,13 @@ export const SapCloudForCustomerLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.url",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       username: {
         serializedName: "typeProperties.username",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -10512,8 +10153,7 @@ export const SapCloudForCustomerLinkedService: coreClient.CompositeMapper = {
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -10573,43 +10213,37 @@ export const SapOpenHubLinkedService: coreClient.CompositeMapper = {
       server: {
         serializedName: "typeProperties.server",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       systemNumber: {
         serializedName: "typeProperties.systemNumber",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       clientId: {
         serializedName: "typeProperties.clientId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       language: {
         serializedName: "typeProperties.language",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       systemId: {
         serializedName: "typeProperties.systemId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       userName: {
         serializedName: "typeProperties.userName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -10622,29 +10256,25 @@ export const SapOpenHubLinkedService: coreClient.CompositeMapper = {
       messageServer: {
         serializedName: "typeProperties.messageServer",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       messageServerService: {
         serializedName: "typeProperties.messageServerService",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       logonGroup: {
         serializedName: "typeProperties.logonGroup",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -10665,15 +10295,13 @@ export const RestServiceLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.url",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       enableServerCertificateValidation: {
         serializedName: "typeProperties.enableServerCertificateValidation",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       authenticationType: {
@@ -10686,8 +10314,7 @@ export const RestServiceLinkedService: coreClient.CompositeMapper = {
       userName: {
         serializedName: "typeProperties.userName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -10700,15 +10327,13 @@ export const RestServiceLinkedService: coreClient.CompositeMapper = {
       authHeaders: {
         serializedName: "typeProperties.authHeaders",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       servicePrincipalId: {
         serializedName: "typeProperties.servicePrincipalId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       servicePrincipalKey: {
@@ -10721,29 +10346,25 @@ export const RestServiceLinkedService: coreClient.CompositeMapper = {
       tenant: {
         serializedName: "typeProperties.tenant",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       azureCloudType: {
         serializedName: "typeProperties.azureCloudType",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       aadResourceId: {
         serializedName: "typeProperties.aadResourceId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       credential: {
@@ -10770,15 +10391,13 @@ export const AmazonS3LinkedService: coreClient.CompositeMapper = {
       authenticationType: {
         serializedName: "typeProperties.authenticationType",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       accessKeyId: {
         serializedName: "typeProperties.accessKeyId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       secretAccessKey: {
@@ -10791,8 +10410,7 @@ export const AmazonS3LinkedService: coreClient.CompositeMapper = {
       serviceUrl: {
         serializedName: "typeProperties.serviceUrl",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       sessionToken: {
@@ -10805,8 +10423,7 @@ export const AmazonS3LinkedService: coreClient.CompositeMapper = {
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -10827,15 +10444,13 @@ export const AmazonRedshiftLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.server",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       username: {
         serializedName: "typeProperties.username",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -10849,22 +10464,19 @@ export const AmazonRedshiftLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.database",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       port: {
         serializedName: "typeProperties.port",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -10885,8 +10497,7 @@ export const CustomDataSourceLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -10907,8 +10518,7 @@ export const AzureSearchLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.url",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       key: {
@@ -10921,8 +10531,7 @@ export const AzureSearchLinkedService: coreClient.CompositeMapper = {
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -10943,8 +10552,7 @@ export const HttpLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.url",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       authenticationType: {
@@ -10956,8 +10564,7 @@ export const HttpLinkedService: coreClient.CompositeMapper = {
       userName: {
         serializedName: "typeProperties.userName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -10970,36 +10577,31 @@ export const HttpLinkedService: coreClient.CompositeMapper = {
       authHeaders: {
         serializedName: "typeProperties.authHeaders",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       embeddedCertData: {
         serializedName: "typeProperties.embeddedCertData",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       certThumbprint: {
         serializedName: "typeProperties.certThumbprint",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       enableServerCertificateValidation: {
         serializedName: "typeProperties.enableServerCertificateValidation",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -11020,15 +10622,13 @@ export const FtpServerLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.host",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       port: {
         serializedName: "typeProperties.port",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       authenticationType: {
@@ -11040,8 +10640,7 @@ export const FtpServerLinkedService: coreClient.CompositeMapper = {
       userName: {
         serializedName: "typeProperties.userName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -11054,22 +10653,19 @@ export const FtpServerLinkedService: coreClient.CompositeMapper = {
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       enableSsl: {
         serializedName: "typeProperties.enableSsl",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       enableServerCertificateValidation: {
         serializedName: "typeProperties.enableServerCertificateValidation",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -11090,15 +10686,13 @@ export const SftpServerLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.host",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       port: {
         serializedName: "typeProperties.port",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       authenticationType: {
@@ -11110,8 +10704,7 @@ export const SftpServerLinkedService: coreClient.CompositeMapper = {
       userName: {
         serializedName: "typeProperties.userName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -11124,15 +10717,13 @@ export const SftpServerLinkedService: coreClient.CompositeMapper = {
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       privateKeyPath: {
         serializedName: "typeProperties.privateKeyPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       privateKeyContent: {
@@ -11152,15 +10743,13 @@ export const SftpServerLinkedService: coreClient.CompositeMapper = {
       skipHostKeyValidation: {
         serializedName: "typeProperties.skipHostKeyValidation",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       hostKeyFingerprint: {
         serializedName: "typeProperties.hostKeyFingerprint",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -11181,31 +10770,27 @@ export const SapBWLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.server",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       systemNumber: {
         serializedName: "typeProperties.systemNumber",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       clientId: {
         serializedName: "typeProperties.clientId",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       userName: {
         serializedName: "typeProperties.userName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -11218,8 +10803,7 @@ export const SapBWLinkedService: coreClient.CompositeMapper = {
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -11239,15 +10823,13 @@ export const SapHanaLinkedService: coreClient.CompositeMapper = {
       connectionString: {
         serializedName: "typeProperties.connectionString",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       server: {
         serializedName: "typeProperties.server",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       authenticationType: {
@@ -11259,8 +10841,7 @@ export const SapHanaLinkedService: coreClient.CompositeMapper = {
       userName: {
         serializedName: "typeProperties.userName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -11273,8 +10854,7 @@ export const SapHanaLinkedService: coreClient.CompositeMapper = {
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -11295,24 +10875,21 @@ export const AmazonMWSLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.endpoint",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       marketplaceID: {
         serializedName: "typeProperties.marketplaceID",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       sellerID: {
         serializedName: "typeProperties.sellerID",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       mwsAuthToken: {
@@ -11326,8 +10903,7 @@ export const AmazonMWSLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.accessKeyId",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       secretKey: {
@@ -11340,29 +10916,25 @@ export const AmazonMWSLinkedService: coreClient.CompositeMapper = {
       useEncryptedEndpoints: {
         serializedName: "typeProperties.useEncryptedEndpoints",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       useHostVerification: {
         serializedName: "typeProperties.useHostVerification",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       usePeerVerification: {
         serializedName: "typeProperties.usePeerVerification",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -11382,8 +10954,7 @@ export const AzurePostgreSqlLinkedService: coreClient.CompositeMapper = {
       connectionString: {
         serializedName: "typeProperties.connectionString",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -11396,8 +10967,7 @@ export const AzurePostgreSqlLinkedService: coreClient.CompositeMapper = {
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -11417,24 +10987,21 @@ export const ConcurLinkedService: coreClient.CompositeMapper = {
       connectionProperties: {
         serializedName: "typeProperties.connectionProperties",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       clientId: {
         serializedName: "typeProperties.clientId",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       username: {
         serializedName: "typeProperties.username",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -11447,29 +11014,25 @@ export const ConcurLinkedService: coreClient.CompositeMapper = {
       useEncryptedEndpoints: {
         serializedName: "typeProperties.useEncryptedEndpoints",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       useHostVerification: {
         serializedName: "typeProperties.useHostVerification",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       usePeerVerification: {
         serializedName: "typeProperties.usePeerVerification",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -11489,8 +11052,7 @@ export const CouchbaseLinkedService: coreClient.CompositeMapper = {
       connectionString: {
         serializedName: "typeProperties.connectionString",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       credString: {
@@ -11503,8 +11065,7 @@ export const CouchbaseLinkedService: coreClient.CompositeMapper = {
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -11524,8 +11085,7 @@ export const DrillLinkedService: coreClient.CompositeMapper = {
       connectionString: {
         serializedName: "typeProperties.connectionString",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       pwd: {
@@ -11538,8 +11098,7 @@ export const DrillLinkedService: coreClient.CompositeMapper = {
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -11560,16 +11119,14 @@ export const EloquaLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.endpoint",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       username: {
         serializedName: "typeProperties.username",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -11582,29 +11139,25 @@ export const EloquaLinkedService: coreClient.CompositeMapper = {
       useEncryptedEndpoints: {
         serializedName: "typeProperties.useEncryptedEndpoints",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       useHostVerification: {
         serializedName: "typeProperties.useHostVerification",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       usePeerVerification: {
         serializedName: "typeProperties.usePeerVerification",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -11625,22 +11178,19 @@ export const GoogleBigQueryLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.project",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       additionalProjects: {
         serializedName: "typeProperties.additionalProjects",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       requestGoogleDriveScope: {
         serializedName: "typeProperties.requestGoogleDriveScope",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       authenticationType: {
@@ -11660,8 +11210,7 @@ export const GoogleBigQueryLinkedService: coreClient.CompositeMapper = {
       clientId: {
         serializedName: "typeProperties.clientId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       clientSecret: {
@@ -11674,36 +11223,31 @@ export const GoogleBigQueryLinkedService: coreClient.CompositeMapper = {
       email: {
         serializedName: "typeProperties.email",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       keyFilePath: {
         serializedName: "typeProperties.keyFilePath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       trustedCertPath: {
         serializedName: "typeProperties.trustedCertPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       useSystemTrustStore: {
         serializedName: "typeProperties.useSystemTrustStore",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -11723,8 +11267,7 @@ export const GreenplumLinkedService: coreClient.CompositeMapper = {
       connectionString: {
         serializedName: "typeProperties.connectionString",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       pwd: {
@@ -11737,8 +11280,7 @@ export const GreenplumLinkedService: coreClient.CompositeMapper = {
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -11759,22 +11301,19 @@ export const HBaseLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.host",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       port: {
         serializedName: "typeProperties.port",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       httpPath: {
         serializedName: "typeProperties.httpPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       authenticationType: {
@@ -11787,8 +11326,7 @@ export const HBaseLinkedService: coreClient.CompositeMapper = {
       username: {
         serializedName: "typeProperties.username",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -11801,36 +11339,31 @@ export const HBaseLinkedService: coreClient.CompositeMapper = {
       enableSsl: {
         serializedName: "typeProperties.enableSsl",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       trustedCertPath: {
         serializedName: "typeProperties.trustedCertPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       allowHostNameCNMismatch: {
         serializedName: "typeProperties.allowHostNameCNMismatch",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       allowSelfSignedServerCert: {
         serializedName: "typeProperties.allowSelfSignedServerCert",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -11851,15 +11384,13 @@ export const HiveLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.host",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       port: {
         serializedName: "typeProperties.port",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       serverType: {
@@ -11884,29 +11415,25 @@ export const HiveLinkedService: coreClient.CompositeMapper = {
       serviceDiscoveryMode: {
         serializedName: "typeProperties.serviceDiscoveryMode",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       zooKeeperNameSpace: {
         serializedName: "typeProperties.zooKeeperNameSpace",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       useNativeQuery: {
         serializedName: "typeProperties.useNativeQuery",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       username: {
         serializedName: "typeProperties.username",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -11919,50 +11446,43 @@ export const HiveLinkedService: coreClient.CompositeMapper = {
       httpPath: {
         serializedName: "typeProperties.httpPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       enableSsl: {
         serializedName: "typeProperties.enableSsl",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       trustedCertPath: {
         serializedName: "typeProperties.trustedCertPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       useSystemTrustStore: {
         serializedName: "typeProperties.useSystemTrustStore",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       allowHostNameCNMismatch: {
         serializedName: "typeProperties.allowHostNameCNMismatch",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       allowSelfSignedServerCert: {
         serializedName: "typeProperties.allowSelfSignedServerCert",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -11983,8 +11503,7 @@ export const HubspotLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.clientId",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       clientSecret: {
@@ -12011,29 +11530,25 @@ export const HubspotLinkedService: coreClient.CompositeMapper = {
       useEncryptedEndpoints: {
         serializedName: "typeProperties.useEncryptedEndpoints",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       useHostVerification: {
         serializedName: "typeProperties.useHostVerification",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       usePeerVerification: {
         serializedName: "typeProperties.usePeerVerification",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -12054,15 +11569,13 @@ export const ImpalaLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.host",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       port: {
         serializedName: "typeProperties.port",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       authenticationType: {
@@ -12075,8 +11588,7 @@ export const ImpalaLinkedService: coreClient.CompositeMapper = {
       username: {
         serializedName: "typeProperties.username",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -12089,43 +11601,37 @@ export const ImpalaLinkedService: coreClient.CompositeMapper = {
       enableSsl: {
         serializedName: "typeProperties.enableSsl",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       trustedCertPath: {
         serializedName: "typeProperties.trustedCertPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       useSystemTrustStore: {
         serializedName: "typeProperties.useSystemTrustStore",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       allowHostNameCNMismatch: {
         serializedName: "typeProperties.allowHostNameCNMismatch",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       allowSelfSignedServerCert: {
         serializedName: "typeProperties.allowSelfSignedServerCert",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -12146,23 +11652,20 @@ export const JiraLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.host",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       port: {
         serializedName: "typeProperties.port",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       username: {
         serializedName: "typeProperties.username",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -12175,29 +11678,25 @@ export const JiraLinkedService: coreClient.CompositeMapper = {
       useEncryptedEndpoints: {
         serializedName: "typeProperties.useEncryptedEndpoints",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       useHostVerification: {
         serializedName: "typeProperties.useHostVerification",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       usePeerVerification: {
         serializedName: "typeProperties.usePeerVerification",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -12218,8 +11717,7 @@ export const MagentoLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.host",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       accessToken: {
@@ -12232,29 +11730,25 @@ export const MagentoLinkedService: coreClient.CompositeMapper = {
       useEncryptedEndpoints: {
         serializedName: "typeProperties.useEncryptedEndpoints",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       useHostVerification: {
         serializedName: "typeProperties.useHostVerification",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       usePeerVerification: {
         serializedName: "typeProperties.usePeerVerification",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -12274,8 +11768,7 @@ export const MariaDBLinkedService: coreClient.CompositeMapper = {
       connectionString: {
         serializedName: "typeProperties.connectionString",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       pwd: {
@@ -12288,8 +11781,7 @@ export const MariaDBLinkedService: coreClient.CompositeMapper = {
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -12309,8 +11801,7 @@ export const AzureMariaDBLinkedService: coreClient.CompositeMapper = {
       connectionString: {
         serializedName: "typeProperties.connectionString",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       pwd: {
@@ -12323,8 +11814,7 @@ export const AzureMariaDBLinkedService: coreClient.CompositeMapper = {
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -12345,16 +11835,14 @@ export const MarketoLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.endpoint",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       clientId: {
         serializedName: "typeProperties.clientId",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       clientSecret: {
@@ -12367,29 +11855,25 @@ export const MarketoLinkedService: coreClient.CompositeMapper = {
       useEncryptedEndpoints: {
         serializedName: "typeProperties.useEncryptedEndpoints",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       useHostVerification: {
         serializedName: "typeProperties.useHostVerification",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       usePeerVerification: {
         serializedName: "typeProperties.usePeerVerification",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -12410,16 +11894,14 @@ export const PaypalLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.host",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       clientId: {
         serializedName: "typeProperties.clientId",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       clientSecret: {
@@ -12432,29 +11914,25 @@ export const PaypalLinkedService: coreClient.CompositeMapper = {
       useEncryptedEndpoints: {
         serializedName: "typeProperties.useEncryptedEndpoints",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       useHostVerification: {
         serializedName: "typeProperties.useHostVerification",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       usePeerVerification: {
         serializedName: "typeProperties.usePeerVerification",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -12475,22 +11953,19 @@ export const PhoenixLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.host",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       port: {
         serializedName: "typeProperties.port",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       httpPath: {
         serializedName: "typeProperties.httpPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       authenticationType: {
@@ -12503,8 +11978,7 @@ export const PhoenixLinkedService: coreClient.CompositeMapper = {
       username: {
         serializedName: "typeProperties.username",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -12517,43 +11991,37 @@ export const PhoenixLinkedService: coreClient.CompositeMapper = {
       enableSsl: {
         serializedName: "typeProperties.enableSsl",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       trustedCertPath: {
         serializedName: "typeProperties.trustedCertPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       useSystemTrustStore: {
         serializedName: "typeProperties.useSystemTrustStore",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       allowHostNameCNMismatch: {
         serializedName: "typeProperties.allowHostNameCNMismatch",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       allowSelfSignedServerCert: {
         serializedName: "typeProperties.allowSelfSignedServerCert",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -12574,31 +12042,27 @@ export const PrestoLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.host",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       serverVersion: {
         serializedName: "typeProperties.serverVersion",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       catalog: {
         serializedName: "typeProperties.catalog",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       port: {
         serializedName: "typeProperties.port",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       authenticationType: {
@@ -12611,8 +12075,7 @@ export const PrestoLinkedService: coreClient.CompositeMapper = {
       username: {
         serializedName: "typeProperties.username",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -12625,50 +12088,43 @@ export const PrestoLinkedService: coreClient.CompositeMapper = {
       enableSsl: {
         serializedName: "typeProperties.enableSsl",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       trustedCertPath: {
         serializedName: "typeProperties.trustedCertPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       useSystemTrustStore: {
         serializedName: "typeProperties.useSystemTrustStore",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       allowHostNameCNMismatch: {
         serializedName: "typeProperties.allowHostNameCNMismatch",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       allowSelfSignedServerCert: {
         serializedName: "typeProperties.allowSelfSignedServerCert",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       timeZoneID: {
         serializedName: "typeProperties.timeZoneID",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -12688,29 +12144,25 @@ export const QuickBooksLinkedService: coreClient.CompositeMapper = {
       connectionProperties: {
         serializedName: "typeProperties.connectionProperties",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       endpoint: {
         serializedName: "typeProperties.endpoint",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       companyId: {
         serializedName: "typeProperties.companyId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       consumerKey: {
         serializedName: "typeProperties.consumerKey",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       consumerSecret: {
@@ -12737,15 +12189,13 @@ export const QuickBooksLinkedService: coreClient.CompositeMapper = {
       useEncryptedEndpoints: {
         serializedName: "typeProperties.useEncryptedEndpoints",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -12766,8 +12216,7 @@ export const ServiceNowLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.endpoint",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       authenticationType: {
@@ -12780,8 +12229,7 @@ export const ServiceNowLinkedService: coreClient.CompositeMapper = {
       username: {
         serializedName: "typeProperties.username",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -12794,8 +12242,7 @@ export const ServiceNowLinkedService: coreClient.CompositeMapper = {
       clientId: {
         serializedName: "typeProperties.clientId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       clientSecret: {
@@ -12808,29 +12255,25 @@ export const ServiceNowLinkedService: coreClient.CompositeMapper = {
       useEncryptedEndpoints: {
         serializedName: "typeProperties.useEncryptedEndpoints",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       useHostVerification: {
         serializedName: "typeProperties.useHostVerification",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       usePeerVerification: {
         serializedName: "typeProperties.usePeerVerification",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -12851,8 +12294,7 @@ export const ShopifyLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.host",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       accessToken: {
@@ -12865,29 +12307,25 @@ export const ShopifyLinkedService: coreClient.CompositeMapper = {
       useEncryptedEndpoints: {
         serializedName: "typeProperties.useEncryptedEndpoints",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       useHostVerification: {
         serializedName: "typeProperties.useHostVerification",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       usePeerVerification: {
         serializedName: "typeProperties.usePeerVerification",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -12908,16 +12346,14 @@ export const SparkLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.host",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       port: {
         serializedName: "typeProperties.port",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       serverType: {
@@ -12942,8 +12378,7 @@ export const SparkLinkedService: coreClient.CompositeMapper = {
       username: {
         serializedName: "typeProperties.username",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -12956,50 +12391,43 @@ export const SparkLinkedService: coreClient.CompositeMapper = {
       httpPath: {
         serializedName: "typeProperties.httpPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       enableSsl: {
         serializedName: "typeProperties.enableSsl",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       trustedCertPath: {
         serializedName: "typeProperties.trustedCertPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       useSystemTrustStore: {
         serializedName: "typeProperties.useSystemTrustStore",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       allowHostNameCNMismatch: {
         serializedName: "typeProperties.allowHostNameCNMismatch",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       allowSelfSignedServerCert: {
         serializedName: "typeProperties.allowSelfSignedServerCert",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -13019,22 +12447,19 @@ export const SquareLinkedService: coreClient.CompositeMapper = {
       connectionProperties: {
         serializedName: "typeProperties.connectionProperties",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       host: {
         serializedName: "typeProperties.host",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       clientId: {
         serializedName: "typeProperties.clientId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       clientSecret: {
@@ -13047,36 +12472,31 @@ export const SquareLinkedService: coreClient.CompositeMapper = {
       redirectUri: {
         serializedName: "typeProperties.redirectUri",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       useEncryptedEndpoints: {
         serializedName: "typeProperties.useEncryptedEndpoints",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       useHostVerification: {
         serializedName: "typeProperties.useHostVerification",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       usePeerVerification: {
         serializedName: "typeProperties.usePeerVerification",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -13096,15 +12516,13 @@ export const XeroLinkedService: coreClient.CompositeMapper = {
       connectionProperties: {
         serializedName: "typeProperties.connectionProperties",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       host: {
         serializedName: "typeProperties.host",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       consumerKey: {
@@ -13124,29 +12542,25 @@ export const XeroLinkedService: coreClient.CompositeMapper = {
       useEncryptedEndpoints: {
         serializedName: "typeProperties.useEncryptedEndpoints",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       useHostVerification: {
         serializedName: "typeProperties.useHostVerification",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       usePeerVerification: {
         serializedName: "typeProperties.usePeerVerification",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -13166,15 +12580,13 @@ export const ZohoLinkedService: coreClient.CompositeMapper = {
       connectionProperties: {
         serializedName: "typeProperties.connectionProperties",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       endpoint: {
         serializedName: "typeProperties.endpoint",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       accessToken: {
@@ -13187,29 +12599,25 @@ export const ZohoLinkedService: coreClient.CompositeMapper = {
       useEncryptedEndpoints: {
         serializedName: "typeProperties.useEncryptedEndpoints",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       useHostVerification: {
         serializedName: "typeProperties.useHostVerification",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       usePeerVerification: {
         serializedName: "typeProperties.usePeerVerification",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -13229,8 +12637,7 @@ export const VerticaLinkedService: coreClient.CompositeMapper = {
       connectionString: {
         serializedName: "typeProperties.connectionString",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       pwd: {
@@ -13243,8 +12650,7 @@ export const VerticaLinkedService: coreClient.CompositeMapper = {
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -13264,8 +12670,7 @@ export const NetezzaLinkedService: coreClient.CompositeMapper = {
       connectionString: {
         serializedName: "typeProperties.connectionString",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       pwd: {
@@ -13278,8 +12683,7 @@ export const NetezzaLinkedService: coreClient.CompositeMapper = {
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -13299,15 +12703,13 @@ export const SalesforceMarketingCloudLinkedService: coreClient.CompositeMapper =
       connectionProperties: {
         serializedName: "typeProperties.connectionProperties",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       clientId: {
         serializedName: "typeProperties.clientId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       clientSecret: {
@@ -13320,29 +12722,25 @@ export const SalesforceMarketingCloudLinkedService: coreClient.CompositeMapper =
       useEncryptedEndpoints: {
         serializedName: "typeProperties.useEncryptedEndpoints",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       useHostVerification: {
         serializedName: "typeProperties.useHostVerification",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       usePeerVerification: {
         serializedName: "typeProperties.usePeerVerification",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -13363,24 +12761,21 @@ export const HDInsightOnDemandLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.clusterSize",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       timeToLive: {
         serializedName: "typeProperties.timeToLive",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       version: {
         serializedName: "typeProperties.version",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       linkedServiceName: {
@@ -13394,15 +12789,13 @@ export const HDInsightOnDemandLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.hostSubscriptionId",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       servicePrincipalId: {
         serializedName: "typeProperties.servicePrincipalId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       servicePrincipalKey: {
@@ -13416,30 +12809,26 @@ export const HDInsightOnDemandLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.tenant",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       clusterResourceGroup: {
         serializedName: "typeProperties.clusterResourceGroup",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       clusterNamePrefix: {
         serializedName: "typeProperties.clusterNamePrefix",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       clusterUserName: {
         serializedName: "typeProperties.clusterUserName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       clusterPassword: {
@@ -13452,8 +12841,7 @@ export const HDInsightOnDemandLinkedService: coreClient.CompositeMapper = {
       clusterSshUserName: {
         serializedName: "typeProperties.clusterSshUserName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       clusterSshPassword: {
@@ -13485,99 +12873,85 @@ export const HDInsightOnDemandLinkedService: coreClient.CompositeMapper = {
       clusterType: {
         serializedName: "typeProperties.clusterType",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       sparkVersion: {
         serializedName: "typeProperties.sparkVersion",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       coreConfiguration: {
         serializedName: "typeProperties.coreConfiguration",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       hBaseConfiguration: {
         serializedName: "typeProperties.hBaseConfiguration",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       hdfsConfiguration: {
         serializedName: "typeProperties.hdfsConfiguration",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       hiveConfiguration: {
         serializedName: "typeProperties.hiveConfiguration",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       mapReduceConfiguration: {
         serializedName: "typeProperties.mapReduceConfiguration",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       oozieConfiguration: {
         serializedName: "typeProperties.oozieConfiguration",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       stormConfiguration: {
         serializedName: "typeProperties.stormConfiguration",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       yarnConfiguration: {
         serializedName: "typeProperties.yarnConfiguration",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       headNodeSize: {
         serializedName: "typeProperties.headNodeSize",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       dataNodeSize: {
         serializedName: "typeProperties.dataNodeSize",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       zookeeperNodeSize: {
         serializedName: "typeProperties.zookeeperNodeSize",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       scriptActions: {
@@ -13595,15 +12969,13 @@ export const HDInsightOnDemandLinkedService: coreClient.CompositeMapper = {
       virtualNetworkId: {
         serializedName: "typeProperties.virtualNetworkId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       subnetName: {
         serializedName: "typeProperties.subnetName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       credential: {
@@ -13631,15 +13003,13 @@ export const AzureDataLakeAnalyticsLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.accountName",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       servicePrincipalId: {
         serializedName: "typeProperties.servicePrincipalId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       servicePrincipalKey: {
@@ -13653,36 +13023,31 @@ export const AzureDataLakeAnalyticsLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.tenant",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       subscriptionId: {
         serializedName: "typeProperties.subscriptionId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       resourceGroupName: {
         serializedName: "typeProperties.resourceGroupName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       dataLakeAnalyticsUri: {
         serializedName: "typeProperties.dataLakeAnalyticsUri",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -13703,8 +13068,7 @@ export const AzureDatabricksLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.domain",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       accessToken: {
@@ -13717,119 +13081,100 @@ export const AzureDatabricksLinkedService: coreClient.CompositeMapper = {
       authentication: {
         serializedName: "typeProperties.authentication",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       workspaceResourceId: {
         serializedName: "typeProperties.workspaceResourceId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       existingClusterId: {
         serializedName: "typeProperties.existingClusterId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       instancePoolId: {
         serializedName: "typeProperties.instancePoolId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       newClusterVersion: {
         serializedName: "typeProperties.newClusterVersion",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       newClusterNumOfWorker: {
         serializedName: "typeProperties.newClusterNumOfWorker",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       newClusterNodeType: {
         serializedName: "typeProperties.newClusterNodeType",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       newClusterSparkConf: {
         serializedName: "typeProperties.newClusterSparkConf",
         type: {
           name: "Dictionary",
-          value: {
-            type: { name: "Dictionary", value: { type: { name: "any" } } }
-          }
+          value: { type: { name: "any" } }
         }
       },
       newClusterSparkEnvVars: {
         serializedName: "typeProperties.newClusterSparkEnvVars",
         type: {
           name: "Dictionary",
-          value: {
-            type: { name: "Dictionary", value: { type: { name: "any" } } }
-          }
+          value: { type: { name: "any" } }
         }
       },
       newClusterCustomTags: {
         serializedName: "typeProperties.newClusterCustomTags",
         type: {
           name: "Dictionary",
-          value: {
-            type: { name: "Dictionary", value: { type: { name: "any" } } }
-          }
+          value: { type: { name: "any" } }
         }
       },
       newClusterLogDestination: {
         serializedName: "typeProperties.newClusterLogDestination",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       newClusterDriverNodeType: {
         serializedName: "typeProperties.newClusterDriverNodeType",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       newClusterInitScripts: {
         serializedName: "typeProperties.newClusterInitScripts",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       newClusterEnableElasticDisk: {
         serializedName: "typeProperties.newClusterEnableElasticDisk",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       policyId: {
         serializedName: "typeProperties.policyId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       credential: {
@@ -13857,8 +13202,7 @@ export const AzureDatabricksDeltaLakeLinkedService: coreClient.CompositeMapper =
         serializedName: "typeProperties.domain",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       accessToken: {
@@ -13871,15 +13215,13 @@ export const AzureDatabricksDeltaLakeLinkedService: coreClient.CompositeMapper =
       clusterId: {
         serializedName: "typeProperties.clusterId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -13900,16 +13242,14 @@ export const ResponsysLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.endpoint",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       clientId: {
         serializedName: "typeProperties.clientId",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       clientSecret: {
@@ -13922,29 +13262,25 @@ export const ResponsysLinkedService: coreClient.CompositeMapper = {
       useEncryptedEndpoints: {
         serializedName: "typeProperties.useEncryptedEndpoints",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       useHostVerification: {
         serializedName: "typeProperties.useHostVerification",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       usePeerVerification: {
         serializedName: "typeProperties.usePeerVerification",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -13965,16 +13301,14 @@ export const DynamicsAXLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.url",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       servicePrincipalId: {
         serializedName: "typeProperties.servicePrincipalId",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       servicePrincipalKey: {
@@ -13988,23 +13322,20 @@ export const DynamicsAXLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.tenant",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       aadResourceId: {
         serializedName: "typeProperties.aadResourceId",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -14025,16 +13356,14 @@ export const OracleServiceCloudLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.host",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       username: {
         serializedName: "typeProperties.username",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -14047,29 +13376,25 @@ export const OracleServiceCloudLinkedService: coreClient.CompositeMapper = {
       useEncryptedEndpoints: {
         serializedName: "typeProperties.useEncryptedEndpoints",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       useHostVerification: {
         serializedName: "typeProperties.useHostVerification",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       usePeerVerification: {
         serializedName: "typeProperties.usePeerVerification",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -14090,8 +13415,7 @@ export const GoogleAdWordsLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.clientCustomerID",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       developerToken: {
@@ -14118,8 +13442,7 @@ export const GoogleAdWordsLinkedService: coreClient.CompositeMapper = {
       clientId: {
         serializedName: "typeProperties.clientId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       clientSecret: {
@@ -14132,36 +13455,31 @@ export const GoogleAdWordsLinkedService: coreClient.CompositeMapper = {
       email: {
         serializedName: "typeProperties.email",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       keyFilePath: {
         serializedName: "typeProperties.keyFilePath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       trustedCertPath: {
         serializedName: "typeProperties.trustedCertPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       useSystemTrustStore: {
         serializedName: "typeProperties.useSystemTrustStore",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -14181,43 +13499,37 @@ export const SapTableLinkedService: coreClient.CompositeMapper = {
       server: {
         serializedName: "typeProperties.server",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       systemNumber: {
         serializedName: "typeProperties.systemNumber",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       clientId: {
         serializedName: "typeProperties.clientId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       language: {
         serializedName: "typeProperties.language",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       systemId: {
         serializedName: "typeProperties.systemId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       userName: {
         serializedName: "typeProperties.userName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -14230,64 +13542,55 @@ export const SapTableLinkedService: coreClient.CompositeMapper = {
       messageServer: {
         serializedName: "typeProperties.messageServer",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       messageServerService: {
         serializedName: "typeProperties.messageServerService",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       sncMode: {
         serializedName: "typeProperties.sncMode",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       sncMyName: {
         serializedName: "typeProperties.sncMyName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       sncPartnerName: {
         serializedName: "typeProperties.sncPartnerName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       sncLibraryPath: {
         serializedName: "typeProperties.sncLibraryPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       sncQop: {
         serializedName: "typeProperties.sncQop",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       logonGroup: {
         serializedName: "typeProperties.logonGroup",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -14308,15 +13611,13 @@ export const AzureDataExplorerLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.endpoint",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       servicePrincipalId: {
         serializedName: "typeProperties.servicePrincipalId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       servicePrincipalKey: {
@@ -14330,15 +13631,13 @@ export const AzureDataExplorerLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.database",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       tenant: {
         serializedName: "typeProperties.tenant",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       credential: {
@@ -14366,8 +13665,7 @@ export const AzureFunctionLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.functionAppUrl",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       functionKey: {
@@ -14380,8 +13678,7 @@ export const AzureFunctionLinkedService: coreClient.CompositeMapper = {
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       credential: {
@@ -14394,15 +13691,13 @@ export const AzureFunctionLinkedService: coreClient.CompositeMapper = {
       resourceId: {
         serializedName: "typeProperties.resourceId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       authentication: {
         serializedName: "typeProperties.authentication",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -14423,8 +13718,7 @@ export const SnowflakeLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.connectionString",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -14437,8 +13731,7 @@ export const SnowflakeLinkedService: coreClient.CompositeMapper = {
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -14459,24 +13752,21 @@ export const SharePointOnlineListLinkedService: coreClient.CompositeMapper = {
         serializedName: "typeProperties.siteUrl",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       tenantId: {
         serializedName: "typeProperties.tenantId",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       servicePrincipalId: {
         serializedName: "typeProperties.servicePrincipalId",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       servicePrincipalKey: {
@@ -14489,8 +13779,7 @@ export const SharePointOnlineListLinkedService: coreClient.CompositeMapper = {
       encryptedCredential: {
         serializedName: "typeProperties.encryptedCredential",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -14511,43 +13800,37 @@ export const AmazonS3Dataset: coreClient.CompositeMapper = {
         serializedName: "typeProperties.bucketName",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       key: {
         serializedName: "typeProperties.key",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       prefix: {
         serializedName: "typeProperties.prefix",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       version: {
         serializedName: "typeProperties.version",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       modifiedDatetimeStart: {
         serializedName: "typeProperties.modifiedDatetimeStart",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       modifiedDatetimeEnd: {
         serializedName: "typeProperties.modifiedDatetimeEnd",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       format: {
@@ -14588,8 +13871,7 @@ export const AvroDataset: coreClient.CompositeMapper = {
       avroCompressionCodec: {
         serializedName: "typeProperties.avroCompressionCodec",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       avroCompressionLevel: {
@@ -14626,29 +13908,25 @@ export const ExcelDataset: coreClient.CompositeMapper = {
       sheetName: {
         serializedName: "typeProperties.sheetName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       sheetIndex: {
         serializedName: "typeProperties.sheetIndex",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       range: {
         serializedName: "typeProperties.range",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       firstRowAsHeader: {
         serializedName: "typeProperties.firstRowAsHeader",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       compression: {
@@ -14661,8 +13939,7 @@ export const ExcelDataset: coreClient.CompositeMapper = {
       nullValue: {
         serializedName: "typeProperties.nullValue",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -14689,8 +13966,7 @@ export const ParquetDataset: coreClient.CompositeMapper = {
       compressionCodec: {
         serializedName: "typeProperties.compressionCodec",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -14717,64 +13993,55 @@ export const DelimitedTextDataset: coreClient.CompositeMapper = {
       columnDelimiter: {
         serializedName: "typeProperties.columnDelimiter",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       rowDelimiter: {
         serializedName: "typeProperties.rowDelimiter",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encodingName: {
         serializedName: "typeProperties.encodingName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       compressionCodec: {
         serializedName: "typeProperties.compressionCodec",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       compressionLevel: {
         serializedName: "typeProperties.compressionLevel",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       quoteChar: {
         serializedName: "typeProperties.quoteChar",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       escapeChar: {
         serializedName: "typeProperties.escapeChar",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       firstRowAsHeader: {
         serializedName: "typeProperties.firstRowAsHeader",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       nullValue: {
         serializedName: "typeProperties.nullValue",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -14801,8 +14068,7 @@ export const JsonDataset: coreClient.CompositeMapper = {
       encodingName: {
         serializedName: "typeProperties.encodingName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       compression: {
@@ -14836,15 +14102,13 @@ export const XmlDataset: coreClient.CompositeMapper = {
       encodingName: {
         serializedName: "typeProperties.encodingName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       nullValue: {
         serializedName: "typeProperties.nullValue",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       compression: {
@@ -14878,8 +14142,7 @@ export const OrcDataset: coreClient.CompositeMapper = {
       orcCompressionCodec: {
         serializedName: "typeProperties.orcCompressionCodec",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -14927,36 +14190,31 @@ export const AzureBlobDataset: coreClient.CompositeMapper = {
       folderPath: {
         serializedName: "typeProperties.folderPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       tableRootLocation: {
         serializedName: "typeProperties.tableRootLocation",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       fileName: {
         serializedName: "typeProperties.fileName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       modifiedDatetimeStart: {
         serializedName: "typeProperties.modifiedDatetimeStart",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       modifiedDatetimeEnd: {
         serializedName: "typeProperties.modifiedDatetimeEnd",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       format: {
@@ -14991,8 +14249,7 @@ export const AzureTableDataset: coreClient.CompositeMapper = {
         serializedName: "typeProperties.tableName",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -15012,22 +14269,19 @@ export const AzureSqlTableDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       schemaTypePropertiesSchema: {
         serializedName: "typeProperties.schema",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       table: {
         serializedName: "typeProperties.table",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -15047,22 +14301,19 @@ export const AzureSqlMITableDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       schemaTypePropertiesSchema: {
         serializedName: "typeProperties.schema",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       table: {
         serializedName: "typeProperties.table",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -15082,22 +14333,19 @@ export const AzureSqlDWTableDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       schemaTypePropertiesSchema: {
         serializedName: "typeProperties.schema",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       table: {
         serializedName: "typeProperties.table",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -15117,15 +14365,13 @@ export const CassandraTableDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       keyspace: {
         serializedName: "typeProperties.keyspace",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -15145,8 +14391,7 @@ export const CustomDataset: coreClient.CompositeMapper = {
       typeProperties: {
         serializedName: "typeProperties",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -15167,8 +14412,7 @@ export const CosmosDbSqlApiCollectionDataset: coreClient.CompositeMapper = {
         serializedName: "typeProperties.collectionName",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -15189,8 +14433,7 @@ export const DocumentDbCollectionDataset: coreClient.CompositeMapper = {
         serializedName: "typeProperties.collectionName",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -15210,8 +14453,7 @@ export const DynamicsEntityDataset: coreClient.CompositeMapper = {
       entityName: {
         serializedName: "typeProperties.entityName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -15231,8 +14473,7 @@ export const DynamicsCrmEntityDataset: coreClient.CompositeMapper = {
       entityName: {
         serializedName: "typeProperties.entityName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -15252,8 +14493,7 @@ export const CommonDataServiceForAppsEntityDataset: coreClient.CompositeMapper =
       entityName: {
         serializedName: "typeProperties.entityName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -15273,15 +14513,13 @@ export const AzureDataLakeStoreDataset: coreClient.CompositeMapper = {
       folderPath: {
         serializedName: "typeProperties.folderPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       fileName: {
         serializedName: "typeProperties.fileName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       format: {
@@ -15315,15 +14553,13 @@ export const AzureBlobFSDataset: coreClient.CompositeMapper = {
       folderPath: {
         serializedName: "typeProperties.folderPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       fileName: {
         serializedName: "typeProperties.fileName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       format: {
@@ -15358,15 +14594,13 @@ export const Office365Dataset: coreClient.CompositeMapper = {
         serializedName: "typeProperties.tableName",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       predicate: {
         serializedName: "typeProperties.predicate",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -15386,29 +14620,25 @@ export const FileShareDataset: coreClient.CompositeMapper = {
       folderPath: {
         serializedName: "typeProperties.folderPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       fileName: {
         serializedName: "typeProperties.fileName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       modifiedDatetimeStart: {
         serializedName: "typeProperties.modifiedDatetimeStart",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       modifiedDatetimeEnd: {
         serializedName: "typeProperties.modifiedDatetimeEnd",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       format: {
@@ -15421,8 +14651,7 @@ export const FileShareDataset: coreClient.CompositeMapper = {
       fileFilter: {
         serializedName: "typeProperties.fileFilter",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       compression: {
@@ -15450,8 +14679,7 @@ export const MongoDbCollectionDataset: coreClient.CompositeMapper = {
         serializedName: "typeProperties.collectionName",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -15472,8 +14700,7 @@ export const MongoDbAtlasCollectionDataset: coreClient.CompositeMapper = {
         serializedName: "typeProperties.collection",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -15494,8 +14721,7 @@ export const MongoDbV2CollectionDataset: coreClient.CompositeMapper = {
         serializedName: "typeProperties.collection",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -15516,8 +14742,7 @@ export const CosmosDbMongoDbApiCollectionDataset: coreClient.CompositeMapper = {
         serializedName: "typeProperties.collection",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -15537,8 +14762,7 @@ export const ODataResourceDataset: coreClient.CompositeMapper = {
       path: {
         serializedName: "typeProperties.path",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -15558,22 +14782,19 @@ export const OracleTableDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       schemaTypePropertiesSchema: {
         serializedName: "typeProperties.schema",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       table: {
         serializedName: "typeProperties.table",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -15593,15 +14814,13 @@ export const AmazonRdsForOracleTableDataset: coreClient.CompositeMapper = {
       schemaTypePropertiesSchema: {
         serializedName: "typeProperties.schema",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       table: {
         serializedName: "typeProperties.table",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -15621,15 +14840,13 @@ export const TeradataTableDataset: coreClient.CompositeMapper = {
       database: {
         serializedName: "typeProperties.database",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       table: {
         serializedName: "typeProperties.table",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -15649,15 +14866,13 @@ export const AzureMySqlTableDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       table: {
         serializedName: "typeProperties.table",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -15677,22 +14892,19 @@ export const AmazonRedshiftTableDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       table: {
         serializedName: "typeProperties.table",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       schemaTypePropertiesSchema: {
         serializedName: "typeProperties.schema",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -15712,22 +14924,19 @@ export const Db2TableDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       schemaTypePropertiesSchema: {
         serializedName: "typeProperties.schema",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       table: {
         serializedName: "typeProperties.table",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -15747,8 +14956,7 @@ export const RelationalTableDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -15768,8 +14976,7 @@ export const InformixTableDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -15789,8 +14996,7 @@ export const OdbcTableDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -15810,8 +15016,7 @@ export const MySqlTableDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -15831,22 +15036,19 @@ export const PostgreSqlTableDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       table: {
         serializedName: "typeProperties.table",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       schemaTypePropertiesSchema: {
         serializedName: "typeProperties.schema",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -15866,8 +15068,7 @@ export const MicrosoftAccessTableDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -15887,8 +15088,7 @@ export const SalesforceObjectDataset: coreClient.CompositeMapper = {
       objectApiName: {
         serializedName: "typeProperties.objectApiName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -15908,8 +15108,7 @@ export const SalesforceServiceCloudObjectDataset: coreClient.CompositeMapper = {
       objectApiName: {
         serializedName: "typeProperties.objectApiName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -15929,8 +15128,7 @@ export const SybaseTableDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -15965,8 +15163,7 @@ export const SapCloudForCustomerResourceDataset: coreClient.CompositeMapper = {
         serializedName: "typeProperties.path",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -15987,8 +15184,7 @@ export const SapEccResourceDataset: coreClient.CompositeMapper = {
         serializedName: "typeProperties.path",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -16008,15 +15204,13 @@ export const SapHanaTableDataset: coreClient.CompositeMapper = {
       schemaTypePropertiesSchema: {
         serializedName: "typeProperties.schema",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       table: {
         serializedName: "typeProperties.table",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -16037,22 +15231,19 @@ export const SapOpenHubTableDataset: coreClient.CompositeMapper = {
         serializedName: "typeProperties.openHubDestinationName",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       excludeLastRequest: {
         serializedName: "typeProperties.excludeLastRequest",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       baseRequestId: {
         serializedName: "typeProperties.baseRequestId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -16072,22 +15263,19 @@ export const SqlServerTableDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       schemaTypePropertiesSchema: {
         serializedName: "typeProperties.schema",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       table: {
         serializedName: "typeProperties.table",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -16107,15 +15295,13 @@ export const AmazonRdsForSqlServerTableDataset: coreClient.CompositeMapper = {
       schemaTypePropertiesSchema: {
         serializedName: "typeProperties.schema",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       table: {
         serializedName: "typeProperties.table",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -16135,36 +15321,31 @@ export const RestResourceDataset: coreClient.CompositeMapper = {
       relativeUrl: {
         serializedName: "typeProperties.relativeUrl",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       requestMethod: {
         serializedName: "typeProperties.requestMethod",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       requestBody: {
         serializedName: "typeProperties.requestBody",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       additionalHeaders: {
         serializedName: "typeProperties.additionalHeaders",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       paginationRules: {
         serializedName: "typeProperties.paginationRules",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -16185,8 +15366,7 @@ export const SapTableResourceDataset: coreClient.CompositeMapper = {
         serializedName: "typeProperties.tableName",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -16207,15 +15387,13 @@ export const WebTableDataset: coreClient.CompositeMapper = {
         serializedName: "typeProperties.index",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       path: {
         serializedName: "typeProperties.path",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -16236,8 +15414,7 @@ export const AzureSearchIndexDataset: coreClient.CompositeMapper = {
         serializedName: "typeProperties.indexName",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -16257,29 +15434,25 @@ export const HttpDataset: coreClient.CompositeMapper = {
       relativeUrl: {
         serializedName: "typeProperties.relativeUrl",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       requestMethod: {
         serializedName: "typeProperties.requestMethod",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       requestBody: {
         serializedName: "typeProperties.requestBody",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       additionalHeaders: {
         serializedName: "typeProperties.additionalHeaders",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       format: {
@@ -16313,8 +15486,7 @@ export const AmazonMWSObjectDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -16334,22 +15506,19 @@ export const AzurePostgreSqlTableDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       table: {
         serializedName: "typeProperties.table",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       schemaTypePropertiesSchema: {
         serializedName: "typeProperties.schema",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -16369,8 +15538,7 @@ export const ConcurObjectDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -16390,8 +15558,7 @@ export const CouchbaseTableDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -16411,22 +15578,19 @@ export const DrillTableDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       table: {
         serializedName: "typeProperties.table",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       schemaTypePropertiesSchema: {
         serializedName: "typeProperties.schema",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -16446,8 +15610,7 @@ export const EloquaObjectDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -16467,22 +15630,19 @@ export const GoogleBigQueryObjectDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       table: {
         serializedName: "typeProperties.table",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       dataset: {
         serializedName: "typeProperties.dataset",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -16502,22 +15662,19 @@ export const GreenplumTableDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       table: {
         serializedName: "typeProperties.table",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       schemaTypePropertiesSchema: {
         serializedName: "typeProperties.schema",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -16537,8 +15694,7 @@ export const HBaseObjectDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -16558,22 +15714,19 @@ export const HiveObjectDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       table: {
         serializedName: "typeProperties.table",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       schemaTypePropertiesSchema: {
         serializedName: "typeProperties.schema",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -16593,8 +15746,7 @@ export const HubspotObjectDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -16614,22 +15766,19 @@ export const ImpalaObjectDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       table: {
         serializedName: "typeProperties.table",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       schemaTypePropertiesSchema: {
         serializedName: "typeProperties.schema",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -16649,8 +15798,7 @@ export const JiraObjectDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -16670,8 +15818,7 @@ export const MagentoObjectDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -16691,8 +15838,7 @@ export const MariaDBTableDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -16712,8 +15858,7 @@ export const AzureMariaDBTableDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -16733,8 +15878,7 @@ export const MarketoObjectDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -16754,8 +15898,7 @@ export const PaypalObjectDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -16775,22 +15918,19 @@ export const PhoenixObjectDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       table: {
         serializedName: "typeProperties.table",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       schemaTypePropertiesSchema: {
         serializedName: "typeProperties.schema",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -16810,22 +15950,19 @@ export const PrestoObjectDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       table: {
         serializedName: "typeProperties.table",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       schemaTypePropertiesSchema: {
         serializedName: "typeProperties.schema",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -16845,8 +15982,7 @@ export const QuickBooksObjectDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -16866,8 +16002,7 @@ export const ServiceNowObjectDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -16887,8 +16022,7 @@ export const ShopifyObjectDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -16908,22 +16042,19 @@ export const SparkObjectDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       table: {
         serializedName: "typeProperties.table",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       schemaTypePropertiesSchema: {
         serializedName: "typeProperties.schema",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -16943,8 +16074,7 @@ export const SquareObjectDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -16964,8 +16094,7 @@ export const XeroObjectDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -16985,8 +16114,7 @@ export const ZohoObjectDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -17006,22 +16134,19 @@ export const NetezzaTableDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       table: {
         serializedName: "typeProperties.table",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       schemaTypePropertiesSchema: {
         serializedName: "typeProperties.schema",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -17041,22 +16166,19 @@ export const VerticaTableDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       table: {
         serializedName: "typeProperties.table",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       schemaTypePropertiesSchema: {
         serializedName: "typeProperties.schema",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -17076,8 +16198,7 @@ export const SalesforceMarketingCloudObjectDataset: coreClient.CompositeMapper =
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -17097,8 +16218,7 @@ export const ResponsysObjectDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -17119,8 +16239,7 @@ export const DynamicsAXResourceDataset: coreClient.CompositeMapper = {
         serializedName: "typeProperties.path",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -17140,8 +16259,7 @@ export const OracleServiceCloudObjectDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -17161,8 +16279,7 @@ export const AzureDataExplorerTableDataset: coreClient.CompositeMapper = {
       table: {
         serializedName: "typeProperties.table",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -17182,8 +16299,7 @@ export const GoogleAdWordsObjectDataset: coreClient.CompositeMapper = {
       tableName: {
         serializedName: "typeProperties.tableName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -17203,15 +16319,13 @@ export const SnowflakeDataset: coreClient.CompositeMapper = {
       schemaTypePropertiesSchema: {
         serializedName: "typeProperties.schema",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       table: {
         serializedName: "typeProperties.table",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -17231,8 +16345,7 @@ export const SharePointOnlineListResourceDataset: coreClient.CompositeMapper = {
       listName: {
         serializedName: "typeProperties.listName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -17252,15 +16365,13 @@ export const AzureDatabricksDeltaLakeDataset: coreClient.CompositeMapper = {
       table: {
         serializedName: "typeProperties.table",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       database: {
         serializedName: "typeProperties.database",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -17363,22 +16474,19 @@ export const ExecuteWranglingDataflowActivity: coreClient.CompositeMapper = {
       traceLevel: {
         serializedName: "typeProperties.traceLevel",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       continueOnError: {
         serializedName: "typeProperties.continueOnError",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       runConcurrently: {
         serializedName: "typeProperties.runConcurrently",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       sinks: {
@@ -17480,8 +16588,7 @@ export const TumblingWindowTrigger: coreClient.CompositeMapper = {
       delay: {
         serializedName: "typeProperties.delay",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       maxConcurrency: {
@@ -17532,8 +16639,7 @@ export const RerunTumblingWindowTrigger: coreClient.CompositeMapper = {
         serializedName: "typeProperties.parentTrigger",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       requestedStartTime: {
@@ -17738,8 +16844,7 @@ export const Flowlet: coreClient.CompositeMapper = {
       additionalProperties: {
         serializedName: "typeProperties.additionalProperties",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -17891,15 +16996,13 @@ export const AzureKeyVaultSecretReference: coreClient.CompositeMapper = {
         serializedName: "secretName",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       secretVersion: {
         serializedName: "secretVersion",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -17919,8 +17022,7 @@ export const ServicePrincipalCredential: coreClient.CompositeMapper = {
       servicePrincipalId: {
         serializedName: "typeProperties.servicePrincipalId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       servicePrincipalKey: {
@@ -17933,8 +17035,7 @@ export const ServicePrincipalCredential: coreClient.CompositeMapper = {
       tenant: {
         serializedName: "typeProperties.tenant",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -18036,8 +17137,7 @@ export const AzureBlobStorageLocation: coreClient.CompositeMapper = {
       container: {
         serializedName: "container",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -18057,8 +17157,7 @@ export const AzureBlobFSLocation: coreClient.CompositeMapper = {
       fileSystem: {
         serializedName: "fileSystem",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -18092,15 +17191,13 @@ export const AmazonS3Location: coreClient.CompositeMapper = {
       bucketName: {
         serializedName: "bucketName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       version: {
         serializedName: "version",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -18148,15 +17245,13 @@ export const AmazonS3CompatibleLocation: coreClient.CompositeMapper = {
       bucketName: {
         serializedName: "bucketName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       version: {
         serializedName: "version",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -18176,15 +17271,13 @@ export const OracleCloudStorageLocation: coreClient.CompositeMapper = {
       bucketName: {
         serializedName: "bucketName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       version: {
         serializedName: "version",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -18204,15 +17297,13 @@ export const GoogleCloudStorageLocation: coreClient.CompositeMapper = {
       bucketName: {
         serializedName: "bucketName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       version: {
         serializedName: "version",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -18260,8 +17351,7 @@ export const HttpServerLocation: coreClient.CompositeMapper = {
       relativeUrl: {
         serializedName: "relativeUrl",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -18296,64 +17386,55 @@ export const TextFormat: coreClient.CompositeMapper = {
       columnDelimiter: {
         serializedName: "columnDelimiter",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       rowDelimiter: {
         serializedName: "rowDelimiter",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       escapeChar: {
         serializedName: "escapeChar",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       quoteChar: {
         serializedName: "quoteChar",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       nullValue: {
         serializedName: "nullValue",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encodingName: {
         serializedName: "encodingName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       treatEmptyAsNull: {
         serializedName: "treatEmptyAsNull",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       skipLineCount: {
         serializedName: "skipLineCount",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       firstRowAsHeader: {
         serializedName: "firstRowAsHeader",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -18374,36 +17455,31 @@ export const JsonFormat: coreClient.CompositeMapper = {
       filePattern: {
         serializedName: "filePattern",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       nestingSeparator: {
         serializedName: "nestingSeparator",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       encodingName: {
         serializedName: "encodingName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       jsonNodeReference: {
         serializedName: "jsonNodeReference",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       jsonPathDefinition: {
         serializedName: "jsonPathDefinition",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -18482,8 +17558,7 @@ export const DatasetGZipCompression: coreClient.CompositeMapper = {
       level: {
         serializedName: "level",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -18503,8 +17578,7 @@ export const DatasetDeflateCompression: coreClient.CompositeMapper = {
       level: {
         serializedName: "level",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -18524,8 +17598,7 @@ export const DatasetZipDeflateCompression: coreClient.CompositeMapper = {
       level: {
         serializedName: "level",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -18559,8 +17632,7 @@ export const DatasetTarGZipCompression: coreClient.CompositeMapper = {
       level: {
         serializedName: "level",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -18580,16 +17652,14 @@ export const CmdkeySetup: coreClient.CompositeMapper = {
         serializedName: "typeProperties.targetName",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       userName: {
         serializedName: "typeProperties.userName",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -18747,8 +17817,7 @@ export const WebBasicAuthentication: coreClient.CompositeMapper = {
         serializedName: "username",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       password: {
@@ -18803,36 +17872,31 @@ export const AzureBlobStorageReadSettings: coreClient.CompositeMapper = {
       recursive: {
         serializedName: "recursive",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       wildcardFolderPath: {
         serializedName: "wildcardFolderPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       wildcardFileName: {
         serializedName: "wildcardFileName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       prefix: {
         serializedName: "prefix",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       fileListPath: {
         serializedName: "fileListPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       enablePartitionDiscovery: {
@@ -18844,29 +17908,25 @@ export const AzureBlobStorageReadSettings: coreClient.CompositeMapper = {
       partitionRootPath: {
         serializedName: "partitionRootPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       deleteFilesAfterCompletion: {
         serializedName: "deleteFilesAfterCompletion",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       modifiedDatetimeStart: {
         serializedName: "modifiedDatetimeStart",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       modifiedDatetimeEnd: {
         serializedName: "modifiedDatetimeEnd",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -18886,29 +17946,25 @@ export const AzureBlobFSReadSettings: coreClient.CompositeMapper = {
       recursive: {
         serializedName: "recursive",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       wildcardFolderPath: {
         serializedName: "wildcardFolderPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       wildcardFileName: {
         serializedName: "wildcardFileName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       fileListPath: {
         serializedName: "fileListPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       enablePartitionDiscovery: {
@@ -18920,29 +17976,25 @@ export const AzureBlobFSReadSettings: coreClient.CompositeMapper = {
       partitionRootPath: {
         serializedName: "partitionRootPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       deleteFilesAfterCompletion: {
         serializedName: "deleteFilesAfterCompletion",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       modifiedDatetimeStart: {
         serializedName: "modifiedDatetimeStart",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       modifiedDatetimeEnd: {
         serializedName: "modifiedDatetimeEnd",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -18962,43 +18014,37 @@ export const AzureDataLakeStoreReadSettings: coreClient.CompositeMapper = {
       recursive: {
         serializedName: "recursive",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       wildcardFolderPath: {
         serializedName: "wildcardFolderPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       wildcardFileName: {
         serializedName: "wildcardFileName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       fileListPath: {
         serializedName: "fileListPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       listAfter: {
         serializedName: "listAfter",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       listBefore: {
         serializedName: "listBefore",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       enablePartitionDiscovery: {
@@ -19010,29 +18056,25 @@ export const AzureDataLakeStoreReadSettings: coreClient.CompositeMapper = {
       partitionRootPath: {
         serializedName: "partitionRootPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       deleteFilesAfterCompletion: {
         serializedName: "deleteFilesAfterCompletion",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       modifiedDatetimeStart: {
         serializedName: "modifiedDatetimeStart",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       modifiedDatetimeEnd: {
         serializedName: "modifiedDatetimeEnd",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -19052,36 +18094,31 @@ export const AmazonS3ReadSettings: coreClient.CompositeMapper = {
       recursive: {
         serializedName: "recursive",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       wildcardFolderPath: {
         serializedName: "wildcardFolderPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       wildcardFileName: {
         serializedName: "wildcardFileName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       prefix: {
         serializedName: "prefix",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       fileListPath: {
         serializedName: "fileListPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       enablePartitionDiscovery: {
@@ -19093,29 +18130,25 @@ export const AmazonS3ReadSettings: coreClient.CompositeMapper = {
       partitionRootPath: {
         serializedName: "partitionRootPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       deleteFilesAfterCompletion: {
         serializedName: "deleteFilesAfterCompletion",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       modifiedDatetimeStart: {
         serializedName: "modifiedDatetimeStart",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       modifiedDatetimeEnd: {
         serializedName: "modifiedDatetimeEnd",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -19135,29 +18168,25 @@ export const FileServerReadSettings: coreClient.CompositeMapper = {
       recursive: {
         serializedName: "recursive",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       wildcardFolderPath: {
         serializedName: "wildcardFolderPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       wildcardFileName: {
         serializedName: "wildcardFileName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       fileListPath: {
         serializedName: "fileListPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       enablePartitionDiscovery: {
@@ -19169,36 +18198,31 @@ export const FileServerReadSettings: coreClient.CompositeMapper = {
       partitionRootPath: {
         serializedName: "partitionRootPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       deleteFilesAfterCompletion: {
         serializedName: "deleteFilesAfterCompletion",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       modifiedDatetimeStart: {
         serializedName: "modifiedDatetimeStart",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       modifiedDatetimeEnd: {
         serializedName: "modifiedDatetimeEnd",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       fileFilter: {
         serializedName: "fileFilter",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -19218,36 +18242,31 @@ export const AzureFileStorageReadSettings: coreClient.CompositeMapper = {
       recursive: {
         serializedName: "recursive",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       wildcardFolderPath: {
         serializedName: "wildcardFolderPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       wildcardFileName: {
         serializedName: "wildcardFileName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       prefix: {
         serializedName: "prefix",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       fileListPath: {
         serializedName: "fileListPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       enablePartitionDiscovery: {
@@ -19259,29 +18278,25 @@ export const AzureFileStorageReadSettings: coreClient.CompositeMapper = {
       partitionRootPath: {
         serializedName: "partitionRootPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       deleteFilesAfterCompletion: {
         serializedName: "deleteFilesAfterCompletion",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       modifiedDatetimeStart: {
         serializedName: "modifiedDatetimeStart",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       modifiedDatetimeEnd: {
         serializedName: "modifiedDatetimeEnd",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -19301,36 +18316,31 @@ export const AmazonS3CompatibleReadSettings: coreClient.CompositeMapper = {
       recursive: {
         serializedName: "recursive",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       wildcardFolderPath: {
         serializedName: "wildcardFolderPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       wildcardFileName: {
         serializedName: "wildcardFileName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       prefix: {
         serializedName: "prefix",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       fileListPath: {
         serializedName: "fileListPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       enablePartitionDiscovery: {
@@ -19342,29 +18352,25 @@ export const AmazonS3CompatibleReadSettings: coreClient.CompositeMapper = {
       partitionRootPath: {
         serializedName: "partitionRootPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       deleteFilesAfterCompletion: {
         serializedName: "deleteFilesAfterCompletion",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       modifiedDatetimeStart: {
         serializedName: "modifiedDatetimeStart",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       modifiedDatetimeEnd: {
         serializedName: "modifiedDatetimeEnd",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -19384,36 +18390,31 @@ export const OracleCloudStorageReadSettings: coreClient.CompositeMapper = {
       recursive: {
         serializedName: "recursive",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       wildcardFolderPath: {
         serializedName: "wildcardFolderPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       wildcardFileName: {
         serializedName: "wildcardFileName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       prefix: {
         serializedName: "prefix",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       fileListPath: {
         serializedName: "fileListPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       enablePartitionDiscovery: {
@@ -19425,29 +18426,25 @@ export const OracleCloudStorageReadSettings: coreClient.CompositeMapper = {
       partitionRootPath: {
         serializedName: "partitionRootPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       deleteFilesAfterCompletion: {
         serializedName: "deleteFilesAfterCompletion",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       modifiedDatetimeStart: {
         serializedName: "modifiedDatetimeStart",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       modifiedDatetimeEnd: {
         serializedName: "modifiedDatetimeEnd",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -19467,36 +18464,31 @@ export const GoogleCloudStorageReadSettings: coreClient.CompositeMapper = {
       recursive: {
         serializedName: "recursive",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       wildcardFolderPath: {
         serializedName: "wildcardFolderPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       wildcardFileName: {
         serializedName: "wildcardFileName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       prefix: {
         serializedName: "prefix",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       fileListPath: {
         serializedName: "fileListPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       enablePartitionDiscovery: {
@@ -19508,29 +18500,25 @@ export const GoogleCloudStorageReadSettings: coreClient.CompositeMapper = {
       partitionRootPath: {
         serializedName: "partitionRootPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       deleteFilesAfterCompletion: {
         serializedName: "deleteFilesAfterCompletion",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       modifiedDatetimeStart: {
         serializedName: "modifiedDatetimeStart",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       modifiedDatetimeEnd: {
         serializedName: "modifiedDatetimeEnd",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -19550,22 +18538,19 @@ export const FtpReadSettings: coreClient.CompositeMapper = {
       recursive: {
         serializedName: "recursive",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       wildcardFolderPath: {
         serializedName: "wildcardFolderPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       wildcardFileName: {
         serializedName: "wildcardFileName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       enablePartitionDiscovery: {
@@ -19577,22 +18562,19 @@ export const FtpReadSettings: coreClient.CompositeMapper = {
       partitionRootPath: {
         serializedName: "partitionRootPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       deleteFilesAfterCompletion: {
         serializedName: "deleteFilesAfterCompletion",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       fileListPath: {
         serializedName: "fileListPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       useBinaryTransfer: {
@@ -19618,22 +18600,19 @@ export const SftpReadSettings: coreClient.CompositeMapper = {
       recursive: {
         serializedName: "recursive",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       wildcardFolderPath: {
         serializedName: "wildcardFolderPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       wildcardFileName: {
         serializedName: "wildcardFileName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       enablePartitionDiscovery: {
@@ -19645,36 +18624,31 @@ export const SftpReadSettings: coreClient.CompositeMapper = {
       partitionRootPath: {
         serializedName: "partitionRootPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       fileListPath: {
         serializedName: "fileListPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       deleteFilesAfterCompletion: {
         serializedName: "deleteFilesAfterCompletion",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       modifiedDatetimeStart: {
         serializedName: "modifiedDatetimeStart",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       modifiedDatetimeEnd: {
         serializedName: "modifiedDatetimeEnd",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -19694,29 +18668,25 @@ export const HttpReadSettings: coreClient.CompositeMapper = {
       requestMethod: {
         serializedName: "requestMethod",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       requestBody: {
         serializedName: "requestBody",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       additionalHeaders: {
         serializedName: "additionalHeaders",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       requestTimeout: {
         serializedName: "requestTimeout",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       enablePartitionDiscovery: {
@@ -19728,8 +18698,7 @@ export const HttpReadSettings: coreClient.CompositeMapper = {
       partitionRootPath: {
         serializedName: "partitionRootPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -19749,29 +18718,25 @@ export const HdfsReadSettings: coreClient.CompositeMapper = {
       recursive: {
         serializedName: "recursive",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       wildcardFolderPath: {
         serializedName: "wildcardFolderPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       wildcardFileName: {
         serializedName: "wildcardFileName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       fileListPath: {
         serializedName: "fileListPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       enablePartitionDiscovery: {
@@ -19783,22 +18748,19 @@ export const HdfsReadSettings: coreClient.CompositeMapper = {
       partitionRootPath: {
         serializedName: "partitionRootPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       modifiedDatetimeStart: {
         serializedName: "modifiedDatetimeStart",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       modifiedDatetimeEnd: {
         serializedName: "modifiedDatetimeEnd",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       distcpSettings: {
@@ -19811,8 +18773,7 @@ export const HdfsReadSettings: coreClient.CompositeMapper = {
       deleteFilesAfterCompletion: {
         serializedName: "deleteFilesAfterCompletion",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -19832,15 +18793,13 @@ export const SftpWriteSettings: coreClient.CompositeMapper = {
       operationTimeout: {
         serializedName: "operationTimeout",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       useTempFileRename: {
         serializedName: "useTempFileRename",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -19860,8 +18819,7 @@ export const AzureBlobStorageWriteSettings: coreClient.CompositeMapper = {
       blockSizeInMB: {
         serializedName: "blockSizeInMB",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -19881,8 +18839,7 @@ export const AzureBlobFSWriteSettings: coreClient.CompositeMapper = {
       blockSizeInMB: {
         serializedName: "blockSizeInMB",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -19902,8 +18859,7 @@ export const AzureDataLakeStoreWriteSettings: coreClient.CompositeMapper = {
       expiryDateTime: {
         serializedName: "expiryDateTime",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -19951,8 +18907,7 @@ export const DelimitedTextReadSettings: coreClient.CompositeMapper = {
       skipLineCount: {
         serializedName: "skipLineCount",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       compressionProperties: {
@@ -20007,29 +18962,25 @@ export const XmlReadSettings: coreClient.CompositeMapper = {
       validationMode: {
         serializedName: "validationMode",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       detectDataType: {
         serializedName: "detectDataType",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       namespaces: {
         serializedName: "namespaces",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       namespacePrefixes: {
         serializedName: "namespacePrefixes",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -20071,8 +19022,7 @@ export const ZipDeflateReadSettings: coreClient.CompositeMapper = {
       preserveZipFileNameAsFolder: {
         serializedName: "preserveZipFileNameAsFolder",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -20093,8 +19043,7 @@ export const TarReadSettings: coreClient.CompositeMapper = {
       preserveCompressionFileNameAsFolder: {
         serializedName: "preserveCompressionFileNameAsFolder",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -20115,8 +19064,7 @@ export const TarGZipReadSettings: coreClient.CompositeMapper = {
       preserveCompressionFileNameAsFolder: {
         serializedName: "preserveCompressionFileNameAsFolder",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -20148,15 +19096,13 @@ export const AvroWriteSettings: coreClient.CompositeMapper = {
       maxRowsPerFile: {
         serializedName: "maxRowsPerFile",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       fileNamePrefix: {
         serializedName: "fileNamePrefix",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -20176,15 +19122,13 @@ export const OrcWriteSettings: coreClient.CompositeMapper = {
       maxRowsPerFile: {
         serializedName: "maxRowsPerFile",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       fileNamePrefix: {
         serializedName: "fileNamePrefix",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -20204,15 +19148,13 @@ export const ParquetWriteSettings: coreClient.CompositeMapper = {
       maxRowsPerFile: {
         serializedName: "maxRowsPerFile",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       fileNamePrefix: {
         serializedName: "fileNamePrefix",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -20232,30 +19174,26 @@ export const DelimitedTextWriteSettings: coreClient.CompositeMapper = {
       quoteAllText: {
         serializedName: "quoteAllText",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       fileExtension: {
         serializedName: "fileExtension",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       maxRowsPerFile: {
         serializedName: "maxRowsPerFile",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       fileNamePrefix: {
         serializedName: "fileNamePrefix",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -20275,8 +19213,7 @@ export const JsonWriteSettings: coreClient.CompositeMapper = {
       filePattern: {
         serializedName: "filePattern",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -20303,8 +19240,7 @@ export const AvroSource: coreClient.CompositeMapper = {
       additionalColumns: {
         serializedName: "additionalColumns",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -20331,8 +19267,7 @@ export const ExcelSource: coreClient.CompositeMapper = {
       additionalColumns: {
         serializedName: "additionalColumns",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -20359,8 +19294,7 @@ export const ParquetSource: coreClient.CompositeMapper = {
       additionalColumns: {
         serializedName: "additionalColumns",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -20394,8 +19328,7 @@ export const DelimitedTextSource: coreClient.CompositeMapper = {
       additionalColumns: {
         serializedName: "additionalColumns",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -20429,8 +19362,7 @@ export const JsonSource: coreClient.CompositeMapper = {
       additionalColumns: {
         serializedName: "additionalColumns",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -20464,8 +19396,7 @@ export const XmlSource: coreClient.CompositeMapper = {
       additionalColumns: {
         serializedName: "additionalColumns",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -20492,8 +19423,7 @@ export const OrcSource: coreClient.CompositeMapper = {
       additionalColumns: {
         serializedName: "additionalColumns",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -20544,15 +19474,13 @@ export const TabularSource: coreClient.CompositeMapper = {
       queryTimeout: {
         serializedName: "queryTimeout",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       additionalColumns: {
         serializedName: "additionalColumns",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -20572,22 +19500,19 @@ export const BlobSource: coreClient.CompositeMapper = {
       treatEmptyAsNull: {
         serializedName: "treatEmptyAsNull",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       skipHeaderLineCount: {
         serializedName: "skipHeaderLineCount",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       recursive: {
         serializedName: "recursive",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -20607,29 +19532,25 @@ export const DocumentDbCollectionSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       nestingSeparator: {
         serializedName: "nestingSeparator",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       queryTimeout: {
         serializedName: "queryTimeout",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       additionalColumns: {
         serializedName: "additionalColumns",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -20649,36 +19570,31 @@ export const CosmosDbSqlApiSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       pageSize: {
         serializedName: "pageSize",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       preferredRegions: {
         serializedName: "preferredRegions",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       detectDatetime: {
         serializedName: "detectDatetime",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       additionalColumns: {
         serializedName: "additionalColumns",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -20698,15 +19614,13 @@ export const DynamicsSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       additionalColumns: {
         serializedName: "additionalColumns",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -20726,15 +19640,13 @@ export const DynamicsCrmSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       additionalColumns: {
         serializedName: "additionalColumns",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -20754,15 +19666,13 @@ export const CommonDataServiceForAppsSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       additionalColumns: {
         serializedName: "additionalColumns",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -20782,15 +19692,13 @@ export const RelationalSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       additionalColumns: {
         serializedName: "additionalColumns",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -20810,15 +19718,13 @@ export const MicrosoftAccessSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       additionalColumns: {
         serializedName: "additionalColumns",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -20838,22 +19744,19 @@ export const ODataSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       httpRequestTimeout: {
         serializedName: "httpRequestTimeout",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       additionalColumns: {
         serializedName: "additionalColumns",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -20873,8 +19776,7 @@ export const SalesforceServiceCloudSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       readBehavior: {
@@ -20886,8 +19788,7 @@ export const SalesforceServiceCloudSource: coreClient.CompositeMapper = {
       additionalColumns: {
         serializedName: "additionalColumns",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -20907,50 +19808,43 @@ export const RestSource: coreClient.CompositeMapper = {
       requestMethod: {
         serializedName: "requestMethod",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       requestBody: {
         serializedName: "requestBody",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       additionalHeaders: {
         serializedName: "additionalHeaders",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       paginationRules: {
         serializedName: "paginationRules",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       httpRequestTimeout: {
         serializedName: "httpRequestTimeout",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       requestInterval: {
         serializedName: "requestInterval",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       additionalColumns: {
         serializedName: "additionalColumns",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -20970,15 +19864,13 @@ export const FileSystemSource: coreClient.CompositeMapper = {
       recursive: {
         serializedName: "recursive",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       additionalColumns: {
         serializedName: "additionalColumns",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -20998,8 +19890,7 @@ export const HdfsSource: coreClient.CompositeMapper = {
       recursive: {
         serializedName: "recursive",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       distcpSettings: {
@@ -21027,29 +19918,25 @@ export const AzureDataExplorerSource: coreClient.CompositeMapper = {
         serializedName: "query",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       noTruncation: {
         serializedName: "noTruncation",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       queryTimeout: {
         serializedName: "queryTimeout",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       additionalColumns: {
         serializedName: "additionalColumns",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -21069,22 +19956,19 @@ export const OracleSource: coreClient.CompositeMapper = {
       oracleReaderQuery: {
         serializedName: "oracleReaderQuery",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       queryTimeout: {
         serializedName: "queryTimeout",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       partitionOption: {
         serializedName: "partitionOption",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       partitionSettings: {
@@ -21097,8 +19981,7 @@ export const OracleSource: coreClient.CompositeMapper = {
       additionalColumns: {
         serializedName: "additionalColumns",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -21118,22 +20001,19 @@ export const AmazonRdsForOracleSource: coreClient.CompositeMapper = {
       oracleReaderQuery: {
         serializedName: "oracleReaderQuery",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       queryTimeout: {
         serializedName: "queryTimeout",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       partitionOption: {
         serializedName: "partitionOption",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       partitionSettings: {
@@ -21146,8 +20026,7 @@ export const AmazonRdsForOracleSource: coreClient.CompositeMapper = {
       additionalColumns: {
         serializedName: "additionalColumns",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -21167,8 +20046,7 @@ export const WebSource: coreClient.CompositeMapper = {
       additionalColumns: {
         serializedName: "additionalColumns",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -21188,15 +20066,13 @@ export const MongoDbSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       additionalColumns: {
         serializedName: "additionalColumns",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -21216,8 +20092,7 @@ export const MongoDbAtlasSource: coreClient.CompositeMapper = {
       filter: {
         serializedName: "filter",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       cursorMethods: {
@@ -21230,22 +20105,19 @@ export const MongoDbAtlasSource: coreClient.CompositeMapper = {
       batchSize: {
         serializedName: "batchSize",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       queryTimeout: {
         serializedName: "queryTimeout",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       additionalColumns: {
         serializedName: "additionalColumns",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -21265,8 +20137,7 @@ export const MongoDbV2Source: coreClient.CompositeMapper = {
       filter: {
         serializedName: "filter",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       cursorMethods: {
@@ -21279,22 +20150,19 @@ export const MongoDbV2Source: coreClient.CompositeMapper = {
       batchSize: {
         serializedName: "batchSize",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       queryTimeout: {
         serializedName: "queryTimeout",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       additionalColumns: {
         serializedName: "additionalColumns",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -21314,8 +20182,7 @@ export const CosmosDbMongoDbApiSource: coreClient.CompositeMapper = {
       filter: {
         serializedName: "filter",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       cursorMethods: {
@@ -21328,22 +20195,19 @@ export const CosmosDbMongoDbApiSource: coreClient.CompositeMapper = {
       batchSize: {
         serializedName: "batchSize",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       queryTimeout: {
         serializedName: "queryTimeout",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       additionalColumns: {
         serializedName: "additionalColumns",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -21363,43 +20227,37 @@ export const Office365Source: coreClient.CompositeMapper = {
       allowedGroups: {
         serializedName: "allowedGroups",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       userScopeFilterUri: {
         serializedName: "userScopeFilterUri",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       dateFilterColumn: {
         serializedName: "dateFilterColumn",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       startTime: {
         serializedName: "startTime",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       endTime: {
         serializedName: "endTime",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       outputColumns: {
         serializedName: "outputColumns",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -21419,8 +20277,7 @@ export const AzureDataLakeStoreSource: coreClient.CompositeMapper = {
       recursive: {
         serializedName: "recursive",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -21440,22 +20297,19 @@ export const AzureBlobFSSource: coreClient.CompositeMapper = {
       treatEmptyAsNull: {
         serializedName: "treatEmptyAsNull",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       skipHeaderLineCount: {
         serializedName: "skipHeaderLineCount",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       recursive: {
         serializedName: "recursive",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -21475,8 +20329,7 @@ export const HttpSource: coreClient.CompositeMapper = {
       httpRequestTimeout: {
         serializedName: "httpRequestTimeout",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -21496,8 +20349,7 @@ export const SnowflakeSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       exportSettings: {
@@ -21524,8 +20376,7 @@ export const AzureDatabricksDeltaLakeSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       exportSettings: {
@@ -21552,15 +20403,13 @@ export const SharePointOnlineListSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       httpRequestTimeout: {
         serializedName: "httpRequestTimeout",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -21664,36 +20513,31 @@ export const RestSink: coreClient.CompositeMapper = {
       requestMethod: {
         serializedName: "requestMethod",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       additionalHeaders: {
         serializedName: "additionalHeaders",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       httpRequestTimeout: {
         serializedName: "httpRequestTimeout",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       requestInterval: {
         serializedName: "requestInterval",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       httpCompressionType: {
         serializedName: "httpCompressionType",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -21713,8 +20557,7 @@ export const AzurePostgreSqlSink: coreClient.CompositeMapper = {
       preCopyScript: {
         serializedName: "preCopyScript",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -21734,8 +20577,7 @@ export const AzureMySqlSink: coreClient.CompositeMapper = {
       preCopyScript: {
         serializedName: "preCopyScript",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -21755,8 +20597,7 @@ export const AzureDatabricksDeltaLakeSink: coreClient.CompositeMapper = {
       preCopyScript: {
         serializedName: "preCopyScript",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       importSettings: {
@@ -21789,8 +20630,7 @@ export const SapCloudForCustomerSink: coreClient.CompositeMapper = {
       httpRequestTimeout: {
         serializedName: "httpRequestTimeout",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -21824,29 +20664,25 @@ export const AzureTableSink: coreClient.CompositeMapper = {
       azureTableDefaultPartitionKeyValue: {
         serializedName: "azureTableDefaultPartitionKeyValue",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       azureTablePartitionKeyName: {
         serializedName: "azureTablePartitionKeyName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       azureTableRowKeyName: {
         serializedName: "azureTableRowKeyName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       azureTableInsertType: {
         serializedName: "azureTableInsertType",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -21943,29 +20779,25 @@ export const BlobSink: coreClient.CompositeMapper = {
       blobWriterOverwriteFiles: {
         serializedName: "blobWriterOverwriteFiles",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       blobWriterDateTimeFormat: {
         serializedName: "blobWriterDateTimeFormat",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       blobWriterAddHeader: {
         serializedName: "blobWriterAddHeader",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       copyBehavior: {
         serializedName: "copyBehavior",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       metadata: {
@@ -21997,8 +20829,7 @@ export const FileSystemSink: coreClient.CompositeMapper = {
       copyBehavior: {
         serializedName: "copyBehavior",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -22018,15 +20849,13 @@ export const DocumentDbCollectionSink: coreClient.CompositeMapper = {
       nestingSeparator: {
         serializedName: "nestingSeparator",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       writeBehavior: {
         serializedName: "writeBehavior",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -22046,8 +20875,7 @@ export const CosmosDbSqlApiSink: coreClient.CompositeMapper = {
       writeBehavior: {
         serializedName: "writeBehavior",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -22067,22 +20895,19 @@ export const SqlSink: coreClient.CompositeMapper = {
       sqlWriterStoredProcedureName: {
         serializedName: "sqlWriterStoredProcedureName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       sqlWriterTableType: {
         serializedName: "sqlWriterTableType",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       preCopyScript: {
         serializedName: "preCopyScript",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       storedProcedureParameters: {
@@ -22097,29 +20922,25 @@ export const SqlSink: coreClient.CompositeMapper = {
       storedProcedureTableTypeParameterName: {
         serializedName: "storedProcedureTableTypeParameterName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       tableOption: {
         serializedName: "tableOption",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       sqlWriterUseTableLock: {
         serializedName: "sqlWriterUseTableLock",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       writeBehavior: {
         serializedName: "writeBehavior",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       upsertSettings: {
@@ -22146,22 +20967,19 @@ export const SqlServerSink: coreClient.CompositeMapper = {
       sqlWriterStoredProcedureName: {
         serializedName: "sqlWriterStoredProcedureName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       sqlWriterTableType: {
         serializedName: "sqlWriterTableType",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       preCopyScript: {
         serializedName: "preCopyScript",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       storedProcedureParameters: {
@@ -22176,29 +20994,25 @@ export const SqlServerSink: coreClient.CompositeMapper = {
       storedProcedureTableTypeParameterName: {
         serializedName: "storedProcedureTableTypeParameterName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       tableOption: {
         serializedName: "tableOption",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       sqlWriterUseTableLock: {
         serializedName: "sqlWriterUseTableLock",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       writeBehavior: {
         serializedName: "writeBehavior",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       upsertSettings: {
@@ -22225,22 +21039,19 @@ export const AzureSqlSink: coreClient.CompositeMapper = {
       sqlWriterStoredProcedureName: {
         serializedName: "sqlWriterStoredProcedureName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       sqlWriterTableType: {
         serializedName: "sqlWriterTableType",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       preCopyScript: {
         serializedName: "preCopyScript",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       storedProcedureParameters: {
@@ -22255,29 +21066,25 @@ export const AzureSqlSink: coreClient.CompositeMapper = {
       storedProcedureTableTypeParameterName: {
         serializedName: "storedProcedureTableTypeParameterName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       tableOption: {
         serializedName: "tableOption",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       sqlWriterUseTableLock: {
         serializedName: "sqlWriterUseTableLock",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       writeBehavior: {
         serializedName: "writeBehavior",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       upsertSettings: {
@@ -22304,22 +21111,19 @@ export const SqlMISink: coreClient.CompositeMapper = {
       sqlWriterStoredProcedureName: {
         serializedName: "sqlWriterStoredProcedureName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       sqlWriterTableType: {
         serializedName: "sqlWriterTableType",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       preCopyScript: {
         serializedName: "preCopyScript",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       storedProcedureParameters: {
@@ -22334,29 +21138,25 @@ export const SqlMISink: coreClient.CompositeMapper = {
       storedProcedureTableTypeParameterName: {
         serializedName: "storedProcedureTableTypeParameterName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       tableOption: {
         serializedName: "tableOption",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       sqlWriterUseTableLock: {
         serializedName: "sqlWriterUseTableLock",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       writeBehavior: {
         serializedName: "writeBehavior",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       upsertSettings: {
@@ -22383,15 +21183,13 @@ export const SqlDWSink: coreClient.CompositeMapper = {
       preCopyScript: {
         serializedName: "preCopyScript",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       allowPolyBase: {
         serializedName: "allowPolyBase",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       polyBaseSettings: {
@@ -22404,8 +21202,7 @@ export const SqlDWSink: coreClient.CompositeMapper = {
       allowCopyCommand: {
         serializedName: "allowCopyCommand",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       copyCommandSettings: {
@@ -22418,22 +21215,19 @@ export const SqlDWSink: coreClient.CompositeMapper = {
       tableOption: {
         serializedName: "tableOption",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       sqlWriterUseTableLock: {
         serializedName: "sqlWriterUseTableLock",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       writeBehavior: {
         serializedName: "writeBehavior",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       upsertSettings: {
@@ -22460,8 +21254,7 @@ export const SnowflakeSink: coreClient.CompositeMapper = {
       preCopyScript: {
         serializedName: "preCopyScript",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       importSettings: {
@@ -22488,8 +21281,7 @@ export const OracleSink: coreClient.CompositeMapper = {
       preCopyScript: {
         serializedName: "preCopyScript",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -22509,15 +21301,13 @@ export const AzureDataLakeStoreSink: coreClient.CompositeMapper = {
       copyBehavior: {
         serializedName: "copyBehavior",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       enableAdlsSingleFileParallel: {
         serializedName: "enableAdlsSingleFileParallel",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -22537,8 +21327,7 @@ export const AzureBlobFSSink: coreClient.CompositeMapper = {
       copyBehavior: {
         serializedName: "copyBehavior",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       metadata: {
@@ -22590,8 +21379,7 @@ export const OdbcSink: coreClient.CompositeMapper = {
       preCopyScript: {
         serializedName: "preCopyScript",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -22611,8 +21399,7 @@ export const InformixSink: coreClient.CompositeMapper = {
       preCopyScript: {
         serializedName: "preCopyScript",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -22632,8 +21419,7 @@ export const MicrosoftAccessSink: coreClient.CompositeMapper = {
       preCopyScript: {
         serializedName: "preCopyScript",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -22660,15 +21446,13 @@ export const DynamicsSink: coreClient.CompositeMapper = {
       ignoreNullValues: {
         serializedName: "ignoreNullValues",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       alternateKeyName: {
         serializedName: "alternateKeyName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -22695,15 +21479,13 @@ export const DynamicsCrmSink: coreClient.CompositeMapper = {
       ignoreNullValues: {
         serializedName: "ignoreNullValues",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       alternateKeyName: {
         serializedName: "alternateKeyName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -22730,15 +21512,13 @@ export const CommonDataServiceForAppsSink: coreClient.CompositeMapper = {
       ignoreNullValues: {
         serializedName: "ignoreNullValues",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       alternateKeyName: {
         serializedName: "alternateKeyName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -22758,22 +21538,19 @@ export const AzureDataExplorerSink: coreClient.CompositeMapper = {
       ingestionMappingName: {
         serializedName: "ingestionMappingName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       ingestionMappingAsJson: {
         serializedName: "ingestionMappingAsJson",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       flushImmediately: {
         serializedName: "flushImmediately",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -22799,15 +21576,13 @@ export const SalesforceSink: coreClient.CompositeMapper = {
       externalIdFieldName: {
         serializedName: "externalIdFieldName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       ignoreNullValues: {
         serializedName: "ignoreNullValues",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -22833,15 +21608,13 @@ export const SalesforceServiceCloudSink: coreClient.CompositeMapper = {
       externalIdFieldName: {
         serializedName: "externalIdFieldName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       ignoreNullValues: {
         serializedName: "ignoreNullValues",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -22861,8 +21634,7 @@ export const MongoDbAtlasSink: coreClient.CompositeMapper = {
       writeBehavior: {
         serializedName: "writeBehavior",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -22882,8 +21654,7 @@ export const MongoDbV2Sink: coreClient.CompositeMapper = {
       writeBehavior: {
         serializedName: "writeBehavior",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -22903,8 +21674,7 @@ export const CosmosDbMongoDbApiSink: coreClient.CompositeMapper = {
       writeBehavior: {
         serializedName: "writeBehavior",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -22925,18 +21695,14 @@ export const SnowflakeExportCopyCommand: coreClient.CompositeMapper = {
         serializedName: "additionalCopyOptions",
         type: {
           name: "Dictionary",
-          value: {
-            type: { name: "Dictionary", value: { type: { name: "any" } } }
-          }
+          value: { type: { name: "any" } }
         }
       },
       additionalFormatOptions: {
         serializedName: "additionalFormatOptions",
         type: {
           name: "Dictionary",
-          value: {
-            type: { name: "Dictionary", value: { type: { name: "any" } } }
-          }
+          value: { type: { name: "any" } }
         }
       }
     }
@@ -22956,15 +21722,13 @@ export const AzureDatabricksDeltaLakeExportCommand: coreClient.CompositeMapper =
       dateFormat: {
         serializedName: "dateFormat",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       timestampFormat: {
         serializedName: "timestampFormat",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -22984,15 +21748,13 @@ export const AzureDatabricksDeltaLakeImportCommand: coreClient.CompositeMapper =
       dateFormat: {
         serializedName: "dateFormat",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       timestampFormat: {
         serializedName: "timestampFormat",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -23013,18 +21775,14 @@ export const SnowflakeImportCopyCommand: coreClient.CompositeMapper = {
         serializedName: "additionalCopyOptions",
         type: {
           name: "Dictionary",
-          value: {
-            type: { name: "Dictionary", value: { type: { name: "any" } } }
-          }
+          value: { type: { name: "any" } }
         }
       },
       additionalFormatOptions: {
         serializedName: "additionalFormatOptions",
         type: {
           name: "Dictionary",
-          value: {
-            type: { name: "Dictionary", value: { type: { name: "any" } } }
-          }
+          value: { type: { name: "any" } }
         }
       }
     }
@@ -23044,43 +21802,37 @@ export const TabularTranslator: coreClient.CompositeMapper = {
       columnMappings: {
         serializedName: "columnMappings",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       schemaMapping: {
         serializedName: "schemaMapping",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       collectionReference: {
         serializedName: "collectionReference",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       mapComplexValuesToString: {
         serializedName: "mapComplexValuesToString",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       mappings: {
         serializedName: "mappings",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       typeConversion: {
         serializedName: "typeConversion",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       typeConversionSettings: {
@@ -23207,9 +21959,7 @@ export const ExecutePipelineActivity: coreClient.CompositeMapper = {
         serializedName: "typeProperties.parameters",
         type: {
           name: "Dictionary",
-          value: {
-            type: { name: "Dictionary", value: { type: { name: "any" } } }
-          }
+          value: { type: { name: "any" } }
         }
       },
       waitOnCompletion: {
@@ -23375,8 +22125,7 @@ export const WaitActivity: coreClient.CompositeMapper = {
         serializedName: "typeProperties.waitTimeInSeconds",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -23403,8 +22152,7 @@ export const UntilActivity: coreClient.CompositeMapper = {
       timeout: {
         serializedName: "typeProperties.timeout",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       activities: {
@@ -23437,29 +22185,25 @@ export const ValidationActivity: coreClient.CompositeMapper = {
       timeout: {
         serializedName: "typeProperties.timeout",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       sleep: {
         serializedName: "typeProperties.sleep",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       minimumSize: {
         serializedName: "typeProperties.minimumSize",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       childItems: {
         serializedName: "typeProperties.childItems",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       dataset: {
@@ -23520,8 +22264,7 @@ export const SetVariableActivity: coreClient.CompositeMapper = {
       value: {
         serializedName: "typeProperties.value",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -23547,8 +22290,7 @@ export const AppendVariableActivity: coreClient.CompositeMapper = {
       value: {
         serializedName: "typeProperties.value",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -23576,8 +22318,7 @@ export const WebHookActivity: coreClient.CompositeMapper = {
         serializedName: "typeProperties.url",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       timeout: {
@@ -23589,15 +22330,13 @@ export const WebHookActivity: coreClient.CompositeMapper = {
       headers: {
         serializedName: "typeProperties.headers",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       body: {
         serializedName: "typeProperties.body",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       authentication: {
@@ -23610,8 +22349,7 @@ export const WebHookActivity: coreClient.CompositeMapper = {
       reportStatusOnCallBack: {
         serializedName: "typeProperties.reportStatusOnCallBack",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -23669,15 +22407,13 @@ export const CopyActivity: coreClient.CompositeMapper = {
       translator: {
         serializedName: "typeProperties.translator",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       enableStaging: {
         serializedName: "typeProperties.enableStaging",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       stagingSettings: {
@@ -23690,22 +22426,19 @@ export const CopyActivity: coreClient.CompositeMapper = {
       parallelCopies: {
         serializedName: "typeProperties.parallelCopies",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       dataIntegrationUnits: {
         serializedName: "typeProperties.dataIntegrationUnits",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       enableSkipIncompatibleRow: {
         serializedName: "typeProperties.enableSkipIncompatibleRow",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       redirectIncompatibleRowSettings: {
@@ -23735,8 +22468,7 @@ export const CopyActivity: coreClient.CompositeMapper = {
           name: "Sequence",
           element: {
             type: {
-              name: "Dictionary",
-              value: { type: { name: "any" } }
+              name: "any"
             }
           }
         }
@@ -23747,8 +22479,7 @@ export const CopyActivity: coreClient.CompositeMapper = {
           name: "Sequence",
           element: {
             type: {
-              name: "Dictionary",
-              value: { type: { name: "any" } }
+              name: "any"
             }
           }
         }
@@ -23756,8 +22487,7 @@ export const CopyActivity: coreClient.CompositeMapper = {
       validateDataConsistency: {
         serializedName: "typeProperties.validateDataConsistency",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       skipErrorFile: {
@@ -23799,8 +22529,7 @@ export const HDInsightHiveActivity: coreClient.CompositeMapper = {
           name: "Sequence",
           element: {
             type: {
-              name: "Dictionary",
-              value: { type: { name: "any" } }
+              name: "any"
             }
           }
         }
@@ -23814,8 +22543,7 @@ export const HDInsightHiveActivity: coreClient.CompositeMapper = {
       scriptPath: {
         serializedName: "typeProperties.scriptPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       scriptLinkedService: {
@@ -23829,9 +22557,7 @@ export const HDInsightHiveActivity: coreClient.CompositeMapper = {
         serializedName: "typeProperties.defines",
         type: {
           name: "Dictionary",
-          value: {
-            type: { name: "Dictionary", value: { type: { name: "any" } } }
-          }
+          value: { type: { name: "any" } }
         }
       },
       variables: {
@@ -23840,8 +22566,7 @@ export const HDInsightHiveActivity: coreClient.CompositeMapper = {
           name: "Sequence",
           element: {
             type: {
-              name: "Dictionary",
-              value: { type: { name: "any" } }
+              name: "any"
             }
           }
         }
@@ -23881,8 +22606,7 @@ export const HDInsightPigActivity: coreClient.CompositeMapper = {
       arguments: {
         serializedName: "typeProperties.arguments",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       getDebugInfo: {
@@ -23894,8 +22618,7 @@ export const HDInsightPigActivity: coreClient.CompositeMapper = {
       scriptPath: {
         serializedName: "typeProperties.scriptPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       scriptLinkedService: {
@@ -23909,9 +22632,7 @@ export const HDInsightPigActivity: coreClient.CompositeMapper = {
         serializedName: "typeProperties.defines",
         type: {
           name: "Dictionary",
-          value: {
-            type: { name: "Dictionary", value: { type: { name: "any" } } }
-          }
+          value: { type: { name: "any" } }
         }
       }
     }
@@ -23946,8 +22667,7 @@ export const HDInsightMapReduceActivity: coreClient.CompositeMapper = {
           name: "Sequence",
           element: {
             type: {
-              name: "Dictionary",
-              value: { type: { name: "any" } }
+              name: "any"
             }
           }
         }
@@ -23962,16 +22682,14 @@ export const HDInsightMapReduceActivity: coreClient.CompositeMapper = {
         serializedName: "typeProperties.className",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       jarFilePath: {
         serializedName: "typeProperties.jarFilePath",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       jarLinkedService: {
@@ -23987,8 +22705,7 @@ export const HDInsightMapReduceActivity: coreClient.CompositeMapper = {
           name: "Sequence",
           element: {
             type: {
-              name: "Dictionary",
-              value: { type: { name: "any" } }
+              name: "any"
             }
           }
         }
@@ -23997,9 +22714,7 @@ export const HDInsightMapReduceActivity: coreClient.CompositeMapper = {
         serializedName: "typeProperties.defines",
         type: {
           name: "Dictionary",
-          value: {
-            type: { name: "Dictionary", value: { type: { name: "any" } } }
-          }
+          value: { type: { name: "any" } }
         }
       }
     }
@@ -24034,8 +22749,7 @@ export const HDInsightStreamingActivity: coreClient.CompositeMapper = {
           name: "Sequence",
           element: {
             type: {
-              name: "Dictionary",
-              value: { type: { name: "any" } }
+              name: "any"
             }
           }
         }
@@ -24050,32 +22764,28 @@ export const HDInsightStreamingActivity: coreClient.CompositeMapper = {
         serializedName: "typeProperties.mapper",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       reducer: {
         serializedName: "typeProperties.reducer",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       input: {
         serializedName: "typeProperties.input",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       output: {
         serializedName: "typeProperties.output",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       filePaths: {
@@ -24085,8 +22795,7 @@ export const HDInsightStreamingActivity: coreClient.CompositeMapper = {
           name: "Sequence",
           element: {
             type: {
-              name: "Dictionary",
-              value: { type: { name: "any" } }
+              name: "any"
             }
           }
         }
@@ -24101,8 +22810,7 @@ export const HDInsightStreamingActivity: coreClient.CompositeMapper = {
       combiner: {
         serializedName: "typeProperties.combiner",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       commandEnvironment: {
@@ -24111,8 +22819,7 @@ export const HDInsightStreamingActivity: coreClient.CompositeMapper = {
           name: "Sequence",
           element: {
             type: {
-              name: "Dictionary",
-              value: { type: { name: "any" } }
+              name: "any"
             }
           }
         }
@@ -24121,9 +22828,7 @@ export const HDInsightStreamingActivity: coreClient.CompositeMapper = {
         serializedName: "typeProperties.defines",
         type: {
           name: "Dictionary",
-          value: {
-            type: { name: "Dictionary", value: { type: { name: "any" } } }
-          }
+          value: { type: { name: "any" } }
         }
       }
     }
@@ -24144,16 +22849,14 @@ export const HDInsightSparkActivity: coreClient.CompositeMapper = {
         serializedName: "typeProperties.rootPath",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       entryFilePath: {
         serializedName: "typeProperties.entryFilePath",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       arguments: {
@@ -24162,8 +22865,7 @@ export const HDInsightSparkActivity: coreClient.CompositeMapper = {
           name: "Sequence",
           element: {
             type: {
-              name: "Dictionary",
-              value: { type: { name: "any" } }
+              name: "any"
             }
           }
         }
@@ -24190,17 +22892,14 @@ export const HDInsightSparkActivity: coreClient.CompositeMapper = {
       proxyUser: {
         serializedName: "typeProperties.proxyUser",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       sparkConfig: {
         serializedName: "typeProperties.sparkConfig",
         type: {
           name: "Dictionary",
-          value: {
-            type: { name: "Dictionary", value: { type: { name: "any" } } }
-          }
+          value: { type: { name: "any" } }
         }
       }
     }
@@ -24227,22 +22926,19 @@ export const ExecuteSsisPackageActivity: coreClient.CompositeMapper = {
       runtime: {
         serializedName: "typeProperties.runtime",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       loggingLevel: {
         serializedName: "typeProperties.loggingLevel",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       environmentPath: {
         serializedName: "typeProperties.environmentPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       executionCredential: {
@@ -24339,8 +23035,7 @@ export const CustomActivity: coreClient.CompositeMapper = {
         serializedName: "typeProperties.command",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       resourceLinkedService: {
@@ -24353,8 +23048,7 @@ export const CustomActivity: coreClient.CompositeMapper = {
       folderPath: {
         serializedName: "typeProperties.folderPath",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       referenceObjects: {
@@ -24368,23 +23062,19 @@ export const CustomActivity: coreClient.CompositeMapper = {
         serializedName: "typeProperties.extendedProperties",
         type: {
           name: "Dictionary",
-          value: {
-            type: { name: "Dictionary", value: { type: { name: "any" } } }
-          }
+          value: { type: { name: "any" } }
         }
       },
       retentionTimeInDays: {
         serializedName: "typeProperties.retentionTimeInDays",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       autoUserSpecification: {
         serializedName: "typeProperties.autoUserSpecification",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -24405,8 +23095,7 @@ export const SqlServerStoredProcedureActivity: coreClient.CompositeMapper = {
         serializedName: "typeProperties.storedProcedureName",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       storedProcedureParameters: {
@@ -24435,8 +23124,7 @@ export const DeleteActivity: coreClient.CompositeMapper = {
       recursive: {
         serializedName: "typeProperties.recursive",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       maxConcurrentConnections: {
@@ -24451,8 +23139,7 @@ export const DeleteActivity: coreClient.CompositeMapper = {
       enableLogging: {
         serializedName: "typeProperties.enableLogging",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       logStorageSettings: {
@@ -24494,15 +23181,13 @@ export const AzureDataExplorerCommandActivity: coreClient.CompositeMapper = {
         serializedName: "typeProperties.command",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       commandTimeout: {
         serializedName: "typeProperties.commandTimeout",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -24536,8 +23221,7 @@ export const LookupActivity: coreClient.CompositeMapper = {
       firstRowOnly: {
         serializedName: "typeProperties.firstRowOnly",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -24565,22 +23249,19 @@ export const WebActivity: coreClient.CompositeMapper = {
         serializedName: "typeProperties.url",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       headers: {
         serializedName: "typeProperties.headers",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       body: {
         serializedName: "typeProperties.body",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       authentication: {
@@ -24648,8 +23329,7 @@ export const GetMetadataActivity: coreClient.CompositeMapper = {
           name: "Sequence",
           element: {
             type: {
-              name: "Dictionary",
-              value: { type: { name: "any" } }
+              name: "any"
             }
           }
         }
@@ -24686,9 +23366,7 @@ export const AzureMLBatchExecutionActivity: coreClient.CompositeMapper = {
         serializedName: "typeProperties.globalParameters",
         type: {
           name: "Dictionary",
-          value: {
-            type: { name: "Dictionary", value: { type: { name: "any" } } }
-          }
+          value: { type: { name: "any" } }
         }
       },
       webServiceOutputs: {
@@ -24727,8 +23405,7 @@ export const AzureMLUpdateResourceActivity: coreClient.CompositeMapper = {
         serializedName: "typeProperties.trainedModelName",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       trainedModelLinkedServiceName: {
@@ -24742,8 +23419,7 @@ export const AzureMLUpdateResourceActivity: coreClient.CompositeMapper = {
         serializedName: "typeProperties.trainedModelFilePath",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -24763,57 +23439,49 @@ export const AzureMLExecutePipelineActivity: coreClient.CompositeMapper = {
       mlPipelineId: {
         serializedName: "typeProperties.mlPipelineId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       mlPipelineEndpointId: {
         serializedName: "typeProperties.mlPipelineEndpointId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       version: {
         serializedName: "typeProperties.version",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       experimentName: {
         serializedName: "typeProperties.experimentName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       mlPipelineParameters: {
         serializedName: "typeProperties.mlPipelineParameters",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       dataPathAssignments: {
         serializedName: "typeProperties.dataPathAssignments",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       mlParentRunId: {
         serializedName: "typeProperties.mlParentRunId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       continueOnStepFailure: {
         serializedName: "typeProperties.continueOnStepFailure",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -24834,8 +23502,7 @@ export const DataLakeAnalyticsUsqlActivity: coreClient.CompositeMapper = {
         serializedName: "typeProperties.scriptPath",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       scriptLinkedService: {
@@ -24848,38 +23515,32 @@ export const DataLakeAnalyticsUsqlActivity: coreClient.CompositeMapper = {
       degreeOfParallelism: {
         serializedName: "typeProperties.degreeOfParallelism",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       priority: {
         serializedName: "typeProperties.priority",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       parameters: {
         serializedName: "typeProperties.parameters",
         type: {
           name: "Dictionary",
-          value: {
-            type: { name: "Dictionary", value: { type: { name: "any" } } }
-          }
+          value: { type: { name: "any" } }
         }
       },
       runtimeVersion: {
         serializedName: "typeProperties.runtimeVersion",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       compilationMode: {
         serializedName: "typeProperties.compilationMode",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -24900,17 +23561,14 @@ export const DatabricksNotebookActivity: coreClient.CompositeMapper = {
         serializedName: "typeProperties.notebookPath",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       baseParameters: {
         serializedName: "typeProperties.baseParameters",
         type: {
           name: "Dictionary",
-          value: {
-            type: { name: "Dictionary", value: { type: { name: "any" } } }
-          }
+          value: { type: { name: "any" } }
         }
       },
       libraries: {
@@ -24920,9 +23578,7 @@ export const DatabricksNotebookActivity: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Dictionary",
-              value: {
-                type: { name: "Dictionary", value: { type: { name: "any" } } }
-              }
+              value: { type: { name: "any" } }
             }
           }
         }
@@ -24945,8 +23601,7 @@ export const DatabricksSparkJarActivity: coreClient.CompositeMapper = {
         serializedName: "typeProperties.mainClassName",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       parameters: {
@@ -24955,8 +23610,7 @@ export const DatabricksSparkJarActivity: coreClient.CompositeMapper = {
           name: "Sequence",
           element: {
             type: {
-              name: "Dictionary",
-              value: { type: { name: "any" } }
+              name: "any"
             }
           }
         }
@@ -24968,9 +23622,7 @@ export const DatabricksSparkJarActivity: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Dictionary",
-              value: {
-                type: { name: "Dictionary", value: { type: { name: "any" } } }
-              }
+              value: { type: { name: "any" } }
             }
           }
         }
@@ -24993,8 +23645,7 @@ export const DatabricksSparkPythonActivity: coreClient.CompositeMapper = {
         serializedName: "typeProperties.pythonFile",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       parameters: {
@@ -25003,8 +23654,7 @@ export const DatabricksSparkPythonActivity: coreClient.CompositeMapper = {
           name: "Sequence",
           element: {
             type: {
-              name: "Dictionary",
-              value: { type: { name: "any" } }
+              name: "any"
             }
           }
         }
@@ -25016,9 +23666,7 @@ export const DatabricksSparkPythonActivity: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Dictionary",
-              value: {
-                type: { name: "Dictionary", value: { type: { name: "any" } } }
-              }
+              value: { type: { name: "any" } }
             }
           }
         }
@@ -25048,22 +23696,19 @@ export const AzureFunctionActivity: coreClient.CompositeMapper = {
         serializedName: "typeProperties.functionName",
         required: true,
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       headers: {
         serializedName: "typeProperties.headers",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       body: {
         serializedName: "typeProperties.body",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -25111,22 +23756,19 @@ export const ExecuteDataFlowActivity: coreClient.CompositeMapper = {
       traceLevel: {
         serializedName: "typeProperties.traceLevel",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       continueOnError: {
         serializedName: "typeProperties.continueOnError",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       runConcurrently: {
         serializedName: "typeProperties.runConcurrently",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -25269,8 +23911,7 @@ export const CustomEventsTrigger: coreClient.CompositeMapper = {
           name: "Sequence",
           element: {
             type: {
-              name: "Dictionary",
-              value: { type: { name: "any" } }
+              name: "any"
             }
           }
         }
@@ -25331,15 +23972,13 @@ export const AzureTableSource: coreClient.CompositeMapper = {
       azureTableSourceQuery: {
         serializedName: "azureTableSourceQuery",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       azureTableSourceIgnoreTableNotFound: {
         serializedName: "azureTableSourceIgnoreTableNotFound",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -25359,8 +23998,7 @@ export const InformixSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -25380,8 +24018,7 @@ export const Db2Source: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -25401,8 +24038,7 @@ export const OdbcSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -25422,8 +24058,7 @@ export const MySqlSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -25443,8 +24078,7 @@ export const PostgreSqlSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -25464,8 +24098,7 @@ export const SybaseSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -25485,8 +24118,7 @@ export const SapBwSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -25506,8 +24138,7 @@ export const SalesforceSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       readBehavior: {
@@ -25533,15 +24164,13 @@ export const SapCloudForCustomerSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       httpRequestTimeout: {
         serializedName: "httpRequestTimeout",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -25561,15 +24190,13 @@ export const SapEccSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       httpRequestTimeout: {
         serializedName: "httpRequestTimeout",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -25589,22 +24216,19 @@ export const SapHanaSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       packetSize: {
         serializedName: "packetSize",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       partitionOption: {
         serializedName: "partitionOption",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       partitionSettings: {
@@ -25631,29 +24255,25 @@ export const SapOpenHubSource: coreClient.CompositeMapper = {
       excludeLastRequest: {
         serializedName: "excludeLastRequest",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       baseRequestId: {
         serializedName: "baseRequestId",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       customRfcReadTableFunctionModule: {
         serializedName: "customRfcReadTableFunctionModule",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       sapDataColumnDelimiter: {
         serializedName: "sapDataColumnDelimiter",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -25673,57 +24293,49 @@ export const SapTableSource: coreClient.CompositeMapper = {
       rowCount: {
         serializedName: "rowCount",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       rowSkips: {
         serializedName: "rowSkips",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       rfcTableFields: {
         serializedName: "rfcTableFields",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       rfcTableOptions: {
         serializedName: "rfcTableOptions",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       batchSize: {
         serializedName: "batchSize",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       customRfcReadTableFunctionModule: {
         serializedName: "customRfcReadTableFunctionModule",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       sapDataColumnDelimiter: {
         serializedName: "sapDataColumnDelimiter",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       partitionOption: {
         serializedName: "partitionOption",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       partitionSettings: {
@@ -25750,15 +24362,13 @@ export const SqlSource: coreClient.CompositeMapper = {
       sqlReaderQuery: {
         serializedName: "sqlReaderQuery",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       sqlReaderStoredProcedureName: {
         serializedName: "sqlReaderStoredProcedureName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       storedProcedureParameters: {
@@ -25773,15 +24383,13 @@ export const SqlSource: coreClient.CompositeMapper = {
       isolationLevel: {
         serializedName: "isolationLevel",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       partitionOption: {
         serializedName: "partitionOption",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       partitionSettings: {
@@ -25808,15 +24416,13 @@ export const SqlServerSource: coreClient.CompositeMapper = {
       sqlReaderQuery: {
         serializedName: "sqlReaderQuery",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       sqlReaderStoredProcedureName: {
         serializedName: "sqlReaderStoredProcedureName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       storedProcedureParameters: {
@@ -25831,15 +24437,13 @@ export const SqlServerSource: coreClient.CompositeMapper = {
       produceAdditionalTypes: {
         serializedName: "produceAdditionalTypes",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       partitionOption: {
         serializedName: "partitionOption",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       partitionSettings: {
@@ -25866,15 +24470,13 @@ export const AmazonRdsForSqlServerSource: coreClient.CompositeMapper = {
       sqlReaderQuery: {
         serializedName: "sqlReaderQuery",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       sqlReaderStoredProcedureName: {
         serializedName: "sqlReaderStoredProcedureName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       storedProcedureParameters: {
@@ -25889,15 +24491,13 @@ export const AmazonRdsForSqlServerSource: coreClient.CompositeMapper = {
       produceAdditionalTypes: {
         serializedName: "produceAdditionalTypes",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       partitionOption: {
         serializedName: "partitionOption",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       partitionSettings: {
@@ -25924,15 +24524,13 @@ export const AzureSqlSource: coreClient.CompositeMapper = {
       sqlReaderQuery: {
         serializedName: "sqlReaderQuery",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       sqlReaderStoredProcedureName: {
         serializedName: "sqlReaderStoredProcedureName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       storedProcedureParameters: {
@@ -25947,15 +24545,13 @@ export const AzureSqlSource: coreClient.CompositeMapper = {
       produceAdditionalTypes: {
         serializedName: "produceAdditionalTypes",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       partitionOption: {
         serializedName: "partitionOption",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       partitionSettings: {
@@ -25982,15 +24578,13 @@ export const SqlMISource: coreClient.CompositeMapper = {
       sqlReaderQuery: {
         serializedName: "sqlReaderQuery",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       sqlReaderStoredProcedureName: {
         serializedName: "sqlReaderStoredProcedureName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       storedProcedureParameters: {
@@ -26005,15 +24599,13 @@ export const SqlMISource: coreClient.CompositeMapper = {
       produceAdditionalTypes: {
         serializedName: "produceAdditionalTypes",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       partitionOption: {
         serializedName: "partitionOption",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       partitionSettings: {
@@ -26040,29 +24632,25 @@ export const SqlDWSource: coreClient.CompositeMapper = {
       sqlReaderQuery: {
         serializedName: "sqlReaderQuery",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       sqlReaderStoredProcedureName: {
         serializedName: "sqlReaderStoredProcedureName",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       storedProcedureParameters: {
         serializedName: "storedProcedureParameters",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       partitionOption: {
         serializedName: "partitionOption",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       partitionSettings: {
@@ -26089,8 +24677,7 @@ export const AzureMySqlSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -26110,15 +24697,13 @@ export const TeradataSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       partitionOption: {
         serializedName: "partitionOption",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       partitionSettings: {
@@ -26145,8 +24730,7 @@ export const CassandraSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       consistencyLevel: {
@@ -26172,8 +24756,7 @@ export const AmazonMWSSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -26193,8 +24776,7 @@ export const AzurePostgreSqlSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -26214,8 +24796,7 @@ export const ConcurSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -26235,8 +24816,7 @@ export const CouchbaseSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -26256,8 +24836,7 @@ export const DrillSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -26277,8 +24856,7 @@ export const EloquaSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -26298,8 +24876,7 @@ export const GoogleBigQuerySource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -26319,8 +24896,7 @@ export const GreenplumSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -26340,8 +24916,7 @@ export const HBaseSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -26361,8 +24936,7 @@ export const HiveSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -26382,8 +24956,7 @@ export const HubspotSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -26403,8 +24976,7 @@ export const ImpalaSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -26424,8 +24996,7 @@ export const JiraSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -26445,8 +25016,7 @@ export const MagentoSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -26466,8 +25036,7 @@ export const MariaDBSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -26487,8 +25056,7 @@ export const AzureMariaDBSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -26508,8 +25076,7 @@ export const MarketoSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -26529,8 +25096,7 @@ export const PaypalSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -26550,8 +25116,7 @@ export const PhoenixSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -26571,8 +25136,7 @@ export const PrestoSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -26592,8 +25156,7 @@ export const QuickBooksSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -26613,8 +25176,7 @@ export const ServiceNowSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -26634,8 +25196,7 @@ export const ShopifySource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -26655,8 +25216,7 @@ export const SparkSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -26676,8 +25236,7 @@ export const SquareSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -26697,8 +25256,7 @@ export const XeroSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -26718,8 +25276,7 @@ export const ZohoSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -26739,15 +25296,13 @@ export const NetezzaSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       partitionOption: {
         serializedName: "partitionOption",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       partitionSettings: {
@@ -26774,8 +25329,7 @@ export const VerticaSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -26795,8 +25349,7 @@ export const SalesforceMarketingCloudSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -26816,8 +25369,7 @@ export const ResponsysSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -26837,15 +25389,13 @@ export const DynamicsAXSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       httpRequestTimeout: {
         serializedName: "httpRequestTimeout",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -26865,8 +25415,7 @@ export const OracleServiceCloudSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -26886,8 +25435,7 @@ export const GoogleAdWordsSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       }
     }
@@ -26907,8 +25455,7 @@ export const AmazonRedshiftSource: coreClient.CompositeMapper = {
       query: {
         serializedName: "query",
         type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
+          name: "any"
         }
       },
       redshiftUnloadSettings: {
