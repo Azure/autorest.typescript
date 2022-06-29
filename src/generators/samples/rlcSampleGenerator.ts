@@ -7,10 +7,12 @@ import * as hbs from "handlebars";
 import { NameType, normalizeName } from "../../utils/nameUtils";
 import { getLanguageMetadata } from "../../utils/languageHelpers";
 import { transformBaseUrl } from "../../transforms/urlTransforms";
-import { PathMetadata, Paths, RLCSampleDetail, RLCSampleGroup, SampleParameter, SampleParameters, TestSampleParameters } from "../../restLevelClient/interfaces";
+import { PathMetadata, Paths, RLCSampleDetail, RLCSampleGroup, SampleParameter, SampleParameters, TestSampleParameters, OperationMethod } from "../../restLevelClient/interfaces";
 import { camelCase } from "@azure-tools/codegen";
 import { pathDictionary } from "../../restLevelClient/generateClientDefinition";
 import { Operation, ParameterLocation } from "@autorest/codemodel";
+import { isLongRunningOperation } from "../../restLevelClient/helpers/hasPollingOperations";
+import { isPagingOperation } from "../../utils/extractPaginationDetails";
 // import { ExampleModel } from "@autorest/testmodeler";
 
 export function generateRLCSamples(model: TestCodeModel, project: Project) {
@@ -104,10 +106,10 @@ export function transformRLCSampleData(model: TestCodeModel): RLCSampleGroup[] {
                 };
                 rawParamters.client = rawSample.clientParameters;
                 rawParamters.path = (rawSample.methodParameters || [])
-                                    .filter(param => param.parameter.protocol.http?.in == ParameterLocation.Path);
+                    .filter(param => param.parameter.protocol.http?.in == ParameterLocation.Path);
                 rawParamters.method = (rawSample.methodParameters || [])
-                                    .filter(param => param.parameter.protocol.http?.in == ParameterLocation.Body);
-                const parameters : SampleParameters = {
+                    .filter(param => param.parameter.protocol.http?.in == ParameterLocation.Body);
+                const parameters: SampleParameters = {
                     "client": [],
                     "path": [],
                     "method": []
@@ -115,13 +117,13 @@ export function transformRLCSampleData(model: TestCodeModel): RLCSampleGroup[] {
                 // client-level parameter preparation
                 convertClientLevelParameters(rawParamters, parameters);
                 // path-level parameter preparation
-                parameters.path = convertPathLevelParameters(rawParamters.path, pathDetail);
+                parameters.path = convertPathLevelParameters(rawParamters.path, pathDetail, path);
                 // method-level parameter 
-                convertMethodLevelParameters(rawParamters, parameters);
+                parameters.method = convertMethodLevelParameters(rawParamters.method, pathDetail.methods[method]);
                 // enrich parameter details
                 enrichParameterInSample(sample, parameters);
                 // enrich LRO and pagination info
-                enrichLROAndPagingInSample(sample,operation);
+                enrichLROAndPagingInSample(sample, operation);
                 sampleGroup.samples.push(sample);
             }
         } catch (error) {
@@ -147,14 +149,18 @@ function convertClientLevelParameters(from: TestSampleParameters, to: SamplePara
 
 }
 
-function convertPathLevelParameters(from:any[], pathDetail: PathMetadata):SampleParameter[] {
+function convertPathLevelParameters(rawPathParams: any[], pathDetail: PathMetadata, path: string): SampleParameter[] {
     const res: Record<string, any> = {};
-    (from || []).forEach(p => {
+    (rawPathParams || []).forEach(p => {
         const name = p.parameter.language.default.serializedName || p.parameter.language.default.name;
         res[name] = p;
     })
-    return (pathDetail || []).pathParameters.map(p => {
-        if(res[p.name]) {
+    const pathItself = {
+        name: path
+    };
+    const pathParams = (pathDetail || []).pathParameters.map(p => {
+        if (!res[p.name]) {
+            // path params are mandotary we'll leave it empty if no input
             return {
                 name: ""
             } as SampleParameter;
@@ -164,20 +170,54 @@ function convertPathLevelParameters(from:any[], pathDetail: PathMetadata):Sample
             }
             pathParam.assignment = `const ${pathParam.name} = "${res[p.name].exampleValue.rawValue}";`;
             return pathParam;
-        } 
+        }
     });
+    return [pathItself].concat(pathParams);
 }
 
-function convertMethodLevelParameters(from: TestSampleParameters, to: SampleParameters) {
-    console.log(from);
+function convertMethodLevelParameters(rawMethodParams: any[], methods: OperationMethod[]): SampleParameter[] {
+    if (!methods || methods.length == 0) {
+        return [];
+    }
+    const method = methods[0];
+    const hasInputParams = (!!rawMethodParams && rawMethodParams.length > 0), requireParam = !method.hasOptionalOptions;
+    if (!hasInputParams && !requireParam) {
+        return [];
+    }
+    const value: any = {};
+    rawMethodParams.forEach(p => {
+        if (p.parameter.protocol.http?.in == ParameterLocation.Body) {
+            value.body = p.exampleValue.rawValue;
+        }
+        // Handle other position in options
+    });
+    const optionParam: SampleParameter = {
+        name: "options",
+        assignment: `const options: ${method.optionsName} = ${value};`
+    }
+    return [optionParam];
 }
 
-function enrichParameterInSample(sample: RLCSampleDetail,  parameters: SampleParameters) {
-    console.log(sample);
+function enrichParameterInSample(sample: RLCSampleDetail, parameters: SampleParameters) {
+    sample.clientParamAssignments = getAssignments(parameters.client);
+    sample.clientParamNames = getInputtedParameters(parameters.client);
+    sample.pathParamAssignments = getAssignments(parameters.path);
+    sample.pathParamNames = getInputtedParameters(parameters.path);
+    sample.methodParamAssignments = getAssignments(parameters.method);
+    sample.methodParamNames = (parameters.method.length > 0) ? "options" : "";
+}
+
+function getAssignments(parameters: SampleParameter[]) {
+    return parameters.filter(p => !!p.assignment).map(p => p.assignment!);
+}
+
+function getInputtedParameters(parameters: SampleParameter[]) {
+    return parameters.filter(p => p.name != null).map(p => p.name!).join(',');
 }
 
 function enrichLROAndPagingInSample(sample: RLCSampleDetail, operation: Operation) {
-    console.log(sample);
+    sample.isLRO = isLongRunningOperation(operation);
+    sample.isPaging = isPagingOperation(operation);
 }
 
 function transformSpecialLetterToSpace(str: string) {
