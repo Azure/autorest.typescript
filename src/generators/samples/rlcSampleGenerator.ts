@@ -419,13 +419,13 @@ export function createSampleData(model: TestCodeModel) {
 function enrichImportedString(sampleGroup: RLCSampleGroup, importedDict: Record<string, Set<string>>) {
     const importedTypes: string[] = [], packageName = getPackageName();
     if(!!importedDict[packageName]) {
-        const otherTypes = Array.from(importedDict[packageName]).join(",");
+        const otherTypes = Array.from(importedDict[packageName]).join(", ");
         importedTypes.push(`import createClient, { ${otherTypes} } from "${packageName}";`);
     } else {
         importedTypes.push(`import createClient from "${packageName}";`);
     }
     if(importedDict[credentialPackageName]){
-        const otherTypes = Array.from(importedDict[credentialPackageName]).join(",");
+        const otherTypes = Array.from(importedDict[credentialPackageName]).join(", ");
         importedTypes.push(`import { ${otherTypes} } from "${credentialPackageName}";`);
     }
     sampleGroup.importedTypes = importedTypes;
