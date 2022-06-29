@@ -1,4 +1,5 @@
 import { Schema } from "@autorest/codemodel";
+import { ExampleParameter } from "@autorest/testmodeler/dist/src/core/model";
 // import { ExampleParameter } from "@autorest/testmodeler";
 
 export type PathParameter = {
@@ -44,7 +45,6 @@ export interface OperationAnnotations {
  */
 export interface RLCSampleGroup {
   filename: string,
-  clientClassName: string,
   clientPackageName: string,
   samples: RLCSampleDetail[],
   // import createClient, { getLongRunningPoller, ScenesCreateSatelliteDataIngestionJobParameters } from "@azure-rest/agrifood-farming";
@@ -110,7 +110,7 @@ export type SampleParameterPosition = 'client' | 'path' | 'method';
 
 export type SampleParameters = Record<SampleParameterPosition, SampleParameter[]>;
 
-export type TestSampleParameters = Record<SampleParameterPosition, any[]>;
+export type TestSampleParameters = Record<SampleParameterPosition, ExampleParameter[]>;
 
 export interface SampleParameter {
   name: string;

@@ -201,30 +201,36 @@ export const readmes: SpecDefinition[] = [
     params: [
       AutorestParams.RestClient,
       AutorestParams.GenerateTest,
-      AutorestParams.AzureSdkForJs
+      AutorestParams.AzureSdkForJs,
+      AutorestParams.GenerateSamples
     ],
     buildTag: "ci_rlc"
   },
-  {
-    path: joinPath(
-      `${__dirname}`,
-      "..",
-      "./smoke/swagger/purview-administration-rest.md"
-    ),
-    params: [
-      AutorestParams.RestClient,
-      AutorestParams.MultiClient,
-      AutorestParams.AzureSdkForJs
-    ],
-    buildTag: "ci_rlc"
-  },
+  // {
+  //   path: joinPath(
+  //     `${__dirname}`,
+  //     "..",
+  //     "./smoke/swagger/purview-administration-rest.md"
+  //   ),
+  //   params: [
+  //     AutorestParams.RestClient,
+  //     AutorestParams.MultiClient,
+  //     AutorestParams.AzureSdkForJs,
+  //     AutorestParams.GenerateSamples,
+  //   ],
+  //   buildTag: "ci_rlc"
+  // },
   {
     path: joinPath(
       `${__dirname}`,
       "..",
       "./smoke/swagger/synapse-artifacts-rest.md"
     ),
-    params: [AutorestParams.RestClient, AutorestParams.AzureSdkForJs],
+    params: [
+      AutorestParams.RestClient, 
+      AutorestParams.AzureSdkForJs,
+      AutorestParams.GenerateSamples,
+    ],
     buildTag: "ci_rlc"
   }
   // {

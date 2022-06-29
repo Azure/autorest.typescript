@@ -1,4 +1,4 @@
-import { TestCodeModel } from "@autorest/testmodeler/dist/src/core/model";
+import { ExampleParameter, ExampleValue, TestCodeModel } from "@autorest/testmodeler/dist/src/core/model";
 import { Project } from "ts-morph";
 import { getAutorestOptions, getSession } from "../../autorestSession";
 import * as fs from 'fs';
@@ -10,10 +10,12 @@ import { transformBaseUrl } from "../../transforms/urlTransforms";
 import { PathMetadata, Paths, RLCSampleDetail, RLCSampleGroup, SampleParameter, SampleParameters, TestSampleParameters, OperationMethod } from "../../restLevelClient/interfaces";
 import { camelCase } from "@azure-tools/codegen";
 import { pathDictionary } from "../../restLevelClient/generateClientDefinition";
-import { Operation, ParameterLocation } from "@autorest/codemodel";
+import { ChoiceSchema, ConstantSchema, Operation, ParameterLocation, SchemaType } from "@autorest/codemodel";
 import { isLongRunningOperation } from "../../restLevelClient/helpers/hasPollingOperations";
 import { isPagingOperation } from "../../utils/extractPaginationDetails";
 // import { ExampleModel } from "@autorest/testmodeler";
+
+const credentialPackageName = "@azure/identity";
 
 export function generateRLCSamples(model: TestCodeModel, project: Project) {
     const {
@@ -59,16 +61,17 @@ export function transformRLCSampleData(model: TestCodeModel): RLCSampleGroup[] {
     const paths: Paths = pathDictionary;
     const rawSamplesForAll = model.testModel.mockTest.exampleGroups;
     for (const rawSamplesForOperID of rawSamplesForAll) {
+        const importedDict: Record<string, Set<string>> = {};
         const operation: Operation = rawSamplesForOperID.operation;
-        const operationId = rawSamplesForOperID.operationId;
-        const operationName = getLanguageMetadata(operation.language).name;
         const path: string = operation.requests?.[0].protocol.http?.path;
         const method = operation.requests?.[0].protocol.http?.method;
         const pathDetail: PathMetadata = paths[path];
+        const operatonConcante = `${rawSamplesForOperID?.operationGroup?.language?.default?.name}${rawSamplesForOperID?.operation?.language?.default?.name}`;
         const sampleGroup: RLCSampleGroup = {
-            filename: "",
-            clientClassName: "",
-            clientPackageName: "",
+            filename: `${camelCase(
+                transformSpecialLetterToSpace(operatonConcante)
+              )}Sample`,
+            clientPackageName: getPackageName(),
             samples: []
         };
         const rawSamples = rawSamplesForOperID?.examples;
@@ -115,15 +118,15 @@ export function transformRLCSampleData(model: TestCodeModel): RLCSampleGroup[] {
                     "method": []
                 };
                 // client-level parameter preparation
-                convertClientLevelParameters(rawParamters, parameters);
+                parameters.client = convertClientLevelParameters(rawParamters.client, model, importedDict);
                 // path-level parameter preparation
                 parameters.path = convertPathLevelParameters(rawParamters.path, pathDetail, path);
                 // method-level parameter 
-                parameters.method = convertMethodLevelParameters(rawParamters.method, pathDetail.methods[method]);
+                parameters.method = convertMethodLevelParameters(rawParamters.method, pathDetail.methods[method], importedDict);
                 // enrich parameter details
                 enrichParameterInSample(sample, parameters);
                 // enrich LRO and pagination info
-                enrichLROAndPagingInSample(sample, operation);
+                enrichLROAndPagingInSample(sample, operation, importedDict);
                 sampleGroup.samples.push(sample);
             }
         } catch (error) {
@@ -132,24 +135,58 @@ export function transformRLCSampleData(model: TestCodeModel): RLCSampleGroup[] {
             ]);
             throw error;
         }
-        if (sampleGroup.samples.length > 0) {
-            // enrich the importedTypes after all examples resolved
-            // sampleGroup.importedTypes = Array.from(importedTypeSet);
-            // TOOD: handle imported sets
-            rlcSampleGroups.push(sampleGroup);
-        } else {
+        if(sampleGroup.samples.length == 0) {
             session.debug(`No sample found`);
         }
+        // enrich the importedTypes after all examples resolved
+            // sampleGroup.importedTypes = Array.from(importedTypeSet);
+            rlcSampleGroups.push(sampleGroup);
+            enrichImportedString(sampleGroup, importedDict);
     }
     return rlcSampleGroups;
 }
 
-function convertClientLevelParameters(from: TestSampleParameters, to: SampleParameters) {
-    console.log(from);
+function convertClientLevelParameters(rawClientParams: ExampleParameter[], model: TestCodeModel, importedDict: Record<string, Set<string>>):SampleParameter[] {
+    const clientParams: SampleParameter[] = [];
+    const {
+        addCredentials,
+    } = getAutorestOptions();
+    if(!rawClientParams || rawClientParams.length == 0) {
+        return clientParams;
+    }
 
+    const { parameterName } = transformBaseUrl(model);
+    const hasUriParameter = !!parameterName, hasCredentials = addCredentials;
+    const rawUriParameters = rawClientParams.filter(p => p.parameter.protocol.http?.in === ParameterLocation.Uri);
+    if (hasUriParameter && rawUriParameters.length > 0) {
+        // Currently only support one parametrized host
+        // TODO: support more parameters in url
+        const urlValue = getParameterAssignment(rawUriParameters[0].exampleValue); 
+        clientParams.push({
+            name: parameterName,
+            assignment: `const ${parameterName} = ` + urlValue
+        });
+    }
+    if (hasCredentials) {
+        // Currently only support token credential
+        // TODO: support api-key credential;
+        clientParams.push({
+            name: "credential",
+            assignment: "const credential = new DefaultAzureCredential();"
+        });
+        addValueInImportedDict(credentialPackageName, "DefaultAzureCredential", importedDict);
+    }
+    return clientParams;
 }
 
-function convertPathLevelParameters(rawPathParams: any[], pathDetail: PathMetadata, path: string): SampleParameter[] {
+function addValueInImportedDict(key: string, val: string, importedDict:  Record<string, Set<string>>) {
+    if(!importedDict[key]) {
+        importedDict[key] = new Set<string>();
+    }
+    importedDict[key].add(val);
+}
+
+function convertPathLevelParameters(rawPathParams: ExampleParameter[], pathDetail: PathMetadata, path: string): SampleParameter[] {
     const res: Record<string, any> = {};
     (rawPathParams || []).forEach(p => {
         const name = p.parameter.language.default.serializedName || p.parameter.language.default.name;
@@ -168,14 +205,15 @@ function convertPathLevelParameters(rawPathParams: any[], pathDetail: PathMetada
             const pathParam: SampleParameter = {
                 name: p.name
             }
-            pathParam.assignment = `const ${pathParam.name} = "${res[p.name].exampleValue.rawValue}";`;
+            const value = getParameterAssignment(res[p.name].exampleValue)
+            pathParam.assignment = `const ${pathParam.name} = "${value}";`;
             return pathParam;
         }
     });
     return [pathItself].concat(pathParams);
 }
 
-function convertMethodLevelParameters(rawMethodParams: any[], methods: OperationMethod[]): SampleParameter[] {
+function convertMethodLevelParameters(rawMethodParams: ExampleParameter[], methods: OperationMethod[], importedDict: Record<string, Set<string>>): SampleParameter[] {
     if (!methods || methods.length == 0) {
         return [];
     }
@@ -184,40 +222,147 @@ function convertMethodLevelParameters(rawMethodParams: any[], methods: Operation
     if (!hasInputParams && !requireParam) {
         return [];
     }
+    
     const value: any = {};
     rawMethodParams.forEach(p => {
         if (p.parameter.protocol.http?.in == ParameterLocation.Body) {
-            value.body = p.exampleValue.rawValue;
+            value.body = getParameterAssignment(p.exampleValue);
         }
         // Handle other position in options
     });
     const optionParam: SampleParameter = {
         name: "options",
-        assignment: `const options: ${method.optionsName} = ${value};`
+        assignment: `const options: ${method.optionsName} = ${JSON.stringify(value)};`
     }
+    addValueInImportedDict(getPackageName(), method.optionsName, importedDict);
     return [optionParam];
 }
 
 function enrichParameterInSample(sample: RLCSampleDetail, parameters: SampleParameters) {
-    sample.clientParamAssignments = getAssignments(parameters.client);
-    sample.clientParamNames = getInputtedParameters(parameters.client);
-    sample.pathParamAssignments = getAssignments(parameters.path);
-    sample.pathParamNames = getInputtedParameters(parameters.path);
-    sample.methodParamAssignments = getAssignments(parameters.method);
+    sample.clientParamAssignments = getAssignmentStrArray(parameters.client);
+    sample.clientParamNames = getContactParameterNames(parameters.client);
+    sample.pathParamAssignments = getAssignmentStrArray(parameters.path);
+    sample.pathParamNames = getContactParameterNames(parameters.path);
+    sample.methodParamAssignments = getAssignmentStrArray(parameters.method);
     sample.methodParamNames = (parameters.method.length > 0) ? "options" : "";
 }
 
-function getAssignments(parameters: SampleParameter[]) {
+function getAssignmentStrArray(parameters: SampleParameter[]) {
     return parameters.filter(p => !!p.assignment).map(p => p.assignment!);
 }
 
-function getInputtedParameters(parameters: SampleParameter[]) {
+function getContactParameterNames(parameters: SampleParameter[]) {
     return parameters.filter(p => p.name != null).map(p => p.name!).join(',');
 }
 
-function enrichLROAndPagingInSample(sample: RLCSampleDetail, operation: Operation) {
-    sample.isLRO = isLongRunningOperation(operation);
-    sample.isPaging = isPagingOperation(operation);
+function getParameterAssignment(exampleValue: ExampleValue) {
+    let schemaType = exampleValue.schema.type;
+    const rawValue = exampleValue.rawValue;
+    let retValue = rawValue;
+    switch (schemaType) {
+      case SchemaType.Constant:
+        const contentSchema = exampleValue.schema as ConstantSchema;
+        schemaType = contentSchema.valueType.type;
+        break;
+      case SchemaType.Choice:
+      case SchemaType.SealedChoice:
+        const choiceSchema = exampleValue.schema as ChoiceSchema;
+        schemaType = choiceSchema.choiceType.type;
+        break;
+    }
+    if (rawValue === null) {
+      switch (schemaType) {
+        case SchemaType.Object:
+        case SchemaType.Any:
+        case SchemaType.Dictionary:
+        case SchemaType.AnyObject:
+          retValue = `{}`;
+          break;
+        case SchemaType.Array:
+          retValue = `[]`;
+          break;
+        default:
+          retValue = undefined;
+      }
+      return retValue;
+    }
+    switch (schemaType) {
+      case SchemaType.String:
+      case SchemaType.Char:
+      case SchemaType.Time:
+      case SchemaType.Uuid:
+      case SchemaType.Uri:
+      case SchemaType.Credential:
+      case SchemaType.Duration:
+        retValue = `"${rawValue
+          ?.toString()
+          .replace(/"/g, '\\"')
+          .replace(/\n/g, "\\n")}"`;
+        break;
+      case SchemaType.Boolean:
+        (retValue = rawValue), toString();
+        break;
+      case SchemaType.Object:
+      case SchemaType.Dictionary:
+        const values = [];
+        for (const prop in exampleValue.properties) {
+          const property = exampleValue.properties[prop];
+          if (property === undefined || property === null) {
+            continue;
+          }
+          const initPropName = property.language?.default?.name
+            ? property.language?.default?.name
+            : prop;
+          const propName = normalizeName(initPropName, NameType.Property, true);
+          let propRetValue: string;
+          if (propName.indexOf("/") > -1 || propName.match(/^\d/)) {
+            propRetValue = `"${propName}": ` + getParameterAssignment(property);
+          } else {
+            propRetValue = `${propName}: ` + getParameterAssignment(property);
+          }
+          values.push(propRetValue);
+        }
+        if (values.length > 0) {
+          retValue = `{${values.join(", ")}}`;
+        } else {
+          retValue = "{}";
+        }
+        break;
+      case SchemaType.Array:
+        const valuesArr = [];
+        for (const element of <ExampleValue[]>exampleValue.elements) {
+          let propRetValueArr = getParameterAssignment(element);
+          valuesArr.push(propRetValueArr);
+        }
+        if (valuesArr.length > 0) {
+          retValue = `[${valuesArr.join(", ")}]`;
+        } else {
+          retValue = "[]";
+        }
+        break;
+      case SchemaType.Date:
+      case SchemaType.DateTime:
+        retValue = `new Date("${rawValue}")`;
+        break;
+      case SchemaType.Any:
+      case SchemaType.AnyObject:
+        retValue = `${JSON.stringify(rawValue)}`;
+        break;
+      default:
+        break;
+    }
+    return retValue;
+  }
+
+function enrichLROAndPagingInSample(sample: RLCSampleDetail, operation: Operation,  importedDict: Record<string, Set<string>>) {
+    if(isLongRunningOperation(operation)) {
+        sample.isLRO = true;
+        addValueInImportedDict(getPackageName(), "getLongRunningPoller", importedDict);
+    }
+    if(isPagingOperation(operation)) {
+        sample.isPaging = true;
+        addValueInImportedDict(getPackageName(), "paginate", importedDict);
+    }
 }
 
 function transformSpecialLetterToSpace(str: string) {
@@ -229,6 +374,13 @@ function transformSpecialLetterToSpace(str: string) {
         .replace(/\//g, " Or ")
         .replace(/,|\.|\(|\)/g, " ")
         .replace("'s ", " ");
+}
+
+function getPackageName() {
+    const {
+        packageDetails
+      } = getAutorestOptions();
+    return packageDetails.name;
 }
 
 export function createSampleData(model: TestCodeModel) {
@@ -264,3 +416,18 @@ export function createSampleData(model: TestCodeModel) {
     }
 
 }
+function enrichImportedString(sampleGroup: RLCSampleGroup, importedDict: Record<string, Set<string>>) {
+    const importedTypes: string[] = [], packageName = getPackageName();
+    if(!!importedDict[packageName]) {
+        const otherTypes = Array.from(importedDict[packageName]).join(",");
+        importedTypes.push(`import createClient, { ${otherTypes} } from "${packageName}";`);
+    } else {
+        importedTypes.push(`import createClient from "${packageName}";`);
+    }
+    if(importedDict[credentialPackageName]){
+        const otherTypes = Array.from(importedDict[credentialPackageName]).join(",");
+        importedTypes.push(`import { ${otherTypes} } from "${credentialPackageName}";`);
+    }
+    sampleGroup.importedTypes = importedTypes;
+}
+
