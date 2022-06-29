@@ -104,7 +104,7 @@ export interface RLCSampleDetail {
   //   result.push(item);
   // }
   isPaging: boolean,
-} 
+}
 
 export type SampleParameterPosition = 'client' | 'path' | 'method';
 

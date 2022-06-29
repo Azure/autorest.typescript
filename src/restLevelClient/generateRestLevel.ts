@@ -42,7 +42,8 @@ export async function generateRestLevelClient() {
     outputPath,
     srcPath,
     generateSample,
-    generateTest
+    generateTest,
+    generateMetadata
   } = getAutorestOptions();
 
   const project = new Project({
@@ -84,10 +85,10 @@ export async function generateRestLevelClient() {
   generateIsUnexpectedHelper(project);
 
   generateTopLevelIndexFile(model, project);
-  if (generateSample || generateTest) {
+  if ((generateSample || generateTest) && generateMetadata) {
     generateSampleEnv(project);
   }
-  if (generateSample) {
+  if (generateSample && generateMetadata) {
     generateRLCSamples(model, project);
   }
 
