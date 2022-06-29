@@ -101,10 +101,8 @@ export function transformRLCSampleData(model: TestCodeModel): RLCSampleGroup[] {
                 // convert the parameters to the intermidate model - SampleParameters
                 const rawParamters: TestSampleParameters = {
                     client: rawSample.clientParameters,
-                    path: (rawSample.methodParameters || [])
-                        .filter(param => param.parameter.protocol.http?.in == ParameterLocation.Path),
-                    method: (rawSample.methodParameters || [])
-                        .filter(param => param.parameter.protocol.http?.in == ParameterLocation.Body)
+                    path: (rawSample.methodParameters || []).filter(isPathLevelParam),
+                    method: (rawSample.methodParameters || []).filter(isMethodLevelParam)
                 };
                 // client-level, path-level and method-level parameter preparation
                 const parameters: SampleParameters = {
@@ -132,6 +130,15 @@ export function transformRLCSampleData(model: TestCodeModel): RLCSampleGroup[] {
         enrichImportedString(sampleGroup, importedDict);
     }
     return rlcSampleGroups;
+}
+
+function isMethodLevelParam(param: ExampleParameter) {
+    const methodPositions = [ParameterLocation.Body, ParameterLocation.Query, ParameterLocation.Header];
+    return methodPositions.includes(param.parameter.protocol.http?.in);
+}
+
+function isPathLevelParam(param: ExampleParameter) {
+    return param.parameter.protocol.http?.in == ParameterLocation.Path;
 }
 
 function convertClientLevelParameters(rawClientParams: ExampleParameter[], model: TestCodeModel, importedDict: Record<string, Set<string>>): SampleParameter[] {
@@ -216,13 +223,28 @@ function convertMethodLevelParameters(rawMethodParams: ExampleParameter[], metho
         return [];
     }
 
-    let value: string = "{}";
-    rawMethodParams.forEach(p => {
-        if (p.parameter.protocol.http?.in == ParameterLocation.Body) {
-            value = `{ body: ` + getParameterAssignment(p.exampleValue) + `}`;
-        }
-        // Handle other positions in options
+    const allSideAssignments = [], querySideAssignments: string[] = [], headerSideAssignments: string[] = [];
+    rawMethodParams.filter(p => p.parameter.protocol.http?.in == ParameterLocation.Body).forEach(p => {
+        allSideAssignments.push(` body: ` + getParameterAssignment(p.exampleValue));
     });
+    rawMethodParams.filter(p => p.parameter.protocol.http?.in == ParameterLocation.Query).forEach(p => {
+        const name = p.parameter.language.default.serializedName || p.parameter.language.default.name;
+        querySideAssignments.push(`${name}: ` + getParameterAssignment(p.exampleValue));
+    });
+    if (querySideAssignments.length > 0) {
+        allSideAssignments.push(` queryParameters: { ` + querySideAssignments.join(", ") + `}`);
+    }
+    rawMethodParams.filter(p => p.parameter.protocol.http?.in == ParameterLocation.Header).forEach(p => {
+        const name = p.parameter.language.default.serializedName || p.parameter.language.default.name;
+        headerSideAssignments.push(`${name}: ` + getParameterAssignment(p.exampleValue));
+    });
+    if (headerSideAssignments.length > 0) {
+        allSideAssignments.push(` headers: { ` + headerSideAssignments.join(", ") + `}`);
+    }
+    let value: string = `{}`;
+    if (allSideAssignments.length > 0) {
+        value = `{ ` + allSideAssignments.join(", ") + `}`;
+    }
     const optionParam: SampleParameter = {
         name: "options",
         assignment: `const options: ${method.optionsName} =` + value + `;`
