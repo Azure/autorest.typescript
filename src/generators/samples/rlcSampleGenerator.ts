@@ -228,14 +228,14 @@ function convertMethodLevelParameters(rawMethodParams: ExampleParameter[], metho
         allSideAssignments.push(` body: ` + getParameterAssignment(p.exampleValue));
     });
     rawMethodParams.filter(p => p.parameter.protocol.http?.in == ParameterLocation.Query).forEach(p => {
-        const name = p.parameter.language.default.serializedName || p.parameter.language.default.name;
+        const name = getLanguageMetadata(p.parameter.language).serializedName || p.parameter.language.default.name;
         querySideAssignments.push(`${name}: ` + getParameterAssignment(p.exampleValue));
     });
     if (querySideAssignments.length > 0) {
         allSideAssignments.push(` queryParameters: { ` + querySideAssignments.join(", ") + `}`);
     }
     rawMethodParams.filter(p => p.parameter.protocol.http?.in == ParameterLocation.Header).forEach(p => {
-        const name = p.parameter.language.default.serializedName || p.parameter.language.default.name;
+        const name = getLanguageMetadata(p.parameter.language).serializedName || p.parameter.language.default.name;
         headerSideAssignments.push(`${name}: ` + getParameterAssignment(p.exampleValue));
     });
     if (headerSideAssignments.length > 0) {
