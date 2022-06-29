@@ -223,16 +223,16 @@ function convertMethodLevelParameters(rawMethodParams: ExampleParameter[], metho
         return [];
     }
     
-    const value: any = {};
+    let value: any = "{}";
     rawMethodParams.forEach(p => {
         if (p.parameter.protocol.http?.in == ParameterLocation.Body) {
-            value.body = getParameterAssignment(p.exampleValue);
+            value = `{ body: ` + getParameterAssignment(p.exampleValue) + `}` ;
         }
         // Handle other position in options
     });
     const optionParam: SampleParameter = {
         name: "options",
-        assignment: `const options: ${method.optionsName} = ${JSON.stringify(value)};`
+        assignment: `const options: ${method.optionsName} = ${value};`
     }
     addValueInImportedDict(getPackageName(), method.optionsName, importedDict);
     return [optionParam];
