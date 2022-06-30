@@ -939,7 +939,8 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     azureSdkForJs: false,
     allowInsecureConnection: true,
     addCredentials: false,
-    isTestPackage: true
+    isTestPackage: true,
+    generateSample: true
   },
   pagingRest: {
     swaggerOrConfig: "paging.json",
@@ -949,7 +950,8 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     isTestPackage: true,
     restLevelClient: true,
-    azureSdkForJs: false
+    azureSdkForJs: false,
+    generateSample: true
   },
   multipleInheritanceRest: {
     swaggerOrConfig: "multiple-inheritance.json",
@@ -962,7 +964,8 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     restLevelClient: true,
     azureSdkForJs: false,
     rlcShortcut: true,
-    isTestPackage: true
+    isTestPackage: true,
+    generateSample: true
   },
   mediaTypesRest: {
     swaggerOrConfig: "media_types.json",
@@ -972,7 +975,8 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     isTestPackage: true,
     restLevelClient: true,
-    azureSdkForJs: false
+    azureSdkForJs: false,
+    generateSample: true
   },
   bodyFileRest: {
     swaggerOrConfig: "body-file.json",
@@ -983,7 +987,8 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     isTestPackage: true,
     restLevelClient: true,
-    azureSdkForJs: false
+    azureSdkForJs: false,
+    generateSample: true
   },
   headerRest: {
     swaggerOrConfig: "header.json",
@@ -994,7 +999,8 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     azureSdkForJs: false,
     allowInsecureConnection: true,
     addCredentials: false,
-    isTestPackage: true
+    isTestPackage: true,
+    generateSample: true
   },
   urlRest: {
     swaggerOrConfig: "url.json",
@@ -1006,7 +1012,8 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     allowInsecureConnection: true,
     addCredentials: false,
     isTestPackage: true,
-    azureSdkForJs: false
+    azureSdkForJs: false,
+    generateSample: true
   },
   bodyFormDataRest: {
     swaggerOrConfig: "body-formdata.json",
@@ -1018,7 +1025,8 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     isTestPackage: true,
     restLevelClient: true,
-    azureSdkForJs: false
+    azureSdkForJs: false,
+    generateSample: true
   },
   customUrlRest: {
     swaggerOrConfig: "custom-baseUrl.json",
@@ -1030,7 +1038,8 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     rlcShortcut: true,
     allowInsecureConnection: true,
     addCredentials: false,
-    isTestPackage: true
+    isTestPackage: true,
+    generateSample: true
   },
   httpInfrastructureRest: {
     swaggerOrConfig: "httpInfrastructure.json",
@@ -1041,7 +1050,8 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     rlcShortcut: true,
     allowInsecureConnection: true,
     addCredentials: false,
-    isTestPackage: true
+    isTestPackage: true,
+    generateSample: true
   },
   azureReport: {
     swaggerOrConfig: "azure-report.json",
@@ -1051,7 +1061,8 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     useCoreV2: true,
     allowInsecureConnection: true,
     addCredentials: false,
-    isTestPackage: true
+    isTestPackage: true,
+    generateSample: true
   },
   report: {
     swaggerOrConfig: "report.json",
@@ -1062,7 +1073,8 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     allowInsecureConnection: true,
     addCredentials: false,
     isTestPackage: true,
-    azureSdkForJs: false
+    azureSdkForJs: false,
+    generateSample: true
   }
 };
 
