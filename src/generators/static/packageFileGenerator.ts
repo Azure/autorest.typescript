@@ -8,8 +8,8 @@ import { getAutorestOptions, getSession } from "../../autorestSession";
 import { hasPagingOperations } from "../../utils/extractPaginationDetails";
 import { hasPollingOperations } from "../../restLevelClient/helpers/hasPollingOperations";
 import { NameType, normalizeName } from "../../utils/nameUtils";
-import { TestCodeModel } from "@autorest/testmodeler/dist/src/core/model";
 import { getSecurityInfoFromModel } from "../../utils/schemaHelpers";
+import { hasRLCSamplesGenerated } from "../samples/rlcSampleGenerator";
 
 export function generatePackageJson(
   project: Project,
@@ -253,9 +253,7 @@ function restLevelPackage(packageDetails: PackageDetails) {
   }
 
   if (
-    generateSample &&
-    (model as TestCodeModel)?.testModel?.mockTest?.exampleGroups &&
-    (model as TestCodeModel).testModel!.mockTest!.exampleGroups.length > 0
+    generateSample && hasRLCSamplesGenerated
   ) {
     packageInfo["//sampleConfiguration"] = {
       productName: description,

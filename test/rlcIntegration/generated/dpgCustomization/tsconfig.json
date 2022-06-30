@@ -1,9 +1,5 @@
 {
   "extends": "../../../tsconfig.package",
-  "compilerOptions": {
-    "outDir": "./dist-esm",
-    "declarationDir": "./types",
-    "paths": { "@msinternal/dpg-customization-rest": ["./src/index"] }
-  },
-  "include": ["src/**/*.ts", "samples-dev/**/*.ts"]
+  "compilerOptions": { "outDir": "./dist-esm", "declarationDir": "./types" },
+  "include": ["src/**/*.ts"]
 }

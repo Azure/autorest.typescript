@@ -18,6 +18,8 @@ import { getSecurityInfoFromModel } from "../../utils/schemaHelpers";
 const tokenCredentialPackage = "@azure/identity";
 const apiKeyCredentialPackage = "@azure/core-auth";
 
+export let hasRLCSamplesGenerated = false;
+
 export function generateRLCSamples(model: TestCodeModel, project: Project) {
     const {
         generateSample,
@@ -33,6 +35,9 @@ export function generateRLCSamples(model: TestCodeModel, project: Project) {
         return;
     }
     const sampleGroups: RLCSampleGroup[] = transformRLCSampleData(model);
+    if (sampleGroups.length > 0) {
+        hasRLCSamplesGenerated = true;
+    }
     for (const sampleGroup of sampleGroups) {
         try {
             const file = fs.readFileSync(path.join(__dirname, "rlcSamples.ts.hbs"), {
