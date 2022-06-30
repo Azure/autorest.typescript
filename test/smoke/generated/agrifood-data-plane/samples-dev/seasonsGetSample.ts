@@ -4,7 +4,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 import createClient from "@msinternal/agrifood-data-plane";
-import { DefaultAzureCredential } from "@azure/identity";
+import { AzureKeyCredential } from "@azure/core-auth";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -17,7 +17,7 @@ dotenv.config();
  */
 async function seasonsGet() {
   const Endpoint = "{Endpoint}";
-  const credential = new DefaultAzureCredential();
+  const credential = new AzureKeyCredential("{Your API key}");
   const client = createClient(Endpoint, credential);
   const seasonId = "SEASON123";
   const result = await client.path("/seasons/{seasonId}", seasonId).get();

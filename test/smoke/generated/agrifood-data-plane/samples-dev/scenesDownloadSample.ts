@@ -6,7 +6,7 @@
 import createClient, {
   ScenesDownloadParameters
 } from "@msinternal/agrifood-data-plane";
-import { DefaultAzureCredential } from "@azure/identity";
+import { AzureKeyCredential } from "@azure/core-auth";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -19,9 +19,11 @@ dotenv.config();
  */
 async function scenesDownload() {
   const Endpoint = "{Endpoint}";
-  const credential = new DefaultAzureCredential();
+  const credential = new AzureKeyCredential("{Your API key}");
   const client = createClient(Endpoint, credential);
-  const options: ScenesDownloadParameters = {};
+  const options: ScenesDownloadParameters = {
+    queryParameters: { filePath: "https://filePath" }
+  };
   const result = await client.path("/scenes/downloadFiles").get(options);
   console.log(result);
 }

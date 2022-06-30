@@ -7,7 +7,7 @@ import createClient, {
   ScenesListParameters,
   paginate
 } from "@msinternal/agrifood-data-plane";
-import { DefaultAzureCredential } from "@azure/identity";
+import { AzureKeyCredential } from "@azure/core-auth";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -20,9 +20,15 @@ dotenv.config();
  */
 async function scenesList() {
   const Endpoint = "{Endpoint}";
-  const credential = new DefaultAzureCredential();
+  const credential = new AzureKeyCredential("{Your API key}");
   const client = createClient(Endpoint, credential);
-  const options: ScenesListParameters = {};
+  const options: ScenesListParameters = {
+    queryParameters: {
+      provider: "Microsoft",
+      farmerId: "FARMER123",
+      boundaryId: "BOUNDARY123"
+    }
+  };
   const initialResponse = await client.path("/scenes").get(options);
   const pageData = paginate(client, initialResponse);
   const result = [];

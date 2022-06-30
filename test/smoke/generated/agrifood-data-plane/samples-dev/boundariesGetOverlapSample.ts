@@ -6,7 +6,7 @@
 import createClient, {
   BoundariesGetOverlapParameters
 } from "@msinternal/agrifood-data-plane";
-import { DefaultAzureCredential } from "@azure/identity";
+import { AzureKeyCredential } from "@azure/core-auth";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -19,11 +19,16 @@ dotenv.config();
  */
 async function boundariesGetOverlap() {
   const Endpoint = "{Endpoint}";
-  const credential = new DefaultAzureCredential();
+  const credential = new AzureKeyCredential("{Your API key}");
   const client = createClient(Endpoint, credential);
   const farmerId = "FARMER123";
   const boundaryId = "BOUNDARY123";
-  const options: BoundariesGetOverlapParameters = {};
+  const options: BoundariesGetOverlapParameters = {
+    queryParameters: {
+      otherFarmerId: "FARMER456",
+      otherBoundaryId: "BOUNDARY56"
+    }
+  };
   const result = await client
     .path(
       "/farmers/{farmerId}/boundaries/{boundaryId}/overlap",

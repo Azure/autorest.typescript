@@ -7,7 +7,7 @@ import createClient, {
   WeatherListParameters,
   paginate
 } from "@msinternal/agrifood-data-plane";
-import { DefaultAzureCredential } from "@azure/identity";
+import { AzureKeyCredential } from "@azure/core-auth";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -20,9 +20,17 @@ dotenv.config();
  */
 async function weatherList() {
   const Endpoint = "{Endpoint}";
-  const credential = new DefaultAzureCredential();
+  const credential = new AzureKeyCredential("{Your API key}");
   const client = createClient(Endpoint, credential);
-  const options: WeatherListParameters = {};
+  const options: WeatherListParameters = {
+    queryParameters: {
+      farmerId: "FARMER123",
+      boundaryId: "BOUNDARY123",
+      extensionId: "DTN.ClearAg",
+      weatherDataType: "Historical",
+      granularity: "Daily"
+    }
+  };
   const initialResponse = await client.path("/weather").get(options);
   const pageData = paginate(client, initialResponse);
   const result = [];

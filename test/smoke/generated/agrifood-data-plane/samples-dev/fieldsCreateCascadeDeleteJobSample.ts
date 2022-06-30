@@ -7,7 +7,7 @@ import createClient, {
   FieldsCreateCascadeDeleteJobParameters,
   getLongRunningPoller
 } from "@msinternal/agrifood-data-plane";
-import { DefaultAzureCredential } from "@azure/identity";
+import { AzureKeyCredential } from "@azure/core-auth";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -20,10 +20,12 @@ dotenv.config();
  */
 async function fieldsCreateCascadeDeleteJob() {
   const Endpoint = "{Endpoint}";
-  const credential = new DefaultAzureCredential();
+  const credential = new AzureKeyCredential("{Your API key}");
   const client = createClient(Endpoint, credential);
   const jobId = "JOB123";
-  const options: FieldsCreateCascadeDeleteJobParameters = {};
+  const options: FieldsCreateCascadeDeleteJobParameters = {
+    queryParameters: { farmerId: "FARMER123", fieldId: "FIELD123" }
+  };
   const initialResponse = await client
     .path("/fields/cascade-delete/{jobId}", jobId)
     .put(options);
