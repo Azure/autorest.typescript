@@ -19,8 +19,7 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "outDir": "./dist-esm",
-    "declarationDir": "./types",
-    "paths": { "@msinternal/purview-administration-rest": ["./src/index"] }
+    "declarationDir": "./types"
   },
-  "include": ["./src/**/*.ts", "samples-dev/**/*.ts", "samples-dev/**/*.ts"]
+  "include": ["./src/**/*.ts"]
 }

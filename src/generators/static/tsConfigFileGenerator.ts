@@ -79,13 +79,15 @@ export function generateTsConfig(project: Project) {
     restLevelTsConfig.include.push("./test/**/*.ts");
   }
 
-  if (generateSample && hasRLCSamplesGenerated) {
+  if (generateSample) {
     highLevelTsConfig.include.push("samples-dev/**/*.ts");
     highLevelTsConfig.compilerOptions["paths"] = {};
     highLevelTsConfig.compilerOptions["paths"][clientPackageName] = ["./src/index"];
-    restLevelTsConfig.include.push("samples-dev/**/*.ts");
-    restLevelTsConfig.compilerOptions["paths"] = {};
-    restLevelTsConfig.compilerOptions["paths"][clientPackageName] = ["./src/index"];
+    if (hasRLCSamplesGenerated) {
+      restLevelTsConfig.include.push("samples-dev/**/*.ts");
+      restLevelTsConfig.compilerOptions["paths"] = {};
+      restLevelTsConfig.compilerOptions["paths"][clientPackageName] = ["./src/index"];
+    }
   }
 
   const tsConfigContents = restLevelClient

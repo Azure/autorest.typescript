@@ -82,11 +82,5 @@
     "rollup": "^2.66.1",
     "rollup-plugin-sourcemaps": "^0.6.3",
     "uglify-js": "^3.4.9"
-  },
-  "//sampleConfiguration": {
-    "productName": "",
-    "productSlugs": ["azure"],
-    "disableDocsMs": true,
-    "apiRefLink": "https://docs.microsoft.com/javascript/api/@msinternal/purview-administration-rest?view=azure-node-preview"
   }
 }
