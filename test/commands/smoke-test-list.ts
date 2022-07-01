@@ -204,7 +204,7 @@ export const readmes: SpecDefinition[] = [
       AutorestParams.AzureSdkForJs,
       AutorestParams.GenerateSamples
     ],
-    buildTag: "debug"
+    buildTag: "ci_rlc"
   },
   {
     path: joinPath(

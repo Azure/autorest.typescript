@@ -892,6 +892,20 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
 };
 
 const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
+  // TEST REST LEVEL CLIENTS
+  lroRest: {
+    swaggerOrConfig: "lro.json",
+    clientName: "LRORestClient",
+    packageName: "lro-rest",
+    licenseHeader: true,
+    useCoreV2: true,
+    allowInsecureConnection: true,
+    addCredentials: false,
+    isTestPackage: true,
+    restLevelClient: true,
+    azureSdkForJs: false,
+    generateSample: true
+  },
   dpgCustomization: {
     swaggerOrConfig: "dpg-customization.json",
     clientName: "DPGCustomizationClient",
@@ -914,20 +928,6 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     isTestPackage: true,
     generateTest: true,
-    generateSample: true
-  },
-  // TEST REST LEVEL CLIENTS
-  lroRest: {
-    swaggerOrConfig: "lro.json",
-    clientName: "LRORestClient",
-    packageName: "lro-rest",
-    licenseHeader: true,
-    useCoreV2: true,
-    allowInsecureConnection: true,
-    addCredentials: false,
-    isTestPackage: true,
-    restLevelClient: true,
-    azureSdkForJs: false,
     generateSample: true
   },
   bodyComplexRest: {
