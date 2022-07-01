@@ -3,7 +3,7 @@
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-import createClient, {
+import createBodyStringRestClient, {
   StringPutWhitespaceParameters
 } from "@msinternal/body-string-rest";
 import * as dotenv from "dotenv";

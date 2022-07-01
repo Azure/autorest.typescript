@@ -61,6 +61,11 @@ export function transformRLCSampleData(model: TestCodeModel): RLCSampleGroup[] {
     }
     const session = getSession();
     const paths: Paths = pathDictionary;
+    const clientName = getLanguageMetadata(model.language).name;
+    const clientInterfaceName = clientName.endsWith("Client")
+        ? `${clientName}`
+        : `${clientName}Client`;
+    const defaultFactoryName = camelCase(`create ${clientInterfaceName}`);
     const rawSamplesForAll = model.testModel.mockTest.exampleGroups;
     for (const rawSamplesForOperID of rawSamplesForAll) {
         const importedDict: Record<string, Set<string>> = {};
@@ -73,6 +78,7 @@ export function transformRLCSampleData(model: TestCodeModel): RLCSampleGroup[] {
             filename: `${camelCase(
                 transformSpecialLetterToSpace(operatonConcante)
             )}Sample`,
+            defaultFactoryName,
             clientPackageName: getPackageName(),
             samples: []
         };
@@ -132,7 +138,7 @@ export function transformRLCSampleData(model: TestCodeModel): RLCSampleGroup[] {
         }
         // enrich the importedTypes after all examples resolved in the same file
         rlcSampleGroups.push(sampleGroup);
-        enrichImportedString(sampleGroup, importedDict);
+        enrichImportedString(sampleGroup, importedDict, defaultFactoryName);
     }
     return rlcSampleGroups;
 }
@@ -162,7 +168,7 @@ function convertClientLevelParameters(rawClientParams: ExampleParameter[], model
     const rawUriParameters = rawClientParams.filter(p => p.parameter.protocol.http?.in === ParameterLocation.Uri);
     if (hasUriParameter && rawUriParameters.length > 0) {
         // Currently only support one parametrized host
-        // TODO: support more parameters in url
+        // TODO: support more parameters in url once the bug fixs - https://github.com/Azure/autorest.typescript/issues/1399
         const urlValue = getParameterAssignment(rawUriParameters[0].exampleValue);
         clientParams.push({
             name: parameterName,
@@ -436,13 +442,13 @@ export function createSampleData(model: TestCodeModel) {
     }
 
 }
-function enrichImportedString(sampleGroup: RLCSampleGroup, importedDict: Record<string, Set<string>>) {
+function enrichImportedString(sampleGroup: RLCSampleGroup, importedDict: Record<string, Set<string>>, defaultFactoryName: string) {
     const importedTypes: string[] = [], packageName = getPackageName();
     if (!!importedDict[packageName]) {
         const otherTypes = Array.from(importedDict[packageName]).join(", ");
-        importedTypes.push(`import createClient, { ${otherTypes} } from "${packageName}";`);
+        importedTypes.push(`import ${defaultFactoryName}, { ${otherTypes} } from "${packageName}";`);
     } else {
-        importedTypes.push(`import createClient from "${packageName}";`);
+        importedTypes.push(`import ${defaultFactoryName} from "${packageName}";`);
     }
     if (importedDict[tokenCredentialPackage]) {
         const otherTypes = Array.from(importedDict[tokenCredentialPackage]).join(", ");

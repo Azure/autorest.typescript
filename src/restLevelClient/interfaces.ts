@@ -46,9 +46,8 @@ export interface OperationAnnotations {
 export interface RLCSampleGroup {
   filename: string,
   clientPackageName: string,
+  defaultFactoryName: string,
   samples: RLCSampleDetail[],
-  // import createClient, { getLongRunningPoller, ScenesCreateSatelliteDataIngestionJobParameters } from "@azure-rest/agrifood-farming";
-  // import { DefaultAzureCredential } from "@azure/identity";
   importedTypes?: string[],
 }
 
@@ -61,48 +60,16 @@ export interface RLCSampleDetail {
    */
   description: string,
   originalFileLocation?: string,
-  // createOrUpdateFarmers
-  // createOrUpdateFarmers().catch(console.error);  
   name: string,
-  // "/farmers/{farmerId}"
   path: string;
-  // const Endpoint = "{Endpoint}"; 
-  // const credential = new DefaultAzureCredential(); 
   clientParamAssignments: string[],
-  // const farmerId = "FARMER123"; 
   pathParamAssignments: string[];
-  // const options: Option = { 
-  //   body: { 
-  //     name: "John Smith", 
-  //     description: "Some description", 
-  //     status: "Active", 
-  //     properties: { 
-  //       "Irrigated": "Yes", 
-  //       "RetailerId": "Retailer123" 
-  //     }, 
-  //   } 
-  // }; 
   methodParamAssignments: string[],
-  // Endpoint, credential
-  // const client = createClient(Endpoint, credential);
   clientParamNames: string;
-  // "/farmers/{farmerId}", farmerId
-  // await client.path("/farmers/{farmerId}", farmerId).patch(options);
   pathParamNames: string;
-  // options
   methodParamNames: "options" | "";
-  // patch
   method: string;
-  // const initialResponse = await client.path("/scenes/satellite/ingest-data/{jobId}", jobId).put(options);
-  // const poller = getLongRunningPoller(client, initialResponse);
-  // const result = await poller.pollUntilDone();
   isLRO: boolean,
-  // const initialResponse = await client.path("/farmers").get();
-  // const pageData = paginate(client, initialResponse);
-  // const result = [];
-  // for await (const item of pageData) {
-  //   result.push(item);
-  // }
   isPaging: boolean,
 }
 

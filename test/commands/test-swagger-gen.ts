@@ -1061,8 +1061,7 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     useCoreV2: true,
     allowInsecureConnection: true,
     addCredentials: false,
-    isTestPackage: true,
-    generateSample: true
+    isTestPackage: true
   },
   report: {
     swaggerOrConfig: "report.json",
@@ -1073,8 +1072,7 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     allowInsecureConnection: true,
     addCredentials: false,
     isTestPackage: true,
-    azureSdkForJs: false,
-    generateSample: true
+    azureSdkForJs: false
   }
 };
 

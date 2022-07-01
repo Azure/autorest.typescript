@@ -3,7 +3,7 @@
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-import createClient from "@msinternal/custom-url-rest";
+import createCustomUrlRestClient from "@msinternal/custom-url-rest";
 import * as dotenv from "dotenv";
 
 dotenv.config();
