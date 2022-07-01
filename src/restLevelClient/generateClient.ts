@@ -1,10 +1,7 @@
 import {
   CodeModel,
-  Operation,
   ParameterLocation,
-  ImplementationLocation,
-  OAuth2SecurityScheme,
-  KeySecurityScheme
+  ImplementationLocation
 } from "@autorest/codemodel";
 
 import {

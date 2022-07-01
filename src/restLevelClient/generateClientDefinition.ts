@@ -3,7 +3,8 @@ import {
   Operation,
   ParameterLocation,
   ImplementationLocation,
-  Response
+  Response,
+  SchemaContext
 } from "@autorest/codemodel";
 import { isEqual } from "lodash";
 
@@ -12,50 +13,28 @@ import {
   getResponseTypeName
 } from "./operationHelpers";
 
-import {
-  CallSignatureDeclarationStructure,
-  Project,
-  SourceFile,
-  StructureKind,
-  Writers
-} from "ts-morph";
-import * as path from "path";
+import { Project } from "ts-morph";
 
 import { getAutorestOptions } from "../autorestSession";
-import { CasingConvention, NameType, normalizeName } from "../utils/nameUtils";
+import { NameType, normalizeName } from "../utils/nameUtils";
 import { getLanguageMetadata } from "../utils/languageHelpers";
-import {
-  buildMethodDefinitions,
-  getOperationParameters,
-  getPathParamDefinitions
-} from "./helpers/operationHelpers";
-import {
-  generateMethodShortcuts,
-  REST_CLIENT_RESERVED
-} from "./generateMethodShortcuts";
-import { Methods, PathParameter, Paths, ResponseTypes } from "./interfaces";
+import { getOperationParameters } from "./helpers/operationHelpers";
+import { PathParameter, Paths, ResponseTypes } from "./interfaces";
 import { isLongRunningOperation } from "./helpers/hasPollingOperations";
+import { getElementType } from "./schemaHelpers";
+import { buildClientDefinitions } from "../lib/ts-rlc-codegen";
 export let pathDictionary: Paths = {};
 
 export function generatePathFirstClient(model: CodeModel, project: Project) {
   const name = normalizeName(
     getLanguageMetadata(model.language).name,
-    NameType.File
+    NameType.Interface
   );
   const { srcPath } = getAutorestOptions();
-  const clientFile = project.createSourceFile(
-    path.join(srcPath, `clientDefinitions.ts`),
-    undefined,
-    {
-      overwrite: true
-    }
-  );
-
-  // Get all paths
+  pathDictionary = {};
   const importedParameters = new Set<string>();
   const importedResponses = new Set<string>();
   const clientImports = new Set<string>();
-  pathDictionary = {};
   for (const operationGroup of model.operationGroups) {
     for (const operation of operationGroup.operations) {
       const operationName = getLanguageMetadata(operation.language).name;
@@ -69,7 +48,11 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
             return {
               name: languageMetadata.serializedName || languageMetadata.name,
               schema: p.schema,
-              description: languageMetadata.description
+              description: languageMetadata.description,
+              type: getElementType(p.schema, [
+                SchemaContext.Input,
+                SchemaContext.Exception
+              ])
             };
           }) || [];
       const path: string = operation.requests?.[0].protocol.http?.path;
@@ -122,129 +105,15 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
     }
   }
 
-  writeShortcutInterface(model, pathDictionary, clientFile);
-  clientFile.addInterface({
-    name: "Routes",
-    isExported: true,
-    callSignatures: getPathFirstRoutesInterfaceDefinition(
-      pathDictionary,
-      clientFile
-    )
-  });
+  const clientDefinitionsFile = buildClientDefinitions(
+    { libraryName: name, paths: pathDictionary, srcPath },
+    { clientImports, importedParameters, importedResponses }
+  );
 
-  const clientName = getLanguageMetadata(model.language).name;
-
-  const clientInterfaceName = clientName.endsWith("Client")
-    ? `${clientName}`
-    : `${clientName}Client`;
-
-  const { rlcShortcut } = getAutorestOptions();
-
-  let shortcutElements = !rlcShortcut
-    ? []
-    : model.operationGroups.map(og => {
-        const groupName = og.language.default.name;
-        const name = normalizeName(
-          groupName,
-          NameType.OperationGroup,
-          true,
-          REST_CLIENT_RESERVED,
-          CasingConvention.Camel
-        );
-        const interfaceName = normalizeName(
-          `${name}Operations`,
-          NameType.Interface,
-          true,
-          REST_CLIENT_RESERVED
-        );
-        return { name, type: interfaceName };
-      });
-
-  // There may be operations without an operation group, those shortcut
-  // methods need to be handled differently.
-  const shortcutsInOperationGroup = shortcutElements.filter(s => s.name);
-
-  clientFile.addTypeAlias({
-    isExported: true,
-    name: clientInterfaceName,
-    type: Writers.intersectionType(
-      "Client",
-      Writers.objectType({
-        properties: [
-          { name: "path", type: "Routes" },
-          ...shortcutsInOperationGroup
-        ]
-      }),
-      // If the length of shortcutMethods in operation group and all shortcutMethods
-      // is the same, then we don't have any operations at the client level
-      // Otherwise we need to make the client interface name an union with the
-      // definition of all client level shortcut methods
-      ...(shortcutsInOperationGroup.length !== shortcutElements.length
-        ? [`ClientOperations`]
-        : [])
-    )
-  });
-
-  if (importedParameters.size) {
-    clientFile.addImportDeclaration({
-      namedImports: [...importedParameters],
-      moduleSpecifier: "./parameters"
-    });
-  }
-
-  if (importedResponses.size) {
-    clientFile.addImportDeclaration({
-      namedImports: [...importedResponses],
-      moduleSpecifier: "./responses"
-    });
-  }
-
-  clientImports.add("Client");
-  clientImports.add("StreamableMethod");
-  clientFile.addImportDeclarations([
-    {
-      namedImports: [...clientImports],
-      moduleSpecifier: "@azure-rest/core-client"
-    }
-  ]);
-}
-
-function writeShortcutInterface(
-  model: CodeModel,
-  pathDictionary: Paths,
-  clientFile: SourceFile
-) {
-  const { rlcShortcut } = getAutorestOptions();
-  if (!rlcShortcut) {
-    return;
-  }
-
-  // Create a map of Operation group descriptions
-  const descriptions = model.operationGroups.reduce((map, current) => {
-    const { name, description } = current.language.default;
-    map.set(name, description);
-
-    return map;
-  }, new Map<string, string>());
-
-  const shortcuts = generateMethodShortcuts(model, pathDictionary);
-
-  for (const group of Object.keys(shortcuts)) {
-    const groupName =
-      normalizeName(group, NameType.Interface, true, REST_CLIENT_RESERVED) ||
-      "Client";
-    const groupOperations = shortcuts[group];
-
-    clientFile.addInterface({
-      docs: [
-        descriptions.get(group) ||
-          `Contains operations for ${groupName} operations`
-      ],
-      name: `${groupName}Operations`,
-      isExported: true,
-      methods: groupOperations
-    });
-  }
+  project.createSourceFile(
+    clientDefinitionsFile.path,
+    clientDefinitionsFile.content
+  );
 }
 
 function hasRequiredOptions(operation: Operation) {
@@ -304,54 +173,6 @@ function getOperationReturnType(
     coreClientImports.add(returnType);
   }
   return returnType;
-}
-
-function getPathFirstRoutesInterfaceDefinition(
-  paths: Paths,
-  sourcefile: SourceFile
-): CallSignatureDeclarationStructure[] {
-  const signatures: CallSignatureDeclarationStructure[] = [];
-  for (const key of Object.keys(paths)) {
-    generatePathFirstRouteMethodsDefinition(
-      paths[key].name,
-      paths[key].methods,
-      sourcefile
-    );
-    const pathParams = paths[key].pathParameters;
-    signatures.push({
-      docs: [
-        `Resource for '${key
-          .replace(/}/g, "\\}")
-          .replace(
-            /{/g,
-            "\\{"
-          )}' has methods for the following verbs: ${Object.keys(
-          paths[key].methods
-        ).join(", ")}`
-      ],
-      parameters: [
-        { name: "path", type: `"${key}"` },
-        ...getPathParamDefinitions(pathParams)
-      ],
-      returnType: paths[key].name,
-      kind: StructureKind.CallSignature
-    });
-  }
-  return signatures;
-}
-
-function generatePathFirstRouteMethodsDefinition(
-  operationName: string,
-  methods: Methods,
-  file: SourceFile
-): void {
-  const methodDefinitions = buildMethodDefinitions(methods);
-
-  file.addInterface({
-    methods: methodDefinitions,
-    name: operationName,
-    isExported: true
-  });
 }
 
 /**

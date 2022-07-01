@@ -1,11 +1,5 @@
-import { Schema } from "@autorest/codemodel";
-
-export type PathParameter = {
-  name: string;
-  /**@deprecated */
-  schema: Schema;
-  type: string;
-  description?: string;
+export type Methods = {
+  [key: string]: [OperationMethod];
 };
 
 export interface ResponseTypes {
@@ -22,10 +16,6 @@ export interface OperationMethod {
   responseTypes: ResponseTypes;
 }
 
-export type Methods = {
-  [key: string]: [OperationMethod];
-};
-
 export interface PathMetadata {
   name: string;
   pathParameters: PathParameter[];
@@ -34,6 +24,12 @@ export interface PathMetadata {
 }
 
 export type Paths = Record<string, PathMetadata>;
+
+export type PathParameter = {
+  name: string;
+  type: string;
+  description?: string;
+};
 
 export interface OperationAnnotations {
   isLongRunning?: boolean;

@@ -32,44 +32,6 @@ import {
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-/** Contains operations for Client operations */
-export interface ClientOperations {
-  /** Get a horse with name 'Fred' and isAShowHorse true */
-  getHorse(
-    options?: GetHorseParameters
-  ): StreamableMethod<GetHorse200Response | GetHorsedefaultResponse>;
-  /** Put a horse with name 'General' and isAShowHorse false */
-  putHorse(options: PutHorseParameters): StreamableMethod<PutHorse200Response>;
-  /** Get a pet with name 'Peanut' */
-  getPet(
-    options?: GetPetParameters
-  ): StreamableMethod<GetPet200Response | GetPetdefaultResponse>;
-  /** Put a pet with name 'Butter' */
-  putPet(options: PutPetParameters): StreamableMethod<PutPet200Response>;
-  /** Get a feline where meows and hisses are true */
-  getFeline(
-    options?: GetFelineParameters
-  ): StreamableMethod<GetFeline200Response | GetFelinedefaultResponse>;
-  /** Put a feline who hisses and doesn't meow */
-  putFeline(
-    options: PutFelineParameters
-  ): StreamableMethod<PutFeline200Response>;
-  /** Get a cat with name 'Whiskers' where likesMilk, meows, and hisses is true */
-  getCat(
-    options?: GetCatParameters
-  ): StreamableMethod<GetCat200Response | GetCatdefaultResponse>;
-  /** Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true */
-  putCat(options: PutCatParameters): StreamableMethod<PutCat200Response>;
-  /** Get a kitten with name 'Gatito' where likesMilk and meows is true, and hisses and eatsMiceYet is false */
-  getKitten(
-    options?: GetKittenParameters
-  ): StreamableMethod<GetKitten200Response | GetKittendefaultResponse>;
-  /** Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is true */
-  putKitten(
-    options: PutKittenParameters
-  ): StreamableMethod<PutKitten200Response>;
-}
-
 export interface GetHorse {
   /** Get a horse with name 'Fred' and isAShowHorse true */
   get(
@@ -130,4 +92,4 @@ export interface Routes {
 
 export type MultipleInheritanceRestClient = Client & {
   path: Routes;
-} & ClientOperations;
+};

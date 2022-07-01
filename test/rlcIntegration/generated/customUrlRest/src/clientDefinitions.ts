@@ -5,14 +5,6 @@ import { GetEmptyParameters } from "./parameters";
 import { GetEmpty200Response, GetEmptydefaultResponse } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-/** Contains operations for Paths operations */
-export interface PathsOperations {
-  /** Get a 200 to test a valid base uri */
-  getEmpty(
-    options?: GetEmptyParameters
-  ): StreamableMethod<GetEmpty200Response | GetEmptydefaultResponse>;
-}
-
 export interface GetEmpty {
   /** Get a 200 to test a valid base uri */
   get(
@@ -27,5 +19,4 @@ export interface Routes {
 
 export type CustomUrlRestClient = Client & {
   path: Routes;
-  paths: PathsOperations;
 };

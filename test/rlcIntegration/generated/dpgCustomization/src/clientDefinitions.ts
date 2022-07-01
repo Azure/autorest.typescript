@@ -15,27 +15,6 @@ import {
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-/** Contains operations for Client operations */
-export interface ClientOperations {
-  /** Get models that you will either return to end users as a raw body, or with a model added during grow up. */
-  getModel(
-    mode: string,
-    options?: GetModelParameters
-  ): StreamableMethod<GetModel200Response>;
-  /** Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to take a model instead, and put in 'model' as mode. */
-  postModel(
-    mode: string,
-    options: PostModelParameters
-  ): StreamableMethod<PostModel200Response>;
-  /** Get pages that you will either return to users in pages of raw bodies, or pages of models following growup. */
-  getPages(
-    mode: string,
-    options?: GetPagesParameters
-  ): StreamableMethod<GetPages200Response>;
-  /** Long running put request that will either return to end users a final payload of a raw body, or a final payload of a model after the SDK has grown up. */
-  lro(mode: string, options?: LroParameters): StreamableMethod<Lro200Response>;
-}
-
 export interface GetModel {
   /** Get models that you will either return to end users as a raw body, or with a model added during grow up. */
   get(options?: GetModelParameters): StreamableMethod<GetModel200Response>;
@@ -64,4 +43,4 @@ export interface Routes {
 
 export type DPGCustomizationClient = Client & {
   path: Routes;
-} & ClientOperations;
+};
