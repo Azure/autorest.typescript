@@ -1,6 +1,6 @@
-# Service client library for JavaScript
+# BodyComplexWithTracing client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in Node.js and in browsers) for Service client.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for BodyComplexWithTracing client.
 
 Test Infrastructure for AutoRest
 
@@ -27,5 +27,5 @@ To use this client library in the browser, first you need to use a bundler. For 
 
 ### BodyComplexWithTracing
 
-`BodyComplexWithTracing` is the primary interface for developers using the Service client library. Explore the methods on this client object to understand the different features of the Service service that you can access.
+`BodyComplexWithTracing` is the primary interface for developers using the BodyComplexWithTracing client library. Explore the methods on this client object to understand the different features of the BodyComplexWithTracing service that you can access.
 

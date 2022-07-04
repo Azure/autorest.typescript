@@ -1,4 +1,4 @@
-# Service client library for JavaScript
+# Paging client library for JavaScript
 
 Long-running Operation for AutoRest
 
@@ -21,7 +21,7 @@ Key links:
 
 ### Install the `@msinternal/paging-service` package
 
-Install the Service client REST client library for JavaScript with `npm`:
+Install the Paging client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/paging-service

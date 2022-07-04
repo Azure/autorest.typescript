@@ -1,10 +1,10 @@
-# RegexConstraint client library for JavaScript
+# PatternTest client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in Node.js and in browsers) for RegexConstraint client.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for PatternTest client.
 
+Services for general drinkaware data
 
-
-[Package (NPM)](https://www.npmjs.com/package/@msinternal/regex-constraint) |
+[Package (NPM)](https://www.npmjs.com/package/@msinternal/pattern-test) |
 [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started
@@ -25,7 +25,7 @@ To use this client library in the browser, first you need to use a bundler. For 
 
 ## Key concepts
 
-### RegexConstraint
+### PatternTestClient
 
-`RegexConstraint` is the primary interface for developers using the RegexConstraint client library. Explore the methods on this client object to understand the different features of the RegexConstraint service that you can access.
+`PatternTestClient` is the primary interface for developers using the PatternTest client library. Explore the methods on this client object to understand the different features of the PatternTest service that you can access.
 
