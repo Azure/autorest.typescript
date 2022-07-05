@@ -34,12 +34,6 @@ export function buildObjectInterfaces(
 
   for (const objectSchema of objectSchemas) {
     const baseName = getObjectBaseName(objectSchema, schemaUsage);
-    if (baseName === "ServiceResourcePropertiesBase") {
-      baseName
-    }
-    if (baseName === "ServiceResourceProperties") {
-      baseName
-    }
     const interfaceDeclaration = getObjectInterfaceDeclaration(
       baseName,
       objectSchema,
@@ -63,9 +57,6 @@ export function buildPolymorphicAliases(
   );
   for (const objectSchema of objectSchemas) {
     const baseName = getObjectBaseName(objectSchema, schemaUsage);
-    if (baseName === "ServiceResourcePropertiesBase") {
-      const name = baseName;
-    }
     const typeAlias = getPolymorphicTypeAlias(
       baseName,
       objectSchema,
@@ -113,7 +104,7 @@ function getPolymorphicTypeAlias(
 
   // If the object itself has a discriminatorValue add its base to the union
   if (objectSchema.discriminatorValue) {
-    unionTypes.push(`${baseName}`);
+    unionTypes.push(`${baseName}Parent`);
   }
 
   for (const child of objectSchema.children?.all ?? []) {
@@ -131,7 +122,7 @@ function getPolymorphicTypeAlias(
 
   return {
     kind: StructureKind.TypeAlias,
-    name: `${baseName}Union`,
+    name: `${baseName}`,
     type: unionTypes.join(" | "),
     isExported: true
   };
@@ -149,7 +140,7 @@ function getObjectInterfaceDeclaration(
 ): InterfaceDeclarationStructure {
   let interfaceName = `${baseName}`;
   if (isPolymorphicParent(objectSchema)) {
-    interfaceName = `${baseName}`;
+    interfaceName = `${baseName}Parent`;
   }
 
   const properties = objectSchema.properties ?? [];
@@ -345,7 +336,7 @@ function getImmediateParentsNames(
       )}${nameSuffix}`;
 
       return isObjectSchema(parent) && isPolymorphicParent(parent)
-        ? `${name}`
+        ? `${name}Parent`
         : name;
     });
 

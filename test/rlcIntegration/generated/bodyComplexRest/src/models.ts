@@ -91,7 +91,7 @@ export interface Pet {
   name?: string;
 }
 
-export interface Fish {
+export interface FishParent {
   species?: string;
   length: number;
   siblings?: Array<Fish>;
@@ -105,7 +105,7 @@ export interface Fish {
     | "cookiecuttershark";
 }
 
-export interface Salmon extends Fish {
+export interface SalmonParent extends FishParent {
   location?: string;
   iswild?: boolean;
   fishtype: "salmon" | "smart_salmon";
@@ -116,40 +116,40 @@ export interface ReadonlyObj {
   size?: number;
 }
 
-export interface SmartSalmon extends Salmon, Record<string, unknown> {
+export interface SmartSalmon extends SalmonParent, Record<string, unknown> {
   college_degree?: string;
   fishtype: "smart_salmon";
 }
 
-export interface Shark extends Fish {
+export interface SharkParent extends FishParent {
   age?: number;
   birthday: Date | string;
   fishtype: "shark" | "sawshark" | "goblin" | "cookiecuttershark";
 }
 
-export interface Sawshark extends Shark {
+export interface Sawshark extends SharkParent {
   /** Value may contain base64 encoded characters */
   picture?: string;
   fishtype: "sawshark";
 }
 
-export interface Goblinshark extends Shark {
+export interface Goblinshark extends SharkParent {
   jawsize?: number;
   /** Colors possible */
   color?: "pink" | "gray" | "brown" | "RED" | "red";
   fishtype: "goblin";
 }
 
-export interface Cookiecuttershark extends Shark {
+export interface Cookiecuttershark extends SharkParent {
   fishtype: "cookiecuttershark";
 }
 
-export type FishUnion =
+export type Fish =
   | Salmon
   | SmartSalmon
   | Shark
   | Sawshark
   | Goblinshark
   | Cookiecuttershark;
-export type SalmonUnion = Salmon | SmartSalmon;
-export type SharkUnion = Shark | Sawshark | Goblinshark | Cookiecuttershark;
+export type Salmon = SalmonParent | SmartSalmon;
+export type Shark = SharkParent | Sawshark | Goblinshark | Cookiecuttershark;

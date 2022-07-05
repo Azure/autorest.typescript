@@ -10,8 +10,6 @@ import BodyComplexRest, {
   SmartSalmon,
   Siamese,
   isUnexpected,
-  FishUnion,
-  FishOutputUnion,
   SawsharkOutput
 } from "./generated/bodyComplexRest/src";
 
@@ -526,7 +524,7 @@ describe("BodyComplex Rest Client", () => {
     });
 
     describe("Complex Types with Polymorphism Operations", function() {
-      function isSawShark(fish: FishOutputUnion): fish is SawsharkOutput {
+      function isSawShark(fish: FishOutput): fish is SawsharkOutput {
         return fish.fishtype === "sawshark";
       }
 
