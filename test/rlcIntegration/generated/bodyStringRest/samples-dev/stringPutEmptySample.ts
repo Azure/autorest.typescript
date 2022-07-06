@@ -17,7 +17,7 @@ dotenv.config();
  * x-ms-original-file: file:///C:/Users/marygao/project/autorest.typescript/node_modules/@microsoft.azure/autorest.testserver/swagger/examples/string_putEmpty.json
  */
 async function stringPutEmpty() {
-  const client = createClient();
+  const client = createBodyStringRestClient();
   const options: StringPutEmptyParameters = { body: "" };
   const result = await client.path("/string/empty").put(options);
   console.log(result);

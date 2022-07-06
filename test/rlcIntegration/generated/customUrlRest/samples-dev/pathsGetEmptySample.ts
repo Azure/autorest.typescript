@@ -15,7 +15,8 @@ dotenv.config();
  * x-ms-original-file: file:///C:/Users/marygao/project/autorest.typescript/node_modules/@microsoft.azure/autorest.testserver/swagger/examples/paths_getEmpty.json
  */
 async function pathsGetEmpty() {
-  const client = createClient();
+  const host = "host:3000";
+  const client = createCustomUrlRestClient(host);
   const result = await client.path("/customuri").get();
   console.log(result);
 }

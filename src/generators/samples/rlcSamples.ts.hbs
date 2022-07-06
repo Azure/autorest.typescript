@@ -18,7 +18,7 @@ async function {{name}}() {
   {{#each this.clientParamAssignments}}
   {{this}}
   {{/each}}
-  const client = createClient({{this.clientParamNames}});
+  const client = {{this.defaultFactoryName}}({{this.clientParamNames}});
   {{#each this.pathParamAssignments}}
   {{this}}
   {{/each}}

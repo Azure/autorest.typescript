@@ -9,14 +9,14 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 /**
- * This sample demonstrates how to Set string value null
+ * This sample demonstrates how to Get value that is base64 encoded
  *
- * @summary Set string value null
- * x-ms-original-file: file:///C:/Users/marygao/project/autorest.typescript/node_modules/@microsoft.azure/autorest.testserver/swagger/examples/string_putNull.json
+ * @summary Get value that is base64 encoded
+ * x-ms-original-file: file:///C:/Users/marygao/project/autorest.typescript/node_modules/@microsoft.azure/autorest.testserver/swagger/examples/string_getBase64Encoded.json
  */
 async function stringPutNull() {
   const client = createBodyStringRestClient();
-  const result = await client.path("/string/null").put();
+  const result = await client.path("/string/base64Encoding").get();
   console.log(result);
 }
 

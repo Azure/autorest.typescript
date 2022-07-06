@@ -15,7 +15,7 @@ dotenv.config();
  * x-ms-original-file: file:///C:/Users/marygao/project/autorest.typescript/node_modules/@microsoft.azure/autorest.testserver/swagger/examples/enum_getReferencedConstant.json
  */
 async function enumGetReferencedConstant() {
-  const client = createClient();
+  const client = createBodyStringRestClient();
   const result = await client.path("/string/enum/ReferencedConstant").get();
   console.log(result);
 }

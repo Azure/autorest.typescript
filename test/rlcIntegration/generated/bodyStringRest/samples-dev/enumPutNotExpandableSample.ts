@@ -17,7 +17,7 @@ dotenv.config();
  * x-ms-original-file: file:///C:/Users/marygao/project/autorest.typescript/node_modules/@microsoft.azure/autorest.testserver/swagger/examples/enum_putNotExpandable.json
  */
 async function enumPutNotExpandable() {
-  const client = createClient();
+  const client = createBodyStringRestClient();
   const options: EnumPutNotExpandableParameters = { body: "red color" };
   const result = await client.path("/string/enum/notExpandable").put(options);
   console.log(result);

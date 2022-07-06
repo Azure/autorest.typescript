@@ -17,7 +17,7 @@ dotenv.config();
  * x-ms-original-file: file:///C:/Users/marygao/project/autorest.typescript/node_modules/@microsoft.azure/autorest.testserver/swagger/examples/string_putMbcs.json
  */
 async function stringPutMbcs() {
-  const client = createClient();
+  const client = createBodyStringRestClient();
   const options: StringPutMbcsParameters = {
     body:
       "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"

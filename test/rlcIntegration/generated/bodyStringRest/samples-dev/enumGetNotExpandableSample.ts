@@ -15,7 +15,7 @@ dotenv.config();
  * x-ms-original-file: file:///C:/Users/marygao/project/autorest.typescript/node_modules/@microsoft.azure/autorest.testserver/swagger/examples/enum_getNotExpandable.json
  */
 async function enumGetNotExpandable() {
-  const client = createClient();
+  const client = createBodyStringRestClient();
   const result = await client.path("/string/enum/notExpandable").get();
   console.log(result);
 }

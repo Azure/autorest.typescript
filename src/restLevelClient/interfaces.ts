@@ -62,6 +62,7 @@ export interface RLCSampleDetail {
   originalFileLocation?: string,
   name: string,
   path: string;
+  defaultFactoryName: string,
   clientParamAssignments: string[],
   pathParamAssignments: string[];
   methodParamAssignments: string[],

@@ -99,6 +99,7 @@ export function transformRLCSampleData(model: TestCodeModel): RLCSampleGroup[] {
                         transformSpecialLetterToSpace(rawSample?.name)
                     ),
                     path,
+                    defaultFactoryName,
                     clientParamAssignments: [],
                     pathParamAssignments: [],
                     methodParamAssignments: [],
@@ -246,7 +247,7 @@ function convertMethodLevelParameters(rawMethodParams: ExampleParameter[], metho
         allSideAssignments.push(` queryParameters: { ` + querySideAssignments.join(", ") + `}`);
     }
     rawMethodParams.filter(p => p.parameter.protocol.http?.in == ParameterLocation.Header).forEach(p => {
-        const name = getLanguageMetadata(p.parameter.language).serializedName || p.parameter.language.default.name;
+        const name = `"${getLanguageMetadata(p.parameter.language).serializedName}"`;
         headerSideAssignments.push(`${name}: ` + getParameterAssignment(p.exampleValue));
     });
     if (headerSideAssignments.length > 0) {
@@ -320,6 +321,7 @@ function getParameterAssignment(exampleValue: ExampleValue) {
         case SchemaType.Uri:
         case SchemaType.Credential:
         case SchemaType.Duration:
+        case SchemaType.ByteArray:
             retValue = `"${rawValue
                 ?.toString()
                 .replace(/"/g, '\\"')

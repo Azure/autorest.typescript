@@ -15,7 +15,7 @@ dotenv.config();
  * x-ms-original-file: file:///C:/Users/marygao/project/autorest.typescript/node_modules/@microsoft.azure/autorest.testserver/swagger/examples/string_getNull.json
  */
 async function stringGetNull() {
-  const client = createClient();
+  const client = createBodyStringRestClient();
   const result = await client.path("/string/null").get();
   console.log(result);
 }

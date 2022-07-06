@@ -17,8 +17,10 @@ dotenv.config();
  * x-ms-original-file: file:///C:/Users/marygao/project/autorest.typescript/node_modules/@microsoft.azure/autorest.testserver/swagger/examples/enum_putReferencedConstant.json
  */
 async function enumPutReferencedConstant() {
-  const client = createClient();
-  const options: EnumPutReferencedConstantParameters = { body: {} };
+  const client = createBodyStringRestClient();
+  const options: EnumPutReferencedConstantParameters = {
+    body: { colorConstant: "green-color" }
+  };
   const result = await client
     .path("/string/enum/ReferencedConstant")
     .put(options);
