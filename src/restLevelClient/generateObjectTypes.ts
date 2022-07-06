@@ -104,7 +104,7 @@ function getPolymorphicTypeAlias(
 
   // If the object itself has a discriminatorValue add its base to the union
   if (objectSchema.discriminatorValue) {
-    unionTypes.push(`${baseName}Base`);
+    unionTypes.push(`${baseName}Parent`);
   }
 
   for (const child of objectSchema.children?.all ?? []) {
@@ -122,7 +122,7 @@ function getPolymorphicTypeAlias(
 
   return {
     kind: StructureKind.TypeAlias,
-    name: baseName,
+    name: `${baseName}`,
     type: unionTypes.join(" | "),
     isExported: true
   };
@@ -140,7 +140,7 @@ function getObjectInterfaceDeclaration(
 ): InterfaceDeclarationStructure {
   let interfaceName = `${baseName}`;
   if (isPolymorphicParent(objectSchema)) {
-    interfaceName = `${baseName}Base`;
+    interfaceName = `${baseName}Parent`;
   }
 
   const properties = objectSchema.properties ?? [];
@@ -336,7 +336,7 @@ function getImmediateParentsNames(
       )}${nameSuffix}`;
 
       return isObjectSchema(parent) && isPolymorphicParent(parent)
-        ? `${name}Base`
+        ? `${name}Parent`
         : name;
     });
 
