@@ -191,8 +191,8 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
     extends: !useCoreV2
       ? "coreHttp.ServiceClient"
       : coreHttpCompatMode
-      ? "coreHttpCompat.ExtendedServiceClient"
-      : "coreClient.ServiceClient",
+        ? "coreHttpCompat.ExtendedServiceClient"
+        : "coreClient.ServiceClient",
     isExported: true
   });
 
@@ -405,12 +405,11 @@ function writeConstructor(
   ]);
   if (useCoreV2 && apiVersionParam) {
     clientConstructor.addStatements(
-      `this.addCustomApiVersionPolicy(${
-        !apiVersionParam.required ||
+      `this.addCustomApiVersionPolicy(${!apiVersionParam.required ||
         !!apiVersionParam.defaultValue ||
         apiVersionParam.schemaType === SchemaType.Constant
-          ? "options."
-          : ""
+        ? "options."
+        : ""
       }apiVersion);`
     );
   }
@@ -570,7 +569,7 @@ function getTrack2DefaultContent(
   packageDetails: PackageDetails,
   clientDetails: ClientDetails
 ) {
-  const { azureArm, allowInsecureConnection } = getAutorestOptions();
+  const { azureArm, allowInsecureConnection, addCredentials } = getAutorestOptions();
 
   const defaultContent = `// Initializing default values for options
   if (!options) {
@@ -599,31 +598,33 @@ function getTrack2DefaultContent(
   super(optionsWithDefaults);
   `;
 
-  if (azureArm && !allowInsecureConnection) {
+  if (azureArm && !allowInsecureConnection && addCredentials) {
     return (
       defaultContent +
       `
+      let bearerTokenAuthenticationPolicyFound: boolean = false;
       if (options?.pipeline && options.pipeline.getOrderedPolicies().length > 0) {
         const pipelinePolicies: coreRestPipeline.PipelinePolicy[] = options.pipeline.getOrderedPolicies();
-        const bearerTokenAuthenticationPolicyFound = pipelinePolicies.some(
+        bearerTokenAuthenticationPolicyFound = pipelinePolicies.some(
           pipelinePolicy =>
             pipelinePolicy.name ===
             coreRestPipeline.bearerTokenAuthenticationPolicyName
         );
-        if (!bearerTokenAuthenticationPolicyFound) {
-          this.pipeline.removePolicy({
-            name: coreRestPipeline.bearerTokenAuthenticationPolicyName
-          });
-          this.pipeline.addPolicy(
-            coreRestPipeline.bearerTokenAuthenticationPolicy({
-              scopes: \`\${optionsWithDefaults.baseUri}/.default\`,
-              challengeCallbacks: {
-                authorizeRequestOnChallenge:
-                  coreClient.authorizeRequestOnClaimChallenge
-              }
-            })
-          );
-        }
+      }
+      if (!options || !options.pipeline || options.pipeline.getOrderedPolicies().length == 0 || !bearerTokenAuthenticationPolicyFound) {
+        this.pipeline.removePolicy({
+          name: coreRestPipeline.bearerTokenAuthenticationPolicyName
+        });
+        this.pipeline.addPolicy(
+          coreRestPipeline.bearerTokenAuthenticationPolicy({
+            credential: credentials,
+            scopes: \`\${optionsWithDefaults.credentialScopes}\`,
+            challengeCallbacks: {
+              authorizeRequestOnChallenge:
+                coreClient.authorizeRequestOnClaimChallenge
+            }
+          })
+        );
       }
     `
     );
@@ -663,11 +664,11 @@ function writeDefaultOptions(
   return !useCoreV2
     ? getTrack1DefaultContent(addScopes, hasCredentials)
     : getTrack2DefaultContent(
-        addScopes,
-        defaults,
-        packageDetails,
-        clientDetails
-      );
+      addScopes,
+      defaults,
+      packageDetails,
+      clientDetails
+    );
 }
 
 function isAddScopes(
@@ -684,15 +685,13 @@ function isAddScopes(
 }
 
 function getEndpointStatement({ endpoint }: EndpointDetails) {
-  return `this.baseUri = options.endpoint ?? ${
-    endpoint ? `"${endpoint}"` : `""`
-  };`;
+  return `this.baseUri = options.endpoint ?? ${endpoint ? `"${endpoint}"` : `""`
+    };`;
 }
 
 function getEndpoint({ endpoint }: EndpointDetails) {
-  return `options.endpoint ?? options.baseUri ?? ${
-    endpoint ? `"${endpoint}"` : `""`
-  }`;
+  return `options.endpoint ?? options.baseUri ?? ${endpoint ? `"${endpoint}"` : `""`
+    }`;
 }
 
 function getRequiredParamAssignments(requiredParameters: ParameterDetails[]) {
