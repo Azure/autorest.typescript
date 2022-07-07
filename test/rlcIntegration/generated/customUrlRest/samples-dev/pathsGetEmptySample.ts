@@ -12,7 +12,7 @@ dotenv.config();
  * This sample demonstrates how to Get a 200 to test a valid base uri
  *
  * @summary Get a 200 to test a valid base uri
- * x-ms-original-file: file:///C:/Users/marygao/project/autorest.typescript/node_modules/@microsoft.azure/autorest.testserver/swagger/examples/paths_getEmpty.json
+ * x-ms-original-file: /@microsoft.azure/autorest.testserver/swagger/examples/paths_getEmpty.json
  */
 async function pathsGetEmpty() {
   const host = "host:3000";

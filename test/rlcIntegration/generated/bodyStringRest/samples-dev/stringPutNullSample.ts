@@ -12,7 +12,7 @@ dotenv.config();
  * This sample demonstrates how to Set string value null
  *
  * @summary Set string value null
- * x-ms-original-file: file:///C:/Users/marygao/project/autorest.typescript/node_modules/@microsoft.azure/autorest.testserver/swagger/examples/string_putNull.json
+ * x-ms-original-file: /@microsoft.azure/autorest.testserver/swagger/examples/string_putNull.json
  */
 async function stringPutNull() {
   const client = createBodyStringRestClient();

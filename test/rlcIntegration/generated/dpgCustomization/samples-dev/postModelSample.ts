@@ -14,7 +14,7 @@ dotenv.config();
  * This sample demonstrates how to Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to take a model instead, and put in 'model' as mode.
  *
  * @summary Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to take a model instead, and put in 'model' as mode.
- * x-ms-original-file: file:///C:/Users/marygao/project/autorest.typescript/node_modules/@microsoft.azure/autorest.testserver/swagger/examples/postModel.json
+ * x-ms-original-file: /@microsoft.azure/autorest.testserver/swagger/examples/postModel.json
  */
 async function dpgPostModel() {
   const client = createDpgCustomizationClient();

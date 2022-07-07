@@ -14,7 +14,7 @@ dotenv.config();
  * This sample demonstrates how to Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'
  *
  * @summary Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'
- * x-ms-original-file: file:///C:/Users/marygao/project/autorest.typescript/node_modules/@microsoft.azure/autorest.testserver/swagger/examples/enum_putNotExpandable.json
+ * x-ms-original-file: /@microsoft.azure/autorest.testserver/swagger/examples/enum_putNotExpandable.json
  */
 async function enumPutNotExpandable() {
   const client = createBodyStringRestClient();

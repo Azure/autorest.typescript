@@ -3,7 +3,9 @@
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-import createClient, { paginate } from "@msinternal/agrifood-data-plane";
+import createAzureAgriFoodPlatformDataPlaneServiceClient, {
+  paginate
+} from "@msinternal/agrifood-data-plane";
 import { AzureKeyCredential } from "@azure/core-auth";
 import * as dotenv from "dotenv";
 
@@ -18,7 +20,10 @@ dotenv.config();
 async function boundariesListByFarmerId() {
   const Endpoint = "{Endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
-  const client = createClient(Endpoint, credential);
+  const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
+    Endpoint,
+    credential
+  );
   const farmerId = "FARMER123";
   const initialResponse = await client
     .path("/farmers/{farmerId}/boundaries", farmerId)

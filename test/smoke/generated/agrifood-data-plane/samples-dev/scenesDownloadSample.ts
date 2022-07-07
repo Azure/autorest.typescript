@@ -3,7 +3,7 @@
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-import createClient, {
+import createAzureAgriFoodPlatformDataPlaneServiceClient, {
   ScenesDownloadParameters
 } from "@msinternal/agrifood-data-plane";
 import { AzureKeyCredential } from "@azure/core-auth";
@@ -20,7 +20,10 @@ dotenv.config();
 async function scenesDownload() {
   const Endpoint = "{Endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
-  const client = createClient(Endpoint, credential);
+  const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
+    Endpoint,
+    credential
+  );
   const options: ScenesDownloadParameters = {
     queryParameters: { filePath: "https://filePath" }
   };

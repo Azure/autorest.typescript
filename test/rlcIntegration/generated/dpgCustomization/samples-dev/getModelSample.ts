@@ -12,7 +12,7 @@ dotenv.config();
  * This sample demonstrates how to Get models that you will either return to end users as a raw body, or with a model added during grow up.
  *
  * @summary Get models that you will either return to end users as a raw body, or with a model added during grow up.
- * x-ms-original-file: file:///C:/Users/marygao/project/autorest.typescript/node_modules/@microsoft.azure/autorest.testserver/swagger/examples/getModel.json
+ * x-ms-original-file: /@microsoft.azure/autorest.testserver/swagger/examples/getModel.json
  */
 async function dpgGetModel() {
   const client = createDpgCustomizationClient();

@@ -14,7 +14,7 @@ dotenv.config();
  * This sample demonstrates how to Send a post request with header value "User-Agent": "overwrite"
  *
  * @summary Send a post request with header value "User-Agent": "overwrite"
- * x-ms-original-file: file:///C:/Users/marygao/project/autorest.typescript/node_modules/@microsoft.azure/autorest.testserver/swagger/examples/header_paramExistingKey.json
+ * x-ms-original-file: /@microsoft.azure/autorest.testserver/swagger/examples/header_paramExistingKey.json
  */
 async function headerParamExistingKey() {
   const client = createHeaderRestClient();

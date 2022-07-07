@@ -12,7 +12,7 @@ dotenv.config();
  * This sample demonstrates how to Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
  *
  * @summary Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
- * x-ms-original-file: file:///C:/Users/marygao/project/autorest.typescript/node_modules/@microsoft.azure/autorest.testserver/swagger/examples/enum_getNotExpandable.json
+ * x-ms-original-file: /@microsoft.azure/autorest.testserver/swagger/examples/enum_getNotExpandable.json
  */
 async function enumGetNotExpandable() {
   const client = createBodyStringRestClient();

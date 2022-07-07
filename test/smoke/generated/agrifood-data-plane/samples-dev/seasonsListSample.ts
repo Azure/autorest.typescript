@@ -3,7 +3,9 @@
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-import createClient, { paginate } from "@msinternal/agrifood-data-plane";
+import createAzureAgriFoodPlatformDataPlaneServiceClient, {
+  paginate
+} from "@msinternal/agrifood-data-plane";
 import { AzureKeyCredential } from "@azure/core-auth";
 import * as dotenv from "dotenv";
 
@@ -18,7 +20,10 @@ dotenv.config();
 async function seasonsList() {
   const Endpoint = "{Endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
-  const client = createClient(Endpoint, credential);
+  const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
+    Endpoint,
+    credential
+  );
   const initialResponse = await client.path("/seasons").get();
   const pageData = paginate(client, initialResponse);
   const result = [];

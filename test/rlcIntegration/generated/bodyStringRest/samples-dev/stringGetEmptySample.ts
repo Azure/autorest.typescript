@@ -12,7 +12,7 @@ dotenv.config();
  * This sample demonstrates how to Get empty string value value ''
  *
  * @summary Get empty string value value ''
- * x-ms-original-file: file:///C:/Users/marygao/project/autorest.typescript/node_modules/@microsoft.azure/autorest.testserver/swagger/examples/string_getEmpty.json
+ * x-ms-original-file: /@microsoft.azure/autorest.testserver/swagger/examples/string_getEmpty.json
  */
 async function stringGetEmpty() {
   const client = createBodyStringRestClient();

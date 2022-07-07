@@ -94,7 +94,7 @@ export function transformRLCSampleData(model: TestCodeModel): RLCSampleGroup[] {
                     description: getLanguageMetadata(
                         rawSamplesForOperID.operation.language
                     ).description,
-                    originalFileLocation: rawSample.originalFile,
+                    originalFileLocation: refineOriginalFileLocation(rawSample.originalFile),
                     name: camelCase(
                         transformSpecialLetterToSpace(rawSample?.name)
                     ),
@@ -142,6 +142,11 @@ export function transformRLCSampleData(model: TestCodeModel): RLCSampleGroup[] {
         enrichImportedString(sampleGroup, importedDict, defaultFactoryName);
     }
     return rlcSampleGroups;
+}
+
+function refineOriginalFileLocation(originalFileLoc: string) {
+    const parts = originalFileLoc.split("node_modules");
+    return (parts.length == 2) ? parts[1] : originalFileLoc;
 }
 
 function isMethodLevelParam(param: ExampleParameter) {

@@ -14,7 +14,7 @@ dotenv.config();
  * This sample demonstrates how to Send a post request with header values "scenario": "positive", "value": 1 or "scenario": "negative", "value": -2
  *
  * @summary Send a post request with header values "scenario": "positive", "value": 1 or "scenario": "negative", "value": -2
- * x-ms-original-file: file:///C:/Users/marygao/project/autorest.typescript/node_modules/@microsoft.azure/autorest.testserver/swagger/examples/header_paramInteger.json
+ * x-ms-original-file: /@microsoft.azure/autorest.testserver/swagger/examples/header_paramInteger.json
  */
 async function headerParamInteger() {
   const client = createHeaderRestClient();

@@ -14,7 +14,7 @@ dotenv.config();
  * This sample demonstrates how to Send a post request with header value "Content-Type": "text/html"
  *
  * @summary Send a post request with header value "Content-Type": "text/html"
- * x-ms-original-file: file:///C:/Users/marygao/project/autorest.typescript/node_modules/@microsoft.azure/autorest.testserver/swagger/examples/header_paramProtectedKey.json
+ * x-ms-original-file: /@microsoft.azure/autorest.testserver/swagger/examples/header_paramProtectedKey.json
  */
 async function headerParamProtectedKey() {
   const client = createHeaderRestClient();

@@ -14,7 +14,7 @@ dotenv.config();
  * This sample demonstrates how to Get pages that you will either return to users in pages of raw bodies, or pages of models following growup.
  *
  * @summary Get pages that you will either return to users in pages of raw bodies, or pages of models following growup.
- * x-ms-original-file: file:///C:/Users/marygao/project/autorest.typescript/node_modules/@microsoft.azure/autorest.testserver/swagger/examples/nextLink.json
+ * x-ms-original-file: /@microsoft.azure/autorest.testserver/swagger/examples/nextLink.json
  */
 async function dpgNextLink() {
   const client = createDpgCustomizationClient();

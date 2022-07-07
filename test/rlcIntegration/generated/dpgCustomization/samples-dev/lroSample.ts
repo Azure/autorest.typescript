@@ -14,7 +14,7 @@ dotenv.config();
  * This sample demonstrates how to Long running put request that will either return to end users a final payload of a raw body, or a final payload of a model after the SDK has grown up.
  *
  * @summary Long running put request that will either return to end users a final payload of a raw body, or a final payload of a model after the SDK has grown up.
- * x-ms-original-file: file:///C:/Users/marygao/project/autorest.typescript/node_modules/@microsoft.azure/autorest.testserver/swagger/examples/lro.json
+ * x-ms-original-file: /@microsoft.azure/autorest.testserver/swagger/examples/lro.json
  */
 async function dpgLro() {
   const client = createDpgCustomizationClient();

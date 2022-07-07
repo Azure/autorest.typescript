@@ -12,7 +12,7 @@ dotenv.config();
  * This sample demonstrates how to Get value 'green-color' from the constant.
  *
  * @summary Get value 'green-color' from the constant.
- * x-ms-original-file: file:///C:/Users/marygao/project/autorest.typescript/node_modules/@microsoft.azure/autorest.testserver/swagger/examples/enum_getReferencedConstant.json
+ * x-ms-original-file: /@microsoft.azure/autorest.testserver/swagger/examples/enum_getReferencedConstant.json
  */
 async function enumGetReferencedConstant() {
   const client = createBodyStringRestClient();

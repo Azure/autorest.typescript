@@ -3,7 +3,7 @@
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-import createClient, {
+import createAzureAgriFoodPlatformDataPlaneServiceClient, {
   ScenesListParameters,
   paginate
 } from "@msinternal/agrifood-data-plane";
@@ -21,7 +21,10 @@ dotenv.config();
 async function scenesList() {
   const Endpoint = "{Endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
-  const client = createClient(Endpoint, credential);
+  const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
+    Endpoint,
+    credential
+  );
   const options: ScenesListParameters = {
     queryParameters: {
       provider: "Microsoft",

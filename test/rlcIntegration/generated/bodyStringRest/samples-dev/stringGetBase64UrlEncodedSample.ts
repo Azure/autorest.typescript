@@ -12,7 +12,7 @@ dotenv.config();
  * This sample demonstrates how to Get value that is base64url encoded
  *
  * @summary Get value that is base64url encoded
- * x-ms-original-file: file:///C:/Users/marygao/project/autorest.typescript/node_modules/@microsoft.azure/autorest.testserver/swagger/examples/string_getBase64UrlEncoded.json
+ * x-ms-original-file: /@microsoft.azure/autorest.testserver/swagger/examples/string_getBase64UrlEncoded.json
  */
 async function stringPutNull() {
   const client = createBodyStringRestClient();

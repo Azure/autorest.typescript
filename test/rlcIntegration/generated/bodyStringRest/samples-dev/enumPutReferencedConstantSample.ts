@@ -14,7 +14,7 @@ dotenv.config();
  * This sample demonstrates how to Sends value 'green-color' from a constant
  *
  * @summary Sends value 'green-color' from a constant
- * x-ms-original-file: file:///C:/Users/marygao/project/autorest.typescript/node_modules/@microsoft.azure/autorest.testserver/swagger/examples/enum_putReferencedConstant.json
+ * x-ms-original-file: /@microsoft.azure/autorest.testserver/swagger/examples/enum_putReferencedConstant.json
  */
 async function enumPutReferencedConstant() {
   const client = createBodyStringRestClient();

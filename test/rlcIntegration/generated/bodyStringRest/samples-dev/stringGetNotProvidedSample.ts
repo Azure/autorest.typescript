@@ -12,7 +12,7 @@ dotenv.config();
  * This sample demonstrates how to Get String value when no string value is sent in response payload
  *
  * @summary Get String value when no string value is sent in response payload
- * x-ms-original-file: file:///C:/Users/marygao/project/autorest.typescript/node_modules/@microsoft.azure/autorest.testserver/swagger/examples/string_getNotProvided.json
+ * x-ms-original-file: /@microsoft.azure/autorest.testserver/swagger/examples/string_getNotProvided.json
  */
 async function stringGetNotProvided() {
   const client = createBodyStringRestClient();
