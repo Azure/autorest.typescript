@@ -28,6 +28,8 @@ import {
   PagingGetWithQueryParamsResponse,
   PagingDuplicateParamsOptionalParams,
   PagingDuplicateParamsResponse,
+  PagingPageWithMaxPageSizeOptionalParams,
+  PagingPageWithMaxPageSizeResponse,
   PagingNextOperationWithQueryParamsOptionalParams,
   PagingNextOperationWithQueryParamsResponse,
   PagingGetOdataMultiplePagesOptionalParams,
@@ -52,6 +54,10 @@ import {
   PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse,
   PagingGetMultiplePagesLROOptionalParams,
   PagingGetMultiplePagesLROResponse,
+  PagingAppendApiVersionOptionalParams,
+  PagingAppendApiVersionResponse,
+  PagingReplaceApiVersionOptionalParams,
+  PagingReplaceApiVersionResponse,
   PagingNextFragmentOptionalParams,
   PagingNextFragmentResponse,
   PagingNextFragmentWithGroupingOptionalParams,
@@ -68,6 +74,8 @@ import {
   PagingGetMultiplePagesNextResponse,
   PagingDuplicateParamsNextOptionalParams,
   PagingDuplicateParamsNextResponse,
+  PagingPageWithMaxPageSizeNextOptionalParams,
+  PagingPageWithMaxPageSizeNextResponse,
   PagingGetOdataMultiplePagesNextOptionalParams,
   PagingGetOdataMultiplePagesNextResponse,
   PagingGetMultiplePagesWithOffsetNextOptionalParams,
@@ -84,6 +92,10 @@ import {
   PagingGetMultiplePagesFailureUriNextResponse,
   PagingGetMultiplePagesLRONextOptionalParams,
   PagingGetMultiplePagesLRONextResponse,
+  PagingAppendApiVersionNextOptionalParams,
+  PagingAppendApiVersionNextResponse,
+  PagingReplaceApiVersionNextOptionalParams,
+  PagingReplaceApiVersionNextResponse,
   PagingGetPagingModelWithItemNameWithXMSClientNameNextOptionalParams,
   PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse
 } from "../models";
@@ -194,6 +206,19 @@ export class PagingImpl implements Paging {
     return this.client.sendOperationRequest(
       { options },
       duplicateParamsOperationSpec
+    );
+  }
+
+  /**
+   * Paging with max page size. We don't want to
+   * @param options The options parameters.
+   */
+  pageWithMaxPageSize(
+    options?: PagingPageWithMaxPageSizeOptionalParams
+  ): Promise<PagingPageWithMaxPageSizeResponse> {
+    return this.client.sendOperationRequest(
+      { options },
+      pageWithMaxPageSizeOperationSpec
     );
   }
 
@@ -402,6 +427,34 @@ export class PagingImpl implements Paging {
   }
 
   /**
+   * A paging operation with api version. When calling the next link, you want to append your client's
+   * api version to the next link
+   * @param options The options parameters.
+   */
+  appendApiVersion(
+    options?: PagingAppendApiVersionOptionalParams
+  ): Promise<PagingAppendApiVersionResponse> {
+    return this.client.sendOperationRequest(
+      { options },
+      appendApiVersionOperationSpec
+    );
+  }
+
+  /**
+   * A paging operation with api version. When calling the next link, you want to reformat it and
+   * override the returned api version with your client's api version
+   * @param options The options parameters.
+   */
+  replaceApiVersion(
+    options?: PagingReplaceApiVersionOptionalParams
+  ): Promise<PagingReplaceApiVersionResponse> {
+    return this.client.sendOperationRequest(
+      { options },
+      replaceApiVersionOperationSpec
+    );
+  }
+
+  /**
    * A paging operation that doesn't return a full URL, just a fragment
    * @param apiVersion Sets the api version to use.
    * @param tenant Sets the tenant to use.
@@ -523,6 +576,21 @@ export class PagingImpl implements Paging {
     return this.client.sendOperationRequest(
       { nextLink, options },
       duplicateParamsNextOperationSpec
+    );
+  }
+
+  /**
+   * PageWithMaxPageSizeNext
+   * @param nextLink The nextLink from the previous successful call to the PageWithMaxPageSize method.
+   * @param options The options parameters.
+   */
+  pageWithMaxPageSizeNext(
+    nextLink: string,
+    options?: PagingPageWithMaxPageSizeNextOptionalParams
+  ): Promise<PagingPageWithMaxPageSizeNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      pageWithMaxPageSizeNextOperationSpec
     );
   }
 
@@ -654,6 +722,36 @@ export class PagingImpl implements Paging {
   }
 
   /**
+   * AppendApiVersionNext
+   * @param nextLink The nextLink from the previous successful call to the AppendApiVersion method.
+   * @param options The options parameters.
+   */
+  appendApiVersionNext(
+    nextLink: string,
+    options?: PagingAppendApiVersionNextOptionalParams
+  ): Promise<PagingAppendApiVersionNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      appendApiVersionNextOperationSpec
+    );
+  }
+
+  /**
+   * ReplaceApiVersionNext
+   * @param nextLink The nextLink from the previous successful call to the ReplaceApiVersion method.
+   * @param options The options parameters.
+   */
+  replaceApiVersionNext(
+    nextLink: string,
+    options?: PagingReplaceApiVersionNextOptionalParams
+  ): Promise<PagingReplaceApiVersionNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      replaceApiVersionNextOperationSpec
+    );
+  }
+
+  /**
    * GetPagingModelWithItemNameWithXMSClientNameNext
    * @param nextLink The nextLink from the previous successful call to the
    *                 GetPagingModelWithItemNameWithXMSClientName method.
@@ -769,6 +867,20 @@ const duplicateParamsOperationSpec: coreClient.OperationSpec = {
     default: {}
   },
   queryParameters: [Parameters.filter],
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const pageWithMaxPageSizeOperationSpec: coreClient.OperationSpec = {
+  path: "/paging/maxPageSize",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResult
+    },
+    default: {}
+  },
+  queryParameters: [Parameters.maxpagesize],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
@@ -943,6 +1055,34 @@ const getMultiplePagesLROOperationSpec: coreClient.OperationSpec = {
   ],
   serializer
 };
+const appendApiVersionOperationSpec: coreClient.OperationSpec = {
+  path: "/paging/apiVersion/append/1",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResult
+    },
+    default: {}
+  },
+  queryParameters: [Parameters.apiVersion2],
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const replaceApiVersionOperationSpec: coreClient.OperationSpec = {
+  path: "/paging/apiVersion/replace/1",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResult
+    },
+    default: {}
+  },
+  queryParameters: [Parameters.apiVersion2],
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
+  serializer
+};
 const nextFragmentOperationSpec: coreClient.OperationSpec = {
   path: "/paging/multiple/fragment/{tenant}/{nextLink}",
   httpMethod: "GET",
@@ -1051,6 +1191,20 @@ const duplicateParamsNextOperationSpec: coreClient.OperationSpec = {
     default: {}
   },
   queryParameters: [Parameters.filter],
+  urlParameters: [Parameters.$host, Parameters.nextLink],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const pageWithMaxPageSizeNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResult
+    },
+    default: {}
+  },
+  queryParameters: [Parameters.maxpagesize],
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
   serializer
@@ -1175,6 +1329,34 @@ const getMultiplePagesLRONextOperationSpec: coreClient.OperationSpec = {
     Parameters.maxresults3,
     Parameters.timeout3
   ],
+  serializer
+};
+const appendApiVersionNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResult
+    },
+    default: {}
+  },
+  queryParameters: [Parameters.apiVersion2],
+  urlParameters: [Parameters.$host, Parameters.nextLink],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const replaceApiVersionNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResult
+    },
+    default: {}
+  },
+  queryParameters: [Parameters.apiVersion2],
+  urlParameters: [Parameters.$host, Parameters.nextLink],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const getPagingModelWithItemNameWithXMSClientNameNextOperationSpec: coreClient.OperationSpec = {

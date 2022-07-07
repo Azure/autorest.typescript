@@ -22,6 +22,8 @@ import {
   PagingGetWithQueryParamsResponse,
   PagingDuplicateParamsOptionalParams,
   PagingDuplicateParamsResponse,
+  PagingPageWithMaxPageSizeOptionalParams,
+  PagingPageWithMaxPageSizeResponse,
   PagingNextOperationWithQueryParamsOptionalParams,
   PagingNextOperationWithQueryParamsResponse,
   PagingGetOdataMultiplePagesOptionalParams,
@@ -46,6 +48,10 @@ import {
   PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse,
   PagingGetMultiplePagesLROOptionalParams,
   PagingGetMultiplePagesLROResponse,
+  PagingAppendApiVersionOptionalParams,
+  PagingAppendApiVersionResponse,
+  PagingReplaceApiVersionOptionalParams,
+  PagingReplaceApiVersionResponse,
   PagingNextFragmentOptionalParams,
   PagingNextFragmentResponse,
   PagingNextFragmentWithGroupingOptionalParams,
@@ -62,6 +68,8 @@ import {
   PagingGetMultiplePagesNextResponse,
   PagingDuplicateParamsNextOptionalParams,
   PagingDuplicateParamsNextResponse,
+  PagingPageWithMaxPageSizeNextOptionalParams,
+  PagingPageWithMaxPageSizeNextResponse,
   PagingGetOdataMultiplePagesNextOptionalParams,
   PagingGetOdataMultiplePagesNextResponse,
   PagingGetMultiplePagesWithOffsetNextOptionalParams,
@@ -78,6 +86,10 @@ import {
   PagingGetMultiplePagesFailureUriNextResponse,
   PagingGetMultiplePagesLRONextOptionalParams,
   PagingGetMultiplePagesLRONextResponse,
+  PagingAppendApiVersionNextOptionalParams,
+  PagingAppendApiVersionNextResponse,
+  PagingReplaceApiVersionNextOptionalParams,
+  PagingReplaceApiVersionNextResponse,
   PagingGetPagingModelWithItemNameWithXMSClientNameNextOptionalParams,
   PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse
 } from "../models";
@@ -139,6 +151,13 @@ export interface Paging {
   duplicateParams(
     options?: PagingDuplicateParamsOptionalParams
   ): Promise<PagingDuplicateParamsResponse>;
+  /**
+   * Paging with max page size. We don't want to
+   * @param options The options parameters.
+   */
+  pageWithMaxPageSize(
+    options?: PagingPageWithMaxPageSizeOptionalParams
+  ): Promise<PagingPageWithMaxPageSizeResponse>;
   /**
    * Next operation for getWithQueryParams. Pass in next=True to pass test. Returns a ProductResult
    * @param options The options parameters.
@@ -232,6 +251,22 @@ export interface Paging {
     >
   >;
   /**
+   * A paging operation with api version. When calling the next link, you want to append your client's
+   * api version to the next link
+   * @param options The options parameters.
+   */
+  appendApiVersion(
+    options?: PagingAppendApiVersionOptionalParams
+  ): Promise<PagingAppendApiVersionResponse>;
+  /**
+   * A paging operation with api version. When calling the next link, you want to reformat it and
+   * override the returned api version with your client's api version
+   * @param options The options parameters.
+   */
+  replaceApiVersion(
+    options?: PagingReplaceApiVersionOptionalParams
+  ): Promise<PagingReplaceApiVersionResponse>;
+  /**
    * A paging operation that doesn't return a full URL, just a fragment
    * @param apiVersion Sets the api version to use.
    * @param tenant Sets the tenant to use.
@@ -308,6 +343,15 @@ export interface Paging {
     nextLink: string,
     options?: PagingDuplicateParamsNextOptionalParams
   ): Promise<PagingDuplicateParamsNextResponse>;
+  /**
+   * PageWithMaxPageSizeNext
+   * @param nextLink The nextLink from the previous successful call to the PageWithMaxPageSize method.
+   * @param options The options parameters.
+   */
+  pageWithMaxPageSizeNext(
+    nextLink: string,
+    options?: PagingPageWithMaxPageSizeNextOptionalParams
+  ): Promise<PagingPageWithMaxPageSizeNextResponse>;
   /**
    * GetOdataMultiplePagesNext
    * @param nextLink The nextLink from the previous successful call to the GetOdataMultiplePages method.
@@ -387,6 +431,24 @@ export interface Paging {
     nextLink: string,
     options?: PagingGetMultiplePagesLRONextOptionalParams
   ): Promise<PagingGetMultiplePagesLRONextResponse>;
+  /**
+   * AppendApiVersionNext
+   * @param nextLink The nextLink from the previous successful call to the AppendApiVersion method.
+   * @param options The options parameters.
+   */
+  appendApiVersionNext(
+    nextLink: string,
+    options?: PagingAppendApiVersionNextOptionalParams
+  ): Promise<PagingAppendApiVersionNextResponse>;
+  /**
+   * ReplaceApiVersionNext
+   * @param nextLink The nextLink from the previous successful call to the ReplaceApiVersion method.
+   * @param options The options parameters.
+   */
+  replaceApiVersionNext(
+    nextLink: string,
+    options?: PagingReplaceApiVersionNextOptionalParams
+  ): Promise<PagingReplaceApiVersionNextResponse>;
   /**
    * GetPagingModelWithItemNameWithXMSClientNameNext
    * @param nextLink The nextLink from the previous successful call to the

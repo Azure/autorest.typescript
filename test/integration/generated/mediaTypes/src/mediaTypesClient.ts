@@ -26,6 +26,10 @@ import {
   BinaryBodyWithThreeContentTypes$binaryOptionalParams,
   BinaryBodyWithThreeContentTypes$textOptionalParams,
   BinaryBodyWithThreeContentTypesResponse,
+  BodyThreeTypes$binaryOptionalParams,
+  BodyThreeTypes$textOptionalParams,
+  BodyThreeTypes$jsonOptionalParams,
+  BodyThreeTypesResponse,
   PutTextAndJsonBody$textOptionalParams,
   PutTextAndJsonBody$jsonOptionalParams,
   PutTextAndJsonBodyResponse
@@ -277,6 +281,97 @@ export class MediaTypesClient extends coreClient.ServiceClient {
   }
 
   /**
+   * Body with three types. Can be stream, string, or JSON. Pass in string 'hello, world' with content
+   * type 'text/plain', {'hello': world'} with content type 'application/json' and a byte string for
+   * 'application/octet-stream'.
+   * @param contentType Upload file type
+   * @param message The payload body.
+   * @param options The options parameters.
+   */
+  bodyThreeTypes(
+    contentType: "application/octet-stream",
+    message: coreRestPipeline.RequestBodyType,
+    options?: BodyThreeTypes$binaryOptionalParams
+  ): Promise<BodyThreeTypesResponse>;
+  /**
+   * Body with three types. Can be stream, string, or JSON. Pass in string 'hello, world' with content
+   * type 'text/plain', {'hello': world'} with content type 'application/json' and a byte string for
+   * 'application/octet-stream'.
+   * @param contentType Upload file type
+   * @param message The payload body.
+   * @param options The options parameters.
+   */
+  bodyThreeTypes(
+    contentType: "text/plain",
+    message: string,
+    options?: BodyThreeTypes$textOptionalParams
+  ): Promise<BodyThreeTypesResponse>;
+  /**
+   * Body with three types. Can be stream, string, or JSON. Pass in string 'hello, world' with content
+   * type 'text/plain', {'hello': world'} with content type 'application/json' and a byte string for
+   * 'application/octet-stream'.
+   * @param contentType Body Parameter content-type
+   * @param message The payload body.
+   * @param options The options parameters.
+   */
+  bodyThreeTypes(
+    contentType: "application/json",
+    message: any,
+    options?: BodyThreeTypes$jsonOptionalParams
+  ): Promise<BodyThreeTypesResponse>;
+  /**
+   * Body with three types. Can be stream, string, or JSON. Pass in string 'hello, world' with content
+   * type 'text/plain', {'hello': world'} with content type 'application/json' and a byte string for
+   * 'application/octet-stream'.
+   * @param args Includes all the parameters for this operation.
+   */
+  bodyThreeTypes(
+    ...args:
+      | [
+          "application/octet-stream",
+          coreRestPipeline.RequestBodyType,
+          BodyThreeTypes$binaryOptionalParams?
+        ]
+      | ["text/plain", string, BodyThreeTypes$textOptionalParams?]
+      | ["application/json", any, BodyThreeTypes$jsonOptionalParams?]
+  ): Promise<BodyThreeTypesResponse> {
+    let operationSpec: coreClient.OperationSpec;
+    let operationArguments: coreClient.OperationArguments;
+    let options;
+    if (args[0] === "application/octet-stream") {
+      operationSpec = bodyThreeTypes$binaryOperationSpec;
+      operationArguments = {
+        contentType: args[0],
+        message: args[1],
+        options: args[2]
+      };
+      options = args[2];
+    } else if (args[0] === "text/plain") {
+      operationSpec = bodyThreeTypes$textOperationSpec;
+      operationArguments = {
+        contentType: args[0],
+        message: args[1],
+        options: args[2]
+      };
+      options = args[2];
+    } else if (args[0] === "application/json") {
+      operationSpec = bodyThreeTypes$jsonOperationSpec;
+      operationArguments = {
+        contentType: args[0],
+        message: args[1],
+        options: args[2]
+      };
+      options = args[2];
+    } else {
+      throw new TypeError(
+        `"contentType" must be a valid value but instead was "${args[0]}".`
+      );
+    }
+    operationArguments.options = options || {};
+    return this.sendOperationRequest(operationArguments, operationSpec);
+  }
+
+  /**
    * Body that's either text/plain or application/json
    * @param contentType Upload file type
    * @param message The payload body.
@@ -442,6 +537,48 @@ const binaryBodyWithThreeContentTypes$textOperationSpec: coreClient.OperationSpe
   mediaType: "text",
   serializer
 };
+const bodyThreeTypes$binaryOperationSpec: coreClient.OperationSpec = {
+  path: "/mediatypes/bodyThreeTypes",
+  httpMethod: "POST",
+  responses: {
+    200: {
+      bodyMapper: { type: { name: "String" } }
+    }
+  },
+  requestBody: Parameters.message,
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept3, Parameters.contentType6],
+  mediaType: "binary",
+  serializer
+};
+const bodyThreeTypes$textOperationSpec: coreClient.OperationSpec = {
+  path: "/mediatypes/bodyThreeTypes",
+  httpMethod: "POST",
+  responses: {
+    200: {
+      bodyMapper: { type: { name: "String" } }
+    }
+  },
+  requestBody: Parameters.message1,
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType5, Parameters.accept4],
+  mediaType: "text",
+  serializer
+};
+const bodyThreeTypes$jsonOperationSpec: coreClient.OperationSpec = {
+  path: "/mediatypes/bodyThreeTypes",
+  httpMethod: "POST",
+  responses: {
+    200: {
+      bodyMapper: { type: { name: "String" } }
+    }
+  },
+  requestBody: Parameters.message2,
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType1, Parameters.accept5],
+  mediaType: "json",
+  serializer
+};
 const putTextAndJsonBody$textOperationSpec: coreClient.OperationSpec = {
   path: "/mediatypes/textAndJson",
   httpMethod: "POST",
@@ -464,7 +601,7 @@ const putTextAndJsonBody$jsonOperationSpec: coreClient.OperationSpec = {
       bodyMapper: { type: { name: "String" } }
     }
   },
-  requestBody: Parameters.message2,
+  requestBody: Parameters.message3,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType1, Parameters.accept5],
   mediaType: "json",
