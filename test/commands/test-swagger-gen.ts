@@ -940,7 +940,7 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     allowInsecureConnection: true,
     addCredentials: false,
     isTestPackage: true,
-    generateSample: true
+    generateSample: false
   },
   pagingRest: {
     swaggerOrConfig: "paging.json",

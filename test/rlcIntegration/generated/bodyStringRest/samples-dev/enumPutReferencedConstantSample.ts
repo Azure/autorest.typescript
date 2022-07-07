@@ -19,7 +19,7 @@ dotenv.config();
 async function enumPutReferencedConstant() {
   const client = createBodyStringRestClient();
   const options: EnumPutReferencedConstantParameters = {
-    body: { colorConstant: "green-color" }
+    body: { ColorConstant: "green-color" }
   };
   const result = await client
     .path("/string/enum/ReferencedConstant")

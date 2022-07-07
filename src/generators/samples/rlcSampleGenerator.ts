@@ -338,10 +338,8 @@ function getParameterAssignment(exampleValue: ExampleValue) {
                 if (property === undefined || property === null) {
                     continue;
                 }
-                const initPropName = property.language?.default?.name
-                    ? property.language?.default?.name
-                    : prop;
-                const propName = normalizeName(initPropName, NameType.Property, true);
+                // TODO: currently prop is serializedName so we'll use it directly
+                const propName = prop;
                 let propRetValue: string;
                 if (propName.indexOf("/") > -1 || propName.match(/^\d/)) {
                     propRetValue = `"${propName}": ` + getParameterAssignment(property);
