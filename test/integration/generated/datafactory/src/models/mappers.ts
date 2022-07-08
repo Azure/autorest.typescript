@@ -21943,9 +21943,9 @@ export const ExecutePipelineActivity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ExecutePipelineActivity",
-    uberParent: "Activity",
+    uberParent: "ControlActivity",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: Activity.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: ControlActivity.type.polymorphicDiscriminator,
     modelProperties: {
       ...ControlActivity.type.modelProperties,
       pipeline: {
@@ -21977,9 +21977,9 @@ export const IfConditionActivity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "IfConditionActivity",
-    uberParent: "Activity",
+    uberParent: "ControlActivity",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: Activity.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: ControlActivity.type.polymorphicDiscriminator,
     modelProperties: {
       ...ControlActivity.type.modelProperties,
       expression: {
@@ -22022,9 +22022,9 @@ export const SwitchActivity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SwitchActivity",
-    uberParent: "Activity",
+    uberParent: "ControlActivity",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: Activity.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: ControlActivity.type.polymorphicDiscriminator,
     modelProperties: {
       ...ControlActivity.type.modelProperties,
       on: {
@@ -22067,9 +22067,9 @@ export const ForEachActivity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ForEachActivity",
-    uberParent: "Activity",
+    uberParent: "ControlActivity",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: Activity.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: ControlActivity.type.polymorphicDiscriminator,
     modelProperties: {
       ...ControlActivity.type.modelProperties,
       isSequential: {
@@ -22116,9 +22116,9 @@ export const WaitActivity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "WaitActivity",
-    uberParent: "Activity",
+    uberParent: "ControlActivity",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: Activity.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: ControlActivity.type.polymorphicDiscriminator,
     modelProperties: {
       ...ControlActivity.type.modelProperties,
       waitTimeInSeconds: {
@@ -22137,9 +22137,9 @@ export const UntilActivity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "UntilActivity",
-    uberParent: "Activity",
+    uberParent: "ControlActivity",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: Activity.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: ControlActivity.type.polymorphicDiscriminator,
     modelProperties: {
       ...ControlActivity.type.modelProperties,
       expression: {
@@ -22177,9 +22177,9 @@ export const ValidationActivity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ValidationActivity",
-    uberParent: "Activity",
+    uberParent: "ControlActivity",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: Activity.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: ControlActivity.type.polymorphicDiscriminator,
     modelProperties: {
       ...ControlActivity.type.modelProperties,
       timeout: {
@@ -22222,9 +22222,9 @@ export const FilterActivity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "FilterActivity",
-    uberParent: "Activity",
+    uberParent: "ControlActivity",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: Activity.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: ControlActivity.type.polymorphicDiscriminator,
     modelProperties: {
       ...ControlActivity.type.modelProperties,
       items: {
@@ -22250,9 +22250,9 @@ export const SetVariableActivity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SetVariableActivity",
-    uberParent: "Activity",
+    uberParent: "ControlActivity",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: Activity.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: ControlActivity.type.polymorphicDiscriminator,
     modelProperties: {
       ...ControlActivity.type.modelProperties,
       variableName: {
@@ -22276,9 +22276,9 @@ export const AppendVariableActivity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AppendVariableActivity",
-    uberParent: "Activity",
+    uberParent: "ControlActivity",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: Activity.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: ControlActivity.type.polymorphicDiscriminator,
     modelProperties: {
       ...ControlActivity.type.modelProperties,
       variableName: {
@@ -22302,9 +22302,9 @@ export const WebHookActivity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "WebHookActivity",
-    uberParent: "Activity",
+    uberParent: "ControlActivity",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: Activity.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: ControlActivity.type.polymorphicDiscriminator,
     modelProperties: {
       ...ControlActivity.type.modelProperties,
       method: {
@@ -22361,9 +22361,9 @@ export const CopyActivity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "CopyActivity",
-    uberParent: "Activity",
+    uberParent: "ExecutionActivity",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: Activity.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: ExecutionActivity.type.polymorphicDiscriminator,
     modelProperties: {
       ...ExecutionActivity.type.modelProperties,
       inputs: {
@@ -22506,9 +22506,9 @@ export const HDInsightHiveActivity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HDInsightHiveActivity",
-    uberParent: "Activity",
+    uberParent: "ExecutionActivity",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: Activity.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: ExecutionActivity.type.polymorphicDiscriminator,
     modelProperties: {
       ...ExecutionActivity.type.modelProperties,
       storageLinkedServices: {
@@ -22586,9 +22586,9 @@ export const HDInsightPigActivity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HDInsightPigActivity",
-    uberParent: "Activity",
+    uberParent: "ExecutionActivity",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: Activity.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: ExecutionActivity.type.polymorphicDiscriminator,
     modelProperties: {
       ...ExecutionActivity.type.modelProperties,
       storageLinkedServices: {
@@ -22644,9 +22644,9 @@ export const HDInsightMapReduceActivity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HDInsightMapReduceActivity",
-    uberParent: "Activity",
+    uberParent: "ExecutionActivity",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: Activity.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: ExecutionActivity.type.polymorphicDiscriminator,
     modelProperties: {
       ...ExecutionActivity.type.modelProperties,
       storageLinkedServices: {
@@ -22726,9 +22726,9 @@ export const HDInsightStreamingActivity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HDInsightStreamingActivity",
-    uberParent: "Activity",
+    uberParent: "ExecutionActivity",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: Activity.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: ExecutionActivity.type.polymorphicDiscriminator,
     modelProperties: {
       ...ExecutionActivity.type.modelProperties,
       storageLinkedServices: {
@@ -22840,9 +22840,9 @@ export const HDInsightSparkActivity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HDInsightSparkActivity",
-    uberParent: "Activity",
+    uberParent: "ExecutionActivity",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: Activity.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: ExecutionActivity.type.polymorphicDiscriminator,
     modelProperties: {
       ...ExecutionActivity.type.modelProperties,
       rootPath: {
@@ -22911,9 +22911,9 @@ export const ExecuteSsisPackageActivity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ExecuteSsisPackageActivity",
-    uberParent: "Activity",
+    uberParent: "ExecutionActivity",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: Activity.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: ExecutionActivity.type.polymorphicDiscriminator,
     modelProperties: {
       ...ExecutionActivity.type.modelProperties,
       packageLocation: {
@@ -23026,9 +23026,9 @@ export const CustomActivity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "CustomActivity",
-    uberParent: "Activity",
+    uberParent: "ExecutionActivity",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: Activity.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: ExecutionActivity.type.polymorphicDiscriminator,
     modelProperties: {
       ...ExecutionActivity.type.modelProperties,
       command: {
@@ -23086,9 +23086,9 @@ export const SqlServerStoredProcedureActivity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SqlServerStoredProcedureActivity",
-    uberParent: "Activity",
+    uberParent: "ExecutionActivity",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: Activity.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: ExecutionActivity.type.polymorphicDiscriminator,
     modelProperties: {
       ...ExecutionActivity.type.modelProperties,
       storedProcedureName: {
@@ -23116,9 +23116,9 @@ export const DeleteActivity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DeleteActivity",
-    uberParent: "Activity",
+    uberParent: "ExecutionActivity",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: Activity.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: ExecutionActivity.type.polymorphicDiscriminator,
     modelProperties: {
       ...ExecutionActivity.type.modelProperties,
       recursive: {
@@ -23172,9 +23172,9 @@ export const AzureDataExplorerCommandActivity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AzureDataExplorerCommandActivity",
-    uberParent: "Activity",
+    uberParent: "ExecutionActivity",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: Activity.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: ExecutionActivity.type.polymorphicDiscriminator,
     modelProperties: {
       ...ExecutionActivity.type.modelProperties,
       command: {
@@ -23199,9 +23199,9 @@ export const LookupActivity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "LookupActivity",
-    uberParent: "Activity",
+    uberParent: "ExecutionActivity",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: Activity.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: ExecutionActivity.type.polymorphicDiscriminator,
     modelProperties: {
       ...ExecutionActivity.type.modelProperties,
       source: {
@@ -23233,9 +23233,9 @@ export const WebActivity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "WebActivity",
-    uberParent: "Activity",
+    uberParent: "ExecutionActivity",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: Activity.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: ExecutionActivity.type.polymorphicDiscriminator,
     modelProperties: {
       ...ExecutionActivity.type.modelProperties,
       method: {
@@ -23311,9 +23311,9 @@ export const GetMetadataActivity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GetMetadataActivity",
-    uberParent: "Activity",
+    uberParent: "ExecutionActivity",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: Activity.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: ExecutionActivity.type.polymorphicDiscriminator,
     modelProperties: {
       ...ExecutionActivity.type.modelProperties,
       dataset: {
@@ -23357,9 +23357,9 @@ export const AzureMLBatchExecutionActivity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AzureMLBatchExecutionActivity",
-    uberParent: "Activity",
+    uberParent: "ExecutionActivity",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: Activity.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: ExecutionActivity.type.polymorphicDiscriminator,
     modelProperties: {
       ...ExecutionActivity.type.modelProperties,
       globalParameters: {
@@ -23396,9 +23396,9 @@ export const AzureMLUpdateResourceActivity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AzureMLUpdateResourceActivity",
-    uberParent: "Activity",
+    uberParent: "ExecutionActivity",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: Activity.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: ExecutionActivity.type.polymorphicDiscriminator,
     modelProperties: {
       ...ExecutionActivity.type.modelProperties,
       trainedModelName: {
@@ -23431,9 +23431,9 @@ export const AzureMLExecutePipelineActivity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AzureMLExecutePipelineActivity",
-    uberParent: "Activity",
+    uberParent: "ExecutionActivity",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: Activity.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: ExecutionActivity.type.polymorphicDiscriminator,
     modelProperties: {
       ...ExecutionActivity.type.modelProperties,
       mlPipelineId: {
@@ -23493,9 +23493,9 @@ export const DataLakeAnalyticsUsqlActivity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DataLakeAnalyticsUsqlActivity",
-    uberParent: "Activity",
+    uberParent: "ExecutionActivity",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: Activity.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: ExecutionActivity.type.polymorphicDiscriminator,
     modelProperties: {
       ...ExecutionActivity.type.modelProperties,
       scriptPath: {
@@ -23552,9 +23552,9 @@ export const DatabricksNotebookActivity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DatabricksNotebookActivity",
-    uberParent: "Activity",
+    uberParent: "ExecutionActivity",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: Activity.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: ExecutionActivity.type.polymorphicDiscriminator,
     modelProperties: {
       ...ExecutionActivity.type.modelProperties,
       notebookPath: {
@@ -23592,9 +23592,9 @@ export const DatabricksSparkJarActivity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DatabricksSparkJarActivity",
-    uberParent: "Activity",
+    uberParent: "ExecutionActivity",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: Activity.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: ExecutionActivity.type.polymorphicDiscriminator,
     modelProperties: {
       ...ExecutionActivity.type.modelProperties,
       mainClassName: {
@@ -23636,9 +23636,9 @@ export const DatabricksSparkPythonActivity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DatabricksSparkPythonActivity",
-    uberParent: "Activity",
+    uberParent: "ExecutionActivity",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: Activity.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: ExecutionActivity.type.polymorphicDiscriminator,
     modelProperties: {
       ...ExecutionActivity.type.modelProperties,
       pythonFile: {
@@ -23680,9 +23680,9 @@ export const AzureFunctionActivity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AzureFunctionActivity",
-    uberParent: "Activity",
+    uberParent: "ExecutionActivity",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: Activity.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: ExecutionActivity.type.polymorphicDiscriminator,
     modelProperties: {
       ...ExecutionActivity.type.modelProperties,
       method: {
@@ -23720,9 +23720,9 @@ export const ExecuteDataFlowActivity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ExecuteDataFlowActivity",
-    uberParent: "Activity",
+    uberParent: "ExecutionActivity",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: Activity.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: ExecutionActivity.type.polymorphicDiscriminator,
     modelProperties: {
       ...ExecutionActivity.type.modelProperties,
       dataFlow: {
@@ -23780,9 +23780,10 @@ export const ScheduleTrigger: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ScheduleTrigger",
-    uberParent: "Trigger",
+    uberParent: "MultiplePipelineTrigger",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: Trigger.type.polymorphicDiscriminator,
+    polymorphicDiscriminator:
+      MultiplePipelineTrigger.type.polymorphicDiscriminator,
     modelProperties: {
       ...MultiplePipelineTrigger.type.modelProperties,
       recurrence: {
@@ -23801,9 +23802,10 @@ export const BlobTrigger: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "BlobTrigger",
-    uberParent: "Trigger",
+    uberParent: "MultiplePipelineTrigger",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: Trigger.type.polymorphicDiscriminator,
+    polymorphicDiscriminator:
+      MultiplePipelineTrigger.type.polymorphicDiscriminator,
     modelProperties: {
       ...MultiplePipelineTrigger.type.modelProperties,
       folderPath: {
@@ -23836,9 +23838,10 @@ export const BlobEventsTrigger: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "BlobEventsTrigger",
-    uberParent: "Trigger",
+    uberParent: "MultiplePipelineTrigger",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: Trigger.type.polymorphicDiscriminator,
+    polymorphicDiscriminator:
+      MultiplePipelineTrigger.type.polymorphicDiscriminator,
     modelProperties: {
       ...MultiplePipelineTrigger.type.modelProperties,
       blobPathBeginsWith: {
@@ -23887,9 +23890,10 @@ export const CustomEventsTrigger: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "CustomEventsTrigger",
-    uberParent: "Trigger",
+    uberParent: "MultiplePipelineTrigger",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: Trigger.type.polymorphicDiscriminator,
+    polymorphicDiscriminator:
+      MultiplePipelineTrigger.type.polymorphicDiscriminator,
     modelProperties: {
       ...MultiplePipelineTrigger.type.modelProperties,
       subjectBeginsWith: {
@@ -23964,9 +23968,9 @@ export const AzureTableSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AzureTableSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       azureTableSourceQuery: {
@@ -23990,9 +23994,9 @@ export const InformixSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "InformixSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -24010,9 +24014,9 @@ export const Db2Source: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Db2Source",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -24030,9 +24034,9 @@ export const OdbcSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "OdbcSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -24050,9 +24054,9 @@ export const MySqlSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MySqlSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -24070,9 +24074,9 @@ export const PostgreSqlSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PostgreSqlSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -24090,9 +24094,9 @@ export const SybaseSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SybaseSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -24110,9 +24114,9 @@ export const SapBwSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SapBwSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -24130,9 +24134,9 @@ export const SalesforceSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SalesforceSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -24156,9 +24160,9 @@ export const SapCloudForCustomerSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SapCloudForCustomerSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -24182,9 +24186,9 @@ export const SapEccSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SapEccSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -24208,9 +24212,9 @@ export const SapHanaSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SapHanaSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -24247,9 +24251,9 @@ export const SapOpenHubSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SapOpenHubSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       excludeLastRequest: {
@@ -24285,9 +24289,9 @@ export const SapTableSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SapTableSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       rowCount: {
@@ -24354,9 +24358,9 @@ export const SqlSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SqlSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       sqlReaderQuery: {
@@ -24408,9 +24412,9 @@ export const SqlServerSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SqlServerSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       sqlReaderQuery: {
@@ -24462,9 +24466,9 @@ export const AmazonRdsForSqlServerSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AmazonRdsForSqlServerSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       sqlReaderQuery: {
@@ -24516,9 +24520,9 @@ export const AzureSqlSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AzureSqlSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       sqlReaderQuery: {
@@ -24570,9 +24574,9 @@ export const SqlMISource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SqlMISource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       sqlReaderQuery: {
@@ -24624,9 +24628,9 @@ export const SqlDWSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SqlDWSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       sqlReaderQuery: {
@@ -24669,9 +24673,9 @@ export const AzureMySqlSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AzureMySqlSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -24689,9 +24693,9 @@ export const TeradataSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "TeradataSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -24722,9 +24726,9 @@ export const CassandraSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "CassandraSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -24748,9 +24752,9 @@ export const AmazonMWSSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AmazonMWSSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -24768,9 +24772,9 @@ export const AzurePostgreSqlSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AzurePostgreSqlSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -24788,9 +24792,9 @@ export const ConcurSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ConcurSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -24808,9 +24812,9 @@ export const CouchbaseSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "CouchbaseSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -24828,9 +24832,9 @@ export const DrillSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DrillSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -24848,9 +24852,9 @@ export const EloquaSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "EloquaSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -24868,9 +24872,9 @@ export const GoogleBigQuerySource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GoogleBigQuerySource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -24888,9 +24892,9 @@ export const GreenplumSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GreenplumSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -24908,9 +24912,9 @@ export const HBaseSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HBaseSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -24928,9 +24932,9 @@ export const HiveSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HiveSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -24948,9 +24952,9 @@ export const HubspotSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HubspotSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -24968,9 +24972,9 @@ export const ImpalaSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ImpalaSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -24988,9 +24992,9 @@ export const JiraSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "JiraSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -25008,9 +25012,9 @@ export const MagentoSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MagentoSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -25028,9 +25032,9 @@ export const MariaDBSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MariaDBSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -25048,9 +25052,9 @@ export const AzureMariaDBSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AzureMariaDBSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -25068,9 +25072,9 @@ export const MarketoSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MarketoSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -25088,9 +25092,9 @@ export const PaypalSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PaypalSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -25108,9 +25112,9 @@ export const PhoenixSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PhoenixSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -25128,9 +25132,9 @@ export const PrestoSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PrestoSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -25148,9 +25152,9 @@ export const QuickBooksSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "QuickBooksSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -25168,9 +25172,9 @@ export const ServiceNowSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ServiceNowSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -25188,9 +25192,9 @@ export const ShopifySource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ShopifySource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -25208,9 +25212,9 @@ export const SparkSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SparkSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -25228,9 +25232,9 @@ export const SquareSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SquareSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -25248,9 +25252,9 @@ export const XeroSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "XeroSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -25268,9 +25272,9 @@ export const ZohoSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ZohoSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -25288,9 +25292,9 @@ export const NetezzaSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "NetezzaSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -25321,9 +25325,9 @@ export const VerticaSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VerticaSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -25341,9 +25345,9 @@ export const SalesforceMarketingCloudSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SalesforceMarketingCloudSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -25361,9 +25365,9 @@ export const ResponsysSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ResponsysSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -25381,9 +25385,9 @@ export const DynamicsAXSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DynamicsAXSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -25407,9 +25411,9 @@ export const OracleServiceCloudSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "OracleServiceCloudSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -25427,9 +25431,9 @@ export const GoogleAdWordsSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GoogleAdWordsSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -25447,9 +25451,9 @@ export const AmazonRedshiftSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AmazonRedshiftSource",
-    uberParent: "CopySource",
+    uberParent: "TabularSource",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: TabularSource.type.polymorphicDiscriminator,
     modelProperties: {
       ...TabularSource.type.modelProperties,
       query: {
@@ -25474,8 +25478,9 @@ export const TumblingWindowTriggerDependencyReference: coreClient.CompositeMappe
   type: {
     name: "Composite",
     className: "TumblingWindowTriggerDependencyReference",
-    uberParent: "DependencyReference",
-    polymorphicDiscriminator: DependencyReference.type.polymorphicDiscriminator,
+    uberParent: "TriggerDependencyReference",
+    polymorphicDiscriminator:
+      TriggerDependencyReference.type.polymorphicDiscriminator,
     modelProperties: {
       ...TriggerDependencyReference.type.modelProperties,
       offset: {
