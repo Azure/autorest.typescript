@@ -682,9 +682,9 @@ export const SmartSalmon: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SmartSalmon",
-    uberParent: "Fish",
+    uberParent: "Salmon",
     additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: Fish.type.polymorphicDiscriminator,
+    polymorphicDiscriminator: Salmon.type.polymorphicDiscriminator,
     modelProperties: {
       ...Salmon.type.modelProperties,
       collegeDegree: {
@@ -702,8 +702,8 @@ export const Sawshark: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Sawshark",
-    uberParent: "Fish",
-    polymorphicDiscriminator: Fish.type.polymorphicDiscriminator,
+    uberParent: "Shark",
+    polymorphicDiscriminator: Shark.type.polymorphicDiscriminator,
     modelProperties: {
       ...Shark.type.modelProperties,
       picture: {
@@ -721,8 +721,8 @@ export const Goblinshark: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Goblinshark",
-    uberParent: "Fish",
-    polymorphicDiscriminator: Fish.type.polymorphicDiscriminator,
+    uberParent: "Shark",
+    polymorphicDiscriminator: Shark.type.polymorphicDiscriminator,
     modelProperties: {
       ...Shark.type.modelProperties,
       jawsize: {
@@ -747,8 +747,8 @@ export const Cookiecuttershark: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Cookiecuttershark",
-    uberParent: "Fish",
-    polymorphicDiscriminator: Fish.type.polymorphicDiscriminator,
+    uberParent: "Shark",
+    polymorphicDiscriminator: Shark.type.polymorphicDiscriminator,
     modelProperties: {
       ...Shark.type.modelProperties
     }
