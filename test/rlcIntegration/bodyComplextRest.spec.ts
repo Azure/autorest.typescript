@@ -6,10 +6,11 @@ import BodyComplexRest, {
   FishOutput,
   Salmon,
   SalmonOutput,
-  SawsharkOutput,
+  Sawshark,
   SmartSalmon,
   Siamese,
-  isUnexpected
+  isUnexpected,
+  SawsharkOutput
 } from "./generated/bodyComplexRest/src";
 
 describe("BodyComplex Rest Client", () => {

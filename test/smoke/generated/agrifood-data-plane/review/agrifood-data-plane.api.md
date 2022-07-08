@@ -2110,16 +2110,16 @@ export interface FieldsListQueryParamProperties {
 export type GeoJsonObject = MultiPolygon | Point | Polygon;
 
 // @public (undocumented)
-export interface GeoJsonObjectBase {
+export type GeoJsonObjectOutput = MultiPolygonOutput | PointOutput | PolygonOutput;
+
+// @public (undocumented)
+export interface GeoJsonObjectOutputParent {
     // (undocumented)
     type: "GeoJsonObject" | "MultiPolygon" | "Point" | "Polygon";
 }
 
 // @public (undocumented)
-export type GeoJsonObjectOutput = MultiPolygonOutput | PointOutput | PolygonOutput;
-
-// @public (undocumented)
-export interface GeoJsonObjectOutputBase {
+export interface GeoJsonObjectParent {
     // (undocumented)
     type: "GeoJsonObject" | "MultiPolygon" | "Point" | "Polygon";
 }
@@ -2837,7 +2837,7 @@ export interface MeasureOutput {
 }
 
 // @public (undocumented)
-export interface MultiPolygon extends GeoJsonObjectBase, MultiPolygonCoordinates {
+export interface MultiPolygon extends GeoJsonObjectParent, MultiPolygonCoordinates {
     // (undocumented)
     type: "MultiPolygon";
 }
@@ -2853,7 +2853,7 @@ export interface MultiPolygonCoordinatesOutput {
 }
 
 // @public (undocumented)
-export interface MultiPolygonOutput extends GeoJsonObjectOutputBase, MultiPolygonCoordinatesOutput {
+export interface MultiPolygonOutput extends GeoJsonObjectOutputParent, MultiPolygonCoordinatesOutput {
     // (undocumented)
     type: "MultiPolygon";
 }
@@ -3472,7 +3472,7 @@ export interface PlantingProductDetailOutput {
 }
 
 // @public (undocumented)
-export interface Point extends GeoJsonObjectBase, PointCoordinates {
+export interface Point extends GeoJsonObjectParent, PointCoordinates {
     // (undocumented)
     type: "Point";
 }
@@ -3488,13 +3488,13 @@ export interface PointCoordinatesOutput {
 }
 
 // @public (undocumented)
-export interface PointOutput extends GeoJsonObjectOutputBase, PointCoordinatesOutput {
+export interface PointOutput extends GeoJsonObjectOutputParent, PointCoordinatesOutput {
     // (undocumented)
     type: "Point";
 }
 
 // @public (undocumented)
-export interface Polygon extends GeoJsonObjectBase, PolygonCoordinates {
+export interface Polygon extends GeoJsonObjectParent, PolygonCoordinates {
     // (undocumented)
     type: "Polygon";
 }
@@ -3510,7 +3510,7 @@ export interface PolygonCoordinatesOutput {
 }
 
 // @public (undocumented)
-export interface PolygonOutput extends GeoJsonObjectOutputBase, PolygonCoordinatesOutput {
+export interface PolygonOutput extends GeoJsonObjectOutputParent, PolygonCoordinatesOutput {
     // (undocumented)
     type: "Polygon";
 }

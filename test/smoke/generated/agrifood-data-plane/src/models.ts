@@ -106,7 +106,7 @@ export interface Boundary {
   properties?: Record<string, Record<string, unknown>>;
 }
 
-export interface GeoJsonObjectBase {
+export interface GeoJsonObjectParent {
   type: "GeoJsonObject" | "MultiPolygon" | "Point" | "Polygon";
 }
 
@@ -839,7 +839,7 @@ export interface WeatherDataDeleteJob {
 }
 
 export interface MultiPolygon
-  extends GeoJsonObjectBase,
+  extends GeoJsonObjectParent,
     MultiPolygonCoordinates {
   type: "MultiPolygon";
 }
@@ -854,7 +854,7 @@ export interface MultiPolygonCoordinates {
   coordinates: Array<Array<Array<Array<number>>>>;
 }
 
-export interface Point extends GeoJsonObjectBase, PointCoordinates {
+export interface Point extends GeoJsonObjectParent, PointCoordinates {
   type: "Point";
 }
 
@@ -866,7 +866,7 @@ export interface PointCoordinates {
   coordinates: Array<number>;
 }
 
-export interface Polygon extends GeoJsonObjectBase, PolygonCoordinates {
+export interface Polygon extends GeoJsonObjectParent, PolygonCoordinates {
   type: "Polygon";
 }
 
