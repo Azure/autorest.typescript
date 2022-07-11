@@ -20,7 +20,7 @@ async function stringPutWhitespace() {
   const client = createBodyStringRestClient();
   const options: StringPutWhitespaceParameters = {
     body:
-      "<tab><space><space>Now is the time for all good men to come to the aid of their country<tab><space><space>"
+      "    Now is the time for all good men to come to the aid of their country    "
   };
   const result = await client.path("/string/whitespace").put(options);
   console.log(result);
