@@ -56,7 +56,7 @@
         "@autorest/testmodeler": "^2.2.5",
         "@azure-rest/core-client": "dev",
         "@azure-tools/codegen": "^2.5.294",
-        "@azure/core-client": "^1.5.0",
+        "@azure/core-client": "/Users/zhangqiaoqiao/work/code/azure-sdk-for-js/sdk/core/core-client",
         "@azure/core-http": "^1.2.4",
         "@azure/core-http-compat": "^1.2.0",
         "@azure/core-lro": "^2.1.0",
