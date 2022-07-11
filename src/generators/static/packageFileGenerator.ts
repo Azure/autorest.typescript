@@ -160,7 +160,7 @@ function restLevelPackage(packageDetails: PackageDetails) {
       prettier: "2.2.1",
       rimraf: "^3.0.0",
       "source-map-support": "^0.5.9",
-      typescript: "~4.2.0"
+      typescript: "~4.6.0"
     }
   };
 
@@ -346,7 +346,7 @@ function regularAutorestPackage(
       mkdirp: "^1.0.4",
       rollup: "^2.66.1",
       "rollup-plugin-sourcemaps": "^0.6.3",
-      typescript: "~4.2.0",
+      typescript: "~4.6.0",
       "uglify-js": "^3.4.9",
       rimraf: "^3.0.0"
     },
