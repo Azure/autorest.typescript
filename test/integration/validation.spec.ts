@@ -22,7 +22,7 @@ describe("Integration tests for validation", () => {
     await client.postWithConstantInBody({ body: constantBody });
   });
 
-  it("should correctly validate a min length constraint", async () => {
+  it.only("should correctly validate a min length constraint", async () => {
     try {
       await client.validationOfMethodParameters("1", 100);
       assert.fail("Expected error");
