@@ -1034,6 +1034,26 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     isTestPackage: true
   },
+  securityAADRest: {
+    swaggerOrConfig: "security-aad.json",
+    clientName: "SecurityAADRestClient",
+    packageName: "security-aad-rest",
+    licenseHeader: true,
+    restLevelClient: true,
+    rlcShortcut: true,
+    allowInsecureConnection: true,
+    isTestPackage: true
+  },
+  securityKeyRest: {
+    swaggerOrConfig: "security-key.json",
+    clientName: "SecurityKeyRestClient",
+    packageName: "security-key-rest",
+    licenseHeader: true,
+    restLevelClient: true,
+    rlcShortcut: true,
+    allowInsecureConnection: true,
+    isTestPackage: true
+  },
   dpgCustomization: {
     swaggerOrConfig: "dpg-customization.json",
     clientName: "DPGCustomizationClient",
