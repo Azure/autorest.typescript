@@ -41684,7 +41684,7 @@
       "integrity": "sha512-hf+3bwuBwtXsugA2ULBc95qxrOqP2pOekLz34BJhcAKawt94vfeNyUKpYc0lZQ/3sCP6LqRa7UAdHA7i5UODzQ=="
     },
     "@rush-temp/typescript": {
-      "version": "file:projects\\typescript.tgz",
+      "version": "file:projects/typescript.tgz",
       "integrity": "sha512-9cX27rU4Y0OH0kFsf9VEJfzW9BMBl0GVACqvXg6MAr6t6ZCrOS6T/oFtG+pl1fslHy67V5dKkCRCpBgKJBaAqQ==",
       "requires": {
         "@autorest/codemodel": "^4.18.2",
