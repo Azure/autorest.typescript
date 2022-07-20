@@ -297,10 +297,10 @@ function buildAdditionalProperties(
   const additionalProperties = getAdditionalProperties(objectSchema);
   return additionalProperties
     ? {
-        type: {
-          name: MapperType.Object
-        }
+      type: {
+        name: MapperType.Object
       }
+    }
     : undefined;
 }
 
@@ -694,7 +694,7 @@ function processProperties(
     const propName = getLanguageMetadata(prop.language).name;
     const name = normalizeName(
       propName,
-      prop.language.default.isTopLevelParameter? NameType.Parameter: NameType.Property,
+      prop.language.default.isTopLevelParameter ? NameType.Parameter : NameType.Property,
       true /** shouldGuard */
     );
     modelProperties[name] = getMapperOrRef(prop.schema, serializedName, {
@@ -809,6 +809,8 @@ export function getMapperTypeFromSchema(type: SchemaType, format?: string) {
       return MapperTypes.any;
     case SchemaType.Uuid:
       return MapperTypes.Uuid;
+    case SchemaType.Binary:
+      return MapperType.Stream;
     default:
       throw new Error(`There is no known Mapper type for schema type ${type}`);
   }
