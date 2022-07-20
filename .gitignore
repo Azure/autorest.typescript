@@ -1,5 +1,4 @@
 **/dist
-package-lock.json
 **/node_modules
 test.json
 **/test/**/dist
@@ -12,7 +11,9 @@ test.json
 .tmp
 **/coverage
 .tgz
-
+**/.rush
+**/*.log
 common/temp/**
 package-deps.json
 common/autoinstallers/*/.npmrc
+**/test/**/package-lock.json
