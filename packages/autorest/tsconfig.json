@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "alwaysStrict": true,
+    "forceConsistentCasingInFileNames": false,
+    "module": "commonjs",
+    "noEmitOnError": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "sourceMap": true,
+    "declarationMap": true,
+    "strict": true,
+    "declaration": true,
+    "stripInternal": true,
+    "noEmitHelpers": false,
+    "target": "es6",
+    "types": ["node", "mocha"],
+    "lib": ["ESNext.AsyncIterable", "dom"],
+    "experimentalDecorators": true,
+    "newLine": "LF",
+    "outDir": "dist",
+    "rootDir": ".",
+    "downlevelIteration": true,
+    "strictNullChecks": true,
+    "useUnknownInCatchVariables": false
+  },
+  "include": ["src"],
+  "exclude": ["dist", "resources", "node_modules", "**/*.d.ts", "generated"]
+}
