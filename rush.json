@@ -23,8 +23,8 @@
      * Specify one of: "pnpmVersion", "npmVersion", or "yarnVersion".  See the Rush documentation
      * for details about these alternatives.
      */
-    "pnpmVersion": "6.32.3",
-    // "npmVersion": "4.5.0",
+    // "pnpmVersion": "6.32.3",
+    "npmVersion": "8.12.1",
     // "yarnVersion": "1.9.4",
     /**
      * Options that are only used when the PNPM package manager is selected
@@ -40,7 +40,7 @@
        * The default value is false to avoid legacy compatibility issues.
        * It is strongly recommended to set strictPeerDependencies=true.
        */
-      "strictPeerDependencies": false,
+      "strictPeerDependencies": true,
       /**
        * Configures the strategy used to select versions during installation.
        *
