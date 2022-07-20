@@ -354,6 +354,9 @@ function getParameterAssignment(exampleValue: ExampleValue) {
     case SchemaType.AnyObject:
       retValue = `${JSON.stringify(rawValue)}`;
       break;
+    case SchemaType.ByteArray:
+      retValue = `Buffer.from("${rawValue}")`;
+      break;
     default:
       break;
   }
