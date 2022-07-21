@@ -1076,17 +1076,6 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     allowInsecureConnection: true,
     isTestPackage: true
   },
-  dpgCustomization: {
-    swaggerOrConfig: "dpg-customization.json",
-    clientName: "DPGCustomizationClient",
-    packageName: "dpg-customization-rest",
-    licenseHeader: true,
-    restLevelClient: true,
-    rlcShortcut: true,
-    allowInsecureConnection: true,
-    addCredentials: false,
-    isTestPackage: true
-  },
   azureReport: {
     swaggerOrConfig: "azure-report.json",
     clientName: "ReportClient",
