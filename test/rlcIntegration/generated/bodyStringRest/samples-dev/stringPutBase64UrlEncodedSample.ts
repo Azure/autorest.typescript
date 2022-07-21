@@ -19,7 +19,7 @@ dotenv.config();
 async function stringPutNull() {
   const client = createBodyStringRestClient();
   const options: StringPutBase64UrlEncodedParameters = {
-    body: "YSBzdHJpbmcgdGhhdCBnZXRzIGVuY29kZWQgd2l0aCBiYXNlNjR1cmw"
+    body: Buffer.from("YSBzdHJpbmcgdGhhdCBnZXRzIGVuY29kZWQgd2l0aCBiYXNlNjR1cmw")
   };
   const result = await client.path("/string/base64UrlEncoding").put(options);
   console.log(result);
