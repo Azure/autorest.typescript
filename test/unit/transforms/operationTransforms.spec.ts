@@ -24,6 +24,8 @@ import { Mapper } from "@azure/core-http";
 import { OperationSpecDetails } from "../../../src/models/operationDetails";
 import { PropertyKind } from "../../../src/models/modelDetails";
 import { ParameterDetails } from "../../../dist/src/models/parameterDetails";
+import * as sinon from "sinon";
+import * as autorestSession from "../../../src/autorestSession";
 
 const choice = new ChoiceSchema("mockChoice", "", {
   choices: [
@@ -91,6 +93,26 @@ describe("OperationTransforms", () => {
   });
 
   describe("transformOperationSpec", () => {
+    beforeEach(() => {
+      sinon.replace(autorestSession, "getAutorestOptions", () => ({
+        srcPath: ".",
+        packageDetails: {
+          name: "test",
+          nameWithoutScope: "test",
+          version: "1.0.0"
+        },
+        licenseHeader: false,
+        hideClients: true,
+        azureArm: false,
+        ignoreNullableOnOptional: false,
+        useCoreV2: true,
+        allowInsecureConnection: true
+      }));
+    });
+
+    afterEach(() => {
+      sinon.restore();
+    });
     describe("Simple get operation", () => {
       const operationPath = "/string/null";
       const getErrorResponseSchema = () => {
@@ -141,9 +163,9 @@ describe("OperationTransforms", () => {
           ],
           responses: [
             responseSchema ||
-              new SchemaResponse(new StringSchema("string", ""), {
-                protocol: { http: { statusCodes: ["200"] } }
-              })
+            new SchemaResponse(new StringSchema("string", ""), {
+              protocol: { http: { statusCodes: ["200"] } }
+            })
           ],
           exceptions: [getErrorResponseSchema()],
           language: {
