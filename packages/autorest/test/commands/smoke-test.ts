@@ -7,6 +7,7 @@ import { SPECS_PATH, DEFAULT_SPEC_BRANCH } from "../utils/constants";
 import { onExit } from "./childProcessOnExit";
 import { appendFileSync, read } from "fs";
 import { runAutorest } from "./run";
+import { pathExists } from "fs-extra";
 
 const SMOKE_PATH = joinPath(
   `${__dirname}`,
@@ -192,7 +193,9 @@ const verifyLibrary = async (spec: SpecDefinition): Promise<SmokeResult> => {
     if (!projectPath) {
       projectPath = await generateFromLocal(spec);
     }
-    await buildGenerated(projectPath);
+    if (await pathExists(joinPath(projectPath, "package.json"))) {
+      await buildGenerated(projectPath);
+    }
     await removeTransformsToLibraries(spec);
     success = true;
   } catch (e) {
