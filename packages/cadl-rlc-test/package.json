@@ -1,0 +1,14 @@
+{
+  "name": "@msinternal/cadl-rest-test",
+  "version": "1.0.0",
+  "dependencies": {
+    "@cadl-lang/compiler": "latest",
+    "@cadl-lang/ts-rlc": "0.0.1",
+    "@cadl-lang/rest": "latest"
+  },
+  "scripts": {
+    "cadl:compile": "cadl compile ./spec",
+    "build": "echo skip"
+  },
+  "private": true
+}

@@ -324,6 +324,18 @@
       {
         "packageName": "@autorest/typescript",
         "projectFolder": "packages/autorest"
+      },
+      {
+        "packageName": "@azure-tools/rlc-codegen",
+        "projectFolder": "packages/rlc-codegen"
+      },
+      {
+        "packageName": "@cadl-lang/ts-rlc",
+        "projectFolder": "packages/cadl-rlc-emitter"
+      },
+      {
+        "packageName": "@msinternal/cadl-rest-test",
+        "projectFolder": "packages/cadl-rlc-test"
       }
     ]
   }

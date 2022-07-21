@@ -7,6 +7,7 @@ test.json
 **/test/**/node_modules
 **/test/**/types
 **/test/**/temp
+**/cadl-output
 **/test-browser
 .tmp
 **/coverage
