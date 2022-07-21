@@ -1,28 +1,47 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-import createClient, {
-  {{clientClassName}}, 
-} from "{{clientPackageName}}";
-{{#if hasCredentials }}
-import { DefaultAzureCredential } from "@azure/identity";
-{{/if}}
+{{#each importedTypes}}
+{{this}}
+{{/each}}
 import * as dotenv from "dotenv";
 
 dotenv.config();
 
+{{#each samples}}
 /**
- * This is a simple sample on how to create client and please add your own code below
+ * This sample demonstrates how to {{this.description}}
  *
+ * @summary {{this.description}}
+ * x-ms-original-file: {{this.originalFileLocation}}
  */
-async function main() {
+async function {{name}}() {
   {{#each this.clientParamAssignments}}
   {{this}}
   {{/each}}
-  const client: {{clientClassName}} = createClient({{this.clientParameterNames}});
-  const result = !!client ? "Success" : "Fail";
-  console.log(result," to create client.");
-  // Add your own code here
+  const client = {{this.defaultFactoryName}}({{this.clientParamNames}});
+  {{#each this.pathParamAssignments}}
+  {{this}}
+  {{/each}}
+  {{#each this.methodParamAssignments}}
+  {{this}}
+  {{/each}}
+  {{#if this.isPaging}}
+  const initialResponse = await client.path({{this.pathParamNames}}).{{method}}({{methodParamNames}});
+  const pageData = paginate(client, initialResponse);
+  const result = [];
+  for await (const item of pageData) {
+    result.push(item);
+  }
+  {{else if this.isLRO}}
+  const initialResponse = await client.path({{this.pathParamNames}}).{{method}}({{methodParamNames}});
+  const poller = getLongRunningPoller(client, initialResponse);
+  const result = await poller.pollUntilDone();
+  {{else}}
+  const result = await client.path({{this.pathParamNames}}).{{method}}({{methodParamNames}});
+  {{/if}}
+  console.log(result);
 }
 
-main().catch(console.error);
+{{name}}().catch(console.error);
+{{/each}}
 

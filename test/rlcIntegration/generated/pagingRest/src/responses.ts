@@ -93,6 +93,18 @@ export interface DuplicateParamsdefaultResponse extends HttpResponse {
   body: Record<string, unknown>;
 }
 
+/** Paging with max page size. We don't want to */
+export interface PageWithMaxPageSize200Response extends HttpResponse {
+  status: "200";
+  body: ProductResultOutput;
+}
+
+/** Paging with max page size. We don't want to */
+export interface PageWithMaxPageSizedefaultResponse extends HttpResponse {
+  status: string;
+  body: Record<string, unknown>;
+}
+
 /** Next operation for getWithQueryParams. Pass in next=True to pass test. Returns a ProductResult */
 export interface NextOperationWithQueryParams200Response extends HttpResponse {
   status: "200";
@@ -230,6 +242,30 @@ export interface GetMultiplePagesLRO202Response extends HttpResponse {
 
 /** A long-running paging operation that includes a nextLink that has 10 pages */
 export interface GetMultiplePagesLROdefaultResponse extends HttpResponse {
+  status: string;
+  body: Record<string, unknown>;
+}
+
+/** A paging operation with api version. When calling the next link, you want to append your client's api version to the next link */
+export interface AppendApiVersion200Response extends HttpResponse {
+  status: "200";
+  body: ProductResultOutput;
+}
+
+/** A paging operation with api version. When calling the next link, you want to append your client's api version to the next link */
+export interface AppendApiVersiondefaultResponse extends HttpResponse {
+  status: string;
+  body: Record<string, unknown>;
+}
+
+/** A paging operation with api version. When calling the next link, you want to reformat it and override the returned api version with your client's api version */
+export interface ReplaceApiVersion200Response extends HttpResponse {
+  status: "200";
+  body: ProductResultOutput;
+}
+
+/** A paging operation with api version. When calling the next link, you want to reformat it and override the returned api version with your client's api version */
+export interface ReplaceApiVersiondefaultResponse extends HttpResponse {
   status: string;
   body: Record<string, unknown>;
 }

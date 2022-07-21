@@ -157,6 +157,60 @@ export type BinaryBodyWithThreeContentTypesParameters =
   | BinaryBodyWithThreeContentTypesRequestParameters
   | BinaryBodyWithThreeContentTypesRequestParameters1;
 
+export interface BodyThreeTypesBodyParam {
+  /**
+   * The payload body.
+   *
+   * Value may contain any sequence of octets
+   */
+  body:
+    | string
+    | Uint8Array
+    | ReadableStream<Uint8Array>
+    | NodeJS.ReadableStream;
+}
+
+export interface BodyThreeTypesMediaTypesParam {
+  /** Request content type */
+  contentType?: "application/octet-stream";
+}
+
+export type BodyThreeTypesRequestParameters = BodyThreeTypesMediaTypesParam &
+  BodyThreeTypesBodyParam &
+  RequestParameters;
+
+export interface BodyThreeTypesBodyParam1 {
+  /** The payload body. */
+  body: string;
+}
+
+export interface BodyThreeTypesMediaTypesParam1 {
+  /** Request content type */
+  contentType?: "text/plain";
+}
+
+export type BodyThreeTypesRequestParameters1 = BodyThreeTypesMediaTypesParam1 &
+  BodyThreeTypesBodyParam1 &
+  RequestParameters;
+
+export interface BodyThreeTypesBodyParam2 {
+  /** The payload body. */
+  body: any;
+}
+
+export interface BodyThreeTypesMediaTypesParam2 {
+  /** Request content type */
+  contentType?: "application/json";
+}
+
+export type BodyThreeTypesRequestParameters2 = BodyThreeTypesMediaTypesParam2 &
+  BodyThreeTypesBodyParam2 &
+  RequestParameters;
+export type BodyThreeTypesParameters =
+  | BodyThreeTypesRequestParameters
+  | BodyThreeTypesRequestParameters1
+  | BodyThreeTypesRequestParameters2;
+
 export interface PutTextAndJsonBodyBodyParam {
   /** The payload body. */
   body: string;

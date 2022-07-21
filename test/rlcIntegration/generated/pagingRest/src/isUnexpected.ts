@@ -16,6 +16,8 @@ import {
   GetWithQueryParamsdefaultResponse,
   DuplicateParams200Response,
   DuplicateParamsdefaultResponse,
+  PageWithMaxPageSize200Response,
+  PageWithMaxPageSizedefaultResponse,
   NextOperationWithQueryParams200Response,
   NextOperationWithQueryParamsdefaultResponse,
   GetOdataMultiplePages200Response,
@@ -38,6 +40,10 @@ import {
   GetMultiplePagesFragmentWithGroupingNextLinkdefaultResponse,
   GetMultiplePagesLRO202Response,
   GetMultiplePagesLROdefaultResponse,
+  AppendApiVersion200Response,
+  AppendApiVersiondefaultResponse,
+  ReplaceApiVersion200Response,
+  ReplaceApiVersiondefaultResponse,
   NextFragment200Response,
   NextFragmentdefaultResponse,
   NextFragmentWithGrouping200Response,
@@ -54,6 +60,7 @@ const responseMap: Record<string, string[]> = {
   "GET /paging/multiple": ["200"],
   "GET /paging/multiple/getWithQueryParams": ["200"],
   "GET /paging/multiple/duplicateParams/1": ["200"],
+  "GET /paging/maxPageSize": ["200"],
   "GET /paging/multiple/nextOperationWithQueryParams": ["200"],
   "GET /paging/multiple/odata": ["200"],
   "GET /paging/multiple/withpath/{offset}": ["200"],
@@ -66,6 +73,8 @@ const responseMap: Record<string, string[]> = {
   "GET /paging/multiple/fragmentwithgrouping/{tenant}": ["200"],
   "POST /paging/multiple/lro": ["202"],
   "GET /paging/multiple/lro": ["202"],
+  "GET /paging/apiVersion/append/1": ["200"],
+  "GET /paging/apiVersion/replace/1": ["200"],
   "GET /paging/multiple/fragment/{tenant}/{nextLink}": ["200"],
   "GET /paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}": ["200"],
   "GET /paging/itemNameWithXMSClientName": ["200"]
@@ -94,6 +103,9 @@ export function isUnexpected(
 export function isUnexpected(
   response: DuplicateParams200Response | DuplicateParamsdefaultResponse
 ): response is DuplicateParamsdefaultResponse;
+export function isUnexpected(
+  response: PageWithMaxPageSize200Response | PageWithMaxPageSizedefaultResponse
+): response is PageWithMaxPageSizedefaultResponse;
 export function isUnexpected(
   response:
     | NextOperationWithQueryParams200Response
@@ -148,6 +160,12 @@ export function isUnexpected(
   response: GetMultiplePagesLRO202Response | GetMultiplePagesLROdefaultResponse
 ): response is GetMultiplePagesLROdefaultResponse;
 export function isUnexpected(
+  response: AppendApiVersion200Response | AppendApiVersiondefaultResponse
+): response is AppendApiVersiondefaultResponse;
+export function isUnexpected(
+  response: ReplaceApiVersion200Response | ReplaceApiVersiondefaultResponse
+): response is ReplaceApiVersiondefaultResponse;
+export function isUnexpected(
   response: NextFragment200Response | NextFragmentdefaultResponse
 ): response is NextFragmentdefaultResponse;
 export function isUnexpected(
@@ -176,6 +194,8 @@ export function isUnexpected(
     | GetWithQueryParamsdefaultResponse
     | DuplicateParams200Response
     | DuplicateParamsdefaultResponse
+    | PageWithMaxPageSize200Response
+    | PageWithMaxPageSizedefaultResponse
     | NextOperationWithQueryParams200Response
     | NextOperationWithQueryParamsdefaultResponse
     | GetOdataMultiplePages200Response
@@ -198,6 +218,10 @@ export function isUnexpected(
     | GetMultiplePagesFragmentWithGroupingNextLinkdefaultResponse
     | GetMultiplePagesLRO202Response
     | GetMultiplePagesLROdefaultResponse
+    | AppendApiVersion200Response
+    | AppendApiVersiondefaultResponse
+    | ReplaceApiVersion200Response
+    | ReplaceApiVersiondefaultResponse
     | NextFragment200Response
     | NextFragmentdefaultResponse
     | NextFragmentWithGrouping200Response
@@ -212,6 +236,7 @@ export function isUnexpected(
   | GetMultiplePagesdefaultResponse
   | GetWithQueryParamsdefaultResponse
   | DuplicateParamsdefaultResponse
+  | PageWithMaxPageSizedefaultResponse
   | NextOperationWithQueryParamsdefaultResponse
   | GetOdataMultiplePagesdefaultResponse
   | GetMultiplePagesWithOffsetdefaultResponse
@@ -223,6 +248,8 @@ export function isUnexpected(
   | GetMultiplePagesFragmentNextLinkdefaultResponse
   | GetMultiplePagesFragmentWithGroupingNextLinkdefaultResponse
   | GetMultiplePagesLROdefaultResponse
+  | AppendApiVersiondefaultResponse
+  | ReplaceApiVersiondefaultResponse
   | NextFragmentdefaultResponse
   | NextFragmentWithGroupingdefaultResponse
   | GetPagingModelWithItemNameWithXMSClientNamedefaultResponse {

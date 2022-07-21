@@ -170,6 +170,12 @@ export function hasPagingOperations(model: CodeModel) {
   return false;
 }
 
+export function isPagingOperation(operation: Operation): boolean {
+  return (
+    operation && operation.extensions && operation.extensions["x-ms-pageable"]
+  );
+}
+
 function isObjectSchema(schema: any): schema is ObjectSchema {
   return schema && schema.type === SchemaType.Object;
 }

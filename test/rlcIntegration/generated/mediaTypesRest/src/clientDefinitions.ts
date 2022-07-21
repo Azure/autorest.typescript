@@ -7,6 +7,7 @@ import {
   ContentTypeWithEncodingParameters,
   BinaryBodyWithTwoContentTypesParameters,
   BinaryBodyWithThreeContentTypesParameters,
+  BodyThreeTypesParameters,
   PutTextAndJsonBodyParameters
 } from "./parameters";
 import {
@@ -16,6 +17,7 @@ import {
   ContentTypeWithEncoding200Response,
   BinaryBodyWithTwoContentTypes200Response,
   BinaryBodyWithThreeContentTypes200Response,
+  BodyThreeTypes200Response,
   PutTextAndJsonBody200Response
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
@@ -58,6 +60,13 @@ export interface BinaryBodyWithThreeContentTypes {
   ): StreamableMethod<BinaryBodyWithThreeContentTypes200Response>;
 }
 
+export interface BodyThreeTypes {
+  /** Body with three types. Can be stream, string, or JSON. Pass in string 'hello, world' with content type 'text/plain', {'hello': world'} with content type 'application/json' and a byte string for 'application/octet-stream'. */
+  post(
+    options: BodyThreeTypesParameters
+  ): StreamableMethod<BodyThreeTypes200Response>;
+}
+
 export interface PutTextAndJsonBody {
   /** Body that's either text/plain or application/json */
   post(
@@ -80,6 +89,8 @@ export interface Routes {
   (
     path: "/mediatypes/binaryBodyThreeContentTypes"
   ): BinaryBodyWithThreeContentTypes;
+  /** Resource for '/mediatypes/bodyThreeTypes' has methods for the following verbs: post */
+  (path: "/mediatypes/bodyThreeTypes"): BodyThreeTypes;
   /** Resource for '/mediatypes/textAndJson' has methods for the following verbs: post */
   (path: "/mediatypes/textAndJson"): PutTextAndJsonBody;
 }

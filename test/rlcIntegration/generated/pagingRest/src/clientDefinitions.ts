@@ -9,6 +9,7 @@ import {
   GetMultiplePagesParameters,
   GetWithQueryParamsParameters,
   DuplicateParamsParameters,
+  PageWithMaxPageSizeParameters,
   NextOperationWithQueryParamsParameters,
   GetOdataMultiplePagesParameters,
   GetMultiplePagesWithOffsetParameters,
@@ -20,6 +21,8 @@ import {
   GetMultiplePagesFragmentNextLinkParameters,
   GetMultiplePagesFragmentWithGroupingNextLinkParameters,
   GetMultiplePagesLROParameters,
+  AppendApiVersionParameters,
+  ReplaceApiVersionParameters,
   NextFragmentParameters,
   NextFragmentWithGroupingParameters,
   GetPagingModelWithItemNameWithXMSClientNameParameters
@@ -39,6 +42,8 @@ import {
   GetWithQueryParamsdefaultResponse,
   DuplicateParams200Response,
   DuplicateParamsdefaultResponse,
+  PageWithMaxPageSize200Response,
+  PageWithMaxPageSizedefaultResponse,
   NextOperationWithQueryParams200Response,
   NextOperationWithQueryParamsdefaultResponse,
   GetOdataMultiplePages200Response,
@@ -61,6 +66,10 @@ import {
   GetMultiplePagesFragmentWithGroupingNextLinkdefaultResponse,
   GetMultiplePagesLRO202Response,
   GetMultiplePagesLROdefaultResponse,
+  AppendApiVersion200Response,
+  AppendApiVersiondefaultResponse,
+  ReplaceApiVersion200Response,
+  ReplaceApiVersiondefaultResponse,
   NextFragment200Response,
   NextFragmentdefaultResponse,
   NextFragmentWithGrouping200Response,
@@ -131,6 +140,15 @@ export interface DuplicateParams {
     options?: DuplicateParamsParameters
   ): StreamableMethod<
     DuplicateParams200Response | DuplicateParamsdefaultResponse
+  >;
+}
+
+export interface PageWithMaxPageSize {
+  /** Paging with max page size. We don't want to */
+  get(
+    options?: PageWithMaxPageSizeParameters
+  ): StreamableMethod<
+    PageWithMaxPageSize200Response | PageWithMaxPageSizedefaultResponse
   >;
 }
 
@@ -240,6 +258,24 @@ export interface GetMultiplePagesLRO {
   >;
 }
 
+export interface AppendApiVersion {
+  /** A paging operation with api version. When calling the next link, you want to append your client's api version to the next link */
+  get(
+    options?: AppendApiVersionParameters
+  ): StreamableMethod<
+    AppendApiVersion200Response | AppendApiVersiondefaultResponse
+  >;
+}
+
+export interface ReplaceApiVersion {
+  /** A paging operation with api version. When calling the next link, you want to reformat it and override the returned api version with your client's api version */
+  get(
+    options?: ReplaceApiVersionParameters
+  ): StreamableMethod<
+    ReplaceApiVersion200Response | ReplaceApiVersiondefaultResponse
+  >;
+}
+
 export interface NextFragment {
   /** A paging operation that doesn't return a full URL, just a fragment */
   get(
@@ -282,6 +318,8 @@ export interface Routes {
   (path: "/paging/multiple/getWithQueryParams"): GetWithQueryParams;
   /** Resource for '/paging/multiple/duplicateParams/1' has methods for the following verbs: get */
   (path: "/paging/multiple/duplicateParams/1"): DuplicateParams;
+  /** Resource for '/paging/maxPageSize' has methods for the following verbs: get */
+  (path: "/paging/maxPageSize"): PageWithMaxPageSize;
   /** Resource for '/paging/multiple/nextOperationWithQueryParams' has methods for the following verbs: get */
   (
     path: "/paging/multiple/nextOperationWithQueryParams"
@@ -315,6 +353,10 @@ export interface Routes {
   ): GetMultiplePagesFragmentWithGroupingNextLink;
   /** Resource for '/paging/multiple/lro' has methods for the following verbs: post */
   (path: "/paging/multiple/lro"): GetMultiplePagesLRO;
+  /** Resource for '/paging/apiVersion/append/1' has methods for the following verbs: get */
+  (path: "/paging/apiVersion/append/1"): AppendApiVersion;
+  /** Resource for '/paging/apiVersion/replace/1' has methods for the following verbs: get */
+  (path: "/paging/apiVersion/replace/1"): ReplaceApiVersion;
   /** Resource for '/paging/multiple/fragment/\{tenant\}/\{nextLink\}' has methods for the following verbs: get */
   (
     path: "/paging/multiple/fragment/{tenant}/{nextLink}",
