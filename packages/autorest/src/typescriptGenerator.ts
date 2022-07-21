@@ -60,12 +60,12 @@ export async function generateTypeScriptLibrary(
   });
 
   const {
-    packageDetails,
     licenseHeader: shouldGenerateLicense,
     generateTest,
     generateSample,
     outputPath,
-    srcPath
+    srcPath,
+    generateMetadata
   } = getAutorestOptions();
 
   const clientDetails = await transformCodeModel(codeModel);
@@ -91,14 +91,11 @@ export async function generateTypeScriptLibrary(
   generateMappers(clientDetails, project);
   generateOperations(clientDetails, project);
   generateOperationsInterfaces(clientDetails, project);
-  if (generateSample || generateTest) {
+  const hasSamplesToBeGenerated = generateSample && clientDetails?.samples?.length && clientDetails?.samples?.length > 0;
+  if ((hasSamplesToBeGenerated || generateTest) && generateMetadata) {
     generateSampleEnv(project);
   }
-  if (
-    generateSample &&
-    clientDetails?.samples?.length &&
-    clientDetails?.samples?.length > 0
-  ) {
+  if (hasSamplesToBeGenerated) {
     generateHLCSamples(clientDetails, project);
   }
   generateParameters(clientDetails, project);

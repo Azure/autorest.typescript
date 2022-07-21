@@ -237,15 +237,15 @@ describe("Integration tests for Paging Rest Client", () => {
           const result = firstRun
             ? initialResponse
             : await client
-                .path(
-                  "/paging/multiple/fragment/{tenant}/{nextLink}",
-                  tenant,
-                  pageLink
-                )
-                .get({
-                  queryParameters: { api_version: "1.6" },
-                  skipUrlEncoding: true
-                });
+              .path(
+                "/paging/multiple/fragment/{tenant}/{nextLink}",
+                tenant,
+                pageLink
+              )
+              .get({
+                queryParameters: { api_version: "1.6" },
+                skipUrlEncoding: true
+              });
           firstRun = false;
           if (isUnexpected(result)) {
             throw new Error("Unexpected status code");
@@ -300,8 +300,8 @@ describe("Integration tests for Paging Rest Client", () => {
           const result = firstRun
             ? initialResponse
             : await client
-                .path("/paging/multiple/nextOperationWithQueryParams")
-                .get({ queryParameters: { queryConstant: true } });
+              .path("/paging/multiple/nextOperationWithQueryParams")
+              .get({ queryParameters: { queryConstant: true } });
           firstRun = false;
           if (isUnexpected(result)) {
             throw new Error("Unexpected status code");

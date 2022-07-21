@@ -40,6 +40,12 @@ export interface BinaryBodyWithThreeContentTypes200Response
   body: string;
 }
 
+/** Body with three types. Can be stream, string, or JSON. Pass in string 'hello, world' with content type 'text/plain', {'hello': world'} with content type 'application/json' and a byte string for 'application/octet-stream'. */
+export interface BodyThreeTypes200Response extends HttpResponse {
+  status: "200";
+  body: string;
+}
+
 /** Body that's either text/plain or application/json */
 export interface PutTextAndJsonBody200Response extends HttpResponse {
   status: "200";

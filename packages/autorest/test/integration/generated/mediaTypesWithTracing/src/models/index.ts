@@ -99,6 +99,24 @@ export type BinaryBodyWithThreeContentTypesResponse = {
 };
 
 /** Optional parameters. */
+export interface BodyThreeTypes$binaryOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Optional parameters. */
+export interface BodyThreeTypes$textOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Optional parameters. */
+export interface BodyThreeTypes$jsonOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the bodyThreeTypes operation. */
+export type BodyThreeTypesResponse = {
+  /** The parsed response body. */
+  body: string;
+};
+
+/** Optional parameters. */
 export interface PutTextAndJsonBody$textOptionalParams
   extends coreClient.OperationOptions {}
 

@@ -186,6 +186,13 @@ export interface PagingDuplicateParamsOptionalParams
 export type PagingDuplicateParamsResponse = ProductResult;
 
 /** Optional parameters. */
+export interface PagingPageWithMaxPageSizeOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the pageWithMaxPageSize operation. */
+export type PagingPageWithMaxPageSizeResponse = ProductResult;
+
+/** Optional parameters. */
 export interface PagingNextOperationWithQueryParamsOptionalParams
   extends coreClient.OperationOptions {}
 
@@ -281,6 +288,20 @@ export interface PagingGetMultiplePagesLROOptionalParams
 export type PagingGetMultiplePagesLROResponse = ProductResult;
 
 /** Optional parameters. */
+export interface PagingAppendApiVersionOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the appendApiVersion operation. */
+export type PagingAppendApiVersionResponse = ProductResult;
+
+/** Optional parameters. */
+export interface PagingReplaceApiVersionOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the replaceApiVersion operation. */
+export type PagingReplaceApiVersionResponse = ProductResult;
+
+/** Optional parameters. */
 export interface PagingNextFragmentOptionalParams
   extends coreClient.OperationOptions {}
 
@@ -342,6 +363,13 @@ export interface PagingDuplicateParamsNextOptionalParams
 
 /** Contains response data for the duplicateParamsNext operation. */
 export type PagingDuplicateParamsNextResponse = ProductResult;
+
+/** Optional parameters. */
+export interface PagingPageWithMaxPageSizeNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the pageWithMaxPageSizeNext operation. */
+export type PagingPageWithMaxPageSizeNextResponse = ProductResult;
 
 /** Optional parameters. */
 export interface PagingGetOdataMultiplePagesNextOptionalParams
@@ -414,6 +442,20 @@ export interface PagingGetMultiplePagesLRONextOptionalParams
 export type PagingGetMultiplePagesLRONextResponse = ProductResult;
 
 /** Optional parameters. */
+export interface PagingAppendApiVersionNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the appendApiVersionNext operation. */
+export type PagingAppendApiVersionNextResponse = ProductResult;
+
+/** Optional parameters. */
+export interface PagingReplaceApiVersionNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the replaceApiVersionNext operation. */
+export type PagingReplaceApiVersionNextResponse = ProductResult;
+
+/** Optional parameters. */
 export interface PagingGetPagingModelWithItemNameWithXMSClientNameNextOptionalParams
   extends coreClient.OperationOptions {}
 
@@ -425,6 +467,8 @@ export interface PagingClientOptionalParams
   extends coreClient.ServiceClientOptions {
   /** server parameter */
   $host?: string;
+  /** Api Version */
+  apiVersion?: string;
   /** Overrides client endpoint. */
   endpoint?: string;
 }

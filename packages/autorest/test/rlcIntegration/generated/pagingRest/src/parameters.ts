@@ -50,6 +50,18 @@ export interface DuplicateParamsQueryParam {
 export type DuplicateParamsParameters = DuplicateParamsQueryParam &
   RequestParameters;
 
+export interface PageWithMaxPageSizeQueryParamProperties {
+  /** Max page size query param. Don't send */
+  $maxpagesize?: "5";
+}
+
+export interface PageWithMaxPageSizeQueryParam {
+  queryParameters?: PageWithMaxPageSizeQueryParamProperties;
+}
+
+export type PageWithMaxPageSizeParameters = PageWithMaxPageSizeQueryParam &
+  RequestParameters;
+
 export interface NextOperationWithQueryParamsQueryParamProperties {
   /** A constant. Must be True */
   queryConstant: true;
@@ -135,6 +147,8 @@ export interface GetMultiplePagesLROHeaderParam {
 
 export type GetMultiplePagesLROParameters = GetMultiplePagesLROHeaderParam &
   RequestParameters;
+export type AppendApiVersionParameters = RequestParameters;
+export type ReplaceApiVersionParameters = RequestParameters;
 
 export interface NextFragmentQueryParamProperties {
   /** Sets the api version to use. */

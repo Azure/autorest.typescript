@@ -909,6 +909,18 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     azureSdkForJs: false,
     generateSample: true
   },
+  dpgCustomization: {
+    swaggerOrConfig: "dpg-customization.json",
+    clientName: "DPGCustomizationClient",
+    packageName: "dpg-customization-rest",
+    licenseHeader: true,
+    restLevelClient: true,
+    rlcShortcut: true,
+    allowInsecureConnection: true,
+    addCredentials: false,
+    isTestPackage: true,
+    generateSample: true
+  },
   bodyStringRest: {
     swaggerOrConfig: "body-string.json",
     clientName: "BodyStringRest",
@@ -930,7 +942,8 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     azureSdkForJs: false,
     allowInsecureConnection: true,
     addCredentials: false,
-    isTestPackage: true
+    isTestPackage: true,
+    generateSample: false
   },
   pagingRest: {
     swaggerOrConfig: "paging.json",
@@ -940,7 +953,8 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     isTestPackage: true,
     restLevelClient: true,
-    azureSdkForJs: false
+    azureSdkForJs: false,
+    generateSample: true
   },
   multipleInheritanceRest: {
     swaggerOrConfig: "multiple-inheritance.json",
@@ -953,7 +967,8 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     restLevelClient: true,
     azureSdkForJs: false,
     rlcShortcut: true,
-    isTestPackage: true
+    isTestPackage: true,
+    generateSample: true
   },
   mediaTypesRest: {
     swaggerOrConfig: "media_types.json",
@@ -963,7 +978,8 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     isTestPackage: true,
     restLevelClient: true,
-    azureSdkForJs: false
+    azureSdkForJs: false,
+    generateSample: true
   },
   bodyFileRest: {
     swaggerOrConfig: "body-file.json",
@@ -974,7 +990,8 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     isTestPackage: true,
     restLevelClient: true,
-    azureSdkForJs: false
+    azureSdkForJs: false,
+    generateSample: true
   },
   headerRest: {
     swaggerOrConfig: "header.json",
@@ -985,7 +1002,8 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     azureSdkForJs: false,
     allowInsecureConnection: true,
     addCredentials: false,
-    isTestPackage: true
+    isTestPackage: true,
+    generateSample: true
   },
   urlRest: {
     swaggerOrConfig: "url.json",
@@ -997,7 +1015,8 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     allowInsecureConnection: true,
     addCredentials: false,
     isTestPackage: true,
-    azureSdkForJs: false
+    azureSdkForJs: false,
+    generateSample: true
   },
   bodyFormDataRest: {
     swaggerOrConfig: "body-formdata.json",
@@ -1009,7 +1028,8 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     isTestPackage: true,
     restLevelClient: true,
-    azureSdkForJs: false
+    azureSdkForJs: false,
+    generateSample: true
   },
   customUrlRest: {
     swaggerOrConfig: "custom-baseUrl.json",
@@ -1021,7 +1041,8 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     rlcShortcut: true,
     allowInsecureConnection: true,
     addCredentials: false,
-    isTestPackage: true
+    isTestPackage: true,
+    generateSample: true
   },
   httpInfrastructureRest: {
     swaggerOrConfig: "httpInfrastructure.json",
@@ -1032,7 +1053,8 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     rlcShortcut: true,
     allowInsecureConnection: true,
     addCredentials: false,
-    isTestPackage: true
+    isTestPackage: true,
+    generateSample: true
   },
   securityAADRest: {
     swaggerOrConfig: "security-aad.json",
@@ -1052,17 +1074,6 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     restLevelClient: true,
     rlcShortcut: true,
     allowInsecureConnection: true,
-    isTestPackage: true
-  },
-  dpgCustomization: {
-    swaggerOrConfig: "dpg-customization.json",
-    clientName: "DPGCustomizationClient",
-    packageName: "dpg-customization-rest",
-    licenseHeader: true,
-    restLevelClient: true,
-    rlcShortcut: true,
-    allowInsecureConnection: true,
-    addCredentials: false,
     isTestPackage: true
   },
   azureReport: {

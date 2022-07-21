@@ -204,13 +204,25 @@ export const accept4: OperationParameter = {
   }
 };
 
+export const contentType6: OperationParameter = {
+  parameterPath: "contentType",
+  mapper: {
+    defaultValue: "application/octet-stream",
+    isConstant: true,
+    serializedName: "Content-Type",
+    type: {
+      name: "String"
+    }
+  }
+};
+
 export const message2: OperationParameter = {
   parameterPath: "message",
   mapper: {
     serializedName: "message",
     required: true,
     type: {
-      name: "String"
+      name: "any"
     }
   }
 };
@@ -221,6 +233,17 @@ export const accept5: OperationParameter = {
     defaultValue: "text/plain",
     isConstant: true,
     serializedName: "Accept",
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const message3: OperationParameter = {
+  parameterPath: "message",
+  mapper: {
+    serializedName: "message",
+    required: true,
     type: {
       name: "String"
     }

@@ -201,7 +201,8 @@ export const readmes: SpecDefinition[] = [
     params: [
       AutorestParams.RestClient,
       AutorestParams.GenerateTest,
-      AutorestParams.AzureSdkForJs
+      AutorestParams.AzureSdkForJs,
+      AutorestParams.GenerateSamples
     ],
     buildTag: "ci_rlc"
   },
@@ -214,7 +215,8 @@ export const readmes: SpecDefinition[] = [
     params: [
       AutorestParams.RestClient,
       AutorestParams.MultiClient,
-      AutorestParams.AzureSdkForJs
+      AutorestParams.AzureSdkForJs,
+      AutorestParams.GenerateSamples,
     ],
     buildTag: "ci_rlc"
   },
@@ -224,7 +226,11 @@ export const readmes: SpecDefinition[] = [
       "..",
       "./smoke/swagger/synapse-artifacts-rest.md"
     ),
-    params: [AutorestParams.RestClient, AutorestParams.AzureSdkForJs],
+    params: [
+      AutorestParams.RestClient,
+      AutorestParams.AzureSdkForJs,
+      AutorestParams.GenerateSamples,
+    ],
     buildTag: "ci_rlc"
   }
   // {
