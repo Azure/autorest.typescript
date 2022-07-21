@@ -24,9 +24,9 @@
       }
     },
     "node_modules/@autorest/codemodel": {
-      "version": "4.19.0",
-      "resolved": "https://registry.npmjs.org/@autorest/codemodel/-/codemodel-4.19.0.tgz",
-      "integrity": "sha512-xzlXuHKdjn5DgJOIWLc/jujhjPF3mbsRpAoA0wDhQT/hnBEIeoT6mh6vh//5PJ50z8142cSsKp8320nMYZbl2Q==",
+      "version": "4.18.2",
+      "resolved": "https://registry.npmjs.org/@autorest/codemodel/-/codemodel-4.18.2.tgz",
+      "integrity": "sha512-xnGbxU2xvqtyIQYYwsEZsK+w2MmavbUrQdk1/sLPhjT+cQ5R6VUc5PX1ZTmPzBZWc/utiaAurxFC65J5J/uSgA==",
       "dependencies": {
         "@azure-tools/codegen": "~2.9.1",
         "js-yaml": "~4.0.0"
@@ -16123,9 +16123,9 @@
     "node_modules/@rush-temp/typescript": {
       "version": "0.0.0",
       "resolved": "file:projects/typescript.tgz",
-      "integrity": "sha512-9cX27rU4Y0OH0kFsf9VEJfzW9BMBl0GVACqvXg6MAr6t6ZCrOS6T/oFtG+pl1fslHy67V5dKkCRCpBgKJBaAqQ==",
+      "integrity": "sha512-zBuNcsnKcICn4kM1AZ91D8kUYQlXhWgJ7kGuAngdA/l52X+yMRa4MTCuwFk2xpB+GNrvtzJnaOSK7JRWUprYpw==",
       "dependencies": {
-        "@autorest/codemodel": "^4.18.2",
+        "@autorest/codemodel": "~4.18.2",
         "@autorest/extension-base": "^3.4.1",
         "@autorest/testmodeler": "^2.2.5",
         "@azure-rest/core-client": "dev",
@@ -26052,9 +26052,9 @@
       }
     },
     "@autorest/codemodel": {
-      "version": "4.19.0",
-      "resolved": "https://registry.npmjs.org/@autorest/codemodel/-/codemodel-4.19.0.tgz",
-      "integrity": "sha512-xzlXuHKdjn5DgJOIWLc/jujhjPF3mbsRpAoA0wDhQT/hnBEIeoT6mh6vh//5PJ50z8142cSsKp8320nMYZbl2Q==",
+      "version": "4.18.2",
+      "resolved": "https://registry.npmjs.org/@autorest/codemodel/-/codemodel-4.18.2.tgz",
+      "integrity": "sha512-xnGbxU2xvqtyIQYYwsEZsK+w2MmavbUrQdk1/sLPhjT+cQ5R6VUc5PX1ZTmPzBZWc/utiaAurxFC65J5J/uSgA==",
       "requires": {
         "@azure-tools/codegen": "~2.9.1",
         "js-yaml": "~4.0.0"
@@ -41685,9 +41685,9 @@
     },
     "@rush-temp/typescript": {
       "version": "file:projects/typescript.tgz",
-      "integrity": "sha512-9cX27rU4Y0OH0kFsf9VEJfzW9BMBl0GVACqvXg6MAr6t6ZCrOS6T/oFtG+pl1fslHy67V5dKkCRCpBgKJBaAqQ==",
+      "integrity": "sha512-zBuNcsnKcICn4kM1AZ91D8kUYQlXhWgJ7kGuAngdA/l52X+yMRa4MTCuwFk2xpB+GNrvtzJnaOSK7JRWUprYpw==",
       "requires": {
-        "@autorest/codemodel": "^4.18.2",
+        "@autorest/codemodel": "~4.18.2",
         "@autorest/extension-base": "^3.4.1",
         "@autorest/testmodeler": "^2.2.5",
         "@azure-rest/core-client": "dev",
