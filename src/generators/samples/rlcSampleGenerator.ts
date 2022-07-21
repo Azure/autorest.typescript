@@ -1,4 +1,4 @@
-import { ExampleParameter, ExampleValue, TestCodeModel } from "@autorest/testmodeler/dist/src/core/model";
+import { ExampleParameter, TestCodeModel } from "@autorest/testmodeler/dist/src/core/model";
 import { Project } from "ts-morph";
 import { getAutorestOptions, getSession } from "../../autorestSession";
 import * as fs from 'fs';
@@ -10,10 +10,11 @@ import { transformBaseUrl } from "../../transforms/urlTransforms";
 import { PathMetadata, Paths, RLCSampleDetail, RLCSampleGroup, SampleParameter, SampleParameters, TestSampleParameters, OperationMethod } from "../../restLevelClient/interfaces";
 import { camelCase } from "@azure-tools/codegen";
 import { pathDictionary } from "../../restLevelClient/generateClientDefinition";
-import { ChoiceSchema, ConstantSchema, Operation, ParameterLocation, SchemaType } from "@autorest/codemodel";
+import { Operation, ParameterLocation } from "@autorest/codemodel";
 import { isLongRunningOperation } from "../../restLevelClient/helpers/hasPollingOperations";
 import { isPagingOperation } from "../../utils/extractPaginationDetails";
 import { getSecurityInfoFromModel } from "../../utils/schemaHelpers";
+import { getParameterAssignment } from "../../utils/valueHelpers";
 
 const tokenCredentialPackage = "@azure/identity";
 const apiKeyCredentialPackage = "@azure/core-auth";
@@ -175,7 +176,7 @@ function convertClientLevelParameters(rawClientParams: ExampleParameter[], model
     if (hasUriParameter && rawUriParameters.length > 0) {
         // Currently only support one parametrized host
         // TODO: support more parameters in url once the bug fixs - https://github.com/Azure/autorest.typescript/issues/1399
-        const urlValue = getParameterAssignment(rawUriParameters[0].exampleValue);
+        const urlValue = getParameterAssignment(rawUriParameters[0].exampleValue, true);
         clientParams.push({
             name: parameterName,
             assignment: `const ${parameterName} = ` + urlValue + `;`
@@ -223,7 +224,7 @@ function convertPathLevelParameters(rawPathParams: ExampleParameter[], pathDetai
             name: p.name
         }
         // path params are mandatory we'll leave it empty if no input
-        const value = !!res[p.name] ? getParameterAssignment(res[p.name].exampleValue) : `""`;
+        const value = !!res[p.name] ? getParameterAssignment(res[p.name].exampleValue, true) : `""`;
         pathParam.assignment = `const ${pathParam.name} =` + value + `;`;
         return pathParam;
     });
@@ -242,18 +243,18 @@ function convertMethodLevelParameters(rawMethodParams: ExampleParameter[], metho
 
     const allSideAssignments = [], querySideAssignments: string[] = [], headerSideAssignments: string[] = [];
     rawMethodParams.filter(p => p.parameter.protocol.http?.in == ParameterLocation.Body).forEach(p => {
-        allSideAssignments.push(` body: ` + getParameterAssignment(p.exampleValue));
+        allSideAssignments.push(` body: ` + getParameterAssignment(p.exampleValue, true));
     });
     rawMethodParams.filter(p => p.parameter.protocol.http?.in == ParameterLocation.Query).forEach(p => {
         const name = getLanguageMetadata(p.parameter.language).serializedName || p.parameter.language.default.name;
-        querySideAssignments.push(`${name}: ` + getParameterAssignment(p.exampleValue));
+        querySideAssignments.push(`${name}: ` + getParameterAssignment(p.exampleValue, true));
     });
     if (querySideAssignments.length > 0) {
         allSideAssignments.push(` queryParameters: { ` + querySideAssignments.join(", ") + `}`);
     }
     rawMethodParams.filter(p => p.parameter.protocol.http?.in == ParameterLocation.Header).forEach(p => {
         const name = `"${getLanguageMetadata(p.parameter.language).serializedName}"`;
-        headerSideAssignments.push(`${name}: ` + getParameterAssignment(p.exampleValue));
+        headerSideAssignments.push(`${name}: ` + getParameterAssignment(p.exampleValue, true));
     });
     if (headerSideAssignments.length > 0) {
         allSideAssignments.push(` headers: { ` + headerSideAssignments.join(", ") + `}`);
@@ -285,104 +286,6 @@ function getAssignmentStrArray(parameters: SampleParameter[]) {
 
 function getContactParameterNames(parameters: SampleParameter[]) {
     return parameters.filter(p => p.name != null).map(p => p.name!).join(',');
-}
-
-function getParameterAssignment(exampleValue: ExampleValue) {
-    let schemaType = exampleValue.schema.type;
-    const rawValue = exampleValue.rawValue;
-    let retValue = rawValue;
-    switch (schemaType) {
-        case SchemaType.Constant:
-            const contentSchema = exampleValue.schema as ConstantSchema;
-            schemaType = contentSchema.valueType.type;
-            break;
-        case SchemaType.Choice:
-        case SchemaType.SealedChoice:
-            const choiceSchema = exampleValue.schema as ChoiceSchema;
-            schemaType = choiceSchema.choiceType.type;
-            break;
-    }
-    if (rawValue === null) {
-        switch (schemaType) {
-            case SchemaType.Object:
-            case SchemaType.Any:
-            case SchemaType.Dictionary:
-            case SchemaType.AnyObject:
-                retValue = `{}`;
-                break;
-            case SchemaType.Array:
-                retValue = `[]`;
-                break;
-            default:
-                retValue = undefined;
-        }
-        return retValue;
-    }
-    switch (schemaType) {
-        case SchemaType.String:
-        case SchemaType.Char:
-        case SchemaType.Time:
-        case SchemaType.Uuid:
-        case SchemaType.Uri:
-        case SchemaType.Credential:
-        case SchemaType.Duration:
-        case SchemaType.ByteArray:
-            retValue = `"${rawValue
-                ?.toString()
-                .replace(/"/g, '\\"')
-                .replace(/\n/g, "\\n")}"`;
-            break;
-        case SchemaType.Boolean:
-            (retValue = rawValue), toString();
-            break;
-        case SchemaType.Object:
-        case SchemaType.Dictionary:
-            const values = [];
-            for (const prop in exampleValue.properties) {
-                const property = exampleValue.properties[prop];
-                if (property === undefined || property === null) {
-                    continue;
-                }
-                // TODO: currently prop is serializedName so we'll use it directly
-                const propName = prop;
-                let propRetValue: string;
-                if (propName.indexOf("/") > -1 || propName.match(/^\d/)) {
-                    propRetValue = `"${propName}": ` + getParameterAssignment(property);
-                } else {
-                    propRetValue = `${propName}: ` + getParameterAssignment(property);
-                }
-                values.push(propRetValue);
-            }
-            if (values.length > 0) {
-                retValue = `{${values.join(", ")}}`;
-            } else {
-                retValue = "{}";
-            }
-            break;
-        case SchemaType.Array:
-            const valuesArr = [];
-            for (const element of <ExampleValue[]>exampleValue.elements) {
-                let propRetValueArr = getParameterAssignment(element);
-                valuesArr.push(propRetValueArr);
-            }
-            if (valuesArr.length > 0) {
-                retValue = `[${valuesArr.join(", ")}]`;
-            } else {
-                retValue = "[]";
-            }
-            break;
-        case SchemaType.Date:
-        case SchemaType.DateTime:
-            retValue = `new Date("${rawValue}")`;
-            break;
-        case SchemaType.Any:
-        case SchemaType.AnyObject:
-            retValue = `${JSON.stringify(rawValue)}`;
-            break;
-        default:
-            break;
-    }
-    return retValue;
 }
 
 function enrichLROAndPagingInSample(sample: RLCSampleDetail, operation: Operation, importedDict: Record<string, Set<string>>) {
