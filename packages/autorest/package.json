@@ -5,6 +5,7 @@
         "build": "tsc -p . && npm run copyFiles",
         "build:test:browser": "tsc -p tsconfig.browser-test.json && webpack --config webpack.config.test.js",
         "check:tree": "ts-node ./test/commands/check-clean-tree.ts",
+        "pack": "npm pack 2>&1",
         "clean": "rimraf test-browser test/**/node_modules",
         "start": "node ./dist/src/main.js",
         "test": "npm-run-all unit-test integration-test rlc-integration-test validate-version-tolerance",

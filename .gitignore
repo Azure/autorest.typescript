@@ -11,6 +11,7 @@ test.json
 .tmp
 **/coverage
 .tgz
+**/*.tgz
 **/.rush
 **/*.log
 common/temp/**
