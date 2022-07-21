@@ -182,7 +182,7 @@ export function getParameterAssignment(exampleValue: ExampleValue, isRLCSample: 
       retValue = `${JSON.stringify(rawValue)}`;
       break;
     case SchemaType.ByteArray:
-      retValue = `Buffer.from("${rawValue}")`;
+      retValue = isRLCSample ? `"${rawValue}"` : `Buffer.from("${rawValue}")`;
       break;
     default:
       break;
