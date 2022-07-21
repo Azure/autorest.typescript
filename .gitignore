@@ -10,6 +10,7 @@ test.json
 **/cadl-output
 **/test-browser
 .tmp
+**/.tmp
 **/coverage
 .tgz
 **/*.tgz
