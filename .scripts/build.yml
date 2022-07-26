@@ -7,6 +7,6 @@ steps:
       npm install -g @microsoft/rush  
     displayName: "Install Rush"
   - script: |
-      rush update
-      rush build
+      node common/scripts/install-run-rush.js update
+      node common/scripts/install-run-rush.js build
     displayName: "Build"

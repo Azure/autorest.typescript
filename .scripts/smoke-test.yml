@@ -8,11 +8,14 @@ jobs:
       - template: globals.yml
     steps:
       - template: build.yml
-      - script: cd $(Build.SourcesDirectory)/packages/autorest && npm run clone:specs
+      - script: npm run clone:specs
+        workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
         displayName: "Clone Specs Repository"
 
-      - script: cd $(Build.SourcesDirectory)/packages/autorest && npm run smoke-test -- --tag=${{ parameters.tag }}
+      - script: npm run smoke-test -- --tag=${{ parameters.tag }}
+        workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
         displayName: "Run Smoke Tests"
 
-      - script: cd $(Build.SourcesDirectory)/packages/autorest && npm run check:tree
+      - script: npm run check:tree
+        workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
         displayName: "Check git Tree"

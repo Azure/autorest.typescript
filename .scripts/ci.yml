@@ -78,9 +78,11 @@ stages:
           vmImage: $[coalesce(variables['OSVmImage'], '')]
         steps:
           - template: build.yml
-          - script: cd $(Build.SourcesDirectory)/packages/autorest && npm run generate-swaggers
+          - script: npm run generate-swaggers
+            workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
             displayName: "Generate HLC Test Clients"
-          - script: cd $(Build.SourcesDirectory)/packages/autorest && npm run check:tree
+          - script: npm run check:tree
+            workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
             displayName: "Check git Tree"
 
       - job: RLC_Generation
@@ -110,13 +112,17 @@ stages:
           vmImage: $[coalesce(variables['OSVmImage'], '')]
         steps:
           - template: build.yml
-          - script: cd $(Build.SourcesDirectory)/packages/autorest && npm run rlc-generate-swaggers
+          - script: npm run rlc-generate-swaggers
+            workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
             displayName: "Generate RLC Test Clients"
-          - script: cd $(Build.SourcesDirectory)/packages/autorest && npm run generate-version-tolerance
+          - script: npm run generate-version-tolerance
+            workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
             displayName: "Generate RLC version tolerance initial version"
-          - script: cd $(Build.SourcesDirectory)/packages/autorest && npm run generate-version-tolerance:tests
+          - script: npm run generate-version-tolerance:tests
+            workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
             displayName: "Generate RLC version tolerance update version"
-          - script: cd $(Build.SourcesDirectory)/packages/autorest && npm run check:tree
+          - script: npm run check:tree
+            workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
             displayName: "Check git Tree"
       - job: Test
         dependsOn: Build
@@ -149,18 +155,23 @@ stages:
             inputs:
               versionSpec: $(NodeTestVersion)
             displayName: "Use Node $(NodeTestVersion)"
-          - script: cd $(Build.SourcesDirectory)/packages/autorest && npm run start-test-server:v2 &
+          - script: npm run start-test-server:v2 &
+            workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
             displayName: "Start Test Server"
-          - script: cd $(Build.SourcesDirectory)/packages/autorest && npm run test:node:alone
+          - script: npm run test:node:alone
+            workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
             displayName: "Run Node Tests"
-          - script: cd $(Build.SourcesDirectory)/packages/autorest && npm run test:browser:alone
+          - script: npm run test:browser:alone
+            workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
             displayName: "Run Browser Tests"
-          - script: cd $(Build.SourcesDirectory)/packages/autorest && npm run stop-test-server
+          - script: npm run stop-test-server
+            workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
             displayName: "Stop Test Server"
-          - script: cd $(Build.SourcesDirectory)/packages/autorest && npm run check:tree
+          - script: npm run check:tree
+            workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
             displayName: "Check git Tree"
           - script: |
-              cd $(Build.SourcesDirectory)/packages/autorest && npm run coverage -- publish --repo=$(Build.Repository.Name) --ref=$(Build.SourceBranch) --githubToken=$(github-token) --azStorageAccount=$(storage-coverage-user) --azStorageAccessKey=$(storage-coverage-pass) --coverageDirectory=$(AUTOREST_TESTSERVER_COVERAGE_DIRECTORY)
+              npm run coverage -- publish --repo=$(Build.Repository.Name) --ref=$(Build.SourceBranch) --githubToken=$(github-token) --azStorageAccount=$(storage-coverage-user) --azStorageAccessKey=$(storage-coverage-pass) --coverageDirectory=$(AUTOREST_TESTSERVER_COVERAGE_DIRECTORY)
             workingDirectory: node_modules/@microsoft.azure/autorest.testserver
             displayName: "Upload Coverage Report"
             condition: and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'))

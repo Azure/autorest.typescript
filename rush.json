@@ -323,7 +323,7 @@
       //
       {
         "packageName": "@autorest/typescript",
-        "projectFolder": "packages/autorest"
+        "projectFolder": "packages/autorest.typescript"
       },
       {
         "packageName": "@azure-tools/rlc-codegen",
