@@ -36,8 +36,11 @@ stages:
             name: SetDevVersion
           - script: |
               export TAR_NAME=$(npm pack -q)
+              echo $TAR_NAME
               echo "##vso[task.setvariable variable=TAR_NAME;isOutput=true;]$TAR_NAME"
             name: PackArtifacts
+            workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
+
           - task: CopyFiles@2
             inputs:
               contents: "*.tgz"
