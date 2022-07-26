@@ -643,8 +643,8 @@ export const AzurePowerShellScript: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AzurePowerShellScript",
-    uberParent: "AzureResourceBase",
-    polymorphicDiscriminator: AzureResourceBase.type.polymorphicDiscriminator,
+    uberParent: "DeploymentScript",
+    polymorphicDiscriminator: DeploymentScript.type.polymorphicDiscriminator,
     modelProperties: {
       ...DeploymentScript.type.modelProperties,
       containerSettings: {
@@ -770,8 +770,8 @@ export const AzureCliScript: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AzureCliScript",
-    uberParent: "AzureResourceBase",
-    polymorphicDiscriminator: AzureResourceBase.type.polymorphicDiscriminator,
+    uberParent: "DeploymentScript",
+    polymorphicDiscriminator: DeploymentScript.type.polymorphicDiscriminator,
     modelProperties: {
       ...DeploymentScript.type.modelProperties,
       containerSettings: {
