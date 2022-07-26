@@ -1,0 +1,2 @@
+emitters:
+  '@cadl-lang/ts-rlc': true

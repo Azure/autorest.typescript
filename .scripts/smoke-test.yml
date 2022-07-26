@@ -9,10 +9,13 @@ jobs:
     steps:
       - template: build.yml
       - script: npm run clone:specs
+        workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
         displayName: "Clone Specs Repository"
 
       - script: npm run smoke-test -- --tag=${{ parameters.tag }}
+        workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
         displayName: "Run Smoke Tests"
 
       - script: npm run check:tree
+        workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
         displayName: "Check git Tree"
