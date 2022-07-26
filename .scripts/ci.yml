@@ -46,7 +46,6 @@ stages:
               contents: "*.tgz"
               targetFolder: $(Build.ArtifactStagingDirectory)
               flattenFolders: true
-            workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript  
             displayName: "Copy packages"
 
           - task: PublishPipelineArtifact@1
@@ -55,7 +54,6 @@ stages:
             inputs:
               artifactName: packages
               path: $(Build.ArtifactStagingDirectory)
-            workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
       - job: HLC_Generation
         dependsOn: Build
         variables:
