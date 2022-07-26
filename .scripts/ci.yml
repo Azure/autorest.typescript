@@ -28,19 +28,24 @@ stages:
               export MAIN_VERSION=$(node -p -e "require('./package.json').version")
               echo "##vso[task.setvariable variable=MAIN_VERSION;isOutput=true;]MAIN_VERSION"
             name: SetMainVersion
+            workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
           - script: |
               export DEV_VERSION=$(node -p -e "require('./package.json').version.replace('beta', 'alpha')").$(Build.BuildNumber)
               echo "##vso[task.setvariable variable=DEV_VERSION;isOutput=true;]$DEV_VERSION"
               npm version --no-git-tag-version $DEV_VERSION
             condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['SetDevVersion'], ''), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
             name: SetDevVersion
+            workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
           - script: |
               export TAR_NAME=$(npm pack -q)
+              echo $TAR_NAME
               echo "##vso[task.setvariable variable=TAR_NAME;isOutput=true;]$TAR_NAME"
             name: PackArtifacts
+            workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
+
           - task: CopyFiles@2
             inputs:
-              contents: "*.tgz"
+              contents: "$(Build.SourcesDirectory)/packages/autorest.typescript/*.tgz"
               targetFolder: $(Build.ArtifactStagingDirectory)
               flattenFolders: true
             displayName: "Copy packages"
@@ -172,7 +177,7 @@ stages:
             displayName: "Check git Tree"
           - script: |
               npm run coverage -- publish --repo=$(Build.Repository.Name) --ref=$(Build.SourceBranch) --githubToken=$(github-token) --azStorageAccount=$(storage-coverage-user) --azStorageAccessKey=$(storage-coverage-pass) --coverageDirectory=$(AUTOREST_TESTSERVER_COVERAGE_DIRECTORY)
-            workingDirectory: node_modules/@microsoft.azure/autorest.testserver
+            workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript/node_modules/@microsoft.azure/autorest.testserver
             displayName: "Upload Coverage Report"
             condition: and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'))
 
