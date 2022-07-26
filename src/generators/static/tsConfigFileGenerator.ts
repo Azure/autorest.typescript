@@ -1,8 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import { CodeModel } from "@autorest/codemodel";
 import { Project } from "ts-morph";
 import { getAutorestOptions } from "../../autorestSession";
+import { hasRLCSamplesGenerated } from "../samples/rlcSampleGenerator";
 
 const highLevelTsConfig: Record<string, any> = {
   compilerOptions: {
@@ -81,9 +83,11 @@ export function generateTsConfig(project: Project) {
     highLevelTsConfig.include.push("samples-dev/**/*.ts");
     highLevelTsConfig.compilerOptions["paths"] = {};
     highLevelTsConfig.compilerOptions["paths"][clientPackageName] = ["./src/index"];
-    restLevelTsConfig.include.push("samples-dev/**/*.ts");
-    restLevelTsConfig.compilerOptions["paths"] = {};
-    restLevelTsConfig.compilerOptions["paths"][clientPackageName] = ["./src/index"];
+    if (hasRLCSamplesGenerated) {
+      restLevelTsConfig.include.push("samples-dev/**/*.ts");
+      restLevelTsConfig.compilerOptions["paths"] = {};
+      restLevelTsConfig.compilerOptions["paths"][clientPackageName] = ["./src/index"];
+    }
   }
 
   const tsConfigContents = restLevelClient

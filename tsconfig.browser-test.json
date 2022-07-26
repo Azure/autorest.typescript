@@ -28,6 +28,15 @@
       ],
       "@msinternal/lro-rest": [
         "./test/rlcIntegration/generated/lroRest/src/index"
+      ],
+      "@msinternal/custom-url-rest": [
+        "./test/rlcIntegration/generated/customUrlRest/src/index"
+      ],
+      "@msinternal/dpg-customization-rest": [
+        "./test/rlcIntegration/generated/dpgCustomization/src/index"
+      ],
+      "@msinternal/header-rest": [
+        "./test/rlcIntegration/generated/headerRest/src/index"
       ]
     }
   },

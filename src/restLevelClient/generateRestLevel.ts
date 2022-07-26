@@ -29,7 +29,7 @@ import { generateReadmeFile } from "../generators/static/readmeFileGenerator";
 import * as path from "path";
 import * as fsextra from "fs-extra";
 import { generateSampleEnv } from "../generators/samples/sampleEnvGenerator";
-import { generateRLCSamples } from "../generators/samples/rlcSampleGenerator";
+import { generateRLCSamples, hasRLCSamplesGenerated } from "../generators/samples/rlcSampleGenerator";
 import { generateIsUnexpectedHelper } from "./generateIsUnexpectedHelper";
 
 /**
@@ -42,7 +42,8 @@ export async function generateRestLevelClient() {
     outputPath,
     srcPath,
     generateSample,
-    generateTest
+    generateTest,
+    generateMetadata
   } = getAutorestOptions();
 
   const project = new Project({
@@ -62,9 +63,7 @@ export async function generateRestLevelClient() {
 
   performCodeModelMutations(model);
   generateReadmeFile(model, project);
-  generatePackageJson(project);
   generateLicenseFile(project);
-  generateTsConfig(project);
   generateApiExtractorConfig(project);
   generateRollupConfig(project);
   generateEsLintConfig(project);
@@ -82,14 +81,16 @@ export async function generateRestLevelClient() {
   generateClient(model, project);
   generateIndexFile(project);
   generateIsUnexpectedHelper(project);
-
   generateTopLevelIndexFile(model, project);
-  if (generateSample || generateTest) {
-    generateSampleEnv(project);
-  }
-  if (generateSample) {
+  if (generateSample && generateMetadata) {
     generateRLCSamples(model, project);
   }
+  if (((generateSample && hasRLCSamplesGenerated) || generateTest) && generateMetadata) {
+    generateSampleEnv(project);
+  }
+
+  generatePackageJson(project);
+  generateTsConfig(project);
 
   // Save the source files to the virtual filesystem
   project.saveSync();

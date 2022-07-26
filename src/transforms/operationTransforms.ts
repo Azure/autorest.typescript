@@ -40,6 +40,7 @@ import { KnownMediaType } from "@azure-tools/codegen";
 import { headersToSchema } from "../utils/headersToSchema";
 import { extractPaginationDetails } from "../utils/extractPaginationDetails";
 import { isEmpty, isEqual } from "lodash";
+import { getAutorestOptions } from "../autorestSession";
 
 /**
  * SWAGGER doesn't require to define all possible response codes
@@ -190,9 +191,9 @@ export function getSpecType(responseSchema: Schema, expand = false): SpecType {
       typeName = getSpecType(constantSchema.valueType).name;
       constantProps = expand
         ? {
-            isConstant: true,
-            defaultValue: constantSchema.value.value
-          }
+          isConstant: true,
+          defaultValue: constantSchema.value.value
+        }
         : undefined;
       break;
     case SchemaType.String:
@@ -307,12 +308,13 @@ export function transformOperationResponse(
       serializedName: "parsedResponse"
     };
   }
+  const { useCoreV2 } = getAutorestOptions();
 
   const types: OperationResponseTypes = {
     bodyType: isSchemaResponse(response)
-      ? getTypeForSchema(response.schema)
+      ? getTypeForSchema(response.schema, false, useCoreV2)
       : undefined,
-    headersType: headersSchema ? getTypeForSchema(headersSchema) : undefined,
+    headersType: headersSchema ? getTypeForSchema(headersSchema, false, useCoreV2) : undefined,
     pagingValueType: isError
       ? undefined
       : getPagingItemType(response, paginationItemName)
@@ -565,13 +567,13 @@ function getGroupedParameters(
   return {
     ...(hasFormDataParameters
       ? {
-          formDataParameters: operationParams.filter(
-            p => p.location === ParameterLocation.Body
-          )
-        }
+        formDataParameters: operationParams.filter(
+          p => p.location === ParameterLocation.Body
+        )
+      }
       : {
-          requestBody
-        }),
+        requestBody
+      }),
     queryParameters: operationParams.filter(
       p => p.location === ParameterLocation.Query
     ),

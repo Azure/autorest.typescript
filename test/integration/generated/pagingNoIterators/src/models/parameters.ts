@@ -100,6 +100,18 @@ export const filter: OperationQueryParameter = {
   }
 };
 
+export const maxpagesize: OperationQueryParameter = {
+  parameterPath: ["options", "maxpagesize"],
+  mapper: {
+    defaultValue: "5",
+    isConstant: true,
+    serializedName: "$maxpagesize",
+    type: {
+      name: "String"
+    }
+  }
+};
+
 export const maxresults1: OperationParameter = {
   parameterPath: [
     "options",
@@ -218,6 +230,18 @@ export const timeout3: OperationParameter = {
     serializedName: "timeout",
     type: {
       name: "Number"
+    }
+  }
+};
+
+export const apiVersion2: OperationQueryParameter = {
+  parameterPath: "apiVersion",
+  mapper: {
+    defaultValue: "1.0.0",
+    isConstant: true,
+    serializedName: "api-version",
+    type: {
+      name: "String"
     }
   }
 };

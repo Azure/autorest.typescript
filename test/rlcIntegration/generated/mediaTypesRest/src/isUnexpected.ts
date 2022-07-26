@@ -12,6 +12,7 @@ const responseMap: Record<string, string[]> = {
   "POST /mediatypes/contentTypeWithEncoding": ["200"],
   "POST /mediatypes/binaryBodyTwoContentTypes": ["200"],
   "POST /mediatypes/binaryBodyThreeContentTypes": ["200"],
+  "POST /mediatypes/bodyThreeTypes": ["200"],
   "POST /mediatypes/textAndJson": ["200"]
 };
 

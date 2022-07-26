@@ -30,7 +30,3 @@ copyFiles("./src/generators/samples", [
   "./dist/src/generators/samples",
   "./dist"
 ]);
-copyFiles("./src/restLevelClient/samples", [
-  "./dist/src/restLevelClient/samples",
-  "./dist"
-]);

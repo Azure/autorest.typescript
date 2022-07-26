@@ -16,6 +16,7 @@ import {
   PagingGetMultiplePagesOptionalParams,
   PagingGetWithQueryParamsOptionalParams,
   PagingDuplicateParamsOptionalParams,
+  PagingPageWithMaxPageSizeOptionalParams,
   PagingGetOdataMultiplePagesOptionalParams,
   PagingGetMultiplePagesWithOffsetOptions,
   PagingGetMultiplePagesWithOffsetOptionalParams,
@@ -30,6 +31,8 @@ import {
   PagingNextFragmentWithGroupingOptionalParams,
   PagingGetMultiplePagesFragmentWithGroupingNextLinkOptionalParams,
   PagingGetMultiplePagesLROOptionalParams,
+  PagingAppendApiVersionOptionalParams,
+  PagingReplaceApiVersionOptionalParams,
   PagingGetPagingModelWithItemNameWithXMSClientNameOptionalParams
 } from "../models";
 
@@ -90,6 +93,13 @@ export interface Paging {
    */
   listDuplicateParams(
     options?: PagingDuplicateParamsOptionalParams
+  ): PagedAsyncIterableIterator<Product>;
+  /**
+   * Paging with max page size. We don't want to
+   * @param options The options parameters.
+   */
+  listPageWithMaxPageSize(
+    options?: PagingPageWithMaxPageSizeOptionalParams
   ): PagedAsyncIterableIterator<Product>;
   /**
    * A paging operation that includes a nextLink in odata format that has 10 pages
@@ -170,6 +180,22 @@ export interface Paging {
    */
   beginListMultiplePagesLROAndWait(
     options?: PagingGetMultiplePagesLROOptionalParams
+  ): PagedAsyncIterableIterator<Product>;
+  /**
+   * A paging operation with api version. When calling the next link, you want to append your client's
+   * api version to the next link
+   * @param options The options parameters.
+   */
+  listAppendApiVersion(
+    options?: PagingAppendApiVersionOptionalParams
+  ): PagedAsyncIterableIterator<Product>;
+  /**
+   * A paging operation with api version. When calling the next link, you want to reformat it and
+   * override the returned api version with your client's api version
+   * @param options The options parameters.
+   */
+  listReplaceApiVersion(
+    options?: PagingReplaceApiVersionOptionalParams
   ): PagedAsyncIterableIterator<Product>;
   /**
    * A paging operation that doesn't return a full URL, just a fragment
