@@ -39,7 +39,7 @@ stages:
                       displayName: "Install Node.js"
                     - script: |
                         cd package
-                        npx publish-release --token $(azuresdk-github-pat) --repo autorest.typescript --owner azure --name v$(MAIN_VERSION) --tag v$(MAIN_VERSION) --notes='release  build' --prerelease --editRelease false --assets $(Pipeline.Workspace)/packages/autorest.typescript/packages/$(TAR_NAME) --target_commitish $(Build.SourceBranchName)
+                        npx publish-release --token $(azuresdk-github-pat) --repo autorest.typescript --owner azure --name v$(MAIN_VERSION) --tag v$(MAIN_VERSION) --notes='release  build' --prerelease --editRelease false --assets $(Pipeline.Workspace)/packages/$(TAR_NAME) --target_commitish $(Build.SourceBranchName)
                       displayName: "Publish to GitHub"
           - deployment: PublishToNpm
             variables:
@@ -59,7 +59,7 @@ stages:
                         versionSpec: "16.x"
                       displayName: "Install Node.js"
                     - script: |
-                        cd $(Pipeline.Workspace)/packages/autorest.typescript/packages
+                        cd $(Pipeline.Workspace)/packages
                         npm config set //registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)
                         npm publish $(TAR_NAME) --access public --tag latest
                         npm config delete //registry.npmjs.org/:_authToken
@@ -87,11 +87,11 @@ stages:
                     versionSpec: "16.x"
                   displayName: "Install Node.js"
                 - script: |
-                    tar zxvf $(Pipeline.Workspace)/packages/autorest.typescript/packages/$(TAR_NAME)
+                    tar zxvf $(Pipeline.Workspace)/packages/$(TAR_NAME)
                 - script: |
                     cd package
                     tree .
-                    npx publish-release --token $(azuresdk-github-pat) --repo autorest.typescript --owner azure --name v$(DEV_VERSION) --tag v$(DEV_VERSION) --notes='prerelease build' --prerelease --editRelease false --assets $(Pipeline.Workspace)/packages/autorest.typescript/packages/$(TAR_NAME) --target_commitish $(Build.SourceBranchName)
+                    npx publish-release --token $(azuresdk-github-pat) --repo autorest.typescript --owner azure --name v$(DEV_VERSION) --tag v$(DEV_VERSION) --notes='prerelease build' --prerelease --editRelease false --assets $(Pipeline.Workspace)/packages/$(TAR_NAME) --target_commitish $(Build.SourceBranchName)
                   displayName: "Publish to GitHub"
       - deployment: PublishToNpm
         condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['SetDevVersion'], ''), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
@@ -111,7 +111,7 @@ stages:
                     versionSpec: "16.x"
                   displayName: "Install Node.js"
                 - script: |
-                    cd $(Pipeline.Workspace)/packages/autorest.typescript/packages
+                    cd $(Pipeline.Workspace)/packages
                     npm config set //registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)
                     npm publish $(TAR_NAME) --access public --tag dev
                     npm config delete //registry.npmjs.org/:_authToken
