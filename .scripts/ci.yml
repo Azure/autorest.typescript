@@ -42,9 +42,8 @@ stages:
             workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
 
           - task: CopyFiles@2
-            workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
             inputs:
-              contents: "*.tgz"
+              contents: "$(Build.SourcesDirectory)/packages/autorest.typescript/*.tgz"
               targetFolder: $(Build.ArtifactStagingDirectory)
               flattenFolders: true
             displayName: "Copy packages"
