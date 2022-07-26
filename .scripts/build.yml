@@ -4,6 +4,9 @@ steps:
       versionSpec: "16.x"
     displayName: "Use Node 16"
   - script: |
-      npm install
-      npm run build
+      npm install -g @microsoft/rush  
+    displayName: "Install Rush"
+  - script: |
+      node common/scripts/install-run-rush.js update
+      node common/scripts/install-run-rush.js build
     displayName: "Build"

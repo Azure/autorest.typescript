@@ -1,0 +1,22 @@
+{
+  "name": "@azure-tools/rlc-codegen",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "./types/index.d.ts",
+  "scripts": {
+    "build": "tsc -p .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ts-morph": "^15.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "prettier": "~2.7.1"
+  }
+}

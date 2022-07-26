@@ -79,8 +79,10 @@ stages:
         steps:
           - template: build.yml
           - script: npm run generate-swaggers
+            workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
             displayName: "Generate HLC Test Clients"
           - script: npm run check:tree
+            workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
             displayName: "Check git Tree"
 
       - job: RLC_Generation
@@ -111,12 +113,16 @@ stages:
         steps:
           - template: build.yml
           - script: npm run rlc-generate-swaggers
+            workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
             displayName: "Generate RLC Test Clients"
           - script: npm run generate-version-tolerance
+            workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
             displayName: "Generate RLC version tolerance initial version"
           - script: npm run generate-version-tolerance:tests
+            workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
             displayName: "Generate RLC version tolerance update version"
           - script: npm run check:tree
+            workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
             displayName: "Check git Tree"
       - job: Test
         dependsOn: Build
@@ -150,14 +156,19 @@ stages:
               versionSpec: $(NodeTestVersion)
             displayName: "Use Node $(NodeTestVersion)"
           - script: npm run start-test-server:v2 &
+            workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
             displayName: "Start Test Server"
           - script: npm run test:node:alone
+            workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
             displayName: "Run Node Tests"
           - script: npm run test:browser:alone
+            workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
             displayName: "Run Browser Tests"
           - script: npm run stop-test-server
+            workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
             displayName: "Stop Test Server"
           - script: npm run check:tree
+            workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
             displayName: "Check git Tree"
           - script: |
               npm run coverage -- publish --repo=$(Build.Repository.Name) --ref=$(Build.SourceBranch) --githubToken=$(github-token) --azStorageAccount=$(storage-coverage-user) --azStorageAccessKey=$(storage-coverage-pass) --coverageDirectory=$(AUTOREST_TESTSERVER_COVERAGE_DIRECTORY)
