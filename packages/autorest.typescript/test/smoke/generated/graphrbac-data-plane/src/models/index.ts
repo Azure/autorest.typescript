@@ -27,6 +27,8 @@ export interface SignInName {
 
 /** Represents an Azure Active Directory object. */
 export interface DirectoryObject {
+  /** Polymorphic discriminator, which specifies the different types this object can be */
+  objectType: "User" | "Application" | "Group" | "ServicePrincipal";
   /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
   /**
@@ -34,8 +36,6 @@ export interface DirectoryObject {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly objectId?: string;
-  /** The object type. */
-  objectType: string;
   /**
    * The time at which the directory object was deleted.
    * NOTE: This property will not be serialized. It can only be populated by the server.

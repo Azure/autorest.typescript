@@ -283,7 +283,7 @@ export interface DirectoryObject {
     [property: string]: any;
     readonly deletionTimestamp?: Date;
     readonly objectId?: string;
-    objectType: string;
+    objectType: "User" | "Application" | "Group" | "ServicePrincipal";
 }
 
 // @public
