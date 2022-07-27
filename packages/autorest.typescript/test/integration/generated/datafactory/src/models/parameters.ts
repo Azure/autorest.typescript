@@ -339,7 +339,7 @@ export const parameters: OperationParameter = {
     serializedName: "parameters",
     type: {
       name: "Dictionary",
-      value: { type: { name: "Dictionary", value: { type: { name: "any" } } } }
+      value: { type: { name: "any" } }
     }
   }
 };

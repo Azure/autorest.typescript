@@ -1210,8 +1210,9 @@ export const MediaGraphTopologyGetRequest: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MediaGraphTopologyGetRequest",
-    uberParent: "MethodRequest",
-    polymorphicDiscriminator: MethodRequest.type.polymorphicDiscriminator,
+    uberParent: "ItemNonSetRequestBase",
+    polymorphicDiscriminator:
+      ItemNonSetRequestBase.type.polymorphicDiscriminator,
     modelProperties: {
       ...ItemNonSetRequestBase.type.modelProperties
     }
@@ -1223,8 +1224,9 @@ export const MediaGraphTopologyDeleteRequest: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MediaGraphTopologyDeleteRequest",
-    uberParent: "MethodRequest",
-    polymorphicDiscriminator: MethodRequest.type.polymorphicDiscriminator,
+    uberParent: "ItemNonSetRequestBase",
+    polymorphicDiscriminator:
+      ItemNonSetRequestBase.type.polymorphicDiscriminator,
     modelProperties: {
       ...ItemNonSetRequestBase.type.modelProperties
     }
@@ -1236,8 +1238,9 @@ export const MediaGraphInstanceGetRequest: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MediaGraphInstanceGetRequest",
-    uberParent: "MethodRequest",
-    polymorphicDiscriminator: MethodRequest.type.polymorphicDiscriminator,
+    uberParent: "ItemNonSetRequestBase",
+    polymorphicDiscriminator:
+      ItemNonSetRequestBase.type.polymorphicDiscriminator,
     modelProperties: {
       ...ItemNonSetRequestBase.type.modelProperties
     }
@@ -1249,8 +1252,9 @@ export const MediaGraphInstanceActivateRequest: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MediaGraphInstanceActivateRequest",
-    uberParent: "MethodRequest",
-    polymorphicDiscriminator: MethodRequest.type.polymorphicDiscriminator,
+    uberParent: "ItemNonSetRequestBase",
+    polymorphicDiscriminator:
+      ItemNonSetRequestBase.type.polymorphicDiscriminator,
     modelProperties: {
       ...ItemNonSetRequestBase.type.modelProperties
     }
@@ -1262,8 +1266,9 @@ export const MediaGraphInstanceDeActivateRequest: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MediaGraphInstanceDeActivateRequest",
-    uberParent: "MethodRequest",
-    polymorphicDiscriminator: MethodRequest.type.polymorphicDiscriminator,
+    uberParent: "ItemNonSetRequestBase",
+    polymorphicDiscriminator:
+      ItemNonSetRequestBase.type.polymorphicDiscriminator,
     modelProperties: {
       ...ItemNonSetRequestBase.type.modelProperties
     }
@@ -1275,8 +1280,9 @@ export const MediaGraphInstanceDeleteRequest: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MediaGraphInstanceDeleteRequest",
-    uberParent: "MethodRequest",
-    polymorphicDiscriminator: MethodRequest.type.polymorphicDiscriminator,
+    uberParent: "ItemNonSetRequestBase",
+    polymorphicDiscriminator:
+      ItemNonSetRequestBase.type.polymorphicDiscriminator,
     modelProperties: {
       ...ItemNonSetRequestBase.type.modelProperties
     }
@@ -1288,8 +1294,9 @@ export const MediaGraphCognitiveServicesVisionExtension: coreClient.CompositeMap
   type: {
     name: "Composite",
     className: "MediaGraphCognitiveServicesVisionExtension",
-    uberParent: "MediaGraphProcessor",
-    polymorphicDiscriminator: MediaGraphProcessor.type.polymorphicDiscriminator,
+    uberParent: "MediaGraphExtensionProcessorBase",
+    polymorphicDiscriminator:
+      MediaGraphExtensionProcessorBase.type.polymorphicDiscriminator,
     modelProperties: {
       ...MediaGraphExtensionProcessorBase.type.modelProperties
     }
@@ -1301,8 +1308,9 @@ export const MediaGraphGrpcExtension: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MediaGraphGrpcExtension",
-    uberParent: "MediaGraphProcessor",
-    polymorphicDiscriminator: MediaGraphProcessor.type.polymorphicDiscriminator,
+    uberParent: "MediaGraphExtensionProcessorBase",
+    polymorphicDiscriminator:
+      MediaGraphExtensionProcessorBase.type.polymorphicDiscriminator,
     modelProperties: {
       ...MediaGraphExtensionProcessorBase.type.modelProperties,
       dataTransfer: {
@@ -1327,8 +1335,9 @@ export const MediaGraphHttpExtension: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MediaGraphHttpExtension",
-    uberParent: "MediaGraphProcessor",
-    polymorphicDiscriminator: MediaGraphProcessor.type.polymorphicDiscriminator,
+    uberParent: "MediaGraphExtensionProcessorBase",
+    polymorphicDiscriminator:
+      MediaGraphExtensionProcessorBase.type.polymorphicDiscriminator,
     modelProperties: {
       ...MediaGraphExtensionProcessorBase.type.modelProperties
     }
@@ -1368,13 +1377,13 @@ export let discriminators = {
   "MediaGraphImageFormat.#Microsoft.Media.MediaGraphImageFormatJpeg": MediaGraphImageFormatJpeg,
   "MediaGraphImageFormat.#Microsoft.Media.MediaGraphImageFormatBmp": MediaGraphImageFormatBmp,
   "MediaGraphImageFormat.#Microsoft.Media.MediaGraphImageFormatPng": MediaGraphImageFormatPng,
-  "MethodRequest.GraphTopologyGet": MediaGraphTopologyGetRequest,
-  "MethodRequest.GraphTopologyDelete": MediaGraphTopologyDeleteRequest,
-  "MethodRequest.GraphInstanceGet": MediaGraphInstanceGetRequest,
-  "MethodRequest.GraphInstanceActivate": MediaGraphInstanceActivateRequest,
-  "MethodRequest.GraphInstanceDeactivate": MediaGraphInstanceDeActivateRequest,
-  "MethodRequest.GraphInstanceDelete": MediaGraphInstanceDeleteRequest,
-  "MediaGraphProcessor.#Microsoft.Media.MediaGraphCognitiveServicesVisionExtension": MediaGraphCognitiveServicesVisionExtension,
-  "MediaGraphProcessor.#Microsoft.Media.MediaGraphGrpcExtension": MediaGraphGrpcExtension,
-  "MediaGraphProcessor.#Microsoft.Media.MediaGraphHttpExtension": MediaGraphHttpExtension
+  "ItemNonSetRequestBase.GraphTopologyGet": MediaGraphTopologyGetRequest,
+  "ItemNonSetRequestBase.GraphTopologyDelete": MediaGraphTopologyDeleteRequest,
+  "ItemNonSetRequestBase.GraphInstanceGet": MediaGraphInstanceGetRequest,
+  "ItemNonSetRequestBase.GraphInstanceActivate": MediaGraphInstanceActivateRequest,
+  "ItemNonSetRequestBase.GraphInstanceDeactivate": MediaGraphInstanceDeActivateRequest,
+  "ItemNonSetRequestBase.GraphInstanceDelete": MediaGraphInstanceDeleteRequest,
+  "MediaGraphExtensionProcessorBase.#Microsoft.Media.MediaGraphCognitiveServicesVisionExtension": MediaGraphCognitiveServicesVisionExtension,
+  "MediaGraphExtensionProcessorBase.#Microsoft.Media.MediaGraphGrpcExtension": MediaGraphGrpcExtension,
+  "MediaGraphExtensionProcessorBase.#Microsoft.Media.MediaGraphHttpExtension": MediaGraphHttpExtension
 };

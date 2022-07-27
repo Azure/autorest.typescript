@@ -18,6 +18,7 @@ export interface AzureCliScript extends DeploymentScript {
     containerSettings?: ContainerConfiguration;
     environmentVariables?: EnvironmentVariable[];
     forceUpdateTag?: string;
+    kind: "AzureCLI";
     readonly outputs?: {
         [propertyName: string]: Record<string, unknown>;
     };
@@ -44,6 +45,7 @@ export interface AzurePowerShellScript extends DeploymentScript {
     containerSettings?: ContainerConfiguration;
     environmentVariables?: EnvironmentVariable[];
     forceUpdateTag?: string;
+    kind: "AzurePowerShell";
     readonly outputs?: {
         [propertyName: string]: Record<string, unknown>;
     };

@@ -268,6 +268,9 @@ function transformPolymorphicObject(
     uberParent = uberParentSchema as ObjectSchema;
   }
 
+  if (schema !== uberParent && objectDetails.schema.parents?.immediate[0]) {
+    uberParent = objectDetails.schema.parents?.immediate[0] as ObjectSchema; 
+  }
   const uberParentName = getLanguageMetadata(uberParent.language).name;
   const unionName = `${normalizeName(uberParentName, NameType.Interface)}Union`;
 

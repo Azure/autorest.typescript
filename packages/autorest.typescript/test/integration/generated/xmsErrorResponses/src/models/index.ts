@@ -48,19 +48,27 @@ export interface PetActionError extends PetAction {
 }
 
 export interface LinkNotFound extends NotFoundErrorBase {
+  /** Polymorphic discriminator, which specifies the different types this object can be */
+  whatNotFound: "InvalidResourceLink";
   whatSubAddress?: string;
 }
 
 export interface AnimalNotFound extends NotFoundErrorBase {
+  /** Polymorphic discriminator, which specifies the different types this object can be */
+  whatNotFound: "AnimalNotFound";
   name?: string;
 }
 
 export interface PetSadError extends PetActionError {
+  /** Polymorphic discriminator, which specifies the different types this object can be */
+  errorType: "PetSadError" | "PetHungryOrThirstyError";
   /** why is the pet sad */
   reason?: string;
 }
 
 export interface PetHungryOrThirstyError extends PetSadError {
+  /** Polymorphic discriminator, which specifies the different types this object can be */
+  errorType: "PetHungryOrThirstyError";
   /** is the pet hungry or thirsty or both */
   hungryOrThirsty?: string;
 }

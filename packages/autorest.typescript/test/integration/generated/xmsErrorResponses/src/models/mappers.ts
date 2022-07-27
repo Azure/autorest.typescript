@@ -133,8 +133,8 @@ export const LinkNotFound: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "LinkNotFound",
-    uberParent: "BaseError",
-    polymorphicDiscriminator: BaseError.type.polymorphicDiscriminator,
+    uberParent: "NotFoundErrorBase",
+    polymorphicDiscriminator: NotFoundErrorBase.type.polymorphicDiscriminator,
     modelProperties: {
       ...NotFoundErrorBase.type.modelProperties,
       whatSubAddress: {
@@ -152,8 +152,8 @@ export const AnimalNotFound: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AnimalNotFound",
-    uberParent: "BaseError",
-    polymorphicDiscriminator: BaseError.type.polymorphicDiscriminator,
+    uberParent: "NotFoundErrorBase",
+    polymorphicDiscriminator: NotFoundErrorBase.type.polymorphicDiscriminator,
     modelProperties: {
       ...NotFoundErrorBase.type.modelProperties,
       name: {
@@ -171,7 +171,7 @@ export const PetSadError: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PetSadError",
-    uberParent: "PetAction",
+    uberParent: "PetActionError",
     polymorphicDiscriminator: {
       serializedName: "errorType",
       clientName: "errorType"
@@ -193,8 +193,8 @@ export const PetHungryOrThirstyError: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PetHungryOrThirstyError",
-    uberParent: "PetAction",
-    polymorphicDiscriminator: PetAction.type.polymorphicDiscriminator,
+    uberParent: "PetSadError",
+    polymorphicDiscriminator: PetSadError.type.polymorphicDiscriminator,
     modelProperties: {
       ...PetSadError.type.modelProperties,
       hungryOrThirsty: {
@@ -210,8 +210,8 @@ export const PetHungryOrThirstyError: coreClient.CompositeMapper = {
 export let discriminators = {
   "BaseError.NotFoundErrorBase": NotFoundErrorBase,
   "PetAction.PetActionError": PetActionError,
-  "BaseError.InvalidResourceLink": LinkNotFound,
-  "BaseError.AnimalNotFound": AnimalNotFound,
-  "PetAction.PetSadError": PetSadError,
-  "PetAction.PetHungryOrThirstyError": PetHungryOrThirstyError
+  "NotFoundErrorBase.InvalidResourceLink": LinkNotFound,
+  "NotFoundErrorBase.AnimalNotFound": AnimalNotFound,
+  "PetActionError.PetSadError": PetSadError,
+  "PetSadError.PetHungryOrThirstyError": PetHungryOrThirstyError
 };

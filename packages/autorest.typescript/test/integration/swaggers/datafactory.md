@@ -31,6 +31,7 @@ openapi-type: arm
 tag: package-2018-06
 modelerfour:
   lenient-model-deduplication: true
+  treat-type-object-as-anything: true
 ```
 
 ### Tag: package-2018-06

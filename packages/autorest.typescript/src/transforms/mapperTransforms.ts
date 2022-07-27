@@ -345,10 +345,13 @@ function transformObjectMapper(pipelineValue: PipelineValue) {
 
   // If any of the parents is present in uberParents we know it
   // is its uber parent
-  const uberParent = getMapperClassName(
+  let uberParent = getMapperClassName(
     parents.find(p => uberParents.includes(getMapperClassName(p))) || schema
   );
 
+  if (objectSchema.parents?.immediate[0]) {
+    uberParent = getMapperClassName(objectSchema.parents?.immediate[0] as ObjectSchema); 
+  }
   const mapper = buildMapper(
     schema,
     {
