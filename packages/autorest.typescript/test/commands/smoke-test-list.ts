@@ -224,6 +224,18 @@ export const readmes: SpecDefinition[] = [
     path: joinPath(
       `${__dirname}`,
       "..",
+      "./smoke/swagger/widget-service-rest.md"
+    ),
+    params: [
+      AutorestParams.RestClient,
+      AutorestParams.AzureSdkForJs
+    ],
+    buildTag: "ci_rlc"
+  },
+  {
+    path: joinPath(
+      `${__dirname}`,
+      "..",
       "./smoke/swagger/synapse-artifacts-rest.md"
     ),
     params: [
