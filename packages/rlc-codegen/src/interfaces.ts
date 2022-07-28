@@ -47,7 +47,7 @@ export interface File {
   content: string
 }
 
-export declare enum SchemaContext {
+export enum SchemaContext {
   /** Schema is used as an input to an operation. */
   Input = "input",
   /** Schema is used as an output from an operation. */

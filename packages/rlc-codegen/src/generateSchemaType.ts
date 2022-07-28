@@ -3,8 +3,8 @@ import * as path from "path";
 import {
   buildObjectInterfaces,
   buildPolymorphicAliases
-} from "./generateObjectTypes";
-import { RLCModel, SchemaContext } from "./interfaces";
+} from "./generateObjectTypes.js";
+import { RLCModel, SchemaContext } from "./interfaces.js";
 
 /**
  * Generates types to represent schema definitions in the swagger

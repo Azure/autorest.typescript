@@ -4,9 +4,9 @@ import {
   StructureKind,
   TypeAliasDeclarationStructure
 } from "ts-morph";
-import { NameType, normalizeName } from "./helpers/nameUtils";
-import { isDictionarySchema, isObjectSchema } from "./helpers/schemaHelpers";
-import { ObjectSchema, Parameter, Property, RLCModel, SchemaContext } from "./interfaces";
+import { NameType, normalizeName } from "./helpers/nameUtils.js";
+import { isDictionarySchema, isObjectSchema } from "./helpers/schemaHelpers.js";
+import { ObjectSchema, Parameter, Property, RLCModel, SchemaContext } from "./interfaces.js";
 
 /**
  * Generates interfaces for ObjectSchemas

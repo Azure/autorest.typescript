@@ -1,4 +1,4 @@
-import { Schema } from "../interfaces";
+import { Schema } from "../interfaces.js";
 
 export function isDictionarySchema(schema: Schema) {
   if (schema.type === "dictionary") {

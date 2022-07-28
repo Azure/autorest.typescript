@@ -1,3 +1,3 @@
 export * from "./interfaces.js";
 export * from "./generateClientDefinitions.js";
-export * from "./generateSchemaType";
+export * from "./generateSchemaType.js";

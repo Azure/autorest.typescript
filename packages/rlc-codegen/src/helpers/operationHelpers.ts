@@ -3,7 +3,7 @@ import {
   OptionalKind,
   ParameterDeclarationStructure
 } from "ts-morph";
-import { Methods, PathParameter } from "../interfaces";
+import { Methods, PathParameter } from "../interfaces.js";
 
 export function buildMethodDefinitions(
   methods: Methods,
