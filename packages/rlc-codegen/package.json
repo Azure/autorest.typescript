@@ -4,9 +4,17 @@
   "description": "",
   "type": "module",
   "main": "dist/index.js",
+  "module": "dist-esm/index.js",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "require": "./dist/index.js",
+      "import": "./dist-esm/index.js"
+    }
+  },
   "types": "./types/index.d.ts",
   "scripts": {
-    "build": "tsc -p .",
+    "build": "rm -fr dist/* && tsc -p tsconfig.json && tsc -p tsconfig-cjs.json && node publishPackage.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
