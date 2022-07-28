@@ -40,6 +40,7 @@ export interface RLCModel {
   libraryName: string;
   srcPath: string;
   paths: Paths;
+  schemas: Schema[];
 }
 export interface File {
   path: string,
@@ -59,8 +60,28 @@ export interface Schema {
   name: string;
   type: string;
   description: string;
+  required?: boolean;
 }
 
 export interface ObjectSchema extends Schema {
-  properties: Schema[];
+  properties?: Schema[];
+  discriminatorValue?: string;
+  discriminator?: Schema;
+  usage?: SchemaContext[];
+  children?: {
+    all: ObjectSchema[];
+    immediate: ObjectSchema[];
+  };
+  parents?: { 
+    all: ObjectSchema[]
+    immediate: ObjectSchema[];
+  }
+}
+
+export interface Property extends Schema {
+
+}
+
+export interface Parameter extends Schema {
+
 }

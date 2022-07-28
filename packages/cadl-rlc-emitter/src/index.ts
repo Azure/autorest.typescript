@@ -16,10 +16,13 @@ export async function $onEmit(program: Program) {
 }
 
 async function emitModels(program: Program) {
-  const rlcModels = transformRLCModels(program);
-  const { inputModelFile, outputModelFile } = generateSchemaTypes(rlcModels, program);
-  await emitFile(inputModelFile, program);
-  await emitFile(outputModelFile, program);
+  const rlcModels = await transformRLCModels(program);
+  const schemaOutput = generateSchemaTypes(rlcModels);
+  if (schemaOutput) {
+    const { inputModelFile, outputModelFile } = schemaOutput;
+    if(inputModelFile) await emitFile(inputModelFile, program);  
+    if(outputModelFile) await emitFile(outputModelFile, program);
+  }
 }
 
 async function transformRLCModels(program: Program): Promise<RLCModel> {
@@ -62,13 +65,13 @@ async function transformRLCModels(program: Program): Promise<RLCModel> {
       if (bodyModel.kind === 'Model') {
         const name = bodyModel.name;
         const type = "Object";
-        const description = getDoc(program, bodyModel);
+        const description = getDoc(program, bodyModel)?? "";
         const properties: ObjectSchema[] = [];
         bodyModel.properties.forEach(item => {
           const property = {
             name: item.name,
             type: item.type.kind,
-            description: item
+            description: getDoc(program, item) ?? ""
           };
           properties.push(property);
         });
@@ -77,7 +80,7 @@ async function transformRLCModels(program: Program): Promise<RLCModel> {
       }
     }
   }
-  return { srcPath, libraryName, paths };
+  return { srcPath, libraryName, paths, schemas };
 }
 
 async function emitCLientDefinition(program: Program) {
