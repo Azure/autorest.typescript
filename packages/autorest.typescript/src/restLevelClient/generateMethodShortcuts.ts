@@ -7,7 +7,7 @@ import {
   ReservedName
 } from "../utils/nameUtils";
 import { buildMethodDefinitions } from "./helpers/operationHelpers";
-import { PathParameter, Paths } from "./interfaces";
+import { Paths, PathParameter } from "@azure-tools/rlc-codegen";
 
 export const REST_CLIENT_RESERVED: ReservedName[] = [
   { name: "path", reservedFor: [NameType.Property, NameType.OperationGroup] },

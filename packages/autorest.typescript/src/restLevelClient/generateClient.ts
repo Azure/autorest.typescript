@@ -1,10 +1,7 @@
 import {
   CodeModel,
-  Operation,
   ParameterLocation,
-  ImplementationLocation,
-  OAuth2SecurityScheme,
-  KeySecurityScheme
+  ImplementationLocation
 } from "@autorest/codemodel";
 
 import {
@@ -23,9 +20,9 @@ import { NameType, normalizeName } from "../utils/nameUtils";
 import { isConstantSchema } from "./schemaHelpers";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { generateMethodShortcutImplementation } from "./generateMethodShortcuts";
-import { Paths } from "./interfaces";
 import { pathDictionary } from "./generateClientDefinition";
 import { getSecurityInfoFromModel } from "../utils/schemaHelpers";
+import { Paths } from "@azure-tools/rlc-codegen";
 
 export function generateClient(model: CodeModel, project: Project) {
   const name = normalizeName(

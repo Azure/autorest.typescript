@@ -1,16 +1,11 @@
 import {
   CodeModel,
   Operation,
-  ParameterLocation,
   ImplementationLocation,
   Response
 } from "@autorest/codemodel";
-import { isEqual } from "lodash";
 
-import {
-  gerOperationSuccessStatus,
-  getResponseTypeName
-} from "./operationHelpers";
+import { getResponseTypeName } from "./operationHelpers";
 
 import {
   CallSignatureDeclarationStructure,
@@ -33,8 +28,9 @@ import {
   generateMethodShortcuts,
   REST_CLIENT_RESERVED
 } from "./generateMethodShortcuts";
-import { Methods, PathParameter, Paths, ResponseTypes } from "./interfaces";
-import { isLongRunningOperation } from "./helpers/hasPollingOperations";
+import { Methods, ResponseTypes } from "./interfaces";
+import { transformPaths } from "./transforms/transformPaths";
+import { Paths } from "@azure-tools/rlc-codegen";
 export let pathDictionary: Paths = {};
 
 export function generatePathFirstClient(model: CodeModel, project: Project) {
@@ -55,72 +51,11 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
   const importedParameters = new Set<string>();
   const importedResponses = new Set<string>();
   const clientImports = new Set<string>();
-  pathDictionary = {};
-  for (const operationGroup of model.operationGroups) {
-    for (const operation of operationGroup.operations) {
-      const operationName = getLanguageMetadata(operation.language).name;
-      const operationDescription = getLanguageMetadata(operation.language)
-        .description;
-      const pathParameters: PathParameter[] =
-        operation.parameters
-          ?.filter(p => p.protocol.http?.in === ParameterLocation.Path)
-          .map(p => {
-            const languageMetadata = getLanguageMetadata(p.language);
-            return {
-              name: languageMetadata.serializedName || languageMetadata.name,
-              schema: p.schema,
-              description: languageMetadata.description
-            };
-          }) || [];
-      const path: string = operation.requests?.[0].protocol.http?.path;
-      pathParameters.sort(function compare(a: PathParameter, b: PathParameter) {
-        return path.indexOf(a.name) - path.indexOf(b.name);
-      });
-
-      for (const request of operation.requests || []) {
-        const path: string = (request.protocol.http?.path as string) || "";
-        const method = request.protocol.http?.method;
-
-        if (path && method) {
-          if (!pathDictionary[path]) {
-            pathDictionary[path] = {
-              pathParameters,
-              methods: {},
-              name: operationName,
-              annotations: {
-                isLongRunning: isLongRunningOperation(operation)
-              }
-            };
-          }
-          const hasOptionalOptions = !hasRequiredOptions(operation);
-
-          const newMethod = {
-            description: operationDescription,
-            optionsName: getOperationOptionsType(operation, importedParameters),
-            hasOptionalOptions,
-            returnType: `StreamableMethod<${getOperationReturnType(
-              operation,
-              importedResponses,
-              clientImports
-            )}>`,
-            responseTypes: getResponseTypes(operation),
-            successStatus: gerOperationSuccessStatus(operation)
-          };
-
-          if (
-            pathDictionary[path].methods[`${method}`] &&
-            !pathDictionary[path].methods[`${method}`].some(m =>
-              isEqual(m, newMethod)
-            )
-          ) {
-            pathDictionary[path].methods[`${method}`].push(newMethod);
-          } else {
-            pathDictionary[path].methods[`${method}`] = [newMethod];
-          }
-        }
-      }
-    }
-  }
+  pathDictionary = transformPaths(model, {
+    importedParameters,
+    importedResponses,
+    clientImports
+  });
 
   writeShortcutInterface(model, pathDictionary, clientFile);
   clientFile.addInterface({
