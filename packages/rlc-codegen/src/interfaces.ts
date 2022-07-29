@@ -14,6 +14,8 @@ export interface OperationMethod {
   returnType: string;
   successStatus: string[];
   responseTypes: ResponseTypes;
+  operationGroup: string;
+  operationName: string;
 }
 
 export interface PathMetadata {
