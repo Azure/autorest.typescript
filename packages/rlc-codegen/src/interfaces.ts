@@ -14,15 +14,14 @@ export interface OperationMethod {
   returnType: string;
   successStatus: string[];
   responseTypes: ResponseTypes;
-  operationGroup: string;
   operationName: string;
 }
-
 export interface PathMetadata {
   name: string;
   pathParameters: PathParameter[];
   methods: Methods;
   annotations?: OperationAnnotations;
+  operationGroupName: string;
 }
 
 export type Paths = Record<string, PathMetadata>;
