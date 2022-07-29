@@ -11002,7 +11002,7 @@ packages:
     dev: false
 
   file:projects/typescript.tgz:
-    resolution: {integrity: sha512-iXnz9hFUiUJgKZx2SRYFprdfcnB4WaPe07hke9oEGGzvYSCu9BRbcBOIQng9iBeVJX5vbEsc53oI8nxYoDnxWw==, tarball: file:projects/typescript.tgz}
+    resolution: {integrity: sha512-Ff4ct3HIwxwpmCezupp+MLYPnUE+jRwvrT/nNAt7Hcm25eyYwIn7hZbdOQ5FYf9ufSCNzULi0yA73aYoS14PJw==, tarball: file:projects/typescript.tgz}
     name: '@rush-temp/typescript'
     version: 0.0.0
     dependencies:
@@ -11013,6 +11013,7 @@ packages:
       '@azure-tools/codegen': 2.9.1
       '@azure-tools/test-recorder': 1.0.2
       '@azure/abort-controller': 1.1.0
+      '@azure/core-auth': 1.3.2
       '@azure/core-client': 1.6.1-alpha.20220725.3
       '@azure/core-http': 1.2.6
       '@azure/core-http-compat': 1.3.0
