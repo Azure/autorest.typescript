@@ -10962,12 +10962,13 @@ packages:
     dev: false
 
   file:projects/rlc-codegen.tgz:
-    resolution: {integrity: sha512-ZpYi7Wc06rBQt3KLi7bW96pOeFdOlUsaoORV5kH6J3QvVMl0nir3H+NFs3feaS0YXp3lUpOhi9SIzgVHQbgWng==, tarball: file:projects/rlc-codegen.tgz}
+    resolution: {integrity: sha512-EmoN8NOojnihXURJWnmsO7ghRbKuW73Mkla1i26yyOQnIazWBu7PE5x9n5fJKVZuwIHJ3aBuG8EGm+wHDS6LOw==, tarball: file:projects/rlc-codegen.tgz}
     name: '@rush-temp/rlc-codegen'
     version: 0.0.0
     dependencies:
       '@types/node': 18.6.2
       prettier: 2.7.1
+      rimraf: 3.0.2
       rollup: 2.77.2
       ts-morph: 15.1.0
       typescript: 4.7.4
