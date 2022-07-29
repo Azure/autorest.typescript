@@ -21,3 +21,5 @@ package-deps.json
 common/autoinstallers/*/.npmrc
 **/test/**/package-lock.json
 **/types
+dist-esm
+dist

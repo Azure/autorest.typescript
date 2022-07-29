@@ -1,9 +1,9 @@
 /**
  * This is the main configuration file for Rush.
  * For full documentation, please see https://rushjs.io
- */{
-    "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/rush.schema.json",
-    /**
+ */ {
+   "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/rush.schema.json",
+   /**
      * (Required) This specifies the version of the Rush engine to be used in this repo.
      * Rush's "version selector" feature ensures that the globally installed tool will
      * behave like this release, regardless of which version is installed globally.
@@ -14,8 +14,8 @@
      * path segment in the "$schema" field for all your Rush config files.  This will ensure
      * correct error-underlining and tab-completion for editors such as VS Code.
      */
-    "rushVersion": "5.63.0",
-    /**
+   "rushVersion": "5.63.0",
+   /**
      * The next field selects which package manager should be installed and determines its version.
      * Rush installs its own local copy of the package manager to ensure that your build process
      * is fully isolated from whatever tools are present in the local environment.
@@ -23,13 +23,13 @@
      * Specify one of: "pnpmVersion", "npmVersion", or "yarnVersion".  See the Rush documentation
      * for details about these alternatives.
      */
-    // "pnpmVersion": "6.32.3",
-    "npmVersion": "8.12.1",
-    // "yarnVersion": "1.9.4",
-    /**
+   "pnpmVersion": "6.32.3",
+   // "npmVersion": "8.12.1",
+   // "yarnVersion": "1.9.4",
+   /**
      * Options that are only used when the PNPM package manager is selected
      */
-    "pnpmOptions": {
+   "pnpmOptions": {
       /**
        * If true, then Rush will add the "--strict-peer-dependencies" option when invoking PNPM.
        * This causes "rush install" to fail if there are unsatisfied peer dependencies, which is
@@ -40,7 +40,7 @@
        * The default value is false to avoid legacy compatibility issues.
        * It is strongly recommended to set strictPeerDependencies=true.
        */
-      "strictPeerDependencies": true,
+      "strictPeerDependencies": false,
       /**
        * Configures the strategy used to select versions during installation.
        *
@@ -51,8 +51,8 @@
        * can be reused; this is more similar to NPM's algorithm.
        */
       "resolutionStrategy": "fewer-dependencies"
-    },
-    /**
+   },
+   /**
      * Older releases of the NodeJS engine may be missing features required by your system.
      * Other releases may have bugs.  In particular, the "latest" version will not be a
      * Long Term Support (LTS) version and is likely to have regressions.
@@ -60,8 +60,8 @@
      * Specify a SemVer range to ensure developers use a NodeJS version that is appropriate
      * for your repo.
      */
-    "nodeSupportedVersionRange": ">=8.0.0",
-    /**
+   "nodeSupportedVersionRange": ">=8.0.0",
+   /**
      * Odd-numbered major versions of Node.js are experimental.  Even-numbered releases
      * spend six months in a stabilization period before the first Long Term Support (LTS) version.
      * For example, 8.9.0 was the first LTS version of Node.js 8.  Pre-LTS versions are not recommended
@@ -72,8 +72,8 @@
      * pre-LTS versions in preparation for supporting the first LTS version, you can use this setting
      * to disable Rush's warning.
      */
-    "suppressNodeLtsWarning": true,
-    /**
+   "suppressNodeLtsWarning": true,
+   /**
      * If you would like the version specifiers for your dependencies to be consistent, then
      * uncomment this line. This is effectively similar to running "rush check" before any
      * of the following commands:
@@ -84,8 +84,8 @@
      * version. In those cases, you will need to add an entry to the "allowedAlternativeVersions"
      * section of the common-versions.json.
      */
-    // "ensureConsistentVersions": true,
-    /**
+   // "ensureConsistentVersions": true,
+   /**
      * Large monorepos can become intimidating for newcomers if project folder paths don't follow
      * a consistent and recognizable pattern.  When the system allows nested folder trees,
      * we've found that teams will often use subfolders to create islands that isolate
@@ -108,48 +108,48 @@
      * To remove these restrictions, you could set projectFolderMinDepth=1
      * and set projectFolderMaxDepth to a large number.
      */
-    "projectFolderMinDepth": 2,
-    "projectFolderMaxDepth": 4,
-    /**
+   "projectFolderMinDepth": 2,
+   "projectFolderMaxDepth": 4,
+   /**
      * This feature helps you to review and approve new packages before they are introduced
      * to your monorepo.  For example, you may be concerned about licensing, code quality,
      * performance, or simply accumulating too many libraries with overlapping functionality.
      * The approvals are tracked in two config files "browser-approved-packages.json"
      * and "nonbrowser-approved-packages.json".  See the Rush documentation for details.
      */
-    // "approvedPackagesPolicy": {
-    //   /**
-    //    * The review categories allow you to say for example "This library is approved for usage
-    //    * in prototypes, but not in production code."
-    //    *
-    //    * Each project can be associated with one review category, by assigning the "reviewCategory" field
-    //    * in the "projects" section of rush.json.  The approval is then recorded in the files
-    //    * "common/config/rush/browser-approved-packages.json" and "nonbrowser-approved-packages.json"
-    //    * which are automatically generated during "rush update".
-    //    *
-    //    * Designate categories with whatever granularity is appropriate for your review process,
-    //    * or you could just have a single category called "default".
-    //    */
-    //   "reviewCategories": [
-    //     // Some example categories:
-    //     "production", // projects that ship to production
-    //     "tools",      // non-shipping projects that are part of the developer toolchain
-    //     "prototypes"  // experiments that should mostly be ignored by the review process
-    //   ],
-    //
-    //   /**
-    //    * A list of NPM package scopes that will be excluded from review.
-    //    * We recommend to exclude TypeScript typings (the "@types" scope), because
-    //    * if the underlying package was already approved, this would imply that the typings
-    //    * are also approved.
-    //    */
-    //   // "ignoredNpmScopes": [ "@types" ]
-    // },
-    /**
+   // "approvedPackagesPolicy": {
+   //   /**
+   //    * The review categories allow you to say for example "This library is approved for usage
+   //    * in prototypes, but not in production code."
+   //    *
+   //    * Each project can be associated with one review category, by assigning the "reviewCategory" field
+   //    * in the "projects" section of rush.json.  The approval is then recorded in the files
+   //    * "common/config/rush/browser-approved-packages.json" and "nonbrowser-approved-packages.json"
+   //    * which are automatically generated during "rush update".
+   //    *
+   //    * Designate categories with whatever granularity is appropriate for your review process,
+   //    * or you could just have a single category called "default".
+   //    */
+   //   "reviewCategories": [
+   //     // Some example categories:
+   //     "production", // projects that ship to production
+   //     "tools",      // non-shipping projects that are part of the developer toolchain
+   //     "prototypes"  // experiments that should mostly be ignored by the review process
+   //   ],
+   //
+   //   /**
+   //    * A list of NPM package scopes that will be excluded from review.
+   //    * We recommend to exclude TypeScript typings (the "@types" scope), because
+   //    * if the underlying package was already approved, this would imply that the typings
+   //    * are also approved.
+   //    */
+   //   // "ignoredNpmScopes": [ "@types" ]
+   // },
+   /**
      * If you use Git as your version control system, this section has some additional
      * optional features you can use.
      */
-    "gitPolicy": {
+   "gitPolicy": {
       /**
        * Work at a big company?  Tired of finding Git commits at work with unprofessional Git
        * emails such as "beer-lover@my-college.edu"?  Rush can validate people's Git email address
@@ -179,8 +179,8 @@
        * in the commit message, and then customize Rush's message to contain that string.
        */
       // "versionBumpCommitMessage": "Applying package updates. [skip-ci]"
-    },
-    "repository": {
+   },
+   "repository": {
       /**
        * The URL of this Git repository, used by "rush change" to determine the base branch for your PR.
        *
@@ -197,16 +197,16 @@
        * to retrieve the latest activity for the remote main branch.
        */
       "url": "https://github.com/Azure/azure-sdk-for-js"
-    },
-    /**
+   },
+   /**
      * Event hooks are customized script actions that Rush executes when specific events occur
      */
-    "eventHooks": {
+   "eventHooks": {
       /**
        * The list of shell commands to run before the Rush installation starts
        */
       "preRushInstall": [
-        // "common/scripts/pre-rush-install.js"
+         // "common/scripts/pre-rush-install.js"
       ],
       /**
        * The list of shell commands to run after the Rush installation finishes
@@ -220,8 +220,8 @@
        * The list of shell commands to run after the Rush build command finishes
        */
       "postRushBuild": []
-    },
-    /**
+   },
+   /**
      * Installation variants allow you to maintain a parallel set of configuration files that can be
      * used to build the entire monorepo with an alternate set of dependencies.  For example, suppose
      * you upgrade all your projects to use a new release of an important framework, but during a transition period
@@ -238,7 +238,7 @@
      *
      * For more details and instructions, see this article:  https://rushjs.io/pages/advanced/installation_variants/
      */
-    "variants": [
+   "variants": [
       // {
       //   /**
       //    * The folder name for this variant.
@@ -250,8 +250,8 @@
       //    */
       //   "description": "Build this repo using the previous release of the SDK"
       // }
-    ],
-    /**
+   ],
+   /**
      * Rush can collect anonymous telemetry about everyday developer activity such as
      * success/failure of installs, builds, and other operations.  You can use this to identify
      * problems with your toolchain or Rush itself.  THIS TELEMETRY IS NOT SHARED WITH MICROSOFT.
@@ -259,12 +259,12 @@
      * that read these JSON files and do something with them.  These scripts are typically registered
      * in the "eventHooks" section.
      */
-    // "telemetryEnabled": false,
-    /**
+   // "telemetryEnabled": false,
+   /**
      * Allows creation of hotfix changes. This feature is experimental so it is disabled by default.
      */
-    // "hotfixChangeEnabled": false,
-    /**
+   // "hotfixChangeEnabled": false,
+   /**
      * (Required) This is the inventory of projects to be managed by Rush.
      *
      * Rush does not automatically scan for projects using wildcards, for a few reasons:
@@ -272,7 +272,7 @@
      * 2. On a caching CI machine, scans can accidentally pick up files left behind from a previous build.
      * 3. It's useful to have a centralized inventory of all projects and their important metadata.
      */
-    "projects": [
+   "projects": [
       // {
       //   /**
       //    * The NPM package name of the project (must match package.json)
@@ -322,21 +322,20 @@
       // },
       //
       {
-        "packageName": "@autorest/typescript",
-        "projectFolder": "packages/autorest.typescript"
+         "packageName": "@autorest/typescript",
+         "projectFolder": "packages/autorest.typescript"
       },
       {
-        "packageName": "@azure-tools/rlc-codegen",
-        "projectFolder": "packages/rlc-codegen"
+         "packageName": "@azure-tools/rlc-codegen",
+         "projectFolder": "packages/rlc-codegen"
       },
       {
-        "packageName": "@cadl-lang/ts-rlc",
-        "projectFolder": "packages/cadl-rlc-emitter"
+         "packageName": "@cadl-lang/ts-rlc",
+         "projectFolder": "packages/cadl-rlc-emitter"
       },
       {
-        "packageName": "@msinternal/cadl-rest-test",
-        "projectFolder": "packages/cadl-rlc-test"
+         "packageName": "@msinternal/cadl-rest-test",
+         "projectFolder": "packages/cadl-rlc-test"
       }
-    ]
-  }
-  
+   ]
+}

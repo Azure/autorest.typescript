@@ -3,7 +3,7 @@ import {
   OptionalKind,
   ParameterDeclarationStructure
 } from "ts-morph";
-import { Methods, PathParameter } from "../interfaces";
+import { Methods, PathParameter } from "../interfaces.js";
 
 export function buildMethodDefinitions(
   methods: Methods,
@@ -24,10 +24,10 @@ export function buildMethodDefinitions(
         {
           name: "options",
           hasQuestionToken: areAllOptional,
-          type: method.map(m => m.optionsName).join(" | ")
+          type: method.map((m) => m.optionsName).join(" | ")
         }
       ],
-      returnType: method.map(m => m.returnType).join(" | ")
+      returnType: method.map((m) => m.returnType).join(" | ")
     });
   }
 
