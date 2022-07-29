@@ -35,3 +35,9 @@ export interface OperationAnnotations {
   isLongRunning?: boolean;
   isPageable?: boolean;
 }
+
+export interface RLCModel {
+  libraryName: string;
+  srcPath: string;
+  paths: Paths;
+}
