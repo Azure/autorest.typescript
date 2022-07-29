@@ -59,15 +59,17 @@ export enum SchemaContext {
 export interface Schema {
   name: string;
   type: string;
-  description: string;
+  description?: string;
   required?: boolean;
+  default?: any;
+  readOnly?: boolean;
+  usage?: SchemaContext[];
 }
 
 export interface ObjectSchema extends Schema {
-  properties?: Schema[];
+  properties?: Record<string, Schema>;
   discriminatorValue?: string;
   discriminator?: Schema;
-  usage?: SchemaContext[];
   children?: {
     all: ObjectSchema[];
     immediate: ObjectSchema[];

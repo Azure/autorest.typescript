@@ -134,7 +134,7 @@ function getObjectInterfaceDeclaration(
     interfaceName = `${baseName}Parent`;
   }
 
-  const properties = objectSchema.properties ?? [];
+  const properties = objectSchema.properties ?? {};
 
   let propertySignatures = getPropertySignatures(
     properties,
@@ -330,12 +330,12 @@ function getImmediateParentsNames(
 }
 
 function getPropertySignatures(
-  properties: Property[],
+  properties: {[key: string]: Property},
   schemaUsage: SchemaContext[],
   importedModels: Set<string>
 ) {
-  return properties.map((p) =>
-    getPropertySignature(p, schemaUsage, importedModels)
+  return Object.keys(properties).map((p) =>
+    getPropertySignature(properties[p], schemaUsage, importedModels)
   );
 }
 

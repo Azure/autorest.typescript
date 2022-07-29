@@ -8,7 +8,8 @@ import {
   ObjectSchema
 } from "@azure-tools/rlc-codegen";
 import { getAllRoutes } from "@cadl-lang/rest/http";
-import { dirname, join } from "path";
+import { dirname, isAbsolute, join } from "path";
+import { getSchemaForType } from "./modelUtils";
 
 export async function $onEmit(program: Program) {
   await emitCLientDefinition(program);
@@ -63,19 +64,7 @@ async function transformRLCModels(program: Program): Promise<RLCModel> {
     if(route.parameters.body) {
       const bodyModel = route.parameters.body.type;
       if (bodyModel.kind === 'Model') {
-        const name = bodyModel.name;
-        const type = "Object";
-        const description = getDoc(program, bodyModel)?? "";
-        const properties: ObjectSchema[] = [];
-        bodyModel.properties.forEach(item => {
-          const property = {
-            name: item.name,
-            type: item.type.kind,
-            description: getDoc(program, item) ?? ""
-          };
-          properties.push(property);
-        });
-        const model = { name, type, description, properties }
+        const model = getSchemaForType(program, bodyModel)
         schemas.push(model);
       }
     }
@@ -96,9 +85,9 @@ async function emitCLientDefinition(program: Program) {
 
 async function emitFile(file: File, program: Program) {
   const host: CompilerHost = program.host;
-  const filePath = program.compilerOptions.outputPath
-    ? join(program.compilerOptions.outputPath, file.path)
-    : file.path;
+  const filePath = (isAbsolute(file.path) || !program.compilerOptions.outputPath)
+    ? file.path
+    : join(program.compilerOptions.outputPath, file.path);
   await host.mkdirp(dirname(filePath));
   await host.writeFile(filePath, file.content);
 }
