@@ -23,9 +23,10 @@ import {
   ModelType,
   ModelTypeProperty,
   Program,
-  Type
+  Type,
+  UnionType
 } from "@cadl-lang/compiler";
-import { Discriminator, getDiscriminator } from "@cadl-lang/rest/*";
+import { Discriminator, getDiscriminator } from "@cadl-lang/rest";
 import { reportDiagnostic } from "./lib.js";
 import { ObjectSchema, SchemaContext } from "@azure-tools/rlc-codegen";
 import {
@@ -49,8 +50,8 @@ export function getSchemaForType(program: Program, type: Type) {
     return getSchemaForArray(program, type);
   } else if (type.kind === "Model") {
     return getSchemaForModel(program, type);
-    // } else if (type.kind === "Union") {
-    //   return getSchemaForUnion(type);
+  } else if (type.kind === "Union") {
+    return getSchemaForUnion(program, type);
   } else if (type.kind === "Enum") {
     return getSchemaForEnum(program, type);
   }
@@ -69,6 +70,89 @@ function includeDerivedModel(model: ModelType): boolean {
       model.templateArguments?.length === 0 ||
       model.derivedModels.length > 0)
   );
+}
+
+function isNullType(program: Program, type: Type): boolean {
+  return isIntrinsic(program, type) && getIntrinsicModelName(program, type) === "null";
+}
+
+function getSchemaForUnion(program: Program, union: UnionType) {
+  let type: string;
+  const nonNullOptions = union.options.filter((t) => !isNullType(program, t));
+  const nullable = union.options.length != nonNullOptions.length;
+  if (nonNullOptions.length === 0 || nonNullOptions[0] === undefined) {
+    reportDiagnostic(program, { code: "union-null", target: union });
+    return {};
+  }
+
+  const kind = nonNullOptions[0].kind;
+  switch (kind) {
+    case "String":
+      type = "string";
+      break;
+    case "Number":
+      type = "number";
+      break;
+    case "Boolean":
+      type = "boolean";
+      break;
+    case "Model":
+      type = "model";
+      break;
+    case "Array":
+      type = "array";
+      break;
+    default:
+      reportInvalidUnionForTypescript();
+      return {};
+  }
+
+  const values = [];
+  if (type === "model" || type === "array") {
+    // Model unions can only ever be a model type with 'null'
+    if (nonNullOptions.length === 1) {
+      // Get the schema for the model type
+      const schema: any = getSchemaForType(program, nonNullOptions[0]);
+      if (schema) {
+        schema["x-nullable"] = nullable;
+      }
+
+      return schema;
+    } else {
+      reportDiagnostic(program, {
+        code: "union-unsupported",
+        messageId: "null",
+        target: union,
+      });
+      return {};
+    }
+  }
+
+  for (const option of nonNullOptions) {
+    if (option.kind != kind) {
+      reportInvalidUnionForTypescript();
+    }
+
+    // We already know it's not a model type
+    values.push((option as any).value);
+  }
+
+  const schema: any = { type };
+  if (values.length > 0) {
+    schema.enum = values;
+  }
+  if (nullable) {
+    schema["x-nullable"] = true;
+  }
+
+  return schema;
+
+  function reportInvalidUnionForTypescript() {
+    reportDiagnostic(program, {
+      code: "union-unsupported",
+      target: union,
+    });
+  }
 }
 
 // An openapi "string" can be defined in several different ways in Cadl

@@ -4,20 +4,20 @@ import {
   Paths,
   RLCModel,
   generateSchemaTypes,
-  File,
-  ObjectSchema
+  File
 } from "@azure-tools/rlc-codegen";
 import { getAllRoutes } from "@cadl-lang/rest/http";
 import { dirname, isAbsolute, join } from "path";
-import { getSchemaForType } from "./modelUtils";
+import { getSchemaForType } from "./modelUtils.js";
 
 export async function $onEmit(program: Program) {
-  await emitCLientDefinition(program);
-  await emitModels(program);
+  const rlcModels = await transformRLCModels(program);
+  await emitCLientDefinition(rlcModels, program);
+  await emitModels(rlcModels, program);
 }
 
-async function emitModels(program: Program) {
-  const rlcModels = await transformRLCModels(program);
+async function emitModels(rlcModels: RLCModel, program: Program) {
+
   const schemaOutput = generateSchemaTypes(rlcModels);
   if (schemaOutput) {
     const { inputModelFile, outputModelFile } = schemaOutput;
@@ -72,8 +72,7 @@ async function transformRLCModels(program: Program): Promise<RLCModel> {
   return { srcPath, libraryName, paths, schemas };
 }
 
-async function emitCLientDefinition(program: Program) {
-  const rlcModels = await transformRLCModels(program);
+async function emitCLientDefinition(rlcModels: RLCModel, program: Program) {
   const clientDefinitionsFile = buildClientDefinitions(rlcModels, {
     clientImports: new Set(),
     importedParameters: new Set(),
