@@ -41,7 +41,7 @@ export function transformPaths(
       REST_CLIENT_RESERVED
     );
     for (const operation of operationGroup.operations) {
-      const operationName = getLanguageMetadata(operation.language).name;
+      const operationName = operation.language.default.name;
       const operationDescription = getLanguageMetadata(operation.language)
         .description;
       const pathParameters: PathParameter[] =

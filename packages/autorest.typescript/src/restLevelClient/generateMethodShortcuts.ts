@@ -27,7 +27,12 @@ export function generateMethodShortcuts(
   let keys: Record<string, OptionalKind<MethodSignatureStructure>[]> = {};
   for (const path in paths) {
     const groupName = paths[path].operationGroupName;
-    keys[groupName] = buildOperationDefinitions(paths[path]);
+    const definitions = buildOperationDefinitions(paths[path]);
+    if (!keys[groupName]) {
+      keys[groupName] = definitions;
+    } else {
+      keys[groupName] = [...keys[groupName], ...definitions];
+    }
   }
 
   return keys;
