@@ -162,7 +162,7 @@ function writeShortcutInterface(
     return map;
   }, new Map<string, string>());
 
-  const shortcuts = generateMethodShortcuts(model, pathDictionary);
+  const shortcuts = generateMethodShortcuts(pathDictionary);
 
   for (const group of Object.keys(shortcuts)) {
     const groupName =
