@@ -13,7 +13,7 @@ export function transform(model: CodeModel): RLCModel {
     libraryName: packageDetails.name,
     srcPath,
     paths: {},
-    schemas: []
+    schemas: transformSchemas(model)
   };
   return rlcModel;
 }
