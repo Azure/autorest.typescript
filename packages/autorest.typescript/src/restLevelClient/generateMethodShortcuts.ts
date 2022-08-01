@@ -1,13 +1,11 @@
 import { CodeModel, Operation } from "@autorest/codemodel";
-import { OptionalKind, MethodSignatureStructure } from "ts-morph";
 import {
   CasingConvention,
   NameType,
   normalizeName,
   ReservedName
 } from "../utils/nameUtils";
-import { buildMethodDefinitions } from "./helpers/operationHelpers";
-import { Paths, PathParameter, PathMetadata } from "@azure-tools/rlc-codegen";
+import { Paths, PathParameter } from "@azure-tools/rlc-codegen";
 
 export const REST_CLIENT_RESERVED: ReservedName[] = [
   { name: "path", reservedFor: [NameType.Property, NameType.OperationGroup] },
@@ -20,23 +18,6 @@ export const REST_CLIENT_RESERVED: ReservedName[] = [
     reservedFor: [NameType.Property, NameType.OperationGroup]
   }
 ];
-
-export function generateMethodShortcuts(
-  paths: Paths
-): Record<string, OptionalKind<MethodSignatureStructure>[]> {
-  let keys: Record<string, OptionalKind<MethodSignatureStructure>[]> = {};
-  for (const path in paths) {
-    const groupName = paths[path].operationGroupName;
-    const definitions = buildOperationDefinitions(paths[path]);
-    if (!keys[groupName]) {
-      keys[groupName] = definitions;
-    } else {
-      keys[groupName] = [...keys[groupName], ...definitions];
-    }
-  }
-
-  return keys;
-}
 
 export function generateMethodShortcutImplementation(
   model: CodeModel,
@@ -93,28 +74,6 @@ function generateOperationDeclaration(
     pathParams.length > 0 ? `${pathParams.map(p => p.name)},` : ""
   }`;
   return `"${operationName}": (${pathParamNames} options) => {
-    return client.path("${path}", ${pathParamNames}).${method}(options);
-  }`;
-}
-
-function buildOperationDefinitions(
-  path: PathMetadata
-): OptionalKind<MethodSignatureStructure>[] {
-  let ops: OptionalKind<MethodSignatureStructure>[] = [];
-
-  for (const verb in path.methods) {
-    const methods = path.methods[verb];
-    const name = normalizeName(
-      methods[0].operationName,
-      NameType.Property,
-      true
-    );
-    const pathParams = path.pathParameters;
-    const methodDefinitions = buildMethodDefinitions(
-      { [name]: methods },
-      pathParams
-    );
-    ops = [...ops, ...methodDefinitions];
-  }
-  return ops;
+      return client.path("${path}", ${pathParamNames}).${method}(options);
+    }`;
 }

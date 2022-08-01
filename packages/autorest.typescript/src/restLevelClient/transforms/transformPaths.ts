@@ -70,7 +70,8 @@ export function transformPaths(
         if (path && method) {
           if (!pathDictionary[path]) {
             pathDictionary[path] = {
-              operationGroupName: operationGroupName,
+              operationGroupName: operationGroupName || "Client",
+              description: operationGroup.language.default.description,
               pathParameters,
               methods: {},
               name: operationName,

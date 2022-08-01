@@ -1,5 +1,7 @@
 import {
   CallSignatureDeclarationStructure,
+  InterfaceDeclarationStructure,
+  OptionalKind,
   Project,
   SourceFile,
   StructureKind,
@@ -12,6 +14,8 @@ import {
   getPathParamDefinitions
 } from "./helpers/operationHelpers.js";
 import { Methods, Paths, RLCModel } from "./interfaces.js";
+import { generateMethodShortcuts } from "./helpers/shortcutMethods.js";
+import { camelCase } from "./helpers/camelCase.js";
 
 export function buildClientDefinitions(
   model: RLCModel,
@@ -30,9 +34,19 @@ export function buildClientDefinitions(
 
   // Get all paths
   const pathDictionary = model.paths;
+  let shortcuts: OptionalKind<InterfaceDeclarationStructure>[] = [];
+  // There may be operations without an operation group, those shortcut
+  // methods need to be handled differently.
+  let shortcutsInOperationGroup: { name: string; type: string }[] = [];
 
-  // TODO ENABLE SHORTCUT
-  // writeShortcutInterface(model, pathDictionary, clientFile);
+  if (model.options?.includeShortcuts) {
+    shortcuts = generateMethodShortcuts(model.paths);
+    clientDefinitionsFile.addInterfaces(shortcuts);
+    shortcutsInOperationGroup = shortcuts
+      .filter((s) => s.name !== "ClientOperations")
+      .map((s) => getShortcutName(s.name));
+  }
+
   clientDefinitionsFile.addInterface({
     name: "Routes",
     isExported: true,
@@ -54,8 +68,18 @@ export function buildClientDefinitions(
     type: Writers.intersectionType(
       "Client",
       Writers.objectType({
-        properties: [{ name: "path", type: "Routes" }]
-      })
+        properties: [
+          { name: "path", type: "Routes" },
+          ...shortcutsInOperationGroup
+        ]
+      }),
+      // If the length of shortcuts in operation group and all shortcutsInOperationGroup
+      // is the same, then we don't have any operations at the client level
+      // Otherwise we need to make the client interface name an union with the
+      // definition of all client level shortcut methods
+      ...(shortcutsInOperationGroup.length !== shortcuts.length
+        ? [`ClientOperations`]
+        : [])
     )
   });
 
@@ -131,4 +155,12 @@ function generatePathFirstRouteMethodsDefinition(
     name: operationName,
     isExported: true
   });
+}
+
+function getShortcutName(interfaceName: string) {
+  const endIndex = interfaceName.lastIndexOf("Operations");
+  return {
+    name: camelCase(interfaceName.substring(0, endIndex)),
+    type: interfaceName
+  };
 }

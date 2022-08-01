@@ -22,6 +22,7 @@ export interface PathMetadata {
   methods: Methods;
   annotations?: OperationAnnotations;
   operationGroupName: string;
+  description: string;
 }
 
 export type Paths = Record<string, PathMetadata>;
@@ -37,8 +38,13 @@ export interface OperationAnnotations {
   isPageable?: boolean;
 }
 
+export interface RLCOptions {
+  includeShortcuts?: boolean;
+}
+
 export interface RLCModel {
   libraryName: string;
   srcPath: string;
   paths: Paths;
+  options?: RLCOptions;
 }

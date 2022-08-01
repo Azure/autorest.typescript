@@ -10962,11 +10962,13 @@ packages:
     dev: false
 
   file:projects/rlc-codegen.tgz:
-    resolution: {integrity: sha512-EmoN8NOojnihXURJWnmsO7ghRbKuW73Mkla1i26yyOQnIazWBu7PE5x9n5fJKVZuwIHJ3aBuG8EGm+wHDS6LOw==, tarball: file:projects/rlc-codegen.tgz}
+    resolution: {integrity: sha512-vJE6CUWSNP/9AMhjJxx7AzKRtNdnqypAxH0pGhrnwM41LyeLwsQyCPl3aF0tQcYE6oZbvE5iNlxVjqVYazk85g==, tarball: file:projects/rlc-codegen.tgz}
     name: '@rush-temp/rlc-codegen'
     version: 0.0.0
     dependencies:
+      '@types/lodash': 4.14.182
       '@types/node': 18.6.2
+      lodash: 4.17.21
       prettier: 2.7.1
       rimraf: 3.0.2
       rollup: 2.77.2
@@ -11002,7 +11004,7 @@ packages:
     dev: false
 
   file:projects/typescript.tgz:
-    resolution: {integrity: sha512-Ff4ct3HIwxwpmCezupp+MLYPnUE+jRwvrT/nNAt7Hcm25eyYwIn7hZbdOQ5FYf9ufSCNzULi0yA73aYoS14PJw==, tarball: file:projects/typescript.tgz}
+    resolution: {integrity: sha512-usBEsuK24E6W3kDv7ntj9aQ/H6R/M+sJ7aVVnrSB+UV+Br4f7wpTUABjWM3ye6P0FBlMynYGxHFGjZCBKfjupA==, tarball: file:projects/typescript.tgz}
     name: '@rush-temp/typescript'
     version: 0.0.0
     dependencies:

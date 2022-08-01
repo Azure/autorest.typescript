@@ -6,7 +6,15 @@ import { transformPaths } from "./transformPaths";
 export async function $onEmit(program: Program) {
   const paths: Paths = transformPaths(program);
   const clientDefinitionsFile = buildClientDefinitions(
-    { paths, libraryName: "Foo", srcPath: "src" },
+    {
+      paths,
+      libraryName: "Foo",
+      srcPath: "src",
+      options: {
+        // TODO: Read configuration from CADL
+        includeShortcuts: true
+      }
+    },
     {
       clientImports: new Set(),
       importedParameters: new Set(),

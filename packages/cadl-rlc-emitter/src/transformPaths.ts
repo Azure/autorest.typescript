@@ -7,7 +7,9 @@ export function transformPaths(model: Program): Paths {
   const paths: Paths = {};
   for (const route of routes) {
     paths[route.path] = {
-      name: route.operation.name,
+      // TODO: Description
+      description: "",
+      name: route.operation.name || "Client",
       pathParameters: route.parameters.parameters
         .filter((p) => p.type === "path")
         .map((p) => {
@@ -21,7 +23,8 @@ export function transformPaths(model: Program): Paths {
       methods: {
         [route.verb]: [
           {
-            description: "Foo",
+            // TODO: Operation description
+            description: "",
             hasOptionalOptions: route.parameters.parameters.some(
               (p) => p.param.optional
             ),
