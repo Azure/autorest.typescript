@@ -335,7 +335,7 @@ function getPropertySignatures(
   importedModels: Set<string>
 ) {
   return Object.keys(properties).map((p) =>
-    getPropertySignature(properties[p], schemaUsage, importedModels)
+    getPropertySignature({...properties[p], name: p}, schemaUsage, importedModels)
   );
 }
 

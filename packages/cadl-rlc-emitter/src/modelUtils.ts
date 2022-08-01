@@ -140,6 +140,7 @@ function getSchemaForUnion(program: Program, union: UnionType) {
   const schema: any = { type };
   if (values.length > 0) {
     schema.enum = values;
+    schema.type = type === "string" ? values.map(item => `"${item}"`).join(' | '): values.join(' | ');
   }
   if (nullable) {
     schema["x-nullable"] = true;
@@ -350,6 +351,9 @@ function getSchemaForModel(program: Program, model: ModelType) {
     if (propSchema === undefined) {
       continue;
     }
+    if (!prop.optional) {
+      propSchema.required = true;
+    }
     modelSchema.properties[name] = propSchema;
     // if this property is a discriminator property, remove it to keep autorest validation happy
     if (model.baseModel) {
@@ -358,13 +362,6 @@ function getSchemaForModel(program: Program, model: ModelType) {
         continue;
       }
     }
-
-    // if (!prop.optional) {
-    //   if (!modelSchema.required) {
-    //     modelSchema.required = [];
-    //   }
-    //   modelSchema.required.push(name);
-    // }
 
     // Apply decorators on the property to the type's schema
     const newPropSchema = applyIntrinsicDecorators(program, prop, propSchema);
@@ -538,7 +535,7 @@ function getSchemaForEnum(program: Program, e: EnumType) {
   const schema: any = { type, description: getDoc(program, e) };
   if (values.length > 0) {
     schema.enum = values;
-    // addXMSEnum(e, schema);
+    schema.type = type === "string" ? values.map(item => `"${item}"`).join('|'): values.join('|');
   }
 
   return schema;
@@ -563,47 +560,47 @@ function mapCadlIntrinsicModelToTypeScript(
       return { type: "string", format: "byte" };
     case "int8":
       return applyIntrinsicDecorators(program, cadlType, {
-        type: "integer",
+        type: "number",
         format: "int8"
       });
     case "int16":
       return applyIntrinsicDecorators(program, cadlType, {
-        type: "integer",
+        type: "number",
         format: "int16"
       });
     case "int32":
       return applyIntrinsicDecorators(program, cadlType, {
-        type: "integer",
+        type: "number",
         format: "int32"
       });
     case "int64":
       return applyIntrinsicDecorators(program, cadlType, {
-        type: "integer",
+        type: "number",
         format: "int64"
       });
     case "safeint":
       return applyIntrinsicDecorators(program, cadlType, {
-        type: "integer",
+        type: "number",
         format: "int64"
       });
     case "uint8":
       return applyIntrinsicDecorators(program, cadlType, {
-        type: "integer",
+        type: "number",
         format: "uint8"
       });
     case "uint16":
       return applyIntrinsicDecorators(program, cadlType, {
-        type: "integer",
+        type: "number",
         format: "uint16"
       });
     case "uint32":
       return applyIntrinsicDecorators(program, cadlType, {
-        type: "integer",
+        type: "number",
         format: "uint32"
       });
     case "uint64":
       return applyIntrinsicDecorators(program, cadlType, {
-        type: "integer",
+        type: "number",
         format: "uint64"
       });
     case "float64":
