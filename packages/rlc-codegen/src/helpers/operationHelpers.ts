@@ -24,10 +24,10 @@ export function buildMethodDefinitions(
         {
           name: "options",
           hasQuestionToken: areAllOptional,
-          type: method.map(m => m.optionsName).join(" | ")
+          type: method.map((m) => m.optionsName).join(" | ")
         }
       ],
-      returnType: method.map(m => m.returnType).join(" | ")
+      returnType: method.map((m) => m.returnType).join(" | ")
     });
   }
 
