@@ -6,7 +6,13 @@ import {
 } from "ts-morph";
 import { NameType, normalizeName } from "./helpers/nameUtils.js";
 import { isDictionarySchema, isObjectSchema } from "./helpers/schemaHelpers.js";
-import { ObjectSchema, Parameter, Property, RLCModel, SchemaContext } from "./interfaces.js";
+import {
+  ObjectSchema,
+  Parameter,
+  Property,
+  RLCModel,
+  SchemaContext
+} from "./interfaces.js";
 
 /**
  * Generates interfaces for ObjectSchemas
@@ -16,9 +22,10 @@ export function buildObjectInterfaces(
   importedModels: Set<string>,
   schemaUsage: SchemaContext[]
 ): InterfaceDeclarationStructure[] {
-  const objectSchemas: ObjectSchema[] = (model.schemas ?? []).filter((o) => 
-    isObjectSchema(o) &&
-    (o as ObjectSchema).usage?.some((u) => schemaUsage.includes(u))
+  const objectSchemas: ObjectSchema[] = (model.schemas ?? []).filter(
+    (o) =>
+      isObjectSchema(o) &&
+      (o as ObjectSchema).usage?.some((u) => schemaUsage.includes(u))
   );
   const objectInterfaces: InterfaceDeclarationStructure[] = [];
 
@@ -42,9 +49,10 @@ export function buildPolymorphicAliases(
 ) {
   // We'll add aliases for polymorphic objects
   const objectAliases: TypeAliasDeclarationStructure[] = [];
-  const objectSchemas: ObjectSchema[] = (model.schemas ?? []).filter((o) =>
-    isObjectSchema(o) &&
-    (o as ObjectSchema).usage?.some((u) => schemaUsage.includes(u))
+  const objectSchemas: ObjectSchema[] = (model.schemas ?? []).filter(
+    (o) =>
+      isObjectSchema(o) &&
+      (o as ObjectSchema).usage?.some((u) => schemaUsage.includes(u))
   );
   for (const objectSchema of objectSchemas) {
     const baseName = getObjectBaseName(objectSchema, schemaUsage);
@@ -161,7 +169,11 @@ function getObjectInterfaceDeclaration(
 }
 
 function isPolymorphicParent(objectSchema: ObjectSchema) {
-  return objectSchema.children?.immediate.length && objectSchema.discriminator;
+  if (objectSchema?.children?.immediate)
+    return (
+      objectSchema?.children?.immediate.length && objectSchema.discriminator
+    );
+  return false;
 }
 
 function addDiscriminatorProperty(
@@ -199,9 +211,9 @@ function getDiscriminatorProperty(
 
   if (discriminators) {
     if (discriminatorPropertyName === undefined) {
-      throw new Error(`getDiscriminatorProperty: Expected object ${
-        objectSchema.name
-      } to have a discriminator in its hierarchy but found none`);
+      throw new Error(
+        `getDiscriminatorProperty: Expected object ${objectSchema.name} to have a discriminator in its hierarchy but found none`
+      );
     }
 
     return {
@@ -330,15 +342,18 @@ function getImmediateParentsNames(
 }
 
 function getPropertySignatures(
-  properties: {[key: string]: Property},
+  properties: { [key: string]: Property },
   schemaUsage: SchemaContext[],
   importedModels: Set<string>
 ) {
   return Object.keys(properties).map((p) =>
-    getPropertySignature({...properties[p], name: p}, schemaUsage, importedModels)
+    getPropertySignature(
+      { ...properties[p], name: p },
+      schemaUsage,
+      importedModels
+    )
   );
 }
-
 
 /**
  * Builds a Typescript property or parameter signature
@@ -346,13 +361,12 @@ function getPropertySignatures(
  * @param importedModels - Set to track the models that need to be imported
  * @returns a PropertySignatureStructure for the property.
  */
- export function getPropertySignature(
+export function getPropertySignature(
   property: Property | Parameter,
   schemaUsage: SchemaContext[],
   importedModels = new Set<string>()
 ): PropertySignatureStructure {
   const propertyName = property.name;
-
 
   const description = property.description;
   const type = property.type;

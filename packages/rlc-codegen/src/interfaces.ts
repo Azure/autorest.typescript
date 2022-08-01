@@ -71,12 +71,12 @@ export interface ObjectSchema extends Schema {
   discriminatorValue?: string;
   discriminator?: Schema;
   children?: {
-    all: ObjectSchema[];
-    immediate: ObjectSchema[];
+    all?: ObjectSchema[];
+    immediate?: ObjectSchema[];
   };
   parents?: { 
-    all: ObjectSchema[]
-    immediate: ObjectSchema[];
+    all?: ObjectSchema[]
+    immediate?: ObjectSchema[];
   }
 }
 
