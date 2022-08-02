@@ -11,16 +11,18 @@ import {
 import { getAllRoutes } from "@cadl-lang/rest/http";
 import { dirname, isAbsolute, join } from "path";
 import { getSchemaForType } from "./modelUtils.js";
+import { Project } from "ts-morph";
 
 export async function $onEmit(program: Program) {
   const rlcModels = await transformRLCModels(program);
+  const project = new Project()
   await emitCLientDefinition(rlcModels, program);
-  await emitModels(rlcModels, program);
+  await emitModels(rlcModels, program, project);
 }
 
-async function emitModels(rlcModels: RLCModel, program: Program) {
+async function emitModels(rlcModels: RLCModel, program: Program, project: Project) {
 
-  const schemaOutput = generateSchemaTypes(rlcModels);
+  const schemaOutput = generateSchemaTypes(rlcModels, project);
   if (schemaOutput) {
     const { inputModelFile, outputModelFile } = schemaOutput;
     if(inputModelFile) await emitFile(inputModelFile, program);  

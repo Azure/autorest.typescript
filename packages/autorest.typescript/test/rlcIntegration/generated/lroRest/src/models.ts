@@ -1,24 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export interface Product extends Resource {
-  properties?: ProductProperties;
+export interface Product {
+  properties?: object;
 }
 
 export interface ProductProperties {
   provisioningState?: string;
-  provisioningStateValues?:
-    | "Succeeded"
-    | "Failed"
-    | "canceled"
-    | "Accepted"
-    | "Creating"
-    | "Created"
-    | "Updating"
-    | "Updated"
-    | "Deleting"
-    | "Deleted"
-    | "OK";
+  provisioningStateValues?: choice;
 }
 
 export interface Resource {
@@ -27,7 +16,7 @@ export interface Resource {
   /** Resource Type */
   type?: string;
   /** Dictionary of <string> */
-  tags?: Record<string, string>;
+  tags?: dictionary;
   /** Resource Location */
   location?: string;
   /** Resource Name */
@@ -39,24 +28,13 @@ export interface Sku {
   id?: string;
 }
 
-export interface SubProduct extends SubResource {
-  properties?: SubProductProperties;
+export interface SubProduct {
+  properties?: object;
 }
 
 export interface SubProductProperties {
   provisioningState?: string;
-  provisioningStateValues?:
-    | "Succeeded"
-    | "Failed"
-    | "canceled"
-    | "Accepted"
-    | "Creating"
-    | "Created"
-    | "Updating"
-    | "Updated"
-    | "Deleting"
-    | "Deleted"
-    | "OK";
+  provisioningStateValues?: choice;
 }
 
 export interface SubResource {

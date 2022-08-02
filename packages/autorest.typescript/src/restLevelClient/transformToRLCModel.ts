@@ -29,7 +29,7 @@ export function transformSchemas(model: CodeModel): Schema[] {
 }
 
 export function transformObject(obj: M4ObjectSchema): ObjectSchema {
-  let resultSchema: ObjectSchema = transformBasicSchema(obj);
+  const resultSchema: ObjectSchema = transformBasicSchema(obj);
   if (obj.discriminatorValue) {
     resultSchema.discriminatorValue = obj.discriminatorValue;
   }
@@ -52,14 +52,14 @@ export function transformObject(obj: M4ObjectSchema): ObjectSchema {
     };
   }
   if (obj.parents) {
-    resultSchema.parents = {
-      all: obj.parents.all.map(child =>
-        transformObject(child as M4ObjectSchema)
-      ),
-      immediate: obj.parents.all.map(child =>
-        transformObject(child as M4ObjectSchema)
-      )
-    };
+    // resultSchema.parents = {
+    //   all: obj.parents.all.map(child =>
+    //     transformObject(child as M4ObjectSchema)
+    //   ),
+    //   immediate: obj.parents.all.map(child =>
+    //     transformObject(child as M4ObjectSchema)
+    //   )
+    // };
   }
   return resultSchema;
 }

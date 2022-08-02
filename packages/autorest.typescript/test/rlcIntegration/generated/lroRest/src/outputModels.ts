@@ -1,24 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export interface ProductOutput extends ResourceOutput {
-  properties?: ProductPropertiesOutput;
+export interface ProductOutput {
+  properties?: object;
 }
 
 export interface ProductPropertiesOutput {
   provisioningState?: string;
-  provisioningStateValues?:
-    | "Succeeded"
-    | "Failed"
-    | "canceled"
-    | "Accepted"
-    | "Creating"
-    | "Created"
-    | "Updating"
-    | "Updated"
-    | "Deleting"
-    | "Deleted"
-    | "OK";
+  provisioningStateValues?: choice;
 }
 
 export interface ResourceOutput {
@@ -27,7 +16,7 @@ export interface ResourceOutput {
   /** Resource Type */
   type?: string;
   /** Dictionary of <string> */
-  tags?: Record<string, string>;
+  tags?: dictionary;
   /** Resource Location */
   location?: string;
   /** Resource Name */
@@ -35,7 +24,7 @@ export interface ResourceOutput {
 }
 
 export interface CloudErrorOutput {
-  code?: number;
+  code?: integer;
   message?: string;
 }
 
@@ -44,24 +33,13 @@ export interface SkuOutput {
   id?: string;
 }
 
-export interface SubProductOutput extends SubResourceOutput {
-  properties?: SubProductPropertiesOutput;
+export interface SubProductOutput {
+  properties?: object;
 }
 
 export interface SubProductPropertiesOutput {
   provisioningState?: string;
-  provisioningStateValues?:
-    | "Succeeded"
-    | "Failed"
-    | "canceled"
-    | "Accepted"
-    | "Creating"
-    | "Created"
-    | "Updating"
-    | "Updated"
-    | "Deleting"
-    | "Deleted"
-    | "OK";
+  provisioningStateValues?: choice;
 }
 
 export interface SubResourceOutput {
