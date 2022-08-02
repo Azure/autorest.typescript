@@ -16,6 +16,7 @@ import {
 import { Methods, Paths, RLCModel } from "./interfaces.js";
 import { generateMethodShortcuts } from "./helpers/shortcutMethods.js";
 import { camelCase } from "./helpers/camelCase.js";
+import { pascalCase } from "./helpers/pascalCase.js";
 
 export function buildClientDefinitions(
   model: RLCModel,
@@ -136,7 +137,7 @@ function getPathFirstRoutesInterfaceDefinition(
         { name: "path", type: `"${key}"` },
         ...getPathParamDefinitions(pathParams)
       ],
-      returnType: paths[key].name,
+      returnType: pascalCase(paths[key].name),
       kind: StructureKind.CallSignature
     });
   }
@@ -152,7 +153,7 @@ function generatePathFirstRouteMethodsDefinition(
 
   file.addInterface({
     methods: methodDefinitions,
-    name: operationName,
+    name: pascalCase(operationName),
     isExported: true
   });
 }

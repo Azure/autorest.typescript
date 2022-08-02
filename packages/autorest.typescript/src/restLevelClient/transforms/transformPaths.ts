@@ -86,11 +86,11 @@ export function transformPaths(
             description: operationDescription,
             optionsName: getOperationOptionsType(operation, importedParameters),
             hasOptionalOptions,
-            returnType: `StreamableMethod<${getOperationReturnType(
+            returnType: getOperationReturnType(
               operation,
               importedResponses,
               clientImports
-            )}>`,
+            ),
             responseTypes: getResponseTypes(operation),
             successStatus: gerOperationSuccessStatus(operation),
             operationName

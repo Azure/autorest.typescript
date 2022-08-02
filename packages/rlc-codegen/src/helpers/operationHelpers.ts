@@ -4,6 +4,7 @@ import {
   ParameterDeclarationStructure
 } from "ts-morph";
 import { Methods, PathParameter } from "../interfaces.js";
+import { pascalCase } from "./pascalCase.js";
 
 export function buildMethodDefinitions(
   methods: Methods,
@@ -24,10 +25,12 @@ export function buildMethodDefinitions(
         {
           name: "options",
           hasQuestionToken: areAllOptional,
-          type: method.map((m) => m.optionsName).join(" | ")
+          type: method.map((m) => pascalCase(m.optionsName)).join(" | ")
         }
       ],
-      returnType: method.map((m) => m.returnType).join(" | ")
+      returnType: `StreamableMethod<${method
+        .map((m) => m.returnType)
+        .join(" | ")}>`
     });
   }
 
