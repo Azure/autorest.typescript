@@ -39,7 +39,7 @@ export interface RLCModel {
   libraryName: string;
   srcPath: string;
   paths: Paths;
-  schemas: Schema[];
+  schemas?: Schema[];
 }
 export interface File {
   path: string,
