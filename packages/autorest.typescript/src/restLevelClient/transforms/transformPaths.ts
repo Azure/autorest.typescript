@@ -37,8 +37,7 @@ export function transformPaths(
     const operationGroupName = normalizeName(
       getLanguageMetadata(operationGroup.language).name,
       NameType.Interface,
-      true,
-      REST_CLIENT_RESERVED
+      false
     );
     for (const operation of operationGroup.operations) {
       const operationName = operation.language.default.name;
