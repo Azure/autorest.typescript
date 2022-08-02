@@ -4,6 +4,7 @@
     "module": "esnext",
     "outDir": "dist-esm/",
     "target": "esnext",
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "sourceMap": true
   }
 }

@@ -3,12 +3,7 @@ import {
   Operation,
   Parameter
 } from "@autorest/codemodel";
-import {
-  OptionalKind,
-  MethodSignatureStructure,
-  ParameterDeclarationStructure
-} from "ts-morph";
-import { Methods } from "../interfaces";
+import { OptionalKind, ParameterDeclarationStructure } from "ts-morph";
 import { PathParameter } from "@azure-tools/rlc-codegen";
 
 /**
@@ -45,35 +40,6 @@ function filterMethodNotSynthetic(parameter: Parameter) {
     (!parameter.origin || isApiVersion) &&
     parameter.implementation === ImplementationLocation.Method
   );
-}
-
-export function buildMethodDefinitions(
-  methods: Methods,
-  pathParams: PathParameter[] = []
-): OptionalKind<MethodSignatureStructure>[] {
-  const methodDefinitions: OptionalKind<MethodSignatureStructure>[] = [];
-  for (const key of Object.keys(methods)) {
-    const method = methods[key];
-    const description = methods[key][0].description;
-
-    let areAllOptional = methods[key][0].hasOptionalOptions;
-
-    methodDefinitions.push({
-      name: key,
-      ...(description && { docs: [{ description }] }),
-      parameters: [
-        ...getPathParamDefinitions(pathParams),
-        {
-          name: "options",
-          hasQuestionToken: areAllOptional,
-          type: method.map(m => m.optionsName).join(" | ")
-        }
-      ],
-      returnType: method.map(m => m.returnType).join(" | ")
-    });
-  }
-
-  return methodDefinitions;
 }
 
 export function getPathParamDefinitions(

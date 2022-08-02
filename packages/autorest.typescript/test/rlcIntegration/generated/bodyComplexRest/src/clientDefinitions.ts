@@ -171,7 +171,7 @@ import {
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-export interface GetValid {
+export interface BasicGetValid {
   /** Get complex type {id: 2, name: 'abc', color: 'YELLOW'} */
   get(
     options?: BasicGetValidParameters
@@ -182,7 +182,7 @@ export interface GetValid {
   ): StreamableMethod<BasicPutValid200Response | BasicPutValiddefaultResponse>;
 }
 
-export interface GetInvalid {
+export interface BasicGetInvalid {
   /** Get a basic complex type that is invalid for the local strong type */
   get(
     options?: BasicGetInvalidParameters
@@ -191,21 +191,21 @@ export interface GetInvalid {
   >;
 }
 
-export interface GetEmpty {
+export interface BasicGetEmpty {
   /** Get a basic complex type that is empty */
   get(
     options?: BasicGetEmptyParameters
   ): StreamableMethod<BasicGetEmpty200Response | BasicGetEmptydefaultResponse>;
 }
 
-export interface GetNull {
+export interface BasicGetNull {
   /** Get a basic complex type whose properties are null */
   get(
     options?: BasicGetNullParameters
   ): StreamableMethod<BasicGetNull200Response | BasicGetNulldefaultResponse>;
 }
 
-export interface GetNotProvided {
+export interface BasicGetNotProvided {
   /** Get a basic complex type while the server doesn't provide a response payload */
   get(
     options?: BasicGetNotProvidedParameters
@@ -214,7 +214,7 @@ export interface GetNotProvided {
   >;
 }
 
-export interface GetInt {
+export interface PrimitiveGetInt {
   /** Get complex types with integer properties */
   get(
     options?: PrimitiveGetIntParameters
@@ -229,7 +229,7 @@ export interface GetInt {
   >;
 }
 
-export interface GetLong {
+export interface PrimitiveGetLong {
   /** Get complex types with long properties */
   get(
     options?: PrimitiveGetLongParameters
@@ -244,7 +244,7 @@ export interface GetLong {
   >;
 }
 
-export interface GetFloat {
+export interface PrimitiveGetFloat {
   /** Get complex types with float properties */
   get(
     options?: PrimitiveGetFloatParameters
@@ -259,7 +259,7 @@ export interface GetFloat {
   >;
 }
 
-export interface GetDouble {
+export interface PrimitiveGetDouble {
   /** Get complex types with double properties */
   get(
     options?: PrimitiveGetDoubleParameters
@@ -274,7 +274,7 @@ export interface GetDouble {
   >;
 }
 
-export interface GetBool {
+export interface PrimitiveGetBool {
   /** Get complex types with bool properties */
   get(
     options?: PrimitiveGetBoolParameters
@@ -289,7 +289,7 @@ export interface GetBool {
   >;
 }
 
-export interface GetString {
+export interface PrimitiveGetString {
   /** Get complex types with string properties */
   get(
     options?: PrimitiveGetStringParameters
@@ -304,7 +304,7 @@ export interface GetString {
   >;
 }
 
-export interface GetDate {
+export interface PrimitiveGetDate {
   /** Get complex types with date properties */
   get(
     options?: PrimitiveGetDateParameters
@@ -319,7 +319,7 @@ export interface GetDate {
   >;
 }
 
-export interface GetDateTime {
+export interface PrimitiveGetDateTime {
   /** Get complex types with datetime properties */
   get(
     options?: PrimitiveGetDateTimeParameters
@@ -334,7 +334,7 @@ export interface GetDateTime {
   >;
 }
 
-export interface GetDateTimeRfc1123 {
+export interface PrimitiveGetDateTimeRfc1123 {
   /** Get complex types with datetimeRfc1123 properties */
   get(
     options?: PrimitiveGetDateTimeRfc1123Parameters
@@ -351,7 +351,7 @@ export interface GetDateTimeRfc1123 {
   >;
 }
 
-export interface GetDuration {
+export interface PrimitiveGetDuration {
   /** Get complex types with duration properties */
   get(
     options?: PrimitiveGetDurationParameters
@@ -366,7 +366,7 @@ export interface GetDuration {
   >;
 }
 
-export interface GetByte {
+export interface PrimitiveGetByte {
   /** Get complex types with byte properties */
   get(
     options?: PrimitiveGetByteParameters
@@ -381,7 +381,7 @@ export interface GetByte {
   >;
 }
 
-export interface GetValid {
+export interface ArrayGetValid {
   /** Get complex types with array property */
   get(
     options?: ArrayGetValidParameters
@@ -392,7 +392,7 @@ export interface GetValid {
   ): StreamableMethod<ArrayPutValid200Response | ArrayPutValiddefaultResponse>;
 }
 
-export interface GetEmpty {
+export interface ArrayGetEmpty {
   /** Get complex types with array property which is empty */
   get(
     options?: ArrayGetEmptyParameters
@@ -403,7 +403,7 @@ export interface GetEmpty {
   ): StreamableMethod<ArrayPutEmpty200Response | ArrayPutEmptydefaultResponse>;
 }
 
-export interface GetNotProvided {
+export interface ArrayGetNotProvided {
   /** Get complex types with array property while server doesn't provide a response payload */
   get(
     options?: ArrayGetNotProvidedParameters
@@ -412,7 +412,7 @@ export interface GetNotProvided {
   >;
 }
 
-export interface GetValid {
+export interface DictionaryGetValid {
   /** Get complex types with dictionary property */
   get(
     options?: DictionaryGetValidParameters
@@ -427,7 +427,7 @@ export interface GetValid {
   >;
 }
 
-export interface GetEmpty {
+export interface DictionaryGetEmpty {
   /** Get complex types with dictionary property which is empty */
   get(
     options?: DictionaryGetEmptyParameters
@@ -442,7 +442,7 @@ export interface GetEmpty {
   >;
 }
 
-export interface GetNull {
+export interface DictionaryGetNull {
   /** Get complex types with dictionary property which is null */
   get(
     options?: DictionaryGetNullParameters
@@ -451,7 +451,7 @@ export interface GetNull {
   >;
 }
 
-export interface GetNotProvided {
+export interface DictionaryGetNotProvided {
   /** Get complex types with dictionary property while server doesn't provide a response payload */
   get(
     options?: DictionaryGetNotProvidedParameters
@@ -461,7 +461,7 @@ export interface GetNotProvided {
   >;
 }
 
-export interface GetValid {
+export interface InheritanceGetValid {
   /** Get complex types that extend others */
   get(
     options?: InheritanceGetValidParameters
@@ -476,7 +476,7 @@ export interface GetValid {
   >;
 }
 
-export interface GetValid {
+export interface PolymorphismGetValid {
   /** Get complex types that are polymorphic */
   get(
     options?: PolymorphismGetValidParameters
@@ -491,7 +491,7 @@ export interface GetValid {
   >;
 }
 
-export interface GetDotSyntax {
+export interface PolymorphismGetDotSyntax {
   /** Get complex types that are polymorphic, JSON key contains a dot */
   get(
     options?: PolymorphismGetDotSyntaxParameters
@@ -501,7 +501,7 @@ export interface GetDotSyntax {
   >;
 }
 
-export interface GetComposedWithDiscriminator {
+export interface PolymorphismGetComposedWithDiscriminator {
   /** Get complex object composing a polymorphic scalar property and array property with polymorphic element type, with discriminator specified. Deserialization must NOT fail and use the discriminator type specified on the wire. */
   get(
     options?: PolymorphismGetComposedWithDiscriminatorParameters
@@ -511,7 +511,7 @@ export interface GetComposedWithDiscriminator {
   >;
 }
 
-export interface GetComposedWithoutDiscriminator {
+export interface PolymorphismGetComposedWithoutDiscriminator {
   /** Get complex object composing a polymorphic scalar property and array property with polymorphic element type, without discriminator specified on wire. Deserialization must NOT fail and use the explicit type of the property. */
   get(
     options?: PolymorphismGetComposedWithoutDiscriminatorParameters
@@ -521,7 +521,7 @@ export interface GetComposedWithoutDiscriminator {
   >;
 }
 
-export interface GetComplicated {
+export interface PolymorphismGetComplicated {
   /** Get complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties */
   get(
     options?: PolymorphismGetComplicatedParameters
@@ -538,7 +538,7 @@ export interface GetComplicated {
   >;
 }
 
-export interface PutMissingDiscriminator {
+export interface PolymorphismPutMissingDiscriminator {
   /** Put complex types that are polymorphic, omitting the discriminator */
   put(
     options: PolymorphismPutMissingDiscriminatorParameters
@@ -548,7 +548,7 @@ export interface PutMissingDiscriminator {
   >;
 }
 
-export interface PutValidMissingRequired {
+export interface PolymorphismPutValidMissingRequired {
   /** Put complex types that are polymorphic, attempting to omit required 'birthday' field - the request should not be allowed from the client */
   put(
     options: PolymorphismPutValidMissingRequiredParameters
@@ -558,7 +558,7 @@ export interface PutValidMissingRequired {
   >;
 }
 
-export interface GetValid {
+export interface PolymorphicrecursiveGetValid {
   /** Get complex types that are polymorphic and have recursive references */
   get(
     options?: PolymorphicrecursiveGetValidParameters
@@ -575,7 +575,7 @@ export interface GetValid {
   >;
 }
 
-export interface GetValid {
+export interface ReadonlypropertyGetValid {
   /** Get complex types that have readonly properties */
   get(
     options?: ReadonlypropertyGetValidParameters
@@ -592,7 +592,7 @@ export interface GetValid {
   >;
 }
 
-export interface GetValid {
+export interface FlattencomplexGetValid {
   get(
     options?: FlattencomplexGetValidParameters
   ): StreamableMethod<FlattencomplexGetValid200Response>;
@@ -600,79 +600,81 @@ export interface GetValid {
 
 export interface Routes {
   /** Resource for '/complex/basic/valid' has methods for the following verbs: get, put */
-  (path: "/complex/basic/valid"): GetValid;
+  (path: "/complex/basic/valid"): BasicGetValid;
   /** Resource for '/complex/basic/invalid' has methods for the following verbs: get */
-  (path: "/complex/basic/invalid"): GetInvalid;
+  (path: "/complex/basic/invalid"): BasicGetInvalid;
   /** Resource for '/complex/basic/empty' has methods for the following verbs: get */
-  (path: "/complex/basic/empty"): GetEmpty;
+  (path: "/complex/basic/empty"): BasicGetEmpty;
   /** Resource for '/complex/basic/null' has methods for the following verbs: get */
-  (path: "/complex/basic/null"): GetNull;
+  (path: "/complex/basic/null"): BasicGetNull;
   /** Resource for '/complex/basic/notprovided' has methods for the following verbs: get */
-  (path: "/complex/basic/notprovided"): GetNotProvided;
+  (path: "/complex/basic/notprovided"): BasicGetNotProvided;
   /** Resource for '/complex/primitive/integer' has methods for the following verbs: get, put */
-  (path: "/complex/primitive/integer"): GetInt;
+  (path: "/complex/primitive/integer"): PrimitiveGetInt;
   /** Resource for '/complex/primitive/long' has methods for the following verbs: get, put */
-  (path: "/complex/primitive/long"): GetLong;
+  (path: "/complex/primitive/long"): PrimitiveGetLong;
   /** Resource for '/complex/primitive/float' has methods for the following verbs: get, put */
-  (path: "/complex/primitive/float"): GetFloat;
+  (path: "/complex/primitive/float"): PrimitiveGetFloat;
   /** Resource for '/complex/primitive/double' has methods for the following verbs: get, put */
-  (path: "/complex/primitive/double"): GetDouble;
+  (path: "/complex/primitive/double"): PrimitiveGetDouble;
   /** Resource for '/complex/primitive/bool' has methods for the following verbs: get, put */
-  (path: "/complex/primitive/bool"): GetBool;
+  (path: "/complex/primitive/bool"): PrimitiveGetBool;
   /** Resource for '/complex/primitive/string' has methods for the following verbs: get, put */
-  (path: "/complex/primitive/string"): GetString;
+  (path: "/complex/primitive/string"): PrimitiveGetString;
   /** Resource for '/complex/primitive/date' has methods for the following verbs: get, put */
-  (path: "/complex/primitive/date"): GetDate;
+  (path: "/complex/primitive/date"): PrimitiveGetDate;
   /** Resource for '/complex/primitive/datetime' has methods for the following verbs: get, put */
-  (path: "/complex/primitive/datetime"): GetDateTime;
+  (path: "/complex/primitive/datetime"): PrimitiveGetDateTime;
   /** Resource for '/complex/primitive/datetimerfc1123' has methods for the following verbs: get, put */
-  (path: "/complex/primitive/datetimerfc1123"): GetDateTimeRfc1123;
+  (path: "/complex/primitive/datetimerfc1123"): PrimitiveGetDateTimeRfc1123;
   /** Resource for '/complex/primitive/duration' has methods for the following verbs: get, put */
-  (path: "/complex/primitive/duration"): GetDuration;
+  (path: "/complex/primitive/duration"): PrimitiveGetDuration;
   /** Resource for '/complex/primitive/byte' has methods for the following verbs: get, put */
-  (path: "/complex/primitive/byte"): GetByte;
+  (path: "/complex/primitive/byte"): PrimitiveGetByte;
   /** Resource for '/complex/array/valid' has methods for the following verbs: get, put */
-  (path: "/complex/array/valid"): GetValid;
+  (path: "/complex/array/valid"): ArrayGetValid;
   /** Resource for '/complex/array/empty' has methods for the following verbs: get, put */
-  (path: "/complex/array/empty"): GetEmpty;
+  (path: "/complex/array/empty"): ArrayGetEmpty;
   /** Resource for '/complex/array/notprovided' has methods for the following verbs: get */
-  (path: "/complex/array/notprovided"): GetNotProvided;
+  (path: "/complex/array/notprovided"): ArrayGetNotProvided;
   /** Resource for '/complex/dictionary/typed/valid' has methods for the following verbs: get, put */
-  (path: "/complex/dictionary/typed/valid"): GetValid;
+  (path: "/complex/dictionary/typed/valid"): DictionaryGetValid;
   /** Resource for '/complex/dictionary/typed/empty' has methods for the following verbs: get, put */
-  (path: "/complex/dictionary/typed/empty"): GetEmpty;
+  (path: "/complex/dictionary/typed/empty"): DictionaryGetEmpty;
   /** Resource for '/complex/dictionary/typed/null' has methods for the following verbs: get */
-  (path: "/complex/dictionary/typed/null"): GetNull;
+  (path: "/complex/dictionary/typed/null"): DictionaryGetNull;
   /** Resource for '/complex/dictionary/typed/notprovided' has methods for the following verbs: get */
-  (path: "/complex/dictionary/typed/notprovided"): GetNotProvided;
+  (path: "/complex/dictionary/typed/notprovided"): DictionaryGetNotProvided;
   /** Resource for '/complex/inheritance/valid' has methods for the following verbs: get, put */
-  (path: "/complex/inheritance/valid"): GetValid;
+  (path: "/complex/inheritance/valid"): InheritanceGetValid;
   /** Resource for '/complex/polymorphism/valid' has methods for the following verbs: get, put */
-  (path: "/complex/polymorphism/valid"): GetValid;
+  (path: "/complex/polymorphism/valid"): PolymorphismGetValid;
   /** Resource for '/complex/polymorphism/dotsyntax' has methods for the following verbs: get */
-  (path: "/complex/polymorphism/dotsyntax"): GetDotSyntax;
+  (path: "/complex/polymorphism/dotsyntax"): PolymorphismGetDotSyntax;
   /** Resource for '/complex/polymorphism/composedWithDiscriminator' has methods for the following verbs: get */
   (
     path: "/complex/polymorphism/composedWithDiscriminator"
-  ): GetComposedWithDiscriminator;
+  ): PolymorphismGetComposedWithDiscriminator;
   /** Resource for '/complex/polymorphism/composedWithoutDiscriminator' has methods for the following verbs: get */
   (
     path: "/complex/polymorphism/composedWithoutDiscriminator"
-  ): GetComposedWithoutDiscriminator;
+  ): PolymorphismGetComposedWithoutDiscriminator;
   /** Resource for '/complex/polymorphism/complicated' has methods for the following verbs: get, put */
-  (path: "/complex/polymorphism/complicated"): GetComplicated;
+  (path: "/complex/polymorphism/complicated"): PolymorphismGetComplicated;
   /** Resource for '/complex/polymorphism/missingdiscriminator' has methods for the following verbs: put */
-  (path: "/complex/polymorphism/missingdiscriminator"): PutMissingDiscriminator;
+  (
+    path: "/complex/polymorphism/missingdiscriminator"
+  ): PolymorphismPutMissingDiscriminator;
   /** Resource for '/complex/polymorphism/missingrequired/invalid' has methods for the following verbs: put */
   (
     path: "/complex/polymorphism/missingrequired/invalid"
-  ): PutValidMissingRequired;
+  ): PolymorphismPutValidMissingRequired;
   /** Resource for '/complex/polymorphicrecursive/valid' has methods for the following verbs: get, put */
-  (path: "/complex/polymorphicrecursive/valid"): GetValid;
+  (path: "/complex/polymorphicrecursive/valid"): PolymorphicrecursiveGetValid;
   /** Resource for '/complex/readonlyproperty/valid' has methods for the following verbs: get, put */
-  (path: "/complex/readonlyproperty/valid"): GetValid;
+  (path: "/complex/readonlyproperty/valid"): ReadonlypropertyGetValid;
   /** Resource for '/complex/flatten/valid' has methods for the following verbs: get */
-  (path: "/complex/flatten/valid"): GetValid;
+  (path: "/complex/flatten/valid"): FlattencomplexGetValid;
 }
 
 export type BodyComplexRestClient = Client & {

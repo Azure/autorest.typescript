@@ -64,7 +64,7 @@ import {
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-export interface GetNull {
+export interface StringModelGetNull {
   /** Get null string value value */
   get(
     options?: StringGetNullParameters
@@ -75,7 +75,7 @@ export interface GetNull {
   ): StreamableMethod<StringPutNull200Response | StringPutNulldefaultResponse>;
 }
 
-export interface GetEmpty {
+export interface StringModelGetEmpty {
   /** Get empty string value value '' */
   get(
     options?: StringGetEmptyParameters
@@ -90,7 +90,7 @@ export interface GetEmpty {
   >;
 }
 
-export interface GetMbcs {
+export interface StringModelGetMbcs {
   /** Get mbcs string value '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€' */
   get(
     options?: StringGetMbcsParameters
@@ -101,7 +101,7 @@ export interface GetMbcs {
   ): StreamableMethod<StringPutMbcs200Response | StringPutMbcsdefaultResponse>;
 }
 
-export interface GetWhitespace {
+export interface StringModelGetWhitespace {
   /** Get string value with leading and trailing whitespace '<tab><space><space>Now is the time for all good men to come to the aid of their country<tab><space><space>' */
   get(
     options?: StringGetWhitespaceParameters
@@ -116,7 +116,7 @@ export interface GetWhitespace {
   >;
 }
 
-export interface GetNotProvided {
+export interface StringModelGetNotProvided {
   /** Get String value when no string value is sent in response payload */
   get(
     options?: StringGetNotProvidedParameters
@@ -125,7 +125,7 @@ export interface GetNotProvided {
   >;
 }
 
-export interface GetBase64Encoded {
+export interface StringModelGetBase64Encoded {
   /** Get value that is base64 encoded */
   get(
     options?: StringGetBase64EncodedParameters
@@ -134,7 +134,7 @@ export interface GetBase64Encoded {
   >;
 }
 
-export interface GetBase64UrlEncoded {
+export interface StringModelGetBase64UrlEncoded {
   /** Get value that is base64url encoded */
   get(
     options?: StringGetBase64UrlEncodedParameters
@@ -151,7 +151,7 @@ export interface GetBase64UrlEncoded {
   >;
 }
 
-export interface GetNullBase64UrlEncoded {
+export interface StringModelGetNullBase64UrlEncoded {
   /** Get null value that is expected to be base64url encoded */
   get(
     options?: StringGetNullBase64UrlEncodedParameters
@@ -161,7 +161,7 @@ export interface GetNullBase64UrlEncoded {
   >;
 }
 
-export interface GetNotExpandable {
+export interface EnumGetNotExpandable {
   /** Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'. */
   get(
     options?: EnumGetNotExpandableParameters
@@ -176,7 +176,7 @@ export interface GetNotExpandable {
   >;
 }
 
-export interface GetReferenced {
+export interface EnumGetReferenced {
   /** Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'. */
   get(
     options?: EnumGetReferencedParameters
@@ -191,7 +191,7 @@ export interface GetReferenced {
   >;
 }
 
-export interface GetReferencedConstant {
+export interface EnumGetReferencedConstant {
   /** Get value 'green-color' from the constant. */
   get(
     options?: EnumGetReferencedConstantParameters
@@ -210,27 +210,27 @@ export interface GetReferencedConstant {
 
 export interface Routes {
   /** Resource for '/string/null' has methods for the following verbs: get, put */
-  (path: "/string/null"): GetNull;
+  (path: "/string/null"): StringModelGetNull;
   /** Resource for '/string/empty' has methods for the following verbs: get, put */
-  (path: "/string/empty"): GetEmpty;
+  (path: "/string/empty"): StringModelGetEmpty;
   /** Resource for '/string/mbcs' has methods for the following verbs: get, put */
-  (path: "/string/mbcs"): GetMbcs;
+  (path: "/string/mbcs"): StringModelGetMbcs;
   /** Resource for '/string/whitespace' has methods for the following verbs: get, put */
-  (path: "/string/whitespace"): GetWhitespace;
+  (path: "/string/whitespace"): StringModelGetWhitespace;
   /** Resource for '/string/notProvided' has methods for the following verbs: get */
-  (path: "/string/notProvided"): GetNotProvided;
+  (path: "/string/notProvided"): StringModelGetNotProvided;
   /** Resource for '/string/base64Encoding' has methods for the following verbs: get */
-  (path: "/string/base64Encoding"): GetBase64Encoded;
+  (path: "/string/base64Encoding"): StringModelGetBase64Encoded;
   /** Resource for '/string/base64UrlEncoding' has methods for the following verbs: get, put */
-  (path: "/string/base64UrlEncoding"): GetBase64UrlEncoded;
+  (path: "/string/base64UrlEncoding"): StringModelGetBase64UrlEncoded;
   /** Resource for '/string/nullBase64UrlEncoding' has methods for the following verbs: get */
-  (path: "/string/nullBase64UrlEncoding"): GetNullBase64UrlEncoded;
+  (path: "/string/nullBase64UrlEncoding"): StringModelGetNullBase64UrlEncoded;
   /** Resource for '/string/enum/notExpandable' has methods for the following verbs: get, put */
-  (path: "/string/enum/notExpandable"): GetNotExpandable;
+  (path: "/string/enum/notExpandable"): EnumGetNotExpandable;
   /** Resource for '/string/enum/Referenced' has methods for the following verbs: get, put */
-  (path: "/string/enum/Referenced"): GetReferenced;
+  (path: "/string/enum/Referenced"): EnumGetReferenced;
   /** Resource for '/string/enum/ReferencedConstant' has methods for the following verbs: get, put */
-  (path: "/string/enum/ReferencedConstant"): GetReferencedConstant;
+  (path: "/string/enum/ReferencedConstant"): EnumGetReferencedConstant;
 }
 
 export type BodyStringRestClient = Client & {

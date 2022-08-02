@@ -13,7 +13,7 @@ export interface PathsOperations {
   ): StreamableMethod<GetEmpty200Response | GetEmptydefaultResponse>;
 }
 
-export interface GetEmpty {
+export interface PathsGetEmpty {
   /** Get a 200 to test a valid base uri */
   get(
     options?: GetEmptyParameters
@@ -22,7 +22,7 @@ export interface GetEmpty {
 
 export interface Routes {
   /** Resource for '/customuri' has methods for the following verbs: get */
-  (path: "/customuri"): GetEmpty;
+  (path: "/customuri"): PathsGetEmpty;
 }
 
 export type CustomUrlRestClient = Client & {

@@ -16,21 +16,21 @@ import {
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-export interface GetFile {
+export interface FilesGetFile {
   /** Get file */
   get(
     options?: GetFileParameters
   ): StreamableMethod<GetFile200Response | GetFiledefaultResponse>;
 }
 
-export interface GetFileLarge {
+export interface FilesGetFileLarge {
   /** Get a large file */
   get(
     options?: GetFileLargeParameters
   ): StreamableMethod<GetFileLarge200Response | GetFileLargedefaultResponse>;
 }
 
-export interface GetEmptyFile {
+export interface FilesGetEmptyFile {
   /** Get empty file */
   get(
     options?: GetEmptyFileParameters
@@ -39,11 +39,11 @@ export interface GetEmptyFile {
 
 export interface Routes {
   /** Resource for '/files/stream/nonempty' has methods for the following verbs: get */
-  (path: "/files/stream/nonempty"): GetFile;
+  (path: "/files/stream/nonempty"): FilesGetFile;
   /** Resource for '/files/stream/verylarge' has methods for the following verbs: get */
-  (path: "/files/stream/verylarge"): GetFileLarge;
+  (path: "/files/stream/verylarge"): FilesGetFileLarge;
   /** Resource for '/files/stream/empty' has methods for the following verbs: get */
-  (path: "/files/stream/empty"): GetEmptyFile;
+  (path: "/files/stream/empty"): FilesGetEmptyFile;
 }
 
 export type BodyFileClient = Client & {

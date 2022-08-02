@@ -16,7 +16,7 @@ import {
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-export interface UploadFile {
+export interface FormdataUploadFile {
   /** Upload file */
   post(
     options: UploadFileParameters
@@ -29,7 +29,7 @@ export interface UploadFile {
   >;
 }
 
-export interface UploadFiles {
+export interface FormdataUploadFiles {
   /** Upload multiple files */
   post(
     options: UploadFilesParameters
@@ -38,9 +38,9 @@ export interface UploadFiles {
 
 export interface Routes {
   /** Resource for '/formdata/stream/uploadfile' has methods for the following verbs: post, put */
-  (path: "/formdata/stream/uploadfile"): UploadFile;
+  (path: "/formdata/stream/uploadfile"): FormdataUploadFile;
   /** Resource for '/formdata/stream/uploadfiles' has methods for the following verbs: post */
-  (path: "/formdata/stream/uploadfiles"): UploadFiles;
+  (path: "/formdata/stream/uploadfiles"): FormdataUploadFiles;
 }
 
 export type BodyFormDataClient = Client & {

@@ -1020,7 +1020,7 @@ export interface MultipleResponsesOperations {
   ): StreamableMethod<MultipleResponsesGet200ModelA202Valid200Response>;
 }
 
-export interface GetEmptyError {
+export interface HttpFailureGetEmptyError {
   /** Get empty error form server */
   get(
     options?: HttpFailureGetEmptyErrorParameters
@@ -1030,21 +1030,21 @@ export interface GetEmptyError {
   >;
 }
 
-export interface GetNoModelError {
+export interface HttpFailureGetNoModelError {
   /** Get empty error form server */
   get(
     options?: HttpFailureGetNoModelErrorParameters
   ): StreamableMethod<HttpFailureGetNoModelError200Response>;
 }
 
-export interface GetNoModelEmpty {
+export interface HttpFailureGetNoModelEmpty {
   /** Get empty response from server */
   get(
     options?: HttpFailureGetNoModelEmptyParameters
   ): StreamableMethod<HttpFailureGetNoModelEmpty200Response>;
 }
 
-export interface Head200 {
+export interface HttpSuccessHead200 {
   /** Return 200 status code if successful */
   head(
     options?: HttpSuccessHead200Parameters
@@ -1089,7 +1089,7 @@ export interface Head200 {
   >;
 }
 
-export interface Put201 {
+export interface HttpSuccessPut201 {
   /** Put true Boolean value in request returns 201 */
   put(
     options?: HttpSuccessPut201Parameters
@@ -1104,7 +1104,7 @@ export interface Put201 {
   >;
 }
 
-export interface Put202 {
+export interface HttpSuccessPut202 {
   /** Put true Boolean value in request returns 202 (Accepted) */
   put(
     options?: HttpSuccessPut202Parameters
@@ -1131,7 +1131,7 @@ export interface Put202 {
   >;
 }
 
-export interface Head204 {
+export interface HttpSuccessHead204 {
   /** Return 204 status code if successful */
   head(
     options?: HttpSuccessHead204Parameters
@@ -1164,7 +1164,7 @@ export interface Head204 {
   >;
 }
 
-export interface Head404 {
+export interface HttpSuccessHead404 {
   /** Return 404 status code */
   head(
     options?: HttpSuccessHead404Parameters
@@ -1175,7 +1175,7 @@ export interface Head404 {
   >;
 }
 
-export interface Head300 {
+export interface HttpRedirectsHead300 {
   /** Return 300 status code and redirect to /http/success/200 */
   head(
     options?: HttpRedirectsHead300Parameters
@@ -1194,7 +1194,7 @@ export interface Head300 {
   >;
 }
 
-export interface Head301 {
+export interface HttpRedirectsHead301 {
   /** Return 301 status code and redirect to /http/success/200 */
   head(
     options?: HttpRedirectsHead301Parameters
@@ -1219,7 +1219,7 @@ export interface Head301 {
   >;
 }
 
-export interface Head302 {
+export interface HttpRedirectsHead302 {
   /** Return 302 status code and redirect to /http/success/200 */
   head(
     options?: HttpRedirectsHead302Parameters
@@ -1244,7 +1244,7 @@ export interface Head302 {
   >;
 }
 
-export interface Post303 {
+export interface HttpRedirectsPost303 {
   /** Post true Boolean value in request returns 303.  This request should be automatically redirected usign a get, ultimately returning a 200 status code */
   post(
     options?: HttpRedirectsPost303Parameters
@@ -1255,7 +1255,7 @@ export interface Post303 {
   >;
 }
 
-export interface Head307 {
+export interface HttpRedirectsHead307 {
   /** Redirect with 307, resulting in a 200 success */
   head(
     options?: HttpRedirectsHead307Parameters
@@ -1314,7 +1314,7 @@ export interface Head307 {
   >;
 }
 
-export interface Head400 {
+export interface HttpClientFailureHead400 {
   /** Return 400 status code - should be represented in the client as an error */
   head(
     options?: HttpClientFailureHead400Parameters
@@ -1345,21 +1345,21 @@ export interface Head400 {
   ): StreamableMethod<HttpClientFailureDelete400defaultResponse>;
 }
 
-export interface Head401 {
+export interface HttpClientFailureHead401 {
   /** Return 401 status code - should be represented in the client as an error */
   head(
     options?: HttpClientFailureHead401Parameters
   ): StreamableMethod<HttpClientFailureHead401defaultResponse>;
 }
 
-export interface Get402 {
+export interface HttpClientFailureGet402 {
   /** Return 402 status code - should be represented in the client as an error */
   get(
     options?: HttpClientFailureGet402Parameters
   ): StreamableMethod<HttpClientFailureGet402defaultResponse>;
 }
 
-export interface Options403 {
+export interface HttpClientFailureOptions403 {
   /** Return 403 status code - should be represented in the client as an error */
   options(
     options?: HttpClientFailureOptions403Parameters
@@ -1370,56 +1370,56 @@ export interface Options403 {
   ): StreamableMethod<HttpClientFailureGet403defaultResponse>;
 }
 
-export interface Put404 {
+export interface HttpClientFailurePut404 {
   /** Return 404 status code - should be represented in the client as an error */
   put(
     options?: HttpClientFailurePut404Parameters
   ): StreamableMethod<HttpClientFailurePut404defaultResponse>;
 }
 
-export interface Patch405 {
+export interface HttpClientFailurePatch405 {
   /** Return 405 status code - should be represented in the client as an error */
   patch(
     options?: HttpClientFailurePatch405Parameters
   ): StreamableMethod<HttpClientFailurePatch405defaultResponse>;
 }
 
-export interface Post406 {
+export interface HttpClientFailurePost406 {
   /** Return 406 status code - should be represented in the client as an error */
   post(
     options?: HttpClientFailurePost406Parameters
   ): StreamableMethod<HttpClientFailurePost406defaultResponse>;
 }
 
-export interface Delete407 {
+export interface HttpClientFailureDelete407 {
   /** Return 407 status code - should be represented in the client as an error */
   delete(
     options?: HttpClientFailureDelete407Parameters
   ): StreamableMethod<HttpClientFailureDelete407defaultResponse>;
 }
 
-export interface Put409 {
+export interface HttpClientFailurePut409 {
   /** Return 409 status code - should be represented in the client as an error */
   put(
     options?: HttpClientFailurePut409Parameters
   ): StreamableMethod<HttpClientFailurePut409defaultResponse>;
 }
 
-export interface Head410 {
+export interface HttpClientFailureHead410 {
   /** Return 410 status code - should be represented in the client as an error */
   head(
     options?: HttpClientFailureHead410Parameters
   ): StreamableMethod<HttpClientFailureHead410defaultResponse>;
 }
 
-export interface Get411 {
+export interface HttpClientFailureGet411 {
   /** Return 411 status code - should be represented in the client as an error */
   get(
     options?: HttpClientFailureGet411Parameters
   ): StreamableMethod<HttpClientFailureGet411defaultResponse>;
 }
 
-export interface Options412 {
+export interface HttpClientFailureOptions412 {
   /** Return 412 status code - should be represented in the client as an error */
   options(
     options?: HttpClientFailureOptions412Parameters
@@ -1430,49 +1430,49 @@ export interface Options412 {
   ): StreamableMethod<HttpClientFailureGet412defaultResponse>;
 }
 
-export interface Put413 {
+export interface HttpClientFailurePut413 {
   /** Return 413 status code - should be represented in the client as an error */
   put(
     options?: HttpClientFailurePut413Parameters
   ): StreamableMethod<HttpClientFailurePut413defaultResponse>;
 }
 
-export interface Patch414 {
+export interface HttpClientFailurePatch414 {
   /** Return 414 status code - should be represented in the client as an error */
   patch(
     options?: HttpClientFailurePatch414Parameters
   ): StreamableMethod<HttpClientFailurePatch414defaultResponse>;
 }
 
-export interface Post415 {
+export interface HttpClientFailurePost415 {
   /** Return 415 status code - should be represented in the client as an error */
   post(
     options?: HttpClientFailurePost415Parameters
   ): StreamableMethod<HttpClientFailurePost415defaultResponse>;
 }
 
-export interface Get416 {
+export interface HttpClientFailureGet416 {
   /** Return 416 status code - should be represented in the client as an error */
   get(
     options?: HttpClientFailureGet416Parameters
   ): StreamableMethod<HttpClientFailureGet416defaultResponse>;
 }
 
-export interface Delete417 {
+export interface HttpClientFailureDelete417 {
   /** Return 417 status code - should be represented in the client as an error */
   delete(
     options?: HttpClientFailureDelete417Parameters
   ): StreamableMethod<HttpClientFailureDelete417defaultResponse>;
 }
 
-export interface Head429 {
+export interface HttpClientFailureHead429 {
   /** Return 429 status code - should be represented in the client as an error */
   head(
     options?: HttpClientFailureHead429Parameters
   ): StreamableMethod<HttpClientFailureHead429defaultResponse>;
 }
 
-export interface Head501 {
+export interface HttpServerFailureHead501 {
   /** Return 501 status code - should be represented in the client as an error */
   head(
     options?: HttpServerFailureHead501Parameters
@@ -1483,7 +1483,7 @@ export interface Head501 {
   ): StreamableMethod<HttpServerFailureGet501defaultResponse>;
 }
 
-export interface Post505 {
+export interface HttpServerFailurePost505 {
   /** Return 505 status code - should be represented in the client as an error */
   post(
     options?: HttpServerFailurePost505Parameters
@@ -1494,7 +1494,7 @@ export interface Post505 {
   ): StreamableMethod<HttpServerFailureDelete505defaultResponse>;
 }
 
-export interface Head408 {
+export interface HttpRetryHead408 {
   /** Return 408 status code, then 200 after retry */
   head(
     options?: HttpRetryHead408Parameters
@@ -1503,7 +1503,7 @@ export interface Head408 {
   >;
 }
 
-export interface Put500 {
+export interface HttpRetryPut500 {
   /** Return 500 status code, then 200 after retry */
   put(
     options?: HttpRetryPut500Parameters
@@ -1518,7 +1518,7 @@ export interface Put500 {
   >;
 }
 
-export interface Get502 {
+export interface HttpRetryGet502 {
   /** Return 502 status code, then 200 after retry */
   get(
     options?: HttpRetryGet502Parameters
@@ -1533,7 +1533,7 @@ export interface Get502 {
   >;
 }
 
-export interface Post503 {
+export interface HttpRetryPost503 {
   /** Return 503 status code, then 200 after retry */
   post(
     options?: HttpRetryPost503Parameters
@@ -1548,7 +1548,7 @@ export interface Post503 {
   >;
 }
 
-export interface Put504 {
+export interface HttpRetryPut504 {
   /** Return 504 status code, then 200 after retry */
   put(
     options?: HttpRetryPut504Parameters
@@ -1563,7 +1563,7 @@ export interface Put504 {
   >;
 }
 
-export interface Get200Model204NoModelDefaultError200Valid {
+export interface MultipleResponsesGet200Model204NoModelDefaultError200Valid {
   /** Send a 200 response with valid payload: {'statusCode': '200'} */
   get(
     options?: MultipleResponsesGet200Model204NoModelDefaultError200ValidParameters
@@ -1574,7 +1574,7 @@ export interface Get200Model204NoModelDefaultError200Valid {
   >;
 }
 
-export interface Get200Model204NoModelDefaultError204Valid {
+export interface MultipleResponsesGet200Model204NoModelDefaultError204Valid {
   /** Send a 204 response with no payload */
   get(
     options?: MultipleResponsesGet200Model204NoModelDefaultError204ValidParameters
@@ -1585,7 +1585,7 @@ export interface Get200Model204NoModelDefaultError204Valid {
   >;
 }
 
-export interface Get200Model204NoModelDefaultError201Invalid {
+export interface MultipleResponsesGet200Model204NoModelDefaultError201Invalid {
   /** Send a 201 response with valid payload: {'statusCode': '201'} */
   get(
     options?: MultipleResponsesGet200Model204NoModelDefaultError201InvalidParameters
@@ -1596,7 +1596,7 @@ export interface Get200Model204NoModelDefaultError201Invalid {
   >;
 }
 
-export interface Get200Model204NoModelDefaultError202None {
+export interface MultipleResponsesGet200Model204NoModelDefaultError202None {
   /** Send a 202 response with no payload: */
   get(
     options?: MultipleResponsesGet200Model204NoModelDefaultError202NoneParameters
@@ -1607,7 +1607,7 @@ export interface Get200Model204NoModelDefaultError202None {
   >;
 }
 
-export interface Get200Model204NoModelDefaultError400Valid {
+export interface MultipleResponsesGet200Model204NoModelDefaultError400Valid {
   /** Send a 400 response with valid error payload: {'status': 400, 'message': 'client error'} */
   get(
     options?: MultipleResponsesGet200Model204NoModelDefaultError400ValidParameters
@@ -1618,7 +1618,7 @@ export interface Get200Model204NoModelDefaultError400Valid {
   >;
 }
 
-export interface Get200Model201ModelDefaultError200Valid {
+export interface MultipleResponsesGet200Model201ModelDefaultError200Valid {
   /** Send a 200 response with valid payload: {'statusCode': '200'} */
   get(
     options?: MultipleResponsesGet200Model201ModelDefaultError200ValidParameters
@@ -1629,7 +1629,7 @@ export interface Get200Model201ModelDefaultError200Valid {
   >;
 }
 
-export interface Get200Model201ModelDefaultError201Valid {
+export interface MultipleResponsesGet200Model201ModelDefaultError201Valid {
   /** Send a 201 response with valid payload: {'statusCode': '201', 'textStatusCode': 'Created'} */
   get(
     options?: MultipleResponsesGet200Model201ModelDefaultError201ValidParameters
@@ -1640,7 +1640,7 @@ export interface Get200Model201ModelDefaultError201Valid {
   >;
 }
 
-export interface Get200Model201ModelDefaultError400Valid {
+export interface MultipleResponsesGet200Model201ModelDefaultError400Valid {
   /** Send a 400 response with valid payload: {'code': '400', 'message': 'client error'} */
   get(
     options?: MultipleResponsesGet200Model201ModelDefaultError400ValidParameters
@@ -1651,7 +1651,7 @@ export interface Get200Model201ModelDefaultError400Valid {
   >;
 }
 
-export interface Get200ModelA201ModelC404ModelDDefaultError200Valid {
+export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200Valid {
   /** Send a 200 response with valid payload: {'statusCode': '200'} */
   get(
     options?: MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidParameters
@@ -1663,7 +1663,7 @@ export interface Get200ModelA201ModelC404ModelDDefaultError200Valid {
   >;
 }
 
-export interface Get200ModelA201ModelC404ModelDDefaultError201Valid {
+export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201Valid {
   /** Send a 200 response with valid payload: {'httpCode': '201'} */
   get(
     options?: MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidParameters
@@ -1675,7 +1675,7 @@ export interface Get200ModelA201ModelC404ModelDDefaultError201Valid {
   >;
 }
 
-export interface Get200ModelA201ModelC404ModelDDefaultError404Valid {
+export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404Valid {
   /** Send a 200 response with valid payload: {'httpStatusCode': '404'} */
   get(
     options?: MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidParameters
@@ -1687,7 +1687,7 @@ export interface Get200ModelA201ModelC404ModelDDefaultError404Valid {
   >;
 }
 
-export interface Get200ModelA201ModelC404ModelDDefaultError400Valid {
+export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400Valid {
   /** Send a 400 response with valid payload: {'code': '400', 'message': 'client error'} */
   get(
     options?: MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidParameters
@@ -1699,7 +1699,7 @@ export interface Get200ModelA201ModelC404ModelDDefaultError400Valid {
   >;
 }
 
-export interface Get202None204NoneDefaultError202None {
+export interface MultipleResponsesGet202None204NoneDefaultError202None {
   /** Send a 202 response with no payload */
   get(
     options?: MultipleResponsesGet202None204NoneDefaultError202NoneParameters
@@ -1710,7 +1710,7 @@ export interface Get202None204NoneDefaultError202None {
   >;
 }
 
-export interface Get202None204NoneDefaultError204None {
+export interface MultipleResponsesGet202None204NoneDefaultError204None {
   /** Send a 204 response with no payload */
   get(
     options?: MultipleResponsesGet202None204NoneDefaultError204NoneParameters
@@ -1721,7 +1721,7 @@ export interface Get202None204NoneDefaultError204None {
   >;
 }
 
-export interface Get202None204NoneDefaultError400Valid {
+export interface MultipleResponsesGet202None204NoneDefaultError400Valid {
   /** Send a 400 response with valid payload: {'code': '400', 'message': 'client error'} */
   get(
     options?: MultipleResponsesGet202None204NoneDefaultError400ValidParameters
@@ -1732,7 +1732,7 @@ export interface Get202None204NoneDefaultError400Valid {
   >;
 }
 
-export interface Get202None204NoneDefaultNone202Invalid {
+export interface MultipleResponsesGet202None204NoneDefaultNone202Invalid {
   /** Send a 202 response with an unexpected payload {'property': 'value'} */
   get(
     options?: MultipleResponsesGet202None204NoneDefaultNone202InvalidParameters
@@ -1743,7 +1743,7 @@ export interface Get202None204NoneDefaultNone202Invalid {
   >;
 }
 
-export interface Get202None204NoneDefaultNone204None {
+export interface MultipleResponsesGet202None204NoneDefaultNone204None {
   /** Send a 204 response with no payload */
   get(
     options?: MultipleResponsesGet202None204NoneDefaultNone204NoneParameters
@@ -1754,7 +1754,7 @@ export interface Get202None204NoneDefaultNone204None {
   >;
 }
 
-export interface Get202None204NoneDefaultNone400None {
+export interface MultipleResponsesGet202None204NoneDefaultNone400None {
   /** Send a 400 response with no payload */
   get(
     options?: MultipleResponsesGet202None204NoneDefaultNone400NoneParameters
@@ -1765,7 +1765,7 @@ export interface Get202None204NoneDefaultNone400None {
   >;
 }
 
-export interface Get202None204NoneDefaultNone400Invalid {
+export interface MultipleResponsesGet202None204NoneDefaultNone400Invalid {
   /** Send a 400 response with an unexpected payload {'property': 'value'} */
   get(
     options?: MultipleResponsesGet202None204NoneDefaultNone400InvalidParameters
@@ -1776,21 +1776,21 @@ export interface Get202None204NoneDefaultNone400Invalid {
   >;
 }
 
-export interface GetDefaultModelA200Valid {
+export interface MultipleResponsesGetDefaultModelA200Valid {
   /** Send a 200 response with valid payload: {'statusCode': '200'} */
   get(
     options?: MultipleResponsesGetDefaultModelA200ValidParameters
   ): StreamableMethod<MultipleResponsesGetDefaultModelA200Valid200Response>;
 }
 
-export interface GetDefaultModelA200None {
+export interface MultipleResponsesGetDefaultModelA200None {
   /** Send a 200 response with no payload */
   get(
     options?: MultipleResponsesGetDefaultModelA200NoneParameters
   ): StreamableMethod<MultipleResponsesGetDefaultModelA200None200Response>;
 }
 
-export interface GetDefaultModelA400Valid {
+export interface MultipleResponsesGetDefaultModelA400Valid {
   /** Send a 400 response with valid payload: {'statusCode': '400'} */
   get(
     options?: MultipleResponsesGetDefaultModelA400ValidParameters
@@ -1800,7 +1800,7 @@ export interface GetDefaultModelA400Valid {
   >;
 }
 
-export interface GetDefaultModelA400None {
+export interface MultipleResponsesGetDefaultModelA400None {
   /** Send a 400 response with no payload */
   get(
     options?: MultipleResponsesGetDefaultModelA400NoneParameters
@@ -1810,21 +1810,21 @@ export interface GetDefaultModelA400None {
   >;
 }
 
-export interface GetDefaultNone200Invalid {
+export interface MultipleResponsesGetDefaultNone200Invalid {
   /** Send a 200 response with invalid payload: {'statusCode': '200'} */
   get(
     options?: MultipleResponsesGetDefaultNone200InvalidParameters
   ): StreamableMethod<MultipleResponsesGetDefaultNone200Invalid200Response>;
 }
 
-export interface GetDefaultNone200None {
+export interface MultipleResponsesGetDefaultNone200None {
   /** Send a 200 response with no payload */
   get(
     options?: MultipleResponsesGetDefaultNone200NoneParameters
   ): StreamableMethod<MultipleResponsesGetDefaultNone200None200Response>;
 }
 
-export interface GetDefaultNone400Invalid {
+export interface MultipleResponsesGetDefaultNone400Invalid {
   /** Send a 400 response with valid payload: {'statusCode': '400'} */
   get(
     options?: MultipleResponsesGetDefaultNone400InvalidParameters
@@ -1834,7 +1834,7 @@ export interface GetDefaultNone400Invalid {
   >;
 }
 
-export interface GetDefaultNone400None {
+export interface MultipleResponsesGetDefaultNone400None {
   /** Send a 400 response with no payload */
   get(
     options?: MultipleResponsesGetDefaultNone400NoneParameters
@@ -1844,49 +1844,49 @@ export interface GetDefaultNone400None {
   >;
 }
 
-export interface Get200ModelA200None {
+export interface MultipleResponsesGet200ModelA200None {
   /** Send a 200 response with no payload, when a payload is expected - client should return a null object of thde type for model A */
   get(
     options?: MultipleResponsesGet200ModelA200NoneParameters
   ): StreamableMethod<MultipleResponsesGet200ModelA200None200Response>;
 }
 
-export interface Get200ModelA200Valid {
+export interface MultipleResponsesGet200ModelA200Valid {
   /** Send a 200 response with payload {'statusCode': '200'} */
   get(
     options?: MultipleResponsesGet200ModelA200ValidParameters
   ): StreamableMethod<MultipleResponsesGet200ModelA200Valid200Response>;
 }
 
-export interface Get200ModelA200Invalid {
+export interface MultipleResponsesGet200ModelA200Invalid {
   /** Send a 200 response with invalid payload {'statusCodeInvalid': '200'} */
   get(
     options?: MultipleResponsesGet200ModelA200InvalidParameters
   ): StreamableMethod<MultipleResponsesGet200ModelA200Invalid200Response>;
 }
 
-export interface Get200ModelA400None {
+export interface MultipleResponsesGet200ModelA400None {
   /** Send a 400 response with no payload client should treat as an http error with no error model */
   get(
     options?: MultipleResponsesGet200ModelA400NoneParameters
   ): StreamableMethod<MultipleResponsesGet200ModelA400None200Response>;
 }
 
-export interface Get200ModelA400Valid {
+export interface MultipleResponsesGet200ModelA400Valid {
   /** Send a 200 response with payload {'statusCode': '400'} */
   get(
     options?: MultipleResponsesGet200ModelA400ValidParameters
   ): StreamableMethod<MultipleResponsesGet200ModelA400Valid200Response>;
 }
 
-export interface Get200ModelA400Invalid {
+export interface MultipleResponsesGet200ModelA400Invalid {
   /** Send a 200 response with invalid payload {'statusCodeInvalid': '400'} */
   get(
     options?: MultipleResponsesGet200ModelA400InvalidParameters
   ): StreamableMethod<MultipleResponsesGet200ModelA400Invalid200Response>;
 }
 
-export interface Get200ModelA202Valid {
+export interface MultipleResponsesGet200ModelA202Valid {
   /** Send a 202 response with payload {'statusCode': '202'} */
   get(
     options?: MultipleResponsesGet200ModelA202ValidParameters
@@ -1895,199 +1895,217 @@ export interface Get200ModelA202Valid {
 
 export interface Routes {
   /** Resource for '/http/failure/emptybody/error' has methods for the following verbs: get */
-  (path: "/http/failure/emptybody/error"): GetEmptyError;
+  (path: "/http/failure/emptybody/error"): HttpFailureGetEmptyError;
   /** Resource for '/http/failure/nomodel/error' has methods for the following verbs: get */
-  (path: "/http/failure/nomodel/error"): GetNoModelError;
+  (path: "/http/failure/nomodel/error"): HttpFailureGetNoModelError;
   /** Resource for '/http/failure/nomodel/empty' has methods for the following verbs: get */
-  (path: "/http/failure/nomodel/empty"): GetNoModelEmpty;
+  (path: "/http/failure/nomodel/empty"): HttpFailureGetNoModelEmpty;
   /** Resource for '/http/success/200' has methods for the following verbs: head, get, options, put, patch, post, delete */
-  (path: "/http/success/200"): Head200;
+  (path: "/http/success/200"): HttpSuccessHead200;
   /** Resource for '/http/success/201' has methods for the following verbs: put, post */
-  (path: "/http/success/201"): Put201;
+  (path: "/http/success/201"): HttpSuccessPut201;
   /** Resource for '/http/success/202' has methods for the following verbs: put, patch, post, delete */
-  (path: "/http/success/202"): Put202;
+  (path: "/http/success/202"): HttpSuccessPut202;
   /** Resource for '/http/success/204' has methods for the following verbs: head, put, patch, post, delete */
-  (path: "/http/success/204"): Head204;
+  (path: "/http/success/204"): HttpSuccessHead204;
   /** Resource for '/http/success/404' has methods for the following verbs: head */
-  (path: "/http/success/404"): Head404;
+  (path: "/http/success/404"): HttpSuccessHead404;
   /** Resource for '/http/redirect/300' has methods for the following verbs: head, get */
-  (path: "/http/redirect/300"): Head300;
+  (path: "/http/redirect/300"): HttpRedirectsHead300;
   /** Resource for '/http/redirect/301' has methods for the following verbs: head, get, put */
-  (path: "/http/redirect/301"): Head301;
+  (path: "/http/redirect/301"): HttpRedirectsHead301;
   /** Resource for '/http/redirect/302' has methods for the following verbs: head, get, patch */
-  (path: "/http/redirect/302"): Head302;
+  (path: "/http/redirect/302"): HttpRedirectsHead302;
   /** Resource for '/http/redirect/303' has methods for the following verbs: post */
-  (path: "/http/redirect/303"): Post303;
+  (path: "/http/redirect/303"): HttpRedirectsPost303;
   /** Resource for '/http/redirect/307' has methods for the following verbs: head, get, options, put, patch, post, delete */
-  (path: "/http/redirect/307"): Head307;
+  (path: "/http/redirect/307"): HttpRedirectsHead307;
   /** Resource for '/http/failure/client/400' has methods for the following verbs: head, get, options, put, patch, post, delete */
-  (path: "/http/failure/client/400"): Head400;
+  (path: "/http/failure/client/400"): HttpClientFailureHead400;
   /** Resource for '/http/failure/client/401' has methods for the following verbs: head */
-  (path: "/http/failure/client/401"): Head401;
+  (path: "/http/failure/client/401"): HttpClientFailureHead401;
   /** Resource for '/http/failure/client/402' has methods for the following verbs: get */
-  (path: "/http/failure/client/402"): Get402;
+  (path: "/http/failure/client/402"): HttpClientFailureGet402;
   /** Resource for '/http/failure/client/403' has methods for the following verbs: options, get */
-  (path: "/http/failure/client/403"): Options403;
+  (path: "/http/failure/client/403"): HttpClientFailureOptions403;
   /** Resource for '/http/failure/client/404' has methods for the following verbs: put */
-  (path: "/http/failure/client/404"): Put404;
+  (path: "/http/failure/client/404"): HttpClientFailurePut404;
   /** Resource for '/http/failure/client/405' has methods for the following verbs: patch */
-  (path: "/http/failure/client/405"): Patch405;
+  (path: "/http/failure/client/405"): HttpClientFailurePatch405;
   /** Resource for '/http/failure/client/406' has methods for the following verbs: post */
-  (path: "/http/failure/client/406"): Post406;
+  (path: "/http/failure/client/406"): HttpClientFailurePost406;
   /** Resource for '/http/failure/client/407' has methods for the following verbs: delete */
-  (path: "/http/failure/client/407"): Delete407;
+  (path: "/http/failure/client/407"): HttpClientFailureDelete407;
   /** Resource for '/http/failure/client/409' has methods for the following verbs: put */
-  (path: "/http/failure/client/409"): Put409;
+  (path: "/http/failure/client/409"): HttpClientFailurePut409;
   /** Resource for '/http/failure/client/410' has methods for the following verbs: head */
-  (path: "/http/failure/client/410"): Head410;
+  (path: "/http/failure/client/410"): HttpClientFailureHead410;
   /** Resource for '/http/failure/client/411' has methods for the following verbs: get */
-  (path: "/http/failure/client/411"): Get411;
+  (path: "/http/failure/client/411"): HttpClientFailureGet411;
   /** Resource for '/http/failure/client/412' has methods for the following verbs: options, get */
-  (path: "/http/failure/client/412"): Options412;
+  (path: "/http/failure/client/412"): HttpClientFailureOptions412;
   /** Resource for '/http/failure/client/413' has methods for the following verbs: put */
-  (path: "/http/failure/client/413"): Put413;
+  (path: "/http/failure/client/413"): HttpClientFailurePut413;
   /** Resource for '/http/failure/client/414' has methods for the following verbs: patch */
-  (path: "/http/failure/client/414"): Patch414;
+  (path: "/http/failure/client/414"): HttpClientFailurePatch414;
   /** Resource for '/http/failure/client/415' has methods for the following verbs: post */
-  (path: "/http/failure/client/415"): Post415;
+  (path: "/http/failure/client/415"): HttpClientFailurePost415;
   /** Resource for '/http/failure/client/416' has methods for the following verbs: get */
-  (path: "/http/failure/client/416"): Get416;
+  (path: "/http/failure/client/416"): HttpClientFailureGet416;
   /** Resource for '/http/failure/client/417' has methods for the following verbs: delete */
-  (path: "/http/failure/client/417"): Delete417;
+  (path: "/http/failure/client/417"): HttpClientFailureDelete417;
   /** Resource for '/http/failure/client/429' has methods for the following verbs: head */
-  (path: "/http/failure/client/429"): Head429;
+  (path: "/http/failure/client/429"): HttpClientFailureHead429;
   /** Resource for '/http/failure/server/501' has methods for the following verbs: head, get */
-  (path: "/http/failure/server/501"): Head501;
+  (path: "/http/failure/server/501"): HttpServerFailureHead501;
   /** Resource for '/http/failure/server/505' has methods for the following verbs: post, delete */
-  (path: "/http/failure/server/505"): Post505;
+  (path: "/http/failure/server/505"): HttpServerFailurePost505;
   /** Resource for '/http/retry/408' has methods for the following verbs: head */
-  (path: "/http/retry/408"): Head408;
+  (path: "/http/retry/408"): HttpRetryHead408;
   /** Resource for '/http/retry/500' has methods for the following verbs: put, patch */
-  (path: "/http/retry/500"): Put500;
+  (path: "/http/retry/500"): HttpRetryPut500;
   /** Resource for '/http/retry/502' has methods for the following verbs: get, options */
-  (path: "/http/retry/502"): Get502;
+  (path: "/http/retry/502"): HttpRetryGet502;
   /** Resource for '/http/retry/503' has methods for the following verbs: post, delete */
-  (path: "/http/retry/503"): Post503;
+  (path: "/http/retry/503"): HttpRetryPost503;
   /** Resource for '/http/retry/504' has methods for the following verbs: put, patch */
-  (path: "/http/retry/504"): Put504;
+  (path: "/http/retry/504"): HttpRetryPut504;
   /** Resource for '/http/payloads/200/A/204/none/default/Error/response/200/valid' has methods for the following verbs: get */
   (
     path: "/http/payloads/200/A/204/none/default/Error/response/200/valid"
-  ): Get200Model204NoModelDefaultError200Valid;
+  ): MultipleResponsesGet200Model204NoModelDefaultError200Valid;
   /** Resource for '/http/payloads/200/A/204/none/default/Error/response/204/none' has methods for the following verbs: get */
   (
     path: "/http/payloads/200/A/204/none/default/Error/response/204/none"
-  ): Get200Model204NoModelDefaultError204Valid;
+  ): MultipleResponsesGet200Model204NoModelDefaultError204Valid;
   /** Resource for '/http/payloads/200/A/204/none/default/Error/response/201/valid' has methods for the following verbs: get */
   (
     path: "/http/payloads/200/A/204/none/default/Error/response/201/valid"
-  ): Get200Model204NoModelDefaultError201Invalid;
+  ): MultipleResponsesGet200Model204NoModelDefaultError201Invalid;
   /** Resource for '/http/payloads/200/A/204/none/default/Error/response/202/none' has methods for the following verbs: get */
   (
     path: "/http/payloads/200/A/204/none/default/Error/response/202/none"
-  ): Get200Model204NoModelDefaultError202None;
+  ): MultipleResponsesGet200Model204NoModelDefaultError202None;
   /** Resource for '/http/payloads/200/A/204/none/default/Error/response/400/valid' has methods for the following verbs: get */
   (
     path: "/http/payloads/200/A/204/none/default/Error/response/400/valid"
-  ): Get200Model204NoModelDefaultError400Valid;
+  ): MultipleResponsesGet200Model204NoModelDefaultError400Valid;
   /** Resource for '/http/payloads/200/A/201/B/default/Error/response/200/valid' has methods for the following verbs: get */
   (
     path: "/http/payloads/200/A/201/B/default/Error/response/200/valid"
-  ): Get200Model201ModelDefaultError200Valid;
+  ): MultipleResponsesGet200Model201ModelDefaultError200Valid;
   /** Resource for '/http/payloads/200/A/201/B/default/Error/response/201/valid' has methods for the following verbs: get */
   (
     path: "/http/payloads/200/A/201/B/default/Error/response/201/valid"
-  ): Get200Model201ModelDefaultError201Valid;
+  ): MultipleResponsesGet200Model201ModelDefaultError201Valid;
   /** Resource for '/http/payloads/200/A/201/B/default/Error/response/400/valid' has methods for the following verbs: get */
   (
     path: "/http/payloads/200/A/201/B/default/Error/response/400/valid"
-  ): Get200Model201ModelDefaultError400Valid;
+  ): MultipleResponsesGet200Model201ModelDefaultError400Valid;
   /** Resource for '/http/payloads/200/A/201/C/404/D/default/Error/response/200/valid' has methods for the following verbs: get */
   (
     path: "/http/payloads/200/A/201/C/404/D/default/Error/response/200/valid"
-  ): Get200ModelA201ModelC404ModelDDefaultError200Valid;
+  ): MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200Valid;
   /** Resource for '/http/payloads/200/A/201/C/404/D/default/Error/response/201/valid' has methods for the following verbs: get */
   (
     path: "/http/payloads/200/A/201/C/404/D/default/Error/response/201/valid"
-  ): Get200ModelA201ModelC404ModelDDefaultError201Valid;
+  ): MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201Valid;
   /** Resource for '/http/payloads/200/A/201/C/404/D/default/Error/response/404/valid' has methods for the following verbs: get */
   (
     path: "/http/payloads/200/A/201/C/404/D/default/Error/response/404/valid"
-  ): Get200ModelA201ModelC404ModelDDefaultError404Valid;
+  ): MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404Valid;
   /** Resource for '/http/payloads/200/A/201/C/404/D/default/Error/response/400/valid' has methods for the following verbs: get */
   (
     path: "/http/payloads/200/A/201/C/404/D/default/Error/response/400/valid"
-  ): Get200ModelA201ModelC404ModelDDefaultError400Valid;
+  ): MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400Valid;
   /** Resource for '/http/payloads/202/none/204/none/default/Error/response/202/none' has methods for the following verbs: get */
   (
     path: "/http/payloads/202/none/204/none/default/Error/response/202/none"
-  ): Get202None204NoneDefaultError202None;
+  ): MultipleResponsesGet202None204NoneDefaultError202None;
   /** Resource for '/http/payloads/202/none/204/none/default/Error/response/204/none' has methods for the following verbs: get */
   (
     path: "/http/payloads/202/none/204/none/default/Error/response/204/none"
-  ): Get202None204NoneDefaultError204None;
+  ): MultipleResponsesGet202None204NoneDefaultError204None;
   /** Resource for '/http/payloads/202/none/204/none/default/Error/response/400/valid' has methods for the following verbs: get */
   (
     path: "/http/payloads/202/none/204/none/default/Error/response/400/valid"
-  ): Get202None204NoneDefaultError400Valid;
+  ): MultipleResponsesGet202None204NoneDefaultError400Valid;
   /** Resource for '/http/payloads/202/none/204/none/default/none/response/202/invalid' has methods for the following verbs: get */
   (
     path: "/http/payloads/202/none/204/none/default/none/response/202/invalid"
-  ): Get202None204NoneDefaultNone202Invalid;
+  ): MultipleResponsesGet202None204NoneDefaultNone202Invalid;
   /** Resource for '/http/payloads/202/none/204/none/default/none/response/204/none' has methods for the following verbs: get */
   (
     path: "/http/payloads/202/none/204/none/default/none/response/204/none"
-  ): Get202None204NoneDefaultNone204None;
+  ): MultipleResponsesGet202None204NoneDefaultNone204None;
   /** Resource for '/http/payloads/202/none/204/none/default/none/response/400/none' has methods for the following verbs: get */
   (
     path: "/http/payloads/202/none/204/none/default/none/response/400/none"
-  ): Get202None204NoneDefaultNone400None;
+  ): MultipleResponsesGet202None204NoneDefaultNone400None;
   /** Resource for '/http/payloads/202/none/204/none/default/none/response/400/invalid' has methods for the following verbs: get */
   (
     path: "/http/payloads/202/none/204/none/default/none/response/400/invalid"
-  ): Get202None204NoneDefaultNone400Invalid;
+  ): MultipleResponsesGet202None204NoneDefaultNone400Invalid;
   /** Resource for '/http/payloads/default/A/response/200/valid' has methods for the following verbs: get */
   (
     path: "/http/payloads/default/A/response/200/valid"
-  ): GetDefaultModelA200Valid;
+  ): MultipleResponsesGetDefaultModelA200Valid;
   /** Resource for '/http/payloads/default/A/response/200/none' has methods for the following verbs: get */
-  (path: "/http/payloads/default/A/response/200/none"): GetDefaultModelA200None;
+  (
+    path: "/http/payloads/default/A/response/200/none"
+  ): MultipleResponsesGetDefaultModelA200None;
   /** Resource for '/http/payloads/default/A/response/400/valid' has methods for the following verbs: get */
   (
     path: "/http/payloads/default/A/response/400/valid"
-  ): GetDefaultModelA400Valid;
+  ): MultipleResponsesGetDefaultModelA400Valid;
   /** Resource for '/http/payloads/default/A/response/400/none' has methods for the following verbs: get */
-  (path: "/http/payloads/default/A/response/400/none"): GetDefaultModelA400None;
+  (
+    path: "/http/payloads/default/A/response/400/none"
+  ): MultipleResponsesGetDefaultModelA400None;
   /** Resource for '/http/payloads/default/none/response/200/invalid' has methods for the following verbs: get */
   (
     path: "/http/payloads/default/none/response/200/invalid"
-  ): GetDefaultNone200Invalid;
+  ): MultipleResponsesGetDefaultNone200Invalid;
   /** Resource for '/http/payloads/default/none/response/200/none' has methods for the following verbs: get */
   (
     path: "/http/payloads/default/none/response/200/none"
-  ): GetDefaultNone200None;
+  ): MultipleResponsesGetDefaultNone200None;
   /** Resource for '/http/payloads/default/none/response/400/invalid' has methods for the following verbs: get */
   (
     path: "/http/payloads/default/none/response/400/invalid"
-  ): GetDefaultNone400Invalid;
+  ): MultipleResponsesGetDefaultNone400Invalid;
   /** Resource for '/http/payloads/default/none/response/400/none' has methods for the following verbs: get */
   (
     path: "/http/payloads/default/none/response/400/none"
-  ): GetDefaultNone400None;
+  ): MultipleResponsesGetDefaultNone400None;
   /** Resource for '/http/payloads/200/A/response/200/none' has methods for the following verbs: get */
-  (path: "/http/payloads/200/A/response/200/none"): Get200ModelA200None;
+  (
+    path: "/http/payloads/200/A/response/200/none"
+  ): MultipleResponsesGet200ModelA200None;
   /** Resource for '/http/payloads/200/A/response/200/valid' has methods for the following verbs: get */
-  (path: "/http/payloads/200/A/response/200/valid"): Get200ModelA200Valid;
+  (
+    path: "/http/payloads/200/A/response/200/valid"
+  ): MultipleResponsesGet200ModelA200Valid;
   /** Resource for '/http/payloads/200/A/response/200/invalid' has methods for the following verbs: get */
-  (path: "/http/payloads/200/A/response/200/invalid"): Get200ModelA200Invalid;
+  (
+    path: "/http/payloads/200/A/response/200/invalid"
+  ): MultipleResponsesGet200ModelA200Invalid;
   /** Resource for '/http/payloads/200/A/response/400/none' has methods for the following verbs: get */
-  (path: "/http/payloads/200/A/response/400/none"): Get200ModelA400None;
+  (
+    path: "/http/payloads/200/A/response/400/none"
+  ): MultipleResponsesGet200ModelA400None;
   /** Resource for '/http/payloads/200/A/response/400/valid' has methods for the following verbs: get */
-  (path: "/http/payloads/200/A/response/400/valid"): Get200ModelA400Valid;
+  (
+    path: "/http/payloads/200/A/response/400/valid"
+  ): MultipleResponsesGet200ModelA400Valid;
   /** Resource for '/http/payloads/200/A/response/400/invalid' has methods for the following verbs: get */
-  (path: "/http/payloads/200/A/response/400/invalid"): Get200ModelA400Invalid;
+  (
+    path: "/http/payloads/200/A/response/400/invalid"
+  ): MultipleResponsesGet200ModelA400Invalid;
   /** Resource for '/http/payloads/200/A/response/202/valid' has methods for the following verbs: get */
-  (path: "/http/payloads/200/A/response/202/valid"): Get200ModelA202Valid;
+  (
+    path: "/http/payloads/200/A/response/202/valid"
+  ): MultipleResponsesGet200ModelA202Valid;
 }
 
 export type HttpInfrastructureRestClient = Client & {

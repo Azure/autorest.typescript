@@ -13,7 +13,7 @@ import {
   buildMethodDefinitions,
   getPathParamDefinitions
 } from "./helpers/operationHelpers.js";
-import { Methods, Paths, RLCModel } from "./interfaces.js";
+import { PathMetadata, Paths, RLCModel } from "./interfaces.js";
 import { generateMethodShortcuts } from "./helpers/shortcutMethods.js";
 import { camelCase } from "./helpers/camelCase.js";
 import { pascalCase } from "./helpers/pascalCase.js";
@@ -116,11 +116,7 @@ function getPathFirstRoutesInterfaceDefinition(
 ): CallSignatureDeclarationStructure[] {
   const signatures: CallSignatureDeclarationStructure[] = [];
   for (const key of Object.keys(paths)) {
-    generatePathFirstRouteMethodsDefinition(
-      paths[key].name,
-      paths[key].methods,
-      sourcefile
-    );
+    generatePathFirstRouteMethodsDefinition(paths[key], sourcefile);
     const pathParams = paths[key].pathParameters;
     signatures.push({
       docs: [
@@ -137,23 +133,33 @@ function getPathFirstRoutesInterfaceDefinition(
         { name: "path", type: `"${key}"` },
         ...getPathParamDefinitions(pathParams)
       ],
-      returnType: pascalCase(paths[key].name),
+      returnType: getOperationReturnTypeName(paths[key]),
       kind: StructureKind.CallSignature
     });
   }
   return signatures;
 }
 
+function getOperationReturnTypeName({
+  operationGroupName,
+  name
+}: PathMetadata) {
+  if (operationGroupName && operationGroupName !== "Client") {
+    return `${pascalCase(operationGroupName)}${pascalCase(name)}`;
+  }
+
+  return pascalCase(name);
+}
+
 function generatePathFirstRouteMethodsDefinition(
-  operationName: string,
-  methods: Methods,
+  path: PathMetadata,
   file: SourceFile
 ): void {
-  const methodDefinitions = buildMethodDefinitions(methods);
+  const methodDefinitions = buildMethodDefinitions(path.methods);
 
   file.addInterface({
     methods: methodDefinitions,
-    name: pascalCase(operationName),
+    name: getOperationReturnTypeName(path),
     isExported: true
   });
 }
