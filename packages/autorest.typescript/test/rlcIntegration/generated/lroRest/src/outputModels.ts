@@ -7,7 +7,18 @@ export interface ProductOutput {
 
 export interface ProductPropertiesOutput {
   provisioningState?: string;
-  provisioningStateValues?: ProductPropertiesProvisioningStateValues;
+  provisioningStateValues?:
+    | "Succeeded"
+    | "Failed"
+    | "canceled"
+    | "Accepted"
+    | "Creating"
+    | "Created"
+    | "Updating"
+    | "Updated"
+    | "Deleting"
+    | "Deleted"
+    | "OK";
 }
 
 export interface ResourceOutput {
@@ -39,7 +50,18 @@ export interface SubProductOutput {
 
 export interface SubProductPropertiesOutput {
   provisioningState?: string;
-  provisioningStateValues?: SubProductPropertiesProvisioningStateValues;
+  provisioningStateValues?:
+    | "Succeeded"
+    | "Failed"
+    | "canceled"
+    | "Accepted"
+    | "Creating"
+    | "Created"
+    | "Updating"
+    | "Updated"
+    | "Deleting"
+    | "Deleted"
+    | "OK";
 }
 
 export interface SubResourceOutput {

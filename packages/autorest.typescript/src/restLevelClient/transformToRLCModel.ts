@@ -1,12 +1,15 @@
 import {
   CodeModel,
   ObjectSchema as M4ObjectSchema,
-  Property
+  Property,
+  SchemaContext,
+  SchemaUsage
 } from "@autorest/codemodel";
 import { RLCModel, Schema, ObjectSchema } from "@azure-tools/rlc-codegen";
 import { getAutorestOptions } from "../autorestSession";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { getTypeForSchema } from "../utils/schemaHelpers";
+import { primitiveSchemaToType, isPrimitiveSchema } from "./schemaHelpers";
 
 export function transform(model: CodeModel): RLCModel {
   const { packageDetails, srcPath } = getAutorestOptions();
@@ -40,7 +43,10 @@ export function transformObject(obj: M4ObjectSchema): ObjectSchema {
     );
   }
   if (obj.properties) {
-    resultSchema.properties = transformObjectProperties(obj.properties);
+    resultSchema.properties = transformObjectProperties(
+      obj.properties,
+      resultSchema.usage
+    );
   }
   if (obj.children) {
     resultSchema.children = {
@@ -66,12 +72,14 @@ export function transformObject(obj: M4ObjectSchema): ObjectSchema {
 }
 
 export function transformObjectProperties(
-  objectProperties: Property[]
+  objectProperties: Property[],
+  schemaUsage?: SchemaContext[]
 ): Record<string, ObjectSchema> {
   const result: Record<string, ObjectSchema> = {};
   objectProperties.forEach(prop => {
     result[getLanguageMetadata(prop.language).name] = transformProperty(
-      prop
+      prop,
+      schemaUsage
     );
   });
   return result;
@@ -89,10 +97,15 @@ export function transformBasicSchema(obj: any) {
   };
 }
 
-export function transformProperty(obj: Property) {
+export function transformProperty(
+  obj: Property,
+  schemaUsage?: SchemaContext[]
+) {
   return {
     name: getLanguageMetadata(obj.language).name,
-    type: getTypeForSchema(obj.schema).typeName,
+    type: isPrimitiveSchema(obj.schema)
+      ? primitiveSchemaToType(obj.schema, schemaUsage ?? [SchemaContext.Input])
+      : getTypeForSchema(obj.schema).typeName,
     description: getLanguageMetadata(obj.language).description,
     default: obj.clientDefaultValue,
     required: obj.required ?? false,
