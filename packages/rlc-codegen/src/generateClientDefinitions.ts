@@ -114,9 +114,15 @@ function getPathFirstRoutesInterfaceDefinition(
   paths: Paths,
   sourcefile: SourceFile
 ): CallSignatureDeclarationStructure[] {
+  const operationGroupCount = getOperationGroupCount(paths);
+
   const signatures: CallSignatureDeclarationStructure[] = [];
   for (const key of Object.keys(paths)) {
-    generatePathFirstRouteMethodsDefinition(paths[key], sourcefile);
+    generatePathFirstRouteMethodsDefinition(
+      paths[key],
+      operationGroupCount,
+      sourcefile
+    );
     const pathParams = paths[key].pathParameters;
     signatures.push({
       docs: [
@@ -133,18 +139,34 @@ function getPathFirstRoutesInterfaceDefinition(
         { name: "path", type: `"${key}"` },
         ...getPathParamDefinitions(pathParams)
       ],
-      returnType: getOperationReturnTypeName(paths[key]),
+      returnType: getOperationReturnTypeName(
+        paths[key],
+        getOperationGroupCount(paths)
+      ),
       kind: StructureKind.CallSignature
     });
   }
   return signatures;
 }
 
-function getOperationReturnTypeName({
-  operationGroupName,
-  name
-}: PathMetadata) {
-  if (operationGroupName && operationGroupName !== "Client") {
+function getOperationGroupCount(paths: Paths) {
+  const operationGroups = Object.keys(paths)
+    .map((p) => paths[p].operationGroupName)
+    .filter((p) => p && p !== "Client");
+  const uniqueNames = new Set(operationGroups);
+
+  return uniqueNames.size;
+}
+
+function getOperationReturnTypeName(
+  { operationGroupName, name }: PathMetadata,
+  operationGroupCount: number
+) {
+  if (
+    operationGroupCount > 1 &&
+    operationGroupName &&
+    operationGroupName !== "Client"
+  ) {
     return `${pascalCase(operationGroupName)}${pascalCase(name)}`;
   }
 
@@ -153,13 +175,14 @@ function getOperationReturnTypeName({
 
 function generatePathFirstRouteMethodsDefinition(
   path: PathMetadata,
+  operationGroupCount: number,
   file: SourceFile
 ): void {
   const methodDefinitions = buildMethodDefinitions(path.methods);
 
   file.addInterface({
     methods: methodDefinitions,
-    name: getOperationReturnTypeName(path),
+    name: getOperationReturnTypeName(path, operationGroupCount),
     isExported: true
   });
 }
