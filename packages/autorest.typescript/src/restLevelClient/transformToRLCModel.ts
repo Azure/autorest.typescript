@@ -9,7 +9,7 @@ import { RLCModel, Schema, ObjectSchema } from "@azure-tools/rlc-codegen";
 import { getAutorestOptions } from "../autorestSession";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { getTypeForSchema } from "../utils/schemaHelpers";
-import { primitiveSchemaToType, isPrimitiveSchema } from "./schemaHelpers";
+import { primitiveSchemaToType, isPrimitiveSchema, getElementType } from "./schemaHelpers";
 
 export function transform(model: CodeModel): RLCModel {
   const { packageDetails, srcPath } = getAutorestOptions();
@@ -105,7 +105,7 @@ export function transformProperty(
     name: getLanguageMetadata(obj.language).name,
     type: isPrimitiveSchema(obj.schema)
       ? primitiveSchemaToType(obj.schema, schemaUsage ?? [SchemaContext.Input])
-      : getTypeForSchema(obj.schema).typeName,
+      : getElementType(obj.schema, schemaUsage ?? [SchemaContext.Input]),
     description: getLanguageMetadata(obj.language).description,
     default: obj.clientDefaultValue,
     required: obj.required ?? false,

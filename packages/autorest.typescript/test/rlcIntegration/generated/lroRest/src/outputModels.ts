@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 export interface ProductOutput {
-  properties?: ProductProperties;
+  properties?: ProductPropertiesOutput;
 }
 
 export interface ProductPropertiesOutput {
@@ -27,7 +27,7 @@ export interface ResourceOutput {
   /** Resource Type */
   type?: string;
   /** Dictionary of <string> */
-  tags?: { [propertyName: string]: string };
+  tags?: Record<string, string>;
   /** Resource Location */
   location?: string;
   /** Resource Name */
@@ -45,7 +45,7 @@ export interface SkuOutput {
 }
 
 export interface SubProductOutput {
-  properties?: SubProductProperties;
+  properties?: SubProductPropertiesOutput;
 }
 
 export interface SubProductPropertiesOutput {
