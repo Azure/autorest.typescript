@@ -6,6 +6,7 @@ import {
 import { RLCModel, Schema, ObjectSchema } from "@azure-tools/rlc-codegen";
 import { getAutorestOptions } from "../autorestSession";
 import { getLanguageMetadata } from "../utils/languageHelpers";
+import { getTypeForSchema } from "../utils/schemaHelpers";
 
 export function transform(model: CodeModel): RLCModel {
   const { packageDetails, srcPath } = getAutorestOptions();
@@ -69,8 +70,8 @@ export function transformObjectProperties(
 ): Record<string, ObjectSchema> {
   const result: Record<string, ObjectSchema> = {};
   objectProperties.forEach(prop => {
-    result[getLanguageMetadata(prop.language).name] = transformObject(
-      prop.schema as M4ObjectSchema
+    result[getLanguageMetadata(prop.language).name] = transformProperty(
+      prop
     );
   });
   return result;
@@ -85,5 +86,17 @@ export function transformBasicSchema(obj: any) {
     required: obj.required ?? false,
     readOnly: obj.readOnly ?? false,
     usage: obj.usage
+  };
+}
+
+export function transformProperty(obj: Property) {
+  return {
+    name: getLanguageMetadata(obj.language).name,
+    type: getTypeForSchema(obj.schema).typeName,
+    description: getLanguageMetadata(obj.language).description,
+    default: obj.clientDefaultValue,
+    required: obj.required ?? false,
+    readOnly: obj.readOnly ?? false,
+    usage: (obj.schema as M4ObjectSchema).usage
   };
 }

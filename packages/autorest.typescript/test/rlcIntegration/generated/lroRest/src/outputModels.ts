@@ -2,12 +2,12 @@
 // Licensed under the MIT license.
 
 export interface ProductOutput {
-  properties?: object;
+  properties?: ProductProperties;
 }
 
 export interface ProductPropertiesOutput {
   provisioningState?: string;
-  provisioningStateValues?: choice;
+  provisioningStateValues?: ProductPropertiesProvisioningStateValues;
 }
 
 export interface ResourceOutput {
@@ -16,7 +16,7 @@ export interface ResourceOutput {
   /** Resource Type */
   type?: string;
   /** Dictionary of <string> */
-  tags?: dictionary;
+  tags?: { [propertyName: string]: string };
   /** Resource Location */
   location?: string;
   /** Resource Name */
@@ -24,7 +24,7 @@ export interface ResourceOutput {
 }
 
 export interface CloudErrorOutput {
-  code?: integer;
+  code?: number;
   message?: string;
 }
 
@@ -34,12 +34,12 @@ export interface SkuOutput {
 }
 
 export interface SubProductOutput {
-  properties?: object;
+  properties?: SubProductProperties;
 }
 
 export interface SubProductPropertiesOutput {
   provisioningState?: string;
-  provisioningStateValues?: choice;
+  provisioningStateValues?: SubProductPropertiesProvisioningStateValues;
 }
 
 export interface SubResourceOutput {
