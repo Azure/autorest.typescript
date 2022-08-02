@@ -43,13 +43,15 @@ function buildOperationDefinitions(
 
   for (const verb in path.methods) {
     const methods = path.methods[verb];
-    const name = camelCase(methods[0].operationName);
-    const pathParams = path.pathParameters;
-    const methodDefinitions = buildMethodDefinitions(
-      { [name]: methods },
-      pathParams
-    );
-    ops = [...ops, ...methodDefinitions];
+    for (const method of methods) {
+      const name = camelCase(method.operationName);
+      const pathParams = path.pathParameters;
+      const methodDefinitions = buildMethodDefinitions(
+        { [name]: [method] },
+        pathParams
+      );
+      ops = [...ops, ...methodDefinitions];
+    }
   }
   return ops;
 }

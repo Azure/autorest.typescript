@@ -179,18 +179,31 @@ function generatePathFirstRouteMethodsDefinition(
   file: SourceFile
 ): void {
   const methodDefinitions = buildMethodDefinitions(path.methods);
-
-  file.addInterface({
+  const interfaceDef = {
     methods: methodDefinitions,
     name: getOperationReturnTypeName(path, operationGroupCount),
     isExported: true
-  });
+  };
+  file.addInterface(interfaceDef);
 }
 
 function getShortcutName(interfaceName: string) {
-  const endIndex = interfaceName.lastIndexOf("Operations");
+  const endIndex = shouldKeepSuffix(interfaceName)
+    ? undefined
+    : interfaceName.indexOf("Operations");
+  const clientProperty = camelCase(interfaceName.substring(0, endIndex));
+
   return {
-    name: camelCase(interfaceName.substring(0, endIndex)),
+    name: clientProperty,
     type: interfaceName
   };
+}
+
+function shouldKeepSuffix(name: string) {
+  const reservedNames = [
+    "pipelineOperations",
+    "pathOperations",
+    "pathUncheckedOperations"
+  ];
+  return reservedNames.some((r) => r.toLowerCase() === name.toLowerCase());
 }

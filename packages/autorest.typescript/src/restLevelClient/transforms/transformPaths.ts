@@ -10,7 +10,6 @@ import { Paths, PathParameter, ResponseTypes } from "@azure-tools/rlc-codegen";
 import { isEqual } from "lodash";
 import { getLanguageMetadata } from "../../utils/languageHelpers";
 import { NameType, normalizeName } from "../../utils/nameUtils";
-import { REST_CLIENT_RESERVED } from "../generateMethodShortcuts";
 import { isLongRunningOperation } from "../helpers/hasPollingOperations";
 import { getOperationParameters } from "../helpers/operationHelpers";
 import {
@@ -63,7 +62,7 @@ export function transformPaths(
       });
 
       for (const request of operation.requests || []) {
-        const path: string = (request.protocol.http?.path as string) || "";
+        const path: string = request.protocol.http?.path as string;
         const method = request.protocol.http?.method;
 
         if (path && method) {
@@ -105,6 +104,8 @@ export function transformPaths(
           } else {
             pathDictionary[path].methods[`${method}`] = [newMethod];
           }
+        } else {
+          throw new Error("ooops");
         }
       }
     }
@@ -116,9 +117,8 @@ function getOperationOptionsType(
   operation: Operation,
   importedParameters = new Set<string>()
 ) {
-  const paramsName = `${
-    getLanguageMetadata(operation.language).name
-  }Parameters`;
+  const paramsName = `${getLanguageMetadata(operation.language).name ||
+    getLanguageMetadata(operation.language).serializedName}Parameters`;
   importedParameters.add(paramsName);
 
   return paramsName;
@@ -161,6 +161,10 @@ function getResponseTypes(operation: Operation): ResponseTypes {
   }
   return returnTypes;
 }
+
+// function isRequest(item: any): item is Request {
+//   return !item.operatioId;
+// }
 
 function getOperationReturnType(
   operation: Operation,

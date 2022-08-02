@@ -691,25 +691,17 @@ export interface LibraryOperations {
   /** Creates a library with the library name. */
   create(
     libraryName: string,
-    options?: LibraryCreateParameters | LibraryAppendParameters
-  ):
-    | StreamableMethod<
-        | LibraryCreate200Response
-        | LibraryCreate202Response
-        | LibraryCreatedefaultResponse
-      >
-    | StreamableMethod<LibraryAppend201Response | LibraryAppenddefaultResponse>;
-  /** Creates a library with the library name. */
+    options?: LibraryCreateParameters
+  ): StreamableMethod<
+    | LibraryCreate200Response
+    | LibraryCreate202Response
+    | LibraryCreatedefaultResponse
+  >;
+  /** Append the content to the library resource created using the create operation. The maximum content size is 4MiB. Content larger than 4MiB must be appended in 4MiB chunks */
   append(
     libraryName: string,
-    options?: LibraryCreateParameters | LibraryAppendParameters
-  ):
-    | StreamableMethod<
-        | LibraryCreate200Response
-        | LibraryCreate202Response
-        | LibraryCreatedefaultResponse
-      >
-    | StreamableMethod<LibraryAppend201Response | LibraryAppenddefaultResponse>;
+    options: LibraryAppendParameters
+  ): StreamableMethod<LibraryAppend201Response | LibraryAppenddefaultResponse>;
 }
 
 /** Contains operations for LinkedService operations */
@@ -830,8 +822,8 @@ export interface NotebookOperationResultOperations {
   >;
 }
 
-/** Contains operations for PipelineOperations operations */
-export interface PipelineOperationsOperations {
+/** Contains operations for Pipeline operations */
+export interface PipelineOperations {
   /** Lists pipelines. */
   getPipelinesByWorkspace(
     options?: PipelineGetPipelinesByWorkspaceParameters
@@ -1533,14 +1525,16 @@ export interface LibraryDelete {
   >;
   /** Creates a library with the library name. */
   put(
-    options?: LibraryCreateParameters | LibraryAppendParameters
-  ):
-    | StreamableMethod<
-        | LibraryCreate200Response
-        | LibraryCreate202Response
-        | LibraryCreatedefaultResponse
-      >
-    | StreamableMethod<LibraryAppend201Response | LibraryAppenddefaultResponse>;
+    options?: LibraryCreateParameters
+  ): StreamableMethod<
+    | LibraryCreate200Response
+    | LibraryCreate202Response
+    | LibraryCreatedefaultResponse
+  >;
+  /** Append the content to the library resource created using the create operation. The maximum content size is 4MiB. Content larger than 4MiB must be appended in 4MiB chunks */
+  put(
+    options: LibraryAppendParameters
+  ): StreamableMethod<LibraryAppend201Response | LibraryAppenddefaultResponse>;
 }
 
 export interface LinkedServiceGetLinkedServicesByWorkspace {
@@ -2296,7 +2290,7 @@ export type SynapseArtifactsClient = Client & {
   linkedService: LinkedServiceOperations;
   notebook: NotebookOperations;
   notebookOperationResult: NotebookOperationResultOperations;
-  pipelineOperations: PipelineOperationsOperations;
+  pipelineOperations: PipelineOperations;
   pipelineRun: PipelineRunOperations;
   sparkJobDefinition: SparkJobDefinitionOperations;
   sqlPools: SqlPoolsOperations;
