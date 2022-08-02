@@ -51,22 +51,22 @@ export function transformObject(obj: M4ObjectSchema): ObjectSchema {
   if (obj.children) {
     resultSchema.children = {
       all: obj.children.all.map(child =>
-        transformObject(child as M4ObjectSchema)
+        transformBasicSchema(child as M4ObjectSchema)
       ),
       immediate: obj.children.immediate.map(child =>
-        transformObject(child as M4ObjectSchema)
+        transformBasicSchema(child as M4ObjectSchema)
       )
     };
   }
   if (obj.parents) {
-    // resultSchema.parents = {
-    //   all: obj.parents.all.map(child =>
-    //     transformObject(child as M4ObjectSchema)
-    //   ),
-    //   immediate: obj.parents.all.map(child =>
-    //     transformObject(child as M4ObjectSchema)
-    //   )
-    // };
+    resultSchema.parents = {
+      all: obj.parents.all.map(child =>
+        transformBasicSchema(child as M4ObjectSchema)
+      ),
+      immediate: obj.parents.all.map(child =>
+        transformBasicSchema(child as M4ObjectSchema)
+      )
+    };
   }
   return resultSchema;
 }

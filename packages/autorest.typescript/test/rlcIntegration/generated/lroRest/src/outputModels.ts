@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export interface ProductOutput {
+export interface ProductOutput extends ResourceOutput {
   properties?: ProductPropertiesOutput;
 }
 
@@ -44,7 +44,7 @@ export interface SkuOutput {
   id?: string;
 }
 
-export interface SubProductOutput {
+export interface SubProductOutput extends SubResourceOutput {
   properties?: SubProductPropertiesOutput;
 }
 
