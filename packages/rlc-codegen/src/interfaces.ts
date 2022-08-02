@@ -35,3 +35,54 @@ export interface OperationAnnotations {
   isLongRunning?: boolean;
   isPageable?: boolean;
 }
+export interface RLCModel {
+  libraryName: string;
+  srcPath: string;
+  paths: Paths;
+  schemas: Schema[];
+}
+export interface File {
+  path: string,
+  content: string
+}
+
+export enum SchemaContext {
+  /** Schema is used as an input to an operation. */
+  Input = "input",
+  /** Schema is used as an output from an operation. */
+  Output = "output",
+  /** Schema is used as an exception from an operation. */
+  Exception = "exception"
+}
+
+export interface Schema {
+  name: string;
+  type: string;
+  description?: string;
+  required?: boolean;
+  default?: any;
+  readOnly?: boolean;
+  usage?: SchemaContext[];
+}
+
+export interface ObjectSchema extends Schema {
+  properties?: Record<string, Schema>;
+  discriminatorValue?: string;
+  discriminator?: Schema;
+  children?: {
+    all?: ObjectSchema[];
+    immediate?: ObjectSchema[];
+  };
+  parents?: { 
+    all?: ObjectSchema[]
+    immediate?: ObjectSchema[];
+  }
+}
+
+export interface Property extends Schema {
+
+}
+
+export interface Parameter extends Schema {
+
+}
