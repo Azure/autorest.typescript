@@ -11,12 +11,14 @@ import {
   buildMethodDefinitions,
   getPathParamDefinitions
 } from "./helpers/operationHelpers.js";
-import { Methods, Paths } from "./interfaces.js";
+import { Methods, PathParameterDefinition, PathResponseDefinition, Paths } from "./interfaces.js";
 
 export interface RLCModel {
   libraryName: string;
   srcPath: string;
   paths: Paths;
+  params: PathParameterDefinition[];
+  resps: PathResponseDefinition[];
 }
 
 export function buildClientDefinitions(

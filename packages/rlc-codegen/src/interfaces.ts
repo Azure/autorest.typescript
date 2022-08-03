@@ -35,3 +35,30 @@ export interface OperationAnnotations {
   isLongRunning?: boolean;
   isPageable?: boolean;
 }
+
+export interface PathParameterDefinition {
+  name: string;
+  baseType: string;
+  compositions: PathParameterPart[];
+}
+
+export type PathParameterPart = PathInterfaceBase;
+
+export interface PathResponseDefinition extends PathInterfaceBase {
+  extendFrom?: string;
+}
+
+export interface PathInterfaceBase {
+  name: string;
+  description?: string;
+  properties: PropertyDefinition[];
+}
+
+export interface PropertyDefinition {
+  name: string;
+  description?: string;
+  type: string;
+  isOptional?: boolean;
+  buildType: boolean;
+  buildStructure?: PathInterfaceBase;
+}
