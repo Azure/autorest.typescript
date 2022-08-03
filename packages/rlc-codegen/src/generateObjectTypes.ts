@@ -369,7 +369,15 @@ export function getPropertySignature(
   const propertyName = property.name;
 
   const description = property.description;
-  const type = property.type;
+  const type =
+    schemaUsage.includes(SchemaContext.Output) &&
+    property.usage?.includes(SchemaContext.Output) &&
+    isObjectSchema(property) &&
+    property.typeName
+      ? property.typeName + "Output"
+      : property.typeName
+      ? property.typeName
+      : property.type;
   return {
     name: propertyName,
     ...(description && { docs: [{ description }] }),

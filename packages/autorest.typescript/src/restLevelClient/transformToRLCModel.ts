@@ -9,7 +9,11 @@ import { RLCModel, Schema, ObjectSchema } from "@azure-tools/rlc-codegen";
 import { getAutorestOptions } from "../autorestSession";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { getTypeForSchema } from "../utils/schemaHelpers";
-import { primitiveSchemaToType, isPrimitiveSchema, getElementType } from "./schemaHelpers";
+import {
+  primitiveSchemaToType,
+  isPrimitiveSchema,
+  getElementType
+} from "./schemaHelpers";
 
 export function transform(model: CodeModel): RLCModel {
   const { packageDetails, srcPath } = getAutorestOptions();
@@ -101,15 +105,24 @@ export function transformProperty(
   obj: Property,
   schemaUsage?: SchemaContext[]
 ) {
+  const usage = schemaUsage ??
+    (obj.schema as M4ObjectSchema).usage ?? [SchemaContext.Input];
+  let type = undefined;
+  let typeName = undefined;
+  if (isPrimitiveSchema(obj.schema)) {
+    type = primitiveSchemaToType(obj.schema, usage);
+  } else {
+    typeName = getElementType(obj.schema, [SchemaContext.Input]),
+    type = obj.schema.type;
+  }
   return {
     name: getLanguageMetadata(obj.language).name,
-    type: isPrimitiveSchema(obj.schema)
-      ? primitiveSchemaToType(obj.schema, schemaUsage ?? [SchemaContext.Input])
-      : getElementType(obj.schema, schemaUsage ?? [SchemaContext.Input]),
+    type,
+    typeName,
     description: getLanguageMetadata(obj.language).description,
     default: obj.clientDefaultValue,
     required: obj.required ?? false,
     readOnly: obj.readOnly ?? false,
-    usage: (obj.schema as M4ObjectSchema).usage
+    usage
   };
 }

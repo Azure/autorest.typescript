@@ -59,6 +59,7 @@ export enum SchemaContext {
 export interface Schema {
   name: string;
   type: string;
+  typeName?: string;
   description?: string;
   required?: boolean;
   default?: any;

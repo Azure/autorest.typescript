@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 export interface Product extends Resource {
-  properties?: ProductPropertiesOutput;
+  properties?: ProductProperties;
 }
 
 export interface ProductProperties {
@@ -40,7 +40,7 @@ export interface Sku {
 }
 
 export interface SubProduct extends SubResource {
-  properties?: SubProductPropertiesOutput;
+  properties?: SubProductProperties;
 }
 
 export interface SubProductProperties {
