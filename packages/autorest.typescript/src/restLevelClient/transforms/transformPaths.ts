@@ -21,9 +21,9 @@ import { getElementType } from "../schemaHelpers";
 export function transformPaths(
   model: CodeModel,
   {
-    importedParameters,
-    clientImports,
-    importedResponses
+    importedParameters = new Set<string>(),
+    clientImports = new Set<string>(),
+    importedResponses = new Set<string>()
   }: {
     importedParameters: Set<string>;
     importedResponses: Set<string>;

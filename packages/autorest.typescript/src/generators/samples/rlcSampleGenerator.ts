@@ -19,13 +19,13 @@ import {
   OperationMethod
 } from "../../restLevelClient/interfaces";
 import { camelCase } from "@azure-tools/codegen";
-import { pathDictionary } from "../../restLevelClient/generateClientDefinition";
 import { Operation, ParameterLocation } from "@autorest/codemodel";
 import { isLongRunningOperation } from "../../restLevelClient/helpers/hasPollingOperations";
 import { isPagingOperation } from "../../utils/extractPaginationDetails";
 import { getSecurityInfoFromModel } from "../../utils/schemaHelpers";
 import { getParameterAssignment } from "../../utils/valueHelpers";
 import { Paths, PathMetadata } from "@azure-tools/rlc-codegen";
+import { transformPaths } from "../../restLevelClient/transforms/transformPaths";
 
 const tokenCredentialPackage = "@azure/identity";
 const apiKeyCredentialPackage = "@azure/core-auth";
@@ -80,8 +80,17 @@ export function transformRLCSampleData(model: TestCodeModel): RLCSampleGroup[] {
   if (!model?.testModel?.mockTest?.exampleGroups) {
     return rlcSampleGroups;
   }
+  // Get all paths
+  const importedParameters = new Set<string>();
+  const importedResponses = new Set<string>();
+  const clientImports = new Set<string>();
+
   const session = getSession();
-  const paths: Paths = pathDictionary;
+  const paths: Paths = transformPaths(model, {
+    importedParameters,
+    importedResponses,
+    clientImports
+  });
   const clientName = getLanguageMetadata(model.language).name;
   const clientInterfaceName = clientName.endsWith("Client")
     ? `${clientName}`

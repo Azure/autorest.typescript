@@ -8,9 +8,10 @@ import { NameType, normalizeName } from "../utils/nameUtils";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { transformPaths } from "./transforms/transformPaths";
 import { Paths, buildClientDefinitions } from "@azure-tools/rlc-codegen";
-export let pathDictionary: Paths = {};
 
 export function generatePathFirstClient(model: CodeModel, project: Project) {
+  let pathDictionary: Paths = {};
+
   const name = normalizeName(
     getLanguageMetadata(model.language).name,
     NameType.Interface
