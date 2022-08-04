@@ -75,10 +75,7 @@ export function transformObjectProperties(
 ): Record<string, ObjectSchema> {
   const result: Record<string, ObjectSchema> = {};
   objectProperties.forEach(prop => {
-    result[`"${prop.serializedName}"`] = transformProperty(
-      prop,
-      schemaUsage
-    );
+    result[`"${prop.serializedName}"`] = transformProperty(prop, schemaUsage);
   });
   return result;
 }
@@ -94,12 +91,11 @@ export function transformBasicSchema(obj: any) {
     default: obj.defaultValue,
     required: obj.required ?? false,
     readOnly: obj.readOnly ?? false,
-    usage: obj.usage,
+    usage: obj.usage
   };
   if (obj.discriminator) {
-    result.discriminator = transformBasicSchema(
-      obj.discriminator.property
-    );
+    result.discriminator = transformBasicSchema(obj.discriminator.property);
+    result.isPolyParent = obj.children?.immediate?.length ? true: false;
   }
   if (obj.discriminatorValue) {
     result.discriminatorValue = obj.discriminatorValue;
@@ -114,10 +110,16 @@ function getSchemaTypeName(obj: any) {
   if (obj.schema && isPrimitiveSchema(obj.schema)) {
     type = primitiveSchemaToType(obj.schema, [SchemaContext.Input]);
     typeName = primitiveSchemaToType(obj.schema, [SchemaContext.Input]);
-    outputTypeName = primitiveSchemaToType(obj.schema, [SchemaContext.Output]);
-  } else if(obj.schema) {
+    outputTypeName = primitiveSchemaToType(obj.schema, [
+      SchemaContext.Output,
+      SchemaContext.Exception
+    ]);
+  } else if (obj.schema) {
     typeName = getElementType(obj.schema, [SchemaContext.Input]);
-    outputTypeName = getElementType(obj.schema, [SchemaContext.Output]);
+    outputTypeName = getElementType(obj.schema, [
+      SchemaContext.Output,
+      SchemaContext.Exception
+    ]);
     type = obj.schema.type;
   } else {
     type = obj.type;
@@ -132,6 +134,9 @@ export function transformProperty(
   const usage = schemaUsage ??
     (obj.schema as M4ObjectSchema).usage ?? [SchemaContext.Input];
   const { type, typeName, outputTypeName } = getSchemaTypeName(obj);
+  if (obj.serializedName === 'error') {
+    obj;
+  }
   return {
     name: `"${obj.serializedName}"`,
     type,

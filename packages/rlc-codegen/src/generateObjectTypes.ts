@@ -31,6 +31,9 @@ export function buildObjectInterfaces(
 
   for (const objectSchema of objectSchemas) {
     const baseName = getObjectBaseName(objectSchema, schemaUsage);
+    if (baseName === "CustomSetupBase") {
+      objectSchema;
+    }
     const interfaceDeclaration = getObjectInterfaceDeclaration(
       baseName,
       objectSchema,
@@ -169,7 +172,7 @@ function getObjectInterfaceDeclaration(
 }
 
 function isPolymorphicParent(objectSchema: ObjectSchema) {
-  return objectSchema.discriminator ? true: false;
+  return objectSchema.isPolyParent ? true : false;
 }
 
 function addDiscriminatorProperty(
@@ -366,8 +369,10 @@ export function getPropertySignature(
 
   const description = property.description;
   const type =
-    schemaUsage.includes(SchemaContext.Output) &&
-    property.usage?.includes(SchemaContext.Output) &&
+    ((schemaUsage.includes(SchemaContext.Output) &&
+      property.usage?.includes(SchemaContext.Output)) ||
+      (schemaUsage.includes(SchemaContext.Exception) &&
+        property.usage?.includes(SchemaContext.Exception))) &&
     property.outputTypeName
       ? property.outputTypeName
       : property.typeName

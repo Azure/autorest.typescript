@@ -72,6 +72,7 @@ export interface ObjectSchema extends Schema {
   properties?: Record<string, Schema>;
   discriminatorValue?: string;
   discriminator?: Schema;
+  isPolyParent?: boolean;
   children?: {
     all?: ObjectSchema[];
     immediate?: ObjectSchema[];

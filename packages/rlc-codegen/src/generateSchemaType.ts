@@ -44,7 +44,7 @@ export function generateModelFiles(
       overwrite: true
     });
 
-    // const toGenerate = objectsDefinitions.slice(objectsDefinitions.length*5/8, objectsDefinitions.length*3/4);
+    const obj = objectsDefinitions.filter(item => item.name !== "CustomSetupBase");
     modelsFile.addInterfaces(objectsDefinitions);
     modelsFile.addTypeAliases(objectTypeAliases);
     return { path: filePath, content: modelsFile.getFullText() };
