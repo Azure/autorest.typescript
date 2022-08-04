@@ -169,11 +169,7 @@ function getObjectInterfaceDeclaration(
 }
 
 function isPolymorphicParent(objectSchema: ObjectSchema) {
-  if (objectSchema?.children?.immediate)
-    return (
-      objectSchema?.children?.immediate.length && objectSchema.discriminator
-    );
-  return false;
+  return objectSchema.discriminator ? true: false;
 }
 
 function addDiscriminatorProperty(
@@ -187,7 +183,7 @@ function addDiscriminatorProperty(
     // This is usually the case on the top level parent where the property already has a type of string
     // we need to replace it with the polymorphic values of its children
     const filteredProperties = properties.filter(
-      (p) => p.name !== polymorphicProperty.name
+      (p) => `"${p.name}"` !== polymorphicProperty.name
     );
     return [...filteredProperties, polymorphicProperty];
   }
@@ -306,7 +302,7 @@ function getChildDiscriminatorValues(children: ObjectSchema[]): string[] {
  */
 function getImmediateParentsNames(
   objectSchema: ObjectSchema,
-  shcemaUsage: SchemaContext[]
+  schemaUsage: SchemaContext[]
 ): string[] {
   if (!objectSchema.parents?.immediate) {
     return [];
@@ -324,7 +320,7 @@ function getImmediateParentsNames(
   const parents = objectSchema.parents.immediate
     .filter((p) => !isDictionarySchema(p))
     .map((parent) => {
-      const nameSuffix = shcemaUsage.includes(SchemaContext.Output)
+      const nameSuffix = schemaUsage.includes(SchemaContext.Output)
         ? "Output"
         : "";
       const name = `${normalizeName(
@@ -372,9 +368,8 @@ export function getPropertySignature(
   const type =
     schemaUsage.includes(SchemaContext.Output) &&
     property.usage?.includes(SchemaContext.Output) &&
-    isObjectSchema(property) &&
-    property.typeName
-      ? property.typeName + "Output"
+    property.outputTypeName
+      ? property.outputTypeName
       : property.typeName
       ? property.typeName
       : property.type;

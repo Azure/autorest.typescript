@@ -8,7 +8,7 @@ import {
 import { RLCModel, Schema, ObjectSchema } from "@azure-tools/rlc-codegen";
 import { getAutorestOptions } from "../autorestSession";
 import { getLanguageMetadata } from "../utils/languageHelpers";
-import { getTypeForSchema } from "../utils/schemaHelpers";
+import { getDocs } from "./getPropertySignature";
 import {
   primitiveSchemaToType,
   isPrimitiveSchema,
@@ -30,22 +30,16 @@ export function transformSchemas(model: CodeModel): Schema[] {
   const schemas: Schema[] = [];
 
   model.schemas.objects?.forEach(obj => {
-    const item: Schema | ObjectSchema = transformObject(obj);
-    schemas.push(item);
+    if (obj) {
+      const item: Schema | ObjectSchema = transformObject(obj);
+      schemas.push(item);
+    }
   });
   return schemas;
 }
 
 export function transformObject(obj: M4ObjectSchema): ObjectSchema {
   const resultSchema: ObjectSchema = transformBasicSchema(obj);
-  if (obj.discriminatorValue) {
-    resultSchema.discriminatorValue = obj.discriminatorValue;
-  }
-  if (obj.discriminator) {
-    resultSchema.discriminator = transformObject(
-      obj.discriminator?.immediate[0] as M4ObjectSchema
-    );
-  }
   if (obj.properties) {
     resultSchema.properties = transformObjectProperties(
       obj.properties,
@@ -64,11 +58,11 @@ export function transformObject(obj: M4ObjectSchema): ObjectSchema {
   }
   if (obj.parents) {
     resultSchema.parents = {
-      all: obj.parents.all.map(child =>
-        transformBasicSchema(child as M4ObjectSchema)
+      all: obj.parents.all.map(parent =>
+        transformBasicSchema(parent as M4ObjectSchema)
       ),
-      immediate: obj.parents.all.map(child =>
-        transformBasicSchema(child as M4ObjectSchema)
+      immediate: obj.parents.immediate.map(parent =>
+        transformBasicSchema(parent as M4ObjectSchema)
       )
     };
   }
@@ -81,7 +75,7 @@ export function transformObjectProperties(
 ): Record<string, ObjectSchema> {
   const result: Record<string, ObjectSchema> = {};
   objectProperties.forEach(prop => {
-    result[getLanguageMetadata(prop.language).name] = transformProperty(
+    result[prop.serializedName] = transformProperty(
       prop,
       schemaUsage
     );
@@ -90,15 +84,45 @@ export function transformObjectProperties(
 }
 
 export function transformBasicSchema(obj: any) {
-  return {
-    name: getLanguageMetadata(obj.language).name,
-    type: obj.type,
+  const { type, typeName, outputTypeName } = getSchemaTypeName(obj);
+  const result: ObjectSchema = {
+    name: obj.serializedName ?? getLanguageMetadata(obj.language).name,
+    type,
+    typeName,
+    outputTypeName,
     description: getLanguageMetadata(obj.language).description,
     default: obj.defaultValue,
     required: obj.required ?? false,
     readOnly: obj.readOnly ?? false,
-    usage: obj.usage
+    usage: obj.usage,
   };
+  if (obj.discriminator) {
+    result.discriminator = transformBasicSchema(
+      obj.discriminator.property
+    );
+  }
+  if (obj.discriminatorValue) {
+    result.discriminatorValue = obj.discriminatorValue;
+  }
+  return result;
+}
+
+function getSchemaTypeName(obj: any) {
+  let type = undefined;
+  let typeName = undefined;
+  let outputTypeName = undefined;
+  if (obj.schema && isPrimitiveSchema(obj.schema)) {
+    type = primitiveSchemaToType(obj.schema, [SchemaContext.Input]);
+    typeName = primitiveSchemaToType(obj.schema, [SchemaContext.Input]);
+    outputTypeName = primitiveSchemaToType(obj.schema, [SchemaContext.Output]);
+  } else if(obj.schema) {
+    typeName = getElementType(obj.schema, [SchemaContext.Input]);
+    outputTypeName = getElementType(obj.schema, [SchemaContext.Output]);
+    type = obj.schema.type;
+  } else {
+    type = obj.type;
+  }
+  return { type, typeName, outputTypeName };
 }
 
 export function transformProperty(
@@ -107,19 +131,13 @@ export function transformProperty(
 ) {
   const usage = schemaUsage ??
     (obj.schema as M4ObjectSchema).usage ?? [SchemaContext.Input];
-  let type = undefined;
-  let typeName = undefined;
-  if (isPrimitiveSchema(obj.schema)) {
-    type = primitiveSchemaToType(obj.schema, usage);
-  } else {
-    typeName = getElementType(obj.schema, [SchemaContext.Input]),
-    type = obj.schema.type;
-  }
+  const { type, typeName, outputTypeName } = getSchemaTypeName(obj);
   return {
-    name: getLanguageMetadata(obj.language).name,
+    name: obj.serializedName,
     type,
     typeName,
-    description: getLanguageMetadata(obj.language).description,
+    outputTypeName,
+    description: getDocs(obj),
     default: obj.clientDefaultValue,
     required: obj.required ?? false,
     readOnly: obj.readOnly ?? false,

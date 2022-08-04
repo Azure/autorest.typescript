@@ -60,6 +60,7 @@ export interface Schema {
   name: string;
   type: string;
   typeName?: string;
+  outputTypeName?: string;
   description?: string;
   required?: boolean;
   default?: any;

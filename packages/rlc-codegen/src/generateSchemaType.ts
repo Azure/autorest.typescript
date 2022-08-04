@@ -1,4 +1,4 @@
-import { Project } from "ts-morph";
+import { ObjectDestructuringAssignment, Project } from "ts-morph";
 import * as path from "path";
 import {
   buildObjectInterfaces,
@@ -43,6 +43,8 @@ export function generateModelFiles(
     const modelsFile = project.createSourceFile(filePath, undefined, {
       overwrite: true
     });
+
+    // const toGenerate = objectsDefinitions.slice(objectsDefinitions.length*5/8, objectsDefinitions.length*3/4);
     modelsFile.addInterfaces(objectsDefinitions);
     modelsFile.addTypeAliases(objectTypeAliases);
     return { path: filePath, content: modelsFile.getFullText() };
