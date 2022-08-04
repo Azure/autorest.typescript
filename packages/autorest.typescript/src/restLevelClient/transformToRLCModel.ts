@@ -75,7 +75,7 @@ export function transformObjectProperties(
 ): Record<string, ObjectSchema> {
   const result: Record<string, ObjectSchema> = {};
   objectProperties.forEach(prop => {
-    result[prop.serializedName] = transformProperty(
+    result[`"${prop.serializedName}"`] = transformProperty(
       prop,
       schemaUsage
     );
@@ -133,7 +133,7 @@ export function transformProperty(
     (obj.schema as M4ObjectSchema).usage ?? [SchemaContext.Input];
   const { type, typeName, outputTypeName } = getSchemaTypeName(obj);
   return {
-    name: obj.serializedName,
+    name: `"${obj.serializedName}"`,
     type,
     typeName,
     outputTypeName,

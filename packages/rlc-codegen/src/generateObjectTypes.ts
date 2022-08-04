@@ -183,7 +183,7 @@ function addDiscriminatorProperty(
     // This is usually the case on the top level parent where the property already has a type of string
     // we need to replace it with the polymorphic values of its children
     const filteredProperties = properties.filter(
-      (p) => `"${p.name}"` !== polymorphicProperty.name
+      (p) => p.name !== polymorphicProperty.name
     );
     return [...filteredProperties, polymorphicProperty];
   }
