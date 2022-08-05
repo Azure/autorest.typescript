@@ -17,7 +17,7 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
   const importedResponses = new Set<string>();
   const clientImports = new Set<string>();
 
-  const rlcModel = transform(model);
+  const rlcModel = transform(model, {importedParameters, importedResponses, clientImports});
 
   const clientDefinitions = buildClientDefinitions(
     rlcModel,

@@ -12,7 +12,7 @@ import { transformRLCModel } from "./transform/transform.js";
 export async function $onEmit(program: Program) {
   const rlcModels = await transformRLCModel(program);
   const project = new Project();
-  await emitCLientDefinition(rlcModels, program);
+  await emitClientDefinition(rlcModels, program);
   await emitModels(rlcModels, program, project);
 }
 
@@ -29,7 +29,7 @@ async function emitModels(
   }
 }
 
-async function emitCLientDefinition(rlcModels: RLCModel, program: Program) {
+async function emitClientDefinition(rlcModels: RLCModel, program: Program) {
   const clientDefinitionsFile = buildClientDefinitions(rlcModels, {
     clientImports: new Set(),
     importedParameters: new Set(),
