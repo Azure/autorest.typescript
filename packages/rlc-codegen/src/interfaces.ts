@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 export type Methods = {
   [key: string]: [OperationMethod];
 };
@@ -47,37 +50,11 @@ export interface RLCModel {
   srcPath: string;
   paths: Paths;
   options?: RLCOptions;
-  params?: OperationParameter[];
-  respons?: OperationResponse[];
+  schemas: Schema[];
 }
-export interface OperationParameter {
-  operationName: string;
-  parameters: ParameterMetadata[];
-}
-export interface ParameterMetadata {
-  type: "query" | "path" | "header" | "body";
-  name: string;
-  param: Schema;
-}
-
-export interface OperationResponse {
-  operationName: string;
-  responses: ResponseMetadata[];
-}
-export interface ResponseMetadata {
-  statusCode: string;
-  description?: string;
-  headers?: Record<string, Schema>;
-  body?: Schema;
-}
-export interface Schema {
-  name: string;
-  type: string;
-  description?: string;
-  required?: boolean;
-  default?: any;
-  readOnly?: boolean;
-  usage?: SchemaContext[];
+export interface File {
+  path: string,
+  content: string
 }
 
 export enum SchemaContext {
@@ -87,4 +64,39 @@ export enum SchemaContext {
   Output = "output",
   /** Schema is used as an exception from an operation. */
   Exception = "exception"
+}
+
+export interface Schema {
+  name: string;
+  type: string;
+  typeName?: string;
+  outputTypeName?: string;
+  description?: string;
+  required?: boolean;
+  default?: any;
+  readOnly?: boolean;
+  usage?: SchemaContext[];
+}
+
+export interface ObjectSchema extends Schema {
+  properties?: Record<string, Schema>;
+  discriminatorValue?: string;
+  discriminator?: Schema;
+  isPolyParent?: boolean;
+  children?: {
+    all?: ObjectSchema[];
+    immediate?: ObjectSchema[];
+  };
+  parents?: { 
+    all?: ObjectSchema[]
+    immediate?: ObjectSchema[];
+  }
+}
+
+export interface Property extends Schema {
+
+}
+
+export interface Parameter extends Schema {
+
 }
