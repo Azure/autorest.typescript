@@ -1,10 +1,7 @@
 import {
   CodeModel,
-  Operation,
   ParameterLocation,
-  ImplementationLocation,
-  OAuth2SecurityScheme,
-  KeySecurityScheme
+  ImplementationLocation
 } from "@autorest/codemodel";
 
 import {
@@ -23,9 +20,9 @@ import { NameType, normalizeName } from "../utils/nameUtils";
 import { isConstantSchema } from "./schemaHelpers";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { generateMethodShortcutImplementation } from "./generateMethodShortcuts";
-import { Paths } from "./interfaces";
-import { pathDictionary } from "./generateClientDefinition";
 import { getSecurityInfoFromModel } from "../utils/schemaHelpers";
+import { Paths } from "@azure-tools/rlc-codegen";
+import { transformPaths } from "./transforms/transformPaths";
 
 export function generateClient(model: CodeModel, project: Project) {
   const name = normalizeName(
@@ -44,6 +41,12 @@ export function generateClient(model: CodeModel, project: Project) {
   // Get all paths
   const clientName = getLanguageMetadata(model.language).name;
   const uriParameter = getClientUriParameter();
+
+  const pathDictionary = transformPaths(model, {
+    clientImports: new Set(),
+    importedParameters: new Set(),
+    importedResponses: new Set()
+  });
 
   const { multiClient, batch } = getAutorestOptions();
   const {

@@ -1,5 +1,7 @@
 import {
   CallSignatureDeclarationStructure,
+  InterfaceDeclarationStructure,
+  OptionalKind,
   Project,
   SourceFile,
   StructureKind,
@@ -11,7 +13,10 @@ import {
   buildMethodDefinitions,
   getPathParamDefinitions
 } from "./helpers/operationHelpers.js";
-import { Methods, Paths, RLCModel } from "./interfaces.js";
+import { PathMetadata, Paths, RLCModel } from "./interfaces.js";
+import { generateMethodShortcuts } from "./helpers/shortcutMethods.js";
+import { camelCase } from "./helpers/nameUtils.js";
+import { pascalCase } from "./helpers/nameUtils.js";
 
 export function buildClientDefinitions(
   model: RLCModel,
@@ -30,9 +35,19 @@ export function buildClientDefinitions(
 
   // Get all paths
   const pathDictionary = model.paths;
+  let shortcuts: OptionalKind<InterfaceDeclarationStructure>[] = [];
+  // There may be operations without an operation group, those shortcut
+  // methods need to be handled differently.
+  let shortcutsInOperationGroup: { name: string; type: string }[] = [];
 
-  // TODO ENABLE SHORTCUT
-  // writeShortcutInterface(model, pathDictionary, clientFile);
+  if (model.options?.includeShortcuts) {
+    shortcuts = generateMethodShortcuts(model.paths);
+    clientDefinitionsFile.addInterfaces(shortcuts);
+    shortcutsInOperationGroup = shortcuts
+      .filter((s) => s.name !== "ClientOperations")
+      .map((s) => getShortcutName(s.name));
+  }
+
   clientDefinitionsFile.addInterface({
     name: "Routes",
     isExported: true,
@@ -54,8 +69,18 @@ export function buildClientDefinitions(
     type: Writers.intersectionType(
       "Client",
       Writers.objectType({
-        properties: [{ name: "path", type: "Routes" }]
-      })
+        properties: [
+          { name: "path", type: "Routes" },
+          ...shortcutsInOperationGroup
+        ]
+      }),
+      // If the length of shortcuts in operation group and all shortcutsInOperationGroup
+      // is the same, then we don't have any operations at the client level
+      // Otherwise we need to make the client interface name an union with the
+      // definition of all client level shortcut methods
+      ...(shortcutsInOperationGroup.length !== shortcuts.length
+        ? [`ClientOperations`]
+        : [])
     )
   });
 
@@ -89,11 +114,13 @@ function getPathFirstRoutesInterfaceDefinition(
   paths: Paths,
   sourcefile: SourceFile
 ): CallSignatureDeclarationStructure[] {
+  const operationGroupCount = getOperationGroupCount(paths);
+
   const signatures: CallSignatureDeclarationStructure[] = [];
   for (const key of Object.keys(paths)) {
     generatePathFirstRouteMethodsDefinition(
-      paths[key].name,
-      paths[key].methods,
+      paths[key],
+      operationGroupCount,
       sourcefile
     );
     const pathParams = paths[key].pathParameters;
@@ -112,23 +139,71 @@ function getPathFirstRoutesInterfaceDefinition(
         { name: "path", type: `"${key}"` },
         ...getPathParamDefinitions(pathParams)
       ],
-      returnType: paths[key].name,
+      returnType: getOperationReturnTypeName(
+        paths[key],
+        getOperationGroupCount(paths)
+      ),
       kind: StructureKind.CallSignature
     });
   }
   return signatures;
 }
 
+function getOperationGroupCount(paths: Paths) {
+  const operationGroups = Object.keys(paths)
+    .map((p) => paths[p].operationGroupName)
+    .filter((p) => p && p !== "Client");
+  const uniqueNames = new Set(operationGroups);
+
+  return uniqueNames.size;
+}
+
+function getOperationReturnTypeName(
+  { operationGroupName, name }: PathMetadata,
+  operationGroupCount: number
+) {
+  if (
+    operationGroupCount > 1 &&
+    operationGroupName &&
+    operationGroupName !== "Client"
+  ) {
+    return `${pascalCase(operationGroupName)}${pascalCase(name)}`;
+  }
+
+  return pascalCase(name);
+}
+
 function generatePathFirstRouteMethodsDefinition(
-  operationName: string,
-  methods: Methods,
+  path: PathMetadata,
+  operationGroupCount: number,
   file: SourceFile
 ): void {
-  const methodDefinitions = buildMethodDefinitions(methods);
-
-  file.addInterface({
+  const methodDefinitions = buildMethodDefinitions(path.methods);
+  const interfaceDef = {
     methods: methodDefinitions,
-    name: operationName,
+    name: getOperationReturnTypeName(path, operationGroupCount),
     isExported: true
-  });
+  };
+  file.addInterface(interfaceDef);
+}
+
+function getShortcutName(interfaceName: string) {
+  const endIndex = shouldKeepSuffix(interfaceName)
+    ? undefined
+    : interfaceName.indexOf("Operations");
+  const clientProperty = camelCase(interfaceName.substring(0, endIndex));
+
+  return {
+    name: clientProperty,
+    type: interfaceName
+  };
+}
+
+function shouldKeepSuffix(name: string) {
+  const reservedNames = [
+    "pipelineOperations",
+    "pathOperations",
+    "pathUncheckedOperations"
+  ];
+  return reservedNames.some((r) => r.toLowerCase() === name.toLowerCase());
 }

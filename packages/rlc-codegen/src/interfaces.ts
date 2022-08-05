@@ -14,13 +14,15 @@ export interface OperationMethod {
   returnType: string;
   successStatus: string[];
   responseTypes: ResponseTypes;
+  operationName: string;
 }
-
 export interface PathMetadata {
   name: string;
   pathParameters: PathParameter[];
   methods: Methods;
   annotations?: OperationAnnotations;
+  operationGroupName: string;
+  description: string;
 }
 
 export type Paths = Record<string, PathMetadata>;
@@ -36,10 +38,15 @@ export interface OperationAnnotations {
   isPageable?: boolean;
 }
 
+export interface RLCOptions {
+  includeShortcuts?: boolean;
+}
+
 export interface RLCModel {
   libraryName: string;
   srcPath: string;
   paths: Paths;
+  options?: RLCOptions;
   schemas: Schema[];
 }
 export interface File {
