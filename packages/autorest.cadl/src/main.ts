@@ -6,7 +6,7 @@ import {
   AutorestExtensionHost
 } from "@autorest/extension-base";
 
-export async function processRequest(host: AutorestExtensionHost) {
+export async function processRequest(_host: AutorestExtensionHost) {
   throw new Error("Not implemented");
 }
 
