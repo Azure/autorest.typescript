@@ -32,7 +32,6 @@ export function buildResponseTypes(
                     response,
                     baseResponseName
                 );
-
             if (headersInterface) {
                 hasHeaders = true;
                 responsesFile.addInterface(headersInterface);
