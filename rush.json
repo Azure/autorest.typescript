@@ -336,6 +336,10 @@
     {
       "packageName": "@msinternal/cadl-rest-test",
       "projectFolder": "packages/cadl-rlc-test"
+    },
+    {
+      "packageName": "@autorest/cadl",
+      "projectFolder": "packages/autorest.cadl"
     }
   ]
 }

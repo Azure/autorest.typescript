@@ -1,0 +1,29 @@
+{
+  "name": "@autorest/cadl",
+  "version": "1.0.0",
+  "description": "Autorest plugin to scaffold a CADL definition from an OpenAPI document",
+  "main": "dist/main.js",
+  "scripts": {
+    "build": "tsc -p .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./dist/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Azure/autorest.typescript.git"
+  },
+  "keywords": [
+    "Autorest",
+    "CADL"
+  ],
+  "author": "Microsoft Corp.",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Azure/autorest.typescript/issues"
+  },
+  "homepage": "https://github.com/Azure/autorest.typescript#readme",
+  "dependencies": {
+    "typescript": "^4.7.4",
+    "@autorest/extension-base": "^3.5.0"
+  }
+}
