@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import { CompilerHost, Program } from "@cadl-lang/compiler";
 import {
   buildClientDefinitions,

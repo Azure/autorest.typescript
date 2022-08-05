@@ -1,5 +1,12 @@
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
+/** Contains operations for WidgetService operations */
+export interface WidgetServiceOperations {
+    create(options: Options): StreamableMethod<>;
+    read(id: string, options: Options): StreamableMethod<>;
+    customGet(options: Options): StreamableMethod<>;
+}
+
 export interface Create {
     post(options: Options): StreamableMethod<>;
 }
@@ -23,4 +30,5 @@ export interface Routes {
 
 export type FooClient = Client & {
         path: Routes;
+        widgetService: WidgetServiceOperations;
     };

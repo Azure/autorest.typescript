@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import { Schema } from "../interfaces.js";
 
 export function isDictionarySchema(schema: Schema) {

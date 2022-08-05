@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import {
   InterfaceDeclarationStructure,
   PropertySignatureStructure,
@@ -31,9 +34,6 @@ export function buildObjectInterfaces(
 
   for (const objectSchema of objectSchemas) {
     const baseName = getObjectBaseName(objectSchema, schemaUsage);
-    if (baseName === "CustomSetupBase") {
-      objectSchema;
-    }
     const interfaceDeclaration = getObjectInterfaceDeclaration(
       baseName,
       objectSchema,

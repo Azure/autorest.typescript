@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import { Schema, SchemaContext } from "@azure-tools/rlc-codegen";
 import { ModelType, Program, Type } from "@cadl-lang/compiler";
 import { getAllRoutes } from "@cadl-lang/rest/http";

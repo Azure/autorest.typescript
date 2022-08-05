@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 export * from "./interfaces.js";
 export * from "./generateClientDefinitions.js";
 export * from "./generateSchemaType.js";

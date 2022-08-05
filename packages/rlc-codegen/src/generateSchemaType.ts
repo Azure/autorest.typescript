@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import { ObjectDestructuringAssignment, Project } from "ts-morph";
 import * as path from "path";
 import {
@@ -44,7 +47,6 @@ export function generateModelFiles(
       overwrite: true
     });
 
-    const obj = objectsDefinitions.filter(item => item.name !== "CustomSetupBase");
     modelsFile.addInterfaces(objectsDefinitions);
     modelsFile.addTypeAliases(objectTypeAliases);
     return { path: filePath, content: modelsFile.getFullText() };

@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import { paramMessage, createCadlLibrary } from "@cadl-lang/compiler";
 
 const libDef = {
