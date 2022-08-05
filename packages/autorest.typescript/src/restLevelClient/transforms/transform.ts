@@ -1,9 +1,10 @@
 import { CodeModel } from "@autorest/codemodel";
-import { RLCModel } from "@azure-tools/rlc-codegen";
+import { ImportKind, RLCModel } from "@azure-tools/rlc-codegen";
 import { getAutorestOptions } from "../../autorestSession";
 import { getLanguageMetadata } from "../../utils/languageHelpers";
 import { NameType, normalizeName } from "../../utils/nameUtils";
 import { transformPaths } from "./transformPaths";
+import { transformResponseTypes } from "./transformResponseTypes";
 import { transformSchemas } from "./transformSchemas";
 
 export function transform(
@@ -19,7 +20,8 @@ export function transform(
   }
 ): RLCModel {
   const { srcPath, rlcShortcut } = getAutorestOptions();
-  const rlcModel = {
+  const importDetails = new Map<ImportKind, Set<string>>();
+  const rlcModel: RLCModel = {
     libraryName: normalizeName(
       getLanguageMetadata(model.language).name,
       NameType.Interface
@@ -31,7 +33,9 @@ export function transform(
       clientImports
     }),
     options: { includeShortcuts: rlcShortcut },
-    schemas: transformSchemas(model)
+    schemas: transformSchemas(model),
+    responses: transformResponseTypes(model, importDetails),
+    importSet: importDetails
   };
   return rlcModel;
 }

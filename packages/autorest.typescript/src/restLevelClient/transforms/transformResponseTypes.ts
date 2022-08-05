@@ -1,15 +1,17 @@
-import { CodeModel, Operation, Response, SchemaResponse } from "@autorest/codemodel";
-import { OperationResponse, ResponseMetadata } from "@azure-tools/rlc-codegen";
+import { CodeModel, HttpHeader, Operation, Response, SchemaContext, SchemaResponse } from "@autorest/codemodel";
+import { HeaderMetadata, ImportKind, OperationResponse, ResponseMetadata } from "@azure-tools/rlc-codegen";
 import { getLanguageMetadata } from "../../utils/languageHelpers";
 import { responseToSchemaResponse } from "../operationHelpers";
+import { getElementType, getFormatDocs, primitiveSchemaToType } from "../schemaHelpers";
 
-export function transformResponseTypes(model: CodeModel): OperationResponse[] {
+export function transformResponseTypes(model: CodeModel, importDetails: Map<ImportKind, Set<string>>): OperationResponse[] {
     const operations = getAllOperationRequests(model);
-    const parameters: OperationResponse[] = [];
+    const rlcResponses: OperationResponse[] = [];
+    let importedModels = new Set<string>();
     for (const operation of operations) {
         const responses = mergeResponsesAndExceptions(operation);
         const operationLanguageMetadata = getLanguageMetadata(operation.language);
-        const param: OperationResponse = {
+        const rlcOperationUnit: OperationResponse = {
             operationName: `${operationLanguageMetadata.name}`,
             responses: []
         };
@@ -20,13 +22,83 @@ export function transformResponseTypes(model: CodeModel): OperationResponse[] {
             }
             let schemaResponse: SchemaResponse = responseToSchemaResponse(response);
             const statusCode = getStatusCode(schemaResponse);
-            const resp: ResponseMetadata = {
+            const responseTypeDescription = operationLanguageMetadata.description;
+            const rlcResponseUnit: ResponseMetadata = {
                 statusCode,
             };
-
+            if (responseTypeDescription) {
+                rlcResponseUnit.description = responseTypeDescription;
+            }
+            // transform header
+            transformHeaders(response, rlcResponseUnit);
+            // transform body
+            transformBody(response, importedModels, rlcResponseUnit)
+            rlcOperationUnit.responses.push(rlcResponseUnit);
         }
+        rlcResponses.push(rlcOperationUnit);
     }
-    return parameters;
+    if (importedModels.size > 0) {
+        importDetails.set(ImportKind.ResponseOutput, importedModels);
+    }
+    return rlcResponses;
+}
+
+
+function transformHeaders(from: Response, to: ResponseMetadata) {
+    // Check if there are any required headers
+    const hasDefinedHeaders =
+        Boolean(from.protocol.http?.headers) &&
+        Boolean(from.protocol.http?.headers.length);
+    if (!hasDefinedHeaders) {
+        return;
+    }
+
+    to.headers = from.protocol.http?.headers.map((h: HttpHeader) => {
+        const header: HeaderMetadata = {
+            name: `"${h.header.toLowerCase()}"`,
+            description: getLanguageMetadata(h.language).description,
+            type: primitiveSchemaToType(h.schema, [
+                SchemaContext.Output,
+                SchemaContext.Exception
+            ]),
+            required: false
+        };
+        return header;
+    });
+}
+
+function transformBody(from: Response, importedModels: Set<string>, to: ResponseMetadata) {
+    let schemaResponse: SchemaResponse = responseToSchemaResponse(from);
+    const bodyType = getBodyTypeName(schemaResponse, importedModels);
+    const bodyDescription = getFormatDocs(schemaResponse.schema);
+    if (!bodyType) {
+        return;
+    }
+    to.body = {
+        name: "body",
+        type: bodyType,
+        description: bodyDescription
+    };
+
+
+}
+
+/**
+ * Body types are defined in the models file, this function checks if the current
+ * response's body has a reference to a model or if it is a primitive, and returns the Typescript type
+ * to generate
+ * @param response - response to get the body type from
+ * @param importedModels - track models to import
+ */
+function getBodyTypeName(
+    response: SchemaResponse,
+    importedModels: Set<string>
+): string | undefined {
+    return getElementType(
+        response.schema,
+        [SchemaContext.Output, SchemaContext.Exception],
+        importedModels
+    );
 }
 
 // Gets a list of all the available operations requests in the specification

@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+
 export type Methods = {
   [key: string]: [OperationMethod];
 };
@@ -53,6 +54,12 @@ export interface RLCModel {
   schemas: Schema[];
   parameters?: OperationParameter[];
   responses?: OperationResponse[];
+  importSet?: Map<ImportKind, Set<string>>;
+}
+
+export enum ImportKind {
+  ResponseOutput,
+  ParameterInput
 }
 export interface File {
   path: string,
@@ -120,6 +127,8 @@ export interface OperationResponse {
 export interface ResponseMetadata {
   statusCode: string;
   description?: string;
-  headers?: Record<string, Schema>;
+  headers?: HeaderMetadata[];
   body?: Schema;
 }
+
+export type HeaderMetadata = Schema;
