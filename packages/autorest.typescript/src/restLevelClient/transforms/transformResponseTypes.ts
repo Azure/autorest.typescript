@@ -21,18 +21,15 @@ export function transformResponseTypes(model: CodeModel, importDetails: Map<Impo
                 continue;
             }
             let schemaResponse: SchemaResponse = responseToSchemaResponse(response);
-            const statusCode = getStatusCode(schemaResponse);
-            const responseTypeDescription = operationLanguageMetadata.description;
             const rlcResponseUnit: ResponseMetadata = {
-                statusCode,
+                statusCode: getStatusCode(schemaResponse),
+                description: operationLanguageMetadata.description
             };
-            if (responseTypeDescription) {
-                rlcResponseUnit.description = responseTypeDescription;
-            }
+
             // transform header
             transformHeaders(response, rlcResponseUnit);
             // transform body
-            transformBody(response, importedModels, rlcResponseUnit)
+            transformBody(response, importedModels, rlcResponseUnit);
             rlcOperationUnit.responses.push(rlcResponseUnit);
         }
         rlcResponses.push(rlcOperationUnit);
@@ -79,8 +76,6 @@ function transformBody(from: Response, importedModels: Set<string>, to: Response
         type: bodyType,
         description: bodyDescription
     };
-
-
 }
 
 /**

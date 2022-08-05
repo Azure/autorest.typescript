@@ -1,7 +1,7 @@
 import { InterfaceDeclarationStructure, OptionalKind, Project, PropertySignatureStructure, StructureKind } from "ts-morph";
-import { HeaderMetadata, ImportKind, ResponseMetadata, RLCModel } from "./interfaces";
+import { HeaderMetadata, ImportKind, ResponseMetadata, RLCModel } from "./interfaces.js";
 import * as path from "path";
-import { NameType, normalizeName } from "./helpers/nameUtils";
+import { NameType, normalizeName } from "./helpers/nameUtils.js";
 
 export function buildResponseTypes(
     model: RLCModel) {

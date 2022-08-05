@@ -6,6 +6,7 @@ import {
   buildClientDefinitions,
   RLCModel,
   generateSchemaTypes,
+  buildResponseTypes,
   File,
 } from "@azure-tools/rlc-codegen";
 import { dirname, isAbsolute, join } from "path";
@@ -17,6 +18,7 @@ export async function $onEmit(program: Program) {
   const project = new Project();
   await emitClientDefinition(rlcModels, program);
   await emitModels(rlcModels, program, project);
+  await emitResponseTypes(rlcModels, program);
 }
 
 async function emitModels(
@@ -40,6 +42,11 @@ async function emitClientDefinition(rlcModels: RLCModel, program: Program) {
   });
 
   await emitFile(clientDefinitionsFile, program);
+}
+
+async function emitResponseTypes(rlcModels: RLCModel, program: Program) {
+  const responsesFile = buildResponseTypes(rlcModels);
+  if (responsesFile) await emitFile(responsesFile, program);
 }
 
 async function emitFile(file: File, program: Program) {
