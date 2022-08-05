@@ -50,12 +50,10 @@ export interface RLCModel {
   params?: OperationParameter[];
   respons?: OperationResponse[];
 }
-
 export interface OperationParameter {
   operationName: string;
   parameters: ParameterMetadata[];
 }
-
 export interface ParameterMetadata {
   type: "query" | "path" | "header" | "body";
   name: string;
@@ -66,7 +64,6 @@ export interface OperationResponse {
   operationName: string;
   responses: ResponseMetadata[];
 }
-
 export interface ResponseMetadata {
   statusCode: string;
   description?: string;
