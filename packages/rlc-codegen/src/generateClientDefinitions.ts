@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import {
   CallSignatureDeclarationStructure,
   InterfaceDeclarationStructure,
@@ -15,8 +18,8 @@ import {
 } from "./helpers/operationHelpers.js";
 import { PathMetadata, Paths, RLCModel } from "./interfaces.js";
 import { generateMethodShortcuts } from "./helpers/shortcutMethods.js";
-import { camelCase } from "./helpers/camelCase.js";
-import { pascalCase } from "./helpers/pascalCase.js";
+import { camelCase } from "./helpers/nameUtils.js";
+import { pascalCase } from "./helpers/nameUtils.js";
 
 export function buildClientDefinitions(
   model: RLCModel,

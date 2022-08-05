@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import {
   OptionalKind,
   MethodSignatureStructure,
@@ -5,7 +8,7 @@ import {
 } from "ts-morph";
 import { PathMetadata, Paths } from "../interfaces.js";
 import { buildMethodDefinitions } from "./operationHelpers.js";
-import { camelCase } from "./camelCase.js";
+import { camelCase } from "./nameUtils.js";
 
 export function generateMethodShortcuts(
   paths: Paths

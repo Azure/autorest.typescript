@@ -1,10 +1,13 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import {
   MethodSignatureStructure,
   OptionalKind,
   ParameterDeclarationStructure
 } from "ts-morph";
 import { Methods, PathParameter } from "../interfaces.js";
-import { pascalCase } from "./pascalCase.js";
+import { pascalCase } from "./nameUtils.js";
 
 export function buildMethodDefinitions(
   methods: Methods,

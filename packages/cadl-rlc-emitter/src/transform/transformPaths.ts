@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import { Paths } from "@azure-tools/rlc-codegen";
 import { Program } from "@cadl-lang/compiler";
 import { getAllRoutes } from "@cadl-lang/rest/http";
