@@ -51,6 +51,8 @@ export interface RLCModel {
   paths: Paths;
   options?: RLCOptions;
   schemas: Schema[];
+  parameters?: OperationParameter[];
+  responses?: OperationResponse[];
 }
 export interface File {
   path: string,
@@ -87,7 +89,7 @@ export interface ObjectSchema extends Schema {
     all?: ObjectSchema[];
     immediate?: ObjectSchema[];
   };
-  parents?: { 
+  parents?: {
     all?: ObjectSchema[]
     immediate?: ObjectSchema[];
   }
@@ -99,4 +101,25 @@ export interface Property extends Schema {
 
 export interface Parameter extends Schema {
 
+}
+
+export interface OperationParameter {
+  operationName: string;
+  parameters: ParameterMetadata[];
+}
+export interface ParameterMetadata {
+  type: "query" | "path" | "header" | "body";
+  name: string;
+  param: Schema;
+}
+
+export interface OperationResponse {
+  operationName: string;
+  responses: ResponseMetadata[];
+}
+export interface ResponseMetadata {
+  statusCode: string;
+  description?: string;
+  headers?: Record<string, Schema>;
+  body?: Schema;
 }
