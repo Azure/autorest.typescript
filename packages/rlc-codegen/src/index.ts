@@ -1,5 +1,8 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 export * from "./interfaces.js";
 export * from "./generateClientDefinitions.js";
+export * from "./generateSchemaType.js";
 export * from "./helpers/shortcutMethods.js";
-export { camelCase } from "./helpers/camelCase.js";
-export { pascalCase } from "./helpers/pascalCase.js";
+export * from "./helpers/nameUtils.js"

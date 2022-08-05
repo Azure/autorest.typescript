@@ -33,7 +33,8 @@
     "@cadl-lang/rest": "latest",
     "prettier": "^2.6.1",
     "tslib": "^2.3.1",
-    "@azure-tools/rlc-codegen": "1.0.0"
+    "@azure-tools/rlc-codegen": "1.0.0",
+    "ts-morph": "^15.1.0"
   },
   "mocha": {
     "extension": [

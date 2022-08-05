@@ -1,34 +1,53 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import { CompilerHost, Program } from "@cadl-lang/compiler";
-import { buildClientDefinitions, Paths } from "@azure-tools/rlc-codegen";
-import { dirname, join } from "path";
-import { transformPaths } from "./transformPaths";
+import {
+  buildClientDefinitions,
+  RLCModel,
+  generateSchemaTypes,
+  File,
+} from "@azure-tools/rlc-codegen";
+import { dirname, isAbsolute, join } from "path";
+import { Project } from "ts-morph";
+import { transformRLCModel } from "./transform/transform.js";
 
 export async function $onEmit(program: Program) {
-  const paths: Paths = transformPaths(program);
-  const clientDefinitionsFile = buildClientDefinitions(
-    {
-      paths,
-      libraryName: "Foo",
-      srcPath: "src",
-      options: {
-        // TODO: Read configuration from CADL
-        includeShortcuts: true
-      }
-    },
-    {
-      clientImports: new Set(),
-      importedParameters: new Set(),
-      importedResponses: new Set()
-    }
-  );
-
-  const filePath = program.compilerOptions.outputPath
-    ? join(program.compilerOptions.outputPath, clientDefinitionsFile.path)
-    : clientDefinitionsFile.path;
-  await emitFile(filePath, clientDefinitionsFile.content, program.host);
+  const rlcModels = await transformRLCModel(program);
+  const project = new Project();
+  await emitClientDefinition(rlcModels, program);
+  await emitModels(rlcModels, program, project);
 }
 
-async function emitFile(path: string, content: string, host: CompilerHost) {
-  await host.mkdirp(dirname(path));
-  await host.writeFile(path, content);
+async function emitModels(
+  rlcModels: RLCModel,
+  program: Program,
+  project: Project
+) {
+  const schemaOutput = generateSchemaTypes(rlcModels, project);
+  if (schemaOutput) {
+    const { inputModelFile, outputModelFile } = schemaOutput;
+    if (inputModelFile) await emitFile(inputModelFile, program);
+    if (outputModelFile) await emitFile(outputModelFile, program);
+  }
+}
+
+async function emitClientDefinition(rlcModels: RLCModel, program: Program) {
+  const clientDefinitionsFile = buildClientDefinitions(rlcModels, {
+    clientImports: new Set(),
+    importedParameters: new Set(),
+    importedResponses: new Set()
+  });
+
+  await emitFile(clientDefinitionsFile, program);
+}
+
+async function emitFile(file: File, program: Program) {
+  const host: CompilerHost = program.host;
+  const filePath =
+    isAbsolute(file.path) || !program.compilerOptions.outputPath
+      ? file.path
+      : join(program.compilerOptions.outputPath, file.path);
+  await host.mkdirp(dirname(filePath));
+  await host.writeFile(filePath, file.content);
 }
